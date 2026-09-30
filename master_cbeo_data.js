@@ -21002,8 +21002,8 @@ window.MASTER_CBEO_DATA = {
   ],
   "admin_config": {
     "peeo_tab_access": {
-      "demand": true,
-      "reports": true,
+      "demand": false,
+      "reports": false,
       "directory": false,
       "explorer": false
     },

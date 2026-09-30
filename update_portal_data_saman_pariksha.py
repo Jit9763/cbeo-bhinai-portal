@@ -38,8 +38,8 @@ def update():
     # 4. Admin tab access control settings for PEEO
     master['admin_config'] = {
         "peeo_tab_access": {
-            "demand": True,
-            "reports": True,
+            "demand": False,
+            "reports": False,
             "directory": False,
             "explorer": False
         },

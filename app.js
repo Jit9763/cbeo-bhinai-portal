@@ -171,7 +171,7 @@ function initMasterData() {
         saman_pariksha: true,
         directory: false,
         explorer: false,
-        reports: true
+        reports: false
       };
     }
   } else {
@@ -179,7 +179,7 @@ function initMasterData() {
       saman_pariksha: true,
       directory: false,
       explorer: false,
-      reports: true
+      reports: false
     };
   }
 
@@ -538,7 +538,7 @@ function applyTabVisibility() {
     saman_pariksha: true,
     directory: false,
     explorer: false,
-    reports: true
+    reports: false
   };
 
   const isPeeoOrSchool = STATE.currentUser && (STATE.currentUser.role === 'peeo' || STATE.currentUser.role === 'school');
