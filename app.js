@@ -210,55 +210,7 @@ function getInitialAuditLogs() {
 }
 
 function getInitialDemands() {
-  return [
-    {
-      id: 'DEMAND_01',
-      title: 'कक्षा कक्ष मरम्मत आवश्यकता सूचना 2026',
-      description: 'समस्त PEEO अधीनस्थ विद्यालयों में वर्तमान में क्षतिग्रस्त एवं मरम्मत योग्य कमरों का भौतिक सत्यापन कर विवरण दें।',
-      dueDate: '2026-10-05',
-      priority: 'अति आवश्यक (Urgent)',
-      published: true,
-      createdAt: '2026-09-28',
-      columns: [
-        { name: 'कुल स्वीकृत कक्षा कक्ष', type: 'number', locked: false, placeholder: 'कमरों की संख्या' },
-        { name: 'वर्तमान में मरम्मत योग्य कक्ष', type: 'number', locked: false, placeholder: 'मरम्मत योग्य' },
-        { name: 'नवीन भवन/कक्ष की आवश्यकता', type: 'number', locked: false, placeholder: 'नवीन आवश्यकता' },
-        { name: 'अनुमानित व्यय (लाखों में)', type: 'number', locked: false, placeholder: 'लाख रु. में' },
-        { name: 'विशेष अभियुक्ति / स्थिति', type: 'text', locked: false, placeholder: 'कमरों की वर्तमान स्थिति' }
-      ]
-    },
-    {
-      id: 'DEMAND_02',
-      title: 'विद्या संबल योजना शिक्षक रिक्त पद विवरण',
-      description: 'सत्र 2026-27 हेतु विद्यालयवार रिक्त पदों की वास्तविक स्थिति एवं विद्या संबल योजना की आवश्यकता प्रेषित करें।',
-      dueDate: '2026-10-07',
-      priority: 'साधारण (Normal)',
-      published: true,
-      createdAt: '2026-09-29',
-      columns: [
-        { name: 'स्वीकृत पद', type: 'number', locked: false, placeholder: 'कुल स्वीकृत पद' },
-        { name: 'कार्यरत पद', type: 'number', locked: false, placeholder: 'कार्यरत शिक्षक' },
-        { name: 'रिक्त पद संख्या', type: 'number', locked: false, placeholder: 'रिक्तियां' },
-        { name: 'आवश्यक विषय/लेवल', type: 'text', locked: false, placeholder: 'उदा. Level-2 गणित' },
-        { name: 'प्राथमिकता', type: 'select', options: ['उच्च (High)', 'मध्यम (Medium)', 'सामान्य (Normal)'], locked: false }
-      ]
-    },
-    {
-      id: 'DEMAND_03',
-      title: 'पुस्तकालय एवं ICT लैब क्रियाशीलता रिपोर्ट',
-      description: 'कम्प्यूटर लैब में उपलब्ध चालू कम्प्यूटरों की संख्या तथा पुस्तकालय पुस्तकों के वितरण की स्थिति।',
-      dueDate: '2026-10-10',
-      priority: 'साधारण (Normal)',
-      published: true,
-      createdAt: '2026-09-30',
-      columns: [
-        { name: 'क्या ICT लैब स्थापित है?', type: 'select', options: ['हाँ (Yes)', 'नहीं (No)'], locked: false },
-        { name: 'चालू कंप्यूटर संख्या', type: 'number', locked: false, placeholder: 'चालू PC' },
-        { name: 'इंटरनेट कनेक्टिविटी प्रकार', type: 'select', options: ['Fiber Broadband', '4G Dongle', 'Mobile Hotspot', 'उपलब्ध नहीं'], locked: false },
-        { name: 'कुल पुस्तकालय पुस्तकें', type: 'number', locked: false, placeholder: 'पुस्तकों की संख्या' }
-      ]
-    }
-  ];
+  return (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.demands) ? MASTER_CBEO_DATA.demands : [];
 }
 
 function savePeeosToStorage() {
@@ -591,6 +543,7 @@ function applyTabVisibility() {
 
   const isPeeoOrSchool = STATE.currentUser && (STATE.currentUser.role === 'peeo' || STATE.currentUser.role === 'school');
   
+  const tabDash = document.getElementById('nav-tab-dashboard');
   const tabDir = document.getElementById('nav-tab-directory');
   const tabExp = document.getElementById('nav-tab-explorer');
   const tabStaff = document.getElementById('nav-tab-staff');
@@ -600,6 +553,7 @@ function applyTabVisibility() {
   const quickBanner = document.querySelector('.directory-quick-banner');
 
   if (isPeeoOrSchool) {
+    if (tabDash) tabDash.style.display = 'none';
     if (tabDir) tabDir.style.display = config.directory ? 'inline-flex' : 'none';
     if (tabExp) tabExp.style.display = config.explorer ? 'inline-flex' : 'none';
     if (tabStaff) tabStaff.style.display = config.explorer ? 'inline-flex' : 'none';
@@ -608,6 +562,7 @@ function applyTabVisibility() {
     if (tabAdmin) tabAdmin.style.display = 'none';
     if (quickBanner) quickBanner.style.display = config.directory ? 'flex' : 'none';
   } else if (STATE.currentUser && STATE.currentUser.role === 'admin') {
+    if (tabDash) tabDash.style.display = 'inline-flex';
     if (tabDir) tabDir.style.display = 'inline-flex';
     if (tabExp) tabExp.style.display = 'inline-flex';
     if (tabStaff) tabStaff.style.display = 'inline-flex';
@@ -937,7 +892,11 @@ function filterSamanParikshaTable() {
             <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${s.shala_darpan_code}')" title="अधिकृत PDF देखें">
               <i class="fas fa-print"></i>
             </button>
-          ` : ''}
+          ` : `
+            <button class="btn btn-whatsapp btn-sm" onclick="sendSamanParikshaReminder('${s.shala_darpan_code}')" title="WhatsApp पर तुरंत रिमाइंडर भेजें">
+              <i class="fab fa-whatsapp"></i>
+            </button>
+          `}
         </div>
       </td>
     `;
@@ -1148,6 +1107,7 @@ function submitSamanParikshaForm(andPrint = false) {
 }
 
 function openExamPdfPreview(schoolCode) {
+  STATE.activeExamPreviewCode = schoolCode;
   const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
   const sub = STATE.samanParikshaSubmissions[schoolCode];
   if (!school || !sub) {
@@ -1346,6 +1306,62 @@ function printOfficialExamDocument() {
   window.print();
 }
 
+function downloadExamPDFDirect() {
+  const container = document.getElementById('printable-exam-document-content');
+  if (!container) return;
+  const schoolCode = STATE.activeExamPreviewCode || 'School';
+  const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
+  const nameSafe = school ? school.school_name.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 30) : 'Exam_Indent';
+  
+  showToast('अधिकृत PDF तैयार किया जा रहा है...', 'info');
+  
+  const opt = {
+    margin: [6, 6, 6, 6],
+    filename: `Saman_Pariksha_2026_${schoolCode}_${nameSafe}.pdf`,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+  
+  if (typeof html2pdf !== 'undefined') {
+    html2pdf().set(opt).from(container).save().then(() => {
+      showToast('अधिकृत PDF सफलतापूर्वक डाउनलोड हो गया!', 'success');
+    }).catch(err => {
+      console.error(err);
+      window.print();
+    });
+  } else {
+    window.print();
+  }
+}
+
+function shareExamPDFWhatsApp() {
+  const schoolCode = STATE.activeExamPreviewCode;
+  const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
+  const sub = STATE.samanParikshaSubmissions[schoolCode];
+  if (!school || !sub) {
+    showToast('प्रपत्र डेटा उपलब्ध नहीं है!', 'warning');
+    return;
+  }
+  
+  const text = `*🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय*\n*जिला समान परीक्षा योजना (सत्र 2026-27)*\n\n📌 *विद्यालय:* ${school.school_name}\n📌 *शाला दर्पण/PSP कोड:* ${school.shala_darpan_code}\n📌 *परीक्षा कोड:* ${sub.exam_code}\n📌 *संस्था प्रधान:* ${sub.principal_name} (${sub.principal_mobile})\n📌 *परीक्षा प्रभारी:* ${sub.incharge_name} (${sub.incharge_mobile})\n\n📊 *कक्षावार नामांकन एवं प्रश्न-पत्र मांग:*\n• कक्षा 9वीं: ${sub.c9_total}\n• कक्षा 10वीं: ${sub.c10_total}\n• कक्षा 11वीं: ${sub.c11_total}\n• कक्षा 12वीं: ${sub.c12_total}\n🎯 *कुल मांग प्रश्न-पत्र (Grand Total):* ${sub.grand_total}\n\n✅ *सत्यापन स्थिति:* अधिकृत डिजिटल सील व हस्ताक्षरों सहित सबमिट\n📅 *प्रविष्टि दिनांक:* ${sub.timestamp}\n🌐 *पोर्टल लिंक:* https://jit9763.github.io/cbeo-bhinai-portal/`;
+  
+  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+}
+
+function sendSamanParikshaReminder(schoolCode) {
+  const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
+  if (!school) return;
+  const mob = school.principal_mobile;
+  const msg = `*कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय*\n\nआदरणीय संस्था प्रधान महोदय,\nविद्यालय: *${school.school_name}* (कोड: ${school.shala_darpan_code})\n\nसत्र 2026-27 जिला समान परीक्षा हेतु आपके विद्यालय का कक्षा 9 से 12 नामांकन व प्रश्न-पत्र मांग प्रपत्र CBEO पोर्टल पर अभी भरना शेष है।\nकृपया पोर्टल (https://jit9763.github.io/cbeo-bhinai-portal/) पर लॉगिन कर तुरंत प्रपत्र सबमिट करें एवं अधिकृत PDF मय सील-साइन प्रेषित करें।\n\n- मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय`;
+  if (mob) {
+    sendWhatsAppMessage(mob, msg);
+  } else {
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+}
+
 function exportSamanParikshaMasterCSV() {
   const header = [
     "क्र.सं. (S.No)",
@@ -1382,12 +1398,24 @@ function exportSamanParikshaMasterCSV() {
 
     let c11OptStr = "";
     if (sub.c11_optional) {
-      c11OptStr = Object.entries(sub.c11_optional).filter(([k, v]) => v > 0).map(([k, v]) => `${k}:${v}`).join("; ");
+      c11OptStr = Object.entries(sub.c11_optional)
+        .filter(([k, v]) => v > 0)
+        .map(([k, v]) => {
+          const item = SAMAN_PARIKSHA_OPTIONAL_SUBJECTS.find(sub => sub.key === k);
+          const label = item ? item.label.split('(')[0].trim() : k;
+          return `${label}: ${v}`;
+        }).join("; ");
     }
 
     let c12OptStr = "";
     if (sub.c12_optional) {
-      c12OptStr = Object.entries(sub.c12_optional).filter(([k, v]) => v > 0).map(([k, v]) => `${k}:${v}`).join("; ");
+      c12OptStr = Object.entries(sub.c12_optional)
+        .filter(([k, v]) => v > 0)
+        .map(([k, v]) => {
+          const item = SAMAN_PARIKSHA_OPTIONAL_SUBJECTS.find(sub => sub.key === k);
+          const label = item ? item.label.split('(')[0].trim() : k;
+          return `${label}: ${v}`;
+        }).join("; ");
     }
 
     rows.push([
