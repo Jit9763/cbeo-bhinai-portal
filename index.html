@@ -1770,35 +1770,26 @@
               </div>
             </div>
 
-            <!-- Dynamic Seal & Signatures Preview -->
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem; align-items:center; text-align:center">
+            <!-- Official Signatures Preview (Clean Without Box and Seal) -->
+            <div style="display:flex; justify-content:space-around; align-items:flex-end; padding:0.5rem 1rem; margin-top:0.75rem">
               
-              <!-- Incharge Sign Box -->
-              <div style="border:1px dashed #cbd5e1; border-radius:8px; padding:1rem; background:#f8fafc">
-                <div style="height:48px; display:flex; align-items:center; justify-content:center; color:#2563eb; font-family:'Brush Script MT', cursive; font-size:1.4rem" id="gform-sign-incharge-preview">
+              <!-- Incharge Sign -->
+              <div style="text-align:center; min-width:200px">
+                <div style="height:36px; display:flex; align-items:flex-end; justify-content:center; color:#2563eb; font-family:'Brush Script MT', cursive; font-size:1.3rem" id="gform-sign-incharge-preview">
                   हस्ताक्षर परीक्षा प्रभारी
                 </div>
-                <div style="border-top:1px solid #94a3b8; padding-top:0.35rem; font-size:0.8rem; font-weight:700; color:#334155">
+                <div style="border-top:1.5px solid #000; padding-top:0.25rem; font-size:0.84rem; font-weight:800; color:#000">
                   हस्ताक्षर परीक्षा प्रभारी
                 </div>
               </div>
 
-              <!-- Official Rectangular PEEO Seal (सीधी मोहर) -->
-              <div style="display:flex; justify-content:center">
-                <div class="rectangular-stamp" id="gform-rectangular-stamp">
-                  <div class="stamp-top-line">कार्यालय पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)</div>
-                  <div class="stamp-mid-line" id="gform-stamp-school">रा.उ.मा.वि. भिनाय</div>
-                  <div class="stamp-bottom-line" id="gform-stamp-block">ग्रा.पं. भिनाय, ब्लॉक-भिनाय (अजमेर)</div>
-                </div>
-              </div>
-
-              <!-- Principal Sign Box -->
-              <div style="border:1px dashed #cbd5e1; border-radius:8px; padding:1rem; background:#f8fafc">
-                <div style="height:48px; display:flex; align-items:center; justify-content:center; color:#1e3a8a; font-family:'Brush Script MT', cursive; font-size:1.4rem" id="gform-sign-principal-preview">
+              <!-- Principal Sign -->
+              <div style="text-align:center; min-width:200px">
+                <div style="height:36px; display:flex; align-items:flex-end; justify-content:center; color:#1e3a8a; font-family:'Brush Script MT', cursive; font-size:1.3rem" id="gform-sign-principal-preview">
                   हस्ताक्षर संस्था प्रधान
                 </div>
-                <div style="border-top:1px solid #94a3b8; padding-top:0.35rem; font-size:0.8rem; font-weight:700; color:#334155">
-                  हस्ताक्षर मय सील संस्था प्रधान
+                <div style="border-top:1.5px solid #000; padding-top:0.25rem; font-size:0.84rem; font-weight:800; color:#000">
+                  हस्ताक्षर संस्था प्रधान
                 </div>
               </div>
 
@@ -1952,6 +1943,7 @@
   <div id="pdf-render-scratch" style="display:none"></div>
 
   <!-- External & Application Logic -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script src="master_cbeo_data.js"></script>
   <script src="app.js"></script>
 </body>

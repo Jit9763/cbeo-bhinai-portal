@@ -11,7 +11,7 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 A4_LANDSCAPE_CSS = """
 @page {
   size: A4 landscape;
-  margin: 5mm 8mm;
+  margin: 4mm 6mm;
 }
 * {
   box-sizing: border-box;
@@ -26,36 +26,9 @@ body {
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
-.rectangular-stamp {
-  border: 2px solid #003399;
-  border-radius: 4px;
-  padding: 3px 8px;
-  display: inline-block;
-  text-align: center;
-  color: #003399;
-  background: #ffffff;
-}
-.stamp-top-line {
-  font-size: 0.65rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.2px;
-  line-height: 1.1;
-}
-.stamp-mid-line {
-  font-size: 0.78rem;
-  font-weight: 900;
-  margin: 1px 0;
-  color: #002266;
-  line-height: 1.1;
-}
-.stamp-bottom-line {
-  font-size: 0.60rem;
-  font-weight: 700;
-  border-top: 1px dashed #003399;
-  padding-top: 2px;
-  margin-top: 1px;
-  line-height: 1.1;
+table {
+  border-collapse: collapse;
+  width: 100%;
 }
 """
 

@@ -1888,55 +1888,46 @@ function openExamPdfPreview(schoolCode) {
       <strong>सत्यापन एवं उत्तरदायित्व घोषणा:</strong> प्रमाणित किया जाता है कि उपर्युक्त परीक्षा संबंधी सभी छात्र संख्या, संकाय एवं विषयवार प्रविष्टियों का विद्यालय की प्रवेश पंजिका व शाला दर्पण पोर्टल से शत-प्रतिशत मिलान कर लिया गया है तथा इसमें कोई लिपिकीय अथवा तथ्यात्मक त्रुटि नहीं है। यदि भविष्य में किसी भी प्रकार की त्रुटि, विसंगति अथवा प्रश्न-पत्रों की कमी/अधिकता पाई जाती है, तो इसका संपूर्ण व्यक्तिगत एवं विभागीय उत्तरदायित्व संबंधित ${isPeeoSubmitted ? 'पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)' : 'संस्था प्रधान एवं परीक्षा प्रभारी'} का होगा।
     </div>
 
-    <!-- Official Signatures Box: Incharge (Left) & Principal with Official School Seal Underneath (Right) -->
-    <div style="display:flex; justify-content:space-between; align-items:flex-start; padding:0 10px; margin-top:12px; margin-bottom:8px">
+    <!-- Official Signatures: Incharge (Left) & Principal (Right) [Clean, Borderless, No Seal] -->
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 30px; margin-top:12px; margin-bottom:4px">
       
       <!-- Left: Incharge Signature & Details -->
-      <div style="text-align:center; width:45%; border:1px dashed #666; border-radius:6px; padding:8px 12px; background:#fafafa">
-        <div style="height:36px; display:flex; align-items:flex-end; justify-content:center; color:#000; font-family:'Brush Script MT', cursive; font-size:1.25rem">
+      <div style="text-align:center; width:44%">
+        <div style="height:30px; display:flex; align-items:flex-end; justify-content:center; color:#000; font-family:'Brush Script MT', cursive; font-size:1.25rem">
           ${sub.incharge_name}
         </div>
-        <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.84rem; color:#000">
+        <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.86rem; color:#000">
           हस्ताक्षर परीक्षा प्रभारी
         </div>
-        <div style="font-size:0.78rem; font-weight:700; color:#000; margin-top:2px">नाम: <u>${sub.incharge_name}</u></div>
-        <div style="font-size:0.75rem; color:#333">मोबाईल नंबर: ${sub.incharge_mobile}</div>
+        <div style="font-size:0.78rem; font-weight:700; color:#000; margin-top:2px">नाम: <u>${sub.incharge_name}</u> | मो.: ${sub.incharge_mobile}</div>
+        <div style="font-size:0.75rem; color:#111; margin-top:1px">${school.school_name}, भिनाय (अजमेर)</div>
       </div>
 
-      <!-- Right: Principal Signature & Rectangular School Seal Directly Underneath -->
-      <div style="text-align:center; width:48%; border:1px dashed #666; border-radius:6px; padding:8px 12px; background:#fafafa">
+      <!-- Right: Principal Signature & Details (Preserves Digital Signature if available) -->
+      <div style="text-align:center; width:44%">
         ${sub.signature_data ? `
-          <div style="height:36px; display:flex; align-items:center; justify-content:center">
-            <img src="${sub.signature_data}" style="max-height:34px; max-width:160px; object-fit:contain" alt="डिजिटल हस्ताक्षर">
+          <div style="height:30px; display:flex; align-items:center; justify-content:center">
+            <img src="${sub.signature_data}" style="max-height:28px; max-width:160px; object-fit:contain" alt="डिजिटल हस्ताक्षर">
           </div>
-          <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.84rem; color:#000">
-            डिजिटल हस्ताक्षरित मय सील संस्था प्रधान
+          <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.86rem; color:#000">
+            डिजिटल हस्ताक्षर संस्था प्रधान
           </div>
         ` : `
-          <div style="height:36px; display:flex; align-items:flex-end; justify-content:center; color:#64748b; font-size:0.75rem">
-            (.......................................................)
+          <div style="height:30px; display:flex; align-items:flex-end; justify-content:center; color:#000; font-family:'Brush Script MT', cursive; font-size:1.25rem">
+            ${sub.principal_name}
           </div>
-          <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.84rem; color:#000">
+          <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.86rem; color:#000">
             हस्ताक्षर संस्था प्रधान
           </div>
         `}
-        <div style="font-size:0.78rem; font-weight:700; color:#000; margin-top:2px">नाम: <u>${sub.principal_name}</u></div>
-        <div style="font-size:0.75rem; color:#333">मोबाईल नंबर: ${sub.principal_mobile}</div>
-
-        <!-- Official Rectangular School Seal (सीधी मोहर संस्था प्रधान के हस्ताक्षर के नीचे) -->
-        <div style="margin-top:6px; display:flex; justify-content:center">
-          <div class="rectangular-stamp" style="max-width:280px">
-            <div class="stamp-top-line">कार्यालय संस्था प्रधान / प्रधानाचार्य</div>
-            <div class="stamp-mid-line">${school.school_name}</div>
-            <div class="stamp-bottom-line">ब्लॉक-भिनाय, जिला-अजमेर (राज.) | कोड: ${school.shala_darpan_code}</div>
-          </div>
-        </div>
+        <div style="font-size:0.78rem; font-weight:700; color:#000; margin-top:2px">नाम: <u>${sub.principal_name}</u> | मो.: ${sub.principal_mobile}</div>
+        <div style="font-size:0.75rem; color:#111; margin-top:1px">${school.school_name}, भिनाय (अजमेर)</div>
       </div>
 
     </div>
 
     <!-- Footer meta -->
-    <div style="margin-top:8px; padding-top:4px; border-top:1px dashed #999; display:flex; justify-content:space-between; font-size:0.70rem; color:#444">
+    <div style="margin-top:6px; padding-top:3px; border-top:1px dashed #999; display:flex; justify-content:space-between; font-size:0.70rem; color:#444">
       <span>पोर्टल सत्यापन आईडी: CBEO-SP-2026-${school.shala_darpan_code}</span>
       <span>प्रविष्टि दिनांक: ${sub.timestamp}</span>
       <span>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय</span>
@@ -1946,40 +1937,150 @@ function openExamPdfPreview(schoolCode) {
   showModal('modal-exam-pdf-preview');
 }
 
-function printOfficialExamDocument() {
-  window.print();
+/* ========================================================
+   STANDALONE PRINT HELPER (STRICTLY 1 PAGE, ZERO BLANK PAGES)
+   ======================================================== */
+function printCleanA4Landscape(containerId, title) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  const printWindow = window.open('', '_blank', 'width=1150,height=800');
+  if (!printWindow) {
+    window.print();
+    return;
+  }
+
+  const contentHtml = container.innerHTML;
+  printWindow.document.open();
+  printWindow.document.write(`<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <title>${title}</title>
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 4mm 6mm;
+    }
+    * {
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      color: #000000;
+      width: 100%;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .print-container {
+      width: 100%;
+      padding: 2mm 3mm;
+      margin: 0 auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    td, th {
+      padding: 3px 4px !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="print-container">
+    ${contentHtml}
+  </div>
+</body>
+</html>`);
+  printWindow.document.close();
+  printWindow.focus();
+  setTimeout(() => {
+    printWindow.print();
+    printWindow.close();
+  }, 450);
 }
 
-function downloadExamPDFDirect() {
-  const container = document.getElementById('printable-exam-document-content');
-  if (!container) return;
-  const schoolCode = STATE.activeExamPreviewCode || 'School';
-  const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
-  const nameSafe = school ? school.school_name.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 30) : 'Exam_Indent';
-  
-  showToast('अधिकृत Landscape PDF तैयार किया जा रहा है...', 'info');
-  
+/* ========================================================
+   OFFSCREEN PDF BLOB GENERATOR FOR DIRECT DOWNLOAD & WHATSAPP
+   ======================================================== */
+async function exportDocumentToPdfBlob(elementId, filename) {
+  const container = document.getElementById(elementId);
+  if (!container) throw new Error('Container not found: ' + elementId);
+
+  // Create an offscreen wrapper with exact fixed width 1080px to prevent multi-page overflow
+  const clone = container.cloneNode(true);
+  const wrapper = document.createElement('div');
+  wrapper.style.position = 'fixed';
+  wrapper.style.left = '-9999px';
+  wrapper.style.top = '0';
+  wrapper.style.width = '1080px';
+  wrapper.style.background = '#ffffff';
+  wrapper.style.padding = '4px 6px';
+  wrapper.style.boxSizing = 'border-box';
+  wrapper.style.fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif';
+  wrapper.appendChild(clone);
+  document.body.appendChild(wrapper);
+
   const opt = {
-    margin: [6, 8, 6, 8],
-    filename: `Saman_Pariksha_2026_${schoolCode}_${nameSafe}.pdf`,
+    margin: [4, 6, 4, 6],
+    filename: filename,
     image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true, letterRendering: true },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+    html2canvas: { scale: 2, useCORS: true, logging: false, scrollY: 0 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
+    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
   };
-  
-  if (typeof html2pdf !== 'undefined') {
-    html2pdf().set(opt).from(container).save().then(() => {
-      showToast('अधिकृत A4 Landscape PDF सफलतापूर्वक डाउनलोड हो गया!', 'success');
-    }).catch(err => {
-      console.error(err);
-      window.print();
-    });
-  } else {
-    window.print();
+
+  try {
+    if (typeof html2pdf !== 'undefined') {
+      const pdfBlob = await html2pdf().set(opt).from(wrapper).outputPdf('blob');
+      if (document.body.contains(wrapper)) document.body.removeChild(wrapper);
+      return pdfBlob;
+    } else {
+      if (document.body.contains(wrapper)) document.body.removeChild(wrapper);
+      throw new Error('html2pdf library is not loaded');
+    }
+  } catch (err) {
+    if (document.body.contains(wrapper)) document.body.removeChild(wrapper);
+    throw err;
   }
 }
 
-function shareExamPDFWhatsApp() {
+function printOfficialExamDocument() {
+  const schoolCode = STATE.activeExamPreviewCode || 'School';
+  const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
+  const title = `समान परीक्षा 2026-27 मांग प्रपत्र - ${school ? school.school_name : schoolCode}`;
+  printCleanA4Landscape('printable-exam-document-content', title);
+}
+
+async function downloadExamPDFDirect() {
+  const schoolCode = STATE.activeExamPreviewCode || 'School';
+  const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
+  const nameSafe = school ? school.school_name.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 30) : 'Exam_Indent';
+  const filename = `Saman_Pariksha_2026_${schoolCode}_${nameSafe}.pdf`;
+
+  showToast('अधिकृत Landscape PDF तैयार किया जा रहा है...', 'info');
+
+  try {
+    const blob = await exportDocumentToPdfBlob('printable-exam-document-content', filename);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('अधिकृत A4 Landscape PDF सफलतापूर्वक डाउनलोड हो गया!', 'success');
+  } catch (err) {
+    console.warn('PDF blob generation fallback to print:', err);
+    printOfficialExamDocument();
+  }
+}
+
+async function shareExamPDFWhatsApp() {
   const schoolCode = STATE.activeExamPreviewCode;
   const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
   const sub = STATE.samanParikshaSubmissions[schoolCode];
@@ -1987,11 +2088,44 @@ function shareExamPDFWhatsApp() {
     showToast('प्रपत्र डेटा उपलब्ध नहीं है!', 'warning');
     return;
   }
-  
-  const text = `*🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय*\n*जिला समान परीक्षा योजना (सत्र 2026-27)*\n\n📌 *विद्यालय:* ${school.school_name}\n📌 *शाला दर्पण/PSP कोड:* ${school.shala_darpan_code}\n📌 *परीक्षा कोड:* ${sub.exam_code}\n📌 *संस्था प्रधान:* ${sub.principal_name} (${sub.principal_mobile})\n📌 *परीक्षा प्रभारी:* ${sub.incharge_name} (${sub.incharge_mobile})\n\n📊 *कक्षावार नामांकन एवं प्रश्न-पत्र मांग (A4 Landscape Form):*\n• कक्षा 9वीं: ${sub.c9_total}\n• कक्षा 10वीं: ${sub.c10_total}\n• कक्षा 11वीं: ${sub.c11_total}\n• कक्षा 12वीं: ${sub.c12_total}\n🎯 *कुल मांग प्रश्न-पत्र (Grand Total):* ${sub.grand_total}\n\n✅ *सत्यापन स्थिति:* अधिकृत उत्तरदायित्व घोषणा, सील व हस्ताक्षरों सहित सत्यापित\n📅 *प्रविष्टि दिनांक:* ${sub.timestamp}\n🌐 *पोर्टल लिंक:* https://jit9763.github.io/cbeo-bhinai-portal/`;
-  
-  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-  window.open(url, '_blank');
+
+  const nameSafe = school.school_name.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 30);
+  const filename = `Saman_Pariksha_2026_${schoolCode}_${nameSafe}.pdf`;
+
+  const waSummary = `*🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय*\n*जिला समान परीक्षा योजना (सत्र 2026-27)*\n\n📌 *विद्यालय:* ${school.school_name}\n📌 *शाला दर्पण कोड:* ${school.shala_darpan_code} | *परीक्षा कोड:* ${sub.exam_code}\n📌 *संस्था प्रधान:* ${sub.principal_name} (${sub.principal_mobile})\n📌 *परीक्षा प्रभारी:* ${sub.incharge_name} (${sub.incharge_mobile})\n\n🎯 *कुल मांग प्रश्न-पत्र (Grand Total):* *${sub.grand_total}*\n(9वीं: ${sub.c9_total}, 10वीं: ${sub.c10_total}, 11वीं: ${sub.c11_total}, 12वीं: ${sub.c12_total})\n\n📄 *अधिकृत A4 Landscape PDF प्रपत्र संलग्न है।*\n🌐 *सत्यापन पोर्टल:* https://jit9763.github.io/cbeo-bhinai-portal/`;
+
+  showToast('WhatsApp शेयर हेतु अधिकृत PDF तैयार की जा रही है...', 'info');
+
+  try {
+    const blob = await exportDocumentToPdfBlob('printable-exam-document-content', filename);
+    const pdfFile = new File([blob], filename, { type: 'application/pdf' });
+
+    if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
+      await navigator.share({
+        files: [pdfFile],
+        title: `समान परीक्षा 2026 मांग - ${school.school_name}`,
+        text: waSummary
+      });
+      showToast('WhatsApp शेयर विंडो सफलतापूर्वक खुल गई!', 'success');
+    } else {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(waSummary + '\n\n*(नोट: PDF फाइल आपके सिस्टम में डाउनलोड हो गई है, कृपया WhatsApp चैट में अटैच करें)*')}`;
+      window.open(waUrl, '_blank');
+      showToast('PDF डाउनलोड हो गई है एवं WhatsApp खुल गया है! कृपया फाइल अटैच करें।', 'info');
+    }
+  } catch (err) {
+    console.warn('WhatsApp share fallback:', err);
+    const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(waSummary)}`;
+    window.open(waUrl, '_blank');
+  }
 }
 
 /* ========================================================
@@ -2192,42 +2326,35 @@ function openPeeoConsolidatedPdfPreview(peeoName) {
       <strong>सत्यापन एवं उत्तरदायित्व घोषणा:</strong> प्रमाणित किया जाता है कि मेरे परिक्षेत्र (${peeoName}) के अंतर्गत संचालित उपर्युक्त समस्त ${schools.length} माध्यमिक एवं उच्च माध्यमिक विद्यालयों के परीक्षा प्रपत्रों का गहनता से परीक्षण व सत्यापन कर लिया गया है। उपर्युक्त सभी आंकड़े पूर्णतः सही व सत्यापित हैं। किसी भी प्रकार की त्रुटि या विसंगति पाए जाने पर संबंधित संस्था प्रधान एवं PEEO का उत्तरदायित्व होगा।
     </div>
 
-    <!-- Official Signatures Box: Incharge (Left) & PEEO with Official PEEO Seal Directly Underneath (Right) -->
-    <div style="display:flex; justify-content:space-between; align-items:flex-start; padding:0 10px; margin-top:10px; margin-bottom:6px">
+    <!-- Official Signatures: Incharge (Left) & PEEO (Right) [Clean, Borderless, No Seal] -->
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 30px; margin-top:10px; margin-bottom:4px">
       <!-- Left: Exam In-charge -->
-      <div style="text-align:center; width:45%; border:1px dashed #666; border-radius:6px; padding:6px 12px; background:#fafafa">
-        <div style="height:32px; display:flex; align-items:flex-end; justify-content:center; color:#64748b; font-size:0.75rem">
+      <div style="text-align:center; width:44%">
+        <div style="height:30px; display:flex; align-items:flex-end; justify-content:center; color:#64748b; font-size:0.75rem">
           (.......................................................)
         </div>
-        <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.82rem; color:#000">
-          हस्ताक्षर नोडल परीक्षा प्रभारी (PEEO)
+        <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.86rem; color:#000">
+          हस्ताक्षर परीक्षा प्रभारी
         </div>
-        <div style="font-size:0.74rem; color:#333; margin-top:2px">कार्यालय PEEO परिक्षेत्र, ${cleanPeeoName}</div>
+        <div style="font-size:0.78rem; font-weight:700; color:#000; margin-top:2px">कार्यालय पंचायत प्रारंभिक शिक्षा अधिकारी, ${cleanPeeoName}</div>
+        <div style="font-size:0.75rem; color:#111; margin-top:1px">ब्लॉक-भिनाय (अजमेर)</div>
       </div>
 
-      <!-- Right: PEEO Sign & Rectangular PEEO Seal Directly Underneath -->
-      <div style="text-align:center; width:48%; border:1px dashed #666; border-radius:6px; padding:6px 12px; background:#fafafa">
-        <div style="height:32px; display:flex; align-items:flex-end; justify-content:center; color:#64748b; font-size:0.75rem">
+      <!-- Right: PEEO Sign (Full Hindi Designation & Place) -->
+      <div style="text-align:center; width:44%">
+        <div style="height:30px; display:flex; align-items:flex-end; justify-content:center; color:#64748b; font-size:0.75rem">
           (.......................................................)
         </div>
-        <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.82rem; color:#000">
-          हस्ताक्षर मय सील PEEO
+        <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.86rem; color:#000">
+          हस्ताक्षर पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)
         </div>
-        <div style="font-size:0.74rem; font-weight:700; color:#000; margin-top:2px">${peeoName}</div>
-
-        <!-- Official Rectangular PEEO Seal directly underneath -->
-        <div style="margin-top:4px; display:flex; justify-content:center">
-          <div class="rectangular-stamp" style="max-width:280px">
-            <div class="stamp-top-line">कार्यालय पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)</div>
-            <div class="stamp-mid-line">${peeoName}</div>
-            <div class="stamp-bottom-line">ग्रा.पं. ${cleanPeeoName}, ब्लॉक-भिनाय (अजमेर)</div>
-          </div>
-        </div>
+        <div style="font-size:0.78rem; font-weight:700; color:#000; margin-top:2px">कार्यालय पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO), ${cleanPeeoName}</div>
+        <div style="font-size:0.75rem; color:#111; margin-top:1px">ग्राम पंचायत ${cleanPeeoName}, ब्लॉक-भिनाय (अजमेर)</div>
       </div>
     </div>
 
     <!-- Footer Meta -->
-    <div style="margin-top:6px; padding-top:3px; border-top:1px dashed #999; display:flex; justify-content:space-between; font-size:0.68rem; color:#444">
+    <div style="margin-top:5px; padding-top:2px; border-top:1px dashed #999; display:flex; justify-content:space-between; font-size:0.68rem; color:#444">
       <span>पोर्टल सत्यापन आईडी: CBEO-PEEO-CONSOLIDATED-${cleanPeeoName.toUpperCase().replace(/\s+/g, '')}</span>
       <span>प्रविष्टि / रिपोर्ट दिनांक: ${new Date().toLocaleDateString('hi-IN')}</span>
       <span>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय</span>
@@ -2238,39 +2365,41 @@ function openPeeoConsolidatedPdfPreview(peeoName) {
 }
 
 function printPeeoConsolidatedDocument() {
-  window.print();
+  const peeoName = STATE.activePeeoConsolidatedName || 'PEEO';
+  printCleanA4Landscape('printable-peeo-consolidated-content', `PEEO समेकित परीक्षा मांग रिपोर्ट - ${peeoName}`);
 }
 
-function downloadPeeoConsolidatedPDFDirect() {
-  const element = document.getElementById('printable-peeo-consolidated-content');
-  if (!element) return;
-  const peeoName = (STATE.activePeeoConsolidatedName || 'PEEO').replace(/[^a-zA-Z0-9_]/g, '_');
-  showToast('समेकित PDF जनरेट हो रहा है, कृपया प्रतीक्षा करें...', 'info');
+async function downloadPeeoConsolidatedPDFDirect() {
+  const peeoName = STATE.activePeeoConsolidatedName || 'PEEO';
+  const nameSafe = peeoName.replace(/[^a-zA-Z0-9_]/g, '_');
+  const filename = `${nameSafe}_Saman_Pariksha_Consolidated_2026.pdf`;
 
-  const opt = {
-    margin: [6, 8, 6, 8],
-    filename: `${peeoName}_Saman_Pariksha_Consolidated_2026.pdf`,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true, logging: false },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
-  };
+  showToast('समेकित Landscape PDF तैयार किया जा रहा है...', 'info');
 
-  if (typeof html2pdf !== 'undefined') {
-    html2pdf().set(opt).from(element).save().then(() => {
-      showToast('समेकित PDF सफलतापूर्वक डाउनलोड हो गया!', 'success');
-    }).catch(err => {
-      console.warn('html2pdf fallback to print:', err);
-      window.print();
-    });
-  } else {
-    window.print();
+  try {
+    const blob = await exportDocumentToPdfBlob('printable-peeo-consolidated-content', filename);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('समेकित PDF सफलतापूर्वक डाउनलोड हो गया!', 'success');
+  } catch (err) {
+    console.warn('PEEO PDF fallback to print:', err);
+    printPeeoConsolidatedDocument();
   }
 }
 
-function sharePeeoConsolidatedWhatsApp() {
+async function sharePeeoConsolidatedWhatsApp() {
   const peeoName = STATE.activePeeoConsolidatedName || 'PEEO';
   const schools = STATE.schools56.filter(s => s.peeo_name.toLowerCase().includes(peeoName.toLowerCase()));
   if (schools.length === 0) return;
+
+  const nameSafe = peeoName.replace(/[^a-zA-Z0-9_]/g, '_');
+  const filename = `${nameSafe}_Saman_Pariksha_Consolidated_2026.pdf`;
 
   let grandTotalPapers = 0;
   let subCount = 0;
@@ -2288,10 +2417,40 @@ function sharePeeoConsolidatedWhatsApp() {
     }
   });
 
-  const text = `*🏛️ कार्यालय पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)*\n*${peeoName} | ब्लॉक-भिनाय (अजमेर)*\n*जिला समान परीक्षा (सत्र 2026-27) - परिक्षेत्र समेकित रिपोर्ट*\n\n📊 *प्रगति स्थिति:* ${subCount}/${schools.length} विद्यालय पूर्ण\n🎯 *परिक्षेत्र कुल मांग प्रश्न-पत्र:* *${grandTotalPapers}*\n\n📋 *विद्यालयवार विवरण:*\n${breakdown}\n✅ *सत्यापन:* PEEO अधिकृत सील व संस्था प्रधानों द्वारा सत्यापित\n🌐 *CBEO भिनाय पोर्टल:* https://jit9763.github.io/cbeo-bhinai-portal/`;
+  const waSummary = `*🏛️ कार्यालय पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)*\n*${peeoName} | ब्लॉक-भिनाय (अजमेर)*\n*जिला समान परीक्षा (सत्र 2026-27) - परिक्षेत्र समेकित रिपोर्ट*\n\n📊 *प्रगति स्थिति:* ${subCount}/${schools.length} विद्यालय पूर्ण\n🎯 *परिक्षेत्र कुल मांग प्रश्न-पत्र:* *${grandTotalPapers}*\n\n📋 *विद्यालयवार विवरण:*\n${breakdown}\n📄 *अधिकृत PEEO समेकित रिपोर्ट PDF संलग्न है।*\n🌐 *CBEO भिनाय पोर्टल:* https://jit9763.github.io/cbeo-bhinai-portal/`;
 
-  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-  window.open(url, '_blank');
+  showToast('WhatsApp शेयर हेतु समेकित PDF तैयार की जा रही है...', 'info');
+
+  try {
+    const blob = await exportDocumentToPdfBlob('printable-peeo-consolidated-content', filename);
+    const pdfFile = new File([blob], filename, { type: 'application/pdf' });
+
+    if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
+      await navigator.share({
+        files: [pdfFile],
+        title: `${peeoName} समेकित परीक्षा रिपोर्ट`,
+        text: waSummary
+      });
+      showToast('WhatsApp शेयर विंडो सफलतापूर्वक खुल गई!', 'success');
+    } else {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(waSummary + '\n\n*(नोट: समेकित PDF फाइल आपके डिवाइस में डाउनलोड हो गई है, कृपया WhatsApp चैट में अटैच करें)*')}`;
+      window.open(waUrl, '_blank');
+      showToast('समेकित PDF डाउनलोड हो गई है एवं WhatsApp खुल गया है! कृपया फाइल अटैच करें।', 'info');
+    }
+  } catch (err) {
+    console.warn('WhatsApp share fallback:', err);
+    const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(waSummary)}`;
+    window.open(waUrl, '_blank');
+  }
 }
 
 /* ========================================================
