@@ -1,13 +1,19 @@
 /**
- * CBEO Bhinai Portal - Complete Application Logic
- * Supports Admin & 25 PEEO Logins, Staff CRUD with Audit Logs,
- * Dynamic Information Demands with Sealed & Signed PDF Generation,
- * 7-Day Auto-Archive, and WhatsApp Sharing.
+ * CBEO Bhinai Portal - Enhanced Application Logic
+ * Supports:
+ * - Admin (Jitendra Kumar & CBEO Pramila Raslot) & 25 PEEOs (Shala Darpan Codes as User ID)
+ * - 3-Level Hierarchical School & Staff Explorer (PEEO -> School -> Staff)
+ * - Global Block Search across 153 Schools & 1048 Staff
+ * - Rectangular Official Rubber Stamp (सीधी मोहर) & Digital Signature Pad
+ * - Dual PDF Engine: Print to PDF & html2pdf Download with Hindi Unicode support
+ * - Publish / Unpublish Checkbox for Information Demands (Hide/Show for PEEOs)
+ * - Add New School (Govt / Private) & Staff Management with Audit Logs
  */
 
 // Global State
 let STATE = {
   currentUser: null,
+  admins: [],
   peeos: [],
   staff: [],
   auditLogs: [],
@@ -17,7 +23,7 @@ let STATE = {
   currentSignatureData: null
 };
 
-// Canvas Drawing State
+// Canvas Signature State
 let canvas, ctx;
 let isDrawing = false;
 let hasSignature = false;
@@ -39,9 +45,47 @@ function initMasterData() {
     return;
   }
 
-  STATE.peeos = MASTER_CBEO_DATA.peeos || [];
+  STATE.admins = MASTER_CBEO_DATA.admins || [
+    {
+      admin_id: 'ADMIN02',
+      name: 'जितेन्द्र कुमार (Jitendra Kumar)',
+      post: 'तकनीकी नोडल प्रभारी एवं व्यवस्थापक (Admin)',
+      office: 'कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय',
+      mobile: '7073800244',
+      email: 'jitendrakumar.cbeo@gmail.com',
+      username: 'jitendra_admin',
+      shala_darpan_code: 'admin_jitendra',
+      password: 'jitendra#2026',
+      role: 'Super Admin'
+    },
+    {
+      admin_id: 'ADMIN01',
+      name: 'प्रमिला रासलोत (CBEO)',
+      post: 'मुख्य ब्लॉक शिक्षा अधिकारी (CBEO)',
+      office: 'कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय',
+      mobile: '9414000000',
+      email: 'cbeo.bhinai.ajmer@rajasthan.gov.in',
+      username: 'cbeo_admin',
+      shala_darpan_code: '8140',
+      password: 'cbeo@2026',
+      role: 'Super Admin'
+    }
+  ];
 
-  // 1. Staff: load from localStorage if modified, otherwise use master
+  // 1. PEEOs (with schools Govt + Private)
+  const storedPeeos = localStorage.getItem('cbeo_peeos_data');
+  if (storedPeeos) {
+    try {
+      STATE.peeos = JSON.parse(storedPeeos);
+    } catch (e) {
+      STATE.peeos = MASTER_CBEO_DATA.peeos || [];
+    }
+  } else {
+    STATE.peeos = MASTER_CBEO_DATA.peeos || [];
+    savePeeosToStorage();
+  }
+
+  // 2. Staff: load from localStorage if modified, otherwise use master
   const storedStaff = localStorage.getItem('cbeo_staff_data');
   if (storedStaff) {
     try {
@@ -54,7 +98,7 @@ function initMasterData() {
     saveStaffToStorage();
   }
 
-  // 2. Audit Logs
+  // 3. Audit Logs
   const storedLogs = localStorage.getItem('cbeo_audit_logs');
   if (storedLogs) {
     try {
@@ -67,7 +111,7 @@ function initMasterData() {
     saveAuditLogsToStorage();
   }
 
-  // 3. Information Demands
+  // 4. Information Demands
   const storedDemands = localStorage.getItem('cbeo_demands');
   if (storedDemands) {
     try {
@@ -80,7 +124,7 @@ function initMasterData() {
     saveDemandsToStorage();
   }
 
-  // 4. Submissions
+  // 5. Submissions
   const storedSubmissions = localStorage.getItem('cbeo_submissions');
   if (storedSubmissions) {
     try {
@@ -98,10 +142,10 @@ function getInitialAuditLogs() {
   return [
     {
       timestamp: new Date().toLocaleString('hi-IN'),
-      user: 'Super Admin',
-      action: 'पोर्टल सेटअप',
+      user: 'जितेन्द्र कुमार (Admin)',
+      action: 'पोर्टल सेटअप एवं अपडेशन',
       target: 'मास्टर डेटाबेस',
-      details: '25 PEEO एवं 441 कार्मिक डेटा सफलता पूर्वक लोड किया गया',
+      details: '25 PEEO, 153 विद्यालय (राजकीय व निजी) तथा 1048 कार्मिक हिंदी यूनिकोड में सिंक किए गए',
       note: 'Google Drive सिंक सक्रिय'
     }
   ];
@@ -115,6 +159,7 @@ function getInitialDemands() {
       description: 'समस्त PEEO अधीनस्थ विद्यालयों में वर्तमान में क्षतिग्रस्त एवं मरम्मत योग्य कमरों का भौतिक सत्यापन कर विवरण दें।',
       dueDate: '2026-10-05',
       priority: 'अति आवश्यक (Urgent)',
+      published: true,
       createdAt: '2026-09-28',
       columns: [
         { name: 'कुल स्वीकृत कक्षा कक्ष', type: 'number', locked: false, placeholder: 'कमरों की संख्या' },
@@ -130,6 +175,7 @@ function getInitialDemands() {
       description: 'सत्र 2026-27 हेतु विद्यालयवार रिक्त पदों की वास्तविक स्थिति एवं विद्या संबल योजना की आवश्यकता प्रेषित करें।',
       dueDate: '2026-10-07',
       priority: 'साधारण (Normal)',
+      published: true,
       createdAt: '2026-09-29',
       columns: [
         { name: 'स्वीकृत पद', type: 'number', locked: false, placeholder: 'कुल स्वीकृत पद' },
@@ -145,6 +191,7 @@ function getInitialDemands() {
       description: 'कम्प्यूटर लैब में उपलब्ध चालू कम्प्यूटरों की संख्या तथा पुस्तकालय पुस्तकों के वितरण की स्थिति।',
       dueDate: '2026-10-10',
       priority: 'साधारण (Normal)',
+      published: true,
       createdAt: '2026-09-30',
       columns: [
         { name: 'क्या ICT लैब स्थापित है?', type: 'select', options: ['हाँ (Yes)', 'नहीं (No)'], locked: false },
@@ -154,6 +201,10 @@ function getInitialDemands() {
       ]
     }
   ];
+}
+
+function savePeeosToStorage() {
+  localStorage.setItem('cbeo_peeos_data', JSON.stringify(STATE.peeos));
 }
 
 function saveStaffToStorage() {
@@ -176,28 +227,28 @@ function saveSubmissionsToStorage() {
    2. AUTHENTICATION & SESSION MANAGEMENT
    ======================================================== */
 function setupAutoLogin() {
-  // Default to Super Admin if not saved
   const savedUser = localStorage.getItem('cbeo_logged_user');
   if (savedUser) {
     try {
       STATE.currentUser = JSON.parse(savedUser);
     } catch (e) {
-      setAdminUser();
+      setDefaultAdmin();
     }
   } else {
-    setAdminUser();
+    setDefaultAdmin();
   }
 }
 
-function setAdminUser() {
+function setDefaultAdmin() {
   STATE.currentUser = {
     role: 'admin',
-    peeo_id: 'ADMIN01',
-    peeo_name: 'मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय',
-    principal_incharge: 'प्रमिला रासलोत (CBEO)',
-    mobile: '9414000000',
-    email: 'cbeo.bhinai.ajmer@rajasthan.gov.in',
-    username: 'cbeo_admin'
+    admin_id: 'ADMIN02',
+    name: 'जितेन्द्र कुमार (Jitendra Kumar)',
+    post: 'तकनीकी नोडल प्रभारी एवं व्यवस्थापक',
+    mobile: '7073800244',
+    email: 'jitendrakumar.cbeo@gmail.com',
+    username: 'jitendra_admin',
+    shala_darpan_code: 'admin_jitendra'
   };
   localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
 }
@@ -209,15 +260,15 @@ function updateUserHeaderBadge() {
   const adminTab = document.getElementById('nav-tab-admin');
 
   if (STATE.currentUser.role === 'admin') {
-    badgeInitial.textContent = 'A';
+    badgeInitial.textContent = STATE.currentUser.name.includes('जितेन्द्र') ? 'J' : 'P';
     badgeInitial.style.background = '#ff9933';
-    displayName.textContent = 'मुख्य ब्लॉक शिक्षा अधिकारी (Admin)';
-    displaySubtext.textContent = 'सम्पूर्ण ब्लॉक नियंत्रण (25 PEEO)';
+    displayName.textContent = `${STATE.currentUser.name} (Admin)`;
+    displaySubtext.textContent = 'सम्पूर्ण ब्लॉक नियंत्रण (25 PEEO | 153 विद्यालय)';
     if (adminTab) adminTab.style.display = 'inline-flex';
   } else {
     badgeInitial.textContent = STATE.currentUser.peeo_name.charAt(5) || 'P';
     badgeInitial.style.background = '#0284c7';
-    displayName.textContent = STATE.currentUser.peeo_name;
+    displayName.textContent = `${STATE.currentUser.peeo_name} (${STATE.currentUser.shala_darpan_code})`;
     displaySubtext.textContent = `प्रभारी: ${STATE.currentUser.principal_incharge} | मो.: ${STATE.currentUser.mobile || '---'}`;
     if (adminTab) adminTab.style.display = 'none';
   }
@@ -225,23 +276,23 @@ function updateUserHeaderBadge() {
 
 function openLoginModal() {
   const select = document.getElementById('login-quick-select');
-  const optgroup = select.querySelector('optgroup');
+  const optgroup = document.getElementById('login-peeo-optgroup');
   optgroup.innerHTML = '';
 
   STATE.peeos.forEach(p => {
     const opt = document.createElement('option');
-    opt.value = p.peeo_id;
-    opt.textContent = `${p.peeo_name} (${p.principal_incharge})`;
+    opt.value = p.shala_darpan_code;
+    opt.textContent = `${p.shala_darpan_code} - ${p.peeo_name} (${p.principal_incharge})`;
     optgroup.appendChild(opt);
   });
 
   if (STATE.currentUser.role === 'admin') {
-    select.value = 'admin';
-    document.getElementById('login-username').value = 'cbeo_admin';
-    document.getElementById('login-password').value = 'cbeo@2026';
+    select.value = STATE.currentUser.username;
+    document.getElementById('login-username').value = STATE.currentUser.shala_darpan_code;
+    document.getElementById('login-password').value = STATE.currentUser.username === 'cbeo_admin' ? 'cbeo@2026' : 'jitendra#2026';
   } else {
-    select.value = STATE.currentUser.peeo_id;
-    document.getElementById('login-username').value = STATE.currentUser.username;
+    select.value = STATE.currentUser.shala_darpan_code;
+    document.getElementById('login-username').value = STATE.currentUser.shala_darpan_code;
     document.getElementById('login-password').value = STATE.currentUser.password;
   }
 
@@ -250,13 +301,16 @@ function openLoginModal() {
 
 function onQuickSelectUser() {
   const val = document.getElementById('login-quick-select').value;
-  if (val === 'admin') {
-    document.getElementById('login-username').value = 'cbeo_admin';
+  if (val === 'jitendra_admin') {
+    document.getElementById('login-username').value = 'admin_jitendra';
+    document.getElementById('login-password').value = 'jitendra#2026';
+  } else if (val === 'cbeo_admin') {
+    document.getElementById('login-username').value = '8140';
     document.getElementById('login-password').value = 'cbeo@2026';
   } else {
-    const peeo = STATE.peeos.find(p => p.peeo_id === val);
+    const peeo = STATE.peeos.find(p => p.shala_darpan_code === val || p.peeo_id === val);
     if (peeo) {
-      document.getElementById('login-username').value = peeo.username;
+      document.getElementById('login-username').value = peeo.shala_darpan_code;
       document.getElementById('login-password').value = peeo.password;
     }
   }
@@ -266,20 +320,56 @@ function performLogin() {
   const u = document.getElementById('login-username').value.trim();
   const p = document.getElementById('login-password').value.trim();
 
-  if (u === 'cbeo_admin' || u === 'admin') {
-    setAdminUser();
+  // Admin Check
+  if (u === 'admin_jitendra' || u === 'jitendra_admin' || u === 'jitendra') {
+    STATE.currentUser = {
+      role: 'admin',
+      admin_id: 'ADMIN02',
+      name: 'जितेन्द्र कुमार (Jitendra Kumar)',
+      post: 'तकनीकी नोडल प्रभारी एवं व्यवस्थापक',
+      mobile: '7073800244',
+      email: 'jitendrakumar.cbeo@gmail.com',
+      username: 'jitendra_admin',
+      shala_darpan_code: 'admin_jitendra'
+    };
+    localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
     closeModal('modal-login');
-    showToast('Admin के रूप में लॉगिन सफल!', 'success');
+    showToast('जितेन्द्र कुमार (Super Admin) के रूप में लॉगिन सफल!', 'success');
     renderApp();
     return;
   }
 
-  const peeo = STATE.peeos.find(item => item.username.toLowerCase() === u.toLowerCase());
+  if (u === 'cbeo_admin' || u === 'admin' || u === '8140') {
+    STATE.currentUser = {
+      role: 'admin',
+      admin_id: 'ADMIN01',
+      name: 'प्रमिला रासलोत (CBEO)',
+      post: 'मुख्य ब्लॉक शिक्षा अधिकारी (CBEO)',
+      mobile: '9414000000',
+      email: 'cbeo.bhinai.ajmer@rajasthan.gov.in',
+      username: 'cbeo_admin',
+      shala_darpan_code: '8140'
+    };
+    localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
+    closeModal('modal-login');
+    showToast('प्रमिला रासलोत (CBEO Admin) के रूप में लॉगिन सफल!', 'success');
+    renderApp();
+    return;
+  }
+
+  // PEEO Login by Shala Darpan Code or Username
+  const peeo = STATE.peeos.find(item => 
+    item.shala_darpan_code === u || 
+    item.username.toLowerCase() === u.toLowerCase() ||
+    item.alias_username?.toLowerCase() === u.toLowerCase()
+  );
+
   if (peeo) {
     STATE.currentUser = {
       role: 'peeo',
       peeo_id: peeo.peeo_id,
       peeo_name: peeo.peeo_name,
+      shala_darpan_code: peeo.shala_darpan_code,
       panchayat_name: peeo.panchayat_name,
       principal_incharge: peeo.principal_incharge,
       mobile: peeo.mobile,
@@ -290,10 +380,10 @@ function performLogin() {
     };
     localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
     closeModal('modal-login');
-    showToast(`${peeo.peeo_name} के रूप में लॉगिन सफल!`, 'success');
+    showToast(`${peeo.peeo_name} (शा.दा. कोड: ${peeo.shala_darpan_code}) के रूप में लॉगिन सफल!`, 'success');
     renderApp();
   } else {
-    showToast('अमान्य यूजरनेम अथवा पासवर्ड! कृपया सही विवरण दर्ज करें।', 'error');
+    showToast('अमान्य शाला दर्पण कोड अथवा पासवर्ड! कृपया सही विवरण दर्ज करें।', 'error');
   }
 }
 
@@ -301,18 +391,16 @@ function performLogin() {
    3. NAVIGATION & VIEW SWITCHING
    ======================================================== */
 function switchTab(viewId) {
-  // Update nav tabs
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   const activeBtn = Array.from(document.querySelectorAll('.nav-tab')).find(b => b.getAttribute('onclick')?.includes(viewId));
   if (activeBtn) activeBtn.classList.add('active');
 
-  // Update content views
   document.querySelectorAll('.content-view').forEach(v => v.classList.remove('active'));
   const targetView = document.getElementById(`view-${viewId}`);
   if (targetView) targetView.classList.add('active');
 
-  // Refresh view specific data
-  if (viewId === 'directory') renderDirectoryView();
+  if (viewId === 'explorer') renderExplorerView();
+  else if (viewId === 'directory') renderDirectoryView();
   else if (viewId === 'staff') renderStaffView();
   else if (viewId === 'demands') renderDemandsView();
   else if (viewId === 'archive') renderArchiveView();
@@ -330,6 +418,7 @@ function renderApp() {
   renderArchiveView();
   renderDirectoryFilters();
   renderStaffFilters();
+  renderExplorerFilters();
 }
 
 // --- Dashboard View ---
@@ -338,15 +427,14 @@ function renderDashboardView() {
   
   let totalSchools = 0;
   STATE.peeos.forEach(p => totalSchools += (p.schools ? p.schools.length : 0));
-  document.getElementById('stat-schools-count').textContent = totalSchools || 104;
+  document.getElementById('stat-schools-count').textContent = totalSchools || 153;
 
   const activeStaff = STATE.staff.filter(s => s.status !== 'Deleted');
   document.getElementById('stat-staff-count').textContent = activeStaff.length;
 
-  const activeDemands = getActiveDemands();
+  const activeDemands = getVisibleDemands();
   document.getElementById('stat-active-demands').textContent = activeDemands.length;
 
-  // Compliance percentage
   let totalRequired = STATE.peeos.length * activeDemands.length;
   let totalSubmitted = 0;
   activeDemands.forEach(d => {
@@ -374,6 +462,7 @@ function renderDashboardView() {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td><strong>${idx + 1}</strong></td>
+      <td><code style="background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:4px; font-weight:bold">${p.shala_darpan_code || '---'}</code></td>
       <td><strong>${p.peeo_name}</strong></td>
       <td>${p.panchayat_name}</td>
       <td>${p.principal_incharge}</td>
@@ -390,14 +479,147 @@ function renderDashboardView() {
   });
 }
 
-// --- Directory View ---
+/* ========================================================
+   5. 3-LEVEL HIERARCHICAL EXPLORER (PEEO ➔ School ➔ Staff)
+   ======================================================== */
+function renderExplorerFilters() {
+  const peeoSelect = document.getElementById('exp-peeo-select');
+  if (!peeoSelect) return;
+  peeoSelect.innerHTML = '<option value="all">-- समस्त 25 PEEO --</option>';
+
+  STATE.peeos.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p.peeo_name;
+    opt.textContent = `${p.shala_darpan_code} - ${p.peeo_name} (${p.schools ? p.schools.length : 0} स्कूल)`;
+    peeoSelect.appendChild(opt);
+  });
+
+  // If logged in as PEEO, restrict and preselect
+  if (STATE.currentUser.role === 'peeo') {
+    peeoSelect.value = STATE.currentUser.peeo_name;
+    peeoSelect.disabled = true;
+  } else {
+    peeoSelect.disabled = false;
+  }
+
+  onExplorerPeeoChange();
+}
+
+function onExplorerPeeoChange() {
+  const peeoSelect = document.getElementById('exp-peeo-select');
+  const schoolSelect = document.getElementById('exp-school-select');
+  const selectedPeeo = peeoSelect.value;
+
+  schoolSelect.innerHTML = '<option value="all">-- सभी विद्यालय --</option>';
+
+  let schoolsToDisplay = [];
+  if (selectedPeeo === 'all') {
+    STATE.peeos.forEach(p => {
+      if (p.schools) schoolsToDisplay.push(...p.schools);
+    });
+  } else {
+    const peeoObj = STATE.peeos.find(p => p.peeo_name === selectedPeeo);
+    if (peeoObj && peeoObj.schools) {
+      schoolsToDisplay = peeoObj.schools;
+    }
+  }
+
+  schoolsToDisplay.forEach(sch => {
+    const opt = document.createElement('option');
+    opt.value = sch.school_name;
+    const typeBadge = sch.type === 'Private' ? '[निजी/Pvt]' : '[राजकीय/Govt]';
+    opt.textContent = `${typeBadge} ${sch.school_name}`;
+    schoolSelect.appendChild(opt);
+  });
+
+  onExplorerSchoolChange();
+}
+
+function onExplorerSchoolChange() {
+  const peeoSelect = document.getElementById('exp-peeo-select');
+  const schoolSelect = document.getElementById('exp-school-select');
+  const searchInput = document.getElementById('exp-search-input');
+  const tbody = document.getElementById('explorer-tbody');
+  if (!tbody) return;
+
+  const selPeeo = peeoSelect.value;
+  const selSchool = schoolSelect.value;
+  const search = searchInput.value.toLowerCase().trim();
+
+  let staffList = STATE.staff.filter(s => s.status !== 'Deleted');
+
+  if (selPeeo !== 'all') {
+    staffList = staffList.filter(s => s.peeo_name === selPeeo);
+  }
+
+  if (selSchool !== 'all') {
+    staffList = staffList.filter(s => {
+      const cleanSch = cleanKeyStr(s.school_name);
+      const cleanTarget = cleanKeyStr(selSchool);
+      return cleanSch.includes(cleanTarget) || cleanTarget.includes(cleanSch);
+    });
+  }
+
+  if (search) {
+    staffList = staffList.filter(s => {
+      const hay = `${s.name} ${s.post} ${s.school_name} ${s.peeo_name} ${s.mobile} ${s.sso_id}`.toLowerCase();
+      return hay.includes(search);
+    });
+  }
+
+  document.getElementById('exp-count-badge').textContent = `${staffList.length} कार्मिक`;
+  document.getElementById('exp-result-title').textContent = selSchool !== 'all' 
+    ? `विद्यालय: ${selSchool} (स्टाफ संख्या: ${staffList.length})` 
+    : (selPeeo !== 'all' ? `${selPeeo} के अधीनस्थ समस्त विद्यालय एवं स्टाफ` : `भिनाय ब्लॉक: समस्त विद्यालय एवं स्टाफ`);
+
+  tbody.innerHTML = '';
+  if (staffList.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; padding:2rem; color:var(--neutral-500)">चयनित विद्यालय/PEEO में कोई कार्मिक रिकॉर्ड नहीं मिला</td></tr>`;
+    return;
+  }
+
+  staffList.slice(0, 150).forEach((s, idx) => {
+    const isPvt = (s.school_name || '').toLowerCase().includes('public') || (s.school_name || '').toLowerCase().includes('academy') || (s.school_name || '').toLowerCase().includes('convent');
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${idx + 1}</td>
+      <td><code>${s.staff_id}</code></td>
+      <td><strong>${s.name}</strong></td>
+      <td>${s.post}</td>
+      <td><strong>${s.school_name || s.peeo_name}</strong></td>
+      <td><span class="status-badge" style="background:${isPvt ? '#fef3c7' : '#e0f2fe'}; color:${isPvt ? '#b45309' : '#0369a1'}">${isPvt ? 'निजी (Pvt)' : 'राजकीय (Govt)'}</span></td>
+      <td><span style="font-weight:600; color:var(--primary)">${s.peeo_name}</span></td>
+      <td>${s.mobile ? `<a href="tel:${s.mobile}" style="text-decoration:none; color:var(--primary); font-weight:600"><i class="fas fa-phone-alt"></i> ${s.mobile}</a>` : '---'}</td>
+      <td>${s.sso_id ? `<code>${s.sso_id}</code>` : '---'}</td>
+      <td>
+        ${s.mobile ? `
+          <button class="btn btn-whatsapp btn-sm" onclick="sendWhatsAppMessage('${s.mobile}', 'नमस्ते ${s.name} जी, CBEO कार्यालय भिनाय से संपर्क सादर प्रेषित है।')">
+            <i class="fab fa-whatsapp"></i>
+          </button>
+        ` : '---'}
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function cleanKeyStr(s) {
+  if (!s) return '';
+  return s.toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+function renderExplorerView() {
+  renderExplorerFilters();
+}
+
+// --- Directory View (Global Search) ---
 function renderDirectoryFilters() {
   const dirPeeoFilter = document.getElementById('dir-peeo-filter');
   dirPeeoFilter.innerHTML = '<option value="all">सभी PEEO क्षेत्र</option>';
   STATE.peeos.forEach(p => {
     const opt = document.createElement('option');
     opt.value = p.peeo_name;
-    opt.textContent = p.peeo_name;
+    opt.textContent = `${p.shala_darpan_code} - ${p.peeo_name}`;
     dirPeeoFilter.appendChild(opt);
   });
 }
@@ -415,14 +637,14 @@ function filterDirectory() {
 
   let list = [];
 
-  // 1. Add 25 PEEO Incharges
+  // Add 25 PEEO Incharges
   if (typeFilter === 'all' || typeFilter === 'peeo' || typeFilter === 'principal') {
     STATE.peeos.forEach(p => {
       list.push({
         name: p.principal_incharge,
         post: 'प्रभारी प्रधानाचार्य एवं PEEO',
         peeo_name: p.peeo_name,
-        school: p.peeo_name,
+        school: `${p.peeo_name} (शा.दा. कोड: ${p.shala_darpan_code})`,
         mobile: p.mobile,
         email: p.email,
         type: 'peeo'
@@ -430,7 +652,7 @@ function filterDirectory() {
     });
   }
 
-  // 2. Add Staff
+  // Add Staff (1048 records)
   if (typeFilter === 'all' || typeFilter === 'staff' || typeFilter === 'principal') {
     STATE.staff.filter(s => s.status !== 'Deleted').forEach(s => {
       const isPrin = s.post.toLowerCase().includes('प्रधानाचार्य') || s.post.toLowerCase().includes('headmaster');
@@ -449,7 +671,6 @@ function filterDirectory() {
     });
   }
 
-  // Filter
   const filtered = list.filter(item => {
     if (peeoFilter !== 'all' && item.peeo_name !== peeoFilter) return false;
     if (search) {
@@ -458,6 +679,8 @@ function filterDirectory() {
     }
     return true;
   });
+
+  document.getElementById('dir-total-count').textContent = `${filtered.length} संपर्क`;
 
   if (filtered.length === 0) {
     tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:2rem; color:var(--neutral-500)">कोई संपर्क विवरण नहीं मिला</td></tr>`;
@@ -506,7 +729,7 @@ function renderStaffFilters() {
   STATE.peeos.forEach(p => {
     const opt = document.createElement('option');
     opt.value = p.peeo_name;
-    opt.textContent = p.peeo_name;
+    opt.textContent = `${p.shala_darpan_code} - ${p.peeo_name}`;
     staffPeeoFilter.appendChild(opt);
   });
 }
@@ -523,7 +746,6 @@ function filterStaffTable() {
 
   let activeList = STATE.staff.filter(s => s.status !== 'Deleted');
 
-  // If logged in as PEEO, restrict strictly to their PEEO
   if (STATE.currentUser.role === 'peeo') {
     activeList = activeList.filter(s => s.peeo_name === STATE.currentUser.peeo_name);
     document.getElementById('staff-peeo-filter').value = STATE.currentUser.peeo_name;
@@ -549,7 +771,7 @@ function filterStaffTable() {
     return;
   }
 
-  activeList.slice(0, 100).forEach(s => {
+  activeList.slice(0, 150).forEach(s => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td><code>${s.staff_id}</code></td>
@@ -585,11 +807,9 @@ function openAddStaffModal() {
   document.getElementById('staff-edit-bank-acc').value = '';
   document.getElementById('staff-edit-ifsc').value = '';
 
-  // Set PEEO name (LOCKED)
   const targetPeeo = STATE.currentUser.role === 'peeo' ? STATE.currentUser.peeo_name : 'PEEO BHINAY';
   document.getElementById('staff-edit-peeo').value = targetPeeo;
 
-  // Populate school select
   const schoolSelect = document.getElementById('staff-edit-school');
   schoolSelect.innerHTML = '';
   const peeoObj = STATE.peeos.find(p => p.peeo_name === targetPeeo);
@@ -664,18 +884,15 @@ function saveStaffMember() {
   }
 
   if (staffId) {
-    // Edit Existing
     const idx = STATE.staff.findIndex(s => s.staff_id === staffId);
     if (idx !== -1) {
-      const old = { ...STATE.staff[idx] };
       STATE.staff[idx] = {
         ...STATE.staff[idx],
         name, school_name: schoolName, post, mobile, email, sso_id: ssoId, bank_acc: bankAcc, ifsc
       };
 
-      // Add to Audit Log
       recordAuditLog({
-        user: STATE.currentUser.peeo_name || 'Admin',
+        user: STATE.currentUser.peeo_name || STATE.currentUser.name || 'Admin',
         action: 'कार्मिक संपादन',
         target: `${staffId} - ${name}`,
         details: `पद: ${post}, मो.: ${mobile}`,
@@ -685,7 +902,6 @@ function saveStaffMember() {
       showToast('कार्मिक विवरण सफलता पूर्वक अद्यतन हुआ!', 'success');
     }
   } else {
-    // Add New
     const newId = `STF${1000 + STATE.staff.length + 1}`;
     const newStaff = {
       staff_id: newId,
@@ -702,9 +918,8 @@ function saveStaffMember() {
     };
     STATE.staff.unshift(newStaff);
 
-    // Add to Audit Log
     recordAuditLog({
-      user: STATE.currentUser.peeo_name || 'Admin',
+      user: STATE.currentUser.peeo_name || STATE.currentUser.name || 'Admin',
       action: 'नया कार्मिक प्रविष्टि',
       target: `${newId} - ${name}`,
       details: `विद्यालय: ${schoolName}, पद: ${post}`,
@@ -734,11 +949,10 @@ function confirmDeleteStaff() {
     staff.status = 'Deleted';
     staff.deleteReason = reason;
     staff.deletedAt = new Date().toLocaleString('hi-IN');
-    staff.deletedBy = STATE.currentUser.peeo_name || 'Admin';
+    staff.deletedBy = STATE.currentUser.peeo_name || STATE.currentUser.name || 'Admin';
 
-    // Record Audit & Backup Log
     recordAuditLog({
-      user: STATE.currentUser.peeo_name || 'Admin',
+      user: STATE.currentUser.peeo_name || STATE.currentUser.name || 'Admin',
       action: 'कार्मिक विलोपन (सुरक्षित बैकअप)',
       target: `${staff.staff_id} - ${staff.name}`,
       details: `विद्यालय: ${staff.school_name}, पद: ${staff.post}, मो.: ${staff.mobile}`,
@@ -781,17 +995,15 @@ function openAuditLogModal() {
 }
 
 /* ========================================================
-   5. DYNAMIC INFORMATION DEMANDS & 7-DAY ARCHIVE ENGINE
+   6. DYNAMIC INFORMATION DEMANDS & PUBLISH CONTROLS
    ======================================================== */
-function getActiveDemands() {
-  const now = new Date();
-  return STATE.demands.filter(d => {
-    // Check if 7-day auto archived
-    if (d.archived) return false;
-    // Check if all 25 PEEOs submitted over 7 days ago
-    const isOver7Days = checkIsDemandArchivable(d);
-    return !isOver7Days;
-  });
+function getVisibleDemands() {
+  // If PEEO, only show PUBLISHED demands!
+  if (STATE.currentUser.role === 'peeo') {
+    return STATE.demands.filter(d => d.published === true && !d.archived && !checkIsDemandArchivable(d));
+  }
+  // If Admin, show all active non-archived demands
+  return STATE.demands.filter(d => !d.archived && !checkIsDemandArchivable(d));
 }
 
 function getArchivedDemands() {
@@ -799,7 +1011,6 @@ function getArchivedDemands() {
 }
 
 function checkIsDemandArchivable(demand) {
-  // If all 25 PEEOs submitted AND completedDate is older than 7 days
   let allSubmitted = true;
   let latestSubmitTime = null;
 
@@ -826,23 +1037,23 @@ function checkIsDemandArchivable(demand) {
 }
 
 function renderDemandsView() {
-  const activeDemands = getActiveDemands();
+  const visibleDemands = getVisibleDemands();
   const container = document.getElementById('demands-cards-container');
   container.innerHTML = '';
 
-  document.getElementById('demands-active-count').textContent = `${activeDemands.length} प्रपत्र`;
-  document.getElementById('nav-pending-badge').textContent = `${activeDemands.length} सक्रिय`;
+  document.getElementById('demands-active-count').textContent = `${visibleDemands.length} प्रपत्र`;
+  document.getElementById('nav-pending-badge').textContent = `${visibleDemands.length} सक्रिय`;
 
-  if (activeDemands.length === 0) {
+  if (visibleDemands.length === 0) {
     container.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem; background:white; border-radius:12px; color:var(--neutral-500)">
       <i class="fas fa-check-circle fa-3x text-success" style="margin-bottom:1rem"></i>
-      <h3>सभी सूचना प्रपत्र पूर्ण हो चुके हैं!</h3>
-      <p>वर्तमान में कोई लंबित सूचना मांग नहीं है। पूर्ण हो चुके प्रपत्र 'अभिलेखागार' में देखें।</p>
+      <h3>वर्तमान में कोई सक्रिय सूचना प्रपत्र प्रकाशित नहीं है!</h3>
+      <p>कार्यालय एडमिन द्वारा सूचना प्रकाशित किए जाने पर यहाँ प्रदर्शित होगी।</p>
     </div>`;
     return;
   }
 
-  activeDemands.forEach(demand => {
+  visibleDemands.forEach(demand => {
     container.appendChild(createDemandCardElement(demand));
   });
 }
@@ -859,7 +1070,7 @@ function renderArchiveView() {
     container.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem; background:white; border-radius:12px; color:var(--neutral-500)">
       <i class="fas fa-archive fa-3x" style="margin-bottom:1rem; color:#cbd5e1"></i>
       <h3>वर्तमान में कोई आर्काइव्ड प्रपत्र नहीं है।</h3>
-      <p>शत-प्रतिशत पूर्ण होने के 7 दिन पश्चात प्रपत्र यहाँ स्वतः प्रदर्शित होंगे।</p>
+      <p>शत-प्रतिशत पूर्ण होने के 7 दिन पश्चात प्रपत्र यहाँ स्वतः सुरक्षित रहेंगे।</p>
     </div>`;
     return;
   }
@@ -873,7 +1084,6 @@ function createDemandCardElement(demand, isArchive = false) {
   const card = document.createElement('div');
   card.className = 'demand-card';
 
-  // Check current user status
   let isCurrentSubmitted = false;
   let currentSubmission = null;
 
@@ -885,7 +1095,6 @@ function createDemandCardElement(demand, isArchive = false) {
     }
   }
 
-  // Count total submissions across 25 PEEOs
   let submittedCount = 0;
   STATE.peeos.forEach(p => {
     const subKey = `${demand.id}_${p.peeo_id}`;
@@ -911,9 +1120,12 @@ function createDemandCardElement(demand, isArchive = false) {
         <span class="status-badge ${isCurrentSubmitted ? 'green' : 'red'}">
           ${STATE.currentUser.role === 'peeo' ? (isCurrentSubmitted ? '<i class="fas fa-check-circle"></i> पूर्ण (सत्यापित)' : '<i class="fas fa-exclamation-circle"></i> बाकी (Pending)') : `<i class="fas fa-users"></i> ${submittedCount}/${totalPEEOs} PEEO पूर्ण`}
         </span>
-        <span style="font-size:0.75rem; font-weight:700; color:#b91c1c; background:#fee2e2; padding:2px 8px; border-radius:4px">
-          ${demand.priority || 'अति आवश्यक'}
-        </span>
+        <div style="display:flex; align-items:center; gap:0.5rem">
+          ${demand.published === false ? '<span style="font-size:0.7rem; background:#fee2e2; color:#dc2626; padding:2px 6px; border-radius:4px; font-weight:bold">अप्रकाशित (Hidden)</span>' : ''}
+          <span style="font-size:0.75rem; font-weight:700; color:#b91c1c; background:#fee2e2; padding:2px 8px; border-radius:4px">
+            ${demand.priority || 'अति आवश्यक'}
+          </span>
+        </div>
       </div>
 
       <h3 class="demand-title">${demand.title}</h3>
@@ -937,7 +1149,7 @@ function createDemandCardElement(demand, isArchive = false) {
       ${STATE.currentUser.role === 'peeo' ? `
         ${isCurrentSubmitted ? `
           <button class="btn btn-outline-light btn-sm" style="color:#047857; border-color:#6ee7b7" onclick="openPreviewPDFModal('${demand.id}', '${STATE.currentUser.peeo_id}')">
-            <i class="fas fa-eye"></i> सत्यापित प्रपत्र देखें
+            <i class="fas fa-eye"></i> प्रपत्र देखें / प्रिंट
           </button>
           <button class="btn btn-whatsapp btn-sm" onclick="quickShareWhatsApp('${demand.id}', '${STATE.currentUser.peeo_id}')">
             <i class="fab fa-whatsapp"></i> शेयर
@@ -948,8 +1160,8 @@ function createDemandCardElement(demand, isArchive = false) {
           </button>
         `}
       ` : `
-        <button class="btn btn-primary btn-sm" onclick="openAdminDemandDetail('${demand.id}')">
-          <i class="fas fa-tasks"></i> सभी 25 PEEO स्थिति देखें
+        <button class="btn btn-primary btn-sm" onclick="switchTab('admin-control')">
+          <i class="fas fa-tasks"></i> सभी 25 PEEO स्थिति
         </button>
         <button class="btn btn-outline-light btn-sm" style="color:#1b365d; border-color:#cbd5e1" onclick="openFillDemandModal('${demand.id}', 'PEEO08')">
           <i class="fas fa-eye"></i> प्रपत्र प्रारूप
@@ -962,7 +1174,7 @@ function createDemandCardElement(demand, isArchive = false) {
 }
 
 /* ========================================================
-   6. DYNAMIC FORM FILLING & SEAL / SIGNATURE
+   7. FORM FILLING & RECTANGULAR RUBBER STAMP
    ======================================================== */
 function openFillDemandModal(demandId, forcePeeoId = null) {
   const demand = STATE.demands.find(d => d.id === demandId);
@@ -970,19 +1182,17 @@ function openFillDemandModal(demandId, forcePeeoId = null) {
 
   STATE.currentDemandToFill = demand;
 
-  const peeoId = forcePeeoId || (STATE.currentUser.role === 'peeo' ? STATE.currentUser.peeo_id : 'PEEO08'); // default Deoliya Kalan for demo admin
+  const peeoId = forcePeeoId || (STATE.currentUser.role === 'peeo' ? STATE.currentUser.peeo_id : 'PEEO08');
   const peeo = STATE.peeos.find(p => p.peeo_id === peeoId) || STATE.peeos[0];
 
   document.getElementById('form-modal-title').textContent = demand.title;
-  document.getElementById('form-modal-subtitle').textContent = `PEEO परिक्षेत्र: ${peeo.peeo_name} | नोडल विद्यालय: ${peeo.panchayat_name} | अंतिम तिथि: ${demand.dueDate}`;
+  document.getElementById('form-modal-subtitle').textContent = `PEEO परिक्षेत्र: ${peeo.peeo_name} | शा.दा. कोड: ${peeo.shala_darpan_code} | अंतिम तिथि: ${demand.dueDate}`;
 
-  // Update Rubber Stamp
-  document.getElementById('stamp-peeo-name').textContent = peeo.peeo_name;
+  // Update Rectangular Rubber Stamp (सीधी मोहर)
+  document.getElementById('stamp-peeo-name').textContent = `रा.उ.मा.वि. ${peeo.panchayat_name} (${peeo.peeo_name.replace('PEEO ', '')})`;
 
-  // Clear Signature Pad
   clearSignatureCanvas();
 
-  // Render Dynamic School Rows
   const container = document.getElementById('dynamic-form-fields-container');
   container.innerHTML = '';
 
@@ -999,7 +1209,7 @@ function openFillDemandModal(demandId, forcePeeoId = null) {
   let headerColsHtml = `
     <th>क्र.सं. <span class="status-badge locked">LOCKED</span></th>
     <th>विद्यालय का नाम <span class="status-badge locked">LOCKED</span></th>
-    <th>DISE कोड <span class="status-badge locked">LOCKED</span></th>
+    <th>प्रकार / कोड <span class="status-badge locked">LOCKED</span></th>
   `;
 
   demand.columns.forEach(col => {
@@ -1008,14 +1218,20 @@ function openFillDemandModal(demandId, forcePeeoId = null) {
 
   let rowsHtml = '';
   schools.forEach((sch, sIdx) => {
+    const isPvt = sch.type === 'Private';
     rowsHtml += `
       <tr data-school="${sch.school_name}">
         <td><strong>${sIdx + 1}</strong></td>
         <td>
           <strong>${sch.school_name}</strong><br>
-          <span style="font-size:0.75rem; color:var(--neutral-500)">${sch.village || ''}</span>
+          <span style="font-size:0.75rem; color:var(--neutral-500)">${sch.village || sch.panchayat || ''}</span>
         </td>
-        <td><code>${sch.dise_code || '---'}</code></td>
+        <td>
+          <span class="status-badge" style="background:${isPvt ? '#fef3c7' : '#e0f2fe'}; color:${isPvt ? '#b45309' : '#0369a1'}; font-size:0.75rem">
+            ${isPvt ? 'निजी' : 'राजकीय'}
+          </span><br>
+          <code style="font-size:0.75rem">${sch.shala_darpan_code || sch.dise_code || '---'}</code>
+        </td>
     `;
 
     demand.columns.forEach((col, cIdx) => {
@@ -1063,37 +1279,29 @@ function openFillDemandModal(demandId, forcePeeoId = null) {
 }
 
 /* ========================================================
-   7. SIGNATURE PAD CANVAS ENGINE
+   8. SIGNATURE PAD CANVAS
    ======================================================== */
 function setupSignaturePad() {
   canvas = document.getElementById('signature-canvas');
   if (!canvas) return;
   ctx = canvas.getContext('2d');
 
-  // Mouse Events
   canvas.addEventListener('mousedown', startDrawing);
   canvas.addEventListener('mousemove', draw);
   canvas.addEventListener('mouseup', stopDrawing);
   canvas.addEventListener('mouseleave', stopDrawing);
 
-  // Touch Events for Mobile
   canvas.addEventListener('touchstart', (e) => {
     e.preventDefault();
     const touch = e.touches[0];
-    const mouseEvent = new MouseEvent('mousedown', {
-      clientX: touch.clientX,
-      clientY: touch.clientY
-    });
+    const mouseEvent = new MouseEvent('mousedown', { clientX: touch.clientX, clientY: touch.clientY });
     canvas.dispatchEvent(mouseEvent);
   }, { passive: false });
 
   canvas.addEventListener('touchmove', (e) => {
     e.preventDefault();
     const touch = e.touches[0];
-    const mouseEvent = new MouseEvent('mousemove', {
-      clientX: touch.clientX,
-      clientY: touch.clientY
-    });
+    const mouseEvent = new MouseEvent('mousemove', { clientX: touch.clientX, clientY: touch.clientY });
     canvas.dispatchEvent(mouseEvent);
   }, { passive: false });
 
@@ -1141,7 +1349,7 @@ function clearSignatureCanvas() {
 }
 
 /* ========================================================
-   8. FORM SUBMISSION & CERTIFICATION
+   9. SUBMISSION & CERTIFICATION
    ======================================================== */
 function submitDemandForm() {
   const demand = STATE.currentDemandToFill;
@@ -1150,13 +1358,11 @@ function submitDemandForm() {
   const peeoId = STATE.currentUser.role === 'peeo' ? STATE.currentUser.peeo_id : 'PEEO08';
   const peeo = STATE.peeos.find(p => p.peeo_id === peeoId) || STATE.peeos[0];
 
-  // Validate signature
   if (!hasSignature) {
     showToast('कृपया पहले सिग्नेचर पैड पर डिजिटल हस्ताक्षर करें!', 'warning');
     return;
   }
 
-  // Collect Data
   const schools = peeo.schools && peeo.schools.length > 0 ? peeo.schools : [
     { school_name: peeo.peeo_name, dise_code: '0812000000' }
   ];
@@ -1165,7 +1371,7 @@ function submitDemandForm() {
   schools.forEach((sch, sIdx) => {
     const rowObj = {
       school_name: sch.school_name,
-      dise_code: sch.dise_code || ''
+      dise_code: sch.dise_code || sch.shala_darpan_code || ''
     };
     demand.columns.forEach((col, cIdx) => {
       const fieldId = `field_${sIdx}_${cIdx}`;
@@ -1182,6 +1388,8 @@ function submitDemandForm() {
     demandTitle: demand.title,
     peeoId: peeo.peeo_id,
     peeoName: peeo.peeo_name,
+    shala_darpan_code: peeo.shala_darpan_code,
+    panchayat: peeo.panchayat_name,
     incharge: peeo.principal_incharge,
     mobile: peeo.mobile,
     email: peeo.email,
@@ -1196,27 +1404,25 @@ function submitDemandForm() {
   STATE.submissions[subKey] = submissionRecord;
   saveSubmissionsToStorage();
 
-  // Audit Log
   recordAuditLog({
     user: peeo.peeo_name,
     action: 'सूचना प्रपत्र सत्यापन व सबमिशन',
     target: demand.title,
     details: `${formDataRows.length} विद्यालयों का विवरण प्रमाणित किया गया`,
-    note: 'डिजिटल मोहर व हस्ताक्षर युक्त'
+    note: 'सीधी मोहर व डिजिटल हस्ताक्षर सहित'
   });
 
   closeModal('modal-fill-demand');
   showToast(`${demand.title} सफलता पूर्वक सत्यापित व सबमिट हुई!`, 'success');
   renderApp();
 
-  // Open Preview Modal
   setTimeout(() => {
     openPreviewPDFModal(demand.id, peeo.peeo_id);
   }, 300);
 }
 
 /* ========================================================
-   9. OFFICIAL PDF PREVIEW, EXPORT & WHATSAPP
+   10. PDF PREVIEW & DIRECT PRINT / DOWNLOAD ENGINE
    ======================================================== */
 let activePreviewRecord = null;
 
@@ -1232,7 +1438,7 @@ function openPreviewPDFModal(demandId, peeoId) {
   const demand = STATE.demands.find(d => d.id === demandId);
   const previewBox = document.getElementById('pdf-preview-box');
 
-  let tableHeaderCols = `<th>क्र.सं.</th><th>विद्यालय का नाम</th><th>DISE कोड</th>`;
+  let tableHeaderCols = `<th>क्र.सं.</th><th>विद्यालय का नाम</th><th>कोड / प्रकार</th>`;
   (demand.columns || []).forEach(col => {
     tableHeaderCols += `<th>${col.name}</th>`;
   });
@@ -1243,7 +1449,7 @@ function openPreviewPDFModal(demandId, peeoId) {
       <tr>
         <td>${rIdx + 1}</td>
         <td><strong>${row.school_name}</strong></td>
-        <td><code>${row.dise_code}</code></td>
+        <td><code>${row.dise_code || '---'}</code></td>
     `;
     (demand.columns || []).forEach(col => {
       tableDataRows += `<td>${row[col.name] || '---'}</td>`;
@@ -1251,6 +1457,7 @@ function openPreviewPDFModal(demandId, peeoId) {
     tableDataRows += `</tr>`;
   });
 
+  // Authentic Rectangular Stamp HTML inside preview
   previewBox.innerHTML = `
     <div class="letterhead-header">
       <div style="font-size:11pt; font-weight:bold; letter-spacing:0.05em">राजस्थान सरकार • स्कूल शिक्षा विभाग</div>
@@ -1262,7 +1469,7 @@ function openPreviewPDFModal(demandId, peeoId) {
     <div class="letterhead-meta">
       <div>
         <strong>PEEO परिक्षेत्र:</strong> ${sub.peeoName}<br>
-        <strong>प्रभारी प्रधानाचार्य:</strong> ${sub.incharge}
+        <strong>शाला दर्पण कोड:</strong> ${sub.shala_darpan_code || '---'} | <strong>प्रभारी:</strong> ${sub.incharge}
       </div>
       <div style="text-align:right">
         <strong>सत्यापन दिनांक:</strong> ${sub.submittedAt}<br>
@@ -1280,22 +1487,22 @@ function openPreviewPDFModal(demandId, peeoId) {
     </div>
 
     <div class="letterhead-footer-sign" style="display:flex; justify-content:space-between; align-items:flex-end">
-      <!-- Digital Seal -->
+      <!-- Rectangular Stamp (सीधी मोहर) -->
       <div style="text-align:center">
-        <div class="rubber-stamp" style="width:125px; height:125px">
-          <div class="stamp-top">कार्यालय प्रधानाचार्य एवं PEEO</div>
-          <div class="stamp-center" style="font-size:9.5px">${sub.peeoName}</div>
-          <div class="stamp-bottom">CBEO परिक्षेत्र भिनाय - अजमेर</div>
+        <div class="rubber-stamp" style="width:260px; min-height:76px">
+          <div class="stamp-line1">प्रधानाचार्य एवं पदेन पंचायत प्रारम्भिक शिक्षा अधिकारी (PEEO)</div>
+          <div class="stamp-line2">रा.उ.मा.वि. ${sub.panchayat || ''} (${sub.peeoName.replace('PEEO ', '')})</div>
+          <div class="stamp-line3">पंचायत समिति - भिनाय (केकड़ी/अजमेर)</div>
         </div>
-        <div style="font-size:8pt; font-weight:700; color:#15803d; margin-top:4px">✓ अधिकृत डिजिटल मोहर</div>
+        <div style="font-size:8pt; font-weight:700; color:#15803d; margin-top:4px">✓ अधिकृत सीधी डिजिटल मोहर</div>
       </div>
 
       <!-- Signature -->
       <div style="text-align:center; min-width:200px">
-        <img src="${sub.signature}" alt="Signature" style="max-height:60px; max-width:180px; margin-bottom:4px"><br>
+        <img src="${sub.signature}" alt="Signature" style="max-height:55px; max-width:170px; margin-bottom:4px"><br>
         <strong>(${sub.incharge})</strong><br>
         <span style="font-size:8.5pt">प्रधानाचार्य एवं PEEO / UCEEO</span><br>
-        <span style="font-size:8pt; color:#64748b">${sub.peeoName}</span>
+        <span style="font-size:8pt; color:#64748b">${sub.peeoName} (कोड: ${sub.shala_darpan_code})</span>
       </div>
     </div>
   `;
@@ -1303,29 +1510,37 @@ function openPreviewPDFModal(demandId, peeoId) {
   showModal('modal-preview-pdf');
 }
 
+// 1. Native Vector Browser Print (100% Reliable & Opens in all PDF readers)
+function printLetterheadDirectly() {
+  window.print();
+}
+
+// 2. Instant html2pdf Download
 function downloadCurrentPDF() {
   if (!activePreviewRecord) return;
   const element = document.getElementById('pdf-preview-box');
+  const cleanName = (activePreviewRecord.peeoName + '_' + activePreviewRecord.demandTitle).replace(/[^a-zA-Z0-9_\u0900-\u097F]/g, '_');
+  
   const opt = {
     margin: [10, 10, 10, 10],
-    filename: `${activePreviewRecord.peeoName}_${activePreviewRecord.demandTitle}.pdf`.replace(/\s+/g, '_'),
+    filename: `${cleanName}.pdf`,
     image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2 },
+    html2canvas: { scale: 2, useCORS: true },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
   };
 
   html2pdf().set(opt).from(element).save();
-  showToast('आधिकारिक PDF डाउनलोड प्रारंभ!', 'success');
+  showToast('आधिकारिक PDF तैयार व डाउनलोड प्रारंभ!', 'success');
 }
 
 function shareCurrentPDFOnWhatsApp() {
   if (!activePreviewRecord) return;
   const msg = `*कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी भिनाय*\n\n` +
               `*प्रपत्र:* ${activePreviewRecord.demandTitle}\n` +
-              `*PEEO:* ${activePreviewRecord.peeoName}\n` +
+              `*PEEO:* ${activePreviewRecord.peeoName} (कोड: ${activePreviewRecord.shala_darpan_code})\n` +
               `*प्रभारी:* ${activePreviewRecord.incharge}\n` +
-              `*दिनांक:* ${activePreviewRecord.submittedAt}\n\n` +
-              `सादर सूचनार्थ, उक्त सूचना का प्रमाणित प्रपत्र डिजिटल मोहर एवं हस्ताक्षर सहित CBEO भिनाय पोर्टल पर सफलता पूर्वक सबमिट कर दिया गया है।`;
+              `*सत्यापन दिनांक:* ${activePreviewRecord.submittedAt}\n\n` +
+              `सादर सूचनार्थ, उक्त सूचना का प्रमाणित प्रपत्र सीधी डिजिटल मोहर एवं हस्ताक्षर सहित CBEO भिनाय पोर्टल पर सफलता पूर्वक सबमिट कर दिया गया है।`;
 
   const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
   window.open(url, '_blank');
@@ -1346,16 +1561,40 @@ function sendWhatsAppMessage(mobile, defaultText) {
 }
 
 /* ========================================================
-   10. ADMIN CONTROL ROOM & ZERO-CODE DEMAND CREATOR
+   11. ADMIN CONTROL ROOM & PUBLISH TOGGLE
    ======================================================== */
 function renderAdminControlView() {
-  const activeDemands = getActiveDemands();
+  const activeDemands = STATE.demands.filter(d => !d.archived);
   const theadTr = document.getElementById('admin-matrix-thead-tr');
   const tbody = document.getElementById('admin-matrix-tbody');
 
-  // Build matrix columns
+  // 1. Render Publish / Unpublish Checkbox List
+  const publishList = document.getElementById('admin-demands-publish-list');
+  if (publishList) {
+    publishList.innerHTML = '';
+    STATE.demands.forEach(d => {
+      const isPub = d.published !== false;
+      const div = document.createElement('div');
+      div.style.cssText = 'display:flex; align-items:center; justify-content:space-between; padding:0.6rem 0.85rem; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px';
+      div.innerHTML = `
+        <div style="display:flex; align-items:center; gap:0.75rem">
+          <input type="checkbox" id="pub_chk_${d.id}" ${isPub ? 'checked' : ''} onchange="toggleDemandPublish('${d.id}')" style="width:18px; height:18px; cursor:pointer">
+          <label for="pub_chk_${d.id}" style="cursor:pointer; font-weight:600; color:#1e293b">
+            ${d.title}
+          </label>
+        </div>
+        <span class="status-badge ${isPub ? 'green' : 'red'}" style="font-size:0.75rem">
+          ${isPub ? '✓ PEEO स्तर पर LIVE (प्रकाशित)' : '✗ अप्रकाशित (PEEO से छुपा हुआ)'}
+        </span>
+      `;
+      publishList.appendChild(div);
+    });
+  }
+
+  // 2. Build matrix columns
   theadTr.innerHTML = `
     <th>क्र.सं.</th>
+    <th>शा.दा. कोड</th>
     <th>PEEO नाम</th>
     <th>प्रभारी प्रधानाचार्य</th>
     <th>मोबाइल नंबर</th>
@@ -1365,12 +1604,12 @@ function renderAdminControlView() {
   });
   theadTr.innerHTML += `<th>त्वरित WhatsApp रिमाइंडर</th>`;
 
-  // Build rows
   tbody.innerHTML = '';
   STATE.peeos.forEach((peeo, pIdx) => {
     const tr = document.createElement('tr');
     let cellsHtml = `
       <td><strong>${pIdx + 1}</strong></td>
+      <td><code>${peeo.shala_darpan_code || '---'}</code></td>
       <td><strong>${peeo.peeo_name}</strong></td>
       <td>${peeo.principal_incharge}</td>
       <td><a href="tel:${peeo.mobile}" style="text-decoration:none; color:var(--primary); font-weight:600"><i class="fas fa-phone-alt"></i> ${peeo.mobile}</a></td>
@@ -1400,7 +1639,7 @@ function renderAdminControlView() {
     });
 
     if (pendingDemandsForPeeo.length > 0) {
-      const reminderText = `आदरणीय ${peeo.principal_incharge} महोदय (${peeo.peeo_name}), CBEO भिनाय कार्यालय द्वारा मांगी गई निम्नलिखित सूचनाएं पोर्टल पर लंबित हैं: ${pendingDemandsForPeeo.join(', ')}। कृपया यथाशीघ्र डिजिटल मोहर व हस्ताक्षर सहित पोर्टल पर सबमिट करें।`;
+      const reminderText = `आदरणीय ${peeo.principal_incharge} महोदय (${peeo.peeo_name}), CBEO भिनाय कार्यालय द्वारा मांगी गई निम्नलिखित सूचनाएं पोर्टल पर लंबित हैं: ${pendingDemandsForPeeo.join(', ')}। कृपया यथाशीघ्र सीधी मोहर व हस्ताक्षर सहित पोर्टल पर सबमिट करें।`;
       cellsHtml += `
         <td>
           <button class="btn btn-whatsapp btn-sm" onclick="sendWhatsAppMessage('${peeo.mobile}', '${reminderText}')">
@@ -1421,11 +1660,25 @@ function renderAdminControlView() {
   });
 }
 
+function toggleDemandPublish(demandId) {
+  const demand = STATE.demands.find(d => d.id === demandId);
+  if (!demand) return;
+
+  demand.published = (demand.published === false) ? true : false;
+  saveDemandsToStorage();
+
+  const statusText = demand.published ? 'PEEO हेतु प्रकाशित' : 'PEEO स्तर से अप्रकाशित (हटा दिया गया)';
+  showToast(`सूचना '${demand.title}' अब ${statusText} है!`, demand.published ? 'success' : 'warning');
+  renderApp();
+  renderAdminControlView();
+}
+
 function openCreateDemandModal() {
   document.getElementById('new-demand-title').value = '';
   document.getElementById('new-demand-date').value = '';
   document.getElementById('new-demand-cols').value = 'कुल खेल मैदान क्षेत्रफल (बीघा), वर्तमान चारदीवारी स्थिति, विकसित खेल संसाधन, आवश्यक अनुदान (लाखों में), विशेष विवरण';
   document.getElementById('new-demand-desc').value = '';
+  document.getElementById('new-demand-publish').checked = true;
   showModal('modal-create-demand');
 }
 
@@ -1435,6 +1688,7 @@ function saveNewDemand() {
   const priority = document.getElementById('new-demand-priority').value;
   const colsRaw = document.getElementById('new-demand-cols').value.trim();
   const desc = document.getElementById('new-demand-desc').value.trim();
+  const isPub = document.getElementById('new-demand-publish').checked;
 
   if (!title) {
     showToast('कृपया सूचना का शीर्षक दर्ज करें!', 'error');
@@ -1451,9 +1705,10 @@ function saveNewDemand() {
   const newDemand = {
     id: `DEMAND_${Date.now()}`,
     title: title,
-    description: desc || 'समस्त PEEO समय सीमा में सूचना डिजिटल मोहर व हस्ताक्षर सहित प्रेषित करें।',
+    description: desc || 'समस्त PEEO समय सीमा में सूचना सीधी डिजिटल मोहर व हस्ताक्षर सहित प्रेषित करें।',
     dueDate: dueDate || 'यथाशीघ्र',
     priority: priority,
+    published: isPub,
     createdAt: new Date().toISOString().split('T')[0],
     columns: cols
   };
@@ -1461,22 +1716,98 @@ function saveNewDemand() {
   STATE.demands.unshift(newDemand);
   saveDemandsToStorage();
 
-  // Audit Log
   recordAuditLog({
-    user: 'Super Admin',
+    user: STATE.currentUser.name || 'जितेन्द्र कुमार (Admin)',
     action: 'नई सूचना मांग सृजन (Zero-Code)',
     target: title,
-    details: `${cols.length} कॉलम का प्रपत्र सभी 25 PEEO हेतु लाइव किया गया`,
+    details: `${cols.length} कॉलम का प्रपत्र सृजित | प्रकाशित: ${isPub ? 'हाँ' : 'नहीं'}`,
     note: 'स्वतः फॉर्म जनरेटर'
   });
 
   closeModal('modal-create-demand');
-  showToast(`नई सूचना '${title}' सभी 25 PEEO के लिए तुरंत लाइव हो गई!`, 'success');
+  showToast(`नई सूचना '${title}' सफलता पूर्वक तैयार हो गई!`, 'success');
+  renderApp();
+}
+
+/* ========================================================
+   12. ADD NEW SCHOOL (GOVT / PRIVATE)
+   ======================================================== */
+function openAddSchoolModal() {
+  const peeoSelect = document.getElementById('new-school-peeo');
+  peeoSelect.innerHTML = '';
+  STATE.peeos.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p.peeo_name;
+    opt.textContent = `${p.shala_darpan_code} - ${p.peeo_name}`;
+    peeoSelect.appendChild(opt);
+  });
+
+  if (STATE.currentUser.role === 'peeo') {
+    peeoSelect.value = STATE.currentUser.peeo_name;
+    peeoSelect.disabled = true;
+  } else {
+    peeoSelect.disabled = false;
+  }
+
+  document.getElementById('new-school-name').value = '';
+  document.getElementById('new-school-sdcode').value = '';
+  document.getElementById('new-school-dise').value = '';
+  document.getElementById('new-school-village').value = '';
+  document.getElementById('new-school-panchayat').value = '';
+
+  showModal('modal-add-school');
+}
+
+function saveNewSchool() {
+  const peeoName = document.getElementById('new-school-peeo').value;
+  const schName = document.getElementById('new-school-name').value.trim();
+  const schType = document.getElementById('new-school-type').value;
+  const schCat = document.getElementById('new-school-cat').value;
+  const sdCode = document.getElementById('new-school-sdcode').value.trim();
+  const dise = document.getElementById('new-school-dise').value.trim();
+  const village = document.getElementById('new-school-village').value.trim();
+  const panchayat = document.getElementById('new-school-panchayat').value.trim();
+
+  if (!schName) {
+    showToast('कृपया विद्यालय का नाम दर्ज करें!', 'error');
+    return;
+  }
+
+  const peeoObj = STATE.peeos.find(p => p.peeo_name === peeoName);
+  if (!peeoObj) return;
+
+  if (!peeoObj.schools) peeoObj.schools = [];
+
+  const newSchoolRecord = {
+    school_name: schName,
+    category: `${schType} (${schCat})`,
+    panchayat: panchayat || peeoObj.panchayat_name,
+    village: village,
+    dise_code: dise,
+    shala_darpan_code: sdCode,
+    type: schType
+  };
+
+  peeoObj.schools.push(newSchoolRecord);
+  peeoObj.school_count = peeoObj.schools.length;
+
+  savePeeosToStorage();
+
+  recordAuditLog({
+    user: STATE.currentUser.name || STATE.currentUser.peeo_name || 'Admin',
+    action: 'नया विद्यालय प्रविष्टि',
+    target: schName,
+    details: `${peeoName} में ${schType} विद्यालय जोड़ा गया (कोड: ${sdCode})`,
+    note: 'विद्यालय मास्टर अद्यतन'
+  });
+
+  closeModal('modal-add-school');
+  showToast(`नया विद्यालय '${schName}' सफलता पूर्वक जोड़ा गया!`, 'success');
   renderApp();
 }
 
 function generateCBEOAdminSummaryPDF() {
-  const activeDemands = getActiveDemands();
+  const activeDemands = STATE.demands.filter(d => !d.archived);
   const totalPEEOs = STATE.peeos.length;
 
   let reportHtml = `
@@ -1493,6 +1824,7 @@ function generateCBEOAdminSummaryPDF() {
         <thead>
           <tr>
             <th>क्र.सं.</th>
+            <th>शा.दा. कोड</th>
             <th>PEEO परिक्षेत्र का नाम</th>
             <th>प्रभारी प्रधानाचार्य</th>
             <th>मोबाइल नंबर</th>
@@ -1511,6 +1843,7 @@ function generateCBEOAdminSummaryPDF() {
     reportHtml += `
       <tr>
         <td>${idx + 1}</td>
+        <td><code>${peeo.shala_darpan_code || '---'}</code></td>
         <td><strong>${peeo.peeo_name}</strong></td>
         <td>${peeo.principal_incharge}</td>
         <td>${peeo.mobile}</td>
@@ -1549,7 +1882,7 @@ function generateCBEOAdminSummaryPDF() {
       </div>
       <div style="text-align:center; min-width:220px">
         <br><br>
-        <strong>(प्रमिला रासलोत)</strong><br>
+        <strong>(प्रमिला रासलोत / जितेन्द्र कुमार)</strong><br>
         मुख्य ब्लॉक शिक्षा अधिकारी (CBEO)<br>
         भिनाय, जिला अजमेर
       </div>
@@ -1577,12 +1910,12 @@ function generateCBEOAdminSummaryPDF() {
 }
 
 /* ========================================================
-   11. CSV EXPORTS
+   13. CSV EXPORTS
    ======================================================== */
 function exportPEEOTableCSV() {
-  let csv = "क्र.सं.,PEEO नाम,पंचायत,प्रभारी प्रधानाचार्य,मोबाइल नंबर,ईमेल,अधीन विद्यालय\n";
+  let csv = "क्र.सं.,शा.दा. कोड,PEEO नाम,पंचायत,प्रभारी प्रधानाचार्य,मोबाइल नंबर,ईमेल,अधीन विद्यालय\n";
   STATE.peeos.forEach((p, idx) => {
-    csv += `"${idx+1}","${p.peeo_name}","${p.panchayat_name}","${p.principal_incharge}","${p.mobile}","${p.email}","${p.school_count}"\n`;
+    csv += `"${idx+1}","${p.shala_darpan_code}","${p.peeo_name}","${p.panchayat_name}","${p.principal_incharge}","${p.mobile}","${p.email}","${p.school_count}"\n`;
   });
   downloadCSV(csv, 'CBEO_Bhinai_25_PEEO_List.csv');
 }
@@ -1619,7 +1952,7 @@ function downloadCSV(csvContent, filename) {
 }
 
 /* ========================================================
-   12. MODAL & TOAST UTILITIES
+   14. MODAL & TOAST UTILITIES
    ======================================================== */
 function showModal(id) {
   const modal = document.getElementById(id);

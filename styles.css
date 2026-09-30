@@ -1,5 +1,7 @@
 /* ========================================================
    CBEO BHINAI PORTAL - MODERN GOVERNMENT RESPONSIVE STYLES
+   Updated: Rectangular Official Stamp (सीधी मोहर),
+   3-Level School-Staff Explorer, Publish Toggles, Print PDF
    ======================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap');
@@ -104,8 +106,8 @@ body {
 }
 
 .emblem-wrapper {
-  width: 60px;
-  height: 60px;
+  width: 58px;
+  height: 58px;
   background: rgba(255, 255, 255, 0.15);
   border-radius: var(--radius-md);
   display: flex;
@@ -392,7 +394,7 @@ body {
 /* Stat Cards Grid */
 .stat-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.25rem;
   margin-bottom: 1.75rem;
 }
@@ -480,6 +482,21 @@ body {
   border-radius: var(--radius-full);
   font-size: 0.8rem;
   font-weight: 700;
+}
+
+/* 3-Level Hierarchical Explorer */
+.hierarchy-filter-panel {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.hierarchy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
 }
 
 /* Toolbar & Filters */
@@ -718,7 +735,7 @@ body {
   background: #ffffff;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-xl);
-  max-width: 860px;
+  max-width: 900px;
   width: 100%;
   max-height: 90vh;
   display: flex;
@@ -821,7 +838,9 @@ body {
   grid-column: 1 / -1;
 }
 
-/* Official Rubber Stamp & Signature Pad */
+/* ========================================================
+   OFFICIAL RECTANGULAR PEEO RUBBER STAMP (सीधी रबर मोहर)
+   ======================================================== */
 .seal-signature-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -850,58 +869,50 @@ body {
   border: 1px solid var(--neutral-200);
 }
 
+/* Rectangular Official Rubber Stamp Box */
 .rubber-stamp {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  border: 3px double #1e3a8a;
+  width: 280px;
+  min-height: 82px;
+  border: 2.5px solid #1e3a8a;
   color: #1e3a8a;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 8px;
-  position: relative;
-  box-shadow: inset 0 0 4px rgba(30, 58, 138, 0.2);
-  transform: rotate(-3deg);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  box-shadow: inset 0 0 3px rgba(30, 58, 138, 0.2);
+  background: rgba(239, 246, 255, 0.4);
   user-select: none;
+  margin: 4px 0;
 }
 
-.rubber-stamp::before {
-  content: '';
-  position: absolute;
-  top: 4px;
-  bottom: 4px;
-  left: 4px;
-  right: 4px;
-  border-radius: 50%;
-  border: 1px solid #1e3a8a;
-  pointer-events: none;
-}
-
-.stamp-top {
-  font-size: 8px;
+.rubber-stamp .stamp-line1 {
+  font-size: 9.5px;
   font-weight: 700;
-  text-transform: uppercase;
-  line-height: 1.1;
+  color: #1e3a8a;
+  line-height: 1.2;
 }
 
-.stamp-center {
+.rubber-stamp .stamp-line2 {
   font-size: 11px;
   font-weight: 800;
-  margin: 4px 0;
-  border-top: 1px solid #1e3a8a;
-  border-bottom: 1px solid #1e3a8a;
-  padding: 2px 4px;
-  width: 90%;
   color: #b91c1c;
+  line-height: 1.3;
+  margin: 3px 0;
+  border-top: 1px dashed #1e3a8a;
+  border-bottom: 1px dashed #1e3a8a;
+  padding: 1px 4px;
+  width: 95%;
 }
 
-.stamp-bottom {
-  font-size: 7.5px;
+.rubber-stamp .stamp-line3 {
+  font-size: 9px;
   font-weight: 600;
-  line-height: 1.1;
+  color: #1e3a8a;
+  line-height: 1.2;
 }
 
 .signature-pad-box {
@@ -933,16 +944,13 @@ body {
 }
 
 /* Official Print / PDF Document Layout */
-#pdf-print-area {
-  display: none;
-}
-
 .official-letterhead {
-  padding: 2rem;
+  padding: 2.5rem;
   background: #ffffff;
   color: #000000;
-  font-family: 'Noto Sans Devanagari', Arial, sans-serif;
-  border: 1px solid #000000;
+  font-family: 'Noto Sans Devanagari', 'Inter', Arial, sans-serif;
+  border: 1.5px solid #000000;
+  line-height: 1.4;
 }
 
 .letterhead-header {
@@ -989,9 +997,29 @@ body {
 
 .letterhead-footer-sign {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: flex-end;
   margin-top: 2rem;
   text-align: center;
+}
+
+/* Print Only Styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #pdf-preview-box, #pdf-preview-box * {
+    visibility: visible;
+  }
+  #pdf-preview-box {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 15mm;
+    border: none;
+  }
 }
 
 /* Toast Notifications */
@@ -1020,6 +1048,7 @@ body {
 .toast.success { background: #065f46; border-left: 4px solid #34d399; }
 .toast.error { background: #991b1b; border-left: 4px solid #f87171; }
 .toast.info { background: #1e3a8a; border-left: 4px solid #60a5fa; }
+.toast.warning { background: #854d0e; border-left: 4px solid #facc15; }
 
 @keyframes slideUp {
   from { transform: translateY(20px); opacity: 0; }

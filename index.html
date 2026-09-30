@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय | आधिकारिक सूचना एवं प्रबंधन पोर्टल</title>
+  <title>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय | आधिकारिक सूचना, डायरेक्टरी एवं PEEO पोर्टल</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -30,7 +30,7 @@
             <span>NIC-SD ID: <strong>8140</strong></span>
             <span>•</span>
             <span>IFMS ID: <strong>1408</strong></span>
-            <span class="badge-tag">25 PEEO परिक्षेत्र</span>
+            <span class="badge-tag">25 PEEO | 153 विद्यालय | 1048 कार्मिक</span>
           </div>
         </div>
       </div>
@@ -45,7 +45,7 @@
         <div class="user-session-card">
           <div class="user-session-icon" id="user-badge-initial">A</div>
           <div class="user-session-details">
-            <span class="user-name-role" id="user-display-name">मुख्य ब्लॉक शिक्षा अधिकारी (Admin)</span>
+            <span class="user-name-role" id="user-display-name">जितेन्द्र कुमार / Admin</span>
             <span class="user-subtext" id="user-display-subtext">सम्पूर्ण ब्लॉक नियंत्रण (25 PEEO)</span>
           </div>
         </div>
@@ -64,15 +64,18 @@
       <button class="nav-tab active" onclick="switchTab('dashboard')">
         <i class="fas fa-chart-pie"></i> मुख्य डैशबोर्ड
       </button>
+      <button class="nav-tab" onclick="switchTab('explorer')">
+        <i class="fas fa-sitemap"></i> स्कूल व स्टाफ एक्सप्लोरर
+      </button>
       <button class="nav-tab" onclick="switchTab('directory')">
-        <i class="fas fa-address-book"></i> संपर्क डायरेक्टरी
+        <i class="fas fa-address-book"></i> ब्लॉक संपर्क डायरेक्टरी
       </button>
       <button class="nav-tab" onclick="switchTab('staff')">
         <i class="fas fa-users"></i> PEEO स्टाफ प्रबंधन
       </button>
       <button class="nav-tab" onclick="switchTab('demands')">
         <i class="fas fa-file-invoice"></i> सक्रिय सूचना प्रपत्र
-        <span class="tab-badge badge-danger" id="nav-pending-badge">3 बाकी</span>
+        <span class="tab-badge badge-danger" id="nav-pending-badge">सक्रिय</span>
       </button>
       <button class="nav-tab" onclick="switchTab('archive')">
         <i class="fas fa-archive"></i> पूर्ण / 7-दिवसीय आर्काइव
@@ -92,7 +95,7 @@
       <div class="notice-content">
         <i class="fas fa-bullhorn fa-lg"></i>
         <div>
-          <strong>कार्यालय आदेश / सूचना:</strong> समस्त 25 PEEO महोदय अपने अधीनस्थ विद्यालयों का स्टाफ विवरण सत्यापित करें एवं सक्रिय सूचना प्रपत्रों को डिजिटल मोहर व हस्ताक्षर सहित समय सीमा में सबमिट करें।
+          <strong>कार्यालय आदेश / सूचना:</strong> समस्त 25 PEEO महोदय अपने अधीनस्थ विद्यालयों (राजकीय एवं निजी) का विवरण सत्यापित करें एवं केवल प्रकाशित सक्रिय सूचना प्रपत्रों को सीधी डिजिटल मोहर व हस्ताक्षर सहित समय सीमा में सबमिट करें।
         </div>
       </div>
       <button class="btn btn-primary btn-sm" onclick="switchTab('demands')">
@@ -113,14 +116,14 @@
         <div class="stat-card orange">
           <div class="stat-icon-wrapper"><i class="fas fa-chalkboard-teacher"></i></div>
           <div class="stat-info">
-            <h3 id="stat-schools-count">104</h3>
-            <p>अधीनस्थ विद्यालय</p>
+            <h3 id="stat-schools-count">153</h3>
+            <p>कुल विद्यालय (राजकीय व निजी)</p>
           </div>
         </div>
         <div class="stat-card green">
           <div class="stat-icon-wrapper"><i class="fas fa-user-tie"></i></div>
           <div class="stat-info">
-            <h3 id="stat-staff-count">441</h3>
+            <h3 id="stat-staff-count">1,048</h3>
             <p>दर्ज शिक्षक / कार्मिक</p>
           </div>
         </div>
@@ -145,7 +148,7 @@
         <div class="section-header">
           <div class="section-title">
             <i class="fas fa-clock text-warning"></i>
-            <h2>तत्काल आवश्यक सूचना मांग (Active Information Demands)</h2>
+            <h2>प्रकाशित सक्रिय सूचना मांग (Active Published Demands)</h2>
           </div>
           <button class="btn btn-outline-light btn-sm text-dark" style="color:#1b365d; border-color:#cbd5e1" onclick="switchTab('demands')">
             सभी सूचनाएं देखें <i class="fas fa-arrow-right"></i>
@@ -162,7 +165,7 @@
           <div class="section-title">
             <i class="fas fa-th-large text-primary"></i>
             <h2>भिनाय ब्लॉक: 25 PEEO परिक्षेत्र एवं नोडल विद्यालय</h2>
-            <span class="section-count">25 नोडल केंद्र</span>
+            <span class="section-count">25 नोडल केंद्र (153 विद्यालय)</span>
           </div>
           <button class="btn btn-primary btn-sm" onclick="exportPEEOTableCSV()">
             <i class="fas fa-download"></i> PEEO सूची डाउनलोड करें
@@ -173,6 +176,7 @@
             <thead>
               <tr>
                 <th>क्र.सं.</th>
+                <th>शा.दा. कोड (User ID)</th>
                 <th>PEEO / नोडल नाम</th>
                 <th>ग्राम पंचायत</th>
                 <th>प्रभारी प्रधानाचार्य</th>
@@ -190,13 +194,80 @@
       </div>
     </section>
 
-    <!-- 2. DIRECTORY VIEW -->
+    <!-- 2. HIERARCHICAL SCHOOL & STAFF EXPLORER VIEW -->
+    <section id="view-explorer" class="content-view">
+      <div class="section-box">
+        <div class="section-header">
+          <div class="section-title">
+            <i class="fas fa-sitemap text-primary"></i>
+            <h2>3-स्तरीय विद्यालय एवं कार्मिक खोज (PEEO ➔ विद्यालय ➔ स्टाफ)</h2>
+          </div>
+          <div style="display:flex; gap:0.5rem">
+            <button class="btn btn-primary btn-sm" onclick="openAddSchoolModal()">
+              <i class="fas fa-plus"></i> + नया विद्यालय जोड़ें (Govt/Private)
+            </button>
+          </div>
+        </div>
+
+        <!-- 3 Level Filters -->
+        <div class="hierarchy-filter-panel">
+          <div class="hierarchy-grid">
+            <div class="form-group">
+              <label><i class="fas fa-university text-primary"></i> 1. PEEO चुनें (25 PEEO):</label>
+              <select id="exp-peeo-select" class="filter-select" style="width:100%" onchange="onExplorerPeeoChange()">
+                <option value="all">-- समस्त 25 PEEO --</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-school text-secondary"></i> 2. विद्यालय चुनें (Govt / Private):</label>
+              <select id="exp-school-select" class="filter-select" style="width:100%" onchange="onExplorerSchoolChange()">
+                <option value="all">-- सभी विद्यालय --</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-search text-warning"></i> 3. नाम/पद/मोबाइल से त्वरित खोज:</label>
+              <input type="text" id="exp-search-input" placeholder="अध्यापक का नाम, SSO ID, पद..." oninput="onExplorerSchoolChange()">
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:0.75rem; display:flex; justify-content:space-between; align-items:center">
+          <h3 id="exp-result-title" style="font-size:1.05rem; color:#1b365d">विद्यालय एवं स्टाफ विवरण सूची:</h3>
+          <span id="exp-count-badge" class="status-badge" style="background:#e0f2fe; color:#0369a1">0 कार्मिक</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>क्र.सं.</th>
+                <th>Staff ID</th>
+                <th>कार्मिक का नाम</th>
+                <th>पद (Designation)</th>
+                <th>विद्यालय का नाम</th>
+                <th>प्रकार</th>
+                <th>संबंधित PEEO</th>
+                <th>मोबाइल नंबर</th>
+                <th>SSO ID</th>
+                <th>संपर्क</th>
+              </tr>
+            </thead>
+            <tbody id="explorer-tbody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. GLOBAL DIRECTORY VIEW -->
     <section id="view-directory" class="content-view">
       <div class="section-box">
         <div class="section-header">
           <div class="section-title">
             <i class="fas fa-address-book text-secondary"></i>
-            <h2>CBEO भिनाय: आधिकारिक फोन एवं ईमेल डायरेक्टरी</h2>
+            <h2>CBEO भिनाय: सम्पूर्ण ब्लॉक संपर्क डायरेक्टरी</h2>
+            <span class="section-count" id="dir-total-count">1048+ संपर्क</span>
           </div>
           <div style="display:flex; gap:0.5rem">
             <button class="btn btn-success btn-sm" onclick="exportDirectoryCSV()">
@@ -211,17 +282,16 @@
         <div class="toolbar-row">
           <div class="search-box-wrapper">
             <i class="fas fa-search search-icon"></i>
-            <input type="text" id="dir-search-input" placeholder="नाम, विद्यालय, पद, मोबाइल, ईमेल या PEEO खोजें..." oninput="filterDirectory()">
+            <input type="text" id="dir-search-input" placeholder="पूरे ब्लॉक में किसी का भी नाम, विद्यालय, पद, मोबाइल, ईमेल या PEEO खोजें..." oninput="filterDirectory()">
           </div>
           <select id="dir-type-filter" class="filter-select" onchange="filterDirectory()">
-            <option value="all">सभी श्रेणियां (PEEO + प्रधानाचार्य + कार्मिक)</option>
+            <option value="all">सभी श्रेणियां (PEEO + प्रधानाचार्य + शिक्षक/कार्मिक)</option>
             <option value="peeo">केवल 25 PEEO प्रभारी</option>
             <option value="principal">केवल प्रधानाचार्य / Headmaster</option>
             <option value="staff">सभी अधीनस्थ शिक्षक / कार्मिक</option>
           </select>
           <select id="dir-peeo-filter" class="filter-select" onchange="filterDirectory()">
             <option value="all">सभी PEEO क्षेत्र</option>
-            <!-- Populated by JS -->
           </select>
         </div>
 
@@ -245,7 +315,7 @@
       </div>
     </section>
 
-    <!-- 3. STAFF MANAGEMENT VIEW -->
+    <!-- 4. STAFF MANAGEMENT VIEW -->
     <section id="view-staff" class="content-view">
       <div class="section-box">
         <div class="section-header">
@@ -274,7 +344,6 @@
           </div>
           <select id="staff-peeo-filter" class="filter-select" onchange="filterStaffTable()">
             <option value="all">सभी PEEO</option>
-            <!-- Populated by JS -->
           </select>
         </div>
 
@@ -301,14 +370,14 @@
       </div>
     </section>
 
-    <!-- 4. ACTIVE INFORMATION DEMANDS VIEW -->
+    <!-- 5. ACTIVE INFORMATION DEMANDS VIEW -->
     <section id="view-demands" class="content-view">
       <div class="section-box">
         <div class="section-header">
           <div class="section-title">
             <i class="fas fa-file-signature text-danger"></i>
             <h2>सक्रिय सूचना मांग प्रपत्र (Active Information Requests)</h2>
-            <span class="section-count" id="demands-active-count">3 प्रपत्र</span>
+            <span class="section-count" id="demands-active-count">0 प्रपत्र</span>
           </div>
           <div style="display:flex; gap:0.5rem">
             <a href="https://docs.google.com/spreadsheets/d/1jH-4jRV82CsBNeoSLE7NLU_E_7kYieG0LMBQBP0bjtI/edit" target="_blank" class="btn btn-drive btn-sm">
@@ -323,7 +392,7 @@
       </div>
     </section>
 
-    <!-- 5. 7-DAY ARCHIVE VIEW -->
+    <!-- 6. 7-DAY ARCHIVE VIEW -->
     <section id="view-archive" class="content-view">
       <div class="section-box">
         <div class="section-header">
@@ -342,21 +411,37 @@
       </div>
     </section>
 
-    <!-- 6. ADMIN CONTROL ROOM VIEW -->
+    <!-- 7. ADMIN CONTROL ROOM VIEW -->
     <section id="view-admin-control" class="content-view">
       <div class="section-box">
         <div class="section-header">
           <div class="section-title">
             <i class="fas fa-shield-alt text-primary"></i>
-            <h2>CBEO एडमिन मॉनिटरिंग रूम एवं गतिशील प्रपत्र सृजन</h2>
+            <h2>CBEO एडमिन मॉनिटरिंग रूम, प्रपत्र प्रकाशन नियंत्रण एवं विद्यालय प्रबंधन</h2>
           </div>
           <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
             <button class="btn btn-primary btn-sm" onclick="openCreateDemandModal()">
               <i class="fas fa-plus-circle"></i> + नई सूचना मांग बनाएं (Zero-Code)
             </button>
+            <button class="btn btn-outline-light btn-sm" style="color:#1b365d; border-color:#cbd5e1" onclick="openAddSchoolModal()">
+              <i class="fas fa-school"></i> + नया स्कूल जोड़ें
+            </button>
             <button class="btn btn-danger btn-sm" onclick="generateCBEOAdminSummaryPDF()">
               <i class="fas fa-file-pdf"></i> CBEO कार्यालय समग्र मॉनिटरिंग PDF
             </button>
+          </div>
+        </div>
+
+        <!-- Demand Publish / Unpublish Control Box -->
+        <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:1.25rem; margin-bottom:1.5rem">
+          <h3 style="font-size:1.05rem; color:#1b365d; margin-bottom:0.5rem">
+            <i class="fas fa-toggle-on text-secondary"></i> सूचना प्रपत्र प्रकाशन नियंत्रण (Publish / Unpublish Checkbox):
+          </h3>
+          <p style="font-size:0.82rem; color:var(--neutral-600); margin-bottom:1rem">
+            जिस सूचना को PEEO को दिखाना हो उस पर टिक करें। अनचेक करते ही वह सूचना तुरंत PEEO स्तर से हट जाएगी।
+          </p>
+          <div id="admin-demands-publish-list" style="display:flex; flex-direction:column; gap:0.75rem">
+            <!-- Populated by JS -->
           </div>
         </div>
 
@@ -369,10 +454,10 @@
             <thead>
               <tr id="admin-matrix-thead-tr">
                 <th>क्र.सं.</th>
+                <th>शा.दा. कोड</th>
                 <th>PEEO नाम</th>
                 <th>प्रभारी</th>
                 <th>मोबाइल</th>
-                <!-- Dynamic demand column headers -->
                 <th>त्वरित WhatsApp रिमाइंडर</th>
               </tr>
             </thead>
@@ -392,7 +477,7 @@
               <i class="fas fa-key text-warning"></i> 1_CBEO_Admin_Access_Control
             </a>
             <a href="https://docs.google.com/spreadsheets/d/1zl3_tUqt-VxDcjmIiA44u6aYUAjYG5wxwff-tw9ZLJs/edit" target="_blank" class="btn btn-outline-light" style="color:#1b365d; border-color:#cbd5e1; justify-content:flex-start">
-              <i class="fas fa-users text-primary"></i> 2_CBEO_Staff_Directory
+              <i class="fas fa-users text-primary"></i> 2_CBEO_Staff_Directory (1048 कार्मिक)
             </a>
             <a href="https://docs.google.com/spreadsheets/d/1jH-4jRV82CsBNeoSLE7NLU_E_7kYieG0LMBQBP0bjtI/edit" target="_blank" class="btn btn-outline-light" style="color:#1b365d; border-color:#cbd5e1; justify-content:flex-start">
               <i class="fas fa-file-alt text-secondary"></i> 3_CBEO_Information_Requests
@@ -418,14 +503,17 @@
       </div>
       <div class="modal-body">
         <p style="font-size:0.875rem; color:var(--neutral-600); margin-bottom:1rem">
-          कार्यालय एडमिन अथवा 25 PEEO में से अपना खाता चुनें अथवा यूजरनेम-पासवर्ड से लॉगिन करें:
+          <strong>शाखा/PEEO यूजर आईडी:</strong> आपका शाला दर्पण विद्यालय कोड (NIC Code) ही आपकी यूजर आईडी है।
         </p>
 
         <div class="form-group" style="margin-bottom:1rem">
           <label>त्वरित खाता चयन (1-क्लिक स्विच):</label>
           <select id="login-quick-select" class="filter-select" style="width:100%" onchange="onQuickSelectUser()">
-            <option value="admin">मुख्य ब्लॉक शिक्षा अधिकारी (CBEO Admin) - सम्पूर्ण अधिकार</option>
-            <optgroup label="25 PEEO परिक्षेत्र">
+            <optgroup label="कार्यालय एडमिन (Super Admins)">
+              <option value="jitendra_admin">जितेन्द्र कुमार (Admin) - तकनीकी नोडल प्रभारी भिनाय</option>
+              <option value="cbeo_admin">प्रमिला रासलोत (CBEO) - मुख्य ब्लॉक शिक्षा अधिकारी</option>
+            </optgroup>
+            <optgroup label="25 PEEO परिक्षेत्र (शा.दा. कोड अनुसार)" id="login-peeo-optgroup">
               <!-- Populated by JS -->
             </optgroup>
           </select>
@@ -433,17 +521,17 @@
 
         <div style="display:flex; align-items:center; gap:0.5rem; margin:1rem 0; color:var(--neutral-400)">
           <div style="flex:1; height:1px; background:#e2e8f0"></div>
-          <span style="font-size:0.8rem">अथवा क्रेडेंशियल्स दर्ज करें</span>
+          <span style="font-size:0.8rem">अथवा शाला दर्पण कोड व पासवर्ड दर्ज करें</span>
           <div style="flex:1; height:1px; background:#e2e8f0"></div>
         </div>
 
         <div class="form-group" style="margin-bottom:0.75rem">
-          <label>यूजरनेम (Username):</label>
-          <input type="text" id="login-username" value="cbeo_admin">
+          <label>यूजर ID (शाला दर्पण कोड):</label>
+          <input type="text" id="login-username" value="admin_jitendra">
         </div>
         <div class="form-group">
           <label>पासवर्ड (Password):</label>
-          <input type="password" id="login-password" value="cbeo@2026">
+          <input type="password" id="login-password" value="jitendra#2026">
         </div>
       </div>
       <div class="modal-footer">
@@ -455,7 +543,7 @@
     </div>
   </div>
 
-  <!-- 2. DYNAMIC FORM FILLING MODAL (WITH SEAL & SIGNATURE) -->
+  <!-- 2. DYNAMIC FORM FILLING MODAL (WITH RECTANGULAR SEAL & SIGNATURE) -->
   <div id="modal-fill-demand" class="modal-overlay">
     <div class="modal-card" style="max-width:980px">
       <div class="modal-header">
@@ -468,24 +556,22 @@
       <div class="modal-body">
         
         <!-- Form Fields Grid / Dynamic Row Entries -->
-        <div id="dynamic-form-fields-container">
-          <!-- Populated dynamically based on demand configuration -->
-        </div>
+        <div id="dynamic-form-fields-container"></div>
 
-        <!-- Official Rubber Stamp & Signature Pad Section -->
+        <!-- Official Rectangular Rubber Stamp & Signature Pad Section -->
         <div class="seal-signature-container">
-          <!-- Dynamic Stamp Preview -->
+          <!-- Dynamic Rectangular Stamp Preview -->
           <div class="seal-preview-box">
             <h4 style="font-size:0.85rem; font-weight:700; color:#1e3a8a; margin-bottom:0.5rem">
-              <i class="fas fa-stamp"></i> आधिकारिक डिजिटल मोहर (Official Seal)
+              <i class="fas fa-stamp"></i> आधिकारिक सीधी मोहर (Official PEEO Stamp)
             </h4>
             <div class="rubber-stamp" id="form-rubber-stamp">
-              <div class="stamp-top">कार्यालय प्रधानाचार्य एवं PEEO</div>
-              <div class="stamp-center" id="stamp-peeo-name">PEEO DEOLIYA KALAN</div>
-              <div class="stamp-bottom">CBEO परिक्षेत्र भिनाय - अजमेर</div>
+              <div class="stamp-line1">प्रधानाचार्य एवं पदेन पंचायत प्रारम्भिक शिक्षा अधिकारी (PEEO)</div>
+              <div class="stamp-line2" id="stamp-peeo-name">रा.उ.मा.वि. देवलिया कलां (भिनाय)</div>
+              <div class="stamp-line3">पंचायत समिति - भिनाय (केकड़ी/अजमेर)</div>
             </div>
             <span style="font-size:0.75rem; color:#16a34a; font-weight:600; margin-top:6px">
-              <i class="fas fa-check-circle"></i> सिस्टम जनरेटेड अधिकृत मोहर
+              <i class="fas fa-check-circle"></i> सिस्टम जनरेटेड अधिकृत सीधी मोहर
             </span>
           </div>
 
@@ -516,21 +602,22 @@
 
   <!-- 3. VERIFIED PDF PREVIEW & WHATSAPP SHARE MODAL -->
   <div id="modal-preview-pdf" class="modal-overlay">
-    <div class="modal-card" style="max-width:880px">
+    <div class="modal-card" style="max-width:920px">
       <div class="modal-header">
-        <h3><i class="fas fa-file-pdf text-danger"></i> सत्यापित प्रपत्र अवलोकन एवं WhatsApp शेयर</h3>
+        <h3><i class="fas fa-file-pdf text-danger"></i> सत्यापित प्रपत्र अवलोकन एवं प्रिंट/शेयर</h3>
         <button class="modal-close-btn" onclick="closeModal('modal-preview-pdf')">&times;</button>
       </div>
       <div class="modal-body" style="background:#f8fafc">
         <!-- Rendered Letterhead Document Preview -->
-        <div id="pdf-preview-box" class="official-letterhead">
-          <!-- Letterhead preview generated by JS -->
-        </div>
+        <div id="pdf-preview-box" class="official-letterhead"></div>
       </div>
       <div class="modal-footer">
         <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-preview-pdf')">बंद करें</button>
+        <button class="btn btn-primary" onclick="printLetterheadDirectly()">
+          <i class="fas fa-print"></i> PDF प्रिंट / सेव करें (Print to PDF)
+        </button>
         <button class="btn btn-danger" onclick="downloadCurrentPDF()">
-          <i class="fas fa-download"></i> PDF डाउनलोड करें
+          <i class="fas fa-download"></i> डायरेक्ट PDF डाउनलोड
         </button>
         <button class="btn btn-whatsapp" onclick="shareCurrentPDFOnWhatsApp()">
           <i class="fab fa-whatsapp fa-lg"></i> WhatsApp पर भेजें
@@ -559,7 +646,7 @@
             <select id="staff-edit-school" class="filter-select" style="width:100%"></select>
           </div>
           <div class="form-group">
-            <label>कार्मिक का पूरा नाम:</label>
+            <label>कार्मिक का पूरा नाम (हिंदी में):</label>
             <input type="text" id="staff-edit-name" placeholder="उदा. सुरेश कुमार शर्मा">
           </div>
           <div class="form-group">
@@ -567,13 +654,14 @@
             <select id="staff-edit-post" class="filter-select" style="width:100%">
               <option value="अध्यापक L-1">अध्यापक L-1</option>
               <option value="अध्यापक L-2">अध्यापक L-2</option>
-              <option value="वरिष्ठ अध्यापक (Senior Teacher)">वरिष्ठ अध्यापक (Senior Teacher)</option>
-              <option value="प्राध्यापक (Lecturer)">प्राध्यापक (Lecturer)</option>
+              <option value="वरिष्ठ अध्यापक">वरिष्ठ अध्यापक</option>
+              <option value="व्याख्याता">व्याख्याता</option>
+              <option value="उपप्राचार्य">उपप्राचार्य</option>
               <option value="प्रधानाचार्य / Headmaster">प्रधानाचार्य / Headmaster</option>
-              <option value="शारीरिक शिक्षक (PTI)">शारीरिक शिक्षक (PTI)</option>
+              <option value="शारीरिक शिक्षक">शारीरिक शिक्षक</option>
               <option value="कंप्यूटर अनुदेशक">कंप्यूटर अनुदेशक</option>
               <option value="कनिष्ठ सहायक / LDC">कनिष्ठ सहायक / LDC</option>
-              <option value="प्रबोधक / Panchayat Teacher">प्रबोधक / Panchayat Teacher</option>
+              <option value="प्रबोधक">प्रबोधक</option>
               <option value="चतुर्थ श्रेणी कर्मचारी">चतुर्थ श्रेणी कर्मचारी</option>
             </select>
           </div>
@@ -621,7 +709,7 @@
           आप <strong id="delete-staff-name" style="color:#dc2626"></strong> को सूची से हटाने जा रहे हैं।
         </p>
         <div style="background:#fee2e2; border-left:4px solid #dc2626; padding:0.75rem; border-radius:6px; font-size:0.82rem; color:#991b1b; margin-bottom:1rem">
-          <i class="fas fa-shield-alt"></i> <strong>सुरक्षा बैकअप:</strong> यह डेटा नष्ट नहीं होगा, बल्कि Google Drive ऑडिट लॉग में सुरक्षित रहेगा जिसे आवश्यकता पड़ने पर पुनः देखा या रीस्टोर किया जा सकेगा।
+          <i class="fas fa-shield-alt"></i> <strong>सुरक्षा बैकअप:</strong> यह डेटा नष्ट नहीं होगा, बल्कि Google Drive ऑडिट लॉग में सुरक्षित रहेगा।
         </div>
         <div class="form-group">
           <label>विलोपन का कारण (Reason for Deletion) <span style="color:red">*</span>:</label>
@@ -711,15 +799,81 @@
             (नोट: PEEO का नाम, विद्यालय का नाम एवं डाइस कोड स्वतः LOCKED एवं प्री-फिल्ड रहेंगे)।
           </span>
         </div>
-        <div class="form-group">
+        <div class="form-group" style="margin-bottom:0.85rem">
           <label>संक्षिप्त निर्देश / टिप्पणी:</label>
           <textarea id="new-demand-desc" rows="2" placeholder="समस्त PEEO 3 दिवस में प्रमाणित कर मोहर व हस्ताक्षर सहित अपलोड करें।"></textarea>
+        </div>
+        <div class="form-group">
+          <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer">
+            <input type="checkbox" id="new-demand-publish" checked style="width:18px; height:18px">
+            <span style="font-weight:700; color:#15803d">तुरंत PEEO स्तर पर प्रकाशित करें (Publish to 25 PEEOs)</span>
+          </label>
         </div>
       </div>
       <div class="modal-footer">
         <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-create-demand')">रद्द करें</button>
         <button class="btn btn-primary" onclick="saveNewDemand()">
-          <i class="fas fa-plus"></i> प्रपत्र तुरंत लाइव करें
+          <i class="fas fa-plus"></i> प्रपत्र सृजित करें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. ADD NEW SCHOOL MODAL (GOVT / PRIVATE) -->
+  <div id="modal-add-school" class="modal-overlay">
+    <div class="modal-card" style="max-width:620px">
+      <div class="modal-header">
+        <h3><i class="fas fa-school text-primary"></i> नया विद्यालय जोड़ें (Govt / Private School)</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-add-school')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group full-width">
+            <label>संबंधित PEEO चुनें:</label>
+            <select id="new-school-peeo" class="filter-select" style="width:100%"></select>
+          </div>
+          <div class="form-group full-width">
+            <label>विद्यालय का पूरा नाम:</label>
+            <input type="text" id="new-school-name" placeholder="उदा. श्री कृष्णा विद्या मंदिर (P99887)">
+          </div>
+          <div class="form-group">
+            <label>प्रकार (Type):</label>
+            <select id="new-school-type" class="filter-select">
+              <option value="Government">राजकीय (Government)</option>
+              <option value="Private">निजी / मान्यता प्राप्त (Private)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>श्रेणी (Category):</label>
+            <select id="new-school-cat" class="filter-select">
+              <option value="Sr. Secondary (1-12)">उच्च माध्यमिक (Sr. Secondary 1-12)</option>
+              <option value="Secondary (1-10)">माध्यमिक (Secondary 1-10)</option>
+              <option value="Upper Primary (1-8)">उच्च प्राथमिक (Upper Primary 1-8)</option>
+              <option value="Primary (1-5)">प्राथमिक (Primary 1-5)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>शाला दर्पण / PSP कोड:</label>
+            <input type="text" id="new-school-sdcode" placeholder="उदा. 221799 या P60694">
+          </div>
+          <div class="form-group">
+            <label>DISE कोड:</label>
+            <input type="text" id="new-school-dise" placeholder="11 अंकों का U-DISE कोड">
+          </div>
+          <div class="form-group">
+            <label>गाँव / स्थान:</label>
+            <input type="text" id="new-school-village" placeholder="गाँव का नाम">
+          </div>
+          <div class="form-group">
+            <label>ग्राम पंचायत:</label>
+            <input type="text" id="new-school-panchayat" placeholder="ग्राम पंचायत">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-add-school')">रद्द करें</button>
+        <button class="btn btn-primary" onclick="saveNewSchool()">
+          <i class="fas fa-save"></i> विद्यालय जोड़ें
         </button>
       </div>
     </div>

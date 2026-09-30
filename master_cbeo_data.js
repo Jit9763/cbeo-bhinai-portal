@@ -6,1108 +6,1836 @@ const MASTER_CBEO_DATA = {
     "nic_sd_id": "8140",
     "ifms_id": "1408",
     "cbeo_officer": "प्रमिला रासलोत",
-    "mobile": "9414000000",
-    "email": "cbeo.bhinai.ajmer@rajasthan.gov.in"
+    "admins": [
+      {
+        "admin_id": "ADMIN01",
+        "name": "प्रमिला रासलोत (CBEO)",
+        "post": "मुख्य ब्लॉक शिक्षा अधिकारी (CBEO)",
+        "office": "कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय",
+        "mobile": "9414000000",
+        "email": "cbeo.bhinai.ajmer@rajasthan.gov.in",
+        "username": "cbeo_admin",
+        "shala_darpan_code": "8140",
+        "password": "cbeo@2026",
+        "role": "Super Admin"
+      },
+      {
+        "admin_id": "ADMIN02",
+        "name": "जितेन्द्र कुमार (Jitendra Kumar)",
+        "post": "तकनीकी नोडल प्रभारी एवं व्यवस्थापक (Admin)",
+        "office": "कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय",
+        "mobile": "7073800244",
+        "email": "jitendrakumar.cbeo@gmail.com",
+        "username": "jitendra_admin",
+        "shala_darpan_code": "admin_jitendra",
+        "password": "jitendra#2026",
+        "role": "Super Admin"
+      }
+    ]
   },
+  "admins": [
+    {
+      "admin_id": "ADMIN01",
+      "name": "प्रमिला रासलोत (CBEO)",
+      "post": "मुख्य ब्लॉक शिक्षा अधिकारी (CBEO)",
+      "office": "कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय",
+      "mobile": "9414000000",
+      "email": "cbeo.bhinai.ajmer@rajasthan.gov.in",
+      "username": "cbeo_admin",
+      "shala_darpan_code": "8140",
+      "password": "cbeo@2026",
+      "role": "Super Admin"
+    },
+    {
+      "admin_id": "ADMIN02",
+      "name": "जितेन्द्र कुमार (Jitendra Kumar)",
+      "post": "तकनीकी नोडल प्रभारी एवं व्यवस्थापक (Admin)",
+      "office": "कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय",
+      "mobile": "7073800244",
+      "email": "jitendrakumar.cbeo@gmail.com",
+      "username": "jitendra_admin",
+      "shala_darpan_code": "admin_jitendra",
+      "password": "jitendra#2026",
+      "role": "Super Admin"
+    }
+  ],
   "peeos": [
     {
       "s_no": 1,
       "peeo_id": "PEEO01",
       "peeo_name": "PEEO BANDANWARA",
+      "shala_darpan_code": "221769",
       "panchayat_name": "BANDANWARA",
       "principal_incharge": "BHANWAR LAL JAT",
       "mobile": "9587293842",
       "email": "gsssbandanwara3579@gmail.com",
-      "username": "peeo_bandanwara",
+      "username": "221769",
+      "alias_username": "peeo_bandanwara",
       "password": "bandanwara#2026",
-      "school_count": 3,
       "schools": [
         {
           "school_name": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "BANDANWARA",
           "village": "BADANVADA",
           "dise_code": "8210703902",
-          "school_code": "221770"
+          "shala_darpan_code": "221770",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA (221771) (08210703904)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "BANDANWARA",
           "village": "BADANVADA",
           "dise_code": "8210703904",
-          "school_code": "221771"
+          "shala_darpan_code": "221771",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL RAMESHWARPURA (468188) (08210703907)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "BANDANWARA",
           "village": "BADANVADA",
           "dise_code": "8210703907",
-          "school_code": "468188"
+          "shala_darpan_code": "468188",
+          "type": "Government"
+        },
+        {
+          "school_name": "NAVEEN PUBLIC SCHOOL (P34025)",
+          "category": "Private (Primary)",
+          "panchayat": "BANDANWARA",
+          "village": "BADANVADA",
+          "dise_code": "",
+          "shala_darpan_code": "P34025",
+          "type": "Private"
+        },
+        {
+          "school_name": "FUTURE GENIUS ACADEMY (P68859)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "BANDANWARA",
+          "village": "BADANVADA",
+          "dise_code": "",
+          "shala_darpan_code": "P68859",
+          "type": "Private"
+        },
+        {
+          "school_name": "NAVEEN PUBLIC SCHOOL (P34025)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "BANDANWARA",
+          "village": "BADANVADA",
+          "dise_code": "",
+          "shala_darpan_code": "P34025",
+          "type": "Private"
+        },
+        {
+          "school_name": "Siddharth International School Bandanwara (P19054)",
+          "category": "Private (Pr. with Up.Pr. with sec. Only)",
+          "panchayat": "BANDANWARA",
+          "village": "BADANVADA",
+          "dise_code": "",
+          "shala_darpan_code": "P19054",
+          "type": "Private"
+        },
+        {
+          "school_name": "Samrat International School Bandanwara (P16964)",
+          "category": "Private (Pr. with Up.Pr. with sec. Only)",
+          "panchayat": "BANDANWARA",
+          "village": "BADANVADA",
+          "dise_code": "",
+          "shala_darpan_code": "P16964",
+          "type": "Private"
+        },
+        {
+          "school_name": "Samrat International School Bandanwara (P16964)",
+          "category": "Private (Up. Primary with sec Only)",
+          "panchayat": "BANDANWARA",
+          "village": "BADANVADA",
+          "dise_code": "",
+          "shala_darpan_code": "P16964",
+          "type": "Private"
+        },
+        {
+          "school_name": "KUCHAMAN SHIKSHAN SANSTHAN BANDANWARA (P48759)",
+          "category": "Private (Pr. with Up.Pr. sec. with Higher Sec)",
+          "panchayat": "BANDANWARA",
+          "village": "BADANVADA",
+          "dise_code": "",
+          "shala_darpan_code": "P48759",
+          "type": "Private"
+        },
+        {
+          "school_name": "GURUKUL KESARI PUBLIC SECONDARY SCHOOL BANDANWARA (P16099)",
+          "category": "Private (Pr. with Up.Pr. sec. with Higher Sec)",
+          "panchayat": "BANDANWARA",
+          "village": "BADANVADA",
+          "dise_code": "",
+          "shala_darpan_code": "P16099",
+          "type": "Private"
         }
-      ]
+      ],
+      "school_count": 11
     },
     {
       "s_no": 2,
       "peeo_id": "PEEO02",
       "peeo_name": "PEEO BARGAON",
+      "shala_darpan_code": "221764",
       "panchayat_name": "BADGAON",
       "principal_incharge": "CHANDRA PRAKASH LADDHA",
       "mobile": "9001450275",
       "email": "gahssbadgaon2015@gmail.com",
-      "username": "peeo_bargaon",
+      "username": "221764",
+      "alias_username": "peeo_bargaon",
       "password": "bargaon#2026",
-      "school_count": 2,
       "schools": [
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL KERIYA KHURD (468216) (08210702501)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "BADGAON",
           "village": "KERIYA KHURD",
           "dise_code": "8210702501",
-          "school_code": "468216"
+          "shala_darpan_code": "468216",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL RAGHUNATHPURA (485031) (08210702601)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "BADGAON",
           "village": "RAGHUNATH PURA",
           "dise_code": "8210702601",
-          "school_code": "485031"
+          "shala_darpan_code": "485031",
+          "type": "Government"
+        },
+        {
+          "school_name": "NEW RADHA KRISHNAN PUBLIC SCHOOL (P46672)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "BADGAON",
+          "village": "BADGAON",
+          "dise_code": "",
+          "shala_darpan_code": "P46672",
+          "type": "Private"
+        },
+        {
+          "school_name": "VAID BAL VIDYA NIKATEN (P11513)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "BADGAON",
+          "village": "BADGAON",
+          "dise_code": "",
+          "shala_darpan_code": "P11513",
+          "type": "Private"
+        },
+        {
+          "school_name": "DIVYAGYAN PUBLIC SCHOOL  (P61263)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "BADGAON",
+          "village": "KERIYA KHURD",
+          "dise_code": "",
+          "shala_darpan_code": "P61263",
+          "type": "Private"
+        },
+        {
+          "school_name": "ADARSH PUBLIC SCHOOL  (P49351)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "BADGAON",
+          "village": "RAGHUNATH PURA",
+          "dise_code": "",
+          "shala_darpan_code": "P49351",
+          "type": "Private"
         }
-      ]
+      ],
+      "school_count": 6
     },
     {
       "s_no": 3,
       "peeo_id": "PEEO03",
       "peeo_name": "PEEO BARLI",
+      "shala_darpan_code": "221755",
       "panchayat_name": "BADLI",
       "principal_incharge": "SHAILENDRA KUMAR PANDYA",
       "mobile": "9950985201",
       "email": "gsssbarliajm@gmail.com",
-      "username": "peeo_barli",
+      "username": "221755",
+      "alias_username": "peeo_barli",
       "password": "barli#2026",
-      "school_count": 1,
       "schools": [
         {
           "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI (506830) (08210700303)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "BADLI",
           "village": "BADLI",
           "dise_code": "8210700303",
-          "school_code": "506830"
+          "shala_darpan_code": "506830",
+          "type": "Government"
+        },
+        {
+          "school_name": "NEW MODERN ENGLISH MEDIUM SCHOOL BARLI BHINAY AJMER (P73653)",
+          "category": "Private (Primary)",
+          "panchayat": "BADLI",
+          "village": "BADLI",
+          "dise_code": "",
+          "shala_darpan_code": "P73653",
+          "type": "Private"
+        },
+        {
+          "school_name": "ROYAL CONVENT SCHOOL (P56394)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "BADLI",
+          "village": "BADLI",
+          "dise_code": "",
+          "shala_darpan_code": "P56394",
+          "type": "Private"
+        },
+        {
+          "school_name": "VIJAYSHEE PUBLIC SCHOOL BADLI (P19230)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "BADLI",
+          "village": "BADLI",
+          "dise_code": "",
+          "shala_darpan_code": "P19230",
+          "type": "Private"
+        },
+        {
+          "school_name": "JYOTI PUBLIC SCHOOL BADLI (P27638)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "BADLI",
+          "village": "BADLI",
+          "dise_code": "",
+          "shala_darpan_code": "P27638",
+          "type": "Private"
         }
-      ]
+      ],
+      "school_count": 5
     },
     {
       "s_no": 4,
       "peeo_id": "PEEO04",
       "peeo_name": "PEEO BHINAY",
+      "shala_darpan_code": "221780",
       "panchayat_name": "BHINAY",
       "principal_incharge": "AJAY KUMAR DHABAI",
       "mobile": "9549240545",
       "email": "principalbhinai123@gmail.com",
-      "username": "peeo_bhinay",
+      "username": "221780",
+      "alias_username": "peeo_bhinay",
       "password": "bhinay#2026",
-      "school_count": 5,
       "schools": [
         {
           "school_name": "GOVT. PRIMARY SCHOOL INDIRA COLONY BHINAY (519058) (08210705531)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "BHINAY",
           "village": "BHINAY",
           "dise_code": "8210705531",
-          "school_code": "519058"
+          "shala_darpan_code": "519058",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL AAV (488683) (08210705521)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "BHINAY",
           "village": "BHINAY",
           "dise_code": "8210705521",
-          "school_code": "488683"
+          "shala_darpan_code": "488683",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL REBARIYON KI DHANI (493708) (08210705511)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "BHINAY",
           "village": "BHINAY",
           "dise_code": "8210705511",
-          "school_code": "493708"
+          "shala_darpan_code": "493708",
+          "type": "Government"
         },
         {
           "school_name": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "BHINAY",
           "village": "BHINAY",
           "dise_code": "8210705501",
-          "school_code": "221778"
+          "shala_darpan_code": "221778",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL MATAJI KA KHEDA (488896) (08210706102)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "SOBDI",
           "village": "CHAVANDIYA",
           "dise_code": "8210706102",
-          "school_code": "488896"
+          "shala_darpan_code": "488896",
+          "type": "Government"
+        },
+        {
+          "school_name": "shri pragya public school (P60694)",
+          "category": "Private (Primary)",
+          "panchayat": "BHINAY",
+          "village": "BHINAY",
+          "dise_code": "",
+          "shala_darpan_code": "P60694",
+          "type": "Private"
+        },
+        {
+          "school_name": "LAKHDATAR SHRI SHYAM U.P.S. BHINAI (P16966)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "BHINAY",
+          "village": "BHINAY",
+          "dise_code": "",
+          "shala_darpan_code": "P16966",
+          "type": "Private"
+        },
+        {
+          "school_name": "Sumer Public UPS (P16418)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "BHINAY",
+          "village": "BHINAY",
+          "dise_code": "",
+          "shala_darpan_code": "P16418",
+          "type": "Private"
+        },
+        {
+          "school_name": "SANSKAR CONVENT SCHOOL (P59958)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "BHINAY",
+          "village": "BHINAY",
+          "dise_code": "",
+          "shala_darpan_code": "P59958",
+          "type": "Private"
+        },
+        {
+          "school_name": "DRONA CHARYA SEC. SCHOOL. BHINAI (P16968)",
+          "category": "Private (Pr. with Up.Pr. with sec. Only)",
+          "panchayat": "BHINAY",
+          "village": "BHINAY",
+          "dise_code": "",
+          "shala_darpan_code": "P16968",
+          "type": "Private"
+        },
+        {
+          "school_name": "SUN RISE CONVENT SCHOOL BHINAY (P19678)",
+          "category": "Private (Pr. with Up.Pr. with sec. Only)",
+          "panchayat": "BHINAY",
+          "village": "BHINAY",
+          "dise_code": "",
+          "shala_darpan_code": "P19678",
+          "type": "Private"
+        },
+        {
+          "school_name": "ANNAPURNA P.S. BHINAY (P25290)",
+          "category": "Private (Pr. with Up.Pr. with sec. Only)",
+          "panchayat": "BHINAY",
+          "village": "BHINAY",
+          "dise_code": "",
+          "shala_darpan_code": "P25290",
+          "type": "Private"
+        },
+        {
+          "school_name": "Sumer Senior Secondary School (P16865)",
+          "category": "Private (Pr. with Up.Pr. sec. with Higher Sec)",
+          "panchayat": "BHINAY",
+          "village": "BHINAY",
+          "dise_code": "",
+          "shala_darpan_code": "P16865",
+          "type": "Private"
+        },
+        {
+          "school_name": "Sumer Senior Secondary School (P16865)",
+          "category": "Private (Up. Primary sec with Higher Sec)",
+          "panchayat": "BHINAY",
+          "village": "BHINAY",
+          "dise_code": "",
+          "shala_darpan_code": "P16865",
+          "type": "Private"
         }
-      ]
+      ],
+      "school_count": 14
     },
     {
       "s_no": 5,
       "peeo_id": "PEEO05",
       "peeo_name": "PEEO BOOBKIYA",
+      "shala_darpan_code": "221763",
       "panchayat_name": "BUBKIYA",
       "principal_incharge": "RAM CHANDRA GUJAR",
       "mobile": "9252068645",
       "email": "gssboobkiya@gmail.com",
-      "username": "peeo_boobkiya",
+      "username": "221763",
+      "alias_username": "peeo_boobkiya",
       "password": "boobkiya#2026",
-      "school_count": 7,
       "schools": [
         {
           "school_name": "GOVT. PRIMARY SCHOOL SOLKHURD (410859) (08210702101)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "BUBKIYA",
           "village": "SOLKHURD",
           "dise_code": "8210702101",
-          "school_code": "410859"
+          "shala_darpan_code": "410859",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. SENIOR SECONDARY SCHOOL PIPLIYA (485033) (08210702201)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "BUBKIYA",
           "village": "PIPLIYA",
           "dise_code": "8210702201",
-          "school_code": "485033"
+          "shala_darpan_code": "485033",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL KALBELIYON KI DHANI BOOBKIYA (485023) (08210701802)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "BUBKIYA",
           "village": "BUVKIYA",
           "dise_code": "8210701802",
-          "school_code": "485023"
+          "shala_darpan_code": "485023",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL REN BHINAI AJMER RAJASTHAN (462777) (08210701901)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "BUBKIYA",
           "village": "REN",
           "dise_code": "8210701901",
-          "school_code": "462777"
+          "shala_darpan_code": "462777",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL KHAYADA (485032) (08210702301)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "BUBKIYA",
           "village": "KHAYADA",
           "dise_code": "8210702301",
-          "school_code": "485032"
+          "shala_darpan_code": "485032",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL SOLKALA (485052) (08210702001)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "BUBKIYA",
           "village": "SOLKALA",
           "dise_code": "8210702001",
-          "school_code": "485052"
+          "shala_darpan_code": "485052",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL REN KA JHOPADA (485053) (08210701902)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "BUBKIYA",
           "village": "REN",
           "dise_code": "8210701902",
-          "school_code": "485053"
+          "shala_darpan_code": "485053",
+          "type": "Government"
         }
-      ]
+      ],
+      "school_count": 7
     },
     {
       "s_no": 6,
       "peeo_id": "PEEO06",
       "peeo_name": "PEEO CHAPANERI",
+      "shala_darpan_code": "221758",
       "panchayat_name": "CHANPANER",
       "principal_incharge": "LADURAM SHARMA",
       "mobile": "9462507510",
       "email": "gssschampaneri@gmail.com",
-      "username": "peeo_chapaneri",
+      "username": "221758",
+      "alias_username": "peeo_chapaneri",
       "password": "chapaneri#2026",
-      "school_count": 1,
       "schools": [
         {
           "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL CHAPANERI (494626) (08210700602)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "CHANPANER",
           "village": "CHAMPANERI",
           "dise_code": "8210700602",
-          "school_code": "494626"
+          "shala_darpan_code": "494626",
+          "type": "Government"
+        },
+        {
+          "school_name": "ADARSH SHIVA VIDYA MANDIR CHAPANERI (P35780)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "CHANPANER",
+          "village": "CHAMPANERI",
+          "dise_code": "",
+          "shala_darpan_code": "P35780",
+          "type": "Private"
+        },
+        {
+          "school_name": "SANTORIUM NEW MODERN  (P16738)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "CHANPANER",
+          "village": "CHAMPANERI",
+          "dise_code": "",
+          "shala_darpan_code": "P16738",
+          "type": "Private"
         }
-      ]
+      ],
+      "school_count": 3
     },
     {
       "s_no": 7,
       "peeo_id": "PEEO07",
       "peeo_name": "PEEO CHHACHHUNDRA",
+      "shala_darpan_code": "221787",
       "panchayat_name": "CHACHUNDRA",
       "principal_incharge": "SITARAM DHOBI",
       "mobile": "9413781124",
       "email": "gsschhachhundrabhinai@gmail.com",
-      "username": "peeo_chhachhundra",
+      "username": "221787",
+      "alias_username": "peeo_chhachhundra",
       "password": "chhachhundra#2026",
-      "school_count": 6,
       "schools": [
         {
           "school_name": "GOVT. PRIMARY SCHOOL MAJRA SAWAIPURA (505598) (08210707802)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "CHACHUNDRA",
           "village": "SEDRIYA",
           "dise_code": "8210707802",
-          "school_code": "505598"
+          "shala_darpan_code": "505598",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL SHIVNAGAR (488953) (08210707702)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "CHACHUNDRA",
           "village": "CHACHUNDRA",
           "dise_code": "8210707702",
-          "school_code": "488953"
+          "shala_darpan_code": "488953",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL JORAVARPURA BHINAI AJMER (488980) (08210708001)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "CHACHUNDRA",
           "village": "JORAVARPURA",
           "dise_code": "8210708001",
-          "school_code": "488980"
+          "shala_darpan_code": "488980",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL SARGAON (488945) (08210707901)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "CHACHUNDRA",
           "village": "SARGAON",
           "dise_code": "8210707901",
-          "school_code": "488945"
+          "shala_darpan_code": "488945",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL RATANPURA (488935) (08210708101)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "CHACHUNDRA",
           "village": "RATANPURA",
           "dise_code": "8210708101",
-          "school_code": "488935"
+          "shala_darpan_code": "488935",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. SENIOR SECONDARY SCHOOL SEDRIYA (488946) (08210707801)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "CHACHUNDRA",
           "village": "SEDRIYA",
           "dise_code": "8210707801",
-          "school_code": "488946"
+          "shala_darpan_code": "488946",
+          "type": "Government"
         }
-      ]
+      ],
+      "school_count": 6
     },
     {
       "s_no": 8,
       "peeo_id": "PEEO08",
       "peeo_name": "PEEO DEOLIYA KALAN",
+      "shala_darpan_code": "221754",
       "panchayat_name": "DEVLIYA KALA",
-      "principal_incharge": "RAKESH KUMAR BIRAWAT",
-      "mobile": "9829835751",
+      "principal_incharge": "PURNIMA / RAKESH BIRAWAT",
+      "mobile": "9414343109",
       "email": "deoliakalan105@gmail.com",
-      "username": "peeo_deoliya_kalan",
+      "username": "221754",
+      "alias_username": "peeo_deoliyakalan",
       "password": "deoliyakalan#2026",
-      "school_count": 3,
       "schools": [
         {
           "school_name": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "DEVLIYA KALA",
           "village": "DEVLIYA KALAN",
           "dise_code": "8210700103",
-          "school_code": "221753"
+          "shala_darpan_code": "221753",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL MATAJI KA KHEDA (410612) (08210700201)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "DEVLIYA KALA",
           "village": "MATAJI KA KHEDA",
           "dise_code": "8210700201",
-          "school_code": "410612"
+          "shala_darpan_code": "410612",
+          "type": "Government"
         },
         {
           "school_name": "KASTURBA GANDHI BALIKA VIDYALAYA DEOLIYA KALAN (526760) (08210700113)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "DEVLIYA KALA",
           "village": "DEVLIYA KALAN",
           "dise_code": "8210700113",
-          "school_code": "526760"
+          "shala_darpan_code": "526760",
+          "type": "Government"
+        },
+        {
+          "school_name": "Pahal Public School Devliya kalan (P34429)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "DEVLIYA KALA",
+          "village": "DEVLIYA KALAN",
+          "dise_code": "",
+          "shala_darpan_code": "P34429",
+          "type": "Private"
+        },
+        {
+          "school_name": "Aimway Public School (P61242)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "DEVLIYA KALA",
+          "village": "DEVLIYA KALAN",
+          "dise_code": "",
+          "shala_darpan_code": "P61242",
+          "type": "Private"
+        },
+        {
+          "school_name": "Guru Sohan Public School Devliya Kala (P16737)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "DEVLIYA KALA",
+          "village": "DEVLIYA KALAN",
+          "dise_code": "",
+          "shala_darpan_code": "P16737",
+          "type": "Private"
+        },
+        {
+          "school_name": "VIDYASTHALI ADARSH PRIMARY SCHOOL (P49643)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "DEVLIYA KALA",
+          "village": "DEVLIYA KALAN",
+          "dise_code": "",
+          "shala_darpan_code": "P49643",
+          "type": "Private"
         }
-      ]
+      ],
+      "school_count": 7
     },
     {
       "s_no": 9,
       "peeo_id": "PEEO09",
       "peeo_name": "PEEO DEVPURA",
+      "shala_darpan_code": "488941",
       "panchayat_name": "DEVPURA",
       "principal_incharge": "ANITA SHARMA",
       "mobile": "9414550658",
       "email": "gsssdevriya@gmail.com",
-      "username": "peeo_devpura",
+      "username": "488941",
+      "alias_username": "peeo_devpura",
       "password": "devpura#2026",
-      "school_count": 6,
       "schools": [
         {
           "school_name": "GOVT. PRIMARY SCHOOL RAMNAGAR (488937) (08210708703)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "DEVPURA",
           "village": "DEVPURA",
           "dise_code": "8210708703",
-          "school_code": "488937"
+          "shala_darpan_code": "488937",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL RAMPURA (488938) (08210708901)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "DEVPURA",
           "village": "RAMPURA",
           "dise_code": "8210708901",
-          "school_code": "488938"
+          "shala_darpan_code": "488938",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL AMARGARH (488942) (08210709101)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "DEVPURA",
           "village": "AMARGADH",
           "dise_code": "8210709101",
-          "school_code": "488942"
+          "shala_darpan_code": "488942",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL GAJJANADI (468181) (08210708702)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "DEVPURA",
           "village": "GAJJA NADI",
           "dise_code": "8210708702",
-          "school_code": "468181"
+          "shala_darpan_code": "468181",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL MOTIPURA (410651) (08210709001)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "DEVPURA",
           "village": "MOTIPURA",
           "dise_code": "8210709001",
-          "school_code": "410651"
+          "shala_darpan_code": "410651",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. SENIOR SECONDARY SCHOOL ROOPPURA (410704) (08210708801)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "DEVPURA",
           "village": "RUPPURA",
           "dise_code": "8210708801",
-          "school_code": "410704"
+          "shala_darpan_code": "410704",
+          "type": "Government"
         }
-      ]
+      ],
+      "school_count": 6
     },
     {
       "s_no": 10,
       "peeo_id": "PEEO10",
       "peeo_name": "PEEO DHANTOL",
+      "shala_darpan_code": "221783",
       "panchayat_name": "DHATOL",
       "principal_incharge": "SURENDRA NAGORA",
       "mobile": "9413695182",
       "email": "gssdhantol2013@gmail.com",
-      "username": "peeo_dhantol",
+      "username": "221783",
+      "alias_username": "peeo_dhantol",
       "password": "dhantol#2026",
-      "school_count": 4,
       "schools": [
         {
           "school_name": "GOVT. PRIMARY SCHOOL SHYALABHATA (488939) (08210706803)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "DHATOL",
           "village": "UDAYGADH KHEDA",
           "dise_code": "8210706803",
-          "school_code": "488939"
+          "shala_darpan_code": "488939",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL JHOPDIYA (488940) (08210706801)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "DHATOL",
           "village": "UDAYGADH KHEDA",
           "dise_code": "8210706801",
-          "school_code": "488940"
+          "shala_darpan_code": "488940",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL UDAIGARH KHEDA (488949) (08210706802)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "DHATOL",
           "village": "UDAYGADH KHEDA",
           "dise_code": "8210706802",
-          "school_code": "488949"
+          "shala_darpan_code": "488949",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL GUJARVADA (488950) (08210706601)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "DHATOL",
           "village": "GUJARVADA",
           "dise_code": "8210706601",
-          "school_code": "488950"
+          "shala_darpan_code": "488950",
+          "type": "Government"
         }
-      ]
+      ],
+      "school_count": 4
     },
     {
       "s_no": 11,
       "peeo_id": "PEEO11",
       "peeo_name": "PEEO EKALSEENGA",
+      "shala_darpan_code": "221786",
       "panchayat_name": "EKALSINGA",
       "principal_incharge": "VISHWASHWAR PRASAD SHARMA",
       "mobile": "7728052397",
       "email": "gsssekalsingha2014@gmail.com",
-      "username": "peeo_ekalseenga",
+      "username": "221786",
+      "alias_username": "peeo_ekalseenga",
       "password": "ekalseenga#2026",
-      "school_count": 5,
       "schools": [
         {
           "school_name": "GOVT. SENIOR SECONDARY SCHOOL HIYALIYA (488947) (08210707401)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "EKALSINGA",
           "village": "HIYALIYA",
           "dise_code": "8210707401",
-          "school_code": "488947"
+          "shala_darpan_code": "488947",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL DHANI EKALSINGHA (488931) (08210707301)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "EKALSINGA",
           "village": "DHANI",
           "dise_code": "8210707301",
-          "school_code": "488931"
+          "shala_darpan_code": "488931",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL JHABARKIYA (468173) (08210706301)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "EKALSINGA",
           "village": "JHABARKYA",
           "dise_code": "8210706301",
-          "school_code": "468173"
+          "shala_darpan_code": "468173",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL BANEDIYA (488948) (08210707501)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "EKALSINGA",
           "village": "BANEDIYA",
           "dise_code": "8210707501",
-          "school_code": "488948"
+          "shala_darpan_code": "488948",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL BALAPURA (493650) (08210707601)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "EKALSINGA",
           "village": "BALAPURA (EKALSEENGA)",
           "dise_code": "8210707601",
-          "school_code": "493650"
+          "shala_darpan_code": "493650",
+          "type": "Government"
+        },
+        {
+          "school_name": "TAGORE GLOBAL SCHOOL (P55700)",
+          "category": "Private (Pr. with Up.Pr. with sec. Only)",
+          "panchayat": "EKALSINGA",
+          "village": "EKALSINGHA",
+          "dise_code": "",
+          "shala_darpan_code": "P55700",
+          "type": "Private"
         }
-      ]
+      ],
+      "school_count": 6
     },
     {
       "s_no": 12,
       "peeo_id": "PEEO12",
       "peeo_name": "PEEO GURHA KHURD",
+      "shala_darpan_code": "221762",
       "panchayat_name": "GUDHA KHURD",
       "principal_incharge": "deepesh kumar sisodia",
       "mobile": "9414554344",
       "email": "govt.ss.gudhakhurd.bhinai@gmail.com",
-      "username": "peeo_gurha_khurd",
+      "username": "221762",
+      "alias_username": "peeo_gurhakhurd",
       "password": "gurhakhurd#2026",
-      "school_count": 8,
       "schools": [
         {
           "school_name": "GOVT. PRIMARY SCHOOL AMARPURA (506583) (08210701603)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "GUDHA KHURD",
           "village": "BAGRAI (GURHA KHURD)",
           "dise_code": "8210701603",
-          "school_code": "506583"
+          "shala_darpan_code": "506583",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL PURANIBAGRAI (510079) (08210701604)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "GUDHA KHURD",
           "village": "BAGRAI (GURHA KHURD)",
           "dise_code": "8210701604",
-          "school_code": "510079"
+          "shala_darpan_code": "510079",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL GUDHAKALAN (485029) (08210701401)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "GUDHA KHURD",
           "village": "GUDHA KALAN",
           "dise_code": "8210701401",
-          "school_code": "485029"
+          "shala_darpan_code": "485029",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL DEVPURA (485018) (08210701602)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "GUDHA KHURD",
           "village": "BAGRAI (GURHA KHURD)",
           "dise_code": "8210701602",
-          "school_code": "485018"
+          "shala_darpan_code": "485018",
+          "type": "Government"
         },
         {
           "school_name": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI (485030) (08210701601)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "GUDHA KHURD",
           "village": "BAGRAI (GURHA KHURD)",
           "dise_code": "8210701601",
-          "school_code": "485030"
+          "shala_darpan_code": "485030",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL INDRAPURA (410554) (08210701303)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "GUDHA KHURD",
           "village": "GUDHA KHURD",
           "dise_code": "8210701303",
-          "school_code": "410554"
+          "shala_darpan_code": "410554",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL KHEDI GUDHA KHURD (402646) (08210701701)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "GUDHA KHURD",
           "village": "KHEDI",
           "dise_code": "8210701701",
-          "school_code": "402646"
+          "shala_darpan_code": "402646",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL PANDOLAI (402702) (08210701501)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "GUDHA KHURD",
           "village": "PANDOLAI",
           "dise_code": "8210701501",
-          "school_code": "402702"
+          "shala_darpan_code": "402702",
+          "type": "Government"
+        },
+        {
+          "school_name": "Gayatri Public School Gudda khurd (P16189)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "GUDHA KHURD",
+          "village": "GUDHA KHURD",
+          "dise_code": "",
+          "shala_darpan_code": "P16189",
+          "type": "Private"
         }
-      ]
+      ],
+      "school_count": 9
     },
     {
       "s_no": 13,
       "peeo_id": "PEEO13",
       "peeo_name": "PEEO KANAI KALAN",
+      "shala_darpan_code": "221765",
       "panchayat_name": "KANAIKALA",
       "principal_incharge": "NARESH KUMAR",
       "mobile": "9166233899",
       "email": "kanaikalaschool@gmail.com",
-      "username": "peeo_kanai_kalan",
+      "username": "221765",
+      "alias_username": "peeo_kanaikalan",
       "password": "kanaikalan#2026",
-      "school_count": 4,
       "schools": [
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL KANAI KHURD (485028) (08210702901)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KANAIKALA",
           "village": "KANAI KHURD",
           "dise_code": "8210702901",
-          "school_code": "485028"
+          "shala_darpan_code": "485028",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA (401778) (08210703001)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KANAIKALA",
           "village": "NIMEDA (KEROT)",
           "dise_code": "8210703001",
-          "school_code": "401778"
+          "shala_darpan_code": "401778",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL LAKSHMIPURA KANAIKALA (410623) (08210703101)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KANAIKALA",
           "village": "LAKSHMIPURA",
           "dise_code": "8210703101",
-          "school_code": "410623"
+          "shala_darpan_code": "410623",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL DHANDHO KA KHEDA (506627) (08210702902)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KANAIKALA",
           "village": "DHANDHO KA KHERA",
           "dise_code": "8210702902",
-          "school_code": "506627"
+          "shala_darpan_code": "506627",
+          "type": "Government"
+        },
+        {
+          "school_name": "MARUDHAR BAL VIDHYA NIKETAN KANAIKALA (P46678)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "KANAIKALA",
+          "village": "KANAI KALA",
+          "dise_code": "",
+          "shala_darpan_code": "P46678",
+          "type": "Private"
         }
-      ]
+      ],
+      "school_count": 5
     },
     {
       "s_no": 14,
       "peeo_id": "PEEO14",
       "peeo_name": "PEEO KARATI",
+      "shala_darpan_code": "221773",
       "panchayat_name": "KARANTHI",
       "principal_incharge": "DEEPAK SANWARIYA",
       "mobile": "9950736300",
       "email": "karantigsss@gmail.com",
-      "username": "peeo_karati",
+      "username": "221773",
+      "alias_username": "peeo_karati",
       "password": "karati#2026",
-      "school_count": 10,
       "schools": [
         {
           "school_name": "GOVT. PRIMARY SCHOOL GORDHANPURANA CHACHUNDRA (506514) (08210708301)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KARANTHI",
           "village": "GORDHANPURA",
           "dise_code": "8210708301",
-          "school_code": "506514"
+          "shala_darpan_code": "506514",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL KHEDI (515685) (08210704906)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KARANTHI",
           "village": "KARANTHI",
           "dise_code": "8210704906",
-          "school_code": "515685"
+          "shala_darpan_code": "515685",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL KHEDA KARANTI (519282) (08210704602)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KARANTHI",
           "village": "KARANTHI",
           "dise_code": "8210704602",
-          "school_code": "519282"
+          "shala_darpan_code": "519282",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL DOLATPURA (488944) (08210708201)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KARANTHI",
           "village": "DOLATPURA",
           "dise_code": "8210708201",
-          "school_code": "488944"
+          "shala_darpan_code": "488944",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL KHEDI (488791) (08210704903)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KARANTHI",
           "village": "KHEDI",
           "dise_code": "8210704903",
-          "school_code": "488791"
+          "shala_darpan_code": "488791",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. SENIOR SECONDARY SCHOOL KHEDI (221774) (08210704901)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KARANTHI",
           "village": "KHEDI",
           "dise_code": "8210704901",
-          "school_code": "221774"
+          "shala_darpan_code": "221774",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL GOPALPURA (488792) (08210704701)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KARANTHI",
           "village": "GOPALPURA",
           "dise_code": "8210704701",
-          "school_code": "488792"
+          "shala_darpan_code": "488792",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL PRATAPPURA KARANTI (488793) (08210705001)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KARANTHI",
           "village": "PRATAPPURA (KARATI)",
           "dise_code": "8210705001",
-          "school_code": "488793"
+          "shala_darpan_code": "488793",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL KHEDI TALAB (488787) (08210704902)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KARANTHI",
           "village": "KHEDI",
           "dise_code": "8210704902",
-          "school_code": "488787"
+          "shala_darpan_code": "488787",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL GOVLIYA (468185) (08210704801)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KARANTHI",
           "village": "GOVLIYA",
           "dise_code": "8210704801",
-          "school_code": "468185"
+          "shala_darpan_code": "468185",
+          "type": "Government"
+        },
+        {
+          "school_name": "HARSH INTERNATIONAL SCHOOL (P47329)",
+          "category": "Private (Primary)",
+          "panchayat": "KARANTHI",
+          "village": "KHEDI",
+          "dise_code": "",
+          "shala_darpan_code": "P47329",
+          "type": "Private"
+        },
+        {
+          "school_name": "GURUKRIPA PUBLIC SCHOOL KHEDI (P56254)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "KARANTHI",
+          "village": "KHEDI",
+          "dise_code": "",
+          "shala_darpan_code": "P56254",
+          "type": "Private"
         }
-      ]
+      ],
+      "school_count": 12
     },
     {
       "s_no": 15,
       "peeo_id": "PEEO15",
       "peeo_name": "PEEO KEROT",
+      "shala_darpan_code": "221767",
       "panchayat_name": "KEROT",
       "principal_incharge": "SOHANLAL SARAN",
       "mobile": "9929526324",
       "email": "principalkairot@gmail.com",
-      "username": "peeo_kerot",
+      "username": "221767",
+      "alias_username": "peeo_kerot",
       "password": "kerot#2026",
-      "school_count": 2,
       "schools": [
         {
           "school_name": "GOVT. PRIMARY SCHOOL KADOLAI (468213) (08210703801)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KEROT",
           "village": "KADOLAI",
           "dise_code": "8210703801",
-          "school_code": "468213"
+          "shala_darpan_code": "468213",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. SENIOR SECONDARY SCHOOL JETPURA (221768) (08210703701)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KEROT",
           "village": "JETPURA",
           "dise_code": "8210703701",
-          "school_code": "221768"
+          "shala_darpan_code": "221768",
+          "type": "Government"
+        },
+        {
+          "school_name": "shri shyam vidhya niketan  (P39815)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "KEROT",
+          "village": "KEROT",
+          "dise_code": "",
+          "shala_darpan_code": "P39815",
+          "type": "Private"
         }
-      ]
+      ],
+      "school_count": 3
     },
     {
       "s_no": 16,
       "peeo_id": "PEEO16",
       "peeo_name": "PEEO KUMHARIYA",
+      "shala_darpan_code": "221777",
       "panchayat_name": "KUMAHARIYA",
       "principal_incharge": "JYOTI PRAKASH SHARMA",
       "mobile": "9460690289",
       "email": "Gssskumhariya108@gmail.com",
-      "username": "peeo_kumhariya",
+      "username": "221777",
+      "alias_username": "peeo_kumhariya",
       "password": "kumhariya#2026",
-      "school_count": 5,
       "schools": [
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL SURAJPURA (410903) (08210704001)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KUMAHARIYA",
           "village": "SURAJPURA",
           "dise_code": "8210704001",
-          "school_code": "410903"
+          "shala_darpan_code": "410903",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL RAJPURA MAJRA (410622) (08210705302)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KUMAHARIYA",
           "village": "KUMAHARIYA",
           "dise_code": "8210705302",
-          "school_code": "410622"
+          "shala_darpan_code": "410622",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL KEETAP (463076) (08210705401)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KUMAHARIYA",
           "village": "KITAP",
           "dise_code": "8210705401",
-          "school_code": "463076"
+          "shala_darpan_code": "463076",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL HATHIPURA (488794) (08210703908)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KUMAHARIYA",
           "village": "SURAJPURA",
           "dise_code": "8210703908",
-          "school_code": "488794"
+          "shala_darpan_code": "488794",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL BAGRAI (506695) (08210704101)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "KUMAHARIYA",
           "village": "BAGRAI (KUMHARIYA)",
           "dise_code": "8210704101",
-          "school_code": "506695"
+          "shala_darpan_code": "506695",
+          "type": "Government"
+        },
+        {
+          "school_name": "RAJ RHISHI PUBLIC SCHOOL KUMHARIYA (P16463)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "KUMAHARIYA",
+          "village": "KUMAHARIYA",
+          "dise_code": "",
+          "shala_darpan_code": "P16463",
+          "type": "Private"
         }
-      ]
+      ],
+      "school_count": 6
     },
     {
       "s_no": 17,
       "peeo_id": "PEEO17",
       "peeo_name": "PEEO LAMGARA",
+      "shala_darpan_code": "221759",
       "panchayat_name": "LAMGARA",
       "principal_incharge": "RAJEEV KUMAR MANDOT",
       "mobile": "9413134849",
       "email": "gsslamgara@gmail.com",
-      "username": "peeo_lamgara",
+      "username": "221759",
+      "alias_username": "peeo_lamgara",
       "password": "lamgara#2026",
-      "school_count": 5,
       "schools": [
         {
           "school_name": "GOVT. SENIOR SECONDARY SCHOOL GANAHERA (221760) (08210700801)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "LAMGARA",
           "village": "GANAHEDA",
           "dise_code": "8210700801",
-          "school_code": "221760"
+          "shala_darpan_code": "221760",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. SENIOR SECONDARY SCHOOL NIMEDA (221761) (08210701001)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "LAMGARA",
           "village": "NIMEDA",
           "dise_code": "8210701001",
-          "school_code": "221761"
+          "shala_darpan_code": "221761",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL UDAIPUR KHEDA (410964) (08210701101)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "LAMGARA",
           "village": "UDAIPUR KHEDA",
           "dise_code": "8210701101",
-          "school_code": "410964"
+          "shala_darpan_code": "410964",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL BADLA KHEDA (485024) (08210700901)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "LAMGARA",
           "village": "BADLA KHEDA",
           "dise_code": "8210700901",
-          "school_code": "485024"
+          "shala_darpan_code": "485024",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL BHERU KHEDA (506579) (08210701201)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "LAMGARA",
           "village": "BHERU KHEDA",
           "dise_code": "8210701201",
-          "school_code": "506579"
+          "shala_darpan_code": "506579",
+          "type": "Government"
+        },
+        {
+          "school_name": "GANESHGIRI BAAL VIDHYA PEETH SANSTHAN GANAHERA (P13193)",
+          "category": "Private (Primary)",
+          "panchayat": "LAMGARA",
+          "village": "GANAHEDA",
+          "dise_code": "",
+          "shala_darpan_code": "P13193",
+          "type": "Private"
         }
-      ]
+      ],
+      "school_count": 6
     },
     {
       "s_no": 18,
       "peeo_id": "PEEO18",
       "peeo_name": "PEEO NAGOLA",
+      "shala_darpan_code": "221772",
       "panchayat_name": "NAGOLA",
       "principal_incharge": "VINOD KUMAR RAO",
       "mobile": "8955306674",
       "email": "gsssnagola79@gmail.com",
-      "username": "peeo_nagola",
+      "username": "221772",
+      "alias_username": "peeo_nagola",
       "password": "nagola#2026",
-      "school_count": 5,
       "schools": [
         {
           "school_name": "GOVT. PRIMARY SCHOOL DHORAMAND KHEDA (488780) (08210704403)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "NAGOLA",
           "village": "BADLA URF KALA TALAB",
           "dise_code": "8210704403",
-          "school_code": "488780"
+          "shala_darpan_code": "488780",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL KHAROLA KA KHEDA (488788) (08210704401)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "NAGOLA",
           "village": "BADLA URF KALA TALAB",
           "dise_code": "8210704401",
-          "school_code": "488788"
+          "shala_darpan_code": "488788",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL SAPNIKHEDA (488790) (08210704501)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "NAGOLA",
           "village": "SAPNI KHEDA",
           "dise_code": "8210704501",
-          "school_code": "488790"
+          "shala_darpan_code": "488790",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. SENIOR SECONDARY SCHOOL BADLA (488781) (08210704402)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "NAGOLA",
           "village": "BADLA URF KALA TALAB",
           "dise_code": "8210704402",
-          "school_code": "488781"
+          "shala_darpan_code": "488781",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL BALAPURA (506475) (08210704301)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "NAGOLA",
           "village": "BALAPURA (NAGOLA)",
           "dise_code": "8210704301",
-          "school_code": "506475"
+          "shala_darpan_code": "506475",
+          "type": "Government"
+        },
+        {
+          "school_name": "POOJA PUBLIC SCHOOL NAGOLA (P19677)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "NAGOLA",
+          "village": "NAGOOLA",
+          "dise_code": "",
+          "shala_darpan_code": "P19677",
+          "type": "Private"
+        },
+        {
+          "school_name": "HINA BAL VIDYA MANDIR UPPER PRIMARY SCHOOL NAGOLA (P16594)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "NAGOLA",
+          "village": "NAGOOLA",
+          "dise_code": "",
+          "shala_darpan_code": "P16594",
+          "type": "Private"
         }
-      ]
+      ],
+      "school_count": 7
     },
     {
       "s_no": 19,
       "peeo_id": "PEEO19",
       "peeo_name": "PEEO NANDSI",
+      "shala_darpan_code": "221756",
       "panchayat_name": "NANDSI",
       "principal_incharge": "OM PRAKASH VERMA",
       "mobile": "9001637473",
       "email": "pgsssnandsi@gmail.com",
-      "username": "peeo_nandsi",
+      "username": "221756",
+      "alias_username": "peeo_nandsi",
       "password": "nandsi#2026",
-      "school_count": 3,
       "schools": [
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL KACHRIYA (401959) (08210702801)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "NANDSI",
           "village": "KACHRIYA",
           "dise_code": "8210702801",
-          "school_code": "401959"
+          "shala_darpan_code": "401959",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. SENIOR SECONDARY SCHOOL KURTHAL (221757) (08210700501)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "NANDSI",
           "village": "KURTHAL",
           "dise_code": "8210700501",
-          "school_code": "221757"
+          "shala_darpan_code": "221757",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL NANDSI (410632) (08210700402)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "NANDSI",
           "village": "NANDSI",
           "dise_code": "8210700402",
-          "school_code": "410632"
+          "shala_darpan_code": "410632",
+          "type": "Government"
+        },
+        {
+          "school_name": "ANNPURNA PUBLIC SCH. (P16285)",
+          "category": "Private (Primary)",
+          "panchayat": "NANDSI",
+          "village": "NANDSI",
+          "dise_code": "",
+          "shala_darpan_code": "P16285",
+          "type": "Private"
+        },
+        {
+          "school_name": "MANSA PURNA P.S. KURTHAL (P18650)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "NANDSI",
+          "village": "KURTHAL",
+          "dise_code": "",
+          "shala_darpan_code": "P18650",
+          "type": "Private"
         }
-      ]
+      ],
+      "school_count": 5
     },
     {
       "s_no": 20,
       "peeo_id": "PEEO20",
       "peeo_name": "PEEO PADALIYA",
+      "shala_darpan_code": "221766",
       "panchayat_name": "PADLIYA",
       "principal_incharge": "LAXMI POPTANI",
       "mobile": "9549364023",
       "email": "gsspadliya@gmail.com",
-      "username": "peeo_padaliya",
+      "username": "221766",
+      "alias_username": "peeo_padaliya",
       "password": "padaliya#2026",
-      "school_count": 4,
       "schools": [
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL GORDHANPURA (410654) (08210703202)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "PADLIYA",
           "village": "PADLIYA",
           "dise_code": "8210703202",
-          "school_code": "410654"
+          "shala_darpan_code": "410654",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL CHAVANDIYA (402141) (08210703501)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "PADLIYA",
           "village": "CHAVANDIYA",
           "dise_code": "8210703501",
-          "school_code": "402141"
+          "shala_darpan_code": "402141",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL BILIYA (468182) (08210703301)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "PADLIYA",
           "village": "BILIYA",
           "dise_code": "8210703301",
-          "school_code": "468182"
+          "shala_darpan_code": "468182",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL MUNDIYA KHEDA (485054) (08210703401)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "PADLIYA",
           "village": "MUNDIYA KHEDA",
           "dise_code": "8210703401",
-          "school_code": "485054"
+          "shala_darpan_code": "485054",
+          "type": "Government"
         }
-      ]
+      ],
+      "school_count": 4
     },
     {
       "s_no": 21,
       "peeo_id": "PEEO21",
       "peeo_name": "PEEO PADANGA",
+      "shala_darpan_code": "221788",
       "panchayat_name": "PADANGA",
       "principal_incharge": "SMT ASHA RAJ",
       "mobile": "7877090975",
       "email": "gssspadanga@gmail.com",
-      "username": "peeo_padanga",
+      "username": "221788",
+      "alias_username": "peeo_padanga",
       "password": "padanga#2026",
-      "school_count": 3,
       "schools": [
         {
           "school_name": "GOVT. PRIMARY SCHOOL SAIMALA PADANGA (410721) (08210708802)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "PADANGA",
           "village": "PADANGA",
           "dise_code": "8210708802",
-          "school_code": "410721"
+          "shala_darpan_code": "410721",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL SAWAIPURA (488936) (08210708501)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "PADANGA",
           "village": "SAWAIPURA",
           "dise_code": "8210708501",
-          "school_code": "488936"
+          "shala_darpan_code": "488936",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL ARJUNPURA (488943) (08210708601)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "PADANGA",
           "village": "ARJUNPURA",
           "dise_code": "8210708601",
-          "school_code": "488943"
+          "shala_darpan_code": "488943",
+          "type": "Government"
+        },
+        {
+          "school_name": "HEENA BAL VIDHYA MANDIR PANANGA (P64304)",
+          "category": "Private (Primary)",
+          "panchayat": "PADANGA",
+          "village": "PADANGA",
+          "dise_code": "",
+          "shala_darpan_code": "P64304",
+          "type": "Private"
         }
-      ]
+      ],
+      "school_count": 4
     },
     {
       "s_no": 22,
       "peeo_id": "PEEO22",
       "peeo_name": "PEEO RAMMALIA",
+      "shala_darpan_code": "221785",
       "panchayat_name": "RAMMALIYA",
       "principal_incharge": "LAL CHAND MUNOTH",
       "mobile": "9928328808",
       "email": "ghss.rammaliya@gmail.com",
-      "username": "peeo_rammalia",
+      "username": "221785",
+      "alias_username": "peeo_rammalia",
       "password": "rammalia#2026",
-      "school_count": 3,
       "schools": [
         {
           "school_name": "GOVT. SENIOR SECONDARY SCHOOL RAGHUNATHGADH (410677) (08210707001)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "RAMMALIYA",
           "village": "RAGHUNATH GADH",
           "dise_code": "8210707001",
-          "school_code": "410677"
+          "shala_darpan_code": "410677",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. SENIOR SECONDARY SCHOOL HEERAPURA (221784) (08210706701)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "RAMMALIYA",
           "village": "HIRAPURA",
           "dise_code": "8210706701",
-          "school_code": "221784"
+          "shala_darpan_code": "221784",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL PILODA (410646) (08210707101)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "RAMMALIYA",
           "village": "PILODA",
           "dise_code": "8210707101",
-          "school_code": "410646"
+          "shala_darpan_code": "410646",
+          "type": "Government"
+        },
+        {
+          "school_name": "SARVODAYA BAL NIKETAN,RAMMALIYA (P60314)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "RAMMALIYA",
+          "village": "RAMMALIYA",
+          "dise_code": "",
+          "shala_darpan_code": "P60314",
+          "type": "Private"
         }
-      ]
+      ],
+      "school_count": 4
     },
     {
       "s_no": 23,
       "peeo_id": "PEEO23",
       "peeo_name": "PEEO RATAKOT",
+      "shala_darpan_code": "221775",
       "panchayat_name": "RATAKOT",
       "principal_incharge": "KUNJ BIHARI SHARMA",
       "mobile": "9887753471",
       "email": "gssratakot@gmail.com",
-      "username": "peeo_ratakot",
+      "username": "221775",
+      "alias_username": "peeo_ratakot",
       "password": "ratakot#2026",
-      "school_count": 1,
       "schools": [
         {
           "school_name": "GOVT. SENIOR SECONDARY SCHOOL JHIPIYA (221776) (08210705201)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "RATAKOT",
           "village": "JHIPIYA",
           "dise_code": "8210705201",
-          "school_code": "221776"
+          "shala_darpan_code": "221776",
+          "type": "Government"
         }
-      ]
+      ],
+      "school_count": 1
     },
     {
       "s_no": 24,
       "peeo_id": "PEEO24",
       "peeo_name": "PEEO SINGAWAL",
+      "shala_darpan_code": "221781",
       "panchayat_name": "SINGAWAL",
       "principal_incharge": "SEEMA SHARMA",
       "mobile": "8290911983",
       "email": "singawalschool1234@gmail.com",
-      "username": "peeo_singawal",
+      "username": "221781",
+      "alias_username": "peeo_singawal",
       "password": "singawal#2026",
-      "school_count": 5,
       "schools": [
         {
           "school_name": "GOVT. PRIMARY SCHOOL MATAJI KA KHEDA (410747) (08210705603)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "SINGAWAL",
           "village": "SINGAWAL",
           "dise_code": "8210705603",
-          "school_code": "410747"
+          "shala_darpan_code": "410747",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL KHATANO KA KHEDA (410621) (08210705703)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "SINGAWAL",
           "village": "KHATANO KA KHEDA",
           "dise_code": "8210705703",
-          "school_code": "410621"
+          "shala_darpan_code": "410621",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL GURJAR MALI DHANI MATHANIYA (488682) (08210705702)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "SINGAWAL",
           "village": "MATHANIYA",
           "dise_code": "8210705702",
-          "school_code": "488682"
+          "shala_darpan_code": "488682",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL MATHANIYA (506678) (08210705701)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "SINGAWAL",
           "village": "MATHANIYA",
           "dise_code": "8210705701",
-          "school_code": "506678"
+          "shala_darpan_code": "506678",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL KUMHAR MOHALLA SINGAWAL (506686) (08210705605)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "SINGAWAL",
           "village": "SINGAWAL",
           "dise_code": "8210705605",
-          "school_code": "506686"
+          "shala_darpan_code": "506686",
+          "type": "Government"
+        },
+        {
+          "school_name": "GAUTAM PUBLIC SCHOOL SINGAWAL (P46806)",
+          "category": "Private (Primary with Upper Primary)",
+          "panchayat": "SINGAWAL",
+          "village": "SINGAWAL",
+          "dise_code": "",
+          "shala_darpan_code": "P46806",
+          "type": "Private"
         }
-      ]
+      ],
+      "school_count": 6
     },
     {
       "s_no": 25,
       "peeo_id": "PEEO25",
       "peeo_name": "PEEO SOBRI",
+      "shala_darpan_code": "221782",
       "panchayat_name": "SOBDI",
       "principal_incharge": "FAYYAZ MOHAMMED",
       "mobile": "9829487158",
       "email": "gsssobri@gmail.com",
-      "username": "peeo_sobri",
+      "username": "221782",
+      "alias_username": "peeo_sobri",
       "password": "sobri#2026",
-      "school_count": 6,
       "schools": [
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL TELADA (488877) (08210706201)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "SOBDI",
           "village": "TELADA",
           "dise_code": "8210706201",
-          "school_code": "488877"
+          "shala_darpan_code": "488877",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL CHAVANDIYA (488886) (08210706101)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "SOBDI",
           "village": "CHAVANDIYA",
           "dise_code": "8210706101",
-          "school_code": "488886"
+          "shala_darpan_code": "488886",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL GUJARO KA JHOPDA GHANA (408415) (08210705902)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "SOBDI",
           "village": "GHANA",
           "dise_code": "8210705902",
-          "school_code": "408415"
+          "shala_darpan_code": "408415",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL KUMHARIYA KHEDA (410775) (08210705802)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "SOBDI",
           "village": "KUMAHARIYA KHEDA",
           "dise_code": "8210705802",
-          "school_code": "410775"
+          "shala_darpan_code": "410775",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL PRATAPPURA (410678) (08210706001)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "SOBDI",
           "village": "PRATAPPURA (SOBDI)",
           "dise_code": "8210706001",
-          "school_code": "410678"
+          "shala_darpan_code": "410678",
+          "type": "Government"
         },
         {
           "school_name": "GOVT. SENIOR SECONDARY SCHOOL GHANA (488897) (08210705901)",
+          "category": "Govt. Secondary / Sr. Sec",
           "panchayat": "SOBDI",
           "village": "GHANA",
           "dise_code": "8210705901",
-          "school_code": "488897"
+          "shala_darpan_code": "488897",
+          "type": "Government"
         }
-      ]
+      ],
+      "school_count": 6
     }
   ],
   "staff": [
@@ -1126,7 +1854,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61012714666",
       "ifsc": "SBIN0031108",
       "pan": "AEYPL0853N",
-      "aadhaar": "946839940273",
       "status": "Active"
     },
     {
@@ -1144,7 +1871,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100002271",
       "ifsc": "BARB0BHINAI",
       "pan": "ACDPD3963A",
-      "aadhaar": "801936950697",
       "status": "Active"
     },
     {
@@ -1162,7 +1888,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61042520630",
       "ifsc": "SBIN0031110",
       "pan": "HQBPS0435R",
-      "aadhaar": "489080053827",
       "status": "Active"
     },
     {
@@ -1180,7 +1905,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51046334248",
       "ifsc": "SBIN0011400",
       "pan": "AIEPR4059C",
-      "aadhaar": "569055389122",
       "status": "Active"
     },
     {
@@ -1198,12 +1922,11 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "40133369671",
       "ifsc": "SBIN0031104",
       "pan": "BKJPB3637A",
-      "aadhaar": "459516533345",
       "status": "Active"
     },
     {
       "staff_id": "STF1006",
-      "name": "डाॅ. विजय शंकर शर्मा",
+      "name": "डॉण विजय शंकर शर्मा",
       "gender": "M",
       "dob": "08.07.1986",
       "post": "वरिष्ठ अध्यापक",
@@ -1216,7 +1939,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61020917315",
       "ifsc": "SBIN0031326",
       "pan": "CUWPS4194R",
-      "aadhaar": "590448508590",
       "status": "Active"
     },
     {
@@ -1234,7 +1956,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42534675758",
       "ifsc": "SBIN0032019",
       "pan": "AFOPU9092D",
-      "aadhaar": "808028046575",
       "status": "Active"
     },
     {
@@ -1252,7 +1973,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38203786116",
       "ifsc": "SBIN0031636",
       "pan": "BVNPJ2662N",
-      "aadhaar": "392465026561",
       "status": "Active"
     },
     {
@@ -1260,7 +1980,7 @@ const MASTER_CBEO_DATA = {
       "name": "श्री हरिओम पारीक",
       "gender": "M",
       "dob": "31.01.1973",
-      "post": "शारीरिक.शिक्षक",
+      "post": "शारीरिक शिक्षक",
       "school_name": "राउमावि बडगांव (सूरखण्ड)",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ199801008651",
@@ -1270,7 +1990,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31000117677",
       "ifsc": "SBIN0012898",
       "pan": "AHJPP7054K",
-      "aadhaar": "575740422348",
       "status": "Active"
     },
     {
@@ -1288,7 +2007,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31033941008",
       "ifsc": "SBIN0012898",
       "pan": "ABGPC6997D",
-      "aadhaar": "453378158445",
       "status": "Active"
     },
     {
@@ -1306,7 +2024,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32592452353",
       "ifsc": "SBIN0015618",
       "pan": "AXCPM0776E",
-      "aadhaar": "822992180433",
       "status": "Active"
     },
     {
@@ -1324,7 +2041,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31033940990",
       "ifsc": "SBIN0012898",
       "pan": "ABNPR0088F",
-      "aadhaar": "420555674703",
       "status": "Active"
     },
     {
@@ -1342,7 +2058,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31033941042",
       "ifsc": "SBIN0012898",
       "pan": "AUFPK6222K",
-      "aadhaar": "906772417992",
       "status": "Active"
     },
     {
@@ -1360,7 +2075,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33273073799",
       "ifsc": "SBIN0012898",
       "pan": "AMIPL6297J",
-      "aadhaar": "771414131864",
       "status": "Active"
     },
     {
@@ -1378,7 +2092,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61189308196",
       "ifsc": "SBIN0031108",
       "pan": "CZWPC5125K",
-      "aadhaar": "481158008771",
       "status": "Active"
     },
     {
@@ -1396,7 +2109,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34348050158",
       "ifsc": "SBIN0015618",
       "pan": "BFNPC3206B",
-      "aadhaar": "539230245860",
       "status": "Active"
     },
     {
@@ -1414,7 +2126,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51051320409",
       "ifsc": "SBIN0031487",
       "pan": "BAMPK6599R",
-      "aadhaar": "298207436535",
       "status": "Active"
     },
     {
@@ -1432,7 +2143,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "35011530209",
       "ifsc": "SBIN0011400",
       "pan": "CAUPP9668M",
-      "aadhaar": "561223949400",
       "status": "Active"
     },
     {
@@ -1450,7 +2160,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61138405145",
       "ifsc": "SBIN0031090",
       "pan": "HBVPS9504N",
-      "aadhaar": "365008362079",
       "status": "Active"
     },
     {
@@ -1468,7 +2177,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31052367730",
       "ifsc": "SBIN0012898",
       "pan": "AASPL5293L",
-      "aadhaar": "946923991844",
       "status": "Active"
     },
     {
@@ -1486,7 +2194,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32599912280",
       "ifsc": "SBIN0003628",
       "pan": "COSPM9315N",
-      "aadhaar": "686802291230",
       "status": "Active"
     },
     {
@@ -1504,7 +2211,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32732321276",
       "ifsc": "SBIN0012898",
       "pan": "CAIPD8479C",
-      "aadhaar": "618007639990",
       "status": "Active"
     },
     {
@@ -1522,7 +2228,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61179350435",
       "ifsc": "SBIB0031110",
       "pan": "BQUPR2538H",
-      "aadhaar": "525198728176",
       "status": "Active"
     },
     {
@@ -1540,7 +2245,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37763309891",
       "ifsc": "SBIB0031110",
       "pan": "ENYPP0324R",
-      "aadhaar": "758253968022",
       "status": "Active"
     },
     {
@@ -1558,7 +2262,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38044621925",
       "ifsc": "SBIN0032119",
       "pan": "BHXPJ2794P",
-      "aadhaar": "633266722199",
       "status": "Active"
     },
     {
@@ -1576,7 +2279,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38450617803",
       "ifsc": "SBIN0031091",
       "pan": "EZCPM1951B",
-      "aadhaar": "711384802740",
       "status": "Active"
     },
     {
@@ -1594,7 +2296,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "35203705058",
       "ifsc": "SBIIN0003628",
       "pan": "GAJPB4938R",
-      "aadhaar": "314805508985",
       "status": "Active"
     },
     {
@@ -1612,7 +2313,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61175302746",
       "ifsc": "SBIN0031110",
       "pan": "HUTPK2827M",
-      "aadhaar": "850813571058",
       "status": "Active"
     },
     {
@@ -1630,7 +2330,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32567265411",
       "ifsc": "SBIN0012898",
       "pan": "AVGPJ1722R",
-      "aadhaar": "326134308967",
       "status": "Active"
     },
     {
@@ -1648,7 +2347,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31035270239",
       "ifsc": "SBIN0012898",
       "pan": "ALVPR3642K",
-      "aadhaar": "723038125870",
       "status": "Active"
     },
     {
@@ -1666,7 +2364,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31035267001",
       "ifsc": "SBIN0012898",
       "pan": "BQWPS8597M",
-      "aadhaar": "842403384748",
       "status": "Active"
     },
     {
@@ -1684,7 +2381,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33393333130",
       "ifsc": "SBIN0031110",
       "pan": "BFNPJ5123E",
-      "aadhaar": "512548294281",
       "status": "Active"
     },
     {
@@ -1702,7 +2398,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61300021991",
       "ifsc": "SBIN0031124",
       "pan": "BRKPC7717C",
-      "aadhaar": "497651894971",
       "status": "Active"
     },
     {
@@ -1720,7 +2415,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61194975980",
       "ifsc": "SBIN0032063",
       "pan": "FMTPM6944P",
-      "aadhaar": "755081992245",
       "status": "Active"
     },
     {
@@ -1738,7 +2432,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41481741977",
       "ifsc": "SBIN0031108",
       "pan": "HSYPS8891G",
-      "aadhaar": "681443515321",
       "status": "Active"
     },
     {
@@ -1756,7 +2449,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "35123428711",
       "ifsc": "SBIN0031108",
       "pan": "CUUPM2493M",
-      "aadhaar": "900673509860",
       "status": "Active"
     },
     {
@@ -1774,7 +2466,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51086625048",
       "ifsc": "SBIN0031110",
       "pan": "BHKPK4028G",
-      "aadhaar": "897902250711",
       "status": "Active"
     },
     {
@@ -1792,7 +2483,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41221184672",
       "ifsc": "SBIN0031110",
       "pan": "EWKPS0043C",
-      "aadhaar": "",
       "status": "Active"
     },
     {
@@ -1810,7 +2500,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "681701501315",
       "ifsc": "ICIC0006817",
       "pan": "ETAPK1327K",
-      "aadhaar": "946713789861",
       "status": "Active"
     },
     {
@@ -1828,7 +2517,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32122748371",
       "ifsc": "SBIN0011295",
       "pan": "ACXPP7434Q",
-      "aadhaar": "722815547952",
       "status": "Active"
     },
     {
@@ -1846,7 +2534,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30948322042",
       "ifsc": "SBIN0032187",
       "pan": "IVDPS5541E",
-      "aadhaar": "248825978844",
       "status": "Active"
     },
     {
@@ -1864,7 +2551,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61060795489",
       "ifsc": "SBIN0011295",
       "pan": "CHOPS8120E",
-      "aadhaar": "587065508145",
       "status": "Active"
     },
     {
@@ -1882,7 +2568,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51053744880",
       "ifsc": "SBIN0031099",
       "pan": "AEZPP6615H",
-      "aadhaar": "714448443691",
       "status": "Active"
     },
     {
@@ -1900,7 +2585,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51080021460",
       "ifsc": "SBIN0031099",
       "pan": "AERPV3959G",
-      "aadhaar": "621163009765",
       "status": "Active"
     },
     {
@@ -1918,7 +2602,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "12880100007667",
       "ifsc": "BARB0PIPLOO",
       "pan": "GNZPP5528Q",
-      "aadhaar": "493571537440",
       "status": "Active"
     },
     {
@@ -1936,7 +2619,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61314186676",
       "ifsc": "SBIN0032367",
       "pan": "BKUPK4474P",
-      "aadhaar": "513751544663",
       "status": "Active"
     },
     {
@@ -1954,7 +2636,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100002577",
       "ifsc": "BARB0BIJAJM",
       "pan": "ADJPC6092J",
-      "aadhaar": "627597590827",
       "status": "Active"
     },
     {
@@ -1972,7 +2653,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61291165523",
       "ifsc": "SBIN0031739",
       "pan": "CKCPS7390R",
-      "aadhaar": "531494998402",
       "status": "Active"
     },
     {
@@ -1990,7 +2670,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30991919023",
       "ifsc": "SBIN0012898",
       "pan": "AEAPS8823D",
-      "aadhaar": "563335894003",
       "status": "Active"
     },
     {
@@ -2008,7 +2687,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31033940923",
       "ifsc": "SBIN0012898",
       "pan": "AHIPS7422F",
-      "aadhaar": "463050084603",
       "status": "Active"
     },
     {
@@ -2026,7 +2704,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30991919238",
       "ifsc": "SBIN0011295",
       "pan": "ABDPT3433G",
-      "aadhaar": "247852574556",
       "status": "Active"
     },
     {
@@ -2044,7 +2721,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31035831901",
       "ifsc": "SBIN0012898",
       "pan": "AYNPB1787C",
-      "aadhaar": "620870881559",
       "status": "Active"
     },
     {
@@ -2062,7 +2738,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61086491801",
       "ifsc": "SBIN0031110",
       "pan": "BNUPK1241B",
-      "aadhaar": "934926617841",
       "status": "Active"
     },
     {
@@ -2080,7 +2755,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100011581",
       "ifsc": "BARB0BIJAJM",
       "pan": "COWPP6301K",
-      "aadhaar": "593441062836",
       "status": "Active"
     },
     {
@@ -2098,7 +2772,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61244361147",
       "ifsc": "SBIN0031739",
       "pan": "KJIPS5982J",
-      "aadhaar": "824242351032",
       "status": "Active"
     },
     {
@@ -2116,7 +2789,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100001515",
       "ifsc": "BARB0BIJAJM",
       "pan": "LBKPS7261P",
-      "aadhaar": "856452707490",
       "status": "Active"
     },
     {
@@ -2134,7 +2806,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100005238",
       "ifsc": "BARBOBIJAJM",
       "pan": "RADPS9781J",
-      "aadhaar": "298271027242",
       "status": "Active"
     },
     {
@@ -2152,7 +2823,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61052994064",
       "ifsc": "SBIN0031739",
       "pan": "QDUPS8093A",
-      "aadhaar": "533822723620",
       "status": "Active"
     },
     {
@@ -2170,7 +2840,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61124431319",
       "ifsc": "SBIN0031739",
       "pan": "BBNPK8253L",
-      "aadhaar": "997393742933",
       "status": "Active"
     },
     {
@@ -2188,7 +2857,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31036119084",
       "ifsc": "SBINOO12898",
       "pan": "ABOPJ9773C",
-      "aadhaar": "914525568848",
       "status": "Active"
     },
     {
@@ -2206,7 +2874,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61205588085",
       "ifsc": "SBIN0032404",
       "pan": "JPBPS3485G",
-      "aadhaar": "545654483073",
       "status": "Active"
     },
     {
@@ -2224,7 +2891,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61100415779",
       "ifsc": "SBIN0017390",
       "pan": "RYYPS3313D",
-      "aadhaar": "717248284251",
       "status": "Active"
     },
     {
@@ -2242,7 +2908,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42001891094",
       "ifsc": "SBIN0018165",
       "pan": "EEFPK6625L",
-      "aadhaar": "329379405678",
       "status": "Active"
     },
     {
@@ -2260,7 +2925,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61042637139",
       "ifsc": "SBIN0031821",
       "pan": "BOZPP6658H",
-      "aadhaar": "705400330476",
       "status": "Active"
     },
     {
@@ -2278,7 +2942,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61202538886",
       "ifsc": "SBIN0031329",
       "pan": "CQNPD9545C",
-      "aadhaar": "341595481113",
       "status": "Active"
     },
     {
@@ -2296,7 +2959,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61094490636",
       "ifsc": "SBIN0031155",
       "pan": "BLKPK2851F",
-      "aadhaar": "928785389689",
       "status": "Active"
     },
     {
@@ -2314,7 +2976,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20041249879",
       "ifsc": "SBIN0011295",
       "pan": "IXIPS0022P",
-      "aadhaar": "702632277428",
       "status": "Active"
     },
     {
@@ -2332,7 +2993,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11101966069",
       "ifsc": "SBIN0009207",
       "pan": "AJQPS3148C",
-      "aadhaar": "999023461802",
       "status": "Active"
     },
     {
@@ -2350,7 +3010,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61043382064",
       "ifsc": "SBIN0015309",
       "pan": "DIAPS1265L",
-      "aadhaar": "578954156116",
       "status": "Active"
     },
     {
@@ -2368,7 +3027,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "14900100008835",
       "ifsc": "BARB0NASIRA",
       "pan": "AGAPS9005K",
-      "aadhaar": "728698500734",
       "status": "Active"
     },
     {
@@ -2386,7 +3044,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61063473492",
       "ifsc": "SBIN0032050",
       "pan": "BYDPB1191H",
-      "aadhaar": "532384216432",
       "status": "Active"
     },
     {
@@ -2404,7 +3061,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "35071305002",
       "ifsc": "SBIN0001379",
       "pan": "BHIPJ1486K",
-      "aadhaar": "444537899936",
       "status": "Active"
     },
     {
@@ -2422,7 +3078,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61307910576",
       "ifsc": "SBIN0012898",
       "pan": "AZJPV5099C",
-      "aadhaar": "476256471327",
       "status": "Active"
     },
     {
@@ -2440,7 +3095,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51100099290",
       "ifsc": "SBIN0031828",
       "pan": "ATQPY3041E",
-      "aadhaar": "543218024027",
       "status": "Active"
     },
     {
@@ -2458,7 +3112,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31008776213",
       "ifsc": "SBIN0012898",
       "pan": "ADOPJ6351N",
-      "aadhaar": "796539485669",
       "status": "Active"
     },
     {
@@ -2476,7 +3129,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30023438558",
       "ifsc": "SBIN0000603",
       "pan": "BGEPS3492M",
-      "aadhaar": "978973367890",
       "status": "Active"
     },
     {
@@ -2494,7 +3146,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61144745184",
       "ifsc": "SBIN0031104",
       "pan": "BHCPD0548L",
-      "aadhaar": "321344492309",
       "status": "Active"
     },
     {
@@ -2512,7 +3163,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "43232515111",
       "ifsc": "SBIN0031051",
       "pan": "VULPA7836C",
-      "aadhaar": "783492441329",
       "status": "Active"
     },
     {
@@ -2530,7 +3180,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61339676151",
       "ifsc": "SBIN0031487",
       "pan": "DIGPG5372E",
-      "aadhaar": "955004895379",
       "status": "Active"
     },
     {
@@ -2548,7 +3197,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51084418465",
       "ifsc": "SBIN0031043",
       "pan": "AQNPM4141K",
-      "aadhaar": "863362631176",
       "status": "Active"
     },
     {
@@ -2566,7 +3214,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31034307716",
       "ifsc": "SBIN0012898",
       "pan": "ABTPV9211G",
-      "aadhaar": "852616357512",
       "status": "Active"
     },
     {
@@ -2584,7 +3231,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32690125345",
       "ifsc": "SBIN0012898",
       "pan": "ANMPV2507L",
-      "aadhaar": "543434563221",
       "status": "Active"
     },
     {
@@ -2602,7 +3248,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61033850900",
       "ifsc": "SBIN0007828",
       "pan": "AFKPL4305C",
-      "aadhaar": "675532537696",
       "status": "Active"
     },
     {
@@ -2620,7 +3265,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61160856984",
       "ifsc": "SBIN0032063",
       "pan": "EKHPG4748C",
-      "aadhaar": "742791541391",
       "status": "Active"
     },
     {
@@ -2638,7 +3282,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "50100364994196",
       "ifsc": "HDFC0000350",
       "pan": "DANPJ5539R",
-      "aadhaar": "241253678784",
       "status": "Active"
     },
     {
@@ -2656,7 +3299,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42330772322",
       "ifsc": "SBIN0012898",
       "pan": "GKMPR2906E",
-      "aadhaar": "435940264402",
       "status": "Active"
     },
     {
@@ -2674,7 +3316,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51051297082",
       "ifsc": "SBIN0032063",
       "pan": "ABMPA6909L",
-      "aadhaar": "858726711818",
       "status": "Active"
     },
     {
@@ -2692,7 +3333,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31008775505",
       "ifsc": "SBIN0012898",
       "pan": "ARTPD6797P",
-      "aadhaar": "692554510932",
       "status": "Active"
     },
     {
@@ -2710,7 +3350,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34143389364",
       "ifsc": "SBIN0007711",
       "pan": "HQLPP7468B",
-      "aadhaar": "212207147479",
       "status": "Active"
     },
     {
@@ -2728,7 +3367,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "43594427026",
       "ifsc": "SBIN0011396",
       "pan": "PCAPS6786J",
-      "aadhaar": "731249051519",
       "status": "Active"
     },
     {
@@ -2746,7 +3384,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61168206224",
       "ifsc": "SBIN0031108",
       "pan": "BCWPJ6191C",
-      "aadhaar": "201424501480",
       "status": "Active"
     },
     {
@@ -2764,7 +3401,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61206724754",
       "ifsc": "SBIN0032187",
       "pan": "JJYPS6077P",
-      "aadhaar": "440276485892",
       "status": "Active"
     },
     {
@@ -2782,7 +3418,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "40296682292",
       "ifsc": "SBIN0007828",
       "pan": "CMHPC4149R",
-      "aadhaar": "301841754063",
       "status": "Active"
     },
     {
@@ -2800,7 +3435,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37263372512",
       "ifsc": "SBIN0031042",
       "pan": "CMRPC2104E",
-      "aadhaar": "877166398654",
       "status": "Active"
     },
     {
@@ -2818,7 +3452,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51103170159",
       "ifsc": "SBIN0031340",
       "pan": "AWDPC8738Q",
-      "aadhaar": "648268542250",
       "status": "Active"
     },
     {
@@ -2836,7 +3469,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "10200645551",
       "ifsc": "SBIN0032366",
       "pan": "ABDPJ6506J",
-      "aadhaar": "214803600981",
       "status": "Active"
     },
     {
@@ -2854,7 +3486,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61334043848",
       "ifsc": "SBIN0031942",
       "pan": "AWGPM1050J",
-      "aadhaar": "880797291825",
       "status": "Active"
     },
     {
@@ -2872,7 +3503,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "444104000005289",
       "ifsc": "IDKL0000444",
       "pan": "ANCPV8303K",
-      "aadhaar": "225109461679",
       "status": "Active"
     },
     {
@@ -2890,7 +3520,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41870710399",
       "ifsc": "SBIN0012898",
       "pan": "CXTPR5745K",
-      "aadhaar": "719571539654",
       "status": "Active"
     },
     {
@@ -2908,7 +3537,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "232152720336",
       "ifsc": "SBIN0012898",
       "pan": "BOIPP9921E",
-      "aadhaar": "567206277304",
       "status": "Active"
     },
     {
@@ -2926,7 +3554,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30766275689",
       "ifsc": "SBIN0012898",
       "pan": "BBZPK5596C",
-      "aadhaar": "918891700768",
       "status": "Active"
     },
     {
@@ -2944,7 +3571,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33010463521",
       "ifsc": "SBIN0031825",
       "pan": "BCMPY0528A",
-      "aadhaar": "875333599014",
       "status": "Active"
     },
     {
@@ -2962,7 +3588,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "310001166339",
       "ifsc": "SBIN0012898",
       "pan": "ABDPV2891E",
-      "aadhaar": "550910849295",
       "status": "Active"
     },
     {
@@ -2980,7 +3605,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61200121014",
       "ifsc": "sbin0031990",
       "pan": "CYTPC4152L",
-      "aadhaar": "916651146761",
       "status": "Active"
     },
     {
@@ -2998,7 +3622,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38308969135",
       "ifsc": "SBIN0031597",
       "pan": "AYWPV3957H",
-      "aadhaar": "260106611051",
       "status": "Active"
     },
     {
@@ -3016,7 +3639,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30992424416",
       "ifsc": "SBIN0012898",
       "pan": "AKIPN4530E",
-      "aadhaar": "889171093422",
       "status": "Active"
     },
     {
@@ -3034,7 +3656,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30979481959",
       "ifsc": "SBIN0012898",
       "pan": "AIXPM7218D",
-      "aadhaar": "828146724806",
       "status": "Active"
     },
     {
@@ -3052,7 +3673,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30992349957",
       "ifsc": "SBIN0012898",
       "pan": "AIMPT7478B",
-      "aadhaar": "713246782118",
       "status": "Active"
     },
     {
@@ -3070,7 +3690,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30992433157",
       "ifsc": "SBI BHINAY",
       "pan": "ADXPA6457B",
-      "aadhaar": "716184456769",
       "status": "Active"
     },
     {
@@ -3088,7 +3707,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30987877407",
       "ifsc": "SBI BHINAY",
       "pan": "ANHPD8274H",
-      "aadhaar": "944949592075",
       "status": "Active"
     },
     {
@@ -3106,7 +3724,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61064899350",
       "ifsc": "SBIN0031109",
       "pan": "CLBPB0561M",
-      "aadhaar": "830192263996",
       "status": "Active"
     },
     {
@@ -3124,7 +3741,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61159998423",
       "ifsc": "SBIN0031109",
       "pan": "CPCPK3983D",
-      "aadhaar": "561405636570",
       "status": "Active"
     },
     {
@@ -3142,7 +3758,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32788787990",
       "ifsc": "SBIN0012898",
       "pan": "CFEPD9049D",
-      "aadhaar": "976006797457",
       "status": "Active"
     },
     {
@@ -3160,7 +3775,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33510834646",
       "ifsc": "SBIN0005709",
       "pan": "GAGPK2585G",
-      "aadhaar": "836499260187",
       "status": "Active"
     },
     {
@@ -3178,7 +3792,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30370213729",
       "ifsc": "SBIN0031123",
       "pan": "DXDPM6932E",
-      "aadhaar": "625435918048",
       "status": "Active"
     },
     {
@@ -3196,7 +3809,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61023746835",
       "ifsc": "SBIN0011396",
       "pan": "BLDPV3122K",
-      "aadhaar": "825535702209",
       "status": "Active"
     },
     {
@@ -3214,7 +3826,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30249210456",
       "ifsc": "SBIN009207",
       "pan": "BBBPS7832R",
-      "aadhaar": "897780431844",
       "status": "Active"
     },
     {
@@ -3232,7 +3843,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31528123489",
       "ifsc": "SBIN0007828",
       "pan": "DEMPS6490P",
-      "aadhaar": "340451081253",
       "status": "Active"
     },
     {
@@ -3250,7 +3860,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100003531",
       "ifsc": "BARB0BHINAI",
       "pan": "ABYPB9017F",
-      "aadhaar": "800442526019",
       "status": "Active"
     },
     {
@@ -3268,7 +3877,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30995527611",
       "ifsc": "SBIN0012898",
       "pan": "ACBPD6531A",
-      "aadhaar": "232435498820",
       "status": "Active"
     },
     {
@@ -3286,7 +3894,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61291392487",
       "ifsc": "SBIN0032175",
       "pan": "BMGPR5382F",
-      "aadhaar": "298990398940",
       "status": "Active"
     },
     {
@@ -3304,7 +3911,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33181633000",
       "ifsc": "SBIN0012898",
       "pan": "CXWPB4562M",
-      "aadhaar": "615088482305",
       "status": "Active"
     },
     {
@@ -3322,7 +3928,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32728913133",
       "ifsc": "SBIN0012898",
       "pan": "BPBPB9056A",
-      "aadhaar": "794890355080",
       "status": "Active"
     },
     {
@@ -3340,7 +3945,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20345354528",
       "ifsc": "SBIN0012898",
       "pan": "AGAPB6225C",
-      "aadhaar": "583108601888",
       "status": "Active"
     },
     {
@@ -3358,7 +3962,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61034158963",
       "ifsc": "SBIN0011295",
       "pan": "AVKPA9077C",
-      "aadhaar": "359947401625",
       "status": "Active"
     },
     {
@@ -3376,7 +3979,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32565881227",
       "ifsc": "SIBN0032365",
       "pan": "DPVPK9881Q",
-      "aadhaar": "868034886025",
       "status": "Active"
     },
     {
@@ -3394,7 +3996,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61036357047",
       "ifsc": "SBIN0032175",
       "pan": "AHKPG3942L",
-      "aadhaar": "914743965102",
       "status": "Active"
     },
     {
@@ -3412,7 +4013,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "40755136036",
       "ifsc": "SBIN0032175",
       "pan": "ATBPC4813H",
-      "aadhaar": "215513018188",
       "status": "Active"
     },
     {
@@ -3430,7 +4030,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100001293",
       "ifsc": "BARBOBIJAJM",
       "pan": "AGLPM8368G",
-      "aadhaar": "732416219746",
       "status": "Active"
     },
     {
@@ -3448,7 +4047,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "6300100008359",
       "ifsc": "BARBOBIJAJM",
       "pan": "AAJPO0371R",
-      "aadhaar": "200589904158",
       "status": "Active"
     },
     {
@@ -3466,7 +4064,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "663502010002059",
       "ifsc": "UBIN0566357",
       "pan": "EKUPS1124R",
-      "aadhaar": "698171105720",
       "status": "Active"
     },
     {
@@ -3484,7 +4081,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30989842291",
       "ifsc": "SBIN0012898",
       "pan": "AMFPJ7658G",
-      "aadhaar": "709782900029",
       "status": "Active"
     },
     {
@@ -3502,7 +4098,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "3523681755",
       "ifsc": "CBIN0283300",
       "pan": "DKIPR2395S",
-      "aadhaar": "387913484360",
       "status": "Active"
     },
     {
@@ -3520,7 +4115,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "6882000100067738",
       "ifsc": "PUNB0688200",
       "pan": "ANUPG1641G",
-      "aadhaar": "695859004668",
       "status": "Active"
     },
     {
@@ -3538,7 +4132,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61345464434",
       "ifsc": "SBIN0032292",
       "pan": "GHAPK5208K",
-      "aadhaar": "800229101124",
       "status": "Active"
     },
     {
@@ -3556,7 +4149,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61265089405",
       "ifsc": "SBIN0031100",
       "pan": "EHDPM6407D",
-      "aadhaar": "615459031204",
       "status": "Active"
     },
     {
@@ -3574,7 +4166,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30991927534",
       "ifsc": "SBIN0012898",
       "pan": "BKRPK5005R",
-      "aadhaar": "223877990557",
       "status": "Active"
     },
     {
@@ -3592,7 +4183,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "310339414730",
       "ifsc": "SBIN0012898",
       "pan": "DIHPS1534R",
-      "aadhaar": "749987292601",
       "status": "Active"
     },
     {
@@ -3610,7 +4200,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "1182010001696",
       "ifsc": "BARB0BHINAI",
       "pan": "ACpPD9428C",
-      "aadhaar": "274304129874",
       "status": "Active"
     },
     {
@@ -3628,7 +4217,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33020676286",
       "ifsc": "SBIN0000603",
       "pan": "ATNPR6864M",
-      "aadhaar": "924944145079",
       "status": "Active"
     },
     {
@@ -3646,7 +4234,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31000118230",
       "ifsc": "SBIN0012898",
       "pan": "AAWPT7762J",
-      "aadhaar": "545918954307",
       "status": "Active"
     },
     {
@@ -3664,7 +4251,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "55850100000307",
       "ifsc": "BARB0ADARAJ",
       "pan": "BBCPB9173R",
-      "aadhaar": "280149521968",
       "status": "Active"
     },
     {
@@ -3682,7 +4268,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61040500455",
       "ifsc": "SBIN0031739",
       "pan": "COKPS8014J",
-      "aadhaar": "628403290653",
       "status": "Active"
     },
     {
@@ -3700,7 +4285,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30989360205",
       "ifsc": "SBIN0012898",
       "pan": "AEGPR3356E",
-      "aadhaar": "472543845025",
       "status": "Active"
     },
     {
@@ -3718,7 +4302,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100002746",
       "ifsc": "BARB0BHINAI",
       "pan": "AAYPO6074E",
-      "aadhaar": "572700437783",
       "status": "Active"
     },
     {
@@ -3736,7 +4319,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61204481064",
       "ifsc": "SBIN0031123",
       "pan": "HNGPS7621B",
-      "aadhaar": "642407586231",
       "status": "Active"
     },
     {
@@ -3754,7 +4336,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61037073799",
       "ifsc": "SBIN0011305",
       "pan": "BEIPC8274B",
-      "aadhaar": "295204143236",
       "status": "Active"
     },
     {
@@ -3772,7 +4353,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "5110906022",
       "ifsc": "SBIN0031846",
       "pan": "DPTPK3898m",
-      "aadhaar": "450686789784",
       "status": "Active"
     },
     {
@@ -3790,7 +4370,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42311378375",
       "ifsc": "SBIN0031377",
       "pan": "SWDPS7897K",
-      "aadhaar": "578879553063",
       "status": "Active"
     },
     {
@@ -3808,7 +4387,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32606667651",
       "ifsc": "SBIN0002424",
       "pan": "BNZPK8647Q",
-      "aadhaar": "904508795456",
       "status": "Active"
     },
     {
@@ -3826,7 +4404,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100003247",
       "ifsc": "BARB0BHINAI",
       "pan": "AFVPS9140K",
-      "aadhaar": "274976837471",
       "status": "Active"
     },
     {
@@ -3844,7 +4421,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61044970495",
       "ifsc": "SBIN0032275",
       "pan": "AHBPB8901D",
-      "aadhaar": "537603174117",
       "status": "Active"
     },
     {
@@ -3862,7 +4438,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61039316799",
       "ifsc": "SBIN0031091",
       "pan": "Acvpi9613e",
-      "aadhaar": "292728765510",
       "status": "Active"
     },
     {
@@ -3880,7 +4455,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30985341855",
       "ifsc": "SBIN0012898",
       "pan": "abmpv2065p",
-      "aadhaar": "814654654100",
       "status": "Active"
     },
     {
@@ -3898,7 +4472,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31033682665",
       "ifsc": "SBIN0012898",
       "pan": "AEHPV7935G",
-      "aadhaar": "787149370236",
       "status": "Active"
     },
     {
@@ -3916,7 +4489,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51109097251",
       "ifsc": "SBIN0032475",
       "pan": "FMQPK3649A",
-      "aadhaar": "909171129085",
       "status": "Active"
     },
     {
@@ -3934,7 +4506,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "35003691846",
       "ifsc": "SBIN0015309",
       "pan": "CBAPC8504J",
-      "aadhaar": "906473421100",
       "status": "Active"
     },
     {
@@ -3952,7 +4523,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61188704258",
       "ifsc": "SBIN0032305",
       "pan": "BSAPR4130F",
-      "aadhaar": "247805029868",
       "status": "Active"
     },
     {
@@ -3970,7 +4540,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61130450526",
       "ifsc": "SBIN0031330",
       "pan": "GOQPB2820R",
-      "aadhaar": "721990356058",
       "status": "Active"
     },
     {
@@ -3988,7 +4557,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30998829303",
       "ifsc": "SBIN0012898",
       "pan": "ARTPS8410J",
-      "aadhaar": "514981311864",
       "status": "Active"
     },
     {
@@ -4006,7 +4574,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61291498734",
       "ifsc": "SBIN0031739",
       "pan": "CLTPK2359A",
-      "aadhaar": "504650427205",
       "status": "Active"
     },
     {
@@ -4024,7 +4591,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30992431682",
       "ifsc": "SBIN0012898",
       "pan": "ADHPK8075F",
-      "aadhaar": "253367520017",
       "status": "Active"
     },
     {
@@ -4042,7 +4608,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "39585225850",
       "ifsc": "SBIN0012898",
       "pan": "cblpj9783p",
-      "aadhaar": "793831994488",
       "status": "Active"
     },
     {
@@ -4060,7 +4625,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37543748193",
       "ifsc": "SBIN0008190",
       "pan": "CDVPT0420M",
-      "aadhaar": "962605144778",
       "status": "Active"
     },
     {
@@ -4078,7 +4642,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "43007474623",
       "ifsc": "SBIN0050436",
       "pan": "FEHPB1779H",
-      "aadhaar": "297971854513",
       "status": "Active"
     },
     {
@@ -4096,7 +4659,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "35055164308",
       "ifsc": "SBIN0007711",
       "pan": "kugpk4216j",
-      "aadhaar": "775615076759",
       "status": "Active"
     },
     {
@@ -4114,7 +4676,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33339422606",
       "ifsc": "SBIN0011390",
       "pan": "ITMPS8940A",
-      "aadhaar": "801454999197",
       "status": "Active"
     },
     {
@@ -4132,7 +4693,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61062063656",
       "ifsc": "SBIN0031109",
       "pan": "BHXPB0868E",
-      "aadhaar": "405469796406",
       "status": "Active"
     },
     {
@@ -4150,7 +4710,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31142537838",
       "ifsc": "SBIN0012898",
       "pan": "CVNPR5904G",
-      "aadhaar": "565458030163",
       "status": "Active"
     },
     {
@@ -4168,7 +4727,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "666210110004467",
       "ifsc": "BKID0006662",
       "pan": "hrcps8276j",
-      "aadhaar": "749376434856",
       "status": "Active"
     },
     {
@@ -4186,7 +4744,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31983391142",
       "ifsc": "SBIN0012898",
       "pan": "BOYPM0828P",
-      "aadhaar": "845109008299",
       "status": "Active"
     },
     {
@@ -4204,7 +4761,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100007884",
       "ifsc": "BARB0BHINAI",
       "pan": "BGQPB8000G",
-      "aadhaar": "526319330035",
       "status": "Active"
     },
     {
@@ -4222,7 +4778,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100001098",
       "ifsc": "BARB0BHINAI",
       "pan": "AVOPG8523F",
-      "aadhaar": "843096395572",
       "status": "Active"
     },
     {
@@ -4240,7 +4795,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100001453",
       "ifsc": "BARB0BHINAI",
       "pan": "AOFPJ5359A",
-      "aadhaar": "791974953896",
       "status": "Active"
     },
     {
@@ -4258,7 +4812,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31044437700",
       "ifsc": "SBIN0012898",
       "pan": "bmupm4050r",
-      "aadhaar": "692692156786",
       "status": "Active"
     },
     {
@@ -4276,7 +4829,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38253604402",
       "ifsc": "SBIN0012898",
       "pan": "gkwpp5745r",
-      "aadhaar": "740338238499",
       "status": "Active"
     },
     {
@@ -4294,7 +4846,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30989361414",
       "ifsc": "SBIN0012898",
       "pan": "CFKPS9302A",
-      "aadhaar": "321808746948",
       "status": "Active"
     },
     {
@@ -4312,7 +4863,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31077118628",
       "ifsc": "SBIN0012898",
       "pan": "cusps9124h",
-      "aadhaar": "339838688292",
       "status": "Active"
     },
     {
@@ -4330,7 +4880,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41029354340",
       "ifsc": "SBIN0003628",
       "pan": "EZXPM9337Q",
-      "aadhaar": "247470457922",
       "status": "Active"
     },
     {
@@ -4348,7 +4897,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42267574333",
       "ifsc": "SBIN0012898",
       "pan": "OOGPK0714B",
-      "aadhaar": "713817208835",
       "status": "Active"
     },
     {
@@ -4366,7 +4914,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51105054618",
       "ifsc": "SBIN0012898",
       "pan": "ASLPC2309P",
-      "aadhaar": "949138411086",
       "status": "Active"
     },
     {
@@ -4384,7 +4931,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37263070305",
       "ifsc": "SBIN001298",
       "pan": "ACYPO9051F",
-      "aadhaar": "272260002076",
       "status": "Active"
     },
     {
@@ -4402,7 +4948,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61134430120",
       "ifsc": "SBIN0031109",
       "pan": "AWOPP8391F",
-      "aadhaar": "202906554011",
       "status": "Active"
     },
     {
@@ -4420,7 +4965,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33058224362",
       "ifsc": "SBIN0004668",
       "pan": "DXNPK1653Q",
-      "aadhaar": "866210886082",
       "status": "Active"
     },
     {
@@ -4438,7 +4982,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30006722518",
       "ifsc": "SBIN0007828",
       "pan": "ABUPH1971J",
-      "aadhaar": "369452068409",
       "status": "Active"
     },
     {
@@ -4456,7 +4999,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "14900100003134",
       "ifsc": "BARB0NASIRA",
       "pan": "CKWPD4997F",
-      "aadhaar": "522444715889",
       "status": "Active"
     },
     {
@@ -4474,7 +5016,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34911509443",
       "ifsc": "SBIN0012898",
       "pan": "JHLPS9793B",
-      "aadhaar": "771295499090",
       "status": "Active"
     },
     {
@@ -4492,7 +5033,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61203058093",
       "ifsc": "SBIN0031102",
       "pan": "HPUPK0924R",
-      "aadhaar": "854824650479",
       "status": "Active"
     },
     {
@@ -4510,7 +5050,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30982546719",
       "ifsc": "SBIN0012898",
       "pan": "AFHPM1413P",
-      "aadhaar": "587089638219",
       "status": "Active"
     },
     {
@@ -4528,7 +5067,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61291455440",
       "ifsc": "SBIN0031739",
       "pan": "BBRPR4127E",
-      "aadhaar": "332702489497",
       "status": "Active"
     },
     {
@@ -4546,7 +5084,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32690159759",
       "ifsc": "SBIN0012898",
       "pan": "ADPPU5947G",
-      "aadhaar": "763612994074",
       "status": "Active"
     },
     {
@@ -4564,7 +5101,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61081676161",
       "ifsc": "SBIN0031109",
       "pan": "AKCPL2456R",
-      "aadhaar": "648243061142",
       "status": "Active"
     },
     {
@@ -4582,7 +5118,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "36824835722",
       "ifsc": "SBIN0012898",
       "pan": "EDOPP7772R",
-      "aadhaar": "300421800127",
       "status": "Active"
     },
     {
@@ -4600,7 +5135,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31625657014",
       "ifsc": "SBIN0012898",
       "pan": "ABWPJ5564D",
-      "aadhaar": "654963911283",
       "status": "Active"
     },
     {
@@ -4618,7 +5152,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31962841280",
       "ifsc": "SBIN0031040",
       "pan": "GLBPM5552B",
-      "aadhaar": "312809033189",
       "status": "Active"
     },
     {
@@ -4636,7 +5169,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "553202010007794",
       "ifsc": "ubin0555321",
       "pan": "DFCPM3612C",
-      "aadhaar": "355813150221",
       "status": "Active"
     },
     {
@@ -4654,7 +5186,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37049911946",
       "ifsc": "SBIN0012898",
       "pan": "CBMPM0810M",
-      "aadhaar": "528319294712",
       "status": "Active"
     },
     {
@@ -4672,7 +5203,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61106612308",
       "ifsc": "SBIN0031739",
       "pan": "AZWPB3294N",
-      "aadhaar": "312739579965",
       "status": "Active"
     },
     {
@@ -4690,7 +5220,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100018104",
       "ifsc": "BARB0BHINAI",
       "pan": "AVJPT0835A",
-      "aadhaar": "528747740570",
       "status": "Active"
     },
     {
@@ -4708,7 +5237,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38278285657",
       "ifsc": "SBIN0012898",
       "pan": "CWCPD2394E",
-      "aadhaar": "705635962388",
       "status": "Active"
     },
     {
@@ -4726,7 +5254,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31625668140",
       "ifsc": "SBIN0012898",
       "pan": "CAEPR9016H",
-      "aadhaar": "260839129546",
       "status": "Active"
     },
     {
@@ -4744,7 +5271,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34888372249",
       "ifsc": "SBIN0012898",
       "pan": "BBJPM3749K",
-      "aadhaar": "856832494074",
       "status": "Active"
     },
     {
@@ -4762,7 +5288,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31779429079",
       "ifsc": "SBIN0010080",
       "pan": "BMXPM2531G",
-      "aadhaar": "503900109607",
       "status": "Active"
     },
     {
@@ -4780,7 +5305,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61056251478",
       "ifsc": "SBIN0031065",
       "pan": "HQXPK1973A",
-      "aadhaar": "723025987620",
       "status": "Active"
     },
     {
@@ -4798,7 +5322,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61197477755",
       "ifsc": "SBIN0031636",
       "pan": "KQEPS4521J",
-      "aadhaar": "888512360290",
       "status": "Active"
     },
     {
@@ -4816,7 +5339,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "44139451358",
       "ifsc": "SBIN0032275",
       "pan": "DFJPC8428D",
-      "aadhaar": "541869761783",
       "status": "Active"
     },
     {
@@ -4834,7 +5356,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61173791023",
       "ifsc": "SBIN0031091",
       "pan": "DDLPM9410B",
-      "aadhaar": "562913338927",
       "status": "Active"
     },
     {
@@ -4852,7 +5373,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41739298795",
       "ifsc": "SBIN0032063",
       "pan": "HJZPP8235D",
-      "aadhaar": "686177754930",
       "status": "Active"
     },
     {
@@ -4870,7 +5390,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42257082105",
       "ifsc": "SBIN0011295",
       "pan": "GUAPR0297C",
-      "aadhaar": "563969116177",
       "status": "Active"
     },
     {
@@ -4888,7 +5407,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61198413246",
       "ifsc": "SBIN0032187",
       "pan": "CWLPJ2261H",
-      "aadhaar": "470526215381",
       "status": "Active"
     },
     {
@@ -4906,7 +5424,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31987137169",
       "ifsc": "SBIN0012898",
       "pan": "AHSPM4350N",
-      "aadhaar": "419308815804",
       "status": "Active"
     },
     {
@@ -4924,7 +5441,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51104696421",
       "ifsc": "SBIN0012898",
       "pan": "BIYPA7590J",
-      "aadhaar": "987573950156",
       "status": "Active"
     },
     {
@@ -4942,7 +5458,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61280498805",
       "ifsc": "SBIN0012898",
       "pan": "CPYPV2222N",
-      "aadhaar": "513283654137",
       "status": "Active"
     },
     {
@@ -4960,7 +5475,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33386030429",
       "ifsc": "SBIN0003628",
       "pan": "KDPPK8945G",
-      "aadhaar": "485354488534",
       "status": "Active"
     },
     {
@@ -4978,7 +5492,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61192574877",
       "ifsc": "SBIN0032187",
       "pan": "BRHPJ4929C",
-      "aadhaar": "914666844448",
       "status": "Active"
     },
     {
@@ -4996,7 +5509,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33135084031",
       "ifsc": "SBIN0012898",
       "pan": "EHKPK7985K",
-      "aadhaar": "286639668020",
       "status": "Active"
     },
     {
@@ -5014,7 +5526,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30831564356",
       "ifsc": "SBIN0012898",
       "pan": "ACMPB5999H",
-      "aadhaar": "689150630399",
       "status": "Active"
     },
     {
@@ -5032,7 +5543,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61051044524",
       "ifsc": "SBIN0012898",
       "pan": "ANLPA3091K",
-      "aadhaar": "548117473174",
       "status": "Active"
     },
     {
@@ -5050,7 +5560,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61141189478",
       "ifsc": "SBIN0012898",
       "pan": "CXXPR2349B",
-      "aadhaar": "711934324374",
       "status": "Active"
     },
     {
@@ -5068,7 +5577,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61283619411",
       "ifsc": "SBIN0032008",
       "pan": "COLPV4425F",
-      "aadhaar": "417425134230",
       "status": "Active"
     },
     {
@@ -5086,7 +5594,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20196648163",
       "ifsc": "SBIN0031116",
       "pan": "BUQPR4334H",
-      "aadhaar": "630737994702",
       "status": "Active"
     },
     {
@@ -5104,7 +5611,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42596920572",
       "ifsc": "SBIN0032023",
       "pan": "KIGPK4125Q",
-      "aadhaar": "462354379050",
       "status": "Active"
     },
     {
@@ -5122,7 +5628,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31027119620",
       "ifsc": "SBIN0012898",
       "pan": "AUQPP9240D",
-      "aadhaar": "995051399428",
       "status": "Active"
     },
     {
@@ -5140,7 +5645,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61220395764",
       "ifsc": "SBIN0032093",
       "pan": "BUEPJ1097H",
-      "aadhaar": "627496909620",
       "status": "Active"
     },
     {
@@ -5158,7 +5662,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30986050547",
       "ifsc": "SBIN0012898",
       "pan": "BMMPJ6030Q",
-      "aadhaar": "447088710122",
       "status": "Active"
     },
     {
@@ -5176,7 +5679,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30804836040",
       "ifsc": "SBIN0012898",
       "pan": "AEQPV6988Q",
-      "aadhaar": "397170108891",
       "status": "Active"
     },
     {
@@ -5194,7 +5696,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30761508141",
       "ifsc": "SBIN0012898",
       "pan": "ACXPP7521Q",
-      "aadhaar": "868488722976",
       "status": "Active"
     },
     {
@@ -5212,7 +5713,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30990870507",
       "ifsc": "SBIN0012898",
       "pan": "BDQPB0070H",
-      "aadhaar": "364998923318",
       "status": "Active"
     },
     {
@@ -5230,7 +5730,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32690123982",
       "ifsc": "SBIN0012898",
       "pan": "BQDPR8392A",
-      "aadhaar": "467194300286",
       "status": "Active"
     },
     {
@@ -5248,7 +5747,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31019855843",
       "ifsc": "SBIN0012898",
       "pan": "AETPD3398F",
-      "aadhaar": "291185022965",
       "status": "Active"
     },
     {
@@ -5266,7 +5764,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61141945346",
       "ifsc": "SBIN0015618",
       "pan": "BFLPV4969L",
-      "aadhaar": "407372773266",
       "status": "Active"
     },
     {
@@ -5284,7 +5781,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51076042193",
       "ifsc": "SBIN0031107",
       "pan": "BFCPK7904K",
-      "aadhaar": "209836695835",
       "status": "Active"
     },
     {
@@ -5302,7 +5798,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30845138730",
       "ifsc": "SBIN0012898",
       "pan": "BMMPJ6030Q",
-      "aadhaar": "447088710122",
       "status": "Active"
     },
     {
@@ -5320,7 +5815,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11828100005090",
       "ifsc": "BARB0BHINAI",
       "pan": "CCOPG7769L",
-      "aadhaar": "721848993952",
       "status": "Active"
     },
     {
@@ -5338,7 +5832,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11828100009374",
       "ifsc": "BARB0BHINAI",
       "pan": "AVPPL3103P",
-      "aadhaar": "487639542650",
       "status": "Active"
     },
     {
@@ -5356,7 +5849,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "10220100010583",
       "ifsc": "BARB0GULABP",
       "pan": "AOZPS8074B",
-      "aadhaar": "500089046908",
       "status": "Active"
     },
     {
@@ -5374,7 +5866,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100002615",
       "ifsc": "BARB0BHINAI",
       "pan": "ABWPJ5635M",
-      "aadhaar": "550472604233",
       "status": "Active"
     },
     {
@@ -5392,7 +5883,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38357623393",
       "ifsc": "SBIN0015618",
       "pan": "EGPPG2882B",
-      "aadhaar": "309624532210",
       "status": "Active"
     },
     {
@@ -5410,7 +5900,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51103590072",
       "ifsc": "SBIN0012898",
       "pan": "CNKPM4081K",
-      "aadhaar": "348464324622",
       "status": "Active"
     },
     {
@@ -5428,7 +5917,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61317417954",
       "ifsc": "SBIN0032187",
       "pan": "CHQPD9663P",
-      "aadhaar": "207697901966",
       "status": "Active"
     },
     {
@@ -5446,7 +5934,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100002335",
       "ifsc": "BARB0BHINAI",
       "pan": "ABWPJ5631R",
-      "aadhaar": "240850532573",
       "status": "Active"
     },
     {
@@ -5464,7 +5951,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "12880100007747",
       "ifsc": "BARB0PIPLOO",
       "pan": "AVEPY7422M",
-      "aadhaar": "830899358647",
       "status": "Active"
     },
     {
@@ -5482,7 +5968,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61167965103",
       "ifsc": "SBIN0031108",
       "pan": "CHKPC0887L",
-      "aadhaar": "923370579753",
       "status": "Active"
     },
     {
@@ -5500,7 +5985,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32613723619",
       "ifsc": "SBIN0012898",
       "pan": "APRPC1049R",
-      "aadhaar": "735260320628",
       "status": "Active"
     },
     {
@@ -5518,7 +6002,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51103841518",
       "ifsc": "SBIN0031292",
       "pan": "NOQPK5272H",
-      "aadhaar": "779657713758",
       "status": "Active"
     },
     {
@@ -5536,7 +6019,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33169921811",
       "ifsc": "SBIN0012899",
       "pan": "APAPK8651L",
-      "aadhaar": "858905867431",
       "status": "Active"
     },
     {
@@ -5554,7 +6036,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31036115716",
       "ifsc": "SBIN0032187",
       "pan": "BPDPK9818K",
-      "aadhaar": "324249567075",
       "status": "Active"
     },
     {
@@ -5572,7 +6053,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38265918212",
       "ifsc": "SBIN0011295",
       "pan": "EHUPK4295J",
-      "aadhaar": "354365883010",
       "status": "Active"
     },
     {
@@ -5590,7 +6070,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61070245988",
       "ifsc": "SBIN0031586",
       "pan": "JWSPK4143K",
-      "aadhaar": "577191189468",
       "status": "Active"
     },
     {
@@ -5608,7 +6087,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "40572150514",
       "ifsc": "SBIN0032217",
       "pan": "EUCPB8390G",
-      "aadhaar": "365307238158",
       "status": "Active"
     },
     {
@@ -5626,7 +6104,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33187714654",
       "ifsc": "SBIN0032188",
       "pan": "BEKPM3186G",
-      "aadhaar": "909350845943",
       "status": "Active"
     },
     {
@@ -5644,7 +6121,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100004297",
       "ifsc": "BARB0BIJAJM",
       "pan": "BNHPM2866D",
-      "aadhaar": "292076050040",
       "status": "Active"
     },
     {
@@ -5662,7 +6138,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "681701501020",
       "ifsc": "ICIC0006817",
       "pan": "QJNPS6731L",
-      "aadhaar": "627907299801",
       "status": "Active"
     },
     {
@@ -5680,7 +6155,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41401509416",
       "ifsc": "SBIN0032187",
       "pan": "EAXPP2572K",
-      "aadhaar": "700535717855",
       "status": "Active"
     },
     {
@@ -5698,7 +6172,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61024544553",
       "ifsc": "SBIN0031110",
       "pan": "HOBPP0653C",
-      "aadhaar": "584610876134",
       "status": "Active"
     },
     {
@@ -5716,7 +6189,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "39670943294",
       "ifsc": "SBIN0012898",
       "pan": "FZLPS7206D",
-      "aadhaar": "702502368225",
       "status": "Active"
     },
     {
@@ -5734,7 +6206,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41836686403",
       "ifsc": "SBIN0031088",
       "pan": "BDBPC6368J",
-      "aadhaar": "409311820049",
       "status": "Active"
     },
     {
@@ -5752,7 +6223,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "83068320753",
       "ifsc": "RMGB0000684",
       "pan": "AKWPL9660R",
-      "aadhaar": "580586225693",
       "status": "Active"
     },
     {
@@ -5770,7 +6240,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61123287387",
       "ifsc": "SBIN0031039",
       "pan": "EIPPM8950L",
-      "aadhaar": "713813244643",
       "status": "Active"
     },
     {
@@ -5788,7 +6257,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61140772303",
       "ifsc": "SBIN0012898",
       "pan": "LHUPS1212B",
-      "aadhaar": "388140269728",
       "status": "Active"
     },
     {
@@ -5806,7 +6274,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61117070121",
       "ifsc": "SBIN0031756",
       "pan": "EZPTPM8221F",
-      "aadhaar": "310414317749",
       "status": "Active"
     },
     {
@@ -5824,7 +6291,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100001172",
       "ifsc": "BARB0BIJAJM",
       "pan": "ABBPD9427C",
-      "aadhaar": "996187602834",
       "status": "Active"
     },
     {
@@ -5842,7 +6308,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61042105535",
       "ifsc": "SBIN0031842",
       "pan": "AWCPM1154D",
-      "aadhaar": "358831181874",
       "status": "Active"
     },
     {
@@ -5860,7 +6325,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "46530100007494",
       "ifsc": "SBIN0032089",
       "pan": "LVXPS9895E",
-      "aadhaar": "549796858888",
       "status": "Active"
     },
     {
@@ -5878,7 +6342,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61035574222",
       "ifsc": "SBIN0032089",
       "pan": "AKPPL3828E",
-      "aadhaar": "926535166469",
       "status": "Active"
     },
     {
@@ -5896,7 +6359,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30996022664",
       "ifsc": "SBIN0012898",
       "pan": "AUGPM6132P",
-      "aadhaar": "835102085543",
       "status": "Active"
     },
     {
@@ -5914,7 +6376,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "39606374539",
       "ifsc": "SBIN0031052",
       "pan": "MRTPS9069K",
-      "aadhaar": "352635796828",
       "status": "Active"
     },
     {
@@ -5932,7 +6393,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61205465405",
       "ifsc": "SBIN0031038",
       "pan": "EMAPG8854G",
-      "aadhaar": "242663791295",
       "status": "Active"
     },
     {
@@ -5950,7 +6410,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30984030215",
       "ifsc": "SBIN0012898",
       "pan": "BCTPD7744L",
-      "aadhaar": "317836095401",
       "status": "Active"
     },
     {
@@ -5968,7 +6427,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31033110288",
       "ifsc": "SBIN0012898",
       "pan": "BDBPB6922M",
-      "aadhaar": "316331008395",
       "status": "Active"
     },
     {
@@ -5986,7 +6444,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30984048019",
       "ifsc": "SBIN0012898",
       "pan": "ACYPM3052E",
-      "aadhaar": "688444881017",
       "status": "Active"
     },
     {
@@ -6004,7 +6461,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30766322297",
       "ifsc": "SBIN0012898",
       "pan": "ADFPK5964R",
-      "aadhaar": "359549812493",
       "status": "Active"
     },
     {
@@ -6022,7 +6478,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100001583",
       "ifsc": "BARB0BHINAI",
       "pan": "ACKPM5582H",
-      "aadhaar": "503325677565",
       "status": "Active"
     },
     {
@@ -6040,7 +6495,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61054579396",
       "ifsc": "SBIN0031107",
       "pan": "BFTPM2232P",
-      "aadhaar": "844297332001",
       "status": "Active"
     },
     {
@@ -6058,7 +6512,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51087117431",
       "ifsc": "SBIN0012898",
       "pan": "BJTPS0997R",
-      "aadhaar": "806811189306",
       "status": "Active"
     },
     {
@@ -6076,7 +6529,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "39940100012065",
       "ifsc": "BARB0KALWAR",
       "pan": "HPOPK8924K",
-      "aadhaar": "585393096871",
       "status": "Active"
     },
     {
@@ -6094,7 +6546,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51106909857",
       "ifsc": "SBIN0031130",
       "pan": "CMKPP6158C",
-      "aadhaar": "811027518211",
       "status": "Active"
     },
     {
@@ -6112,7 +6563,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100001196",
       "ifsc": "BARB0BHINAI",
       "pan": "BQRPS8927A",
-      "aadhaar": "359371693678",
       "status": "Active"
     },
     {
@@ -6130,7 +6580,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100014314",
       "ifsc": "BARB0BHINAI",
       "pan": "EDJPG6352M",
-      "aadhaar": "528310132796",
       "status": "Active"
     },
     {
@@ -6148,7 +6597,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100000806",
       "ifsc": "BARB0BHINAI",
       "pan": "BRUPR0429L",
-      "aadhaar": "548879929677",
       "status": "Active"
     },
     {
@@ -6166,7 +6614,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51078163921",
       "ifsc": "SBIN0031104",
       "pan": "ANZP57887B",
-      "aadhaar": "469905499880",
       "status": "Active"
     },
     {
@@ -6184,7 +6631,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "25480100041234",
       "ifsc": "BARB0DAUSAX",
       "pan": "HRJPM7936N",
-      "aadhaar": "829309690127",
       "status": "Active"
     },
     {
@@ -6202,7 +6648,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38835043137",
       "ifsc": "SBIN0012898",
       "pan": "BTBPG5441E",
-      "aadhaar": "231068973035",
       "status": "Active"
     },
     {
@@ -6220,7 +6665,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20256796464",
       "ifsc": "SBIN0012901",
       "pan": "FFHPB4969E",
-      "aadhaar": "682670687165",
       "status": "Active"
     },
     {
@@ -6238,7 +6682,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31031000378",
       "ifsc": "SBIN00122898",
       "pan": "AMSPK8846Q",
-      "aadhaar": "478773070759",
       "status": "Active"
     },
     {
@@ -6256,7 +6699,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33132957704",
       "ifsc": "SBIN00122899",
       "pan": "NOFPK8568M",
-      "aadhaar": "869117717397",
       "status": "Active"
     },
     {
@@ -6274,7 +6716,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33187110629",
       "ifsc": "SBIN00122900",
       "pan": "ATTPV1562C",
-      "aadhaar": "209471564097",
       "status": "Active"
     },
     {
@@ -6292,7 +6733,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61342623976",
       "ifsc": "SBIN0032049",
       "pan": "HJUPS1364B",
-      "aadhaar": "420211333156",
       "status": "Active"
     },
     {
@@ -6310,7 +6750,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61032406330",
       "ifsc": "SBIN0031739",
       "pan": "BBQPB8330N",
-      "aadhaar": "345927444881",
       "status": "Active"
     },
     {
@@ -6328,7 +6767,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34923387351",
       "ifsc": "SBIN00122898",
       "pan": "DAYPM0168J",
-      "aadhaar": "468635018530",
       "status": "Active"
     },
     {
@@ -6346,7 +6784,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31059703380",
       "ifsc": "SBIN00122898",
       "pan": "BLPPC1120C",
-      "aadhaar": "848079155489",
       "status": "Active"
     },
     {
@@ -6364,7 +6801,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31050876341",
       "ifsc": "SBIN00122899",
       "pan": "DLQPK0807K",
-      "aadhaar": "215496924207",
       "status": "Active"
     },
     {
@@ -6382,7 +6818,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "39485370130",
       "ifsc": "SBIN0012898",
       "pan": "MUYP99431B",
-      "aadhaar": "748901115124",
       "status": "Active"
     },
     {
@@ -6400,7 +6835,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31020914374",
       "ifsc": "SBIN0012898",
       "pan": "AEZPD9473P",
-      "aadhaar": "402702852062",
       "status": "Active"
     },
     {
@@ -6418,7 +6852,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32564168147",
       "ifsc": "SBIN0010488",
       "pan": "BAXPJ2085G",
-      "aadhaar": "265623761512",
       "status": "Active"
     },
     {
@@ -6436,7 +6869,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30934898907",
       "ifsc": "SBIN0031090",
       "pan": "DDBPM2052P",
-      "aadhaar": "452876650120",
       "status": "Active"
     },
     {
@@ -6454,7 +6886,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61142018648",
       "ifsc": "SBIN0011313",
       "pan": "BATPA7557C",
-      "aadhaar": "683899418003",
       "status": "Active"
     },
     {
@@ -6472,7 +6903,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38186755301",
       "ifsc": "SBIN0031326",
       "pan": "BRKPJ9412K",
-      "aadhaar": "800939273470",
       "status": "Active"
     },
     {
@@ -6490,7 +6920,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20451657780",
       "ifsc": "SBIN0031521",
       "pan": "EXHPP0078P",
-      "aadhaar": "418003783608",
       "status": "Active"
     },
     {
@@ -6508,7 +6937,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61033089715",
       "ifsc": "SBIN0012898",
       "pan": "CGRPS6336L",
-      "aadhaar": "647388033912",
       "status": "Active"
     },
     {
@@ -6526,7 +6954,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33396097212",
       "ifsc": "SBIN0012898",
       "pan": "AUQPD2221C",
-      "aadhaar": "823456604515",
       "status": "Active"
     },
     {
@@ -6544,7 +6971,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38186400754",
       "ifsc": "SBIN0012898",
       "pan": "EDSPS5092D",
-      "aadhaar": "835308889622",
       "status": "Active"
     },
     {
@@ -6562,7 +6988,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31038621719",
       "ifsc": "SBIN0012898",
       "pan": "ASBPR5061P",
-      "aadhaar": "471585254545",
       "status": "Active"
     },
     {
@@ -6580,7 +7005,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61148130528",
       "ifsc": "SBIN0031119",
       "pan": "BKBFC5665D",
-      "aadhaar": "802502863975",
       "status": "Active"
     },
     {
@@ -6598,7 +7022,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "65036831511",
       "ifsc": "SBIN050852",
       "pan": "KOGPH5221L",
-      "aadhaar": "575764155858",
       "status": "Active"
     },
     {
@@ -6616,7 +7039,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61173539358",
       "ifsc": "sbin0012901",
       "pan": "BHMPAS350D",
-      "aadhaar": "907623565232",
       "status": "Active"
     },
     {
@@ -6634,7 +7056,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31031250046",
       "ifsc": "SBIN0031739",
       "pan": "AEPPG3209",
-      "aadhaar": "443068378315",
       "status": "Active"
     },
     {
@@ -6652,7 +7073,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100003131",
       "ifsc": "BARBOBIJAJM",
       "pan": "AAPPJ8526K",
-      "aadhaar": "286241622299",
       "status": "Active"
     },
     {
@@ -6670,7 +7090,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61252652364",
       "ifsc": "SBIN0031099",
       "pan": "AXEPC0976A",
-      "aadhaar": "384421602345",
       "status": "Active"
     },
     {
@@ -6688,7 +7107,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "50100203180429",
       "ifsc": "HDFC0002342",
       "pan": "BQXPSS248G",
-      "aadhaar": "367527559457",
       "status": "Active"
     },
     {
@@ -6706,7 +7124,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61180182034",
       "ifsc": "SBIN0031099",
       "pan": "AMGPT9141D",
-      "aadhaar": "403823221621",
       "status": "Active"
     },
     {
@@ -6724,7 +7141,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "50100224659000",
       "ifsc": "HDFC0001312",
       "pan": "CDYPK1168E",
-      "aadhaar": "266391143110",
       "status": "Active"
     },
     {
@@ -6742,7 +7158,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61018879713",
       "ifsc": "SBIN0032187",
       "pan": "ALVPY6244R",
-      "aadhaar": "285428381578",
       "status": "Active"
     },
     {
@@ -6760,7 +7175,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61207855595",
       "ifsc": "SBIN0031851",
       "pan": "AZKPY9550G",
-      "aadhaar": "382208549906",
       "status": "Active"
     },
     {
@@ -6778,7 +7192,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42344846563",
       "ifsc": "SBIN0032187",
       "pan": "",
-      "aadhaar": "625420388693",
       "status": "Active"
     },
     {
@@ -6796,7 +7209,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "22432685291",
       "ifsc": "SBIN0031041",
       "pan": "DDFPM2016C",
-      "aadhaar": "222432685291",
       "status": "Active"
     },
     {
@@ -6814,7 +7226,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61168570420",
       "ifsc": "SBIN0031073",
       "pan": "DTSPK33813",
-      "aadhaar": "882303749152",
       "status": "Active"
     },
     {
@@ -6832,7 +7243,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100001144",
       "ifsc": "BARBOBIJAJM",
       "pan": "AGXPJ1299F",
-      "aadhaar": "993813693450",
       "status": "Active"
     },
     {
@@ -6850,7 +7260,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30992425556",
       "ifsc": "SBIN0031414",
       "pan": "AMKPS7963M",
-      "aadhaar": "517541316995",
       "status": "Active"
     },
     {
@@ -6868,7 +7277,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "1182100004564",
       "ifsc": "BARBOBIJAJM",
       "pan": "CCYPM2351L",
-      "aadhaar": "375395480195",
       "status": "Active"
     },
     {
@@ -6886,7 +7294,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61152511304",
       "ifsc": "SBIN0032187",
       "pan": "",
-      "aadhaar": "424471376137",
       "status": "Active"
     },
     {
@@ -6904,7 +7311,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51057134542",
       "ifsc": "SBIN0032187",
       "pan": "ACOPT6053G",
-      "aadhaar": "769067514562",
       "status": "Active"
     },
     {
@@ -6922,7 +7328,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34930392429",
       "ifsc": "SBIN0011295",
       "pan": "AWZPV6421F",
-      "aadhaar": "8522342300080",
       "status": "Active"
     },
     {
@@ -6940,7 +7345,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100021681",
       "ifsc": "BARBOBIJAJM",
       "pan": "DGBPG6850E",
-      "aadhaar": "660153982736",
       "status": "Active"
     },
     {
@@ -6958,7 +7362,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61084760549",
       "ifsc": "SBIN0031739",
       "pan": "ATTPC7943G",
-      "aadhaar": "",
       "status": "Active"
     },
     {
@@ -6976,7 +7379,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51036954162",
       "ifsc": "",
       "pan": "ACOPT6028K",
-      "aadhaar": "527903081699",
       "status": "Active"
     },
     {
@@ -6994,7 +7396,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "53720100007914",
       "ifsc": "BARB0GOKULP",
       "pan": "ARYPU6623L",
-      "aadhaar": "344438871059",
       "status": "Active"
     },
     {
@@ -7012,7 +7413,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31030281348",
       "ifsc": "SBIN0012898",
       "pan": "AWVPR3787J",
-      "aadhaar": "380325900780",
       "status": "Active"
     },
     {
@@ -7030,7 +7430,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30993825892",
       "ifsc": "SBIN0012898",
       "pan": "AIPPT7993Q",
-      "aadhaar": "975349343175",
       "status": "Active"
     },
     {
@@ -7048,7 +7447,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51102183557",
       "ifsc": "SBIN0031096",
       "pan": "GOOPS4023M",
-      "aadhaar": "991453481705",
       "status": "Active"
     },
     {
@@ -7066,7 +7464,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37201173937",
       "ifsc": "SBIN0031457",
       "pan": "DNZPG3169R",
-      "aadhaar": "357226837047",
       "status": "Active"
     },
     {
@@ -7084,7 +7481,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30991920991",
       "ifsc": "SBIN0012898",
       "pan": "CKVPS7967P",
-      "aadhaar": "266468897990",
       "status": "Active"
     },
     {
@@ -7102,7 +7498,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100003447",
       "ifsc": "BARB0BHINAI",
       "pan": "ABZPB6803G",
-      "aadhaar": "762263630008",
       "status": "Active"
     },
     {
@@ -7120,7 +7515,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51087584359",
       "ifsc": "SBIN0031094",
       "pan": "AHGPJ0809F",
-      "aadhaar": "485048188037",
       "status": "Active"
     },
     {
@@ -7138,7 +7532,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100001083",
       "ifsc": "BARB0BIJAJM",
       "pan": "AHIPS7535H",
-      "aadhaar": "453486502197",
       "status": "Active"
     },
     {
@@ -7156,7 +7549,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "6889000100013165",
       "ifsc": "PUNB0688900",
       "pan": "AGMPL8090P",
-      "aadhaar": "405419938687",
       "status": "Active"
     },
     {
@@ -7174,7 +7566,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61064968495",
       "ifsc": "SBIN0031756",
       "pan": "CQCPK0926R",
-      "aadhaar": "935988268598",
       "status": "Active"
     },
     {
@@ -7192,7 +7583,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31238100001291",
       "ifsc": "BARB0BIJAJM",
       "pan": "FEPPS3397J",
-      "aadhaar": "375849554938",
       "status": "Active"
     },
     {
@@ -7210,7 +7600,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33329905924",
       "ifsc": "SBIN0011295",
       "pan": "BDUPB4262K",
-      "aadhaar": "914683618237",
       "status": "Active"
     },
     {
@@ -7228,7 +7617,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32837718218",
       "ifsc": "SBIN0011295",
       "pan": "BEUPM6663L",
-      "aadhaar": "883078364587",
       "status": "Active"
     },
     {
@@ -7246,7 +7634,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31238100004806",
       "ifsc": "BARB0BIJAJM",
       "pan": "CLBPB7323M",
-      "aadhaar": "840463215150",
       "status": "Active"
     },
     {
@@ -7264,7 +7651,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61341273385",
       "ifsc": "SBIN0011303",
       "pan": "CBGQR8417R",
-      "aadhaar": "888750522900",
       "status": "Active"
     },
     {
@@ -7282,7 +7668,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31031256934",
       "ifsc": "SBIN0012898",
       "pan": "AADPO9647G",
-      "aadhaar": "459073624612",
       "status": "Active"
     },
     {
@@ -7300,7 +7685,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61202774084",
       "ifsc": "SBIN0032187",
       "pan": "BIFTV5890M",
-      "aadhaar": "572548006606",
       "status": "Active"
     },
     {
@@ -7318,7 +7702,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61157513146",
       "ifsc": "SBIN0031777",
       "pan": "DOPPK3183C",
-      "aadhaar": "963558997515",
       "status": "Active"
     },
     {
@@ -7336,7 +7719,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37372442498",
       "ifsc": "SBIN0015618",
       "pan": "AGBPL8784H",
-      "aadhaar": "617259035083",
       "status": "Active"
     },
     {
@@ -7354,7 +7736,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100002611",
       "ifsc": "BARB0BIJAJM",
       "pan": "AHIPS7821A",
-      "aadhaar": "531919212011",
       "status": "Active"
     },
     {
@@ -7372,7 +7753,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32353874390",
       "ifsc": "SBIN0003628",
       "pan": "BCDPC7850A",
-      "aadhaar": "816430167889",
       "status": "Active"
     },
     {
@@ -7390,7 +7770,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100003936",
       "ifsc": "BARB0BIJAJM",
       "pan": "ADWPJ6508M",
-      "aadhaar": "802926573519",
       "status": "Active"
     },
     {
@@ -7408,7 +7787,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61193844278",
       "ifsc": "SBIN0031107",
       "pan": "ADIPO4846R",
-      "aadhaar": "768033905011",
       "status": "Active"
     },
     {
@@ -7426,7 +7804,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31965828867",
       "ifsc": "SBIN0012901",
       "pan": "BAJPS1802C",
-      "aadhaar": "587531437782",
       "status": "Active"
     },
     {
@@ -7444,7 +7821,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "36960193934",
       "ifsc": "SBIN0031107",
       "pan": "GIRPS5524L",
-      "aadhaar": "780266552163",
       "status": "Active"
     },
     {
@@ -7453,7 +7829,7 @@ const MASTER_CBEO_DATA = {
       "gender": "L=h",
       "dob": "1969-02-21 00:00:00",
       "post": "प्रधानाचार्य",
-      "school_name": "राउमावि देवरिया (देवपुरा)",
+      "school_name": "राउमावि देवरिया ;देवपुराद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ199701002193",
       "mobile": "9414550658",
@@ -7462,7 +7838,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31433656404",
       "ifsc": "SBIN0015309",
       "pan": "AHIPS7529K",
-      "aadhaar": "8755 9329 2168",
       "status": "Active"
     },
     {
@@ -7470,8 +7845,8 @@ const MASTER_CBEO_DATA = {
       "name": "पूसालाल चमार",
       "gender": "iq#\"k",
       "dob": "1970-07-01 00:00:00",
-      "post": "व.अ.(सा.विज्ञान)",
-      "school_name": "राउमावि देवरिया (देवपुरा)",
+      "post": "व.अ.;सा.विज्ञानद्ध",
+      "school_name": "राउमावि देवरिया ;देवपुराद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ199106001546",
       "mobile": "9462442623",
@@ -7480,7 +7855,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61157831828",
       "ifsc": "SBIN0031739",
       "pan": "ABWPC7933K",
-      "aadhaar": "5878 9054 2821",
       "status": "Active"
     },
     {
@@ -7489,7 +7863,7 @@ const MASTER_CBEO_DATA = {
       "gender": "iq#\"k",
       "dob": "1972-10-26 00:00:00",
       "post": "ाा.शि.",
-      "school_name": "राउमावि देवरिया (देवपुरा)",
+      "school_name": "राउमावि देवरिया ;देवपुराद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ199701004448",
       "mobile": "9414434699",
@@ -7498,7 +7872,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "10200696049",
       "ifsc": "SBIN0000603",
       "pan": "aepps2907b",
-      "aadhaar": "8129 9951 0713",
       "status": "Active"
     },
     {
@@ -7507,7 +7880,7 @@ const MASTER_CBEO_DATA = {
       "gender": "L=h",
       "dob": "1988-08-26 00:00:00",
       "post": "अ.ले.-2",
-      "school_name": "राउमावि देवरिया (देवपुरा)",
+      "school_name": "राउमावि देवरिया ;देवपुराद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ201201043878",
       "mobile": "9468695037",
@@ -7516,7 +7889,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32583822065",
       "ifsc": "SBIN0032089",
       "pan": "arcpv4584h",
-      "aadhaar": "6959 0168 9373",
       "status": "Active"
     },
     {
@@ -7525,7 +7897,7 @@ const MASTER_CBEO_DATA = {
       "gender": "iq#\"k",
       "dob": "1969-01-01 00:00:00",
       "post": "अध्यापक",
-      "school_name": "राउमावि देवरिया (देवपुरा)",
+      "school_name": "राउमावि देवरिया ;देवपुराद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ199001006514",
       "mobile": "9929486062",
@@ -7534,7 +7906,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31021084759",
       "ifsc": "SBIN0012898",
       "pan": "abzpr2603n",
-      "aadhaar": "3328 9659 4167",
       "status": "Active"
     },
     {
@@ -7543,7 +7914,7 @@ const MASTER_CBEO_DATA = {
       "gender": "L=h",
       "dob": "1995-03-04 00:00:00",
       "post": "अध्यापक",
-      "school_name": "राउमावि देवरिया (देवपुरा)",
+      "school_name": "राउमावि देवरिया ;देवपुराद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJCT201911001759",
       "mobile": "9680955167",
@@ -7552,7 +7923,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37907691675",
       "ifsc": "SBIN0006851",
       "pan": "BEWPC6724E",
-      "aadhaar": "3914 8368 9155",
       "status": "Active"
     },
     {
@@ -7570,7 +7940,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30988945162",
       "ifsc": "SBIN0012898",
       "pan": "ABNPZ9987D",
-      "aadhaar": "5838 2074 3370",
       "status": "Active"
     },
     {
@@ -7588,7 +7957,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61032745624",
       "ifsc": "SBIN0031106",
       "pan": "ADUPL1370R",
-      "aadhaar": "6992 1503 0782",
       "status": "Active"
     },
     {
@@ -7606,7 +7974,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "444104 00003 2391",
       "ifsc": "IBKL0000444",
       "pan": "CWYPZ8736L",
-      "aadhaar": "3914 1525 7047",
       "status": "Active"
     },
     {
@@ -7624,7 +7991,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31033608169",
       "ifsc": "SBIN0012898",
       "pan": "AIHPJ0830A",
-      "aadhaar": "8358 9739 1210",
       "status": "Active"
     },
     {
@@ -7642,7 +8008,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31033607891",
       "ifsc": "SBIN0012898",
       "pan": "AUGPB2780A",
-      "aadhaar": "3937 4671 6496",
       "status": "Active"
     },
     {
@@ -7660,7 +8025,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61203282297",
       "ifsc": "SBIN0031091",
       "pan": "AYDPC8923F",
-      "aadhaar": "8795 5400 8416",
       "status": "Active"
     },
     {
@@ -7678,7 +8042,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38395747879",
       "ifsc": "SBIN0032222",
       "pan": "BDEPP6941D",
-      "aadhaar": "9838 5923 8539",
       "status": "Active"
     },
     {
@@ -7696,7 +8059,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32485276843",
       "ifsc": "SBIN0011295",
       "pan": "APBPT3397K",
-      "aadhaar": "6335 9902 3078",
       "status": "Active"
     },
     {
@@ -7714,7 +8076,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30774240608",
       "ifsc": "SBIN0012898",
       "pan": "ADQPP8751L",
-      "aadhaar": "8983 0108 5575",
       "status": "Active"
     },
     {
@@ -7732,7 +8093,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33219418904",
       "ifsc": "SBIN0003678",
       "pan": "fddps9071q",
-      "aadhaar": "2357 5886 9154",
       "status": "Active"
     },
     {
@@ -7750,7 +8110,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30611674906",
       "ifsc": "SBIN001379",
       "pan": "ANRPB4457G",
-      "aadhaar": "9284 4466 2440",
       "status": "Active"
     },
     {
@@ -7768,7 +8127,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61118796979",
       "ifsc": "SBIN0031047",
       "pan": "CSTpg3938c",
-      "aadhaar": "5795 1408 7872",
       "status": "Active"
     },
     {
@@ -7786,7 +8144,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37969611212",
       "ifsc": "SBIN0032228",
       "pan": "BSDPR6225A",
-      "aadhaar": "3610 5030 0963",
       "status": "Active"
     },
     {
@@ -7804,7 +8161,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61301601144",
       "ifsc": "SBIN0031522",
       "pan": "KMHPS4014R",
-      "aadhaar": "9451 2847 8472",
       "status": "Active"
     },
     {
@@ -7822,7 +8178,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37024221533",
       "ifsc": "SBIN0031483",
       "pan": "EHDPM5513G",
-      "aadhaar": "7277 0042 9956",
       "status": "Active"
     },
     {
@@ -7840,7 +8195,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34279807989",
       "ifsc": "SBIN0007828",
       "pan": "CLWPJ3812J",
-      "aadhaar": "4386 2819 4287",
       "status": "Active"
     },
     {
@@ -7858,7 +8212,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32891417125",
       "ifsc": "SBIN0005104",
       "pan": "DUKPK3619A",
-      "aadhaar": "7584 6448 7709",
       "status": "Active"
     },
     {
@@ -7876,7 +8229,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61181832528",
       "ifsc": "SBIN0031042",
       "pan": "FDPPD2126H",
-      "aadhaar": "8106 7075 5732",
       "status": "Active"
     },
     {
@@ -7894,7 +8246,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51110280119",
       "ifsc": "SBIN0032073",
       "pan": "BVXPC3263L",
-      "aadhaar": "3172 1813 7397",
       "status": "Active"
     },
     {
@@ -7912,7 +8263,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37117982753",
       "ifsc": "SBIN0012898",
       "pan": "BPOPC0064E",
-      "aadhaar": "9366 2799 0966",
       "status": "Active"
     },
     {
@@ -7930,7 +8280,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100022338",
       "ifsc": "BARB0BHINAI",
       "pan": "EMEPM1668C",
-      "aadhaar": "6509 5987 3091",
       "status": "Active"
     },
     {
@@ -7948,7 +8297,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38277127317",
       "ifsc": "SBIN0015618",
       "pan": "BFXPC3521B",
-      "aadhaar": "6346 0396 9581",
       "status": "Active"
     },
     {
@@ -7966,7 +8314,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51074088505",
       "ifsc": "SBIN0007828",
       "pan": "AQXPN4N64F",
-      "aadhaar": "491587254569",
       "status": "Active"
     },
     {
@@ -7984,7 +8331,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31020837738",
       "ifsc": "SBIN0012898",
       "pan": "CGRPS6121F",
-      "aadhaar": "820431507456",
       "status": "Active"
     },
     {
@@ -8002,7 +8348,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20154538806",
       "ifsc": "SBIN0009207",
       "pan": "fzzpp5037d",
-      "aadhaar": "949261961436",
       "status": "Active"
     },
     {
@@ -8020,7 +8365,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32770076112",
       "ifsc": "SBIN0012898",
       "pan": "CVCPP0029F",
-      "aadhaar": "543274061213",
       "status": "Active"
     },
     {
@@ -8038,7 +8382,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61255178772",
       "ifsc": "SBIN0031100",
       "pan": "DcNPM8888N",
-      "aadhaar": "385129828871",
       "status": "Active"
     },
     {
@@ -8056,7 +8399,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42213650387",
       "ifsc": "SBIN0012898",
       "pan": "EXPPP3524Q",
-      "aadhaar": "605852175074",
       "status": "Active"
     },
     {
@@ -8074,7 +8416,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42715488040",
       "ifsc": "SBIN0061317",
       "pan": "jafpm2481d",
-      "aadhaar": "817907177306",
       "status": "Active"
     },
     {
@@ -8092,7 +8433,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30808053940",
       "ifsc": "SBIN0011295",
       "pan": "akkpl0508j",
-      "aadhaar": "786981526289",
       "status": "Active"
     },
     {
@@ -8110,7 +8450,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31046344290",
       "ifsc": "SBIN0012898",
       "pan": "ACLPS8626D",
-      "aadhaar": "766844051166",
       "status": "Active"
     },
     {
@@ -8128,7 +8467,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30986541070",
       "ifsc": "SBIN0012899",
       "pan": "ADFPK5946H",
-      "aadhaar": "880117670270",
       "status": "Active"
     },
     {
@@ -8146,7 +8484,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61175043279",
       "ifsc": "SBIN0031108",
       "pan": "DPZPK6696R",
-      "aadhaar": "495826540456",
       "status": "Active"
     },
     {
@@ -8164,7 +8501,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61284886894",
       "ifsc": "SBIN0031108",
       "pan": "CUEPM0421K",
-      "aadhaar": "453476482875",
       "status": "Active"
     },
     {
@@ -8182,7 +8518,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "39550082681",
       "ifsc": "SBIN0012898",
       "pan": "BWSPJ3171N",
-      "aadhaar": "697523841972",
       "status": "Active"
     },
     {
@@ -8200,7 +8535,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61274735653",
       "ifsc": "SBIN0031108",
       "pan": "BEIPC8955F",
-      "aadhaar": "202473729434",
       "status": "Active"
     },
     {
@@ -8218,7 +8552,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "39705218737",
       "ifsc": "SBIN0031109",
       "pan": "FBTPB3804C",
-      "aadhaar": "994264401947",
       "status": "Active"
     },
     {
@@ -8236,7 +8569,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31653789477",
       "ifsc": "SBIN0007828",
       "pan": "AJHPH4591B",
-      "aadhaar": "939222522303",
       "status": "Active"
     },
     {
@@ -8254,7 +8586,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "40960100004557",
       "ifsc": "BARB0TALAWA",
       "pan": "FEJPM0364D",
-      "aadhaar": "299115826983",
       "status": "Active"
     },
     {
@@ -8272,7 +8603,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37954703663",
       "ifsc": "SBIN0031366",
       "pan": "EDGPP5842A",
-      "aadhaar": "334940108177",
       "status": "Active"
     },
     {
@@ -8290,7 +8620,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61017904640",
       "ifsc": "SBIN0031109",
       "pan": "HSFPK1902K",
-      "aadhaar": "247563277563",
       "status": "Active"
     },
     {
@@ -8308,7 +8637,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "36809394921",
       "ifsc": "SBIN0032187",
       "pan": "EUTPB4606L",
-      "aadhaar": "273640028024",
       "status": "Active"
     },
     {
@@ -8326,7 +8654,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "40809053069",
       "ifsc": "SBIN0012898",
       "pan": "GABPB4123E",
-      "aadhaar": "555894442835",
       "status": "Active"
     },
     {
@@ -8344,7 +8671,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61018857905",
       "ifsc": "SBIN0031565",
       "pan": "BJYPV4250R",
-      "aadhaar": "657238322599",
       "status": "Active"
     },
     {
@@ -8362,7 +8688,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61067368177",
       "ifsc": "SBIN0032461",
       "pan": "EGFPM4831J",
-      "aadhaar": "427384836343",
       "status": "Active"
     },
     {
@@ -8380,7 +8705,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33295253664",
       "ifsc": "SBIN0012898",
       "pan": "DFYPK2515E",
-      "aadhaar": "213298153048",
       "status": "Active"
     },
     {
@@ -8398,7 +8722,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61167463919",
       "ifsc": "SBIN0031109",
       "pan": "BAUPM3522L",
-      "aadhaar": "575503961502",
       "status": "Active"
     },
     {
@@ -8416,7 +8739,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32555518092",
       "ifsc": "SBIN0012989",
       "pan": "AARPO4015G",
-      "aadhaar": "649742059644",
       "status": "Active"
     },
     {
@@ -8434,7 +8756,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32553805929",
       "ifsc": "SBIN0012989",
       "pan": "BYQPM6289L",
-      "aadhaar": "827236341545",
       "status": "Active"
     },
     {
@@ -8452,7 +8773,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20230607354",
       "ifsc": "SBIN0003628",
       "pan": "JDTPK4472H",
-      "aadhaar": "394093089994",
       "status": "Active"
     },
     {
@@ -8470,7 +8790,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61136365340",
       "ifsc": "SBIN0031088",
       "pan": "BWFPJ5070F",
-      "aadhaar": "330136183600",
       "status": "Active"
     },
     {
@@ -8488,7 +8807,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "43083939691",
       "ifsc": "SBIN0012898",
       "pan": "IELPM6496F",
-      "aadhaar": "554516838779",
       "status": "Active"
     },
     {
@@ -8506,7 +8824,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37760836739",
       "ifsc": "SBIN0012822",
       "pan": "BSGPC7912J",
-      "aadhaar": "568743396541",
       "status": "Active"
     },
     {
@@ -8524,7 +8841,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61224800420",
       "ifsc": "SBIN0017390",
       "pan": "IIMPB6797P",
-      "aadhaar": "645419357687",
       "status": "Active"
     },
     {
@@ -8542,7 +8858,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61148828953",
       "ifsc": "SBIN0031729",
       "pan": "DIJPK5833H",
-      "aadhaar": "874919104720",
       "status": "Active"
     },
     {
@@ -8560,7 +8875,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61204404522",
       "ifsc": "SBIN0032160",
       "pan": "CSWPA9934M",
-      "aadhaar": "3046 0294 3508",
       "status": "Active"
     },
     {
@@ -8578,7 +8892,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "3024 108002437",
       "ifsc": "CNRB0003024",
       "pan": "PKEPS7489L",
-      "aadhaar": "5133 4704 7531",
       "status": "Active"
     },
     {
@@ -8596,7 +8909,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100000676",
       "ifsc": "BOB BIJAINAGAR",
       "pan": "AEAPS8825F",
-      "aadhaar": "279181021423",
       "status": "Active"
     },
     {
@@ -8614,7 +8926,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61174539470",
       "ifsc": "SBI DEOLIYA KALAN",
       "pan": "CDFPP9474D",
-      "aadhaar": "789647101967",
       "status": "Active"
     },
     {
@@ -8632,7 +8943,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "312301403832",
       "ifsc": "BOB BIJAINAGAR",
       "pan": "ATGPC0040B",
-      "aadhaar": "707711709628",
       "status": "Active"
     },
     {
@@ -8650,7 +8960,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38259484949",
       "ifsc": "SBI MALPURA",
       "pan": "AXMPV8128M",
-      "aadhaar": "625130536173",
       "status": "Active"
     },
     {
@@ -8668,7 +8977,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "21322107613",
       "ifsc": "RMG BAYA",
       "pan": "CBUPP9942F",
-      "aadhaar": "292263560614",
       "status": "Active"
     },
     {
@@ -8686,7 +8994,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30992446269",
       "ifsc": "SBI BHINAI",
       "pan": "AKIPB5411G",
-      "aadhaar": "238308690954",
       "status": "Active"
     },
     {
@@ -8704,7 +9011,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42301681247",
       "ifsc": "SBI BIJAINAGAR",
       "pan": "CWQPJ2997B",
-      "aadhaar": "531175033096",
       "status": "Active"
     },
     {
@@ -8722,7 +9028,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61164475688",
       "ifsc": "SBI KALOO",
       "pan": "EIMPA7253P",
-      "aadhaar": "684058224716",
       "status": "Active"
     },
     {
@@ -8740,7 +9045,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20076603069",
       "ifsc": "SBI NOHAR",
       "pan": "CIFPM3524A",
-      "aadhaar": "432015958455",
       "status": "Active"
     },
     {
@@ -8758,7 +9062,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34204061834",
       "ifsc": "SBI FATEHPUR SHEKHAWATI",
       "pan": "CPJPR3311F",
-      "aadhaar": "611672364509",
       "status": "Active"
     },
     {
@@ -8776,7 +9079,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31030282636",
       "ifsc": "SBI BHINAI",
       "pan": "AABPO9243Q",
-      "aadhaar": "624898798089",
       "status": "Active"
     },
     {
@@ -8794,7 +9096,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30184735147",
       "ifsc": "SBI BIJAINAGAR",
       "pan": "ACKPM5539N",
-      "aadhaar": "692529257542",
       "status": "Active"
     },
     {
@@ -8812,7 +9113,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42368814545",
       "ifsc": "SBI BHINAI",
       "pan": "KRWPK4738N",
-      "aadhaar": "507120747629",
       "status": "Active"
     },
     {
@@ -8830,7 +9130,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61223334345",
       "ifsc": "SBI DEOLIYA KALAN",
       "pan": "CHEPB4996F",
-      "aadhaar": "821702438144",
       "status": "Active"
     },
     {
@@ -8848,7 +9147,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "6300100004937",
       "ifsc": "BOB BARAL-2",
       "pan": "AKPPB9143A",
-      "aadhaar": "323693234230",
       "status": "Active"
     },
     {
@@ -8866,7 +9164,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61142269772",
       "ifsc": "SBI BIJAINAGAR",
       "pan": "GMUPS5596D",
-      "aadhaar": "590414288519",
       "status": "Active"
     },
     {
@@ -8884,7 +9181,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61118288741",
       "ifsc": "SBI BORAJ",
       "pan": "AWBPL6599A",
-      "aadhaar": "882416124135",
       "status": "Active"
     },
     {
@@ -8902,7 +9198,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61203278122",
       "ifsc": "SBI KHATUSHYAMJI",
       "pan": "CURPP2547Q",
-      "aadhaar": "962720865661",
       "status": "Active"
     },
     {
@@ -8920,7 +9215,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61008587937",
       "ifsc": "SBI KHARIGRAM",
       "pan": "BEEPS7547M",
-      "aadhaar": "565284930590",
       "status": "Active"
     },
     {
@@ -8938,7 +9232,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41858426969",
       "ifsc": "SBI BIJAINAGAR",
       "pan": "HLPPK0749R",
-      "aadhaar": "588497894406",
       "status": "Active"
     },
     {
@@ -8956,7 +9249,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41858314971",
       "ifsc": "SBI BIJAINAGAR",
       "pan": "EDXPB282D",
-      "aadhaar": "710913447853",
       "status": "Active"
     },
     {
@@ -8974,7 +9266,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61156362265",
       "ifsc": "SBI BIJAINAGAR",
       "pan": "AIRPB6071B",
-      "aadhaar": "643966038877",
       "status": "Active"
     },
     {
@@ -8992,7 +9283,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31033681876",
       "ifsc": "SBI BIJAINAGAR",
       "pan": "AMWPT2926Q",
-      "aadhaar": "836776848054",
       "status": "Active"
     },
     {
@@ -9010,7 +9300,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20124990270",
       "ifsc": "SBI CHOMU",
       "pan": "FFXPS1497L",
-      "aadhaar": "215531890303",
       "status": "Active"
     },
     {
@@ -9028,7 +9317,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51103324985",
       "ifsc": "SBI BIJAINAGAR",
       "pan": "AJMPR7757A",
-      "aadhaar": "208177721540",
       "status": "Active"
     },
     {
@@ -9046,7 +9334,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "35803980384",
       "ifsc": "SBI BIJAINAGAR",
       "pan": "CSQPC3802C",
-      "aadhaar": "277869596396",
       "status": "Active"
     },
     {
@@ -9064,7 +9351,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41501316613",
       "ifsc": "sbi bijainagar",
       "pan": "CQAPG4864Q",
-      "aadhaar": "219144507153",
       "status": "Active"
     },
     {
@@ -9082,7 +9368,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38030618758",
       "ifsc": "sbi kishangarh",
       "pan": "KSUPS8144F",
-      "aadhaar": "948861692298",
       "status": "Active"
     },
     {
@@ -9100,7 +9385,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31824361449",
       "ifsc": "SBI BIJAINAGAR",
       "pan": "CHGPD2100K",
-      "aadhaar": "369798437530",
       "status": "Active"
     },
     {
@@ -9118,7 +9402,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "35254143789",
       "ifsc": "SBI BEAWAR",
       "pan": "BYCPC7444P",
-      "aadhaar": "267170724133",
       "status": "Active"
     },
     {
@@ -9136,7 +9419,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61033814145",
       "ifsc": "SBI BIJAINAGAR",
       "pan": "BTDPK8310C",
-      "aadhaar": "922789347954",
       "status": "Active"
     },
     {
@@ -9154,7 +9436,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61194632716",
       "ifsc": "SBI BIJAINAGAR",
       "pan": "HMBPB8713B",
-      "aadhaar": "93710751544",
       "status": "Active"
     },
     {
@@ -9172,7 +9453,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51105055486",
       "ifsc": "SBI HURDA",
       "pan": "BACPM2075E",
-      "aadhaar": "841444092201",
       "status": "Active"
     },
     {
@@ -9190,7 +9470,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31987145807",
       "ifsc": "SBI AJMER",
       "pan": "BCPTD9705P",
-      "aadhaar": "838587104450",
       "status": "Active"
     },
     {
@@ -9208,7 +9487,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61221818158",
       "ifsc": "SBI DEOLIYA KALAN",
       "pan": "FFDPB0088G",
-      "aadhaar": "425793370620",
       "status": "Active"
     },
     {
@@ -9226,7 +9504,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33207946584",
       "ifsc": "SBI BHINAI",
       "pan": "CMNPB1539H",
-      "aadhaar": "33207946584",
       "status": "Active"
     },
     {
@@ -9244,7 +9521,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61329907057",
       "ifsc": "SBI HURDA",
       "pan": "DBHPC3474B",
-      "aadhaar": "285839720213",
       "status": "Active"
     },
     {
@@ -9262,7 +9538,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11053646698",
       "ifsc": "SBI BEAWAR",
       "pan": "AZZPS6371A",
-      "aadhaar": "522916318928",
       "status": "Active"
     },
     {
@@ -9280,7 +9555,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31034637144",
       "ifsc": "SBI BIJAINAGAR",
       "pan": "BHDPS7986Q",
-      "aadhaar": "360861626492",
       "status": "Active"
     },
     {
@@ -9298,7 +9572,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31641282973",
       "ifsc": "SBI DAUSA",
       "pan": "AXZPN1541J",
-      "aadhaar": "923660287484",
       "status": "Active"
     },
     {
@@ -9316,7 +9589,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61132443450",
       "ifsc": "SBI BIJAINAGAR",
       "pan": "BBNPK4705N",
-      "aadhaar": "796635367682",
       "status": "Active"
     },
     {
@@ -9334,7 +9606,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "35142719343",
       "ifsc": "SBI SHAHJHANPUR",
       "pan": "DVHPB2603D",
-      "aadhaar": "675011668174",
       "status": "Active"
     },
     {
@@ -9352,7 +9623,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38318326807",
       "ifsc": "SBI BANSTHALI TONK",
       "pan": "CWIPG1874Q",
-      "aadhaar": "445775744605",
       "status": "Active"
     },
     {
@@ -9370,7 +9640,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100013775",
       "ifsc": "BOB BIJAINAGAR",
       "pan": "COPPS1852F",
-      "aadhaar": "3711098488121",
       "status": "Active"
     },
     {
@@ -9388,7 +9657,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38473937408",
       "ifsc": "SBI SISIRI ROAD JAIPUR",
       "pan": "CBVPC6071P",
-      "aadhaar": "464915040616",
       "status": "Active"
     },
     {
@@ -9406,7 +9674,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20231012378",
       "ifsc": "SBI DIDWANA",
       "pan": "GOYPD5791B",
-      "aadhaar": "307483211208",
       "status": "Active"
     },
     {
@@ -9424,7 +9691,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "681501501237",
       "ifsc": "ICICI BIJAINAGAR",
       "pan": "AJVPJ7753P",
-      "aadhaar": "667512678236",
       "status": "Active"
     },
     {
@@ -9442,7 +9708,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61056619261",
       "ifsc": "SBI COLLECTRATE SRIGANGANAGAR",
       "pan": "BNGPR6099N",
-      "aadhaar": "769152761477",
       "status": "Active"
     },
     {
@@ -9460,7 +9725,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61056510149",
       "ifsc": "SBI MIRJAWALA",
       "pan": "CVRPK6306B",
-      "aadhaar": "347192495071",
       "status": "Active"
     },
     {
@@ -9478,7 +9742,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61249315390",
       "ifsc": "SBI BIJAINAGAR",
       "pan": "BUTPV4514Q",
-      "aadhaar": "597951546854",
       "status": "Active"
     },
     {
@@ -9496,7 +9759,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37828358452",
       "ifsc": "SBI MADANGANJ",
       "pan": "AMRPV0609F",
-      "aadhaar": "500549915576",
       "status": "Active"
     },
     {
@@ -9514,7 +9776,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61044345189",
       "ifsc": "SBI SHAHPURA",
       "pan": "AYRPB3266A",
-      "aadhaar": "396376859091",
       "status": "Active"
     },
     {
@@ -9532,7 +9793,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61150252962",
       "ifsc": "SBI KUHARWAS",
       "pan": "BUUPD8947G",
-      "aadhaar": "248517340265",
       "status": "Active"
     },
     {
@@ -9550,7 +9810,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32593015898",
       "ifsc": "SBI VIJAY NAGAR",
       "pan": "AYLPG8987F",
-      "aadhaar": "608196659276",
       "status": "Active"
     },
     {
@@ -9568,7 +9827,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61143147130",
       "ifsc": "SBI BONLI",
       "pan": "CVVPM2919J",
-      "aadhaar": "361334426947",
       "status": "Active"
     },
     {
@@ -9586,7 +9844,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37788236811",
       "ifsc": "SBI SAWAR",
       "pan": "BSEPN8775N",
-      "aadhaar": "325968278060",
       "status": "Active"
     },
     {
@@ -9604,7 +9861,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37747745237",
       "ifsc": "SBI DEOLIYAKALAN",
       "pan": "AGOPO3171G",
-      "aadhaar": "895392877070",
       "status": "Active"
     },
     {
@@ -9622,7 +9878,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38197196154",
       "ifsc": "SBI TODARAISINGH",
       "pan": "DZAPP0027C",
-      "aadhaar": "546511256939",
       "status": "Active"
     },
     {
@@ -9640,7 +9895,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61200249308",
       "ifsc": "SBI DEOLIYAKALAN",
       "pan": "JDEPD4970A",
-      "aadhaar": "557316021955",
       "status": "Active"
     },
     {
@@ -9658,7 +9912,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30609595584",
       "ifsc": "SBIN0007701",
       "pan": "BGGPK3769R",
-      "aadhaar": "488452355981",
       "status": "Active"
     },
     {
@@ -9676,7 +9929,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42331216285",
       "ifsc": "SBIN0031108",
       "pan": "NTTPS1518E",
-      "aadhaar": "847428902676",
       "status": "Active"
     },
     {
@@ -9694,7 +9946,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31461367758",
       "ifsc": "SBIN0010080",
       "pan": "APNPY5937N",
-      "aadhaar": "579772579637",
       "status": "Active"
     },
     {
@@ -9712,7 +9963,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38278708470",
       "ifsc": "SBIN0032427",
       "pan": "HFYPK9450Q",
-      "aadhaar": "909187433639",
       "status": "Active"
     },
     {
@@ -9730,7 +9980,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31030280468",
       "ifsc": "SBIN0012898",
       "pan": "BDMPB7803A",
-      "aadhaar": "705535426922",
       "status": "Active"
     },
     {
@@ -9748,7 +9997,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61140888455",
       "ifsc": "SBIN0032187",
       "pan": "ERSPM7180J",
-      "aadhaar": "216217041970",
       "status": "Active"
     },
     {
@@ -9766,7 +10014,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42561953214",
       "ifsc": "SBIN0031738",
       "pan": "HVMPD1121F",
-      "aadhaar": "885539477805",
       "status": "Active"
     },
     {
@@ -9784,7 +10031,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30988723670",
       "ifsc": "SBIN0032187",
       "pan": "CNMPS3476H",
-      "aadhaar": "358112072428",
       "status": "Active"
     },
     {
@@ -9802,7 +10048,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61170173938",
       "ifsc": "SBIN0032187",
       "pan": "BAOPD3634A",
-      "aadhaar": "913216947995",
       "status": "Active"
     },
     {
@@ -9820,7 +10065,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61167545372",
       "ifsc": "SBIN0031109",
       "pan": "BEDPA1296N",
-      "aadhaar": "374770127631",
       "status": "Active"
     },
     {
@@ -9838,7 +10082,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20005496366",
       "ifsc": "SBIN0000656",
       "pan": "AOZPM0585R",
-      "aadhaar": "800531612742",
       "status": "Active"
     },
     {
@@ -9856,7 +10099,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61147893480",
       "ifsc": "SBIN0031738",
       "pan": "EGAPB7199P",
-      "aadhaar": "670851331123",
       "status": "Active"
     },
     {
@@ -9874,7 +10116,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20319226407",
       "ifsc": "SBIN0012898",
       "pan": "DWTPP6064H",
-      "aadhaar": "387896325244",
       "status": "Active"
     },
     {
@@ -9892,7 +10133,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "39945250981",
       "ifsc": "SBIN0031147",
       "pan": "GVEPD6518K",
-      "aadhaar": "512839073586",
       "status": "Active"
     },
     {
@@ -9910,7 +10150,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30988725113",
       "ifsc": "SBIN0012898",
       "pan": "ABNPR0140A",
-      "aadhaar": "732638917724",
       "status": "Active"
     },
     {
@@ -9928,7 +10167,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61080340233",
       "ifsc": "SBIN0011390",
       "pan": "BGJPG8755N",
-      "aadhaar": "540533033120",
       "status": "Active"
     },
     {
@@ -9946,7 +10184,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61316474979",
       "ifsc": "SBIN0031107",
       "pan": "DYEPP7121L",
-      "aadhaar": "472022584421",
       "status": "Active"
     },
     {
@@ -9964,7 +10201,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61229913100",
       "ifsc": "SBIN0031070",
       "pan": "GPWPS2847C",
-      "aadhaar": "429761569750",
       "status": "Active"
     },
     {
@@ -9982,7 +10218,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61307625625",
       "ifsc": "SBIN0031133",
       "pan": "GVOPS4730Q",
-      "aadhaar": "365371490182",
       "status": "Active"
     },
     {
@@ -10000,7 +10235,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33329894194",
       "ifsc": "SBIN0032187",
       "pan": "FGCPS3953R",
-      "aadhaar": "716016158156",
       "status": "Active"
     },
     {
@@ -10018,7 +10252,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61161888702",
       "ifsc": "SBIN0031330",
       "pan": "FIYPB8505G",
-      "aadhaar": "949810287580",
       "status": "Active"
     },
     {
@@ -10036,7 +10269,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37080921263",
       "ifsc": "SBIN0031739",
       "pan": "KITPS5678P",
-      "aadhaar": "402065402184",
       "status": "Active"
     },
     {
@@ -10054,7 +10286,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61063449471",
       "ifsc": "SBIN0032187",
       "pan": "BIQPV9576H",
-      "aadhaar": "536974349124",
       "status": "Active"
     },
     {
@@ -10072,7 +10303,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61276769487",
       "ifsc": "SBIN0032187",
       "pan": "FSJPP9069Q",
-      "aadhaar": "722884480066",
       "status": "Active"
     },
     {
@@ -10090,7 +10320,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61094979502",
       "ifsc": "SBIN0031739",
       "pan": "CVJPM0533L",
-      "aadhaar": "452471745509",
       "status": "Active"
     },
     {
@@ -10108,7 +10337,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61187726444",
       "ifsc": "SBIN0032187",
       "pan": "GOWPP2551D",
-      "aadhaar": "976255156658",
       "status": "Active"
     },
     {
@@ -10126,7 +10354,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11346166949",
       "ifsc": "SBIN0006184",
       "pan": "BKXPP4314C",
-      "aadhaar": "341182407874",
       "status": "Active"
     },
     {
@@ -10144,7 +10371,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61033855614",
       "ifsc": "SBIN0032187",
       "pan": "AMOPG9052C",
-      "aadhaar": "591052814240",
       "status": "Active"
     },
     {
@@ -10162,7 +10388,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61080435104",
       "ifsc": "SBIN0031084",
       "pan": "DXKPM3950D",
-      "aadhaar": "322802158070",
       "status": "Active"
     },
     {
@@ -10180,7 +10405,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51037697033",
       "ifsc": "SBIN0031110",
       "pan": "ADWPS0767R",
-      "aadhaar": "631285925205",
       "status": "Active"
     },
     {
@@ -10198,7 +10422,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61062792895",
       "ifsc": "SBIN0031739",
       "pan": "CXDER0849E",
-      "aadhaar": "358244863283",
       "status": "Active"
     },
     {
@@ -10216,7 +10439,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51057145601",
       "ifsc": "SBINOO32187",
       "pan": "AJRPJ6401E",
-      "aadhaar": "394356381875",
       "status": "Active"
     },
     {
@@ -10234,7 +10456,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31020910914",
       "ifsc": "SBIN0012898",
       "pan": "AHCPJ4040L",
-      "aadhaar": "892849778963",
       "status": "Active"
     },
     {
@@ -10252,7 +10473,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31031188724",
       "ifsc": "SBINOO32187",
       "pan": "ARWPP6645D",
-      "aadhaar": "852690750098",
       "status": "Active"
     },
     {
@@ -10270,7 +10490,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30993620827",
       "ifsc": "SBIN0012898",
       "pan": "ABMPA0127B",
-      "aadhaar": "802891902257",
       "status": "Active"
     },
     {
@@ -10288,7 +10507,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32724063585",
       "ifsc": "SBIN0012898",
       "pan": "ATBPB3882H",
-      "aadhaar": "413572774506",
       "status": "Active"
     },
     {
@@ -10306,7 +10524,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51084420858",
       "ifsc": "SBINOO32187",
       "pan": "AYCPS5005M",
-      "aadhaar": "492175364025",
       "status": "Active"
     },
     {
@@ -10324,7 +10541,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61334233840",
       "ifsc": "SBINO0032304",
       "pan": "ESIPB6131H",
-      "aadhaar": "500200808670",
       "status": "Active"
     },
     {
@@ -10342,7 +10558,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "40373590154",
       "ifsc": "SBIN0031739",
       "pan": "ADQPL5001P",
-      "aadhaar": "944136969034",
       "status": "Active"
     },
     {
@@ -10360,7 +10575,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51107151326",
       "ifsc": "SBIN0031976",
       "pan": "CFWPC6262G",
-      "aadhaar": "643250958045",
       "status": "Active"
     },
     {
@@ -10378,7 +10592,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61324193331",
       "ifsc": "SBIN0032187",
       "pan": "DEQPC8879Q",
-      "aadhaar": "548857550276",
       "status": "Active"
     },
     {
@@ -10396,7 +10609,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61115632936",
       "ifsc": "SBIN0031739",
       "pan": "BCSPR4988R",
-      "aadhaar": "845663336856",
       "status": "Active"
     },
     {
@@ -10414,7 +10626,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11868100001703",
       "ifsc": "BARBOJAWAJA",
       "pan": "ECBPS9499J",
-      "aadhaar": "966042989319",
       "status": "Active"
     },
     {
@@ -10432,7 +10643,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38195862617",
       "ifsc": "SBI N0003628",
       "pan": "CHMP J3254J",
-      "aadhaar": "790025091012",
       "status": "Active"
     },
     {
@@ -10450,7 +10660,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61146004517",
       "ifsc": "SBIN0031483",
       "pan": "CODPK4767D",
-      "aadhaar": "661649073470",
       "status": "Active"
     },
     {
@@ -10468,7 +10677,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100025970",
       "ifsc": "BARB0BHIN",
       "pan": "ADGPK5393P",
-      "aadhaar": "678855360222",
       "status": "Active"
     },
     {
@@ -10486,7 +10694,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31477845752",
       "ifsc": "SBIN003628",
       "pan": "ABOPJ4504F",
-      "aadhaar": "621072934445",
       "status": "Active"
     },
     {
@@ -10504,7 +10711,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42557866202",
       "ifsc": "SBIN0031088",
       "pan": "CSPPV1818N",
-      "aadhaar": "2110 6914 1717",
       "status": "Active"
     },
     {
@@ -10522,7 +10728,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61040157552",
       "ifsc": "sbin0031110",
       "pan": "cdvps4436a",
-      "aadhaar": "806910933637",
       "status": "Active"
     },
     {
@@ -10540,7 +10745,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34078100000793",
       "ifsc": "BARB0SARWAR",
       "pan": "BLGPJ3943P",
-      "aadhaar": "7717-0966-6567",
       "status": "Active"
     },
     {
@@ -10558,7 +10762,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51050881273",
       "ifsc": "SBIN0032010",
       "pan": "Akypk3218L",
-      "aadhaar": "206932574986",
       "status": "Active"
     },
     {
@@ -10576,7 +10779,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61167923071",
       "ifsc": "SBI N0031067",
       "pan": "MOYPS 1341L",
-      "aadhaar": "855370426756",
       "status": "Active"
     },
     {
@@ -10594,7 +10796,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61166864173",
       "ifsc": "SBIN0032040",
       "pan": "DLYPK6820G",
-      "aadhaar": "666691227969",
       "status": "Active"
     },
     {
@@ -10612,7 +10813,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61202845117",
       "ifsc": "SBIN0015618",
       "pan": "JVIPS3697K",
-      "aadhaar": "751629935536",
       "status": "Active"
     },
     {
@@ -10630,7 +10830,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61166083326",
       "ifsc": "SBIN0003628",
       "pan": "KSXPS6965K",
-      "aadhaar": "861631308636",
       "status": "Active"
     },
     {
@@ -10648,7 +10847,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37760961545",
       "ifsc": "SBIN0015618",
       "pan": "BUVPC7913C",
-      "aadhaar": "295394496551",
       "status": "Active"
     },
     {
@@ -10666,7 +10864,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11101960205",
       "ifsc": "SBIN0003628",
       "pan": "BEUPJ3005D",
-      "aadhaar": "260958372357",
       "status": "Active"
     },
     {
@@ -10684,7 +10881,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30986556734",
       "ifsc": "SBIN0031108",
       "pan": "ACKPB7467J",
-      "aadhaar": "769494577698",
       "status": "Active"
     },
     {
@@ -10702,7 +10898,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61214624762",
       "ifsc": "SBIN0032067",
       "pan": "FMSPM0561H",
-      "aadhaar": "846464088038",
       "status": "Active"
     },
     {
@@ -10720,7 +10915,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31037748501",
       "ifsc": "SBIN0012898",
       "pan": "ADHPK8040N",
-      "aadhaar": "819566103265",
       "status": "Active"
     },
     {
@@ -10738,7 +10932,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61079977231",
       "ifsc": "SBIN0031091",
       "pan": "JCUPS6638R",
-      "aadhaar": "740496656759",
       "status": "Active"
     },
     {
@@ -10756,7 +10949,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20251831097",
       "ifsc": "SBIN0003628",
       "pan": "DQFPM5201M",
-      "aadhaar": "963526570927",
       "status": "Active"
     },
     {
@@ -10774,7 +10966,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32635403693",
       "ifsc": "SBIN0012898",
       "pan": "CAAPB7401A",
-      "aadhaar": "434379492328",
       "status": "Active"
     },
     {
@@ -10792,7 +10983,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61252466956",
       "ifsc": "SBIN0031139",
       "pan": "BESPV4104F",
-      "aadhaar": "601364767935",
       "status": "Active"
     },
     {
@@ -10810,7 +11000,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61175043847",
       "ifsc": "SBIN0031108",
       "pan": "CDJPP0851J",
-      "aadhaar": "818095635299",
       "status": "Active"
     },
     {
@@ -10828,7 +11017,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "13890100012786",
       "ifsc": "BARB0TORDIX",
       "pan": "BTNPJ3427K",
-      "aadhaar": "656818483455",
       "status": "Active"
     },
     {
@@ -10846,7 +11034,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61081835963",
       "ifsc": "SBIN0031091",
       "pan": "BZSPJ4594C",
-      "aadhaar": "814367704999",
       "status": "Active"
     },
     {
@@ -10864,7 +11051,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61142548291",
       "ifsc": "Sbin0031088",
       "pan": "HPIPK5716R",
-      "aadhaar": "299032198665",
       "status": "Active"
     },
     {
@@ -10882,7 +11068,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61141057338",
       "ifsc": "SBIN0031977",
       "pan": "BWVPN2725B",
-      "aadhaar": "409225057608",
       "status": "Active"
     },
     {
@@ -10900,7 +11085,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31033941337",
       "ifsc": "SBIN0003688",
       "pan": "AMHPS3901M",
-      "aadhaar": "805385769962",
       "status": "Active"
     },
     {
@@ -10918,7 +11102,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61073982044",
       "ifsc": "SBIN0031108",
       "pan": "DHJPS4882M",
-      "aadhaar": "493603222540",
       "status": "Active"
     },
     {
@@ -10936,7 +11119,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30065343698",
       "ifsc": "SBIN0009207",
       "pan": "AKJPS4868H",
-      "aadhaar": "673330573093'",
       "status": "Active"
     },
     {
@@ -10954,7 +11136,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "1182010000849",
       "ifsc": "BARB0BHINAI",
       "pan": "ACNPG4674K",
-      "aadhaar": "425978793359'",
       "status": "Active"
     },
     {
@@ -10972,7 +11153,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20319225867",
       "ifsc": "SBIN0012898",
       "pan": "DXXPS2923C",
-      "aadhaar": "415535055392'",
       "status": "Active"
     },
     {
@@ -10990,7 +11170,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51059302051",
       "ifsc": "SBIN0031840",
       "pan": "BBVPM1033N",
-      "aadhaar": "407637718022'",
       "status": "Active"
     },
     {
@@ -11008,7 +11187,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "50100241222371",
       "ifsc": "HDFC0002342",
       "pan": "AVOPJ0815B",
-      "aadhaar": "702276606850'",
       "status": "Active"
     },
     {
@@ -11026,7 +11204,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31030283323",
       "ifsc": "SBIN0012898",
       "pan": "AOZPS0375M",
-      "aadhaar": "757712354922'",
       "status": "Active"
     },
     {
@@ -11044,7 +11221,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61095825245",
       "ifsc": "SBIN0031107",
       "pan": "AUXPJ5110D",
-      "aadhaar": "271270690363'",
       "status": "Active"
     },
     {
@@ -11062,7 +11238,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42562514516",
       "ifsc": "SBIN0031091",
       "pan": "BTHPJ5406J",
-      "aadhaar": "633009023896'",
       "status": "Active"
     },
     {
@@ -11080,7 +11255,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61196494046",
       "ifsc": "SBIN0031047",
       "pan": "RVDPS3567M",
-      "aadhaar": "250984639883'",
       "status": "Active"
     },
     {
@@ -11098,7 +11272,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100019053",
       "ifsc": "BARB0BHINAI",
       "pan": "AVRPK8062G",
-      "aadhaar": "788335112319'",
       "status": "Active"
     },
     {
@@ -11116,7 +11289,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51100095547",
       "ifsc": "SBIN0031104",
       "pan": "ATRPK6394",
-      "aadhaar": "385796219381",
       "status": "Active"
     },
     {
@@ -11134,7 +11306,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31020904241",
       "ifsc": "SBIN0012898",
       "pan": "AFYPS1359F",
-      "aadhaar": "811402538157'",
       "status": "Active"
     },
     {
@@ -11152,7 +11323,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "06300100002400",
       "ifsc": "BARB0BIJAINAGAR",
       "pan": "ADFPK6000L",
-      "aadhaar": "913613044167'",
       "status": "Active"
     },
     {
@@ -11170,7 +11340,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31035267748",
       "ifsc": "SBIN0012898",
       "pan": "ADAPA3810B",
-      "aadhaar": "764147228382'",
       "status": "Active"
     },
     {
@@ -11188,7 +11357,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30991920243",
       "ifsc": "SBIN0012898",
       "pan": "AGAPS8750K",
-      "aadhaar": "867759914398'",
       "status": "Active"
     },
     {
@@ -11206,7 +11374,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30992533821",
       "ifsc": "SBIN0012898",
       "pan": "BPGPS2278E",
-      "aadhaar": "924681726991'",
       "status": "Active"
     },
     {
@@ -11224,7 +11391,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51036961941",
       "ifsc": "SBIN0012898",
       "pan": "AFVPJ2520D",
-      "aadhaar": "999045631491",
       "status": "Active"
     },
     {
@@ -11242,7 +11408,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30997101885",
       "ifsc": "SBIN0012898",
       "pan": "ACXPP7604C",
-      "aadhaar": "555415227314'",
       "status": "Active"
     },
     {
@@ -11260,7 +11425,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34037225012",
       "ifsc": "SBIN0007828",
       "pan": "FUDPS7453H",
-      "aadhaar": "477953209677'",
       "status": "Active"
     },
     {
@@ -11278,7 +11442,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100017554",
       "ifsc": "BARB0BHINAI",
       "pan": "ESSPK9731E",
-      "aadhaar": "",
       "status": "Active"
     },
     {
@@ -11296,7 +11459,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100004977",
       "ifsc": "BARB0BHINAI",
       "pan": "BSAPG9468H",
-      "aadhaar": "",
       "status": "Active"
     },
     {
@@ -11314,7 +11476,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31469268002",
       "ifsc": "SBIN0012898",
       "pan": "ADUPP8588M",
-      "aadhaar": "9374 3731 6713",
       "status": "Active"
     },
     {
@@ -11332,7 +11493,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31005696716",
       "ifsc": "SBIN0011295",
       "pan": "AHIPS7371P",
-      "aadhaar": "9117 8678 1541",
       "status": "Active"
     },
     {
@@ -11350,7 +11510,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32598238457",
       "ifsc": "SBIN0012898",
       "pan": "AIVPY3906A",
-      "aadhaar": "6930 3060 2537",
       "status": "Active"
     },
     {
@@ -11368,7 +11527,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32645832621",
       "ifsc": "SBIN0012898",
       "pan": "ABFPI9041M",
-      "aadhaar": "5111 7647 2777",
       "status": "Active"
     },
     {
@@ -11386,7 +11544,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33652719790",
       "ifsc": "SBIN0002397",
       "pan": "DXOPR4291A",
-      "aadhaar": "6571 2040 9579",
       "status": "Active"
     },
     {
@@ -11404,7 +11561,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33157034628",
       "ifsc": "SBIN0011295",
       "pan": "GCYPD4914A",
-      "aadhaar": "3447 4829 4190",
       "status": "Active"
     },
     {
@@ -11422,7 +11578,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42283489200",
       "ifsc": "SBIN0011400",
       "pan": "NZHPK8521H",
-      "aadhaar": "6814 2856 3034",
       "status": "Active"
     },
     {
@@ -11440,7 +11595,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "39740037701",
       "ifsc": "SBIN0031041",
       "pan": "AXCPT9042J",
-      "aadhaar": "383054007457",
       "status": "Active"
     },
     {
@@ -11458,7 +11612,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31030859579",
       "ifsc": "SBIN0011295",
       "pan": "ADHPK7899M",
-      "aadhaar": "415004868220",
       "status": "Active"
     },
     {
@@ -11476,7 +11629,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30982205939",
       "ifsc": "SBIN0012898",
       "pan": "AFAPG2847Q",
-      "aadhaar": "677465916105",
       "status": "Active"
     },
     {
@@ -11494,7 +11646,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20162307608",
       "ifsc": "SBIN0003628",
       "pan": "AIHPV4528R",
-      "aadhaar": "89018257657",
       "status": "Active"
     },
     {
@@ -11512,7 +11663,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61228170232",
       "ifsc": "SBIN0032223",
       "pan": "AMBPK1711G",
-      "aadhaar": "693332923116",
       "status": "Active"
     },
     {
@@ -11530,7 +11680,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61118256004",
       "ifsc": "SBIN0031564",
       "pan": "DZXPM9687Q",
-      "aadhaar": "313082586118",
       "status": "Active"
     },
     {
@@ -11548,7 +11697,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32538953295",
       "ifsc": "SBIN0032001",
       "pan": "BUGPC0872D",
-      "aadhaar": "967800857561",
       "status": "Active"
     },
     {
@@ -11566,7 +11714,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "40055168075",
       "ifsc": "SBIN0012898",
       "pan": "JYZPS0735L",
-      "aadhaar": "821142847215",
       "status": "Active"
     },
     {
@@ -11584,7 +11731,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31152072482",
       "ifsc": "SBIN0012898",
       "pan": "BSOPG6399B",
-      "aadhaar": "900610535522",
       "status": "Active"
     },
     {
@@ -11602,7 +11748,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "39453733411",
       "ifsc": "SBIN0012898",
       "pan": "BCYPC9884M",
-      "aadhaar": "473762034662",
       "status": "Active"
     },
     {
@@ -11620,7 +11765,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "14900100008004",
       "ifsc": "BARBONASIRA",
       "pan": "ANNPG0650Q",
-      "aadhaar": "796834875029",
       "status": "Active"
     },
     {
@@ -11628,7 +11772,7 @@ const MASTER_CBEO_DATA = {
       "name": "कैलाश चन्द्र भाम्भी",
       "gender": "iq#\"k",
       "dob": "1974-01-07 00:00:00",
-      "post": "çèkkukè;kid",
+      "post": "प्रधाानाधयापक",
       "school_name": "रा.उ.प्रा.वि.प्रतापपुरा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ199701017342",
@@ -11638,7 +11782,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31020925455",
       "ifsc": "SBIN0012898",
       "pan": "AEPLB1447H",
-      "aadhaar": "542304612773",
       "status": "Active"
     },
     {
@@ -11656,7 +11799,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31056004283",
       "ifsc": "SBIN0012898",
       "pan": "BASPB1894E",
-      "aadhaar": "61910442708",
       "status": "Active"
     },
     {
@@ -11674,7 +11816,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33580100006474",
       "ifsc": "BARB0MERTAC",
       "pan": "AKFPB1768B",
-      "aadhaar": "855807308237",
       "status": "Active"
     },
     {
@@ -11692,7 +11833,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "40583478359",
       "ifsc": "SBIN0012898",
       "pan": "CKOPJ3731K",
-      "aadhaar": "866127811612",
       "status": "Active"
     },
     {
@@ -11710,7 +11850,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34986842035",
       "ifsc": "SBIN0012898",
       "pan": "CIEPK2789N",
-      "aadhaar": "757131245637",
       "status": "Active"
     },
     {
@@ -11728,7 +11867,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "747510110000702",
       "ifsc": "BKID0007475",
       "pan": "CKOPR8663Q",
-      "aadhaar": "712509390080",
       "status": "Active"
     },
     {
@@ -11746,7 +11884,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61118169653",
       "ifsc": "SBIN0012898",
       "pan": "ESUPM7518D",
-      "aadhaar": "278859235452",
       "status": "Active"
     },
     {
@@ -11764,7 +11901,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "46710100003186",
       "ifsc": "BARB0BRGBXX",
       "pan": "CWNPJ4443B",
-      "aadhaar": "358207892990",
       "status": "Active"
     },
     {
@@ -11782,7 +11918,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38147677756",
       "ifsc": "SBIN0006704",
       "pan": "LLEPS0621K",
-      "aadhaar": "829771454672",
       "status": "Active"
     },
     {
@@ -11800,7 +11935,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51027126901",
       "ifsc": "SBIN0015309",
       "pan": "AEWPP5543F",
-      "aadhaar": "940988770909",
       "status": "Active"
     },
     {
@@ -11818,7 +11952,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "O6620100013941",
       "ifsc": "BARB0ADARAJ",
       "pan": "AOCPB6436K",
-      "aadhaar": "857194930022",
       "status": "Active"
     },
     {
@@ -11836,7 +11969,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30985325753",
       "ifsc": "SBIN0012898",
       "pan": "ABCPV4167C",
-      "aadhaar": "989037677505",
       "status": "Active"
     },
     {
@@ -11854,7 +11986,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61043397570",
       "ifsc": "SBIn0031756",
       "pan": "BIOPM8504L",
-      "aadhaar": "337203247669",
       "status": "Active"
     },
     {
@@ -11872,7 +12003,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41234971540",
       "ifsc": "SBIN0031851",
       "pan": "PGXPS7235H",
-      "aadhaar": "241677365869",
       "status": "Active"
     },
     {
@@ -11890,7 +12020,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30997976063",
       "ifsc": "SBIN0012898",
       "pan": "APVPM2714B",
-      "aadhaar": "443150908375",
       "status": "Active"
     },
     {
@@ -11908,7 +12037,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51047829025",
       "ifsc": "SBN0007828",
       "pan": "AMCPB3185D",
-      "aadhaar": "314559028688",
       "status": "Active"
     },
     {
@@ -11926,7 +12054,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31000115965",
       "ifsc": "SBIN0012898",
       "pan": "AASPR8888F",
-      "aadhaar": "303521326848",
       "status": "Active"
     },
     {
@@ -11944,7 +12071,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30766299397",
       "ifsc": "SBIN0012898",
       "pan": "ADFPK5957Q",
-      "aadhaar": "485349961135",
       "status": "Active"
     },
     {
@@ -11962,7 +12088,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41348150412",
       "ifsc": "SBIN0031976",
       "pan": "OWHPS6913M",
-      "aadhaar": "816668345129",
       "status": "Active"
     },
     {
@@ -11980,7 +12105,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11860100028900",
       "ifsc": "BARB0JAWAJA",
       "pan": "BWFPT0747R",
-      "aadhaar": "475042268188",
       "status": "Active"
     },
     {
@@ -11998,7 +12122,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100004714",
       "ifsc": "BARB0BIJAJM",
       "pan": "CKOPD6337F",
-      "aadhaar": "320824618663",
       "status": "Active"
     },
     {
@@ -12016,7 +12139,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51104293885",
       "ifsc": "SBIN0032089",
       "pan": "BDWPP9822R",
-      "aadhaar": "586273736869",
       "status": "Active"
     },
     {
@@ -12034,7 +12156,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51035894952",
       "ifsc": "SBIN0012898",
       "pan": "EAEPS7715C",
-      "aadhaar": "988397499812",
       "status": "Active"
     },
     {
@@ -12052,7 +12173,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20319406728",
       "ifsc": "SBIN0011313",
       "pan": "COEPB4314L",
-      "aadhaar": "494525261634",
       "status": "Active"
     },
     {
@@ -12070,7 +12190,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61291627910",
       "ifsc": "SBIN0012898",
       "pan": "CAMPS6997L",
-      "aadhaar": "377404984048",
       "status": "Active"
     },
     {
@@ -12088,7 +12207,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "36959268496",
       "ifsc": "SBIN0012098",
       "pan": "EDYPM0108J",
-      "aadhaar": "207257248408",
       "status": "Active"
     },
     {
@@ -12106,7 +12224,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61236987301",
       "ifsc": "SBIN0031088",
       "pan": "DWJPM4656J",
-      "aadhaar": "768943546386",
       "status": "Active"
     },
     {
@@ -12124,7 +12241,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42318361965",
       "ifsc": "SBIN0012898",
       "pan": "CLZPC4546H",
-      "aadhaar": "621381408561",
       "status": "Active"
     },
     {
@@ -12142,7 +12258,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42300472222",
       "ifsc": "SBIN0050852",
       "pan": "FKLPB2635E",
-      "aadhaar": "835593219504",
       "status": "Active"
     },
     {
@@ -12160,7 +12275,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61104242520",
       "ifsc": "SBIN0031924",
       "pan": "ESZPM9459J",
-      "aadhaar": "425968770775",
       "status": "Active"
     },
     {
@@ -12178,7 +12292,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41960448308",
       "ifsc": "SBIN0032063",
       "pan": "FGzPM6945L",
-      "aadhaar": "694665296631",
       "status": "Active"
     },
     {
@@ -12196,7 +12309,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61219045463",
       "ifsc": "SBIN0032063",
       "pan": "HIEPM5047L",
-      "aadhaar": "236567650326",
       "status": "Active"
     },
     {
@@ -12214,7 +12326,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "35977246569",
       "ifsc": "SBIN0060263",
       "pan": "HSAPP7127N",
-      "aadhaar": "573017291984",
       "status": "Active"
     },
     {
@@ -12232,7 +12343,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34480626549",
       "ifsc": "SBIN0003628",
       "pan": "BEKPG959579P",
-      "aadhaar": "420951354366",
       "status": "Active"
     },
     {
@@ -12250,7 +12360,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42263290209",
       "ifsc": "SBIN0012898",
       "pan": "GYFPM4992G",
-      "aadhaar": "807616010218",
       "status": "Active"
     },
     {
@@ -12268,7 +12377,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32567212470",
       "ifsc": "SBIN0012898",
       "pan": "AWVPK1191P",
-      "aadhaar": "335149164056",
       "status": "Active"
     },
     {
@@ -12286,7 +12394,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37335865803",
       "ifsc": "SBIN0031330",
       "pan": "AMTPM0648R",
-      "aadhaar": "612505926041",
       "status": "Active"
     },
     {
@@ -12304,7 +12411,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41035537993",
       "ifsc": "SBIN0012898",
       "pan": "AIGPF7207E",
-      "aadhaar": "290914219123",
       "status": "Active"
     },
     {
@@ -12322,7 +12428,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61177113156",
       "ifsc": "SBIN0031109",
       "pan": "ACKPU0989N",
-      "aadhaar": "229807603065",
       "status": "Active"
     },
     {
@@ -12340,7 +12445,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100013595",
       "ifsc": "BARB0BHINAI",
       "pan": "ACEPG9356R",
-      "aadhaar": "697718707596",
       "status": "Active"
     },
     {
@@ -12358,7 +12462,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37870123631",
       "ifsc": "SBIN0031108",
       "pan": "CDTPD9630H",
-      "aadhaar": "895213592791",
       "status": "Active"
     },
     {
@@ -12376,7 +12479,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32575489533",
       "ifsc": "SBIN0032093",
       "pan": "BYGPM7952L",
-      "aadhaar": "876901353435",
       "status": "Active"
     },
     {
@@ -12394,7 +12496,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37704003770",
       "ifsc": "SBIN0015618",
       "pan": "HGEPS8931R",
-      "aadhaar": "715651974826",
       "status": "Active"
     },
     {
@@ -12412,7 +12513,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "7590100008946",
       "ifsc": "BARB0KEKRIX",
       "pan": "ABIPJ1297K",
-      "aadhaar": "935461855266",
       "status": "Active"
     },
     {
@@ -12430,7 +12530,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61148072097",
       "ifsc": "SBIN0031110",
       "pan": "ACBPG6671N",
-      "aadhaar": "591328662622",
       "status": "Active"
     },
     {
@@ -12448,7 +12547,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100007904",
       "ifsc": "BARB0KEKRIX",
       "pan": "AVZPB6229L",
-      "aadhaar": "993843391341",
       "status": "Active"
     },
     {
@@ -12466,7 +12564,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100004313",
       "ifsc": "BARB0BIJAJM",
       "pan": "AIGPT1686H",
-      "aadhaar": "595494687980",
       "status": "Active"
     },
     {
@@ -12484,7 +12581,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42043051135",
       "ifsc": "SBIN0032063",
       "pan": "HVWPP2317B",
-      "aadhaar": "644747747811",
       "status": "Active"
     },
     {
@@ -12502,7 +12598,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "48000100013994",
       "ifsc": "BARB0PHOOLI",
       "pan": "HNPPB4861R",
-      "aadhaar": "962494710190",
       "status": "Active"
     },
     {
@@ -12520,7 +12615,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11101960261",
       "ifsc": "SBIN0003628",
       "pan": "AIKPJ7643L",
-      "aadhaar": "679517162122",
       "status": "Active"
     },
     {
@@ -12538,7 +12632,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38485336210",
       "ifsc": "SBIN0031108",
       "pan": "BSAPM2735H",
-      "aadhaar": "716822131398",
       "status": "Active"
     },
     {
@@ -12556,7 +12649,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "684801501389",
       "ifsc": "ICIC00006848",
       "pan": "AEMPT2913D",
-      "aadhaar": "561484483116",
       "status": "Active"
     },
     {
@@ -12574,7 +12666,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33044801802",
       "ifsc": "SBIN0007701",
       "pan": "IODPK6310G",
-      "aadhaar": "324199055461",
       "status": "Active"
     },
     {
@@ -12592,7 +12683,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37754814486",
       "ifsc": "SBIN0003628",
       "pan": "IKBPS4424R",
-      "aadhaar": "848029935378",
       "status": "Active"
     },
     {
@@ -12610,7 +12700,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100011793",
       "ifsc": "BARB0BIJAJM",
       "pan": "AVYPG0930C",
-      "aadhaar": "826019601348",
       "status": "Active"
     },
     {
@@ -12628,7 +12717,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32282785396",
       "ifsc": "SBIN0000618",
       "pan": "NIBPS2075B",
-      "aadhaar": "836355016238",
       "status": "Active"
     },
     {
@@ -12646,7 +12734,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51043808009",
       "ifsc": "SBIN0031739",
       "pan": "BGVPS9806B",
-      "aadhaar": "743606813139",
       "status": "Active"
     },
     {
@@ -12664,7 +12751,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61095357569",
       "ifsc": "SBIN0031088",
       "pan": "AWFPA7522E",
-      "aadhaar": "586755468516",
       "status": "Active"
     },
     {
@@ -12682,7 +12768,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51035898027",
       "ifsc": "SBIN0031095",
       "pan": "AJSPR6863M",
-      "aadhaar": "471730610610",
       "status": "Active"
     },
     {
@@ -12700,7 +12785,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "39598234304",
       "ifsc": "SBIN0006827",
       "pan": "AWMPD5164C",
-      "aadhaar": "543011789837",
       "status": "Active"
     },
     {
@@ -12718,7 +12802,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "7590100007215",
       "ifsc": "BARB0KEKRIX",
       "pan": "AGBPP7760K",
-      "aadhaar": "816647759587",
       "status": "Active"
     },
     {
@@ -12736,7 +12819,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "7590100008273",
       "ifsc": "BARB0KEKRIX",
       "pan": "AFVPS9279K",
-      "aadhaar": "365401458890",
       "status": "Active"
     },
     {
@@ -12754,7 +12836,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61031352533",
       "ifsc": "SBIN0031108",
       "pan": "ACKPM5563C",
-      "aadhaar": "902468308427",
       "status": "Active"
     },
     {
@@ -12772,7 +12853,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41034249555",
       "ifsc": "SBIN0031108",
       "pan": "CJSPJ2578P",
-      "aadhaar": "719400770257",
       "status": "Active"
     },
     {
@@ -12790,7 +12870,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31791702521",
       "ifsc": "SBIN0007711",
       "pan": "DYGPk5486R",
-      "aadhaar": "589363608766",
       "status": "Active"
     },
     {
@@ -12808,7 +12887,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "1400100013606",
       "ifsc": "BARB0CHITTO",
       "pan": "BNOPC3283P",
-      "aadhaar": "291597851716",
       "status": "Active"
     },
     {
@@ -12826,7 +12904,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30995285525",
       "ifsc": "SBIN0012898",
       "pan": "AMIPS0050Q",
-      "aadhaar": "760631801456",
       "status": "Active"
     },
     {
@@ -12844,7 +12921,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61043509660",
       "ifsc": "SBIN0012898",
       "pan": "AFTPL4567R",
-      "aadhaar": "233461061653",
       "status": "Active"
     },
     {
@@ -12862,7 +12938,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "7747000100042010",
       "ifsc": "PUNB0774700",
       "pan": "FLCPS6649B",
-      "aadhaar": "862678073284",
       "status": "Active"
     },
     {
@@ -12880,7 +12955,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30016660014",
       "ifsc": "SBIN0000603",
       "pan": "ANXPS1209D",
-      "aadhaar": "240025046192",
       "status": "Active"
     },
     {
@@ -12898,7 +12972,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30348147571",
       "ifsc": "SBIN0010488",
       "pan": "AGSPC1334P",
-      "aadhaar": "957216938307",
       "status": "Active"
     },
     {
@@ -12916,7 +12989,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61322849137",
       "ifsc": "SBIN0032008",
       "pan": "GICPM0273B",
-      "aadhaar": "373553087732",
       "status": "Active"
     },
     {
@@ -12934,7 +13006,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51051292630",
       "ifsc": "SBIN0031108",
       "pan": "ACBPG6929M",
-      "aadhaar": "927189054884",
       "status": "Active"
     },
     {
@@ -12952,7 +13023,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30992435224",
       "ifsc": "SBIN0012898",
       "pan": "ADTPL7788A",
-      "aadhaar": "564578194836",
       "status": "Active"
     },
     {
@@ -12970,7 +13040,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61228669402",
       "ifsc": "SBIN0031110",
       "pan": "HCFPK0094A",
-      "aadhaar": "849826563356",
       "status": "Active"
     },
     {
@@ -12988,7 +13057,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42263179927",
       "ifsc": "SBIN0012898",
       "pan": "IGGPS5670Q",
-      "aadhaar": "475898306159",
       "status": "Active"
     },
     {
@@ -13006,7 +13074,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30766642285",
       "ifsc": "SBIN0012898",
       "pan": "ALGPS6922A",
-      "aadhaar": "388521159881",
       "status": "Active"
     },
     {
@@ -13024,7 +13091,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51074070868",
       "ifsc": "SBIN0031109",
       "pan": "AOVPC0634F",
-      "aadhaar": "463282618270",
       "status": "Active"
     },
     {
@@ -13042,7 +13108,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "40300100002284",
       "ifsc": "BARB0MAKHUP",
       "pan": "CIDPR8874E",
-      "aadhaar": "974297778652",
       "status": "Active"
     },
     {
@@ -13060,7 +13125,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "21671046581",
       "ifsc": "RMGB001671",
       "pan": "FUMPP8307Q",
-      "aadhaar": "811553035398",
       "status": "Active"
     },
     {
@@ -13078,7 +13142,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "668801700031",
       "ifsc": "ICIC0006810",
       "pan": "DAMPP0444Q",
-      "aadhaar": "741151156228",
       "status": "Active"
     },
     {
@@ -13096,7 +13159,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "681001412988",
       "ifsc": "ICIC0006810",
       "pan": "AQBPC1064F",
-      "aadhaar": "437641134194",
       "status": "Active"
     },
     {
@@ -13114,7 +13176,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "911010046570574",
       "ifsc": "UTIB0000031",
       "pan": "BDMPC0354D",
-      "aadhaar": "532334495237",
       "status": "Active"
     },
     {
@@ -13132,7 +13193,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38405075078",
       "ifsc": "SBIN0007828",
       "pan": "BRLPJ1463P",
-      "aadhaar": "933017584790",
       "status": "Active"
     },
     {
@@ -13150,7 +13210,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61008119232",
       "ifsc": "SBIN0031588",
       "pan": "AJFPT7543P",
-      "aadhaar": "764394427752",
       "status": "Active"
     },
     {
@@ -13168,7 +13227,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38268600194",
       "ifsc": "SBIN0008899",
       "pan": "AXCPY0018M",
-      "aadhaar": "973145024513",
       "status": "Active"
     },
     {
@@ -13186,7 +13244,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42323074532",
       "ifsc": "SBIN0032175",
       "pan": "RUTPS7382K",
-      "aadhaar": "486383038283",
       "status": "Active"
     },
     {
@@ -13204,7 +13261,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61009502724",
       "ifsc": "SBIN0012898",
       "pan": "BEUPK4524G",
-      "aadhaar": "804041965521",
       "status": "Active"
     },
     {
@@ -13222,7 +13278,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "6308100000776",
       "ifsc": "BARB0BHINAI",
       "pan": "CJDPV9599M",
-      "aadhaar": "523162345693",
       "status": "Active"
     },
     {
@@ -13240,7 +13295,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31030807304",
       "ifsc": "SBIN0032061",
       "pan": "ADQPL4934R",
-      "aadhaar": "751281489109",
       "status": "Active"
     },
     {
@@ -13258,7 +13312,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37988101207",
       "ifsc": "SBIN0004519",
       "pan": "EHAPM9959R",
-      "aadhaar": "322010452908",
       "status": "Active"
     },
     {
@@ -13276,7 +13329,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38196504194",
       "ifsc": "SBIN0031391",
       "pan": "DEKPK1810R",
-      "aadhaar": "346669466727",
       "status": "Active"
     },
     {
@@ -13294,7 +13346,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31468797740",
       "ifsc": "SBIN0012898",
       "pan": "AELPR7598K",
-      "aadhaar": "330670932885",
       "status": "Active"
     },
     {
@@ -13312,7 +13363,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41766753742",
       "ifsc": "SBIN0061804",
       "pan": "CGYPV4995B",
-      "aadhaar": "441605152770",
       "status": "Active"
     },
     {
@@ -13330,7 +13380,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30995291527",
       "ifsc": "SBIN0012901",
       "pan": "BPHPP5266C",
-      "aadhaar": "469883306211",
       "status": "Active"
     },
     {
@@ -13348,7 +13397,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "40755907261",
       "ifsc": "SBIN0012901",
       "pan": "KGYPS8395Q",
-      "aadhaar": "907136831174",
       "status": "Active"
     },
     {
@@ -13366,7 +13414,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38506916813",
       "ifsc": "SBIN0031055",
       "pan": "EPIPD4066J",
-      "aadhaar": "525935278877",
       "status": "Active"
     },
     {
@@ -13384,7 +13431,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31030294540",
       "ifsc": "SBIN0012898",
       "pan": "BBWPM7043R",
-      "aadhaar": "329915495027",
       "status": "Active"
     },
     {
@@ -13402,7 +13448,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31151238974",
       "ifsc": "SBIN0031330",
       "pan": "BOXPK1692G",
-      "aadhaar": "206244232478",
       "status": "Active"
     },
     {
@@ -13420,7 +13465,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30995270073",
       "ifsc": "SBIN0031330",
       "pan": "ANRPN3175D",
-      "aadhaar": "563068086094",
       "status": "Active"
     },
     {
@@ -13438,7 +13482,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34700100011669",
       "ifsc": "BARB0KAPREN",
       "pan": "IQVPS0836M",
-      "aadhaar": "414113323361",
       "status": "Active"
     },
     {
@@ -13456,7 +13499,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61168273950",
       "ifsc": "SBIN0031123",
       "pan": "EWAPM8892N",
-      "aadhaar": "962690364951",
       "status": "Active"
     },
     {
@@ -13474,7 +13516,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61204269671",
       "ifsc": "SBIN0031158",
       "pan": "KNTPS7461F",
-      "aadhaar": "243645010001",
       "status": "Active"
     },
     {
@@ -13492,7 +13533,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30986541842",
       "ifsc": "SBIN0012898",
       "pan": "ABCPV4188K",
-      "aadhaar": "293244393694",
       "status": "Active"
     },
     {
@@ -13510,7 +13550,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41035589759",
       "ifsc": "SBIN0012898",
       "pan": "BFNPJ1220G",
-      "aadhaar": "970681452455",
       "status": "Active"
     },
     {
@@ -13528,7 +13567,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30472929167",
       "ifsc": "SBIN0031377",
       "pan": "FZDPS8656F",
-      "aadhaar": "957344795267",
       "status": "Active"
     },
     {
@@ -13546,7 +13584,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61332466005",
       "ifsc": "SBIN0032347",
       "pan": "FIJPB5365K",
-      "aadhaar": "585433095511",
       "status": "Active"
     },
     {
@@ -13564,7 +13601,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "50100226001490",
       "ifsc": "HDFC0002342",
       "pan": "ADOPM366IL",
-      "aadhaar": "229970070064",
       "status": "Active"
     },
     {
@@ -13582,7 +13618,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "50100226001441",
       "ifsc": "HDFC0002342",
       "pan": "ACAPG9699P",
-      "aadhaar": "710666860873",
       "status": "Active"
     },
     {
@@ -13600,7 +13635,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32325147074",
       "ifsc": "SBIN0010488",
       "pan": "BKPPM6135E",
-      "aadhaar": "603514765595",
       "status": "Active"
     },
     {
@@ -13618,7 +13652,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31033361447",
       "ifsc": "SBIN0010488",
       "pan": "BKPPM6135E",
-      "aadhaar": "603514765595",
       "status": "Active"
     },
     {
@@ -13636,7 +13669,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20291491029",
       "ifsc": "SBIN0031088",
       "pan": "BUQPC7972J",
-      "aadhaar": "993708077341",
       "status": "Active"
     },
     {
@@ -13654,7 +13686,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61147483474",
       "ifsc": "SBIN0031131",
       "pan": "CPJPP8253E",
-      "aadhaar": "799964752567",
       "status": "Active"
     },
     {
@@ -13672,7 +13703,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31052356025",
       "ifsc": "SBIN0012898",
       "pan": "ACKPM5547N",
-      "aadhaar": "969848286273",
       "status": "Active"
     },
     {
@@ -13690,7 +13720,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "43010100017897",
       "ifsc": "BARB0BRGBXX",
       "pan": "ARUPK5478P",
-      "aadhaar": "921437754065",
       "status": "Active"
     },
     {
@@ -13708,7 +13737,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32627283218",
       "ifsc": "SBIN0012898",
       "pan": "COTPM43981",
-      "aadhaar": "963380318661",
       "status": "Active"
     },
     {
@@ -13726,7 +13754,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31036118570",
       "ifsc": "SBIN0012898",
       "pan": "AEAPB4223Q",
-      "aadhaar": "480083051150",
       "status": "Active"
     },
     {
@@ -13744,7 +13771,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30868869038",
       "ifsc": "SBIN0012898",
       "pan": "ADXPA7456N",
-      "aadhaar": "841533687505",
       "status": "Active"
     },
     {
@@ -13762,7 +13788,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33353151341",
       "ifsc": "SBIN0003628",
       "pan": "CBGPS6948J",
-      "aadhaar": "792988880856",
       "status": "Active"
     },
     {
@@ -13780,7 +13805,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38219801796",
       "ifsc": "SBIN0010457",
       "pan": "IBUPK8125F",
-      "aadhaar": "681998370763",
       "status": "Active"
     },
     {
@@ -13798,7 +13822,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61099801988",
       "ifsc": "SBIN0011295",
       "pan": "EFZPB9813N",
-      "aadhaar": "544022199155",
       "status": "Active"
     },
     {
@@ -13816,7 +13839,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100005295",
       "ifsc": "BARB0BHINAI",
       "pan": "BPNPJ6531G",
-      "aadhaar": "275911205821",
       "status": "Active"
     },
     {
@@ -13834,7 +13856,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "BOM AJMER",
       "ifsc": "MAHB001231",
       "pan": "AAZPM3459N",
-      "aadhaar": "558735664206",
       "status": "Active"
     },
     {
@@ -13852,7 +13873,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "bob bijainagar",
       "ifsc": "BARB0BIJAJM",
       "pan": "AELPC0662H",
-      "aadhaar": "643376142369",
       "status": "Active"
     },
     {
@@ -13870,7 +13890,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "SBI  bijainagar",
       "ifsc": "SBIN0031739",
       "pan": "AFLPJ2770A",
-      "aadhaar": "586690650444",
       "status": "Active"
     },
     {
@@ -13888,7 +13907,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "SBI  bijainagar",
       "ifsc": "SBIN0031739",
       "pan": "DYVPM9581G",
-      "aadhaar": "880099794384",
       "status": "Active"
     },
     {
@@ -13906,7 +13924,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "SBI Bhinai",
       "ifsc": "SBIN 0012898",
       "pan": "CTAPK1490B",
-      "aadhaar": "661199568328",
       "status": "Active"
     },
     {
@@ -13924,7 +13941,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "SBI DEOLIYA LAKAN",
       "ifsc": "SBIN0032187",
       "pan": "ABOPR3231K",
-      "aadhaar": "674161245550",
       "status": "Active"
     },
     {
@@ -13942,7 +13958,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "SBI BHINAI",
       "ifsc": "SBIN0012898",
       "pan": "BZNPB1588H",
-      "aadhaar": "886338647033",
       "status": "Active"
     },
     {
@@ -13960,7 +13975,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "SBI  bijainagar",
       "ifsc": "SBIN0031739",
       "pan": "ACNPA7099J",
-      "aadhaar": "228699619642",
       "status": "Active"
     },
     {
@@ -13978,7 +13992,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "SBI CHOMU KUM",
       "ifsc": "SBIN0032024",
       "pan": "CAGPB2020P",
-      "aadhaar": "711845752762",
       "status": "Active"
     },
     {
@@ -13996,7 +14009,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "bob bijainagar",
       "ifsc": "BARB0BIJAJM",
       "pan": "AJYPM8354Q",
-      "aadhaar": "666817527636",
       "status": "Active"
     },
     {
@@ -14014,7 +14026,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "SBI  bijainagar",
       "ifsc": "SBIN0011295",
       "pan": "ACKPB7485Q",
-      "aadhaar": "477576203544",
       "status": "Active"
     },
     {
@@ -14032,7 +14043,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "SBI DEOLIYA LAKAN",
       "ifsc": "SBIN0032187",
       "pan": "AJIPR4585L",
-      "aadhaar": "894657654138",
       "status": "Active"
     },
     {
@@ -14050,7 +14060,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "BOB BHINAI",
       "ifsc": "BARB0BHINAI",
       "pan": "BLXPK8496D",
-      "aadhaar": "556757873045",
       "status": "Active"
     },
     {
@@ -14068,7 +14077,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "SBI DEOLIYA LAKAN",
       "ifsc": "SBIN0032187",
       "pan": "ahhpb9381m",
-      "aadhaar": "419933310528",
       "status": "Active"
     },
     {
@@ -14086,7 +14094,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "SBI  bijainagar",
       "ifsc": "SBIN0011295",
       "pan": "ADHPK8113G",
-      "aadhaar": "307223315823",
       "status": "Active"
     },
     {
@@ -14104,7 +14111,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "SBI DEOLIYA LAKAN",
       "ifsc": "SBIN0032187",
       "pan": "BAJPJ1817N",
-      "aadhaar": "681368827004",
       "status": "Active"
     },
     {
@@ -14122,7 +14128,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "SBI Degana",
       "ifsc": "SBIN0031117",
       "pan": "AWOPV8407E",
-      "aadhaar": "574623045603",
       "status": "Active"
     },
     {
@@ -14140,7 +14145,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "10158217873",
       "ifsc": "SBIN0032366",
       "pan": "AXBPS2776H",
-      "aadhaar": "308113558928",
       "status": "Active"
     },
     {
@@ -14158,7 +14162,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100003634",
       "ifsc": "BARB0BIJAJM",
       "pan": "ADMPK7318J",
-      "aadhaar": "806226547337",
       "status": "Active"
     },
     {
@@ -14176,7 +14179,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "63001405162",
       "ifsc": "BARB0BIJAJM",
       "pan": "ABPPY8474J",
-      "aadhaar": "437206777967",
       "status": "Active"
     },
     {
@@ -14194,7 +14196,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61169611027",
       "ifsc": "SBIN0031861",
       "pan": "BYSPM9861Q",
-      "aadhaar": "350930133400",
       "status": "Active"
     },
     {
@@ -14212,7 +14213,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37930685696",
       "ifsc": "SBIN0031739",
       "pan": "KRRPS4629M",
-      "aadhaar": "206488553583",
       "status": "Active"
     },
     {
@@ -14230,7 +14230,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61048681886",
       "ifsc": "SBIN00842",
       "pan": "AGOPC0975C",
-      "aadhaar": "554753444368",
       "status": "Active"
     },
     {
@@ -14248,7 +14247,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30995261069",
       "ifsc": "SBIN0012898",
       "pan": "AQJPB7329N",
-      "aadhaar": "776028497558",
       "status": "Active"
     },
     {
@@ -14266,7 +14264,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100004324",
       "ifsc": "BARB0BIJAJM",
       "pan": "AKLPD1472E",
-      "aadhaar": "354177894633",
       "status": "Active"
     },
     {
@@ -14284,7 +14281,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61035063647",
       "ifsc": "SBNI0011360",
       "pan": "ANBPV0127B",
-      "aadhaar": "477014746578",
       "status": "Active"
     },
     {
@@ -14302,7 +14298,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30991926802",
       "ifsc": "SBIN0031739",
       "pan": "ABOPJ9697D",
-      "aadhaar": "727011205667",
       "status": "Active"
     },
     {
@@ -14320,7 +14315,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32516953938",
       "ifsc": "SBIN0012898",
       "pan": "FZEPS2586",
-      "aadhaar": "839201323875",
       "status": "Active"
     },
     {
@@ -14338,7 +14332,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30995530930",
       "ifsc": "SBINO012898",
       "pan": "ANSPJ3051F",
-      "aadhaar": "369424091893",
       "status": "Active"
     },
     {
@@ -14356,7 +14349,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61169219346",
       "ifsc": "SBIN0010489",
       "pan": "CVWPM5038D",
-      "aadhaar": "631022324774",
       "status": "Active"
     },
     {
@@ -14374,7 +14366,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33378632129",
       "ifsc": "SBIN0007828",
       "pan": "ACXPY2651E",
-      "aadhaar": "396573149500",
       "status": "Active"
     },
     {
@@ -14392,7 +14383,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61165251849",
       "ifsc": "SBIN0006327",
       "pan": "LBYPS5801H",
-      "aadhaar": "298511743995",
       "status": "Active"
     },
     {
@@ -14410,7 +14400,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37943996617",
       "ifsc": "SBIN0031091",
       "pan": "FJIPK6159J",
-      "aadhaar": "618952950807",
       "status": "Active"
     },
     {
@@ -14428,7 +14417,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20400385189",
       "ifsc": "SBIN0012823",
       "pan": "ETXPD5381K",
-      "aadhaar": "589151445315",
       "status": "Active"
     },
     {
@@ -14446,7 +14434,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34735727347",
       "ifsc": "SBIN0003628",
       "pan": "CPOPG3325P",
-      "aadhaar": "772603817490",
       "status": "Active"
     },
     {
@@ -14464,7 +14451,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37845252513",
       "ifsc": "SBIN0032073",
       "pan": "BMSPT7538M",
-      "aadhaar": "578942875594",
       "status": "Active"
     },
     {
@@ -14482,7 +14468,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42667723145",
       "ifsc": "SBIN0031739",
       "pan": "EWYPB6021C",
-      "aadhaar": "308588921749",
       "status": "Active"
     },
     {
@@ -14500,7 +14485,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61269575638",
       "ifsc": "SBIN0031108",
       "pan": "BZNPR8196P",
-      "aadhaar": "748811450212",
       "status": "Active"
     },
     {
@@ -14518,7 +14502,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31940620479",
       "ifsc": "SBIN0003628",
       "pan": "CDZPB9637G",
-      "aadhaar": "471504071861",
       "status": "Active"
     },
     {
@@ -14536,7 +14519,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61308001569",
       "ifsc": "SBIN0031188",
       "pan": "CDVPJ1459C",
-      "aadhaar": "200734793702",
       "status": "Active"
     },
     {
@@ -14554,7 +14536,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61013931781",
       "ifsc": "SBIN0032386",
       "pan": "ASIPG0369G",
-      "aadhaar": "214223624704",
       "status": "Active"
     },
     {
@@ -14572,7 +14553,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51053432510",
       "ifsc": "SBIN0031105",
       "pan": "CDXPD4148Q",
-      "aadhaar": "712427160965",
       "status": "Active"
     },
     {
@@ -14590,7 +14570,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32770073723",
       "ifsc": "SBIN0012898",
       "pan": "BBVPR3927A",
-      "aadhaar": "380501893103",
       "status": "Active"
     },
     {
@@ -14608,7 +14587,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "01210100011876",
       "ifsc": "BARB0MALPUR",
       "pan": "AJSPH3078E",
-      "aadhaar": "359944000813",
       "status": "Active"
     },
     {
@@ -14626,7 +14604,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "2139101913586",
       "ifsc": "CNRB0002139",
       "pan": "EFBPM0041B",
-      "aadhaar": "906871824878",
       "status": "Active"
     },
     {
@@ -14644,7 +14621,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61338878738",
       "ifsc": "SBIN0031042",
       "pan": "ATVPY7639P",
-      "aadhaar": "24625730956",
       "status": "Active"
     },
     {
@@ -14662,7 +14638,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51110787220",
       "ifsc": "SBIN0031414",
       "pan": "BWQPR16003H",
-      "aadhaar": "203382884189",
       "status": "Active"
     },
     {
@@ -14680,7 +14655,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42301678392",
       "ifsc": "SBIN0031739",
       "pan": "CWQPJ2999R",
-      "aadhaar": "600568989520",
       "status": "Active"
     },
     {
@@ -14698,7 +14672,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "679601501287",
       "ifsc": "ICICI0006796",
       "pan": "BHYPC3340R",
-      "aadhaar": "883918650087",
       "status": "Active"
     },
     {
@@ -14716,7 +14689,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31033941304",
       "ifsc": "SBIN0012898",
       "pan": "ABMPA6197K",
-      "aadhaar": "590705220897",
       "status": "Active"
     },
     {
@@ -14734,7 +14706,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30983486746",
       "ifsc": "SBIN0012898",
       "pan": "AHIPS7592Q",
-      "aadhaar": "914981853584",
       "status": "Active"
     },
     {
@@ -14752,7 +14723,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30993618693",
       "ifsc": "SBIN0012899",
       "pan": "AGAPS8784M",
-      "aadhaar": "632068040684",
       "status": "Active"
     },
     {
@@ -14770,7 +14740,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "13550100005815",
       "ifsc": "SBIN0031110",
       "pan": "AAQPN9409E",
-      "aadhaar": "927050078033",
       "status": "Active"
     },
     {
@@ -14788,7 +14757,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30997860571",
       "ifsc": "SBIN0012898",
       "pan": "ABPPD9836M",
-      "aadhaar": "605457830626",
       "status": "Active"
     },
     {
@@ -14806,7 +14774,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100005275",
       "ifsc": "BARB0BHINAI",
       "pan": "AWBPS9073L",
-      "aadhaar": "896235686338",
       "status": "Active"
     },
     {
@@ -14824,7 +14791,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "4800010 0013667",
       "ifsc": "BARB0PHOOLI",
       "pan": "KRHPS6458G",
-      "aadhaar": "654866051522",
       "status": "Active"
     },
     {
@@ -14842,7 +14808,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61080721626",
       "ifsc": "SBIN0031733",
       "pan": "NSTPK9355N",
-      "aadhaar": "461006659214",
       "status": "Active"
     },
     {
@@ -14860,7 +14825,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31552181486",
       "ifsc": "SBIN0012898",
       "pan": "DWRPB4845N",
-      "aadhaar": "574850980276",
       "status": "Active"
     },
     {
@@ -14878,7 +14842,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61187011855",
       "ifsc": "SBIN0032062",
       "pan": "EZJPM6965A",
-      "aadhaar": "214118389703",
       "status": "Active"
     },
     {
@@ -14896,7 +14859,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "36948164499",
       "ifsc": "SBIN0031090",
       "pan": "EGSPM3797J",
-      "aadhaar": "213437369693",
       "status": "Active"
     },
     {
@@ -14904,7 +14866,7 @@ const MASTER_CBEO_DATA = {
       "name": "प्रविण सिंह चौधरी",
       "gender": "iq#\"k",
       "dob": "1990-07-01 00:00:00",
-      "post": "dfu\"B lgk;d",
+      "post": "कनिष्ठ सहायक",
       "school_name": "राउमावि नागोला",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJKK202460116747",
@@ -14914,7 +14876,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34078100009186",
       "ifsc": "BARB0SARWAR",
       "pan": "CMVPC6933K",
-      "aadhaar": "10486597786",
       "status": "Active"
     },
     {
@@ -14932,7 +14893,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "4080100013589",
       "ifsc": "SBIN0012898",
       "pan": "OJIPK6377M",
-      "aadhaar": "701365822941",
       "status": "Active"
     },
     {
@@ -14950,7 +14910,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61123995424",
       "ifsc": "SBIN0031110",
       "pan": "CBPT7312C",
-      "aadhaar": "970523221163",
       "status": "Active"
     },
     {
@@ -14968,7 +14927,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38588931494",
       "ifsc": "SBIN0006851",
       "pan": "BIZPC8328M",
-      "aadhaar": "444563835387",
       "status": "Active"
     },
     {
@@ -14986,7 +14944,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33408341808",
       "ifsc": "SBIN0010489",
       "pan": "CPKPM3282H",
-      "aadhaar": "769749218610",
       "status": "Active"
     },
     {
@@ -15004,7 +14961,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38000721179",
       "ifsc": "SBIN0032222",
       "pan": "AYAPY5273F",
-      "aadhaar": "820607576434",
       "status": "Active"
     },
     {
@@ -15022,7 +14978,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38588931494",
       "ifsc": "SBIN0006851",
       "pan": "EKYPB8006C",
-      "aadhaar": "857519337115",
       "status": "Active"
     },
     {
@@ -15040,7 +14995,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61198335797",
       "ifsc": "SBIN0031812",
       "pan": "BVLPJ3414J",
-      "aadhaar": "412545739548",
       "status": "Active"
     },
     {
@@ -15058,7 +15012,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61200631944",
       "ifsc": "SBIN0031044",
       "pan": "AXIPY1009J",
-      "aadhaar": "499337447500",
       "status": "Active"
     },
     {
@@ -15076,7 +15029,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38297482142",
       "ifsc": "SBIN0012898",
       "pan": "HHVPK1543E",
-      "aadhaar": "216511469179",
       "status": "Active"
     },
     {
@@ -15094,7 +15046,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61136715910",
       "ifsc": "SBIN0031087",
       "pan": "EZSPP8610L",
-      "aadhaar": "9641774845154",
       "status": "Active"
     },
     {
@@ -15112,7 +15063,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42334745078",
       "ifsc": "SBIN0012898",
       "pan": "HNTPB6716F",
-      "aadhaar": "408641227480",
       "status": "Active"
     },
     {
@@ -15130,7 +15080,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32654461574",
       "ifsc": "SBIN0005711",
       "pan": "BNVPB3722M",
-      "aadhaar": "37412486156",
       "status": "Active"
     },
     {
@@ -15148,7 +15097,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41075264994",
       "ifsc": "SBIN0003628",
       "pan": "HXFPD0975J",
-      "aadhaar": "844936853639",
       "status": "Active"
     },
     {
@@ -15166,7 +15114,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61232116698",
       "ifsc": "SBIN0007711",
       "pan": "HOFPK0554D",
-      "aadhaar": "942311712659",
       "status": "Active"
     },
     {
@@ -15184,7 +15131,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61085210233",
       "ifsc": "SBIN0031756",
       "pan": "BAJPC41335N",
-      "aadhaar": "751612112636",
       "status": "Active"
     },
     {
@@ -15202,7 +15148,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61203857381",
       "ifsc": "SBIN 0031088",
       "pan": "BEHPC07104H",
-      "aadhaar": "953900949566",
       "status": "Active"
     },
     {
@@ -15220,7 +15165,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42789179985",
       "ifsc": "SBI0031739",
       "pan": "ARSPV9222E",
-      "aadhaar": "761930204429",
       "status": "Active"
     },
     {
@@ -15238,7 +15182,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33591316197",
       "ifsc": "SBIN0011295",
       "pan": "AQYPR6683A",
-      "aadhaar": "679975061384",
       "status": "Active"
     },
     {
@@ -15256,7 +15199,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51100751964",
       "ifsc": "SBIN0031104",
       "pan": "AMZPM9690B",
-      "aadhaar": "244917604092",
       "status": "Active"
     },
     {
@@ -15274,7 +15216,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "36936729603",
       "ifsc": "SBIN0032030",
       "pan": "EHEPR7184B",
-      "aadhaar": "600538232622",
       "status": "Active"
     },
     {
@@ -15292,7 +15233,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100004851",
       "ifsc": "BARBOBHINAI",
       "pan": "ANVPJ8445Q",
-      "aadhaar": "694005928363",
       "status": "Active"
     },
     {
@@ -15310,7 +15250,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42004819659",
       "ifsc": "SBIN0005167",
       "pan": "ANVPL6103F",
-      "aadhaar": "543671815270",
       "status": "Active"
     },
     {
@@ -15328,7 +15267,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "1368100003507",
       "ifsc": "BARBOLAWAXX",
       "pan": "KCGPS2629M",
-      "aadhaar": "246838072475",
       "status": "Active"
     },
     {
@@ -15346,7 +15284,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31033608487",
       "ifsc": "SBIN003628",
       "pan": "ACKPS2258L",
-      "aadhaar": "791582596935",
       "status": "Active"
     },
     {
@@ -15364,7 +15301,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "21794043181",
       "ifsc": "RMGB0001794",
       "pan": "ASNPV2434Q",
-      "aadhaar": "293609238188",
       "status": "Active"
     },
     {
@@ -15382,7 +15318,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "35233678108",
       "ifsc": "SBIN0031739",
       "pan": "AHQPJ4144B",
-      "aadhaar": "527185621518",
       "status": "Active"
     },
     {
@@ -15400,7 +15335,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "35233678108",
       "ifsc": "SBIN0011313",
       "pan": "JZGPS5655R",
-      "aadhaar": "439316651771",
       "status": "Active"
     },
     {
@@ -15418,7 +15352,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42358721717",
       "ifsc": "SBIN0031042",
       "pan": "AOBPY8272M",
-      "aadhaar": "803309182103",
       "status": "Active"
     },
     {
@@ -15436,7 +15369,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "12880100011282",
       "ifsc": "BARB0PIPLOO",
       "pan": "BXOPC7739N",
-      "aadhaar": "623389603016",
       "status": "Active"
     },
     {
@@ -15454,7 +15386,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61133758027",
       "ifsc": "SBIN0031149",
       "pan": "CKQPP2564Q",
-      "aadhaar": "888560195168",
       "status": "Active"
     },
     {
@@ -15472,7 +15403,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51109674297",
       "ifsc": "SBIN0031739",
       "pan": "ADHPK8105c",
-      "aadhaar": "350365250106",
       "status": "Active"
     },
     {
@@ -15490,7 +15420,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61019525300",
       "ifsc": "SBIN0031108",
       "pan": "ATM9636N",
-      "aadhaar": "362776976203",
       "status": "Active"
     },
     {
@@ -15508,7 +15437,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31018673998",
       "ifsc": "BARBOBHINAI",
       "pan": "AGAP8580C",
-      "aadhaar": "451629028208",
       "status": "Active"
     },
     {
@@ -15526,7 +15454,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31018673998",
       "ifsc": "SBIN0012898",
       "pan": "BOEPP2425P",
-      "aadhaar": "485396756271",
       "status": "Active"
     },
     {
@@ -15544,7 +15471,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42285451081",
       "ifsc": "SBIN0031105",
       "pan": "CITPC6933M",
-      "aadhaar": "574601723513",
       "status": "Active"
     },
     {
@@ -15562,7 +15488,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31012221427",
       "ifsc": "SBI0012898",
       "pan": "BZSPR8003E",
-      "aadhaar": "599017620449",
       "status": "Active"
     },
     {
@@ -15580,7 +15505,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "21285038409",
       "ifsc": "RMGB0001285",
       "pan": "CRHPS1692A",
-      "aadhaar": "796226961817",
       "status": "Active"
     },
     {
@@ -15598,7 +15522,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100001259",
       "ifsc": "BARB0BIJAJM",
       "pan": "AXBPG5154F",
-      "aadhaar": "509087153854",
       "status": "Active"
     },
     {
@@ -15616,7 +15539,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61079958718",
       "ifsc": "SBIN0032168",
       "pan": "LAFPS6686G",
-      "aadhaar": "872925193155",
       "status": "Active"
     },
     {
@@ -15634,7 +15556,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20275309345",
       "ifsc": "SBIN0031132",
       "pan": "CJWPK8000M",
-      "aadhaar": "515153644405",
       "status": "Active"
     },
     {
@@ -15652,7 +15573,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32773477475",
       "ifsc": "SBIN0012898",
       "pan": "CWXPK6248P",
-      "aadhaar": "511005943498",
       "status": "Active"
     },
     {
@@ -15670,7 +15590,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61223613498",
       "ifsc": "SBIN0031108",
       "pan": "DLMPB1725B",
-      "aadhaar": "933802465809",
       "status": "Active"
     },
     {
@@ -15688,7 +15607,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41044836947",
       "ifsc": "SBIN0031095",
       "pan": "BMMPL8898J",
-      "aadhaar": "380385023550",
       "status": "Active"
     },
     {
@@ -15706,7 +15624,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "5103432510",
       "ifsc": "SBIN0031105",
       "pan": "AHVPS3430L",
-      "aadhaar": "589738314808",
       "status": "Active"
     },
     {
@@ -15724,7 +15641,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30997973981",
       "ifsc": "SBIN0012898",
       "pan": "DORPS1010A",
-      "aadhaar": "469761618586",
       "status": "Active"
     },
     {
@@ -15742,7 +15658,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32612333620",
       "ifsc": "SBIN0012898",
       "pan": "AMHPB6084",
-      "aadhaar": "200728767881",
       "status": "Active"
     },
     {
@@ -15760,7 +15675,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38054294326",
       "ifsc": "SBIN0032016",
       "pan": "ETLPP6625",
-      "aadhaar": "423430364697",
       "status": "Active"
     },
     {
@@ -15778,7 +15692,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33315401093",
       "ifsc": "SBIN0006691",
       "pan": "DOTPM0562H",
-      "aadhaar": "361742849455",
       "status": "Active"
     },
     {
@@ -15796,7 +15709,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38090232036",
       "ifsc": "SBIN0032187",
       "pan": "CRTPC6237P",
-      "aadhaar": "624811479920",
       "status": "Active"
     },
     {
@@ -15814,7 +15726,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41013948332",
       "ifsc": "SBIN0032187",
       "pan": "CMRPJ7542R",
-      "aadhaar": "577870360986",
       "status": "Active"
     },
     {
@@ -15832,7 +15743,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41006343742",
       "ifsc": "SBIN0031108",
       "pan": "LGRPK7519J",
-      "aadhaar": "726590295649",
       "status": "Active"
     },
     {
@@ -15850,7 +15760,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42357458666",
       "ifsc": "SBI0006851",
       "pan": "FGIPM9115F",
-      "aadhaar": "650278547171",
       "status": "Active"
     },
     {
@@ -15868,7 +15777,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "759810013450",
       "ifsc": "BARB0KEKRI",
       "pan": "EVXPM0296Q",
-      "aadhaar": "223837726139",
       "status": "Active"
     },
     {
@@ -15886,7 +15794,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11346174520",
       "ifsc": "SBIN0032370",
       "pan": "ACIPR4869G",
-      "aadhaar": "435282176168",
       "status": "Active"
     },
     {
@@ -15904,7 +15811,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61172233693",
       "ifsc": "SBIN0031129",
       "pan": "BHKPS7591A",
-      "aadhaar": "389032164717",
       "status": "Active"
     },
     {
@@ -15922,7 +15828,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31039338795",
       "ifsc": "SBIN0012898",
       "pan": "ABWPJ5641B",
-      "aadhaar": "624450767295",
       "status": "Active"
     },
     {
@@ -15940,7 +15845,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "39504398307",
       "ifsc": "SBIN0031842",
       "pan": "NBKPS3105N",
-      "aadhaar": "694505001110",
       "status": "Active"
     },
     {
@@ -15958,7 +15862,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38018364821",
       "ifsc": "SBIN0032031",
       "pan": "BUCPJ2202C",
-      "aadhaar": "571761704038",
       "status": "Active"
     },
     {
@@ -15976,7 +15879,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31012221427",
       "ifsc": "SBIN0012898",
       "pan": "ANFPM6044E",
-      "aadhaar": "538978895180",
       "status": "Active"
     },
     {
@@ -15994,7 +15896,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61119026396",
       "ifsc": "SBIN0031108",
       "pan": "AMHPS3902J",
-      "aadhaar": "253012061297",
       "status": "Active"
     },
     {
@@ -16012,7 +15913,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30995275617",
       "ifsc": "SBIN0012898",
       "pan": "ABQPD6319Q",
-      "aadhaar": "753409423009",
       "status": "Active"
     },
     {
@@ -16030,7 +15930,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61118374811",
       "ifsc": "SBIN0032063",
       "pan": "AGPPM2292R",
-      "aadhaar": "868829742459",
       "status": "Active"
     },
     {
@@ -16048,7 +15947,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100000440",
       "ifsc": "BARB0BIJAJM",
       "pan": "AXKPA56512",
-      "aadhaar": "918036599974",
       "status": "Active"
     },
     {
@@ -16066,7 +15964,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51051306665",
       "ifsc": "SBIN0032061",
       "pan": "ADPPA1743A",
-      "aadhaar": "725764649895",
       "status": "Active"
     },
     {
@@ -16084,7 +15981,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31033109646",
       "ifsc": "SBIN0012898",
       "pan": "AEEPJ9850P",
-      "aadhaar": "288244824023",
       "status": "Active"
     },
     {
@@ -16102,7 +15998,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30995351601",
       "ifsc": "SBIN0012898",
       "pan": "ACSPR6529D",
-      "aadhaar": "207629165216",
       "status": "Active"
     },
     {
@@ -16120,7 +16015,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61161379045",
       "ifsc": "SBIN0031739",
       "pan": "CLTPG8522R",
-      "aadhaar": "730487215138",
       "status": "Active"
     },
     {
@@ -16138,7 +16032,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61240486909",
       "ifsc": "SBIN0032024",
       "pan": "PMFPS4552D",
-      "aadhaar": "361145568409",
       "status": "Active"
     },
     {
@@ -16156,7 +16049,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61148828329",
       "ifsc": "SBIN0012898",
       "pan": "BHCPH5288L",
-      "aadhaar": "796744650470",
       "status": "Active"
     },
     {
@@ -16174,7 +16066,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31468815365",
       "ifsc": "SBIN0012898",
       "pan": "AUIPD1099E",
-      "aadhaar": "926817740011",
       "status": "Active"
     },
     {
@@ -16192,7 +16083,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100003873",
       "ifsc": "BARB0BIJAJM",
       "pan": "AHHPR2029N",
-      "aadhaar": "475648145018",
       "status": "Active"
     },
     {
@@ -16210,7 +16100,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51047568753",
       "ifsc": "SBIN0000603",
       "pan": "CHUPC5754L",
-      "aadhaar": "632877404647",
       "status": "Active"
     },
     {
@@ -16228,7 +16117,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61019376140",
       "ifsc": "SBIN0031105",
       "pan": "AGSPD5851A",
-      "aadhaar": "766386517107",
       "status": "Active"
     },
     {
@@ -16246,7 +16134,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42538172262",
       "ifsc": "SBIN0011295",
       "pan": "CEHPJ8354K",
-      "aadhaar": "723000901673",
       "status": "Active"
     },
     {
@@ -16264,7 +16151,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42353053822",
       "ifsc": "SBIN0011297",
       "pan": "DBKPC1549C",
-      "aadhaar": "402151038685",
       "status": "Active"
     },
     {
@@ -16282,7 +16168,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100009238",
       "ifsc": "BARB0BIJAJM",
       "pan": "BOLPC4374A",
-      "aadhaar": "791954310083",
       "status": "Active"
     },
     {
@@ -16300,7 +16185,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51107528260",
       "ifsc": "SBION0032043",
       "pan": "BAXPR9304Q",
-      "aadhaar": "704080791366",
       "status": "Active"
     },
     {
@@ -16318,7 +16202,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61034360313",
       "ifsc": "SBIN0031428",
       "pan": "BKGPJ1473B",
-      "aadhaar": "672335259937",
       "status": "Active"
     },
     {
@@ -16336,7 +16219,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "40822632960",
       "ifsc": "SBIN0032175",
       "pan": "FLKPM1534D",
-      "aadhaar": "268996254614",
       "status": "Active"
     },
     {
@@ -16354,7 +16236,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42273924972",
       "ifsc": "SBIN0012898",
       "pan": "CWHPJ0679P",
-      "aadhaar": "684130130166",
       "status": "Active"
     },
     {
@@ -16372,7 +16253,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51101383761",
       "ifsc": "SBIN0031034",
       "pan": "EBLPM2005K",
-      "aadhaar": "769741142982",
       "status": "Active"
     },
     {
@@ -16390,7 +16270,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61054829779",
       "ifsc": "SBIN0031107",
       "pan": "ASCPR4134J",
-      "aadhaar": "323274385969",
       "status": "Active"
     },
     {
@@ -16408,7 +16287,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "35220412551",
       "ifsc": "SBIN0004628",
       "pan": "JJDPS1972J",
-      "aadhaar": "676963893621",
       "status": "Active"
     },
     {
@@ -16426,7 +16304,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51035887694",
       "ifsc": "SBIN003110",
       "pan": "ADEPR3906M",
-      "aadhaar": "378156102901",
       "status": "Active"
     },
     {
@@ -16444,7 +16321,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31056003608",
       "ifsc": "SBIN0012898",
       "pan": "HPQPK5213P",
-      "aadhaar": "229274704710",
       "status": "Active"
     },
     {
@@ -16462,7 +16338,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37993334031",
       "ifsc": "SBIN0031986",
       "pan": "ABXPR7894M",
-      "aadhaar": "624017938372",
       "status": "Active"
     },
     {
@@ -16480,7 +16355,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38018516865",
       "ifsc": "SBIN0011406",
       "pan": "EXOPM0704G",
-      "aadhaar": "822164733936",
       "status": "Active"
     },
     {
@@ -16498,7 +16372,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38377218430",
       "ifsc": "SBIN0031739",
       "pan": "KUIPS0328K",
-      "aadhaar": "661134898667",
       "status": "Active"
     },
     {
@@ -16516,7 +16389,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32831313444",
       "ifsc": "SBIN0011295",
       "pan": "GGNPB8945J",
-      "aadhaar": "720618725098",
       "status": "Active"
     },
     {
@@ -16534,7 +16406,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61118401756",
       "ifsc": "SBIN0031108",
       "pan": "CKEPG3295D",
-      "aadhaar": "691105365393",
       "status": "Active"
     },
     {
@@ -16552,7 +16423,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61229121284",
       "ifsc": "SBIN0031812",
       "pan": "FIFPK0579G",
-      "aadhaar": "602228579969",
       "status": "Active"
     },
     {
@@ -16570,7 +16440,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "36814527196",
       "ifsc": "SBIN0011295",
       "pan": "AXFPN8958A",
-      "aadhaar": "744822993233",
       "status": "Active"
     },
     {
@@ -16579,7 +16448,7 @@ const MASTER_CBEO_DATA = {
       "gender": "F",
       "dob": "15/11/1967",
       "post": "प्रधानाचार्य",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ199101002087",
       "mobile": "9549364023",
@@ -16588,7 +16457,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "9630048&00000374",
       "ifsc": "PUNBOO96300",
       "pan": "ACXPP7539E",
-      "aadhaar": "7748-9447-2076",
       "status": "Active"
     },
     {
@@ -16597,7 +16465,7 @@ const MASTER_CBEO_DATA = {
       "gender": "F",
       "dob": "28/08/1992",
       "post": "व्याख्याता",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ202101002651",
       "mobile": "9414622956",
@@ -16606,7 +16474,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31374318449",
       "ifsc": "SBIN0061314",
       "pan": "ENPPP9346Q",
-      "aadhaar": "8337-7306-2766",
       "status": "Active"
     },
     {
@@ -16615,7 +16482,7 @@ const MASTER_CBEO_DATA = {
       "gender": "M",
       "dob": "1968-03-09 00:00:00",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ199301021489",
       "mobile": "9166446266",
@@ -16624,7 +16491,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30994693680",
       "ifsc": "SBIN0012898",
       "pan": "ABWPZ5739Q",
-      "aadhaar": "3582-6792-6481",
       "status": "Active"
     },
     {
@@ -16633,7 +16499,7 @@ const MASTER_CBEO_DATA = {
       "gender": "M",
       "dob": "1976-05-07 00:00:00",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ200501018304",
       "mobile": "9001245104",
@@ -16642,7 +16508,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30997494988",
       "ifsc": "SBIN0012898",
       "pan": "AALPO0789M",
-      "aadhaar": "6852-4185-6810",
       "status": "Active"
     },
     {
@@ -16651,7 +16516,7 @@ const MASTER_CBEO_DATA = {
       "gender": "M",
       "dob": "15/08/1997",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJTO202336082468",
       "mobile": "8696202182",
@@ -16660,7 +16525,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38261804638",
       "ifsc": "SBIN0031088",
       "pan": "RUSPS1319K",
-      "aadhaar": "3166-0333-6638",
       "status": "Active"
     },
     {
@@ -16669,7 +16533,7 @@ const MASTER_CBEO_DATA = {
       "gender": "M",
       "dob": "25/07/1999",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJKK202460109474",
       "mobile": "8005571647",
@@ -16678,7 +16542,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "36454620498",
       "ifsc": "SBIN0011400",
       "pan": "CUDPV3228G",
-      "aadhaar": "8256-9099-1759",
       "status": "Active"
     },
     {
@@ -16687,7 +16550,7 @@ const MASTER_CBEO_DATA = {
       "gender": "M",
       "dob": "1982-01-07 00:00:00",
       "post": "अध्यापक",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ201201017690",
       "mobile": "9252994550",
@@ -16696,7 +16559,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61169292305",
       "ifsc": "SBIN0031108",
       "pan": "BDAPD7614K",
-      "aadhaar": "7596-5430-1709",
       "status": "Active"
     },
     {
@@ -16705,7 +16567,7 @@ const MASTER_CBEO_DATA = {
       "gender": "M",
       "dob": "1974-01-06 00:00:00",
       "post": "अध्यापक",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ200506001155",
       "mobile": "9829502645",
@@ -16714,7 +16576,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "0630010&0005138",
       "ifsc": "BARB0AJMERX",
       "pan": "AIYPR6473L",
-      "aadhaar": "8455-8766-1894",
       "status": "Active"
     },
     {
@@ -16723,7 +16584,7 @@ const MASTER_CBEO_DATA = {
       "gender": "M",
       "dob": "15/10/1996",
       "post": "अध्यापक",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ202301038926",
       "mobile": "9079961827",
@@ -16732,7 +16593,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61238116466",
       "ifsc": "SBIN0031126",
       "pan": "CXPPC6075B",
-      "aadhaar": "9844-7244-7146",
       "status": "Active"
     },
     {
@@ -16741,7 +16601,7 @@ const MASTER_CBEO_DATA = {
       "gender": "M",
       "dob": "19/04/1966",
       "post": "अध्यापक",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ198801002022",
       "mobile": "9784801088",
@@ -16750,7 +16610,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31031196086",
       "ifsc": "SBIN0031739",
       "pan": "ACEPJ9436F",
-      "aadhaar": "8184-5352-0884",
       "status": "Active"
     },
     {
@@ -16759,7 +16618,7 @@ const MASTER_CBEO_DATA = {
       "gender": "M",
       "dob": "15/09/1966",
       "post": "अध्यापक",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ198701002111",
       "mobile": "9950496339",
@@ -16768,7 +16627,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30997867678",
       "ifsc": "SBIN0012898",
       "pan": "ACOPM6528R",
-      "aadhaar": "4340-6122-9424",
       "status": "Active"
     },
     {
@@ -16777,7 +16635,7 @@ const MASTER_CBEO_DATA = {
       "gender": "M",
       "dob": "1971-01-06 00:00:00",
       "post": "अध्यापक",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ199701002301",
       "mobile": "9829828478",
@@ -16786,7 +16644,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31031196869",
       "ifsc": "SBIN0012898",
       "pan": "ADGPK5356A",
-      "aadhaar": "3615-9950-1089",
       "status": "Active"
     },
     {
@@ -16795,7 +16652,7 @@ const MASTER_CBEO_DATA = {
       "gender": "M",
       "dob": "1986-01-06 00:00:00",
       "post": "अध्यापक",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ201201044902",
       "mobile": "9950170522",
@@ -16804,7 +16661,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31520540647",
       "ifsc": "SBIN0012898",
       "pan": "APOPJ3104M",
-      "aadhaar": "9455-3807-76432",
       "status": "Active"
     },
     {
@@ -16813,7 +16669,7 @@ const MASTER_CBEO_DATA = {
       "gender": "M",
       "dob": "1995-05-07 00:00:00",
       "post": "अध्यापक",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ201801047439",
       "mobile": "7891614396",
@@ -16822,7 +16678,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38024554621",
       "ifsc": "SBIN0031108",
       "pan": "EIVPK7671E",
-      "aadhaar": "7225-3126-4135",
       "status": "Active"
     },
     {
@@ -16831,7 +16686,7 @@ const MASTER_CBEO_DATA = {
       "gender": "M",
       "dob": "25/02/2001",
       "post": "अध्यापक",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ202301038828",
       "mobile": "9660985979",
@@ -16840,7 +16695,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33033842139",
       "ifsc": "SBIN0007701",
       "pan": "LHAPK6702M",
-      "aadhaar": "5363-1545-3740",
       "status": "Active"
     },
     {
@@ -16849,7 +16703,7 @@ const MASTER_CBEO_DATA = {
       "gender": "M",
       "dob": "2001-09-11 00:00:00",
       "post": "अध्यापक",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ202301038715",
       "mobile": "7357242114",
@@ -16858,7 +16712,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38882773407",
       "ifsc": "SBIN0007701",
       "pan": "NTWPS4070L",
-      "aadhaar": "8570-2533-0949",
       "status": "Active"
     },
     {
@@ -16867,7 +16720,7 @@ const MASTER_CBEO_DATA = {
       "gender": "M",
       "dob": "14/07/1988",
       "post": "शारीरिक शिक्षक",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ201701002614",
       "mobile": "9829585686",
@@ -16876,7 +16729,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20317061440",
       "ifsc": "SBIN0006335",
       "pan": "BHFPK7806P",
-      "aadhaar": "7379-9170-0039",
       "status": "Active"
     },
     {
@@ -16885,7 +16737,7 @@ const MASTER_CBEO_DATA = {
       "gender": "M",
       "dob": "27/07/2001",
       "post": "कनिष्ठ लिपिक",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ202001015496",
       "mobile": "9460510143",
@@ -16894,7 +16746,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "39550342585",
       "ifsc": "SBIN0012898",
       "pan": "FVTPM9244P",
-      "aadhaar": "8892-8411-1894",
       "status": "Active"
     },
     {
@@ -16903,7 +16754,7 @@ const MASTER_CBEO_DATA = {
       "gender": "M",
       "dob": "1966-06-06 00:00:00",
       "post": "विद्यालय सहायक",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "-",
       "mobile": "9829169306",
@@ -16912,7 +16763,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "3123010&0004326",
       "ifsc": "BARB0BIJAJM",
       "pan": "CPKPC1904A",
-      "aadhaar": "4021-7660-9323",
       "status": "Active"
     },
     {
@@ -16921,7 +16771,7 @@ const MASTER_CBEO_DATA = {
       "gender": "F",
       "dob": "1984-05-02 00:00:00",
       "post": "पंचायत शिक्षक",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया;भिनाय-अजमेरद्ध",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ202201057841",
       "mobile": "8107731088",
@@ -16930,7 +16780,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51103324656",
       "ifsc": "SBIN0031187",
       "pan": "ELQPK0498K",
-      "aadhaar": "7043-4315-5460",
       "status": "Active"
     },
     {
@@ -16948,7 +16797,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61234628582",
       "ifsc": "SBIN0031733",
       "pan": "HDNPK7704Q",
-      "aadhaar": "4425-6418-6877",
       "status": "Active"
     },
     {
@@ -16966,7 +16814,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41867992027",
       "ifsc": "SBIN0007711",
       "pan": "GTBPP3453G",
-      "aadhaar": "2877-9074-4732",
       "status": "Active"
     },
     {
@@ -16984,7 +16831,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34983854779",
       "ifsc": "SBIN0003628",
       "pan": "CTXPM7978M",
-      "aadhaar": "8881-7260-4722",
       "status": "Active"
     },
     {
@@ -17002,7 +16848,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33353533851",
       "ifsc": "SBIN0012898",
       "pan": "ARFPP5082M",
-      "aadhaar": "8318-6271-0655",
       "status": "Active"
     },
     {
@@ -17020,7 +16865,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "1288810-0008215",
       "ifsc": "BARB0PIPLOO",
       "pan": "LGSPS1050D",
-      "aadhaar": "8031-0417-8849",
       "status": "Active"
     },
     {
@@ -17038,7 +16882,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61079793855",
       "ifsc": "SBIN0031091",
       "pan": "EKGPB4210M",
-      "aadhaar": "4498-3134-2537",
       "status": "Active"
     },
     {
@@ -17056,7 +16899,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30626603336",
       "ifsc": "SBIN0011391",
       "pan": "CSEPM7984F",
-      "aadhaar": "4922-4173-0028",
       "status": "Active"
     },
     {
@@ -17074,7 +16916,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51100630983",
       "ifsc": "SBIN0031108",
       "pan": "AXWPV8365L",
-      "aadhaar": "6532-7075-8628",
       "status": "Active"
     },
     {
@@ -17092,7 +16933,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31031201746",
       "ifsc": "SBIN0012898",
       "pan": "ATWPB0807H",
-      "aadhaar": "7006-2182-6004",
       "status": "Active"
     },
     {
@@ -17110,7 +16950,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61051884019",
       "ifsc": "SBIN0031108",
       "pan": "KVEPS8809E",
-      "aadhaar": "3187-2535-2563",
       "status": "Active"
     },
     {
@@ -17128,7 +16967,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61157508410",
       "ifsc": "SBIN0032106",
       "pan": "CMHPK0712J",
-      "aadhaar": "5312-0348-3570",
       "status": "Active"
     },
     {
@@ -17146,7 +16984,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61201640472",
       "ifsc": "SBIN0032187",
       "pan": "EYIPM1047P",
-      "aadhaar": "4943-8643-7966",
       "status": "Active"
     },
     {
@@ -17164,7 +17001,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61310437987",
       "ifsc": "SBIN0032480",
       "pan": "IBDPK7432Q",
-      "aadhaar": "8675-9823-2076",
       "status": "Active"
     },
     {
@@ -17182,7 +17018,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38268265279",
       "ifsc": "SBIN0012820",
       "pan": "ETJPM5060G",
-      "aadhaar": "9546-9919-4796",
       "status": "Active"
     },
     {
@@ -17200,7 +17035,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20229204122",
       "ifsc": "SBIN0012900",
       "pan": "BNSPM2634J",
-      "aadhaar": "2641-0685-0759",
       "status": "Active"
     },
     {
@@ -17218,7 +17052,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61147625580",
       "ifsc": "SBIN0031733",
       "pan": "DYOPR9984K",
-      "aadhaar": "7312-9244-7466",
       "status": "Active"
     },
     {
@@ -17236,7 +17069,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61178233483",
       "ifsc": "SBIN0031108",
       "pan": "GDKPB8791J",
-      "aadhaar": "2586-5280-4016",
       "status": "Active"
     },
     {
@@ -17254,7 +17086,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61195015929",
       "ifsc": "SBIN00323029",
       "pan": "HIAPM4007A",
-      "aadhaar": "8474-2710-7516",
       "status": "Active"
     },
     {
@@ -17272,7 +17103,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37871573147",
       "ifsc": "SBIN0001568",
       "pan": "CHLPB8884P",
-      "aadhaar": "6267-6350-6721",
       "status": "Active"
     },
     {
@@ -17290,7 +17120,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61287047221",
       "ifsc": "sbin0031108",
       "pan": "HMNPD1141K",
-      "aadhaar": "8900-7856-6052",
       "status": "Active"
     },
     {
@@ -17308,7 +17137,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37900441609",
       "ifsc": "SBIN0031091",
       "pan": "ARVPV8304J",
-      "aadhaar": "7068-5968-7010",
       "status": "Active"
     },
     {
@@ -17326,7 +17154,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "36228856626",
       "ifsc": "SBIN0012823",
       "pan": "BSIPJ4733Q",
-      "aadhaar": "2451-1566-6266",
       "status": "Active"
     },
     {
@@ -17344,7 +17171,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31026507953",
       "ifsc": "SBIN0012898",
       "pan": "bawpm0197b",
-      "aadhaar": "663002091378",
       "status": "Active"
     },
     {
@@ -17362,7 +17188,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32630472210",
       "ifsc": "SBIN0007828",
       "pan": "AXMPR6172P",
-      "aadhaar": "968886864663",
       "status": "Active"
     },
     {
@@ -17380,7 +17205,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30990649522",
       "ifsc": "SBIN0012898",
       "pan": "ALMPR1835M",
-      "aadhaar": "946609824356",
       "status": "Active"
     },
     {
@@ -17398,7 +17222,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34413013770",
       "ifsc": "SBIN0001379",
       "pan": "AMSPC6518R",
-      "aadhaar": "476979975416",
       "status": "Active"
     },
     {
@@ -17416,7 +17239,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31191586390",
       "ifsc": "SBIN0012898",
       "pan": "AGXPB1622Q",
-      "aadhaar": "211468316491",
       "status": "Active"
     },
     {
@@ -17434,7 +17256,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61002339638",
       "ifsc": "SBIN0031588",
       "pan": "BBXPK3819A",
-      "aadhaar": "823669796107",
       "status": "Active"
     },
     {
@@ -17452,7 +17273,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31987144348",
       "ifsc": "SBIN0012898",
       "pan": "AGZPJ6357J",
-      "aadhaar": "298092787648",
       "status": "Active"
     },
     {
@@ -17470,7 +17290,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61019925580",
       "ifsc": "SBIN0031377",
       "pan": "ACHPI7929P",
-      "aadhaar": "991040193048",
       "status": "Active"
     },
     {
@@ -17488,7 +17307,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30985782969",
       "ifsc": "SBIN0012898",
       "pan": "ADZPK8861B",
-      "aadhaar": "690723092831",
       "status": "Active"
     },
     {
@@ -17506,7 +17324,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30985185453",
       "ifsc": "SBIN0012898",
       "pan": "ABXPR8033N",
-      "aadhaar": "376306597105",
       "status": "Active"
     },
     {
@@ -17524,7 +17341,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30985184426",
       "ifsc": "SBIN0012898",
       "pan": "AAYPV8296Q",
-      "aadhaar": "932712486903",
       "status": "Active"
     },
     {
@@ -17542,7 +17358,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "13550100000510",
       "ifsc": "BARB0FATAJM",
       "pan": "ABZPV6795P",
-      "aadhaar": "233512755506",
       "status": "Active"
     },
     {
@@ -17560,7 +17375,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38154694604",
       "ifsc": "SBIN0031110",
       "pan": "HAVPD3319H",
-      "aadhaar": "706171336469",
       "status": "Active"
     },
     {
@@ -17578,7 +17392,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31767958948",
       "ifsc": "SBIN0001379",
       "pan": "BPHPC5455C",
-      "aadhaar": "54275203966",
       "status": "Active"
     },
     {
@@ -17596,7 +17409,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32554178327",
       "ifsc": "SBIN0012898",
       "pan": "BDVPC5063Q",
-      "aadhaar": "827814257169",
       "status": "Active"
     },
     {
@@ -17614,7 +17426,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100001120",
       "ifsc": "BARB0BHINAI",
       "pan": "EBDPD9713H",
-      "aadhaar": "265267904564",
       "status": "Active"
     },
     {
@@ -17632,7 +17443,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100015111",
       "ifsc": "BARB0BHINAI",
       "pan": "CQAPC6054Q",
-      "aadhaar": "844574537209",
       "status": "Active"
     },
     {
@@ -17650,7 +17460,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32619310935",
       "ifsc": "SBIN0012898",
       "pan": "AZXPC7461R",
-      "aadhaar": "250023314445",
       "status": "Active"
     },
     {
@@ -17668,7 +17477,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51105735891",
       "ifsc": "SBIN0012898",
       "pan": "EBVPK3686N",
-      "aadhaar": "252549443040",
       "status": "Active"
     },
     {
@@ -17686,7 +17494,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38327065886",
       "ifsc": "SBIN0015309",
       "pan": "FMIPS5976Q",
-      "aadhaar": "629561290964",
       "status": "Active"
     },
     {
@@ -17704,7 +17511,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37837562251",
       "ifsc": "SBIN0031422",
       "pan": "CPWPG9470F",
-      "aadhaar": "205788327162",
       "status": "Active"
     },
     {
@@ -17722,7 +17528,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38970292565",
       "ifsc": "SBIN0031041",
       "pan": "CFHPC5904H",
-      "aadhaar": "713213178010",
       "status": "Active"
     },
     {
@@ -17740,7 +17545,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "35342978516",
       "ifsc": "SBIN0007701",
       "pan": "RIPPS4545Q",
-      "aadhaar": "218155167719",
       "status": "Active"
     },
     {
@@ -17758,7 +17562,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61196194586",
       "ifsc": "SBIN0031110",
       "pan": "JEKPD2396B",
-      "aadhaar": "512478699003",
       "status": "Active"
     },
     {
@@ -17776,7 +17579,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "38201299318",
       "ifsc": "SBIN0031117",
       "pan": "JFLP6562E",
-      "aadhaar": "342806437446",
       "status": "Active"
     },
     {
@@ -17794,7 +17596,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "39007273406",
       "ifsc": "SBIN0031377",
       "pan": "FIZPM1252G",
-      "aadhaar": "348699993140",
       "status": "Active"
     },
     {
@@ -17812,7 +17613,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34923388526",
       "ifsc": "SBIN0012898",
       "pan": "AMYPY8907A",
-      "aadhaar": "334379289438",
       "status": "Active"
     },
     {
@@ -17830,7 +17630,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37654511361",
       "ifsc": "SBIN0012898",
       "pan": "BBAPJ1857Q",
-      "aadhaar": "507667360875",
       "status": "Active"
     },
     {
@@ -17848,7 +17647,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61082125500",
       "ifsc": "SBIN0003628",
       "pan": "GFSPM9589D",
-      "aadhaar": "549839685640",
       "status": "Active"
     },
     {
@@ -17866,7 +17664,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61015855264",
       "ifsc": "SBIN0031739",
       "pan": "CGUPS6951G",
-      "aadhaar": "446170212785",
       "status": "Active"
     },
     {
@@ -17884,7 +17681,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51044441526",
       "ifsc": "SBIN0031133",
       "pan": "AOOPK3360R",
-      "aadhaar": "229173930250",
       "status": "Active"
     },
     {
@@ -17902,7 +17698,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42024357101",
       "ifsc": "SBIN0007095",
       "pan": "OFBPS1331J",
-      "aadhaar": "216177961731",
       "status": "Active"
     },
     {
@@ -17920,7 +17715,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100000603",
       "ifsc": "BARB0BHINAI",
       "pan": "AB0PR3237P",
-      "aadhaar": "339837331070",
       "status": "Active"
     },
     {
@@ -17938,7 +17732,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61157675073",
       "ifsc": "SBIN0031594",
       "pan": "CXDPA6196B",
-      "aadhaar": "606470092638",
       "status": "Active"
     },
     {
@@ -17956,7 +17749,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "42342067055",
       "ifsc": "SBIN0030348",
       "pan": "ATHPM4307J",
-      "aadhaar": "762912028729",
       "status": "Active"
     },
     {
@@ -17974,7 +17766,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100000473",
       "ifsc": "BARB0BIJAJM",
       "pan": "ABOPJ9805F",
-      "aadhaar": "773497330017",
       "status": "Active"
     },
     {
@@ -17992,7 +17783,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "6387000100077036",
       "ifsc": "PUNB0638700",
       "pan": "FKHPW1292L",
-      "aadhaar": "846781182585",
       "status": "Active"
     },
     {
@@ -18010,7 +17800,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "39553172074",
       "ifsc": "SBIN0011295",
       "pan": "AFYPS1281E",
-      "aadhaar": "788489463063",
       "status": "Active"
     },
     {
@@ -18028,7 +17817,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33307619383",
       "ifsc": "SBIN0012898",
       "pan": "FFRPS5680",
-      "aadhaar": "545180935185",
       "status": "Active"
     },
     {
@@ -18046,7 +17834,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11828100021275",
       "ifsc": "BARB0BHINAI",
       "pan": "AZQPV8969G",
-      "aadhaar": "338411164917",
       "status": "Active"
     },
     {
@@ -18064,7 +17851,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61255912648",
       "ifsc": "SBIN0031739",
       "pan": "CWKPJ4336E",
-      "aadhaar": "649821330352",
       "status": "Active"
     },
     {
@@ -18082,7 +17868,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61315545354",
       "ifsc": "SBINOO31739",
       "pan": "BZFPV8737E",
-      "aadhaar": "724689315559",
       "status": "Active"
     },
     {
@@ -18100,7 +17885,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "36908702050",
       "ifsc": "SBIN0003628",
       "pan": "CIWPB0440B",
-      "aadhaar": "892885031066",
       "status": "Active"
     },
     {
@@ -18118,7 +17902,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32827022665",
       "ifsc": "SBIN0006184",
       "pan": "CLRPN9073Q",
-      "aadhaar": "514750908555",
       "status": "Active"
     },
     {
@@ -18136,7 +17919,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61058258132",
       "ifsc": "SBIN0031239",
       "pan": "ACOM6499F",
-      "aadhaar": "960327743078",
       "status": "Active"
     },
     {
@@ -18154,7 +17936,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "40829781176",
       "ifsc": "SBIN0032187",
       "pan": "DXVPK7925P",
-      "aadhaar": "955763381555",
       "status": "Active"
     },
     {
@@ -18172,7 +17953,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61240900127",
       "ifsc": "SBIN0031563",
       "pan": "BXDPC4326G",
-      "aadhaar": "803440662178",
       "status": "Active"
     },
     {
@@ -18190,7 +17970,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61223376657",
       "ifsc": "SBIN0031105",
       "pan": "FQYPS5290D",
-      "aadhaar": "422336545554",
       "status": "Active"
     },
     {
@@ -18208,7 +17987,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "6300100025682",
       "ifsc": "BARB0MASUDA",
       "pan": "QSEPS6709E",
-      "aadhaar": "658946178598",
       "status": "Active"
     },
     {
@@ -18226,7 +18004,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "735502010001938",
       "ifsc": "UBIN0573558",
       "pan": "AIIPL9983F",
-      "aadhaar": "532821075229",
       "status": "Active"
     },
     {
@@ -18244,7 +18021,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61284740491",
       "ifsc": "SBIN0032175",
       "pan": "ATXPB81252E",
-      "aadhaar": "885995019553",
       "status": "Active"
     },
     {
@@ -18262,7 +18038,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51091636937",
       "ifsc": "SBIN0001568",
       "pan": "ADUPS4464R",
-      "aadhaar": ",890376899993",
       "status": "Active"
     },
     {
@@ -18280,7 +18055,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "21145073320",
       "ifsc": "RMGB0001474",
       "pan": "AICPC0877D",
-      "aadhaar": ",738550807213",
       "status": "Active"
     },
     {
@@ -18298,7 +18072,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61164679658",
       "ifsc": "SBIN0012901",
       "pan": "HSFPK0675B",
-      "aadhaar": ",950157547578",
       "status": "Active"
     },
     {
@@ -18316,7 +18089,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61118864158",
       "ifsc": "SBIN0031044",
       "pan": "KYPPS3686K",
-      "aadhaar": ",936497586553",
       "status": "Active"
     },
     {
@@ -18334,7 +18106,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51084406061",
       "ifsc": "SBI0012902",
       "pan": "ABWPM9368G",
-      "aadhaar": ",226915590173",
       "status": "Active"
     },
     {
@@ -18352,7 +18123,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61008969960",
       "ifsc": "SBIN0032089",
       "pan": "AKGPG5289D",
-      "aadhaar": ",705240325631",
       "status": "Active"
     },
     {
@@ -18370,7 +18140,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": ",06300100001739",
       "ifsc": "BARB0MASUDA",
       "pan": "ACAPG4480A",
-      "aadhaar": ",648773677283",
       "status": "Active"
     },
     {
@@ -18388,7 +18157,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30760694771",
       "ifsc": "SBIN0012898",
       "pan": "ACFPV1506M",
-      "aadhaar": ",585530990575",
       "status": "Active"
     },
     {
@@ -18406,7 +18174,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11665563943",
       "ifsc": "SBIN0006184",
       "pan": "BBVPP7929L",
-      "aadhaar": ",549675083581",
       "status": "Active"
     },
     {
@@ -18424,7 +18191,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30242472099",
       "ifsc": "SBIN0031898",
       "pan": "BFEPS2115E",
-      "aadhaar": "879928819545",
       "status": "Active"
     },
     {
@@ -18442,7 +18208,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31035706549",
       "ifsc": "SBIN0012898",
       "pan": "AGPPC4672D",
-      "aadhaar": "250862055637",
       "status": "Active"
     },
     {
@@ -18460,7 +18225,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31230100005721",
       "ifsc": "BARBOBIJAJM",
       "pan": "ENNPS5532R",
-      "aadhaar": "710367315563",
       "status": "Active"
     },
     {
@@ -18478,7 +18242,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "6300100002387",
       "ifsc": "BARB0MASUDA",
       "pan": "ABRPJ4752A",
-      "aadhaar": "259682772096",
       "status": "Active"
     },
     {
@@ -18496,7 +18259,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31033608250",
       "ifsc": "SBIN0012898",
       "pan": "AEKPB1288F",
-      "aadhaar": "912316433215",
       "status": "Active"
     },
     {
@@ -18514,7 +18276,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61291445635",
       "ifsc": "SBIN0031739",
       "pan": "AGAPS8966M",
-      "aadhaar": "696154738371",
       "status": "Active"
     },
     {
@@ -18532,7 +18293,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100017231",
       "ifsc": "BARBOBHINAI",
       "pan": "AOXPD7428N",
-      "aadhaar": "524610495985",
       "status": "Active"
     },
     {
@@ -18550,7 +18310,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11761518196",
       "ifsc": "SBIN0004943",
       "pan": "ACAPM9876G",
-      "aadhaar": "388781663542",
       "status": "Active"
     },
     {
@@ -18568,7 +18327,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61145141410",
       "ifsc": "SBIN0031105",
       "pan": "BEWPM9557F",
-      "aadhaar": "888123679910",
       "status": "Active"
     },
     {
@@ -18586,7 +18344,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37967507064",
       "ifsc": "SBNI0031157",
       "pan": "EWKPM2953N",
-      "aadhaar": "836360643572",
       "status": "Active"
     },
     {
@@ -18604,7 +18361,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61157317607",
       "ifsc": "SBIN0032031",
       "pan": "DTGPA1483R",
-      "aadhaar": "492998073142",
       "status": "Active"
     },
     {
@@ -18622,7 +18378,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30786810086",
       "ifsc": "SBIN0012898",
       "pan": "ACXPP7483K",
-      "aadhaar": "661784126020",
       "status": "Active"
     },
     {
@@ -18640,7 +18395,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61024011555",
       "ifsc": "SBIN0031898",
       "pan": "ABFPR5788L",
-      "aadhaar": "513129080382",
       "status": "Active"
     },
     {
@@ -18658,7 +18412,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30988736339",
       "ifsc": "SBIN0012898",
       "pan": "AFUPB4798R",
-      "aadhaar": "555389602092",
       "status": "Active"
     },
     {
@@ -18676,7 +18429,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30987875909",
       "ifsc": "SBIN0012898",
       "pan": "AJPPD8007L",
-      "aadhaar": "494689359230",
       "status": "Active"
     },
     {
@@ -18694,7 +18446,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30992425942",
       "ifsc": "SBIN0012898",
       "pan": "ADAPM2908A",
-      "aadhaar": "359641773695",
       "status": "Active"
     },
     {
@@ -18712,7 +18463,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51057935814",
       "ifsc": "SBIN0012898",
       "pan": "AHBPM4959Q",
-      "aadhaar": "309398781433",
       "status": "Active"
     },
     {
@@ -18730,7 +18480,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31053253018",
       "ifsc": "SBIN0012898",
       "pan": "BGCPP1081R",
-      "aadhaar": "694990623614",
       "status": "Active"
     },
     {
@@ -18748,7 +18497,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61222922826",
       "ifsc": "SBIN0032187",
       "pan": "ETQPR3545Q",
-      "aadhaar": "444408602119",
       "status": "Active"
     },
     {
@@ -18766,7 +18514,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "40649540804",
       "ifsc": "SBIN0031123",
       "pan": "MMWPS4388F",
-      "aadhaar": "759275633437",
       "status": "Active"
     },
     {
@@ -18784,7 +18531,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100013652",
       "ifsc": "BARB0BHINAI",
       "pan": "AUAPC2606C",
-      "aadhaar": "660801215502",
       "status": "Active"
     },
     {
@@ -18802,7 +18548,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41825982132",
       "ifsc": "SBIN0013057",
       "pan": "AEKPO7597N",
-      "aadhaar": "894660357443",
       "status": "Active"
     },
     {
@@ -18820,7 +18565,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32965825360",
       "ifsc": "SBIN0007701",
       "pan": "UHLPS4792H",
-      "aadhaar": "254801119073",
       "status": "Active"
     },
     {
@@ -18838,7 +18582,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100005413",
       "ifsc": "BARBOBHINAI",
       "pan": "CHOPS8122G",
-      "aadhaar": "591063378377",
       "status": "Active"
     },
     {
@@ -18856,7 +18599,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11820100005018",
       "ifsc": "BARBOBHINAI",
       "pan": "AWSPR9444H",
-      "aadhaar": "416267372629",
       "status": "Active"
     },
     {
@@ -18874,7 +18616,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30987219652",
       "ifsc": "SBIN0012898",
       "pan": "AQNPR2534B",
-      "aadhaar": "302446794956",
       "status": "Active"
     },
     {
@@ -18892,7 +18633,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31036119506",
       "ifsc": "SBIN0012898",
       "pan": "DOKPS0419N",
-      "aadhaar": "502169494034",
       "status": "Active"
     },
     {
@@ -18910,7 +18650,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51103624515",
       "ifsc": "SBIN0031487",
       "pan": "AQCPC3957E",
-      "aadhaar": "774791290326",
       "status": "Active"
     },
     {
@@ -18928,7 +18667,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41348192522",
       "ifsc": "SBIN0011295",
       "pan": "EIHPB8780D",
-      "aadhaar": "257624080118",
       "status": "Active"
     },
     {
@@ -18946,7 +18684,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61204713494",
       "ifsc": "SBIN0031048",
       "pan": "ILRPS0869B",
-      "aadhaar": "611076367046",
       "status": "Active"
     },
     {
@@ -18964,7 +18701,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61163764818",
       "ifsc": "SBIN0031600",
       "pan": "CWRPJ4341Q",
-      "aadhaar": "895256971668",
       "status": "Active"
     },
     {
@@ -18982,7 +18718,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61184721675",
       "ifsc": "SBIN0031102",
       "pan": "BVKPB9548J",
-      "aadhaar": "811976781086",
       "status": "Active"
     },
     {
@@ -19000,7 +18735,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30904708457",
       "ifsc": "SBIN0012898",
       "pan": "AWGPK6906M",
-      "aadhaar": "886539070866",
       "status": "Active"
     },
     {
@@ -19018,7 +18752,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61175128029",
       "ifsc": "SBIN0032063",
       "pan": "EHLPM9370M",
-      "aadhaar": "671312156565",
       "status": "Active"
     },
     {
@@ -19036,7 +18769,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61079372429",
       "ifsc": "SBIN0031307",
       "pan": "BSZPR0153H",
-      "aadhaar": "532297584301",
       "status": "Active"
     },
     {
@@ -19054,7 +18786,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "37187723841",
       "ifsc": "SBIN0031095",
       "pan": "JABPS4063R",
-      "aadhaar": "917730100507",
       "status": "Active"
     },
     {
@@ -19072,7 +18803,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11761506735",
       "ifsc": "SBIN0012898",
       "pan": "AVYPR0173J",
-      "aadhaar": "381981978666",
       "status": "Active"
     },
     {
@@ -19090,7 +18820,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61118204827",
       "ifsc": "SBIN0007865",
       "pan": "DWQPM2397F",
-      "aadhaar": "493174937129",
       "status": "Active"
     },
     {
@@ -19108,7 +18837,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "40542682534",
       "ifsc": "SBIN0031414",
       "pan": "DVDPM8313P",
-      "aadhaar": "369869980215",
       "status": "Active"
     },
     {
@@ -19126,7 +18854,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32505751809",
       "ifsc": "SBIN0007701",
       "pan": "JFYPM7412A",
-      "aadhaar": "633933565617",
       "status": "Active"
     },
     {
@@ -19144,7 +18871,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30762778763",
       "ifsc": "SBIN00012898",
       "pan": "AFAPP4643K",
-      "aadhaar": "786681240483",
       "status": "Active"
     },
     {
@@ -19162,7 +18888,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61039992268",
       "ifsc": "SBIN00012898",
       "pan": "BBWPM5862J",
-      "aadhaar": "300426486975",
       "status": "Active"
     },
     {
@@ -19180,7 +18905,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30763815071",
       "ifsc": "SBIN00012898",
       "pan": "APXPD8107P",
-      "aadhaar": "999421954432",
       "status": "Active"
     },
     {
@@ -19198,7 +18922,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20103255046",
       "ifsc": "SBIN0010457",
       "pan": "DCDPR6539B",
-      "aadhaar": "790519179100",
       "status": "Active"
     },
     {
@@ -19216,7 +18939,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20142920914",
       "ifsc": "SBIN0031738",
       "pan": "EHDPK6154D",
-      "aadhaar": "388650232605",
       "status": "Active"
     },
     {
@@ -19234,7 +18956,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "41022214093",
       "ifsc": "SBIN00012898",
       "pan": "CLTPJ9193H",
-      "aadhaar": "5352 8655 0330",
       "status": "Active"
     },
     {
@@ -19252,7 +18973,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61093789488",
       "ifsc": "SBIN0031739",
       "pan": "EJKPB1159L",
-      "aadhaar": "6165 4267 5518",
       "status": "Active"
     },
     {
@@ -19270,7 +18990,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32088328341",
       "ifsc": "SBIN0006184",
       "pan": "BMTPB8834P",
-      "aadhaar": "659417053169",
       "status": "Active"
     },
     {
@@ -19288,7 +19007,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51083797576",
       "ifsc": "SBIN0031828",
       "pan": "AVCPP2743E",
-      "aadhaar": "950491271686",
       "status": "Active"
     },
     {
@@ -19306,7 +19024,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61012833887",
       "ifsc": "SBIN0031440",
       "pan": "DVBPP0759J",
-      "aadhaar": "954305297086",
       "status": "Active"
     },
     {
@@ -19324,7 +19041,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20047529043",
       "ifsc": "SBIN0005708",
       "pan": "BFBPS9575K",
-      "aadhaar": "856293939144",
       "status": "Active"
     },
     {
@@ -19342,7 +19058,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61075622590",
       "ifsc": "SBIN0031292",
       "pan": "CILPS3756E",
-      "aadhaar": "723275388020",
       "status": "Active"
     },
     {
@@ -19360,7 +19075,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30937319757",
       "ifsc": "SBIN0012898",
       "pan": "ABXPJ5796N",
-      "aadhaar": "568125931060",
       "status": "Active"
     },
     {
@@ -19378,7 +19092,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61137433037",
       "ifsc": "SBIN0031822",
       "pan": "ETQPM4550N",
-      "aadhaar": "379977833116",
       "status": "Active"
     },
     {
@@ -19396,7 +19109,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30369222738",
       "ifsc": "SBIN0003628",
       "pan": "AGDPP9103G",
-      "aadhaar": "504312061089",
       "status": "Active"
     },
     {
@@ -19414,7 +19126,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "39645967726",
       "ifsc": "SBIN0031777",
       "pan": "GCXPM3025E",
-      "aadhaar": "800985042248",
       "status": "Active"
     },
     {
@@ -19432,7 +19143,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34146858392",
       "ifsc": "SBIN0010080",
       "pan": "FWKPS1691N",
-      "aadhaar": "686398888152",
       "status": "Active"
     },
     {
@@ -19450,7 +19160,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31636673134",
       "ifsc": "SBIN0012898",
       "pan": "AGLPA9205A",
-      "aadhaar": "390156025782",
       "status": "Active"
     },
     {
@@ -19468,7 +19177,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32957575236",
       "ifsc": "SBIN0001379",
       "pan": "CIMPK8738F",
-      "aadhaar": "617425428210",
       "status": "Active"
     },
     {
@@ -19486,7 +19194,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30997094071",
       "ifsc": "SBIN0012898",
       "pan": "AYCPR1050M",
-      "aadhaar": "728959311548",
       "status": "Active"
     },
     {
@@ -19504,7 +19211,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "50452230618",
       "ifsc": "IDIB000R649",
       "pan": "ETDPD5546N",
-      "aadhaar": "623971037872",
       "status": "Active"
     },
     {
@@ -19522,7 +19228,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61175273893",
       "ifsc": "SBIN0031110",
       "pan": "DSAPG2529B",
-      "aadhaar": "529298452263",
       "status": "Active"
     },
     {
@@ -19540,7 +19245,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "20142266153",
       "ifsc": "SBIN0012901",
       "pan": "CZDPS4260A",
-      "aadhaar": "848633408152",
       "status": "Active"
     },
     {
@@ -19558,7 +19262,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61059417353",
       "ifsc": "SBIN0032063",
       "pan": "BFZPP4868L",
-      "aadhaar": "995895417960",
       "status": "Active"
     },
     {
@@ -19576,7 +19279,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30989285986",
       "ifsc": "SBIN0012898",
       "pan": "ACXPP7524M",
-      "aadhaar": "490890485699",
       "status": "Active"
     },
     {
@@ -19594,7 +19296,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61175614166",
       "ifsc": "SBIN0031109",
       "pan": "AWHPP2050J",
-      "aadhaar": "744628349573",
       "status": "Active"
     },
     {
@@ -19612,7 +19313,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30778297436",
       "ifsc": "SBIN0012898",
       "pan": "ADHPK7958B",
-      "aadhaar": "469414025731",
       "status": "Active"
     },
     {
@@ -19630,7 +19330,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "51037725299",
       "ifsc": "SBIN0031719",
       "pan": "AQUPK6919L",
-      "aadhaar": "954309120477",
       "status": "Active"
     },
     {
@@ -19648,7 +19347,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "40010544305",
       "ifsc": "SBIN0031345",
       "pan": "KKGPK0115J",
-      "aadhaar": "611460933250",
       "status": "Active"
     },
     {
@@ -19666,7 +19364,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31008825683",
       "ifsc": "SBIN0009207",
       "pan": "AOWPM7036G",
-      "aadhaar": "796659584906",
       "status": "Active"
     },
     {
@@ -19684,7 +19381,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30501153353",
       "ifsc": "SBIN0012898",
       "pan": "BXLPS0261G",
-      "aadhaar": "336108273037",
       "status": "Active"
     },
     {
@@ -19702,7 +19398,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61344546114",
       "ifsc": "SBIN0031898",
       "pan": "DBEPC7965Q",
-      "aadhaar": "555916050628",
       "status": "Active"
     },
     {
@@ -19720,7 +19415,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "32579544081",
       "ifsc": "SBIN0012898",
       "pan": "DKGPS6640H",
-      "aadhaar": "784154715135",
       "status": "Active"
     },
     {
@@ -19738,7 +19432,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30988910751",
       "ifsc": "SBIN0012898",
       "pan": "ACBPG6941R",
-      "aadhaar": "687607173874",
       "status": "Active"
     },
     {
@@ -19756,7 +19449,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30988918966",
       "ifsc": "SBIN0012898",
       "pan": "BEMPM0844K",
-      "aadhaar": "262513075182",
       "status": "Active"
     },
     {
@@ -19774,7 +19466,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30760541859",
       "ifsc": "SBIN0012898",
       "pan": "ACKPB7603E",
-      "aadhaar": "390821953114",
       "status": "Active"
     },
     {
@@ -19792,7 +19483,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "61085643653",
       "ifsc": "SBIN0013260",
       "pan": "BPZPA7553M",
-      "aadhaar": "896085307990",
       "status": "Active"
     },
     {
@@ -19810,7 +19500,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30988850224",
       "ifsc": "SBIN0012898",
       "pan": "ATWPM7057C",
-      "aadhaar": "667784369313",
       "status": "Active"
     },
     {
@@ -19828,7 +19517,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "35147353857",
       "ifsc": "SBIN0012898",
       "pan": "CTXPM7933C",
-      "aadhaar": "603037672956",
       "status": "Active"
     },
     {
@@ -19846,7 +19534,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "31868014223",
       "ifsc": "SBIN0012898",
       "pan": "BHCPG3633D",
-      "aadhaar": "368233763712",
       "status": "Active"
     },
     {
@@ -19864,7 +19551,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30990647070",
       "ifsc": "SBIN0012898",
       "pan": "CAFPD4564D",
-      "aadhaar": "505105561836",
       "status": "Active"
     },
     {
@@ -19882,7 +19568,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "11828100001128",
       "ifsc": "BARBOBHINAI",
       "pan": "HVNPB1856E",
-      "aadhaar": "894734405658",
       "status": "Active"
     },
     {
@@ -19900,7 +19585,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "22580100010832",
       "ifsc": "SBIN000247",
       "pan": "BMEPJ6072N",
-      "aadhaar": "867381017433",
       "status": "Active"
     },
     {
@@ -19918,7 +19602,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "34957775398",
       "ifsc": "SBIN0007701",
       "pan": "BNYPD1462M",
-      "aadhaar": "848585740614",
       "status": "Active"
     },
     {
@@ -19936,7 +19619,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30990323633",
       "ifsc": "SBIN0012898",
       "pan": "BMUPK7013C",
-      "aadhaar": "955341064034",
       "status": "Active"
     },
     {
@@ -19954,7 +19636,6 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "33067242508",
       "ifsc": "SBI0012898",
       "pan": "DTYPB2115M",
-      "aadhaar": "682559955016",
       "status": "Active"
     },
     {
@@ -19972,35 +19653,9 @@ const MASTER_CBEO_DATA = {
       "bank_acc": "30988910831",
       "ifsc": "SBIN0012898",
       "pan": "CTUPS3957F",
-      "aadhaar": "484674605694",
       "status": "Active"
     }
   ],
-  "config": {
-    "folder_id": "1wxRe4NMIkKS8VDAAVzUB2KXJioEl4OFu",
-    "folder_url": "https://drive.google.com/drive/folders/1wxRe4NMIkKS8VDAAVzUB2KXJioEl4OFu",
-    "sheets": {
-      "admin_access": {
-        "id": "1cz0QKWpICHkFq1-mHjDge73iDVWjKEwb_hmuBpR1QP4",
-        "name": "1_CBEO_Admin_Access_Control",
-        "url": "https://docs.google.com/spreadsheets/d/1cz0QKWpICHkFq1-mHjDge73iDVWjKEwb_hmuBpR1QP4/edit"
-      },
-      "staff_directory": {
-        "id": "1zl3_tUqt-VxDcjmIiA44u6aYUAjYG5wxwff-tw9ZLJs",
-        "name": "2_CBEO_Staff_Directory",
-        "url": "https://docs.google.com/spreadsheets/d/1zl3_tUqt-VxDcjmIiA44u6aYUAjYG5wxwff-tw9ZLJs/edit"
-      },
-      "information_requests": {
-        "id": "1jH-4jRV82CsBNeoSLE7NLU_E_7kYieG0LMBQBP0bjtI",
-        "name": "3_CBEO_Information_Requests",
-        "url": "https://docs.google.com/spreadsheets/d/1jH-4jRV82CsBNeoSLE7NLU_E_7kYieG0LMBQBP0bjtI/edit"
-      },
-      "audit_logs": {
-        "id": "1kxSqa87C_lHUmfZKd9zYrARM0bPeWgTDyV8bgSoQ3Gc",
-        "name": "4_CBEO_Audit_Backup_Logs",
-        "url": "https://docs.google.com/spreadsheets/d/1kxSqa87C_lHUmfZKd9zYrARM0bPeWgTDyV8bgSoQ3Gc/edit"
-      }
-    }
-  },
-  "total_staff_count": 1048
+  "total_staff_count": 1048,
+  "total_schools_count": 153
 };
