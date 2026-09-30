@@ -1888,49 +1888,37 @@ function openExamPdfPreview(schoolCode) {
       <strong>सत्यापन एवं उत्तरदायित्व घोषणा:</strong> प्रमाणित किया जाता है कि उपर्युक्त परीक्षा संबंधी सभी छात्र संख्या, संकाय एवं विषयवार प्रविष्टियों का विद्यालय की प्रवेश पंजिका व शाला दर्पण पोर्टल से शत-प्रतिशत मिलान कर लिया गया है तथा इसमें कोई लिपिकीय अथवा तथ्यात्मक त्रुटि नहीं है। यदि भविष्य में किसी भी प्रकार की त्रुटि, विसंगति अथवा प्रश्न-पत्रों की कमी/अधिकता पाई जाती है, तो इसका संपूर्ण व्यक्तिगत एवं विभागीय उत्तरदायित्व संबंधित ${isPeeoSubmitted ? 'पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)' : 'संस्था प्रधान एवं परीक्षा प्रभारी'} का होगा।
     </div>
 
-    <!-- Official Signatures: Incharge (Left) & Principal (Right) [Clean, Borderless, No Seal] -->
-    <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 30px; margin-top:12px; margin-bottom:4px">
+    <!-- Official Signatures: Incharge (Left) & Principal (Right) -->
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 35px; margin-top:16px; margin-bottom:8px">
       
-      <!-- Left: Incharge Signature & Details -->
-      <div style="text-align:center; width:44%">
-        <div style="height:30px; display:flex; align-items:flex-end; justify-content:center; color:#000; font-family:'Brush Script MT', cursive; font-size:1.25rem">
-          ${sub.incharge_name}
-        </div>
-        <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.86rem; color:#000">
+      <!-- Left: Incharge Signature (Only 'हस्ताक्षर परीक्षा प्रभारी') -->
+      <div style="text-align:center; width:36%">
+        <div style="height:32px"></div>
+        <div style="border-top:1.5px solid #000; padding-top:4px; font-weight:800; font-size:0.88rem; color:#000">
           हस्ताक्षर परीक्षा प्रभारी
         </div>
-        <div style="font-size:0.78rem; font-weight:700; color:#000; margin-top:2px">नाम: <u>${sub.incharge_name}</u> | मो.: ${sub.incharge_mobile}</div>
-        <div style="font-size:0.75rem; color:#111; margin-top:1px">${school.school_name}, भिनाय (अजमेर)</div>
       </div>
 
-      <!-- Right: Principal Signature & Details (Preserves Digital Signature if available) -->
+      <!-- Right: Principal Signature & School Details (Official Govt Format) -->
       <div style="text-align:center; width:44%">
         ${sub.signature_data ? `
-          <div style="height:30px; display:flex; align-items:center; justify-content:center">
-            <img src="${sub.signature_data}" style="max-height:28px; max-width:160px; object-fit:contain" alt="डिजिटल हस्ताक्षर">
+          <div style="height:32px; display:flex; align-items:center; justify-content:center">
+            <img src="${sub.signature_data}" style="max-height:30px; max-width:160px; object-fit:contain" alt="डिजिटल हस्ताक्षर">
           </div>
-          <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.86rem; color:#000">
+          <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.88rem; color:#000">
             डिजिटल हस्ताक्षर संस्था प्रधान
           </div>
         ` : `
-          <div style="height:30px; display:flex; align-items:flex-end; justify-content:center; color:#000; font-family:'Brush Script MT', cursive; font-size:1.25rem">
-            ${sub.principal_name}
-          </div>
-          <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.86rem; color:#000">
+          <div style="height:32px"></div>
+          <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.88rem; color:#000">
             हस्ताक्षर संस्था प्रधान
           </div>
         `}
-        <div style="font-size:0.78rem; font-weight:700; color:#000; margin-top:2px">नाम: <u>${sub.principal_name}</u> | मो.: ${sub.principal_mobile}</div>
-        <div style="font-size:0.75rem; color:#111; margin-top:1px">${school.school_name}, भिनाय (अजमेर)</div>
+        <div style="font-size:0.80rem; font-weight:700; color:#000; margin-top:2px">प्रधानाचार्य / संस्था प्रधान</div>
+        <div style="font-size:0.76rem; color:#111; margin-top:1px">${school.school_name}</div>
+        <div style="font-size:0.74rem; color:#222; margin-top:1px">ब्लॉक-भिनाय (अजमेर)</div>
       </div>
 
-    </div>
-
-    <!-- Footer meta -->
-    <div style="margin-top:6px; padding-top:3px; border-top:1px dashed #999; display:flex; justify-content:space-between; font-size:0.70rem; color:#444">
-      <span>पोर्टल सत्यापन आईडी: CBEO-SP-2026-${school.shala_darpan_code}</span>
-      <span>प्रविष्टि दिनांक: ${sub.timestamp}</span>
-      <span>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय</span>
     </div>
   `;
 
@@ -2326,38 +2314,26 @@ function openPeeoConsolidatedPdfPreview(peeoName) {
       <strong>सत्यापन एवं उत्तरदायित्व घोषणा:</strong> प्रमाणित किया जाता है कि मेरे परिक्षेत्र (${peeoName}) के अंतर्गत संचालित उपर्युक्त समस्त ${schools.length} माध्यमिक एवं उच्च माध्यमिक विद्यालयों के परीक्षा प्रपत्रों का गहनता से परीक्षण व सत्यापन कर लिया गया है। उपर्युक्त सभी आंकड़े पूर्णतः सही व सत्यापित हैं। किसी भी प्रकार की त्रुटि या विसंगति पाए जाने पर संबंधित संस्था प्रधान एवं PEEO का उत्तरदायित्व होगा।
     </div>
 
-    <!-- Official Signatures: Incharge (Left) & PEEO (Right) [Clean, Borderless, No Seal] -->
-    <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 30px; margin-top:10px; margin-bottom:4px">
-      <!-- Left: Exam In-charge -->
-      <div style="text-align:center; width:44%">
-        <div style="height:30px; display:flex; align-items:flex-end; justify-content:center; color:#64748b; font-size:0.75rem">
-          (.......................................................)
-        </div>
-        <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.86rem; color:#000">
+    <!-- Official Signatures: Incharge (Left) & PEEO (Right) -->
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 35px; margin-top:16px; margin-bottom:8px">
+      <!-- Left: Exam In-charge (Only 'हस्ताक्षर परीक्षा प्रभारी') -->
+      <div style="text-align:center; width:36%">
+        <div style="height:32px"></div>
+        <div style="border-top:1.5px solid #000; padding-top:4px; font-weight:800; font-size:0.88rem; color:#000">
           हस्ताक्षर परीक्षा प्रभारी
         </div>
-        <div style="font-size:0.78rem; font-weight:700; color:#000; margin-top:2px">कार्यालय पंचायत प्रारंभिक शिक्षा अधिकारी, ${cleanPeeoName}</div>
-        <div style="font-size:0.75rem; color:#111; margin-top:1px">ब्लॉक-भिनाय (अजमेर)</div>
       </div>
 
-      <!-- Right: PEEO Sign (Full Hindi Designation & Place) -->
+      <!-- Right: PEEO Sign (Official Designation & Jurisdiction) -->
       <div style="text-align:center; width:44%">
-        <div style="height:30px; display:flex; align-items:flex-end; justify-content:center; color:#64748b; font-size:0.75rem">
-          (.......................................................)
+        <div style="height:32px"></div>
+        <div style="border-top:1.5px solid #000; padding-top:4px; font-weight:800; font-size:0.88rem; color:#000">
+          हस्ताक्षर
         </div>
-        <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.86rem; color:#000">
-          हस्ताक्षर पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)
-        </div>
-        <div style="font-size:0.78rem; font-weight:700; color:#000; margin-top:2px">कार्यालय पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO), ${cleanPeeoName}</div>
-        <div style="font-size:0.75rem; color:#111; margin-top:1px">ग्राम पंचायत ${cleanPeeoName}, ब्लॉक-भिनाय (अजमेर)</div>
+        <div style="font-size:0.82rem; font-weight:800; color:#000; margin-top:2px">पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)</div>
+        <div style="font-size:0.78rem; font-weight:700; color:#111; margin-top:1px">${peeoName}</div>
+        <div style="font-size:0.74rem; color:#222; margin-top:1px">ब्लॉक-भिनाय (अजमेर)</div>
       </div>
-    </div>
-
-    <!-- Footer Meta -->
-    <div style="margin-top:5px; padding-top:2px; border-top:1px dashed #999; display:flex; justify-content:space-between; font-size:0.68rem; color:#444">
-      <span>पोर्टल सत्यापन आईडी: CBEO-PEEO-CONSOLIDATED-${cleanPeeoName.toUpperCase().replace(/\s+/g, '')}</span>
-      <span>प्रविष्टि / रिपोर्ट दिनांक: ${new Date().toLocaleDateString('hi-IN')}</span>
-      <span>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय</span>
     </div>
   `;
 
