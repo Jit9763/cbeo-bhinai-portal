@@ -186,9 +186,9 @@ def sync_full_admin_sheet():
     # 2. PEEOs (25)
     peeos = master.get('peeos', [])
     for peeo in peeos:
-        sd = peeo.get('shala_darpan_code', '')
+        sd = str(peeo.get('shala_darpan_code', '')).strip()
         pid = peeo.get('peeo_id', '')
-        default_pwd = peeo.get('password') or f"{sd}"
+        default_pwd = sd
         pwd = existing_passwords.get(sd) or existing_passwords.get(pid) or default_pwd
         school_count = len(peeo.get('schools', []))
         all_rows.append([
@@ -211,11 +211,12 @@ def sync_full_admin_sheet():
     # Track SD codes already added under PEEO to avoid exact duplicates or label as School
     seen_sd = set()
     for s in schools56:
-        sd = s.get('shala_darpan_code', '')
+        sd = str(s.get('shala_darpan_code', '')).strip()
         if sd in seen_sd:
             continue
         seen_sd.add(sd)
-        pwd = existing_passwords.get(sd) or s.get('default_password') or sd
+        default_pwd = sd
+        pwd = existing_passwords.get(sd) or default_pwd
         all_rows.append([
             row_count,
             f"SCH{row_count:02d}",
