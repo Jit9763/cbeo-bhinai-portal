@@ -72,6 +72,14 @@ function initMasterData() {
     }
   ];
 
+  // Versioned cache check to guarantee fresh master data with Nodal Schools and 1048 staff
+  const DATA_VERSION = 'v4_2026_09_30_nodal_schools_scope_posts';
+  if (localStorage.getItem('cbeo_data_version') !== DATA_VERSION) {
+    localStorage.removeItem('cbeo_peeos_data');
+    localStorage.removeItem('cbeo_staff_data');
+    localStorage.setItem('cbeo_data_version', DATA_VERSION);
+  }
+
   // 1. PEEOs (with schools Govt + Private)
   const storedPeeos = localStorage.getItem('cbeo_peeos_data');
   if (storedPeeos) {
@@ -232,25 +240,26 @@ function setupAutoLogin() {
     try {
       STATE.currentUser = JSON.parse(savedUser);
     } catch (e) {
-      setDefaultAdmin();
+      STATE.currentUser = null;
     }
   } else {
-    setDefaultAdmin();
+    STATE.currentUser = null;
+  }
+
+  // Mandatory Login Gate on Portal Open
+  if (!STATE.currentUser) {
+    setTimeout(() => {
+      openLoginModal(true); // isMandatory = true
+    }, 150);
   }
 }
 
-function setDefaultAdmin() {
-  STATE.currentUser = {
-    role: 'admin',
-    admin_id: 'ADMIN02',
-    name: 'जितेन्द्र कुमार (Jitendra Kumar)',
-    post: 'तकनीकी नोडल प्रभारी एवं व्यवस्थापक',
-    mobile: '7073800244',
-    email: 'jitendrakumar.cbeo@gmail.com',
-    username: 'jitendra_admin',
-    shala_darpan_code: 'admin_jitendra'
-  };
-  localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
+function logoutUser() {
+  localStorage.removeItem('cbeo_logged_user');
+  STATE.currentUser = null;
+  updateUserHeaderBadge();
+  showToast('सफलतापूर्वक लॉगआउट किया गया। पुनः उपयोग हेतु लॉगिन करें।', 'info');
+  openLoginModal(true);
 }
 
 function updateUserHeaderBadge() {
@@ -259,41 +268,80 @@ function updateUserHeaderBadge() {
   const displaySubtext = document.getElementById('user-display-subtext');
   const adminTab = document.getElementById('nav-tab-admin');
 
+  if (!STATE.currentUser) {
+    if (badgeInitial) {
+      badgeInitial.textContent = '?';
+      badgeInitial.style.background = '#64748b';
+    }
+    if (displayName) displayName.textContent = 'लॉगिन आवश्यक (Login Required)';
+    if (displaySubtext) displaySubtext.textContent = 'कृपया अपने शाला दर्पण कोड से लॉगिन करें';
+    if (adminTab) adminTab.style.display = 'none';
+    return;
+  }
+
   if (STATE.currentUser.role === 'admin') {
-    badgeInitial.textContent = STATE.currentUser.name.includes('जितेन्द्र') ? 'J' : 'P';
-    badgeInitial.style.background = '#ff9933';
-    displayName.textContent = `${STATE.currentUser.name} (Admin)`;
-    displaySubtext.textContent = 'सम्पूर्ण ब्लॉक नियंत्रण (25 PEEO | 153 विद्यालय)';
+    if (badgeInitial) {
+      badgeInitial.textContent = STATE.currentUser.name.includes('जितेन्द्र') ? 'J' : 'P';
+      badgeInitial.style.background = '#ff9933';
+    }
+    if (displayName) displayName.textContent = `${STATE.currentUser.name} (Admin)`;
+    if (displaySubtext) displaySubtext.textContent = 'सम्पूर्ण ब्लॉक नियंत्रण (25 PEEO | 178 विद्यालय)';
     if (adminTab) adminTab.style.display = 'inline-flex';
   } else {
-    badgeInitial.textContent = STATE.currentUser.peeo_name.charAt(5) || 'P';
-    badgeInitial.style.background = '#0284c7';
-    displayName.textContent = `${STATE.currentUser.peeo_name} (${STATE.currentUser.shala_darpan_code})`;
-    displaySubtext.textContent = `प्रभारी: ${STATE.currentUser.principal_incharge} | मो.: ${STATE.currentUser.mobile || '---'}`;
+    if (badgeInitial) {
+      badgeInitial.textContent = STATE.currentUser.peeo_name.charAt(5) || 'P';
+      badgeInitial.style.background = '#0284c7';
+    }
+    if (displayName) displayName.textContent = `${STATE.currentUser.peeo_name} (${STATE.currentUser.shala_darpan_code})`;
+    if (displaySubtext) displaySubtext.textContent = `प्रभारी: ${STATE.currentUser.principal_incharge} | मो.: ${STATE.currentUser.mobile || '---'}`;
     if (adminTab) adminTab.style.display = 'none';
   }
 }
 
-function openLoginModal() {
+function openLoginModal(isMandatory = false) {
+  const modalElem = document.getElementById('modal-login');
+  const closeBtn = document.getElementById('modal-login-close-btn');
+  const cancelBtn = document.getElementById('modal-login-cancel-btn');
+
+  const mustLock = isMandatory || !STATE.currentUser;
+  if (mustLock) {
+    if (closeBtn) closeBtn.style.display = 'none';
+    if (cancelBtn) cancelBtn.style.display = 'none';
+    if (modalElem) modalElem.classList.add('mandatory-gate');
+  } else {
+    if (closeBtn) closeBtn.style.display = 'block';
+    if (cancelBtn) cancelBtn.style.display = 'inline-block';
+    if (modalElem) modalElem.classList.remove('mandatory-gate');
+  }
+
   const select = document.getElementById('login-quick-select');
   const optgroup = document.getElementById('login-peeo-optgroup');
-  optgroup.innerHTML = '';
+  if (optgroup) {
+    optgroup.innerHTML = '';
+    STATE.peeos.forEach(p => {
+      const opt = document.createElement('option');
+      opt.value = p.shala_darpan_code;
+      opt.textContent = `${p.shala_darpan_code} - ${p.peeo_name} (${p.principal_incharge})`;
+      optgroup.appendChild(opt);
+    });
+  }
 
-  STATE.peeos.forEach(p => {
-    const opt = document.createElement('option');
-    opt.value = p.shala_darpan_code;
-    opt.textContent = `${p.shala_darpan_code} - ${p.peeo_name} (${p.principal_incharge})`;
-    optgroup.appendChild(opt);
-  });
-
-  if (STATE.currentUser.role === 'admin') {
-    select.value = STATE.currentUser.username;
-    document.getElementById('login-username').value = STATE.currentUser.shala_darpan_code;
-    document.getElementById('login-password').value = STATE.currentUser.username === 'cbeo_admin' ? 'cbeo@2026' : 'jitendra#2026';
+  if (STATE.currentUser) {
+    if (STATE.currentUser.role === 'admin') {
+      if (select) select.value = STATE.currentUser.username;
+      document.getElementById('login-username').value = STATE.currentUser.shala_darpan_code;
+      document.getElementById('login-password').value = STATE.currentUser.username === 'cbeo_admin' ? 'cbeo@2026' : 'jitendra#2026';
+    } else {
+      if (select) select.value = STATE.currentUser.shala_darpan_code;
+      document.getElementById('login-username').value = STATE.currentUser.shala_darpan_code;
+      document.getElementById('login-password').value = STATE.currentUser.password || '';
+    }
   } else {
-    select.value = STATE.currentUser.shala_darpan_code;
-    document.getElementById('login-username').value = STATE.currentUser.shala_darpan_code;
-    document.getElementById('login-password').value = STATE.currentUser.password;
+    // Default selection for immediate 1-click convenience
+    if (select) {
+      select.value = '221754'; // PEEO Deoliya Kalan default
+      onQuickSelectUser();
+    }
   }
 
   showModal('modal-login');
@@ -495,7 +543,7 @@ function renderExplorerFilters() {
   });
 
   // If logged in as PEEO, restrict and preselect
-  if (STATE.currentUser.role === 'peeo') {
+  if (STATE.currentUser && STATE.currentUser.role === 'peeo') {
     peeoSelect.value = STATE.currentUser.peeo_name;
     peeoSelect.disabled = true;
   } else {
@@ -527,7 +575,7 @@ function onExplorerPeeoChange() {
   schoolsToDisplay.forEach(sch => {
     const opt = document.createElement('option');
     opt.value = sch.school_name;
-    const typeBadge = sch.type === 'Private' ? '[निजी/Pvt]' : '[राजकीय/Govt]';
+    const typeBadge = sch.type === 'Private' ? '[निजी/Pvt]' : (sch.is_peeo_nodal ? '⭐ [PEEO नोडल HQ]' : '[राजकीय/Govt]');
     opt.textContent = `${typeBadge} ${sch.school_name}`;
     schoolSelect.appendChild(opt);
   });
@@ -652,6 +700,23 @@ function filterDirectory() {
     });
   }
 
+  // Add 46 Private Schools
+  if (typeFilter === 'all' || typeFilter === 'private' || typeFilter === 'principal') {
+    STATE.peeos.forEach(p => {
+      (p.schools || []).filter(s => s.type === 'Private').forEach(pvt => {
+        list.push({
+          name: pvt.school_name,
+          post: 'संस्था प्रधान / प्रबंधक (निजी विद्यालय)',
+          peeo_name: p.peeo_name,
+          school: `${pvt.school_name} (${pvt.category})`,
+          mobile: pvt.mobile || p.mobile || '',
+          email: pvt.email || '',
+          type: 'private'
+        });
+      });
+    });
+  }
+
   // Add Staff (1048 records)
   if (typeFilter === 'all' || typeFilter === 'staff' || typeFilter === 'principal') {
     STATE.staff.filter(s => s.status !== 'Deleted').forEach(s => {
@@ -746,7 +811,7 @@ function filterStaffTable() {
 
   let activeList = STATE.staff.filter(s => s.status !== 'Deleted');
 
-  if (STATE.currentUser.role === 'peeo') {
+  if (STATE.currentUser && STATE.currentUser.role === 'peeo') {
     activeList = activeList.filter(s => s.peeo_name === STATE.currentUser.peeo_name);
     document.getElementById('staff-peeo-filter').value = STATE.currentUser.peeo_name;
     document.getElementById('staff-peeo-filter').disabled = true;
@@ -807,7 +872,7 @@ function openAddStaffModal() {
   document.getElementById('staff-edit-bank-acc').value = '';
   document.getElementById('staff-edit-ifsc').value = '';
 
-  const targetPeeo = STATE.currentUser.role === 'peeo' ? STATE.currentUser.peeo_name : 'PEEO BHINAY';
+  const targetPeeo = STATE.currentUser?.role === 'peeo' ? STATE.currentUser.peeo_name : 'PEEO BHINAY';
   document.getElementById('staff-edit-peeo').value = targetPeeo;
 
   const schoolSelect = document.getElementById('staff-edit-school');
@@ -999,10 +1064,10 @@ function openAuditLogModal() {
    ======================================================== */
 function getVisibleDemands() {
   // If PEEO, only show PUBLISHED demands!
-  if (STATE.currentUser.role === 'peeo') {
+  if (STATE.currentUser?.role === 'peeo') {
     return STATE.demands.filter(d => d.published === true && !d.archived && !checkIsDemandArchivable(d));
   }
-  // If Admin, show all active non-archived demands
+  // If Admin or guest, show all active non-archived demands
   return STATE.demands.filter(d => !d.archived && !checkIsDemandArchivable(d));
 }
 
@@ -1087,7 +1152,7 @@ function createDemandCardElement(demand, isArchive = false) {
   let isCurrentSubmitted = false;
   let currentSubmission = null;
 
-  if (STATE.currentUser.role === 'peeo') {
+  if (STATE.currentUser?.role === 'peeo') {
     const subKey = `${demand.id}_${STATE.currentUser.peeo_id}`;
     if (STATE.submissions[subKey] && STATE.submissions[subKey].verified) {
       isCurrentSubmitted = true;
@@ -1106,7 +1171,7 @@ function createDemandCardElement(demand, isArchive = false) {
   const totalPEEOs = STATE.peeos.length;
   const percent = Math.round((submittedCount / totalPEEOs) * 100);
 
-  if (STATE.currentUser.role === 'peeo') {
+  if (STATE.currentUser?.role === 'peeo') {
     if (isCurrentSubmitted) {
       card.classList.add('submitted');
     } else {
@@ -1114,11 +1179,14 @@ function createDemandCardElement(demand, isArchive = false) {
     }
   }
 
+  const isPeeoUser = STATE.currentUser?.role === 'peeo';
+  const isAdminUser = STATE.currentUser?.role === 'admin';
+
   card.innerHTML = `
     <div>
       <div class="demand-card-header">
         <span class="status-badge ${isCurrentSubmitted ? 'green' : 'red'}">
-          ${STATE.currentUser.role === 'peeo' ? (isCurrentSubmitted ? '<i class="fas fa-check-circle"></i> पूर्ण (सत्यापित)' : '<i class="fas fa-exclamation-circle"></i> बाकी (Pending)') : `<i class="fas fa-users"></i> ${submittedCount}/${totalPEEOs} PEEO पूर्ण`}
+          ${isPeeoUser ? (isCurrentSubmitted ? '<i class="fas fa-check-circle"></i> पूर्ण (सत्यापित)' : '<i class="fas fa-exclamation-circle"></i> बाकी (Pending)') : `<i class="fas fa-users"></i> ${submittedCount}/${totalPEEOs} PEEO पूर्ण`}
         </span>
         <div style="display:flex; align-items:center; gap:0.5rem">
           ${demand.published === false ? '<span style="font-size:0.7rem; background:#fee2e2; color:#dc2626; padding:2px 6px; border-radius:4px; font-weight:bold">अप्रकाशित (Hidden)</span>' : ''}
@@ -1146,7 +1214,7 @@ function createDemandCardElement(demand, isArchive = false) {
     </div>
 
     <div class="demand-actions">
-      ${STATE.currentUser.role === 'peeo' ? `
+      ${isPeeoUser ? `
         ${isCurrentSubmitted ? `
           <button class="btn btn-outline-light btn-sm" style="color:#047857; border-color:#6ee7b7" onclick="openPreviewPDFModal('${demand.id}', '${STATE.currentUser.peeo_id}')">
             <i class="fas fa-eye"></i> प्रपत्र देखें / प्रिंट
@@ -1159,14 +1227,18 @@ function createDemandCardElement(demand, isArchive = false) {
             <i class="fas fa-pen-nib"></i> प्रपत्र भरें व मोहर लगाएं
           </button>
         `}
-      ` : `
+      ` : (isAdminUser ? `
         <button class="btn btn-primary btn-sm" onclick="switchTab('admin-control')">
           <i class="fas fa-tasks"></i> सभी 25 PEEO स्थिति
         </button>
         <button class="btn btn-outline-light btn-sm" style="color:#1b365d; border-color:#cbd5e1" onclick="openFillDemandModal('${demand.id}', 'PEEO08')">
           <i class="fas fa-eye"></i> प्रपत्र प्रारूप
         </button>
-      `}
+      ` : `
+        <button class="btn btn-primary btn-sm" onclick="openLoginModal(true)">
+          <i class="fas fa-sign-in-alt"></i> लॉगिन कर सूचना भरें
+        </button>
+      `)}
     </div>
   `;
 
@@ -1182,11 +1254,18 @@ function openFillDemandModal(demandId, forcePeeoId = null) {
 
   STATE.currentDemandToFill = demand;
 
-  const peeoId = forcePeeoId || (STATE.currentUser.role === 'peeo' ? STATE.currentUser.peeo_id : 'PEEO08');
+  const peeoId = forcePeeoId || (STATE.currentUser?.role === 'peeo' ? STATE.currentUser.peeo_id : 'PEEO08');
   const peeo = STATE.peeos.find(p => p.peeo_id === peeoId) || STATE.peeos[0];
 
+  const scope = demand.schoolScope || 'all';
+  const scopeHindi = scope === 'govt' ? 'केवल राजकीय विद्यालय' : (scope === 'private' ? 'केवल निजी विद्यालय' : 'समस्त विद्यालय (राजकीय व निजी)');
+
   document.getElementById('form-modal-title').textContent = demand.title;
-  document.getElementById('form-modal-subtitle').textContent = `PEEO परिक्षेत्र: ${peeo.peeo_name} | शा.दा. कोड: ${peeo.shala_darpan_code} | अंतिम तिथि: ${demand.dueDate}`;
+  document.getElementById('form-modal-subtitle').textContent = `PEEO परिक्षेत्र: ${peeo.peeo_name} | शा.दा. कोड: ${peeo.shala_darpan_code} | लागू: ${scopeHindi}`;
+
+  // Update instructions banner badge
+  const filterBadge = document.getElementById('fill-modal-filter-badge');
+  if (filterBadge) filterBadge.textContent = `लागू: ${scopeHindi}`;
 
   // Update Rectangular Rubber Stamp (सीधी मोहर)
   document.getElementById('stamp-peeo-name').textContent = `रा.उ.मा.वि. ${peeo.panchayat_name} (${peeo.peeo_name.replace('PEEO ', '')})`;
@@ -1199,14 +1278,23 @@ function openFillDemandModal(demandId, forcePeeoId = null) {
   const subKey = `${demand.id}_${peeo.peeo_id}`;
   const existingSub = STATE.submissions[subKey];
 
-  const schools = peeo.schools && peeo.schools.length > 0 ? peeo.schools : [
-    { school_name: peeo.peeo_name, dise_code: '0812000000', village: peeo.panchayat_name }
+  // Dynamic filter by demand.schoolScope
+  let allSchools = peeo.schools && peeo.schools.length > 0 ? peeo.schools : [
+    { school_name: peeo.peeo_name, dise_code: '0812000000', village: peeo.panchayat_name, type: 'Government', is_peeo_nodal: true }
   ];
+
+  let schools = allSchools;
+  if (scope === 'govt') {
+    schools = allSchools.filter(s => s.type !== 'Private');
+  } else if (scope === 'private') {
+    schools = allSchools.filter(s => s.type === 'Private');
+  }
 
   const tableWrapper = document.createElement('div');
   tableWrapper.className = 'table-responsive';
   
   let headerColsHtml = `
+    <th style="width:50px; text-align:center" title="समेकित रिपोर्ट में शामिल करें">शामिल</th>
     <th>क्र.सं. <span class="status-badge locked">LOCKED</span></th>
     <th>विद्यालय का नाम <span class="status-badge locked">LOCKED</span></th>
     <th>प्रकार / कोड <span class="status-badge locked">LOCKED</span></th>
@@ -1219,11 +1307,17 @@ function openFillDemandModal(demandId, forcePeeoId = null) {
   let rowsHtml = '';
   schools.forEach((sch, sIdx) => {
     const isPvt = sch.type === 'Private';
+    const isNodal = sch.is_peeo_nodal;
+
     rowsHtml += `
-      <tr data-school="${sch.school_name}">
+      <tr data-school="${sch.school_name}" id="sch_row_${sIdx}">
+        <td style="text-align:center">
+          <input type="checkbox" id="include_sch_${sIdx}" checked style="width:18px; height:18px; cursor:pointer" title="समेकित रिपोर्ट में शामिल करें">
+        </td>
         <td><strong>${sIdx + 1}</strong></td>
         <td>
-          <strong>${sch.school_name}</strong><br>
+          <strong>${sch.school_name}</strong>
+          ${isNodal ? '<span class="status-badge" style="background:#dbeafe; color:#1e40af; font-size:0.7rem; margin-left:4px">PEEO नोडल HQ</span>' : ''}<br>
           <span style="font-size:0.75rem; color:var(--neutral-500)">${sch.village || sch.panchayat || ''}</span>
         </td>
         <td>
@@ -1237,8 +1331,9 @@ function openFillDemandModal(demandId, forcePeeoId = null) {
     demand.columns.forEach((col, cIdx) => {
       const fieldId = `field_${sIdx}_${cIdx}`;
       let existingVal = '';
-      if (existingSub && existingSub.data && existingSub.data[sIdx]) {
-        existingVal = existingSub.data[sIdx][col.name] || '';
+      if (existingSub && existingSub.data) {
+        const found = existingSub.data.find(d => d.school_name === sch.school_name);
+        if (found) existingVal = found[col.name] || '';
       }
 
       if (col.type === 'select') {
@@ -1349,13 +1444,13 @@ function clearSignatureCanvas() {
 }
 
 /* ========================================================
-   9. SUBMISSION & CERTIFICATION
+   9. SUBMISSION & CONSOLIDATED REPORT CERTIFICATION
    ======================================================== */
 function submitDemandForm() {
   const demand = STATE.currentDemandToFill;
   if (!demand) return;
 
-  const peeoId = STATE.currentUser.role === 'peeo' ? STATE.currentUser.peeo_id : 'PEEO08';
+  const peeoId = STATE.currentUser?.role === 'peeo' ? STATE.currentUser.peeo_id : 'PEEO08';
   const peeo = STATE.peeos.find(p => p.peeo_id === peeoId) || STATE.peeos[0];
 
   if (!hasSignature) {
@@ -1363,57 +1458,86 @@ function submitDemandForm() {
     return;
   }
 
-  const schools = peeo.schools && peeo.schools.length > 0 ? peeo.schools : [
-    { school_name: peeo.peeo_name, dise_code: '0812000000' }
-  ];
+  const scope = demand.schoolScope || 'all';
+  let allSchools = peeo.schools && peeo.schools.length > 0 ? peeo.schools : [];
+  let targetSchools = allSchools;
+  if (scope === 'govt') {
+    targetSchools = allSchools.filter(s => s.type !== 'Private');
+  } else if (scope === 'private') {
+    targetSchools = allSchools.filter(s => s.type === 'Private');
+  }
 
   const formDataRows = [];
-  schools.forEach((sch, sIdx) => {
+  targetSchools.forEach((sch, sIdx) => {
+    const isChecked = document.getElementById(`include_sch_${sIdx}`)?.checked;
     const rowObj = {
       school_name: sch.school_name,
-      dise_code: sch.dise_code || sch.shala_darpan_code || ''
+      dise_code: sch.dise_code || sch.shala_darpan_code || '',
+      type: sch.type || 'Government',
+      panchayat: sch.panchayat || peeo.panchayat_name
     };
+
+    let hasFilledData = false;
     demand.columns.forEach((col, cIdx) => {
       const fieldId = `field_${sIdx}_${cIdx}`;
       const elem = document.getElementById(fieldId);
-      rowObj[col.name] = elem ? elem.value : '';
+      const val = elem ? elem.value.trim() : '';
+      rowObj[col.name] = val;
+      if (val !== '' && val !== '-' && val !== '0' && val !== 'उपलब्ध नहीं' && val !== 'नहीं (No)') {
+        hasFilledData = true;
+      }
     });
-    formDataRows.push(rowObj);
+
+    // "jis school ki report nhi bhari wo roprt me show nhi ho kyu ki bhut si suchn sari school per lagu nhi hoti"
+    if (isChecked && hasFilledData) {
+      formDataRows.push(rowObj);
+    }
   });
 
-  const signatureDataUrl = canvas.toDataURL('image/png');
+  if (formDataRows.length === 0) {
+    showToast('कृपया कम से कम एक विद्यालय की सूचना भरें अथवा चेक करें!', 'warning');
+    return;
+  }
 
-  const submissionRecord = {
+  const signatureDataUrl = canvas.toDataURL('image/png');
+  const now = new Date().toLocaleString('hi-IN', {
+    day: '2-digit', month: '2-digit', year: 'numeric',
+    hour: '2-digit', minute: '2-digit', second: '2-digit'
+  });
+
+  const subKey = `${demand.id}_${peeo.peeo_id}`;
+  STATE.submissions[subKey] = {
     demandId: demand.id,
     demandTitle: demand.title,
+    schoolScope: scope,
+    schoolScopeHindi: scope === 'govt' ? 'केवल राजकीय विद्यालय' : (scope === 'private' ? 'केवल निजी विद्यालय' : 'समस्त विद्यालय (राजकीय व निजी)'),
     peeoId: peeo.peeo_id,
     peeoName: peeo.peeo_name,
     shala_darpan_code: peeo.shala_darpan_code,
     panchayat: peeo.panchayat_name,
     incharge: peeo.principal_incharge,
     mobile: peeo.mobile,
-    email: peeo.email,
+    targetSchoolsCount: targetSchools.length,
+    filledSchoolsCount: formDataRows.length,
     data: formDataRows,
     signature: signatureDataUrl,
-    submittedAt: new Date().toLocaleString('hi-IN'),
+    submittedAt: now,
     submittedAtTime: new Date().getTime(),
     verified: true
   };
 
-  const subKey = `${demand.id}_${peeo.peeo_id}`;
-  STATE.submissions[subKey] = submissionRecord;
   saveSubmissionsToStorage();
 
   recordAuditLog({
-    user: peeo.peeo_name,
-    action: 'सूचना प्रपत्र सत्यापन व सबमिशन',
+    user: peeo.principal_incharge,
+    action: 'समेकित सूचना प्रतिवेदन सबमिशन',
     target: demand.title,
-    details: `${formDataRows.length} विद्यालयों का विवरण प्रमाणित किया गया`,
-    note: 'सीधी मोहर व डिजिटल हस्ताक्षर सहित'
+    details: `कुल ${targetSchools.length} में से ${formDataRows.length} विद्यालयों की समेकित रिपोर्ट सीधी मोहर व डिजिटल हस्ताक्षर सहित प्रमाणित`,
+    note: 'समेकित PDF जनरेट'
   });
 
   closeModal('modal-fill-demand');
-  showToast(`${demand.title} सफलता पूर्वक सत्यापित व सबमिट हुई!`, 'success');
+  showToast(`समेकित रिपोर्ट सबमिट सफल! (${formDataRows.length} विद्यालय शामिल)`, 'success');
   renderApp();
 
   setTimeout(() => {
@@ -1463,18 +1587,24 @@ function openPreviewPDFModal(demandId, peeoId) {
       <div style="font-size:11pt; font-weight:bold; letter-spacing:0.05em">राजस्थान सरकार • स्कूल शिक्षा विभाग</div>
       <h2 style="margin:4px 0">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</h2>
       <div style="font-size:9pt; color:#475569">समग्र शिक्षा अभियान | NIC-SD ID: 8140 | IFMS ID: 1408</div>
-      <h3 style="margin-top:10px; text-decoration:underline; font-weight:bold">${sub.demandTitle}</h3>
+      <h3 style="margin-top:10px; text-decoration:underline; font-weight:bold">समेकित सूचना प्रतिवेदन: ${sub.demandTitle}</h3>
     </div>
 
     <div class="letterhead-meta">
       <div>
         <strong>PEEO परिक्षेत्र:</strong> ${sub.peeoName}<br>
-        <strong>शाला दर्पण कोड:</strong> ${sub.shala_darpan_code || '---'} | <strong>प्रभारी:</strong> ${sub.incharge}
+        <strong>शाला दर्पण कोड:</strong> ${sub.shala_darpan_code || '---'} | <strong>प्रभारी:</strong> ${sub.incharge}<br>
+        <strong>लागू वर्ग:</strong> <span style="color:#0369a1; font-weight:bold">${sub.schoolScopeHindi || 'समस्त विद्यालय'}</span>
       </div>
       <div style="text-align:right">
         <strong>सत्यापन दिनांक:</strong> ${sub.submittedAt}<br>
-        <strong>संपर्क मोबाइल:</strong> ${sub.mobile}
+        <strong>संपर्क मोबाइल:</strong> ${sub.mobile}<br>
+        <strong>समेकित रिपोर्ट:</strong> <span style="color:#16a34a; font-weight:bold">कुल लक्षित: ${sub.targetSchoolsCount || sub.data.length} | प्रविष्ट: ${sub.data.length} विद्यालय</span>
       </div>
+    </div>
+
+    <div style="font-size:8.5pt; color:#475569; margin-bottom:8px; font-style:italic">
+      * नोट: इस समेकित रिपोर्ट में केवल उन्हीं विद्यालयों का विवरण सम्मिलित किया गया है जिन पर यह सूचना लागू थी एवं जिनकी रिपोर्ट प्रविष्ट की गई है।
     </div>
 
     <table class="letterhead-table">
@@ -1482,11 +1612,11 @@ function openPreviewPDFModal(demandId, peeoId) {
       <tbody>${tableDataRows}</tbody>
     </table>
 
-    <div style="font-size:9pt; margin-bottom:1.5rem; color:#1e293b; background:#f8fafc; padding:8px; border:1px solid #cbd5e1; border-radius:4px">
-      <strong>घोषणा एवं प्रमाणीकरण:</strong> प्रमाणित किया जाता है कि उपरोक्त सूचना मेरे द्वारा अधीनस्थ विद्यालयों के मूल कार्यालय अभिलेखों का भलीभांति भौतिक सत्यापन कर तैयार की गई है तथा पूर्णतया सत्य व सही है।
+    <div style="font-size:9pt; margin:1rem 0; color:#1e293b; background:#f8fafc; padding:8px; border:1px solid #cbd5e1; border-radius:4px">
+      <strong>घोषणा एवं प्रमाणीकरण:</strong> प्रमाणित किया जाता है कि उपरोक्त समेकित सूचना मेरे द्वारा अधीनस्थ विद्यालयों के मूल अभिलेखों का भलीभांति सत्यापन कर तैयार की गई है तथा पूर्णतया सत्य व सही है।
     </div>
 
-    <div class="letterhead-footer-sign" style="display:flex; justify-content:space-between; align-items:flex-end">
+    <div class="letterhead-footer-sign" style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:1rem">
       <!-- Rectangular Stamp (सीधी मोहर) -->
       <div style="text-align:center">
         <div class="rubber-stamp" style="width:260px; min-height:76px">
@@ -1676,6 +1806,8 @@ function toggleDemandPublish(demandId) {
 function openCreateDemandModal() {
   document.getElementById('new-demand-title').value = '';
   document.getElementById('new-demand-date').value = '';
+  const scopeSelect = document.getElementById('new-demand-school-scope');
+  if (scopeSelect) scopeSelect.value = 'all';
   document.getElementById('new-demand-cols').value = 'कुल खेल मैदान क्षेत्रफल (बीघा), वर्तमान चारदीवारी स्थिति, विकसित खेल संसाधन, आवश्यक अनुदान (लाखों में), विशेष विवरण';
   document.getElementById('new-demand-desc').value = '';
   document.getElementById('new-demand-publish').checked = true;
@@ -1686,6 +1818,7 @@ function saveNewDemand() {
   const title = document.getElementById('new-demand-title').value.trim();
   const dueDate = document.getElementById('new-demand-date').value;
   const priority = document.getElementById('new-demand-priority').value;
+  const scope = document.getElementById('new-demand-school-scope')?.value || 'all';
   const colsRaw = document.getElementById('new-demand-cols').value.trim();
   const desc = document.getElementById('new-demand-desc').value.trim();
   const isPub = document.getElementById('new-demand-publish').checked;
@@ -1705,6 +1838,7 @@ function saveNewDemand() {
   const newDemand = {
     id: `DEMAND_${Date.now()}`,
     title: title,
+    schoolScope: scope,
     description: desc || 'समस्त PEEO समय सीमा में सूचना सीधी डिजिटल मोहर व हस्ताक्षर सहित प्रेषित करें।',
     dueDate: dueDate || 'यथाशीघ्र',
     priority: priority,
@@ -1742,7 +1876,7 @@ function openAddSchoolModal() {
     peeoSelect.appendChild(opt);
   });
 
-  if (STATE.currentUser.role === 'peeo') {
+  if (STATE.currentUser && STATE.currentUser.role === 'peeo') {
     peeoSelect.value = STATE.currentUser.peeo_name;
     peeoSelect.disabled = true;
   } else {
@@ -1960,8 +2094,15 @@ function showModal(id) {
 }
 
 function closeModal(id) {
+  if (id === 'modal-login' && !STATE.currentUser) {
+    showToast('पोर्टल का उपयोग करने हेतु पहले लॉगिन करना अनिवार्य है!', 'warning');
+    return;
+  }
   const modal = document.getElementById(id);
-  if (modal) modal.classList.remove('active');
+  if (modal) {
+    modal.classList.remove('active');
+    modal.classList.remove('mandatory-gate');
+  }
 }
 
 function showToast(message, type = 'info') {

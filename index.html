@@ -51,8 +51,11 @@
         </div>
 
         <!-- Switch User / Logout Button -->
-        <button id="btn-open-login" class="btn btn-outline-light btn-sm" onclick="openLoginModal()">
-          <i class="fas fa-user-circle"></i> लॉगिन / PEEO बदलें
+        <button id="btn-open-login" class="btn btn-outline-light btn-sm" onclick="openLoginModal(false)">
+          <i class="fas fa-user-circle"></i> प्रोफाइल / PEEO बदलें
+        </button>
+        <button id="btn-logout" class="btn btn-danger btn-sm" onclick="logoutUser()" title="पोर्टल से लॉगआउट करें">
+          <i class="fas fa-sign-out-alt"></i> लॉगआउट
         </button>
       </div>
     </div>
@@ -100,6 +103,22 @@
       </div>
       <button class="btn btn-primary btn-sm" onclick="switchTab('demands')">
         सूचनाएं भरें <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+
+    <!-- Block Directory Quick Access Banner -->
+    <div class="directory-quick-banner" onclick="switchTab('directory')" style="margin-bottom:1.5rem; background:linear-gradient(135deg, #1e3a8a, #0284c7); color:#fff; border-radius:12px; padding:1rem 1.5rem; display:flex; justify-content:space-between; align-items:center; cursor:pointer; box-shadow:0 4px 12px rgba(2,132,199,0.25)">
+      <div style="display:flex; align-items:center; gap:1rem">
+        <div style="background:rgba(255,255,255,0.2); width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.4rem">
+          <i class="fas fa-address-book"></i>
+        </div>
+        <div>
+          <div style="font-weight:700; font-size:1.05rem">📞 सम्पूर्ण ब्लॉक मोबाइल एवं संपर्क डायरेक्टरी (1,048+ शिक्षक व संस्था प्रधान)</div>
+          <div style="font-size:0.83rem; opacity:0.9">सभी 25 PEEO, राजकीय व निजी स्कूल संस्था प्रधान एवं 1048 कार्मिकों के मोबाइल नंबर, ईमेल व 1-क्लिक कॉल/व्हाट्सएप लिंक उपलब्ध</div>
+        </div>
+      </div>
+      <button class="btn btn-light btn-sm" style="font-weight:700; color:#1e3a8a; white-space:nowrap">
+        डायरेक्टरी खोलें <i class="fas fa-arrow-right"></i>
       </button>
     </div>
 
@@ -285,9 +304,10 @@
             <input type="text" id="dir-search-input" placeholder="पूरे ब्लॉक में किसी का भी नाम, विद्यालय, पद, मोबाइल, ईमेल या PEEO खोजें..." oninput="filterDirectory()">
           </div>
           <select id="dir-type-filter" class="filter-select" onchange="filterDirectory()">
-            <option value="all">सभी श्रेणियां (PEEO + प्रधानाचार्य + शिक्षक/कार्मिक)</option>
+            <option value="all">सभी श्रेणियां (PEEO + प्रधानाचार्य + शिक्षक + निजी स्कूल)</option>
             <option value="peeo">केवल 25 PEEO प्रभारी</option>
             <option value="principal">केवल प्रधानाचार्य / Headmaster</option>
+            <option value="private">केवल निजी विद्यालय (Private Schools)</option>
             <option value="staff">सभी अधीनस्थ शिक्षक / कार्मिक</option>
           </select>
           <select id="dir-peeo-filter" class="filter-select" onchange="filterDirectory()">
@@ -496,18 +516,23 @@
 
   <!-- 1. LOGIN / USER SWITCHER MODAL -->
   <div id="modal-login" class="modal-overlay">
-    <div class="modal-card" style="max-width:540px">
+    <div class="modal-card" style="max-width:540px; border-top: 4px solid var(--primary-600)">
       <div class="modal-header">
-        <h3><i class="fas fa-user-lock text-primary"></i> पोर्टल लॉगिन / PEEO चयन</h3>
-        <button class="modal-close-btn" onclick="closeModal('modal-login')">&times;</button>
+        <div>
+          <h3 style="display:flex; align-items:center; gap:0.5rem">
+            <i class="fas fa-user-lock text-primary"></i> आधिकारिक पोर्टल सुरक्षित लॉगिन
+          </h3>
+          <span style="font-size:0.8rem; color:var(--neutral-500)">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</span>
+        </div>
+        <button id="modal-login-close-btn" class="modal-close-btn" onclick="closeModal('modal-login')">&times;</button>
       </div>
       <div class="modal-body">
-        <p style="font-size:0.875rem; color:var(--neutral-600); margin-bottom:1rem">
-          <strong>शाखा/PEEO यूजर आईडी:</strong> आपका शाला दर्पण विद्यालय कोड (NIC Code) ही आपकी यूजर आईडी है।
-        </p>
+        <div style="background:#eff6ff; border-left:4px solid #2563eb; padding:0.75rem 1rem; border-radius:6px; margin-bottom:1.25rem; font-size:0.85rem; color:#1e40af">
+          <strong><i class="fas fa-info-circle"></i> लॉगिन निर्देश:</strong> PEEO महोदय अपने विद्यालय का <strong>शाला दर्पण कोड</strong> (जैसे 221754) एवं पासवर्ड दर्ज करें अथवा त्वरित सूची से चयन करें।
+        </div>
 
         <div class="form-group" style="margin-bottom:1rem">
-          <label>त्वरित खाता चयन (1-क्लिक स्विच):</label>
+          <label><strong>त्वरित खाता चयन (Quick 1-Click Login):</strong></label>
           <select id="login-quick-select" class="filter-select" style="width:100%" onchange="onQuickSelectUser()">
             <optgroup label="कार्यालय एडमिन (Super Admins)">
               <option value="jitendra_admin">जितेन्द्र कुमार (Admin) - तकनीकी नोडल प्रभारी भिनाय</option>
@@ -526,18 +551,18 @@
         </div>
 
         <div class="form-group" style="margin-bottom:0.75rem">
-          <label>यूजर ID (शाला दर्पण कोड):</label>
-          <input type="text" id="login-username" value="admin_jitendra">
+          <label><strong>यूजर ID (शाला दर्पण कोड):</strong></label>
+          <input type="text" id="login-username" value="221754" placeholder="उदा. 221754 या admin_jitendra">
         </div>
         <div class="form-group">
-          <label>पासवर्ड (Password):</label>
-          <input type="password" id="login-password" value="jitendra#2026">
+          <label><strong>पासवर्ड (Password):</strong></label>
+          <input type="password" id="login-password" value="deoliakalan#2026" placeholder="पासवर्ड दर्ज करें">
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-login')">रद्द करें</button>
-        <button class="btn btn-primary" onclick="performLogin()">
-          <i class="fas fa-sign-in-alt"></i> लॉगिन करें
+        <button id="modal-login-cancel-btn" class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-login')">रद्द करें</button>
+        <button class="btn btn-primary" onclick="performLogin()" style="font-weight:700">
+          <i class="fas fa-sign-in-alt"></i> सुरक्षित लॉगिन करें
         </button>
       </div>
     </div>
@@ -555,6 +580,16 @@
       </div>
       <div class="modal-body">
         
+        <!-- Helpful Instruction Banner for School-by-School & Consolidated Report -->
+        <div style="background:#fefce8; border-left:4px solid #eab308; padding:0.65rem 0.95rem; border-radius:6px; margin-bottom:1rem; font-size:0.83rem; color:#854d0e; display:flex; justify-content:space-between; align-items:center; gap:1rem">
+          <div>
+            <strong><i class="fas fa-info-circle"></i> समेकित रिपोर्ट निर्देश:</strong> प्रत्येक विद्यालय की सूचना अलग-अलग भरें। जिस विद्यालय पर सूचना लागू नहीं है या रिपोर्ट निरंक है, उसके आगे <strong>'शामिल करें' अनचेक</strong> कर दें। <em>(समेकित रिपोर्ट व अधिकृत पीडीएफ में केवल भरी गई सूचना वाले विद्यालय ही दिखेंगे)</em>।
+          </div>
+          <div id="fill-modal-filter-badge" style="font-weight:700; background:#fef08a; color:#713f12; padding:3px 8px; border-radius:4px; font-size:0.75rem; white-space:nowrap">
+            लागू: सभी विद्यालय
+          </div>
+        </div>
+
         <!-- Form Fields Grid / Dynamic Row Entries -->
         <div id="dynamic-form-fields-container"></div>
 
@@ -652,17 +687,59 @@
           <div class="form-group">
             <label>पद (Designation):</label>
             <select id="staff-edit-post" class="filter-select" style="width:100%">
-              <option value="अध्यापक L-1">अध्यापक L-1</option>
-              <option value="अध्यापक L-2">अध्यापक L-2</option>
-              <option value="वरिष्ठ अध्यापक">वरिष्ठ अध्यापक</option>
-              <option value="व्याख्याता">व्याख्याता</option>
-              <option value="उपप्राचार्य">उपप्राचार्य</option>
-              <option value="प्रधानाचार्य / Headmaster">प्रधानाचार्य / Headmaster</option>
-              <option value="शारीरिक शिक्षक">शारीरिक शिक्षक</option>
-              <option value="कंप्यूटर अनुदेशक">कंप्यूटर अनुदेशक</option>
-              <option value="कनिष्ठ सहायक / LDC">कनिष्ठ सहायक / LDC</option>
-              <option value="प्रबोधक">प्रबोधक</option>
-              <option value="चतुर्थ श्रेणी कर्मचारी">चतुर्थ श्रेणी कर्मचारी</option>
+              <optgroup label="प्रशासनिक व उच्च पद (Admin & Leadership)">
+                <option value="प्रधानाचार्य">प्रधानाचार्य (Principal / L-16)</option>
+                <option value="उपप्रधानाचार्य">उपप्रधानाचार्य (Vice Principal / L-14)</option>
+              </optgroup>
+              <optgroup label="प्राध्यापक / व्याख्याता (School Lecturers - L-12)">
+                <option value="व्याख्याता (हिंदी)">व्याख्याता (हिंदी)</option>
+                <option value="व्याख्याता (अंग्रेजी)">व्याख्याता (अंग्रेजी)</option>
+                <option value="व्याख्याता (इतिहास)">व्याख्याता (इतिहास)</option>
+                <option value="व्याख्याता (राजनीति विज्ञान)">व्याख्याता (राजनीति विज्ञान)</option>
+                <option value="व्याख्याता (भूगोल)">व्याख्याता (भूगोल)</option>
+                <option value="व्याख्याता (संस्कृत)">व्याख्याता (संस्कृत)</option>
+                <option value="व्याख्याता (भौतिक विज्ञान)">व्याख्याता (भौतिक विज्ञान)</option>
+                <option value="व्याख्याता (रसायन विज्ञान)">व्याख्याता (रसायन विज्ञान)</option>
+                <option value="व्याख्याता (जीव विज्ञान)">व्याख्याता (जीव विज्ञान)</option>
+                <option value="व्याख्याता (गणित)">व्याख्याता (गणित)</option>
+                <option value="व्याख्याता (वाणिज्य/लेखाशास्त्र)">व्याख्याता (वाणिज्य/लेखाशास्त्र)</option>
+                <option value="व्याख्याता (अन्य)">व्याख्याता (अन्य विषय)</option>
+              </optgroup>
+              <optgroup label="वरिष्ठ अध्यापक (Senior Teachers - 2nd Grade / L-11)">
+                <option value="वरिष्ठ अध्यापक (गणित)">वरिष्ठ अध्यापक (गणित)</option>
+                <option value="वरिष्ठ अध्यापक (विज्ञान)">वरिष्ठ अध्यापक (विज्ञान)</option>
+                <option value="वरिष्ठ अध्यापक (अंग्रेजी)">वरिष्ठ अध्यापक (अंग्रेजी)</option>
+                <option value="वरिष्ठ अध्यापक (हिंदी)">वरिष्ठ अध्यापक (हिंदी)</option>
+                <option value="वरिष्ठ अध्यापक (संस्कृत)">वरिष्ठ अध्यापक (संस्कृत)</option>
+                <option value="वरिष्ठ अध्यापक (सामाजिक विज्ञान)">वरिष्ठ अध्यापक (सामाजिक विज्ञान)</option>
+                <option value="वरिष्ठ अध्यापक (उर्दू)">वरिष्ठ अध्यापक (उर्दू)</option>
+                <option value="वरिष्ठ अध्यापक (अन्य)">वरिष्ठ अध्यापक (अन्य)</option>
+              </optgroup>
+              <optgroup label="अध्यापक लेवल-2 व 1 (Primary / Upper Primary Teachers - L-10)">
+                <option value="अध्यापक लेवल-2 (गणित/विज्ञान)">अध्यापक लेवल-2 (गणित/विज्ञान)</option>
+                <option value="अध्यापक लेवल-2 (अंग्रेजी)">अध्यापक लेवल-2 (अंग्रेजी)</option>
+                <option value="अध्यापक लेवल-2 (हिंदी)">अध्यापक लेवल-2 (हिंदी)</option>
+                <option value="अध्यापक लेवल-2 (संस्कृत)">अध्यापक लेवल-2 (संस्कृत)</option>
+                <option value="अध्यापक लेवल-2 (सामाजिक अध्ययन)">अध्यापक लेवल-2 (सामाजिक अध्ययन)</option>
+                <option value="अध्यापक लेवल-1">अध्यापक लेवल-1 (सामान्य)</option>
+                <option value="विशेष शिक्षक (Level-1/2)">विशेष शिक्षक (Special Educator)</option>
+              </optgroup>
+              <optgroup label="विशेषज्ञ, तकनीकी व शारीरिक शिक्षक">
+                <option value="शारीरिक शिक्षक (PTI)">शारीरिक शिक्षक (PTI Gr-I, II, III)</option>
+                <option value="वरिष्ठ कंप्यूटर अनुदेशक">वरिष्ठ कंप्यूटर अनुदेशक (Senior Computer Instructor)</option>
+                <option value="बेसिक कंप्यूटर अनुदेशक">बेसिक कंप्यूटर अनुदेशक (Basic Computer Instructor)</option>
+                <option value="पुस्तकालयाध्यक्ष">पुस्तकालयाध्यक्ष (Librarian)</option>
+                <option value="प्रयोगशाला सहायक">प्रयोगशाला सहायक (Lab Assistant)</option>
+                <option value="प्रबोधक">प्रबोधक / वरिष्ठ प्रबोधक</option>
+              </optgroup>
+              <optgroup label="मंत्रालयीन व सहायक कर्मचारी (Office Staff)">
+                <option value="वरिष्ठ सहायक">वरिष्ठ सहायक (UDC / Senior Assistant)</option>
+                <option value="कनिष्ठ सहायक">कनिष्ठ सहायक (LDC / Junior Assistant)</option>
+                <option value="पंचायत शिक्षक">पंचायत शिक्षक (Panchayat Shikshak)</option>
+                <option value="विद्यालय सहायक">विद्यालय सहायक (Vidyalaya Sahayak)</option>
+                <option value="सहायक कर्मचारी / चतुर्थ श्रेणी">सहायक कर्मचारी / चतुर्थ श्रेणी (Class IV / Peon)</option>
+                <option value="संविदा कर्मी / गार्ड / अन्य">संविदा कर्मी / गार्ड / अन्य</option>
+              </optgroup>
             </select>
           </div>
           <div class="form-group">
@@ -791,6 +868,17 @@
               <option value="विधानसभा प्रश्न (Vidhan Sabha)">विधानसभा प्रश्न (Vidhan Sabha)</option>
             </select>
           </div>
+        </div>
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label><strong>लागू विद्यालय वर्ग (Target Schools Filter):</strong></label>
+          <select id="new-demand-school-scope" class="filter-select" style="width:100%; border:2px solid #3b82f6; font-weight:600">
+            <option value="all">🏫 सभी विद्यालय (राजकीय एवं निजी दोनों - All 178 Schools)</option>
+            <option value="govt">🏛️ केवल राजकीय विद्यालय (Government Schools Only)</option>
+            <option value="private">🏢 केवल निजी विद्यालय (Private Schools Only)</option>
+          </select>
+          <span style="font-size:0.75rem; color:var(--neutral-500)">
+            (नोट: PEEO स्तर पर सूचना भरते समय केवल चयनित श्रेणी के स्कूल ही सूची में प्रदर्शित होंगे)
+          </span>
         </div>
         <div class="form-group" style="margin-bottom:0.85rem">
           <label>मांगी जाने वाली सूचना के कॉलम (कॉमा लगाकर लिखें):</label>
