@@ -1500,8 +1500,11 @@
 
             <!-- Class 9 -->
             <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:1rem; margin-bottom:1rem">
-              <div style="font-weight:800; color:#1e3a8a; font-size:0.95rem; margin-bottom:0.6rem; display:flex; align-items:center; gap:0.4rem">
-                <i class="fas fa-user-graduate"></i> कक्षा 9 (Class 9th):
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:0.6rem">
+                <div style="font-weight:800; color:#1e3a8a; font-size:0.95rem; display:flex; align-items:center; gap:0.4rem">
+                  <i class="fas fa-user-graduate"></i> कक्षा 9 (Class 9th):
+                </div>
+                <button type="button" class="btn-nil-toggle" onclick="toggleNilClass('c9')"><i class="fas fa-ban"></i> 🚫 कक्षा 9 शून्य / NIL</button>
               </div>
               <div class="gform-row" style="margin-bottom:0">
                 <div class="gform-field">
@@ -1521,8 +1524,11 @@
 
             <!-- Class 10 -->
             <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:1rem">
-              <div style="font-weight:800; color:#1e3a8a; font-size:0.95rem; margin-bottom:0.6rem; display:flex; align-items:center; gap:0.4rem">
-                <i class="fas fa-user-graduate"></i> कक्षा 10 (Class 10th):
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:0.6rem">
+                <div style="font-weight:800; color:#1e3a8a; font-size:0.95rem; display:flex; align-items:center; gap:0.4rem">
+                  <i class="fas fa-user-graduate"></i> कक्षा 10 (Class 10th):
+                </div>
+                <button type="button" class="btn-nil-toggle" onclick="toggleNilClass('c10')"><i class="fas fa-ban"></i> 🚫 कक्षा 10 शून्य / NIL</button>
               </div>
               <div class="gform-row" style="margin-bottom:0">
                 <div class="gform-field">
@@ -1547,8 +1553,11 @@
               <div class="gform-card-title" style="margin-bottom:0">
                 <i class="fas fa-book-open text-primary"></i> 4. Class 11 Faculty Selection & Subjects (कक्षा 11 संकाय चयन व विषयवार नामांकन)
               </div>
-              <div style="font-weight:700; color:#15803d; background:#dcfce7; padding:4px 10px; border-radius:6px; font-size:0.85rem">
-                कक्षा 11 कुल: <span id="gform-c11-total-display">0</span> विद्यार्थी
+              <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap">
+                <button type="button" class="btn-nil-toggle" onclick="toggleNilClass('c11')"><i class="fas fa-ban"></i> 🚫 कक्षा 11 संचालित नहीं (NIL)</button>
+                <div style="font-weight:700; color:#15803d; background:#dcfce7; padding:4px 10px; border-radius:6px; font-size:0.85rem">
+                  कक्षा 11 कुल: <span id="gform-c11-total-display">0</span> विद्यार्थी
+                </div>
               </div>
             </div>
             <div class="gform-card-desc">विद्यालय में संचालित संकाय/संकायों का चयन करें। चयनित संकाय के विषय ही नीचे स्वतः खुलेंगे।</div>
@@ -1626,8 +1635,11 @@
               <div class="gform-card-title" style="margin-bottom:0">
                 <i class="fas fa-graduation-cap text-primary"></i> 5. Class 12 Faculty Selection & Subjects (कक्षा 12 संकाय चयन व विषयवार नामांकन)
               </div>
-              <div style="font-weight:700; color:#15803d; background:#dcfce7; padding:4px 10px; border-radius:6px; font-size:0.85rem">
-                कक्षा 12 कुल: <span id="gform-c12-total-display">0</span> विद्यार्थी
+              <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap">
+                <button type="button" class="btn-nil-toggle" onclick="toggleNilClass('c12')"><i class="fas fa-ban"></i> 🚫 कक्षा 12 संचालित नहीं (NIL)</button>
+                <div style="font-weight:700; color:#15803d; background:#dcfce7; padding:4px 10px; border-radius:6px; font-size:0.85rem">
+                  कक्षा 12 कुल: <span id="gform-c12-total-display">0</span> विद्यार्थी
+                </div>
               </div>
             </div>
             <div class="gform-card-desc">विद्यालय में संचालित संकाय/संकायों का चयन करें। चयनित संकाय के विषय ही नीचे स्वतः खुलेंगे।</div>

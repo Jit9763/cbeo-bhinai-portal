@@ -1374,6 +1374,69 @@ function calculateGFormTotals() {
   if (document.getElementById('gform-sign-incharge-preview')) document.getElementById('gform-sign-incharge-preview').textContent = iName;
 }
 
+function toggleNilClass(cls) {
+  if (cls === 'c9') {
+    const el = document.getElementById('gform-c9-total');
+    const sk = document.getElementById('gform-c9-sanskrit');
+    const ur = document.getElementById('gform-c9-urdu');
+    if (el) el.value = 0;
+    if (sk) sk.value = 0;
+    if (ur) ur.value = 0;
+    showToast('कक्षा 9 को शून्य / संचालित नहीं (NIL) सेट किया गया', 'info');
+  } else if (cls === 'c10') {
+    const el = document.getElementById('gform-c10-total');
+    const sk = document.getElementById('gform-c10-sanskrit');
+    const ur = document.getElementById('gform-c10-urdu');
+    if (el) el.value = 0;
+    if (sk) sk.value = 0;
+    if (ur) ur.value = 0;
+    showToast('कक्षा 10 को शून्य / संचालित नहीं (NIL) सेट किया गया', 'info');
+  } else if (cls === 'c11') {
+    const tot = document.getElementById('gform-c11-total');
+    const hi = document.getElementById('gform-c11-comp-hindi');
+    const en = document.getElementById('gform-c11-comp-english');
+    if (tot) tot.value = 0;
+    if (hi) hi.value = 0;
+    if (en) en.value = 0;
+    ['arts', 'science', 'commerce', 'agri'].forEach(f => {
+      const cb = document.getElementById(`gform-c11-fac-${f}`);
+      if (cb) cb.checked = false;
+      const g = document.getElementById(`gform-c11-grid-${f}`);
+      if (g) g.style.display = 'none';
+      const sec = document.getElementById(`gform-c11-section-${f}`);
+      if (sec) sec.style.display = 'none';
+    });
+    SAMAN_PARIKSHA_OPTIONAL_SUBJECTS.forEach(subj => {
+      const inp = document.getElementById(`gform-c11-opt-${subj.key}`);
+      if (inp) inp.value = 0;
+    });
+    showToast('कक्षा 11 को शून्य / संचालित नहीं (NIL) सेट किया गया', 'info');
+  } else if (cls === 'c12') {
+    const tot = document.getElementById('gform-c12-total');
+    const hi = document.getElementById('gform-c12-comp-hindi');
+    const en = document.getElementById('gform-c12-comp-english');
+    if (tot) tot.value = 0;
+    if (hi) hi.value = 0;
+    if (en) en.value = 0;
+    ['arts', 'science', 'commerce', 'agri'].forEach(f => {
+      const cb = document.getElementById(`gform-c12-fac-${f}`);
+      if (cb) cb.checked = false;
+      const g = document.getElementById(`gform-c12-grid-${f}`);
+      if (g) g.style.display = 'none';
+      const sec = document.getElementById(`gform-c12-section-${f}`);
+      if (sec) sec.style.display = 'none';
+    });
+    SAMAN_PARIKSHA_OPTIONAL_SUBJECTS.forEach(subj => {
+      const inp = document.getElementById(`gform-c12-opt-${subj.key}`);
+      if (inp) inp.value = 0;
+    });
+    showToast('कक्षा 12 को शून्य / संचालित नहीं (NIL) सेट किया गया', 'info');
+  }
+  calculateGFormTotals();
+  autoSaveGFormDraft();
+}
+
+
 // Real-time LocalStorage Draft Auto-Save Engine (Distraction & Call Resilient)
 let gformAutoSaveTimer = null;
 function autoSaveGFormDraft() {
@@ -1702,7 +1765,7 @@ function openExamPdfPreview(schoolCode) {
         जिला समान परीक्षा योजना (सत्र 2026-27)
       </div>
       <div style="font-size:0.86rem; font-weight:700; color:#475569">
-        कक्षा 9 से 12 विद्यार्थी नामांकन एवं प्रश्न-पत्र मांग अधिकृत विवरण प्रपत्र (A4 Landscape प्रारूप)
+        कक्षा 9 से 12 विद्यार्थी नामांकन एवं प्रश्न-पत्र मांग अधिकृत विवरण प्रपत्र
       </div>
     </div>
 
@@ -1748,15 +1811,15 @@ function openExamPdfPreview(schoolCode) {
           <td style="padding:6px 4px; border:1px solid #94a3b8; font-weight:700">1</td>
           <td style="padding:6px 4px; border:1px solid #94a3b8; font-weight:800; background:#f8fafc">कक्षा 9वीं</td>
           <td style="padding:6px 8px; border:1px solid #94a3b8; text-align:left">
-            हिंदी, अंग्रेजी, विज्ञान, सामाजिक विज्ञान, गणित (5 अनिवार्य विषय)
+            ${(sub.c9_total > 0) ? 'हिंदी, अंग्रेजी, विज्ञान, सामाजिक विज्ञान, गणित (5 अनिवार्य विषय)' : '<span style="color:#64748b; font-style:italic">कक्षा 9वीं में शून्य नामांकन (NIL / संचालित नहीं)</span>'}
           </td>
           <td style="padding:6px 6px; border:1px solid #94a3b8; color:#1e40af; font-weight:700">
-            संस्कृत: ${sub.c9_sanskrit || 0} | उर्दू: ${sub.c9_urdu || 0}
+            ${(sub.c9_total > 0) ? `संस्कृत: ${sub.c9_sanskrit || 0} | उर्दू: ${sub.c9_urdu || 0}` : '<span style="color:#94a3b8">- (लागू नहीं) -</span>'}
           </td>
-          <td style="padding:6px 6px; border:1px solid #94a3b8; color:#475569">सामान्य (General)</td>
+          <td style="padding:6px 6px; border:1px solid #94a3b8; color:#475569">${(sub.c9_total > 0) ? 'सामान्य (General)' : '<span style="color:#94a3b8">-</span>'}</td>
           <td style="padding:6px 8px; border:1px solid #94a3b8; color:#94a3b8; text-align:center">- (कक्षा 9 में लागू नहीं) -</td>
           <td style="padding:6px 6px; border:1px solid #94a3b8; font-weight:800; font-size:0.95rem">${sub.c9_total}</td>
-          <td style="padding:6px 6px; border:1px solid #94a3b8; font-weight:900; color:#1e3a8a; background:#eff6ff; font-size:1rem">${sub.c9_total}</td>
+          <td style="padding:6px 6px; border:1px solid #94a3b8; font-weight:900; color:#1e3a8a; background:#eff6ff; font-size:1rem">${(sub.c9_total > 0) ? sub.c9_total : '<span style="color:#64748b">0 (NIL)</span>'}</td>
         </tr>
         
         <!-- Class 10 Row -->
@@ -1764,15 +1827,15 @@ function openExamPdfPreview(schoolCode) {
           <td style="padding:6px 4px; border:1px solid #94a3b8; font-weight:700">2</td>
           <td style="padding:6px 4px; border:1px solid #94a3b8; font-weight:800; background:#f8fafc">कक्षा 10वीं</td>
           <td style="padding:6px 8px; border:1px solid #94a3b8; text-align:left">
-            हिंदी, अंग्रेजी, विज्ञान, सामाजिक विज्ञान, गणित (5 अनिवार्य विषय)
+            ${(sub.c10_total > 0) ? 'हिंदी, अंग्रेजी, विज्ञान, सामाजिक विज्ञान, गणित (5 अनिवार्य विषय)' : '<span style="color:#64748b; font-style:italic">कक्षा 10वीं में शून्य नामांकन (NIL / संचालित नहीं)</span>'}
           </td>
           <td style="padding:6px 6px; border:1px solid #94a3b8; color:#1e40af; font-weight:700">
-            संस्कृत: ${sub.c10_sanskrit || 0} | उर्दू: ${sub.c10_urdu || 0}
+            ${(sub.c10_total > 0) ? `संस्कृत: ${sub.c10_sanskrit || 0} | उर्दू: ${sub.c10_urdu || 0}` : '<span style="color:#94a3b8">- (लागू नहीं) -</span>'}
           </td>
-          <td style="padding:6px 6px; border:1px solid #94a3b8; color:#475569">सामान्य (General)</td>
+          <td style="padding:6px 6px; border:1px solid #94a3b8; color:#475569">${(sub.c10_total > 0) ? 'सामान्य (General)' : '<span style="color:#94a3b8">-</span>'}</td>
           <td style="padding:6px 8px; border:1px solid #94a3b8; color:#94a3b8; text-align:center">- (कक्षा 10 में लागू नहीं) -</td>
           <td style="padding:6px 6px; border:1px solid #94a3b8; font-weight:800; font-size:0.95rem">${sub.c10_total}</td>
-          <td style="padding:6px 6px; border:1px solid #94a3b8; font-weight:900; color:#1e3a8a; background:#eff6ff; font-size:1rem">${sub.c10_total}</td>
+          <td style="padding:6px 6px; border:1px solid #94a3b8; font-weight:900; color:#1e3a8a; background:#eff6ff; font-size:1rem">${(sub.c10_total > 0) ? sub.c10_total : '<span style="color:#64748b">0 (NIL)</span>'}</td>
         </tr>
 
         <!-- Class 11 Row -->
@@ -1780,15 +1843,15 @@ function openExamPdfPreview(schoolCode) {
           <td style="padding:6px 4px; border:1px solid #94a3b8; font-weight:700">3</td>
           <td style="padding:6px 4px; border:1px solid #94a3b8; font-weight:800; background:#f8fafc">कक्षा 11वीं</td>
           <td style="padding:6px 8px; border:1px solid #94a3b8; text-align:left">
-            अनिवार्य हिंदी (${sub.c11_comp_hindi}), अनिवार्य अंग्रेजी (${sub.c11_comp_english})
+            ${(sub.c11_total > 0) ? `अनिवार्य हिंदी (${sub.c11_comp_hindi}), अनिवार्य अंग्रेजी (${sub.c11_comp_english})` : '<span style="color:#64748b; font-style:italic">कक्षा 11वीं संचालित नहीं (NIL)</span>'}
           </td>
           <td style="padding:6px 6px; border:1px solid #94a3b8; color:#94a3b8">- (लागू नहीं) -</td>
-          <td style="padding:6px 6px; border:1px solid #94a3b8; font-weight:700; color:#0369a1">${c11FacNames}</td>
+          <td style="padding:6px 6px; border:1px solid #94a3b8; font-weight:700; color:#0369a1">${(sub.c11_total > 0) ? c11FacNames : '<span style="color:#94a3b8">-</span>'}</td>
           <td style="padding:6px 8px; border:1px solid #94a3b8; text-align:left">
-            ${c11OptPillsHtml}
+            ${(sub.c11_total > 0) ? c11OptPillsHtml : '<span style="color:#94a3b8">- कोई ऐच्छिक विषय लागू नहीं (NIL) -</span>'}
           </td>
           <td style="padding:6px 6px; border:1px solid #94a3b8; font-weight:800; font-size:0.95rem">${sub.c11_total}</td>
-          <td style="padding:6px 6px; border:1px solid #94a3b8; font-weight:900; color:#1e3a8a; background:#eff6ff; font-size:1rem">${sub.c11_total}</td>
+          <td style="padding:6px 6px; border:1px solid #94a3b8; font-weight:900; color:#1e3a8a; background:#eff6ff; font-size:1rem">${(sub.c11_total > 0) ? sub.c11_total : '<span style="color:#64748b">0 (NIL)</span>'}</td>
         </tr>
 
         <!-- Class 12 Row -->
@@ -1796,15 +1859,15 @@ function openExamPdfPreview(schoolCode) {
           <td style="padding:6px 4px; border:1px solid #94a3b8; font-weight:700">4</td>
           <td style="padding:6px 4px; border:1px solid #94a3b8; font-weight:800; background:#f8fafc">कक्षा 12वीं</td>
           <td style="padding:6px 8px; border:1px solid #94a3b8; text-align:left">
-            अनिवार्य हिंदी (${sub.c12_comp_hindi}), अनिवार्य अंग्रेजी (${sub.c12_comp_english})
+            ${(sub.c12_total > 0) ? `अनिवार्य हिंदी (${sub.c12_comp_hindi}), अनिवार्य अंग्रेजी (${sub.c12_comp_english})` : '<span style="color:#64748b; font-style:italic">कक्षा 12वीं संचालित नहीं (NIL)</span>'}
           </td>
           <td style="padding:6px 6px; border:1px solid #94a3b8; color:#94a3b8">- (लागू नहीं) -</td>
-          <td style="padding:6px 6px; border:1px solid #94a3b8; font-weight:700; color:#0369a1">${c12FacNames}</td>
+          <td style="padding:6px 6px; border:1px solid #94a3b8; font-weight:700; color:#0369a1">${(sub.c12_total > 0) ? c12FacNames : '<span style="color:#94a3b8">-</span>'}</td>
           <td style="padding:6px 8px; border:1px solid #94a3b8; text-align:left">
-            ${c12OptPillsHtml}
+            ${(sub.c12_total > 0) ? c12OptPillsHtml : '<span style="color:#94a3b8">- कोई ऐच्छिक विषय लागू नहीं (NIL) -</span>'}
           </td>
           <td style="padding:6px 6px; border:1px solid #94a3b8; font-weight:800; font-size:0.95rem">${sub.c12_total}</td>
-          <td style="padding:6px 6px; border:1px solid #94a3b8; font-weight:900; color:#1e3a8a; background:#eff6ff; font-size:1rem">${sub.c12_total}</td>
+          <td style="padding:6px 6px; border:1px solid #94a3b8; font-weight:900; color:#1e3a8a; background:#eff6ff; font-size:1rem">${(sub.c12_total > 0) ? sub.c12_total : '<span style="color:#64748b">0 (NIL)</span>'}</td>
         </tr>
 
         <!-- Grand Total Banner Row -->
@@ -1813,7 +1876,9 @@ function openExamPdfPreview(schoolCode) {
             🎯 सत्र 2026-27 कुल मांग प्रश्न-पत्र संख्या (कक्षा 9 से 12 महायोग - Grand Total):
           </td>
           <td style="padding:8px 6px; border:2px solid #b45309; font-size:1.15rem; color:#78350f">${sub.grand_total}</td>
-          <td style="padding:8px 6px; border:2px solid #b45309; font-size:1.3rem; color:#991b1b; background:#fee2e2">${sub.grand_total}</td>
+          <td style="padding:8px 6px; border:2px solid #b45309; font-size:1.3rem; color:#991b1b; background:#fee2e2">
+            ${(sub.grand_total > 0) ? sub.grand_total : '<span style="font-size:0.95rem">0 (NIL प्रपत्र)</span>'}
+          </td>
         </tr>
       </tbody>
     </table>
@@ -2050,7 +2115,7 @@ function openPeeoConsolidatedPdfPreview(peeoName) {
         जिला समान परीक्षा योजना (सत्र 2026-27)
       </div>
       <div style="font-size:0.88rem; font-weight:700; color:#475569">
-        परिक्षेत्र अधीनस्थ माध्यमिक व उच्च माध्यमिक विद्यालयों की समेकित परीक्षा मांग रिपोर्ट (A4 Landscape प्रारूप)
+        परिक्षेत्र अधीनस्थ माध्यमिक व उच्च माध्यमिक विद्यालयों की समेकित परीक्षा मांग रिपोर्ट
       </div>
     </div>
 

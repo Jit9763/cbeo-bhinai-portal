@@ -1459,10 +1459,59 @@ body {
   margin-bottom: 1rem;
 }
 
-@media (max-width: 680px) {
+@media (max-width: 768px) {
   .gform-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem !important;
   }
+  .gform-field {
+    width: 100% !important;
+    margin-bottom: 0.65rem !important;
+  }
+  .gform-field label {
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    color: #1e293b !important;
+    margin-bottom: 0.35rem !important;
+    display: block !important;
+  }
+  .gform-input {
+    width: 100% !important;
+    min-height: 48px !important;
+    font-size: 16px !important;
+    border-radius: 8px !important;
+    box-sizing: border-box !important;
+  }
+  .gform-subject-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.65rem !important;
+  }
+  .gform-card {
+    padding: 1.15rem 1rem !important;
+    margin-bottom: 1.15rem !important;
+    border-radius: 12px !important;
+  }
+}
+
+.btn-nil-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 4px 10px;
+  background: #f1f5f9;
+  border: 1px dashed #94a3b8;
+  color: #475569;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 0.35rem;
+  transition: all 0.2s;
+}
+.btn-nil-toggle:hover {
+  background: #fee2e2;
+  border-color: #ef4444;
+  color: #b91c1c;
 }
 
 .gform-field {
@@ -2301,6 +2350,34 @@ input:checked + .switch-slider:before {
 }
 .btn-wa-mini:hover {
   background: #1da851;
+}
+
+/* NIL Toggle Button */
+.btn-nil-toggle {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+.btn-nil-toggle:hover {
+  background: #fecaca;
+  color: #991b1b;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .btn-nil-toggle {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+  }
 }
 
 
