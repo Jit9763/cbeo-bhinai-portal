@@ -280,11 +280,31 @@ function logoutUser() {
   openLoginModal(true);
 }
 
+function toggleLoginPasswordVisibility() {
+  const pwd = document.getElementById('login-password');
+  const icon = document.getElementById('login-pwd-eye-icon');
+  if (!pwd) return;
+  if (pwd.type === 'password') {
+    pwd.type = 'text';
+    if (icon) icon.className = 'fas fa-eye-slash';
+  } else {
+    pwd.type = 'password';
+    if (icon) icon.className = 'fas fa-eye';
+  }
+}
+
 function updateUserHeaderBadge() {
   const badgeInitial = document.getElementById('user-badge-initial');
   const displayName = document.getElementById('user-display-name');
   const displaySubtext = document.getElementById('user-display-subtext');
   const adminTab = document.getElementById('nav-tab-admin');
+
+  // Dynamic Official Portal Header Elements
+  const headerTitle = document.getElementById('portal-header-title');
+  const headerDept = document.getElementById('portal-header-dept');
+  const headerCodeLabel = document.getElementById('portal-header-code-label');
+  const headerSubCode = document.getElementById('portal-header-sub-code');
+  const headerBadge = document.getElementById('portal-header-badge');
 
   if (!STATE.currentUser) {
     if (badgeInitial) {
@@ -294,6 +314,13 @@ function updateUserHeaderBadge() {
     if (displayName) displayName.textContent = 'लॉगिन आवश्यक (Login Required)';
     if (displaySubtext) displaySubtext.textContent = 'कृपया अपने शाला दर्पण कोड से लॉगिन करें';
     if (adminTab) adminTab.style.display = 'none';
+
+    // Default CBEO branding
+    if (headerTitle) headerTitle.textContent = 'कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय';
+    if (headerDept) headerDept.textContent = 'स्कूल शिक्षा विभाग, राजस्थान सरकार';
+    if (headerCodeLabel) headerCodeLabel.innerHTML = 'NIC-SD ID: <strong>8140</strong>';
+    if (headerSubCode) headerSubCode.innerHTML = 'IFMS ID: <strong>1408</strong>';
+    if (headerBadge) headerBadge.textContent = '25 PEEO | 153 विद्यालय | 1048 कार्मिक';
     return;
   }
 
@@ -311,21 +338,33 @@ function updateUserHeaderBadge() {
     if (btnDrive) btnDrive.style.display = 'inline-flex';
     const btnPeeoSheet = document.getElementById('btn-peeo-sheet-view');
     if (btnPeeoSheet) btnPeeoSheet.style.display = 'inline-flex';
+
+    // Admin CBEO Header
+    if (headerTitle) headerTitle.textContent = 'कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय';
+    if (headerDept) headerDept.textContent = 'स्कूल शिक्षा विभाग, राजस्थान सरकार';
+    if (headerCodeLabel) headerCodeLabel.innerHTML = 'NIC-SD ID: <strong>8140</strong>';
+    if (headerSubCode) headerSubCode.innerHTML = 'IFMS ID: <strong>1408</strong>';
+    if (headerBadge) headerBadge.textContent = '25 PEEO | 153 विद्यालय | 1048 कार्मिक';
+    document.title = 'कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय | आधिकारिक सूचना, डायरेक्टरी एवं PEEO पोर्टल';
   } else {
+    // School or PEEO Login: Transform the entire portal to THIS school's or PEEO's branding!
+    const isSchool = STATE.currentUser.role === 'school';
+    const schoolName = STATE.currentUser.school_name || STATE.currentUser.peeo_name;
+    const sdCode = STATE.currentUser.shala_darpan_code;
+
     if (badgeInitial) {
-      const name = STATE.currentUser.school_name || STATE.currentUser.peeo_name || 'P';
-      badgeInitial.textContent = name.charAt(0) || 'P';
-      badgeInitial.style.background = '#0284c7';
+      badgeInitial.textContent = schoolName ? schoolName.charAt(0) : 'P';
+      badgeInitial.style.background = isSchool ? '#059669' : '#0284c7';
     }
     if (displayName) {
-      displayName.textContent = STATE.currentUser.school_name 
-        ? `${STATE.currentUser.school_name} (${STATE.currentUser.shala_darpan_code})`
-        : `${STATE.currentUser.peeo_name} (${STATE.currentUser.shala_darpan_code})`;
+      displayName.textContent = isSchool 
+        ? `${STATE.currentUser.school_name} (${sdCode})`
+        : `${STATE.currentUser.peeo_name} (${sdCode})`;
     }
     if (displaySubtext) {
       displaySubtext.textContent = STATE.currentUser.principal_incharge
         ? `प्रभारी: ${STATE.currentUser.principal_incharge} | मो.: ${STATE.currentUser.mobile || '---'}`
-        : `शाला दर्पण कोड: ${STATE.currentUser.shala_darpan_code}`;
+        : `शाला दर्पण कोड: ${sdCode}`;
     }
     if (adminTab) adminTab.style.display = 'none';
     const btnOpenLogin = document.getElementById('btn-open-login');
@@ -334,22 +373,36 @@ function updateUserHeaderBadge() {
     if (btnDrive) btnDrive.style.display = 'none'; // Strictly hidden for PEEO & schools
     const btnPeeoSheet = document.getElementById('btn-peeo-sheet-view');
     if (btnPeeoSheet) btnPeeoSheet.style.display = 'none'; // Strictly hidden for PEEO & schools
+
+    // Transform Official Header Branding to School / PEEO Identity
+    if (isSchool) {
+      if (headerTitle) headerTitle.innerHTML = `<i class="fas fa-school" style="color:#60a5fa; margin-right:8px"></i> ${STATE.currentUser.school_name}`;
+      if (headerDept) headerDept.textContent = 'राजस्थान सरकार - स्कूल शिक्षा विभाग';
+      if (headerCodeLabel) headerCodeLabel.innerHTML = `शा.दा./PSP कोड: <strong style="color:#fde047">${sdCode}</strong>`;
+      if (headerSubCode) headerSubCode.innerHTML = `PEEO परिक्षेत्र: <strong>${STATE.currentUser.peeo_name || 'भिनाय'}</strong>`;
+      if (headerBadge) headerBadge.textContent = '🏛️ विद्यालय आधिकारिक पोर्टल';
+      document.title = `${STATE.currentUser.school_name} | आधिकारिक पोर्टल`;
+    } else {
+      if (headerTitle) headerTitle.innerHTML = `<i class="fas fa-university" style="color:#60a5fa; margin-right:8px"></i> ${STATE.currentUser.peeo_name} परिक्षेत्र पोर्टल`;
+      if (headerDept) headerDept.textContent = 'राजस्थान सरकार - स्कूल शिक्षा विभाग';
+      if (headerCodeLabel) headerCodeLabel.innerHTML = `PEEO कोड: <strong style="color:#fde047">${sdCode}</strong>`;
+      if (headerSubCode) headerSubCode.innerHTML = `ब्लॉक: <strong>भिनाय (अजमेर)</strong>`;
+      if (headerBadge) headerBadge.textContent = `🏫 PEEO नोडल पोर्टल (${STATE.currentUser.schools?.length || 0} स्कूल)`;
+      document.title = `${STATE.currentUser.peeo_name} | आधिकारिक पोर्टल`;
+    }
   }
 }
 
 function openLoginModal(isMandatory = false) {
   const modalElem = document.getElementById('modal-login');
-  const closeBtn = document.getElementById('modal-login-close-btn');
   const cancelBtn = document.getElementById('modal-login-cancel-btn');
 
   const mustLock = isMandatory || !STATE.currentUser;
   if (mustLock) {
-    if (closeBtn) closeBtn.style.display = 'none';
     if (cancelBtn) cancelBtn.style.display = 'none';
     if (modalElem) modalElem.classList.add('mandatory-gate');
   } else {
-    if (closeBtn) closeBtn.style.display = 'block';
-    if (cancelBtn) cancelBtn.style.display = 'inline-block';
+    if (cancelBtn) cancelBtn.style.display = 'inline-flex';
     if (modalElem) modalElem.classList.remove('mandatory-gate');
   }
 

@@ -132,11 +132,20 @@
     /* Form Card */
     .gform-card {
       background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 1px 3px rgba(60,64,67,0.12);
+      border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(60,64,67,0.1);
       border: 1px solid #dadce0;
       padding: 1.5rem;
       margin-bottom: 1rem;
+      transition: all 0.2s ease;
+    }
+    .gform-card:hover {
+      border-color: #93c5fd;
+    }
+    .gform-card:focus-within {
+      border-color: #1a73e8;
+      border-left: 6px solid #1a73e8;
+      box-shadow: 0 4px 14px rgba(26,115,232,0.15);
     }
     .card-title {
       font-size: 1.05rem;

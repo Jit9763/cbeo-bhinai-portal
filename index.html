@@ -23,14 +23,14 @@
           </svg>
         </div>
         <div class="gov-titles">
-          <h1>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</h1>
-          <div class="gov-subtitles">
-            <span>स्कूल शिक्षा विभाग, राजस्थान सरकार</span>
-            <span>•</span>
-            <span>NIC-SD ID: <strong>8140</strong></span>
-            <span>•</span>
-            <span>IFMS ID: <strong>1408</strong></span>
-            <span class="badge-tag">25 PEEO | 153 विद्यालय | 1048 कार्मिक</span>
+          <h1 id="portal-header-title">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</h1>
+          <div class="gov-subtitles" id="portal-header-subtitles">
+            <span id="portal-header-dept">स्कूल शिक्षा विभाग, राजस्थान सरकार</span>
+            <span class="sep-dot">•</span>
+            <span id="portal-header-code-label">NIC-SD ID: <strong id="portal-header-code-val">8140</strong></span>
+            <span class="sep-dot">•</span>
+            <span id="portal-header-sub-code">IFMS ID: <strong>1408</strong></span>
+            <span class="badge-tag" id="portal-header-badge">25 PEEO | 153 विद्यालय | 1048 कार्मिक</span>
           </div>
         </div>
       </div>
@@ -771,60 +771,102 @@
 
   <!-- ==================== MODALS ==================== -->
 
-  <!-- 1. LOGIN / USER SWITCHER MODAL -->
-  <div id="modal-login" class="modal-overlay">
-    <div class="modal-card" style="max-width:540px; border-top: 4px solid var(--primary-600)">
-      <div class="modal-header">
-        <div>
-          <h3 style="display:flex; align-items:center; gap:0.5rem">
-            <i class="fas fa-user-lock text-primary"></i> आधिकारिक पोर्टल सुरक्षित लॉगिन
-          </h3>
-          <span style="font-size:0.8rem; color:var(--neutral-500)">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</span>
-        </div>
-        <button id="modal-login-close-btn" class="modal-close-btn" onclick="closeModal('modal-login')">&times;</button>
+  <!-- 1. FULL PAGE APP-STYLE LOGIN / USER SWITCHER -->
+  <div id="modal-login" class="login-fullpage-overlay">
+    <div class="login-app-container">
+      
+      <!-- Back button for admins switching users -->
+      <div id="login-top-bar" style="margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center">
+        <button id="modal-login-cancel-btn" class="btn-login-back" onclick="closeModal('modal-login')">
+          <i class="fas fa-arrow-left"></i> पोर्टल पर वापस जाएं
+        </button>
+        <span style="color:#ffffff; font-size:0.8rem; font-weight:700; opacity:0.85">
+          <i class="fas fa-shield-alt"></i> सुरक्षित विभागीय लॉगिन
+        </span>
       </div>
-      <div class="modal-body">
-        <div style="background:#eff6ff; border-left:4px solid #2563eb; padding:0.75rem 1rem; border-radius:6px; margin-bottom:1.25rem; font-size:0.85rem; color:#1e40af">
-          <strong><i class="fas fa-info-circle"></i> लॉगिन निर्देश:</strong> PEEO महोदय अपने विद्यालय का <strong>शाला दर्पण कोड</strong> (जैसे 221754) एवं पासवर्ड दर्ज करें अथवा त्वरित सूची से चयन करें।
-        </div>
 
-        <div class="form-group" style="margin-bottom:1rem">
-          <label><strong>त्वरित खाता चयन (Quick 1-Click Login):</strong></label>
-          <select id="login-quick-select" class="filter-select" style="width:100%" onchange="onQuickSelectUser()">
-            <optgroup label="कार्यालय एडमिन (Super Admins)">
-              <option value="jitendra_admin">जितेन्द्र कुमार (Admin) - तकनीकी नोडल प्रभारी भिनाय</option>
-              <option value="cbeo_admin">प्रमिला रासलोत (CBEO) - मुख्य ब्लॉक शिक्षा अधिकारी</option>
-            </optgroup>
-            <optgroup label="25 PEEO परिक्षेत्र (शा.दा. कोड अनुसार)" id="login-peeo-optgroup">
-              <!-- Populated by JS -->
-            </optgroup>
-          </select>
-        </div>
+      <div class="login-app-card">
+        <!-- Tricolor Strip -->
+        <div class="login-tricolor-strip"></div>
 
-        <div style="display:flex; align-items:center; gap:0.5rem; margin:1rem 0; color:var(--neutral-400)">
-          <div style="flex:1; height:1px; background:#e2e8f0"></div>
-          <span style="font-size:0.8rem">अथवा शाला दर्पण कोड व पासवर्ड दर्ज करें</span>
-          <div style="flex:1; height:1px; background:#e2e8f0"></div>
-        </div>
-
-        <div class="form-group" style="margin-bottom:0.75rem">
-          <label><strong>यूजर ID (शाला दर्पण कोड):</strong></label>
-          <input type="text" id="login-username" value="221754" placeholder="उदा. 221754 या admin_jitendra">
-        </div>
-        <div class="form-group">
-          <label><strong>पासवर्ड (Password):</strong></label>
-          <input type="password" id="login-password" value="" placeholder="पासवर्ड दर्ज करें (डिफ़ॉल्ट: शाला दर्पण कोड)" autocomplete="current-password">
-          <div id="login-password-hint" style="margin-top:0.5rem; font-size:0.82rem; color:#0369a1; background:#e0f2fe; padding:8px 12px; border-radius:6px; border-left:4px solid #0284c7; display:flex; align-items:center; gap:0.5rem">
-            <i class="fas fa-lightbulb text-warning"></i>
-            <span><strong>संकेत:</strong> PEEO एवं विद्यालयों का डिफ़ॉल्ट पासवर्ड उनका <strong>शाला दर्पण / PSP कोड</strong> ही है।</span>
+        <!-- App Brand Header -->
+        <div class="login-app-header">
+          <div class="login-emblem-circle">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <div class="login-header-text">
+            <span class="login-gov-dept">राजस्थान सरकार • स्कूल शिक्षा विभाग</span>
+            <h2 class="login-title">CBEO भिनाय आधिकारिक पोर्टल</h2>
+            <p class="login-subtitle">PEEO एवं विद्यालय सुरक्षित लॉगिन गेटवे</p>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button id="modal-login-cancel-btn" class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-login')">रद्द करें</button>
-        <button class="btn btn-primary" onclick="performLogin()" style="font-weight:700">
-          <i class="fas fa-sign-in-alt"></i> सुरक्षित लॉगिन करें
-        </button>
+
+        <div class="login-app-body">
+          <!-- Notice Box -->
+          <div class="login-info-banner">
+            <i class="fas fa-info-circle"></i>
+            <div>
+              <strong>लॉगिन निर्देश:</strong> PEEO व संस्था प्रधान अपने विद्यालय का <strong>शाला दर्पण कोड</strong> दर्ज करें।
+            </div>
+          </div>
+
+          <!-- Quick 1-Click Select -->
+          <div class="login-field-group">
+            <label class="login-label">
+              <i class="fas fa-bolt text-warning"></i> त्वरित खाता चयन (1-Click Quick Login):
+            </label>
+            <div class="login-input-wrap">
+              <select id="login-quick-select" class="login-select" onchange="onQuickSelectUser()">
+                <optgroup label="कार्यालय एडमिन (Super Admins)">
+                  <option value="jitendra_admin">जितेन्द्र कुमार (Admin) - तकनीकी नोडल प्रभारी भिनाय</option>
+                  <option value="cbeo_admin">प्रमिला रासलोत (CBEO) - मुख्य ब्लॉक शिक्षा अधिकारी</option>
+                </optgroup>
+                <optgroup label="25 PEEO परिक्षेत्र (शा.दा. कोड अनुसार)" id="login-peeo-optgroup">
+                  <!-- Populated by JS -->
+                </optgroup>
+              </select>
+            </div>
+          </div>
+
+          <div class="login-divider">
+            <span>अथवा शाला दर्पण कोड व पासवर्ड दर्ज करें</span>
+          </div>
+
+          <!-- User ID Input -->
+          <div class="login-field-group">
+            <label class="login-label">यूजर ID (शाला दर्पण / PSP कोड):</label>
+            <div class="login-input-wrap">
+              <i class="fas fa-id-card login-input-icon"></i>
+              <input type="text" id="login-username" value="221754" placeholder="उदा. 221754" class="login-input" autocomplete="username">
+            </div>
+          </div>
+
+          <!-- Password Input with Eye Toggle -->
+          <div class="login-field-group">
+            <label class="login-label">पासवर्ड (Password):</label>
+            <div class="login-input-wrap">
+              <i class="fas fa-lock login-input-icon"></i>
+              <input type="password" id="login-password" value="" placeholder="पासवर्ड दर्ज करें (डिफ़ॉल्ट: शाला दर्पण कोड)" class="login-input" autocomplete="current-password">
+              <button type="button" class="login-pwd-toggle" onclick="toggleLoginPasswordVisibility()" title="पासवर्ड देखें / छुपाएं">
+                <i class="fas fa-eye" id="login-pwd-eye-icon"></i>
+              </button>
+            </div>
+            
+            <div class="login-password-hint-box">
+              <i class="fas fa-lightbulb text-warning"></i>
+              <span><strong>संकेत:</strong> PEEO एवं विद्यालयों का डिफ़ॉल्ट पासवर्ड उनका <strong>शाला दर्पण कोड</strong> ही है।</span>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button class="btn-login-submit" onclick="performLogin()">
+            <i class="fas fa-sign-in-alt"></i> सुरक्षित लॉगिन करें (Sign In)
+          </button>
+        </div>
+
+        <div class="login-app-footer">
+          <span><i class="fas fa-lock"></i> 256-Bit SSL एन्क्रिप्टेड • ब्लॉक शिक्षा अधिकारी भिनाय (अजमेर)</span>
+        </div>
       </div>
     </div>
   </div>
@@ -1234,16 +1276,18 @@
       
       <!-- Sticky Google Form Top Navigation Bar -->
       <div class="gform-page-topbar">
-        <button class="btn btn-outline-light btn-sm" onclick="closeModal('modal-saman-pariksha-form')" style="color:#1b365d; border-color:#cbd5e1; font-weight:700">
-          <i class="fas fa-arrow-left"></i> वापस पोर्टल
-        </button>
-        <div style="text-align:center">
-          <div style="font-weight:800; color:#1b365d; font-size:0.95rem">
+        <div class="gform-topbar-left">
+          <button class="btn btn-outline-light btn-sm gform-btn-back" onclick="closeModal('modal-saman-pariksha-form')" style="color:#1b365d; border-color:#cbd5e1; font-weight:700">
+            <i class="fas fa-arrow-left"></i> वापस पोर्टल
+          </button>
+        </div>
+        <div class="gform-topbar-center">
+          <div class="gform-topbar-title">
             <i class="fas fa-file-invoice text-primary"></i> जिला समान परीक्षा (सत्र 2026-27)
           </div>
-          <div style="font-size:0.75rem; color:#64748b">कक्षा 9 से 12 प्रश्न-पत्र मांग एवं विद्यार्थी नामांकन प्रपत्र</div>
+          <div class="gform-topbar-sub">कक्षा 9 से 12 प्रश्न-पत्र मांग एवं विद्यार्थी नामांकन प्रपत्र</div>
         </div>
-        <div style="display:flex; gap:0.5rem; align-items:center">
+        <div class="gform-topbar-actions">
           <a id="gform-open-standalone-btn" href="saman_form.html" target="_blank" class="btn btn-outline-light btn-sm" style="color:#1b365d; border-color:#cbd5e1; font-weight:700" title="अलग पेज/टैब में खोलें">
             <i class="fas fa-external-link-alt"></i> अलग पेज
           </a>
