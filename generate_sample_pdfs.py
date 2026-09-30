@@ -2,59 +2,65 @@ import os
 import json
 import time
 from playwright.sync_api import sync_playwright
+import pypdf
 
 OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'generated_pdfs')
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-# CSS for standalone A4 Landscape rendering
+# Laser-Printer Friendly CSS for Single-Page A4 Landscape Rendering
 A4_LANDSCAPE_CSS = """
 @page {
   size: A4 landscape;
-  margin: 8mm 10mm;
+  margin: 5mm 8mm;
+}
+* {
+  box-sizing: border-box;
 }
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  color: #1e293b;
+  color: #000000;
   background: #ffffff;
   margin: 0;
   padding: 0;
+  line-height: 1.25;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
 .rectangular-stamp {
-  border: 2.5px solid #003399;
+  border: 2px solid #003399;
   border-radius: 4px;
-  padding: 6px 12px;
+  padding: 3px 8px;
   display: inline-block;
   text-align: center;
   color: #003399;
-  background: #f8faff;
-  box-shadow: 0 0 0 1px #003399;
+  background: #ffffff;
 }
 .stamp-top-line {
-  font-size: 0.72rem;
+  font-size: 0.65rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.2px;
+  line-height: 1.1;
 }
 .stamp-mid-line {
-  font-size: 0.88rem;
+  font-size: 0.78rem;
   font-weight: 900;
-  margin: 2px 0;
+  margin: 1px 0;
   color: #002266;
+  line-height: 1.1;
 }
 .stamp-bottom-line {
-  font-size: 0.65rem;
+  font-size: 0.60rem;
   font-weight: 700;
   border-top: 1px dashed #003399;
   padding-top: 2px;
-  margin-top: 2px;
-  line-height: 1.2;
+  margin-top: 1px;
+  line-height: 1.1;
 }
 """
 
 def generate_all_pdfs():
-    print(f"Generating PDFs in {OUTPUT_DIR}...")
+    print(f"Generating Laser-Friendly PDFs in {OUTPUT_DIR}...")
     
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
@@ -197,7 +203,7 @@ def generate_all_pdfs():
               </style>
             </head>
             <body>
-              <div style="padding: 12px 18px;">
+              <div style="padding: 0; margin: 0;">
                 {html_content}
               </div>
             </body>
@@ -211,10 +217,14 @@ def generate_all_pdfs():
                 format="A4",
                 landscape=True,
                 print_background=True,
-                margin={"top": "8mm", "bottom": "8mm", "left": "10mm", "right": "10mm"}
+                margin={"top": "5mm", "bottom": "5mm", "left": "8mm", "right": "8mm"}
             )
             pdf_page.close()
-            print(f"✓ Saved: {out_path} ({os.path.getsize(out_path):,} bytes)")
+            
+            # Check page count
+            reader = pypdf.PdfReader(out_path)
+            num_pages = len(reader.pages)
+            print(f"✓ Saved: {output_filename} ({os.path.getsize(out_path):,} bytes, Pages: {num_pages})")
 
         # 1. School Standard PDF (221753)
         html_221753 = page.evaluate("""() => {
@@ -245,7 +255,7 @@ def generate_all_pdfs():
         render_and_save_pdf(html_peeo, "PEEO_Deoliya_Kalan_Consolidated_Exam_Report.pdf")
         
         browser.close()
-        print("All PDFs successfully generated!")
+        print("All Laser-Friendly PDFs successfully generated!")
 
 if __name__ == "__main__":
     generate_all_pdfs()
