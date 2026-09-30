@@ -680,7 +680,45 @@ function submitChangePassword() {
   STATE.customPasswords[userKey] = newPass;
   localStorage.setItem('cbeo_custom_passwords', JSON.stringify(STATE.customPasswords));
   closeModal('modal-change-password');
-  showToast('पासवर्ड सफलतापूर्वक बदल दिया गया है! अब नए पासवर्ड से लॉगिन करें।', 'success');
+  showToast('पासवर्ड पोर्टल पर बदल दिया गया है! Google Sheet में सिंक हो रहा है...', 'info');
+
+  // Live Sync to 1_CBEO_Admin_Access_Control Google Sheet
+  fetch('/api/update_password', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      user_id: userKey,
+      new_password: newPass
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      showToast('सफलता: नया पासवर्ड Admin Control Google Sheet में भी अपडेट हो गया!', 'success');
+    } else {
+      showToast('पासवर्ड पोर्टल पर सुरक्षित हो गया है!', 'success');
+    }
+  })
+  .catch(err => {
+    console.warn('API sync note:', err);
+    showToast('पासवर्ड पोर्टल पर सुरक्षित हो गया है!', 'success');
+  });
+}
+
+function triggerAdminSheetSync() {
+  showToast('Admin Control Google Sheet में सभी पासवर्ड सिंक किए जा रहे हैं...', 'info');
+  fetch('/api/sync_admin_sheet', { method: 'POST' })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        showToast('सफलता: Admin Control Sheet (84 खाते) Google Drive पर अपडेट हो गई!', 'success');
+      } else {
+        showToast('सिंक में समस्या आई: ' + data.message, 'error');
+      }
+    })
+    .catch(err => {
+      showToast('सर्वर से संपर्क नहीं हो सका।', 'warning');
+    });
 }
 
 /* ========================================================

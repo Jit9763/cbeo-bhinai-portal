@@ -736,12 +736,19 @@
 
         <!-- Google Drive Connected Sheets Links Box -->
         <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:1.25rem">
-          <h4 style="color:#1b365d; margin-bottom:0.75rem; font-size:1rem">
-            <i class="fab fa-google-drive text-success"></i> Google Drive पर सक्रिय बैकएंड शीट्स:
-          </h4>
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem">
+            <h4 style="color:#1b365d; margin:0; font-size:1rem">
+              <i class="fab fa-google-drive text-success"></i> Google Drive पर सक्रिय बैकएंड शीट्स (Live Database):
+            </h4>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+              <button class="btn btn-warning btn-sm" onclick="triggerAdminSheetSync()" style="font-weight:700">
+                <i class="fas fa-sync-alt"></i> पासवर्ड व एक्सेस शीट सिंक करें
+              </button>
+            </div>
+          </div>
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1rem">
             <a href="https://docs.google.com/spreadsheets/d/1cz0QKWpICHkFq1-mHjDge73iDVWjKEwb_hmuBpR1QP4/edit" target="_blank" class="btn btn-outline-light" style="color:#1b365d; border-color:#cbd5e1; justify-content:flex-start">
-              <i class="fas fa-key text-warning"></i> 1_CBEO_Admin_Access_Control
+              <i class="fas fa-key text-warning"></i> 1_CBEO_Admin_Access_Control (पासवर्ड नियंत्रण)
             </a>
             <a href="https://docs.google.com/spreadsheets/d/1zl3_tUqt-VxDcjmIiA44u6aYUAjYG5wxwff-tw9ZLJs/edit" target="_blank" class="btn btn-outline-light" style="color:#1b365d; border-color:#cbd5e1; justify-content:flex-start">
               <i class="fas fa-users text-primary"></i> 2_CBEO_Staff_Directory (1048 कार्मिक)
@@ -751,6 +758,9 @@
             </a>
             <a href="https://docs.google.com/spreadsheets/d/1kxSqa87C_lHUmfZKd9zYrARM0bPeWgTDyV8bgSoQ3Gc/edit" target="_blank" class="btn btn-outline-light" style="color:#1b365d; border-color:#cbd5e1; justify-content:flex-start">
               <i class="fas fa-history text-danger"></i> 4_CBEO_Audit_Backup_Logs
+            </a>
+            <a href="https://docs.google.com/spreadsheets/d/1tVP7gbIuUP576E2a1Qk6TadXUSP7a5c7ah8HzKeTk4k/edit" target="_blank" class="btn btn-outline-light" style="color:#1b365d; border-color:#cbd5e1; justify-content:flex-start">
+              <i class="fas fa-file-invoice text-success"></i> 5_CBEO_Saman_Pariksha_56_Schools_Data
             </a>
           </div>
         </div>
