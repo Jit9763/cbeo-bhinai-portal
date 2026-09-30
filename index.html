@@ -161,10 +161,13 @@
                 आपके PEEO परिक्षेत्र के अंतर्गत आने वाले <strong>समान परीक्षा 2026-27</strong> के लिए पात्र माध्यमिक एवं उच्च माध्यमिक विद्यालयों की सूची। प्रत्येक विद्यालय का प्रपत्र भरें व अधिकृत PDF प्रिंट करें:
               </p>
             </div>
-            <div style="display:flex; gap:0.75rem; align-items:center">
+            <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap">
               <span id="sp-peeo-progress-badge" class="sp-status-badge warning" style="font-size:0.85rem; padding:0.4rem 0.9rem">
                 प्रगति: 0 / 0 पूर्ण
               </span>
+              <button class="btn btn-success btn-sm" id="btn-peeo-consolidated-top" onclick="openPeeoConsolidatedPdfPreview()" style="font-weight:700; display:inline-flex; align-items:center; gap:0.4rem">
+                <i class="fas fa-file-invoice"></i> 📑 परिक्षेत्र समेकित परीक्षा मांग रिपोर्ट (A4 Print / PDF)
+              </button>
             </div>
           </div>
         </div>
@@ -177,6 +180,17 @@
 
       <!-- Admin View Container -->
       <div id="sp-admin-container" style="display:none">
+        <!-- Sub Navigation Tabs for Admin -->
+        <div class="sub-nav-tabs">
+          <button class="sub-nav-btn active" id="btn-subnav-monitoring" onclick="switchSamanSubView('monitoring')">
+            <i class="fas fa-chart-line"></i> 📊 56 स्कूल प्रपत्र मॉनिटरिंग
+          </button>
+          <button class="sub-nav-btn" id="btn-subnav-calldir" onclick="switchSamanSubView('calldir')">
+            <i class="fas fa-phone-alt"></i> 📞 समान परीक्षा त्वरित संपर्क डायरेक्टरी (56 विद्यालय)
+          </button>
+        </div>
+
+        <div id="sp-subview-monitoring">
         <!-- 56 Schools Metric Overview -->
         <div class="stat-cards-grid" style="margin-bottom:1.5rem">
           <div class="stat-card blue">
@@ -338,6 +352,9 @@
             <select id="sp-peeo-filter" class="filter-select" onchange="filterSamanParikshaTable()">
               <option value="all">समस्त 25 PEEO क्षेत्र</option>
             </select>
+            <button class="btn btn-outline-primary btn-sm" onclick="openSelectedPeeoConsolidatedReport()" title="चयनित PEEO की समेकित रिपोर्ट A4 लैंडस्केप में देखें व प्रिंट करें" style="font-weight:700; white-space:nowrap">
+              <i class="fas fa-file-invoice"></i> 📑 PEEO समेकित रिपोर्ट
+            </button>
           </div>
 
           <div class="table-responsive">
@@ -366,6 +383,77 @@
             </table>
           </div>
         </div>
+        </div> <!-- End sp-subview-monitoring -->
+
+        <!-- DEDICATED SAMAN PARIKSHA CALL DIRECTORY SUBVIEW -->
+        <div id="sp-subview-calldir" style="display:none">
+          <div class="section-box" style="margin-bottom:1.5rem">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem">
+              <div>
+                <h3 style="color:#1b365d; font-size:1.15rem; font-weight:800; display:flex; align-items:center; gap:0.5rem">
+                  <i class="fas fa-phone-volume text-success"></i> समान परीक्षा त्वरित संपर्क डायरेक्टरी (56 विद्यालय)
+                </h3>
+                <p style="font-size:0.83rem; color:#64748b; margin-top:0.25rem">
+                  परीक्षा कार्य एवं समन्वय हेतु केवल 56 माध्यमिक व उच्च माध्यमिक विद्यालयों के <strong>संस्था प्रधान</strong> एवं <strong>परीक्षा प्रभारी</strong> की विशिष्ट डायरेक्टरी। 1-क्लिक कॉल व व्हाट्सएप उपलब्ध:
+                </p>
+              </div>
+              <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+                <button class="btn btn-whatsapp btn-sm" onclick="sendBulkPendingWhatsAppReminder()">
+                  <i class="fab fa-whatsapp"></i> 📢 लम्बित स्कूलों को WhatsApp रिमाइंडर
+                </button>
+                <button class="btn btn-success btn-sm" onclick="exportSamanCallDirectoryCSV()">
+                  <i class="fas fa-file-excel"></i> डायरेक्टरी एक्सेल डाउनलोड
+                </button>
+                <button class="btn btn-outline-primary btn-sm" onclick="printSamanCallDirectory()">
+                  <i class="fas fa-print"></i> डायरेक्टरी प्रिंट
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-box">
+            <div class="toolbar-row">
+              <div class="search-box-wrapper">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="sp-calldir-search" placeholder="विद्यालय का नाम, शाला दर्पण कोड, परीक्षा कोड, संस्था प्रधान या प्रभारी का नाम खोजें..." oninput="filterSamanCallDirectory()">
+              </div>
+              <select id="sp-calldir-category" class="filter-select" onchange="filterSamanCallDirectory()">
+                <option value="all">सभी 56 विद्यालय (राजकीय + निजी)</option>
+                <option value="Government">केवल राजकीय विद्यालय (48 Govt)</option>
+                <option value="Private">केवल निजी विद्यालय (8 Pvt)</option>
+              </select>
+              <select id="sp-calldir-status" class="filter-select" onchange="filterSamanCallDirectory()">
+                <option value="all">सभी प्रपत्र स्थितियां (सबमिट + लम्बित)</option>
+                <option value="submitted">✅ केवल सबमिट हो चुके प्रपत्र</option>
+                <option value="pending">⚠️ केवल लम्बित प्रपत्र (Pending)</option>
+              </select>
+              <select id="sp-calldir-peeo" class="filter-select" onchange="filterSamanCallDirectory()">
+                <option value="all">समस्त 25 PEEO क्षेत्र</option>
+              </select>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr style="background:#1b365d; color:#ffffff">
+                    <th style="width:40px">क्र.</th>
+                    <th>विद्यालय का नाम व कोड</th>
+                    <th>संबंधित PEEO</th>
+                    <th>परीक्षा कोड</th>
+                    <th style="min-width:190px">संस्था प्रधान (Principal)</th>
+                    <th style="min-width:190px">परीक्षा प्रभारी (Exam In-charge)</th>
+                    <th style="width:110px">प्रपत्र स्थिति</th>
+                    <th style="width:110px">कार्यवाही</th>
+                  </tr>
+                </thead>
+                <tbody id="sp-calldir-tbody">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -1761,6 +1849,50 @@
             <i class="fab fa-whatsapp"></i> WhatsApp शेयर
           </button>
           <button class="btn btn-primary" onclick="printOfficialExamDocument()">
+            <i class="fas fa-print"></i> A4 साइज प्रिंट करें (Print)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. PEEO CONSOLIDATED OFFICIAL EXAM PDF PREVIEW MODAL -->
+  <div id="modal-peeo-consolidated-preview" class="modal-overlay">
+    <div class="modal-card" style="max-width:1160px; width:96vw; padding:0; background:#f8fafc; overflow:hidden">
+      <div class="modal-header" style="background:#1b365d; color:#ffffff; padding:1rem 1.5rem">
+        <h3 style="color:#ffffff; font-size:1.15rem; display:flex; align-items:center; gap:0.5rem">
+          <i class="fas fa-file-invoice text-warning"></i> समान परीक्षा 2026-27 | परिक्षेत्र समेकित रिपोर्ट (PEEO Consolidated Report)
+        </h3>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+          <button class="btn btn-warning btn-sm" onclick="downloadPeeoConsolidatedPDFDirect()" title="सीधे समेकित PDF फाइल डाउनलोड करें" style="font-weight:700">
+            <i class="fas fa-download"></i> PDF डाउनलोड
+          </button>
+          <button class="btn btn-whatsapp btn-sm" onclick="sharePeeoConsolidatedWhatsApp()" title="समेकित विवरण WhatsApp पर शेयर करें">
+            <i class="fab fa-whatsapp"></i> WhatsApp शेयर
+          </button>
+          <button class="btn btn-success btn-sm" onclick="printPeeoConsolidatedDocument()" title="ब्राउज़र प्रिंट / सेव एज PDF">
+            <i class="fas fa-print"></i> प्रिंट / PDF सेव
+          </button>
+          <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-peeo-consolidated-preview')">&times;</button>
+        </div>
+      </div>
+      <div class="modal-body" style="padding:1.5rem; max-height:calc(90vh - 130px); overflow-y:auto">
+        <div id="printable-peeo-consolidated-content" class="printable-exam-sheet">
+          <!-- Populated dynamically with official PEEO consolidated tables -->
+        </div>
+      </div>
+      <div class="modal-footer" style="padding:0.85rem 1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-peeo-consolidated-preview')">
+          बंद करें (Close)
+        </button>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+          <button class="btn btn-warning" onclick="downloadPeeoConsolidatedPDFDirect()" style="font-weight:700">
+            <i class="fas fa-file-download"></i> सीधे PDF डाउनलोड करें
+          </button>
+          <button class="btn btn-whatsapp" onclick="sharePeeoConsolidatedWhatsApp()">
+            <i class="fab fa-whatsapp"></i> WhatsApp शेयर
+          </button>
+          <button class="btn btn-primary" onclick="printPeeoConsolidatedDocument()">
             <i class="fas fa-print"></i> A4 साइज प्रिंट करें (Print)
           </button>
         </div>

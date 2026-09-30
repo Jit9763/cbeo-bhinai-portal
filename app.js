@@ -1690,15 +1690,18 @@ function openExamPdfPreview(schoolCode) {
 
   container.innerHTML = `
     <!-- Top Emblem & Departmental Header (A4 Landscape Layout) -->
-    <div style="text-align:center; border-bottom:2.5px solid #1b365d; padding-bottom:10px; margin-bottom:12px">
+    <div style="text-align:center; border-bottom:2.5px solid #1b365d; padding-bottom:8px; margin-bottom:12px">
       <div style="font-size:0.85rem; font-weight:700; color:#1e3a8a; letter-spacing:0.5px">राजस्थान सरकार | स्कूल शिक्षा विभाग</div>
-      <div style="font-size:1.38rem; font-weight:900; color:#1b365d; margin:2px 0">
-        कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)
+      <div style="font-size:1.32rem; font-weight:900; color:#1b365d; margin:2px 0">
+        कार्यालय संस्था प्रधान, ${school.school_name}
+      </div>
+      <div style="font-size:0.88rem; font-weight:700; color:#334155; margin-bottom:2px">
+        ग्राम / परिक्षेत्र: ${school.peeo_name.replace('PEEO ', '')}, ब्लॉक-भिनाय, जिला-अजमेर (राज.) | शाला दर्पण / PSP कोड: ${school.shala_darpan_code}
       </div>
       <div style="font-size:1.02rem; font-weight:800; color:#dc2626; text-transform:uppercase; letter-spacing:0.5px">
         जिला समान परीक्षा योजना (सत्र 2026-27)
       </div>
-      <div style="font-size:0.92rem; font-weight:700; color:#334155">
+      <div style="font-size:0.86rem; font-weight:700; color:#475569">
         कक्षा 9 से 12 विद्यार्थी नामांकन एवं प्रश्न-पत्र मांग अधिकृत विवरण प्रपत्र (A4 Landscape प्रारूप)
       </div>
     </div>
@@ -1821,7 +1824,7 @@ function openExamPdfPreview(schoolCode) {
     </div>
 
     <!-- Official Rectangular Stamp & Signatures Box (Landscape 3-Column Layout) -->
-    <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 15px; margin-top:18px">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 15px; margin-top:22px; margin-bottom:18px">
       
       <!-- Incharge Signature -->
       <div style="text-align:center; width:28%">
@@ -1836,7 +1839,7 @@ function openExamPdfPreview(schoolCode) {
 
       <!-- Center: Official Rectangular PEEO Seal (सीधी मोहर) -->
       <div style="text-align:center; width:38%">
-        <div class="rectangular-stamp" style="margin:0 auto; width:220px; height:70px">
+        <div class="rectangular-stamp">
           <div class="stamp-top-line">कार्यालय पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)</div>
           <div class="stamp-mid-line">${school.peeo_name}</div>
           <div class="stamp-bottom-line">ग्रा.पं. ${school.peeo_name.replace('PEEO ', '')}, ब्लॉक-भिनाय (अजमेर)</div>
@@ -1866,7 +1869,7 @@ function openExamPdfPreview(schoolCode) {
     </div>
 
     <!-- Footer meta -->
-    <div style="margin-top:16px; padding-top:6px; border-top:1px dashed #cbd5e1; display:flex; justify-content:space-between; font-size:0.72rem; color:#64748b">
+    <div style="margin-top:24px; padding-top:8px; border-top:1px dashed #cbd5e1; display:flex; justify-content:space-between; font-size:0.72rem; color:#64748b">
       <span>पोर्टल सत्यापन आईडी: CBEO-SP-2026-${school.shala_darpan_code}</span>
       <span>प्रविष्टि दिनांक: ${sub.timestamp}</span>
       <span>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय</span>
@@ -1922,6 +1925,580 @@ function shareExamPDFWhatsApp() {
   
   const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
   window.open(url, '_blank');
+}
+
+/* ========================================================
+   PEEO CONSOLIDATED OFFICIAL EXAM REPORT (A4 LANDSCAPE)
+   ======================================================== */
+function openSelectedPeeoConsolidatedReport() {
+  const peeoFilter = document.getElementById('sp-peeo-filter');
+  let peeoName = peeoFilter ? peeoFilter.value : 'all';
+  if (peeoName === 'all') {
+    peeoName = STATE.schools56[0]?.peeo_name || 'PEEO BHINAI';
+  }
+  openPeeoConsolidatedPdfPreview(peeoName);
+}
+
+function openPeeoConsolidatedPdfPreview(peeoName) {
+  if (!peeoName) {
+    if (STATE.currentUser && STATE.currentUser.peeo_name) {
+      peeoName = STATE.currentUser.peeo_name;
+    } else if (STATE.currentUser && STATE.currentUser.role === 'school') {
+      const sch = STATE.schools56.find(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code);
+      peeoName = sch ? sch.peeo_name : 'PEEO BHINAI';
+    } else {
+      const peeoFilter = document.getElementById('sp-peeo-filter');
+      if (peeoFilter && peeoFilter.value !== 'all') {
+        peeoName = peeoFilter.value;
+      } else {
+        peeoName = 'PEEO BHINAI';
+      }
+    }
+  }
+
+  STATE.activePeeoConsolidatedName = peeoName;
+  const cleanPeeoName = peeoName.replace(/PEEO\s+/i, '').trim();
+
+  // Filter schools under this PEEO from 56 schools
+  const schools = STATE.schools56.filter(s => 
+    s.peeo_name.toLowerCase().includes(peeoName.toLowerCase()) ||
+    (STATE.currentUser?.schools && STATE.currentUser.schools.some(sch => sch.shala_darpan_code === s.shala_darpan_code))
+  );
+
+  if (schools.length === 0) {
+    showToast('इस PEEO क्षेत्र में कोई माध्यमिक / उच्च माध्यमिक विद्यालय दर्ज नहीं है!', 'info');
+    return;
+  }
+
+  const container = document.getElementById('printable-peeo-consolidated-content');
+  if (!container) return;
+
+  let totalC9 = 0;
+  let totalC10 = 0;
+  let totalC11 = 0;
+  let totalC12 = 0;
+  let totalGrand = 0;
+  let submittedCount = 0;
+
+  let contactRowsHtml = '';
+  let demandRowsHtml = '';
+
+  schools.forEach((s, idx) => {
+    const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
+    const isSub = !!sub;
+    if (isSub) submittedCount++;
+
+    const c9 = isSub ? (sub.c9_total || 0) : 0;
+    const c10 = isSub ? (sub.c10_total || 0) : 0;
+    const c11 = isSub ? (sub.c11_total || 0) : 0;
+    const c12 = isSub ? (sub.c12_total || 0) : 0;
+    const gTotal = isSub ? (sub.grand_total || 0) : 0;
+
+    totalC9 += c9;
+    totalC10 += c10;
+    totalC11 += c11;
+    totalC12 += c12;
+    totalGrand += gTotal;
+
+    const princName = isSub ? sub.principal_name : s.principal_name;
+    const princMob = isSub ? sub.principal_mobile : s.principal_mobile;
+    const inchName = isSub ? sub.incharge_name : (s.incharge_name || 'उपलब्ध नहीं');
+    const inchMob = isSub ? sub.incharge_mobile : (s.incharge_mobile || '---');
+    const examCode = isSub ? sub.exam_code : (s.exam_code || '---');
+
+    const statusBadge = isSub 
+      ? '<span style="color:#166534; font-weight:800">✓ सबमिट</span>'
+      : '<span style="color:#dc2626; font-weight:800">⚠️ लम्बित</span>';
+
+    contactRowsHtml += `
+      <tr style="border-bottom:1px solid #cbd5e1">
+        <td style="padding:6px 4px; border:1px solid #cbd5e1; text-align:center">${idx + 1}</td>
+        <td style="padding:6px 8px; border:1px solid #cbd5e1; text-align:left; font-weight:700; color:#1e3a8a">${s.school_name}</td>
+        <td style="padding:6px 6px; border:1px solid #cbd5e1; text-align:center">${s.shala_darpan_code} <span style="font-size:0.75rem; color:#64748b">(${s.type === 'Government' ? 'राजकीय' : 'निजी'})</span></td>
+        <td style="padding:6px 6px; border:1px solid #cbd5e1; text-align:center; font-weight:800; color:#dc2626">${examCode}</td>
+        <td style="padding:6px 8px; border:1px solid #cbd5e1; text-align:left"><strong>${princName}</strong><br><span style="font-size:0.75rem; color:#475569">मो. ${princMob}</span></td>
+        <td style="padding:6px 8px; border:1px solid #cbd5e1; text-align:left"><strong>${inchName}</strong><br><span style="font-size:0.75rem; color:#475569">मो. ${inchMob}</span></td>
+        <td style="padding:6px 6px; border:1px solid #cbd5e1; text-align:center">${statusBadge}</td>
+      </tr>
+    `;
+
+    demandRowsHtml += `
+      <tr style="border-bottom:1px solid #cbd5e1">
+        <td style="padding:6px 4px; border:1px solid #cbd5e1; text-align:center">${idx + 1}</td>
+        <td style="padding:6px 8px; border:1px solid #cbd5e1; text-align:left; font-weight:700; color:#1e3a8a">${s.school_name} (${s.shala_darpan_code})</td>
+        <td style="padding:6px 6px; border:1px solid #cbd5e1; text-align:center; font-weight:700">${c9}</td>
+        <td style="padding:6px 6px; border:1px solid #cbd5e1; text-align:center; font-weight:700">${c10}</td>
+        <td style="padding:6px 6px; border:1px solid #cbd5e1; text-align:center; font-weight:700">${c11}</td>
+        <td style="padding:6px 6px; border:1px solid #cbd5e1; text-align:center; font-weight:700">${c12}</td>
+        <td style="padding:6px 6px; border:1px solid #cbd5e1; text-align:center; font-weight:900; color:#1e3a8a; background:#eff6ff; font-size:0.95rem">${gTotal}</td>
+        <td style="padding:6px 6px; border:1px solid #cbd5e1; text-align:center">${statusBadge}</td>
+      </tr>
+    `;
+  });
+
+  container.innerHTML = `
+    <!-- Top Departmental & PEEO Header -->
+    <div style="text-align:center; border-bottom:2.5px solid #1b365d; padding-bottom:8px; margin-bottom:14px">
+      <div style="font-size:0.85rem; font-weight:700; color:#1e3a8a; letter-spacing:0.5px">राजस्थान सरकार | स्कूल शिक्षा विभाग</div>
+      <div style="font-size:1.35rem; font-weight:900; color:#1b365d; margin:2px 0">
+        कार्यालय पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO), ${peeoName}
+      </div>
+      <div style="font-size:0.9rem; font-weight:700; color:#334155; margin-bottom:2px">
+        ग्रा.पं. ${cleanPeeoName}, ब्लॉक-भिनाय, जिला-अजमेर (राजस्थान)
+      </div>
+      <div style="font-size:1.05rem; font-weight:800; color:#dc2626; text-transform:uppercase; letter-spacing:0.5px">
+        जिला समान परीक्षा योजना (सत्र 2026-27)
+      </div>
+      <div style="font-size:0.88rem; font-weight:700; color:#475569">
+        परिक्षेत्र अधीनस्थ माध्यमिक व उच्च माध्यमिक विद्यालयों की समेकित परीक्षा मांग रिपोर्ट (A4 Landscape प्रारूप)
+      </div>
+    </div>
+
+    <!-- Cluster Metadata Summary -->
+    <div style="display:flex; justify-content:space-between; align-items:center; background:#f1f5f9; padding:6px 12px; border-radius:6px; border:1px solid #cbd5e1; margin-bottom:12px; font-size:0.82rem">
+      <div><strong>कुल माध्यमिक/उच्च माध्यमिक विद्यालय:</strong> ${schools.length} (राजकीय: ${schools.filter(s=>s.type==='Government').length} | निजी: ${schools.filter(s=>s.type!=='Government').length})</div>
+      <div><strong>प्रपत्र सबमिट स्थिति:</strong> <span style="color:#166534; font-weight:800">${submittedCount} पूर्ण</span> / <span style="color:#dc2626; font-weight:800">${schools.length - submittedCount} लम्बित</span></div>
+      <div><strong>परिक्षेत्र कुल मांग प्रश्न-पत्र:</strong> <span style="font-size:1rem; font-weight:900; color:#1e3a8a">${totalGrand}</span></div>
+    </div>
+
+    <!-- TABLE 1: School & Staff Contact Details -->
+    <div style="margin-bottom:14px">
+      <div style="font-size:0.88rem; font-weight:800; color:#1b365d; margin-bottom:4px; display:flex; align-items:center; gap:0.4rem">
+        <i class="fas fa-address-book text-primary"></i> 1. अधीनस्थ विद्यालयों एवं प्रभारियों का संपर्क विवरण (Staff Contact Matrix)
+      </div>
+      <table style="width:100%; border-collapse:collapse; border:1.5px solid #1b365d; font-size:0.82rem">
+        <thead>
+          <tr style="background:#1b365d; color:#ffffff; font-weight:800; text-align:center">
+            <th style="padding:6px 4px; border:1px solid #334155; width:35px">क्र.</th>
+            <th style="padding:6px 8px; border:1px solid #334155; text-align:left">विद्यालय का नाम</th>
+            <th style="padding:6px 6px; border:1px solid #334155; width:130px">शा.दा./PSP कोड</th>
+            <th style="padding:6px 6px; border:1px solid #334155; width:80px">परीक्षा कोड</th>
+            <th style="padding:6px 8px; border:1px solid #334155; text-align:left; width:220px">संस्था प्रधान (Principal)</th>
+            <th style="padding:6px 8px; border:1px solid #334155; text-align:left; width:220px">परीक्षा प्रभारी (Exam In-charge)</th>
+            <th style="padding:6px 6px; border:1px solid #334155; width:80px">स्थिति</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${contactRowsHtml}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- TABLE 2: Class-wise Student Demand Matrix -->
+    <div style="margin-bottom:14px">
+      <div style="font-size:0.88rem; font-weight:800; color:#1b365d; margin-bottom:4px; display:flex; align-items:center; gap:0.4rem">
+        <i class="fas fa-table text-primary"></i> 2. कक्षावार विद्यार्थी नामांकन एवं प्रश्न-पत्र मांग समेकित विवरण (Examination Demand Matrix)
+      </div>
+      <table style="width:100%; border-collapse:collapse; border:2px solid #1b365d; font-size:0.83rem">
+        <thead>
+          <tr style="background:#0f2e59; color:#ffffff; font-weight:800; text-align:center">
+            <th style="padding:6px 4px; border:1px solid #334155; width:35px">क्र.</th>
+            <th style="padding:6px 8px; border:1px solid #334155; text-align:left">विद्यालय का नाम एवं कोड</th>
+            <th style="padding:6px 6px; border:1px solid #334155; width:85px">9वीं मांग</th>
+            <th style="padding:6px 6px; border:1px solid #334155; width:85px">10वीं मांग</th>
+            <th style="padding:6px 6px; border:1px solid #334155; width:85px">11वीं मांग</th>
+            <th style="padding:6px 6px; border:1px solid #334155; width:85px">12वीं मांग</th>
+            <th style="padding:6px 8px; border:1px solid #334155; width:110px; background:#1e3a8a">कुल मांग संख्या</th>
+            <th style="padding:6px 6px; border:1px solid #334155; width:80px">स्थिति</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${demandRowsHtml}
+          <!-- Cluster Grand Total Row -->
+          <tr style="background:#fef3c7; font-weight:900; border:2px solid #b45309; text-align:center">
+            <td colspan="2" style="padding:8px 10px; border:2px solid #b45309; text-align:right; font-size:0.95rem; color:#78350f">
+              🎯 PEEO परिक्षेत्र कुल महायोग (Consolidated Grand Total):
+            </td>
+            <td style="padding:8px 6px; border:2px solid #b45309; font-size:1rem; color:#78350f">${totalC9}</td>
+            <td style="padding:8px 6px; border:2px solid #b45309; font-size:1rem; color:#78350f">${totalC10}</td>
+            <td style="padding:8px 6px; border:2px solid #b45309; font-size:1rem; color:#78350f">${totalC11}</td>
+            <td style="padding:8px 6px; border:2px solid #b45309; font-size:1rem; color:#78350f">${totalC12}</td>
+            <td style="padding:8px 8px; border:2px solid #b45309; font-size:1.18rem; color:#991b1b; background:#fee2e2">${totalGrand}</td>
+            <td style="padding:8px 6px; border:2px solid #b45309; color:#15803d">${submittedCount}/${schools.length}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Verification Declaration -->
+    <div style="margin-top:10px; margin-bottom:16px; padding:8px 12px; background:#f8fafc; border:1.5px solid #0284c7; border-left:5px solid #0284c7; border-radius:6px; font-size:0.82rem; line-height:1.5; color:#1e293b">
+      <strong>सत्यापन एवं उत्तरदायित्व घोषणा:</strong> प्रमाणित किया जाता है कि मेरे परिक्षेत्र (${peeoName}) के अंतर्गत संचालित उपर्युक्त समस्त ${schools.length} माध्यमिक एवं उच्च माध्यमिक विद्यालयों के परीक्षा प्रपत्रों का गहनता से परीक्षण व सत्यापन कर लिया गया है। उपर्युक्त सभी आंकड़े पूर्णतः सही व सत्यापित हैं। किसी भी प्रकार की त्रुटि या विसंगति पाए जाने पर संबंधित संस्था प्रधान एवं PEEO का उत्तरदायित्व होगा।
+    </div>
+
+    <!-- Official Rectangular Stamp & PEEO Signature -->
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 20px; margin-top:24px; margin-bottom:18px">
+      <!-- Left: Exam In-charge -->
+      <div style="text-align:center; width:28%">
+        <div style="height:44px; display:flex; align-items:flex-end; justify-content:center; color:#64748b; font-size:0.8rem">
+          (.......................................................)
+        </div>
+        <div style="border-top:1.5px solid #000; padding-top:4px; font-weight:700; font-size:0.85rem">
+          हस्ताक्षर नोडल परीक्षा प्रभारी (PEEO)
+        </div>
+      </div>
+
+      <!-- Center: Rectangular PEEO Seal -->
+      <div style="text-align:center; width:38%">
+        <div class="rectangular-stamp">
+          <div class="stamp-top-line">कार्यालय पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)</div>
+          <div class="stamp-mid-line">${peeoName}</div>
+          <div class="stamp-bottom-line">ग्रा.पं. ${cleanPeeoName}, ब्लॉक-भिनाय (अजमेर)</div>
+        </div>
+      </div>
+
+      <!-- Right: PEEO Sign & Seal -->
+      <div style="text-align:center; width:28%">
+        <div style="height:44px; display:flex; align-items:flex-end; justify-content:center; color:#64748b; font-size:0.8rem">
+          (.......................................................)
+        </div>
+        <div style="border-top:1.5px solid #000; padding-top:4px; font-weight:700; font-size:0.85rem">
+          हस्ताक्षर मय सील PEEO
+        </div>
+        <div style="font-size:0.75rem; color:#475569">${peeoName}</div>
+      </div>
+    </div>
+
+    <!-- Footer Meta -->
+    <div style="margin-top:24px; padding-top:8px; border-top:1px dashed #cbd5e1; display:flex; justify-content:space-between; font-size:0.72rem; color:#64748b">
+      <span>पोर्टल सत्यापन आईडी: CBEO-PEEO-CONSOLIDATED-${cleanPeeoName.toUpperCase().replace(/\s+/g, '')}</span>
+      <span>प्रविष्टि / रिपोर्ट दिनांक: ${new Date().toLocaleDateString('hi-IN')}</span>
+      <span>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय</span>
+    </div>
+  `;
+
+  showModal('modal-peeo-consolidated-preview');
+}
+
+function printPeeoConsolidatedDocument() {
+  window.print();
+}
+
+function downloadPeeoConsolidatedPDFDirect() {
+  const element = document.getElementById('printable-peeo-consolidated-content');
+  if (!element) return;
+  const peeoName = (STATE.activePeeoConsolidatedName || 'PEEO').replace(/[^a-zA-Z0-9_]/g, '_');
+  showToast('समेकित PDF जनरेट हो रहा है, कृपया प्रतीक्षा करें...', 'info');
+
+  const opt = {
+    margin: [6, 8, 6, 8],
+    filename: `${peeoName}_Saman_Pariksha_Consolidated_2026.pdf`,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true, logging: false },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+  };
+
+  if (typeof html2pdf !== 'undefined') {
+    html2pdf().set(opt).from(element).save().then(() => {
+      showToast('समेकित PDF सफलतापूर्वक डाउनलोड हो गया!', 'success');
+    }).catch(err => {
+      console.warn('html2pdf fallback to print:', err);
+      window.print();
+    });
+  } else {
+    window.print();
+  }
+}
+
+function sharePeeoConsolidatedWhatsApp() {
+  const peeoName = STATE.activePeeoConsolidatedName || 'PEEO';
+  const schools = STATE.schools56.filter(s => s.peeo_name.toLowerCase().includes(peeoName.toLowerCase()));
+  if (schools.length === 0) return;
+
+  let grandTotalPapers = 0;
+  let subCount = 0;
+  let breakdown = '';
+
+  schools.forEach((s, i) => {
+    const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
+    const isSub = !!sub;
+    if (isSub) {
+      subCount++;
+      grandTotalPapers += (sub.grand_total || 0);
+      breakdown += `${i + 1}. ${s.school_name}: *${sub.grand_total} पेपर* (9वीं:${sub.c9_total}, 10वीं:${sub.c10_total}, 11वीं:${sub.c11_total}, 12वीं:${sub.c12_total})\n`;
+    } else {
+      breakdown += `${i + 1}. ${s.school_name}: ⚠️ *लम्बित*\n`;
+    }
+  });
+
+  const text = `*🏛️ कार्यालय पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)*\n*${peeoName} | ब्लॉक-भिनाय (अजमेर)*\n*जिला समान परीक्षा (सत्र 2026-27) - परिक्षेत्र समेकित रिपोर्ट*\n\n📊 *प्रगति स्थिति:* ${subCount}/${schools.length} विद्यालय पूर्ण\n🎯 *परिक्षेत्र कुल मांग प्रश्न-पत्र:* *${grandTotalPapers}*\n\n📋 *विद्यालयवार विवरण:*\n${breakdown}\n✅ *सत्यापन:* PEEO अधिकृत सील व संस्था प्रधानों द्वारा सत्यापित\n🌐 *CBEO भिनाय पोर्टल:* https://jit9763.github.io/cbeo-bhinai-portal/`;
+
+  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+}
+
+/* ========================================================
+   ADMIN SAMAN PARIKSHA CALL DIRECTORY (56 SCHOOLS)
+   ======================================================== */
+function switchSamanSubView(subview) {
+  const monTab = document.getElementById('btn-subnav-monitoring');
+  const callTab = document.getElementById('btn-subnav-calldir');
+  const monContainer = document.getElementById('sp-subview-monitoring');
+  const callContainer = document.getElementById('sp-subview-calldir');
+
+  if (subview === 'calldir') {
+    if (monTab) monTab.classList.remove('active');
+    if (callTab) callTab.classList.add('active');
+    if (monContainer) monContainer.style.display = 'none';
+    if (callContainer) callContainer.style.display = 'block';
+    renderSamanCallDirectory();
+  } else {
+    if (callTab) callTab.classList.remove('active');
+    if (monTab) monTab.classList.add('active');
+    if (callContainer) callContainer.style.display = 'none';
+    if (monContainer) monContainer.style.display = 'block';
+  }
+}
+
+function renderSamanCallDirectory() {
+  const tbody = document.getElementById('sp-calldir-tbody');
+  if (!tbody) return;
+
+  const peeoSelect = document.getElementById('sp-calldir-peeo');
+  if (peeoSelect && peeoSelect.options.length <= 1) {
+    const uniquePeeos = [...new Set(STATE.schools56.map(s => s.peeo_name))].sort();
+    uniquePeeos.forEach(p => {
+      const opt = document.createElement('option');
+      opt.value = p;
+      opt.textContent = p;
+      peeoSelect.appendChild(opt);
+    });
+  }
+
+  filterSamanCallDirectory();
+}
+
+function filterSamanCallDirectory() {
+  const tbody = document.getElementById('sp-calldir-tbody');
+  if (!tbody) return;
+
+  const q = (document.getElementById('sp-calldir-search')?.value || '').toLowerCase().trim();
+  const cat = document.getElementById('sp-calldir-category')?.value || 'all';
+  const status = document.getElementById('sp-calldir-status')?.value || 'all';
+  const peeo = document.getElementById('sp-calldir-peeo')?.value || 'all';
+
+  const filtered = STATE.schools56.filter(s => {
+    const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
+    const isSubmitted = !!sub;
+
+    if (cat !== 'all' && s.type !== cat) return false;
+    if (status === 'submitted' && !isSubmitted) return false;
+    if (status === 'pending' && isSubmitted) return false;
+    if (peeo !== 'all' && s.peeo_name !== peeo) return false;
+
+    if (q) {
+      const pName = (isSubmitted ? sub.principal_name : s.principal_name) || '';
+      const pMob = (isSubmitted ? sub.principal_mobile : s.principal_mobile) || '';
+      const iName = (isSubmitted ? sub.incharge_name : s.incharge_name) || '';
+      const iMob = (isSubmitted ? sub.incharge_mobile : s.incharge_mobile) || '';
+      const exCode = (isSubmitted ? sub.exam_code : s.exam_code) || '';
+      const match = s.school_name.toLowerCase().includes(q) ||
+        s.shala_darpan_code.toLowerCase().includes(q) ||
+        s.peeo_name.toLowerCase().includes(q) ||
+        exCode.toLowerCase().includes(q) ||
+        pName.toLowerCase().includes(q) ||
+        pMob.includes(q) ||
+        iName.toLowerCase().includes(q) ||
+        iMob.includes(q);
+      if (!match) return false;
+    }
+    return true;
+  });
+
+  tbody.innerHTML = '';
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:1.5rem; color:#64748b">कोई विद्यालय रिकॉर्ड नहीं मिला</td></tr>`;
+    return;
+  }
+
+  filtered.forEach((s, idx) => {
+    const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
+    const isSub = !!sub;
+
+    const princName = isSub ? sub.principal_name : s.principal_name;
+    const princMob = isSub ? sub.principal_mobile : s.principal_mobile;
+    const inchName = isSub ? sub.incharge_name : (s.incharge_name || 'परीक्षा प्रभारी');
+    const inchMob = isSub ? sub.incharge_mobile : (s.incharge_mobile || '');
+    const examCode = isSub ? sub.exam_code : (s.exam_code || '---');
+
+    const statusBadge = isSub
+      ? `<span class="sp-status-badge success" style="font-size:0.75rem; padding:2px 6px"><i class="fas fa-check-circle"></i> सबमिट (${sub.grand_total})</span>`
+      : `<span class="sp-status-badge danger" style="font-size:0.75rem; padding:2px 6px"><i class="fas fa-clock"></i> लंबित</span>`;
+
+    const princCallBtn = princMob ? `<a href="tel:${princMob}" class="btn-call-mini" title="सीधे कॉल करें"><i class="fas fa-phone-alt"></i> कॉल</a>` : '';
+    const princWaBtn = princMob ? `<a href="https://wa.me/91${princMob.replace(/\D/g,'')}?text=${encodeURIComponent(`नमस्ते संस्था प्रधान महोदय, विद्यालय: ${s.school_name} | जिला समान परीक्षा 2026-27 के संदर्भ में CBEO कार्यालय भिनाय से संपर्क किया जा रहा है।`)}" target="_blank" class="btn-wa-mini" title="WhatsApp भेजें"><i class="fab fa-whatsapp"></i> चैट</a>` : '';
+
+    const inchCallBtn = inchMob ? `<a href="tel:${inchMob}" class="btn-call-mini" title="सीधे कॉल करें"><i class="fas fa-phone-alt"></i> कॉल</a>` : '';
+    const inchWaBtn = inchMob ? `<a href="https://wa.me/91${inchMob.replace(/\D/g,'')}?text=${encodeURIComponent(`नमस्ते परीक्षा प्रभारी महोदय, विद्यालय: ${s.school_name} | जिला समान परीक्षा 2026-27 के संदर्भ में CBEO कार्यालय भिनाय से संपर्क किया जा रहा है।`)}" target="_blank" class="btn-wa-mini" title="WhatsApp भेजें"><i class="fab fa-whatsapp"></i> चैट</a>` : '';
+
+    const tr = document.createElement('tr');
+    tr.style.background = isSub ? '#ffffff' : '#fff7ed';
+    tr.innerHTML = `
+      <td style="text-align:center; font-weight:700">${idx + 1}</td>
+      <td>
+        <div style="font-weight:800; color:#1e3a8a">${s.school_name}</div>
+        <div style="font-size:0.75rem; color:#64748b">शा.दा.: <strong>${s.shala_darpan_code}</strong> | ${s.type === 'Government' ? 'राजकीय' : 'निजी'}</div>
+      </td>
+      <td><span style="font-size:0.8rem; color:#334155">${s.peeo_name}</span></td>
+      <td style="text-align:center; font-weight:800; color:#dc2626">${examCode}</td>
+      <td>
+        <div style="font-weight:700; color:#0f172a">${princName}</div>
+        <div style="font-size:0.75rem; color:#475569; margin:2px 0">${princMob || 'मो. उपलब्ध नहीं'}</div>
+        <div style="display:flex; gap:0.35rem; margin-top:3px">${princCallBtn} ${princWaBtn}</div>
+      </td>
+      <td>
+        <div style="font-weight:700; color:#0f172a">${inchName}</div>
+        <div style="font-size:0.75rem; color:#475569; margin:2px 0">${inchMob || 'मो. उपलब्ध नहीं'}</div>
+        <div style="display:flex; gap:0.35rem; margin-top:3px">${inchCallBtn} ${inchWaBtn}</div>
+      </td>
+      <td style="text-align:center">${statusBadge}</td>
+      <td style="text-align:center">
+        <button class="btn ${isSub ? 'btn-success' : 'btn-primary'} btn-sm" onclick="openSamanParikshaForm('${s.shala_darpan_code}')" title="${isSub ? 'प्रपत्र देखें / एडिट करें' : 'प्रपत्र भरें'}" style="padding:4px 8px; font-size:0.75rem">
+          <i class="fas ${isSub ? 'fa-edit' : 'fa-file-signature'}"></i> ${isSub ? 'देखें' : 'भरें'}
+        </button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function sendBulkPendingWhatsAppReminder() {
+  const pending = STATE.schools56.filter(s => !STATE.samanParikshaSubmissions[s.shala_darpan_code]);
+  if (pending.length === 0) {
+    showToast('सभी 56 विद्यालयों के प्रपत्र सबमिट हो चुके हैं!', 'success');
+    return;
+  }
+
+  let list = '';
+  pending.forEach((s, i) => {
+    list += `${i + 1}. ${s.school_name} (शा.दा. ${s.shala_darpan_code}) - संस्था प्रधान: ${s.principal_name} (मो. ${s.principal_mobile})\n`;
+  });
+
+  const msg = `*📢 कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय*\n*अति-आवश्यक आदेश: जिला समान परीक्षा 2026-27 प्रपत्र*\n\nसमस्त संबंधित संस्था प्रधान एवं PEEO को सूचित किया जाता है कि समान परीक्षा 2026-27 प्रपत्र भरने की अंतिम तिथि 05 अक्टूबर 2026 है। भिनाय ब्लॉक के निम्नलिखित ${pending.length} विद्यालयों का प्रपत्र अभी तक पोर्टल पर लम्बित है:\n\n${list}\nकृपया आज ही पोर्टल (https://jit9763.github.io/cbeo-bhinai-portal/) पर लॉगिन कर प्रपत्र सबमिट कर अधिकृत PDF मय सील-साइन प्रेषित करें।\n\n- मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय`;
+
+  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+}
+
+function exportSamanCallDirectoryCSV() {
+  const header = [
+    "क्र.सं.",
+    "विद्यालय का नाम",
+    "शाला दर्पण / PSP कोड",
+    "प्रकार",
+    "संबंधित PEEO",
+    "परीक्षा कोड",
+    "संस्था प्रधान का नाम",
+    "संस्था प्रधान मोबाइल",
+    "परीक्षा प्रभारी का नाम",
+    "परीक्षा प्रभारी मोबाइल",
+    "प्रपत्र स्थिति",
+    "कुल मांग प्रश्न-पत्र"
+  ];
+
+  const rows = STATE.schools56.map((s, idx) => {
+    const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
+    const isSub = !!sub;
+    return [
+      idx + 1,
+      `"${s.school_name}"`,
+      s.shala_darpan_code,
+      s.type,
+      `"${s.peeo_name}"`,
+      isSub ? sub.exam_code : (s.exam_code || ''),
+      `"${isSub ? sub.principal_name : s.principal_name}"`,
+      isSub ? sub.principal_mobile : s.principal_mobile,
+      `"${isSub ? sub.incharge_name : (s.incharge_name || '')}"`,
+      isSub ? sub.incharge_mobile : (s.incharge_mobile || ''),
+      isSub ? "सबमिट पूर्ण" : "लम्बित",
+      isSub ? sub.grand_total : 0
+    ];
+  });
+
+  const csvContent = "\uFEFF" + [header.join(','), ...rows.map(r => r.join(','))].join('\n');
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `CBEO_Bhinai_Saman_Pariksha_Call_Directory_${new Date().toISOString().slice(0, 10)}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  showToast('समान परीक्षा संपर्क डायरेक्टरी एक्सेल/CSV सफलतापूर्वक डाउनलोड हो गई!', 'success');
+}
+
+function printSamanCallDirectory() {
+  const tbody = document.getElementById('sp-calldir-tbody');
+  if (!tbody) return;
+  const printWin = window.open('', '_blank');
+  printWin.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>समान परीक्षा संपर्क डायरेक्टरी - CBEO भिनाय</title>
+      <meta charset="utf-8">
+      <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; font-size: 12px; }
+        h2, h3 { text-align: center; margin: 4px 0; color: #1b365d; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #334155; padding: 5px 8px; }
+        th { background: #1b365d; color: #fff; }
+        .success { color: #15803d; font-weight: bold; }
+        .danger { color: #b91c1c; font-weight: bold; }
+        @page { size: landscape; margin: 10mm; }
+      </style>
+    </head>
+    <body>
+      <h2>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</h2>
+      <h3>जिला समान परीक्षा 2026-27 | 56 माध्यमिक व उच्च माध्यमिक विद्यालय फोन डायरेक्टरी</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>क्र.</th>
+            <th>विद्यालय का नाम व कोड</th>
+            <th>संबंधित PEEO</th>
+            <th>परीक्षा कोड</th>
+            <th>संस्था प्रधान</th>
+            <th>परीक्षा प्रभारी</th>
+            <th>प्रपत्र स्थिति</th>
+          </tr>
+        </thead>
+        <tbody>
+  `);
+
+  STATE.schools56.forEach((s, idx) => {
+    const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
+    const isSub = !!sub;
+    const pName = isSub ? sub.principal_name : s.principal_name;
+    const pMob = isSub ? sub.principal_mobile : s.principal_mobile;
+    const iName = isSub ? sub.incharge_name : (s.incharge_name || 'उपलब्ध नहीं');
+    const iMob = isSub ? sub.incharge_mobile : (s.incharge_mobile || '---');
+    const exCode = isSub ? sub.exam_code : (s.exam_code || '---');
+    const st = isSub ? '<span class="success">सबमिट पूर्ण</span>' : '<span class="danger">लम्बित</span>';
+
+    printWin.document.write(`
+      <tr>
+        <td style="text-align:center">${idx + 1}</td>
+        <td><strong>${s.school_name}</strong><br><small>शा.दा.: ${s.shala_darpan_code} (${s.type})</small></td>
+        <td>${s.peeo_name}</td>
+        <td style="text-align:center; font-weight:bold">${exCode}</td>
+        <td>${pName}<br><small>मो. ${pMob}</small></td>
+        <td>${iName}<br><small>मो. ${iMob}</small></td>
+        <td style="text-align:center">${st}</td>
+      </tr>
+    `);
+  });
+
+  printWin.document.write(`
+        </tbody>
+      </table>
+    </body>
+    </html>
+  `);
+  printWin.document.close();
+  printWin.focus();
+  setTimeout(() => {
+    printWin.print();
+  }, 400);
 }
 
 function sendSamanParikshaReminder(schoolCode) {
