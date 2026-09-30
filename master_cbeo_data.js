@@ -1,5 +1,4 @@
-// Master CBEO Bhinai Data - Saman Pariksha 2026-27 Active Version
-window.MASTER_CBEO_DATA = {
+const MASTER_CBEO_DATA = {
   "cbeo_info": {
     "office_name": "कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय",
     "block": "भिनाय (BHINAI)",
@@ -901,7 +900,10 @@ window.MASTER_CBEO_DATA = {
           "dise_code": "8210700103",
           "shala_darpan_code": "221753",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "principal_name": "डॉ. हरीश कुमार जांगिड़",
+          "mobile": "9876543210",
+          "incharge_name": "सुरेश चंद्र शर्मा"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL MATAJI KA KHEDA (410612) (08210700201)",
@@ -2268,6 +2270,16 @@ window.MASTER_CBEO_DATA = {
     }
   ],
   "staff": [
+    {
+      "staff_id": "PRIN_221753",
+      "name": "डॉ. हरीश कुमार जांगिड़",
+      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "school_name": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN",
+      "peeo_name": "PEEO DEOLIYA KALAN",
+      "mobile": "9876543210",
+      "email": "",
+      "status": "Active"
+    },
     {
       "staff_id": "STF1001",
       "name": "श्री चन्द्रप्रकाश लढढ़ा",
@@ -20337,10 +20349,10 @@ window.MASTER_CBEO_DATA = {
       "peeo_code": "221754",
       "default_password": "221753",
       "exam_code": "",
-      "principal_name": "RAKESH KUMAR BIRAWAT",
-      "principal_mobile": "9829835751",
-      "incharge_name": "",
-      "incharge_mobile": "",
+      "principal_name": "डॉ. हरीश कुमार जांगिड़",
+      "principal_mobile": "9876543210",
+      "incharge_name": "सुरेश चंद्र शर्मा",
+      "incharge_mobile": "9123456780",
       "password": "221753"
     },
     {
@@ -21069,3 +21081,4 @@ window.MASTER_CBEO_DATA = {
     "version": "v5_2026_09_30_saman_pariksha_56_schools"
   }
 };
+window.MASTER_CBEO_DATA = MASTER_CBEO_DATA;

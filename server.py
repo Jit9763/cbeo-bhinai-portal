@@ -8,6 +8,72 @@ from sync_saman_pariksha_to_sheet import sync_submissions
 
 PORT = 8089
 
+def update_dynamic_master_contacts(school_code, req_data):
+    try:
+        p_name = req_data.get('principal_name')
+        p_mob = req_data.get('principal_mobile')
+        i_name = req_data.get('incharge_name')
+        i_mob = req_data.get('incharge_mobile')
+        if not (p_name or i_name):
+            return
+
+        json_path = 'master_cbeo_data.json'
+        if not os.path.exists(json_path):
+            return
+        with open(json_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+
+        school_name = None
+        peeo_name = None
+        for sch in data.get('schools_56', []):
+            if str(sch.get('shala_darpan_code')) == str(school_code):
+                if p_name: sch['principal_name'] = p_name
+                if p_mob: sch['principal_mobile'] = p_mob
+                if i_name: sch['incharge_name'] = i_name
+                if i_mob: sch['incharge_mobile'] = i_mob
+                school_name = sch.get('school_name')
+                peeo_name = sch.get('peeo_name')
+                break
+
+        for p in data.get('peeos', []):
+            if str(p.get('shala_darpan_code')) == str(school_code):
+                if p_name: p['principal_incharge'] = p_name
+                if p_mob: p['mobile'] = p_mob
+            for s in p.get('schools', []):
+                if str(s.get('shala_darpan_code')) == str(school_code) or s.get('school_name') == school_name:
+                    if p_name: s['principal_name'] = p_name
+                    if p_mob: s['mobile'] = p_mob
+                    if i_name: s['incharge_name'] = i_name
+
+        if school_name and p_name:
+            found_p = False
+            for st in data.get('staff', []):
+                if st.get('school_name') == school_name and any(x in st.get('post', '') for x in ['प्रधानाचार्य', 'Principal', 'प्र.अ.', 'Headmaster']):
+                    st['name'] = p_name
+                    if p_mob: st['mobile'] = p_mob
+                    st['status'] = 'Active'
+                    found_p = True
+                    break
+            if not found_p:
+                data.setdefault('staff', []).insert(0, {
+                    'staff_id': f'PRIN_{school_code}',
+                    'name': p_name,
+                    'post': 'प्रधानाचार्य / संस्था प्रधान',
+                    'school_name': school_name,
+                    'peeo_name': peeo_name or '',
+                    'mobile': p_mob or '',
+                    'email': '',
+                    'status': 'Active'
+                })
+
+        with open(json_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        with open('master_cbeo_data.js', 'w', encoding='utf-8') as f:
+            f.write('const MASTER_CBEO_DATA = ' + json.dumps(data, ensure_ascii=False, indent=2) + ';\nwindow.MASTER_CBEO_DATA = MASTER_CBEO_DATA;\n')
+        print(f"[API] Updated dynamic contacts in master_cbeo_data for school {school_code}")
+    except Exception as e:
+        print(f"[API Warning] Failed to update dynamic master contacts: {e}")
+
 class CBEORequestHandler(SimpleHTTPRequestHandler):
     def end_headers(self):
         self.send_header('Access-Control-Allow-Origin', '*')
@@ -29,7 +95,16 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
         except Exception:
             req_data = {}
 
-        if parsed_url.path == '/api/update_password':
+        if parsed_url.path == '/api/save_tab_config':
+            try:
+                with open('tab_config.json', 'w', encoding='utf-8') as f:
+                    json.dump(req_data, f, ensure_ascii=False, indent=2)
+                self.send_json_response({'success': True, 'message': 'टैब एक्सेस सेटिंग्स सुरक्षित की गईं!'})
+            except Exception as e:
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
+
+        elif parsed_url.path == '/api/update_password':
             user_id = req_data.get('user_id')
             new_password = req_data.get('new_password')
             if not user_id or not new_password:
@@ -72,6 +147,10 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                     json.dump(submissions, f, ensure_ascii=False, indent=2)
 
                 print(f"[API] Saved Saman Pariksha data for {school_code} to file. Triggering sheet sync...")
+                
+                # Dynamically update master contacts file
+                update_dynamic_master_contacts(school_code, req_data)
+
                 try:
                     sync_submissions()
                     synced_sheet = True
@@ -118,7 +197,18 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
             except Exception as e:
                 self.send_json_response({'success': False, 'message': str(e)}, status=500)
             return
-        
+
+        elif parsed_url.path == '/api/get_tab_config':
+            try:
+                config = {}
+                if os.path.exists('tab_config.json'):
+                    with open('tab_config.json', 'r', encoding='utf-8') as f:
+                        config = json.load(f)
+                self.send_json_response({'success': True, 'config': config})
+            except Exception as e:
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
+
         super().do_GET()
 
     def send_json_response(self, data, status=200):

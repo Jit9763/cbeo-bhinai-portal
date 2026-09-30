@@ -1753,8 +1753,9 @@ input:checked + .switch-slider:before {
 /* Printable Official Exam PDF Preview */
 .printable-exam-sheet {
   background: #ffffff;
-  padding: 20mm 15mm;
-  max-width: 210mm;
+  padding: 12mm 15mm;
+  max-width: 297mm;
+  width: 100%;
   margin: 0 auto;
   color: #000000;
   font-family: 'Noto Sans Devanagari', 'Inter', serif;
@@ -1762,7 +1763,27 @@ input:checked + .switch-slider:before {
   border: 1px solid #d1d5db;
 }
 
+.exam-excel-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 0.85rem;
+}
+.exam-excel-table th,
+.exam-excel-table td {
+  border: 1px solid #94a3b8;
+  padding: 6px 8px;
+}
+.exam-excel-table thead tr {
+  background: #1b365d;
+  color: #ffffff;
+}
+
 @media print {
+  @page {
+    size: A4 landscape;
+    margin: 8mm 10mm;
+  }
   body * {
     visibility: hidden;
   }
@@ -1803,7 +1824,7 @@ input:checked + .switch-slider:before {
   .printable-exam-sheet {
     box-shadow: none !important;
     border: none !important;
-    padding: 8mm 10mm !important;
+    padding: 6mm 8mm !important;
     width: 100% !important;
     max-width: 100% !important;
     margin: 0 !important;

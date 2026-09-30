@@ -829,19 +829,37 @@
       </div>
     </div>
 
-    <!-- Card 7: Declaration & Signatures -->
+    <!-- Card 6: Declaration & Signatures -->
     <div class="gform-card">
       <div class="card-title">
-        <i class="fas fa-stamp text-secondary" style="color:#0284c7"></i> 6. Verification, Stamp & Signatures (सत्यापन व मुहर)
+        <i class="fas fa-stamp text-secondary" style="color:#0284c7"></i> 6. Verification, Stamp & Signatures (सत्यापन, सील एवं हस्ताक्षर)
       </div>
 
-      <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:0.85rem; margin-bottom:1.25rem">
+      <div style="background:#eff6ff; border:1px solid #bfdbfe; border-left:5px solid #2563eb; border-radius:8px; padding:0.85rem; margin-bottom:1.25rem">
         <label style="display:flex; align-items:flex-start; gap:0.75rem; cursor:pointer">
           <input type="checkbox" id="f-certify-check" checked style="width:20px; height:20px; margin-top:2px">
-          <span style="font-size:0.85rem; color:#1e40af; line-height:1.5">
-            <strong>सत्यापन प्रमाण-पत्र:</strong> प्रमाणित किया जाता है कि उपरोक्तानुसार कक्षा 9 से 12 तक के विद्यार्थियों का नामांकन विद्यालय की आधिकारिक प्रवेश पंजिका एवं शाला दर्पण पोर्टल से शत-प्रतिशत मिलान कर लिया गया है।
+          <span style="font-size:0.85rem; color:#1e40af; line-height:1.55">
+            <strong>सत्यापन एवं उत्तरदायित्व घोषणा:</strong> प्रमाणित किया जाता है कि उपर्युक्त परीक्षा संबंधी सभी छात्र संख्या, संकाय एवं विषयवार प्रविष्टियों का विद्यालय की प्रवेश पंजिका व शाला दर्पण पोर्टल से शत-प्रतिशत मिलान कर लिया गया है तथा इसमें कोई लिपिकीय अथवा तथ्यात्मक त्रुटि नहीं है। यदि भविष्य में किसी भी प्रकार की त्रुटि, विसंगति अथवा प्रश्न-पत्रों की कमी/अधिकता पाई जाती है, तो इसका संपूर्ण व्यक्तिगत एवं विभागीय उत्तरदायित्व संबंधित संस्था प्रधान एवं परीक्षा प्रभारी / संबंधित PEEO का होगा।
           </span>
         </label>
+      </div>
+
+      <!-- Digital Touch Signature Pad -->
+      <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:1rem; margin-bottom:1.25rem">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem">
+          <label style="font-weight:700; color:#1e3a8a; font-size:0.88rem; display:flex; align-items:center; gap:0.4rem">
+            <i class="fas fa-pen-nib text-primary"></i> संस्था प्रधान / PEEO डिजिटल हस्ताक्षर (वैकल्पिक):
+          </label>
+          <button type="button" class="btn btn-outline btn-sm" onclick="clearStandaloneSignature()" style="color:#dc2626; border-color:#fca5a5; padding:2px 8px; font-size:0.75rem">
+            <i class="fas fa-eraser"></i> मिटाएं (Clear)
+          </button>
+        </div>
+        <div style="background:#ffffff; border:1.5px dashed #94a3b8; border-radius:6px; display:flex; justify-content:center; align-items:center; overflow:hidden">
+          <canvas id="standalone-signature-canvas" width="460" height="110" style="touch-action:none; cursor:crosshair; width:100%; max-width:460px; height:110px"></canvas>
+        </div>
+        <div style="font-size:0.75rem; color:#64748b; margin-top:0.4rem">
+          📱 मोबाइल स्क्रीन पर उंगली से या माउस से डिजिटल हस्ताक्षर करें। यदि आप खाली छोड़कर सीधे प्रिंट निकालने के बाद पेन से भौतिक हस्ताक्षर व मुहर लगाना चाहते हैं, तो इसे खाली छोड़ दें (दोनों मान्य हैं)।
+        </div>
       </div>
 
       <!-- Preview Seal -->
@@ -1265,6 +1283,16 @@
 
       const grand = c9 + c10 + c11Total + c12Total;
 
+      let sigData = null;
+      if (standaloneCanvas && standaloneHasSignature) {
+        sigData = standaloneCanvas.toDataURL('image/png');
+      } else {
+        const prevSubs = JSON.parse(localStorage.getItem('cbeo_saman_pariksha_submissions') || '{}');
+        if (prevSubs[currentSchool.shala_darpan_code]?.signature_data) {
+          sigData = prevSubs[currentSchool.shala_darpan_code].signature_data;
+        }
+      }
+
       const submission = {
         school_code: currentSchool.shala_darpan_code,
         school_name: currentSchool.school_name,
@@ -1294,6 +1322,8 @@
         c12_optional: c12Opt,
         c12_total: c12Total,
         grand_total: grand,
+        signature_data: sigData,
+        has_digital_signature: !!sigData,
         submitted_by: principalName || 'School Authority',
         timestamp: new Date().toLocaleString('en-IN')
       };
@@ -1305,6 +1335,96 @@
       // Keep draft synchronized with official submission
       localStorage.setItem(`cbeo_form_draft_${currentSchool.shala_darpan_code}`, JSON.stringify(submission));
 
+      // --- Dynamically Update Call Directory & Staff Data ---
+      try {
+        // 1. Update 56 Schools
+        let schools56 = JSON.parse(localStorage.getItem('cbeo_schools56_data') || 'null');
+        if (!schools56 && window.MASTER_CBEO_DATA) schools56 = window.MASTER_CBEO_DATA.schools_56 || [];
+        if (schools56) {
+          const schItem = schools56.find(s => s.shala_darpan_code === currentSchool.shala_darpan_code);
+          if (schItem) {
+            schItem.principal_name = principalName;
+            schItem.principal_mobile = principalMobile;
+            schItem.incharge_name = inchargeName;
+            schItem.incharge_mobile = inchargeMobile;
+          }
+          localStorage.setItem('cbeo_schools56_data', JSON.stringify(schools56));
+        }
+
+        // 2. Update PEEOs
+        let peeos = JSON.parse(localStorage.getItem('cbeo_peeos_data') || 'null');
+        if (!peeos && window.MASTER_CBEO_DATA) peeos = window.MASTER_CBEO_DATA.peeos || [];
+        if (peeos) {
+          peeos.forEach(p => {
+            if (p.shala_darpan_code === currentSchool.shala_darpan_code || p.peeo_name === currentSchool.peeo_name) {
+              if (currentSchool.is_peeo_nodal || p.shala_darpan_code === currentSchool.shala_darpan_code) {
+                p.principal_incharge = principalName;
+                p.mobile = principalMobile;
+              }
+            }
+            if (p.schools) {
+              const inPeeo = p.schools.find(s => s.shala_darpan_code === currentSchool.shala_darpan_code || s.school_name === currentSchool.school_name);
+              if (inPeeo) {
+                inPeeo.principal_name = principalName;
+                inPeeo.mobile = principalMobile;
+                inPeeo.incharge_name = inchargeName;
+              }
+            }
+          });
+          localStorage.setItem('cbeo_peeos_data', JSON.stringify(peeos));
+        }
+
+        // 3. Update Staff Directory (Call Directory)
+        let staffList = JSON.parse(localStorage.getItem('cbeo_staff_data') || 'null');
+        if (!staffList && window.MASTER_CBEO_DATA) staffList = window.MASTER_CBEO_DATA.staff || [];
+        if (staffList) {
+          let foundPrin = staffList.find(s => 
+            (s.school_name === currentSchool.school_name || s.school_name === currentSchool.school_name.trim()) &&
+            (s.post.includes('प्रधानाचार्य') || s.post.includes('Principal') || s.post.includes('प्र.अ.') || s.post.includes('Headmaster'))
+          );
+          if (foundPrin) {
+            foundPrin.name = principalName;
+            foundPrin.mobile = principalMobile;
+            foundPrin.status = 'Active';
+          } else {
+            staffList.unshift({
+              staff_id: `PRIN_${currentSchool.shala_darpan_code}`,
+              name: principalName,
+              post: 'प्रधानाचार्य / संस्था प्रधान',
+              school_name: currentSchool.school_name,
+              peeo_name: currentSchool.peeo_name,
+              mobile: principalMobile,
+              email: '',
+              status: 'Active'
+            });
+          }
+
+          let foundInc = staffList.find(s => 
+            (s.school_name === currentSchool.school_name) &&
+            (s.post.includes('परीक्षा प्रभारी') || s.name === inchargeName)
+          );
+          if (foundInc) {
+            foundInc.name = inchargeName;
+            foundInc.mobile = inchargeMobile;
+            foundInc.status = 'Active';
+          } else {
+            staffList.push({
+              staff_id: `EXAM_${currentSchool.shala_darpan_code}`,
+              name: inchargeName,
+              post: 'परीक्षा प्रभारी',
+              school_name: currentSchool.school_name,
+              peeo_name: currentSchool.peeo_name,
+              mobile: inchargeMobile,
+              email: '',
+              status: 'Active'
+            });
+          }
+          localStorage.setItem('cbeo_staff_data', JSON.stringify(staffList));
+        }
+      } catch (e) {
+        console.warn('Directory dynamic update error:', e);
+      }
+
       // Sync to backend file & Google Sheet
       fetch('/api/save_saman_pariksha', {
         method: 'POST',
@@ -1313,7 +1433,7 @@
       }).catch(() => {});
 
       renderSubmittedPreviewTable(submission);
-      showToast('प्रपत्र सफलतापूर्वक सुरक्षित (सबमिट) हो गया!');
+      showToast('प्रपत्र एवं संपर्क डायरेक्टरी सफलतापूर्वक अपडेट व सुरक्षित हो गई!');
 
       if (andRedirectToPortal) {
         setTimeout(() => {
@@ -1393,12 +1513,82 @@
     document.addEventListener('input', triggerAutoSave);
     document.addEventListener('change', triggerAutoSave);
 
+    // --- Standalone Touch Signature Pad ---
+    let standaloneCanvas, standaloneCtx;
+    let standaloneIsDrawing = false;
+    let standaloneHasSignature = false;
+
+    function setupStandaloneSignaturePad() {
+      standaloneCanvas = document.getElementById('standalone-signature-canvas');
+      if (!standaloneCanvas) return;
+      standaloneCtx = standaloneCanvas.getContext('2d');
+      standaloneCtx.strokeStyle = '#1b365d';
+      standaloneCtx.lineWidth = 2.5;
+      standaloneCtx.lineCap = 'round';
+      standaloneCtx.lineJoin = 'round';
+
+      function getPos(e) {
+        const rect = standaloneCanvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        const scaleX = standaloneCanvas.width / rect.width;
+        const scaleY = standaloneCanvas.height / rect.height;
+        return {
+          x: (clientX - rect.left) * scaleX,
+          y: (clientY - rect.top) * scaleY
+        };
+      }
+
+      function start(e) {
+        standaloneIsDrawing = true;
+        const pos = getPos(e);
+        standaloneCtx.beginPath();
+        standaloneCtx.moveTo(pos.x, pos.y);
+        if (e.type.startsWith('touch')) e.preventDefault();
+      }
+
+      function draw(e) {
+        if (!standaloneIsDrawing) return;
+        const pos = getPos(e);
+        standaloneCtx.lineTo(pos.x, pos.y);
+        standaloneCtx.stroke();
+        standaloneHasSignature = true;
+        if (e.type.startsWith('touch')) e.preventDefault();
+      }
+
+      function stop() {
+        standaloneIsDrawing = false;
+      }
+
+      standaloneCanvas.addEventListener('mousedown', start);
+      standaloneCanvas.addEventListener('mousemove', draw);
+      window.addEventListener('mouseup', stop);
+
+      standaloneCanvas.addEventListener('touchstart', start, { passive: false });
+      standaloneCanvas.addEventListener('touchmove', draw, { passive: false });
+      window.addEventListener('touchend', stop);
+    }
+
+    function clearStandaloneSignature() {
+      if (standaloneCanvas && standaloneCtx) {
+        standaloneCtx.clearRect(0, 0, standaloneCanvas.width, standaloneCanvas.height);
+        standaloneHasSignature = false;
+      }
+    }
+
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initPage);
+      document.addEventListener('DOMContentLoaded', () => {
+        initPage();
+        setupStandaloneSignaturePad();
+      });
     } else {
       initPage();
+      setupStandaloneSignaturePad();
     }
-    window.addEventListener('load', initPage);
+    window.addEventListener('load', () => {
+      initPage();
+      setupStandaloneSignaturePad();
+    });
   </script>
 </body>
 </html>

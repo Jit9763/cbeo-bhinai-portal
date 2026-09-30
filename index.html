@@ -1637,19 +1637,37 @@
             </div>
           </div>
 
-          <!-- Card 7: Declaration, Rectangular Stamp & Signatures -->
+          <!-- Card 6: Declaration, Rectangular Stamp & Signatures -->
           <div class="gform-card">
             <div class="gform-card-title">
-              <i class="fas fa-stamp text-secondary"></i> 6. Verification, Stamp & Signatures (सत्यापन व मुहर)
+              <i class="fas fa-stamp text-secondary"></i> 6. Verification, Stamp & Signatures (सत्यापन, सील एवं हस्ताक्षर)
             </div>
             
-            <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:1rem; margin-bottom:1.25rem">
+            <div style="background:#eff6ff; border:1px solid #bfdbfe; border-left:5px solid #2563eb; border-radius:8px; padding:1rem; margin-bottom:1.25rem">
               <label style="display:flex; align-items:flex-start; gap:0.75rem; cursor:pointer">
                 <input type="checkbox" id="gform-certify-check" checked style="width:20px; height:20px; margin-top:2px">
-                <span style="font-size:0.88rem; color:#1e40af; line-height:1.5">
-                  <strong>सत्यापन प्रमाण-पत्र:</strong> प्रमाणित किया जाता है कि उपरोक्तानुसार कक्षा 9 से 12 तक के विद्यार्थियों का कुल एवं विषयवार नामांकन विद्यालय की आधिकारिक प्रवेश पंजिका / शाला दर्पण पोर्टल से सत्यापित कर लिया गया है। यह डेटा समान परीक्षा प्रश्न-पत्र मुद्रण हेतु अधिकृत है।
+                <span style="font-size:0.86rem; color:#1e40af; line-height:1.55">
+                  <strong>सत्यापन एवं उत्तरदायित्व घोषणा:</strong> प्रमाणित किया जाता है कि उपर्युक्त परीक्षा संबंधी सभी छात्र संख्या, संकाय एवं विषयवार प्रविष्टियों का विद्यालय की प्रवेश पंजिका व शाला दर्पण पोर्टल से शत-प्रतिशत मिलान कर लिया गया है तथा इसमें कोई लिपिकीय अथवा तथ्यात्मक त्रुटि नहीं है। यदि भविष्य में किसी भी प्रकार की त्रुटि, विसंगति अथवा प्रश्न-पत्रों की कमी/अधिकता पाई जाती है, तो इसका संपूर्ण व्यक्तिगत एवं विभागीय उत्तरदायित्व संबंधित संस्था प्रधान एवं परीक्षा प्रभारी / संबंधित PEEO का होगा।
                 </span>
               </label>
+            </div>
+
+            <!-- Digital Touch Signature Pad -->
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:1rem; margin-bottom:1.25rem">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem">
+                <label style="font-weight:700; color:#1e3a8a; font-size:0.88rem; display:flex; align-items:center; gap:0.4rem">
+                  <i class="fas fa-pen-nib text-primary"></i> संस्था प्रधान / PEEO डिजिटल हस्ताक्षर (वैकल्पिक):
+                </label>
+                <button type="button" class="btn btn-outline-light btn-sm" onclick="clearGFormSignature()" style="color:#dc2626; border-color:#fca5a5; padding:2px 8px; font-size:0.75rem">
+                  <i class="fas fa-eraser"></i> मिटाएं (Clear)
+                </button>
+              </div>
+              <div style="background:#ffffff; border:1.5px dashed #94a3b8; border-radius:6px; display:flex; justify-content:center; align-items:center; overflow:hidden">
+                <canvas id="gform-signature-canvas" width="460" height="110" style="touch-action:none; cursor:crosshair; width:100%; max-width:460px; height:110px"></canvas>
+              </div>
+              <div style="font-size:0.75rem; color:#64748b; margin-top:0.4rem">
+                📱 मोबाइल स्क्रीन पर उंगली से या माउस से डिजिटल हस्ताक्षर करें। यदि आप खाली छोड़कर सीधे प्रिंट निकालने के बाद पेन से भौतिक हस्ताक्षर व मुहर लगाना चाहते हैं, तो इसे खाली छोड़ दें (दोनों मान्य हैं)।
+              </div>
             </div>
 
             <!-- Dynamic Seal & Signatures Preview -->
@@ -1708,7 +1726,7 @@
 
   <!-- 10. OFFICIAL PRINTABLE EXAM PDF PREVIEW MODAL -->
   <div id="modal-exam-pdf-preview" class="modal-overlay">
-    <div class="modal-card" style="max-width:940px; padding:0; background:#f8fafc; overflow:hidden">
+    <div class="modal-card" style="max-width:1120px; width:96vw; padding:0; background:#f8fafc; overflow:hidden">
       <div class="modal-header" style="background:#1b365d; color:#ffffff; padding:1rem 1.5rem">
         <h3 style="color:#ffffff; font-size:1.15rem; display:flex; align-items:center; gap:0.5rem">
           <i class="fas fa-file-pdf text-danger"></i> समान परीक्षा 2026-27 | अधिकृत प्रपत्र (Printable Official PDF)
