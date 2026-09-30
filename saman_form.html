@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>जिला समान परीक्षा 2026-27 | अधिकृत प्रपत्र (Google Form Mode)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="master_cbeo_data.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #f0ebf8;
+      font-family: 'Roboto', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #202124;
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+    /* Sticky Top Bar */
+    .top-app-bar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #ffffff;
+      border-bottom: 1px solid #dadce0;
+      box-shadow: 0 1px 4px rgba(60,64,67,0.15);
+      padding: 0.75rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.9rem;
+      border: 1px solid #dadce0;
+      background: #ffffff;
+      color: #1b365d;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .back-btn:hover {
+      background: #f1f5f9;
+    }
+    .app-title-box {
+      text-align: center;
+    }
+    .app-title {
+      font-weight: 800;
+      color: #1b365d;
+      font-size: 1rem;
+    }
+    .app-sub {
+      font-size: 0.75rem;
+      color: #5f6368;
+    }
+    .top-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .btn-top-save {
+      background: #1a73e8;
+      color: #ffffff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .btn-top-save:hover {
+      background: #1557b0;
+    }
+
+    /* Form Canvas */
+    .form-wrapper {
+      max-width: 780px;
+      margin: 1.25rem auto;
+      padding: 0 1rem;
+    }
+
+    /* Google Forms Header Banner */
+    .gform-header-card {
+      background: #ffffff;
+      border-radius: 10px;
+      border-top: 10px solid #1b365d;
+      box-shadow: 0 1px 4px rgba(60,64,67,0.15);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .gform-header-card::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #ff9933 33.3%, #ffffff 33.3%, #ffffff 66.6%, #138808 66.6%);
+    }
+    .gform-header-title {
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: #1b365d;
+      margin-bottom: 0.25rem;
+    }
+    .gform-header-sub {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #b45309;
+      margin-bottom: 0.5rem;
+    }
+    .gform-header-desc {
+      font-size: 0.88rem;
+      color: #4b5563;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 0.75rem;
+      line-height: 1.5;
+    }
+
+    /* Form Card */
+    .gform-card {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 1px 3px rgba(60,64,67,0.12);
+      border: 1px solid #dadce0;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #1f2937;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .card-desc {
+      font-size: 0.82rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .form-group.full-width {
+      grid-column: span 2;
+    }
+    .form-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #374151;
+    }
+    .form-input {
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 0.7rem 0.85rem;
+      font-size: 16px; /* Prevents auto-zoom on mobile */
+      min-height: 46px;
+      background: #ffffff;
+      color: #111827;
+      width: 100%;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+    }
+    .form-input[readonly] {
+      background: #f3f4f6;
+      color: #4b5563;
+      cursor: not-allowed;
+    }
+
+    /* Subject Grid */
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .subject-card {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 0.65rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .subject-card label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #4b5563;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .subject-card input {
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      padding: 0.4rem 0.6rem;
+      font-size: 16px;
+      font-weight: 800;
+      text-align: right;
+      color: #1e40af;
+      min-height: 42px;
+    }
+
+    /* Live Summary Card */
+    .summary-card {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border: 2px solid #86efac;
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .summary-stats {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .stat-box {
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #166534;
+    }
+    .stat-val {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #14532d;
+    }
+    .grand-total-box {
+      background: #15803d;
+      color: #ffffff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .gt-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .gt-val {
+      font-size: 1.65rem;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    /* Rectangular Rubber Stamp */
+    .rectangular-stamp {
+      width: 240px;
+      border: 2px solid #003399;
+      border-radius: 6px;
+      padding: 6px 8px;
+      background: rgba(0, 51, 153, 0.03);
+      color: #003399;
+      text-align: center;
+      margin: 0 auto;
+    }
+    .stamp-top-line {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
+      border-bottom: 1px dashed #003399;
+      padding-bottom: 2px;
+      margin-bottom: 2px;
+    }
+    .stamp-mid-line {
+      font-size: 0.85rem;
+      font-weight: 900;
+      color: #002277;
+    }
+    .stamp-bottom-line {
+      font-size: 0.65rem;
+      font-weight: 700;
+      border-top: 1px dashed #003399;
+      padding-top: 2px;
+      margin-top: 2px;
+    }
+
+    /* Bottom Action Bar */
+    .bottom-bar {
+      position: sticky;
+      bottom: 0;
+      background: #ffffff;
+      border-top: 1px solid #dadce0;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+      padding: 0.85rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      max-width: 780px;
+      margin: 1.5rem auto 0 auto;
+      border-radius: 8px;
+    }
+    .btn {
+      padding: 0.7rem 1.25rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: none;
+      text-decoration: none;
+    }
+    .btn-primary { background: #1a73e8; color: #ffffff; }
+    .btn-primary:hover { background: #1557b0; }
+    .btn-success { background: #16a34a; color: #ffffff; }
+    .btn-success:hover { background: #15803d; }
+    .btn-outline { background: #ffffff; color: #4b5563; border: 1px solid #d1d5db; }
+    .btn-outline:hover { background: #f3f4f6; }
+
+    /* Toast */
+    #toast-notification {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1f2937;
+      color: #ffffff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: none;
+      z-index: 10000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 640px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .form-group.full-width {
+        grid-column: span 1;
+      }
+      .subject-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+      }
+      .bottom-bar {
+        flex-direction: column-reverse;
+      }
+      .bottom-bar .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Top Bar -->
+  <header class="top-app-bar">
+    <a href="index.html" class="back-btn" title="मुख्य पोर्टल पर वापस जाएं">
+      <i class="fas fa-arrow-left"></i> वापस पोर्टल
+    </a>
+    <div class="app-title-box">
+      <div class="app-title">जिला समान परीक्षा (सत्र 2026-27)</div>
+      <div class="app-sub">प्रश्न-पत्र मांग व विद्यार्थी नामांकन प्रपत्र</div>
+    </div>
+    <div class="top-actions">
+      <button class="btn-top-save" onclick="saveForm(false)">
+        <i class="fas fa-save"></i> सबमिट
+      </button>
+    </div>
+  </header>
+
+  <!-- Form Body -->
+  <main class="form-wrapper">
+
+    <!-- Header Banner Card -->
+    <div class="gform-header-card">
+      <div class="gform-header-title">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</div>
+      <div class="gform-header-sub">DISTRICT UNIFORM EXAMINATION 2026-27 (QUESTION PAPER INDENT)</div>
+      <div class="gform-header-desc">
+        समान परीक्षा सत्र 2026-27 हेतु कक्षा 9 से 12 तक के विद्यार्थियों का विषयवार नामांकन एवं प्रश्न-पत्र मांग प्रपत्र।
+        कृपया विद्यालय की आधिकारिक प्रवेश पंजिका / शाला दर्पण पोर्टल से मिलान कर सही संख्या दर्ज करें।
+      </div>
+      <div style="margin-top:0.75rem; display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap">
+        <label style="font-weight:700; font-size:0.85rem; color:#1e40af">विद्यालय चुनें (Switch School):</label>
+        <select id="school-select" class="form-input" style="max-width:380px; min-height:38px; padding:4px 8px; font-weight:700" onchange="onSchoolDropdownChange()">
+          <!-- Populated from master data -->
+        </select>
+      </div>
+    </div>
+
+    <!-- Hidden code -->
+    <input type="hidden" id="f-school-code">
+
+    <!-- Card 1: School Identity -->
+    <div class="gform-card">
+      <div class="card-title">
+        <i class="fas fa-school text-primary" style="color:#2563eb"></i> 1. School Identity & Exam Code (विद्यालय विवरण)
+      </div>
+      <div class="card-desc">विद्यालय पहचान एवं शाला दर्पण विवरण (मास्टर डेटाबेस से प्री-फिल्ड):</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">School Name (विद्यालय का नाम):</label>
+          <input type="text" id="f-school-name" class="form-input" readonly>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Shala Darpan / PSP Code (शाला दर्पण कोड):</label>
+          <input type="text" id="f-sd-code" class="form-input" readonly>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">PEEO Nodal Panchayat (संबंधित PEEO):</label>
+          <input type="text" id="f-peeo-name" class="form-input" readonly>
+        </div>
+        <div class="form-group">
+          <label class="form-label">School Category (श्रेणी व प्रकार):</label>
+          <input type="text" id="f-school-cat" class="form-input" readonly>
+        </div>
+      </div>
+
+      <div class="form-row" style="margin-bottom:0">
+        <div class="form-group full-width">
+          <label class="form-label" style="color:#1e40af">
+            <strong>School Examination Code (परीक्षा केंद्र / स्कूल कोड) <span style="color:red">*</span>:</strong>
+          </label>
+          <input type="text" id="f-exam-code" class="form-input" placeholder="e.g. 5201, 1402 (जिला समान परीक्षा बोर्ड द्वारा जारी कोड)" style="border:2px solid #2563eb; font-weight:800">
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Authorities -->
+    <div class="gform-card">
+      <div class="card-title">
+        <i class="fas fa-user-tie" style="color:#d97706"></i> 2. Authority & Examination In-Charge (संस्था प्रधान एवं परीक्षा प्रभारी)
+      </div>
+      <div class="card-desc">प्रश्न-पत्र वितरण एवं समन्वयक हेतु संपर्क विवरण:</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Head of School / Sanstha Pradhan Name <span style="color:red">*</span>:</label>
+          <input type="text" id="f-principal-name" class="form-input" placeholder="संस्था प्रधान का नाम">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Head of School Mobile Number <span style="color:red">*</span>:</label>
+          <input type="tel" id="f-principal-mobile" maxlength="10" class="form-input" placeholder="10-अंकों का मोबाइल नंबर">
+        </div>
+      </div>
+
+      <div class="form-row" style="margin-bottom:0">
+        <div class="form-group">
+          <label class="form-label">Examination In-charge Name <span style="color:red">*</span>:</label>
+          <input type="text" id="f-incharge-name" class="form-input" placeholder="परीक्षा प्रभारी का नाम">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Examination In-charge Mobile Number <span style="color:red">*</span>:</label>
+          <input type="tel" id="f-incharge-mobile" maxlength="10" class="form-input" placeholder="10-अंकों का मोबाइल नंबर">
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Class 9 & Class 10 -->
+    <div class="gform-card">
+      <div class="card-title">
+        <i class="fas fa-users" style="color:#2563eb"></i> 3. Class 9 & Class 10 Total Students (कक्षा 9 एवं 10 कुल नामांकन)
+      </div>
+      <div class="card-desc">कक्षा 9 एवं 10 में सभी सामान्य अनिवार्य विषयों हेतु कुल विद्यार्थी संख्या दर्ज करें:</div>
+
+      <div class="form-row" style="margin-bottom:0">
+        <div class="form-group">
+          <label class="form-label">Class 9 Total Students (कक्षा 9 कुल विद्यार्थी) <span style="color:red">*</span>:</label>
+          <input type="number" id="f-c9-total" min="0" value="0" class="form-input" style="font-size:1.15rem; font-weight:800; color:#1e40af" oninput="calculateTotals()">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Class 10 Total Students (कक्षा 10 कुल विद्यार्थी) <span style="color:red">*</span>:</label>
+          <input type="number" id="f-c10-total" min="0" value="0" class="form-input" style="font-size:1.15rem; font-weight:800; color:#1e40af" oninput="calculateTotals()">
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4: Class 11 -->
+    <div class="gform-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:0.35rem">
+        <div class="card-title" style="margin-bottom:0">
+          <i class="fas fa-book-open" style="color:#2563eb"></i> 4. Class 11 Subject-wise Enrollment (कक्षा 11 नामांकन)
+        </div>
+        <div style="font-weight:800; color:#15803d; background:#dcfce7; padding:4px 10px; border-radius:6px; font-size:0.85rem">
+          कक्षा 11 कुल: <span id="f-c11-total-display">0</span> विद्यार्थी
+        </div>
+      </div>
+      <div class="card-desc">विद्यालय में संचालित विषयों में ही संख्या दर्ज करें। बाकी में 0 रहने दें।</div>
+
+      <div style="font-weight:700; color:#1e3a8a; font-size:0.88rem; margin-bottom:0.5rem">
+        अनिवार्य विषय (Compulsory Subjects):
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Compulsory Hindi (अनिवार्य हिंदी):</label>
+          <input type="number" id="f-c11-comp-hindi" min="0" value="0" class="form-input" oninput="calculateTotals()">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Compulsory English (अनिवार्य अंग्रेजी):</label>
+          <input type="number" id="f-c11-comp-english" min="0" value="0" class="form-input" oninput="calculateTotals()">
+        </div>
+      </div>
+
+      <div style="font-weight:700; color:#1e3a8a; font-size:0.88rem; margin:1rem 0 0.5rem 0">
+        ऐच्छिक विषय (Optional Subjects - Arts, Science, Commerce, Agriculture):
+      </div>
+      <div class="subject-grid" id="f-c11-subjects-grid">
+        <!-- Dynamically rendered -->
+      </div>
+
+      <div style="margin-top:1rem; display:flex; justify-content:flex-end; align-items:center; gap:0.5rem">
+        <label style="font-weight:700; font-size:0.88rem">कक्षा 11 कुल विद्यार्थी:</label>
+        <input type="number" id="f-c11-total" min="0" value="0" class="form-input" style="width:110px; font-weight:800; text-align:right" oninput="calculateTotals()">
+      </div>
+    </div>
+
+    <!-- Card 5: Class 12 -->
+    <div class="gform-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:0.35rem">
+        <div class="card-title" style="margin-bottom:0">
+          <i class="fas fa-graduation-cap" style="color:#2563eb"></i> 5. Class 12 Subject-wise Enrollment (कक्षा 12 नामांकन)
+        </div>
+        <div style="font-weight:800; color:#15803d; background:#dcfce7; padding:4px 10px; border-radius:6px; font-size:0.85rem">
+          कक्षा 12 कुल: <span id="f-c12-total-display">0</span> विद्यार्थी
+        </div>
+      </div>
+      <div class="card-desc">विद्यालय में संचालित विषयों में ही संख्या दर्ज करें। बाकी में 0 रहने दें।</div>
+
+      <div style="font-weight:700; color:#1e3a8a; font-size:0.88rem; margin-bottom:0.5rem">
+        अनिवार्य विषय (Compulsory Subjects):
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Compulsory Hindi (अनिवार्य हिंदी):</label>
+          <input type="number" id="f-c12-comp-hindi" min="0" value="0" class="form-input" oninput="calculateTotals()">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Compulsory English (अनिवार्य अंग्रेजी):</label>
+          <input type="number" id="f-c12-comp-english" min="0" value="0" class="form-input" oninput="calculateTotals()">
+        </div>
+      </div>
+
+      <div style="font-weight:700; color:#1e3a8a; font-size:0.88rem; margin:1rem 0 0.5rem 0">
+        ऐच्छिक विषय (Optional Subjects - Arts, Science, Commerce, Agriculture):
+      </div>
+      <div class="subject-grid" id="f-c12-subjects-grid">
+        <!-- Dynamically rendered -->
+      </div>
+
+      <div style="margin-top:1rem; display:flex; justify-content:flex-end; align-items:center; gap:0.5rem">
+        <label style="font-weight:700; font-size:0.88rem">कक्षा 12 कुल विद्यार्थी:</label>
+        <input type="number" id="f-c12-total" min="0" value="0" class="form-input" style="width:110px; font-weight:800; text-align:right" oninput="calculateTotals()">
+      </div>
+    </div>
+
+    <!-- Card 6: Live Summary Card -->
+    <div class="summary-card">
+      <div class="summary-stats">
+        <div class="stat-box">
+          <span class="stat-label">कक्षा 9 कुल:</span>
+          <span class="stat-val" id="f-sum-c9">0</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">कक्षा 10 कुल:</span>
+          <span class="stat-val" id="f-sum-c10">0</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">कक्षा 11 कुल:</span>
+          <span class="stat-val" id="f-sum-c11">0</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">कक्षा 12 कुल:</span>
+          <span class="stat-val" id="f-sum-c12">0</span>
+        </div>
+      </div>
+      <div class="grand-total-box">
+        <div class="gt-label">कुल मांग प्रश्न-पत्र (Grand Total)</div>
+        <div class="gt-val" id="f-sum-grand">0</div>
+      </div>
+    </div>
+
+    <!-- Card 7: Declaration & Signatures -->
+    <div class="gform-card">
+      <div class="card-title">
+        <i class="fas fa-stamp text-secondary" style="color:#0284c7"></i> 6. Verification, Stamp & Signatures (सत्यापन व मुहर)
+      </div>
+
+      <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:0.85rem; margin-bottom:1.25rem">
+        <label style="display:flex; align-items:flex-start; gap:0.75rem; cursor:pointer">
+          <input type="checkbox" id="f-certify-check" checked style="width:20px; height:20px; margin-top:2px">
+          <span style="font-size:0.85rem; color:#1e40af; line-height:1.5">
+            <strong>सत्यापन प्रमाण-पत्र:</strong> प्रमाणित किया जाता है कि उपरोक्तानुसार कक्षा 9 से 12 तक के विद्यार्थियों का नामांकन विद्यालय की आधिकारिक प्रवेश पंजिका एवं शाला दर्पण पोर्टल से शत-प्रतिशत मिलान कर लिया गया है।
+          </span>
+        </label>
+      </div>
+
+      <!-- Preview Seal -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; align-items:center; text-align:center">
+        <div style="border:1px dashed #cbd5e1; border-radius:8px; padding:0.75rem; background:#f8fafc">
+          <div style="height:40px; display:flex; align-items:center; justify-content:center; color:#2563eb; font-family:'Brush Script MT', cursive; font-size:1.3rem" id="f-sign-incharge-preview">
+            हस्ताक्षर परीक्षा प्रभारी
+          </div>
+          <div style="border-top:1px solid #94a3b8; padding-top:0.35rem; font-size:0.8rem; font-weight:700">हस्ताक्षर परीक्षा प्रभारी</div>
+        </div>
+
+        <div style="display:flex; justify-content:center">
+          <div class="rectangular-stamp">
+            <div class="stamp-top-line">कार्यालय पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)</div>
+            <div class="stamp-mid-line" id="f-stamp-school">रा.उ.मा.वि. भिनाय</div>
+            <div class="stamp-bottom-line" id="f-stamp-block">ग्रा.पं. भिनाय, ब्लॉक-भिनाय (अजमेर)</div>
+          </div>
+        </div>
+
+        <div style="border:1px dashed #cbd5e1; border-radius:8px; padding:0.75rem; background:#f8fafc">
+          <div style="height:40px; display:flex; align-items:center; justify-content:center; color:#1e3a8a; font-family:'Brush Script MT', cursive; font-size:1.3rem" id="f-sign-principal-preview">
+            हस्ताक्षर संस्था प्रधान
+          </div>
+          <div style="border-top:1px solid #94a3b8; padding-top:0.35rem; font-size:0.8rem; font-weight:700">हस्ताक्षर मय सील संस्था प्रधान</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Actions -->
+    <div class="bottom-bar">
+      <a href="index.html" class="btn btn-outline">
+        <i class="fas fa-arrow-left"></i> वापस पोर्टल
+      </a>
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="saveForm(false)">
+          <i class="fas fa-save"></i> प्रपत्र सबमिट करें
+        </button>
+        <button class="btn btn-success" onclick="saveForm(true)">
+          <i class="fas fa-print"></i> सबमिट व PDF देखें
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="toast-notification"></div>
+
+  <script>
+    const OPTIONAL_SUBJECTS = [
+      { key: 'pol_sci', label: 'राजनीति विज्ञान (Political Science)' },
+      { key: 'history', label: 'इतिहास (History)' },
+      { key: 'geography', label: 'भूगोल (Geography)' },
+      { key: 'hindi_lit', label: 'हिंदी साहित्य (Hindi Literature)' },
+      { key: 'eng_lit', label: 'अंग्रेजी साहित्य (English Literature)' },
+      { key: 'sanskrit_lit', label: 'संस्कृत साहित्य (Sanskrit Literature)' },
+      { key: 'economics', label: 'अर्थशास्त्र (Economics)' },
+      { key: 'drawing', label: 'चित्रकला (Drawing / Painting)' },
+      { key: 'home_sci', label: 'गृह विज्ञान (Home Science)' },
+      { key: 'sociology', label: 'समाजशास्त्र (Sociology)' },
+      { key: 'physics', label: 'भौतिक विज्ञान (Physics)' },
+      { key: 'chemistry', label: 'रसायन विज्ञान (Chemistry)' },
+      { key: 'biology', label: 'जीव विज्ञान (Biology)' },
+      { key: 'maths', label: 'गणित (Mathematics)' },
+      { key: 'agri_sci', label: 'कृषि विज्ञान (Agri Science)' },
+      { key: 'agri_bio', label: 'कृषि जीव विज्ञान (Agri Bio)' },
+      { key: 'agri_chem', label: 'कृषि रसायन (Agri Chem)' },
+      { key: 'accountancy', label: 'लेखाशास्त्र (Accountancy)' },
+      { key: 'business_studies', label: 'व्यवसाय अध्ययन (Business Studies)' }
+    ];
+
+    let schoolsList = [];
+    let currentSchool = null;
+
+    function showToast(msg) {
+      const t = document.getElementById('toast-notification');
+      t.textContent = msg;
+      t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 3000);
+    }
+
+    function initPage() {
+      schoolsList = (window.MASTER_CBEO_DATA && window.MASTER_CBEO_DATA.schools_56) || [];
+      const select = document.getElementById('school-select');
+      if (select) {
+        select.innerHTML = '';
+        schoolsList.forEach(s => {
+          const opt = document.createElement('option');
+          opt.value = s.shala_darpan_code;
+          opt.textContent = `[${s.type.substring(0,3)}] ${s.shala_darpan_code} - ${s.school_name}`;
+          select.appendChild(opt);
+        });
+      }
+
+      // Get code from URL ?code=XXXX or ?school=XXXX
+      const params = new URLSearchParams(window.location.search);
+      const targetCode = params.get('code') || params.get('school') || (schoolsList[0] && schoolsList[0].shala_darpan_code);
+
+      if (targetCode && select) {
+        select.value = targetCode;
+      }
+      loadSchool(targetCode || (select && select.value));
+    }
+
+    function onSchoolDropdownChange() {
+      const code = document.getElementById('school-select').value;
+      loadSchool(code);
+    }
+
+    function loadSchool(code) {
+      if (!schoolsList || schoolsList.length === 0) {
+        schoolsList = (window.MASTER_CBEO_DATA && window.MASTER_CBEO_DATA.schools_56) || [];
+      }
+      currentSchool = schoolsList.find(s => String(s.shala_darpan_code) === String(code)) || schoolsList[0];
+      if (!currentSchool) return;
+
+      // Check stored submission
+      const allSubs = JSON.parse(localStorage.getItem('cbeo_saman_pariksha_submissions') || '{}');
+      const sub = allSubs[code] || {};
+
+      document.getElementById('f-school-code').value = currentSchool.shala_darpan_code;
+      document.getElementById('f-school-name').value = currentSchool.school_name;
+      document.getElementById('f-sd-code').value = currentSchool.shala_darpan_code;
+      document.getElementById('f-peeo-name').value = currentSchool.peeo_name;
+      document.getElementById('f-school-cat').value = `${currentSchool.category} (${currentSchool.type})`;
+      document.getElementById('f-exam-code').value = sub.exam_code || currentSchool.exam_code || '';
+
+      document.getElementById('f-principal-name').value = sub.principal_name || currentSchool.principal_name || '';
+      document.getElementById('f-principal-mobile').value = sub.principal_mobile || currentSchool.principal_mobile || '';
+      document.getElementById('f-incharge-name').value = sub.incharge_name || currentSchool.incharge_name || '';
+      document.getElementById('f-incharge-mobile').value = sub.incharge_mobile || currentSchool.incharge_mobile || '';
+
+      document.getElementById('f-c9-total').value = sub.c9_total ?? 0;
+      document.getElementById('f-c10-total').value = sub.c10_total ?? 0;
+
+      document.getElementById('f-c11-comp-hindi').value = sub.c11_comp_hindi ?? 0;
+      document.getElementById('f-c11-comp-english').value = sub.c11_comp_english ?? 0;
+      document.getElementById('f-c11-total').value = sub.c11_total ?? 0;
+
+      document.getElementById('f-c12-comp-hindi').value = sub.c12_comp_hindi ?? 0;
+      document.getElementById('f-c12-comp-english').value = sub.c12_comp_english ?? 0;
+      document.getElementById('f-c12-total').value = sub.c12_total ?? 0;
+
+      // Populate subjects
+      const c11Grid = document.getElementById('f-c11-subjects-grid');
+      const c12Grid = document.getElementById('f-c12-subjects-grid');
+      c11Grid.innerHTML = '';
+      c12Grid.innerHTML = '';
+
+      OPTIONAL_SUBJECTS.forEach(subj => {
+        const val11 = (sub.c11_optional && sub.c11_optional[subj.key]) || 0;
+        const box11 = document.createElement('div');
+        box11.className = 'subject-card';
+        box11.innerHTML = `
+          <label title="${subj.label}">${subj.label}</label>
+          <input type="number" min="0" value="${val11}" id="opt-11-${subj.key}" oninput="calculateTotals()">
+        `;
+        c11Grid.appendChild(box11);
+
+        const val12 = (sub.c12_optional && sub.c12_optional[subj.key]) || 0;
+        const box12 = document.createElement('div');
+        box12.className = 'subject-card';
+        box12.innerHTML = `
+          <label title="${subj.label}">${subj.label}</label>
+          <input type="number" min="0" value="${val12}" id="opt-12-${subj.key}" oninput="calculateTotals()">
+        `;
+        c12Grid.appendChild(box12);
+      });
+
+      // Stamp
+      document.getElementById('f-stamp-school').textContent = currentSchool.peeo_name || 'रा.उ.मा.वि. भिनाय';
+      document.getElementById('f-stamp-block').textContent = `ग्रा.पं. ${currentSchool.peeo_name.replace('PEEO ', '')}, ब्लॉक-भिनाय (अजमेर)`;
+
+      calculateTotals();
+    }
+
+    function calculateTotals() {
+      const c9 = parseInt(document.getElementById('f-c9-total')?.value) || 0;
+      const c10 = parseInt(document.getElementById('f-c10-total')?.value) || 0;
+
+      const c11Hindi = parseInt(document.getElementById('f-c11-comp-hindi')?.value) || 0;
+      const c11English = parseInt(document.getElementById('f-c11-comp-english')?.value) || 0;
+      let c11Total = parseInt(document.getElementById('f-c11-total')?.value) || 0;
+      if (c11Total === 0 && (c11Hindi > 0 || c11English > 0)) {
+        c11Total = Math.max(c11Hindi, c11English);
+        document.getElementById('f-c11-total').value = c11Total;
+      }
+      document.getElementById('f-c11-total-display').textContent = c11Total;
+
+      const c12Hindi = parseInt(document.getElementById('f-c12-comp-hindi')?.value) || 0;
+      const c12English = parseInt(document.getElementById('f-c12-comp-english')?.value) || 0;
+      let c12Total = parseInt(document.getElementById('f-c12-total')?.value) || 0;
+      if (c12Total === 0 && (c12Hindi > 0 || c12English > 0)) {
+        c12Total = Math.max(c12Hindi, c12English);
+        document.getElementById('f-c12-total').value = c12Total;
+      }
+      document.getElementById('f-c12-total-display').textContent = c12Total;
+
+      const grand = c9 + c10 + c11Total + c12Total;
+
+      document.getElementById('f-sum-c9').textContent = c9;
+      document.getElementById('f-sum-c10').textContent = c10;
+      document.getElementById('f-sum-c11').textContent = c11Total;
+      document.getElementById('f-sum-c12').textContent = c12Total;
+      document.getElementById('f-sum-grand').textContent = grand;
+
+      const pName = document.getElementById('f-principal-name')?.value || 'संस्था प्रधान';
+      const iName = document.getElementById('f-incharge-name')?.value || 'परीक्षा प्रभारी';
+      document.getElementById('f-sign-principal-preview').textContent = pName;
+      document.getElementById('f-sign-incharge-preview').textContent = iName;
+    }
+
+    function saveForm(andRedirectToPortal = false) {
+      if (!currentSchool) return;
+
+      const examCode = document.getElementById('f-exam-code').value.trim();
+      const principalName = document.getElementById('f-principal-name').value.trim();
+      const principalMobile = document.getElementById('f-principal-mobile').value.trim();
+      const inchargeName = document.getElementById('f-incharge-name').value.trim();
+      const inchargeMobile = document.getElementById('f-incharge-mobile').value.trim();
+
+      if (!examCode) {
+        showToast('कृपया स्कूल परीक्षा कोड दर्ज करें!');
+        document.getElementById('f-exam-code').focus();
+        return;
+      }
+      if (!principalName || !principalMobile) {
+        showToast('कृपया संस्था प्रधान का नाम व मोबाइल नंबर दर्ज करें!');
+        document.getElementById('f-principal-name').focus();
+        return;
+      }
+      if (!inchargeName || !inchargeMobile) {
+        showToast('कृपया परीक्षा प्रभारी का नाम व मोबाइल नंबर दर्ज करें!');
+        document.getElementById('f-incharge-name').focus();
+        return;
+      }
+
+      const c9 = parseInt(document.getElementById('f-c9-total').value) || 0;
+      const c10 = parseInt(document.getElementById('f-c10-total').value) || 0;
+      const c11Hindi = parseInt(document.getElementById('f-c11-comp-hindi').value) || 0;
+      const c11English = parseInt(document.getElementById('f-c11-comp-english').value) || 0;
+      const c11Total = parseInt(document.getElementById('f-c11-total').value) || 0;
+      const c12Hindi = parseInt(document.getElementById('f-c12-comp-hindi').value) || 0;
+      const c12English = parseInt(document.getElementById('f-c12-comp-english').value) || 0;
+      const c12Total = parseInt(document.getElementById('f-c12-total').value) || 0;
+
+      const c11Opt = {};
+      const c12Opt = {};
+      OPTIONAL_SUBJECTS.forEach(s => {
+        c11Opt[s.key] = parseInt(document.getElementById(`opt-11-${s.key}`)?.value) || 0;
+        c12Opt[s.key] = parseInt(document.getElementById(`opt-12-${s.key}`)?.value) || 0;
+      });
+
+      const grand = c9 + c10 + c11Total + c12Total;
+
+      const submission = {
+        school_code: currentSchool.shala_darpan_code,
+        school_name: currentSchool.school_name,
+        category: currentSchool.category,
+        type: currentSchool.type,
+        peeo_name: currentSchool.peeo_name,
+        peeo_code: currentSchool.peeo_code,
+        exam_code: examCode,
+        principal_name: principalName,
+        principal_mobile: principalMobile,
+        incharge_name: inchargeName,
+        incharge_mobile: inchargeMobile,
+        c9_total: c9,
+        c10_total: c10,
+        c11_comp_hindi: c11Hindi,
+        c11_comp_english: c11English,
+        c11_optional: c11Opt,
+        c11_total: c11Total,
+        c12_comp_hindi: c12Hindi,
+        c12_comp_english: c12English,
+        c12_optional: c12Opt,
+        c12_total: c12Total,
+        grand_total: grand,
+        submitted_by: principalName || 'School Authority',
+        timestamp: new Date().toLocaleString('en-IN')
+      };
+
+      const allSubs = JSON.parse(localStorage.getItem('cbeo_saman_pariksha_submissions') || '{}');
+      allSubs[currentSchool.shala_darpan_code] = submission;
+      localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(allSubs));
+
+      showToast('प्रपत्र सफलतापूर्वक सबमिट हो गया!');
+
+      if (andRedirectToPortal) {
+        setTimeout(() => {
+          window.location.href = `index.html?show_pdf=${currentSchool.shala_darpan_code}`;
+        }, 500);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPage);
+    } else {
+      initPage();
+    }
+    window.addEventListener('load', initPage);
+  </script>
+</body>
+</html>

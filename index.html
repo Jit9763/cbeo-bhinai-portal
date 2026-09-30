@@ -54,7 +54,7 @@
         <button id="btn-change-password" class="btn btn-warning btn-sm" onclick="openChangePasswordModal()" title="पासवर्ड बदलें" style="font-weight:600">
           <i class="fas fa-key"></i> पासवर्ड बदलें
         </button>
-        <button id="btn-open-login" class="btn btn-outline-light btn-sm" onclick="openLoginModal(false)">
+        <button id="btn-open-login" class="btn btn-outline-light btn-sm" onclick="openLoginModal(false)" style="display:none">
           <i class="fas fa-user-circle"></i> प्रोफाइल बदलें
         </button>
         <button id="btn-logout" class="btn btn-danger btn-sm" onclick="logoutUser()" title="पोर्टल से लॉगआउट करें">
@@ -803,7 +803,11 @@
         </div>
         <div class="form-group">
           <label><strong>पासवर्ड (Password):</strong></label>
-          <input type="password" id="login-password" value="deoliakalan#2026" placeholder="पासवर्ड दर्ज करें">
+          <input type="password" id="login-password" value="" placeholder="पासवर्ड दर्ज करें (डिफ़ॉल्ट: शाला दर्पण कोड)" autocomplete="current-password">
+          <div id="login-password-hint" style="margin-top:0.5rem; font-size:0.82rem; color:#0369a1; background:#e0f2fe; padding:8px 12px; border-radius:6px; border-left:4px solid #0284c7; display:flex; align-items:center; gap:0.5rem">
+            <i class="fas fa-lightbulb text-warning"></i>
+            <span><strong>संकेत:</strong> PEEO एवं विद्यालयों का डिफ़ॉल्ट पासवर्ड उनका <strong>शाला दर्पण / PSP कोड</strong> ही है।</span>
+          </div>
         </div>
       </div>
       <div class="modal-footer">
@@ -1214,20 +1218,35 @@
     </div>
   </div>
 
-  <!-- 9. GOOGLE FORM STYLE SAMAN PARIKSHA MODAL (MOBILE FRIENDLY) -->
+  <!-- 9. GOOGLE FORM STYLE SAMAN PARIKSHA DEDICATED FULL PAGE (MOBILE FRIENDLY) -->
   <div id="modal-saman-pariksha-form" class="modal-overlay">
-    <div class="modal-card" style="max-width:920px; background:#f0f4f8; padding:0; overflow:hidden">
-      <div class="modal-header" style="background:#1b365d; color:#ffffff; padding:1.25rem 1.75rem; border-bottom:4px solid #ff9933">
-        <div>
-          <h3 style="color:#ffffff; font-size:1.25rem; font-weight:800; display:flex; align-items:center; gap:0.5rem">
-            <i class="fas fa-file-invoice text-warning"></i> जिला समान परीक्षा 2026-27 | नामांकन एवं प्रश्न-पत्र मांग प्रपत्र
-          </h3>
-          <span style="font-size:0.82rem; color:#bae6fd">District Uniform Examination: Question Paper Indent Form (Classes 9 to 12)</span>
+    <div class="modal-card">
+      
+      <!-- Sticky Google Form Top Navigation Bar -->
+      <div class="gform-page-topbar">
+        <button class="btn btn-outline-light btn-sm" onclick="closeModal('modal-saman-pariksha-form')" style="color:#1b365d; border-color:#cbd5e1; font-weight:700">
+          <i class="fas fa-arrow-left"></i> वापस पोर्टल
+        </button>
+        <div style="text-align:center">
+          <div style="font-weight:800; color:#1b365d; font-size:0.95rem">
+            <i class="fas fa-file-invoice text-primary"></i> जिला समान परीक्षा (सत्र 2026-27)
+          </div>
+          <div style="font-size:0.75rem; color:#64748b">कक्षा 9 से 12 प्रश्न-पत्र मांग एवं विद्यार्थी नामांकन प्रपत्र</div>
         </div>
-        <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-saman-pariksha-form')">&times;</button>
+        <div style="display:flex; gap:0.5rem; align-items:center">
+          <a id="gform-open-standalone-btn" href="saman_form.html" target="_blank" class="btn btn-outline-light btn-sm" style="color:#1b365d; border-color:#cbd5e1; font-weight:700" title="अलग पेज/टैब में खोलें">
+            <i class="fas fa-external-link-alt"></i> अलग पेज
+          </a>
+          <button class="btn btn-success btn-sm" onclick="submitSamanParikshaForm(true)" style="font-weight:700">
+            <i class="fas fa-print"></i> PDF प्रिंट
+          </button>
+          <button class="btn btn-primary btn-sm" onclick="submitSamanParikshaForm(false)" style="font-weight:700">
+            <i class="fas fa-save"></i> सुरक्षित करें
+          </button>
+        </div>
       </div>
 
-      <div class="modal-body" style="padding:1.5rem; max-height:calc(90vh - 140px); overflow-y:auto">
+      <div class="modal-body">
         <div class="gform-container">
           
           <!-- Banner Card -->

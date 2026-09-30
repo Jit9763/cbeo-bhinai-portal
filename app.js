@@ -253,6 +253,22 @@ function setupAutoLogin() {
     setTimeout(() => {
       openLoginModal(true); // isMandatory = true
     }, 150);
+  } else {
+    // Handle URL query parameters (e.g. ?show_pdf=221754 or ?form=221754)
+    const urlParams = new URLSearchParams(window.location.search);
+    const showPdfCode = urlParams.get('show_pdf');
+    const openFormCode = urlParams.get('form');
+    if (showPdfCode) {
+      setTimeout(() => {
+        switchTab('saman-pariksha');
+        openExamPdfPreview(showPdfCode);
+      }, 300);
+    } else if (openFormCode) {
+      setTimeout(() => {
+        switchTab('saman-pariksha');
+        openSamanParikshaForm(openFormCode);
+      }, 300);
+    }
   }
 }
 
@@ -289,6 +305,8 @@ function updateUserHeaderBadge() {
     if (displayName) displayName.textContent = `${STATE.currentUser.name} (Admin)`;
     if (displaySubtext) displaySubtext.textContent = 'सम्पूर्ण ब्लॉक नियंत्रण (25 PEEO | 178 विद्यालय)';
     if (adminTab) adminTab.style.display = 'inline-flex';
+    const btnOpenLogin = document.getElementById('btn-open-login');
+    if (btnOpenLogin) btnOpenLogin.style.display = 'inline-flex'; // Only admins can switch profiles
   } else {
     if (badgeInitial) {
       const name = STATE.currentUser.school_name || STATE.currentUser.peeo_name || 'P';
@@ -306,6 +324,8 @@ function updateUserHeaderBadge() {
         : `शाला दर्पण कोड: ${STATE.currentUser.shala_darpan_code}`;
     }
     if (adminTab) adminTab.style.display = 'none';
+    const btnOpenLogin = document.getElementById('btn-open-login');
+    if (btnOpenLogin) btnOpenLogin.style.display = 'none'; // Completely hidden for PEEO & schools
   }
 }
 
@@ -356,45 +376,66 @@ function openLoginModal(isMandatory = false) {
   }
 
   if (STATE.currentUser) {
-    if (STATE.currentUser.role === 'admin') {
-      if (select) select.value = STATE.currentUser.username;
-      document.getElementById('login-username').value = STATE.currentUser.shala_darpan_code;
-      document.getElementById('login-password').value = STATE.currentUser.username === 'cbeo_admin' ? 'cbeo@2026' : 'jitendra#2026';
-    } else {
-      if (select) select.value = STATE.currentUser.shala_darpan_code;
-      document.getElementById('login-username').value = STATE.currentUser.shala_darpan_code;
-      document.getElementById('login-password').value = STATE.customPasswords[STATE.currentUser.shala_darpan_code] || STATE.currentUser.shala_darpan_code;
+    if (select) {
+      select.value = (STATE.currentUser.role === 'admin') ? STATE.currentUser.username : STATE.currentUser.shala_darpan_code;
     }
+    document.getElementById('login-username').value = STATE.currentUser.shala_darpan_code;
   } else {
     // Default selection
     if (select) {
       select.value = '221754'; // PEEO Deoliya Kalan default
-      onQuickSelectUser();
     }
   }
+
+  onQuickSelectUser();
+  // Strictly enforce empty password on open
+  const passInput = document.getElementById('login-password');
+  if (passInput) passInput.value = '';
 
   showModal('modal-login');
 }
 
 function onQuickSelectUser() {
-  const val = document.getElementById('login-quick-select').value;
+  const val = document.getElementById('login-quick-select')?.value;
+  const usernameInput = document.getElementById('login-username');
+  const passwordInput = document.getElementById('login-password');
+  const hintBox = document.getElementById('login-password-hint');
+  if (!usernameInput || !passwordInput) return;
+
+  // Security: NEVER auto-fill password
+  passwordInput.value = '';
+
   if (val === 'jitendra_admin') {
-    document.getElementById('login-username').value = 'admin_jitendra';
-    document.getElementById('login-password').value = 'jitendra#2026';
+    usernameInput.value = 'admin_jitendra';
+    if (hintBox) {
+      hintBox.innerHTML = '<i class="fas fa-shield-alt" style="color:#d97706"></i> <span><strong>सुरक्षा संकेत:</strong> एडमिन पासवर्ड गोपनीय है। कृपया अपना पासवर्ड मैन्युअली टाइप करें।</span>';
+      hintBox.style.background = '#fef3c7';
+      hintBox.style.color = '#92400e';
+      hintBox.style.borderLeftColor = '#f59e0b';
+    }
   } else if (val === 'cbeo_admin') {
-    document.getElementById('login-username').value = '8140';
-    document.getElementById('login-password').value = 'cbeo@2026';
+    usernameInput.value = '8140';
+    if (hintBox) {
+      hintBox.innerHTML = '<i class="fas fa-shield-alt" style="color:#d97706"></i> <span><strong>सुरक्षा संकेत:</strong> मुख्य ब्लॉक शिक्षा अधिकारी पासवर्ड गोपनीय है। कृपया अपना पासवर्ड मैन्युअली टाइप करें।</span>';
+      hintBox.style.background = '#fef3c7';
+      hintBox.style.color = '#92400e';
+      hintBox.style.borderLeftColor = '#f59e0b';
+    }
   } else {
     const peeo = STATE.peeos.find(p => p.shala_darpan_code === val || p.peeo_id === val);
     if (peeo) {
-      document.getElementById('login-username').value = peeo.shala_darpan_code;
-      document.getElementById('login-password').value = STATE.customPasswords[peeo.shala_darpan_code] || peeo.shala_darpan_code;
-      return;
+      usernameInput.value = peeo.shala_darpan_code;
+    } else {
+      const sch = STATE.schools56.find(s => s.shala_darpan_code === val);
+      if (sch) {
+        usernameInput.value = sch.shala_darpan_code;
+      }
     }
-    const sch = STATE.schools56.find(s => s.shala_darpan_code === val);
-    if (sch) {
-      document.getElementById('login-username').value = sch.shala_darpan_code;
-      document.getElementById('login-password').value = STATE.customPasswords[sch.shala_darpan_code] || sch.shala_darpan_code;
+    if (hintBox) {
+      hintBox.innerHTML = '<i class="fas fa-lightbulb text-warning"></i> <span><strong>संकेत:</strong> PEEO एवं विद्यालयों का डिफ़ॉल्ट पासवर्ड उनका <strong>शाला दर्पण / PSP कोड</strong> ही है।</span>';
+      hintBox.style.background = '#e0f2fe';
+      hintBox.style.color = '#0369a1';
+      hintBox.style.borderLeftColor = '#0284c7';
     }
   }
 }
@@ -764,6 +805,9 @@ function renderSamanParikshaPeeoView() {
         <button class="btn btn-primary btn-sm" onclick="openSamanParikshaForm('${school.shala_darpan_code}')" style="flex:1">
           <i class="fas fa-edit"></i> ${isSubmitted ? 'प्रपत्र संशोधित करें' : 'Google Form प्रपत्र भरें'}
         </button>
+        <a href="saman_form.html?code=${school.shala_darpan_code}" target="_blank" class="btn btn-outline-primary btn-sm" style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:700" title="नए पेज में खोलें (अलग टैब)">
+          <i class="fas fa-external-link-alt"></i> अलग पेज
+        </a>
         ${isSubmitted ? `
           <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${school.shala_darpan_code}')" title="आधिकारिक प्रमाणित PDF देखें">
             <i class="fas fa-print"></i> PDF देखें
@@ -888,6 +932,9 @@ function filterSamanParikshaTable() {
           <button class="btn btn-outline-light btn-sm" onclick="openSamanParikshaForm('${s.shala_darpan_code}')" title="प्रपत्र भरें / संपादित करें">
             <i class="fas fa-edit"></i>
           </button>
+          <a href="saman_form.html?code=${s.shala_darpan_code}" target="_blank" class="btn btn-outline-light btn-sm" title="नए पेज में खोलें (अलग टैब)">
+            <i class="fas fa-external-link-alt"></i>
+          </a>
           ${isSub ? `
             <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${s.shala_darpan_code}')" title="अधिकृत PDF देखें">
               <i class="fas fa-print"></i>
@@ -974,6 +1021,15 @@ function openSamanParikshaForm(schoolCode) {
   if (stampBlock) stampBlock.textContent = `ग्रा.पं. ${school.peeo_name.replace('PEEO ', '')}, ब्लॉक-भिनाय (अजमेर)`;
 
   calculateGFormTotals();
+  const formElem = document.getElementById('modal-saman-pariksha-form');
+  if (formElem) {
+    formElem.classList.add('google-form-page-mode');
+    formElem.scrollTop = 0;
+  }
+  const standaloneBtn = document.getElementById('gform-open-standalone-btn');
+  if (standaloneBtn) {
+    standaloneBtn.href = `saman_form.html?code=${school.shala_darpan_code}`;
+  }
   showModal('modal-saman-pariksha-form');
 }
 
