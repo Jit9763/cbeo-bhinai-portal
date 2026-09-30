@@ -858,6 +858,15 @@
             </div>
           </div>
 
+          <!-- Remember Me Checkbox -->
+          <div class="login-remember-row" style="display:flex; align-items:center; justify-content:space-between; margin:0.85rem 0 1.25rem 0; padding:0.5rem 0.75rem; background:#f1f5f9; border-radius:8px; border:1px solid #e2e8f0">
+            <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; margin:0; user-select:none">
+              <input type="checkbox" id="login-remember-me" checked style="width:18px; height:18px; accent-color:#1a73e8; cursor:pointer">
+              <span style="font-size:0.85rem; font-weight:700; color:#1e293b">लॉगिन याद रखें (Remember Me)</span>
+            </label>
+            <span style="font-size:0.75rem; color:#64748b; font-weight:600">📱 ऐप की तरह स्वतः लॉगिन</span>
+          </div>
+
           <!-- Submit Button -->
           <button class="btn-login-submit" onclick="performLogin()">
             <i class="fas fa-sign-in-alt"></i> सुरक्षित लॉगिन करें (Sign In)
@@ -1285,7 +1294,12 @@
           <div class="gform-topbar-title">
             <i class="fas fa-file-invoice text-primary"></i> जिला समान परीक्षा (सत्र 2026-27)
           </div>
-          <div class="gform-topbar-sub">कक्षा 9 से 12 प्रश्न-पत्र मांग एवं विद्यार्थी नामांकन प्रपत्र</div>
+          <div style="display:flex; align-items:center; justify-content:center; gap:0.5rem; margin-top:2px">
+            <span class="gform-topbar-sub">कक्षा 9 से 12 प्रश्न-पत्र मांग एवं विद्यार्थी नामांकन प्रपत्र</span>
+            <span id="gform-draft-status" style="display:inline-flex; align-items:center; gap:0.3rem; background:#ecfdf5; border:1px solid #a7f3d0; color:#065f46; font-size:0.72rem; font-weight:700; padding:1px 8px; border-radius:9999px">
+              <i class="fas fa-save text-success"></i> <span id="gform-draft-text">ड्राफ्ट सुरक्षित</span>
+            </span>
+          </div>
         </div>
         <div class="gform-topbar-actions">
           <a id="gform-open-standalone-btn" href="saman_form.html" target="_blank" class="btn btn-outline-light btn-sm" style="color:#1b365d; border-color:#cbd5e1; font-weight:700" title="अलग पेज/टैब में खोलें">

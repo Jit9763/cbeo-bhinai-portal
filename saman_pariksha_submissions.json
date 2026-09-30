@@ -6,26 +6,25 @@
     "type": "Government",
     "peeo_name": "PEEO DEOLIYA KALAN",
     "peeo_code": "221754",
-    "exam_code": "5201",
-    "principal_name": "श्री रामेश्वर लाल",
-    "principal_mobile": "9829012345",
-    "incharge_name": "श्री कैलाश चंद्र",
-    "incharge_mobile": "9414012345",
+    "exam_code": "EX8899",
+    "principal_name": "श्री राकेश कुमार",
+    "principal_mobile": "9829835751",
+    "incharge_name": "श्री रमेश शर्मा",
+    "incharge_mobile": "9829012345",
     "c9_total": 50,
-    "c9_sanskrit": 45,
+    "c9_sanskrit": 43,
     "c9_urdu": 5,
-    "c10_total": 48,
-    "c10_sanskrit": 42,
-    "c10_urdu": 6,
+    "c10_total": 40,
+    "c10_sanskrit": 40,
+    "c10_urdu": 0,
     "c11_faculties": [
-      "arts",
-      "science"
+      "arts"
     ],
     "c11_comp_hindi": 30,
     "c11_comp_english": 30,
     "c11_optional": {
-      "pol_sci": 18,
-      "history": 15,
+      "pol_sci": 0,
+      "history": 28,
       "geography": 0,
       "hindi_lit": 0,
       "eng_lit": 0,
@@ -35,8 +34,8 @@
       "sociology": 0,
       "home_sci": 0,
       "drawing": 0,
-      "physics": 12,
-      "chemistry": 12,
+      "physics": 0,
+      "chemistry": 0,
       "biology": 0,
       "maths": 0,
       "accountancy": 0,
@@ -47,13 +46,11 @@
       "agri_chem": 0
     },
     "c11_total": 30,
-    "c12_faculties": [
-      "arts"
-    ],
-    "c12_comp_hindi": 28,
-    "c12_comp_english": 28,
+    "c12_faculties": [],
+    "c12_comp_hindi": 0,
+    "c12_comp_english": 0,
     "c12_optional": {
-      "pol_sci": 20,
+      "pol_sci": 0,
       "history": 0,
       "geography": 0,
       "hindi_lit": 0,
@@ -75,9 +72,9 @@
       "agri_bio": 0,
       "agri_chem": 0
     },
-    "c12_total": 28,
-    "grand_total": 156,
+    "c12_total": 0,
+    "grand_total": 120,
     "submitted_by": "PEEO DEOLIYA KALAN",
-    "timestamp": "30/9/2026, 10:17:59 pm"
+    "timestamp": "30/9/2026, 10:57:50 pm"
   }
 }

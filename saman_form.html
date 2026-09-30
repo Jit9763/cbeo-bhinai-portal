@@ -479,7 +479,10 @@
       <div class="app-title">जिला समान परीक्षा (सत्र 2026-27)</div>
       <div class="app-sub">प्रश्न-पत्र मांग व विद्यार्थी नामांकन प्रपत्र</div>
     </div>
-    <div class="top-actions">
+    <div class="top-actions" style="display:flex; align-items:center; gap:0.6rem">
+      <span id="standalone-draft-status" style="font-size:0.75rem; color:#86efac; font-weight:700; display:inline-flex; align-items:center; gap:0.3rem">
+        <i class="fas fa-save text-success"></i> <span>ड्राफ्ट सुरक्षित</span>
+      </span>
       <button class="btn-top-save" onclick="saveForm(false)">
         <i class="fas fa-save"></i> सबमिट
       </button>
@@ -1084,9 +1087,18 @@
       currentSchool = schoolsList.find(s => String(s.shala_darpan_code) === String(code)) || schoolsList[0];
       if (!currentSchool) return;
 
-      // Check stored submission
+      // Check stored submission and draft
       const allSubs = JSON.parse(localStorage.getItem('cbeo_saman_pariksha_submissions') || '{}');
-      const sub = allSubs[code] || {};
+      let sub = allSubs[code] || {};
+      const draftKey = `cbeo_form_draft_${code}`;
+      const draft = JSON.parse(localStorage.getItem(draftKey) || 'null');
+      if (draft) {
+        sub = { ...sub, ...draft };
+        const draftIndicator = document.getElementById('standalone-draft-status');
+        if (draftIndicator) {
+          draftIndicator.innerHTML = `<i class="fas fa-check-circle"></i> <span>ड्राफ्ट सुरक्षित (${draft.updated_at || 'सुरक्षित'})</span>`;
+        }
+      }
 
       renderSubmittedPreviewTable(sub);
 
@@ -1290,6 +1302,9 @@
       allSubs[currentSchool.shala_darpan_code] = submission;
       localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(allSubs));
 
+      // Keep draft synchronized with official submission
+      localStorage.setItem(`cbeo_form_draft_${currentSchool.shala_darpan_code}`, JSON.stringify(submission));
+
       // Sync to backend file & Google Sheet
       fetch('/api/save_saman_pariksha', {
         method: 'POST',
@@ -1306,6 +1321,77 @@
         }, 500);
       }
     }
+
+    // Auto-Save Draft on Form Input (Phone calls/distraction resilient)
+    let autoSaveTimer = null;
+    function triggerAutoSave() {
+      clearTimeout(autoSaveTimer);
+      autoSaveTimer = setTimeout(() => {
+        if (!currentSchool) return;
+        const code = currentSchool.shala_darpan_code;
+        const timeStr = new Date().toLocaleTimeString('hi-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+        const c11Fac = [];
+        const c11Opt = {};
+        Object.entries(FACULTIES_CONFIG).forEach(([facKey, fac]) => {
+          const chk = document.getElementById(`f-c11-fac-${facKey}`);
+          if (chk && chk.checked) {
+            c11Fac.push(facKey);
+            fac.subjects.forEach(subj => {
+              c11Opt[subj.key] = parseInt(document.getElementById(`f-c11-opt-${subj.key}`)?.value) || 0;
+            });
+          }
+        });
+
+        const c12Fac = [];
+        const c12Opt = {};
+        Object.entries(FACULTIES_CONFIG).forEach(([facKey, fac]) => {
+          const chk = document.getElementById(`f-c12-fac-${facKey}`);
+          if (chk && chk.checked) {
+            c12Fac.push(facKey);
+            fac.subjects.forEach(subj => {
+              c12Opt[subj.key] = parseInt(document.getElementById(`f-c12-opt-${subj.key}`)?.value) || 0;
+            });
+          }
+        });
+
+        const draftObj = {
+          school_code: code,
+          exam_code: document.getElementById('f-exam-code')?.value || '',
+          principal_name: document.getElementById('f-principal-name')?.value || '',
+          principal_mobile: document.getElementById('f-principal-mobile')?.value || '',
+          incharge_name: document.getElementById('f-incharge-name')?.value || '',
+          incharge_mobile: document.getElementById('f-incharge-mobile')?.value || '',
+          c9_total: parseInt(document.getElementById('f-c9-total')?.value) || 0,
+          c9_sanskrit: parseInt(document.getElementById('f-c9-sanskrit')?.value) || 0,
+          c9_urdu: parseInt(document.getElementById('f-c9-urdu')?.value) || 0,
+          c10_total: parseInt(document.getElementById('f-c10-total')?.value) || 0,
+          c10_sanskrit: parseInt(document.getElementById('f-c10-sanskrit')?.value) || 0,
+          c10_urdu: parseInt(document.getElementById('f-c10-urdu')?.value) || 0,
+          c11_comp_hindi: parseInt(document.getElementById('f-c11-comp-hindi')?.value) || 0,
+          c11_comp_english: parseInt(document.getElementById('f-c11-comp-english')?.value) || 0,
+          c11_total: parseInt(document.getElementById('f-c11-total')?.value) || 0,
+          c11_faculties: c11Fac,
+          c11_optional: c11Opt,
+          c12_comp_hindi: parseInt(document.getElementById('f-c12-comp-hindi')?.value) || 0,
+          c12_comp_english: parseInt(document.getElementById('f-c12-comp-english')?.value) || 0,
+          c12_total: parseInt(document.getElementById('f-c12-total')?.value) || 0,
+          c12_faculties: c12Fac,
+          c12_optional: c12Opt,
+          updated_at: timeStr
+        };
+
+        localStorage.setItem(`cbeo_form_draft_${code}`, JSON.stringify(draftObj));
+
+        const draftIndicator = document.getElementById('standalone-draft-status');
+        if (draftIndicator) {
+          draftIndicator.innerHTML = `<i class="fas fa-check-circle"></i> <span>ड्राफ्ट सुरक्षित (${timeStr})</span>`;
+        }
+      }, 250);
+    }
+
+    document.addEventListener('input', triggerAutoSave);
+    document.addEventListener('change', triggerAutoSave);
 
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initPage);

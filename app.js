@@ -43,6 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
   setupSignaturePad();
   setupAutoLogin();
   renderApp();
+
+  const gformModal = document.getElementById('modal-saman-pariksha-form');
+  if (gformModal) {
+    gformModal.addEventListener('input', autoSaveGFormDraft);
+    gformModal.addEventListener('change', autoSaveGFormDraft);
+  }
 });
 
 /* ========================================================
@@ -248,12 +254,21 @@ function setupAutoLogin() {
     STATE.currentUser = null;
   }
 
-  // Mandatory Login Gate on Portal Open
+  // Pre-fill remembered username if saved
+  const rememberedUser = localStorage.getItem('cbeo_saved_username');
+  if (rememberedUser) {
+    const userInput = document.getElementById('login-username');
+    if (userInput) userInput.value = rememberedUser;
+  }
+
+  // Mobile App Style Persistent Session:
+  // If user is already logged in, keep login modal closed and apply their portal view
   if (!STATE.currentUser) {
     setTimeout(() => {
       openLoginModal(true); // isMandatory = true
     }, 150);
   } else {
+    closeModal('modal-login');
     // Handle URL query parameters (e.g. ?show_pdf=221754 or ?form=221754)
     const urlParams = new URLSearchParams(window.location.search);
     const showPdfCode = urlParams.get('show_pdf');
@@ -504,10 +519,29 @@ function onQuickSelectUser() {
 function performLogin() {
   const u = document.getElementById('login-username').value.trim();
   const p = document.getElementById('login-password').value.trim();
+  const remember = document.getElementById('login-remember-me')?.checked ?? true;
+
+  function onLoginSuccess(userObj, toastMsg, openForm = false) {
+    STATE.currentUser = userObj;
+    localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
+    if (remember) {
+      localStorage.setItem('cbeo_remember_me', 'true');
+      localStorage.setItem('cbeo_saved_username', u);
+    } else {
+      localStorage.removeItem('cbeo_remember_me');
+    }
+    closeModal('modal-login');
+    showToast(toastMsg, 'success');
+    renderApp();
+    switchTab('saman-pariksha');
+    if (openForm && userObj.role === 'school') {
+      openSamanParikshaForm(userObj.shala_darpan_code);
+    }
+  }
 
   // Super Admin Check
   if (u === 'admin_jitendra' || u === 'jitendra_admin' || u === 'jitendra' || (u === 'admin' && p === 'admin123')) {
-    STATE.currentUser = {
+    onLoginSuccess({
       role: 'admin',
       admin_id: 'ADMIN02',
       name: 'जितेन्द्र कुमार (Jitendra Kumar)',
@@ -516,17 +550,12 @@ function performLogin() {
       email: 'jitendrakumar.cbeo@gmail.com',
       username: 'jitendra_admin',
       shala_darpan_code: 'admin_jitendra'
-    };
-    localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
-    closeModal('modal-login');
-    showToast('जितेन्द्र कुमार (Super Admin) के रूप में लॉगिन सफल!', 'success');
-    renderApp();
-    switchTab('saman-pariksha');
+    }, 'जितेन्द्र कुमार (Super Admin) के रूप में लॉगिन सफल!');
     return;
   }
 
   if (u === 'cbeo_admin' || u === '8140') {
-    STATE.currentUser = {
+    onLoginSuccess({
       role: 'admin',
       admin_id: 'ADMIN01',
       name: 'प्रमिला रासलोत (CBEO)',
@@ -535,12 +564,7 @@ function performLogin() {
       email: 'cbeo.bhinai.ajmer@rajasthan.gov.in',
       username: 'cbeo_admin',
       shala_darpan_code: '8140'
-    };
-    localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
-    closeModal('modal-login');
-    showToast('प्रमिला रासलोत (CBEO Admin) के रूप में लॉगिन सफल!', 'success');
-    renderApp();
-    switchTab('saman-pariksha');
+    }, 'प्रमिला रासलोत (CBEO Admin) के रूप में लॉगिन सफल!');
     return;
   }
 
@@ -557,7 +581,7 @@ function performLogin() {
   if (peeo) {
     const validPass = expectedPassword ? (p === expectedPassword) : (p === peeo.shala_darpan_code || p === peeo.password);
     if (validPass) {
-      STATE.currentUser = {
+      onLoginSuccess({
         role: 'peeo',
         peeo_id: peeo.peeo_id,
         peeo_name: peeo.peeo_name,
@@ -569,12 +593,7 @@ function performLogin() {
         username: peeo.username,
         default_password: peeo.shala_darpan_code,
         schools: peeo.schools
-      };
-      localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
-      closeModal('modal-login');
-      showToast(`${peeo.peeo_name} (शा.दा. कोड: ${peeo.shala_darpan_code}) के रूप में लॉगिन सफल!`, 'success');
-      renderApp();
-      switchTab('saman-pariksha');
+      }, `${peeo.peeo_name} (शा.दा. कोड: ${peeo.shala_darpan_code}) के रूप में लॉगिन सफल!`);
       return;
     } else {
       showToast('पासवर्ड गलत है! (डिफ़ॉल्ट पासवर्ड आपका शाला दर्पण कोड ही है)', 'error');
@@ -588,7 +607,7 @@ function performLogin() {
     const validPass = expectedPassword ? (p === expectedPassword) : (p === sch.shala_darpan_code);
     if (validPass) {
       const parentPeeo = STATE.peeos.find(p => p.peeo_name === sch.peeo_name || p.peeo_id === sch.peeo_id);
-      STATE.currentUser = {
+      onLoginSuccess({
         role: 'school',
         school_name: sch.school_name,
         shala_darpan_code: sch.shala_darpan_code,
@@ -599,13 +618,7 @@ function performLogin() {
         default_password: sch.shala_darpan_code,
         principal_incharge: sch.principal_name || parentPeeo?.principal_incharge || '',
         mobile: sch.principal_mobile || parentPeeo?.mobile || ''
-      };
-      localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
-      closeModal('modal-login');
-      showToast(`${sch.school_name} के रूप में लॉगिन सफल!`, 'success');
-      renderApp();
-      switchTab('saman-pariksha');
-      openSamanParikshaForm(sch.shala_darpan_code);
+      }, `${sch.school_name} के रूप में लॉगिन सफल!`, true);
       return;
     } else {
       showToast('पासवर्ड गलत है! (डिफ़ॉल्ट पासवर्ड आपका शाला दर्पण / PSP कोड ही है)', 'error');
@@ -874,6 +887,7 @@ function onToggleFaculty(cls, facKey) {
     sec.querySelectorAll('input').forEach(inp => inp.value = 0);
     calculateGFormTotals();
   }
+  autoSaveGFormDraft();
 }
 
 function formatOptionalSubjectsSummary(optObj) {
@@ -944,8 +958,8 @@ function renderSamanParikshaPeeoView() {
       : '<span style="background:#fef3c7; color:#b45309; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700">🏢 निजी</span>';
 
     const statusBadge = isSubmitted
-      ? `<span class="sp-status-badge success"><i class="fas fa-check-circle"></i> सबमिट पूर्ण (${sub.grand_total} पेपर)</span>`
-      : `<span class="sp-status-badge warning"><i class="fas fa-clock"></i> प्रपत्र भरना शेष</span>`;
+      ? `<span class="sp-status-badge success"><i class="fas fa-check-circle"></i> ✓ डेटा सबमिट पूर्ण (${sub.grand_total} पेपर)</span>`
+      : `<span class="sp-status-badge danger"><i class="fas fa-exclamation-triangle"></i> ⚠️ प्रपत्र भरना शेष (अपूर्ण)</span>`;
 
     let submittedDetailsHtml = '';
     if (isSubmitted) {
@@ -1014,7 +1028,7 @@ function renderSamanParikshaPeeoView() {
       </div>
       <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem">
         <button class="btn ${isSubmitted ? 'btn-warning' : 'btn-primary'} btn-sm" onclick="openSamanParikshaForm('${school.shala_darpan_code}')" style="flex:1; font-weight:700">
-          <i class="fas fa-edit"></i> ${isSubmitted ? 'प्रपत्र में संशोधन (Edit)' : 'Google Form प्रपत्र भरें'}
+          <i class="fas ${isSubmitted ? 'fa-edit' : 'fa-file-signature'}"></i> ${isSubmitted ? '✏️ प्रपत्र में संशोधन (Edit)' : '📝 Google Form प्रपत्र भरें'}
         </button>
         <a href="saman_form.html?code=${school.shala_darpan_code}" target="_blank" class="btn btn-outline-primary btn-sm" style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:700" title="नए पेज में खोलें (अलग टैब)">
           <i class="fas fa-external-link-alt"></i> ${isSubmitted ? 'अलग पेज में एडिट' : 'अलग पेज'}
@@ -1030,8 +1044,18 @@ function renderSamanParikshaPeeoView() {
   });
 
   if (progressBadge) {
-    progressBadge.textContent = `प्रगति: ${submittedCount} / ${targetSchools.length} विद्यालय पूर्ण`;
-    progressBadge.className = `sp-status-badge ${submittedCount === targetSchools.length && targetSchools.length > 0 ? 'success' : 'warning'}`;
+    const pendingCount = targetSchools.length - submittedCount;
+    progressBadge.innerHTML = `
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center">
+        <span class="sp-status-badge success" style="font-size:0.85rem; padding:0.35rem 0.85rem">
+          <i class="fas fa-check-circle"></i> हरी पट्टी (Green): ${submittedCount} पूर्ण
+        </span>
+        <span class="sp-status-badge ${pendingCount === 0 ? 'success' : 'danger'}" style="font-size:0.85rem; padding:0.35rem 0.85rem">
+          <i class="fas ${pendingCount === 0 ? 'fa-award' : 'fa-exclamation-circle'}"></i> लाल पट्टी (Red): ${pendingCount} शेष
+        </span>
+      </div>
+    `;
+    progressBadge.className = '';
   }
 }
 
@@ -1171,39 +1195,59 @@ function openSamanParikshaForm(schoolCode) {
   }
 
   const sub = STATE.samanParikshaSubmissions[schoolCode] || {};
+  let draft = null;
+  try {
+    const raw = localStorage.getItem(`cbeo_form_draft_${schoolCode}`);
+    if (raw) draft = JSON.parse(raw);
+  } catch (e) {}
+
+  const activeData = draft ? { ...sub, ...draft } : sub;
+
+  const draftStatusText = document.getElementById('gform-draft-text');
+  if (draftStatusText) {
+    if (draft && draft.updated_at) {
+      draftStatusText.textContent = `ड्राफ्ट सुरक्षित (${draft.updated_at})`;
+    } else {
+      draftStatusText.textContent = 'ड्राफ्ट सुरक्षित';
+    }
+  }
+
+  if (draft && !STATE.samanParikshaSubmissions[schoolCode]) {
+    showToast('💡 पूर्व में सुरक्षित ड्राफ्ट स्वतः लोड कर लिया गया है।', 'info');
+  }
 
   document.getElementById('gform-school-code-hidden').value = school.shala_darpan_code;
   document.getElementById('gform-school-name').value = school.school_name;
   document.getElementById('gform-school-code').value = school.shala_darpan_code;
   document.getElementById('gform-peeo-name').value = school.peeo_name;
   document.getElementById('gform-school-cat').value = `${school.category} (${school.type})`;
-  document.getElementById('gform-exam-code').value = sub.exam_code || school.exam_code || '';
+  document.getElementById('gform-exam-code').value = activeData.exam_code || school.exam_code || '';
 
-  document.getElementById('gform-principal-name').value = sub.principal_name || school.principal_name || '';
-  document.getElementById('gform-principal-mobile').value = sub.principal_mobile || school.principal_mobile || '';
-  document.getElementById('gform-incharge-name').value = sub.incharge_name || school.incharge_name || '';
-  document.getElementById('gform-incharge-mobile').value = sub.incharge_mobile || school.incharge_mobile || '';
+  document.getElementById('gform-principal-name').value = activeData.principal_name || school.principal_name || '';
+  document.getElementById('gform-principal-mobile').value = activeData.principal_mobile || school.principal_mobile || '';
+  document.getElementById('gform-incharge-name').value = activeData.incharge_name || school.incharge_name || '';
+  document.getElementById('gform-incharge-mobile').value = activeData.incharge_mobile || school.incharge_mobile || '';
 
-  document.getElementById('gform-c9-total').value = sub.c9_total ?? 0;
-  if (document.getElementById('gform-c9-sanskrit')) document.getElementById('gform-c9-sanskrit').value = sub.c9_sanskrit ?? 0;
-  if (document.getElementById('gform-c9-urdu')) document.getElementById('gform-c9-urdu').value = sub.c9_urdu ?? 0;
+  document.getElementById('gform-c9-total').value = activeData.c9_total ?? 0;
+  if (document.getElementById('gform-c9-sanskrit')) document.getElementById('gform-c9-sanskrit').value = activeData.c9_sanskrit ?? 0;
+  if (document.getElementById('gform-c9-urdu')) document.getElementById('gform-c9-urdu').value = activeData.c9_urdu ?? 0;
 
-  document.getElementById('gform-c10-total').value = sub.c10_total ?? 0;
-  if (document.getElementById('gform-c10-sanskrit')) document.getElementById('gform-c10-sanskrit').value = sub.c10_sanskrit ?? 0;
-  if (document.getElementById('gform-c10-urdu')) document.getElementById('gform-c10-urdu').value = sub.c10_urdu ?? 0;
+  document.getElementById('gform-c10-total').value = activeData.c10_total ?? 0;
+  if (document.getElementById('gform-c10-sanskrit')) document.getElementById('gform-c10-sanskrit').value = activeData.c10_sanskrit ?? 0;
+  if (document.getElementById('gform-c10-urdu')) document.getElementById('gform-c10-urdu').value = activeData.c10_urdu ?? 0;
 
-  document.getElementById('gform-c11-comp-hindi').value = sub.c11_comp_hindi ?? 0;
-  document.getElementById('gform-c11-comp-english').value = sub.c11_comp_english ?? 0;
-  document.getElementById('gform-c11-total').value = sub.c11_total ?? 0;
+  document.getElementById('gform-c11-comp-hindi').value = activeData.c11_comp_hindi ?? 0;
+  document.getElementById('gform-c11-comp-english').value = activeData.c11_comp_english ?? 0;
+  document.getElementById('gform-c11-total').value = activeData.c11_total ?? 0;
 
-  document.getElementById('gform-c12-comp-hindi').value = sub.c12_comp_hindi ?? 0;
-  document.getElementById('gform-c12-comp-english').value = sub.c12_comp_english ?? 0;
-  document.getElementById('gform-c12-total').value = sub.c12_total ?? 0;
+  document.getElementById('gform-c12-comp-hindi').value = activeData.c12_comp_hindi ?? 0;
+  document.getElementById('gform-c12-comp-english').value = activeData.c12_comp_english ?? 0;
+  document.getElementById('gform-c12-total').value = activeData.c12_total ?? 0;
 
   // Build Stream-wise Optional Subjects Grids for Class 11 and Class 12
   ['c11', 'c12'].forEach(cls => {
-    const savedFaculties = sub[`${cls}_faculties`] || [];
-    const optData = sub[`${cls}_optional`] || {};
+    const savedFaculties = activeData[`${cls}_faculties`] || [];
+    const optData = activeData[`${cls}_optional`] || {};
 
     Object.entries(FACULTIES_CONFIG).forEach(([facKey, fac]) => {
       const chk = document.getElementById(`gform-${cls}-fac-${facKey}`);
@@ -1301,6 +1345,75 @@ function calculateGFormTotals() {
   if (document.getElementById('gform-sign-incharge-preview')) document.getElementById('gform-sign-incharge-preview').textContent = iName;
 }
 
+// Real-time LocalStorage Draft Auto-Save Engine (Distraction & Call Resilient)
+let gformAutoSaveTimer = null;
+function autoSaveGFormDraft() {
+  clearTimeout(gformAutoSaveTimer);
+  gformAutoSaveTimer = setTimeout(() => {
+    const schoolCode = document.getElementById('gform-school-code-hidden')?.value;
+    if (!schoolCode) return;
+
+    const timeStr = new Date().toLocaleTimeString('hi-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+    const c11Fac = [];
+    const c11Opt = {};
+    Object.entries(FACULTIES_CONFIG).forEach(([facKey, fac]) => {
+      const chk = document.getElementById(`gform-c11-fac-${facKey}`);
+      if (chk && chk.checked) {
+        c11Fac.push(facKey);
+        fac.subjects.forEach(subj => {
+          c11Opt[subj.key] = parseInt(document.getElementById(`gform-c11-opt-${subj.key}`)?.value) || 0;
+        });
+      }
+    });
+
+    const c12Fac = [];
+    const c12Opt = {};
+    Object.entries(FACULTIES_CONFIG).forEach(([facKey, fac]) => {
+      const chk = document.getElementById(`gform-c12-fac-${facKey}`);
+      if (chk && chk.checked) {
+        c12Fac.push(facKey);
+        fac.subjects.forEach(subj => {
+          c12Opt[subj.key] = parseInt(document.getElementById(`gform-c12-opt-${subj.key}`)?.value) || 0;
+        });
+      }
+    });
+
+    const draftData = {
+      school_code: schoolCode,
+      exam_code: document.getElementById('gform-exam-code')?.value || '',
+      principal_name: document.getElementById('gform-principal-name')?.value || '',
+      principal_mobile: document.getElementById('gform-principal-mobile')?.value || '',
+      incharge_name: document.getElementById('gform-incharge-name')?.value || '',
+      incharge_mobile: document.getElementById('gform-incharge-mobile')?.value || '',
+      c9_total: parseInt(document.getElementById('gform-c9-total')?.value) || 0,
+      c9_sanskrit: parseInt(document.getElementById('gform-c9-sanskrit')?.value) || 0,
+      c9_urdu: parseInt(document.getElementById('gform-c9-urdu')?.value) || 0,
+      c10_total: parseInt(document.getElementById('gform-c10-total')?.value) || 0,
+      c10_sanskrit: parseInt(document.getElementById('gform-c10-sanskrit')?.value) || 0,
+      c10_urdu: parseInt(document.getElementById('gform-c10-urdu')?.value) || 0,
+      c11_comp_hindi: parseInt(document.getElementById('gform-c11-comp-hindi')?.value) || 0,
+      c11_comp_english: parseInt(document.getElementById('gform-c11-comp-english')?.value) || 0,
+      c11_total: parseInt(document.getElementById('gform-c11-total')?.value) || 0,
+      c11_faculties: c11Fac,
+      c11_optional: c11Opt,
+      c12_comp_hindi: parseInt(document.getElementById('gform-c12-comp-hindi')?.value) || 0,
+      c12_comp_english: parseInt(document.getElementById('gform-c12-comp-english')?.value) || 0,
+      c12_total: parseInt(document.getElementById('gform-c12-total')?.value) || 0,
+      c12_faculties: c12Fac,
+      c12_optional: c12Opt,
+      updated_at: timeStr
+    };
+
+    localStorage.setItem(`cbeo_form_draft_${schoolCode}`, JSON.stringify(draftData));
+
+    const draftStatusText = document.getElementById('gform-draft-text');
+    if (draftStatusText) {
+      draftStatusText.textContent = `ड्राफ्ट सुरक्षित (${timeStr})`;
+    }
+  }, 250);
+}
+
 function submitSamanParikshaForm(andPrint = false) {
   const schoolCode = document.getElementById('gform-school-code-hidden').value;
   const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
@@ -1392,6 +1505,9 @@ function submitSamanParikshaForm(andPrint = false) {
 
   STATE.samanParikshaSubmissions[schoolCode] = submission;
   localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(STATE.samanParikshaSubmissions));
+
+  // Keep draft synchronized with official submission
+  localStorage.setItem(`cbeo_form_draft_${schoolCode}`, JSON.stringify(submission));
 
   // Sync to backend file & Google Sheet
   fetch('/api/save_saman_pariksha', {
