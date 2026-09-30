@@ -50,9 +50,12 @@
           </div>
         </div>
 
-        <!-- Switch User / Logout Button -->
+        <!-- Switch User, Change Password & Logout -->
+        <button id="btn-change-password" class="btn btn-warning btn-sm" onclick="openChangePasswordModal()" title="पासवर्ड बदलें" style="font-weight:600">
+          <i class="fas fa-key"></i> पासवर्ड बदलें
+        </button>
         <button id="btn-open-login" class="btn btn-outline-light btn-sm" onclick="openLoginModal(false)">
-          <i class="fas fa-user-circle"></i> प्रोफाइल / PEEO बदलें
+          <i class="fas fa-user-circle"></i> प्रोफाइल बदलें
         </button>
         <button id="btn-logout" class="btn btn-danger btn-sm" onclick="logoutUser()" title="पोर्टल से लॉगआउट करें">
           <i class="fas fa-sign-out-alt"></i> लॉगआउट
@@ -64,25 +67,27 @@
   <!-- Sticky Main Navigation -->
   <nav class="main-nav-bar">
     <div class="nav-container">
-      <button class="nav-tab active" onclick="switchTab('dashboard')">
+      <button class="nav-tab active" id="nav-tab-saman-pariksha" onclick="switchTab('saman-pariksha')">
+        <i class="fas fa-file-signature"></i> 📋 समान परीक्षा 2026-27 (56 स्कूल)
+        <span class="tab-badge badge-danger" id="nav-sp-badge">56</span>
+      </button>
+      <button class="nav-tab" id="nav-tab-dashboard" onclick="switchTab('dashboard')">
         <i class="fas fa-chart-pie"></i> मुख्य डैशबोर्ड
       </button>
-      <button class="nav-tab" onclick="switchTab('explorer')">
+      <button class="nav-tab" id="nav-tab-explorer" onclick="switchTab('explorer')">
         <i class="fas fa-sitemap"></i> स्कूल व स्टाफ एक्सप्लोरर
       </button>
-      <button class="nav-tab" onclick="switchTab('directory')">
+      <button class="nav-tab" id="nav-tab-directory" onclick="switchTab('directory')">
         <i class="fas fa-address-book"></i> ब्लॉक संपर्क डायरेक्टरी
       </button>
-      <button class="nav-tab" onclick="switchTab('staff')">
+      <button class="nav-tab" id="nav-tab-staff" onclick="switchTab('staff')">
         <i class="fas fa-users"></i> PEEO स्टाफ प्रबंधन
       </button>
-      <button class="nav-tab" onclick="switchTab('demands')">
-        <i class="fas fa-file-invoice"></i> सक्रिय सूचना प्रपत्र
-        <span class="tab-badge badge-danger" id="nav-pending-badge">सक्रिय</span>
+      <button class="nav-tab" id="nav-tab-reports" onclick="switchTab('demands')">
+        <i class="fas fa-file-invoice"></i> अन्य सूचना मांग
       </button>
-      <button class="nav-tab" onclick="switchTab('archive')">
-        <i class="fas fa-archive"></i> पूर्ण / 7-दिवसीय आर्काइव
-        <span class="tab-badge badge-success" id="nav-archive-badge">0</span>
+      <button class="nav-tab" id="nav-tab-archive" onclick="switchTab('archive')">
+        <i class="fas fa-archive"></i> पूर्ण आर्काइव
       </button>
       <button class="nav-tab" id="nav-tab-admin" onclick="switchTab('admin-control')">
         <i class="fas fa-sliders-h"></i> एडमिन कंट्रोल रूम
@@ -122,8 +127,250 @@
       </button>
     </div>
 
+    <!-- 0. SAMAN PARIKSHA (DISTRICT UNIFORM EXAM) 2026-27 MAIN VIEW -->
+    <section id="view-saman-pariksha" class="content-view active">
+      <!-- Hero Banner -->
+      <div class="sp-hero-banner">
+        <div class="sp-hero-title">
+          <h2><i class="fas fa-file-signature"></i> जिला समान परीक्षा योजना (सत्र 2026-27)</h2>
+          <div style="font-size:0.95rem; opacity:0.95; margin-top:0.25rem">
+            कक्षा 9 से 12 प्रश्न-पत्र मांग एवं विषयवार विद्यार्थी नामांकन प्रपत्र (Question Paper Indent Statement)
+          </div>
+          <div class="sp-hero-badges">
+            <span class="sp-badge"><i class="fas fa-school"></i> 56 माध्यमिक एवं उच्च माध्यमिक विद्यालय (48 राजकीय + 8 निजी)</span>
+            <span class="sp-badge"><i class="fas fa-calendar-alt"></i> अंतिम तिथि: 05 अक्टूबर 2026</span>
+            <span class="sp-badge"><i class="fas fa-stamp"></i> PEEO सीधी मोहर व संस्था प्रधान हस्ताक्षर अनिवार्य</span>
+          </div>
+        </div>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+          <a href="https://docs.google.com/spreadsheets/d/1tVP7gbIuUP576E2a1Qk6TadXUSP7a5c7ah8HzKeTk4k/edit" target="_blank" class="btn btn-light btn-sm" style="color:#1e3a8a; font-weight:700">
+            <i class="fab fa-google-drive"></i> Google Sheet में देखें
+          </a>
+        </div>
+      </div>
+
+      <!-- PEEO & School View Container -->
+      <div id="sp-peeo-container" style="display:none">
+        <div class="section-box" style="margin-bottom:1.5rem">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem">
+            <div>
+              <h3 style="color:#1e3a8a; font-size:1.15rem; font-weight:800; display:flex; align-items:center; gap:0.5rem">
+                <i class="fas fa-university"></i> <span id="sp-peeo-name-heading">PEEO कार्यक्षेत्र</span>
+              </h3>
+              <p style="font-size:0.85rem; color:#475569; margin-top:0.25rem">
+                आपके PEEO परिक्षेत्र के अंतर्गत आने वाले <strong>समान परीक्षा 2026-27</strong> के लिए पात्र माध्यमिक एवं उच्च माध्यमिक विद्यालयों की सूची। प्रत्येक विद्यालय का प्रपत्र भरें व अधिकृत PDF प्रिंट करें:
+              </p>
+            </div>
+            <div style="display:flex; gap:0.75rem; align-items:center">
+              <span id="sp-peeo-progress-badge" class="sp-status-badge warning" style="font-size:0.85rem; padding:0.4rem 0.9rem">
+                प्रगति: 0 / 0 पूर्ण
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PEEO Target Schools Cards Grid -->
+        <div class="sp-schools-grid" id="sp-peeo-schools-grid">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Admin View Container -->
+      <div id="sp-admin-container" style="display:none">
+        <!-- 56 Schools Metric Overview -->
+        <div class="stat-cards-grid" style="margin-bottom:1.5rem">
+          <div class="stat-card blue">
+            <div class="stat-icon-wrapper"><i class="fas fa-school"></i></div>
+            <div class="stat-info">
+              <h3>56</h3>
+              <p>लक्षित विद्यालय (Target Schools)</p>
+            </div>
+          </div>
+          <div class="stat-card green">
+            <div class="stat-icon-wrapper"><i class="fas fa-landmark"></i></div>
+            <div class="stat-info">
+              <h3>48</h3>
+              <p>राजकीय विद्यालय (Govt Schools)</p>
+            </div>
+          </div>
+          <div class="stat-card orange">
+            <div class="stat-icon-wrapper"><i class="fas fa-building"></i></div>
+            <div class="stat-info">
+              <h3>8</h3>
+              <p>निजी विद्यालय (Private Schools)</p>
+            </div>
+          </div>
+          <div class="stat-card purple">
+            <div class="stat-icon-wrapper"><i class="fas fa-check-circle"></i></div>
+            <div class="stat-info">
+              <h3 id="sp-admin-submitted-count">0</h3>
+              <p>सबमिट हो चुके प्रपत्र</p>
+            </div>
+          </div>
+          <div class="stat-card" style="border-left:4px solid #f59e0b">
+            <div class="stat-icon-wrapper" style="background:#fef3c7; color:#d97706"><i class="fas fa-hourglass-half"></i></div>
+            <div class="stat-info">
+              <h3 id="sp-admin-pending-count" style="color:#d97706">56</h3>
+              <p>भरना शेष (Pending)</p>
+            </div>
+          </div>
+          <div class="stat-card" style="border-left:4px solid #0284c7">
+            <div class="stat-icon-wrapper" style="background:#e0f2fe; color:#0284c7"><i class="fas fa-copy"></i></div>
+            <div class="stat-info">
+              <h3 id="sp-admin-total-papers" style="color:#0284c7">0</h3>
+              <p>कुल मांग प्रश्न-पत्र (9-12)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Action Bar -->
+        <div class="section-box" style="margin-bottom:1.5rem">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem">
+            <div>
+              <h3 style="color:#1b365d; font-size:1.1rem; font-weight:800">
+                <i class="fas fa-tools text-primary"></i> समान परीक्षा समेकित डेटा एवं Google Sheets नियंत्रण
+              </h3>
+              <p style="font-size:0.83rem; color:#64748b">
+                56 स्कूलों का संपूर्ण डेटा एक क्लिक में एक्सेल में डाउनलोड करें अथवा लाइव गूगल शीट में सिंक करें।
+              </p>
+            </div>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+              <button class="btn btn-success btn-sm" onclick="exportSamanParikshaMasterCSV()">
+                <i class="fas fa-file-excel"></i> समेकित एक्सेल डाउनलोड (56 स्कूल)
+              </button>
+              <button class="btn btn-primary btn-sm" onclick="triggerDriveSheetSync()">
+                <i class="fas fa-sync-alt"></i> Google Drive शीट सिंक करें
+              </button>
+              <a href="https://docs.google.com/spreadsheets/d/1tVP7gbIuUP576E2a1Qk6TadXUSP7a5c7ah8HzKeTk4k/edit" target="_blank" class="btn btn-drive btn-sm">
+                <i class="fab fa-google-drive"></i> लाइव Google Sheet खोलें
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PEEO Portal Tab Visibility Controls for Admin -->
+        <div class="section-box" style="margin-bottom:1.5rem">
+          <div class="section-header">
+            <div class="section-title">
+              <i class="fas fa-eye text-primary"></i>
+              <h2>⚙️ PEEO पोर्टल टैब दृश्यता नियंत्रण (PEEO Portal Tab Visibility Controls)</h2>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="saveTabAccessConfig()">
+              <i class="fas fa-save"></i> टैब सेटिंग्स सुरक्षित करें
+            </button>
+          </div>
+          <p style="font-size:0.85rem; color:#64748b; margin-bottom:1rem">
+            आप प्रशासनिक आवश्यकतानुसार यह नियंत्रित कर सकते हैं कि PEEO लॉगिन पर कौन-कौन से टैब दिखेंगे। <em>(अनावश्यक टैब बंद रखने पर PEEO केवल समान परीक्षा प्रपत्र पर ही ध्यान केंद्रित कर सकेंगे)</em>:
+          </p>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:1rem">
+            <div class="tab-toggle-item">
+              <div class="tab-toggle-info">
+                <strong>📋 समान परीक्षा 2026-27 प्रपत्र</strong>
+                <span>मुख्य परीक्षा मांग प्रपत्र (हमेशा सक्रिय)</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" checked disabled>
+                <span class="switch-slider" style="background-color:#16a34a"></span>
+              </label>
+            </div>
+
+            <div class="tab-toggle-item">
+              <div class="tab-toggle-info">
+                <strong>📞 ब्लॉक संपर्क डायरेक्टरी</strong>
+                <span>1,048 कार्मिकों की फोन डायरेक्टरी</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="tab-toggle-directory" onchange="saveTabAccessConfig()">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+
+            <div class="tab-toggle-item">
+              <div class="tab-toggle-info">
+                <strong>🏫 स्कूल व स्टाफ एक्सप्लोरर</strong>
+                <span>3-स्तरीय विद्यालय व कार्मिक खोज</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="tab-toggle-explorer" onchange="saveTabAccessConfig()">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+
+            <div class="tab-toggle-item">
+              <div class="tab-toggle-info">
+                <strong>📄 सबमिट प्रपत्र व समेकित रिपोर्ट</strong>
+                <span>सबमिट की गई प्रविष्टियां व PDF</span>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="tab-toggle-reports" checked onchange="saveTabAccessConfig()">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Master 56 Schools Interactive Table -->
+        <div class="section-box">
+          <div class="section-header">
+            <div class="section-title">
+              <i class="fas fa-list-ol text-secondary"></i>
+              <h2>समान परीक्षा 2026-27: समस्त 56 माध्यमिक एवं उच्च माध्यमिक विद्यालय मॉनिटरिंग</h2>
+              <span class="section-count" id="sp-table-count">56 विद्यालय</span>
+            </div>
+          </div>
+
+          <div class="toolbar-row">
+            <div class="search-box-wrapper">
+              <i class="fas fa-search search-icon"></i>
+              <input type="text" id="sp-search-input" placeholder="विद्यालय का नाम, शाला दर्पण कोड, परीक्षा कोड या PEEO खोजें..." oninput="filterSamanParikshaTable()">
+            </div>
+            <select id="sp-category-filter" class="filter-select" onchange="filterSamanParikshaTable()">
+              <option value="all">सभी 56 विद्यालय (48 Govt + 8 Pvt)</option>
+              <option value="Government">केवल राजकीय विद्यालय (48 Govt)</option>
+              <option value="Private">केवल निजी विद्यालय (8 Pvt)</option>
+            </select>
+            <select id="sp-status-filter" class="filter-select" onchange="filterSamanParikshaTable()">
+              <option value="all">सभी स्थितियां (सबमिट + लम्बित)</option>
+              <option value="submitted">केवल सबमिट हो चुके प्रपत्र</option>
+              <option value="pending">केवल लम्बित प्रपत्र</option>
+            </select>
+            <select id="sp-peeo-filter" class="filter-select" onchange="filterSamanParikshaTable()">
+              <option value="all">समस्त 25 PEEO क्षेत्र</option>
+            </select>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>क्र.</th>
+                  <th>विद्यालय का नाम व शाला दर्पण कोड</th>
+                  <th>प्रकार</th>
+                  <th>संबंधित PEEO</th>
+                  <th>स्कूल परीक्षा कोड</th>
+                  <th>संस्था प्रधान</th>
+                  <th>परीक्षा प्रभारी</th>
+                  <th style="text-align:right">9वीं</th>
+                  <th style="text-align:right">10वीं</th>
+                  <th style="text-align:right">11वीं</th>
+                  <th style="text-align:right">12वीं</th>
+                  <th style="text-align:right">कुल योग</th>
+                  <th>स्थिति</th>
+                  <th>कार्यवाही (Action)</th>
+                </tr>
+              </thead>
+              <tbody id="sp-admin-tbody">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 1. DASHBOARD VIEW -->
-    <section id="view-dashboard" class="content-view active">
+    <section id="view-dashboard" class="content-view">
       <div class="stat-cards-grid">
         <div class="stat-card blue">
           <div class="stat-icon-wrapper"><i class="fas fa-school"></i></div>
@@ -962,6 +1209,367 @@
         <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-add-school')">रद्द करें</button>
         <button class="btn btn-primary" onclick="saveNewSchool()">
           <i class="fas fa-save"></i> विद्यालय जोड़ें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. GOOGLE FORM STYLE SAMAN PARIKSHA MODAL (MOBILE FRIENDLY) -->
+  <div id="modal-saman-pariksha-form" class="modal-overlay">
+    <div class="modal-card" style="max-width:920px; background:#f0f4f8; padding:0; overflow:hidden">
+      <div class="modal-header" style="background:#1b365d; color:#ffffff; padding:1.25rem 1.75rem; border-bottom:4px solid #ff9933">
+        <div>
+          <h3 style="color:#ffffff; font-size:1.25rem; font-weight:800; display:flex; align-items:center; gap:0.5rem">
+            <i class="fas fa-file-invoice text-warning"></i> जिला समान परीक्षा 2026-27 | नामांकन एवं प्रश्न-पत्र मांग प्रपत्र
+          </h3>
+          <span style="font-size:0.82rem; color:#bae6fd">District Uniform Examination: Question Paper Indent Form (Classes 9 to 12)</span>
+        </div>
+        <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-saman-pariksha-form')">&times;</button>
+      </div>
+
+      <div class="modal-body" style="padding:1.5rem; max-height:calc(90vh - 140px); overflow-y:auto">
+        <div class="gform-container">
+          
+          <!-- Banner Card -->
+          <div class="gform-banner-card">
+            <h2>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</h2>
+            <div style="font-size:1rem; font-weight:700; color:#fde047; margin-bottom:0.35rem">
+              DISTRICT UNIFORM EXAMINATION (समान परीक्षा सत्र 2026-27)
+            </div>
+            <p>
+              कक्षा 9, 10, 11 एवं 12 के प्रश्न-पत्र मुद्रण हेतु विषयवार वास्तविक विद्यार्थी नामांकन प्रविष्टि प्रपत्र। कृपया शाला दर्पण / प्रवेश पंजिका अनुसार सही संख्या दर्ज करें। <em>(अनावश्यक विषयों में संख्या 0 रहने दें)</em>।
+            </p>
+          </div>
+
+          <!-- Hidden tracking input -->
+          <input type="hidden" id="gform-school-code-hidden">
+
+          <!-- Card 1: School Identity & Exam Code -->
+          <div class="gform-card">
+            <div class="gform-card-title">
+              <i class="fas fa-school text-primary"></i> 1. School Identity & Examination Code (विद्यालय विवरण)
+            </div>
+            <div class="gform-card-desc">All school identification details are pre-filled from official master records.</div>
+            
+            <div class="gform-row">
+              <div class="gform-field">
+                <label>School Name (विद्यालय का नाम):</label>
+                <input type="text" id="gform-school-name" class="gform-input" readonly>
+              </div>
+              <div class="gform-field">
+                <label>Shala Darpan / PSP Code (शाला दर्पण कोड):</label>
+                <input type="text" id="gform-school-code" class="gform-input" readonly>
+              </div>
+            </div>
+
+            <div class="gform-row">
+              <div class="gform-field">
+                <label>PEEO Nodal Panchayat (संबंधित PEEO):</label>
+                <input type="text" id="gform-peeo-name" class="gform-input" readonly>
+              </div>
+              <div class="gform-field">
+                <label>School Category & Type (श्रेणी व प्रकार):</label>
+                <input type="text" id="gform-school-cat" class="gform-input" readonly>
+              </div>
+            </div>
+
+            <div class="gform-row" style="margin-bottom:0">
+              <div class="gform-field" style="grid-column: span 2">
+                <label style="color:#1e3a8a">
+                  <strong>School Examination Code (परीक्षा केंद्र / स्कूल कोड) <span style="color:red">*</span>:</strong>
+                </label>
+                <input type="text" id="gform-exam-code" class="gform-input" placeholder="e.g. 5201, 1402 (जिला समान परीक्षा बोर्ड द्वारा आवंटित परीक्षा कोड)" style="border:2px solid #2563eb; font-weight:700">
+                <span style="font-size:0.75rem; color:#64748b">DIET / जिला समान परीक्षा समिति द्वारा जारी 4-6 अंकों का आधिकारिक परीक्षा कोड दर्ज करें।</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Head of School & Examination In-Charge -->
+          <div class="gform-card">
+            <div class="gform-card-title">
+              <i class="fas fa-user-tie text-secondary"></i> 2. Authority & Examination In-Charge (संस्था प्रधान एवं परीक्षा प्रभारी)
+            </div>
+            <div class="gform-card-desc">Contact information for paper coordination and delivery alerts.</div>
+
+            <div class="gform-row">
+              <div class="gform-field">
+                <label>Head of School / Sanstha Pradhan Name <span style="color:red">*</span>:</label>
+                <input type="text" id="gform-principal-name" class="gform-input" placeholder="संस्था प्रधान का पूरा नाम">
+              </div>
+              <div class="gform-field">
+                <label>Head of School Mobile Number <span style="color:red">*</span>:</label>
+                <input type="tel" id="gform-principal-mobile" maxlength="10" class="gform-input" placeholder="10-अंकों का मोबाइल नंबर">
+              </div>
+            </div>
+
+            <div class="gform-row" style="margin-bottom:0">
+              <div class="gform-field">
+                <label>Examination In-charge (परीक्षा प्रभारी) Name <span style="color:red">*</span>:</label>
+                <input type="text" id="gform-incharge-name" class="gform-input" placeholder="परीक्षा प्रभारी का नाम">
+              </div>
+              <div class="gform-field">
+                <label>Examination In-charge Mobile Number <span style="color:red">*</span>:</label>
+                <input type="tel" id="gform-incharge-mobile" maxlength="10" class="gform-input" placeholder="10-अंकों का मोबाइल नंबर">
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Class 9 & Class 10 Enrollment -->
+          <div class="gform-card">
+            <div class="gform-card-title">
+              <i class="fas fa-users text-primary"></i> 3. Class 9 & Class 10 Total Student Enrollment (कक्षा 9 एवं 10 कुल नामांकन)
+            </div>
+            <div class="gform-card-desc">
+              All students in Classes 9 and 10 appear in compulsory general papers (Hindi, English, Science, Social Science, Mathematics, Third Language).
+            </div>
+
+            <div class="gform-row" style="margin-bottom:0">
+              <div class="gform-field">
+                <label>Class 9 Total Students (कक्षा 9 कुल विद्यार्थी) <span style="color:red">*</span>:</label>
+                <input type="number" id="gform-c9-total" min="0" value="0" class="gform-input" style="font-weight:700; font-size:1.1rem; color:#1e40af" oninput="calculateGFormTotals()">
+              </div>
+              <div class="gform-field">
+                <label>Class 10 Total Students (कक्षा 10 कुल विद्यार्थी) <span style="color:red">*</span>:</label>
+                <input type="number" id="gform-c10-total" min="0" value="0" class="gform-input" style="font-weight:700; font-size:1.1rem; color:#1e40af" oninput="calculateGFormTotals()">
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Class 11 Subject-wise Student Enrollment -->
+          <div class="gform-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:0.5rem">
+              <div class="gform-card-title" style="margin-bottom:0">
+                <i class="fas fa-book-open text-primary"></i> 4. Class 11 Subject-wise Enrollment (कक्षा 11 विषयवार नामांकन)
+              </div>
+              <div style="font-weight:700; color:#15803d; background:#dcfce7; padding:4px 10px; border-radius:6px; font-size:0.85rem">
+                कक्षा 11 कुल: <span id="gform-c11-total-display">0</span> विद्यार्थी
+              </div>
+            </div>
+            <div class="gform-card-desc">Enter enrollment only for subjects currently taught in your institution. Leave other subjects as 0.</div>
+
+            <!-- Compulsory Subjects -->
+            <div style="font-weight:700; color:#1e3a8a; font-size:0.88rem; margin-bottom:0.5rem">
+              अनिवार्य विषय (Compulsory Subjects):
+            </div>
+            <div class="gform-row">
+              <div class="gform-field">
+                <label>Compulsory Hindi (अनिवार्य हिंदी):</label>
+                <input type="number" id="gform-c11-comp-hindi" min="0" value="0" class="gform-input" oninput="calculateGFormTotals()">
+              </div>
+              <div class="gform-field">
+                <label>Compulsory English (अनिवार्य अंग्रेजी):</label>
+                <input type="number" id="gform-c11-comp-english" min="0" value="0" class="gform-input" oninput="calculateGFormTotals()">
+              </div>
+            </div>
+
+            <!-- Optional Subjects Grid -->
+            <div style="font-weight:700; color:#1e3a8a; font-size:0.88rem; margin:1rem 0 0.5rem 0">
+              ऐच्छिक विषय (Optional Subjects - Arts, Science, Agriculture, Commerce):
+            </div>
+            <div class="gform-subject-grid" id="gform-c11-subjects-grid">
+              <!-- Dynamically populated subject inputs -->
+            </div>
+
+            <div style="margin-top:1rem; display:flex; justify-content:flex-end; align-items:center; gap:0.5rem">
+              <label style="font-weight:700; font-size:0.9rem">कक्षा 11 कुल विद्यार्थी संख्या:</label>
+              <input type="number" id="gform-c11-total" min="0" value="0" class="gform-input" style="width:120px; font-weight:800; text-align:right" oninput="calculateGFormTotals()">
+            </div>
+          </div>
+
+          <!-- Card 5: Class 12 Subject-wise Student Enrollment -->
+          <div class="gform-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:0.5rem">
+              <div class="gform-card-title" style="margin-bottom:0">
+                <i class="fas fa-graduation-cap text-primary"></i> 5. Class 12 Subject-wise Enrollment (कक्षा 12 विषयवार नामांकन)
+              </div>
+              <div style="font-weight:700; color:#15803d; background:#dcfce7; padding:4px 10px; border-radius:6px; font-size:0.85rem">
+                कक्षा 12 कुल: <span id="gform-c12-total-display">0</span> विद्यार्थी
+              </div>
+            </div>
+            <div class="gform-card-desc">Enter enrollment only for subjects currently taught in your institution. Leave other subjects as 0.</div>
+
+            <!-- Compulsory Subjects -->
+            <div style="font-weight:700; color:#1e3a8a; font-size:0.88rem; margin-bottom:0.5rem">
+              अनिवार्य विषय (Compulsory Subjects):
+            </div>
+            <div class="gform-row">
+              <div class="gform-field">
+                <label>Compulsory Hindi (अनिवार्य हिंदी):</label>
+                <input type="number" id="gform-c12-comp-hindi" min="0" value="0" class="gform-input" oninput="calculateGFormTotals()">
+              </div>
+              <div class="gform-field">
+                <label>Compulsory English (अनिवार्य अंग्रेजी):</label>
+                <input type="number" id="gform-c12-comp-english" min="0" value="0" class="gform-input" oninput="calculateGFormTotals()">
+              </div>
+            </div>
+
+            <!-- Optional Subjects Grid -->
+            <div style="font-weight:700; color:#1e3a8a; font-size:0.88rem; margin:1rem 0 0.5rem 0">
+              ऐच्छिक विषय (Optional Subjects - Arts, Science, Agriculture, Commerce):
+            </div>
+            <div class="gform-subject-grid" id="gform-c12-subjects-grid">
+              <!-- Dynamically populated subject inputs -->
+            </div>
+
+            <div style="margin-top:1rem; display:flex; justify-content:flex-end; align-items:center; gap:0.5rem">
+              <label style="font-weight:700; font-size:0.9rem">कक्षा 12 कुल विद्यार्थी संख्या:</label>
+              <input type="number" id="gform-c12-total" min="0" value="0" class="gform-input" style="width:120px; font-weight:800; text-align:right" oninput="calculateGFormTotals()">
+            </div>
+          </div>
+
+          <!-- Card 6: Live Summary Card -->
+          <div class="gform-summary-card">
+            <div class="gform-summary-stats">
+              <div class="gform-stat-item">
+                <span>कक्षा 9 नामांकन:</span>
+                <span id="gform-sum-c9">0</span>
+              </div>
+              <div class="gform-stat-item">
+                <span>कक्षा 10 नामांकन:</span>
+                <span id="gform-sum-c10">0</span>
+              </div>
+              <div class="gform-stat-item">
+                <span>कक्षा 11 कुल:</span>
+                <span id="gform-sum-c11">0</span>
+              </div>
+              <div class="gform-stat-item">
+                <span>कक्षा 12 कुल:</span>
+                <span id="gform-sum-c12">0</span>
+              </div>
+            </div>
+            <div class="gform-grand-total">
+              <div class="gt-label">कुल मांग प्रश्न-पत्र संख्या</div>
+              <div class="gt-val" id="gform-sum-grand">0</div>
+            </div>
+          </div>
+
+          <!-- Card 7: Declaration, Rectangular Stamp & Signatures -->
+          <div class="gform-card">
+            <div class="gform-card-title">
+              <i class="fas fa-stamp text-secondary"></i> 6. Verification, Stamp & Signatures (सत्यापन व मुहर)
+            </div>
+            
+            <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:1rem; margin-bottom:1.25rem">
+              <label style="display:flex; align-items:flex-start; gap:0.75rem; cursor:pointer">
+                <input type="checkbox" id="gform-certify-check" checked style="width:20px; height:20px; margin-top:2px">
+                <span style="font-size:0.88rem; color:#1e40af; line-height:1.5">
+                  <strong>सत्यापन प्रमाण-पत्र:</strong> प्रमाणित किया जाता है कि उपरोक्तानुसार कक्षा 9 से 12 तक के विद्यार्थियों का कुल एवं विषयवार नामांकन विद्यालय की आधिकारिक प्रवेश पंजिका / शाला दर्पण पोर्टल से सत्यापित कर लिया गया है। यह डेटा समान परीक्षा प्रश्न-पत्र मुद्रण हेतु अधिकृत है।
+                </span>
+              </label>
+            </div>
+
+            <!-- Dynamic Seal & Signatures Preview -->
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem; align-items:center; text-align:center">
+              
+              <!-- Incharge Sign Box -->
+              <div style="border:1px dashed #cbd5e1; border-radius:8px; padding:1rem; background:#f8fafc">
+                <div style="height:48px; display:flex; align-items:center; justify-content:center; color:#2563eb; font-family:'Brush Script MT', cursive; font-size:1.4rem" id="gform-sign-incharge-preview">
+                  हस्ताक्षर परीक्षा प्रभारी
+                </div>
+                <div style="border-top:1px solid #94a3b8; padding-top:0.35rem; font-size:0.8rem; font-weight:700; color:#334155">
+                  हस्ताक्षर परीक्षा प्रभारी
+                </div>
+              </div>
+
+              <!-- Official Rectangular PEEO Seal (सीधी मोहर) -->
+              <div style="display:flex; justify-content:center">
+                <div class="rectangular-stamp" id="gform-rectangular-stamp">
+                  <div class="stamp-top-line">कार्यालय पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)</div>
+                  <div class="stamp-mid-line" id="gform-stamp-school">रा.उ.मा.वि. भिनाय</div>
+                  <div class="stamp-bottom-line" id="gform-stamp-block">ग्रा.पं. भिनाय, ब्लॉक-भिनाय (अजमेर)</div>
+                </div>
+              </div>
+
+              <!-- Principal Sign Box -->
+              <div style="border:1px dashed #cbd5e1; border-radius:8px; padding:1rem; background:#f8fafc">
+                <div style="height:48px; display:flex; align-items:center; justify-content:center; color:#1e3a8a; font-family:'Brush Script MT', cursive; font-size:1.4rem" id="gform-sign-principal-preview">
+                  हस्ताक्षर संस्था प्रधान
+                </div>
+                <div style="border-top:1px solid #94a3b8; padding-top:0.35rem; font-size:0.8rem; font-weight:700; color:#334155">
+                  हस्ताक्षर मय सील संस्था प्रधान
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="modal-footer" style="background:#ffffff; border-top:1px solid #e2e8f0; padding:1rem 1.75rem; display:flex; justify-content:space-between; align-items:center">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-saman-pariksha-form')">
+          रद्द करें (Cancel)
+        </button>
+        <div style="display:flex; gap:0.75rem">
+          <button class="btn btn-primary" onclick="submitSamanParikshaForm(false)">
+            <i class="fas fa-save"></i> सुरक्षित करें (Submit Form)
+          </button>
+          <button class="btn btn-success" onclick="submitSamanParikshaForm(true)">
+            <i class="fas fa-print"></i> सबमिट व अधिकृत PDF प्रिंट करें
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. OFFICIAL PRINTABLE EXAM PDF PREVIEW MODAL -->
+  <div id="modal-exam-pdf-preview" class="modal-overlay">
+    <div class="modal-card" style="max-width:940px; padding:0; background:#f8fafc; overflow:hidden">
+      <div class="modal-header" style="background:#1b365d; color:#ffffff; padding:1rem 1.5rem">
+        <h3 style="color:#ffffff; font-size:1.15rem; display:flex; align-items:center; gap:0.5rem">
+          <i class="fas fa-file-pdf text-danger"></i> समान परीक्षा 2026-27 | अधिकृत प्रपत्र (Printable Official PDF)
+        </h3>
+        <div style="display:flex; gap:0.5rem">
+          <button class="btn btn-success btn-sm" onclick="printOfficialExamDocument()">
+            <i class="fas fa-print"></i> प्रिंट / PDF सेव करें
+          </button>
+          <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-exam-pdf-preview')">&times;</button>
+        </div>
+      </div>
+      <div class="modal-body" style="padding:1.5rem; max-height:calc(90vh - 130px); overflow-y:auto">
+        <div id="printable-exam-document-content" class="printable-exam-sheet">
+          <!-- Populated dynamically with official government layout, seal, and signatures -->
+        </div>
+      </div>
+      <div class="modal-footer" style="padding:0.85rem 1.5rem">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-exam-pdf-preview')">
+          बंद करें (Close)
+        </button>
+        <button class="btn btn-primary" onclick="printOfficialExamDocument()">
+          <i class="fas fa-print"></i> A4 साइज प्रिंट करें (Print Document)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. CHANGE PASSWORD MODAL -->
+  <div id="modal-change-password" class="modal-overlay">
+    <div class="modal-card" style="max-width:480px">
+      <div class="modal-header">
+        <h3><i class="fas fa-key text-warning"></i> लॉगिन पासवर्ड बदलें (Change Password)</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-change-password')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="background:#eff6ff; border-left:4px solid #2563eb; padding:0.75rem; border-radius:6px; margin-bottom:1rem; font-size:0.83rem; color:#1e40af">
+          <i class="fas fa-shield-alt"></i> आपका डिफ़ॉल्ट पासवर्ड आपका <strong>शाला दर्पण कोड</strong> है। आप अपनी सुविधानुसार नया पासवर्ड सेट कर सकते हैं।
+        </div>
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label>वर्तमान पासवर्ड (Current Password):</label>
+          <input type="password" id="cp-current-password" placeholder="वर्तमान पासवर्ड दर्ज करें">
+        </div>
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label>नया पासवर्ड (New Password):</label>
+          <input type="password" id="cp-new-password" placeholder="नया पासवर्ड दर्ज करें (उदा. abc@123)">
+        </div>
+        <div class="form-group">
+          <label>नए पासवर्ड की पुष्टि (Confirm New Password):</label>
+          <input type="password" id="cp-confirm-password" placeholder="नया पासवर्ड पुनः दर्ज करें">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-change-password')">रद्द करें</button>
+        <button class="btn btn-primary" onclick="submitChangePassword()">
+          <i class="fas fa-save"></i> नया पासवर्ड सुरक्षित करें
         </button>
       </div>
     </div>

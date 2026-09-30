@@ -1,3 +1,7 @@
 __pycache__/
 *.pyc
 .system_generated/
+test_*.png
+test_*.py
+patch_app_js_*.py
+run_portal_test.py
