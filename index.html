@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय | आधिकारिक सूचना एवं प्रबंधन पोर्टल</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Tricolor Ribbon -->
+  <div class="top-tricolor"></div>
+
+  <!-- Official Government Header -->
+  <header class="official-header">
+    <div class="header-container">
+      <div class="gov-branding">
+        <div class="emblem-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="gov-titles">
+          <h1>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</h1>
+          <div class="gov-subtitles">
+            <span>स्कूल शिक्षा विभाग, राजस्थान सरकार</span>
+            <span>•</span>
+            <span>NIC-SD ID: <strong>8140</strong></span>
+            <span>•</span>
+            <span>IFMS ID: <strong>1408</strong></span>
+            <span class="badge-tag">25 PEEO परिक्षेत्र</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Live Google Drive Quick Link -->
+        <a id="btn-drive-folder" href="https://drive.google.com/drive/folders/1wxRe4NMIkKS8VDAAVzUB2KXJioEl4OFu" target="_blank" class="btn btn-drive btn-sm" title="Google Drive पर सभी शीट्स देखें">
+          <i class="fab fa-google-drive"></i> Google Drive फोल्डर
+        </a>
+
+        <!-- Active User Badge -->
+        <div class="user-session-card">
+          <div class="user-session-icon" id="user-badge-initial">A</div>
+          <div class="user-session-details">
+            <span class="user-name-role" id="user-display-name">मुख्य ब्लॉक शिक्षा अधिकारी (Admin)</span>
+            <span class="user-subtext" id="user-display-subtext">सम्पूर्ण ब्लॉक नियंत्रण (25 PEEO)</span>
+          </div>
+        </div>
+
+        <!-- Switch User / Logout Button -->
+        <button id="btn-open-login" class="btn btn-outline-light btn-sm" onclick="openLoginModal()">
+          <i class="fas fa-user-circle"></i> लॉगिन / PEEO बदलें
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Main Navigation -->
+  <nav class="main-nav-bar">
+    <div class="nav-container">
+      <button class="nav-tab active" onclick="switchTab('dashboard')">
+        <i class="fas fa-chart-pie"></i> मुख्य डैशबोर्ड
+      </button>
+      <button class="nav-tab" onclick="switchTab('directory')">
+        <i class="fas fa-address-book"></i> संपर्क डायरेक्टरी
+      </button>
+      <button class="nav-tab" onclick="switchTab('staff')">
+        <i class="fas fa-users"></i> PEEO स्टाफ प्रबंधन
+      </button>
+      <button class="nav-tab" onclick="switchTab('demands')">
+        <i class="fas fa-file-invoice"></i> सक्रिय सूचना प्रपत्र
+        <span class="tab-badge badge-danger" id="nav-pending-badge">3 बाकी</span>
+      </button>
+      <button class="nav-tab" onclick="switchTab('archive')">
+        <i class="fas fa-archive"></i> पूर्ण / 7-दिवसीय आर्काइव
+        <span class="tab-badge badge-success" id="nav-archive-badge">0</span>
+      </button>
+      <button class="nav-tab" id="nav-tab-admin" onclick="switchTab('admin-control')">
+        <i class="fas fa-sliders-h"></i> एडमिन कंट्रोल रूम
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main class="app-main">
+
+    <!-- Active Notice Banner -->
+    <div class="portal-notice-banner">
+      <div class="notice-content">
+        <i class="fas fa-bullhorn fa-lg"></i>
+        <div>
+          <strong>कार्यालय आदेश / सूचना:</strong> समस्त 25 PEEO महोदय अपने अधीनस्थ विद्यालयों का स्टाफ विवरण सत्यापित करें एवं सक्रिय सूचना प्रपत्रों को डिजिटल मोहर व हस्ताक्षर सहित समय सीमा में सबमिट करें।
+        </div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="switchTab('demands')">
+        सूचनाएं भरें <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+
+    <!-- 1. DASHBOARD VIEW -->
+    <section id="view-dashboard" class="content-view active">
+      <div class="stat-cards-grid">
+        <div class="stat-card blue">
+          <div class="stat-icon-wrapper"><i class="fas fa-school"></i></div>
+          <div class="stat-info">
+            <h3 id="stat-peeo-count">25</h3>
+            <p>कुल PEEO / UCEEO</p>
+          </div>
+        </div>
+        <div class="stat-card orange">
+          <div class="stat-icon-wrapper"><i class="fas fa-chalkboard-teacher"></i></div>
+          <div class="stat-info">
+            <h3 id="stat-schools-count">104</h3>
+            <p>अधीनस्थ विद्यालय</p>
+          </div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-icon-wrapper"><i class="fas fa-user-tie"></i></div>
+          <div class="stat-info">
+            <h3 id="stat-staff-count">441</h3>
+            <p>दर्ज शिक्षक / कार्मिक</p>
+          </div>
+        </div>
+        <div class="stat-card purple">
+          <div class="stat-icon-wrapper"><i class="fas fa-tasks"></i></div>
+          <div class="stat-info">
+            <h3 id="stat-active-demands">3</h3>
+            <p>सक्रिय सूचना मांग</p>
+          </div>
+        </div>
+        <div class="stat-card red">
+          <div class="stat-icon-wrapper"><i class="fas fa-exclamation-circle"></i></div>
+          <div class="stat-info">
+            <h3 id="stat-compliance-percent">0%</h3>
+            <p>अनुपालना स्थिति</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action / Live Demand Spotlight -->
+      <div class="section-box">
+        <div class="section-header">
+          <div class="section-title">
+            <i class="fas fa-clock text-warning"></i>
+            <h2>तत्काल आवश्यक सूचना मांग (Active Information Demands)</h2>
+          </div>
+          <button class="btn btn-outline-light btn-sm text-dark" style="color:#1b365d; border-color:#cbd5e1" onclick="switchTab('demands')">
+            सभी सूचनाएं देखें <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+        <div id="dashboard-demands-preview" class="demands-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- 25 PEEO Overview Matrix -->
+      <div class="section-box">
+        <div class="section-header">
+          <div class="section-title">
+            <i class="fas fa-th-large text-primary"></i>
+            <h2>भिनाय ब्लॉक: 25 PEEO परिक्षेत्र एवं नोडल विद्यालय</h2>
+            <span class="section-count">25 नोडल केंद्र</span>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="exportPEEOTableCSV()">
+            <i class="fas fa-download"></i> PEEO सूची डाउनलोड करें
+          </button>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table" id="dashboard-peeo-table">
+            <thead>
+              <tr>
+                <th>क्र.सं.</th>
+                <th>PEEO / नोडल नाम</th>
+                <th>ग्राम पंचायत</th>
+                <th>प्रभारी प्रधानाचार्य</th>
+                <th>मोबाइल नंबर</th>
+                <th>आधिकारिक ईमेल</th>
+                <th>अधीन विद्यालय</th>
+                <th>त्वरित क्रिया</th>
+              </tr>
+            </thead>
+            <tbody id="dashboard-peeo-tbody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. DIRECTORY VIEW -->
+    <section id="view-directory" class="content-view">
+      <div class="section-box">
+        <div class="section-header">
+          <div class="section-title">
+            <i class="fas fa-address-book text-secondary"></i>
+            <h2>CBEO भिनाय: आधिकारिक फोन एवं ईमेल डायरेक्टरी</h2>
+          </div>
+          <div style="display:flex; gap:0.5rem">
+            <button class="btn btn-success btn-sm" onclick="exportDirectoryCSV()">
+              <i class="fas fa-file-excel"></i> एक्सेल डाउनलोड
+            </button>
+            <button class="btn btn-outline-light btn-sm" style="color:#1e293b; border-color:#cbd5e1" onclick="window.print()">
+              <i class="fas fa-print"></i> प्रिंट डायरेक्टरी
+            </button>
+          </div>
+        </div>
+
+        <div class="toolbar-row">
+          <div class="search-box-wrapper">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="dir-search-input" placeholder="नाम, विद्यालय, पद, मोबाइल, ईमेल या PEEO खोजें..." oninput="filterDirectory()">
+          </div>
+          <select id="dir-type-filter" class="filter-select" onchange="filterDirectory()">
+            <option value="all">सभी श्रेणियां (PEEO + प्रधानाचार्य + कार्मिक)</option>
+            <option value="peeo">केवल 25 PEEO प्रभारी</option>
+            <option value="principal">केवल प्रधानाचार्य / Headmaster</option>
+            <option value="staff">सभी अधीनस्थ शिक्षक / कार्मिक</option>
+          </select>
+          <select id="dir-peeo-filter" class="filter-select" onchange="filterDirectory()">
+            <option value="all">सभी PEEO क्षेत्र</option>
+            <!-- Populated by JS -->
+          </select>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>क्र.सं.</th>
+                <th>नाम व पद</th>
+                <th>संबंधित PEEO / विद्यालय</th>
+                <th>मोबाइल नंबर</th>
+                <th>ईमेल आईडी</th>
+                <th>संपर्क क्रियाएं (Call & WhatsApp)</th>
+              </tr>
+            </thead>
+            <tbody id="directory-tbody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. STAFF MANAGEMENT VIEW -->
+    <section id="view-staff" class="content-view">
+      <div class="section-box">
+        <div class="section-header">
+          <div class="section-title">
+            <i class="fas fa-users-cog text-primary"></i>
+            <h2>PEEO स्टाफ प्रबंधन एवं स्थापना सूची</h2>
+            <span class="section-count" id="staff-total-count">0 कार्मिक</span>
+          </div>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+            <button class="btn btn-primary btn-sm" onclick="openAddStaffModal()">
+              <i class="fas fa-user-plus"></i> + नया कार्मिक जोड़ें
+            </button>
+            <button class="btn btn-warning btn-sm" onclick="openAuditLogModal()">
+              <i class="fas fa-history"></i> ऑडिट व बैकअप लॉग
+            </button>
+            <button class="btn btn-success btn-sm" onclick="exportStaffCSV()">
+              <i class="fas fa-file-download"></i> CSV एक्सपोर्ट
+            </button>
+          </div>
+        </div>
+
+        <div class="toolbar-row">
+          <div class="search-box-wrapper">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="staff-search-input" placeholder="कार्मिक का नाम, SSO ID, मोबाइल, विद्यालय या पद खोजें..." oninput="filterStaffTable()">
+          </div>
+          <select id="staff-peeo-filter" class="filter-select" onchange="filterStaffTable()">
+            <option value="all">सभी PEEO</option>
+            <!-- Populated by JS -->
+          </select>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Staff ID</th>
+                <th>कार्मिक का नाम</th>
+                <th>पद (Designation)</th>
+                <th>विद्यालय का नाम</th>
+                <th>संबंधित PEEO</th>
+                <th>मोबाइल नंबर</th>
+                <th>SSO ID</th>
+                <th>स्थिति</th>
+                <th>कार्यवाही (Action)</th>
+              </tr>
+            </thead>
+            <tbody id="staff-tbody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. ACTIVE INFORMATION DEMANDS VIEW -->
+    <section id="view-demands" class="content-view">
+      <div class="section-box">
+        <div class="section-header">
+          <div class="section-title">
+            <i class="fas fa-file-signature text-danger"></i>
+            <h2>सक्रिय सूचना मांग प्रपत्र (Active Information Requests)</h2>
+            <span class="section-count" id="demands-active-count">3 प्रपत्र</span>
+          </div>
+          <div style="display:flex; gap:0.5rem">
+            <a href="https://docs.google.com/spreadsheets/d/1jH-4jRV82CsBNeoSLE7NLU_E_7kYieG0LMBQBP0bjtI/edit" target="_blank" class="btn btn-drive btn-sm">
+              <i class="fas fa-external-link-alt"></i> Google Sheets में सीधे देखें
+            </a>
+          </div>
+        </div>
+
+        <div id="demands-cards-container" class="demands-grid">
+          <!-- Dynamic Form Cards Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 7-DAY ARCHIVE VIEW -->
+    <section id="view-archive" class="content-view">
+      <div class="section-box">
+        <div class="section-header">
+          <div class="section-title">
+            <i class="fas fa-archive text-success"></i>
+            <h2>पूर्ण एवं 7-दिवसीय स्वतः आर्काइव प्रपत्र (Completed Archive)</h2>
+            <span class="section-count" id="archive-count">0 प्रपत्र</span>
+          </div>
+        </div>
+        <p style="color:var(--neutral-600); margin-bottom:1.25rem; font-size:0.9rem">
+          जो सूचना प्रपत्र शत-प्रतिशत पूर्ण हो चुके हैं और भरे हुए 7 दिन से अधिक का समय हो गया है, वे स्वतः यहाँ सुरक्षित रहते हैं ताकि सक्रिय डैशबोर्ड साफ-सुथरा रहे।
+        </p>
+        <div id="archive-cards-container" class="demands-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. ADMIN CONTROL ROOM VIEW -->
+    <section id="view-admin-control" class="content-view">
+      <div class="section-box">
+        <div class="section-header">
+          <div class="section-title">
+            <i class="fas fa-shield-alt text-primary"></i>
+            <h2>CBEO एडमिन मॉनिटरिंग रूम एवं गतिशील प्रपत्र सृजन</h2>
+          </div>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+            <button class="btn btn-primary btn-sm" onclick="openCreateDemandModal()">
+              <i class="fas fa-plus-circle"></i> + नई सूचना मांग बनाएं (Zero-Code)
+            </button>
+            <button class="btn btn-danger btn-sm" onclick="generateCBEOAdminSummaryPDF()">
+              <i class="fas fa-file-pdf"></i> CBEO कार्यालय समग्र मॉनिटरिंग PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Compliance Matrix Table -->
+        <h3 style="font-size:1.05rem; margin-bottom:0.75rem; color:#1b365d">
+          <i class="fas fa-chart-line"></i> 25 PEEO अनुपालना एवं प्रपत्र स्थिति मैट्रिक्स:
+        </h3>
+        <div class="table-responsive" style="margin-bottom:1.5rem">
+          <table class="data-table" id="admin-matrix-table">
+            <thead>
+              <tr id="admin-matrix-thead-tr">
+                <th>क्र.सं.</th>
+                <th>PEEO नाम</th>
+                <th>प्रभारी</th>
+                <th>मोबाइल</th>
+                <!-- Dynamic demand column headers -->
+                <th>त्वरित WhatsApp रिमाइंडर</th>
+              </tr>
+            </thead>
+            <tbody id="admin-matrix-tbody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Google Drive Connected Sheets Links Box -->
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:1.25rem">
+          <h4 style="color:#1b365d; margin-bottom:0.75rem; font-size:1rem">
+            <i class="fab fa-google-drive text-success"></i> Google Drive पर सक्रिय बैकएंड शीट्स:
+          </h4>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1rem">
+            <a href="https://docs.google.com/spreadsheets/d/1cz0QKWpICHkFq1-mHjDge73iDVWjKEwb_hmuBpR1QP4/edit" target="_blank" class="btn btn-outline-light" style="color:#1b365d; border-color:#cbd5e1; justify-content:flex-start">
+              <i class="fas fa-key text-warning"></i> 1_CBEO_Admin_Access_Control
+            </a>
+            <a href="https://docs.google.com/spreadsheets/d/1zl3_tUqt-VxDcjmIiA44u6aYUAjYG5wxwff-tw9ZLJs/edit" target="_blank" class="btn btn-outline-light" style="color:#1b365d; border-color:#cbd5e1; justify-content:flex-start">
+              <i class="fas fa-users text-primary"></i> 2_CBEO_Staff_Directory
+            </a>
+            <a href="https://docs.google.com/spreadsheets/d/1jH-4jRV82CsBNeoSLE7NLU_E_7kYieG0LMBQBP0bjtI/edit" target="_blank" class="btn btn-outline-light" style="color:#1b365d; border-color:#cbd5e1; justify-content:flex-start">
+              <i class="fas fa-file-alt text-secondary"></i> 3_CBEO_Information_Requests
+            </a>
+            <a href="https://docs.google.com/spreadsheets/d/1kxSqa87C_lHUmfZKd9zYrARM0bPeWgTDyV8bgSoQ3Gc/edit" target="_blank" class="btn btn-outline-light" style="color:#1b365d; border-color:#cbd5e1; justify-content:flex-start">
+              <i class="fas fa-history text-danger"></i> 4_CBEO_Audit_Backup_Logs
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- 1. LOGIN / USER SWITCHER MODAL -->
+  <div id="modal-login" class="modal-overlay">
+    <div class="modal-card" style="max-width:540px">
+      <div class="modal-header">
+        <h3><i class="fas fa-user-lock text-primary"></i> पोर्टल लॉगिन / PEEO चयन</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-login')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.875rem; color:var(--neutral-600); margin-bottom:1rem">
+          कार्यालय एडमिन अथवा 25 PEEO में से अपना खाता चुनें अथवा यूजरनेम-पासवर्ड से लॉगिन करें:
+        </p>
+
+        <div class="form-group" style="margin-bottom:1rem">
+          <label>त्वरित खाता चयन (1-क्लिक स्विच):</label>
+          <select id="login-quick-select" class="filter-select" style="width:100%" onchange="onQuickSelectUser()">
+            <option value="admin">मुख्य ब्लॉक शिक्षा अधिकारी (CBEO Admin) - सम्पूर्ण अधिकार</option>
+            <optgroup label="25 PEEO परिक्षेत्र">
+              <!-- Populated by JS -->
+            </optgroup>
+          </select>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:0.5rem; margin:1rem 0; color:var(--neutral-400)">
+          <div style="flex:1; height:1px; background:#e2e8f0"></div>
+          <span style="font-size:0.8rem">अथवा क्रेडेंशियल्स दर्ज करें</span>
+          <div style="flex:1; height:1px; background:#e2e8f0"></div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:0.75rem">
+          <label>यूजरनेम (Username):</label>
+          <input type="text" id="login-username" value="cbeo_admin">
+        </div>
+        <div class="form-group">
+          <label>पासवर्ड (Password):</label>
+          <input type="password" id="login-password" value="cbeo@2026">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-login')">रद्द करें</button>
+        <button class="btn btn-primary" onclick="performLogin()">
+          <i class="fas fa-sign-in-alt"></i> लॉगिन करें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. DYNAMIC FORM FILLING MODAL (WITH SEAL & SIGNATURE) -->
+  <div id="modal-fill-demand" class="modal-overlay">
+    <div class="modal-card" style="max-width:980px">
+      <div class="modal-header">
+        <div>
+          <h3 id="form-modal-title">सूचना प्रपत्र पूर्ति</h3>
+          <span id="form-modal-subtitle" style="font-size:0.82rem; color:var(--neutral-500)"></span>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('modal-fill-demand')">&times;</button>
+      </div>
+      <div class="modal-body">
+        
+        <!-- Form Fields Grid / Dynamic Row Entries -->
+        <div id="dynamic-form-fields-container">
+          <!-- Populated dynamically based on demand configuration -->
+        </div>
+
+        <!-- Official Rubber Stamp & Signature Pad Section -->
+        <div class="seal-signature-container">
+          <!-- Dynamic Stamp Preview -->
+          <div class="seal-preview-box">
+            <h4 style="font-size:0.85rem; font-weight:700; color:#1e3a8a; margin-bottom:0.5rem">
+              <i class="fas fa-stamp"></i> आधिकारिक डिजिटल मोहर (Official Seal)
+            </h4>
+            <div class="rubber-stamp" id="form-rubber-stamp">
+              <div class="stamp-top">कार्यालय प्रधानाचार्य एवं PEEO</div>
+              <div class="stamp-center" id="stamp-peeo-name">PEEO DEOLIYA KALAN</div>
+              <div class="stamp-bottom">CBEO परिक्षेत्र भिनाय - अजमेर</div>
+            </div>
+            <span style="font-size:0.75rem; color:#16a34a; font-weight:600; margin-top:6px">
+              <i class="fas fa-check-circle"></i> सिस्टम जनरेटेड अधिकृत मोहर
+            </span>
+          </div>
+
+          <!-- Digital Signature Canvas -->
+          <div class="signature-pad-box">
+            <h4 style="font-size:0.85rem; font-weight:700; color:#1e3a8a; margin-bottom:0.35rem">
+              <i class="fas fa-pen-nib"></i> डिजिटल हस्ताक्षर (Digital Signature Pad)
+            </h4>
+            <canvas id="signature-canvas" class="signature-canvas"></canvas>
+            <div class="signature-actions">
+              <span>माउस या मोबाइल टच से हस्ताक्षर करें</span>
+              <button class="btn btn-outline-light btn-sm" style="color:#dc2626; border-color:#fca5a5" onclick="clearSignatureCanvas()">
+                <i class="fas fa-eraser"></i> साफ़ करें
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-fill-demand')">बंद करें</button>
+        <button class="btn btn-success" id="btn-save-demand" onclick="submitDemandForm()">
+          <i class="fas fa-check-double"></i> सत्यापित कर सबमिट करें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. VERIFIED PDF PREVIEW & WHATSAPP SHARE MODAL -->
+  <div id="modal-preview-pdf" class="modal-overlay">
+    <div class="modal-card" style="max-width:880px">
+      <div class="modal-header">
+        <h3><i class="fas fa-file-pdf text-danger"></i> सत्यापित प्रपत्र अवलोकन एवं WhatsApp शेयर</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-preview-pdf')">&times;</button>
+      </div>
+      <div class="modal-body" style="background:#f8fafc">
+        <!-- Rendered Letterhead Document Preview -->
+        <div id="pdf-preview-box" class="official-letterhead">
+          <!-- Letterhead preview generated by JS -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-preview-pdf')">बंद करें</button>
+        <button class="btn btn-danger" onclick="downloadCurrentPDF()">
+          <i class="fas fa-download"></i> PDF डाउनलोड करें
+        </button>
+        <button class="btn btn-whatsapp" onclick="shareCurrentPDFOnWhatsApp()">
+          <i class="fab fa-whatsapp fa-lg"></i> WhatsApp पर भेजें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. ADD / EDIT STAFF MODAL -->
+  <div id="modal-staff-edit" class="modal-overlay">
+    <div class="modal-card" style="max-width:640px">
+      <div class="modal-header">
+        <h3 id="staff-modal-title"><i class="fas fa-user-plus text-primary"></i> नया कार्मिक विवरण जोड़ें</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-staff-edit')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <input type="hidden" id="staff-edit-id">
+          
+          <div class="form-group">
+            <label>संबंधित PEEO: <span class="status-badge locked">LOCKED</span></label>
+            <input type="text" id="staff-edit-peeo" readonly>
+          </div>
+          <div class="form-group">
+            <label>विद्यालय का नाम:</label>
+            <select id="staff-edit-school" class="filter-select" style="width:100%"></select>
+          </div>
+          <div class="form-group">
+            <label>कार्मिक का पूरा नाम:</label>
+            <input type="text" id="staff-edit-name" placeholder="उदा. सुरेश कुमार शर्मा">
+          </div>
+          <div class="form-group">
+            <label>पद (Designation):</label>
+            <select id="staff-edit-post" class="filter-select" style="width:100%">
+              <option value="अध्यापक L-1">अध्यापक L-1</option>
+              <option value="अध्यापक L-2">अध्यापक L-2</option>
+              <option value="वरिष्ठ अध्यापक (Senior Teacher)">वरिष्ठ अध्यापक (Senior Teacher)</option>
+              <option value="प्राध्यापक (Lecturer)">प्राध्यापक (Lecturer)</option>
+              <option value="प्रधानाचार्य / Headmaster">प्रधानाचार्य / Headmaster</option>
+              <option value="शारीरिक शिक्षक (PTI)">शारीरिक शिक्षक (PTI)</option>
+              <option value="कंप्यूटर अनुदेशक">कंप्यूटर अनुदेशक</option>
+              <option value="कनिष्ठ सहायक / LDC">कनिष्ठ सहायक / LDC</option>
+              <option value="प्रबोधक / Panchayat Teacher">प्रबोधक / Panchayat Teacher</option>
+              <option value="चतुर्थ श्रेणी कर्मचारी">चतुर्थ श्रेणी कर्मचारी</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>मोबाइल नंबर:</label>
+            <input type="tel" id="staff-edit-mobile" placeholder="10 अंकों का मोबाइल">
+          </div>
+          <div class="form-group">
+            <label>ईमेल आईडी:</label>
+            <input type="email" id="staff-edit-email" placeholder="karmik@gmail.com">
+          </div>
+          <div class="form-group">
+            <label>SSO ID:</label>
+            <input type="text" id="staff-edit-sso" placeholder="उदा. SURESH.1985">
+          </div>
+          <div class="form-group">
+            <label>बैंक खाता संख्या (वैकल्पिक):</label>
+            <input type="text" id="staff-edit-bank-acc" placeholder="Account Number">
+          </div>
+          <div class="form-group">
+            <label>IFSC कोड (वैकल्पिक):</label>
+            <input type="text" id="staff-edit-ifsc" placeholder="SBIN000XXXX">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-staff-edit')">रद्द करें</button>
+        <button class="btn btn-primary" onclick="saveStaffMember()">
+          <i class="fas fa-save"></i> सुरक्षित करें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. DELETE STAFF CONFIRMATION & AUDIT REASON MODAL -->
+  <div id="modal-delete-staff" class="modal-overlay">
+    <div class="modal-card" style="max-width:480px">
+      <div class="modal-header">
+        <h3><i class="fas fa-user-minus text-danger"></i> कार्मिक विलोपन एवं ऑडिट बैकअप</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-delete-staff')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="delete-staff-id">
+        <p style="font-size:0.9rem; color:var(--neutral-700); margin-bottom:1rem">
+          आप <strong id="delete-staff-name" style="color:#dc2626"></strong> को सूची से हटाने जा रहे हैं।
+        </p>
+        <div style="background:#fee2e2; border-left:4px solid #dc2626; padding:0.75rem; border-radius:6px; font-size:0.82rem; color:#991b1b; margin-bottom:1rem">
+          <i class="fas fa-shield-alt"></i> <strong>सुरक्षा बैकअप:</strong> यह डेटा नष्ट नहीं होगा, बल्कि Google Drive ऑडिट लॉग में सुरक्षित रहेगा जिसे आवश्यकता पड़ने पर पुनः देखा या रीस्टोर किया जा सकेगा।
+        </div>
+        <div class="form-group">
+          <label>विलोपन का कारण (Reason for Deletion) <span style="color:red">*</span>:</label>
+          <select id="delete-staff-reason" class="filter-select" style="width:100%">
+            <option value="स्थानांतरण (Transferred to other School/Block)">स्थानांतरण (Transferred to other School/Block)</option>
+            <option value="सेवानिवृत्ति (Retirement)">सेवानिवृत्ति (Retirement)</option>
+            <option value="पदोन्नति (Promotion/Deputation)">पदोन्नति (Promotion/Deputation)</option>
+            <option value="अन्य ब्लॉक में कार्यग्रहण">अन्य ब्लॉक में कार्यग्रहण</option>
+            <option value="त्रुटिवश दोहरी प्रविष्टि">त्रुटिवश दोहरी प्रविष्टि</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-delete-staff')">रद्द करें</button>
+        <button class="btn btn-danger" onclick="confirmDeleteStaff()">
+          <i class="fas fa-trash-alt"></i> प्रमाणित कर हटाएं
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. AUDIT LOG MODAL -->
+  <div id="modal-audit-log" class="modal-overlay">
+    <div class="modal-card" style="max-width:880px">
+      <div class="modal-header">
+        <h3><i class="fas fa-history text-primary"></i> ऑडिट एवं बैकअप लॉग (Drive Synced)</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-audit-log')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>समय व दिनांक</th>
+                <th>उपयोगकर्ता</th>
+                <th>क्रिया (Action)</th>
+                <th>आईडी / नाम</th>
+                <th>विवरण / पुराना डेटा</th>
+                <th>टिप्पणी / कारण</th>
+              </tr>
+            </thead>
+            <tbody id="audit-log-tbody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-audit-log')">बंद करें</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. CREATE NEW INFORMATION DEMAND (ZERO CODE) MODAL -->
+  <div id="modal-create-demand" class="modal-overlay">
+    <div class="modal-card" style="max-width:720px">
+      <div class="modal-header">
+        <h3><i class="fas fa-plus-circle text-primary"></i> नई सूचना मांग प्रपत्र सृजन (Zero-Code Dynamic Form)</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-create-demand')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.875rem; color:var(--neutral-600); margin-bottom:1rem">
+          नया प्रपत्र बनाते ही सभी 25 PEEO के लिए स्वतः फॉर्म बन जाएगा एवं Google Sheets में नया टैब जुड़ जाएगा:
+        </p>
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label>सूचना का नाम / शीर्षक (Title):</label>
+          <input type="text" id="new-demand-title" placeholder="उदा. शाला खेलकूद मैदान विकास सूचना 2026">
+        </div>
+        <div class="form-grid" style="margin-bottom:0.85rem">
+          <div class="form-group">
+            <label>अंतिम तिथि (Due Date):</label>
+            <input type="date" id="new-demand-date">
+          </div>
+          <div class="form-group">
+            <label>प्राथमिकता / श्रेणी:</label>
+            <select id="new-demand-priority" class="filter-select">
+              <option value="अति आवश्यक (Urgent)">अति आवश्यक (Urgent)</option>
+              <option value="साधारण (Normal)">साधारण (Normal)</option>
+              <option value="विधानसभा प्रश्न (Vidhan Sabha)">विधानसभा प्रश्न (Vidhan Sabha)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label>मांगी जाने वाली सूचना के कॉलम (कॉमा लगाकर लिखें):</label>
+          <input type="text" id="new-demand-cols" value="कुल खेल मैदान क्षेत्रफल (बीघा), वर्तमान चारदीवारी स्थिति, विकसित खेल संसाधन, आवश्यक अनुदान (लाखों में), विशेष विवरण">
+          <span style="font-size:0.75rem; color:var(--neutral-500)">
+            (नोट: PEEO का नाम, विद्यालय का नाम एवं डाइस कोड स्वतः LOCKED एवं प्री-फिल्ड रहेंगे)।
+          </span>
+        </div>
+        <div class="form-group">
+          <label>संक्षिप्त निर्देश / टिप्पणी:</label>
+          <textarea id="new-demand-desc" rows="2" placeholder="समस्त PEEO 3 दिवस में प्रमाणित कर मोहर व हस्ताक्षर सहित अपलोड करें।"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-create-demand')">रद्द करें</button>
+        <button class="btn btn-primary" onclick="saveNewDemand()">
+          <i class="fas fa-plus"></i> प्रपत्र तुरंत लाइव करें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Hidden Container for Official PDF Printing / html2pdf -->
+  <div id="pdf-render-scratch" style="display:none"></div>
+
+  <!-- External & Application Logic -->
+  <script src="master_cbeo_data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

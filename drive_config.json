@@ -1,0 +1,26 @@
+{
+  "folder_id": "1wxRe4NMIkKS8VDAAVzUB2KXJioEl4OFu",
+  "folder_url": "https://drive.google.com/drive/folders/1wxRe4NMIkKS8VDAAVzUB2KXJioEl4OFu",
+  "sheets": {
+    "admin_access": {
+      "id": "1cz0QKWpICHkFq1-mHjDge73iDVWjKEwb_hmuBpR1QP4",
+      "name": "1_CBEO_Admin_Access_Control",
+      "url": "https://docs.google.com/spreadsheets/d/1cz0QKWpICHkFq1-mHjDge73iDVWjKEwb_hmuBpR1QP4/edit"
+    },
+    "staff_directory": {
+      "id": "1zl3_tUqt-VxDcjmIiA44u6aYUAjYG5wxwff-tw9ZLJs",
+      "name": "2_CBEO_Staff_Directory",
+      "url": "https://docs.google.com/spreadsheets/d/1zl3_tUqt-VxDcjmIiA44u6aYUAjYG5wxwff-tw9ZLJs/edit"
+    },
+    "information_requests": {
+      "id": "1jH-4jRV82CsBNeoSLE7NLU_E_7kYieG0LMBQBP0bjtI",
+      "name": "3_CBEO_Information_Requests",
+      "url": "https://docs.google.com/spreadsheets/d/1jH-4jRV82CsBNeoSLE7NLU_E_7kYieG0LMBQBP0bjtI/edit"
+    },
+    "audit_logs": {
+      "id": "1kxSqa87C_lHUmfZKd9zYrARM0bPeWgTDyV8bgSoQ3Gc",
+      "name": "4_CBEO_Audit_Backup_Logs",
+      "url": "https://docs.google.com/spreadsheets/d/1kxSqa87C_lHUmfZKd9zYrARM0bPeWgTDyV8bgSoQ3Gc/edit"
+    }
+  }
+}
