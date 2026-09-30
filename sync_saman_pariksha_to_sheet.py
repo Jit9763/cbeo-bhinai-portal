@@ -32,11 +32,17 @@ def sync_submissions():
         "Exam In-charge (Pariksha Prabhari)",
         "In-charge Mobile",
         "Class 9 Total",
+        "Class 9 Sanskrit (3rd Lang)",
+        "Class 9 Urdu (3rd Lang)",
         "Class 10 Total",
+        "Class 10 Sanskrit (3rd Lang)",
+        "Class 10 Urdu (3rd Lang)",
+        "Class 11 Faculties (संकाय)",
         "Class 11 Hindi Compulsory",
         "Class 11 English Compulsory",
         "Class 11 Optional Subjects Detail",
         "Class 11 Total",
+        "Class 12 Faculties (संकाय)",
         "Class 12 Hindi Compulsory",
         "Class 12 English Compulsory",
         "Class 12 Optional Subjects Detail",
@@ -53,6 +59,9 @@ def sync_submissions():
         sub = submissions.get(code, {})
         status = "Submitted" if sub else "Pending"
         
+        c11_fac_str = ", ".join(sub.get('c11_faculties', []))
+        c12_fac_str = ", ".join(sub.get('c12_faculties', []))
+
         c11_opt_str = ", ".join([f"{k}: {v}" for k, v in sub.get('c11_optional', {}).items() if v > 0])
         c12_opt_str = ", ".join([f"{k}: {v}" for k, v in sub.get('c12_optional', {}).items() if v > 0])
 
@@ -68,11 +77,17 @@ def sync_submissions():
             sub.get('incharge_name', s.get('incharge_name', '')),
             sub.get('incharge_mobile', s.get('incharge_mobile', '')),
             sub.get('c9_total', 0),
+            sub.get('c9_sanskrit', 0),
+            sub.get('c9_urdu', 0),
             sub.get('c10_total', 0),
+            sub.get('c10_sanskrit', 0),
+            sub.get('c10_urdu', 0),
+            c11_fac_str,
             sub.get('c11_comp_hindi', 0),
             sub.get('c11_comp_english', 0),
             c11_opt_str,
             sub.get('c11_total', 0),
+            c12_fac_str,
             sub.get('c12_comp_hindi', 0),
             sub.get('c12_comp_english', 0),
             c12_opt_str,
@@ -83,7 +98,7 @@ def sync_submissions():
             sub.get('timestamp', '')
         ])
 
-    sheets.spreadsheets().values().clear(spreadsheetId=sheet_id, range="Sheet1!A1:Z200").execute()
+    sheets.spreadsheets().values().clear(spreadsheetId=sheet_id, range="Sheet1!A1:AD200").execute()
     sheets.spreadsheets().values().update(
         spreadsheetId=sheet_id,
         range="Sheet1!A1",

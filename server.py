@@ -55,6 +55,40 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                 self.send_json_response({'success': False, 'message': str(e)}, status=500)
             return
 
+        elif parsed_url.path == '/api/save_saman_pariksha':
+            school_code = req_data.get('school_code')
+            if not school_code:
+                self.send_json_response({'success': False, 'message': 'school_code required'}, status=400)
+                return
+
+            try:
+                submissions = {}
+                if os.path.exists('saman_pariksha_submissions.json'):
+                    with open('saman_pariksha_submissions.json', 'r', encoding='utf-8') as f:
+                        submissions = json.load(f)
+                
+                submissions[school_code] = req_data
+                with open('saman_pariksha_submissions.json', 'w', encoding='utf-8') as f:
+                    json.dump(submissions, f, ensure_ascii=False, indent=2)
+
+                print(f"[API] Saved Saman Pariksha data for {school_code} to file. Triggering sheet sync...")
+                try:
+                    sync_submissions()
+                    synced_sheet = True
+                except Exception as ex_sync:
+                    print(f"[API Warning] Sheet sync notice: {ex_sync}")
+                    synced_sheet = False
+
+                self.send_json_response({
+                    'success': True,
+                    'message': 'समान परीक्षा प्रपत्र सुरक्षित किया गया एवं Google Sheet में सिंक हो गया!',
+                    'synced_to_sheet': synced_sheet
+                })
+            except Exception as e:
+                print(f"[API Error] Failed to save submission: {e}")
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
+
         elif parsed_url.path == '/api/sync_saman_pariksha':
             print("[API] Sync requested for 5_CBEO_Saman_Pariksha_56_Schools_Data...")
             try:
@@ -72,6 +106,17 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
         parsed_url = urllib.parse.urlparse(self.path)
         if parsed_url.path == '/api/health':
             self.send_json_response({'status': 'ok', 'server': 'CBEO Portal Backend', 'port': PORT})
+            return
+
+        elif parsed_url.path == '/api/get_saman_pariksha':
+            try:
+                submissions = {}
+                if os.path.exists('saman_pariksha_submissions.json'):
+                    with open('saman_pariksha_submissions.json', 'r', encoding='utf-8') as f:
+                        submissions = json.load(f)
+                self.send_json_response({'success': True, 'submissions': submissions})
+            except Exception as e:
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
             return
         
         super().do_GET()

@@ -307,6 +307,10 @@ function updateUserHeaderBadge() {
     if (adminTab) adminTab.style.display = 'inline-flex';
     const btnOpenLogin = document.getElementById('btn-open-login');
     if (btnOpenLogin) btnOpenLogin.style.display = 'inline-flex'; // Only admins can switch profiles
+    const btnDrive = document.getElementById('btn-drive-folder');
+    if (btnDrive) btnDrive.style.display = 'inline-flex';
+    const btnPeeoSheet = document.getElementById('btn-peeo-sheet-view');
+    if (btnPeeoSheet) btnPeeoSheet.style.display = 'inline-flex';
   } else {
     if (badgeInitial) {
       const name = STATE.currentUser.school_name || STATE.currentUser.peeo_name || 'P';
@@ -326,6 +330,10 @@ function updateUserHeaderBadge() {
     if (adminTab) adminTab.style.display = 'none';
     const btnOpenLogin = document.getElementById('btn-open-login');
     if (btnOpenLogin) btnOpenLogin.style.display = 'none'; // Completely hidden for PEEO & schools
+    const btnDrive = document.getElementById('btn-drive-folder');
+    if (btnDrive) btnDrive.style.display = 'none'; // Strictly hidden for PEEO & schools
+    const btnPeeoSheet = document.getElementById('btn-peeo-sheet-view');
+    if (btnPeeoSheet) btnPeeoSheet.style.display = 'none'; // Strictly hidden for PEEO & schools
   }
 }
 
@@ -736,28 +744,95 @@ function renderApp() {
   renderExplorerFilters();
 }
 
-// Subject options list for Class 11 & 12
-const SAMAN_PARIKSHA_OPTIONAL_SUBJECTS = [
-  { key: 'pol_sci', label: 'राजनीति विज्ञान (Political Science)', faculty: 'Arts' },
-  { key: 'history', label: 'इतिहास (History)', faculty: 'Arts' },
-  { key: 'geography', label: 'भूगोल (Geography)', faculty: 'Arts' },
-  { key: 'hindi_lit', label: 'हिंदी साहित्य (Hindi Literature)', faculty: 'Arts' },
-  { key: 'eng_lit', label: 'अंग्रेजी साहित्य (English Literature)', faculty: 'Arts' },
-  { key: 'sanskrit_lit', label: 'संस्कृत साहित्य (Sanskrit Literature)', faculty: 'Arts' },
-  { key: 'economics', label: 'अर्थशास्त्र (Economics)', faculty: 'Arts' },
-  { key: 'drawing', label: 'चित्रकला (Drawing / Painting)', faculty: 'Arts' },
-  { key: 'home_sci', label: 'गृह विज्ञान (Home Science)', faculty: 'Arts' },
-  { key: 'sociology', label: 'समाजशास्त्र (Sociology)', faculty: 'Arts' },
-  { key: 'physics', label: 'भौतिक विज्ञान (Physics)', faculty: 'Science' },
-  { key: 'chemistry', label: 'रसायन विज्ञान (Chemistry)', faculty: 'Science' },
-  { key: 'biology', label: 'जीव विज्ञान (Biology)', faculty: 'Science' },
-  { key: 'maths', label: 'गणित (Mathematics)', faculty: 'Science' },
-  { key: 'agri_sci', label: 'कृषि विज्ञान (Agriculture Science)', faculty: 'Agri' },
-  { key: 'agri_bio', label: 'कृषि जीव विज्ञान (Agri Biology)', faculty: 'Agri' },
-  { key: 'agri_chem', label: 'कृषि रसायन (Agri Chemistry)', faculty: 'Agri' },
-  { key: 'accountancy', label: 'लेखाशास्त्र (Accountancy)', faculty: 'Commerce' },
-  { key: 'business_studies', label: 'व्यवसाय अध्ययन (Business Studies)', faculty: 'Commerce' }
-];
+// Faculty and Subject configuration for Classes 11 & 12
+const FACULTIES_CONFIG = {
+  arts: {
+    key: 'arts',
+    name: 'कला संकाय (Arts)',
+    icon: 'fa-palette',
+    subjects: [
+      { key: 'pol_sci', label: 'राजनीति विज्ञान (Political Science)' },
+      { key: 'history', label: 'इतिहास (History)' },
+      { key: 'geography', label: 'भूगोल (Geography)' },
+      { key: 'hindi_lit', label: 'हिंदी साहित्य (Hindi Literature)' },
+      { key: 'eng_lit', label: 'अंग्रेजी साहित्य (English Literature)' },
+      { key: 'sanskrit_lit', label: 'संस्कृत साहित्य (Sanskrit Literature)' },
+      { key: 'urdu_lit', label: 'उर्दू साहित्य (Urdu Literature)' },
+      { key: 'economics', label: 'अर्थशास्त्र (Economics)' },
+      { key: 'sociology', label: 'समाजशास्त्र (Sociology)' },
+      { key: 'home_sci', label: 'गृह विज्ञान (Home Science)' },
+      { key: 'drawing', label: 'चित्रकला (Drawing / Painting)' }
+    ]
+  },
+  science: {
+    key: 'science',
+    name: 'विज्ञान संकाय (Science)',
+    icon: 'fa-atom',
+    subjects: [
+      { key: 'physics', label: 'भौतिक विज्ञान (Physics)' },
+      { key: 'chemistry', label: 'रसायन विज्ञान (Chemistry)' },
+      { key: 'biology', label: 'जीव विज्ञान (Biology)' },
+      { key: 'maths', label: 'गणित (Mathematics)' }
+    ]
+  },
+  commerce: {
+    key: 'commerce',
+    name: 'वाणिज्य संकाय (Commerce)',
+    icon: 'fa-chart-pie',
+    subjects: [
+      { key: 'accountancy', label: 'लेखाशास्त्र (Accountancy)' },
+      { key: 'business_studies', label: 'व्यवसाय अध्ययन (Business Studies)' },
+      { key: 'economics_comm', label: 'अर्थशास्त्र (Economics - Commerce)' }
+    ]
+  },
+  agri: {
+    key: 'agri',
+    name: 'कृषि संकाय (Agriculture)',
+    icon: 'fa-seedling',
+    subjects: [
+      { key: 'agri_sci', label: 'कृषि विज्ञान (Agriculture Science)' },
+      { key: 'agri_bio', label: 'कृषि जीव विज्ञान (Agri Biology)' },
+      { key: 'agri_chem', label: 'कृषि रसायन (Agri Chemistry)' }
+    ]
+  }
+};
+
+// Flattened list for backwards compatibility
+const SAMAN_PARIKSHA_OPTIONAL_SUBJECTS = [];
+Object.values(FACULTIES_CONFIG).forEach(f => {
+  f.subjects.forEach(s => {
+    SAMAN_PARIKSHA_OPTIONAL_SUBJECTS.push({ ...s, faculty: f.key });
+  });
+});
+
+function onToggleFaculty(cls, facKey) {
+  const chk = document.getElementById(`gform-${cls}-fac-${facKey}`);
+  const sec = document.getElementById(`gform-${cls}-section-${facKey}`);
+  const lbl = document.getElementById(`lbl-${cls}-${facKey}`);
+  if (!chk || !sec) return;
+
+  if (chk.checked) {
+    sec.classList.add('active');
+    if (lbl) lbl.classList.add('active');
+  } else {
+    sec.classList.remove('active');
+    if (lbl) lbl.classList.remove('active');
+    // Reset inputs of unchecked faculty to 0
+    sec.querySelectorAll('input').forEach(inp => inp.value = 0);
+    calculateGFormTotals();
+  }
+}
+
+function formatOptionalSubjectsSummary(optObj) {
+  if (!optObj) return '';
+  const entries = [];
+  SAMAN_PARIKSHA_OPTIONAL_SUBJECTS.forEach(s => {
+    if (optObj[s.key] > 0) {
+      entries.push(`${s.label.split('(')[0].trim()}: ${optObj[s.key]}`);
+    }
+  });
+  return entries.join(', ');
+}
 
 function renderSamanParikshaView() {
   const peeoContainer = document.getElementById('sp-peeo-container');
@@ -819,6 +894,55 @@ function renderSamanParikshaPeeoView() {
       ? `<span class="sp-status-badge success"><i class="fas fa-check-circle"></i> सबमिट पूर्ण (${sub.grand_total} पेपर)</span>`
       : `<span class="sp-status-badge warning"><i class="fas fa-clock"></i> प्रपत्र भरना शेष</span>`;
 
+    let submittedDetailsHtml = '';
+    if (isSubmitted) {
+      const c11Sub = formatOptionalSubjectsSummary(sub.c11_optional);
+      const c12Sub = formatOptionalSubjectsSummary(sub.c12_optional);
+      submittedDetailsHtml = `
+        <div style="margin: 0.75rem 0;">
+          <div style="font-weight:700; color:#166534; font-size:0.82rem; margin-bottom:4px; display:flex; align-items:center; gap:0.4rem">
+            <i class="fas fa-check-circle text-success"></i> <strong>समान परीक्षा 2026-27 | भरा गया आधिकारिक डेटा विवरण:</strong>
+          </div>
+          <table class="sp-submitted-table">
+            <thead>
+              <tr>
+                <th style="width:20%">कक्षा</th>
+                <th style="width:25%">कुल विद्यार्थी</th>
+                <th>तृतीय भाषा / अनिवार्य व ऐच्छिक विषय</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>9वीं</strong></td>
+                <td style="font-weight:800; color:#1e40af">${sub.c9_total}</td>
+                <td>संस्कृत: <strong>${sub.c9_sanskrit || 0}</strong> | उर्दू: <strong>${sub.c9_urdu || 0}</strong></td>
+              </tr>
+              <tr>
+                <td><strong>10वीं</strong></td>
+                <td style="font-weight:800; color:#1e40af">${sub.c10_total}</td>
+                <td>संस्कृत: <strong>${sub.c10_sanskrit || 0}</strong> | उर्दू: <strong>${sub.c10_urdu || 0}</strong></td>
+              </tr>
+              <tr>
+                <td><strong>11वीं</strong></td>
+                <td style="font-weight:800; color:#1e40af">${sub.c11_total}</td>
+                <td>हिंदी(${sub.c11_comp_hindi}), अंग्रेजी(${sub.c11_comp_english})${c11Sub ? `<br><span style="color:#0369a1">${c11Sub}</span>` : ''}</td>
+              </tr>
+              <tr>
+                <td><strong>12वीं</strong></td>
+                <td style="font-weight:800; color:#1e40af">${sub.c12_total}</td>
+                <td>हिंदी(${sub.c12_comp_hindi}), अंग्रेजी(${sub.c12_comp_english})${c12Sub ? `<br><span style="color:#0369a1">${c12Sub}</span>` : ''}</td>
+              </tr>
+              <tr style="background:#f0fdf4; font-weight:800; color:#166534">
+                <td>महायोग</td>
+                <td style="font-size:0.95rem; color:#15803d">${sub.grand_total}</td>
+                <td>प्रमाणित संस्था प्रधान: ${sub.principal_name || '---'} (मो. ${sub.principal_mobile || '---'})</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
     card.innerHTML = `
       <div>
         <div class="sp-card-header">
@@ -832,23 +956,19 @@ function renderSamanParikshaPeeoView() {
           </div>
           <div><strong>श्रेणी:</strong> ${school.category}</div>
           <div><strong>परीक्षा कोड:</strong> ${sub?.exam_code ? `<span style="color:#2563eb; font-weight:800">${sub.exam_code}</span>` : '<span style="color:#94a3b8">दर्ज नहीं</span>'}</div>
-          ${isSubmitted ? `
-            <div style="background:#f0fdf4; border:1px solid #bbf7d0; padding:4px 8px; border-radius:4px; font-weight:700; color:#166534">
-              कुल नामांकन: 9वीं(${sub.c9_total}) | 10वीं(${sub.c10_total}) | 11वीं(${sub.c11_total}) | 12वीं(${sub.c12_total}) = ${sub.grand_total}
-            </div>
-          ` : ''}
+          ${submittedDetailsHtml}
         </div>
       </div>
       <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem">
-        <button class="btn btn-primary btn-sm" onclick="openSamanParikshaForm('${school.shala_darpan_code}')" style="flex:1">
-          <i class="fas fa-edit"></i> ${isSubmitted ? 'प्रपत्र संशोधित करें' : 'Google Form प्रपत्र भरें'}
+        <button class="btn ${isSubmitted ? 'btn-warning' : 'btn-primary'} btn-sm" onclick="openSamanParikshaForm('${school.shala_darpan_code}')" style="flex:1; font-weight:700">
+          <i class="fas fa-edit"></i> ${isSubmitted ? 'प्रपत्र में संशोधन (Edit)' : 'Google Form प्रपत्र भरें'}
         </button>
         <a href="saman_form.html?code=${school.shala_darpan_code}" target="_blank" class="btn btn-outline-primary btn-sm" style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:700" title="नए पेज में खोलें (अलग टैब)">
-          <i class="fas fa-external-link-alt"></i> अलग पेज
+          <i class="fas fa-external-link-alt"></i> ${isSubmitted ? 'अलग पेज में एडिट' : 'अलग पेज'}
         </a>
         ${isSubmitted ? `
-          <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${school.shala_darpan_code}')" title="आधिकारिक प्रमाणित PDF देखें">
-            <i class="fas fa-print"></i> PDF देखें
+          <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${school.shala_darpan_code}')" title="आधिकारिक प्रमाणित PDF देखें / प्रिंट करें" style="font-weight:700">
+            <i class="fas fa-print"></i> PDF प्रिंट
           </button>
         ` : ''}
       </div>
@@ -861,6 +981,7 @@ function renderSamanParikshaPeeoView() {
     progressBadge.className = `sp-status-badge ${submittedCount === targetSchools.length && targetSchools.length > 0 ? 'success' : 'warning'}`;
   }
 }
+
 
 function renderSamanParikshaAdminView() {
   const totalSchools = STATE.schools56.length;
@@ -1011,7 +1132,12 @@ function openSamanParikshaForm(schoolCode) {
   document.getElementById('gform-incharge-mobile').value = sub.incharge_mobile || school.incharge_mobile || '';
 
   document.getElementById('gform-c9-total').value = sub.c9_total ?? 0;
+  if (document.getElementById('gform-c9-sanskrit')) document.getElementById('gform-c9-sanskrit').value = sub.c9_sanskrit ?? 0;
+  if (document.getElementById('gform-c9-urdu')) document.getElementById('gform-c9-urdu').value = sub.c9_urdu ?? 0;
+
   document.getElementById('gform-c10-total').value = sub.c10_total ?? 0;
+  if (document.getElementById('gform-c10-sanskrit')) document.getElementById('gform-c10-sanskrit').value = sub.c10_sanskrit ?? 0;
+  if (document.getElementById('gform-c10-urdu')) document.getElementById('gform-c10-urdu').value = sub.c10_urdu ?? 0;
 
   document.getElementById('gform-c11-comp-hindi').value = sub.c11_comp_hindi ?? 0;
   document.getElementById('gform-c11-comp-english').value = sub.c11_comp_english ?? 0;
@@ -1021,36 +1147,46 @@ function openSamanParikshaForm(schoolCode) {
   document.getElementById('gform-c12-comp-english').value = sub.c12_comp_english ?? 0;
   document.getElementById('gform-c12-total').value = sub.c12_total ?? 0;
 
-  // Build Optional Subjects Grids for Class 11 and Class 12
-  const c11Grid = document.getElementById('gform-c11-subjects-grid');
-  const c12Grid = document.getElementById('gform-c12-subjects-grid');
+  // Build Stream-wise Optional Subjects Grids for Class 11 and Class 12
+  ['c11', 'c12'].forEach(cls => {
+    const savedFaculties = sub[`${cls}_faculties`] || [];
+    const optData = sub[`${cls}_optional`] || {};
 
-  if (c11Grid && c12Grid) {
-    c11Grid.innerHTML = '';
-    c12Grid.innerHTML = '';
+    Object.entries(FACULTIES_CONFIG).forEach(([facKey, fac]) => {
+      const chk = document.getElementById(`gform-${cls}-fac-${facKey}`);
+      const sec = document.getElementById(`gform-${cls}-section-${facKey}`);
+      const lbl = document.getElementById(`lbl-${cls}-${facKey}`);
+      const grid = document.getElementById(`gform-${cls}-grid-${facKey}`);
 
-    SAMAN_PARIKSHA_OPTIONAL_SUBJECTS.forEach(subj => {
-      // C11 item
-      const val11 = (sub.c11_optional && sub.c11_optional[subj.key]) || 0;
-      const box11 = document.createElement('div');
-      box11.className = 'gform-subject-card';
-      box11.innerHTML = `
-        <label title="${subj.label}">${subj.label}</label>
-        <input type="number" min="0" value="${val11}" id="gform-c11-opt-${subj.key}" oninput="calculateGFormTotals()">
-      `;
-      c11Grid.appendChild(box11);
+      // Auto-check if previously saved or any subject has > 0
+      const hasSubjectCount = fac.subjects.some(s => (optData[s.key] || 0) > 0);
+      const isSelected = savedFaculties.includes(facKey) || hasSubjectCount;
 
-      // C12 item
-      const val12 = (sub.c12_optional && sub.c12_optional[subj.key]) || 0;
-      const box12 = document.createElement('div');
-      box12.className = 'gform-subject-card';
-      box12.innerHTML = `
-        <label title="${subj.label}">${subj.label}</label>
-        <input type="number" min="0" value="${val12}" id="gform-c12-opt-${subj.key}" oninput="calculateGFormTotals()">
-      `;
-      c12Grid.appendChild(box12);
+      if (chk) chk.checked = isSelected;
+      if (sec) {
+        if (isSelected) sec.classList.add('active');
+        else sec.classList.remove('active');
+      }
+      if (lbl) {
+        if (isSelected) lbl.classList.add('active');
+        else lbl.classList.remove('active');
+      }
+
+      if (grid) {
+        grid.innerHTML = '';
+        fac.subjects.forEach(subj => {
+          const val = optData[subj.key] || 0;
+          const box = document.createElement('div');
+          box.className = 'gform-subject-card';
+          box.innerHTML = `
+            <label title="${subj.label}">${subj.label}</label>
+            <input type="number" min="0" value="${val}" id="gform-${cls}-opt-${subj.key}" oninput="calculateGFormTotals()">
+          `;
+          grid.appendChild(box);
+        });
+      }
     });
-  }
+  });
 
   // Update dynamic stamp preview
   const stampSchool = document.getElementById('gform-stamp-school');
@@ -1141,14 +1277,23 @@ function submitSamanParikshaForm(andPrint = false) {
     return;
   }
 
-  const c9 = parseInt(document.getElementById('gform-c9-total').value) || 0;
-  const c10 = parseInt(document.getElementById('gform-c10-total').value) || 0;
-  const c11Hindi = parseInt(document.getElementById('gform-c11-comp-hindi').value) || 0;
-  const c11English = parseInt(document.getElementById('gform-c11-comp-english').value) || 0;
-  const c11Total = parseInt(document.getElementById('gform-c11-total').value) || 0;
-  const c12Hindi = parseInt(document.getElementById('gform-c12-comp-hindi').value) || 0;
-  const c12English = parseInt(document.getElementById('gform-c12-comp-english').value) || 0;
-  const c12Total = parseInt(document.getElementById('gform-c12-total').value) || 0;
+  const c9 = parseInt(document.getElementById('gform-c9-total')?.value) || 0;
+  const c9Sanskrit = parseInt(document.getElementById('gform-c9-sanskrit')?.value) || 0;
+  const c9Urdu = parseInt(document.getElementById('gform-c9-urdu')?.value) || 0;
+
+  const c10 = parseInt(document.getElementById('gform-c10-total')?.value) || 0;
+  const c10Sanskrit = parseInt(document.getElementById('gform-c10-sanskrit')?.value) || 0;
+  const c10Urdu = parseInt(document.getElementById('gform-c10-urdu')?.value) || 0;
+
+  const c11Hindi = parseInt(document.getElementById('gform-c11-comp-hindi')?.value) || 0;
+  const c11English = parseInt(document.getElementById('gform-c11-comp-english')?.value) || 0;
+  const c11Total = parseInt(document.getElementById('gform-c11-total')?.value) || 0;
+  const c12Hindi = parseInt(document.getElementById('gform-c12-comp-hindi')?.value) || 0;
+  const c12English = parseInt(document.getElementById('gform-c12-comp-english')?.value) || 0;
+  const c12Total = parseInt(document.getElementById('gform-c12-total')?.value) || 0;
+
+  const c11Faculties = ['arts', 'science', 'commerce', 'agri'].filter(f => document.getElementById(`gform-c11-fac-${f}`)?.checked);
+  const c12Faculties = ['arts', 'science', 'commerce', 'agri'].filter(f => document.getElementById(`gform-c12-fac-${f}`)?.checked);
 
   const c11Optional = {};
   const c12Optional = {};
@@ -1172,11 +1317,17 @@ function submitSamanParikshaForm(andPrint = false) {
     incharge_name: inchargeName,
     incharge_mobile: inchargeMobile,
     c9_total: c9,
+    c9_sanskrit: c9Sanskrit,
+    c9_urdu: c9Urdu,
     c10_total: c10,
+    c10_sanskrit: c10Sanskrit,
+    c10_urdu: c10Urdu,
+    c11_faculties: c11Faculties,
     c11_comp_hindi: c11Hindi,
     c11_comp_english: c11English,
     c11_optional: c11Optional,
     c11_total: c11Total,
+    c12_faculties: c12Faculties,
     c12_comp_hindi: c12Hindi,
     c12_comp_english: c12English,
     c12_optional: c12Optional,
@@ -1188,6 +1339,13 @@ function submitSamanParikshaForm(andPrint = false) {
 
   STATE.samanParikshaSubmissions[schoolCode] = submission;
   localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(STATE.samanParikshaSubmissions));
+
+  // Sync to backend file & Google Sheet
+  fetch('/api/save_saman_pariksha', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(submission)
+  }).catch(() => {});
 
   closeModal('modal-saman-pariksha-form');
   showToast(`${school.school_name} का समान परीक्षा प्रपत्र सफलतापूर्वक सुरक्षित हो गया!`, 'success');
@@ -1230,6 +1388,13 @@ function openExamPdfPreview(schoolCode) {
     }
   });
   if (!c12OptRows) c12OptRows = '<tr><td colspan="2" style="padding:4px 8px; border:1px solid #cbd5e1; text-align:center; color:#64748b">कोई ऐच्छिक विषय दर्ज नहीं</td></tr>';
+
+  const c11FacNames = (sub.c11_faculties && sub.c11_faculties.length > 0) 
+    ? sub.c11_faculties.map(f => FACULTIES_CONFIG[f]?.name || f).join(', ') 
+    : 'सामान्य';
+  const c12FacNames = (sub.c12_faculties && sub.c12_faculties.length > 0) 
+    ? sub.c12_faculties.map(f => FACULTIES_CONFIG[f]?.name || f).join(', ') 
+    : 'सामान्य';
 
   container.innerHTML = `
     <!-- Header -->
@@ -1285,20 +1450,39 @@ function openExamPdfPreview(schoolCode) {
       <tbody>
         <tr>
           <td style="padding:8px; border:1px solid #94a3b8; text-align:center; font-weight:800; background:#f8fafc">कक्षा 9वीं</td>
-          <td style="padding:8px; border:1px solid #94a3b8">समस्त सामान्य अनिवार्य विषय (हिंदी, अंग्रेजी, विज्ञान, सा.विज्ञान, गणित, तृतीय भाषा)</td>
-          <td style="padding:8px; border:1px solid #94a3b8; text-align:right; font-weight:800">${sub.c9_total}</td>
+          <td style="padding:8px; border:1px solid #94a3b8">
+            <div><strong>अनिवार्य विषय:</strong> हिंदी, अंग्रेजी, विज्ञान, सा.विज्ञान, गणित</div>
+            <div style="margin-top:3px; color:#1e40af; font-weight:600">
+              तृतीय भाषा: संस्कृत (${sub.c9_sanskrit || 0}), उर्दू (${sub.c9_urdu || 0})
+            </div>
+          </td>
+          <td style="padding:8px; border:1px solid #94a3b8; text-align:right">
+            कुल: ${sub.c9_total}<br>
+            <span style="font-size:0.75rem; color:#475569">संस्कृत: ${sub.c9_sanskrit || 0} | उर्दू: ${sub.c9_urdu || 0}</span>
+          </td>
           <td style="padding:8px; border:1px solid #94a3b8; text-align:right; font-weight:800; background:#eff6ff">${sub.c9_total}</td>
         </tr>
         <tr>
           <td style="padding:8px; border:1px solid #94a3b8; text-align:center; font-weight:800; background:#f8fafc">कक्षा 10वीं</td>
-          <td style="padding:8px; border:1px solid #94a3b8">समस्त सामान्य अनिवार्य विषय (हिंदी, अंग्रेजी, विज्ञान, सा.विज्ञान, गणित, तृतीय भाषा)</td>
-          <td style="padding:8px; border:1px solid #94a3b8; text-align:right; font-weight:800">${sub.c10_total}</td>
+          <td style="padding:8px; border:1px solid #94a3b8">
+            <div><strong>अनिवार्य विषय:</strong> हिंदी, अंग्रेजी, विज्ञान, सा.विज्ञान, गणित</div>
+            <div style="margin-top:3px; color:#1e40af; font-weight:600">
+              तृतीय भाषा: संस्कृत (${sub.c10_sanskrit || 0}), उर्दू (${sub.c10_urdu || 0})
+            </div>
+          </td>
+          <td style="padding:8px; border:1px solid #94a3b8; text-align:right">
+            कुल: ${sub.c10_total}<br>
+            <span style="font-size:0.75rem; color:#475569">संस्कृत: ${sub.c10_sanskrit || 0} | उर्दू: ${sub.c10_urdu || 0}</span>
+          </td>
           <td style="padding:8px; border:1px solid #94a3b8; text-align:right; font-weight:800; background:#eff6ff">${sub.c10_total}</td>
         </tr>
         <tr>
           <td style="padding:8px; border:1px solid #94a3b8; text-align:center; font-weight:800; background:#f8fafc" rowspan="2">कक्षा 11वीं</td>
           <td style="padding:8px; border:1px solid #94a3b8">
             <div><strong>अनिवार्य विषय:</strong> अनिवार्य हिंदी (${sub.c11_comp_hindi}), अनिवार्य अंग्रेजी (${sub.c11_comp_english})</div>
+            <div style="margin-top:3px; color:#0369a1; font-weight:700">
+              संचालित संकाय: ${c11FacNames}
+            </div>
           </td>
           <td style="padding:8px; border:1px solid #94a3b8; text-align:right">हिंदी: ${sub.c11_comp_hindi}<br>अंग्रेजी: ${sub.c11_comp_english}</td>
           <td style="padding:8px; border:1px solid #94a3b8; text-align:right; font-weight:800; background:#eff6ff" rowspan="2">${sub.c11_total}</td>
@@ -1307,7 +1491,7 @@ function openExamPdfPreview(schoolCode) {
           <td colspan="2" style="padding:0; border:1px solid #94a3b8">
             <table style="width:100%; border-collapse:collapse; font-size:0.8rem">
               <tr style="background:#f1f5f9; font-weight:700">
-                <td style="padding:4px 8px; border:1px solid #cbd5e1">कक्षा 11 ऐच्छिक विषय</td>
+                <td style="padding:4px 8px; border:1px solid #cbd5e1">कक्षा 11 ऐच्छिक विषय (संकायवार)</td>
                 <td style="padding:4px 8px; border:1px solid #cbd5e1; text-align:right; width:80px">विद्यार्थी</td>
               </tr>
               ${c11OptRows}
@@ -1318,6 +1502,9 @@ function openExamPdfPreview(schoolCode) {
           <td style="padding:8px; border:1px solid #94a3b8; text-align:center; font-weight:800; background:#f8fafc" rowspan="2">कक्षा 12वीं</td>
           <td style="padding:8px; border:1px solid #94a3b8">
             <div><strong>अनिवार्य विषय:</strong> अनिवार्य हिंदी (${sub.c12_comp_hindi}), अनिवार्य अंग्रेजी (${sub.c12_comp_english})</div>
+            <div style="margin-top:3px; color:#0369a1; font-weight:700">
+              संचालित संकाय: ${c12FacNames}
+            </div>
           </td>
           <td style="padding:8px; border:1px solid #94a3b8; text-align:right">हिंदी: ${sub.c12_comp_hindi}<br>अंग्रेजी: ${sub.c12_comp_english}</td>
           <td style="padding:8px; border:1px solid #94a3b8; text-align:right; font-weight:800; background:#eff6ff" rowspan="2">${sub.c12_total}</td>
@@ -1326,7 +1513,7 @@ function openExamPdfPreview(schoolCode) {
           <td colspan="2" style="padding:0; border:1px solid #94a3b8">
             <table style="width:100%; border-collapse:collapse; font-size:0.8rem">
               <tr style="background:#f1f5f9; font-weight:700">
-                <td style="padding:4px 8px; border:1px solid #cbd5e1">कक्षा 12 ऐच्छिक विषय</td>
+                <td style="padding:4px 8px; border:1px solid #cbd5e1">कक्षा 12 ऐच्छिक विषय (संकायवार)</td>
                 <td style="padding:4px 8px; border:1px solid #cbd5e1; text-align:right; width:80px">विद्यार्थी</td>
               </tr>
               ${c12OptRows}

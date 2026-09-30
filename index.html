@@ -36,8 +36,8 @@
       </div>
 
       <div class="header-actions">
-        <!-- Live Google Drive Quick Link -->
-        <a id="btn-drive-folder" href="https://drive.google.com/drive/folders/1wxRe4NMIkKS8VDAAVzUB2KXJioEl4OFu" target="_blank" class="btn btn-drive btn-sm" title="Google Drive पर सभी शीट्स देखें">
+        <!-- Live Google Drive Quick Link (Admins Only) -->
+        <a id="btn-drive-folder" href="https://drive.google.com/drive/folders/1wxRe4NMIkKS8VDAAVzUB2KXJioEl4OFu" target="_blank" class="btn btn-drive btn-sm" title="Google Drive पर सभी शीट्स देखें" style="display:none">
           <i class="fab fa-google-drive"></i> Google Drive फोल्डर
         </a>
 
@@ -143,7 +143,7 @@
           </div>
         </div>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
-          <a href="https://docs.google.com/spreadsheets/d/1tVP7gbIuUP576E2a1Qk6TadXUSP7a5c7ah8HzKeTk4k/edit" target="_blank" class="btn btn-light btn-sm" style="color:#1e3a8a; font-weight:700">
+          <a id="btn-peeo-sheet-view" href="https://docs.google.com/spreadsheets/d/1tVP7gbIuUP576E2a1Qk6TadXUSP7a5c7ah8HzKeTk4k/edit" target="_blank" class="btn btn-light btn-sm" style="color:#1e3a8a; font-weight:700; display:none">
             <i class="fab fa-google-drive"></i> Google Sheet में देखें
           </a>
         </div>
@@ -1343,38 +1343,69 @@
             </div>
           </div>
 
-          <!-- Card 3: Class 9 & Class 10 Enrollment -->
+          <!-- Card 3: Class 9 & Class 10 Enrollment & 3rd Language -->
           <div class="gform-card">
             <div class="gform-card-title">
-              <i class="fas fa-users text-primary"></i> 3. Class 9 & Class 10 Total Student Enrollment (कक्षा 9 एवं 10 कुल नामांकन)
+              <i class="fas fa-users text-primary"></i> 3. Class 9 & Class 10 Enrollment & 3rd Language (कक्षा 9 एवं 10 कुल नामांकन व तृतीय भाषा)
             </div>
             <div class="gform-card-desc">
-              All students in Classes 9 and 10 appear in compulsory general papers (Hindi, English, Science, Social Science, Mathematics, Third Language).
+              कक्षा 9 व 10 के विद्यार्थियों का कुल नामांकन तथा तृतीय भाषा (संस्कृत एवं उर्दू) के परीक्षार्थियों की संख्या दर्ज करें।
             </div>
 
-            <div class="gform-row" style="margin-bottom:0">
-              <div class="gform-field">
-                <label>Class 9 Total Students (कक्षा 9 कुल विद्यार्थी) <span style="color:red">*</span>:</label>
-                <input type="number" id="gform-c9-total" min="0" value="0" class="gform-input" style="font-weight:700; font-size:1.1rem; color:#1e40af" oninput="calculateGFormTotals()">
+            <!-- Class 9 -->
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:1rem; margin-bottom:1rem">
+              <div style="font-weight:800; color:#1e3a8a; font-size:0.95rem; margin-bottom:0.6rem; display:flex; align-items:center; gap:0.4rem">
+                <i class="fas fa-user-graduate"></i> कक्षा 9 (Class 9th):
               </div>
-              <div class="gform-field">
-                <label>Class 10 Total Students (कक्षा 10 कुल विद्यार्थी) <span style="color:red">*</span>:</label>
-                <input type="number" id="gform-c10-total" min="0" value="0" class="gform-input" style="font-weight:700; font-size:1.1rem; color:#1e40af" oninput="calculateGFormTotals()">
+              <div class="gform-row" style="margin-bottom:0">
+                <div class="gform-field">
+                  <label>9वीं कुल विद्यार्थी (Total Enrollment) <span style="color:red">*</span>:</label>
+                  <input type="number" id="gform-c9-total" min="0" value="0" class="gform-input" style="font-weight:800; font-size:1.1rem; color:#1e40af" oninput="calculateGFormTotals()">
+                </div>
+                <div class="gform-field">
+                  <label>तृतीय भाषा: संस्कृत (Sanskrit):</label>
+                  <input type="number" id="gform-c9-sanskrit" min="0" value="0" class="gform-input" style="font-weight:700" oninput="calculateGFormTotals()">
+                </div>
+                <div class="gform-field">
+                  <label>तृतीय भाषा: उर्दू (Urdu):</label>
+                  <input type="number" id="gform-c9-urdu" min="0" value="0" class="gform-input" style="font-weight:700" oninput="calculateGFormTotals()">
+                </div>
+              </div>
+            </div>
+
+            <!-- Class 10 -->
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:1rem">
+              <div style="font-weight:800; color:#1e3a8a; font-size:0.95rem; margin-bottom:0.6rem; display:flex; align-items:center; gap:0.4rem">
+                <i class="fas fa-user-graduate"></i> कक्षा 10 (Class 10th):
+              </div>
+              <div class="gform-row" style="margin-bottom:0">
+                <div class="gform-field">
+                  <label>10वीं कुल विद्यार्थी (Total Enrollment) <span style="color:red">*</span>:</label>
+                  <input type="number" id="gform-c10-total" min="0" value="0" class="gform-input" style="font-weight:800; font-size:1.1rem; color:#1e40af" oninput="calculateGFormTotals()">
+                </div>
+                <div class="gform-field">
+                  <label>तृतीय भाषा: संस्कृत (Sanskrit):</label>
+                  <input type="number" id="gform-c10-sanskrit" min="0" value="0" class="gform-input" style="font-weight:700" oninput="calculateGFormTotals()">
+                </div>
+                <div class="gform-field">
+                  <label>तृतीय भाषा: उर्दू (Urdu):</label>
+                  <input type="number" id="gform-c10-urdu" min="0" value="0" class="gform-input" style="font-weight:700" oninput="calculateGFormTotals()">
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Card 4: Class 11 Subject-wise Student Enrollment -->
+          <!-- Card 4: Class 11 Faculty Selection & Subject Enrollment -->
           <div class="gform-card">
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:0.5rem">
               <div class="gform-card-title" style="margin-bottom:0">
-                <i class="fas fa-book-open text-primary"></i> 4. Class 11 Subject-wise Enrollment (कक्षा 11 विषयवार नामांकन)
+                <i class="fas fa-book-open text-primary"></i> 4. Class 11 Faculty Selection & Subjects (कक्षा 11 संकाय चयन व विषयवार नामांकन)
               </div>
               <div style="font-weight:700; color:#15803d; background:#dcfce7; padding:4px 10px; border-radius:6px; font-size:0.85rem">
                 कक्षा 11 कुल: <span id="gform-c11-total-display">0</span> विद्यार्थी
               </div>
             </div>
-            <div class="gform-card-desc">Enter enrollment only for subjects currently taught in your institution. Leave other subjects as 0.</div>
+            <div class="gform-card-desc">विद्यालय में संचालित संकाय/संकायों का चयन करें। चयनित संकाय के विषय ही नीचे स्वतः खुलेंगे।</div>
 
             <!-- Compulsory Subjects -->
             <div style="font-weight:700; color:#1e3a8a; font-size:0.88rem; margin-bottom:0.5rem">
@@ -1391,12 +1422,50 @@
               </div>
             </div>
 
-            <!-- Optional Subjects Grid -->
-            <div style="font-weight:700; color:#1e3a8a; font-size:0.88rem; margin:1rem 0 0.5rem 0">
-              ऐच्छिक विषय (Optional Subjects - Arts, Science, Agriculture, Commerce):
+            <!-- Faculty Selection Box -->
+            <div class="faculty-selector-box">
+              <div style="font-weight:700; color:#1e3a8a; font-size:0.9rem">
+                <i class="fas fa-layer-group"></i> कक्षा 11 संकाय चयन (Select Faculty / Stream) <span style="color:red">*</span>:
+              </div>
+              <div style="font-size:0.8rem; color:#64748b; margin-top:0.2rem">
+                (विद्यालय में 1 से 4 तक जितने भी संकाय संचालित हैं, उन पर टिक करें)
+              </div>
+              <div class="faculty-pills-container">
+                <label class="faculty-pill-btn" id="lbl-c11-arts">
+                  <input type="checkbox" id="gform-c11-fac-arts" onchange="onToggleFaculty('c11', 'arts')">
+                  <span>🎨 कला संकाय (Arts)</span>
+                </label>
+                <label class="faculty-pill-btn" id="lbl-c11-science">
+                  <input type="checkbox" id="gform-c11-fac-science" onchange="onToggleFaculty('c11', 'science')">
+                  <span>🔬 विज्ञान संकाय (Science)</span>
+                </label>
+                <label class="faculty-pill-btn" id="lbl-c11-commerce">
+                  <input type="checkbox" id="gform-c11-fac-commerce" onchange="onToggleFaculty('c11', 'commerce')">
+                  <span>💼 वाणिज्य संकाय (Commerce)</span>
+                </label>
+                <label class="faculty-pill-btn" id="lbl-c11-agri">
+                  <input type="checkbox" id="gform-c11-fac-agri" onchange="onToggleFaculty('c11', 'agri')">
+                  <span>🌾 कृषि संकाय (Agriculture)</span>
+                </label>
+              </div>
             </div>
-            <div class="gform-subject-grid" id="gform-c11-subjects-grid">
-              <!-- Dynamically populated subject inputs -->
+
+            <!-- Dynamic Faculty Stream Sections -->
+            <div id="gform-c11-section-arts" class="faculty-stream-section">
+              <div class="faculty-stream-header">🎨 कला संकाय के ऐच्छिक विषय (Arts Optional Subjects):</div>
+              <div class="gform-subject-grid" id="gform-c11-grid-arts"></div>
+            </div>
+            <div id="gform-c11-section-science" class="faculty-stream-section">
+              <div class="faculty-stream-header">🔬 विज्ञान संकाय के ऐच्छिक विषय (Science Optional Subjects):</div>
+              <div class="gform-subject-grid" id="gform-c11-grid-science"></div>
+            </div>
+            <div id="gform-c11-section-commerce" class="faculty-stream-section">
+              <div class="faculty-stream-header">💼 वाणिज्य संकाय के ऐच्छिक विषय (Commerce Optional Subjects):</div>
+              <div class="gform-subject-grid" id="gform-c11-grid-commerce"></div>
+            </div>
+            <div id="gform-c11-section-agri" class="faculty-stream-section">
+              <div class="faculty-stream-header">🌾 कृषि संकाय के ऐच्छिक विषय (Agriculture Optional Subjects):</div>
+              <div class="gform-subject-grid" id="gform-c11-grid-agri"></div>
             </div>
 
             <div style="margin-top:1rem; display:flex; justify-content:flex-end; align-items:center; gap:0.5rem">
@@ -1405,17 +1474,17 @@
             </div>
           </div>
 
-          <!-- Card 5: Class 12 Subject-wise Student Enrollment -->
+          <!-- Card 5: Class 12 Faculty Selection & Subject Enrollment -->
           <div class="gform-card">
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:0.5rem">
               <div class="gform-card-title" style="margin-bottom:0">
-                <i class="fas fa-graduation-cap text-primary"></i> 5. Class 12 Subject-wise Enrollment (कक्षा 12 विषयवार नामांकन)
+                <i class="fas fa-graduation-cap text-primary"></i> 5. Class 12 Faculty Selection & Subjects (कक्षा 12 संकाय चयन व विषयवार नामांकन)
               </div>
               <div style="font-weight:700; color:#15803d; background:#dcfce7; padding:4px 10px; border-radius:6px; font-size:0.85rem">
                 कक्षा 12 कुल: <span id="gform-c12-total-display">0</span> विद्यार्थी
               </div>
             </div>
-            <div class="gform-card-desc">Enter enrollment only for subjects currently taught in your institution. Leave other subjects as 0.</div>
+            <div class="gform-card-desc">विद्यालय में संचालित संकाय/संकायों का चयन करें। चयनित संकाय के विषय ही नीचे स्वतः खुलेंगे।</div>
 
             <!-- Compulsory Subjects -->
             <div style="font-weight:700; color:#1e3a8a; font-size:0.88rem; margin-bottom:0.5rem">
@@ -1432,12 +1501,50 @@
               </div>
             </div>
 
-            <!-- Optional Subjects Grid -->
-            <div style="font-weight:700; color:#1e3a8a; font-size:0.88rem; margin:1rem 0 0.5rem 0">
-              ऐच्छिक विषय (Optional Subjects - Arts, Science, Agriculture, Commerce):
+            <!-- Faculty Selection Box -->
+            <div class="faculty-selector-box">
+              <div style="font-weight:700; color:#1e3a8a; font-size:0.9rem">
+                <i class="fas fa-layer-group"></i> कक्षा 12 संकाय चयन (Select Faculty / Stream) <span style="color:red">*</span>:
+              </div>
+              <div style="font-size:0.8rem; color:#64748b; margin-top:0.2rem">
+                (विद्यालय में 1 से 4 तक जितने भी संकाय संचालित हैं, उन पर टिक करें)
+              </div>
+              <div class="faculty-pills-container">
+                <label class="faculty-pill-btn" id="lbl-c12-arts">
+                  <input type="checkbox" id="gform-c12-fac-arts" onchange="onToggleFaculty('c12', 'arts')">
+                  <span>🎨 कला संकाय (Arts)</span>
+                </label>
+                <label class="faculty-pill-btn" id="lbl-c12-science">
+                  <input type="checkbox" id="gform-c12-fac-science" onchange="onToggleFaculty('c12', 'science')">
+                  <span>🔬 विज्ञान संकाय (Science)</span>
+                </label>
+                <label class="faculty-pill-btn" id="lbl-c12-commerce">
+                  <input type="checkbox" id="gform-c12-fac-commerce" onchange="onToggleFaculty('c12', 'commerce')">
+                  <span>💼 वाणिज्य संकाय (Commerce)</span>
+                </label>
+                <label class="faculty-pill-btn" id="lbl-c12-agri">
+                  <input type="checkbox" id="gform-c12-fac-agri" onchange="onToggleFaculty('c12', 'agri')">
+                  <span>🌾 कृषि संकाय (Agriculture)</span>
+                </label>
+              </div>
             </div>
-            <div class="gform-subject-grid" id="gform-c12-subjects-grid">
-              <!-- Dynamically populated subject inputs -->
+
+            <!-- Dynamic Faculty Stream Sections -->
+            <div id="gform-c12-section-arts" class="faculty-stream-section">
+              <div class="faculty-stream-header">🎨 कला संकाय के ऐच्छिक विषय (Arts Optional Subjects):</div>
+              <div class="gform-subject-grid" id="gform-c12-grid-arts"></div>
+            </div>
+            <div id="gform-c12-section-science" class="faculty-stream-section">
+              <div class="faculty-stream-header">🔬 विज्ञान संकाय के ऐच्छिक विषय (Science Optional Subjects):</div>
+              <div class="gform-subject-grid" id="gform-c12-grid-science"></div>
+            </div>
+            <div id="gform-c12-section-commerce" class="faculty-stream-section">
+              <div class="faculty-stream-header">💼 वाणिज्य संकाय के ऐच्छिक विषय (Commerce Optional Subjects):</div>
+              <div class="gform-subject-grid" id="gform-c12-grid-commerce"></div>
+            </div>
+            <div id="gform-c12-section-agri" class="faculty-stream-section">
+              <div class="faculty-stream-header">🌾 कृषि संकाय के ऐच्छिक विषय (Agriculture Optional Subjects):</div>
+              <div class="gform-subject-grid" id="gform-c12-grid-agri"></div>
             </div>
 
             <div style="margin-top:1rem; display:flex; justify-content:flex-end; align-items:center; gap:0.5rem">

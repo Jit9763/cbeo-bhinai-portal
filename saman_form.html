@@ -364,6 +364,80 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
+    /* Faculty Selection & Stream Sections */
+    .faculty-selector-box {
+      background: #f1f5f9;
+      border: 1.5px dashed #94a3b8;
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      margin: 1rem 0;
+    }
+    .faculty-pills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.6rem;
+    }
+    .faculty-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.5rem 0.85rem;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #334155;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+    .faculty-pill-btn:hover {
+      border-color: #3b82f6;
+      background: #eff6ff;
+    }
+    .faculty-pill-btn.active {
+      background: #1e40af;
+      color: #ffffff;
+      border-color: #1e3a8a;
+      box-shadow: 0 2px 4px rgba(30, 64, 175, 0.25);
+    }
+    .faculty-pill-btn input[type="checkbox"] {
+      cursor: pointer;
+      accent-color: #ffffff;
+      width: 16px;
+      height: 16px;
+    }
+    .faculty-stream-section {
+      display: none;
+      margin-top: 1rem;
+      padding: 0.85rem;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+    }
+    .faculty-stream-section.active {
+      display: block;
+    }
+    .faculty-stream-header {
+      font-weight: 800;
+      font-size: 0.88rem;
+      color: #1e3a8a;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .submitted-preview-card {
+      background: #ecfdf5;
+      border: 1.5px solid #10b981;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 1px 3px rgba(16, 185, 129, 0.2);
+    }
+
     @media (max-width: 640px) {
       .form-row {
         grid-template-columns: 1fr;
@@ -424,6 +498,23 @@
 
     <!-- Hidden code -->
     <input type="hidden" id="f-school-code">
+
+    <!-- Already Submitted Banner & Table (Visible if saved) -->
+    <div id="f-submitted-banner" class="submitted-preview-card" style="display:none">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:0.6rem">
+        <div style="font-weight:900; color:#065f46; font-size:1.05rem; display:flex; align-items:center; gap:0.5rem">
+          <i class="fas fa-check-circle" style="color:#10b981; font-size:1.25rem"></i>
+          <span>प्रपत्र पूर्व में सबमिट किया जा चुका है (Saved Data Table)</span>
+        </div>
+        <span style="background:#d1fae5; color:#047857; font-weight:800; font-size:0.8rem; padding:3px 10px; border-radius:20px">
+          संशोधन मोड (Edit Allowed)
+        </span>
+      </div>
+      <div style="font-size:0.85rem; color:#047857; margin-bottom:0.75rem">
+        इस विद्यालय का डेटा सफलतापूर्वक सुरक्षित है। आप नीचे दिए गए प्रपत्र में कोई भी संख्या बदलकर पुनः सबमिट (Update) कर सकते हैं।
+      </div>
+      <div id="f-submitted-table-container"></div>
+    </div>
 
     <!-- Card 1: School Identity -->
     <div class="gform-card">
@@ -494,36 +585,67 @@
       </div>
     </div>
 
-    <!-- Card 3: Class 9 & Class 10 -->
+    <!-- Card 3: Class 9 & Class 10 Enrollment & 3rd Language -->
     <div class="gform-card">
       <div class="card-title">
-        <i class="fas fa-users" style="color:#2563eb"></i> 3. Class 9 & Class 10 Total Students (कक्षा 9 एवं 10 कुल नामांकन)
+        <i class="fas fa-users" style="color:#2563eb"></i> 3. Class 9 & Class 10 Enrollment & 3rd Language (कक्षा 9 एवं 10 कुल नामांकन व तृतीय भाषा)
       </div>
-      <div class="card-desc">कक्षा 9 एवं 10 में सभी सामान्य अनिवार्य विषयों हेतु कुल विद्यार्थी संख्या दर्ज करें:</div>
+      <div class="card-desc">कक्षा 9 व 10 के विद्यार्थियों का कुल नामांकन तथा तृतीय भाषा (संस्कृत एवं उर्दू) के परीक्षार्थियों की संख्या दर्ज करें:</div>
 
-      <div class="form-row" style="margin-bottom:0">
-        <div class="form-group">
-          <label class="form-label">Class 9 Total Students (कक्षा 9 कुल विद्यार्थी) <span style="color:red">*</span>:</label>
-          <input type="number" id="f-c9-total" min="0" value="0" class="form-input" style="font-size:1.15rem; font-weight:800; color:#1e40af" oninput="calculateTotals()">
+      <!-- Class 9 -->
+      <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:1rem; margin-bottom:1rem">
+        <div style="font-weight:800; color:#1e3a8a; font-size:0.95rem; margin-bottom:0.6rem; display:flex; align-items:center; gap:0.4rem">
+          <i class="fas fa-user-graduate"></i> कक्षा 9 (Class 9th):
         </div>
-        <div class="form-group">
-          <label class="form-label">Class 10 Total Students (कक्षा 10 कुल विद्यार्थी) <span style="color:red">*</span>:</label>
-          <input type="number" id="f-c10-total" min="0" value="0" class="form-input" style="font-size:1.15rem; font-weight:800; color:#1e40af" oninput="calculateTotals()">
+        <div class="form-row" style="margin-bottom:0">
+          <div class="form-group">
+            <label class="form-label">9वीं कुल विद्यार्थी (Total Enrollment) <span style="color:red">*</span>:</label>
+            <input type="number" id="f-c9-total" min="0" value="0" class="form-input" style="font-size:1.15rem; font-weight:800; color:#1e40af" oninput="calculateTotals()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">तृतीय भाषा: संस्कृत (Sanskrit):</label>
+            <input type="number" id="f-c9-sanskrit" min="0" value="0" class="form-input" style="font-weight:700" oninput="calculateTotals()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">तृतीय भाषा: उर्दू (Urdu):</label>
+            <input type="number" id="f-c9-urdu" min="0" value="0" class="form-input" style="font-weight:700" oninput="calculateTotals()">
+          </div>
+        </div>
+      </div>
+
+      <!-- Class 10 -->
+      <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:1rem">
+        <div style="font-weight:800; color:#1e3a8a; font-size:0.95rem; margin-bottom:0.6rem; display:flex; align-items:center; gap:0.4rem">
+          <i class="fas fa-user-graduate"></i> कक्षा 10 (Class 10th):
+        </div>
+        <div class="form-row" style="margin-bottom:0">
+          <div class="form-group">
+            <label class="form-label">10वीं कुल विद्यार्थी (Total Enrollment) <span style="color:red">*</span>:</label>
+            <input type="number" id="f-c10-total" min="0" value="0" class="form-input" style="font-size:1.15rem; font-weight:800; color:#1e40af" oninput="calculateTotals()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">तृतीय भाषा: संस्कृत (Sanskrit):</label>
+            <input type="number" id="f-c10-sanskrit" min="0" value="0" class="form-input" style="font-weight:700" oninput="calculateTotals()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">तृतीय भाषा: उर्दू (Urdu):</label>
+            <input type="number" id="f-c10-urdu" min="0" value="0" class="form-input" style="font-weight:700" oninput="calculateTotals()">
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Card 4: Class 11 -->
+    <!-- Card 4: Class 11 Faculty Selection & Subject Enrollment -->
     <div class="gform-card">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:0.35rem">
         <div class="card-title" style="margin-bottom:0">
-          <i class="fas fa-book-open" style="color:#2563eb"></i> 4. Class 11 Subject-wise Enrollment (कक्षा 11 नामांकन)
+          <i class="fas fa-book-open" style="color:#2563eb"></i> 4. Class 11 Faculty Selection & Subjects (कक्षा 11 संकाय चयन व विषयवार नामांकन)
         </div>
         <div style="font-weight:800; color:#15803d; background:#dcfce7; padding:4px 10px; border-radius:6px; font-size:0.85rem">
           कक्षा 11 कुल: <span id="f-c11-total-display">0</span> विद्यार्थी
         </div>
       </div>
-      <div class="card-desc">विद्यालय में संचालित विषयों में ही संख्या दर्ज करें। बाकी में 0 रहने दें।</div>
+      <div class="card-desc">विद्यालय में संचालित संकाय/संकायों का चयन करें। चयनित संकाय के विषय ही नीचे स्वतः खुलेंगे।</div>
 
       <div style="font-weight:700; color:#1e3a8a; font-size:0.88rem; margin-bottom:0.5rem">
         अनिवार्य विषय (Compulsory Subjects):
@@ -539,11 +661,50 @@
         </div>
       </div>
 
-      <div style="font-weight:700; color:#1e3a8a; font-size:0.88rem; margin:1rem 0 0.5rem 0">
-        ऐच्छिक विषय (Optional Subjects - Arts, Science, Commerce, Agriculture):
+      <!-- Faculty Selection Box -->
+      <div class="faculty-selector-box">
+        <div style="font-weight:700; color:#1e3a8a; font-size:0.9rem">
+          <i class="fas fa-layer-group"></i> कक्षा 11 संकाय चयन (Select Faculty / Stream) <span style="color:red">*</span>:
+        </div>
+        <div style="font-size:0.8rem; color:#64748b; margin-top:0.2rem">
+          (विद्यालय में 1 से 4 तक जितने भी संकाय संचालित हैं, उन पर टिक करें)
+        </div>
+        <div class="faculty-pills-container">
+          <label class="faculty-pill-btn" id="lbl-c11-arts">
+            <input type="checkbox" id="f-c11-fac-arts" onchange="onToggleStandaloneFaculty('c11', 'arts')">
+            <span>🎨 कला संकाय (Arts)</span>
+          </label>
+          <label class="faculty-pill-btn" id="lbl-c11-science">
+            <input type="checkbox" id="f-c11-fac-science" onchange="onToggleStandaloneFaculty('c11', 'science')">
+            <span>🔬 विज्ञान संकाय (Science)</span>
+          </label>
+          <label class="faculty-pill-btn" id="lbl-c11-commerce">
+            <input type="checkbox" id="f-c11-fac-commerce" onchange="onToggleStandaloneFaculty('c11', 'commerce')">
+            <span>💼 वाणिज्य संकाय (Commerce)</span>
+          </label>
+          <label class="faculty-pill-btn" id="lbl-c11-agri">
+            <input type="checkbox" id="f-c11-fac-agri" onchange="onToggleStandaloneFaculty('c11', 'agri')">
+            <span>🌾 कृषि संकाय (Agriculture)</span>
+          </label>
+        </div>
       </div>
-      <div class="subject-grid" id="f-c11-subjects-grid">
-        <!-- Dynamically rendered -->
+
+      <!-- Dynamic Faculty Stream Sections -->
+      <div id="f-c11-section-arts" class="faculty-stream-section">
+        <div class="faculty-stream-header">🎨 कला संकाय के ऐच्छिक विषय (Arts Optional Subjects):</div>
+        <div class="subject-grid" id="f-c11-grid-arts"></div>
+      </div>
+      <div id="f-c11-section-science" class="faculty-stream-section">
+        <div class="faculty-stream-header">🔬 विज्ञान संकाय के ऐच्छिक विषय (Science Optional Subjects):</div>
+        <div class="subject-grid" id="f-c11-grid-science"></div>
+      </div>
+      <div id="f-c11-section-commerce" class="faculty-stream-section">
+        <div class="faculty-stream-header">💼 वाणिज्य संकाय के ऐच्छिक विषय (Commerce Optional Subjects):</div>
+        <div class="subject-grid" id="f-c11-grid-commerce"></div>
+      </div>
+      <div id="f-c11-section-agri" class="faculty-stream-section">
+        <div class="faculty-stream-header">🌾 कृषि संकाय के ऐच्छिक विषय (Agriculture Optional Subjects):</div>
+        <div class="subject-grid" id="f-c11-grid-agri"></div>
       </div>
 
       <div style="margin-top:1rem; display:flex; justify-content:flex-end; align-items:center; gap:0.5rem">
@@ -552,17 +713,17 @@
       </div>
     </div>
 
-    <!-- Card 5: Class 12 -->
+    <!-- Card 5: Class 12 Faculty Selection & Subject Enrollment -->
     <div class="gform-card">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:0.35rem">
         <div class="card-title" style="margin-bottom:0">
-          <i class="fas fa-graduation-cap" style="color:#2563eb"></i> 5. Class 12 Subject-wise Enrollment (कक्षा 12 नामांकन)
+          <i class="fas fa-graduation-cap" style="color:#2563eb"></i> 5. Class 12 Faculty Selection & Subjects (कक्षा 12 संकाय चयन व विषयवार नामांकन)
         </div>
         <div style="font-weight:800; color:#15803d; background:#dcfce7; padding:4px 10px; border-radius:6px; font-size:0.85rem">
           कक्षा 12 कुल: <span id="f-c12-total-display">0</span> विद्यार्थी
         </div>
       </div>
-      <div class="card-desc">विद्यालय में संचालित विषयों में ही संख्या दर्ज करें। बाकी में 0 रहने दें।</div>
+      <div class="card-desc">विद्यालय में संचालित संकाय/संकायों का चयन करें। चयनित संकाय के विषय ही नीचे स्वतः खुलेंगे।</div>
 
       <div style="font-weight:700; color:#1e3a8a; font-size:0.88rem; margin-bottom:0.5rem">
         अनिवार्य विषय (Compulsory Subjects):
@@ -578,11 +739,50 @@
         </div>
       </div>
 
-      <div style="font-weight:700; color:#1e3a8a; font-size:0.88rem; margin:1rem 0 0.5rem 0">
-        ऐच्छिक विषय (Optional Subjects - Arts, Science, Commerce, Agriculture):
+      <!-- Faculty Selection Box -->
+      <div class="faculty-selector-box">
+        <div style="font-weight:700; color:#1e3a8a; font-size:0.9rem">
+          <i class="fas fa-layer-group"></i> कक्षा 12 संकाय चयन (Select Faculty / Stream) <span style="color:red">*</span>:
+        </div>
+        <div style="font-size:0.8rem; color:#64748b; margin-top:0.2rem">
+          (विद्यालय में 1 से 4 तक जितने भी संकाय संचालित हैं, उन पर टिक करें)
+        </div>
+        <div class="faculty-pills-container">
+          <label class="faculty-pill-btn" id="lbl-c12-arts">
+            <input type="checkbox" id="f-c12-fac-arts" onchange="onToggleStandaloneFaculty('c12', 'arts')">
+            <span>🎨 कला संकाय (Arts)</span>
+          </label>
+          <label class="faculty-pill-btn" id="lbl-c12-science">
+            <input type="checkbox" id="f-c12-fac-science" onchange="onToggleStandaloneFaculty('c12', 'science')">
+            <span>🔬 विज्ञान संकाय (Science)</span>
+          </label>
+          <label class="faculty-pill-btn" id="lbl-c12-commerce">
+            <input type="checkbox" id="f-c12-fac-commerce" onchange="onToggleStandaloneFaculty('c12', 'commerce')">
+            <span>💼 वाणिज्य संकाय (Commerce)</span>
+          </label>
+          <label class="faculty-pill-btn" id="lbl-c12-agri">
+            <input type="checkbox" id="f-c12-fac-agri" onchange="onToggleStandaloneFaculty('c12', 'agri')">
+            <span>🌾 कृषि संकाय (Agriculture)</span>
+          </label>
+        </div>
       </div>
-      <div class="subject-grid" id="f-c12-subjects-grid">
-        <!-- Dynamically rendered -->
+
+      <!-- Dynamic Faculty Stream Sections -->
+      <div id="f-c12-section-arts" class="faculty-stream-section">
+        <div class="faculty-stream-header">🎨 कला संकाय के ऐच्छिक विषय (Arts Optional Subjects):</div>
+        <div class="subject-grid" id="f-c12-grid-arts"></div>
+      </div>
+      <div id="f-c12-section-science" class="faculty-stream-section">
+        <div class="faculty-stream-header">🔬 विज्ञान संकाय के ऐच्छिक विषय (Science Optional Subjects):</div>
+        <div class="subject-grid" id="f-c12-grid-science"></div>
+      </div>
+      <div id="f-c12-section-commerce" class="faculty-stream-section">
+        <div class="faculty-stream-header">💼 वाणिज्य संकाय के ऐच्छिक विषय (Commerce Optional Subjects):</div>
+        <div class="subject-grid" id="f-c12-grid-commerce"></div>
+      </div>
+      <div id="f-c12-section-agri" class="faculty-stream-section">
+        <div class="faculty-stream-header">🌾 कृषि संकाय के ऐच्छिक विषय (Agriculture Optional Subjects):</div>
+        <div class="subject-grid" id="f-c12-grid-agri"></div>
       </div>
 
       <div style="margin-top:1rem; display:flex; justify-content:flex-end; align-items:center; gap:0.5rem">
@@ -678,27 +878,64 @@
   <div id="toast-notification"></div>
 
   <script>
-    const OPTIONAL_SUBJECTS = [
-      { key: 'pol_sci', label: 'राजनीति विज्ञान (Political Science)' },
-      { key: 'history', label: 'इतिहास (History)' },
-      { key: 'geography', label: 'भूगोल (Geography)' },
-      { key: 'hindi_lit', label: 'हिंदी साहित्य (Hindi Literature)' },
-      { key: 'eng_lit', label: 'अंग्रेजी साहित्य (English Literature)' },
-      { key: 'sanskrit_lit', label: 'संस्कृत साहित्य (Sanskrit Literature)' },
-      { key: 'economics', label: 'अर्थशास्त्र (Economics)' },
-      { key: 'drawing', label: 'चित्रकला (Drawing / Painting)' },
-      { key: 'home_sci', label: 'गृह विज्ञान (Home Science)' },
-      { key: 'sociology', label: 'समाजशास्त्र (Sociology)' },
-      { key: 'physics', label: 'भौतिक विज्ञान (Physics)' },
-      { key: 'chemistry', label: 'रसायन विज्ञान (Chemistry)' },
-      { key: 'biology', label: 'जीव विज्ञान (Biology)' },
-      { key: 'maths', label: 'गणित (Mathematics)' },
-      { key: 'agri_sci', label: 'कृषि विज्ञान (Agri Science)' },
-      { key: 'agri_bio', label: 'कृषि जीव विज्ञान (Agri Bio)' },
-      { key: 'agri_chem', label: 'कृषि रसायन (Agri Chem)' },
-      { key: 'accountancy', label: 'लेखाशास्त्र (Accountancy)' },
-      { key: 'business_studies', label: 'व्यवसाय अध्ययन (Business Studies)' }
-    ];
+    const FACULTIES_CONFIG = {
+      arts: {
+        key: 'arts',
+        name: 'कला संकाय (Arts)',
+        icon: 'fa-palette',
+        subjects: [
+          { key: 'pol_sci', label: 'राजनीति विज्ञान (Political Science)' },
+          { key: 'history', label: 'इतिहास (History)' },
+          { key: 'geography', label: 'भूगोल (Geography)' },
+          { key: 'hindi_lit', label: 'हिंदी साहित्य (Hindi Literature)' },
+          { key: 'eng_lit', label: 'अंग्रेजी साहित्य (English Literature)' },
+          { key: 'sanskrit_lit', label: 'संस्कृत साहित्य (Sanskrit Lit)' },
+          { key: 'urdu_lit', label: 'उर्दू साहित्य (Urdu Lit)' },
+          { key: 'economics', label: 'अर्थशास्त्र (Economics)' },
+          { key: 'sociology', label: 'समाजशास्त्र (Sociology)' },
+          { key: 'home_sci', label: 'गृह विज्ञान (Home Science)' },
+          { key: 'drawing', label: 'चित्रकला (Drawing / Painting)' }
+        ]
+      },
+      science: {
+        key: 'science',
+        name: 'विज्ञान संकाय (Science)',
+        icon: 'fa-flask',
+        subjects: [
+          { key: 'physics', label: 'भौतिक विज्ञान (Physics)' },
+          { key: 'chemistry', label: 'रसायन विज्ञान (Chemistry)' },
+          { key: 'biology', label: 'जीव विज्ञान (Biology)' },
+          { key: 'maths', label: 'गणित (Mathematics)' }
+        ]
+      },
+      commerce: {
+        key: 'commerce',
+        name: 'वाणिज्य संकाय (Commerce)',
+        icon: 'fa-chart-pie',
+        subjects: [
+          { key: 'accountancy', label: 'लेखाशास्त्र (Accountancy)' },
+          { key: 'business_studies', label: 'व्यवसाय अध्ययन (Business Studies)' },
+          { key: 'economics_comm', label: 'अर्थशास्त्र (Economics - Commerce)' }
+        ]
+      },
+      agri: {
+        key: 'agri',
+        name: 'कृषि संकाय (Agriculture)',
+        icon: 'fa-seedling',
+        subjects: [
+          { key: 'agri_sci', label: 'कृषि विज्ञान (Agriculture Science)' },
+          { key: 'agri_bio', label: 'कृषि जीव विज्ञान (Agri Biology)' },
+          { key: 'agri_chem', label: 'कृषि रसायन (Agri Chemistry)' }
+        ]
+      }
+    };
+
+    const SAMAN_PARIKSHA_OPTIONAL_SUBJECTS = [];
+    Object.values(FACULTIES_CONFIG).forEach(f => {
+      f.subjects.forEach(s => {
+        SAMAN_PARIKSHA_OPTIONAL_SUBJECTS.push({ ...s, faculty: f.key });
+      });
+    });
 
     let schoolsList = [];
     let currentSchool = null;
@@ -708,6 +945,23 @@
       t.textContent = msg;
       t.style.display = 'block';
       setTimeout(() => { t.style.display = 'none'; }, 3000);
+    }
+
+    function onToggleStandaloneFaculty(cls, facKey) {
+      const chk = document.getElementById(`f-${cls}-fac-${facKey}`);
+      const sec = document.getElementById(`f-${cls}-section-${facKey}`);
+      const lbl = document.getElementById(`lbl-${cls}-${facKey}`);
+      if (!chk || !sec) return;
+
+      if (chk.checked) {
+        sec.classList.add('active');
+        if (lbl) lbl.classList.add('active');
+      } else {
+        sec.classList.remove('active');
+        if (lbl) lbl.classList.remove('active');
+        sec.querySelectorAll('input').forEach(inp => inp.value = 0);
+        calculateTotals();
+      }
     }
 
     function initPage() {
@@ -723,7 +977,7 @@
         });
       }
 
-      // Get code from URL ?code=XXXX or ?school=XXXX
+      // Check URL query
       const params = new URLSearchParams(window.location.search);
       const targetCode = params.get('code') || params.get('school') || (schoolsList[0] && schoolsList[0].shala_darpan_code);
 
@@ -731,11 +985,87 @@
         select.value = targetCode;
       }
       loadSchool(targetCode || (select && select.value));
+
+      // Try syncing latest data from backend API
+      fetch('/api/get_saman_pariksha')
+        .then(r => r.json())
+        .then(data => {
+          if (data && data.success && data.submissions) {
+            const allSubs = JSON.parse(localStorage.getItem('cbeo_saman_pariksha_submissions') || '{}');
+            Object.assign(allSubs, data.submissions);
+            localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(allSubs));
+            loadSchool(document.getElementById('f-school-code')?.value || targetCode);
+          }
+        }).catch(() => {});
     }
 
     function onSchoolDropdownChange() {
       const code = document.getElementById('school-select').value;
       loadSchool(code);
+    }
+
+    function renderSubmittedPreviewTable(sub) {
+      const banner = document.getElementById('f-submitted-banner');
+      const container = document.getElementById('f-submitted-table-container');
+      if (!banner || !container) return;
+
+      if (!sub || !sub.exam_code) {
+        banner.style.display = 'none';
+        return;
+      }
+
+      banner.style.display = 'block';
+
+      const c11Sub = SAMAN_PARIKSHA_OPTIONAL_SUBJECTS
+        .filter(s => (sub.c11_optional?.[s.key] || 0) > 0)
+        .map(s => `${s.label.split('(')[0].trim()}: ${sub.c11_optional[s.key]}`)
+        .join(', ');
+
+      const c12Sub = SAMAN_PARIKSHA_OPTIONAL_SUBJECTS
+        .filter(s => (sub.c12_optional?.[s.key] || 0) > 0)
+        .map(s => `${s.label.split('(')[0].trim()}: ${sub.c12_optional[s.key]}`)
+        .join(', ');
+
+      container.innerHTML = `
+        <div style="overflow-x:auto; background:#ffffff; border-radius:6px; border:1px solid #a7f3d0">
+          <table style="width:100%; border-collapse:collapse; font-size:0.85rem">
+            <thead>
+              <tr style="background:#f0fdf4; color:#166534; border-bottom:1px solid #a7f3d0; text-align:left">
+                <th style="padding:6px 10px; width:70px">कक्षा</th>
+                <th style="padding:6px 10px; width:100px">कुल छात्र</th>
+                <th style="padding:6px 10px">विषयवार विवरण (3rd Lang / संकाय व ऐच्छिक विषय)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #f1f5f9">
+                <td style="padding:6px 10px"><strong>9वीं</strong></td>
+                <td style="padding:6px 10px; font-weight:800; color:#1e40af">${sub.c9_total}</td>
+                <td style="padding:6px 10px">अनिवार्य विषय (हिंदी, अंग्रेजी, विज्ञान, सा.वि., गणित) | <span style="color:#0369a1; font-weight:700">तृतीय भाषा: संस्कृत (${sub.c9_sanskrit || 0}), उर्दू (${sub.c9_urdu || 0})</span></td>
+              </tr>
+              <tr style="border-bottom:1px solid #f1f5f9">
+                <td style="padding:6px 10px"><strong>10वीं</strong></td>
+                <td style="padding:6px 10px; font-weight:800; color:#1e40af">${sub.c10_total}</td>
+                <td style="padding:6px 10px">अनिवार्य विषय (हिंदी, अंग्रेजी, विज्ञान, सा.वि., गणित) | <span style="color:#0369a1; font-weight:700">तृतीय भाषा: संस्कृत (${sub.c10_sanskrit || 0}), उर्दू (${sub.c10_urdu || 0})</span></td>
+              </tr>
+              <tr style="border-bottom:1px solid #f1f5f9">
+                <td style="padding:6px 10px"><strong>11वीं</strong></td>
+                <td style="padding:6px 10px; font-weight:800; color:#1e40af">${sub.c11_total}</td>
+                <td style="padding:6px 10px">हिंदी(${sub.c11_comp_hindi}), अंग्रेजी(${sub.c11_comp_english})${c11Sub ? `<br><span style="color:#0369a1">${c11Sub}</span>` : ''}</td>
+              </tr>
+              <tr style="border-bottom:1px solid #f1f5f9">
+                <td style="padding:6px 10px"><strong>12वीं</strong></td>
+                <td style="padding:6px 10px; font-weight:800; color:#1e40af">${sub.c12_total}</td>
+                <td style="padding:6px 10px">हिंदी(${sub.c12_comp_hindi}), अंग्रेजी(${sub.c12_comp_english})${c12Sub ? `<br><span style="color:#0369a1">${c12Sub}</span>` : ''}</td>
+              </tr>
+              <tr style="background:#ecfdf5; font-weight:800; color:#166534">
+                <td style="padding:8px 10px">महायोग</td>
+                <td style="padding:8px 10px; font-size:1.05rem; color:#15803d">${sub.grand_total}</td>
+                <td style="padding:8px 10px">प्रमाणित संस्था प्रधान: ${sub.principal_name || '---'} (मो. ${sub.principal_mobile || '---'}) | परीक्षा कोड: <strong>${sub.exam_code}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      `;
     }
 
     function loadSchool(code) {
@@ -748,6 +1078,8 @@
       // Check stored submission
       const allSubs = JSON.parse(localStorage.getItem('cbeo_saman_pariksha_submissions') || '{}');
       const sub = allSubs[code] || {};
+
+      renderSubmittedPreviewTable(sub);
 
       document.getElementById('f-school-code').value = currentSchool.shala_darpan_code;
       document.getElementById('f-school-name').value = currentSchool.school_name;
@@ -762,7 +1094,12 @@
       document.getElementById('f-incharge-mobile').value = sub.incharge_mobile || currentSchool.incharge_mobile || '';
 
       document.getElementById('f-c9-total').value = sub.c9_total ?? 0;
+      if (document.getElementById('f-c9-sanskrit')) document.getElementById('f-c9-sanskrit').value = sub.c9_sanskrit ?? 0;
+      if (document.getElementById('f-c9-urdu')) document.getElementById('f-c9-urdu').value = sub.c9_urdu ?? 0;
+
       document.getElementById('f-c10-total').value = sub.c10_total ?? 0;
+      if (document.getElementById('f-c10-sanskrit')) document.getElementById('f-c10-sanskrit').value = sub.c10_sanskrit ?? 0;
+      if (document.getElementById('f-c10-urdu')) document.getElementById('f-c10-urdu').value = sub.c10_urdu ?? 0;
 
       document.getElementById('f-c11-comp-hindi').value = sub.c11_comp_hindi ?? 0;
       document.getElementById('f-c11-comp-english').value = sub.c11_comp_english ?? 0;
@@ -772,30 +1109,44 @@
       document.getElementById('f-c12-comp-english').value = sub.c12_comp_english ?? 0;
       document.getElementById('f-c12-total').value = sub.c12_total ?? 0;
 
-      // Populate subjects
-      const c11Grid = document.getElementById('f-c11-subjects-grid');
-      const c12Grid = document.getElementById('f-c12-subjects-grid');
-      c11Grid.innerHTML = '';
-      c12Grid.innerHTML = '';
+      // Render Dynamic Stream Sections and Subjects for Class 11 and Class 12
+      ['c11', 'c12'].forEach(cls => {
+        const savedFaculties = sub[`${cls}_faculties`] || [];
+        const optData = sub[`${cls}_optional`] || {};
 
-      OPTIONAL_SUBJECTS.forEach(subj => {
-        const val11 = (sub.c11_optional && sub.c11_optional[subj.key]) || 0;
-        const box11 = document.createElement('div');
-        box11.className = 'subject-card';
-        box11.innerHTML = `
-          <label title="${subj.label}">${subj.label}</label>
-          <input type="number" min="0" value="${val11}" id="opt-11-${subj.key}" oninput="calculateTotals()">
-        `;
-        c11Grid.appendChild(box11);
+        Object.entries(FACULTIES_CONFIG).forEach(([facKey, fac]) => {
+          const chk = document.getElementById(`f-${cls}-fac-${facKey}`);
+          const sec = document.getElementById(`f-${cls}-section-${facKey}`);
+          const lbl = document.getElementById(`lbl-${cls}-${facKey}`);
+          const grid = document.getElementById(`f-${cls}-grid-${facKey}`);
 
-        const val12 = (sub.c12_optional && sub.c12_optional[subj.key]) || 0;
-        const box12 = document.createElement('div');
-        box12.className = 'subject-card';
-        box12.innerHTML = `
-          <label title="${subj.label}">${subj.label}</label>
-          <input type="number" min="0" value="${val12}" id="opt-12-${subj.key}" oninput="calculateTotals()">
-        `;
-        c12Grid.appendChild(box12);
+          const hasSubjectCount = fac.subjects.some(s => (optData[s.key] || 0) > 0);
+          const isSelected = savedFaculties.includes(facKey) || hasSubjectCount;
+
+          if (chk) chk.checked = isSelected;
+          if (sec) {
+            if (isSelected) sec.classList.add('active');
+            else sec.classList.remove('active');
+          }
+          if (lbl) {
+            if (isSelected) lbl.classList.add('active');
+            else lbl.classList.remove('active');
+          }
+
+          if (grid) {
+            grid.innerHTML = '';
+            fac.subjects.forEach(subj => {
+              const val = optData[subj.key] || 0;
+              const box = document.createElement('div');
+              box.className = 'subject-card';
+              box.innerHTML = `
+                <label title="${subj.label}">${subj.label}</label>
+                <input type="number" min="0" value="${val}" id="f-${cls}-opt-${subj.key}" oninput="calculateTotals()">
+              `;
+              grid.appendChild(box);
+            });
+          }
+        });
       });
 
       // Stamp
@@ -867,7 +1218,13 @@
       }
 
       const c9 = parseInt(document.getElementById('f-c9-total').value) || 0;
+      const c9Sanskrit = parseInt(document.getElementById('f-c9-sanskrit')?.value) || 0;
+      const c9Urdu = parseInt(document.getElementById('f-c9-urdu')?.value) || 0;
+
       const c10 = parseInt(document.getElementById('f-c10-total').value) || 0;
+      const c10Sanskrit = parseInt(document.getElementById('f-c10-sanskrit')?.value) || 0;
+      const c10Urdu = parseInt(document.getElementById('f-c10-urdu')?.value) || 0;
+
       const c11Hindi = parseInt(document.getElementById('f-c11-comp-hindi').value) || 0;
       const c11English = parseInt(document.getElementById('f-c11-comp-english').value) || 0;
       const c11Total = parseInt(document.getElementById('f-c11-total').value) || 0;
@@ -875,11 +1232,14 @@
       const c12English = parseInt(document.getElementById('f-c12-comp-english').value) || 0;
       const c12Total = parseInt(document.getElementById('f-c12-total').value) || 0;
 
+      const c11Faculties = ['arts', 'science', 'commerce', 'agri'].filter(f => document.getElementById(`f-c11-fac-${f}`)?.checked);
+      const c12Faculties = ['arts', 'science', 'commerce', 'agri'].filter(f => document.getElementById(`f-c12-fac-${f}`)?.checked);
+
       const c11Opt = {};
       const c12Opt = {};
-      OPTIONAL_SUBJECTS.forEach(s => {
-        c11Opt[s.key] = parseInt(document.getElementById(`opt-11-${s.key}`)?.value) || 0;
-        c12Opt[s.key] = parseInt(document.getElementById(`opt-12-${s.key}`)?.value) || 0;
+      SAMAN_PARIKSHA_OPTIONAL_SUBJECTS.forEach(s => {
+        c11Opt[s.key] = parseInt(document.getElementById(`f-c11-opt-${s.key}`)?.value) || 0;
+        c12Opt[s.key] = parseInt(document.getElementById(`f-c12-opt-${s.key}`)?.value) || 0;
       });
 
       const grand = c9 + c10 + c11Total + c12Total;
@@ -897,11 +1257,17 @@
         incharge_name: inchargeName,
         incharge_mobile: inchargeMobile,
         c9_total: c9,
+        c9_sanskrit: c9Sanskrit,
+        c9_urdu: c9Urdu,
         c10_total: c10,
+        c10_sanskrit: c10Sanskrit,
+        c10_urdu: c10Urdu,
+        c11_faculties: c11Faculties,
         c11_comp_hindi: c11Hindi,
         c11_comp_english: c11English,
         c11_optional: c11Opt,
         c11_total: c11Total,
+        c12_faculties: c12Faculties,
         c12_comp_hindi: c12Hindi,
         c12_comp_english: c12English,
         c12_optional: c12Opt,
@@ -915,7 +1281,15 @@
       allSubs[currentSchool.shala_darpan_code] = submission;
       localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(allSubs));
 
-      showToast('प्रपत्र सफलतापूर्वक सबमिट हो गया!');
+      // Sync to backend file & Google Sheet
+      fetch('/api/save_saman_pariksha', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(submission)
+      }).catch(() => {});
+
+      renderSubmittedPreviewTable(submission);
+      showToast('प्रपत्र सफलतापूर्वक सुरक्षित (सबमिट) हो गया!');
 
       if (andRedirectToPortal) {
         setTimeout(() => {
