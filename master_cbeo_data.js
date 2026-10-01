@@ -21088,7 +21088,7 @@ const MASTER_CBEO_DATA = {
     "saman_pariksha_active": true,
     "google_sheet_url": "https://docs.google.com/spreadsheets/d/1tVP7gbIuUP576E2a1Qk6TadXUSP7a5c7ah8HzKeTk4k/edit?usp=drivesdk",
     "google_sheet_id": "1tVP7gbIuUP576E2a1Qk6TadXUSP7a5c7ah8HzKeTk4k",
-    "version": "v5_2026_09_30_saman_pariksha_56_schools"
+    "version": "v7_2026_10_01_peeo_deoliya_purnima_rakesh"
   },
   "saman_pariksha_submissions": {}
 };

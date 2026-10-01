@@ -46,7 +46,7 @@ def update():
         "saman_pariksha_active": True,
         "google_sheet_url": drive_cfg['sheets']['saman_pariksha']['url'],
         "google_sheet_id": drive_cfg['sheets']['saman_pariksha']['id'],
-        "version": "v5_2026_09_30_saman_pariksha_56_schools"
+        "version": "v7_2026_10_01_peeo_deoliya_purnima_rakesh"
     }
 
     # Save to JSON

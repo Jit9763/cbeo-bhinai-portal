@@ -863,12 +863,10 @@ const FACULTIES_CONFIG = {
       { key: 'history', label: 'इतिहास (History)' },
       { key: 'geography', label: 'भूगोल (Geography)' },
       { key: 'hindi_lit', label: 'हिंदी साहित्य (Hindi Literature)' },
-      { key: 'eng_lit', label: 'अंग्रेजी साहित्य (English Literature)' },
       { key: 'sanskrit_lit', label: 'संस्कृत साहित्य (Sanskrit Literature)' },
       { key: 'urdu_lit', label: 'उर्दू साहित्य (Urdu Literature)' },
       { key: 'economics', label: 'अर्थशास्त्र (Economics)' },
       { key: 'sociology', label: 'समाजशास्त्र (Sociology)' },
-      { key: 'home_sci', label: 'गृह विज्ञान (Home Science)' },
       { key: 'drawing', label: 'चित्रकला (Drawing / Painting)' }
     ]
   },
@@ -880,7 +878,8 @@ const FACULTIES_CONFIG = {
       { key: 'physics', label: 'भौतिक विज्ञान (Physics)' },
       { key: 'chemistry', label: 'रसायन विज्ञान (Chemistry)' },
       { key: 'biology', label: 'जीव विज्ञान (Biology)' },
-      { key: 'maths', label: 'गणित (Mathematics)' }
+      { key: 'maths', label: 'गणित (Mathematics)' },
+      { key: 'comp_sci', label: 'कम्प्यूटर विज्ञान (Computer Science)' }
     ]
   },
   commerce: {
