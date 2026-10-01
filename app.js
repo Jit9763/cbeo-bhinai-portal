@@ -817,12 +817,25 @@ function onQuickSelectUser() {
     if (subWrap) subWrap.style.display = 'none';
     const sCode = val.replace('sch_', '');
     usernameInput.value = sCode;
-    const currentPwd = STATE.sheetAuthPasswords[sCode]?.password || STATE.customPasswords[sCode] || sCode;
-    passwordInput.value = currentPwd;
-    if (hintBox) {
-      hintBox.innerHTML = `<i class="fas fa-check-circle text-success"></i> <span><strong>विद्यालय चयनित:</strong> कोड <code>${sCode}</code> एवं पासवर्ड स्वतः भर दिया गया है। 'लॉगिन करें' दबाएं।</span>`;
-      hintBox.style.background = '#ecfdf5';
-      hintBox.style.color = '#065f46';
+    const defaultPwd = sCode;
+    const sheetPwd = STATE.sheetAuthPasswords[sCode]?.password || STATE.customPasswords[sCode];
+    const isChanged = sheetPwd && sheetPwd !== defaultPwd;
+
+    if (isChanged) {
+      passwordInput.value = '';
+      passwordInput.placeholder = 'नया बदला हुआ पासवर्ड टाइप करें';
+      if (hintBox) {
+        hintBox.innerHTML = `<i class="fas fa-lock text-warning"></i> <span><strong>पासवर्ड बदला हुआ है:</strong> इस विद्यालय का पासवर्ड परिवर्तित है। कृपया Google Sheet में सेट किया गया नया पासवर्ड स्वयं टाइप करें।</span>`;
+        hintBox.style.background = '#fffbeb';
+        hintBox.style.color = '#92400e';
+      }
+    } else {
+      passwordInput.value = defaultPwd;
+      if (hintBox) {
+        hintBox.innerHTML = `<i class="fas fa-check-circle text-success"></i> <span><strong>विद्यालय चयनित:</strong> कोड <code>${sCode}</code> एवं डिफ़ॉल्ट पासवर्ड स्वतः भर दिया गया है। 'लॉगिन करें' दबाएं।</span>`;
+        hintBox.style.background = '#ecfdf5';
+        hintBox.style.color = '#065f46';
+      }
     }
     return;
   }
@@ -830,8 +843,26 @@ function onQuickSelectUser() {
   const peeo = STATE.peeos.find(p => p.shala_darpan_code === val || p.peeo_id === val);
   if (peeo) {
     usernameInput.value = peeo.shala_darpan_code;
-    const peeoPwd = STATE.sheetAuthPasswords[peeo.shala_darpan_code]?.password || STATE.customPasswords[peeo.shala_darpan_code] || peeo.shala_darpan_code;
-    passwordInput.value = peeoPwd;
+    const peeoDefaultPwd = peeo.shala_darpan_code;
+    const peeoSheetPwd = STATE.sheetAuthPasswords[peeo.shala_darpan_code]?.password || STATE.customPasswords[peeo.shala_darpan_code];
+    const isPeeoChanged = peeoSheetPwd && peeoSheetPwd !== peeoDefaultPwd;
+
+    if (isPeeoChanged) {
+      passwordInput.value = '';
+      passwordInput.placeholder = 'नया बदला हुआ पासवर्ड टाइप करें';
+      if (hintBox) {
+        hintBox.innerHTML = `<i class="fas fa-lock text-warning"></i> <span><strong>पासवर्ड बदला हुआ है:</strong> इस PEEO का पासवर्ड परिवर्तित है। कृपया अपना नया पासवर्ड यहाँ टाइप करें।</span>`;
+        hintBox.style.background = '#fffbeb';
+        hintBox.style.color = '#92400e';
+      }
+    } else {
+      passwordInput.value = peeoDefaultPwd;
+      if (hintBox) {
+        hintBox.innerHTML = '<i class="fas fa-lightbulb text-warning"></i> <span><strong>संकेत:</strong> PEEO एवं विद्यालयों का डिफ़ॉल्ट पासवर्ड उनका <strong>शाला दर्पण / PSP कोड</strong> ही है।</span>';
+        hintBox.style.background = '#e0f2fe';
+        hintBox.style.color = '#0369a1';
+      }
+    }
 
     const policy = STATE.schoolLoginPolicy || 'sec_srsec';
 
@@ -871,12 +902,6 @@ function onQuickSelectUser() {
     } else {
       if (subWrap) subWrap.style.display = 'none';
     }
-
-    if (hintBox) {
-      hintBox.innerHTML = '<i class="fas fa-lightbulb text-warning"></i> <span><strong>संकेत:</strong> PEEO एवं विद्यालयों का डिफ़ॉल्ट पासवर्ड उनका <strong>शाला दर्पण / PSP कोड</strong> ही है।</span>';
-      hintBox.style.background = '#e0f2fe';
-      hintBox.style.color = '#0369a1';
-    }
   }
 }
 
@@ -892,13 +917,24 @@ function onQuickSelectSchoolUnderPeeo() {
 
   usernameInput.value = code;
 
-  // Auto-fill password with custom password, sheet password, or default code
-  const currentPwd = STATE.sheetAuthPasswords[code]?.password || STATE.customPasswords[code] || code;
-  passwordInput.value = currentPwd;
+  // Auto-fill password with default code, but do NOT autofill if changed on Google Sheet
+  const defaultPwd = code;
+  const sheetPwd = STATE.sheetAuthPasswords[code]?.password || STATE.customPasswords[code];
+  const isChanged = sheetPwd && sheetPwd !== defaultPwd;
 
-  if (hintText) {
-    const selectedText = subSelect.options[subSelect.selectedIndex]?.text || '';
-    hintText.innerHTML = `✨ <strong>चयनित:</strong> ${selectedText} | User ID व Password स्वतः भर गया है। <span style="color:#16a34a; font-weight:bold">लॉगिन बटन दबाएं!</span>`;
+  if (isChanged) {
+    passwordInput.value = '';
+    passwordInput.placeholder = 'नया बदला हुआ पासवर्ड टाइप करें';
+    if (hintText) {
+      const selectedText = subSelect.options[subSelect.selectedIndex]?.text || '';
+      hintText.innerHTML = `🔒 <strong>चयनित:</strong> ${selectedText} | <span style="color:#b45309; font-weight:bold">पासवर्ड बदला जा चुका है, कृपया Google Sheet में सेट किया गया नया पासवर्ड यहाँ टाइप करें।</span>`;
+    }
+  } else {
+    passwordInput.value = defaultPwd;
+    if (hintText) {
+      const selectedText = subSelect.options[subSelect.selectedIndex]?.text || '';
+      hintText.innerHTML = `✨ <strong>चयनित:</strong> ${selectedText} | User ID व डिफ़ॉल्ट Password स्वतः भर गया है। <span style="color:#16a34a; font-weight:bold">लॉगिन बटन दबाएं!</span>`;
+    }
   }
 }
 
