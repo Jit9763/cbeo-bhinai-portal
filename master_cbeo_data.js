@@ -875,7 +875,7 @@ const MASTER_CBEO_DATA = {
       "peeo_name": "PEEO DEOLIYA KALAN",
       "shala_darpan_code": "221754",
       "panchayat_name": "DEOLIYA KALAN",
-      "principal_incharge": "PURNIMA / RAKESH BIRAWAT",
+      "principal_incharge": "PURNIMA",
       "mobile": "9414343109",
       "email": "deoliakalan105@gmail.com",
       "username": "221754",
@@ -901,9 +901,9 @@ const MASTER_CBEO_DATA = {
           "shala_darpan_code": "221753",
           "type": "Government",
           "is_peeo_nodal": false,
-          "principal_name": "डॉ. हरीश कुमार जांगिड़",
-          "mobile": "9876543210",
-          "incharge_name": "सुरेश चंद्र शर्मा"
+          "principal_name": "RAKESH KUMAR BIRAWAT",
+          "mobile": "9829835751",
+          "incharge_name": ""
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL MATAJI KA KHEDA (410612) (08210700201)",
@@ -2272,12 +2272,22 @@ const MASTER_CBEO_DATA = {
   "staff": [
     {
       "staff_id": "PRIN_221753",
-      "name": "डॉ. हरीश कुमार जांगिड़",
+      "name": "RAKESH KUMAR BIRAWAT",
       "post": "प्रधानाचार्य / संस्था प्रधान",
       "school_name": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN",
       "peeo_name": "PEEO DEOLIYA KALAN",
-      "mobile": "9876543210",
+      "mobile": "9829835751",
       "email": "",
+      "status": "Active"
+    },
+    {
+      "staff_id": "PRIN_221754",
+      "name": "PURNIMA",
+      "post": "प्रधानाचार्य (PEEO)",
+      "school_name": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)",
+      "peeo_name": "PEEO DEOLIYA KALAN",
+      "mobile": "9414343109",
+      "email": "deoliakalan105@gmail.com",
       "status": "Active"
     },
     {
