@@ -88,13 +88,21 @@ function initMasterData() {
   ];
 
   // Versioned cache check to guarantee fresh master data with 56 schools and Saman Pariksha demand
-  const DATA_VERSION = 'v11_2026_10_01_tagore_peeo_ekalsinga';
+  const DATA_VERSION = 'v12_2026_10_01_peeo_ekalseenga_fix';
   if (localStorage.getItem('cbeo_data_version') !== DATA_VERSION) {
     localStorage.removeItem('cbeo_peeos_data');
     localStorage.removeItem('cbeo_staff_data');
     localStorage.removeItem('cbeo_schools56_data');
     localStorage.removeItem('cbeo_saman_pariksha_submissions');
     localStorage.removeItem('cbeo_saman_form_draft');
+    try {
+      const lu = JSON.parse(localStorage.getItem('cbeo_logged_user') || 'null');
+      if (lu && lu.shala_darpan_code === 'P55700') {
+        lu.peeo_name = 'PEEO EKALSEENGA';
+        lu.peeo_code = '221786';
+        localStorage.setItem('cbeo_logged_user', JSON.stringify(lu));
+      }
+    } catch(e) {}
     for (let i = localStorage.length - 1; i >= 0; i--) {
       const k = localStorage.key(i);
       if (k && (k.startsWith('cbeo_form_draft_') || k.startsWith('cbeo_sp_'))) {
@@ -311,6 +319,8 @@ function setupAutoLogin() {
           STATE.currentUser.principal_name = sch.principal_name || '';
           STATE.currentUser.mobile = sch.principal_mobile || sch.mobile || '';
           STATE.currentUser.school_name = sch.school_name;
+          STATE.currentUser.peeo_name = sch.peeo_name;
+          STATE.currentUser.peeo_code = sch.peeo_code;
           localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
         }
       }
@@ -459,12 +469,14 @@ function updateUserHeaderBadge() {
 
     // Transform Official Header Branding to School / PEEO Identity
     if (isSchool) {
-      if (headerTitle) headerTitle.innerHTML = `<i class="fas fa-school" style="color:#60a5fa; margin-right:8px"></i> ${STATE.currentUser.school_name}`;
+      const schData = STATE.schools56.find(s => s.shala_darpan_code === sdCode) || STATE.currentUser;
+      const currentPeeoName = schData.peeo_name || STATE.currentUser.peeo_name || 'PEEO EKALSEENGA';
+      if (headerTitle) headerTitle.innerHTML = `<i class="fas fa-school" style="color:#60a5fa; margin-right:8px"></i> ${schData.school_name || STATE.currentUser.school_name}`;
       if (headerDept) headerDept.textContent = 'राजस्थान सरकार - स्कूल शिक्षा विभाग';
       if (headerCodeLabel) headerCodeLabel.innerHTML = `शा.दा./PSP कोड: <strong style="color:#fde047">${sdCode}</strong>`;
-      if (headerSubCode) headerSubCode.innerHTML = `PEEO परिक्षेत्र: <strong>${STATE.currentUser.peeo_name || 'भिनाय'}</strong>`;
+      if (headerSubCode) headerSubCode.innerHTML = `PEEO परिक्षेत्र: <strong>${currentPeeoName}</strong>`;
       if (headerBadge) headerBadge.textContent = '🏛️ विद्यालय आधिकारिक पोर्टल';
-      document.title = `${STATE.currentUser.school_name} | आधिकारिक पोर्टल`;
+      document.title = `${schData.school_name || STATE.currentUser.school_name} | आधिकारिक पोर्टल`;
     } else {
       if (headerTitle) headerTitle.innerHTML = `<i class="fas fa-university" style="color:#60a5fa; margin-right:8px"></i> ${STATE.currentUser.peeo_name} परिक्षेत्र पोर्टल`;
       if (headerDept) headerDept.textContent = 'राजस्थान सरकार - स्कूल शिक्षा विभाग';
