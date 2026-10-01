@@ -166,14 +166,15 @@ function initMasterData() {
 
   // 7. Saman Pariksha Submissions
   const storedSPSubs = localStorage.getItem('cbeo_saman_pariksha_submissions');
+  const defaultSPSubs = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.saman_pariksha_submissions) || {};
   if (storedSPSubs) {
     try {
-      STATE.samanParikshaSubmissions = JSON.parse(storedSPSubs);
+      STATE.samanParikshaSubmissions = Object.assign({}, defaultSPSubs, JSON.parse(storedSPSubs));
     } catch (e) {
-      STATE.samanParikshaSubmissions = {};
+      STATE.samanParikshaSubmissions = defaultSPSubs;
     }
   } else {
-    STATE.samanParikshaSubmissions = {};
+    STATE.samanParikshaSubmissions = defaultSPSubs;
   }
 
   // 8. Admin Tab Access Configuration
@@ -1998,41 +1999,48 @@ async function exportDocumentToPdfBlob(elementId, filename) {
   const container = document.getElementById(elementId);
   if (!container) throw new Error('Container not found: ' + elementId);
 
-  // Create an offscreen wrapper with exact fixed width 1080px to prevent multi-page overflow
-  const clone = container.cloneNode(true);
-  const wrapper = document.createElement('div');
-  wrapper.style.position = 'fixed';
-  wrapper.style.left = '-9999px';
-  wrapper.style.top = '0';
-  wrapper.style.width = '1080px';
-  wrapper.style.background = '#ffffff';
-  wrapper.style.padding = '4px 6px';
-  wrapper.style.boxSizing = 'border-box';
-  wrapper.style.fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif';
-  wrapper.appendChild(clone);
-  document.body.appendChild(wrapper);
+  if (typeof html2pdf === 'undefined') {
+    throw new Error('html2pdf library is not loaded');
+  }
+
+  // Preserve styles
+  const prevWidth = container.style.width;
+  const prevMaxWidth = container.style.maxWidth;
+  const prevPadding = container.style.padding;
+  const prevBoxSizing = container.style.boxSizing;
+  const prevBackground = container.style.background;
+
+  // Set fixed 1080px width for clean single-page A4 landscape
+  container.style.width = '1080px';
+  container.style.maxWidth = '1080px';
+  container.style.boxSizing = 'border-box';
+  container.style.background = '#ffffff';
 
   const opt = {
-    margin: [4, 6, 4, 6],
+    margin: 0,
     filename: filename,
     image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true, logging: false, scrollY: 0 },
+    html2canvas: {
+      scale: 2,
+      useCORS: true,
+      logging: false,
+      scrollY: 0,
+      scrollX: 0,
+      windowWidth: 1200
+    },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
     pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
   };
 
   try {
-    if (typeof html2pdf !== 'undefined') {
-      const pdfBlob = await html2pdf().set(opt).from(wrapper).outputPdf('blob');
-      if (document.body.contains(wrapper)) document.body.removeChild(wrapper);
-      return pdfBlob;
-    } else {
-      if (document.body.contains(wrapper)) document.body.removeChild(wrapper);
-      throw new Error('html2pdf library is not loaded');
-    }
-  } catch (err) {
-    if (document.body.contains(wrapper)) document.body.removeChild(wrapper);
-    throw err;
+    const pdfBlob = await html2pdf().set(opt).from(container).outputPdf('blob');
+    return pdfBlob;
+  } finally {
+    container.style.width = prevWidth;
+    container.style.maxWidth = prevMaxWidth;
+    container.style.padding = prevPadding;
+    container.style.boxSizing = prevBoxSizing;
+    container.style.background = prevBackground;
   }
 }
 
@@ -2815,8 +2823,20 @@ function exportSamanParikshaMasterCSV() {
   showToast('समेकित 56 स्कूलों की एक्सेल (CSV) सफलतापूर्वक डाउनलोड हो गई!', 'success');
 }
 
-function triggerDriveSheetSync() {
-  showToast('Google Drive शीट में सिंक शुरू किया गया...', 'info');
+async function triggerDriveSheetSync() {
+  showToast('Google Drive शीट में डेटा सिंक किया जा रहा है...', 'info');
+  try {
+    const res = await fetch('/api/sync_saman_pariksha', { method: 'POST' });
+    const data = await res.json();
+    if (data.success) {
+      showToast('समान परीक्षा Google Sheet सफलतापूर्वक अपडेट हो गई!', 'success');
+    } else {
+      showToast(data.message || 'शीट सिंक प्रक्रिया पूर्ण!', 'info');
+    }
+  } catch (err) {
+    console.log('Backend sync offline/static mode:', err);
+    showToast('Google Drive शीट खोली जा रही है...', 'info');
+  }
   window.open('https://docs.google.com/spreadsheets/d/1tVP7gbIuUP576E2a1Qk6TadXUSP7a5c7ah8HzKeTk4k/edit', '_blank');
 }
 
@@ -4076,25 +4096,34 @@ function printLetterheadDirectly() {
 }
 
 // 2. Instant html2pdf Download
-function downloadCurrentPDF() {
+async function downloadCurrentPDF() {
   if (!activePreviewRecord) return;
-  const element = document.getElementById('pdf-preview-box');
   const cleanName = (activePreviewRecord.peeoName + '_' + activePreviewRecord.demandTitle).replace(/[^a-zA-Z0-9_\u0900-\u097F]/g, '_');
-  
-  const opt = {
-    margin: [10, 10, 10, 10],
-    filename: `${cleanName}.pdf`,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
-  };
+  const filename = `${cleanName}.pdf`;
 
-  html2pdf().set(opt).from(element).save();
-  showToast('आधिकारिक PDF तैयार व डाउनलोड प्रारंभ!', 'success');
+  showToast('आधिकारिक Landscape PDF तैयार किया जा रहा है...', 'info');
+
+  try {
+    const blob = await exportDocumentToPdfBlob('pdf-preview-box', filename);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('आधिकारिक PDF सफलतापूर्वक डाउनलोड हो गया!', 'success');
+  } catch (err) {
+    console.warn('PDF download fallback to print:', err);
+    printLetterheadDirectly();
+  }
 }
 
-function shareCurrentPDFOnWhatsApp() {
+async function shareCurrentPDFOnWhatsApp() {
   if (!activePreviewRecord) return;
+  const cleanName = (activePreviewRecord.peeoName + '_' + activePreviewRecord.demandTitle).replace(/[^a-zA-Z0-9_\u0900-\u097F]/g, '_');
+  const filename = `${cleanName}.pdf`;
   const msg = `*कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी भिनाय*\n\n` +
               `*प्रपत्र:* ${activePreviewRecord.demandTitle}\n` +
               `*PEEO:* ${activePreviewRecord.peeoName} (कोड: ${activePreviewRecord.shala_darpan_code})\n` +
@@ -4102,8 +4131,39 @@ function shareCurrentPDFOnWhatsApp() {
               `*सत्यापन दिनांक:* ${activePreviewRecord.submittedAt}\n\n` +
               `सादर सूचनार्थ, उक्त सूचना का प्रमाणित प्रपत्र सीधी डिजिटल मोहर एवं हस्ताक्षर सहित CBEO भिनाय पोर्टल पर सफलता पूर्वक सबमिट कर दिया गया है।`;
 
-  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
-  window.open(url, '_blank');
+  showToast('WhatsApp शेयर हेतु PDF तैयार की जा रही है...', 'info');
+
+  try {
+    const blob = await exportDocumentToPdfBlob('pdf-preview-box', filename);
+    const pdfFile = new File([blob], filename, { type: 'application/pdf' });
+    if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
+      await navigator.share({
+        files: [pdfFile],
+        title: activePreviewRecord.demandTitle,
+        text: msg
+      });
+      showToast('WhatsApp शेयर विंडो सफलतापूर्वक खुल गई!', 'success');
+      return;
+    } else {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg + '\n\n*(नोट: PDF फाइल आपके सिस्टम में डाउनलोड हो गई है, कृपया WhatsApp चैट में अटैच करें)*')}`;
+      window.open(waUrl, '_blank');
+      showToast('PDF डाउनलोड हो गई है एवं WhatsApp खुल गया है! कृपया फाइल अटैच करें।', 'info');
+      return;
+    }
+  } catch (e) {
+    console.warn('Share current PDF fallback:', e);
+    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+  }
 }
 
 function quickShareWhatsApp(demandId, peeoId) {
