@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20261001_57">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
@@ -71,8 +71,8 @@
   <nav class="main-nav-bar">
     <div class="nav-container">
       <button class="nav-tab active" id="nav-tab-saman-pariksha" onclick="switchTab('saman-pariksha')">
-        <i class="fas fa-file-signature"></i> 📋 समान परीक्षा 2026-27 (56 स्कूल)
-        <span class="tab-badge badge-danger" id="nav-sp-badge">56</span>
+        <i class="fas fa-file-signature"></i> 📋 समान परीक्षा 2026-27 (57 स्कूल)
+        <span class="tab-badge badge-danger" id="nav-sp-badge">57</span>
       </button>
       <button class="nav-tab" id="nav-tab-dashboard" onclick="switchTab('dashboard')">
         <i class="fas fa-chart-pie"></i> मुख्य डैशबोर्ड
@@ -106,7 +106,7 @@
       <div class="notice-content">
         <i class="fas fa-bullhorn fa-lg"></i>
         <div>
-          <strong>कार्यालय आदेश (जिला समान परीक्षा 2026-27):</strong> समस्त 25 PEEO एवं संस्था प्रधान (48 राजकीय + 8 निजी) कक्षा 9 से 12 प्रश्न-पत्र मांग एवं विद्यार्थी नामांकन प्रपत्र अधिकृत मुहर व हस्ताक्षर सहित 05 अक्टूबर 2026 तक अनिवार्यतः सबमिट करें।
+          <strong>कार्यालय आदेश (जिला समान परीक्षा 2026-27):</strong> समस्त 25 PEEO एवं संस्था प्रधान (49 राजकीय + 8 निजी) कक्षा 9 से 12 प्रश्न-पत्र मांग एवं विद्यार्थी नामांकन प्रपत्र अधिकृत मुहर व हस्ताक्षर सहित 05 अक्टूबर 2026 तक अनिवार्यतः सबमिट करें।
         </div>
       </div>
       <button class="btn btn-primary btn-sm" onclick="switchTab('saman-pariksha')">
@@ -140,7 +140,7 @@
             कक्षा 9 से 12 प्रश्न-पत्र मांग एवं विषयवार विद्यार्थी नामांकन प्रपत्र (Question Paper Indent Statement)
           </div>
           <div class="sp-hero-badges">
-            <span class="sp-badge"><i class="fas fa-school"></i> 56 माध्यमिक एवं उच्च माध्यमिक विद्यालय (48 राजकीय + 8 निजी)</span>
+            <span class="sp-badge"><i class="fas fa-school"></i> 57 माध्यमिक एवं उच्च माध्यमिक विद्यालय (49 राजकीय + 8 निजी)</span>
             <span class="sp-badge"><i class="fas fa-calendar-alt"></i> अंतिम तिथि: 05 अक्टूबर 2026</span>
             <span class="sp-badge"><i class="fas fa-stamp"></i> PEEO सीधी मोहर व संस्था प्रधान हस्ताक्षर अनिवार्य</span>
           </div>
@@ -186,34 +186,34 @@
         <!-- Sub Navigation Tabs for Admin -->
         <div class="sub-nav-tabs">
           <button class="sub-nav-btn active" id="btn-subnav-monitoring" onclick="switchSamanSubView('monitoring')">
-            <i class="fas fa-chart-line"></i> 📊 56 स्कूल प्रपत्र मॉनिटरिंग
+            <i class="fas fa-chart-line"></i> 📊 57 स्कूल प्रपत्र मॉनिटरिंग
           </button>
           <button class="sub-nav-btn" id="btn-subnav-calldir" onclick="switchSamanSubView('calldir')">
-            <i class="fas fa-phone-alt"></i> 📞 समान परीक्षा त्वरित संपर्क डायरेक्टरी (56 विद्यालय)
+            <i class="fas fa-phone-alt"></i> 📞 समान परीक्षा त्वरित संपर्क डायरेक्टरी (57 विद्यालय)
           </button>
         </div>
 
         <div id="sp-subview-monitoring">
-        <!-- 56 Schools Metric Overview -->
+        <!-- 57 Schools Metric Overview -->
         <div class="stat-cards-grid" style="margin-bottom:1.5rem">
           <div class="stat-card blue">
             <div class="stat-icon-wrapper"><i class="fas fa-school"></i></div>
             <div class="stat-info">
-              <h3>56</h3>
+              <h3 id="sp-admin-target-count">57</h3>
               <p>लक्षित विद्यालय (Target Schools)</p>
             </div>
           </div>
           <div class="stat-card green">
             <div class="stat-icon-wrapper"><i class="fas fa-landmark"></i></div>
             <div class="stat-info">
-              <h3>48</h3>
+              <h3 id="sp-admin-gov-count">49</h3>
               <p>राजकीय विद्यालय (Govt Schools)</p>
             </div>
           </div>
           <div class="stat-card orange">
             <div class="stat-icon-wrapper"><i class="fas fa-building"></i></div>
             <div class="stat-info">
-              <h3>8</h3>
+              <h3 id="sp-admin-pvt-count">8</h3>
               <p>निजी विद्यालय (Private Schools)</p>
             </div>
           </div>
@@ -227,7 +227,7 @@
           <div class="stat-card" style="border-left:4px solid #f59e0b">
             <div class="stat-icon-wrapper" style="background:#fef3c7; color:#d97706"><i class="fas fa-hourglass-half"></i></div>
             <div class="stat-info">
-              <h3 id="sp-admin-pending-count" style="color:#d97706">56</h3>
+              <h3 id="sp-admin-pending-count" style="color:#d97706">57</h3>
               <p>भरना शेष (Pending)</p>
             </div>
           </div>
@@ -248,7 +248,7 @@
                 <i class="fas fa-tools text-primary"></i> समान परीक्षा समेकित डेटा एवं Google Sheets नियंत्रण
               </h3>
               <p style="font-size:0.83rem; color:#64748b">
-                56 स्कूलों का संपूर्ण डेटा एक क्लिक में एक्सेल में डाउनलोड करें अथवा लाइव गूगल शीट में सिंक करें।
+                57 स्कूलों का संपूर्ण डेटा एक क्लिक में एक्सेल में डाउनलोड करें अथवा लाइव गूगल शीट में सिंक करें।
               </p>
             </div>
             <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
@@ -343,13 +343,13 @@
           </div>
         </div>
 
-        <!-- Master 56 Schools Interactive Table -->
+        <!-- Master 57 Schools Interactive Table -->
         <div class="section-box">
           <div class="section-header">
             <div class="section-title">
               <i class="fas fa-list-ol text-secondary"></i>
-              <h2>समान परीक्षा 2026-27: समस्त 56 माध्यमिक एवं उच्च माध्यमिक विद्यालय मॉनिटरिंग</h2>
-              <span class="section-count" id="sp-table-count">56 विद्यालय</span>
+              <h2>समान परीक्षा 2026-27: समस्त 57 माध्यमिक एवं उच्च माध्यमिक विद्यालय मॉनिटरिंग</h2>
+              <span class="section-count" id="sp-table-count">57 विद्यालय</span>
             </div>
           </div>
 
@@ -359,8 +359,8 @@
               <input type="text" id="sp-search-input" placeholder="विद्यालय का नाम, शाला दर्पण कोड, परीक्षा कोड या PEEO खोजें..." oninput="filterSamanParikshaTable()">
             </div>
             <select id="sp-category-filter" class="filter-select" onchange="filterSamanParikshaTable()">
-              <option value="all">सभी 56 विद्यालय (48 Govt + 8 Pvt)</option>
-              <option value="Government">केवल राजकीय विद्यालय (48 Govt)</option>
+              <option value="all">सभी 57 विद्यालय (49 Govt + 8 Pvt)</option>
+              <option value="Government">केवल राजकीय विद्यालय (49 Govt)</option>
               <option value="Private">केवल निजी विद्यालय (8 Pvt)</option>
             </select>
             <select id="sp-status-filter" class="filter-select" onchange="filterSamanParikshaTable()">
@@ -368,11 +368,14 @@
               <option value="submitted">केवल सबमिट हो चुके प्रपत्र</option>
               <option value="pending">केवल लम्बित प्रपत्र</option>
             </select>
-            <select id="sp-peeo-filter" class="filter-select" onchange="filterSamanParikshaTable()">
-              <option value="all">समस्त 25 PEEO क्षेत्र</option>
+            <select id="sp-peeo-filter" class="filter-select" onchange="onAdminPeeoFilterChange()">
+              <option value="all">समस्त 25 PEEO क्षेत्र (चयन करें)</option>
             </select>
-            <button class="btn btn-outline-primary btn-sm" onclick="openSelectedPeeoConsolidatedReport()" title="चयनित PEEO की समेकित रिपोर्ट A4 लैंडस्केप में देखें व प्रिंट करें" style="font-weight:700; white-space:nowrap">
+            <button class="btn btn-outline-primary btn-sm" id="btn-admin-peeo-report" onclick="openSelectedPeeoConsolidatedReport()" title="PEEO समेकित रिपोर्ट A4 लैंडस्केप में देखें व प्रिंट करें" style="font-weight:700; white-space:nowrap">
               <i class="fas fa-file-invoice"></i> 📑 PEEO समेकित रिपोर्ट
+            </button>
+            <button class="btn btn-outline-secondary btn-sm" onclick="openPeeoSelectorModal()" title="सभी 25 PEEO में से किसी भी PEEO की समेकित रिपोर्ट चुनें" style="font-weight:700; white-space:nowrap">
+              <i class="fas fa-list-ul"></i> 📋 PEEO सूची
             </button>
           </div>
 
@@ -410,10 +413,10 @@
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem">
               <div>
                 <h3 style="color:#1b365d; font-size:1.15rem; font-weight:800; display:flex; align-items:center; gap:0.5rem">
-                  <i class="fas fa-phone-volume text-success"></i> समान परीक्षा त्वरित संपर्क डायरेक्टरी (56 विद्यालय)
+                  <i class="fas fa-phone-volume text-success"></i> समान परीक्षा त्वरित संपर्क डायरेक्टरी (57 विद्यालय)
                 </h3>
                 <p style="font-size:0.83rem; color:#64748b; margin-top:0.25rem">
-                  परीक्षा कार्य एवं समन्वय हेतु केवल 56 माध्यमिक व उच्च माध्यमिक विद्यालयों के <strong>संस्था प्रधान</strong> एवं <strong>परीक्षा प्रभारी</strong> की विशिष्ट डायरेक्टरी। 1-क्लिक कॉल व व्हाट्सएप उपलब्ध:
+                  परीक्षा कार्य एवं समन्वय हेतु केवल 57 माध्यमिक व उच्च माध्यमिक विद्यालयों के <strong>संस्था प्रधान</strong> एवं <strong>परीक्षा प्रभारी</strong> की विशिष्ट डायरेक्टरी। 1-क्लिक कॉल व व्हाट्सएप उपलब्ध:
                 </p>
               </div>
               <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
@@ -437,8 +440,8 @@
                 <input type="text" id="sp-calldir-search" placeholder="विद्यालय का नाम, शाला दर्पण कोड, परीक्षा कोड, संस्था प्रधान या प्रभारी का नाम खोजें..." oninput="filterSamanCallDirectory()">
               </div>
               <select id="sp-calldir-category" class="filter-select" onchange="filterSamanCallDirectory()">
-                <option value="all">सभी 56 विद्यालय (राजकीय + निजी)</option>
-                <option value="Government">केवल राजकीय विद्यालय (48 Govt)</option>
+                <option value="all">सभी 57 विद्यालय (राजकीय + निजी)</option>
+                <option value="Government">केवल राजकीय विद्यालय (49 Govt)</option>
                 <option value="Private">केवल निजी विद्यालय (8 Pvt)</option>
               </select>
               <select id="sp-calldir-status" class="filter-select" onchange="filterSamanCallDirectory()">
@@ -1919,6 +1922,43 @@
     </div>
   </div>
 
+  <!-- 12. PEEO REPORT SELECTOR MODAL FOR ADMIN -->
+  <div id="modal-select-peeo-report" class="modal-overlay">
+    <div class="modal-card" style="max-width:850px; width:95vw">
+      <div class="modal-header" style="background:#1b365d; color:#ffffff; padding:1rem 1.5rem">
+        <h3 style="color:#ffffff; font-size:1.15rem; display:flex; align-items:center; gap:0.5rem">
+          <i class="fas fa-file-invoice text-warning"></i> PEEO समेकित परीक्षा मांग रिपोर्ट (A4 Landscape Print / PDF)
+        </h3>
+        <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-select-peeo-report')">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:1.25rem">
+        <div style="background:#eff6ff; border-left:4px solid #2563eb; padding:0.75rem 1rem; border-radius:6px; margin-bottom:1rem; font-size:0.86rem; color:#1e40af">
+          <strong><i class="fas fa-info-circle"></i> रिपोर्ट चयन:</strong> आप नीचे दिए गए किसी भी PEEO की अधिकृत समेकित रिपोर्ट डिजिटल हस्ताक्षर सहित देख व डाउनलोड कर सकते हैं, अथवा संपूर्ण ब्लॉक की समेकित रिपोर्ट तैयार कर सकते हैं:
+        </div>
+        
+        <!-- Big Block-Level Button -->
+        <div style="margin-bottom:1.25rem">
+          <button class="btn btn-primary" onclick="closeModal('modal-select-peeo-report'); openPeeoConsolidatedPdfPreview('ALL')" style="width:100%; padding:0.85rem; font-size:1rem; font-weight:800; display:flex; align-items:center; justify-content:center; gap:0.6rem; border-radius:8px; box-shadow:0 4px 6px -1px rgba(37,99,235,0.2)">
+            <i class="fas fa-landmark"></i> 🏛️ समस्त ब्लॉक भिनाय समेकित परीक्षा मांग रिपोर्ट (All 25 PEEOs / 57 Schools)
+          </button>
+        </div>
+
+        <!-- Search input for PEEOs -->
+        <div style="margin-bottom:0.85rem">
+          <input type="text" id="peeo-selector-search" placeholder="🔍 PEEO का नाम खोजें (उदा. DEOLIYA, BARGAON, EKALSEENGA)..." oninput="filterPeeoSelectorGrid()" style="width:100%; padding:0.65rem 0.85rem; border:1.5px solid #cbd5e1; border-radius:6px; font-size:0.9rem">
+        </div>
+
+        <!-- 25 PEEOs Grid -->
+        <div id="peeo-selector-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:0.75rem; max-height:55vh; overflow-y:auto; padding:4px">
+          <!-- Populated dynamically by openPeeoSelectorModal() -->
+        </div>
+      </div>
+      <div class="modal-footer" style="padding:0.75rem 1.25rem; display:flex; justify-content:flex-end">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-select-peeo-report')">बंद करें</button>
+      </div>
+    </div>
+  </div>
+
   <!-- 11. CHANGE PASSWORD MODAL -->
   <div id="modal-change-password" class="modal-overlay">
     <div class="modal-card" style="max-width:480px">
@@ -1960,7 +2000,7 @@
 
   <!-- External & Application Logic -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <script src="master_cbeo_data.js"></script>
-  <script src="app.js"></script>
+  <script src="master_cbeo_data.js?v=20261001_57"></script>
+  <script src="app.js?v=20261001_57"></script>
 </body>
 </html>

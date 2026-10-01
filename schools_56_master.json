@@ -593,6 +593,22 @@
   },
   {
     "s_no": 38,
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL KURTHAL",
+    "shala_darpan_code": "221757",
+    "type": "Government",
+    "category": "Govt. Sr. Sec.",
+    "peeo_id": "PEEO19",
+    "peeo_name": "PEEO NANDSI",
+    "peeo_code": "221756",
+    "default_password": "221757",
+    "exam_code": "",
+    "principal_name": "",
+    "principal_mobile": "",
+    "incharge_name": "",
+    "incharge_mobile": ""
+  },
+  {
+    "s_no": 39,
     "school_name": "GOVT. SENIOR SECONDARY SCHOOL NANDSI",
     "shala_darpan_code": "221756",
     "type": "Government",
@@ -608,7 +624,7 @@
     "incharge_mobile": ""
   },
   {
-    "s_no": 39,
+    "s_no": 40,
     "school_name": "GOVT. SENIOR SECONDARY SCHOOL PADANGA",
     "shala_darpan_code": "221788",
     "type": "Government",
@@ -624,7 +640,7 @@
     "incharge_mobile": ""
   },
   {
-    "s_no": 40,
+    "s_no": 41,
     "school_name": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA",
     "shala_darpan_code": "221766",
     "type": "Government",
@@ -640,7 +656,7 @@
     "incharge_mobile": ""
   },
   {
-    "s_no": 41,
+    "s_no": 42,
     "school_name": "GOVT. SENIOR SECONDARY SCHOOL HEERAPURA",
     "shala_darpan_code": "221784",
     "type": "Government",
@@ -656,7 +672,7 @@
     "incharge_mobile": ""
   },
   {
-    "s_no": 42,
+    "s_no": 43,
     "school_name": "GOVT. SENIOR SECONDARY SCHOOL RAGHUNATHGADH",
     "shala_darpan_code": "410677",
     "type": "Government",
@@ -672,7 +688,7 @@
     "incharge_mobile": ""
   },
   {
-    "s_no": 43,
+    "s_no": 44,
     "school_name": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA",
     "shala_darpan_code": "221785",
     "type": "Government",
@@ -688,7 +704,7 @@
     "incharge_mobile": ""
   },
   {
-    "s_no": 44,
+    "s_no": 45,
     "school_name": "GOVT. SENIOR SECONDARY SCHOOL JHIPIYA",
     "shala_darpan_code": "221776",
     "type": "Government",
@@ -704,7 +720,7 @@
     "incharge_mobile": ""
   },
   {
-    "s_no": 45,
+    "s_no": 46,
     "school_name": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT",
     "shala_darpan_code": "221775",
     "type": "Government",
@@ -720,7 +736,7 @@
     "incharge_mobile": ""
   },
   {
-    "s_no": 46,
+    "s_no": 47,
     "school_name": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL",
     "shala_darpan_code": "221781",
     "type": "Government",
@@ -736,7 +752,7 @@
     "incharge_mobile": ""
   },
   {
-    "s_no": 47,
+    "s_no": 48,
     "school_name": "GOVT. SENIOR SECONDARY SCHOOL GHANA",
     "shala_darpan_code": "488897",
     "type": "Government",
@@ -752,7 +768,7 @@
     "incharge_mobile": ""
   },
   {
-    "s_no": 48,
+    "s_no": 49,
     "school_name": "GOVT. SENIOR SECONDARY SCHOOL SOBRI",
     "shala_darpan_code": "221782",
     "type": "Government",
@@ -768,7 +784,7 @@
     "incharge_mobile": ""
   },
   {
-    "s_no": 49,
+    "s_no": 50,
     "school_name": "TAGORE GLOBAL SCHOOL (EKALSINGHA)",
     "shala_darpan_code": "P55700",
     "type": "Private",
@@ -784,7 +800,7 @@
     "incharge_mobile": ""
   },
   {
-    "s_no": 50,
+    "s_no": 51,
     "school_name": "GURUKUL KESARI PUBLIC SECONDARY SCHOOL BANDANWARA",
     "shala_darpan_code": "P16099",
     "type": "Private",
@@ -800,7 +816,7 @@
     "incharge_mobile": ""
   },
   {
-    "s_no": 51,
+    "s_no": 52,
     "school_name": "KUCHAMAN SHIKSHAN SANSTHAN BANDANWARA",
     "shala_darpan_code": "P48759",
     "type": "Private",
@@ -816,7 +832,7 @@
     "incharge_mobile": ""
   },
   {
-    "s_no": 52,
+    "s_no": 53,
     "school_name": "SAMRAT INTERNATIONAL SCHOOL BANDANWARA",
     "shala_darpan_code": "P16964",
     "type": "Private",
@@ -832,7 +848,7 @@
     "incharge_mobile": ""
   },
   {
-    "s_no": 53,
+    "s_no": 54,
     "school_name": "SIDDHARTH INTERNATIONAL SCHOOL BANDANWARA",
     "shala_darpan_code": "P19054",
     "type": "Private",
@@ -848,7 +864,7 @@
     "incharge_mobile": ""
   },
   {
-    "s_no": 54,
+    "s_no": 55,
     "school_name": "SUN RISE CONVENT SCHOOL BHINAI",
     "shala_darpan_code": "P19678",
     "type": "Private",
@@ -864,7 +880,7 @@
     "incharge_mobile": ""
   },
   {
-    "s_no": 55,
+    "s_no": 56,
     "school_name": "SUMER SENIOR SECONDARY SCHOOL BHINAI",
     "shala_darpan_code": "P16865",
     "type": "Private",
@@ -880,7 +896,7 @@
     "incharge_mobile": ""
   },
   {
-    "s_no": 56,
+    "s_no": 57,
     "school_name": "DRONA CHARYA SECONDARY SCHOOL BHINAI",
     "shala_darpan_code": "P16968",
     "type": "Private",

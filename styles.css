@@ -1802,14 +1802,15 @@ input:checked + .switch-slider:before {
 /* Printable Official Exam PDF Preview */
 .printable-exam-sheet {
   background: #ffffff;
-  padding: 12mm 15mm;
-  max-width: 297mm;
+  padding: 6mm 8mm;
+  max-width: 1060px;
   width: 100%;
   margin: 0 auto;
   color: #000000;
   font-family: 'Noto Sans Devanagari', 'Inter', serif;
   box-shadow: var(--shadow-lg);
   border: 1px solid #d1d5db;
+  box-sizing: border-box;
 }
 
 .exam-excel-table {

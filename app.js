@@ -87,14 +87,15 @@ function initMasterData() {
     }
   ];
 
-  // Versioned cache check to guarantee fresh master data with 56 schools and Saman Pariksha demand
-  const DATA_VERSION = 'v12_2026_10_01_peeo_ekalseenga_fix';
+  // Versioned cache check to guarantee fresh master data with 57 schools (including Kurthal 221757)
+  const DATA_VERSION = 'v15_2026_10_01_57_schools_kurthal_221757';
   if (localStorage.getItem('cbeo_data_version') !== DATA_VERSION) {
     localStorage.removeItem('cbeo_peeos_data');
     localStorage.removeItem('cbeo_staff_data');
     localStorage.removeItem('cbeo_schools56_data');
     localStorage.removeItem('cbeo_saman_pariksha_submissions');
     localStorage.removeItem('cbeo_saman_form_draft');
+    localStorage.setItem('cbeo_data_version', DATA_VERSION);
     try {
       const lu = JSON.parse(localStorage.getItem('cbeo_logged_user') || 'null');
       if (lu && lu.shala_darpan_code === 'P55700') {
@@ -155,11 +156,15 @@ function initMasterData() {
   STATE.demands = (MASTER_CBEO_DATA && MASTER_CBEO_DATA.demands) || [];
   saveDemandsToStorage();
 
-  // 5. 56 Secondary & Sr. Secondary Schools for Saman Pariksha
+  // 5. 57 Secondary & Sr. Secondary Schools for Saman Pariksha (49 Govt + 8 Pvt)
   const storedSchools56 = localStorage.getItem('cbeo_schools56_data');
   if (storedSchools56) {
     try {
       STATE.schools56 = JSON.parse(storedSchools56);
+      if (!Array.isArray(STATE.schools56) || STATE.schools56.length < 57 || !STATE.schools56.some(s => s.shala_darpan_code === '221757')) {
+        STATE.schools56 = (MASTER_CBEO_DATA && MASTER_CBEO_DATA.schools_56) || [];
+        localStorage.setItem('cbeo_schools56_data', JSON.stringify(STATE.schools56));
+      }
     } catch (e) {
       STATE.schools56 = (MASTER_CBEO_DATA && MASTER_CBEO_DATA.schools_56) || [];
     }
@@ -215,11 +220,40 @@ function initMasterData() {
       .then(res => res.json())
       .then(data => {
         if (data && data.success && data.submissions) {
-          STATE.samanParikshaSubmissions = Object.assign({}, STATE.samanParikshaSubmissions, data.submissions);
+          Object.keys(data.submissions).forEach(code => {
+            const existingSig = STATE.samanParikshaSubmissions[code]?.signature_data;
+            const existingHasSig = STATE.samanParikshaSubmissions[code]?.has_digital_signature;
+            STATE.samanParikshaSubmissions[code] = Object.assign({}, STATE.samanParikshaSubmissions[code], data.submissions[code]);
+            if (existingSig && !STATE.samanParikshaSubmissions[code].signature_data) {
+              STATE.samanParikshaSubmissions[code].signature_data = existingSig;
+              STATE.samanParikshaSubmissions[code].has_digital_signature = existingHasSig !== undefined ? existingHasSig : true;
+            }
+          });
           localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(STATE.samanParikshaSubmissions));
           renderSamanParikshaView();
         }
       }).catch(e => console.log('Live sync note:', e));
+  }
+
+  // Also check backend file on localhost if running locally
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    fetch('http://localhost:8089/api/get_saman_pariksha')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.success && data.submissions) {
+          Object.keys(data.submissions).forEach(code => {
+            const fileSub = data.submissions[code];
+            const curSub = STATE.samanParikshaSubmissions[code] || {};
+            STATE.samanParikshaSubmissions[code] = Object.assign({}, curSub, fileSub);
+            if (fileSub.signature_data) {
+              STATE.samanParikshaSubmissions[code].signature_data = fileSub.signature_data;
+              STATE.samanParikshaSubmissions[code].has_digital_signature = true;
+            }
+          });
+          localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(STATE.samanParikshaSubmissions));
+          renderSamanParikshaView();
+        }
+      }).catch(() => {});
   }
 
   // 8. Admin Tab Access Configuration
@@ -517,7 +551,7 @@ function openLoginModal(isMandatory = false) {
     if (!schOptGroup && select) {
       schOptGroup = document.createElement('optgroup');
       schOptGroup.id = 'login-schools-optgroup';
-      schOptGroup.label = '56 माध्यमिक व उच्च माध्यमिक विद्यालय (सीधा लॉगिन)';
+      schOptGroup.label = '57 माध्यमिक व उच्च माध्यमिक विद्यालय (सीधा लॉगिन)';
       select.appendChild(schOptGroup);
     }
     if (schOptGroup) {
@@ -1176,8 +1210,12 @@ function renderSamanParikshaAdminView() {
   const totalSchools = STATE.schools56.length;
   let submittedCount = 0;
   let totalPapers = 0;
+  let govCount = 0;
+  let pvtCount = 0;
 
   STATE.schools56.forEach(s => {
+    if (s.type === 'Government') govCount++;
+    else if (s.type === 'Private') pvtCount++;
     const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
     if (sub) {
       submittedCount++;
@@ -1186,6 +1224,18 @@ function renderSamanParikshaAdminView() {
   });
 
   const pendingCount = totalSchools - submittedCount;
+
+  const targetEl = document.getElementById('sp-admin-target-count');
+  if (targetEl) targetEl.textContent = totalSchools;
+  const govEl = document.getElementById('sp-admin-gov-count');
+  if (govEl) govEl.textContent = govCount;
+  const pvtEl = document.getElementById('sp-admin-pvt-count');
+  if (pvtEl) pvtEl.textContent = pvtCount;
+
+  const badgeEl = document.getElementById('nav-sp-badge');
+  if (badgeEl) badgeEl.textContent = totalSchools;
+  const tableCountEl = document.getElementById('sp-table-count');
+  if (tableCountEl) tableCountEl.textContent = `${totalSchools} विद्यालय`;
 
   document.getElementById('sp-admin-submitted-count').textContent = submittedCount;
   document.getElementById('sp-admin-pending-count').textContent = pendingCount;
@@ -1243,6 +1293,8 @@ function filterSamanParikshaTable() {
     const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
     const isSub = !!sub;
 
+    const hasSig = !!(sub?.signature_data || sub?.has_digital_signature);
+
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>${s.s_no}</td>
@@ -1255,7 +1307,11 @@ function filterSamanParikshaTable() {
           ? '<span style="background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:4px; font-size:0.75rem; font-weight:700">राजकीय</span>'
           : '<span style="background:#fef3c7; color:#b45309; padding:2px 6px; border-radius:4px; font-size:0.75rem; font-weight:700">निजी</span>'}
       </td>
-      <td>${s.peeo_name}</td>
+      <td>
+        <a href="javascript:void(0)" onclick="openPeeoConsolidatedPdfPreview('${s.peeo_name}')" style="font-weight:700; color:#1e3a8a; text-decoration:none; display:inline-flex; align-items:center; gap:0.25rem" title="${s.peeo_name} की समेकित रिपोर्ट देखें व प्रिंट करें">
+          ${s.peeo_name} <i class="fas fa-file-invoice text-primary" style="font-size:0.8rem"></i>
+        </a>
+      </td>
       <td style="font-weight:700; color:#2563eb">${sub?.exam_code || '---'}</td>
       <td>
         <div>${sub?.principal_name || s.principal_name || '---'}</div>
@@ -1272,26 +1328,25 @@ function filterSamanParikshaTable() {
       <td style="text-align:right; font-weight:800; color:#15803d">${sub?.grand_total ?? '---'}</td>
       <td>
         ${isSub 
-          ? '<span class="status-badge" style="background:#dcfce7; color:#15803d">सबमिट</span>'
+          ? `<span class="status-badge" style="background:#dcfce7; color:#15803d" title="${hasSig ? 'डिजिटल हस्ताक्षर सहित सबमिट' : 'सबमिट पूर्ण'}">सबमिट ${hasSig ? '🖋️' : ''}</span>`
           : '<span class="status-badge" style="background:#fef3c7; color:#b45309">लम्बित</span>'}
       </td>
       <td>
-        <div style="display:flex; gap:0.35rem">
+        <div style="display:flex; gap:0.35rem; align-items:center">
           <button class="btn btn-outline-light btn-sm" onclick="openSamanParikshaForm('${s.shala_darpan_code}')" title="प्रपत्र भरें / संपादित करें">
             <i class="fas fa-edit"></i>
           </button>
           <a href="saman_form.html?code=${s.shala_darpan_code}" target="_blank" class="btn btn-outline-light btn-sm" title="नए पेज में खोलें (अलग टैब)">
             <i class="fas fa-external-link-alt"></i>
           </a>
-          ${isSub ? `
-            <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${s.shala_darpan_code}')" title="अधिकृत PDF देखें">
-              <i class="fas fa-print"></i>
-            </button>
-          ` : `
+          <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${s.shala_darpan_code}')" title="अधिकृत A4 PDF देखें व प्रिंट करें">
+            <i class="fas fa-print"></i>
+          </button>
+          ${!isSub ? `
             <button class="btn btn-whatsapp btn-sm" onclick="sendSamanParikshaReminder('${s.shala_darpan_code}')" title="WhatsApp पर तुरंत रिमाइंडर भेजें">
               <i class="fab fa-whatsapp"></i>
             </button>
-          `}
+          ` : ''}
         </div>
       </td>
     `;
@@ -1832,10 +1887,60 @@ function submitSamanParikshaForm(andPrint = false) {
 function openExamPdfPreview(schoolCode) {
   STATE.activeExamPreviewCode = schoolCode;
   const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
-  const sub = STATE.samanParikshaSubmissions[schoolCode];
-  if (!school || !sub) {
-    showToast('इस विद्यालय का प्रपत्र अभी सबमिट नहीं हुआ है!', 'warning');
+  if (!school) {
+    showToast('विद्यालय का विवरण नहीं मिला!', 'warning');
     return;
+  }
+
+  let sub = STATE.samanParikshaSubmissions[schoolCode];
+  if (!sub) {
+    let draft = null;
+    try {
+      draft = JSON.parse(localStorage.getItem(`cbeo_form_draft_${schoolCode}`));
+    } catch(e) {}
+    sub = draft || {
+      school_code: school.shala_darpan_code,
+      school_name: school.school_name,
+      category: school.category,
+      type: school.type,
+      peeo_name: school.peeo_name,
+      exam_code: school.exam_code || '---',
+      principal_name: school.principal_name || 'संस्था प्रधान',
+      principal_mobile: school.principal_mobile || '---',
+      incharge_name: school.incharge_name || 'परीक्षा प्रभारी',
+      incharge_mobile: school.incharge_mobile || '---',
+      c9_total: 0,
+      c9_sanskrit: 0,
+      c9_urdu: 0,
+      c10_total: 0,
+      c10_sanskrit: 0,
+      c10_urdu: 0,
+      c11_faculties: [],
+      c11_comp_hindi: 0,
+      c11_comp_english: 0,
+      c11_optional: {},
+      c11_total: 0,
+      c12_faculties: [],
+      c12_comp_hindi: 0,
+      c12_comp_english: 0,
+      c12_optional: {},
+      c12_total: 0,
+      grand_total: 0,
+      signature_data: null,
+      is_draft: true
+    };
+  }
+
+  // Resolve digital signature from submission, draft, or localStorage
+  if (!sub.signature_data) {
+    try {
+      const draft = JSON.parse(localStorage.getItem(`cbeo_form_draft_${schoolCode}`));
+      if (draft && draft.signature_data) sub.signature_data = draft.signature_data;
+    } catch(e) {}
+  }
+  if (!sub.signature_data) {
+    const localSig = localStorage.getItem(`cbeo_sig_${schoolCode}`);
+    if (localSig) sub.signature_data = localSig;
   }
 
   const container = document.getElementById('printable-exam-document-content');
@@ -2133,6 +2238,7 @@ async function exportDocumentToPdfBlob(elementId, filename) {
   const prevWidth = container.style.width;
   const prevMaxWidth = container.style.maxWidth;
   const prevPadding = container.style.padding;
+  const prevMargin = container.style.margin;
   const prevBoxSizing = container.style.boxSizing;
   const prevBackground = container.style.background;
   const prevFontFamily = container.style.fontFamily;
@@ -2145,25 +2251,22 @@ async function exportDocumentToPdfBlob(elementId, filename) {
     } catch (eFont) {}
   }
 
-  // Set fixed 1080px width & pristine font styles for clean single-page A4 landscape
-  container.style.width = '1080px';
-  container.style.maxWidth = '1080px';
+  // Set fixed 1060px width & pristine font styles for clean single-page A4 landscape
+  container.style.width = '1060px';
+  container.style.maxWidth = '1060px';
   container.style.boxSizing = 'border-box';
   container.style.background = '#ffffff';
   container.style.fontFamily = "'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
   container.style.letterSpacing = 'normal';
 
   const opt = {
-    margin: 0,
+    margin: [4, 6, 4, 6], // 4mm top/bottom, 6mm left/right clean printable margins
     filename: filename,
     image: { type: 'jpeg', quality: 0.98 },
     html2canvas: {
       scale: 2,
       useCORS: true,
-      logging: false,
-      scrollY: 0,
-      scrollX: 0,
-      windowWidth: 1200
+      logging: false
     },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
     pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
@@ -2176,6 +2279,7 @@ async function exportDocumentToPdfBlob(elementId, filename) {
     container.style.width = prevWidth;
     container.style.maxWidth = prevMaxWidth;
     container.style.padding = prevPadding;
+    container.style.margin = prevMargin;
     container.style.boxSizing = prevBoxSizing;
     container.style.background = prevBackground;
     container.style.fontFamily = prevFontFamily;
@@ -2266,20 +2370,96 @@ async function shareExamPDFWhatsApp() {
 /* ========================================================
    PEEO CONSOLIDATED OFFICIAL EXAM REPORT (A4 LANDSCAPE)
    ======================================================== */
+function onAdminPeeoFilterChange() {
+  filterSamanParikshaTable();
+  const peeoFilter = document.getElementById('sp-peeo-filter');
+  const btn = document.getElementById('btn-admin-peeo-report');
+  if (peeoFilter && btn) {
+    if (peeoFilter.value !== 'all') {
+      const shortName = peeoFilter.value.replace(/PEEO\s+/i, '');
+      btn.innerHTML = `<i class="fas fa-file-invoice"></i> 📑 ${shortName} रिपोर्ट`;
+    } else {
+      btn.innerHTML = `<i class="fas fa-file-invoice"></i> 📑 PEEO समेकित रिपोर्ट`;
+    }
+  }
+}
+
 function openSelectedPeeoConsolidatedReport() {
   const peeoFilter = document.getElementById('sp-peeo-filter');
   let peeoName = peeoFilter ? peeoFilter.value : 'all';
-  if (peeoName === 'all') {
-    peeoName = STATE.schools56[0]?.peeo_name || 'PEEO BHINAI';
+  if (peeoName && peeoName !== 'all') {
+    openPeeoConsolidatedPdfPreview(peeoName);
+  } else {
+    openPeeoSelectorModal();
   }
-  openPeeoConsolidatedPdfPreview(peeoName);
+}
+
+function openPeeoSelectorModal() {
+  const grid = document.getElementById('peeo-selector-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  const uniquePeeos = [...new Set(STATE.schools56.map(s => s.peeo_name))].sort();
+  uniquePeeos.forEach(pName => {
+    const clean = pName.replace(/PEEO\s+/i, '').trim();
+    const schools = STATE.schools56.filter(s => s.peeo_name.toLowerCase().includes(clean.toLowerCase()));
+    let subCount = 0;
+    let grandTotal = 0;
+    schools.forEach(s => {
+      const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
+      if (sub) {
+        subCount++;
+        grandTotal += (sub.grand_total || 0);
+      }
+    });
+
+    const isComplete = subCount === schools.length && schools.length > 0;
+    const card = document.createElement('div');
+    card.className = 'peeo-selector-card';
+    card.style.cssText = 'background:#ffffff; border:1.5px solid #cbd5e1; border-radius:8px; padding:0.75rem 1rem; display:flex; flex-direction:column; justify-content:space-between; gap:0.5rem; transition:all 0.2s; box-shadow:0 1px 3px rgba(0,0,0,0.05)';
+    card.setAttribute('data-peeo-name', pName.toLowerCase());
+    card.innerHTML = `
+      <div>
+        <div style="font-weight:800; color:#1e3a8a; font-size:0.92rem; display:flex; justify-content:space-between; align-items:center">
+          <span>${clean}</span>
+          <span style="font-size:0.72rem; padding:2px 6px; border-radius:4px; font-weight:700; ${isComplete ? 'background:#dcfce7; color:#15803d' : 'background:#fef3c7; color:#b45309'}">
+            ${subCount}/${schools.length} पूर्ण
+          </span>
+        </div>
+        <div style="font-size:0.76rem; color:#64748b; margin-top:3px">
+          कुल विद्यालय: ${schools.length} | कुल मांग: <strong>${grandTotal}</strong>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="closeModal('modal-select-peeo-report'); openPeeoConsolidatedPdfPreview('${pName}')" style="width:100%; font-weight:700; font-size:0.8rem; padding:0.35rem 0.5rem; display:flex; align-items:center; justify-content:center; gap:0.35rem">
+        <i class="fas fa-file-invoice"></i> A4 रिपोर्ट देखें
+      </button>
+    `;
+    grid.appendChild(card);
+  });
+
+  const searchInput = document.getElementById('peeo-selector-search');
+  if (searchInput) searchInput.value = '';
+  showModal('modal-select-peeo-report');
+}
+
+function filterPeeoSelectorGrid() {
+  const query = (document.getElementById('peeo-selector-search')?.value || '').toLowerCase().trim();
+  const cards = document.querySelectorAll('.peeo-selector-card');
+  cards.forEach(c => {
+    const name = c.getAttribute('data-peeo-name') || '';
+    c.style.display = (!query || name.includes(query)) ? 'flex' : 'none';
+  });
 }
 
 function openPeeoConsolidatedPdfPreview(peeoName) {
+  closeModal('modal-select-peeo-report');
   if (STATE.currentUser && STATE.currentUser.role === 'school') {
     showToast('परिक्षेत्र समेकित परीक्षा मांग रिपोर्ट केवल PEEO लॉगिन पर उपलब्ध है!', 'warning');
     return;
   }
+
+  const isBlockConsolidated = (peeoName === 'ALL' || peeoName === 'all' || peeoName === 'समस्त ब्लॉक भिनाय');
+
   if (!peeoName) {
     if (STATE.currentUser && STATE.currentUser.peeo_name) {
       peeoName = STATE.currentUser.peeo_name;
@@ -2288,19 +2468,27 @@ function openPeeoConsolidatedPdfPreview(peeoName) {
       if (peeoFilter && peeoFilter.value !== 'all') {
         peeoName = peeoFilter.value;
       } else {
-        peeoName = 'PEEO BHINAI';
+        openPeeoSelectorModal();
+        return;
       }
     }
   }
 
-  STATE.activePeeoConsolidatedName = peeoName;
-  const cleanPeeoName = peeoName.replace(/PEEO\s+/i, '').trim();
+  STATE.activePeeoConsolidatedName = isBlockConsolidated ? 'समस्त ब्लॉक भिनाय' : peeoName;
+  const cleanPeeoName = isBlockConsolidated 
+    ? 'समस्त ब्लॉक भिनाय (25 PEEO परिक्षेत्र)' 
+    : peeoName.replace(/PEEO\s+/i, '').trim();
 
   // Filter schools under this PEEO from 56 schools
-  const schools = STATE.schools56.filter(s => 
-    s.peeo_name.toLowerCase().includes(peeoName.toLowerCase()) ||
-    (STATE.currentUser?.schools && STATE.currentUser.schools.some(sch => sch.shala_darpan_code === s.shala_darpan_code))
-  );
+  let schools = [];
+  if (isBlockConsolidated) {
+    schools = [...STATE.schools56];
+  } else {
+    const cleanTarget = peeoName.replace(/PEEO\s+/i, '').trim().toLowerCase();
+    schools = STATE.schools56.filter(s => 
+      s.peeo_name.toLowerCase().includes(cleanTarget)
+    );
+  }
 
   if (schools.length === 0) {
     showToast('इस PEEO क्षेत्र में कोई माध्यमिक / उच्च माध्यमिक विद्यालय दर्ज नहीं है!', 'info');
@@ -2349,45 +2537,109 @@ function openPeeoConsolidatedPdfPreview(peeoName) {
 
     contactRowsHtml += `
       <tr style="border-bottom:1px solid #cbd5e1">
-        <td style="padding:6px 4px; border:1px solid #cbd5e1; text-align:center">${idx + 1}</td>
-        <td style="padding:6px 8px; border:1px solid #cbd5e1; text-align:left; font-weight:700; color:#1e3a8a">${s.school_name}</td>
-        <td style="padding:6px 6px; border:1px solid #cbd5e1; text-align:center">${s.shala_darpan_code} <span style="font-size:0.75rem; color:#64748b">(${s.type === 'Government' ? 'राजकीय' : 'निजी'})</span></td>
-        <td style="padding:6px 6px; border:1px solid #cbd5e1; text-align:center; font-weight:800; color:#dc2626">${examCode}</td>
-        <td style="padding:6px 8px; border:1px solid #cbd5e1; text-align:left"><strong>${princName}</strong><br><span style="font-size:0.75rem; color:#475569">मो. ${princMob}</span></td>
-        <td style="padding:6px 8px; border:1px solid #cbd5e1; text-align:left"><strong>${inchName}</strong><br><span style="font-size:0.75rem; color:#475569">मो. ${inchMob}</span></td>
-        <td style="padding:6px 6px; border:1px solid #cbd5e1; text-align:center">${statusBadge}</td>
+        <td style="padding:4px 3px; border:1px solid #cbd5e1; text-align:center">${idx + 1}</td>
+        <td style="padding:4px 6px; border:1px solid #cbd5e1; text-align:left; font-weight:700; color:#1e3a8a">${s.school_name}</td>
+        <td style="padding:4px 4px; border:1px solid #cbd5e1; text-align:center">${s.shala_darpan_code} <span style="font-size:0.72rem; color:#64748b">(${s.type === 'Government' ? 'राजकीय' : 'निजी'})</span></td>
+        <td style="padding:4px 4px; border:1px solid #cbd5e1; text-align:center; font-weight:800; color:#dc2626">${examCode}</td>
+        <td style="padding:4px 6px; border:1px solid #cbd5e1; text-align:left"><strong>${princName}</strong><br><span style="font-size:0.72rem; color:#475569">मो. ${princMob}</span></td>
+        <td style="padding:4px 6px; border:1px solid #cbd5e1; text-align:left"><strong>${inchName}</strong><br><span style="font-size:0.72rem; color:#475569">मो. ${inchMob}</span></td>
+        <td style="padding:4px 4px; border:1px solid #cbd5e1; text-align:center">${statusBadge}</td>
       </tr>
     `;
 
     demandRowsHtml += `
       <tr style="border-bottom:1px solid #cbd5e1">
-        <td style="padding:6px 4px; border:1px solid #cbd5e1; text-align:center">${idx + 1}</td>
-        <td style="padding:6px 8px; border:1px solid #cbd5e1; text-align:left; font-weight:700; color:#1e3a8a">${s.school_name} (${s.shala_darpan_code})</td>
-        <td style="padding:6px 6px; border:1px solid #cbd5e1; text-align:center; font-weight:700">${c9}</td>
-        <td style="padding:6px 6px; border:1px solid #cbd5e1; text-align:center; font-weight:700">${c10}</td>
-        <td style="padding:6px 6px; border:1px solid #cbd5e1; text-align:center; font-weight:700">${c11}</td>
-        <td style="padding:6px 6px; border:1px solid #cbd5e1; text-align:center; font-weight:700">${c12}</td>
-        <td style="padding:6px 6px; border:1px solid #cbd5e1; text-align:center; font-weight:900; color:#1e3a8a; background:#eff6ff; font-size:0.95rem">${gTotal}</td>
-        <td style="padding:6px 6px; border:1px solid #cbd5e1; text-align:center">${statusBadge}</td>
+        <td style="padding:4px 3px; border:1px solid #cbd5e1; text-align:center">${idx + 1}</td>
+        <td style="padding:4px 6px; border:1px solid #cbd5e1; text-align:left; font-weight:700; color:#1e3a8a">${s.school_name} (${s.shala_darpan_code})</td>
+        <td style="padding:4px 4px; border:1px solid #cbd5e1; text-align:center; font-weight:700">${c9}</td>
+        <td style="padding:4px 4px; border:1px solid #cbd5e1; text-align:center; font-weight:700">${c10}</td>
+        <td style="padding:4px 4px; border:1px solid #cbd5e1; text-align:center; font-weight:700">${c11}</td>
+        <td style="padding:4px 4px; border:1px solid #cbd5e1; text-align:center; font-weight:700">${c12}</td>
+        <td style="padding:4px 6px; border:1px solid #cbd5e1; text-align:center; font-weight:900; color:#1e3a8a; background:#eff6ff; font-size:0.92rem">${gTotal}</td>
+        <td style="padding:4px 4px; border:1px solid #cbd5e1; text-align:center">${statusBadge}</td>
       </tr>
     `;
   });
+
+  // Digital Signature Resolution for PEEO Report
+  let peeoSig = null;
+  let inchargeSig = null;
+
+  if (isBlockConsolidated) {
+    peeoSig = STATE.currentUser?.signature_data || localStorage.getItem('cbeo_admin_signature');
+  } else {
+    // 1. Check nodal school submission under this PEEO
+    const nodalSchool = schools.find(s => s.is_peeo_nodal) || schools.find(s => s.type === 'Government') || schools[0];
+    if (nodalSchool) {
+      peeoSig = STATE.samanParikshaSubmissions[nodalSchool.shala_darpan_code]?.signature_data;
+      if (!peeoSig) {
+        try {
+          const draft = JSON.parse(localStorage.getItem(`cbeo_form_draft_${nodalSchool.shala_darpan_code}`));
+          if (draft?.signature_data) peeoSig = draft.signature_data;
+        } catch(e) {}
+      }
+      inchargeSig = STATE.samanParikshaSubmissions[nodalSchool.shala_darpan_code]?.incharge_signature_data;
+    }
+
+    // 2. Check any other school under this PEEO
+    if (!peeoSig) {
+      for (const sch of schools) {
+        const sub = STATE.samanParikshaSubmissions[sch.shala_darpan_code];
+        if (sub?.signature_data) {
+          peeoSig = sub.signature_data;
+          break;
+        }
+      }
+    }
+
+    // 3. Check localStorage
+    if (!peeoSig) {
+      peeoSig = localStorage.getItem(`cbeo_peeo_signature_${peeoName}`) || localStorage.getItem(`cbeo_peeo_signature_${cleanPeeoName}`);
+    }
+
+    // 4. Current user if logged in as this PEEO or admin
+    if (!peeoSig && STATE.currentUser?.signature_data) {
+      if (STATE.currentUser.peeo_name === peeoName || STATE.currentUser.role === 'admin') {
+        peeoSig = STATE.currentUser.signature_data;
+      }
+    }
+  }
+
+  const officeHeaderTitle = isBlockConsolidated
+    ? `कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय`
+    : `कार्यालय पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO), ${peeoName}`;
+
+  const jurisdictionSubtitle = isBlockConsolidated
+    ? `ब्लॉक-भिनाय, जिला-अजमेर (राजस्थान) | समस्त 25 PEEO परिक्षेत्र मॉनिटरिंग`
+    : `ग्रा.पं. ${cleanPeeoName}, ब्लॉक-भिनाय, जिला-अजमेर (राजस्थान)`;
+
+  const reportSubtitle = isBlockConsolidated
+    ? `समस्त 25 PEEO परिक्षेत्र अधीनस्थ 57 माध्यमिक व उच्च माध्यमिक विद्यालयों की समेकित परीक्षा मांग रिपोर्ट`
+    : `परिक्षेत्र अधीनस्थ माध्यमिक व उच्च माध्यमिक विद्यालयों की समेकित परीक्षा मांग रिपोर्ट`;
+
+  const rightDesignationTitle = isBlockConsolidated
+    ? `मुख्य ब्लॉक शिक्षा अधिकारी (CBEO)`
+    : `पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)`;
+
+  const rightOfficeName = isBlockConsolidated
+    ? `भिनाय, जिला अजमेर`
+    : `${peeoName}`;
 
   container.innerHTML = `
     <!-- Top Departmental & PEEO Header -->
     <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:2px; margin-bottom:4px">
       <div style="font-size:0.80rem; font-weight:700; color:#000; letter-spacing:normal">राजस्थान सरकार | स्कूल शिक्षा विभाग</div>
       <div style="font-size:1.12rem; font-weight:900; color:#000; margin:1px 0">
-        कार्यालय पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO), ${peeoName}
+        ${officeHeaderTitle}
       </div>
       <div style="font-size:0.78rem; font-weight:700; color:#111; margin-bottom:1px">
-        ग्रा.पं. ${cleanPeeoName}, ब्लॉक-भिनाय, जिला-अजमेर (राजस्थान)
+        ${jurisdictionSubtitle}
       </div>
       <div style="font-size:0.95rem; font-weight:800; color:#000; letter-spacing:normal">
         जिला समान परीक्षा योजना (सत्र 2026-27)
       </div>
       <div style="font-size:0.80rem; font-weight:700; color:#222">
-        परिक्षेत्र अधीनस्थ माध्यमिक व उच्च माध्यमिक विद्यालयों की समेकित परीक्षा मांग रिपोर्ट
+        ${reportSubtitle}
       </div>
     </div>
 
@@ -2395,7 +2647,7 @@ function openPeeoConsolidatedPdfPreview(peeoName) {
     <div style="display:flex; justify-content:space-between; align-items:center; background:#f8fafc; padding:3px 6px; border-radius:4px; border:1px solid #000; margin-bottom:4px; font-size:0.74rem; color:#000">
       <div><strong>कुल माध्यमिक/उच्च माध्यमिक विद्यालय:</strong> ${schools.length} (राजकीय: ${schools.filter(s=>s.type==='Government').length} | निजी: ${schools.filter(s=>s.type!=='Government').length})</div>
       <div><strong>प्रपत्र सबमिट स्थिति:</strong> <strong>${submittedCount} पूर्ण</strong> / <strong>${schools.length - submittedCount} लम्बित</strong></div>
-      <div><strong>परिक्षेत्र कुल मांग प्रश्न-पत्र:</strong> <strong style="font-size:0.88rem">${totalGrand}</strong></div>
+      <div><strong>${isBlockConsolidated ? 'ब्लॉक' : 'परिक्षेत्र'} कुल मांग प्रश्न-पत्र:</strong> <strong style="font-size:0.88rem">${totalGrand}</strong></div>
     </div>
 
     <!-- TABLE 1: School & Staff Contact Details -->
@@ -2444,7 +2696,7 @@ function openPeeoConsolidatedPdfPreview(peeoName) {
           <!-- Cluster Grand Total Row -->
           <tr style="background:#f1f5f9; font-weight:900; border:2px solid #000; text-align:center">
             <td colspan="2" style="padding:3px 6px; border:2px solid #000; text-align:right; font-size:0.84rem; color:#000">
-              🎯 PEEO परिक्षेत्र कुल महायोग (Consolidated Grand Total):
+              🎯 ${isBlockConsolidated ? 'समस्त ब्लॉक' : 'PEEO परिक्षेत्र'} कुल महायोग (Consolidated Grand Total):
             </td>
             <td style="padding:3px 3px; border:2px solid #000; font-size:0.88rem">${totalC9}</td>
             <td style="padding:3px 3px; border:2px solid #000; font-size:0.88rem">${totalC10}</td>
@@ -2459,27 +2711,41 @@ function openPeeoConsolidatedPdfPreview(peeoName) {
 
     <!-- Verification Declaration -->
     <div style="margin-top:4px; margin-bottom:4px; padding:3px 6px; background:#ffffff; border:1px solid #000; border-left:4px solid #000; border-radius:3px; font-size:0.70rem; line-height:1.25; color:#000">
-      <strong>सत्यापन एवं उत्तरदायित्व घोषणा:</strong> प्रमाणित किया जाता है कि मेरे परिक्षेत्र (${peeoName}) के अंतर्गत संचालित उपर्युक्त समस्त ${schools.length} माध्यमिक एवं उच्च माध्यमिक विद्यालयों के परीक्षा प्रपत्रों का गहनता से परीक्षण व सत्यापन कर लिया गया है। उपर्युक्त सभी आंकड़े पूर्णतः सही व सत्यापित हैं। किसी भी प्रकार की त्रुटि या विसंगति पाए जाने पर संबंधित संस्था प्रधान एवं परीक्षा प्रभारी का उत्तरदायित्व होगा।
+      <strong>सत्यापन एवं उत्तरदायित्व घोषणा:</strong> प्रमाणित किया जाता है कि ${isBlockConsolidated ? 'ब्लॉक भिनाय' : `मेरे परिक्षेत्र (${peeoName})`} के अंतर्गत संचालित उपर्युक्त समस्त ${schools.length} माध्यमिक एवं उच्च माध्यमिक विद्यालयों के परीक्षा प्रपत्रों का गहनता से परीक्षण व सत्यापन कर लिया गया है। उपर्युक्त सभी आंकड़े पूर्णतः सही व सत्यापित हैं। किसी भी प्रकार की त्रुटि या विसंगति पाए जाने पर संबंधित संस्था प्रधान एवं परीक्षा प्रभारी का उत्तरदायित्व होगा।
     </div>
 
     <!-- Official Signatures: Incharge (Left) & PEEO (Right) -->
     <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 30px; margin-top:8px; margin-bottom:2px">
-      <!-- Left: Exam In-charge (Only 'हस्ताक्षर परीक्षा प्रभारी') -->
+      <!-- Left: Exam In-charge -->
       <div style="text-align:center; width:36%">
-        <div style="height:28px"></div>
+        ${inchargeSig ? `
+          <div style="height:28px; display:flex; align-items:center; justify-content:center">
+            <img src="${inchargeSig}" style="max-height:26px; max-width:140px; object-fit:contain" alt="हस्ताक्षर">
+          </div>
+        ` : `<div style="height:28px"></div>`}
         <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.86rem; color:#000">
           हस्ताक्षर परीक्षा प्रभारी
         </div>
       </div>
 
-      <!-- Right: PEEO Sign (Official Designation & Jurisdiction) -->
+      <!-- Right: PEEO / CBEO Sign -->
       <div style="text-align:center; width:44%">
-        <div style="height:28px"></div>
-        <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.86rem; color:#000">
-          हस्ताक्षर
-        </div>
-        <div style="font-size:0.80rem; font-weight:800; color:#000; margin-top:1px">पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)</div>
-        <div style="font-size:0.76rem; font-weight:700; color:#111; margin-top:1px">${peeoName}</div>
+        ${peeoSig ? `
+          <div style="height:28px; display:flex; align-items:center; justify-content:center">
+            <img src="${peeoSig}" style="max-height:26px; max-width:140px; object-fit:contain" alt="डिजिटल हस्ताक्षर">
+          </div>
+          <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.86rem; color:#000">
+            हस्ताक्षर
+          </div>
+          <div style="font-size:0.65rem; color:#15803d; font-weight:700">✓ डिजिटल सत्यापित (Digitally Signed)</div>
+        ` : `
+          <div style="height:28px"></div>
+          <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.86rem; color:#000">
+            हस्ताक्षर
+          </div>
+        `}
+        <div style="font-size:0.80rem; font-weight:800; color:#000; margin-top:1px">${rightDesignationTitle}</div>
+        <div style="font-size:0.76rem; font-weight:700; color:#111; margin-top:1px">${rightOfficeName}</div>
         <div style="font-size:0.72rem; color:#222; margin-top:1px">ब्लॉक-भिनाय (अजमेर)</div>
       </div>
     </div>
@@ -2715,7 +2981,7 @@ function filterSamanCallDirectory() {
 function sendBulkPendingWhatsAppReminder() {
   const pending = STATE.schools56.filter(s => !STATE.samanParikshaSubmissions[s.shala_darpan_code]);
   if (pending.length === 0) {
-    showToast('सभी 56 विद्यालयों के प्रपत्र सबमिट हो चुके हैं!', 'success');
+    showToast(`सभी ${STATE.schools56.length} विद्यालयों के प्रपत्र सबमिट हो चुके हैं!`, 'success');
     return;
   }
 
@@ -2800,7 +3066,7 @@ function printSamanCallDirectory() {
     </head>
     <body>
       <h2>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</h2>
-      <h3>जिला समान परीक्षा 2026-27 | 56 माध्यमिक व उच्च माध्यमिक विद्यालय फोन डायरेक्टरी</h3>
+      <h3>जिला समान परीक्षा 2026-27 | 57 माध्यमिक व उच्च माध्यमिक विद्यालय फोन डायरेक्टरी</h3>
       <table>
         <thead>
           <tr>
@@ -3017,7 +3283,7 @@ function exportSamanParikshaMasterCSV() {
 
   const csvContent = "\uFEFF" + rows.map(r => r.join(",")).join("\n");
   const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-  const filename = `CBEO_Bhinai_Saman_Pariksha_56_Schools_Master_${new Date().toISOString().slice(0, 10)}.csv`;
+  const filename = `CBEO_Bhinai_Saman_Pariksha_57_Schools_Master_${new Date().toISOString().slice(0, 10)}.csv`;
   
   const link = document.createElement("a");
   const url = URL.createObjectURL(blob);
