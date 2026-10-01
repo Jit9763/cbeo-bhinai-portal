@@ -1075,15 +1075,16 @@
     }
 
     function initPage() {
-      if (localStorage.getItem('cbeo_sp_clean_production_v2') !== 'true') {
+      if (localStorage.getItem('cbeo_sp_clean_production_v3') !== 'true') {
         localStorage.removeItem('cbeo_saman_pariksha_submissions');
+        localStorage.removeItem('cbeo_saman_form_draft');
         for (let i = localStorage.length - 1; i >= 0; i--) {
           const k = localStorage.key(i);
-          if (k && k.startsWith('cbeo_form_draft_')) {
+          if (k && (k.startsWith('cbeo_form_draft_') || k.startsWith('cbeo_sp_'))) {
             localStorage.removeItem(k);
           }
         }
-        localStorage.setItem('cbeo_sp_clean_production_v2', 'true');
+        localStorage.setItem('cbeo_sp_clean_production_v3', 'true');
       }
 
       schoolsList = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.schools_56) || (window.MASTER_CBEO_DATA && window.MASTER_CBEO_DATA.schools_56) || [];
@@ -1574,12 +1575,20 @@
         console.warn('Directory dynamic update error:', e);
       }
 
-      // Sync to backend file & Google Sheet
-      fetch('/api/save_saman_pariksha', {
+      // Sync to backend file & Google Sheet (Direct to port 8089 if on localhost, or relative path)
+      const apiEndpoint = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? 'http://localhost:8089/api/save_saman_pariksha'
+        : '/api/save_saman_pariksha';
+
+      fetch(apiEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(submission)
-      }).catch(() => {});
+      }).then(res => res.json()).then(data => {
+        if (data && data.synced_to_sheet) {
+          showToast('Google Sheet में डेटा सफलतापूर्वक सिंक हो गया!');
+        }
+      }).catch(e => console.warn('Backend sync note:', e));
 
       renderSubmittedPreviewTable(submission);
       showToast('प्रपत्र एवं संपर्क डायरेक्टरी सफलतापूर्वक अपडेट व सुरक्षित हो गई!');

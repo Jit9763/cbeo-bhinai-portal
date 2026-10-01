@@ -21092,11 +21092,9 @@ const MASTER_CBEO_DATA = {
   },
   "saman_pariksha_submissions": {}
 };
-
 if (typeof window !== 'undefined') {
   window.MASTER_CBEO_DATA = MASTER_CBEO_DATA;
 }
-
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = MASTER_CBEO_DATA;
 }

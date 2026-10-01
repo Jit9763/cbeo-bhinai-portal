@@ -88,10 +88,18 @@ function initMasterData() {
   ];
 
   // Versioned cache check to guarantee fresh master data with 56 schools and Saman Pariksha demand
-  const DATA_VERSION = 'v7_2026_10_01_peeo_deoliya_purnima_rakesh';
+  const DATA_VERSION = 'v10_2026_10_01_purge_all_test_drafts';
   if (localStorage.getItem('cbeo_data_version') !== DATA_VERSION) {
     localStorage.removeItem('cbeo_peeos_data');
     localStorage.removeItem('cbeo_staff_data');
+    localStorage.removeItem('cbeo_saman_pariksha_submissions');
+    localStorage.removeItem('cbeo_saman_form_draft');
+    for (let i = localStorage.length - 1; i >= 0; i--) {
+      const k = localStorage.key(i);
+      if (k && (k.startsWith('cbeo_form_draft_') || k.startsWith('cbeo_sp_'))) {
+        localStorage.removeItem(k);
+      }
+    }
     localStorage.setItem('cbeo_data_version', DATA_VERSION);
   }
 
@@ -163,11 +171,17 @@ function initMasterData() {
     saveSubmissionsToStorage();
   }
 
-  // 7. Saman Pariksha Submissions
-  if (localStorage.getItem('cbeo_sp_clean_production_v2') !== 'true') {
+  // 7. Saman Pariksha Submissions (Production clean)
+  if (localStorage.getItem('cbeo_sp_clean_production_v3') !== 'true') {
     localStorage.removeItem('cbeo_saman_pariksha_submissions');
     localStorage.removeItem('cbeo_saman_form_draft');
-    localStorage.setItem('cbeo_sp_clean_production_v2', 'true');
+    for (let i = localStorage.length - 1; i >= 0; i--) {
+      const k = localStorage.key(i);
+      if (k && (k.startsWith('cbeo_form_draft_') || k.startsWith('cbeo_sp_'))) {
+        localStorage.removeItem(k);
+      }
+    }
+    localStorage.setItem('cbeo_sp_clean_production_v3', 'true');
   }
 
   const storedSPSubs = localStorage.getItem('cbeo_saman_pariksha_submissions');
@@ -1726,11 +1740,19 @@ function submitSamanParikshaForm(andPrint = false) {
     console.warn('Error syncing directory:', exDir);
   }
 
-  // Sync to backend file & Google Sheet
-  fetch('/api/save_saman_pariksha', {
+  // Sync to backend file & Google Sheet (Direct to port 8089 if on localhost, or relative path)
+  const apiEndpoint = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    ? 'http://localhost:8089/api/save_saman_pariksha'
+    : '/api/save_saman_pariksha';
+
+  fetch(apiEndpoint, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(submission)
+  }).then(res => res.json()).then(data => {
+    if (data.synced_to_sheet) {
+      showToast('समान परीक्षा प्रपत्र Google Sheet में तुरंत सिंक हो गया!', 'success');
+    }
   }).catch(() => {});
 
   closeModal('modal-saman-pariksha-form');
@@ -2881,7 +2903,10 @@ function exportSamanParikshaMasterCSV() {
 async function triggerDriveSheetSync() {
   showToast('Google Drive शीट में डेटा सिंक किया जा रहा है...', 'info');
   try {
-    const res = await fetch('/api/sync_saman_pariksha', { method: 'POST' });
+    const apiEndpoint = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+      ? 'http://localhost:8089/api/sync_saman_pariksha'
+      : '/api/sync_saman_pariksha';
+    const res = await fetch(apiEndpoint, { method: 'POST' });
     const data = await res.json();
     if (data.success) {
       showToast('समान परीक्षा Google Sheet सफलतापूर्वक अपडेट हो गई!', 'success');
