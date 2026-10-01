@@ -29,7 +29,7 @@ let STATE = {
   },
   customPasswords: {},
   sheetAuthPasswords: {},
-  schoolLoginPolicy: 'all',
+  schoolLoginPolicy: 'sec_srsec',
   schoolLoginOverrides: {},
   schoolDetailsOverrides: {},
   demandSubmissions: {},
@@ -197,8 +197,8 @@ function initMasterData() {
   } catch(e) {}
   syncAuthFromGoogleSheet();
 
-  // School Login Permission Policy & Overrides
-  STATE.schoolLoginPolicy = localStorage.getItem('cbeo_school_login_policy') || 'all';
+  // School Login Permission Policy & Overrides (Default: sec_srsec 57 schools)
+  STATE.schoolLoginPolicy = localStorage.getItem('cbeo_school_login_policy') || 'sec_srsec';
   try {
     const sto = localStorage.getItem('cbeo_school_login_overrides');
     STATE.schoolLoginOverrides = sto ? JSON.parse(sto) : {};
@@ -311,7 +311,8 @@ function initMasterData() {
   }
 
   // 7. Saman Pariksha Submissions (Production clean)
-  if (localStorage.getItem('cbeo_sp_clean_production_v3') !== 'true') {
+  // 7. Saman Pariksha Submissions (Production clean v4 - purged test data for GSS Badanwada 221769)
+  if (localStorage.getItem('cbeo_sp_clean_production_v4') !== 'true') {
     localStorage.removeItem('cbeo_saman_pariksha_submissions');
     localStorage.removeItem('cbeo_saman_form_draft');
     for (let i = localStorage.length - 1; i >= 0; i--) {
@@ -320,7 +321,7 @@ function initMasterData() {
         localStorage.removeItem(k);
       }
     }
-    localStorage.setItem('cbeo_sp_clean_production_v3', 'true');
+    localStorage.setItem('cbeo_sp_clean_production_v4', 'true');
   }
 
   const storedSPSubs = localStorage.getItem('cbeo_saman_pariksha_submissions');
@@ -335,6 +336,12 @@ function initMasterData() {
     STATE.samanParikshaSubmissions = defaultSPSubs;
   }
 
+  // Explicitly ensure test Badanwada submission is purged
+  if (STATE.samanParikshaSubmissions && STATE.samanParikshaSubmissions['221769']) {
+    delete STATE.samanParikshaSubmissions['221769'];
+    localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(STATE.samanParikshaSubmissions));
+  }
+
   // Live Sync from Google Sheet via doGet(?action=getAll)
   const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
     || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
@@ -346,12 +353,17 @@ function initMasterData() {
       .then(data => {
         if (data && data.success && data.submissions) {
           Object.keys(data.submissions).forEach(code => {
-            const existingSig = STATE.samanParikshaSubmissions[code]?.signature_data;
-            const existingHasSig = STATE.samanParikshaSubmissions[code]?.has_digital_signature;
-            STATE.samanParikshaSubmissions[code] = Object.assign({}, STATE.samanParikshaSubmissions[code], data.submissions[code]);
-            if (existingSig && !STATE.samanParikshaSubmissions[code].signature_data) {
-              STATE.samanParikshaSubmissions[code].signature_data = existingSig;
-              STATE.samanParikshaSubmissions[code].has_digital_signature = existingHasSig !== undefined ? existingHasSig : true;
+            const subData = data.submissions[code];
+            if (subData && subData.is_submitted) {
+              const existingSig = STATE.samanParikshaSubmissions[code]?.signature_data;
+              const existingHasSig = STATE.samanParikshaSubmissions[code]?.has_digital_signature;
+              STATE.samanParikshaSubmissions[code] = Object.assign({}, STATE.samanParikshaSubmissions[code] || {}, subData);
+              if (existingSig && !STATE.samanParikshaSubmissions[code].signature_data) {
+                STATE.samanParikshaSubmissions[code].signature_data = existingSig;
+                STATE.samanParikshaSubmissions[code].has_digital_signature = existingHasSig !== undefined ? existingHasSig : true;
+              }
+            } else {
+              delete STATE.samanParikshaSubmissions[code];
             }
           });
           localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(STATE.samanParikshaSubmissions));
@@ -710,7 +722,7 @@ function openLoginModal(isMandatory = false) {
   const optgroupSchools56 = document.getElementById('login-schools56-optgroup');
   const subWrap = document.getElementById('login-school-sub-wrap');
 
-  const isAllPolicy = (STATE.schoolLoginPolicy === 'all');
+  const policy = STATE.schoolLoginPolicy || 'sec_srsec';
 
   if (optgroupPeeo) {
     optgroupPeeo.innerHTML = '';
@@ -722,23 +734,31 @@ function openLoginModal(isMandatory = false) {
     });
   }
 
-  // If policy is NOT 'all', show the original 58 secondary schools directly in the dropdown
+  // Populate 1-click schools in first dropdown if permitted
   if (optgroupSchools56) {
     optgroupSchools56.innerHTML = '';
-    if (!isAllPolicy) {
-      optgroupSchools56.style.display = '';
-      (STATE.schools56 || []).forEach(s => {
-        const opt = document.createElement('option');
-        opt.value = `sch_${s.shala_darpan_code}`;
-        opt.textContent = `[${s.type === 'Private' ? 'निजी' : 'राजकीय'}] ${s.shala_darpan_code} - ${s.school_name}`;
-        optgroupSchools56.appendChild(opt);
-      });
-    } else {
+    if (policy === 'peeo_nodal') {
       optgroupSchools56.style.display = 'none';
+    } else {
+      const allowedSchools = (STATE.schools56 || []).filter(s => isSchoolLoginAllowed(s.shala_darpan_code));
+      if (allowedSchools.length > 0) {
+        optgroupSchools56.style.display = '';
+        optgroupSchools56.label = (policy === 'all') 
+          ? `माध्यमिक व उच्च माध्यमिक विद्यालय (त्वरित 1-क्लिक)` 
+          : `अनुमत विद्यालय (${allowedSchools.length} स्कूल)`;
+        allowedSchools.forEach(s => {
+          const opt = document.createElement('option');
+          opt.value = `sch_${s.shala_darpan_code}`;
+          opt.textContent = `[${s.type === 'Private' ? 'निजी' : 'राजकीय'}] ${s.shala_darpan_code} - ${s.school_name}`;
+          optgroupSchools56.appendChild(opt);
+        });
+      } else {
+        optgroupSchools56.style.display = 'none';
+      }
     }
   }
 
-  if (subWrap && !isAllPolicy) {
+  if (subWrap && policy === 'peeo_nodal') {
     subWrap.style.display = 'none';
   }
 
@@ -813,24 +833,26 @@ function onQuickSelectUser() {
     const peeoPwd = STATE.sheetAuthPasswords[peeo.shala_darpan_code]?.password || STATE.customPasswords[peeo.shala_darpan_code] || peeo.shala_darpan_code;
     passwordInput.value = peeoPwd;
 
-    const isAllPolicy = (STATE.schoolLoginPolicy === 'all');
+    const policy = STATE.schoolLoginPolicy || 'sec_srsec';
 
-    // ONLY show 2nd Tier Subordinate Schools Dropdown when Admin has permitted ALL schools
-    if (isAllPolicy && subWrap && subSelect) {
+    // 2nd Tier Subordinate Schools Dropdown:
+    // If policy is 'peeo_nodal', subordinate school login is blocked, hide subWrap
+    if (policy === 'peeo_nodal') {
+      if (subWrap) subWrap.style.display = 'none';
+    } else if (subWrap && subSelect) {
       subSelect.innerHTML = '';
 
-      // Find PEEO Nodal School name
+      // Option 1: PEEO HQ / Nodal School itself
       const peeoSchool = (STATE.schools56 || []).find(s => s.shala_darpan_code === peeo.shala_darpan_code) || 
                          (peeo.schools || []).find(s => s.shala_darpan_code === peeo.shala_darpan_code) || 
                          { school_name: peeo.peeo_name };
 
-      // Option 1: PEEO HQ / Nodal School itself
       const optPeeo = document.createElement('option');
       optPeeo.value = peeo.shala_darpan_code;
       optPeeo.textContent = `🏛️ [PEEO नोडल HQ विद्यालय] ${peeo.shala_darpan_code} - ${peeoSchool.school_name}`;
       subSelect.appendChild(optPeeo);
 
-      // Followed by all Subordinate schools under this PEEO
+      // Followed by all allowed subordinate schools under this PEEO
       let allowedCount = 0;
       (peeo.schools || []).forEach(s => {
         const sCode = String(s.shala_darpan_code || s.dise_code || s.psp_code || '').trim();
@@ -1294,6 +1316,7 @@ function renderApp() {
   renderStaffFilters();
   renderExplorerFilters();
   updateAllPortalMetricsAndProgress();
+  updateSchoolManagementPolicyUI();
   if (STATE.activeDemandPortalId) {
     renderDynamicDemandPortalView(STATE.activeDemandPortalId);
   }
@@ -6663,6 +6686,49 @@ function isSchoolLoginAllowed(code) {
   return true;
 }
 
+// Helper to synchronize School Management Policy UI (Badge & Buttons) across refreshes
+function updateSchoolManagementPolicyUI() {
+  const policy = STATE.schoolLoginPolicy || 'sec_srsec';
+  const badge = document.getElementById('sch-mgmt-policy-status-badge');
+  if (badge) {
+    const labels = {
+      'all': 'नीति: सभी 178 विद्यालय लॉगिन खुला (All Allowed)',
+      'sec_srsec': 'नीति: केवल 57 माध्यमिक/उच्च माध्यमिक (Sec & Sr Sec)',
+      'peeo_nodal': 'नीति: केवल 25 PEEO नोडल विद्यालय (PEEO Only)',
+      'custom': 'नीति: कस्टम चयन मोड (Custom Overrides Active)'
+    };
+    const badgeStyles = {
+      'all': { bg: '#dcfce7', color: '#15803d', border: '#86efac' },
+      'sec_srsec': { bg: '#fef3c7', color: '#b45309', border: '#fde68a' },
+      'peeo_nodal': { bg: '#e0f2fe', color: '#0369a1', border: '#bae6fd' },
+      'custom': { bg: '#f3e8ff', color: '#7e22ce', border: '#e9d5ff' }
+    };
+    badge.textContent = labels[policy] || policy;
+    const bs = badgeStyles[policy] || { bg: '#f1f5f9', color: '#475569', border: '#cbd5e1' };
+    badge.style.background = bs.bg;
+    badge.style.color = bs.color;
+    badge.style.border = `1.5px solid ${bs.border}`;
+  }
+
+  ['all', 'sec_srsec', 'peeo_nodal', 'custom'].forEach(p => {
+    const btnId = 'btn-policy-' + p.replace(/_/g, '-');
+    const btn = document.getElementById(btnId);
+    if (btn) {
+      if (p === policy) {
+        btn.classList.add('active');
+        btn.style.border = '1.5px solid #16a34a';
+        btn.style.background = '#dcfce7';
+        btn.style.color = '#15803d';
+      } else {
+        btn.classList.remove('active');
+        btn.style.border = '1.5px solid #cbd5e1';
+        btn.style.background = '#f8fafc';
+        btn.style.color = '#334155';
+      }
+    }
+  });
+}
+
 // Global Quick Login Policy Switcher
 function setGlobalSchoolLoginPolicy(policy) {
   STATE.schoolLoginPolicy = policy;
@@ -6673,17 +6739,7 @@ function setGlobalSchoolLoginPolicy(policy) {
     localStorage.removeItem('cbeo_school_login_overrides');
   }
 
-  const badge = document.getElementById('sch-mgmt-policy-status-badge');
-  if (badge) {
-    const labels = {
-      'all': 'नीति: सभी 178 विद्यालय लॉगिन खुला (All Allowed)',
-      'sec_srsec': 'नीति: केवल 57 माध्यमिक/उच्च माध्यमिक (Sec & Sr Sec)',
-      'peeo_nodal': 'नीति: केवल 25 PEEO नोडल विद्यालय (PEEO Only)',
-      'custom': 'नीति: कस्टम चयन मोड (Custom Overrides Active)'
-    };
-    badge.textContent = labels[policy] || policy;
-  }
-
+  updateSchoolManagementPolicyUI();
   renderSchoolManagementView();
   showToast(`लॉगिन नीति '${policy}' सफलतापूर्वक लागू की गई!`, 'success');
   syncMasterSchoolsDataToSheet(false);
@@ -6736,24 +6792,8 @@ function renderSchoolManagementView() {
     });
   }
 
-  // Update policy buttons
-  const policy = STATE.schoolLoginPolicy || 'all';
-  ['all', 'sec_srsec', 'peeo_nodal', 'custom'].forEach(p => {
-    const btn = document.getElementById(`btn-policy-${p}`);
-    if (btn) {
-      if (p === policy) {
-        btn.classList.add('active');
-        btn.style.border = '1.5px solid #16a34a';
-        btn.style.background = '#dcfce7';
-        btn.style.color = '#15803d';
-      } else {
-        btn.classList.remove('active');
-        btn.style.border = '1.5px solid #cbd5e1';
-        btn.style.background = '#f8fafc';
-        btn.style.color = '#334155';
-      }
-    }
-  });
+  // Update policy buttons & status badge
+  updateSchoolManagementPolicyUI();
 
   filterSchoolManagementTable();
 }
