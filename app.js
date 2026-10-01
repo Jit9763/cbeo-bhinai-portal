@@ -1755,17 +1755,17 @@ function openExamPdfPreview(schoolCode) {
   container.innerHTML = `
     <!-- Top Emblem & Departmental Header (Single Page A4 Landscape Layout) -->
     <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:4px; margin-bottom:8px">
-      <div style="font-size:0.80rem; font-weight:700; color:#000; letter-spacing:0.4px">राजस्थान सरकार | स्कूल शिक्षा विभाग</div>
+      <div style="font-size:0.82rem; font-weight:700; color:#000; letter-spacing:normal">राजस्थान सरकार | स्कूल शिक्षा विभाग</div>
       <div style="font-size:1.18rem; font-weight:900; color:#000; margin:1px 0">
         कार्यालय संस्था प्रधान, ${school.school_name}
       </div>
       <div style="font-size:0.80rem; font-weight:700; color:#111; margin-bottom:1px">
         ग्राम / परिक्षेत्र: ${school.peeo_name.replace('PEEO ', '')}, ब्लॉक-भिनाय, जिला-अजमेर (राज.) | शाला दर्पण / PSP कोड: ${school.shala_darpan_code}
       </div>
-      <div style="font-size:0.95rem; font-weight:800; color:#000; text-transform:uppercase; letter-spacing:0.4px">
+      <div style="font-size:0.98rem; font-weight:800; color:#000; letter-spacing:normal">
         जिला समान परीक्षा योजना (सत्र 2026-27)
       </div>
-      <div style="font-size:0.80rem; font-weight:700; color:#222">
+      <div style="font-size:0.82rem; font-weight:700; color:#222">
         कक्षा 9 से 12 विद्यार्थी नामांकन एवं प्रश्न-पत्र मांग अधिकृत विवरण प्रपत्र
       </div>
     </div>
@@ -1904,10 +1904,10 @@ function openExamPdfPreview(schoolCode) {
       <div style="text-align:center; width:44%">
         ${sub.signature_data ? `
           <div style="height:32px; display:flex; align-items:center; justify-content:center">
-            <img src="${sub.signature_data}" style="max-height:30px; max-width:160px; object-fit:contain" alt="डिजिटल हस्ताक्षर">
+            <img src="${sub.signature_data}" style="max-height:30px; max-width:160px; object-fit:contain" alt="हस्ताक्षर">
           </div>
           <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.88rem; color:#000">
-            डिजिटल हस्ताक्षर संस्था प्रधान
+            हस्ताक्षर संस्था प्रधान
           </div>
         ` : `
           <div style="height:32px"></div>
@@ -2009,12 +2009,23 @@ async function exportDocumentToPdfBlob(elementId, filename) {
   const prevPadding = container.style.padding;
   const prevBoxSizing = container.style.boxSizing;
   const prevBackground = container.style.background;
+  const prevFontFamily = container.style.fontFamily;
+  const prevLetterSpacing = container.style.letterSpacing;
 
-  // Set fixed 1080px width for clean single-page A4 landscape
+  // Ensure all web fonts (Noto Sans Devanagari) are fully loaded before capturing
+  if (document.fonts && document.fonts.ready) {
+    try {
+      await document.fonts.ready;
+    } catch (eFont) {}
+  }
+
+  // Set fixed 1080px width & pristine font styles for clean single-page A4 landscape
   container.style.width = '1080px';
   container.style.maxWidth = '1080px';
   container.style.boxSizing = 'border-box';
   container.style.background = '#ffffff';
+  container.style.fontFamily = "'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+  container.style.letterSpacing = 'normal';
 
   const opt = {
     margin: 0,
@@ -2041,6 +2052,8 @@ async function exportDocumentToPdfBlob(elementId, filename) {
     container.style.padding = prevPadding;
     container.style.boxSizing = prevBoxSizing;
     container.style.background = prevBackground;
+    container.style.fontFamily = prevFontFamily;
+    container.style.letterSpacing = prevLetterSpacing;
   }
 }
 
@@ -2236,17 +2249,17 @@ function openPeeoConsolidatedPdfPreview(peeoName) {
   container.innerHTML = `
     <!-- Top Departmental & PEEO Header -->
     <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:4px; margin-bottom:8px">
-      <div style="font-size:0.80rem; font-weight:700; color:#000; letter-spacing:0.4px">राजस्थान सरकार | स्कूल शिक्षा विभाग</div>
+      <div style="font-size:0.82rem; font-weight:700; color:#000; letter-spacing:normal">राजस्थान सरकार | स्कूल शिक्षा विभाग</div>
       <div style="font-size:1.20rem; font-weight:900; color:#000; margin:1px 0">
         कार्यालय पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO), ${peeoName}
       </div>
       <div style="font-size:0.82rem; font-weight:700; color:#111; margin-bottom:1px">
         ग्रा.पं. ${cleanPeeoName}, ब्लॉक-भिनाय, जिला-अजमेर (राजस्थान)
       </div>
-      <div style="font-size:0.96rem; font-weight:800; color:#000; text-transform:uppercase; letter-spacing:0.4px">
+      <div style="font-size:0.98rem; font-weight:800; color:#000; letter-spacing:normal">
         जिला समान परीक्षा योजना (सत्र 2026-27)
       </div>
-      <div style="font-size:0.80rem; font-weight:700; color:#222">
+      <div style="font-size:0.82rem; font-weight:700; color:#222">
         परिक्षेत्र अधीनस्थ माध्यमिक व उच्च माध्यमिक विद्यालयों की समेकित परीक्षा मांग रिपोर्ट
       </div>
     </div>
