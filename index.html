@@ -266,6 +266,19 @@
               </a>
             </div>
           </div>
+
+          <!-- Google Apps Script Webhook Config for GitHub Pages Real-time Sync -->
+          <div style="margin-top:1rem; padding:0.6rem 0.9rem; background:#f0fdf4; border:1px solid #86efac; border-radius:6px; display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap">
+            <div style="flex:1; min-width:280px">
+              <label style="font-size:0.80rem; font-weight:800; color:#166534; display:block; margin-bottom:2px">
+                <i class="fab fa-google-drive"></i> Google Apps Script Web App URL (ऑनलाइन लाइव सिंक वेबहुक):
+              </label>
+              <input type="url" id="admin-apps-script-url" class="form-input" placeholder="https://script.google.com/macros/s/AKfycb.../exec (Apps Script तैनात करने के बाद यहाँ पेस्ट करें)" style="width:100%; font-size:0.8rem; padding:4px 8px; border:1px solid #22c55e">
+            </div>
+            <button class="btn btn-success btn-sm" onclick="saveAdminAppsScriptUrl()" style="align-self:flex-end">
+              <i class="fas fa-save"></i> वेबहुक लिंक सुरक्षित करें
+            </button>
+          </div>
         </div>
 
         <!-- PEEO Portal Tab Visibility Controls for Admin -->

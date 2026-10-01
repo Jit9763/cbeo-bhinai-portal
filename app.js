@@ -769,6 +769,21 @@ function saveTabAccessConfig() {
   showToast('PEEO पोर्टल टैब दृश्यता सेटिंग्स सुरक्षित कर दी गई हैं!', 'success');
 }
 
+function saveAdminAppsScriptUrl() {
+  const urlInput = document.getElementById('admin-apps-script-url');
+  const url = urlInput ? urlInput.value.trim() : '';
+  localStorage.setItem('cbeo_google_apps_script_url', url);
+  showToast('Google Apps Script वेबहुक URL सफलतापूर्वक सुरक्षित हो गया!', 'success');
+}
+
+function renderAdminAppsScriptUrl() {
+  const urlInput = document.getElementById('admin-apps-script-url');
+  if (urlInput) {
+    const saved = localStorage.getItem('cbeo_google_apps_script_url') || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) || '';
+    urlInput.value = saved;
+  }
+}
+
 /* ========================================================
    PASSWORD MANAGEMENT
    ======================================================== */
@@ -857,6 +872,7 @@ function triggerAdminSheetSync() {
 function renderApp() {
   updateUserHeaderBadge();
   applyTabVisibility();
+  renderAdminAppsScriptUrl();
   renderSamanParikshaView();
   renderDashboardView();
   renderDemandsView();
@@ -1740,20 +1756,33 @@ function submitSamanParikshaForm(andPrint = false) {
     console.warn('Error syncing directory:', exDir);
   }
 
-  // Sync to backend file & Google Sheet (Direct to port 8089 if on localhost, or relative path)
-  const apiEndpoint = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-    ? 'http://localhost:8089/api/save_saman_pariksha'
-    : '/api/save_saman_pariksha';
+  // 1. Sync to Google Apps Script Webhook (Direct to Google Sheet from ANY browser/mobile on GitHub Pages)
+  const webhookUrl = localStorage.getItem('cbeo_google_apps_script_url') || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) || '';
+  if (webhookUrl) {
+    try {
+      fetch(webhookUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(submission)
+      }).then(() => {
+        showToast('Google Sheet में डेटा तुरंत सिंक हो गया!', 'success');
+      }).catch(err => console.warn('Apps Script sync note:', err));
+    } catch(e) {}
+  }
 
-  fetch(apiEndpoint, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(submission)
-  }).then(res => res.json()).then(data => {
-    if (data.synced_to_sheet) {
-      showToast('समान परीक्षा प्रपत्र Google Sheet में तुरंत सिंक हो गया!', 'success');
-    }
-  }).catch(() => {});
+  // 2. Sync to local backend file & Google Sheet (Direct to port 8089 if on localhost)
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    fetch('http://localhost:8089/api/save_saman_pariksha', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(submission)
+    }).then(res => res.json()).then(data => {
+      if (data && data.synced_to_sheet) {
+        showToast('समान परीक्षा प्रपत्र Google Sheet में तुरंत सिंक हो गया!', 'success');
+      }
+    }).catch(() => {});
+  }
 
   closeModal('modal-saman-pariksha-form');
   showToast(`${school.school_name} का प्रपत्र व संपर्क डायरेक्टरी सफलतापूर्वक अपडेट हो गई!`, 'success');
