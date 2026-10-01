@@ -1287,6 +1287,17 @@ function syncAuthFromGoogleSheet(callback) {
       if (data && data.success && data.users) {
         STATE.sheetAuthPasswords = data.users;
         localStorage.setItem('cbeo_sheet_auth_cache', JSON.stringify(data.users));
+
+        // Sync Global School Login Policy across all devices from Google Sheet
+        if (data.users['__GLOBAL_LOGIN_POLICY__']) {
+          const cloudPolicy = data.users['__GLOBAL_LOGIN_POLICY__'].password;
+          if (cloudPolicy && ['all', 'sec_srsec', 'peeo_nodal', 'custom'].includes(cloudPolicy)) {
+            STATE.schoolLoginPolicy = cloudPolicy;
+            localStorage.setItem('cbeo_school_login_policy', cloudPolicy);
+            updateSchoolManagementPolicyUI();
+          }
+        }
+
         if (callback) callback(data.users);
       }
     })
@@ -6742,6 +6753,27 @@ function setGlobalSchoolLoginPolicy(policy) {
   updateSchoolManagementPolicyUI();
   renderSchoolManagementView();
   showToast(`लॉगिन नीति '${policy}' सफलतापूर्वक लागू की गई!`, 'success');
+
+  // Push policy to Google Sheet so all other devices receive it immediately
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
+  if (gasUrl) {
+    fetch(gasUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'updatePassword',
+        user_id: '__GLOBAL_LOGIN_POLICY__',
+        new_password: policy,
+        role: 'System_Config',
+        name: 'Global School Login Policy'
+      })
+    }).catch(e => console.log('Policy sheet sync note:', e));
+  }
+
   syncMasterSchoolsDataToSheet(false);
 }
 
