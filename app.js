@@ -88,7 +88,7 @@ function initMasterData() {
   ];
 
   // Versioned cache check to guarantee fresh master data with 57 schools and all 3 active submissions
-  const DATA_VERSION = 'v16_2026_10_01_3_submissions_restored';
+  const DATA_VERSION = 'v17_2026_10_01_pdf_alignment_fixed';
   if (localStorage.getItem('cbeo_data_version') !== DATA_VERSION) {
     localStorage.removeItem('cbeo_peeos_data');
     localStorage.removeItem('cbeo_staff_data');
@@ -2251,22 +2251,26 @@ async function exportDocumentToPdfBlob(elementId, filename) {
     } catch (eFont) {}
   }
 
-  // Set fixed 1060px width & pristine font styles for clean single-page A4 landscape
-  container.style.width = '1060px';
-  container.style.maxWidth = '1060px';
+  // Set fixed 1080px width & pristine font styles for clean single-page A4 landscape
+  container.style.width = '1080px';
+  container.style.maxWidth = '1080px';
   container.style.boxSizing = 'border-box';
   container.style.background = '#ffffff';
   container.style.fontFamily = "'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
   container.style.letterSpacing = 'normal';
 
   const opt = {
-    margin: [4, 6, 4, 6], // 4mm top/bottom, 6mm left/right clean printable margins
+    margin: 0,
     filename: filename,
     image: { type: 'jpeg', quality: 0.98 },
     html2canvas: {
       scale: 2,
       useCORS: true,
-      logging: false
+      logging: false,
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight,
+      scrollX: 0,
+      scrollY: 0
     },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
     pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
