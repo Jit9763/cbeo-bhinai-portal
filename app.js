@@ -513,7 +513,11 @@ function updateUserHeaderBadge() {
       const currentPeeoName = schData.peeo_name || STATE.currentUser.peeo_name || 'PEEO EKALSEENGA';
       if (headerTitle) headerTitle.innerHTML = `<i class="fas fa-school" style="color:#60a5fa; margin-right:8px"></i> ${schData.school_name || STATE.currentUser.school_name}`;
       if (headerDept) headerDept.textContent = 'राजस्थान सरकार - स्कूल शिक्षा विभाग';
-      if (headerCodeLabel) headerCodeLabel.innerHTML = `शा.दा./PSP कोड: <strong style="color:#fde047">${sdCode}</strong>`;
+      const sub = STATE.samanParikshaSubmissions[sdCode];
+      const exCode = sub?.exam_code || schData?.exam_code || '';
+      if (headerCodeLabel) {
+        headerCodeLabel.innerHTML = `शा.दा./PSP कोड: <strong style="color:#fde047">${sdCode}</strong>` + (exCode ? ` <span class="sep-dot">•</span> परीक्षा कोड: <strong style="color:#86efac">${exCode}</strong>` : '');
+      }
       if (headerSubCode) headerSubCode.innerHTML = `PEEO परिक्षेत्र: <strong>${currentPeeoName}</strong>`;
       if (headerBadge) headerBadge.textContent = '🏛️ विद्यालय आधिकारिक पोर्टल';
       document.title = `${schData.school_name || STATE.currentUser.school_name} | आधिकारिक पोर्टल`;

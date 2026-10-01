@@ -355,7 +355,7 @@ function doGet(e) {
     }
 
     // -------------------------------------------------------------
-    // 3. GET ALL SAMAN PARIKSHA SUBMISSIONS (Sheet1)
+    // 3. GET ALL SAMAN PARIKSHA SUBMISSIONS & EXAM CODES (Sheet1)
     // -------------------------------------------------------------
     if (action === 'getAll') {
       var sheet1 = ss.getSheetByName("Sheet1") || ss.getActiveSheet();
@@ -364,8 +364,14 @@ function doGet(e) {
       for (var r = 1; r < values.length; r++) {
         var row = values[r];
         var code = String(row[3] || '').trim();
+        var examCode = String(row[5] || '').trim();
+        var principalName = String(row[6] || '').trim();
+        var inchargeName = String(row[8] || '').trim();
         var st = String(row[69] || '').trim();
-        if (code && (st.indexOf('Submitted') !== -1 || st.indexOf('पूर्ण') !== -1)) {
+        var isSub = (st.indexOf('Submitted') !== -1 || st.indexOf('पूर्ण') !== -1);
+        
+        // Return if submitted OR if exam code / staff details were pre-filled in Google Sheet!
+        if (code && (isSub || examCode || principalName || inchargeName)) {
           allData[code] = rowToSubmission(row);
         }
       }
