@@ -52,6 +52,29 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// Helper to accurately determine if a school has genuinely submitted its Saman Pariksha form
+function isSamanParikshaSubmitted(subOrCode) {
+  if (!subOrCode) return false;
+  const sub = (typeof subOrCode === 'object') 
+    ? subOrCode 
+    : (STATE.samanParikshaSubmissions && STATE.samanParikshaSubmissions[subOrCode]);
+  if (!sub) return false;
+  
+  if (sub.is_submitted === true) return true;
+  
+  if (typeof sub.status === 'string') {
+    const s = sub.status.trim();
+    if (s.indexOf('Submitted') !== -1 || s.indexOf('पूर्ण') !== -1) return true;
+  }
+  
+  const total = Number(sub.grand_total) || 0;
+  if (total > 0 && (sub.submitted_by || sub.signature_data || sub.has_digital_signature)) {
+    return true;
+  }
+  
+  return false;
+}
+
 /* ========================================================
    1. DATA INITIALIZATION & LOCALSTORAGE SYNC
    ======================================================== */
@@ -1164,7 +1187,7 @@ function renderSamanParikshaPeeoView() {
   let submittedCount = 0;
   targetSchools.forEach((school, index) => {
     const sub = STATE.samanParikshaSubmissions[school.shala_darpan_code];
-    const isSubmitted = !!sub;
+    const isSubmitted = isSamanParikshaSubmitted(sub);
     if (isSubmitted) submittedCount++;
 
     const card = document.createElement('div');
@@ -1288,7 +1311,7 @@ function renderSamanParikshaAdminView() {
     if (s.type === 'Government') govCount++;
     else if (s.type === 'Private') pvtCount++;
     const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
-    if (sub) {
+    if (isSamanParikshaSubmitted(sub)) {
       submittedCount++;
       totalPapers += (parseInt(sub.grand_total) || 0);
     }
@@ -1338,7 +1361,7 @@ function filterSamanParikshaTable() {
 
   let filtered = STATE.schools56.filter(s => {
     const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
-    const isSubmitted = !!sub;
+    const isSubmitted = isSamanParikshaSubmitted(sub);
 
     if (catFilter !== 'all' && s.type !== catFilter) return false;
     if (statusFilter === 'submitted' && !isSubmitted) return false;
@@ -1346,7 +1369,7 @@ function filterSamanParikshaTable() {
     if (peeoFilter !== 'all' && !s.peeo_name.toLowerCase().includes(peeoFilter.toLowerCase())) return false;
 
     if (search) {
-      const text = `${s.school_name} ${s.shala_darpan_code} ${s.peeo_name} ${sub?.exam_code || ''} ${sub?.principal_name || ''}`.toLowerCase();
+      const text = `${s.school_name} ${s.shala_darpan_code} ${s.peeo_name} ${sub?.exam_code || s.exam_code || ''} ${sub?.principal_name || s.principal_name || ''}`.toLowerCase();
       if (!text.includes(search)) return false;
     }
 
@@ -1362,7 +1385,7 @@ function filterSamanParikshaTable() {
 
   filtered.forEach((s, idx) => {
     const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
-    const isSub = !!sub;
+    const isSub = isSamanParikshaSubmitted(sub);
 
     const hasSig = !!(sub?.signature_data || sub?.has_digital_signature);
 
@@ -1383,20 +1406,20 @@ function filterSamanParikshaTable() {
           ${s.peeo_name} <i class="fas fa-file-invoice text-primary" style="font-size:0.8rem"></i>
         </a>
       </td>
-      <td style="font-weight:700; color:#2563eb">${sub?.exam_code || '---'}</td>
+      <td style="font-weight:700; color:#2563eb">${sub?.exam_code || s.exam_code || '---'}</td>
       <td>
         <div>${sub?.principal_name || s.principal_name || '---'}</div>
         <div style="font-size:0.75rem; color:#64748b">${sub?.principal_mobile || s.principal_mobile || ''}</div>
       </td>
       <td>
-        <div>${sub?.incharge_name || '---'}</div>
-        <div style="font-size:0.75rem; color:#64748b">${sub?.incharge_mobile || ''}</div>
+        <div>${sub?.incharge_name || s.incharge_name || '---'}</div>
+        <div style="font-size:0.75rem; color:#64748b">${sub?.incharge_mobile || s.incharge_mobile || ''}</div>
       </td>
-      <td style="text-align:right; font-weight:600">${sub?.c9_total ?? '---'}</td>
-      <td style="text-align:right; font-weight:600">${sub?.c10_total ?? '---'}</td>
-      <td style="text-align:right; font-weight:600">${sub?.c11_total ?? '---'}</td>
-      <td style="text-align:right; font-weight:600">${sub?.c12_total ?? '---'}</td>
-      <td style="text-align:right; font-weight:800; color:#15803d">${sub?.grand_total ?? '---'}</td>
+      <td style="text-align:right; font-weight:600">${isSub ? (sub.c9_total ?? 0) : '---'}</td>
+      <td style="text-align:right; font-weight:600">${isSub ? (sub.c10_total ?? 0) : '---'}</td>
+      <td style="text-align:right; font-weight:600">${isSub ? (sub.c11_total ?? 0) : '---'}</td>
+      <td style="text-align:right; font-weight:600">${isSub ? (sub.c12_total ?? 0) : '---'}</td>
+      <td style="text-align:right; font-weight:800; color:#15803d">${isSub ? (sub.grand_total ?? 0) : '---'}</td>
       <td>
         ${isSub 
           ? `<span class="status-badge" style="background:#dcfce7; color:#15803d" title="${hasSig ? 'डिजिटल हस्ताक्षर सहित सबमिट' : 'सबमिट पूर्ण'}">सबमिट ${hasSig ? '🖋️' : ''}</span>`
@@ -2489,7 +2512,7 @@ function openPeeoSelectorModal() {
     let grandTotal = 0;
     schools.forEach(s => {
       const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
-      if (sub) {
+      if (isSamanParikshaSubmitted(sub)) {
         subCount++;
         grandTotal += (sub.grand_total || 0);
       }
@@ -2592,7 +2615,7 @@ function openPeeoConsolidatedPdfPreview(peeoName) {
 
   schools.forEach((s, idx) => {
     const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
-    const isSub = !!sub;
+    const isSub = isSamanParikshaSubmitted(sub);
     if (isSub) submittedCount++;
 
     const c9 = isSub ? (sub.c9_total || 0) : 0;
@@ -2879,7 +2902,7 @@ async function sharePeeoConsolidatedWhatsApp() {
 
   schools.forEach((s, i) => {
     const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
-    const isSub = !!sub;
+    const isSub = isSamanParikshaSubmitted(sub);
     if (isSub) {
       subCount++;
       grandTotalPapers += (sub.grand_total || 0);
@@ -2977,7 +3000,7 @@ function filterSamanCallDirectory() {
 
   const filtered = STATE.schools56.filter(s => {
     const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
-    const isSubmitted = !!sub;
+    const isSubmitted = isSamanParikshaSubmitted(sub);
 
     if (cat !== 'all' && s.type !== cat) return false;
     if (status === 'submitted' && !isSubmitted) return false;
@@ -2989,7 +3012,7 @@ function filterSamanCallDirectory() {
       const pMob = (isSubmitted ? sub.principal_mobile : s.principal_mobile) || '';
       const iName = (isSubmitted ? sub.incharge_name : s.incharge_name) || '';
       const iMob = (isSubmitted ? sub.incharge_mobile : s.incharge_mobile) || '';
-      const exCode = (isSubmitted ? sub.exam_code : s.exam_code) || '';
+      const exCode = (sub?.exam_code || s.exam_code) || '';
       const match = s.school_name.toLowerCase().includes(q) ||
         s.shala_darpan_code.toLowerCase().includes(q) ||
         s.peeo_name.toLowerCase().includes(q) ||
@@ -3011,13 +3034,13 @@ function filterSamanCallDirectory() {
 
   filtered.forEach((s, idx) => {
     const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
-    const isSub = !!sub;
+    const isSub = isSamanParikshaSubmitted(sub);
 
     const princName = isSub ? sub.principal_name : s.principal_name;
     const princMob = isSub ? sub.principal_mobile : s.principal_mobile;
     const inchName = isSub ? sub.incharge_name : (s.incharge_name || 'परीक्षा प्रभारी');
     const inchMob = isSub ? sub.incharge_mobile : (s.incharge_mobile || '');
-    const examCode = isSub ? sub.exam_code : (s.exam_code || '---');
+    const examCode = sub?.exam_code || s.exam_code || '---';
 
     const statusBadge = isSub
       ? `<span class="sp-status-badge success" style="font-size:0.75rem; padding:2px 6px"><i class="fas fa-check-circle"></i> सबमिट (${sub.grand_total})</span>`
@@ -3061,7 +3084,7 @@ function filterSamanCallDirectory() {
 }
 
 function sendBulkPendingWhatsAppReminder() {
-  const pending = STATE.schools56.filter(s => !STATE.samanParikshaSubmissions[s.shala_darpan_code]);
+  const pending = STATE.schools56.filter(s => !isSamanParikshaSubmitted(s.shala_darpan_code));
   if (pending.length === 0) {
     showToast(`सभी ${STATE.schools56.length} विद्यालयों के प्रपत्र सबमिट हो चुके हैं!`, 'success');
     return;
@@ -3096,14 +3119,14 @@ function exportSamanCallDirectoryCSV() {
 
   const rows = STATE.schools56.map((s, idx) => {
     const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
-    const isSub = !!sub;
+    const isSub = isSamanParikshaSubmitted(sub);
     return [
       idx + 1,
       `"${s.school_name}"`,
       s.shala_darpan_code,
       s.type,
       `"${s.peeo_name}"`,
-      isSub ? sub.exam_code : (s.exam_code || ''),
+      (sub?.exam_code || s.exam_code || ''),
       `"${isSub ? sub.principal_name : s.principal_name}"`,
       isSub ? sub.principal_mobile : s.principal_mobile,
       `"${isSub ? sub.incharge_name : (s.incharge_name || '')}"`,
@@ -3166,12 +3189,12 @@ function printSamanCallDirectory() {
 
   STATE.schools56.forEach((s, idx) => {
     const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
-    const isSub = !!sub;
+    const isSub = isSamanParikshaSubmitted(sub);
     const pName = isSub ? sub.principal_name : s.principal_name;
     const pMob = isSub ? sub.principal_mobile : s.principal_mobile;
     const iName = isSub ? sub.incharge_name : (s.incharge_name || 'उपलब्ध नहीं');
     const iMob = isSub ? sub.incharge_mobile : (s.incharge_mobile || '---');
-    const exCode = isSub ? sub.exam_code : (s.exam_code || '---');
+    const exCode = sub?.exam_code || s.exam_code || '---';
     const st = isSub ? '<span class="success">सबमिट पूर्ण</span>' : '<span class="danger">लम्बित</span>';
 
     printWin.document.write(`
@@ -3298,12 +3321,13 @@ function exportSamanParikshaMasterCSV() {
   STATE.schools56.forEach(s => {
     const code = s.shala_darpan_code;
     const sub = STATE.samanParikshaSubmissions[code] || {};
-    const status = sub.grand_total !== undefined ? "पूर्ण (Submitted)" : "लम्बित (Pending)";
+    const isSub = isSamanParikshaSubmitted(sub);
+    const status = isSub ? "पूर्ण (Submitted)" : "लम्बित (Pending)";
 
-    const c11FacStr = (sub.c11_faculties || []).join(', ');
-    const c12FacStr = (sub.c12_faculties || []).join(', ');
-    const c11Opt = sub.c11_optional || {};
-    const c12Opt = sub.c12_optional || {};
+    const c11FacStr = isSub ? (sub.c11_faculties || []).join(', ') : '';
+    const c12FacStr = isSub ? (sub.c12_faculties || []).join(', ') : '';
+    const c11Opt = isSub ? (sub.c11_optional || {}) : {};
+    const c12Opt = isSub ? (sub.c12_optional || {}) : {};
 
     const row = [
       s.s_no,
@@ -3318,46 +3342,46 @@ function exportSamanParikshaMasterCSV() {
       `"${(sub.incharge_mobile || s.incharge_mobile || '').replace(/"/g, '""')}"`,
       
       // Class 9
-      sub.c9_total ?? 0,
-      sub.c9_sanskrit ?? 0,
-      sub.c9_urdu ?? 0,
+      isSub ? (sub.c9_total || 0) : 0,
+      isSub ? (sub.c9_sanskrit || 0) : 0,
+      isSub ? (sub.c9_urdu || 0) : 0,
       
       // Class 10
-      sub.c10_total ?? 0,
-      sub.c10_sanskrit ?? 0,
-      sub.c10_urdu ?? 0,
+      isSub ? (sub.c10_total || 0) : 0,
+      isSub ? (sub.c10_sanskrit || 0) : 0,
+      isSub ? (sub.c10_urdu || 0) : 0,
       
       // Class 11 Compulsory & Faculties
       `"${c11FacStr.replace(/"/g, '""')}"`,
-      sub.c11_comp_hindi ?? 0,
-      sub.c11_comp_english ?? 0
+      isSub ? (sub.c11_comp_hindi || 0) : 0,
+      isSub ? (sub.c11_comp_english || 0) : 0
     ];
 
     // 11th individual optional subjects
     SAMAN_EXCEL_OPTIONAL_KEYS.forEach(col => {
-      row.push(c11Opt[col.key] ?? 0);
+      row.push(isSub ? (c11Opt[col.key] || 0) : 0);
     });
-    row.push(sub.c11_total ?? 0);
+    row.push(isSub ? (sub.c11_total || 0) : 0);
 
     // Class 12 Compulsory & Faculties
     row.push(
       `"${c12FacStr.replace(/"/g, '""')}"`,
-      sub.c12_comp_hindi ?? 0,
-      sub.c12_comp_english ?? 0
+      isSub ? (sub.c12_comp_hindi || 0) : 0,
+      isSub ? (sub.c12_comp_english || 0) : 0
     );
 
     // 12th individual optional subjects
     SAMAN_EXCEL_OPTIONAL_KEYS.forEach(col => {
-      row.push(c12Opt[col.key] ?? 0);
+      row.push(isSub ? (c12Opt[col.key] || 0) : 0);
     });
-    row.push(sub.c12_total ?? 0);
+    row.push(isSub ? (sub.c12_total || 0) : 0);
 
     // Totals & Meta
     row.push(
-      sub.grand_total ?? 0,
+      isSub ? (sub.grand_total || 0) : 0,
       `"${status}"`,
-      `"${(sub.submitted_by || '').replace(/"/g, '""')}"`,
-      `"${(sub.timestamp || '').replace(/"/g, '""')}"`
+      `"${(isSub ? (sub.submitted_by || '') : '').replace(/"/g, '""')}"`,
+      `"${(isSub ? (sub.timestamp || '') : '').replace(/"/g, '""')}"`
     );
 
     rows.push(row);
@@ -3469,7 +3493,7 @@ function updateAllPortalMetricsAndProgress() {
 
   STATE.schools56.forEach(s => {
     const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
-    if (sub && (sub.grand_total !== undefined || sub.is_submitted)) {
+    if (isSamanParikshaSubmitted(sub)) {
       submittedCount++;
       totalPapers += (sub.grand_total || 0);
     }
@@ -4246,20 +4270,20 @@ function createDemandCardElement(demand, isArchive = false) {
     let sCount = 0;
     STATE.schools56.forEach(s => {
       const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
-      if (sub && (sub.grand_total !== undefined || sub.is_submitted)) sCount++;
+      if (isSamanParikshaSubmitted(sub)) sCount++;
     });
     submittedCount = sCount;
     percent = totalDenominator > 0 ? Math.round((submittedCount / totalDenominator) * 100) : 0;
 
     if (STATE.currentUser?.role === 'school') {
       const schoolSub = STATE.samanParikshaSubmissions[STATE.currentUser.shala_darpan_code];
-      isCurrentSubmitted = !!(schoolSub && (schoolSub.grand_total !== undefined || schoolSub.is_submitted));
+      isCurrentSubmitted = isSamanParikshaSubmitted(schoolSub);
       currentSubmission = schoolSub;
     } else if (STATE.currentUser?.role === 'peeo') {
       const peeoSchools = STATE.schools56.filter(s => s.peeo_name === STATE.currentUser.peeo_name || s.peeo_code === STATE.currentUser.shala_darpan_code);
       const peeoSubCount = peeoSchools.filter(s => {
         const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
-        return sub && (sub.grand_total !== undefined || sub.is_submitted);
+        return isSamanParikshaSubmitted(sub);
       }).length;
       isCurrentSubmitted = peeoSchools.length > 0 && (peeoSubCount === peeoSchools.length);
     }
