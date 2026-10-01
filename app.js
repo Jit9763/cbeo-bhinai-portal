@@ -1810,7 +1810,53 @@ function openSamanParikshaForm(schoolCode) {
   document.getElementById('gform-school-code').value = school.shala_darpan_code;
   document.getElementById('gform-peeo-name').value = school.peeo_name;
   document.getElementById('gform-school-cat').value = `${school.category} (${school.type})`;
-  document.getElementById('gform-exam-code').value = activeData.exam_code || school.exam_code || '';
+  
+  // Calculate suggested examination code: Govt -> AJM04G + Shala Darpan code, Private -> AJM04P0 + 5-digit numeric PSP code
+  const isPvt = school.type === 'Private' || (school.category && school.category.includes('Private')) || String(school.shala_darpan_code).startsWith('P');
+  const cleanPsp = String(school.shala_darpan_code).replace(/\D/g, '').padStart(5, '0');
+  const suggestedExamCode = isPvt ? `AJM04P0${cleanPsp}` : `AJM04G${school.shala_darpan_code}`;
+
+  const currentExamCode = activeData.exam_code || school.exam_code || '';
+  const examInput = document.getElementById('gform-exam-code');
+  if (examInput) {
+    examInput.value = currentExamCode || suggestedExamCode;
+  }
+
+  // Highlight active category suggestion card
+  const govCard = document.getElementById('sug-card-govt');
+  const pvtCard = document.getElementById('sug-card-pvt');
+  const applyBtn = document.getElementById('btn-apply-suggested-exam-code');
+
+  if (govCard && pvtCard) {
+    if (isPvt) {
+      pvtCard.style.border = '2px solid #a855f7';
+      pvtCard.style.background = '#faf5ff';
+      pvtCard.style.boxShadow = '0 2px 6px rgba(168,85,247,0.15)';
+      govCard.style.border = '1px solid #bfdbfe';
+      govCard.style.background = '#eff6ff';
+      govCard.style.boxShadow = 'none';
+    } else {
+      govCard.style.border = '2px solid #2563eb';
+      govCard.style.background = '#eff6ff';
+      govCard.style.boxShadow = '0 2px 6px rgba(37,99,235,0.15)';
+      pvtCard.style.border = '1px solid #f0abfc';
+      pvtCard.style.background = '#fdf4ff';
+      pvtCard.style.boxShadow = 'none';
+    }
+  }
+
+  window.applySuggestedExamCode = function() {
+    if (examInput) {
+      examInput.value = suggestedExamCode;
+      autoSaveGFormDraft();
+      showToast(`अनुशंसित परीक्षा कोड '${suggestedExamCode}' भर दिया गया है।`, 'success');
+    }
+  };
+
+  if (applyBtn) {
+    applyBtn.style.display = 'inline-flex';
+    applyBtn.title = `क्लिक करके '${suggestedExamCode}' भरें`;
+  }
 
   document.getElementById('gform-principal-name').value = activeData.principal_name || school.principal_name || '';
   document.getElementById('gform-principal-mobile').value = activeData.principal_mobile || school.principal_mobile || '';
@@ -2083,14 +2129,14 @@ function submitSamanParikshaForm(andPrint = false) {
   const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
   if (!school) return;
 
-  const examCode = document.getElementById('gform-exam-code').value.trim();
+  const examCode = document.getElementById('gform-exam-code').value.trim().toUpperCase();
   const principalName = document.getElementById('gform-principal-name').value.trim();
   const principalMobile = document.getElementById('gform-principal-mobile').value.trim();
   const inchargeName = document.getElementById('gform-incharge-name').value.trim();
   const inchargeMobile = document.getElementById('gform-incharge-mobile').value.trim();
 
   if (!examCode) {
-    showToast('कृपया स्कूल परीक्षा कोड (4-6 अंक) अवश्य दर्ज करें!', 'error');
+    showToast('कृपया स्कूल परीक्षा कोड (उदा. AJM04G221754 या AJM04P055700) अवश्य दर्ज करें!', 'error');
     document.getElementById('gform-exam-code').focus();
     return;
   }

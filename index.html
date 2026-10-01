@@ -1887,11 +1887,50 @@
 
             <div class="gform-row" style="margin-bottom:0">
               <div class="gform-field" style="grid-column: span 2">
-                <label style="color:#1e3a8a">
-                  <strong>School Examination Code (परीक्षा केंद्र / स्कूल कोड) <span style="color:red">*</span>:</strong>
+                <label style="color:#1e3a8a; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:4px">
+                  <span><strong>School Examination Code (परीक्षा केंद्र / स्कूल कोड) <span style="color:red">*</span>:</strong></span>
+                  <span id="gform-exam-code-badge" style="font-size:0.75rem; background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:4px; font-weight:700">अनिवार्य</span>
                 </label>
-                <input type="text" id="gform-exam-code" class="gform-input" placeholder="e.g. 5201, 1402 (जिला समान परीक्षा बोर्ड द्वारा आवंटित परीक्षा कोड)" style="border:2px solid #2563eb; font-weight:700">
-                <span style="font-size:0.75rem; color:#64748b">DIET / जिला समान परीक्षा समिति द्वारा जारी 4-6 अंकों का आधिकारिक परीक्षा कोड दर्ज करें।</span>
+                <div style="display:flex; gap:8px; align-items:center;">
+                  <input type="text" id="gform-exam-code" class="gform-input" placeholder="उदा. AJM04G221754 अथवा AJM04P055700" style="border:2px solid #2563eb; font-weight:700; flex:1; text-transform:uppercase" oninput="this.value = this.value.toUpperCase()">
+                  <button type="button" id="btn-apply-suggested-exam-code" class="btn btn-sm" style="display:none; white-space:nowrap; font-size:0.8rem; background:#2563eb; color:#fff; border:none; padding:8px 12px; border-radius:6px; font-weight:700; cursor:pointer;" onclick="applySuggestedExamCode()">
+                    <i class="fas fa-magic"></i> कोड स्वतः भरें
+                  </button>
+                </div>
+                
+                <!-- Exam Code Format Suggestion Box -->
+                <div id="gform-exam-code-suggestions" style="margin-top:8px; padding:10px 12px; border-radius:8px; background:#f8fafc; border:1px solid #cbd5e1; font-size:0.82rem; color:#1e293b; line-height:1.5">
+                  <div style="font-weight:700; color:#1e3a8a; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+                    <i class="fas fa-info-circle text-primary"></i> <span>परीक्षा कोड (Examination Code) प्रारूप सुझाव:</span>
+                  </div>
+                  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:8px;">
+                    <!-- Government School Format Card -->
+                    <div id="sug-card-govt" style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:6px; padding:8px 10px;">
+                      <div style="color:#1d4ed8; font-weight:800; margin-bottom:3px; display:flex; align-items:center; gap:5px;">
+                        <span>🏛️ राजकीय (सरकारी) विद्यालय हेतु:</span>
+                      </div>
+                      <div style="color:#1e293b; font-size:0.8rem;">
+                        <strong>AJM04G</strong> + 6 अंकों का शाला दर्पण कोड आपका परीक्षा कोड है।
+                      </div>
+                      <div style="font-size:0.75rem; color:#475569; margin-top:3px; background:#ffffffaa; padding:3px 6px; border-radius:4px;">
+                        <em>उदा. शाला दर्पण कोड <strong>221754</strong> होने पर परीक्षा कोड <strong>AJM04G221754</strong> दर्ज करें।</em>
+                      </div>
+                    </div>
+
+                    <!-- Private School Format Card -->
+                    <div id="sug-card-pvt" style="background:#fdf4ff; border:1px solid #f0abfc; border-radius:6px; padding:8px 10px;">
+                      <div style="color:#a21caf; font-weight:800; margin-bottom:3px; display:flex; align-items:center; gap:5px;">
+                        <span>🏫 निजी (Private) विद्यालय हेतु:</span>
+                      </div>
+                      <div style="color:#1e293b; font-size:0.8rem;">
+                        <strong>AJM04P0</strong> + 5 अंकों का न्यूमेरिक PSP कोड आपका परीक्षा कोड है।
+                      </div>
+                      <div style="font-size:0.75rem; color:#475569; margin-top:3px; background:#ffffffaa; padding:3px 6px; border-radius:4px;">
+                        <em>उदा. PSP कोड <strong>P55700</strong> / <strong>55700</strong> होने पर परीक्षा कोड <strong>AJM04P055700</strong> दर्ज करें।</em>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
