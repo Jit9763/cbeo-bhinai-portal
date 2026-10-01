@@ -21098,7 +21098,8 @@
     "saman_pariksha_active": true,
     "google_sheet_url": "https://docs.google.com/spreadsheets/d/1tVP7gbIuUP576E2a1Qk6TadXUSP7a5c7ah8HzKeTk4k/edit?usp=drivesdk",
     "google_sheet_id": "1tVP7gbIuUP576E2a1Qk6TadXUSP7a5c7ah8HzKeTk4k",
-    "version": "v7_2026_10_01_peeo_deoliya_purnima_rakesh"
+    "version": "v7_2026_10_01_peeo_deoliya_purnima_rakesh",
+    "google_apps_script_url": "https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec"
   },
   "saman_pariksha_submissions": {
     "P55700": {

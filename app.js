@@ -199,7 +199,7 @@ function initMasterData() {
   // Live Sync from Google Sheet via doGet(?action=getAll)
   const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
     || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
-    || 'https://script.google.com/macros/s/AKfycbyAxdHYRV0NDpJCxrZvti-8SzJHWjIS9DoAoXFFNo-NPYi4FFmW4pOO926UsgaEzY0v/exec';
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
 
   if (gasUrl) {
     fetch(`${gasUrl}?action=getAll`)
@@ -798,7 +798,7 @@ function renderAdminAppsScriptUrl() {
   if (urlInput) {
     const saved = localStorage.getItem('cbeo_google_apps_script_url') 
       || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
-      || 'https://script.google.com/macros/s/AKfycbyAxdHYRV0NDpJCxrZvti-8SzJHWjIS9DoAoXFFNo-NPYi4FFmW4pOO926UsgaEzY0v/exec';
+      || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
     urlInput.value = saved;
   }
 }
@@ -1778,7 +1778,7 @@ function submitSamanParikshaForm(andPrint = false) {
   // 1. Sync to Google Apps Script Webhook (Direct to Google Sheet from ANY browser/mobile on GitHub Pages)
   const webhookUrl = localStorage.getItem('cbeo_google_apps_script_url') 
     || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
-    || 'https://script.google.com/macros/s/AKfycbyAxdHYRV0NDpJCxrZvti-8SzJHWjIS9DoAoXFFNo-NPYi4FFmW4pOO926UsgaEzY0v/exec';
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
   if (webhookUrl) {
     try {
       fetch(webhookUrl, {
