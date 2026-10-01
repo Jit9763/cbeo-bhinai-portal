@@ -234,6 +234,7 @@ function initMasterData() {
           updateAllPortalMetricsAndProgress();
           renderDashboardView();
           renderDemandsView();
+          renderApp();
         }
       }).catch(e => console.log('Live sync note:', e));
   }
@@ -524,7 +525,11 @@ function updateUserHeaderBadge() {
     } else {
       if (headerTitle) headerTitle.innerHTML = `<i class="fas fa-university" style="color:#60a5fa; margin-right:8px"></i> ${STATE.currentUser.peeo_name} परिक्षेत्र पोर्टल`;
       if (headerDept) headerDept.textContent = 'राजस्थान सरकार - स्कूल शिक्षा विभाग';
-      if (headerCodeLabel) headerCodeLabel.innerHTML = `PEEO कोड: <strong style="color:#fde047">${sdCode}</strong>`;
+      const peeoSub = STATE.samanParikshaSubmissions[sdCode];
+      const peeoExCode = peeoSub?.exam_code || '';
+      if (headerCodeLabel) {
+        headerCodeLabel.innerHTML = `PEEO कोड: <strong style="color:#fde047">${sdCode}</strong>` + (peeoExCode ? ` <span class="sep-dot">•</span> परीक्षा कोड: <strong style="color:#86efac">${peeoExCode}</strong>` : '');
+      }
       if (headerSubCode) headerSubCode.innerHTML = `ब्लॉक: <strong>भिनाय (अजमेर)</strong>`;
       if (headerBadge) headerBadge.textContent = `🏫 PEEO नोडल पोर्टल (${STATE.currentUser.schools?.length || 0} स्कूल)`;
       document.title = `${STATE.currentUser.peeo_name} | आधिकारिक पोर्टल`;
