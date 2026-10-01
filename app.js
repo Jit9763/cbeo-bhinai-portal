@@ -942,9 +942,16 @@ function renderSamanParikshaPeeoView() {
   const grid = document.getElementById('sp-peeo-schools-grid');
   const heading = document.getElementById('sp-peeo-name-heading');
   const progressBadge = document.getElementById('sp-peeo-progress-badge');
+  const btnConsolidated = document.getElementById('btn-peeo-consolidated-top');
   if (!grid) return;
 
   grid.innerHTML = '';
+
+  // समेकित मांग रिपोर्ट बटन केवल PEEO लॉगिन पर उपलब्ध रहेगा
+  const isPeeo = STATE.currentUser && STATE.currentUser.role === 'peeo';
+  if (btnConsolidated) {
+    btnConsolidated.style.display = isPeeo ? 'inline-flex' : 'none';
+  }
 
   let targetSchools = [];
   if (STATE.currentUser.role === 'school') {
@@ -1064,10 +1071,10 @@ function renderSamanParikshaPeeoView() {
     progressBadge.innerHTML = `
       <div style="display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center">
         <span class="sp-status-badge success" style="font-size:0.85rem; padding:0.35rem 0.85rem">
-          <i class="fas fa-check-circle"></i> हरी पट्टी (Green): ${submittedCount} पूर्ण
+          <i class="fas fa-check-circle"></i> ${submittedCount} पूर्ण
         </span>
         <span class="sp-status-badge ${pendingCount === 0 ? 'success' : 'danger'}" style="font-size:0.85rem; padding:0.35rem 0.85rem">
-          <i class="fas ${pendingCount === 0 ? 'fa-award' : 'fa-exclamation-circle'}"></i> लाल पट्टी (Red): ${pendingCount} शेष
+          <i class="fas ${pendingCount === 0 ? 'fa-award' : 'fa-exclamation-circle'}"></i> ${pendingCount} शेष
         </span>
       </div>
     `;
@@ -2157,12 +2164,13 @@ function openSelectedPeeoConsolidatedReport() {
 }
 
 function openPeeoConsolidatedPdfPreview(peeoName) {
+  if (STATE.currentUser && STATE.currentUser.role === 'school') {
+    showToast('परिक्षेत्र समेकित परीक्षा मांग रिपोर्ट केवल PEEO लॉगिन पर उपलब्ध है!', 'warning');
+    return;
+  }
   if (!peeoName) {
     if (STATE.currentUser && STATE.currentUser.peeo_name) {
       peeoName = STATE.currentUser.peeo_name;
-    } else if (STATE.currentUser && STATE.currentUser.role === 'school') {
-      const sch = STATE.schools56.find(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code);
-      peeoName = sch ? sch.peeo_name : 'PEEO BHINAI';
     } else {
       const peeoFilter = document.getElementById('sp-peeo-filter');
       if (peeoFilter && peeoFilter.value !== 'all') {
