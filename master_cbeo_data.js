@@ -605,16 +605,6 @@ const MASTER_CBEO_DATA = {
           "is_peeo_nodal": false
         },
         {
-          "school_name": "TAGORE GLOBAL SCHOOL (P55700)",
-          "category": "Private (Pr. with Up.Pr. with sec. Only)",
-          "panchayat": "EKALSINGA",
-          "village": "EKALSINGHA",
-          "dise_code": "",
-          "shala_darpan_code": "P55700",
-          "type": "Private",
-          "is_peeo_nodal": false
-        },
-        {
           "school_name": "ANNAPURNA P.S. BHINAY (P25290)",
           "category": "Private (Pr. with Up.Pr. with sec. Only)",
           "panchayat": "BHINAY",
@@ -1155,6 +1145,15 @@ const MASTER_CBEO_DATA = {
           "shala_darpan_code": "493650",
           "type": "Government",
           "is_peeo_nodal": false
+        },
+        {
+          "school_name": "TAGORE GLOBAL SCHOOL (EKALSINGHA)",
+          "shala_darpan_code": "P55700",
+          "type": "Private",
+          "category": "Private Secondary",
+          "principal_name": "AALOK MISHRA",
+          "mobile": "9251300400",
+          "incharge_name": "RAVI SHANKAR SHARMA"
         }
       ],
       "school_count": 6,
@@ -20111,7 +20110,7 @@ const MASTER_CBEO_DATA = {
       "name": "AALOK MISHRA",
       "post": "संस्था प्रधान / Principal",
       "school_name": "TAGORE GLOBAL SCHOOL (EKALSINGHA)",
-      "peeo_name": "PEEO BHINAY",
+      "peeo_name": "PEEO EKALSEENGA",
       "mobile": "9251300400",
       "email": "",
       "status": "Active"
@@ -20942,9 +20941,9 @@ const MASTER_CBEO_DATA = {
       "shala_darpan_code": "P55700",
       "type": "Private",
       "category": "Private Secondary",
-      "peeo_id": "PEEO04",
-      "peeo_name": "PEEO BHINAY",
-      "peeo_code": "221780",
+      "peeo_id": "PEEO11",
+      "peeo_name": "PEEO EKALSEENGA",
+      "peeo_code": "221786",
       "default_password": "P55700",
       "exam_code": "1011394",
       "principal_name": "AALOK MISHRA",
@@ -21107,8 +21106,8 @@ const MASTER_CBEO_DATA = {
       "school_name": "TAGORE GLOBAL SCHOOL (EKALSINGHA)",
       "category": "Private Secondary",
       "type": "Private",
-      "peeo_name": "PEEO BHINAY",
-      "peeo_code": "221780",
+      "peeo_name": "PEEO EKALSEENGA",
+      "peeo_code": "221786",
       "exam_code": "1011394",
       "principal_name": "AALOK MISHRA",
       "principal_mobile": "9251300400",

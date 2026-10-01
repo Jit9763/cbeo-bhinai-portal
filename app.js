@@ -88,10 +88,11 @@ function initMasterData() {
   ];
 
   // Versioned cache check to guarantee fresh master data with 56 schools and Saman Pariksha demand
-  const DATA_VERSION = 'v10_2026_10_01_purge_all_test_drafts';
+  const DATA_VERSION = 'v11_2026_10_01_tagore_peeo_ekalsinga';
   if (localStorage.getItem('cbeo_data_version') !== DATA_VERSION) {
     localStorage.removeItem('cbeo_peeos_data');
     localStorage.removeItem('cbeo_staff_data');
+    localStorage.removeItem('cbeo_schools56_data');
     localStorage.removeItem('cbeo_saman_pariksha_submissions');
     localStorage.removeItem('cbeo_saman_form_draft');
     for (let i = localStorage.length - 1; i >= 0; i--) {
