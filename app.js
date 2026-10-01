@@ -165,6 +165,12 @@ function initMasterData() {
   }
 
   // 7. Saman Pariksha Submissions
+  if (localStorage.getItem('cbeo_sp_clean_production_v2') !== 'true') {
+    localStorage.removeItem('cbeo_saman_pariksha_submissions');
+    localStorage.removeItem('cbeo_saman_form_draft');
+    localStorage.setItem('cbeo_sp_clean_production_v2', 'true');
+  }
+
   const storedSPSubs = localStorage.getItem('cbeo_saman_pariksha_submissions');
   const defaultSPSubs = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.saman_pariksha_submissions) || {};
   if (storedSPSubs) {

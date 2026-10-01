@@ -1074,7 +1074,18 @@
     }
 
     function initPage() {
-      schoolsList = (window.MASTER_CBEO_DATA && window.MASTER_CBEO_DATA.schools_56) || [];
+      if (localStorage.getItem('cbeo_sp_clean_production_v2') !== 'true') {
+        localStorage.removeItem('cbeo_saman_pariksha_submissions');
+        for (let i = localStorage.length - 1; i >= 0; i--) {
+          const k = localStorage.key(i);
+          if (k && k.startsWith('cbeo_form_draft_')) {
+            localStorage.removeItem(k);
+          }
+        }
+        localStorage.setItem('cbeo_sp_clean_production_v2', 'true');
+      }
+
+      schoolsList = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.schools_56) || (window.MASTER_CBEO_DATA && window.MASTER_CBEO_DATA.schools_56) || [];
       const select = document.getElementById('school-select');
       if (select) {
         select.innerHTML = '';
@@ -1179,7 +1190,7 @@
 
     function loadSchool(code) {
       if (!schoolsList || schoolsList.length === 0) {
-        schoolsList = (window.MASTER_CBEO_DATA && window.MASTER_CBEO_DATA.schools_56) || [];
+        schoolsList = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.schools_56) || (window.MASTER_CBEO_DATA && window.MASTER_CBEO_DATA.schools_56) || [];
       }
       currentSchool = schoolsList.find(s => String(s.shala_darpan_code) === String(code)) || schoolsList[0];
       if (!currentSchool) return;
