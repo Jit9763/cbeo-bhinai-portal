@@ -115,6 +115,135 @@ function doPost(e) {
     }
 
     // -------------------------------------------------------------
+    // ACTION 1B: SAVE MASTER DATABASE / ALL SCHOOLS JSON
+    // -------------------------------------------------------------
+    if (data.action === 'saveMasterDatabase') {
+      var masterSheet = ss.getSheetByName("Master_Schools_DB");
+      if (!masterSheet) {
+        masterSheet = ss.insertSheet("Master_Schools_DB");
+        masterSheet.appendRow([
+          "क्र.सं.", "शाला दर्पण/PSP कोड", "विद्यालय का नाम", "प्रकार", "श्रेणी",
+          "संबंधित PEEO", "PEEO कोड", "ग्राम पंचायत", "गाँव", "डाइस कोड",
+          "संस्था प्रधान", "मोबाइल", "ईमेल", "लॉगिन अनुमत", "पासवर्ड", "अंतिम अद्यतन", "Data_JSON"
+        ]);
+        var mHead = masterSheet.getRange(1, 1, 1, 17);
+        mHead.setBackground("#1b365d").setFontColor("#ffffff").setFontWeight("bold");
+      }
+
+      var schoolsList = [];
+      if (Array.isArray(data.schools)) {
+        schoolsList = data.schools;
+      } else if (typeof data.schools_json === 'string') {
+        try { schoolsList = JSON.parse(data.schools_json); } catch(e){}
+      }
+
+      var authSheet2 = ss.getSheetByName("Auth_Passwords");
+
+      if (schoolsList.length > 0) {
+        // Clear old rows except header
+        var lastR = masterSheet.getLastRow();
+        if (lastR > 1) {
+          masterSheet.getRange(2, 1, lastR - 1, 17).clearContent();
+        }
+
+        var rowsToAppend = [];
+        for (var i = 0; i < schoolsList.length; i++) {
+          var sc = schoolsList[i];
+          rowsToAppend.push([
+            i + 1,
+            sc.shala_darpan_code || sc.code || '',
+            sc.school_name || '',
+            sc.type || 'Government',
+            sc.category || '',
+            sc.peeo_name || '',
+            sc.peeo_code || '',
+            sc.panchayat || '',
+            sc.village || '',
+            sc.dise_code || '',
+            sc.principal_name || '',
+            sc.principal_mobile || sc.mobile || '',
+            sc.email || '',
+            sc.login_allowed !== false ? "हाँ (Active)" : "नहीं (Disabled)",
+            sc.password || sc.shala_darpan_code || '',
+            Utilities.formatDate(new Date(), "GMT+5:30", "dd-MM-yyyy HH:mm:ss"),
+            JSON.stringify(sc)
+          ]);
+        }
+
+        if (rowsToAppend.length > 0) {
+          masterSheet.getRange(2, 1, rowsToAppend.length, 17).setValues(rowsToAppend);
+        }
+      }
+
+      return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        message: "मास्टर स्कूल डेटाबेस (" + schoolsList.length + " विद्यालय) Google Sheet में सफलतापूर्वक सहेज दिया गया!"
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // -------------------------------------------------------------
+    // ACTION 1C: UPDATE SCHOOL DETAILS
+    // -------------------------------------------------------------
+    if (data.action === 'updateSchoolDetails') {
+      var sCode = String(data.school_code || '').trim();
+      var mSheet = ss.getSheetByName("Master_Schools_DB");
+      var updatedCount = 0;
+
+      if (mSheet) {
+        var mVals = mSheet.getDataRange().getValues();
+        for (var mr = 1; mr < mVals.length; mr++) {
+          if (String(mVals[mr][1]).trim() === sCode) {
+            if (data.school_name) mSheet.getRange(mr + 1, 3).setValue(data.school_name);
+            if (data.type) mSheet.getRange(mr + 1, 4).setValue(data.type);
+            if (data.category) mSheet.getRange(mr + 1, 5).setValue(data.category);
+            if (data.principal_name) mSheet.getRange(mr + 1, 11).setValue(data.principal_name);
+            if (data.principal_mobile) mSheet.getRange(mr + 1, 12).setValue(data.principal_mobile);
+            if (data.email) mSheet.getRange(mr + 1, 13).setValue(data.email);
+            if (typeof data.login_allowed !== 'undefined') {
+              mSheet.getRange(mr + 1, 14).setValue(data.login_allowed ? "हाँ (Active)" : "नहीं (Disabled)");
+            }
+            mSheet.getRange(mr + 1, 16).setValue(Utilities.formatDate(new Date(), "GMT+5:30", "dd-MM-yyyy HH:mm:ss"));
+            updatedCount++;
+            break;
+          }
+        }
+      }
+
+      return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        message: "विद्यालय विवरण Google Sheet में अपडेट हो गया!"
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // -------------------------------------------------------------
+    // ACTION 1D: TRANSFER SCHOOL BETWEEN PEEOS
+    // -------------------------------------------------------------
+    if (data.action === 'transferSchool') {
+      var trCode = String(data.school_code || '').trim();
+      var newPeeo = String(data.new_peeo_name || '').trim();
+      var newPeeoCode = String(data.new_peeo_code || '').trim();
+      var mSheetT = ss.getSheetByName("Master_Schools_DB");
+
+      if (mSheetT) {
+        var tVals = mSheetT.getDataRange().getValues();
+        for (var tr = 1; tr < tVals.length; tr++) {
+          if (String(tVals[tr][1]).trim() === trCode) {
+            mSheetT.getRange(tr + 1, 6).setValue(newPeeo);
+            mSheetT.getRange(tr + 1, 7).setValue(newPeeoCode);
+            if (data.new_panchayat) mSheetT.getRange(tr + 1, 8).setValue(data.new_panchayat);
+            mSheetT.getRange(tr + 1, 16).setValue(Utilities.formatDate(new Date(), "GMT+5:30", "dd-MM-yyyy HH:mm:ss"));
+            break;
+          }
+        }
+      }
+
+      return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        message: "विद्यालय का PEEO स्थानांतरण Google Sheet में दर्ज हो गया!"
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // -------------------------------------------------------------
     // ACTION 2: SAVE UNIVERSAL DEMAND SUBMISSION (Data_JSON + PEEO Tab)
     // -------------------------------------------------------------
     var schoolCode = String(data.school_code || '').trim();

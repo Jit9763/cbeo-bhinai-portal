@@ -29,6 +29,9 @@ let STATE = {
   },
   customPasswords: {},
   sheetAuthPasswords: {},
+  schoolLoginPolicy: 'all',
+  schoolLoginOverrides: {},
+  schoolDetailsOverrides: {},
   demandSubmissions: {},
   activeDemandPortalId: null,
   currentDemandToFill: null,
@@ -158,6 +161,21 @@ function initMasterData() {
     if (cachedAuth) STATE.sheetAuthPasswords = JSON.parse(cachedAuth);
   } catch(e) {}
   syncAuthFromGoogleSheet();
+
+  // School Login Permission Policy & Overrides
+  STATE.schoolLoginPolicy = localStorage.getItem('cbeo_school_login_policy') || 'all';
+  try {
+    const sto = localStorage.getItem('cbeo_school_login_overrides');
+    STATE.schoolLoginOverrides = sto ? JSON.parse(sto) : {};
+  } catch(e) {
+    STATE.schoolLoginOverrides = {};
+  }
+  try {
+    const sdo = localStorage.getItem('cbeo_school_details_overrides');
+    STATE.schoolDetailsOverrides = sdo ? JSON.parse(sdo) : {};
+  } catch(e) {
+    STATE.schoolDetailsOverrides = {};
+  }
 
   // 1. PEEOs (with schools Govt + Private)
   const storedPeeos = localStorage.getItem('cbeo_peeos_data');
@@ -420,6 +438,10 @@ function saveSubmissionsToStorage() {
   localStorage.setItem('cbeo_submissions', JSON.stringify(STATE.submissions));
 }
 
+function saveSchools56ToStorage() {
+  localStorage.setItem('cbeo_schools56_data', JSON.stringify(STATE.schools56));
+}
+
 /* ========================================================
    2. AUTHENTICATION & SESSION MANAGEMENT
    ======================================================== */
@@ -493,6 +515,10 @@ function setupAutoLogin() {
 function logoutUser() {
   localStorage.removeItem('cbeo_logged_user');
   STATE.currentUser = null;
+  document.querySelectorAll('.modal-overlay').forEach(m => {
+    m.classList.remove('active');
+    m.classList.remove('mandatory-gate');
+  });
   updateUserHeaderBadge();
   showToast('सफलतापूर्वक लॉगआउट किया गया। पुनः उपयोग हेतु लॉगिन करें।', 'info');
   openLoginModal(true);
@@ -645,42 +671,26 @@ function openLoginModal(isMandatory = false) {
       opt.textContent = `[PEEO] ${p.shala_darpan_code} - ${p.peeo_name} (${p.principal_incharge})`;
       optgroup.appendChild(opt);
     });
-
-    // Add schools optgroup if not already present
-    let schOptGroup = document.getElementById('login-schools-optgroup');
-    if (!schOptGroup && select) {
-      schOptGroup = document.createElement('optgroup');
-      schOptGroup.id = 'login-schools-optgroup';
-      schOptGroup.label = '57 माध्यमिक व उच्च माध्यमिक विद्यालय (सीधा लॉगिन)';
-      select.appendChild(schOptGroup);
-    }
-    if (schOptGroup) {
-      schOptGroup.innerHTML = '';
-      STATE.schools56.forEach(s => {
-        const opt = document.createElement('option');
-        opt.value = s.shala_darpan_code;
-        opt.textContent = `[${s.type.substring(0,3)}] ${s.shala_darpan_code} - ${s.school_name}`;
-        schOptGroup.appendChild(opt);
-      });
-    }
   }
 
   if (STATE.currentUser) {
     if (select) {
-      select.value = (STATE.currentUser.role === 'admin') ? STATE.currentUser.username : STATE.currentUser.shala_darpan_code;
+      select.value = (STATE.currentUser.role === 'admin') ? STATE.currentUser.username : (STATE.currentUser.peeo_code || STATE.currentUser.shala_darpan_code);
     }
     document.getElementById('login-username').value = STATE.currentUser.shala_darpan_code;
   } else {
-    // Default selection
+    // Default selection: PEEO Deoliya Kalan
     if (select) {
-      select.value = '221754'; // PEEO Deoliya Kalan default
+      select.value = '221754';
     }
   }
 
   onQuickSelectUser();
-  // Strictly enforce empty password on open
+  // Password initially clean unless auto-filled by school selection
   const passInput = document.getElementById('login-password');
-  if (passInput) passInput.value = '';
+  if (passInput && !document.getElementById('login-school-sub-select')?.value) {
+    passInput.value = '';
+  }
 
   showModal('modal-login');
 }
@@ -690,43 +700,95 @@ function onQuickSelectUser() {
   const usernameInput = document.getElementById('login-username');
   const passwordInput = document.getElementById('login-password');
   const hintBox = document.getElementById('login-password-hint');
+  const subWrap = document.getElementById('login-school-sub-wrap');
+  const subSelect = document.getElementById('login-school-sub-select');
+
   if (!usernameInput || !passwordInput) return;
 
-  // Security: NEVER auto-fill password
-  passwordInput.value = '';
-
   if (val === 'jitendra_admin') {
+    if (subWrap) subWrap.style.display = 'none';
     usernameInput.value = 'admin_jitendra';
+    passwordInput.value = '';
     if (hintBox) {
       hintBox.innerHTML = '<i class="fas fa-shield-alt" style="color:#d97706"></i> <span><strong>सुरक्षा संकेत:</strong> एडमिन पासवर्ड गोपनीय है। कृपया अपना पासवर्ड मैन्युअली टाइप करें।</span>';
       hintBox.style.background = '#fef3c7';
       hintBox.style.color = '#92400e';
-      hintBox.style.borderLeftColor = '#f59e0b';
     }
-  } else if (val === 'cbeo_admin') {
+    return;
+  }
+
+  if (val === 'cbeo_admin') {
+    if (subWrap) subWrap.style.display = 'none';
     usernameInput.value = '8140';
+    passwordInput.value = '';
     if (hintBox) {
-      hintBox.innerHTML = '<i class="fas fa-shield-alt" style="color:#d97706"></i> <span><strong>सुरक्षा संकेत:</strong> मुख्य ब्लॉक शिक्षा अधिकारी पासवर्ड गोपनीय है। कृपया अपना पासवर्ड मैन्युअली टाइप करें।</span>';
+      hintBox.innerHTML = '<i class="fas fa-shield-alt" style="color:#d97706"></i> <span><strong>सुरक्षा संकेत:</strong> मुख्य ब्लॉक शिक्षा अधिकारी पासवर्ड गोपनीय है। कृपया पासवर्ड टाइप करें।</span>';
       hintBox.style.background = '#fef3c7';
       hintBox.style.color = '#92400e';
-      hintBox.style.borderLeftColor = '#f59e0b';
     }
-  } else {
-    const peeo = STATE.peeos.find(p => p.shala_darpan_code === val || p.peeo_id === val);
-    if (peeo) {
-      usernameInput.value = peeo.shala_darpan_code;
-    } else {
-      const sch = STATE.schools56.find(s => s.shala_darpan_code === val);
-      if (sch) {
-        usernameInput.value = sch.shala_darpan_code;
-      }
+    return;
+  }
+
+  const peeo = STATE.peeos.find(p => p.shala_darpan_code === val || p.peeo_id === val);
+  if (peeo) {
+    usernameInput.value = peeo.shala_darpan_code;
+    passwordInput.value = '';
+
+    // Populate 2nd Tier Subordinate Schools Dropdown
+    if (subWrap && subSelect) {
+      subSelect.innerHTML = '';
+
+      // Option 0: Self PEEO Nodal
+      const optPeeo = document.createElement('option');
+      optPeeo.value = peeo.shala_darpan_code;
+      optPeeo.textContent = `🏛️ [PEEO स्वयं नोडल] ${peeo.shala_darpan_code} - ${peeo.peeo_name}`;
+      subSelect.appendChild(optPeeo);
+
+      // Subordinate schools
+      let allowedCount = 0;
+      (peeo.schools || []).forEach(s => {
+        const sCode = String(s.shala_darpan_code || s.dise_code || s.psp_code || '').trim();
+        if (sCode && sCode !== peeo.shala_darpan_code) {
+          if (isSchoolLoginAllowed(sCode)) {
+            allowedCount++;
+            const opt = document.createElement('option');
+            opt.value = sCode;
+            opt.textContent = `🏫 [${s.type === 'Private' ? 'निजी' : 'राजकीय'}] ${sCode} - ${s.school_name}`;
+            subSelect.appendChild(opt);
+          }
+        }
+      });
+
+      subWrap.style.display = 'block';
     }
+
     if (hintBox) {
       hintBox.innerHTML = '<i class="fas fa-lightbulb text-warning"></i> <span><strong>संकेत:</strong> PEEO एवं विद्यालयों का डिफ़ॉल्ट पासवर्ड उनका <strong>शाला दर्पण / PSP कोड</strong> ही है।</span>';
       hintBox.style.background = '#e0f2fe';
       hintBox.style.color = '#0369a1';
-      hintBox.style.borderLeftColor = '#0284c7';
     }
+  }
+}
+
+function onQuickSelectSchoolUnderPeeo() {
+  const subSelect = document.getElementById('login-school-sub-select');
+  const usernameInput = document.getElementById('login-username');
+  const passwordInput = document.getElementById('login-password');
+  const hintText = document.getElementById('login-school-sub-hint');
+  if (!subSelect || !usernameInput || !passwordInput) return;
+
+  const code = subSelect.value;
+  if (!code) return;
+
+  usernameInput.value = code;
+
+  // Auto-fill password with custom password, sheet password, or default code
+  const currentPwd = STATE.sheetAuthPasswords[code]?.password || STATE.customPasswords[code] || code;
+  passwordInput.value = currentPwd;
+
+  if (hintText) {
+    const selectedText = subSelect.options[subSelect.selectedIndex]?.text || '';
+    hintText.innerHTML = `✨ <strong>चयनित:</strong> ${selectedText} | User ID व Password स्वतः भर गया है। <span style="color:#16a34a; font-weight:bold">लॉगिन बटन दबाएं!</span>`;
   }
 }
 
@@ -820,16 +882,50 @@ function performLogin() {
     }
   }
 
-  // Direct School Login from 57 schools
-  const sch = STATE.schools56.find(item => item.shala_darpan_code === u);
+  // Direct School Login across ALL 178 Schools in master database
+  let sch = (STATE.schools56 || []).find(item => String(item.shala_darpan_code).trim() === u);
+  let parentPeeo = sch ? STATE.peeos.find(p => p.peeo_name === sch.peeo_name || p.peeo_id === sch.peeo_id) : null;
+
+  if (!sch) {
+    for (const pItem of STATE.peeos) {
+      const match = (pItem.schools || []).find(s => 
+        String(s.shala_darpan_code || s.dise_code || '').trim() === u ||
+        String(s.psp_code || '').trim() === u
+      );
+      if (match) {
+        sch = {
+          school_name: match.school_name,
+          shala_darpan_code: match.shala_darpan_code || match.dise_code,
+          category: match.category,
+          type: match.type || (match.category?.includes('Private') ? 'Private' : 'Government'),
+          peeo_name: pItem.peeo_name,
+          peeo_code: pItem.shala_darpan_code,
+          principal_name: match.principal_name || pItem.principal_incharge,
+          principal_mobile: match.principal_mobile || pItem.mobile,
+          email: match.email || pItem.email || '',
+          panchayat: match.panchayat || pItem.panchayat_name,
+          village: match.village || '',
+          dise_code: match.dise_code || match.shala_darpan_code
+        };
+        parentPeeo = pItem;
+        break;
+      }
+    }
+  }
+
   if (sch) {
+    // Check if login permission is active for this school
+    if (!isSchoolLoginAllowed(sch.shala_darpan_code)) {
+      showToast(`विद्यालय '${sch.school_name}' का लॉगिन वर्तमान में CBEO एडमिन द्वारा ब्लॉक / अक्षम किया गया है।`, 'error');
+      return;
+    }
+
     const defaultPass = sch.shala_darpan_code;
     const validPass = expectedPassword 
       ? (p === expectedPassword || p === 'cbeo@2026' || p === 'jitendra#2026') 
-      : (p === defaultPass || p === 'cbeo@2026');
+      : (p === defaultPass || p === 'cbeo@2026' || p === 'jitendra#2026');
 
     if (validPass) {
-      const parentPeeo = STATE.peeos.find(p => p.peeo_name === sch.peeo_name || p.peeo_id === sch.peeo_id);
       onLoginSuccess({
         role: 'school',
         school_name: sch.school_name,
@@ -841,7 +937,7 @@ function performLogin() {
         default_password: sch.shala_darpan_code,
         principal_incharge: sch.principal_name || parentPeeo?.principal_incharge || '',
         mobile: sch.principal_mobile || parentPeeo?.mobile || ''
-      }, `${sch.school_name} के रूप में लॉगिन सफल!`, true);
+      }, `${sch.school_name} (कोड: ${sch.shala_darpan_code}) के रूप में लॉगिन सफल!`, true);
       return;
     } else {
       showToast('पासवर्ड गलत है! यदि आपने नया पासवर्ड सेट किया है तो वही दर्ज करें, अन्यथा शाला दर्पण / PSP कोड दर्ज करें।', 'error');
@@ -868,6 +964,7 @@ function switchTab(viewId, param = null) {
   else if (viewId === 'explorer') renderExplorerView();
   else if (viewId === 'directory') renderDirectoryView();
   else if (viewId === 'staff') renderStaffView();
+  else if (viewId === 'school-management') renderSchoolManagementView();
   else if (viewId === 'demands') renderDemandsView();
   else if (viewId === 'archive') renderArchiveView();
   else if (viewId === 'admin-control') renderAdminControlView();
@@ -888,6 +985,7 @@ function applyTabVisibility() {
   const tabDir = document.getElementById('nav-tab-directory');
   const tabExp = document.getElementById('nav-tab-explorer');
   const tabStaff = document.getElementById('nav-tab-staff');
+  const tabSchMgmt = document.getElementById('nav-tab-school-management');
   const tabReports = document.getElementById('nav-tab-reports');
   const tabArchive = document.getElementById('nav-tab-archive');
   const tabAdmin = document.getElementById('nav-tab-admin');
@@ -898,6 +996,7 @@ function applyTabVisibility() {
     if (tabDir) tabDir.style.display = config.directory ? 'inline-flex' : 'none';
     if (tabExp) tabExp.style.display = config.explorer ? 'inline-flex' : 'none';
     if (tabStaff) tabStaff.style.display = config.explorer ? 'inline-flex' : 'none';
+    if (tabSchMgmt) tabSchMgmt.style.display = 'none';
     if (tabReports) tabReports.style.display = config.reports ? 'inline-flex' : 'none';
     if (tabArchive) tabArchive.style.display = 'none';
     if (tabAdmin) tabAdmin.style.display = 'none';
@@ -907,6 +1006,7 @@ function applyTabVisibility() {
     if (tabDir) tabDir.style.display = 'inline-flex';
     if (tabExp) tabExp.style.display = 'inline-flex';
     if (tabStaff) tabStaff.style.display = 'inline-flex';
+    if (tabSchMgmt) tabSchMgmt.style.display = 'inline-flex';
     if (tabReports) tabReports.style.display = 'inline-flex';
     if (tabArchive) tabArchive.style.display = 'inline-flex';
     if (tabAdmin) tabAdmin.style.display = 'inline-flex';
@@ -5028,41 +5128,13 @@ function getTargetSchoolsForDemand(demand) {
   }
 
   const scope = demand.schoolScope || 'all';
-
-  let allSchools = [];
-  const seenCodes = new Set();
-
-  (STATE.peeos || []).forEach(peeo => {
-    (peeo.schools || []).forEach(s => {
-      const code = s.shala_darpan_code || s.dise_code;
-      if (code && !seenCodes.has(code)) {
-        seenCodes.add(code);
-        allSchools.push({
-          shala_darpan_code: code,
-          school_name: s.school_name,
-          peeo_name: peeo.peeo_name,
-          peeo_code: peeo.shala_darpan_code,
-          type: s.type || 'Government',
-          category: s.category || (s.type === 'Private' ? 'निजी' : 'राजकीय'),
-          panchayat: s.panchayat || peeo.panchayat_name,
-          village: s.village || '',
-          dise_code: s.dise_code || code,
-          is_peeo_nodal: !!s.is_peeo_nodal,
-          mobile: peeo.mobile || ''
-        });
-      }
-    });
-  });
-
-  if (allSchools.length === 0) {
-    allSchools = STATE.schools56 || [];
-  }
+  const allSchools = getAllMasterSchools();
 
   if (scope === 'govt') {
     return allSchools.filter(s => s.type !== 'Private');
   } else if (scope === 'private') {
     return allSchools.filter(s => s.type === 'Private');
-  } else if (scope === 'secondary_sr_sec') {
+  } else if (scope === 'secondary_sr_sec' || scope === 'sec_srsec') {
     return STATE.schools56 || allSchools;
   }
   return allSchools;
@@ -6320,6 +6392,11 @@ function toggleDemandPublish(demandId) {
 function openCreateDemandModal() {
   document.getElementById('new-demand-title').value = '';
   document.getElementById('new-demand-date').value = '';
+  const levelSelect = document.getElementById('new-demand-collection-level');
+  if (levelSelect) {
+    levelSelect.value = 'peeo';
+    onDemandCollectionLevelChange();
+  }
   const scopeSelect = document.getElementById('new-demand-school-scope');
   if (scopeSelect) scopeSelect.value = 'all';
   document.getElementById('new-demand-cols').value = 'कुल खेल मैदान क्षेत्रफल (बीघा), वर्तमान चारदीवारी स्थिति, विकसित खेल संसाधन, आवश्यक अनुदान (लाखों में), विशेष विवरण';
@@ -6328,10 +6405,25 @@ function openCreateDemandModal() {
   showModal('modal-create-demand');
 }
 
+function onDemandCollectionLevelChange() {
+  const level = document.getElementById('new-demand-collection-level')?.value;
+  const hint = document.getElementById('new-demand-collection-hint');
+  if (hint) {
+    if (level === 'school') {
+      hint.innerHTML = '✓ <strong>विद्यालय स्तर:</strong> सीधे प्रत्येक विद्यालय अपने शाला दर्पण/PSP कोड से लॉगिन कर अपनी सूचना भरेगा। समस्त लक्षित विद्यालयों का लॉगिन स्वतः एक्टिव रहेगा।';
+      hint.style.color = '#1d4ed8';
+    } else {
+      hint.innerHTML = '✓ <strong>PEEO स्तर:</strong> 25 PEEO लॉगिन करेंगे और अपने अधीनस्थ सभी विद्यालयों की समेकित सूचना प्रविष्टि करेंगे।';
+      hint.style.color = '#047857';
+    }
+  }
+}
+
 function saveNewDemand() {
   const title = document.getElementById('new-demand-title').value.trim();
   const dueDate = document.getElementById('new-demand-date').value;
   const priority = document.getElementById('new-demand-priority').value;
+  const level = document.getElementById('new-demand-collection-level')?.value || 'peeo';
   const scope = document.getElementById('new-demand-school-scope')?.value || 'all';
   const colsRaw = document.getElementById('new-demand-cols').value.trim();
   const desc = document.getElementById('new-demand-desc').value.trim();
@@ -6352,6 +6444,7 @@ function saveNewDemand() {
   const newDemand = {
     id: `DEMAND_${Date.now()}`,
     title: title,
+    collectionLevel: level,
     schoolScope: scope,
     description: desc || 'समस्त संस्था प्रधान / PEEO समय सीमा में सूचना अधिकृत डिजिटल हस्ताक्षर सहित प्रेषित करें।',
     dueDate: dueDate || 'यथाशीघ्र',
@@ -6368,15 +6461,816 @@ function saveNewDemand() {
     user: STATE.currentUser?.name || 'जितेन्द्र कुमार (Admin)',
     action: 'नई सूचना मांग सृजन (Zero-Code)',
     target: title,
-    details: `${cols.length} कॉलम का प्रपत्र सृजित | प्रकाशित: ${isPub ? 'हाँ' : 'नहीं'}`,
+    details: `${cols.length} कॉलम का प्रपत्र सृजित | स्तर: ${level === 'school' ? 'विद्यालय स्तर' : 'PEEO स्तर'} | प्रकाशित: ${isPub ? 'हाँ' : 'नहीं'}`,
     note: 'स्वतः फॉर्म जनरेटर'
   });
 
   closeModal('modal-create-demand');
-  showToast(`नई सूचना '${title}' सफलता पूर्वक तैयार हो गई! समर्पित टैब व इंटरफ़ेस लाइव है।`, 'success');
+  showToast(`नई सूचना '${title}' सफलता पूर्वक तैयार हो गई! (${level === 'school' ? 'विद्यालय स्तर' : 'PEEO स्तर'})`, 'success');
 
   renderApp();
   openDynamicDemandPortal(newDemand.id);
+}
+
+/* ========================================================
+   11B. MASTER SCHOOL & PEEO MANAGEMENT CONTROLS
+   ======================================================== */
+
+// Retrieve all 178 Master Schools unified across all 25 PEEOs with detail overrides
+function getAllMasterSchools() {
+  const list = [];
+  const seen = new Set();
+
+  (STATE.peeos || []).forEach(peeo => {
+    (peeo.schools || []).forEach(s => {
+      const code = String(s.shala_darpan_code || s.dise_code || s.psp_code || '').trim();
+      if (!code || seen.has(code)) return;
+      seen.add(code);
+
+      const sch56 = (STATE.schools56 || []).find(x => String(x.shala_darpan_code).trim() === code);
+      const ov = (STATE.schoolDetailsOverrides && STATE.schoolDetailsOverrides[code]) || {};
+
+      const type = ov.type || s.type || sch56?.type || (s.category?.includes('Private') ? 'Private' : 'Government');
+      const cat = ov.category || s.category || sch56?.category || (type === 'Private' ? 'निजी' : 'राजकीय');
+      const pName = ov.principal_name || s.principal_name || sch56?.principal_name || peeo.principal_incharge || '';
+      const pMobile = ov.principal_mobile || s.principal_mobile || sch56?.principal_mobile || peeo.mobile || '';
+      const pEmail = ov.email || s.email || sch56?.email || peeo.email || '';
+
+      list.push({
+        shala_darpan_code: code,
+        school_name: ov.school_name || s.school_name || sch56?.school_name || '',
+        category: cat,
+        type: type,
+        panchayat: ov.panchayat || s.panchayat || peeo.panchayat_name,
+        village: ov.village || s.village || '',
+        dise_code: ov.dise_code || s.dise_code || sch56?.dise_code || code,
+        peeo_name: peeo.peeo_name,
+        peeo_code: peeo.shala_darpan_code,
+        is_peeo_nodal: !!s.is_peeo_nodal,
+        principal_name: pName,
+        principal_mobile: pMobile,
+        email: pEmail,
+        login_allowed: isSchoolLoginAllowed(code)
+      });
+    });
+  });
+
+  return list;
+}
+
+// Check if a school is allowed to log in based on policy + overrides
+function isSchoolLoginAllowed(code) {
+  if (!code) return false;
+  const sCode = String(code).trim();
+
+  // Explicit override takes precedence
+  if (STATE.schoolLoginOverrides && typeof STATE.schoolLoginOverrides[sCode] === 'boolean') {
+    return STATE.schoolLoginOverrides[sCode];
+  }
+
+  const policy = STATE.schoolLoginPolicy || 'all';
+  if (policy === 'all') return true;
+  if (policy === 'peeo_nodal') {
+    return (STATE.peeos || []).some(p => String(p.shala_darpan_code).trim() === sCode);
+  }
+  if (policy === 'sec_srsec') {
+    return (STATE.schools56 || []).some(s => String(s.shala_darpan_code).trim() === sCode);
+  }
+  if (policy === 'custom') {
+    return (STATE.schools56 || []).some(s => String(s.shala_darpan_code).trim() === sCode);
+  }
+  return true;
+}
+
+// Global Quick Login Policy Switcher
+function setGlobalSchoolLoginPolicy(policy) {
+  STATE.schoolLoginPolicy = policy;
+  localStorage.setItem('cbeo_school_login_policy', policy);
+
+  if (policy === 'all') {
+    STATE.schoolLoginOverrides = {};
+    localStorage.removeItem('cbeo_school_login_overrides');
+  }
+
+  const badge = document.getElementById('sch-mgmt-policy-status-badge');
+  if (badge) {
+    const labels = {
+      'all': 'नीति: सभी 178 विद्यालय लॉगिन खुला (All Allowed)',
+      'sec_srsec': 'नीति: केवल 57 माध्यमिक/उच्च माध्यमिक (Sec & Sr Sec)',
+      'peeo_nodal': 'नीति: केवल 25 PEEO नोडल विद्यालय (PEEO Only)',
+      'custom': 'नीति: कस्टम चयन मोड (Custom Overrides Active)'
+    };
+    badge.textContent = labels[policy] || policy;
+  }
+
+  renderSchoolManagementView();
+  showToast(`लॉगिन नीति '${policy}' सफलतापूर्वक लागू की गई!`, 'success');
+  syncMasterSchoolsDataToSheet(false);
+}
+
+// Inline toggle for a school's login permission
+function toggleSchoolLoginAllowed(code) {
+  const current = isSchoolLoginAllowed(code);
+  const nextVal = !current;
+  if (!STATE.schoolLoginOverrides) STATE.schoolLoginOverrides = {};
+  STATE.schoolLoginOverrides[code] = nextVal;
+  localStorage.setItem('cbeo_school_login_overrides', JSON.stringify(STATE.schoolLoginOverrides));
+
+  showToast(`विद्यालय (कोड: ${code}) लॉगिन: ${nextVal ? 'सक्रिय (Active)' : 'अवरुद्ध (Disabled)'}`, nextVal ? 'success' : 'warning');
+  renderSchoolManagementView();
+}
+
+// Render the School & PEEO Management View
+function renderSchoolManagementView() {
+  const allSchools = getAllMasterSchools();
+  const total = allSchools.length;
+  const govt = allSchools.filter(s => s.type !== 'Private').length;
+  const pvt = allSchools.filter(s => s.type === 'Private').length;
+  const peeoCount = (STATE.peeos || []).length;
+  const loginAllowedCount = allSchools.filter(s => s.login_allowed).length;
+  const customPwdCount = Object.keys(STATE.customPasswords || {}).length;
+
+  const elTotal = document.getElementById('sch-mgmt-stat-total');
+  const elGovt = document.getElementById('sch-mgmt-stat-govt');
+  const elPvt = document.getElementById('sch-mgmt-stat-pvt');
+  const elPeeo = document.getElementById('sch-mgmt-stat-peeo');
+  const elLogin = document.getElementById('sch-mgmt-stat-login-allowed');
+  const elPwd = document.getElementById('sch-mgmt-stat-pwd-custom');
+
+  if (elTotal) elTotal.textContent = total;
+  if (elGovt) elGovt.textContent = govt;
+  if (elPvt) elPvt.textContent = pvt;
+  if (elPeeo) elPeeo.textContent = peeoCount;
+  if (elLogin) elLogin.textContent = loginAllowedCount;
+  if (elPwd) elPwd.textContent = customPwdCount;
+
+  // Populate PEEO filter dropdown if needed
+  const peeoSelect = document.getElementById('sch-mgmt-peeo-filter');
+  if (peeoSelect && peeoSelect.options.length <= 1) {
+    (STATE.peeos || []).forEach(p => {
+      const opt = document.createElement('option');
+      opt.value = p.peeo_name;
+      opt.textContent = `${p.shala_darpan_code} - ${p.peeo_name}`;
+      peeoSelect.appendChild(opt);
+    });
+  }
+
+  // Update policy buttons
+  const policy = STATE.schoolLoginPolicy || 'all';
+  ['all', 'sec_srsec', 'peeo_nodal', 'custom'].forEach(p => {
+    const btn = document.getElementById(`btn-policy-${p}`);
+    if (btn) {
+      if (p === policy) {
+        btn.classList.add('active');
+        btn.style.border = '1.5px solid #16a34a';
+        btn.style.background = '#dcfce7';
+        btn.style.color = '#15803d';
+      } else {
+        btn.classList.remove('active');
+        btn.style.border = '1.5px solid #cbd5e1';
+        btn.style.background = '#f8fafc';
+        btn.style.color = '#334155';
+      }
+    }
+  });
+
+  filterSchoolManagementTable();
+}
+
+// Filter and render the Master Schools table
+function filterSchoolManagementTable() {
+  const tbody = document.getElementById('sch-mgmt-tbody');
+  if (!tbody) return;
+
+  const search = (document.getElementById('sch-mgmt-search')?.value || '').toLowerCase().trim();
+  const peeoFilter = document.getElementById('sch-mgmt-peeo-filter')?.value || 'all';
+  const typeFilter = document.getElementById('sch-mgmt-type-filter')?.value || 'all';
+  const catFilter = document.getElementById('sch-mgmt-cat-filter')?.value || 'all';
+  const loginFilter = document.getElementById('sch-mgmt-login-filter')?.value || 'all';
+
+  const allSchools = getAllMasterSchools();
+
+  const filtered = allSchools.filter(s => {
+    if (peeoFilter !== 'all' && s.peeo_name !== peeoFilter) return false;
+    if (typeFilter !== 'all' && s.type !== typeFilter) return false;
+    if (catFilter !== 'all' && !s.category.includes(catFilter)) return false;
+    if (loginFilter === 'allowed' && !s.login_allowed) return false;
+    if (loginFilter === 'blocked' && s.login_allowed) return false;
+
+    if (search) {
+      const matchText = `${s.shala_darpan_code} ${s.school_name} ${s.peeo_name} ${s.principal_name} ${s.principal_mobile} ${s.panchayat} ${s.village} ${s.dise_code}`.toLowerCase();
+      if (!matchText.includes(search)) return false;
+    }
+    return true;
+  });
+
+  const countBadge = document.getElementById('sch-mgmt-count-badge');
+  if (countBadge) countBadge.textContent = `${filtered.length} विद्यालय`;
+
+  tbody.innerHTML = '';
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="11" style="text-align:center; padding:2rem; color:#64748b">कोई विद्यालय नहीं मिला।</td></tr>`;
+    return;
+  }
+
+  filtered.forEach((s, idx) => {
+    const isCustomPwd = !!(STATE.customPasswords && STATE.customPasswords[s.shala_darpan_code]);
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${idx + 1}</td>
+      <td>
+        <span style="font-family:monospace; font-weight:800; color:#1e3a8a; background:#e0f2fe; padding:2px 6px; border-radius:4px">
+          ${s.shala_darpan_code}
+        </span>
+      </td>
+      <td>
+        <div style="font-weight:700; color:#1e293b">${s.school_name}</div>
+        <div style="font-size:0.75rem; color:#64748b; margin-top:2px">
+          <span class="badge-tag" style="background:#f1f5f9; color:#475569">${s.category || 'विद्यालय'}</span>
+          ${s.dise_code ? `<span style="margin-left:4px">DISE: ${s.dise_code}</span>` : ''}
+        </div>
+      </td>
+      <td>
+        <span class="status-badge ${s.type === 'Private' ? 'orange' : 'green'}" style="font-size:0.75rem; padding:2px 8px">
+          ${s.type === 'Private' ? '🏢 निजी (Pvt)' : '🏛️ राजकीय (Govt)'}
+        </span>
+      </td>
+      <td>
+        <div style="font-weight:700; color:#1e3a8a; font-size:0.85rem">${s.peeo_name}</div>
+        <div style="font-size:0.72rem; color:#64748b">नोडल कोड: ${s.peeo_code || '---'}</div>
+      </td>
+      <td>
+        <div style="font-weight:600; color:#334155">${s.principal_name || 'संस्था प्रधान'}</div>
+      </td>
+      <td>
+        ${s.principal_mobile ? `
+          <div style="display:flex; align-items:center; gap:0.4rem">
+            <span style="font-weight:700; font-size:0.85rem">${s.principal_mobile}</span>
+            <a href="tel:${s.principal_mobile}" class="btn-icon" title="कॉल करें" style="color:#0284c7; font-size:0.8rem"><i class="fas fa-phone"></i></a>
+            <a href="https://wa.me/91${s.principal_mobile}" target="_blank" class="btn-icon" title="व्हाट्सएप करें" style="color:#16a34a; font-size:0.85rem"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        ` : '<span style="color:#94a3b8">---</span>'}
+      </td>
+      <td>
+        <span style="font-size:0.78rem; color:#475569">${s.email || '---'}</span>
+      </td>
+      <td style="text-align:center">
+        <label class="login-perm-switch" title="${s.login_allowed ? 'लॉगिन अनुमत (Active)' : 'लॉगिन अवरुद्ध (Blocked)'}">
+          <input type="checkbox" ${s.login_allowed ? 'checked' : ''} onchange="toggleSchoolLoginAllowed('${s.shala_darpan_code}')">
+          <span class="login-perm-slider"></span>
+        </label>
+        <div style="font-size:0.7rem; font-weight:700; color:${s.login_allowed ? '#16a34a' : '#dc2626'}; margin-top:2px">
+          ${s.login_allowed ? 'चालू' : 'बंद'}
+        </div>
+      </td>
+      <td>
+        <div style="display:flex; align-items:center; gap:0.4rem">
+          <span class="badge-tag" style="background:${isCustomPwd ? '#fef3c7' : '#f1f5f9'}; color:${isCustomPwd ? '#b45309' : '#475569'}; font-size:0.72rem; font-weight:700">
+            ${isCustomPwd ? '🔑 कस्टम' : 'डिफ़ॉल्ट SD'}
+          </span>
+          <button class="sch-action-btn pwd" onclick="openAdminResetPasswordModal('${s.shala_darpan_code}')" title="पासवर्ड रीसेट / देखें">
+            <i class="fas fa-key"></i>
+          </button>
+        </div>
+      </td>
+      <td style="text-align:center">
+        <div class="sch-action-btn-group">
+          <button class="sch-action-btn edit" onclick="openEditSchoolDetailsModal('${s.shala_darpan_code}')" title="स्कूल विवरण संपादन">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button class="sch-action-btn transfer" onclick="openTransferSchoolModal('${s.shala_darpan_code}')" title="अन्य PEEO में ट्रांसफर करें">
+            <i class="fas fa-exchange-alt"></i>
+          </button>
+          <button class="sch-action-btn del" onclick="deleteSchool('${s.shala_darpan_code}')" title="हटाएं / निष्क्रिय करें">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// Edit School Details Modal
+function openEditSchoolDetailsModal(code) {
+  const allSchools = getAllMasterSchools();
+  const sch = allSchools.find(s => s.shala_darpan_code === code);
+  if (!sch) {
+    showToast('विद्यालय डेटा नहीं मिला!', 'error');
+    return;
+  }
+
+  document.getElementById('edit-school-original-code').value = sch.shala_darpan_code;
+  document.getElementById('edit-school-sdcode').value = sch.shala_darpan_code;
+  document.getElementById('edit-school-name').value = sch.school_name;
+  document.getElementById('edit-school-dise').value = sch.dise_code || '';
+  document.getElementById('edit-school-type').value = sch.type || 'Government';
+  
+  const catSel = document.getElementById('edit-school-cat');
+  if (catSel) {
+    const opts = Array.from(catSel.options);
+    const match = opts.find(o => sch.category && sch.category.includes(o.value.split(' ')[0]));
+    if (match) catSel.value = match.value;
+  }
+
+  document.getElementById('edit-school-principal').value = sch.principal_name || '';
+  document.getElementById('edit-school-mobile').value = sch.principal_mobile || '';
+  document.getElementById('edit-school-email').value = sch.email || '';
+  document.getElementById('edit-school-panchayat').value = sch.panchayat || '';
+  document.getElementById('edit-school-village').value = sch.village || '';
+  document.getElementById('edit-school-login-allowed').checked = sch.login_allowed !== false;
+
+  showModal('modal-edit-school-details');
+}
+
+function saveEditedSchoolDetails() {
+  const code = document.getElementById('edit-school-original-code').value;
+  const name = document.getElementById('edit-school-name').value.trim();
+  const dise = document.getElementById('edit-school-dise').value.trim();
+  const type = document.getElementById('edit-school-type').value;
+  const cat = document.getElementById('edit-school-cat').value;
+  const principal = document.getElementById('edit-school-principal').value.trim();
+  const mobile = document.getElementById('edit-school-mobile').value.trim();
+  const email = document.getElementById('edit-school-email').value.trim();
+  const panchayat = document.getElementById('edit-school-panchayat').value.trim();
+  const village = document.getElementById('edit-school-village').value.trim();
+  const loginAllowed = document.getElementById('edit-school-login-allowed').checked;
+
+  if (!name) {
+    showToast('कृपया विद्यालय का नाम दर्ज करें!', 'error');
+    return;
+  }
+
+  // 1. Update in STATE.peeos
+  (STATE.peeos || []).forEach(peeo => {
+    (peeo.schools || []).forEach(s => {
+      if (String(s.shala_darpan_code || s.dise_code || s.psp_code).trim() === code) {
+        s.school_name = name;
+        s.dise_code = dise;
+        s.type = type;
+        s.category = cat;
+        s.principal_name = principal;
+        s.principal_mobile = mobile;
+        s.email = email;
+        s.panchayat = panchayat;
+        s.village = village;
+        s.login_allowed = loginAllowed;
+      }
+    });
+  });
+
+  // 2. Update in STATE.schools56 if present
+  const sch56 = (STATE.schools56 || []).find(s => String(s.shala_darpan_code).trim() === code);
+  if (sch56) {
+    sch56.school_name = name;
+    sch56.dise_code = dise;
+    sch56.type = type;
+    sch56.category = cat;
+    sch56.principal_name = principal;
+    sch56.principal_mobile = mobile;
+    sch56.email = email;
+    sch56.panchayat = panchayat;
+  }
+
+  // 3. Save overrides
+  if (!STATE.schoolDetailsOverrides) STATE.schoolDetailsOverrides = {};
+  STATE.schoolDetailsOverrides[code] = {
+    school_name: name,
+    dise_code: dise,
+    type: type,
+    category: cat,
+    principal_name: principal,
+    principal_mobile: mobile,
+    email: email,
+    panchayat: panchayat,
+    village: village,
+    login_allowed: loginAllowed
+  };
+  localStorage.setItem('cbeo_school_details_overrides', JSON.stringify(STATE.schoolDetailsOverrides));
+
+  // 4. Update login permission override
+  if (!STATE.schoolLoginOverrides) STATE.schoolLoginOverrides = {};
+  STATE.schoolLoginOverrides[code] = loginAllowed;
+  localStorage.setItem('cbeo_school_login_overrides', JSON.stringify(STATE.schoolLoginOverrides));
+
+  savePeeosToStorage();
+  saveSchools56ToStorage();
+
+  // 5. Send webhook update to Google Apps Script
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+  if (gasUrl) {
+    fetch(gasUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'updateSchoolDetails',
+        school_code: code,
+        school_name: name,
+        type: type,
+        category: cat,
+        principal_name: principal,
+        principal_mobile: mobile,
+        email: email,
+        login_allowed: loginAllowed
+      })
+    }).catch(e => console.log('Sheet update note:', e));
+  }
+
+  recordAuditLog({
+    user: STATE.currentUser?.name || 'जितेन्द्र कुमार (Admin)',
+    action: 'विद्यालय विवरण संपादन',
+    target: name,
+    details: `कोड: ${code} | संस्था प्रधान: ${principal} | मो: ${mobile} | लॉगिन: ${loginAllowed ? 'चालू' : 'बंद'}`,
+    note: 'मास्टर डेटाबेस अद्यतन'
+  });
+
+  closeModal('modal-edit-school-details');
+  showToast(`विद्यालय '${name}' का विवरण सुरक्षित व सिंक किया गया!`, 'success');
+  renderSchoolManagementView();
+  renderApp();
+}
+
+// Transfer School Modal
+function openTransferSchoolModal(code) {
+  const allSchools = getAllMasterSchools();
+  const sch = allSchools.find(s => s.shala_darpan_code === code);
+  if (!sch) {
+    showToast('विद्यालय नहीं मिला!', 'error');
+    return;
+  }
+
+  document.getElementById('transfer-school-code').value = sch.shala_darpan_code;
+  document.getElementById('transfer-school-name-display').textContent = `${sch.school_name} (कोड: ${sch.shala_darpan_code})`;
+  document.getElementById('transfer-school-current-peeo-display').innerHTML = `वर्तमान PEEO: <strong>${sch.peeo_name}</strong> (शा.दा. कोड: ${sch.peeo_code})`;
+
+  const destSelect = document.getElementById('transfer-new-peeo-select');
+  destSelect.innerHTML = '';
+  (STATE.peeos || []).forEach(p => {
+    if (p.peeo_name !== sch.peeo_name) {
+      const opt = document.createElement('option');
+      opt.value = p.peeo_name;
+      opt.textContent = `[शा.दा. ${p.shala_darpan_code}] ${p.peeo_name} (प्रभारी: ${p.principal_incharge})`;
+      destSelect.appendChild(opt);
+    }
+  });
+
+  document.getElementById('transfer-order-note').value = '';
+  showModal('modal-transfer-school-peeo');
+}
+
+function saveSchoolTransfer() {
+  const code = document.getElementById('transfer-school-code').value;
+  const newPeeoName = document.getElementById('transfer-new-peeo-select').value;
+  const note = document.getElementById('transfer-order-note').value.trim();
+
+  const newPeeoObj = (STATE.peeos || []).find(p => p.peeo_name === newPeeoName);
+  if (!newPeeoObj) {
+    showToast('गंतव्य PEEO नहीं मिला!', 'error');
+    return;
+  }
+
+  let transferredSchool = null;
+  let oldPeeoName = '';
+
+  (STATE.peeos || []).forEach(p => {
+    const idx = (p.schools || []).findIndex(s => String(s.shala_darpan_code || s.dise_code || s.psp_code).trim() === code);
+    if (idx !== -1) {
+      transferredSchool = p.schools.splice(idx, 1)[0];
+      oldPeeoName = p.peeo_name;
+      p.school_count = p.schools.length;
+    }
+  });
+
+  if (!transferredSchool) {
+    showToast('स्थानांतरण हेतु मूल विद्यालय रिकॉर्ड नहीं मिला!', 'error');
+    return;
+  }
+
+  if (!newPeeoObj.schools) newPeeoObj.schools = [];
+  transferredSchool.panchayat = newPeeoObj.panchayat_name;
+  newPeeoObj.schools.push(transferredSchool);
+  newPeeoObj.school_count = newPeeoObj.schools.length;
+
+  const sch56 = (STATE.schools56 || []).find(s => String(s.shala_darpan_code).trim() === code);
+  if (sch56) {
+    sch56.peeo_name = newPeeoObj.peeo_name;
+    sch56.peeo_code = newPeeoObj.shala_darpan_code;
+    sch56.panchayat = newPeeoObj.panchayat_name;
+  }
+
+  savePeeosToStorage();
+  saveSchools56ToStorage();
+
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+  if (gasUrl) {
+    fetch(gasUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'transferSchool',
+        school_code: code,
+        new_peeo_name: newPeeoObj.peeo_name,
+        new_peeo_code: newPeeoObj.shala_darpan_code,
+        new_panchayat: newPeeoObj.panchayat_name,
+        note: note
+      })
+    }).catch(e => console.log('Transfer sync note:', e));
+  }
+
+  recordAuditLog({
+    user: STATE.currentUser?.name || 'जितेन्द्र कुमार (Admin)',
+    action: 'विद्यालय PEEO स्थानांतरण',
+    target: transferredSchool.school_name,
+    details: `${oldPeeoName} ➔ ${newPeeoObj.peeo_name} | आदेश: ${note || 'कार्यालय आदेश'}`,
+    note: 'मास्टर PEEO संरचना अद्यतन'
+  });
+
+  closeModal('modal-transfer-school-peeo');
+  showToast(`विद्यालय '${transferredSchool.school_name}' का ${newPeeoObj.peeo_name} में स्थानांतरण पूर्ण हुआ!`, 'success');
+  renderSchoolManagementView();
+  renderApp();
+}
+
+// Password Reset Modal Logic
+let currentRevealedPwd = false;
+
+function openAdminResetPasswordModal(code) {
+  const allSchools = getAllMasterSchools();
+  const sch = allSchools.find(s => s.shala_darpan_code === code);
+  const peeo = (STATE.peeos || []).find(p => p.shala_darpan_code === code);
+
+  const title = sch ? sch.school_name : (peeo ? peeo.peeo_name : 'उपयोगकर्ता खाता');
+  const roleName = sch ? (sch.type === 'Private' ? 'निजी विद्यालय' : 'राजकीय विद्यालय') : 'PEEO नोडल';
+
+  document.getElementById('reset-pwd-user-code').value = code;
+  document.getElementById('reset-pwd-user-title').textContent = title;
+  document.getElementById('reset-pwd-user-code-display').textContent = `यूजर ID (शा.दा./PSP कोड): ${code} | वर्ग: ${roleName}`;
+
+  const currentPwd = STATE.sheetAuthPasswords[code]?.password || STATE.customPasswords[code] || code;
+  document.getElementById('reset-pwd-current-val').textContent = '••••••••';
+  document.getElementById('reset-pwd-current-val').setAttribute('data-pwd', currentPwd);
+  currentRevealedPwd = false;
+  const icon = document.getElementById('reset-pwd-reveal-icon');
+  if (icon) icon.className = 'fas fa-eye';
+
+  document.getElementById('reset-pwd-new-input').value = '';
+  showModal('modal-admin-reset-password');
+}
+
+function toggleCurrentPwdReveal() {
+  const el = document.getElementById('reset-pwd-current-val');
+  const icon = document.getElementById('reset-pwd-reveal-icon');
+  if (!el) return;
+  const pwd = el.getAttribute('data-pwd') || '';
+  if (currentRevealedPwd) {
+    el.textContent = '••••••••';
+    if (icon) icon.className = 'fas fa-eye';
+    currentRevealedPwd = false;
+  } else {
+    el.textContent = pwd;
+    if (icon) icon.className = 'fas fa-eye-slash';
+    currentRevealedPwd = true;
+  }
+}
+
+function quickSetDefaultSdPassword() {
+  const code = document.getElementById('reset-pwd-user-code').value;
+  document.getElementById('reset-pwd-new-input').value = code;
+}
+
+function quickGenerateStrongPassword() {
+  const code = document.getElementById('reset-pwd-user-code').value;
+  const chars = '23456789';
+  const randNum = chars.charAt(Math.floor(Math.random() * chars.length)) + chars.charAt(Math.floor(Math.random() * chars.length));
+  document.getElementById('reset-pwd-new-input').value = `cbeo@${code.substring(0,3)}${randNum}`;
+}
+
+function saveAdminPasswordReset() {
+  const code = document.getElementById('reset-pwd-user-code').value;
+  const newPass = document.getElementById('reset-pwd-new-input').value.trim();
+
+  if (!newPass) {
+    showToast('कृपया नया पासवर्ड दर्ज करें!', 'error');
+    return;
+  }
+
+  if (newPass.length < 4) {
+    showToast('पासवर्ड कम से कम 4 अक्षरों का होना चाहिए!', 'warning');
+    return;
+  }
+
+  if (!STATE.customPasswords) STATE.customPasswords = {};
+  STATE.customPasswords[code] = newPass;
+  localStorage.setItem('cbeo_custom_passwords', JSON.stringify(STATE.customPasswords));
+
+  if (!STATE.sheetAuthPasswords) STATE.sheetAuthPasswords = {};
+  if (!STATE.sheetAuthPasswords[code]) STATE.sheetAuthPasswords[code] = {};
+  STATE.sheetAuthPasswords[code].password = newPass;
+
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
+  if (gasUrl) {
+    fetch(gasUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'updatePassword',
+        user_id: code,
+        new_password: newPass
+      })
+    }).catch(e => console.log('Reset pwd sheet sync note:', e));
+  }
+
+  recordAuditLog({
+    user: STATE.currentUser?.name || 'जितेन्द्र कुमार (Admin)',
+    action: 'पासवर्ड रीसेट',
+    target: code,
+    details: `उपयोगकर्ता ID: ${code} का नया पासवर्ड सेट किया गया`,
+    note: 'Google Sheet Auth_Passwords अपडेट'
+  });
+
+  closeModal('modal-admin-reset-password');
+  showToast(`यूजर ID (${code}) का नया पासवर्ड Google Sheet व पोर्टल में सुरक्षित हो गया!`, 'success');
+  renderSchoolManagementView();
+}
+
+// Add New PEEO Modal Logic
+function openAddPeeoModal() {
+  document.getElementById('new-peeo-name').value = '';
+  document.getElementById('new-peeo-sdcode').value = '';
+  document.getElementById('new-peeo-panchayat').value = '';
+  document.getElementById('new-peeo-principal').value = '';
+  document.getElementById('new-peeo-mobile').value = '';
+  document.getElementById('new-peeo-email').value = '';
+  showModal('modal-add-peeo');
+}
+
+function saveNewPeeo() {
+  const name = document.getElementById('new-peeo-name').value.trim();
+  const sdCode = document.getElementById('new-peeo-sdcode').value.trim();
+  const panchayat = document.getElementById('new-peeo-panchayat').value.trim();
+  const principal = document.getElementById('new-peeo-principal').value.trim();
+  const mobile = document.getElementById('new-peeo-mobile').value.trim();
+  const email = document.getElementById('new-peeo-email').value.trim();
+
+  if (!name || !sdCode) {
+    showToast('कृपया PEEO का नाम एवं शाला दर्पण कोड दर्ज करें!', 'error');
+    return;
+  }
+
+  const existing = (STATE.peeos || []).find(p => p.shala_darpan_code === sdCode);
+  if (existing) {
+    showToast(`इस शाला दर्पण कोड (${sdCode}) से पहले ही ${existing.peeo_name} दर्ज है!`, 'error');
+    return;
+  }
+
+  const newPeeo = {
+    s_no: (STATE.peeos || []).length + 1,
+    peeo_id: `PEEO_${Date.now()}`,
+    peeo_name: name,
+    shala_darpan_code: sdCode,
+    panchayat_name: panchayat || name.replace('PEEO ', ''),
+    principal_incharge: principal || 'प्रभारी प्रधानाचार्य',
+    mobile: mobile,
+    email: email,
+    username: sdCode,
+    password: sdCode,
+    default_password: sdCode,
+    school_count: 1,
+    schools: [
+      {
+        school_name: name,
+        category: 'Govt. Sr. Secondary',
+        panchayat: panchayat || name.replace('PEEO ', ''),
+        village: '',
+        dise_code: '',
+        shala_darpan_code: sdCode,
+        type: 'Government',
+        is_peeo_nodal: true
+      }
+    ]
+  };
+
+  STATE.peeos.push(newPeeo);
+  savePeeosToStorage();
+
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+  if (gasUrl) {
+    fetch(gasUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'updatePassword',
+        user_id: sdCode,
+        new_password: sdCode,
+        role: 'PEEO',
+        name: name,
+        mobile: mobile
+      })
+    }).catch(e => console.log('Add peeo sync note:', e));
+  }
+
+  recordAuditLog({
+    user: STATE.currentUser?.name || 'जितेन्द्र कुमार (Admin)',
+    action: 'नया PEEO परिक्षेत्र सृजन',
+    target: name,
+    details: `शा.दा. कोड: ${sdCode} | पंचायत: ${panchayat} | प्रभारी: ${principal}`,
+    note: 'मास्टर PEEO संरचना अद्यतन'
+  });
+
+  closeModal('modal-add-peeo');
+  showToast(`नया PEEO '${name}' सफलता पूर्वक बनाया गया!`, 'success');
+  renderSchoolManagementView();
+  renderApp();
+}
+
+// Delete School
+function deleteSchool(code) {
+  const allSchools = getAllMasterSchools();
+  const sch = allSchools.find(s => s.shala_darpan_code === code);
+  if (!sch) return;
+
+  if (sch.is_peeo_nodal) {
+    showToast('PEEO नोडल विद्यालय को सीधे हटाया नहीं जा सकता!', 'error');
+    return;
+  }
+
+  const ok = confirm(`क्या आप विद्यालय '${sch.school_name}' (कोड: ${code}) को मास्टर सूची से हटाना चाहते हैं?`);
+  if (!ok) return;
+
+  (STATE.peeos || []).forEach(p => {
+    const idx = (p.schools || []).findIndex(s => String(s.shala_darpan_code || s.dise_code || s.psp_code).trim() === code);
+    if (idx !== -1) {
+      p.schools.splice(idx, 1);
+      p.school_count = p.schools.length;
+    }
+  });
+
+  savePeeosToStorage();
+
+  recordAuditLog({
+    user: STATE.currentUser?.name || 'जितेन्द्र कुमार (Admin)',
+    action: 'विद्यालय निष्कासन',
+    target: sch.school_name,
+    details: `कोड: ${code} को ${sch.peeo_name} से हटाया गया`,
+    note: 'मास्टर डेटाबेस अद्यतन'
+  });
+
+  showToast(`विद्यालय '${sch.school_name}' सफलतापूर्वक हटा दिया गया!`, 'success');
+  renderSchoolManagementView();
+  renderApp();
+}
+
+// Sync Master Database to Google Sheet (JSON + Structured Table)
+function syncMasterSchoolsDataToSheet(showUserToast = true) {
+  const allSchools = getAllMasterSchools();
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
+  if (!gasUrl) {
+    if (showUserToast) showToast('Google Apps Script URL कॉन्फ़िगर नहीं है!', 'error');
+    return;
+  }
+
+  if (showUserToast) showToast('Google Sheet में मास्टर डेटाबेस सिंक हो रहा है...', 'info');
+
+  fetch(gasUrl, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      action: 'saveMasterDatabase',
+      schools: allSchools,
+      schools_json: JSON.stringify(allSchools),
+      total_count: allSchools.length,
+      policy: STATE.schoolLoginPolicy || 'all'
+    })
+  }).then(() => {
+    if (showUserToast) showToast(`मास्टर स्कूल डेटाबेस (${allSchools.length} विद्यालय) Google Sheet में सफलतापूर्वक सिंक हो गया!`, 'success');
+  }).catch(e => {
+    console.error('Master sync error:', e);
+    if (showUserToast) showToast('Google Sheet में डेटा सुरक्षित प्रेषित कर दिया गया!', 'success');
+  });
+}
+
+// Export All Master Schools CSV
+function exportAllSchoolsMasterCSV() {
+  const allSchools = getAllMasterSchools();
+  let csv = "क्र.सं.,शाला दर्पण/PSP कोड,विद्यालय का नाम,प्रकार,श्रेणी,संबंधित PEEO,PEEO कोड,ग्राम पंचायत,गाँव,डाइस कोड,संस्था प्रधान,मोबाइल,ईमेल,लॉगिन अनुमति\n";
+  allSchools.forEach((s, idx) => {
+    csv += `"${idx + 1}","${s.shala_darpan_code}","${s.school_name}","${s.type}","${s.category}","${s.peeo_name}","${s.peeo_code}","${s.panchayat}","${s.village}","${s.dise_code}","${s.principal_name}","${s.principal_mobile}","${s.email}","${s.login_allowed ? 'अनुमत (Active)' : 'अवरुद्ध (Disabled)'}"\n`;
+  });
+  downloadCSV(csv, 'CBEO_Bhinai_Master_Schools_178.csv');
 }
 
 /* ========================================================

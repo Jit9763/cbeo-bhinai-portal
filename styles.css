@@ -2438,4 +2438,125 @@ input:checked + .switch-slider:before {
   }
 }
 
+/* ========================================================
+   SCHOOL & PEEO MANAGEMENT STYLES
+   ======================================================== */
+.btn-policy {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-policy:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-policy.active {
+  box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.2);
+}
+
+.sch-action-btn-group {
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.sch-action-btn {
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.sch-action-btn.edit {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+}
+.sch-action-btn.edit:hover {
+  background: #dbeafe;
+}
+
+.sch-action-btn.transfer {
+  background: #fdf4ff;
+  color: #a21caf;
+  border-color: #f5d0fe;
+}
+.sch-action-btn.transfer:hover {
+  background: #fae8ff;
+}
+
+.sch-action-btn.pwd {
+  background: #fffbeb;
+  color: #b45309;
+  border-color: #fde68a;
+}
+.sch-action-btn.pwd:hover {
+  background: #fef3c7;
+}
+
+.sch-action-btn.del {
+  background: #fef2f2;
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+.sch-action-btn.del:hover {
+  background: #fee2e2;
+}
+
+.login-perm-switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 20px;
+}
+
+.login-perm-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.login-perm-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #cbd5e1;
+  transition: .25s;
+  border-radius: 20px;
+}
+
+.login-perm-slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .25s;
+  border-radius: 50%;
+}
+
+.login-perm-switch input:checked + .login-perm-slider {
+  background-color: #16a34a;
+}
+
+.login-perm-switch input:checked + .login-perm-slider:before {
+  transform: translateX(18px);
+}
+
 

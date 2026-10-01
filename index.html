@@ -86,6 +86,9 @@
       <button class="nav-tab" id="nav-tab-staff" onclick="switchTab('staff')">
         <i class="fas fa-users"></i> PEEO स्टाफ प्रबंधन
       </button>
+      <button class="nav-tab" id="nav-tab-school-management" onclick="switchTab('school-management')">
+        <i class="fas fa-university"></i> स्कूल एवं PEEO प्रबंधन
+      </button>
       <button class="nav-tab" id="nav-tab-reports" onclick="switchTab('demands')">
         <i class="fas fa-file-invoice"></i> अन्य सूचना मांग
       </button>
@@ -747,6 +750,170 @@
       </div>
     </section>
 
+    <!-- 4B. MASTER SCHOOL & PEEO MANAGEMENT VIEW (CENTRALIZED GOOGLE SHEET SYNC) -->
+    <section id="view-school-management" class="content-view">
+      <div class="section-box">
+        <div class="section-header" style="flex-wrap:wrap; gap:1rem">
+          <div>
+            <div class="section-title">
+              <i class="fas fa-university text-primary"></i>
+              <h2>भिनाय ब्लॉक: स्कूल एवं PEEO सम्पूर्ण प्रबंधन नियंत्रण</h2>
+            </div>
+            <p style="font-size:0.85rem; color:var(--neutral-600); margin-top:0.25rem">
+              समस्त 178 विद्यालय (132 राजकीय + 46 निजी) एवं 25 PEEO का एकीकृत डेटाबेस, लॉगिन नियंत्रण, PEEO स्थानांतरण, पासवर्ड रीसेट व Google Sheet ऑटो-सिंक
+            </p>
+          </div>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+            <button class="btn btn-primary btn-sm" onclick="openAddSchoolModal()">
+              <i class="fas fa-school"></i> + नया विद्यालय जोड़ें
+            </button>
+            <button class="btn btn-warning btn-sm" onclick="openAddPeeoModal()" style="font-weight:700">
+              <i class="fas fa-plus-circle"></i> + नया PEEO बनाएं
+            </button>
+            <button class="btn btn-drive btn-sm" onclick="syncMasterSchoolsDataToSheet()" style="font-weight:700" title="मास्टर डेटा Google Sheet में सुरक्षित करें">
+              <i class="fab fa-google-drive"></i> Google Sheet सिंक
+            </button>
+            <button class="btn btn-success btn-sm" onclick="exportAllSchoolsMasterCSV()">
+              <i class="fas fa-file-excel"></i> मास्टर CSV डाउनलोड
+            </button>
+          </div>
+        </div>
+
+        <!-- 6 KPI Metric Overview Cards -->
+        <div class="stat-cards-grid" style="margin-bottom:1.5rem">
+          <div class="stat-card blue">
+            <div class="stat-icon-wrapper"><i class="fas fa-school"></i></div>
+            <div class="stat-info">
+              <h3 id="sch-mgmt-stat-total">178</h3>
+              <p>कुल विद्यालय (मास्टर डेटा)</p>
+            </div>
+          </div>
+          <div class="stat-card green">
+            <div class="stat-icon-wrapper"><i class="fas fa-landmark"></i></div>
+            <div class="stat-info">
+              <h3 id="sch-mgmt-stat-govt">132</h3>
+              <p>राजकीय विद्यालय (Govt)</p>
+            </div>
+          </div>
+          <div class="stat-card orange">
+            <div class="stat-icon-wrapper"><i class="fas fa-building"></i></div>
+            <div class="stat-info">
+              <h3 id="sch-mgmt-stat-pvt">46</h3>
+              <p>निजी विद्यालय (Private)</p>
+            </div>
+          </div>
+          <div class="stat-card purple">
+            <div class="stat-icon-wrapper"><i class="fas fa-university"></i></div>
+            <div class="stat-info">
+              <h3 id="sch-mgmt-stat-peeo">25</h3>
+              <p>PEEO परिक्षेत्र / नोडल</p>
+            </div>
+          </div>
+          <div class="stat-card" style="border-left:4px solid #10b981">
+            <div class="stat-icon-wrapper" style="background:#ecfdf5; color:#059669"><i class="fas fa-key"></i></div>
+            <div class="stat-info">
+              <h3 id="sch-mgmt-stat-login-allowed" style="color:#059669">178</h3>
+              <p>लॉगिन अनुमत विद्यालय</p>
+            </div>
+          </div>
+          <div class="stat-card" style="border-left:4px solid #f59e0b">
+            <div class="stat-icon-wrapper" style="background:#fef3c7; color:#d97706"><i class="fas fa-lock"></i></div>
+            <div class="stat-info">
+              <h3 id="sch-mgmt-stat-pwd-custom" style="color:#d97706">0</h3>
+              <p>कस्टम पासवर्ड सेट</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Global Quick Login Permission Policy Box -->
+        <div style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:10px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:var(--shadow-sm)">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:0.75rem">
+            <div>
+              <h3 style="font-size:1.05rem; color:#1b365d; font-weight:800; display:flex; align-items:center; gap:0.5rem">
+                <i class="fas fa-user-lock text-primary"></i> विद्यालय लॉगिन नियंत्रण नीति (Global School Login Permission):
+              </h3>
+              <p style="font-size:0.83rem; color:var(--neutral-600); margin-top:2px">
+                यहाँ से तय करें कि कौन से विद्यालय लॉगिन गेटवे और त्वरित 2-टियर ड्रॉपडाउन में दिखाई देंगे तथा लॉगिन कर सकेंगे:
+              </p>
+            </div>
+            <span id="sch-mgmt-policy-status-badge" class="badge-tag" style="background:#dcfce7; color:#15803d; font-size:0.8rem; font-weight:700">
+              नीति: सभी 178 विद्यालय लॉगिन खुला
+            </span>
+          </div>
+
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap">
+            <button type="button" class="btn btn-sm btn-policy active" id="btn-policy-all" onclick="setGlobalSchoolLoginPolicy('all')" style="border:1.5px solid #16a34a; font-weight:700; background:#dcfce7; color:#15803d">
+              <i class="fas fa-check-circle"></i> 🟢 सभी 178 स्कूल लॉगिन खुला (All Schools)
+            </button>
+            <button type="button" class="btn btn-sm btn-policy" id="btn-policy-sec-srsec" onclick="setGlobalSchoolLoginPolicy('sec_srsec')" style="border:1.5px solid #cbd5e1; font-weight:700; background:#f8fafc; color:#334155">
+              <i class="fas fa-graduation-cap"></i> 🟡 केवल 57 माध्यमिक/उच्च माध्यमिक (Sec & Sr Sec)
+            </button>
+            <button type="button" class="btn btn-sm btn-policy" id="btn-policy-peeo-nodal" onclick="setGlobalSchoolLoginPolicy('peeo_nodal')" style="border:1.5px solid #cbd5e1; font-weight:700; background:#f8fafc; color:#334155">
+              <i class="fas fa-university"></i> 🔵 केवल 25 PEEO नोडल केंद्र (PEEO Only)
+            </button>
+            <button type="button" class="btn btn-sm btn-policy" id="btn-policy-custom" onclick="setGlobalSchoolLoginPolicy('custom')" style="border:1.5px solid #cbd5e1; font-weight:700; background:#f8fafc; color:#334155">
+              <i class="fas fa-sliders-h"></i> ⚙️ कस्टम चयन (नीचे चेकबॉक्स द्वारा व्यक्तिगत स्कूल)
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="toolbar-row" style="background:#f8fafc; padding:0.85rem; border-radius:8px; border:1px solid #e2e8f0; margin-bottom:1rem">
+          <div class="search-box-wrapper" style="flex:1; min-width:240px">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="sch-mgmt-search" placeholder="विद्यालय का नाम, शा.दा. / PSP कोड, डाइस, संस्था प्रधान, मोबाइल, पंचायत खोजें..." oninput="filterSchoolManagementTable()">
+          </div>
+          <select id="sch-mgmt-peeo-filter" class="filter-select" onchange="filterSchoolManagementTable()">
+            <option value="all">-- समस्त 25 PEEO परिक्षेत्र --</option>
+          </select>
+          <select id="sch-mgmt-type-filter" class="filter-select" onchange="filterSchoolManagementTable()">
+            <option value="all">सभी प्रकार (राजकीय + निजी)</option>
+            <option value="Government">केवल राजकीय विद्यालय (Govt)</option>
+            <option value="Private">केवल निजी विद्यालय (Private)</option>
+          </select>
+          <select id="sch-mgmt-cat-filter" class="filter-select" onchange="filterSchoolManagementTable()">
+            <option value="all">सभी श्रेणियां</option>
+            <option value="Sr. Secondary">उच्च माध्यमिक (1-12)</option>
+            <option value="Secondary">माध्यमिक (1-10)</option>
+            <option value="Upper Primary">उच्च प्राथमिक (1-8)</option>
+            <option value="Primary">प्राथमिक (1-5)</option>
+          </select>
+          <select id="sch-mgmt-login-filter" class="filter-select" onchange="filterSchoolManagementTable()">
+            <option value="all">सभी लॉगिन स्थिति</option>
+            <option value="allowed">लॉगिन अनुमत (Active)</option>
+            <option value="blocked">लॉगिन अवरुद्ध (Disabled)</option>
+          </select>
+          <div id="sch-mgmt-count-badge" style="background:#e0f2fe; color:#0369a1; padding:6px 12px; border-radius:6px; font-weight:700; font-size:0.82rem; white-space:nowrap">
+            178 विद्यालय
+          </div>
+        </div>
+
+        <!-- Master School Management Table -->
+        <div class="table-responsive">
+          <table class="data-table" id="sch-mgmt-table">
+            <thead>
+              <tr>
+                <th style="width:45px">क्र.सं.</th>
+                <th>शा.दा. / PSP कोड</th>
+                <th>विद्यालय का नाम व श्रेणी</th>
+                <th>प्रकार</th>
+                <th>वर्तमान PEEO परिक्षेत्र</th>
+                <th>संस्था प्रधान / प्रभारी</th>
+                <th>मोबाइल नंबर</th>
+                <th>ईमेल आईडी</th>
+                <th style="text-align:center">लॉगिन अनुमति</th>
+                <th>पासवर्ड स्थिति</th>
+                <th style="text-align:center; min-width:180px">प्रबंधन क्रियाएं</th>
+              </tr>
+            </thead>
+            <tbody id="sch-mgmt-tbody">
+              <!-- Rendered dynamically by renderSchoolManagementView() -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
     <!-- 5. ACTIVE INFORMATION DEMANDS VIEW -->
     <section id="view-demands" class="content-view">
       <div class="section-box">
@@ -945,6 +1112,21 @@
                   <!-- Populated by JS -->
                 </optgroup>
               </select>
+            </div>
+
+            <!-- 2nd Tier: Subordinate Schools under selected PEEO (Auto 1-Click Login) -->
+            <div id="login-school-sub-wrap" style="display:none; margin-top:0.75rem; background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:8px; padding:0.75rem">
+              <label class="login-label" style="color:#1e40af; font-weight:700; margin-bottom:0.35rem">
+                <i class="fas fa-school text-primary"></i> 2. PEEO अधीनस्थ विद्यालय चुनें (Auto 1-Click Login):
+              </label>
+              <div class="login-input-wrap">
+                <select id="login-school-sub-select" class="login-select" onchange="onQuickSelectSchoolUnderPeeo()" style="background:#ffffff; border:1.5px solid #3b82f6; font-weight:700; color:#1e3a8a">
+                  <!-- Dynamically populated by JS when PEEO selected -->
+                </select>
+              </div>
+              <div id="login-school-sub-hint" style="font-size:0.75rem; color:#1d4ed8; margin-top:4px">
+                <i class="fas fa-magic"></i> विद्यालय चुनते ही यूजर ID (शाला दर्पण/PSP कोड) व पासवर्ड स्वतः भर जाएगा।
+              </div>
             </div>
           </div>
 
@@ -1287,15 +1469,28 @@
             </select>
           </div>
         </div>
+        <!-- Collection Level (PEEO vs School Level) -->
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label><strong>सूचना संकलन स्तर (Information Collection Level):</strong></label>
+          <select id="new-demand-collection-level" class="filter-select" style="width:100%; border:2px solid #059669; font-weight:700; color:#065f46" onchange="onDemandCollectionLevelChange()">
+            <option value="peeo">🏛️ PEEO स्तर (केवल 25 PEEO लॉगिन कर अपने अधीनस्थ स्कूलों की संकलित रिपोर्ट भरेंगे)</option>
+            <option value="school">🏫 विद्यालय स्तर (सीधे प्रत्येक विद्यालय अपने शाला दर्पण/PSP कोड से लॉगिन कर अपनी सूचना भरेगा)</option>
+          </select>
+          <div id="new-demand-collection-hint" style="font-size:0.75rem; color:#047857; margin-top:3px">
+            ✓ <strong>PEEO स्तर:</strong> 25 PEEO लॉगिन करेंगे और अपने अधीन विद्यालयों का प्रपत्र भरेंगे।
+          </div>
+        </div>
+
         <div class="form-group" style="margin-bottom:0.85rem">
           <label><strong>लागू विद्यालय वर्ग (Target Schools Filter):</strong></label>
           <select id="new-demand-school-scope" class="filter-select" style="width:100%; border:2px solid #3b82f6; font-weight:600">
             <option value="all">🏫 सभी विद्यालय (राजकीय एवं निजी दोनों - All 178 Schools)</option>
-            <option value="govt">🏛️ केवल राजकीय विद्यालय (Government Schools Only)</option>
-            <option value="private">🏢 केवल निजी विद्यालय (Private Schools Only)</option>
+            <option value="govt">🏛️ केवल राजकीय विद्यालय (Government Schools Only - 132)</option>
+            <option value="private">🏢 केवल निजी विद्यालय (Private Schools Only - 46)</option>
+            <option value="sec_srsec">🎓 केवल माध्यमिक एवं उच्च माध्यमिक विद्यालय (57 Schools)</option>
           </select>
           <span style="font-size:0.75rem; color:var(--neutral-500)">
-            (नोट: PEEO स्तर पर सूचना भरते समय केवल चयनित श्रेणी के स्कूल ही सूची में प्रदर्शित होंगे)
+            (नोट: यदि विद्यालय स्तर चुना गया है, तो सभी लक्षित विद्यालयों का लॉगिन स्वतः एक्टिव रहेगा और उनका डिफ़ॉल्ट यूजर ID व पासवर्ड उनका शाला दर्पण/PSP कोड रहेगा)
           </span>
         </div>
         <div class="form-group" style="margin-bottom:0.85rem">
@@ -1380,6 +1575,227 @@
         <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-add-school')">रद्द करें</button>
         <button class="btn btn-primary" onclick="saveNewSchool()">
           <i class="fas fa-save"></i> विद्यालय जोड़ें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8B. EDIT SCHOOL DETAILS MODAL -->
+  <div id="modal-edit-school-details" class="modal-overlay">
+    <div class="modal-card" style="max-width:680px">
+      <div class="modal-header">
+        <h3><i class="fas fa-edit text-primary"></i> विद्यालय विवरण संपादन (Edit School Details)</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-edit-school-details')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="edit-school-original-code">
+        <div class="form-grid">
+          <div class="form-group full-width">
+            <label>विद्यालय का पूरा नाम (School Name):</label>
+            <input type="text" id="edit-school-name" style="font-weight:700">
+          </div>
+          <div class="form-group">
+            <label>शाला दर्पण / PSP कोड (Login ID):</label>
+            <input type="text" id="edit-school-sdcode" readonly style="background:#f1f5f9; color:#475569; font-weight:700">
+          </div>
+          <div class="form-group">
+            <label>U-DISE कोड:</label>
+            <input type="text" id="edit-school-dise" placeholder="11 अंकों का U-DISE कोड">
+          </div>
+          <div class="form-group">
+            <label>प्रकार (Type):</label>
+            <select id="edit-school-type" class="filter-select">
+              <option value="Government">राजकीय (Government)</option>
+              <option value="Private">निजी / मान्यता प्राप्त (Private)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>श्रेणी (Category):</label>
+            <select id="edit-school-cat" class="filter-select">
+              <option value="Sr. Secondary (1-12)">उच्च माध्यमिक (Sr. Secondary 1-12)</option>
+              <option value="Secondary (1-10)">माध्यमिक (Secondary 1-10)</option>
+              <option value="Upper Primary (1-8)">उच्च प्राथमिक (Upper Primary 1-8)</option>
+              <option value="Primary (1-5)">प्राथमिक (Primary 1-5)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>संस्था प्रधान / प्रभारी नाम:</label>
+            <input type="text" id="edit-school-principal" placeholder="प्रधानाचार्य / संस्था प्रधान का नाम">
+          </div>
+          <div class="form-group">
+            <label>संस्था प्रधान मोबाइल नंबर:</label>
+            <input type="tel" id="edit-school-mobile" placeholder="10 अंकों का मोबाइल नंबर" maxlength="10">
+          </div>
+          <div class="form-group">
+            <label>आधिकारिक ईमेल आईडी:</label>
+            <input type="email" id="edit-school-email" placeholder="school@rajasthan.gov.in">
+          </div>
+          <div class="form-group">
+            <label>ग्राम पंचायत:</label>
+            <input type="text" id="edit-school-panchayat" placeholder="ग्राम पंचायत">
+          </div>
+          <div class="form-group">
+            <label>गाँव / स्थान:</label>
+            <input type="text" id="edit-school-village" placeholder="गाँव का नाम">
+          </div>
+          <div class="form-group full-width" style="background:#f8fafc; padding:0.75rem; border-radius:8px; border:1px solid #cbd5e1">
+            <label style="display:flex; align-items:center; gap:0.6rem; cursor:pointer; margin:0">
+              <input type="checkbox" id="edit-school-login-allowed" checked style="width:18px; height:18px; accent-color:#16a34a">
+              <span style="font-weight:700; color:#1e293b">पोर्टल पर लॉगिन सूची में दिखाएं एवं लॉगिन अनुमति प्रदान करें</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-edit-school-details')">रद्द करें</button>
+        <button class="btn btn-primary" onclick="saveEditedSchoolDetails()">
+          <i class="fas fa-save"></i> विवरण सुरक्षित करें (ऑटो-सिंक)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8C. TRANSFER SCHOOL BETWEEN PEEOS MODAL -->
+  <div id="modal-transfer-school-peeo" class="modal-overlay">
+    <div class="modal-card" style="max-width:580px">
+      <div class="modal-header">
+        <h3><i class="fas fa-exchange-alt text-warning"></i> विद्यालय PEEO परिक्षेत्र स्थानांतरण (Transfer School)</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-transfer-school-peeo')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="transfer-school-code">
+        <div style="background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:8px; padding:1rem; margin-bottom:1.25rem">
+          <div style="font-size:0.85rem; color:#1e40af; font-weight:700">स्थानांतरित किया जाने वाला विद्यालय:</div>
+          <div id="transfer-school-name-display" style="font-size:1.05rem; font-weight:800; color:#1e3a8a; margin-top:2px"></div>
+          <div id="transfer-school-current-peeo-display" style="font-size:0.83rem; color:#3b82f6; margin-top:4px"></div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:1rem">
+          <label><strong>नया PEEO परिक्षेत्र चुनें (New Destination PEEO):</strong></label>
+          <select id="transfer-new-peeo-select" class="filter-select" style="width:100%; border:2px solid #3b82f6; font-weight:700; padding:0.6rem">
+            <!-- Populated by JS -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>स्थानांतरण आदेश क्रमांक / टिप्पणी (वैकल्पिक):</label>
+          <input type="text" id="transfer-order-note" placeholder="उदा. CBEO/आदेश/2026/102 दिनांक 01.10.2026">
+        </div>
+
+        <div style="font-size:0.78rem; color:#64748b; margin-top:0.75rem">
+          <i class="fas fa-info-circle text-primary"></i> ट्रांसफर करते ही विद्यालय का नया PEEO एक्सप्लोरर, डायरेक्टरी, समान परीक्षा एवं सभी एक्टिव प्रपत्रों में स्वतः अपडेट हो जाएगा।
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-transfer-school-peeo')">रद्द करें</button>
+        <button class="btn btn-warning" onclick="saveSchoolTransfer()" style="font-weight:700">
+          <i class="fas fa-check-circle"></i> PEEO ट्रांसफर पूर्ण करें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8D. ADMIN PASSWORD RESET & VIEW MODAL -->
+  <div id="modal-admin-reset-password" class="modal-overlay">
+    <div class="modal-card" style="max-width:540px">
+      <div class="modal-header">
+        <h3><i class="fas fa-key text-warning"></i> पासवर्ड नियंत्रण एवं रीसेट (Password Control Room)</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-admin-reset-password')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="reset-pwd-user-code">
+        
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:0.85rem; margin-bottom:1rem">
+          <div style="font-size:0.8rem; color:#64748b; font-weight:700">खाता / विद्यालय का नाम:</div>
+          <div id="reset-pwd-user-title" style="font-weight:800; color:#1e293b; font-size:1rem; margin-top:2px"></div>
+          <div id="reset-pwd-user-code-display" style="font-size:0.82rem; color:#475569; margin-top:3px"></div>
+        </div>
+
+        <!-- Current Password Info Box -->
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#ecfdf5; border:1px solid #a7f3d0; padding:0.6rem 0.85rem; border-radius:6px; margin-bottom:1rem">
+          <div>
+            <span style="font-size:0.75rem; color:#065f46; font-weight:700">वर्तमान सक्रिय पासवर्ड:</span>
+            <div id="reset-pwd-current-val" style="font-weight:800; color:#047857; font-family:monospace; font-size:0.95rem">••••••••</div>
+          </div>
+          <button type="button" class="btn btn-outline-light btn-sm" onclick="toggleCurrentPwdReveal()" style="font-size:0.75rem; padding:2px 8px; border-color:#6ee7b7; color:#065f46">
+            <i class="fas fa-eye" id="reset-pwd-reveal-icon"></i> पासवर्ड देखें
+          </button>
+        </div>
+
+        <!-- New Password Input -->
+        <div class="form-group" style="margin-bottom:0.75rem">
+          <label><strong>नया पासवर्ड दर्ज करें:</strong></label>
+          <div class="login-input-wrap">
+            <i class="fas fa-lock login-input-icon"></i>
+            <input type="text" id="reset-pwd-new-input" placeholder="नया पासवर्ड दर्ज करें" class="login-input" style="padding-left:2.5rem; font-weight:700">
+          </div>
+        </div>
+
+        <!-- Quick 1-Click Generation Buttons -->
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1rem">
+          <button type="button" class="btn btn-outline-light btn-sm" onclick="quickSetDefaultSdPassword()" style="font-size:0.75rem; border-color:#cbd5e1; color:#1e3a8a; font-weight:600">
+            <i class="fas fa-id-card"></i> डिफ़ॉल्ट शाला दर्पण कोड रखें
+          </button>
+          <button type="button" class="btn btn-outline-light btn-sm" onclick="quickGenerateStrongPassword()" style="font-size:0.75rem; border-color:#cbd5e1; color:#047857; font-weight:600">
+            <i class="fas fa-random"></i> सुरक्षित पासवर्ड बनाएं
+          </button>
+        </div>
+
+        <div style="font-size:0.75rem; color:#64748b">
+          <i class="fas fa-shield-alt text-success"></i> पासवर्ड सहेजते ही Google Sheet की <code>Auth_Passwords</code> शीट एवं पोर्टल पर तुरंत अपडेट हो जाएगा।
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-admin-reset-password')">रद्द करें</button>
+        <button class="btn btn-success" onclick="saveAdminPasswordReset()" style="font-weight:700">
+          <i class="fas fa-save"></i> नया पासवर्ड सहेजें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8E. CREATE NEW PEEO MODAL -->
+  <div id="modal-add-peeo" class="modal-overlay">
+    <div class="modal-card" style="max-width:620px">
+      <div class="modal-header">
+        <h3><i class="fas fa-university text-primary"></i> नया PEEO परिक्षेत्र बनाएं (Create New PEEO)</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-add-peeo')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group full-width">
+            <label>PEEO / नोडल का पूरा नाम (उदा. PEEO JAJOTA):</label>
+            <input type="text" id="new-peeo-name" placeholder="उदा. PEEO JAJOTA" style="font-weight:700">
+          </div>
+          <div class="form-group">
+            <label>नोडल शाला दर्पण कोड (User ID):</label>
+            <input type="text" id="new-peeo-sdcode" placeholder="उदा. 221800">
+          </div>
+          <div class="form-group">
+            <label>ग्राम पंचायत:</label>
+            <input type="text" id="new-peeo-panchayat" placeholder="उदा. JAJOTA">
+          </div>
+          <div class="form-group">
+            <label>प्रभारी प्रधानाचार्य का नाम:</label>
+            <input type="text" id="new-peeo-principal" placeholder="प्रभारी प्रधानाचार्य का नाम">
+          </div>
+          <div class="form-group">
+            <label>मोबाइल नंबर:</label>
+            <input type="tel" id="new-peeo-mobile" placeholder="10 अंकों का मोबाइल नंबर" maxlength="10">
+          </div>
+          <div class="form-group full-width">
+            <label>आधिकारिक ईमेल आईडी:</label>
+            <input type="email" id="new-peeo-email" placeholder="peeo.jajota@gmail.com">
+          </div>
+        </div>
+        <div style="font-size:0.75rem; color:#64748b; margin-top:0.5rem">
+          <i class="fas fa-info-circle text-primary"></i> नया PEEO बनते ही उसका डिफ़ॉल्ट लॉगिन पासवर्ड उसका शाला दर्पण कोड रहेगा और वह सभी 25 PEEO मैट्रिक्स व डायरेक्टरी में शामिल हो जाएगा।
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-add-peeo')">रद्द करें</button>
+        <button class="btn btn-primary" onclick="saveNewPeeo()">
+          <i class="fas fa-save"></i> नया PEEO सुरक्षित करें
         </button>
       </div>
     </div>
