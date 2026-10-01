@@ -84,6 +84,10 @@ function isSamanParikshaSubmitted(subOrCode) {
 // Helper to accurately determine if a school has submitted a dynamic information demand
 function isDynamicDemandSubmitted(demandId, schoolCode) {
   if (!demandId || !schoolCode) return false;
+  const dId = String(demandId).toLowerCase();
+  if (dId === 'demand_saman_pariksha_2026' || dId.includes('saman_pariksha') || dId === 'saman_pariksha_2026_27') {
+    return isSamanParikshaSubmitted(schoolCode);
+  }
   if (!STATE.demandSubmissions || !STATE.demandSubmissions[demandId]) {
     const subKey = `${demandId}_${schoolCode}`;
     if (STATE.submissions && STATE.submissions[subKey] && STATE.submissions[subKey].verified) return true;
@@ -99,6 +103,37 @@ function isDynamicDemandSubmitted(demandId, schoolCode) {
   if (typeof sub.status === 'string' && (sub.status.indexOf('Submitted') !== -1 || sub.status.indexOf('पूर्ण') !== -1)) return true;
   if (sub.submitted_by || sub.signature || sub.signature_data) return true;
   return false;
+}
+
+// Universal Helper to fetch submission details for any demand (Saman Pariksha or Dynamic)
+function getDemandSubmissionRecord(demandId, schoolCode) {
+  if (!demandId || !schoolCode) return {};
+  const dId = String(demandId).toLowerCase();
+  if (dId === 'demand_saman_pariksha_2026' || dId.includes('saman_pariksha') || dId === 'saman_pariksha_2026_27') {
+    const sp = (STATE.samanParikshaSubmissions && STATE.samanParikshaSubmissions[schoolCode]) || {};
+    const hasData = isSamanParikshaSubmitted(sp);
+    return {
+      is_submitted: hasData,
+      verified: hasData,
+      submitted_by: sp.principal_name || sp.submitted_by || 'संस्था प्रधान',
+      submitter_mobile: sp.principal_mobile || sp.incharge_mobile || '',
+      submitted_at: sp.timestamp || '',
+      exam_code: sp.exam_code || '',
+      grand_total: sp.grand_total || 0,
+      data: {
+        'कक्षा 9 कुल छात्र': sp.c9_total ?? 0,
+        'कक्षा 9 संस्कृत': sp.c9_sanskrit ?? 0,
+        'कक्षा 9 उर्दू': sp.c9_urdu ?? 0,
+        'कक्षा 10 कुल छात्र': sp.c10_total ?? 0,
+        'कक्षा 10 संस्कृत': sp.c10_sanskrit ?? 0,
+        'कक्षा 10 उर्दू': sp.c10_urdu ?? 0,
+        'कक्षा 11 कुल छात्र': sp.c11_total ?? 0,
+        'कक्षा 12 कुल छात्र': sp.c12_total ?? 0,
+        'महायोग नामांकित छात्र': sp.grand_total ?? 0
+      }
+    };
+  }
+  return (STATE.demandSubmissions && STATE.demandSubmissions[demandId] && STATE.demandSubmissions[demandId][schoolCode]) || {};
 }
 
 /* ========================================================
@@ -662,15 +697,40 @@ function openLoginModal(isMandatory = false) {
   }
 
   const select = document.getElementById('login-quick-select');
-  const optgroup = document.getElementById('login-peeo-optgroup');
-  if (optgroup) {
-    optgroup.innerHTML = '';
+  const optgroupPeeo = document.getElementById('login-peeo-optgroup');
+  const optgroupSchools56 = document.getElementById('login-schools56-optgroup');
+  const subWrap = document.getElementById('login-school-sub-wrap');
+
+  const isAllPolicy = (STATE.schoolLoginPolicy === 'all');
+
+  if (optgroupPeeo) {
+    optgroupPeeo.innerHTML = '';
     STATE.peeos.forEach(p => {
       const opt = document.createElement('option');
       opt.value = p.shala_darpan_code;
       opt.textContent = `[PEEO] ${p.shala_darpan_code} - ${p.peeo_name} (${p.principal_incharge})`;
-      optgroup.appendChild(opt);
+      optgroupPeeo.appendChild(opt);
     });
+  }
+
+  // If policy is NOT 'all', show the original 58 secondary schools directly in the dropdown
+  if (optgroupSchools56) {
+    optgroupSchools56.innerHTML = '';
+    if (!isAllPolicy) {
+      optgroupSchools56.style.display = '';
+      (STATE.schools56 || []).forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = `sch_${s.shala_darpan_code}`;
+        opt.textContent = `[${s.type === 'Private' ? 'निजी' : 'राजकीय'}] ${s.shala_darpan_code} - ${s.school_name}`;
+        optgroupSchools56.appendChild(opt);
+      });
+    } else {
+      optgroupSchools56.style.display = 'none';
+    }
+  }
+
+  if (subWrap && !isAllPolicy) {
+    subWrap.style.display = 'none';
   }
 
   if (STATE.currentUser) {
@@ -686,12 +746,6 @@ function openLoginModal(isMandatory = false) {
   }
 
   onQuickSelectUser();
-  // Password initially clean unless auto-filled by school selection
-  const passInput = document.getElementById('login-password');
-  if (passInput && !document.getElementById('login-school-sub-select')?.value) {
-    passInput.value = '';
-  }
-
   showModal('modal-login');
 }
 
@@ -729,22 +783,45 @@ function onQuickSelectUser() {
     return;
   }
 
+  // If a school from the 58 schools list is selected (in non-'all' policy mode)
+  if (val && val.startsWith('sch_')) {
+    if (subWrap) subWrap.style.display = 'none';
+    const sCode = val.replace('sch_', '');
+    usernameInput.value = sCode;
+    const currentPwd = STATE.sheetAuthPasswords[sCode]?.password || STATE.customPasswords[sCode] || sCode;
+    passwordInput.value = currentPwd;
+    if (hintBox) {
+      hintBox.innerHTML = `<i class="fas fa-check-circle text-success"></i> <span><strong>विद्यालय चयनित:</strong> कोड <code>${sCode}</code> एवं पासवर्ड स्वतः भर दिया गया है। 'लॉगिन करें' दबाएं।</span>`;
+      hintBox.style.background = '#ecfdf5';
+      hintBox.style.color = '#065f46';
+    }
+    return;
+  }
+
   const peeo = STATE.peeos.find(p => p.shala_darpan_code === val || p.peeo_id === val);
   if (peeo) {
     usernameInput.value = peeo.shala_darpan_code;
-    passwordInput.value = '';
+    const peeoPwd = STATE.sheetAuthPasswords[peeo.shala_darpan_code]?.password || STATE.customPasswords[peeo.shala_darpan_code] || peeo.shala_darpan_code;
+    passwordInput.value = peeoPwd;
 
-    // Populate 2nd Tier Subordinate Schools Dropdown
-    if (subWrap && subSelect) {
+    const isAllPolicy = (STATE.schoolLoginPolicy === 'all');
+
+    // ONLY show 2nd Tier Subordinate Schools Dropdown when Admin has permitted ALL schools
+    if (isAllPolicy && subWrap && subSelect) {
       subSelect.innerHTML = '';
 
-      // Option 0: Self PEEO Nodal
+      // Find PEEO Nodal School name
+      const peeoSchool = (STATE.schools56 || []).find(s => s.shala_darpan_code === peeo.shala_darpan_code) || 
+                         (peeo.schools || []).find(s => s.shala_darpan_code === peeo.shala_darpan_code) || 
+                         { school_name: peeo.peeo_name };
+
+      // Option 1: PEEO HQ / Nodal School itself
       const optPeeo = document.createElement('option');
       optPeeo.value = peeo.shala_darpan_code;
-      optPeeo.textContent = `🏛️ [PEEO स्वयं नोडल] ${peeo.shala_darpan_code} - ${peeo.peeo_name}`;
+      optPeeo.textContent = `🏛️ [PEEO नोडल HQ विद्यालय] ${peeo.shala_darpan_code} - ${peeoSchool.school_name}`;
       subSelect.appendChild(optPeeo);
 
-      // Subordinate schools
+      // Followed by all Subordinate schools under this PEEO
       let allowedCount = 0;
       (peeo.schools || []).forEach(s => {
         const sCode = String(s.shala_darpan_code || s.dise_code || s.psp_code || '').trim();
@@ -760,6 +837,8 @@ function onQuickSelectUser() {
       });
 
       subWrap.style.display = 'block';
+    } else {
+      if (subWrap) subWrap.style.display = 'none';
     }
 
     if (hintBox) {
@@ -5260,7 +5339,7 @@ function renderDynamicDemandPortalView(demandId) {
   if (isSchoolUser) {
     const schoolCode = user.shala_darpan_code;
     const isSub = isDynamicDemandSubmitted(demand.id, schoolCode);
-    const sub = (STATE.demandSubmissions[demand.id] && STATE.demandSubmissions[demand.id][schoolCode]) || {};
+    const sub = getDemandSubmissionRecord(demand.id, schoolCode);
 
     portalContent += `
       <div class="section-box" style="margin-bottom:1.5rem">
@@ -5352,7 +5431,7 @@ function renderDynamicDemandPortalView(demandId) {
             <tbody>
               ${peeoSchools.map((s, idx) => {
                 const isSub = isDynamicDemandSubmitted(demand.id, s.shala_darpan_code);
-                const sub = (STATE.demandSubmissions[demand.id] && STATE.demandSubmissions[demand.id][s.shala_darpan_code]) || {};
+                const sub = getDemandSubmissionRecord(demand.id, s.shala_darpan_code);
                 return `
                   <tr>
                     <td><strong>${idx + 1}</strong></td>
@@ -5523,7 +5602,7 @@ function filterDynamicDemandTable(demandId) {
 
   tbody.innerHTML = filtered.map((s, idx) => {
     const isSub = isDynamicDemandSubmitted(demand.id, s.shala_darpan_code);
-    const sub = (STATE.demandSubmissions[demand.id] && STATE.demandSubmissions[demand.id][s.shala_darpan_code]) || {};
+    const sub = getDemandSubmissionRecord(demand.id, s.shala_darpan_code);
 
     return `
       <tr>
@@ -5573,11 +5652,18 @@ function filterDynamicDemandTable(demandId) {
   }).join('');
 }
 
-// 6. Open Modal to Fill Form for an Individual School
+// 6. Open Modal to Fill Form for an Individual School (Google Form Style with full mobile friendliness)
 function openFillDemandForSchoolModal(demandId, schoolCode) {
   const demand = STATE.demands.find(d => d.id === demandId);
   if (!demand) {
     showToast('मांग प्रपत्र नहीं मिला!', 'error');
+    return;
+  }
+
+  // If this demand represents Saman Pariksha, open the official Saman Pariksha Google Form directly!
+  const dId = String(demand.id).toLowerCase();
+  if (dId === 'demand_saman_pariksha_2026' || dId.includes('saman_pariksha') || dId === 'saman_pariksha_2026_27' || demand.title.includes('समान परीक्षा')) {
+    openSamanParikshaForm(schoolCode);
     return;
   }
 
@@ -5592,7 +5678,7 @@ function openFillDemandForSchoolModal(demandId, schoolCode) {
     type: 'Government'
   };
 
-  const existingSub = (STATE.demandSubmissions[demandId] && STATE.demandSubmissions[demandId][schoolCode]) || {};
+  const existingSub = getDemandSubmissionRecord(demandId, schoolCode);
   const existingData = existingSub.data || {};
 
   document.getElementById('form-modal-title').textContent = `${demand.title}`;
@@ -5607,47 +5693,59 @@ function openFillDemandForSchoolModal(demandId, schoolCode) {
   container.innerHTML = '';
 
   let fieldsHtml = `
-    <div style="background:#f1f5f9; border:1px solid #cbd5e1; border-radius:8px; padding:0.85rem 1rem; margin-bottom:1rem; display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:0.75rem; font-size:0.85rem">
-      <div><strong>विद्यालय:</strong> ${school.school_name}</div>
-      <div><strong>शाला दर्पण कोड:</strong> <code>${schoolCode}</code></div>
-      <div><strong>संबंधित PEEO:</strong> ${school.peeo_name}</div>
-      <div><strong>श्रेणी / प्रकार:</strong> ${school.type === 'Private' ? 'निजी/Pvt' : 'राजकीय/Govt'}</div>
+    <!-- Google Form Style Top Header Card -->
+    <div class="gform-header-card" style="background:#ffffff; border:1px solid #dadce0; border-top:10px solid #1a73e8; border-radius:8px; padding:1.25rem 1.5rem; margin-bottom:1.25rem; box-shadow:0 1px 3px rgba(60,64,67,0.08)">
+      <h3 style="color:#202124; font-size:1.25rem; font-weight:800; margin:0 0 0.4rem 0">
+        <i class="fas fa-clipboard-list text-primary"></i> ${demand.title}
+      </h3>
+      <div style="font-size:0.88rem; color:#5f6368; line-height:1.5">
+        ${demand.description || 'कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय द्वारा जारी अधिकृत प्रपत्र।'}
+      </div>
+      <div style="display:flex; gap:1.25rem; flex-wrap:wrap; margin-top:0.75rem; padding-top:0.75rem; border-top:1px solid #e2e8f0; font-size:0.85rem; color:#475569">
+        <div><strong>विद्यालय:</strong> ${school.school_name}</div>
+        <div><strong>कोड:</strong> <code>${schoolCode}</code></div>
+        <div><strong>संबंधित PEEO:</strong> ${school.peeo_name}</div>
+        <div><strong>वर्ग:</strong> ${school.type === 'Private' ? 'निजी' : 'राजकीय'}</div>
+      </div>
+      <div style="color:#d93025; font-size:0.8rem; font-weight:700; margin-top:0.5rem">
+        * सभी अनिवार्य प्रश्नों के उत्तर प्रविष्ट करें
+      </div>
     </div>
-
-    <div style="font-weight:700; color:#1e3a8a; margin-bottom:0.75rem; font-size:0.95rem">
-      <i class="fas fa-edit text-primary"></i> मांगी गई सूचना की प्रविष्टियां:
-    </div>
-
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem; margin-bottom:1.25rem">
   `;
 
+  // Each dynamic column rendered as an individual Google Form Question Card
   (demand.columns || []).forEach((col, idx) => {
     const existingVal = (existingData[col.name] !== undefined) ? existingData[col.name] : '';
     fieldsHtml += `
-      <div class="form-group" style="margin-bottom:0">
-        <label style="font-weight:700; color:#1e293b; margin-bottom:0.35rem; display:block">
-          ${idx + 1}. ${col.name} <span style="color:red">*</span>:
+      <div class="gform-card" style="background:#ffffff; border:1px solid #dadce0; border-radius:8px; padding:1.25rem 1.5rem; margin-bottom:1rem; box-shadow:0 1px 3px rgba(60,64,67,0.08); transition:all 0.2s">
+        <label style="font-weight:700; color:#202124; font-size:0.98rem; margin-bottom:0.35rem; display:block">
+          ${idx + 1}. ${col.name} <span style="color:#d93025">*</span>
         </label>
-        <input type="text" id="demand_input_col_${idx}" value="${existingVal}" placeholder="${col.placeholder || col.name + ' दर्ज करें'}" style="width:100%; padding:0.6rem 0.75rem; border:1.5px solid #cbd5e1; border-radius:6px; font-size:0.92rem; outline:none; transition:border-color 0.2s" onfocus="this.style.borderColor='#2563eb'" onblur="this.style.borderColor='#cbd5e1'">
+        <div style="font-size:0.8rem; color:#5f6368; margin-bottom:0.6rem">कृपया इस कॉलम हेतु सही मान अथवा छात्र संख्या दर्ज करें</div>
+        <input type="text" id="demand_input_col_${idx}" value="${existingVal}" placeholder="${col.placeholder || col.name + ' दर्ज करें'}" style="width:100%; padding:0.75rem 1rem; border:1.5px solid #dadce0; border-radius:6px; font-size:0.95rem; outline:none; transition:all 0.2s; background:#f8fafc" onfocus="this.style.borderColor='#1a73e8'; this.style.background='#fff'; this.style.boxShadow='0 0 0 2px rgba(26,115,232,0.2)'" onblur="this.style.borderColor='#dadce0'; this.style.boxShadow='none'">
       </div>
     `;
   });
 
+  // Google Form Submitter & Principal Details Card
   fieldsHtml += `
-    </div>
-
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1rem; background:#f8fafc; padding:0.85rem; border:1px solid #e2e8f0; border-radius:8px">
-      <div class="form-group" style="margin-bottom:0">
-        <label style="font-weight:700; color:#1e293b; margin-bottom:0.35rem; display:block">
-          <i class="fas fa-user-check text-primary"></i> प्रस्तुतकर्ता / संस्था प्रधान नाम <span style="color:red">*</span>:
-        </label>
-        <input type="text" id="demand-form-submitter-name" value="${existingSub.submitted_by || (STATE.currentUser?.role === 'school' ? STATE.currentUser.school_name : '')}" placeholder="संस्था प्रधान अथवा प्रभारी का नाम" style="width:100%; padding:0.55rem 0.75rem; border:1.5px solid #cbd5e1; border-radius:6px">
+    <div class="gform-card" style="background:#ffffff; border:1px solid #dadce0; border-radius:8px; padding:1.25rem 1.5rem; margin-bottom:1rem; box-shadow:0 1px 3px rgba(60,64,67,0.08)">
+      <div style="font-weight:700; color:#202124; font-size:1rem; margin-bottom:0.85rem">
+        <i class="fas fa-user-check text-primary"></i> प्रस्तुतकर्ता अधिकारी विवरण
       </div>
-      <div class="form-group" style="margin-bottom:0">
-        <label style="font-weight:700; color:#1e293b; margin-bottom:0.35rem; display:block">
-          <i class="fas fa-phone-alt text-success"></i> संपर्क मोबाइल नंबर <span style="color:red">*</span>:
-        </label>
-        <input type="text" id="demand-form-submitter-mobile" value="${existingSub.submitter_mobile || school.mobile || ''}" placeholder="10 अंकों का मोबाइल नंबर" style="width:100%; padding:0.55rem 0.75rem; border:1.5px solid #cbd5e1; border-radius:6px">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1rem">
+        <div>
+          <label style="font-weight:600; color:#374151; font-size:0.85rem; margin-bottom:0.3rem; display:block">
+            संस्था प्रधान / प्रभारी का नाम <span style="color:#d93025">*</span>:
+          </label>
+          <input type="text" id="demand-form-submitter-name" value="${existingSub.submitted_by || (STATE.currentUser?.role === 'school' ? STATE.currentUser.school_name : '')}" placeholder="नाम दर्ज करें" style="width:100%; padding:0.65rem 0.85rem; border:1.5px solid #dadce0; border-radius:6px; font-size:0.9rem">
+        </div>
+        <div>
+          <label style="font-weight:600; color:#374151; font-size:0.85rem; margin-bottom:0.3rem; display:block">
+            संपर्क मोबाइल नंबर <span style="color:#d93025">*</span>:
+          </label>
+          <input type="tel" id="demand-form-submitter-mobile" value="${existingSub.submitter_mobile || school.mobile || ''}" placeholder="10 अंकों का मोबाइल नंबर" style="width:100%; padding:0.65rem 0.85rem; border:1.5px solid #dadce0; border-radius:6px; font-size:0.9rem">
+        </div>
       </div>
     </div>
   `;
@@ -5785,6 +5883,13 @@ function openUniversalDemandPdfPreview(demandId, schoolCode) {
     return;
   }
 
+  // If this demand is Saman Pariksha, open the official Saman Pariksha Landscape PDF preview!
+  const dId = String(demand.id).toLowerCase();
+  if (dId === 'demand_saman_pariksha_2026' || dId.includes('saman_pariksha') || dId === 'saman_pariksha_2026_27' || demand.title.includes('समान परीक्षा')) {
+    openExamPdfPreview(schoolCode);
+    return;
+  }
+
   const targetSchools = getTargetSchoolsForDemand(demand);
   const school = targetSchools.find(s => s.shala_darpan_code === schoolCode) || STATE.schools56.find(s => s.shala_darpan_code === schoolCode) || {
     school_name: 'विद्यालय',
@@ -5794,12 +5899,7 @@ function openUniversalDemandPdfPreview(demandId, schoolCode) {
     category: 'राजकीय'
   };
 
-  const sub = (STATE.demandSubmissions[demandId] && STATE.demandSubmissions[demandId][schoolCode]) || {
-    data: {},
-    submitted_by: 'संस्था प्रधान',
-    submitter_mobile: '',
-    submitted_at: new Date().toLocaleString('hi-IN')
-  };
+  const sub = getDemandSubmissionRecord(demandId, schoolCode);
 
   const container = document.getElementById('printable-universal-demand-content');
   if (!container) return;
