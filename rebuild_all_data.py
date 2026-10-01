@@ -207,7 +207,7 @@ def main():
             mp = {'name': 'AJAY KUMAR DHABAI', 'mob': '9549240545', 'sd_code': '221780'}
             me = 'principalbhinai123@gmail.com'
         elif 'DEOLIYA' in p:
-            mp = {'name': 'PURNIMA / RAKESH BIRAWAT', 'mob': '9414343109', 'sd_code': '221754'}
+            mp = {'name': 'PURNIMA', 'mob': '9414343109', 'sd_code': '221754'}
             me = 'deoliakalan105@gmail.com'
 
         sd_code = peeo_sd_codes.get(p, mp.get('sd_code', f"2217{idx:02d}"))

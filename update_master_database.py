@@ -241,7 +241,7 @@ def main():
             mobile = '9549240545'
             me = 'principalbhinai123@gmail.com'
         elif 'DEOLIYA' in p:
-            principal_name = 'PURNIMA / RAKESH BIRAWAT'
+            principal_name = 'PURNIMA'
             mobile = '9414343109'
             me = 'deoliakalan105@gmail.com'
 

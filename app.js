@@ -88,11 +88,10 @@ function initMasterData() {
   ];
 
   // Versioned cache check to guarantee fresh master data with 56 schools and Saman Pariksha demand
-  const DATA_VERSION = 'v5_2026_09_30_saman_pariksha_56_schools';
+  const DATA_VERSION = 'v7_2026_10_01_peeo_deoliya_purnima_rakesh';
   if (localStorage.getItem('cbeo_data_version') !== DATA_VERSION) {
     localStorage.removeItem('cbeo_peeos_data');
     localStorage.removeItem('cbeo_staff_data');
-    localStorage.removeItem('cbeo_demands');
     localStorage.setItem('cbeo_data_version', DATA_VERSION);
   }
 
@@ -263,6 +262,26 @@ function setupAutoLogin() {
   if (savedUser) {
     try {
       STATE.currentUser = JSON.parse(savedUser);
+      // Auto-synchronize currentUser with latest master data to prevent stale cache
+      if (STATE.currentUser && STATE.currentUser.role === 'peeo') {
+        const peeo = STATE.peeos.find(p => p.shala_darpan_code === STATE.currentUser.shala_darpan_code);
+        if (peeo) {
+          STATE.currentUser.principal_incharge = peeo.principal_incharge;
+          STATE.currentUser.mobile = peeo.mobile;
+          STATE.currentUser.peeo_name = peeo.peeo_name;
+          STATE.currentUser.schools = peeo.schools;
+          localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
+        }
+      } else if (STATE.currentUser && STATE.currentUser.role === 'school') {
+        const sch = STATE.schools56.find(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code);
+        if (sch) {
+          STATE.currentUser.principal_incharge = sch.principal_name || '';
+          STATE.currentUser.principal_name = sch.principal_name || '';
+          STATE.currentUser.mobile = sch.principal_mobile || sch.mobile || '';
+          STATE.currentUser.school_name = sch.school_name;
+          localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
+        }
+      }
     } catch (e) {
       STATE.currentUser = null;
     }
@@ -393,8 +412,9 @@ function updateUserHeaderBadge() {
         : `${STATE.currentUser.peeo_name} (${sdCode})`;
     }
     if (displaySubtext) {
-      displaySubtext.textContent = STATE.currentUser.principal_incharge
-        ? `प्रभारी: ${STATE.currentUser.principal_incharge} | मो.: ${STATE.currentUser.mobile || '---'}`
+      const headName = STATE.currentUser.principal_incharge || STATE.currentUser.principal_name || '';
+      displaySubtext.textContent = headName
+        ? `संस्था प्रधान: ${headName} | मो.: ${STATE.currentUser.mobile || '---'}`
         : `शाला दर्पण कोड: ${sdCode}`;
     }
     if (adminTab) adminTab.style.display = 'none';
