@@ -21032,21 +21032,7 @@ const MASTER_CBEO_DATA = {
       "incharge_mobile": ""
     }
   ],
-  "demands": [
-    {
-      "id": "DEMAND_SAMAN_PARIKSHA_2026",
-      "title": "समान परीक्षा (सत्र 2026-27) - प्रश्न-पत्र मांग एवं कक्षा 9 से 12 नामांकन प्रपत्र",
-      "title_en": "District Uniform Examination 2026-27: Question Paper Indent & Class 9-12 Enrollment",
-      "description": "सत्र 2026-27 समान परीक्षा हेतु ब्लॉक के समस्त 57 माध्यमिक एवं उच्च माध्यमिक विद्यालयों (49 राजकीय + 8 निजी) के कक्षा 9, 10, 11 एवं 12 के विषयवार नामांकन एवं प्रश्न-पत्र मांग की प्रविष्टि।",
-      "created_at": "2026-09-30",
-      "deadline": "2026-10-05",
-      "status": "active",
-      "is_published": true,
-      "school_scope": "56_schools",
-      "scope_label": "समस्त 57 माध्यमिक एवं उच्च माध्यमिक विद्यालय (49 राजकीय + 8 निजी)",
-      "school_count": 57
-    }
-  ],
+  "demands": [],
   "admin_config": {
     "peeo_tab_access": {
       "demand": false,

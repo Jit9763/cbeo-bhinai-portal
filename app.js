@@ -261,8 +261,17 @@ function initMasterData() {
     }
   } else {
     STATE.demands = (MASTER_CBEO_DATA && MASTER_CBEO_DATA.demands) || [];
-    saveDemandsToStorage();
   }
+
+  // Filter out any duplicate Saman Pariksha entry to prevent duplicate tab confusion (permanently handled by dedicated tab)
+  STATE.demands = (STATE.demands || []).filter(d => 
+    d && !d.archived && 
+    d.id !== 'saman_pariksha_2026_27' && 
+    d.id !== 'DEMAND_SAMAN_PARIKSHA_2026' && 
+    !d.id.toLowerCase().includes('saman_pariksha') &&
+    !(d.title && d.title.includes('समान परीक्षा'))
+  );
+  saveDemandsToStorage();
 
   // 4B. Dynamic Demand Submissions from localStorage
   try {
@@ -5226,7 +5235,13 @@ function renderDynamicNavTabs() {
 
   container.querySelectorAll('.nav-tab-dynamic-demand').forEach(t => t.remove());
 
-  const activeDemands = (STATE.demands || []).filter(d => !d.archived && d.id !== 'saman_pariksha_2026_27');
+  const activeDemands = (STATE.demands || []).filter(d => 
+    !d.archived && 
+    d.id !== 'saman_pariksha_2026_27' && 
+    d.id !== 'DEMAND_SAMAN_PARIKSHA_2026' && 
+    !d.id.toLowerCase().includes('saman_pariksha') &&
+    !(d.title && d.title.includes('समान परीक्षा'))
+  );
   const user = STATE.currentUser;
 
   const visibleDemands = activeDemands.filter(d => {
@@ -6319,7 +6334,13 @@ function renderAdminMatrix() {
   const tbody = document.getElementById('admin-matrix-tbody');
   if (!theadTr || !tbody) return;
 
-  const activeDemands = (STATE.demands || []).filter(d => !d.archived && d.id !== 'saman_pariksha_2026_27');
+  const activeDemands = (STATE.demands || []).filter(d => 
+    !d.archived && 
+    d.id !== 'saman_pariksha_2026_27' && 
+    d.id !== 'DEMAND_SAMAN_PARIKSHA_2026' && 
+    !d.id.toLowerCase().includes('saman_pariksha') &&
+    !(d.title && d.title.includes('समान परीक्षा'))
+  );
 
   // Build matrix thead
   theadTr.innerHTML = `
