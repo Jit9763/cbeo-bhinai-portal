@@ -772,6 +772,13 @@
       </div>
     </section>
 
+    <!-- 5B. DYNAMIC INFORMATION DEMAND DEDICATED PORTAL VIEW -->
+    <section id="view-dynamic-demand" class="content-view">
+      <div id="dynamic-demand-portal-container">
+        <!-- Rendered dynamically by renderDynamicDemandPortalView() -->
+      </div>
+    </section>
+
     <!-- 6. 7-DAY ARCHIVE VIEW -->
     <section id="view-archive" class="content-view">
       <div class="section-box">
@@ -1018,34 +1025,20 @@
         <!-- Form Fields Grid / Dynamic Row Entries -->
         <div id="dynamic-form-fields-container"></div>
 
-        <!-- Official Rectangular Rubber Stamp & Signature Pad Section -->
-        <div class="seal-signature-container">
-          <!-- Dynamic Rectangular Stamp Preview -->
-          <div class="seal-preview-box">
-            <h4 style="font-size:0.85rem; font-weight:700; color:#1e3a8a; margin-bottom:0.5rem">
-              <i class="fas fa-stamp"></i> आधिकारिक सीधी मोहर (Official PEEO Stamp)
-            </h4>
-            <div class="rubber-stamp" id="form-rubber-stamp">
-              <div class="stamp-line1">प्रधानाचार्य एवं पदेन पंचायत प्रारम्भिक शिक्षा अधिकारी (PEEO)</div>
-              <div class="stamp-line2" id="stamp-peeo-name">रा.उ.मा.वि. देवलिया कलां (भिनाय)</div>
-              <div class="stamp-line3">पंचायत समिति - भिनाय (केकड़ी/अजमेर)</div>
-            </div>
-            <span style="font-size:0.75rem; color:#16a34a; font-weight:600; margin-top:6px">
-              <i class="fas fa-check-circle"></i> सिस्टम जनरेटेड अधिकृत सीधी मोहर
-            </span>
-          </div>
-
-          <!-- Digital Signature Canvas -->
-          <div class="signature-pad-box">
-            <h4 style="font-size:0.85rem; font-weight:700; color:#1e3a8a; margin-bottom:0.35rem">
-              <i class="fas fa-pen-nib"></i> डिजिटल हस्ताक्षर (Digital Signature Pad)
-            </h4>
-            <canvas id="signature-canvas" class="signature-canvas"></canvas>
-            <div class="signature-actions">
-              <span>माउस या मोबाइल टच से हस्ताक्षर करें</span>
-              <button class="btn btn-outline-light btn-sm" style="color:#dc2626; border-color:#fca5a5" onclick="clearSignatureCanvas()">
+        <!-- Official Digital Signature Pad Section (No rubber stamp, only official signature) -->
+        <div style="margin-top:1rem; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:8px; padding:1rem">
+          <div class="signature-pad-box" style="width:100%">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem">
+              <h4 style="font-size:0.9rem; font-weight:800; color:#1e3a8a; margin:0">
+                <i class="fas fa-pen-nib"></i> संस्था प्रधान / अधिकृत प्रस्तुतकर्ता डिजिटल हस्ताक्षर (Digital Signature)
+              </h4>
+              <button type="button" class="btn btn-outline-light btn-sm" style="color:#dc2626; border-color:#fca5a5; font-size:0.75rem; padding:2px 8px" onclick="clearSignatureCanvas()">
                 <i class="fas fa-eraser"></i> साफ़ करें
               </button>
+            </div>
+            <canvas id="signature-canvas" class="signature-canvas" style="width:100%; height:110px; background:#fff; border:1.5px dashed #94a3b8; border-radius:6px; cursor:crosshair"></canvas>
+            <div style="font-size:0.75rem; color:#64748b; margin-top:4px">
+              <i class="fas fa-info-circle"></i> माउस या मोबाइल टच स्क्रीन द्वारा बॉक्स के अंदर हस्ताक्षर करें। यह हस्ताक्षर अधिकृत A4 PDF प्रपत्र में संलग्न रहेगा।
             </div>
           </div>
         </div>
@@ -1958,6 +1951,50 @@
       </div>
       <div class="modal-footer" style="padding:0.75rem 1.25rem; display:flex; justify-content:flex-end">
         <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-select-peeo-report')">बंद करें</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10B. UNIVERSAL DYNAMIC DEMAND PDF PREVIEW MODAL (A4 LANDSCAPE, NO STAMP) -->
+  <div id="modal-universal-demand-pdf" class="modal-overlay">
+    <div class="modal-card" style="max-width:1120px; width:96vw; padding:0; background:#f8fafc; overflow:hidden">
+      <div class="modal-header" style="background:#1b365d; color:#ffffff; padding:1rem 1.5rem">
+        <h3 style="color:#ffffff; font-size:1.15rem; display:flex; align-items:center; gap:0.5rem" id="universal-demand-pdf-title">
+          <i class="fas fa-file-pdf text-danger"></i> अधिकृत प्रपत्र (Printable Official PDF)
+        </h3>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+          <button class="btn btn-warning btn-sm" onclick="downloadUniversalDemandPdfDirect()" title="सीधे PDF डाउनलोड करें" style="font-weight:700">
+            <i class="fas fa-download"></i> PDF डाउनलोड
+          </button>
+          <button class="btn btn-whatsapp btn-sm" onclick="shareUniversalDemandPdfWhatsApp()" title="विवरण WhatsApp पर शेयर करें">
+            <i class="fab fa-whatsapp"></i> WhatsApp शेयर
+          </button>
+          <button class="btn btn-success btn-sm" onclick="printUniversalDemandDocument()" title="ब्राउज़र प्रिंट / सेव एज PDF">
+            <i class="fas fa-print"></i> प्रिंट / PDF सेव
+          </button>
+          <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-universal-demand-pdf')">&times;</button>
+        </div>
+      </div>
+      <div class="modal-body" style="padding:1.5rem; max-height:calc(90vh - 130px); overflow-y:auto">
+        <div id="printable-universal-demand-content" class="printable-exam-sheet">
+          <!-- Populated dynamically with official government layout, clean table, and signatures -->
+        </div>
+      </div>
+      <div class="modal-footer" style="padding:0.85rem 1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-universal-demand-pdf')">
+          बंद करें (Close)
+        </button>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+          <button class="btn btn-warning" onclick="downloadUniversalDemandPdfDirect()" style="font-weight:700">
+            <i class="fas fa-file-download"></i> सीधे PDF डाउनलोड करें
+          </button>
+          <button class="btn btn-whatsapp" onclick="shareUniversalDemandPdfWhatsApp()">
+            <i class="fab fa-whatsapp"></i> WhatsApp शेयर
+          </button>
+          <button class="btn btn-primary" onclick="printUniversalDemandDocument()">
+            <i class="fas fa-print"></i> A4 साइज प्रिंट करें (Print)
+          </button>
+        </div>
       </div>
     </div>
   </div>
