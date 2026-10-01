@@ -1100,7 +1100,7 @@
           <!-- Quick 1-Click Select -->
           <div class="login-field-group">
             <label class="login-label">
-              <i class="fas fa-bolt text-warning"></i> त्वरित खाता चयन (1-Click Quick Login):
+              <i class="fas fa-university text-primary"></i> 1. PEEO परिक्षेत्र चुनें (25 PEEOs):
             </label>
             <div class="login-input-wrap">
               <select id="login-quick-select" class="login-select" onchange="onQuickSelectUser()">
@@ -1109,18 +1109,15 @@
                   <option value="cbeo_admin">प्रमिला रासलोत (CBEO) - मुख्य ब्लॉक शिक्षा अधिकारी</option>
                 </optgroup>
                 <optgroup label="25 PEEO परिक्षेत्र (शा.दा. कोड अनुसार)" id="login-peeo-optgroup">
-                  <!-- Populated by JS -->
-                </optgroup>
-                <optgroup label="माध्यमिक व उच्च माध्यमिक विद्यालय (58 स्कूल)" id="login-schools56-optgroup">
-                  <!-- Populated by JS when policy is not 'all' -->
+                  <!-- Populated by JS with 25 PEEOs only -->
                 </optgroup>
               </select>
             </div>
 
-            <!-- 2nd Tier: Subordinate Schools under selected PEEO (Auto 1-Click Login) -->
+            <!-- 2nd Tier: Schools under selected PEEO including the PEEO school itself -->
             <div id="login-school-sub-wrap" style="display:none; margin-top:0.75rem; background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:8px; padding:0.75rem">
               <label class="login-label" style="color:#1e40af; font-weight:700; margin-bottom:0.35rem">
-                <i class="fas fa-school text-primary"></i> 2. PEEO अधीनस्थ विद्यालय चुनें (Auto 1-Click Login):
+                <i class="fas fa-school text-primary"></i> 2. विद्यालय चुनें (PEEO स्कूल सहित):
               </label>
               <div class="login-input-wrap">
                 <select id="login-school-sub-select" class="login-select" onchange="onQuickSelectSchoolUnderPeeo()" style="background:#ffffff; border:1.5px solid #3b82f6; font-weight:700; color:#1e3a8a">
@@ -1128,7 +1125,7 @@
                 </select>
               </div>
               <div id="login-school-sub-hint" style="font-size:0.75rem; color:#1d4ed8; margin-top:4px">
-                <i class="fas fa-magic"></i> विद्यालय चुनते ही यूजर ID (शाला दर्पण/PSP कोड) व पासवर्ड स्वतः भर जाएगा।
+                <i class="fas fa-magic"></i> विद्यालय चुनते ही User ID व डिफ़ॉल्ट Password स्वतः सेट हो जाएगा (बदला हुआ पासवर्ड स्वयं टाइप करें)।
               </div>
             </div>
           </div>

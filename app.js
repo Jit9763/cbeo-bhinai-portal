@@ -720,9 +720,7 @@ function openLoginModal(isMandatory = false) {
   const select = document.getElementById('login-quick-select');
   const optgroupPeeo = document.getElementById('login-peeo-optgroup');
   const optgroupSchools56 = document.getElementById('login-schools56-optgroup');
-  const subWrap = document.getElementById('login-school-sub-wrap');
-
-  const policy = STATE.schoolLoginPolicy || 'sec_srsec';
+  if (optgroupSchools56) optgroupSchools56.remove(); // Strict 2-tier: only 25 PEEOs in Tier 1
 
   if (optgroupPeeo) {
     optgroupPeeo.innerHTML = '';
@@ -734,44 +732,23 @@ function openLoginModal(isMandatory = false) {
     });
   }
 
-  // Populate 1-click schools in first dropdown if permitted
-  if (optgroupSchools56) {
-    optgroupSchools56.innerHTML = '';
-    if (policy === 'peeo_nodal') {
-      optgroupSchools56.style.display = 'none';
+  if (STATE.currentUser) {
+    const curCode = STATE.currentUser.shala_darpan_code || STATE.currentUser.username;
+    if (STATE.currentUser.role === 'admin') {
+      if (select) select.value = (STATE.currentUser.username === 'cbeo_admin' || curCode === '8140') ? 'cbeo_admin' : 'jitendra_admin';
     } else {
-      const allowedSchools = (STATE.schools56 || []).filter(s => isSchoolLoginAllowed(s.shala_darpan_code));
-      if (allowedSchools.length > 0) {
-        optgroupSchools56.style.display = '';
-        optgroupSchools56.label = (policy === 'all') 
-          ? `माध्यमिक व उच्च माध्यमिक विद्यालय (त्वरित 1-क्लिक)` 
-          : `अनुमत विद्यालय (${allowedSchools.length} स्कूल)`;
-        allowedSchools.forEach(s => {
-          const opt = document.createElement('option');
-          opt.value = `sch_${s.shala_darpan_code}`;
-          opt.textContent = `[${s.type === 'Private' ? 'निजी' : 'राजकीय'}] ${s.shala_darpan_code} - ${s.school_name}`;
-          optgroupSchools56.appendChild(opt);
-        });
-      } else {
-        optgroupSchools56.style.display = 'none';
+      const parentPeeo = STATE.peeos.find(p => 
+        p.shala_darpan_code === curCode || 
+        p.shala_darpan_code === STATE.currentUser.peeo_code ||
+        (p.schools || []).some(s => s.shala_darpan_code === curCode)
+      );
+      if (select && parentPeeo) {
+        select.value = parentPeeo.shala_darpan_code;
       }
     }
-  }
-
-  if (subWrap && policy === 'peeo_nodal') {
-    subWrap.style.display = 'none';
-  }
-
-  if (STATE.currentUser) {
-    if (select) {
-      select.value = (STATE.currentUser.role === 'admin') ? STATE.currentUser.username : (STATE.currentUser.peeo_code || STATE.currentUser.shala_darpan_code);
-    }
-    document.getElementById('login-username').value = STATE.currentUser.shala_darpan_code;
   } else {
-    // Default selection: PEEO Deoliya Kalan
-    if (select) {
-      select.value = '221754';
-    }
+    // Default selection: PEEO Deoliya Kalan (221754)
+    if (select) select.value = '221754';
   }
 
   onQuickSelectUser();
@@ -812,95 +789,50 @@ function onQuickSelectUser() {
     return;
   }
 
-  // If a school from the 58 schools list is selected (in non-'all' policy mode)
-  if (val && val.startsWith('sch_')) {
-    if (subWrap) subWrap.style.display = 'none';
-    const sCode = val.replace('sch_', '');
-    usernameInput.value = sCode;
-    const defaultPwd = sCode;
-    const sheetPwd = STATE.sheetAuthPasswords[sCode]?.password || STATE.customPasswords[sCode];
-    const isChanged = sheetPwd && sheetPwd !== defaultPwd;
-
-    if (isChanged) {
-      passwordInput.value = '';
-      passwordInput.placeholder = 'नया बदला हुआ पासवर्ड टाइप करें';
-      if (hintBox) {
-        hintBox.innerHTML = `<i class="fas fa-lock text-warning"></i> <span><strong>पासवर्ड बदला हुआ है:</strong> इस विद्यालय का पासवर्ड परिवर्तित है। कृपया Google Sheet में सेट किया गया नया पासवर्ड स्वयं टाइप करें।</span>`;
-        hintBox.style.background = '#fffbeb';
-        hintBox.style.color = '#92400e';
-      }
-    } else {
-      passwordInput.value = defaultPwd;
-      if (hintBox) {
-        hintBox.innerHTML = `<i class="fas fa-check-circle text-success"></i> <span><strong>विद्यालय चयनित:</strong> कोड <code>${sCode}</code> एवं डिफ़ॉल्ट पासवर्ड स्वतः भर दिया गया है। 'लॉगिन करें' दबाएं।</span>`;
-        hintBox.style.background = '#ecfdf5';
-        hintBox.style.color = '#065f46';
-      }
-    }
-    return;
-  }
-
   const peeo = STATE.peeos.find(p => p.shala_darpan_code === val || p.peeo_id === val);
   if (peeo) {
-    usernameInput.value = peeo.shala_darpan_code;
-    const peeoDefaultPwd = peeo.shala_darpan_code;
-    const peeoSheetPwd = STATE.sheetAuthPasswords[peeo.shala_darpan_code]?.password || STATE.customPasswords[peeo.shala_darpan_code];
-    const isPeeoChanged = peeoSheetPwd && peeoSheetPwd !== peeoDefaultPwd;
-
-    if (isPeeoChanged) {
-      passwordInput.value = '';
-      passwordInput.placeholder = 'नया बदला हुआ पासवर्ड टाइप करें';
-      if (hintBox) {
-        hintBox.innerHTML = `<i class="fas fa-lock text-warning"></i> <span><strong>पासवर्ड बदला हुआ है:</strong> इस PEEO का पासवर्ड परिवर्तित है। कृपया अपना नया पासवर्ड यहाँ टाइप करें।</span>`;
-        hintBox.style.background = '#fffbeb';
-        hintBox.style.color = '#92400e';
-      }
-    } else {
-      passwordInput.value = peeoDefaultPwd;
-      if (hintBox) {
-        hintBox.innerHTML = '<i class="fas fa-lightbulb text-warning"></i> <span><strong>संकेत:</strong> PEEO एवं विद्यालयों का डिफ़ॉल्ट पासवर्ड उनका <strong>शाला दर्पण / PSP कोड</strong> ही है।</span>';
-        hintBox.style.background = '#e0f2fe';
-        hintBox.style.color = '#0369a1';
-      }
-    }
-
-    const policy = STATE.schoolLoginPolicy || 'sec_srsec';
-
-    // 2nd Tier Subordinate Schools Dropdown:
-    // If policy is 'peeo_nodal', subordinate school login is blocked, hide subWrap
-    if (policy === 'peeo_nodal') {
-      if (subWrap) subWrap.style.display = 'none';
-    } else if (subWrap && subSelect) {
+    if (subWrap && subSelect) {
       subSelect.innerHTML = '';
 
-      // Option 1: PEEO HQ / Nodal School itself
+      // 1. PEEO School itself (HQ Senior Secondary School)
       const peeoSchool = (STATE.schools56 || []).find(s => s.shala_darpan_code === peeo.shala_darpan_code) || 
                          (peeo.schools || []).find(s => s.shala_darpan_code === peeo.shala_darpan_code) || 
                          { school_name: peeo.peeo_name };
 
       const optPeeo = document.createElement('option');
       optPeeo.value = peeo.shala_darpan_code;
-      optPeeo.textContent = `🏛️ [PEEO नोडल HQ विद्यालय] ${peeo.shala_darpan_code} - ${peeoSchool.school_name}`;
+      optPeeo.textContent = `🏛️ [PEEO स्कूल] ${peeo.shala_darpan_code} - ${peeoSchool.school_name}`;
       subSelect.appendChild(optPeeo);
 
-      // Followed by all allowed subordinate schools under this PEEO
-      let allowedCount = 0;
-      (peeo.schools || []).forEach(s => {
-        const sCode = String(s.shala_darpan_code || s.dise_code || s.psp_code || '').trim();
-        if (sCode && sCode !== peeo.shala_darpan_code) {
-          if (isSchoolLoginAllowed(sCode)) {
-            allowedCount++;
-            const opt = document.createElement('option');
-            opt.value = sCode;
-            opt.textContent = `🏫 [${s.type === 'Private' ? 'निजी' : 'राजकीय'}] ${sCode} - ${s.school_name}`;
-            subSelect.appendChild(opt);
+      // 2. Followed by all allowed subordinate schools under this PEEO matching active policy
+      const policy = STATE.schoolLoginPolicy || 'sec_srsec';
+      if (policy !== 'peeo_nodal') {
+        (peeo.schools || []).forEach(s => {
+          const sCode = String(s.shala_darpan_code || s.dise_code || s.psp_code || '').trim();
+          if (sCode && sCode !== peeo.shala_darpan_code) {
+            if (isSchoolLoginAllowed(sCode)) {
+              const opt = document.createElement('option');
+              opt.value = sCode;
+              opt.textContent = `🏫 [${s.type === 'Private' ? 'निजी' : 'राजकीय'}] ${sCode} - ${s.school_name}`;
+              subSelect.appendChild(opt);
+            }
           }
-        }
-      });
+        });
+      }
 
       subWrap.style.display = 'block';
-    } else {
-      if (subWrap) subWrap.style.display = 'none';
+
+      // If user had a previously selected/saved school in this PEEO, select it
+      const prevCode = STATE.currentUser?.shala_darpan_code;
+      const matchingOpt = Array.from(subSelect.options).find(o => o.value === prevCode);
+      if (matchingOpt) {
+        subSelect.value = prevCode;
+      } else {
+        subSelect.selectedIndex = 0;
+      }
+
+      // Automatically trigger school selection to fill credentials
+      onQuickSelectSchoolUnderPeeo();
     }
   }
 }
@@ -910,6 +842,7 @@ function onQuickSelectSchoolUnderPeeo() {
   const usernameInput = document.getElementById('login-username');
   const passwordInput = document.getElementById('login-password');
   const hintText = document.getElementById('login-school-sub-hint');
+  const hintBox = document.getElementById('login-password-hint');
   if (!subSelect || !usernameInput || !passwordInput) return;
 
   const code = subSelect.value;
@@ -921,19 +854,28 @@ function onQuickSelectSchoolUnderPeeo() {
   const defaultPwd = code;
   const sheetPwd = STATE.sheetAuthPasswords[code]?.password || STATE.customPasswords[code];
   const isChanged = sheetPwd && sheetPwd !== defaultPwd;
+  const selectedText = subSelect.options[subSelect.selectedIndex]?.text || code;
 
   if (isChanged) {
     passwordInput.value = '';
     passwordInput.placeholder = 'नया बदला हुआ पासवर्ड टाइप करें';
     if (hintText) {
-      const selectedText = subSelect.options[subSelect.selectedIndex]?.text || '';
       hintText.innerHTML = `🔒 <strong>चयनित:</strong> ${selectedText} | <span style="color:#b45309; font-weight:bold">पासवर्ड बदला जा चुका है, कृपया Google Sheet में सेट किया गया नया पासवर्ड यहाँ टाइप करें।</span>`;
+    }
+    if (hintBox) {
+      hintBox.innerHTML = `<i class="fas fa-lock text-warning"></i> <span><strong>पासवर्ड बदला हुआ है:</strong> इस विद्यालय/PEEO का पासवर्ड परिवर्तित है। कृपया Google Sheet में सेट किया गया नया पासवर्ड स्वयं टाइप करें।</span>`;
+      hintBox.style.background = '#fffbeb';
+      hintBox.style.color = '#92400e';
     }
   } else {
     passwordInput.value = defaultPwd;
     if (hintText) {
-      const selectedText = subSelect.options[subSelect.selectedIndex]?.text || '';
       hintText.innerHTML = `✨ <strong>चयनित:</strong> ${selectedText} | User ID व डिफ़ॉल्ट Password स्वतः भर गया है। <span style="color:#16a34a; font-weight:bold">लॉगिन बटन दबाएं!</span>`;
+    }
+    if (hintBox) {
+      hintBox.innerHTML = `<i class="fas fa-check-circle text-success"></i> <span><strong>विद्यालय चयनित:</strong> कोड <code>${code}</code> एवं डिफ़ॉल्ट पासवर्ड स्वतः भर दिया गया है। 'लॉगिन करें' दबाएं।</span>`;
+      hintBox.style.background = '#ecfdf5';
+      hintBox.style.color = '#065f46';
     }
   }
 }
@@ -1332,6 +1274,12 @@ function syncAuthFromGoogleSheet(callback) {
             localStorage.setItem('cbeo_school_login_policy', cloudPolicy);
             updateSchoolManagementPolicyUI();
           }
+        }
+
+        // If the login modal is currently active, re-check credentials with synced Google Sheet passwords
+        const modalLogin = document.getElementById('modal-login');
+        if (modalLogin && modalLogin.classList.contains('active')) {
+          onQuickSelectSchoolUnderPeeo();
         }
 
         if (callback) callback(data.users);

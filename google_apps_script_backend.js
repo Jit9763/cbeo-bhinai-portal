@@ -87,7 +87,6 @@ function doPost(e) {
           authSheet.getRange(r + 1, 5).setValue(newPass); // Col E: Password
           authSheet.getRange(r + 1, 7).setValue(Utilities.formatDate(new Date(), "GMT+5:30", "dd-MM-yyyy HH:mm:ss")); // Col G: Last_Updated
           updated = true;
-          break;
         }
       }
 
