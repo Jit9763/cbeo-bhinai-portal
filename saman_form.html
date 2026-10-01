@@ -922,7 +922,7 @@
         <label style="display:flex; align-items:flex-start; gap:0.75rem; cursor:pointer">
           <input type="checkbox" id="f-certify-check" checked style="width:20px; height:20px; margin-top:2px">
           <span style="font-size:0.85rem; color:#1e40af; line-height:1.55">
-            <strong>सत्यापन एवं उत्तरदायित्व घोषणा:</strong> प्रमाणित किया जाता है कि उपर्युक्त परीक्षा संबंधी सभी छात्र संख्या, संकाय एवं विषयवार प्रविष्टियों का विद्यालय की प्रवेश पंजिका व शाला दर्पण पोर्टल से शत-प्रतिशत मिलान कर लिया गया है तथा इसमें कोई लिपिकीय अथवा तथ्यात्मक त्रुटि नहीं है। यदि भविष्य में किसी भी प्रकार की त्रुटि, विसंगति अथवा प्रश्न-पत्रों की कमी/अधिकता पाई जाती है, तो इसका संपूर्ण व्यक्तिगत एवं विभागीय उत्तरदायित्व संबंधित संस्था प्रधान एवं परीक्षा प्रभारी / संबंधित PEEO का होगा।
+            <strong>सत्यापन एवं उत्तरदायित्व घोषणा:</strong> प्रमाणित किया जाता है कि उपर्युक्त परीक्षा संबंधी सभी छात्र संख्या, संकाय एवं विषयवार प्रविष्टियों का विद्यालय की प्रवेश पंजिका व शाला दर्पण पोर्टल से शत-प्रतिशत मिलान कर लिया गया है तथा इसमें कोई लिपिकीय अथवा तथ्यात्मक त्रुटि नहीं है। यदि भविष्य में किसी भी प्रकार की त्रुटि, विसंगति अथवा प्रश्न-पत्रों की कमी/अधिकता पाई जाती है, तो इसका संपूर्ण व्यक्तिगत एवं विभागीय उत्तरदायित्व संबंधित संस्था प्रधान एवं परीक्षा प्रभारी का होगा।
           </span>
         </label>
       </div>
@@ -931,7 +931,7 @@
       <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:1rem; margin-bottom:1.25rem">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem">
           <label style="font-weight:700; color:#1e3a8a; font-size:0.88rem; display:flex; align-items:center; gap:0.4rem">
-            <i class="fas fa-pen-nib text-primary"></i> संस्था प्रधान / PEEO डिजिटल हस्ताक्षर (वैकल्पिक):
+            <i class="fas fa-pen-nib text-primary"></i> संस्था प्रधान डिजिटल हस्ताक्षर (वैकल्पिक):
           </label>
           <button type="button" class="btn btn-outline btn-sm" onclick="clearStandaloneSignature()" style="color:#dc2626; border-color:#fca5a5; padding:2px 8px; font-size:0.75rem">
             <i class="fas fa-eraser"></i> मिटाएं (Clear)
@@ -948,9 +948,7 @@
       <!-- Preview Seal -->
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; align-items:center; text-align:center">
         <div style="border:1px dashed #cbd5e1; border-radius:8px; padding:0.75rem; background:#f8fafc">
-          <div style="height:40px; display:flex; align-items:center; justify-content:center; color:#2563eb; font-family:'Brush Script MT', cursive; font-size:1.3rem" id="f-sign-incharge-preview">
-            हस्ताक्षर परीक्षा प्रभारी
-          </div>
+          <div style="height:40px; display:flex; align-items:center; justify-content:center" id="f-sign-incharge-preview"></div>
           <div style="border-top:1px solid #94a3b8; padding-top:0.35rem; font-size:0.8rem; font-weight:700">हस्ताक्षर परीक्षा प्रभारी</div>
         </div>
 
@@ -963,10 +961,8 @@
         </div>
 
         <div style="border:1px dashed #cbd5e1; border-radius:8px; padding:0.75rem; background:#f8fafc">
-          <div style="height:40px; display:flex; align-items:center; justify-content:center; color:#1e3a8a; font-family:'Brush Script MT', cursive; font-size:1.3rem" id="f-sign-principal-preview">
-            हस्ताक्षर संस्था प्रधान
-          </div>
-          <div style="border-top:1px solid #94a3b8; padding-top:0.35rem; font-size:0.8rem; font-weight:700">हस्ताक्षर मय सील संस्था प्रधान</div>
+          <div style="height:40px; display:flex; align-items:center; justify-content:center" id="f-sign-principal-preview"></div>
+          <div style="border-top:1px solid #94a3b8; padding-top:0.35rem; font-size:0.8rem; font-weight:700">हस्ताक्षर संस्था प्रधान</div>
         </div>
       </div>
     </div>
@@ -1308,10 +1304,9 @@
       document.getElementById('f-sum-c12').textContent = c12Total;
       document.getElementById('f-sum-grand').textContent = grand;
 
-      const pName = document.getElementById('f-principal-name')?.value || 'संस्था प्रधान';
-      const iName = document.getElementById('f-incharge-name')?.value || 'परीक्षा प्रभारी';
-      document.getElementById('f-sign-principal-preview').textContent = pName;
-      document.getElementById('f-sign-incharge-preview').textContent = iName;
+      // Sign previews: keep clean, no fake cursive name
+      if (document.getElementById('f-sign-principal-preview')) document.getElementById('f-sign-principal-preview').innerHTML = '';
+      if (document.getElementById('f-sign-incharge-preview')) document.getElementById('f-sign-incharge-preview').innerHTML = '';
     }
 
     function toggleNilClass(cls) {

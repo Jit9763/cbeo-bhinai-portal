@@ -953,11 +953,11 @@ function renderSamanParikshaPeeoView() {
   } else {
     // PEEO login
     targetSchools = STATE.schools56.filter(s => 
-      s.peeo_name.toLowerCase().includes(STATE.currentUser.peeo_name.toLowerCase()) ||
+      (STATE.currentUser.peeo_name && s.peeo_name && s.peeo_name.toLowerCase().includes(STATE.currentUser.peeo_name.toLowerCase())) ||
       s.peeo_code === STATE.currentUser.shala_darpan_code ||
       STATE.currentUser.schools?.some(sch => sch.shala_darpan_code === s.shala_darpan_code)
     );
-    if (heading) heading.textContent = `${STATE.currentUser.peeo_name} परिक्षेत्र (${targetSchools.length} माध्यमिक व उच्च माध्यमिक विद्यालय)`;
+    if (heading) heading.textContent = `${STATE.currentUser.peeo_name || 'PEEO'} परिक्षेत्र (${targetSchools.length} माध्यमिक व उच्च माध्यमिक विद्यालय)`;
   }
 
   let submittedCount = 0;
@@ -1368,11 +1368,9 @@ function calculateGFormTotals() {
   if (document.getElementById('gform-sum-c12')) document.getElementById('gform-sum-c12').textContent = c12Total;
   if (document.getElementById('gform-sum-grand')) document.getElementById('gform-sum-grand').textContent = grand;
 
-  // Sign preview labels
-  const pName = document.getElementById('gform-principal-name')?.value || 'संस्था प्रधान';
-  const iName = document.getElementById('gform-incharge-name')?.value || 'परीक्षा प्रभारी';
-  if (document.getElementById('gform-sign-principal-preview')) document.getElementById('gform-sign-principal-preview').textContent = pName;
-  if (document.getElementById('gform-sign-incharge-preview')) document.getElementById('gform-sign-incharge-preview').textContent = iName;
+  // Sign previews: keep clean, no fake cursive name
+  if (document.getElementById('gform-sign-principal-preview')) document.getElementById('gform-sign-principal-preview').innerHTML = '';
+  if (document.getElementById('gform-sign-incharge-preview')) document.getElementById('gform-sign-incharge-preview').innerHTML = '';
 }
 
 function toggleNilClass(cls) {
@@ -1729,7 +1727,7 @@ function openExamPdfPreview(schoolCode) {
   SAMAN_PARIKSHA_OPTIONAL_SUBJECTS.forEach(s => {
     const count = sub.c11_optional?.[s.key] || 0;
     if (count > 0) {
-      c11OptPills.push(`<span style="display:inline-block; margin:2px 3px; padding:2px 6px; background:#f1f5f9; border:1px solid #cbd5e1; border-radius:4px; font-size:0.78rem"><strong>${s.label.split('(')[0].trim()}:</strong> ${count}</span>`);
+      c11OptPills.push(`<span style="display:inline-block; margin:1px 2px; padding:1px 4px; background:#f1f5f9; border:1px solid #cbd5e1; border-radius:3px; font-size:0.72rem; line-height:1.2"><strong>${s.label.split('(')[0].trim()}:</strong> ${count}</span>`);
     }
   });
   const c11OptPillsHtml = c11OptPills.length > 0 ? c11OptPills.join(' ') : '<span style="color:#94a3b8">- कोई ऐच्छिक विषय दर्ज नहीं -</span>';
@@ -1738,7 +1736,7 @@ function openExamPdfPreview(schoolCode) {
   SAMAN_PARIKSHA_OPTIONAL_SUBJECTS.forEach(s => {
     const count = sub.c12_optional?.[s.key] || 0;
     if (count > 0) {
-      c12OptPills.push(`<span style="display:inline-block; margin:2px 3px; padding:2px 6px; background:#f1f5f9; border:1px solid #cbd5e1; border-radius:4px; font-size:0.78rem"><strong>${s.label.split('(')[0].trim()}:</strong> ${count}</span>`);
+      c12OptPills.push(`<span style="display:inline-block; margin:1px 2px; padding:1px 4px; background:#f1f5f9; border:1px solid #cbd5e1; border-radius:3px; font-size:0.72rem; line-height:1.2"><strong>${s.label.split('(')[0].trim()}:</strong> ${count}</span>`);
     }
   });
   const c12OptPillsHtml = c12OptPills.length > 0 ? c12OptPills.join(' ') : '<span style="color:#94a3b8">- कोई ऐच्छिक विषय दर्ज नहीं -</span>';
@@ -1750,152 +1748,150 @@ function openExamPdfPreview(schoolCode) {
     ? sub.c12_faculties.map(f => FACULTIES_CONFIG[f]?.name || f).join(', ') 
     : 'सामान्य';
 
-  const isPeeoSubmitted = (STATE.currentUser && STATE.currentUser.role === 'peeo') || (sub.submitted_by && sub.submitted_by.includes('PEEO'));
-
   container.innerHTML = `
     <!-- Top Emblem & Departmental Header (Single Page A4 Landscape Layout) -->
-    <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:4px; margin-bottom:8px">
-      <div style="font-size:0.82rem; font-weight:700; color:#000; letter-spacing:normal">राजस्थान सरकार | स्कूल शिक्षा विभाग</div>
-      <div style="font-size:1.18rem; font-weight:900; color:#000; margin:1px 0">
+    <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:2px; margin-bottom:4px">
+      <div style="font-size:0.80rem; font-weight:700; color:#000; letter-spacing:normal">राजस्थान सरकार | स्कूल शिक्षा विभाग</div>
+      <div style="font-size:1.12rem; font-weight:900; color:#000; margin:1px 0">
         कार्यालय संस्था प्रधान, ${school.school_name}
       </div>
-      <div style="font-size:0.80rem; font-weight:700; color:#111; margin-bottom:1px">
+      <div style="font-size:0.78rem; font-weight:700; color:#111; margin-bottom:1px">
         ग्राम / परिक्षेत्र: ${school.peeo_name.replace('PEEO ', '')}, ब्लॉक-भिनाय, जिला-अजमेर (राज.) | शाला दर्पण / PSP कोड: ${school.shala_darpan_code}
       </div>
-      <div style="font-size:0.98rem; font-weight:800; color:#000; letter-spacing:normal">
+      <div style="font-size:0.95rem; font-weight:800; color:#000; letter-spacing:normal">
         जिला समान परीक्षा योजना (सत्र 2026-27)
       </div>
-      <div style="font-size:0.82rem; font-weight:700; color:#222">
+      <div style="font-size:0.80rem; font-weight:700; color:#222">
         कक्षा 9 से 12 विद्यार्थी नामांकन एवं प्रश्न-पत्र मांग अधिकृत विवरण प्रपत्र
       </div>
     </div>
 
     <!-- School Meta Table (Laser Print-Friendly Clean Grid) -->
-    <table style="width:100%; border-collapse:collapse; margin-bottom:8px; font-size:0.80rem; border:1.5px solid #000">
+    <table style="width:100%; border-collapse:collapse; margin-bottom:4px; font-size:0.78rem; border:1.5px solid #000">
       <tr style="background:#f8fafc">
-        <td style="padding:3px 6px; border:1px solid #000; width:15%"><strong>विद्यालय का नाम:</strong></td>
-        <td style="padding:3px 6px; border:1px solid #000; font-weight:800; width:35%">${school.school_name}</td>
-        <td style="padding:3px 6px; border:1px solid #000; width:18%"><strong>शाला दर्पण / PSP कोड:</strong></td>
-        <td style="padding:3px 6px; border:1px solid #000; font-weight:800; width:32%">${school.shala_darpan_code} <span style="font-size:0.75rem; font-weight:normal">(${school.category} - ${school.type})</span></td>
+        <td style="padding:2px 5px; border:1px solid #000; width:15%"><strong>विद्यालय का नाम:</strong></td>
+        <td style="padding:2px 5px; border:1px solid #000; font-weight:800; width:35%">${school.school_name}</td>
+        <td style="padding:2px 5px; border:1px solid #000; width:18%"><strong>शाला दर्पण / PSP कोड:</strong></td>
+        <td style="padding:2px 5px; border:1px solid #000; font-weight:800; width:32%">${school.shala_darpan_code} <span style="font-size:0.72rem; font-weight:normal">(${school.category} - ${school.type})</span></td>
       </tr>
       <tr>
-        <td style="padding:3px 6px; border:1px solid #000; background:#f8fafc"><strong>संबंधित PEEO:</strong></td>
-        <td style="padding:3px 6px; border:1px solid #000">${school.peeo_name}</td>
-        <td style="padding:3px 6px; border:1px solid #000; background:#f8fafc"><strong>स्कूल परीक्षा कोड:</strong></td>
-        <td style="padding:3px 6px; border:1px solid #000; font-weight:900; font-size:0.96rem">${sub.exam_code}</td>
+        <td style="padding:2px 5px; border:1px solid #000; background:#f8fafc"><strong>संबंधित PEEO:</strong></td>
+        <td style="padding:2px 5px; border:1px solid #000">${school.peeo_name}</td>
+        <td style="padding:2px 5px; border:1px solid #000; background:#f8fafc"><strong>स्कूल परीक्षा कोड:</strong></td>
+        <td style="padding:2px 5px; border:1px solid #000; font-weight:900; font-size:0.92rem">${sub.exam_code}</td>
       </tr>
       <tr style="background:#f8fafc">
-        <td style="padding:3px 6px; border:1px solid #000"><strong>संस्था प्रधान:</strong></td>
-        <td style="padding:3px 6px; border:1px solid #000"><strong>${sub.principal_name}</strong> (मो. ${sub.principal_mobile})</td>
-        <td style="padding:3px 6px; border:1px solid #000"><strong>परीक्षा प्रभारी:</strong></td>
-        <td style="padding:3px 6px; border:1px solid #000"><strong>${sub.incharge_name}</strong> (मो. ${sub.incharge_mobile})</td>
+        <td style="padding:2px 5px; border:1px solid #000"><strong>संस्था प्रधान:</strong></td>
+        <td style="padding:2px 5px; border:1px solid #000"><strong>${sub.principal_name}</strong> (मो. ${sub.principal_mobile})</td>
+        <td style="padding:2px 5px; border:1px solid #000"><strong>परीक्षा प्रभारी:</strong></td>
+        <td style="padding:2px 5px; border:1px solid #000"><strong>${sub.incharge_name}</strong> (मो. ${sub.incharge_mobile})</td>
       </tr>
     </table>
 
     <!-- 8-Column Comprehensive Matrix Table (Laser Print-Friendly High-Contrast) -->
-    <table class="exam-excel-table" style="width:100%; border-collapse:collapse; border:2px solid #000; text-align:center; font-size:0.79rem; margin-bottom:8px">
+    <table class="exam-excel-table" style="width:100%; border-collapse:collapse; border:2px solid #000; text-align:center; font-size:0.77rem; margin-bottom:4px">
       <thead>
         <tr style="background:#f1f5f9; color:#000; font-weight:800">
-          <th style="padding:4px 3px; border:1.5px solid #000; width:40px">क्र.सं.</th>
-          <th style="padding:4px 4px; border:1.5px solid #000; width:75px">कक्षा</th>
-          <th style="padding:4px 6px; border:1.5px solid #000; width:220px; text-align:left">अनिवार्य विषय (Compulsory Subjects)</th>
-          <th style="padding:4px 4px; border:1.5px solid #000; width:150px">तृतीय भाषा (Third Language)</th>
-          <th style="padding:4px 4px; border:1.5px solid #000; width:120px">संचालित संकाय (Faculty)</th>
-          <th style="padding:4px 6px; border:1.5px solid #000; text-align:left">ऐच्छिक विषय मांग विवरण (Optional Subjects)</th>
-          <th style="padding:4px 4px; border:1.5px solid #000; width:80px">नामांकन</th>
-          <th style="padding:4px 4px; border:1.5px solid #000; width:80px; background:#e2e8f0; font-weight:900">मांग संख्या</th>
+          <th style="padding:3px 2px; border:1.5px solid #000; width:35px">क्र.सं.</th>
+          <th style="padding:3px 3px; border:1.5px solid #000; width:70px">कक्षा</th>
+          <th style="padding:3px 5px; border:1.5px solid #000; width:210px; text-align:left">अनिवार्य विषय (Compulsory Subjects)</th>
+          <th style="padding:3px 3px; border:1.5px solid #000; width:140px">तृतीय भाषा (Third Language)</th>
+          <th style="padding:3px 3px; border:1.5px solid #000; width:110px">संचालित संकाय (Faculty)</th>
+          <th style="padding:3px 5px; border:1.5px solid #000; text-align:left">ऐच्छिक विषय मांग विवरण (Optional Subjects)</th>
+          <th style="padding:3px 3px; border:1.5px solid #000; width:75px">नामांकन</th>
+          <th style="padding:3px 3px; border:1.5px solid #000; width:75px; background:#e2e8f0; font-weight:900">मांग संख्या</th>
         </tr>
       </thead>
       <tbody>
         <!-- Class 9 Row -->
         <tr style="border-bottom:1px solid #000">
-          <td style="padding:4px 3px; border:1px solid #000; font-weight:700">1</td>
-          <td style="padding:4px 4px; border:1px solid #000; font-weight:800; background:#f8fafc">कक्षा 9वीं</td>
-          <td style="padding:4px 6px; border:1px solid #000; text-align:left">
+          <td style="padding:2.5px 2px; border:1px solid #000; font-weight:700">1</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800; background:#f8fafc">कक्षा 9वीं</td>
+          <td style="padding:2.5px 5px; border:1px solid #000; text-align:left">
             ${(sub.c9_total > 0) ? 'हिंदी, अंग्रेजी, विज्ञान, सामाजिक विज्ञान, गणित (5 अनिवार्य विषय)' : '<span style="color:#475569; font-style:italic">कक्षा 9वीं में शून्य नामांकन (NIL / संचालित नहीं)</span>'}
           </td>
-          <td style="padding:4px 4px; border:1px solid #000; font-weight:700">
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:700">
             ${(sub.c9_total > 0) ? `संस्कृत: ${sub.c9_sanskrit || 0} | उर्दू: ${sub.c9_urdu || 0}` : '<span style="color:#64748b">- (लागू नहीं) -</span>'}
           </td>
-          <td style="padding:4px 4px; border:1px solid #000">${(sub.c9_total > 0) ? 'सामान्य (General)' : '<span style="color:#64748b">-</span>'}</td>
-          <td style="padding:4px 6px; border:1px solid #000; color:#64748b; text-align:center">- (कक्षा 9 में लागू नहीं) -</td>
-          <td style="padding:4px 4px; border:1px solid #000; font-weight:800">${sub.c9_total}</td>
-          <td style="padding:4px 4px; border:1px solid #000; font-weight:900; background:#f8fafc">${(sub.c9_total > 0) ? sub.c9_total : '0 (NIL)'}</td>
+          <td style="padding:2.5px 3px; border:1px solid #000">${(sub.c9_total > 0) ? 'सामान्य (General)' : '<span style="color:#64748b">-</span>'}</td>
+          <td style="padding:2.5px 5px; border:1px solid #000; color:#64748b; text-align:center">- (कक्षा 9 में लागू नहीं) -</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800">${sub.c9_total}</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:900; background:#f8fafc">${(sub.c9_total > 0) ? sub.c9_total : '0 (NIL)'}</td>
         </tr>
         
         <!-- Class 10 Row -->
         <tr style="border-bottom:1px solid #000">
-          <td style="padding:4px 3px; border:1px solid #000; font-weight:700">2</td>
-          <td style="padding:4px 4px; border:1px solid #000; font-weight:800; background:#f8fafc">कक्षा 10वीं</td>
-          <td style="padding:4px 6px; border:1px solid #000; text-align:left">
+          <td style="padding:2.5px 2px; border:1px solid #000; font-weight:700">2</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800; background:#f8fafc">कक्षा 10वीं</td>
+          <td style="padding:2.5px 5px; border:1px solid #000; text-align:left">
             ${(sub.c10_total > 0) ? 'हिंदी, अंग्रेजी, विज्ञान, सामाजिक विज्ञान, गणित (5 अनिवार्य विषय)' : '<span style="color:#475569; font-style:italic">कक्षा 10वीं में शून्य नामांकन (NIL / संचालित नहीं)</span>'}
           </td>
-          <td style="padding:4px 4px; border:1px solid #000; font-weight:700">
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:700">
             ${(sub.c10_total > 0) ? `संस्कृत: ${sub.c10_sanskrit || 0} | उर्दू: ${sub.c10_urdu || 0}` : '<span style="color:#64748b">- (लागू नहीं) -</span>'}
           </td>
-          <td style="padding:4px 4px; border:1px solid #000">${(sub.c10_total > 0) ? 'सामान्य (General)' : '<span style="color:#64748b">-</span>'}</td>
-          <td style="padding:4px 6px; border:1px solid #000; color:#64748b; text-align:center">- (कक्षा 10 में लागू नहीं) -</td>
-          <td style="padding:4px 4px; border:1px solid #000; font-weight:800">${sub.c10_total}</td>
-          <td style="padding:4px 4px; border:1px solid #000; font-weight:900; background:#f8fafc">${(sub.c10_total > 0) ? sub.c10_total : '0 (NIL)'}</td>
+          <td style="padding:2.5px 3px; border:1px solid #000">${(sub.c10_total > 0) ? 'सामान्य (General)' : '<span style="color:#64748b">-</span>'}</td>
+          <td style="padding:2.5px 5px; border:1px solid #000; color:#64748b; text-align:center">- (कक्षा 10 में लागू नहीं) -</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800">${sub.c10_total}</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:900; background:#f8fafc">${(sub.c10_total > 0) ? sub.c10_total : '0 (NIL)'}</td>
         </tr>
 
         <!-- Class 11 Row -->
         <tr style="border-bottom:1px solid #000">
-          <td style="padding:4px 3px; border:1px solid #000; font-weight:700">3</td>
-          <td style="padding:4px 4px; border:1px solid #000; font-weight:800; background:#f8fafc">कक्षा 11वीं</td>
-          <td style="padding:4px 6px; border:1px solid #000; text-align:left">
+          <td style="padding:2.5px 2px; border:1px solid #000; font-weight:700">3</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800; background:#f8fafc">कक्षा 11वीं</td>
+          <td style="padding:2.5px 5px; border:1px solid #000; text-align:left">
             ${(sub.c11_total > 0) ? `अनिवार्य हिंदी (${sub.c11_comp_hindi}), अनिवार्य अंग्रेजी (${sub.c11_comp_english})` : '<span style="color:#475569; font-style:italic">कक्षा 11वीं संचालित नहीं (NIL)</span>'}
           </td>
-          <td style="padding:4px 4px; border:1px solid #000; color:#64748b">- (लागू नहीं) -</td>
-          <td style="padding:4px 4px; border:1px solid #000; font-weight:700">${(sub.c11_total > 0) ? c11FacNames : '<span style="color:#64748b">-</span>'}</td>
-          <td style="padding:4px 6px; border:1px solid #000; text-align:left">
+          <td style="padding:2.5px 3px; border:1px solid #000; color:#64748b">- (लागू नहीं) -</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:700">${(sub.c11_total > 0) ? c11FacNames : '<span style="color:#64748b">-</span>'}</td>
+          <td style="padding:2.5px 5px; border:1px solid #000; text-align:left">
             ${(sub.c11_total > 0) ? c11OptPillsHtml : '<span style="color:#64748b">- कोई ऐच्छिक विषय लागू नहीं (NIL) -</span>'}
           </td>
-          <td style="padding:4px 4px; border:1px solid #000; font-weight:800">${sub.c11_total}</td>
-          <td style="padding:4px 4px; border:1px solid #000; font-weight:900; background:#f8fafc">${(sub.c11_total > 0) ? sub.c11_total : '0 (NIL)'}</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800">${sub.c11_total}</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:900; background:#f8fafc">${(sub.c11_total > 0) ? sub.c11_total : '0 (NIL)'}</td>
         </tr>
 
         <!-- Class 12 Row -->
         <tr style="border-bottom:2px solid #000">
-          <td style="padding:4px 3px; border:1px solid #000; font-weight:700">4</td>
-          <td style="padding:4px 4px; border:1px solid #000; font-weight:800; background:#f8fafc">कक्षा 12वीं</td>
-          <td style="padding:4px 6px; border:1px solid #000; text-align:left">
+          <td style="padding:2.5px 2px; border:1px solid #000; font-weight:700">4</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800; background:#f8fafc">कक्षा 12वीं</td>
+          <td style="padding:2.5px 5px; border:1px solid #000; text-align:left">
             ${(sub.c12_total > 0) ? `अनिवार्य हिंदी (${sub.c12_comp_hindi}), अनिवार्य अंग्रेजी (${sub.c12_comp_english})` : '<span style="color:#475569; font-style:italic">कक्षा 12वीं संचालित नहीं (NIL)</span>'}
           </td>
-          <td style="padding:4px 4px; border:1px solid #000; color:#64748b">- (लागू नहीं) -</td>
-          <td style="padding:4px 4px; border:1px solid #000; font-weight:700">${(sub.c12_total > 0) ? c12FacNames : '<span style="color:#64748b">-</span>'}</td>
-          <td style="padding:4px 6px; border:1px solid #000; text-align:left">
+          <td style="padding:2.5px 3px; border:1px solid #000; color:#64748b">- (लागू नहीं) -</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:700">${(sub.c12_total > 0) ? c12FacNames : '<span style="color:#64748b">-</span>'}</td>
+          <td style="padding:2.5px 5px; border:1px solid #000; text-align:left">
             ${(sub.c12_total > 0) ? c12OptPillsHtml : '<span style="color:#64748b">- कोई ऐच्छिक विषय लागू नहीं (NIL) -</span>'}
           </td>
-          <td style="padding:4px 4px; border:1px solid #000; font-weight:800">${sub.c12_total}</td>
-          <td style="padding:4px 4px; border:1px solid #000; font-weight:900; background:#f8fafc">${(sub.c12_total > 0) ? sub.c12_total : '0 (NIL)'}</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800">${sub.c12_total}</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:900; background:#f8fafc">${(sub.c12_total > 0) ? sub.c12_total : '0 (NIL)'}</td>
         </tr>
 
         <!-- Grand Total Banner Row -->
         <tr style="background:#f1f5f9; font-weight:900; border:2px solid #000">
-          <td colspan="6" style="padding:6px 8px; border:2px solid #000; text-align:right; font-size:0.92rem; color:#000">
+          <td colspan="6" style="padding:4px 6px; border:2px solid #000; text-align:right; font-size:0.86rem; color:#000">
             🎯 सत्र 2026-27 कुल मांग प्रश्न-पत्र संख्या (कक्षा 9 से 12 महायोग - Grand Total):
           </td>
-          <td style="padding:6px 4px; border:2px solid #000; font-size:1.05rem; color:#000">${sub.grand_total}</td>
-          <td style="padding:6px 4px; border:2px solid #000; font-size:1.15rem; color:#000; background:#e2e8f0">
-            ${(sub.grand_total > 0) ? sub.grand_total : '<span style="font-size:0.85rem">0 (NIL प्रपत्र)</span>'}
+          <td style="padding:4px 3px; border:2px solid #000; font-size:0.95rem; color:#000">${sub.grand_total}</td>
+          <td style="padding:4px 3px; border:2px solid #000; font-size:1.05rem; color:#000; background:#e2e8f0">
+            ${(sub.grand_total > 0) ? sub.grand_total : '<span style="font-size:0.82rem">0 (NIL प्रपत्र)</span>'}
           </td>
         </tr>
       </tbody>
     </table>
 
     <!-- Verification & Responsibility Declaration -->
-    <div style="margin-top:6px; margin-bottom:10px; padding:5px 8px; background:#ffffff; border:1px solid #000; border-left:4px solid #000; border-radius:3px; font-size:0.73rem; line-height:1.35; color:#000">
-      <strong>सत्यापन एवं उत्तरदायित्व घोषणा:</strong> प्रमाणित किया जाता है कि उपर्युक्त परीक्षा संबंधी सभी छात्र संख्या, संकाय एवं विषयवार प्रविष्टियों का विद्यालय की प्रवेश पंजिका व शाला दर्पण पोर्टल से शत-प्रतिशत मिलान कर लिया गया है तथा इसमें कोई लिपिकीय अथवा तथ्यात्मक त्रुटि नहीं है। यदि भविष्य में किसी भी प्रकार की त्रुटि, विसंगति अथवा प्रश्न-पत्रों की कमी/अधिकता पाई जाती है, तो इसका संपूर्ण व्यक्तिगत एवं विभागीय उत्तरदायित्व संबंधित ${isPeeoSubmitted ? 'पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)' : 'संस्था प्रधान एवं परीक्षा प्रभारी'} का होगा।
+    <div style="margin-top:4px; margin-bottom:4px; padding:3px 6px; background:#ffffff; border:1px solid #000; border-left:4px solid #000; border-radius:3px; font-size:0.70rem; line-height:1.25; color:#000">
+      <strong>सत्यापन एवं उत्तरदायित्व घोषणा:</strong> प्रमाणित किया जाता है कि उपर्युक्त परीक्षा संबंधी सभी छात्र संख्या, संकाय एवं विषयवार प्रविष्टियों का विद्यालय की प्रवेश पंजिका व शाला दर्पण पोर्टल से शत-प्रतिशत मिलान कर लिया गया है तथा इसमें कोई लिपिकीय अथवा तथ्यात्मक त्रुटि नहीं है। यदि भविष्य में किसी भी प्रकार की त्रुटि, विसंगति अथवा प्रश्न-पत्रों की कमी/अधिकता पाई जाती है, तो इसका संपूर्ण व्यक्तिगत एवं विभागीय उत्तरदायित्व संबंधित संस्था प्रधान एवं परीक्षा प्रभारी का होगा।
     </div>
 
     <!-- Official Signatures: Incharge (Left) & Principal (Right) -->
-    <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 35px; margin-top:16px; margin-bottom:8px">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 30px; margin-top:8px; margin-bottom:2px">
       
       <!-- Left: Incharge Signature (Only 'हस्ताक्षर परीक्षा प्रभारी') -->
       <div style="text-align:center; width:36%">
-        <div style="height:32px"></div>
-        <div style="border-top:1.5px solid #000; padding-top:4px; font-weight:800; font-size:0.88rem; color:#000">
+        <div style="height:28px"></div>
+        <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.86rem; color:#000">
           हस्ताक्षर परीक्षा प्रभारी
         </div>
       </div>
@@ -1903,21 +1899,21 @@ function openExamPdfPreview(schoolCode) {
       <!-- Right: Principal Signature & School Details (Official Govt Format) -->
       <div style="text-align:center; width:44%">
         ${sub.signature_data ? `
-          <div style="height:32px; display:flex; align-items:center; justify-content:center">
-            <img src="${sub.signature_data}" style="max-height:30px; max-width:160px; object-fit:contain" alt="हस्ताक्षर">
+          <div style="height:28px; display:flex; align-items:center; justify-content:center">
+            <img src="${sub.signature_data}" style="max-height:26px; max-width:140px; object-fit:contain" alt="हस्ताक्षर">
           </div>
-          <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.88rem; color:#000">
+          <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.86rem; color:#000">
             हस्ताक्षर संस्था प्रधान
           </div>
         ` : `
-          <div style="height:32px"></div>
-          <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.88rem; color:#000">
+          <div style="height:28px"></div>
+          <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.86rem; color:#000">
             हस्ताक्षर संस्था प्रधान
           </div>
         `}
-        <div style="font-size:0.80rem; font-weight:700; color:#000; margin-top:2px">प्रधानाचार्य / संस्था प्रधान</div>
-        <div style="font-size:0.76rem; color:#111; margin-top:1px">${school.school_name}</div>
-        <div style="font-size:0.74rem; color:#222; margin-top:1px">ब्लॉक-भिनाय (अजमेर)</div>
+        <div style="font-size:0.78rem; font-weight:700; color:#000; margin-top:1px">प्रधानाचार्य / संस्था प्रधान</div>
+        <div style="font-size:0.75rem; color:#111; margin-top:1px">${school.school_name}</div>
+        <div style="font-size:0.72rem; color:#222; margin-top:1px">ब्लॉक-भिनाय (अजमेर)</div>
       </div>
 
     </div>
@@ -1946,14 +1942,17 @@ function printCleanA4Landscape(containerId, title) {
 <head>
   <meta charset="utf-8">
   <title>${title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     @page {
       size: A4 landscape;
-      margin: 4mm 6mm;
+      margin: 3mm 4mm;
     }
     * {
       box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
+      font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
     html, body {
       margin: 0;
@@ -1961,20 +1960,28 @@ function printCleanA4Landscape(containerId, title) {
       background: #ffffff;
       color: #000000;
       width: 100%;
+      height: 100%;
+      overflow: hidden;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
     .print-container {
       width: 100%;
-      padding: 2mm 3mm;
+      padding: 0;
       margin: 0 auto;
+      page-break-after: avoid;
+      page-break-inside: avoid;
     }
     table {
       border-collapse: collapse;
       width: 100%;
+      page-break-inside: avoid;
+    }
+    tr, td, th {
+      page-break-inside: avoid;
     }
     td, th {
-      padding: 3px 4px !important;
+      padding: 2.5px 3px !important;
     }
   </style>
 </head>
@@ -2248,44 +2255,44 @@ function openPeeoConsolidatedPdfPreview(peeoName) {
 
   container.innerHTML = `
     <!-- Top Departmental & PEEO Header -->
-    <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:4px; margin-bottom:8px">
-      <div style="font-size:0.82rem; font-weight:700; color:#000; letter-spacing:normal">राजस्थान सरकार | स्कूल शिक्षा विभाग</div>
-      <div style="font-size:1.20rem; font-weight:900; color:#000; margin:1px 0">
+    <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:2px; margin-bottom:4px">
+      <div style="font-size:0.80rem; font-weight:700; color:#000; letter-spacing:normal">राजस्थान सरकार | स्कूल शिक्षा विभाग</div>
+      <div style="font-size:1.12rem; font-weight:900; color:#000; margin:1px 0">
         कार्यालय पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO), ${peeoName}
       </div>
-      <div style="font-size:0.82rem; font-weight:700; color:#111; margin-bottom:1px">
+      <div style="font-size:0.78rem; font-weight:700; color:#111; margin-bottom:1px">
         ग्रा.पं. ${cleanPeeoName}, ब्लॉक-भिनाय, जिला-अजमेर (राजस्थान)
       </div>
-      <div style="font-size:0.98rem; font-weight:800; color:#000; letter-spacing:normal">
+      <div style="font-size:0.95rem; font-weight:800; color:#000; letter-spacing:normal">
         जिला समान परीक्षा योजना (सत्र 2026-27)
       </div>
-      <div style="font-size:0.82rem; font-weight:700; color:#222">
+      <div style="font-size:0.80rem; font-weight:700; color:#222">
         परिक्षेत्र अधीनस्थ माध्यमिक व उच्च माध्यमिक विद्यालयों की समेकित परीक्षा मांग रिपोर्ट
       </div>
     </div>
 
     <!-- Cluster Metadata Summary (Laser Print-Friendly Clean Box) -->
-    <div style="display:flex; justify-content:space-between; align-items:center; background:#f8fafc; padding:4px 8px; border-radius:4px; border:1px solid #000; margin-bottom:8px; font-size:0.78rem; color:#000">
+    <div style="display:flex; justify-content:space-between; align-items:center; background:#f8fafc; padding:3px 6px; border-radius:4px; border:1px solid #000; margin-bottom:4px; font-size:0.74rem; color:#000">
       <div><strong>कुल माध्यमिक/उच्च माध्यमिक विद्यालय:</strong> ${schools.length} (राजकीय: ${schools.filter(s=>s.type==='Government').length} | निजी: ${schools.filter(s=>s.type!=='Government').length})</div>
       <div><strong>प्रपत्र सबमिट स्थिति:</strong> <strong>${submittedCount} पूर्ण</strong> / <strong>${schools.length - submittedCount} लम्बित</strong></div>
-      <div><strong>परिक्षेत्र कुल मांग प्रश्न-पत्र:</strong> <strong style="font-size:0.92rem">${totalGrand}</strong></div>
+      <div><strong>परिक्षेत्र कुल मांग प्रश्न-पत्र:</strong> <strong style="font-size:0.88rem">${totalGrand}</strong></div>
     </div>
 
     <!-- TABLE 1: School & Staff Contact Details -->
-    <div style="margin-bottom:8px">
-      <div style="font-size:0.82rem; font-weight:800; color:#000; margin-bottom:3px">
+    <div style="margin-bottom:4px">
+      <div style="font-size:0.80rem; font-weight:800; color:#000; margin-bottom:2px">
         1. अधीनस्थ विद्यालयों एवं प्रभारियों का संपर्क विवरण (Staff Contact Matrix)
       </div>
-      <table style="width:100%; border-collapse:collapse; border:1.5px solid #000; font-size:0.77rem">
+      <table style="width:100%; border-collapse:collapse; border:1.5px solid #000; font-size:0.75rem">
         <thead>
           <tr style="background:#f1f5f9; color:#000; font-weight:800; text-align:center">
-            <th style="padding:4px 3px; border:1px solid #000; width:30px">क्र.</th>
-            <th style="padding:4px 6px; border:1px solid #000; text-align:left">विद्यालय का नाम</th>
-            <th style="padding:4px 4px; border:1px solid #000; width:120px">शा.दा./PSP कोड</th>
-            <th style="padding:4px 4px; border:1px solid #000; width:75px">परीक्षा कोड</th>
-            <th style="padding:4px 6px; border:1px solid #000; text-align:left; width:200px">संस्था प्रधान (Principal)</th>
-            <th style="padding:4px 6px; border:1px solid #000; text-align:left; width:200px">परीक्षा प्रभारी (Exam In-charge)</th>
-            <th style="padding:4px 4px; border:1px solid #000; width:70px">स्थिति</th>
+            <th style="padding:3px 2px; border:1px solid #000; width:30px">क्र.</th>
+            <th style="padding:3px 5px; border:1px solid #000; text-align:left">विद्यालय का नाम</th>
+            <th style="padding:3px 3px; border:1px solid #000; width:110px">शा.दा./PSP कोड</th>
+            <th style="padding:3px 3px; border:1px solid #000; width:70px">परीक्षा कोड</th>
+            <th style="padding:3px 5px; border:1px solid #000; text-align:left; width:190px">संस्था प्रधान (Principal)</th>
+            <th style="padding:3px 5px; border:1px solid #000; text-align:left; width:190px">परीक्षा प्रभारी (Exam In-charge)</th>
+            <th style="padding:3px 3px; border:1px solid #000; width:65px">स्थिति</th>
           </tr>
         </thead>
         <tbody>
@@ -2295,65 +2302,65 @@ function openPeeoConsolidatedPdfPreview(peeoName) {
     </div>
 
     <!-- TABLE 2: Class-wise Student Demand Matrix -->
-    <div style="margin-bottom:8px">
-      <div style="font-size:0.82rem; font-weight:800; color:#000; margin-bottom:3px">
+    <div style="margin-bottom:4px">
+      <div style="font-size:0.80rem; font-weight:800; color:#000; margin-bottom:2px">
         2. कक्षावार विद्यार्थी नामांकन एवं प्रश्न-पत्र मांग समेकित विवरण (Examination Demand Matrix)
       </div>
-      <table style="width:100%; border-collapse:collapse; border:2px solid #000; font-size:0.78rem">
+      <table style="width:100%; border-collapse:collapse; border:2px solid #000; font-size:0.75rem">
         <thead>
           <tr style="background:#f1f5f9; color:#000; font-weight:800; text-align:center">
-            <th style="padding:4px 3px; border:1px solid #000; width:30px">क्र.</th>
-            <th style="padding:4px 6px; border:1px solid #000; text-align:left">विद्यालय का नाम एवं कोड</th>
-            <th style="padding:4px 4px; border:1px solid #000; width:75px">9वीं मांग</th>
-            <th style="padding:4px 4px; border:1px solid #000; width:75px">10वीं मांग</th>
-            <th style="padding:4px 4px; border:1px solid #000; width:75px">11वीं मांग</th>
-            <th style="padding:4px 4px; border:1px solid #000; width:75px">12वीं मांग</th>
-            <th style="padding:4px 6px; border:1px solid #000; width:100px; background:#e2e8f0; font-weight:900">कुल मांग</th>
-            <th style="padding:4px 4px; border:1px solid #000; width:70px">स्थिति</th>
+            <th style="padding:3px 2px; border:1px solid #000; width:30px">क्र.</th>
+            <th style="padding:3px 5px; border:1px solid #000; text-align:left">विद्यालय का नाम एवं कोड</th>
+            <th style="padding:3px 3px; border:1px solid #000; width:70px">9वीं मांग</th>
+            <th style="padding:3px 3px; border:1px solid #000; width:70px">10वीं मांग</th>
+            <th style="padding:3px 3px; border:1px solid #000; width:70px">11वीं मांग</th>
+            <th style="padding:3px 3px; border:1px solid #000; width:70px">12वीं मांग</th>
+            <th style="padding:3px 5px; border:1px solid #000; width:90px; background:#e2e8f0; font-weight:900">कुल मांग</th>
+            <th style="padding:3px 3px; border:1px solid #000; width:65px">स्थिति</th>
           </tr>
         </thead>
         <tbody>
           ${demandRowsHtml}
           <!-- Cluster Grand Total Row -->
           <tr style="background:#f1f5f9; font-weight:900; border:2px solid #000; text-align:center">
-            <td colspan="2" style="padding:5px 8px; border:2px solid #000; text-align:right; font-size:0.88rem; color:#000">
+            <td colspan="2" style="padding:3px 6px; border:2px solid #000; text-align:right; font-size:0.84rem; color:#000">
               🎯 PEEO परिक्षेत्र कुल महायोग (Consolidated Grand Total):
             </td>
-            <td style="padding:5px 4px; border:2px solid #000; font-size:0.92rem">${totalC9}</td>
-            <td style="padding:5px 4px; border:2px solid #000; font-size:0.92rem">${totalC10}</td>
-            <td style="padding:5px 4px; border:2px solid #000; font-size:0.92rem">${totalC11}</td>
-            <td style="padding:5px 4px; border:2px solid #000; font-size:0.92rem">${totalC12}</td>
-            <td style="padding:5px 6px; border:2px solid #000; font-size:1.05rem; background:#e2e8f0">${totalGrand}</td>
-            <td style="padding:5px 4px; border:2px solid #000">${submittedCount}/${schools.length}</td>
+            <td style="padding:3px 3px; border:2px solid #000; font-size:0.88rem">${totalC9}</td>
+            <td style="padding:3px 3px; border:2px solid #000; font-size:0.88rem">${totalC10}</td>
+            <td style="padding:3px 3px; border:2px solid #000; font-size:0.88rem">${totalC11}</td>
+            <td style="padding:3px 3px; border:2px solid #000; font-size:0.88rem">${totalC12}</td>
+            <td style="padding:3px 5px; border:2px solid #000; font-size:0.98rem; background:#e2e8f0">${totalGrand}</td>
+            <td style="padding:3px 3px; border:2px solid #000">${submittedCount}/${schools.length}</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <!-- Verification Declaration -->
-    <div style="margin-top:6px; margin-bottom:8px; padding:4px 8px; background:#ffffff; border:1px solid #000; border-left:4px solid #000; border-radius:3px; font-size:0.72rem; line-height:1.35; color:#000">
-      <strong>सत्यापन एवं उत्तरदायित्व घोषणा:</strong> प्रमाणित किया जाता है कि मेरे परिक्षेत्र (${peeoName}) के अंतर्गत संचालित उपर्युक्त समस्त ${schools.length} माध्यमिक एवं उच्च माध्यमिक विद्यालयों के परीक्षा प्रपत्रों का गहनता से परीक्षण व सत्यापन कर लिया गया है। उपर्युक्त सभी आंकड़े पूर्णतः सही व सत्यापित हैं। किसी भी प्रकार की त्रुटि या विसंगति पाए जाने पर संबंधित संस्था प्रधान एवं PEEO का उत्तरदायित्व होगा।
+    <div style="margin-top:4px; margin-bottom:4px; padding:3px 6px; background:#ffffff; border:1px solid #000; border-left:4px solid #000; border-radius:3px; font-size:0.70rem; line-height:1.25; color:#000">
+      <strong>सत्यापन एवं उत्तरदायित्व घोषणा:</strong> प्रमाणित किया जाता है कि मेरे परिक्षेत्र (${peeoName}) के अंतर्गत संचालित उपर्युक्त समस्त ${schools.length} माध्यमिक एवं उच्च माध्यमिक विद्यालयों के परीक्षा प्रपत्रों का गहनता से परीक्षण व सत्यापन कर लिया गया है। उपर्युक्त सभी आंकड़े पूर्णतः सही व सत्यापित हैं। किसी भी प्रकार की त्रुटि या विसंगति पाए जाने पर संबंधित संस्था प्रधान एवं परीक्षा प्रभारी का उत्तरदायित्व होगा।
     </div>
 
     <!-- Official Signatures: Incharge (Left) & PEEO (Right) -->
-    <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 35px; margin-top:16px; margin-bottom:8px">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 30px; margin-top:8px; margin-bottom:2px">
       <!-- Left: Exam In-charge (Only 'हस्ताक्षर परीक्षा प्रभारी') -->
       <div style="text-align:center; width:36%">
-        <div style="height:32px"></div>
-        <div style="border-top:1.5px solid #000; padding-top:4px; font-weight:800; font-size:0.88rem; color:#000">
+        <div style="height:28px"></div>
+        <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.86rem; color:#000">
           हस्ताक्षर परीक्षा प्रभारी
         </div>
       </div>
 
       <!-- Right: PEEO Sign (Official Designation & Jurisdiction) -->
       <div style="text-align:center; width:44%">
-        <div style="height:32px"></div>
-        <div style="border-top:1.5px solid #000; padding-top:4px; font-weight:800; font-size:0.88rem; color:#000">
+        <div style="height:28px"></div>
+        <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.86rem; color:#000">
           हस्ताक्षर
         </div>
-        <div style="font-size:0.82rem; font-weight:800; color:#000; margin-top:2px">पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)</div>
-        <div style="font-size:0.78rem; font-weight:700; color:#111; margin-top:1px">${peeoName}</div>
-        <div style="font-size:0.74rem; color:#222; margin-top:1px">ब्लॉक-भिनाय (अजमेर)</div>
+        <div style="font-size:0.80rem; font-weight:800; color:#000; margin-top:1px">पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)</div>
+        <div style="font-size:0.76rem; font-weight:700; color:#111; margin-top:1px">${peeoName}</div>
+        <div style="font-size:0.72rem; color:#222; margin-top:1px">ब्लॉक-भिनाय (अजमेर)</div>
       </div>
     </div>
   `;
