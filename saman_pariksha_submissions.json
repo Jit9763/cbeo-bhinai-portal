@@ -1,1 +1,34 @@
-{}
+{
+  "P55700": {
+    "school_code": "P55700",
+    "school_name": "TAGORE GLOBAL SCHOOL (EKALSINGHA)",
+    "category": "Private Secondary",
+    "type": "Private",
+    "peeo_name": "PEEO BHINAY",
+    "peeo_code": "221780",
+    "exam_code": "1011394",
+    "principal_name": "AALOK MISHRA",
+    "principal_mobile": "9251300400",
+    "incharge_name": "RAVI SHANKAR SHARMA",
+    "incharge_mobile": "8504872321",
+    "c9_total": 55,
+    "c9_sanskrit": 55,
+    "c9_urdu": 0,
+    "c10_total": 37,
+    "c10_sanskrit": 37,
+    "c10_urdu": 0,
+    "c11_faculties": [],
+    "c11_comp_hindi": 0,
+    "c11_comp_english": 0,
+    "c11_optional": {},
+    "c11_total": 0,
+    "c12_faculties": [],
+    "c12_comp_hindi": 0,
+    "c12_comp_english": 0,
+    "c12_optional": {},
+    "c12_total": 0,
+    "grand_total": 92,
+    "submitted_by": "AALOK MISHRA",
+    "timestamp": "01/10/2026, 03:00:00 pm"
+  }
+}

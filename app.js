@@ -196,6 +196,23 @@ function initMasterData() {
     STATE.samanParikshaSubmissions = defaultSPSubs;
   }
 
+  // Live Sync from Google Sheet via doGet(?action=getAll)
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+    || 'https://script.google.com/macros/s/AKfycbyAxdHYRV0NDpJCxrZvti-8SzJHWjIS9DoAoXFFNo-NPYi4FFmW4pOO926UsgaEzY0v/exec';
+
+  if (gasUrl) {
+    fetch(`${gasUrl}?action=getAll`)
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.success && data.submissions) {
+          STATE.samanParikshaSubmissions = Object.assign({}, STATE.samanParikshaSubmissions, data.submissions);
+          localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(STATE.samanParikshaSubmissions));
+          renderSamanParikshaView();
+        }
+      }).catch(e => console.log('Live sync note:', e));
+  }
+
   // 8. Admin Tab Access Configuration
   const storedTabConfig = localStorage.getItem('cbeo_tab_config');
   if (storedTabConfig) {

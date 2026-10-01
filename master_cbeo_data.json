@@ -20105,6 +20105,16 @@
       "ifsc": "SBIN0012898",
       "pan": "CTUPS3957F",
       "status": "Active"
+    },
+    {
+      "staff_id": "PRIN_P55700",
+      "name": "AALOK MISHRA",
+      "post": "संस्था प्रधान / Principal",
+      "school_name": "TAGORE GLOBAL SCHOOL (EKALSINGHA)",
+      "peeo_name": "PEEO BHINAY",
+      "mobile": "9251300400",
+      "email": "",
+      "status": "Active"
     }
   ],
   "total_staff_count": 1048,
@@ -20936,11 +20946,11 @@
       "peeo_name": "PEEO BHINAY",
       "peeo_code": "221780",
       "default_password": "P55700",
-      "exam_code": "",
-      "principal_name": "",
-      "principal_mobile": "",
-      "incharge_name": "",
-      "incharge_mobile": "",
+      "exam_code": "1011394",
+      "principal_name": "AALOK MISHRA",
+      "principal_mobile": "9251300400",
+      "incharge_name": "RAVI SHANKAR SHARMA",
+      "incharge_mobile": "8504872321",
       "password": "P55700"
     },
     {
@@ -21090,5 +21100,38 @@
     "google_sheet_id": "1tVP7gbIuUP576E2a1Qk6TadXUSP7a5c7ah8HzKeTk4k",
     "version": "v7_2026_10_01_peeo_deoliya_purnima_rakesh"
   },
-  "saman_pariksha_submissions": {}
+  "saman_pariksha_submissions": {
+    "P55700": {
+      "school_code": "P55700",
+      "school_name": "TAGORE GLOBAL SCHOOL (EKALSINGHA)",
+      "category": "Private Secondary",
+      "type": "Private",
+      "peeo_name": "PEEO BHINAY",
+      "peeo_code": "221780",
+      "exam_code": "1011394",
+      "principal_name": "AALOK MISHRA",
+      "principal_mobile": "9251300400",
+      "incharge_name": "RAVI SHANKAR SHARMA",
+      "incharge_mobile": "8504872321",
+      "c9_total": 55,
+      "c9_sanskrit": 55,
+      "c9_urdu": 0,
+      "c10_total": 37,
+      "c10_sanskrit": 37,
+      "c10_urdu": 0,
+      "c11_faculties": [],
+      "c11_comp_hindi": 0,
+      "c11_comp_english": 0,
+      "c11_optional": {},
+      "c11_total": 0,
+      "c12_faculties": [],
+      "c12_comp_hindi": 0,
+      "c12_comp_english": 0,
+      "c12_optional": {},
+      "c12_total": 0,
+      "grand_total": 92,
+      "submitted_by": "AALOK MISHRA (9251300400)",
+      "timestamp": "01/10/2026, 03:00:00 pm"
+    }
+  }
 }
