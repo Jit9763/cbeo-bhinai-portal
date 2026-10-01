@@ -1,4 +1,4 @@
-window.MASTER_CBEO_DATA = {
+const MASTER_CBEO_DATA = {
   "cbeo_info": {
     "office_name": "कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय",
     "block": "भिनाय (BHINAI)",
@@ -21307,6 +21307,27 @@ window.MASTER_CBEO_DATA = {
       "timestamp": "01/10/2026, 15:00:00",
       "is_submitted": true,
       "status": "पूर्ण (Submitted)",
+      "has_digital_signature": true
+    },
+    "221753": {
+      "school_code": "221753",
+      "school_name": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN",
+      "category": "MGGS",
+      "peeo_name": "PEEO DEOLIYA KALAN",
+      "exam_code": "AJM04G221753",
+      "principal_name": "RAKESH KUMAR BIRAWAT",
+      "principal_mobile": "9829835751",
+      "incharge_name": "Basanti olaniya",
+      "incharge_mobile": "7727945324",
+      "c9_total": 36,
+      "c10_total": 34,
+      "c11_total": 21,
+      "c12_total": 19,
+      "grand_total": 110,
+      "status": "पूर्ण (Submitted)",
+      "is_submitted": true,
+      "submitted_by": "PEEO DEOLIYA KALAN",
+      "timestamp": "1/10/2026, 21:14:56",
       "has_digital_signature": true
     }
   }
