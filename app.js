@@ -87,8 +87,8 @@ function initMasterData() {
     }
   ];
 
-  // Versioned cache check to guarantee fresh master data with 57 schools (including Kurthal 221757)
-  const DATA_VERSION = 'v15_2026_10_01_57_schools_kurthal_221757';
+  // Versioned cache check to guarantee fresh master data with 57 schools and all 3 active submissions
+  const DATA_VERSION = 'v16_2026_10_01_3_submissions_restored';
   if (localStorage.getItem('cbeo_data_version') !== DATA_VERSION) {
     localStorage.removeItem('cbeo_peeos_data');
     localStorage.removeItem('cbeo_staff_data');
