@@ -1125,7 +1125,7 @@
                 </select>
               </div>
               <div id="login-school-sub-hint" style="font-size:0.75rem; color:#1d4ed8; margin-top:4px">
-                <i class="fas fa-magic"></i> विद्यालय चुनते ही User ID व डिफ़ॉल्ट Password स्वतः सेट हो जाएगा (बदला हुआ पासवर्ड स्वयं टाइप करें)।
+                <i class="fas fa-magic"></i> विद्यालय चुनते ही User ID व डिफ़ॉल्ट Password स्वतः सेट हो जाएगा (परिवर्तित पासवर्ड स्वयं दर्ज करें)।
               </div>
             </div>
           </div>
@@ -1154,9 +1154,9 @@
               </button>
             </div>
             
-            <div class="login-password-hint-box">
+            <div id="login-password-hint" class="login-password-hint-box">
               <i class="fas fa-lightbulb text-warning"></i>
-              <span><strong>संकेत:</strong> PEEO एवं विद्यालयों का डिफ़ॉल्ट पासवर्ड उनका <strong>शाला दर्पण कोड</strong> ही है।</span>
+              <span><strong>संकेत:</strong> PEEO एवं विद्यालयों का डिफ़ॉल्ट पासवर्ड उनका <strong>शाला दर्पण / PSP कोड</strong> ही है।</span>
             </div>
           </div>
 
@@ -2463,7 +2463,7 @@
       </div>
       <div class="modal-body">
         <div style="background:#eff6ff; border-left:4px solid #2563eb; padding:0.75rem 1rem; border-radius:6px; margin-bottom:1.25rem; font-size:0.84rem; color:#1e40af; line-height:1.5">
-          <i class="fas fa-shield-alt"></i> <strong>सुरक्षा निर्देश:</strong> नया पासवर्ड दर्ज कर सुरक्षित करते ही यह पोर्टल <strong>तुरंत लॉगआउट</strong> हो जाएगा एवं Google Sheet में अपडेट हो जाएगा। इसके बाद पुनः लॉगिन करने हेतु नए पासवर्ड की आवश्यकता होगी।
+          <i class="fas fa-shield-alt"></i> <strong>सुरक्षा निर्देश:</strong> नया पासवर्ड सुरक्षित करते ही सुरक्षा कारणों से पोर्टल <strong>तुरंत लॉगआउट</strong> हो जाएगा। इसके पश्चात पुनः लॉगिन करने हेतु आपके द्वारा निर्धारित नवीन पासवर्ड की ही आवश्यकता होगी।
         </div>
         
         <div class="form-group" style="margin-bottom:1rem">
@@ -2477,7 +2477,7 @@
             </button>
           </div>
           <span style="font-size:0.78rem; color:#64748b; margin-top:0.35rem; display:block">
-            (न्यूनतम 4 अक्षर। यह पासवर्ड आपकी Google Sheet से सुरक्षित सिंक होगा)
+            (न्यूनतम 4 अक्षर। यह पासवर्ड केंद्रीय डेटाबेस में पूर्ण गोपनीयता के साथ सुरक्षित रहेगा)
           </span>
         </div>
       </div>

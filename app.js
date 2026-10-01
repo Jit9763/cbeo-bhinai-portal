@@ -858,12 +858,12 @@ function onQuickSelectSchoolUnderPeeo() {
 
   if (isChanged) {
     passwordInput.value = '';
-    passwordInput.placeholder = 'नया बदला हुआ पासवर्ड टाइप करें';
+    passwordInput.placeholder = 'संस्था का नवीन पासवर्ड दर्ज करें';
     if (hintText) {
-      hintText.innerHTML = `🔒 <strong>चयनित:</strong> ${selectedText} | <span style="color:#b45309; font-weight:bold">पासवर्ड बदला जा चुका है, कृपया Google Sheet में सेट किया गया नया पासवर्ड यहाँ टाइप करें।</span>`;
+      hintText.innerHTML = `🔒 <strong>चयनित:</strong> ${selectedText} | <span style="color:#b45309; font-weight:bold">सुरक्षा कारणों से पासवर्ड परिवर्तित है। कृपया अपना नवीन पासवर्ड स्वयं दर्ज करें।</span>`;
     }
     if (hintBox) {
-      hintBox.innerHTML = `<i class="fas fa-lock text-warning"></i> <span><strong>पासवर्ड बदला हुआ है:</strong> इस विद्यालय/PEEO का पासवर्ड परिवर्तित है। कृपया Google Sheet में सेट किया गया नया पासवर्ड स्वयं टाइप करें।</span>`;
+      hintBox.innerHTML = `<i class="fas fa-shield-alt text-warning"></i> <span><strong>गोपनीयता सूचना:</strong> इस विद्यालय/PEEO का पासवर्ड सुरक्षा कारणों से परिवर्तित है। कृपया संस्था द्वारा निर्धारित <strong>नवीन पासवर्ड</strong> स्वयं दर्ज करें।</span>`;
       hintBox.style.background = '#fffbeb';
       hintBox.style.color = '#92400e';
     }
