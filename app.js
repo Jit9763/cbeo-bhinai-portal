@@ -10747,3 +10747,204 @@ function showToast(message, type = 'info') {
     setTimeout(() => toast.remove(), 300);
   }, 4000);
 }
+
+/* ========================================================
+   15. GITHUB CLOUD VM AUTOMATION & SAMAN PARIKSHA PENDING ENGINE
+   ======================================================== */
+function getSamanParikshaVMAuditData() {
+  const schools = STATE.schools56 || [];
+  const subs = STATE.samanParikshaSubmissions || {};
+  const submitted = [];
+  const pending = [];
+  const peeoPendingMap = {};
+
+  schools.forEach(s => {
+    const sub = subs[s.shala_darpan_code];
+    const isSub = isSamanParikshaSubmitted(sub);
+    if (isSub) {
+      submitted.push(s);
+    } else {
+      pending.push(s);
+      const peeo = s.peeo_name || 'अज्ञात PEEO';
+      peeoPendingMap[peeo] = (peeoPendingMap[peeo] || 0) + 1;
+    }
+  });
+
+  return {
+    total: schools.length || 57,
+    submittedCount: submitted.length,
+    pendingCount: pending.length,
+    percentage: Math.round((submitted.length / (schools.length || 57)) * 100),
+    submittedSchools: submitted,
+    pendingSchools: pending,
+    peeoPendingMap: peeoPendingMap
+  };
+}
+
+function updateVMWidgetStats() {
+  const audit = getSamanParikshaVMAuditData();
+  const el = document.getElementById('vm-widget-sp-pending');
+  if (el) {
+    el.innerHTML = `${audit.pendingCount} स्कूल लंबित (${audit.submittedCount} पूर्ण)`;
+  }
+}
+
+function openVMReportModal() {
+  const audit = getSamanParikshaVMAuditData();
+  const container = document.getElementById('vm-report-modal-content');
+  if (!container) return;
+
+  const nowStr = new Date().toLocaleString('hi-IN');
+
+  // Build PEEO rows
+  let peeoRows = '';
+  const sortedPeeos = Object.entries(audit.peeoPendingMap).sort((a, b) => b[1] - a[1]);
+  sortedPeeos.forEach(([peeo, count], idx) => {
+    peeoRows += `
+      <tr>
+        <td style="padding:4px; text-align:center; font-weight:700">${idx + 1}</td>
+        <td style="padding:4px 8px; font-weight:800; text-align:left">${peeo}</td>
+        <td style="padding:4px; text-align:center"><span style="background:#fee2e2; color:#b91c1c; font-weight:800; padding:2px 8px; border-radius:4px">${count} स्कूल लंबित</span></td>
+      </tr>
+    `;
+  });
+
+  // Build Pending schools rows
+  let schoolRows = '';
+  audit.pendingSchools.forEach((s, idx) => {
+    schoolRows += `
+      <tr style="border-bottom:1px solid #e2e8f0">
+        <td style="padding:5px; text-align:center; font-weight:700">${idx + 1}</td>
+        <td style="padding:5px; text-align:center"><code>${s.shala_darpan_code}</code></td>
+        <td style="padding:5px 8px; text-align:left; font-weight:800">${s.school_name}</td>
+        <td style="padding:5px; text-align:left">${s.peeo_name}</td>
+        <td style="padding:5px; text-align:left">${s.principal_name || 'संस्था प्रधान'}</td>
+        <td style="padding:5px; text-align:center">
+          <a href="tel:${s.principal_mobile || s.mobile || ''}" style="color:#0284c7; font-weight:700; text-decoration:none">
+            <i class="fas fa-phone-alt"></i> ${s.principal_mobile || s.mobile || '---'}
+          </a>
+        </td>
+      </tr>
+    `;
+  });
+
+  container.innerHTML = `
+    <!-- Header Banner -->
+    <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:8px; margin-bottom:12px">
+      <div style="font-size:0.88rem; font-weight:700; color:#475569">राजस्थान सरकार • स्कूल शिक्षा विभाग</div>
+      <h2 style="margin:4px 0; font-size:1.25rem; font-weight:900; color:#0f172a">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</h2>
+      <div style="font-size:0.8rem; color:#64748b">समग्र शिक्षा अभियान | NIC-SD ID: 8140 | ब्लॉक-भिनाय, जिला-अजमेर (राजस्थान)</div>
+      <div style="margin-top:6px; display:inline-block; background:#0f172a; color:#ffffff; padding:4px 16px; border-radius:20px; font-size:0.85rem; font-weight:800">
+        🤖 GitHub Cloud VM स्वचालित लंबित रिपोर्ट (दैनिक 4 चक्र)
+      </div>
+      <div style="font-size:0.75rem; color:#64748b; margin-top:4px">रिपोर्ट समय: ${nowStr} | जिला: अजमेर (AJMER)</div>
+    </div>
+
+    <!-- Quick Stats Grid -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.75rem; margin-bottom:1rem">
+      <div style="background:#f1f5f9; border:1px solid #cbd5e1; border-radius:8px; padding:0.75rem; text-align:center">
+        <div style="font-size:0.75rem; color:#64748b; font-weight:700">कुल लक्षित विद्यालय</div>
+        <div style="font-size:1.35rem; font-weight:900; color:#1e293b">${audit.total}</div>
+      </div>
+      <div style="background:#dcfce7; border:1px solid #86efac; border-radius:8px; padding:0.75rem; text-align:center">
+        <div style="font-size:0.75rem; color:#166534; font-weight:700">प्रपत्र प्राप्त संख्या</div>
+        <div style="font-size:1.35rem; font-weight:900; color:#15803d">${audit.submittedCount}</div>
+      </div>
+      <div style="background:#fee2e2; border:1px solid #fca5a5; border-radius:8px; padding:0.75rem; text-align:center">
+        <div style="font-size:0.75rem; color:#991b1b; font-weight:700">कुल लंबित विद्यालय</div>
+        <div style="font-size:1.35rem; font-weight:900; color:#b91c1c">${audit.pendingCount}</div>
+      </div>
+      <div style="background:#e0f2fe; border:1px solid #7dd3fc; border-radius:8px; padding:0.75rem; text-align:center">
+        <div style="font-size:0.75rem; color:#075985; font-weight:700">संकलन प्रगति</div>
+        <div style="font-size:1.35rem; font-weight:900; color:#0284c7">${audit.percentage}%</div>
+      </div>
+    </div>
+
+    <!-- PEEO Summary & Pending Schools -->
+    <div style="display:grid; grid-template-columns:1fr 2fr; gap:1rem; margin-bottom:1rem">
+      <!-- PEEO Breakdown -->
+      <div style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:8px; padding:0.75rem; max-height:420px; overflow-y:auto">
+        <h4 style="margin:0 0 0.5rem 0; font-size:0.88rem; color:#1e293b; display:flex; align-items:center; gap:0.4rem">
+          <i class="fas fa-map-marker-alt text-danger"></i> PEEO-वार लंबित संख्या:
+        </h4>
+        <table style="width:100%; border-collapse:collapse; font-size:0.78rem">
+          <thead>
+            <tr style="background:#f1f5f9; border-bottom:1.5px solid #cbd5e1">
+              <th style="padding:4px; width:30px">#</th>
+              <th style="padding:4px; text-align:left">PEEO परिक्षेत्र</th>
+              <th style="padding:4px; text-align:center">लंबित</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${peeoRows}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pending Schools Table -->
+      <div style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:8px; padding:0.75rem; max-height:420px; overflow-y:auto">
+        <h4 style="margin:0 0 0.5rem 0; font-size:0.88rem; color:#b91c1c; display:flex; align-items:center; gap:0.4rem">
+          <i class="fas fa-exclamation-triangle"></i> समस्त ${audit.pendingCount} लंबित विद्यालयों का विवरण:
+        </h4>
+        <table style="width:100%; border-collapse:collapse; font-size:0.78rem">
+          <thead>
+            <tr style="background:#f1f5f9; border-bottom:1.5px solid #cbd5e1">
+              <th style="padding:4px; width:35px">क्र.</th>
+              <th style="padding:4px; width:65px">शा.दा. कोड</th>
+              <th style="padding:4px; text-align:left">विद्यालय का नाम</th>
+              <th style="padding:4px; text-align:left">संबंधित PEEO</th>
+              <th style="padding:4px; text-align:left">संस्था प्रधान</th>
+              <th style="padding:4px; text-align:center">मोबाइल</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${schoolRows}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+
+  showModal('modal-vm-report-viewer');
+}
+
+function sendVMPendingWhatsAppReminder() {
+  const audit = getSamanParikshaVMAuditData();
+  const sortedPeeos = Object.entries(audit.peeoPendingMap).sort((a, b) => b[1] - a[1]);
+  const peeoHighlights = sortedPeeos.slice(0, 10).map(([p, c]) => `▫️ *${p}:* ${c} स्कूल लंबित`).join('\n');
+
+  const msg = `*🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)*\n*🚨 जिला समान परीक्षा योजना (सत्र 2026-27) - अति आवश्यक रिमाइंडर*\n\n📊 *वर्तमान संकलन स्थिति:* कुल लक्षित: *57* | प्रपत्र प्राप्त: *${audit.submittedCount}* | कुल लंबित: *${audit.pendingCount}*\n\n📍 *प्रमुख लंबित PEEO परिक्षेत्र:*\n${peeoHighlights}\n\n⚠️ *निर्देश:* समस्त संबंधित संस्था प्रधान एवं परीक्षा प्रभारी आज ही पोर्टल पर लॉगिन कर कक्षा 9 से 12 की विषयवार मांग सत्यापित कर डिजिटल हस्ताक्षर सहित प्रपत्र सबमिट करें।\n\n🌐 *सत्यापन पोर्टल:* https://jit9763.github.io/cbeo-bhinai-portal/\n*(GitHub Cloud VM द्वारा स्वचालित प्रेषित)*`;
+
+  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+  showToast('WhatsApp रिमाइंडर विंडो खुल गई!', 'success');
+}
+
+function downloadVMReportMarkdown() {
+  const audit = getSamanParikshaVMAuditData();
+  const nowStr = new Date().toLocaleString('hi-IN');
+  let md = `# 🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)\n`;
+  md += `### 🤖 GitHub Cloud VM स्वचालित अनुपालन व लंबित रिपोर्ट\n`;
+  md += `**दिनांक व समय:** ${nowStr} | **जिला:** अजमेर (AJMER) | **ब्लॉक:** भिनाय (BHINAI)\n\n`;
+  md += `## 📋 जिला समान परीक्षा 2026-27 स्थिति:\n`;
+  md += `- **कुल लक्षित विद्यालय:** ${audit.total}\n`;
+  md += `- **प्राप्त प्रपत्र:** ${audit.submittedCount}\n`;
+  md += `- **लंबित विद्यालय:** ${audit.pendingCount} (${100 - audit.percentage}%)\n\n`;
+  md += `### 🚨 समस्त ${audit.pendingCount} लंबित विद्यालयों की सूची:\n`;
+  md += `| क्र. | शा.दा. कोड | विद्यालय का नाम | PEEO | संस्था प्रधान | मोबाइल |\n`;
+  md += `| :---: | :---: | :--- | :--- | :--- | :---: |\n`;
+  audit.pendingSchools.forEach((s, idx) => {
+    md += `| ${idx + 1} | ${s.shala_darpan_code} | ${s.school_name} | ${s.peeo_name} | ${s.principal_name || ''} | ${s.principal_mobile || s.mobile || ''} |\n`;
+  });
+
+  const blob = new Blob([md], { type: 'text/markdown;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `CBEO_Bhinai_VM_Pending_Report_${Date.now()}.md`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('VM लंबित रिपोर्ट (.md) डाउनलोड हो गई!', 'success');
+}

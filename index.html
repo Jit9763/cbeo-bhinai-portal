@@ -1103,6 +1103,77 @@
           </div>
         </div>
 
+        <!-- 0. GITHUB CLOUD VM AUTOMATION & COMPLIANCE HUB -->
+        <div id="cbeo-github-vm-hub" style="background:linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border:2px solid #38bdf8; border-radius:12px; padding:1.25rem 1.5rem; margin-bottom:1.5rem; color:#f8fafc; box-shadow:0 8px 16px -2px rgba(0,0,0,0.25)">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; border-bottom:1px solid #334155; padding-bottom:0.85rem">
+            <div style="display:flex; align-items:center; gap:0.75rem">
+              <div style="background:#0284c7; width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; box-shadow:0 0 12px rgba(56,189,248,0.5)">
+                <i class="fab fa-github" style="color:#ffffff"></i>
+              </div>
+              <div>
+                <h3 style="font-size:1.15rem; color:#ffffff; margin:0; display:flex; align-items:center; gap:0.5rem">
+                  <span>🤖 GitHub Cloud Virtual Machine (Ubuntu) - CBEO 24×7 ऑटोमेशन हब</span>
+                  <span style="font-size:0.72rem; font-weight:800; color:#10b981; background:rgba(16,185,129,0.2); border:1px solid #10b981; padding:2px 8px; border-radius:12px">● VM सक्रिय (Active)</span>
+                </h3>
+                <p style="font-size:0.82rem; color:#94a3b8; margin:2px 0 0 0">
+                  क्लाउड VM दैनिक 4 बार (12 PM, 2 PM, 4 PM, 8 PM IST) स्वतः निष्पादित होकर समान परीक्षा व समस्त सूचना मांगों की लंबित रिपोर्ट तैयार करती है।
+                </p>
+              </div>
+            </div>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+              <button class="btn btn-sm" onclick="window.open('https://github.com/Jit9763/cbeo-bhinai-portal/actions', '_blank')" style="background:#0284c7; color:#ffffff; font-weight:700; border:none; box-shadow:0 2px 6px rgba(2,132,199,0.4)">
+                <i class="fas fa-play"></i> ⚡ GitHub पर VM चलाएं (Run VM)
+              </button>
+            </div>
+          </div>
+
+          <!-- VM Status Grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:0.85rem; margin-bottom:1rem">
+            <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:0.75rem 1rem">
+              <div style="font-size:0.75rem; color:#94a3b8; font-weight:700; text-transform:uppercase">🖥️ VM ऑपरेटिंग सिस्टम</div>
+              <div style="font-size:1rem; font-weight:800; color:#38bdf8; margin-top:2px">Ubuntu Linux 24.04 LTS</div>
+              <div style="font-size:0.72rem; color:#cbd5e1; margin-top:2px">GitHub Actions Cloud Runner</div>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:0.75rem 1rem">
+              <div style="font-size:0.75rem; color:#94a3b8; font-weight:700; text-transform:uppercase">⏰ स्वचालित शेड्यूल (Schedule)</div>
+              <div style="font-size:0.92rem; font-weight:800; color:#facc15; margin-top:2px">12PM • 2PM • 4PM • 8PM</div>
+              <div style="font-size:0.72rem; color:#cbd5e1; margin-top:2px">दैनिक 4 बार स्वतः निष्पादन</div>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:0.75rem 1rem">
+              <div style="font-size:0.75rem; color:#94a3b8; font-weight:700; text-transform:uppercase">📋 समान परीक्षा 2026 स्थिति</div>
+              <div style="font-size:1rem; font-weight:800; color:#f87171; margin-top:2px" id="vm-widget-sp-pending">53 स्कूल लंबित (4 पूर्ण)</div>
+              <div style="font-size:0.72rem; color:#cbd5e1; margin-top:2px">कुल 57 माध्यमिक/उच्च माध्यमिक</div>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:0.75rem 1rem">
+              <div style="font-size:0.75rem; color:#94a3b8; font-weight:700; text-transform:uppercase">☁️ Google Drive बैकअप शीट</div>
+              <div style="font-size:0.95rem; font-weight:800; color:#4ade80; margin-top:2px">🟢 मास्टर शीट कनेक्टेड</div>
+              <div style="font-size:0.72rem; color:#cbd5e1; margin-top:2px">7_CBEO_Master_Backup (अजमेर)</div>
+            </div>
+          </div>
+
+          <!-- VM Quick Action Toolbar -->
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; background:rgba(0,0,0,0.25); padding:0.75rem 1rem; border-radius:8px; border:1px solid rgba(255,255,255,0.08)">
+            <div style="font-size:0.82rem; color:#e2e8f0; display:flex; align-items:center; gap:0.5rem">
+              <i class="fas fa-satellite-dish text-info"></i>
+              <span><strong>त्वरित VM एक्शन:</strong> क्लाउड VM से प्राप्त नवीनतम रिपोर्ट देखें अथवा लंबित स्कूलों को WhatsApp संदेश भेजें:</span>
+            </div>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+              <button class="btn btn-sm" onclick="openVMReportModal()" style="background:#3b82f6; color:#ffffff; font-weight:700; border:none">
+                <i class="fas fa-file-invoice"></i> 📑 विस्तृत VM लंबित रिपोर्ट देखें
+              </button>
+              <button class="btn btn-whatsapp btn-sm" onclick="sendVMPendingWhatsAppReminder()" style="font-weight:700">
+                <i class="fab fa-whatsapp"></i> 📢 53 लंबित स्कूलों को WhatsApp रिमाइंडर
+              </button>
+              <button class="btn btn-sm" onclick="downloadVMReportMarkdown()" style="background:#475569; color:#ffffff; font-weight:700; border:none" title="पूरी रिपोर्ट Markdown फाइल डाउनलोड करें">
+                <i class="fas fa-download"></i> रिपोर्ट .MD
+              </button>
+            </div>
+          </div>
+        </div>
+
         <!-- A. CBEO EXECUTIVE DASHBOARD (MONITORING & PENDING PDF / WHATSAPP SHARE) -->
         <div id="cbeo-executive-overview" style="background:#ffffff; border:2px solid #0284c7; border-radius:12px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1)">
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; border-bottom:1.5px solid #e2e8f0; padding-bottom:0.75rem">
@@ -3157,6 +3228,44 @@
           </button>
           <button class="btn btn-primary" onclick="printUniversalDemandDocument()">
             <i class="fas fa-print"></i> A4 साइज प्रिंट करें (Print)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10C. GITHUB VM COMPLIANCE & PENDING REPORT VIEWER MODAL -->
+  <div id="modal-vm-report-viewer" class="modal-overlay">
+    <div class="modal-card" style="max-width:1150px; width:96vw; padding:0; background:#f8fafc; overflow:hidden">
+      <div class="modal-header" style="background:#0f172a; color:#ffffff; padding:1rem 1.5rem">
+        <h3 style="color:#ffffff; font-size:1.15rem; display:flex; align-items:center; gap:0.5rem">
+          <i class="fab fa-github text-info"></i> 🤖 GitHub Cloud VM: स्वचालित लंबित एवं अनुपालन रिपोर्ट
+        </h3>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+          <button class="btn btn-whatsapp btn-sm" onclick="sendVMPendingWhatsAppReminder()" style="font-weight:700">
+            <i class="fab fa-whatsapp"></i> WhatsApp रिमाइंडर
+          </button>
+          <button class="btn btn-primary btn-sm" onclick="printCleanA4Landscape('vm-report-modal-content', 'CBEO_Bhinai_VM_Pending_Report')" style="font-weight:700">
+            <i class="fas fa-print"></i> प्रिंट / PDF सेव
+          </button>
+          <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-vm-report-viewer')">&times;</button>
+        </div>
+      </div>
+      <div class="modal-body" style="padding:1.5rem; max-height:calc(90vh - 130px); overflow-y:auto">
+        <div id="vm-report-modal-content">
+          <!-- Populated dynamically by openVMReportModal() -->
+        </div>
+      </div>
+      <div class="modal-footer" style="padding:0.85rem 1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-vm-report-viewer')">
+          बंद करें (Close)
+        </button>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+          <button class="btn btn-secondary" onclick="downloadVMReportMarkdown()">
+            <i class="fas fa-file-code"></i> Markdown रिपोर्ट डाउनलोड
+          </button>
+          <button class="btn btn-whatsapp" onclick="sendVMPendingWhatsAppReminder()">
+            <i class="fab fa-whatsapp"></i> समस्त लंबित स्कूलों को WhatsApp भेजें
           </button>
         </div>
       </div>
