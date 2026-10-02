@@ -1792,12 +1792,69 @@
             (यह सूचना केवल उन्हीं स्तरों के लॉगिन पर दिखाई देगी जिन्हें टिक किया गया है)
           </span>
         </div>
+        <!-- Columns & Pre-fill Mapping Engine -->
         <div class="form-group" style="margin-bottom:0.85rem">
-          <label>मांगी जाने वाली सूचना के कॉलम (कॉमा लगाकर लिखें):</label>
-          <input type="text" id="new-demand-cols" value="कुल खेल मैदान क्षेत्रफल (बीघा), वर्तमान चारदीवारी स्थिति, विकसित खेल संसाधन, आवश्यक अनुदान (लाखों में), विशेष विवरण">
-          <span style="font-size:0.75rem; color:var(--neutral-500)">
-            (नोट: PEEO का नाम, विद्यालय का नाम एवं डाइस कोड स्वतः LOCKED एवं प्री-फिल्ड रहेंगे)।
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px">
+            <label style="font-weight:700; color:#1e293b; margin:0">
+              <i class="fas fa-columns text-primary"></i> मांगी जाने वाली सूचना के कॉलम (Comma-separated list):
+            </label>
+            <button type="button" class="btn btn-outline-primary btn-sm" onclick="generateDemandColumnsFromInput()" style="font-weight:700; border-radius:16px; padding:2px 10px; font-size:0.75rem">
+              <i class="fas fa-sync-alt"></i> कॉलम तालिका रिफ्रेश करें
+            </button>
+          </div>
+          <input type="text" id="new-demand-cols" value="कुल खेल मैदान क्षेत्रफल (बीघा), वर्तमान चारदीवारी स्थिति, विकसित खेल संसाधन, आवश्यक अनुदान (लाखों में), विशेष विवरण" onchange="generateDemandColumnsFromInput()">
+          <span style="font-size:0.75rem; color:var(--neutral-500); margin-top:3px; display:block">
+            (नोट: विद्यालय का नाम, शाला दर्पण कोड, डाइस कोड एवं PEEO नाम सिस्टम में पहले से जुड़े रहते हैं)।
           </span>
+        </div>
+
+        <!-- Interactive Column Pre-fill & AI Mapping Table -->
+        <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:10px; padding:0.85rem; margin-bottom:1rem">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem; flex-wrap:wrap; gap:0.5rem">
+            <div>
+              <strong style="font-size:0.9rem; color:#0f172a"><i class="fas fa-magic text-primary"></i> कॉलम प्री-फिल व AI मैपिंग तालिका (Pre-fill Settings)</strong>
+              <div style="font-size:0.75rem; color:#64748b">मास्टर डेटाबेस से ऑटोमैटिक प्री-फिल हेतु ड्रॉपडाउन चुनें या AI ऑटो-डिटेक्ट चेक करें</div>
+            </div>
+            <div style="display:flex; gap:0.4rem">
+              <button type="button" class="btn btn-success btn-sm" onclick="aiAutoDetectAllDemandColumns()" style="font-weight:700; border-radius:20px; font-size:0.75rem; padding:3px 12px">
+                <i class="fas fa-robot"></i> 🤖 AI से सभी कॉलम पहचानें
+              </button>
+              <button type="button" class="btn btn-outline-primary btn-sm" onclick="addNewDemandColumnRow()" style="font-weight:700; border-radius:20px; font-size:0.75rem; padding:3px 10px">
+                <i class="fas fa-plus"></i> + नया कॉलम जोड़ें
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive" style="max-height:260px; overflow-y:auto; border:1px solid #e2e8f0; border-radius:6px; background:#ffffff">
+            <table class="data-table" style="font-size:0.8rem; margin:0">
+              <thead style="position:sticky; top:0; background:#f1f5f9; z-index:2">
+                <tr>
+                  <th style="width:30px">#</th>
+                  <th style="min-width:180px">कॉलम नाम</th>
+                  <th style="width:110px">प्रकार</th>
+                  <th style="min-width:190px">मास्टर DB से स्वतः प्री-फिल</th>
+                  <th style="width:85px; text-align:center" title="AI स्वतः पहचानकर वैल्यू मैप करे">🤖 AI ऑटो</th>
+                  <th style="min-width:140px">सैंपल प्रीव्यू (उदा. बांदनवाड़ा)</th>
+                  <th style="width:45px; text-align:center">हटाएं</th>
+                </tr>
+              </thead>
+              <tbody id="demand-columns-mapping-tbody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="form-group" style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:0.75rem 1rem">
+          <label style="display:flex; align-items:center; gap:0.6rem; cursor:pointer; margin:0">
+            <input type="checkbox" id="new-demand-start-test-mode" checked style="width:18px; height:18px">
+            <div>
+              <strong style="color:#1e40af; font-size:0.92rem"><i class="fas fa-flask"></i> पहले टेस्ट मोड (Sandbox Simulation) में खोलें (अनुशंसित)</strong>
+              <div style="font-size:0.75rem; color:#3b82f6; font-weight:normal">
+                डमी स्कूल के रूप में फॉर्म भरकर, PDF, प्रिंट व एक्सेल डाउनलोड की जांच करें। संतुष्ट होने पर एक क्लिक से मुख्य पोर्टल पर लाइव कर सकेंगे।
+              </div>
+            </div>
+          </label>
         </div>
         <div class="form-group" style="margin-bottom:0.85rem">
           <label>संक्षिप्त निर्देश / टिप्पणी:</label>
@@ -1818,6 +1875,169 @@
       </div>
     </div>
   </div>
+
+  
+  <!-- 7B. DEMAND TESTING & SIMULATION STUDIO (SANDBOX TEST MODE) -->
+  <div id="modal-demand-test-studio" class="modal-overlay">
+    <div class="modal-card" style="max-width:1160px; width:98vw; padding:0; background:#f8fafc; overflow:hidden">
+      <!-- Studio Header with Test Mode Toggle Switch -->
+      <div class="modal-header" style="background:#0f172a; color:#ffffff; padding:0.9rem 1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem">
+        <div>
+          <div style="display:flex; align-items:center; gap:0.6rem">
+            <h3 id="studio-demand-title" style="color:#ffffff; font-size:1.15rem; margin:0">
+              <i class="fas fa-flask text-primary"></i> सूचना मांग परीक्षण स्टूडियो (Test Studio)
+            </h3>
+            <span id="studio-sandbox-badge" class="badge-tag pradhan" style="background:#fef3c7; color:#78350f; font-weight:800; border:1px solid #f59e0b; padding:2px 8px; font-size:0.72rem">
+              🧪 टेस्ट मोड (SANDBOX ACTIVE)
+            </span>
+          </div>
+          <div style="font-size:0.78rem; color:#94a3b8; margin-top:2px">
+            कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:0.85rem; flex-wrap:wrap">
+          <!-- Test Mode Toggle Switch -->
+          <div style="display:flex; align-items:center; gap:0.5rem; background:rgba(255,255,255,0.12); padding:4px 12px; border-radius:24px; border:1px solid rgba(255,255,255,0.25)">
+            <span style="font-size:0.8rem; font-weight:700; color:#f8fafc">🧪 टेस्ट मोड:</span>
+            <label class="switch" style="margin:0; width:44px; height:24px">
+              <input type="checkbox" id="studio-test-mode-toggle" checked onchange="onStudioTestModeToggle(this.checked)">
+              <span class="switch-slider round" style="border-radius:24px"></span>
+            </label>
+            <span id="studio-toggle-status-text" style="font-size:0.75rem; font-weight:800; color:#facc15">चालू (ON)</span>
+          </div>
+
+          <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-demand-test-studio')">&times;</button>
+        </div>
+      </div>
+
+      <!-- Studio Body: 2 Columns Layout -->
+      <div class="modal-body" style="padding:1rem; max-height:calc(92vh - 120px); overflow-y:auto">
+        
+        <!-- Sandbox Alert Banner -->
+        <div id="studio-sandbox-alert" style="background:#eff6ff; border-left:4px solid #1e40af; padding:0.65rem 1rem; border-radius:6px; margin-bottom:1rem; font-size:0.82rem; color:#1e40af; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem">
+          <div>
+            <strong><i class="fas fa-info-circle"></i> टेस्ट सैंडबॉक्स निर्देश:</strong> वर्तमान में टेस्ट मोड चालू है। आप नीचे दिए गए विद्यालय फॉर्म में सैंपल डेटा प्रविष्ट कर, डिजिटल हस्ताक्षर, A4 PDF, प्रिंट व एक्सेल डाउनलोड का परीक्षण कर सकते हैं। यह डेटा केवल डमी स्टोरेज में रहेगा, मुख्य रिकॉर्ड 100% सुरक्षित रहेगा।
+          </div>
+          <div style="font-weight:700; background:#e0f2fe; color:#0369a1; padding:3px 10px; border-radius:4px; font-size:0.75rem">
+            सैंडबॉक्स स्टोरेज: एक्टिव
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:minmax(320px, 1.4fr) minmax(280px, 1fr); gap:1rem; align-items:start">
+          
+          <!-- Left Column: Interactive School Google-Form Preview -->
+          <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:1.25rem; box-shadow:0 1px 3px rgba(0,0,0,0.05)">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.85rem; padding-bottom:0.65rem; border-bottom:1px solid #e2e8f0; flex-wrap:wrap; gap:0.5rem">
+              <h4 style="margin:0; font-size:0.95rem; color:#0f172a; font-weight:800">
+                <i class="fas fa-chalkboard-teacher text-primary"></i> 1. लाइव विद्यालय प्रपत्र सिमुलेशन (School Form)
+              </h4>
+              <div style="display:flex; align-items:center; gap:0.4rem">
+                <label style="font-size:0.76rem; font-weight:700; color:#475569">टेस्ट स्कूल:</label>
+                <select id="studio-sample-school-selector" class="filter-select" style="font-size:0.78rem; padding:3px 8px; font-weight:700" onchange="onStudioSchoolChange(this.value)">
+                  <!-- Populated dynamically with schools -->
+                </select>
+              </div>
+            </div>
+
+            <!-- Form Content -->
+            <div id="studio-school-form-container">
+              <!-- Dynamically populated with school Google-Form fields -->
+            </div>
+          </div>
+
+          <!-- Right Column: Real-Time Compliance Feedback & Tools -->
+          <div style="display:flex; flex-direction:column; gap:1rem">
+            
+            <!-- Real-Time Compliance Preview Box -->
+            <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:1rem; box-shadow:0 1px 3px rgba(0,0,0,0.05)">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem">
+                <h4 style="margin:0; font-size:0.92rem; color:#0f172a; font-weight:800">
+                  <i class="fas fa-tasks text-primary"></i> 2. लाइव कम्प्लायंस स्थिति (Live Status)
+                </h4>
+                <span id="studio-compliance-pill" class="status-badge pending" style="font-size:0.72rem">लंबित (Pending)</span>
+              </div>
+              <p style="font-size:0.75rem; color:#64748b; margin-bottom:0.6rem">
+                टेस्ट प्रपत्र सबमिट करते ही इस स्कूल की स्थिति 'पूर्ण' होगी व समेकित रिपोर्ट में दिखेगी:
+              </p>
+              
+              <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:0.6rem; font-size:0.78rem">
+                <div style="display:flex; justify-content:space-between; margin-bottom:3px">
+                  <span>टेस्ट विद्यालय:</span>
+                  <strong id="studio-disp-school-name">रा.उ.मा.वि. बांदनवाड़ा</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:3px">
+                  <span>नोडल PEEO:</span>
+                  <strong id="studio-disp-peeo-name">PEEO BANDANWARA</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between">
+                  <span>प्रपत्र सबमिशन स्थिति:</span>
+                  <strong id="studio-disp-sub-status" style="color:#b91c1c">बाकी (Pending)</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Export & Template Integration Box -->
+            <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:1rem; box-shadow:0 1px 3px rgba(0,0,0,0.05)">
+              <h4 style="margin:0 0 0.5rem 0; font-size:0.92rem; color:#0f172a; font-weight:800">
+                <i class="fas fa-file-excel text-success"></i> 3. शुद्ध एक्सेल व टेम्पलेट मैपिंग (Excel Tools)
+              </h4>
+              <p style="font-size:0.75rem; color:#64748b; margin-bottom:0.75rem">
+                टेस्ट डेटा सहित संपूर्ण प्रपत्र का शुद्ध एक्सेल डाउनलोड करें अथवा ड्राइव/कंप्यूटर से टेम्पलेट अपलोड कर कॉलम मिलान करें:
+              </p>
+
+              <div style="display:flex; flex-direction:column; gap:0.5rem">
+                <button type="button" class="btn btn-success btn-sm" onclick="downloadStudioSampleExcel()" style="font-weight:700; display:flex; align-items:center; justify-content:center; gap:0.5rem">
+                  <i class="fas fa-file-download"></i> 📥 शुद्ध एक्सेल प्रारूप में टेस्ट डेटा डाउनलोड करें
+                </button>
+
+                <div style="display:flex; gap:0.4rem">
+                  <input type="file" id="studio-template-file-input" accept=".xlsx, .xls, .csv" style="display:none" onchange="handleStudioTemplateUpload(event)">
+                  <button type="button" class="btn btn-outline-primary btn-sm" onclick="document.getElementById('studio-template-file-input').click()" style="flex:1; font-weight:700">
+                    <i class="fas fa-upload"></i> 📤 एक्सेल टेम्पलेट अपलोड व AI मैपिंग
+                  </button>
+                </div>
+                <div id="studio-template-upload-result" style="font-size:0.72rem; color:#047857; font-weight:600; display:none"></div>
+              </div>
+            </div>
+
+            <!-- Final Production Release Action Box -->
+            <div style="background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:10px; padding:1rem">
+              <h4 style="margin:0 0 0.4rem 0; font-size:0.92rem; color:#1e40af; font-weight:800">
+                <i class="fas fa-rocket"></i> 4. आधिकारिक पोर्टल पर लाइव करें (Go Live)
+              </h4>
+              <p style="font-size:0.76rem; color:#3b82f6; margin-bottom:0.75rem">
+                जब आप टेस्ट प्रपत्र, A4 Landscape PDF व एक्सेल प्रारूप से पूरी तरह संतुष्ट हों, तो टेस्ट मोड बंद करके 5-स्तरीय पॉलिसी के अनुसार पोर्टल पर लाइव करें:
+              </p>
+
+              <button type="button" class="btn btn-primary" onclick="finalizeAndPublishDemandLive()" style="width:100%; font-weight:800; font-size:0.9rem">
+                <i class="fas fa-check-circle"></i> 🚀 टेस्ट मोड बंद करें व पोर्टल पर लाइव लागू करें
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Studio Footer -->
+      <div class="modal-footer" style="padding:0.75rem 1.5rem; display:flex; justify-content:space-between; align-items:center; background:#f1f5f9; border-top:1px solid #cbd5e1">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-demand-test-studio')">
+          स्टूडियो बंद करें (Close)
+        </button>
+        <div style="display:flex; gap:0.5rem">
+          <button class="btn btn-outline-primary" onclick="openStudioPdfPreview()">
+            <i class="fas fa-file-pdf"></i> A4 Landscape PDF जांचें
+          </button>
+          <button class="btn btn-primary" onclick="finalizeAndPublishDemandLive()">
+            <i class="fas fa-check"></i> सब सही है, लाइव प्रकाशित करें
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <!-- 8. ADD NEW SCHOOL MODAL (GOVT / PRIVATE) -->
   <div id="modal-add-school" class="modal-overlay">

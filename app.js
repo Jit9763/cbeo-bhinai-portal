@@ -8738,27 +8738,663 @@ function onDemandCollectionLevelChange() {
   }
 }
 
+
+/* ========================================================
+   11. DYNAMIC DEMAND BUILDER: COLUMN PRE-FILL & AI MAPPING ENGINE
+   ======================================================== */
+
+let DEMAND_BUILDER_COLUMNS = [];
+let ACTIVE_DEMAND_STUDIO_SCHOOL_CODE = null;
+
+// Pre-fill Source Labels and Resolver
+const DEMAND_PREFILL_SOURCES = [
+  { id: 'none', label: '✍️ स्वतः नहीं (खाली प्रविष्टि - स्कूल स्वयं भरेगा)' },
+  { id: 'principal_name', label: '👑 संस्था प्रधान का नाम' },
+  { id: 'principal_mobile', label: '📱 संस्था प्रधान मोबाइल' },
+  { id: 'incharge_name', label: '👨‍🏫 परीक्षा / प्रपत्र प्रभारी का नाम' },
+  { id: 'incharge_mobile', label: '📱 प्रभारी मोबाइल' },
+  { id: 'school_name', label: '🏫 विद्यालय का नाम (हिंदी)' },
+  { id: 'school_name_en', label: '🏛️ विद्यालय का नाम (अंग्रेज़ी)' },
+  { id: 'shala_darpan_code', label: '🔢 शाला दर्पण / PSP कोड' },
+  { id: 'peeo_name', label: '🏢 PEEO परिक्षेत्र नाम' },
+  { id: 'dise_code', label: '🏷️ U-DISE कोड' },
+  { id: 'category', label: '📑 विद्यालय श्रेणी (Sec/Sr Sec)' },
+  { id: 'type', label: '🏛️ विद्यालय प्रकार (Govt/Private)' }
+];
+
+function getSampleSchoolForDemandPreview() {
+  return (STATE.schools56 || []).find(s => s.shala_darpan_code === '221769') || 
+         (STATE.schools56 || [])[0] || {
+           school_name: 'रा.उ.मा.वि. बांदनवाड़ा',
+           school_name_en: 'GOVT. SENIOR SECONDARY SCHOOL BANDANWARA',
+           shala_darpan_code: '221769',
+           peeo_name: 'PEEO BANDANWARA',
+           principal_name: 'श्री भागचन्द लोधा',
+           principal_mobile: '9414000000',
+           incharge_name: 'श्री रामस्वरूप जाट',
+           incharge_mobile: '9829000000',
+           dise_code: '08210300101',
+           category: 'Sr.Sec',
+           type: 'Government'
+         };
+}
+
+function resolveSamplePrefillValue(sourceId, school = null) {
+  const sch = school || getSampleSchoolForDemandPreview();
+  switch (sourceId) {
+    case 'principal_name': return sch.principal_name || 'श्री संस्था प्रधान';
+    case 'principal_mobile': return sch.principal_mobile || sch.mobile || '9414000000';
+    case 'incharge_name': return sch.incharge_name || 'श्री परीक्षा प्रभारी';
+    case 'incharge_mobile': return sch.incharge_mobile || '9829000000';
+    case 'school_name': return sch.school_name || 'रा.उ.मा.वि. बांदनवाड़ा';
+    case 'school_name_en': return sch.school_name_en || 'GOVT. SR. SEC. SCHOOL BANDANWARA';
+    case 'shala_darpan_code': return sch.shala_darpan_code || '221769';
+    case 'peeo_name': return sch.peeo_name || 'PEEO BANDANWARA';
+    case 'dise_code': return sch.dise_code || '08210300101';
+    case 'category': return sch.category || 'Sr.Sec';
+    case 'type': return sch.type || 'Government';
+    default: return '<span style="color:#94a3b8; font-style:italic">-- स्कूल द्वारा प्रविष्ट होगा --</span>';
+  }
+}
+
+function generateDemandColumnsFromInput() {
+  const raw = (document.getElementById('new-demand-cols')?.value || '').trim();
+  const list = raw.split(',').map(s => s.trim()).filter(s => s.length > 0);
+  
+  // Maintain existing mappings if present
+  const newCols = list.map((name, idx) => {
+    const existing = DEMAND_BUILDER_COLUMNS.find(c => c.name.toLowerCase() === name.toLowerCase());
+    if (existing) return existing;
+    
+    // Auto-detect prefill source using AI keyword engine
+    const detected = detectPrefillSourceForColumn(name);
+    return {
+      name: name,
+      type: 'text',
+      prefillSource: detected,
+      aiAuto: true
+    };
+  });
+
+  DEMAND_BUILDER_COLUMNS = newCols;
+  renderDemandColumnsMappingTable();
+}
+
+function detectPrefillSourceForColumn(colName) {
+  const c = colName.toLowerCase().trim();
+  if (c.includes('मोबाइल') || c.includes('फोन') || c.includes('contact') || c.includes('phone') || c.includes('mob')) {
+    if (c.includes('प्रभारी')) return 'incharge_mobile';
+    return 'principal_mobile';
+  }
+  if (c.includes('प्रभारी')) return 'incharge_name';
+  if (c.includes('प्रधान') || c.includes('प्रधानाचार्य') || c.includes('hm') || c.includes('संचालक') || c.includes('principal') || c.includes('संस्था प्रधान')) {
+    return 'principal_name';
+  }
+  if (c.includes('शाला दर्पण') || c.includes('शालादर्पण') || c.includes('sd code') || c.includes('psp') || c.includes('स्कूल कोड') || (c.includes('कोड') && !c.includes('डाइस') && !c.includes('dise'))) {
+    return 'shala_darpan_code';
+  }
+  if (c.includes('डाइस') || c.includes('udise') || c.includes('dise')) {
+    return 'dise_code';
+  }
+  if (c.includes('अंग्रेजी') || c.includes('english') || c.includes('en name')) {
+    return 'school_name_en';
+  }
+  if (c.includes('विद्यालय') || c.includes('स्कूल') || c.includes('school')) {
+    return 'school_name';
+  }
+  if (c.includes('peeo') || c.includes('पीईईओ')) {
+    return 'peeo_name';
+  }
+  if (c.includes('श्रेणी') || c.includes('category')) {
+    return 'category';
+  }
+  if (c.includes('प्रकार') || c.includes('राजकीय') || c.includes('निजी') || c.includes('type')) {
+    return 'type';
+  }
+  return 'none';
+}
+
+function aiAutoDetectAllDemandColumns() {
+  DEMAND_BUILDER_COLUMNS.forEach(c => {
+    c.prefillSource = detectPrefillSourceForColumn(c.name);
+    c.aiAuto = true;
+  });
+  renderDemandColumnsMappingTable();
+  showToast('🤖 AI इंजन द्वारा सभी कॉलमों की मास्टर डेटाबेस मैपिंग स्वतः पूर्ण कर दी गई!', 'success');
+}
+
+function renderDemandColumnsMappingTable() {
+  const tbody = document.getElementById('demand-columns-mapping-tbody');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+
+  if (DEMAND_BUILDER_COLUMNS.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:1.25rem; color:#64748b">कोई कॉलम दर्ज नहीं है। ऊपर कॉलम नाम लिखकर 'कॉलम तालिका रिफ्रेश करें' दबाएं।</td></tr>`;
+    return;
+  }
+
+  const sampleSchool = getSampleSchoolForDemandPreview();
+
+  DEMAND_BUILDER_COLUMNS.forEach((col, idx) => {
+    const tr = document.createElement('tr');
+    tr.style.borderBottom = '1px solid #e2e8f0';
+
+    let optionsHtml = '';
+    DEMAND_PREFILL_SOURCES.forEach(s => {
+      const selected = (col.prefillSource === s.id) ? 'selected' : '';
+      optionsHtml += `<option value="${s.id}" ${selected}>${s.label}</option>`;
+    });
+
+    const sampleVal = resolveSamplePrefillValue(col.prefillSource, sampleSchool);
+
+    tr.innerHTML = `
+      <td style="text-align:center; font-weight:700">${idx + 1}</td>
+      <td>
+        <input type="text" value="${col.name}" class="form-control" style="font-size:0.8rem; padding:3px 6px; width:100%; border:1px solid #cbd5e1; border-radius:4px" onchange="onDemandColNameChange(${idx}, this.value)">
+      </td>
+      <td>
+        <select class="filter-select" style="font-size:0.75rem; padding:2px 4px; width:100%" onchange="onDemandColTypeChange(${idx}, this.value)">
+          <option value="text" ${col.type === 'text' ? 'selected' : ''}>टेक्स्ट (Text)</option>
+          <option value="number" ${col.type === 'number' ? 'selected' : ''}>संख्या (Number)</option>
+          <option value="boolean" ${col.type === 'boolean' ? 'selected' : ''}>हाँ / नहीं (Yes/No)</option>
+          <option value="date" ${col.type === 'date' ? 'selected' : ''}>दिनांक (Date)</option>
+        </select>
+      </td>
+      <td>
+        <select class="filter-select" style="font-size:0.75rem; padding:2px 4px; width:100%; font-weight:700; color:${col.prefillSource !== 'none' ? '#1e40af' : '#475569'}; background:${col.prefillSource !== 'none' ? '#eff6ff' : '#ffffff'}" onchange="onDemandColPrefillChange(${idx}, this.value)">
+          ${optionsHtml}
+        </select>
+      </td>
+      <td style="text-align:center">
+        <input type="checkbox" ${col.aiAuto ? 'checked' : ''} title="AI द्वारा स्वतः मैप किया गया" onchange="DEMAND_BUILDER_COLUMNS[${idx}].aiAuto = this.checked">
+      </td>
+      <td>
+        <div style="font-size:0.76rem; max-width:180px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap" title="${sampleVal}">
+          ${sampleVal}
+        </div>
+      </td>
+      <td style="text-align:center">
+        <button type="button" class="btn btn-outline-danger btn-sm" style="padding:1px 6px; font-size:0.72rem" onclick="removeDemandColumnRow(${idx})" title="कॉलम हटाएं">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function onDemandColNameChange(idx, val) {
+  if (DEMAND_BUILDER_COLUMNS[idx]) {
+    DEMAND_BUILDER_COLUMNS[idx].name = val.trim();
+    if (DEMAND_BUILDER_COLUMNS[idx].aiAuto) {
+      DEMAND_BUILDER_COLUMNS[idx].prefillSource = detectPrefillSourceForColumn(val);
+    }
+    syncColumnsToInputField();
+    renderDemandColumnsMappingTable();
+  }
+}
+
+function onDemandColTypeChange(idx, val) {
+  if (DEMAND_BUILDER_COLUMNS[idx]) DEMAND_BUILDER_COLUMNS[idx].type = val;
+}
+
+function onDemandColPrefillChange(idx, val) {
+  if (DEMAND_BUILDER_COLUMNS[idx]) {
+    DEMAND_BUILDER_COLUMNS[idx].prefillSource = val;
+    DEMAND_BUILDER_COLUMNS[idx].aiAuto = false;
+    renderDemandColumnsMappingTable();
+  }
+}
+
+function addNewDemandColumnRow() {
+  DEMAND_BUILDER_COLUMNS.push({
+    name: `नया कॉलम ${DEMAND_BUILDER_COLUMNS.length + 1}`,
+    type: 'text',
+    prefillSource: 'none',
+    aiAuto: false
+  });
+  syncColumnsToInputField();
+  renderDemandColumnsMappingTable();
+}
+
+function removeDemandColumnRow(idx) {
+  DEMAND_BUILDER_COLUMNS.splice(idx, 1);
+  syncColumnsToInputField();
+  renderDemandColumnsMappingTable();
+}
+
+function syncColumnsToInputField() {
+  const inp = document.getElementById('new-demand-cols');
+  if (inp) {
+    inp.value = DEMAND_BUILDER_COLUMNS.map(c => c.name).join(', ');
+  }
+}
+
+/* ========================================================
+   12. DEMAND TESTING & SIMULATION STUDIO (SANDBOX TEST MODE)
+   ======================================================== */
+
+// Initialize Dummy Sandbox Storage in STATE
+if (!STATE.demandTestSubmissions) {
+  try {
+    STATE.demandTestSubmissions = JSON.parse(localStorage.getItem('cbeo_demand_test_submissions') || '{}');
+  } catch(e) {
+    STATE.demandTestSubmissions = {};
+  }
+}
+
+function openDemandTestStudio(demandId) {
+  STATE.activeStudioDemandId = demandId;
+  const demand = STATE.demands.find(d => d.id === demandId);
+  if (!demand) {
+    showToast('मांग प्रपत्र नहीं मिला!', 'error');
+    return;
+  }
+
+  // Title & Sandbox Badge
+  const titleEl = document.getElementById('studio-demand-title');
+  if (titleEl) {
+    titleEl.innerHTML = `<i class="fas fa-flask text-primary"></i> ${demand.title} - परीक्षण स्टूडियो`;
+  }
+
+  const toggle = document.getElementById('studio-test-mode-toggle');
+  if (toggle) {
+    toggle.checked = (demand.isTestMode !== false);
+    onStudioTestModeToggle(toggle.checked);
+  }
+
+  // Populate School Selector
+  const schoolSelect = document.getElementById('studio-sample-school-selector');
+  if (schoolSelect) {
+    const allSchools = getAllMasterSchools();
+    let opts = '';
+    allSchools.forEach(s => {
+      opts += `<option value="${s.shala_darpan_code}">[${s.shala_darpan_code}] ${s.school_name} (${s.peeo_name.replace('PEEO ', '')})</option>`;
+    });
+    schoolSelect.innerHTML = opts;
+    ACTIVE_DEMAND_STUDIO_SCHOOL_CODE = allSchools[0]?.shala_darpan_code || '221769';
+    schoolSelect.value = ACTIVE_DEMAND_STUDIO_SCHOOL_CODE;
+  }
+
+  renderStudioSchoolForm(demandId, ACTIVE_DEMAND_STUDIO_SCHOOL_CODE);
+  showModal('modal-demand-test-studio');
+}
+
+function onStudioSchoolChange(schoolCode) {
+  ACTIVE_DEMAND_STUDIO_SCHOOL_CODE = schoolCode;
+  if (STATE.activeStudioDemandId) {
+    renderStudioSchoolForm(STATE.activeStudioDemandId, schoolCode);
+  }
+}
+
+function onStudioTestModeToggle(isOn) {
+  const badge = document.getElementById('studio-sandbox-badge');
+  const alertBox = document.getElementById('studio-sandbox-alert');
+  const statusText = document.getElementById('studio-toggle-status-text');
+
+  if (isOn) {
+    if (badge) {
+      badge.style.display = 'inline-flex';
+      badge.textContent = '🧪 टेस्ट मोड (SANDBOX ACTIVE)';
+      badge.style.background = '#fef3c7';
+      badge.style.color = '#78350f';
+    }
+    if (alertBox) alertBox.style.display = 'flex';
+    if (statusText) {
+      statusText.textContent = 'चालू (ON)';
+      statusText.style.color = '#facc15';
+    }
+  } else {
+    if (badge) {
+      badge.textContent = '🚀 लाइव प्रोडक्शन मोड';
+      badge.style.background = '#dcfce7';
+      badge.style.color = '#15803d';
+    }
+    if (alertBox) alertBox.style.display = 'none';
+    if (statusText) {
+      statusText.textContent = 'बंद (LIVE)';
+      statusText.style.color = '#86efac';
+    }
+  }
+}
+
+function renderStudioSchoolForm(demandId, schoolCode) {
+  const demand = STATE.demands.find(d => d.id === demandId);
+  const container = document.getElementById('studio-school-form-container');
+  if (!demand || !container) return;
+
+  const school = getAllMasterSchools().find(s => s.shala_darpan_code === schoolCode) || {
+    school_name: 'विद्यालय',
+    shala_darpan_code: schoolCode,
+    peeo_name: 'PEEO BANDANWARA',
+    principal_name: 'श्री संस्था प्रधान',
+    principal_mobile: '9414000000'
+  };
+
+  // Update Right Panel Display
+  const dispName = document.getElementById('studio-disp-school-name');
+  if (dispName) dispName.textContent = school.school_name;
+  const dispPeeo = document.getElementById('studio-disp-peeo-name');
+  if (dispPeeo) dispPeeo.textContent = school.peeo_name;
+
+  // Check if test submission exists
+  const testSub = (STATE.demandTestSubmissions?.[demandId]?.[schoolCode]) || null;
+  const pill = document.getElementById('studio-compliance-pill');
+  const subStatus = document.getElementById('studio-disp-sub-status');
+
+  if (testSub) {
+    if (pill) {
+      pill.className = 'status-badge green';
+      pill.innerHTML = '<i class="fas fa-check-circle"></i> ✓ पूर्ण (Test Submitted)';
+    }
+    if (subStatus) {
+      subStatus.style.color = '#15803d';
+      subStatus.textContent = `पूर्ण (सबमिट दिनांक: ${testSub.submitted_at || 'अभी'})`;
+    }
+  } else {
+    if (pill) {
+      pill.className = 'status-badge pending';
+      pill.innerHTML = '<i class="fas fa-clock"></i> लंबित (Pending)';
+    }
+    if (subStatus) {
+      subStatus.style.color = '#b91c1c';
+      subStatus.textContent = 'बाकी (Pending)';
+    }
+  }
+
+  // Build Form Fields
+  let fieldsHtml = `
+    <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:0.85rem; margin-bottom:1rem; font-size:0.82rem">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem">
+        <div><strong>विद्यालय:</strong> ${school.school_name}</div>
+        <div><strong>कोड:</strong> <code>${school.shala_darpan_code}</code></div>
+        <div><strong>PEEO:</strong> ${school.peeo_name}</div>
+        <div><strong>प्रकार:</strong> ${school.type || 'Government'} (${school.category || 'राजकीय'})</div>
+      </div>
+    </div>
+  `;
+
+  (demand.columns || []).forEach((col, idx) => {
+    let prefillVal = '';
+    if (testSub && testSub.data && testSub.data[col.name] !== undefined) {
+      prefillVal = testSub.data[col.name];
+    } else if (col.prefillSource && col.prefillSource !== 'none') {
+      prefillVal = resolveSamplePrefillValue(col.prefillSource, school);
+      if (typeof prefillVal === 'string' && prefillVal.includes('--')) prefillVal = '';
+    }
+
+    const isPrefilled = (prefillVal !== '');
+
+    fieldsHtml += `
+      <div class="gform-card" style="background:#ffffff; border:1px solid #e2e8f0; border-left:4px solid ${isPrefilled ? '#16a34a' : '#2563eb'}; border-radius:6px; padding:0.85rem 1rem; margin-bottom:0.75rem">
+        <label style="font-weight:700; color:#1e293b; font-size:0.88rem; margin-bottom:0.3rem; display:flex; justify-content:space-between; align-items:center">
+          <span>${idx + 1}. ${col.name} <span style="color:#d93025">*</span></span>
+          ${isPrefilled ? '<span style="font-size:0.7rem; font-weight:700; color:#15803d; background:#dcfce7; padding:1px 6px; border-radius:4px"><i class="fas fa-check"></i> DB प्री-फिल्ड</span>' : ''}
+        </label>
+        <input type="${col.type === 'number' ? 'number' : (col.type === 'date' ? 'date' : 'text')}" id="studio_input_col_${idx}" value="${prefillVal}" placeholder="${col.name} दर्ज करें" style="width:100%; padding:0.55rem 0.75rem; border:1.5px solid #cbd5e1; border-radius:5px; font-size:0.86rem; background:${isPrefilled ? '#f0fdf4' : '#ffffff'}">
+      </div>
+    `;
+  });
+
+  // Submitter details & signature
+  fieldsHtml += `
+    <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:6px; padding:0.85rem; margin-bottom:0.85rem">
+      <div style="font-weight:700; font-size:0.88rem; color:#0f172a; margin-bottom:0.5rem">
+        <i class="fas fa-user-check text-primary"></i> प्रस्तुतकर्ता अधिकारी व अधिकृत डिजिटल हस्ताक्षर
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-bottom:0.5rem">
+        <div>
+          <label style="font-size:0.75rem; font-weight:700">संस्था प्रधान नाम:</label>
+          <input type="text" id="studio-submitter-name" value="${testSub?.submitted_by || school.principal_name || 'श्री संस्था प्रधान'}" style="width:100%; padding:4px 8px; font-size:0.82rem; border:1px solid #cbd5e1; border-radius:4px">
+        </div>
+        <div>
+          <label style="font-size:0.75rem; font-weight:700">मोबाइल नंबर:</label>
+          <input type="tel" id="studio-submitter-mobile" value="${testSub?.submitter_mobile || school.principal_mobile || '9414000000'}" style="width:100%; padding:4px 8px; font-size:0.82rem; border:1px solid #cbd5e1; border-radius:4px">
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.85rem">
+        <button type="button" class="btn btn-primary btn-sm" onclick="submitStudioTestForm()" style="font-weight:700; padding:6px 14px">
+          <i class="fas fa-save"></i> 💾 टेस्ट प्रपत्र सबमिट करें (Sandbox Submit)
+        </button>
+        <button type="button" class="btn btn-danger btn-sm" onclick="openStudioPdfPreview()" style="font-weight:700">
+          <i class="fas fa-file-pdf"></i> Landscape PDF
+        </button>
+        <button type="button" class="btn btn-whatsapp btn-sm" onclick="shareStudioWhatsApp()">
+          <i class="fab fa-whatsapp"></i> WhatsApp शेयर
+        </button>
+      </div>
+    </div>
+  `;
+
+  container.innerHTML = fieldsHtml;
+}
+
+function submitStudioTestForm() {
+  const demandId = STATE.activeStudioDemandId;
+  const schoolCode = ACTIVE_DEMAND_STUDIO_SCHOOL_CODE;
+  const demand = STATE.demands.find(d => d.id === demandId);
+  const school = getAllMasterSchools().find(s => s.shala_darpan_code === schoolCode);
+  if (!demand || !school) return;
+
+  const data = {};
+  (demand.columns || []).forEach((col, idx) => {
+    const el = document.getElementById(`studio_input_col_${idx}`);
+    data[col.name] = el ? el.value.trim() : '';
+  });
+
+  const subName = document.getElementById('studio-submitter-name')?.value.trim() || school.principal_name || 'संस्था प्रधान';
+  const subMobile = document.getElementById('studio-submitter-mobile')?.value.trim() || school.principal_mobile || '';
+
+  const testEntry = {
+    demand_id: demandId,
+    school_code: schoolCode,
+    school_name: school.school_name,
+    peeo_name: school.peeo_name,
+    data: data,
+    submitted_by: subName,
+    submitter_mobile: subMobile,
+    submitted_at: new Date().toLocaleString('hi-IN'),
+    is_test_sandbox: true
+  };
+
+  if (!STATE.demandTestSubmissions[demandId]) {
+    STATE.demandTestSubmissions[demandId] = {};
+  }
+  STATE.demandTestSubmissions[demandId][schoolCode] = testEntry;
+  localStorage.setItem('cbeo_demand_test_submissions', JSON.stringify(STATE.demandTestSubmissions));
+
+  showToast(`🧪 [टेस्ट सैंडबॉक्स] विद्यालय '${school.school_name}' का प्रपत्र सफलतापूर्वक सबमिट हुआ!`, 'success');
+  renderStudioSchoolForm(demandId, schoolCode);
+
+  // Also post to backup sheet if webhook is configured
+  try {
+    const backupUrl = localStorage.getItem('cbeo_backup_webhook_url');
+    if (backupUrl) {
+      fetch(backupUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'sandbox_test_entry', test_entry: testEntry })
+      }).catch(e => console.log('Backup webhook sandbox note:', e));
+    }
+  } catch(e) {}
+}
+
+function openStudioPdfPreview() {
+  const demandId = STATE.activeStudioDemandId;
+  const schoolCode = ACTIVE_DEMAND_STUDIO_SCHOOL_CODE;
+  if (!demandId || !schoolCode) return;
+  openUniversalDemandPdfPreview(demandId, schoolCode);
+}
+
+function shareStudioWhatsApp() {
+  const demandId = STATE.activeStudioDemandId;
+  const schoolCode = ACTIVE_DEMAND_STUDIO_SCHOOL_CODE;
+  const demand = STATE.demands.find(d => d.id === demandId);
+  const school = getAllMasterSchools().find(s => s.shala_darpan_code === schoolCode);
+  if (!demand || !school) return;
+
+  const testSub = STATE.demandTestSubmissions?.[demandId]?.[schoolCode];
+  const msg = `*🏛️ कार्यालय CBEO भिनाय (अजमेर)*
+*📋 सूचना प्रपत्र परीक्षण: ${demand.title}*
+
+📌 *विद्यालय:* ${school.school_name} (${school.shala_darpan_code})
+📌 *PEEO:* ${school.peeo_name}
+📌 *प्रस्तुतकर्ता:* ${testSub?.submitted_by || school.principal_name} (${testSub?.submitter_mobile || school.principal_mobile})
+
+📄 *यह एक अधिकृत परीक्षण प्रपत्र (Test Verification) है।*
+🌐 *सत्यापन पोर्टल:* https://jit9763.github.io/cbeo-bhinai-portal/`;
+  
+  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+}
+
+function downloadStudioSampleExcel() {
+  const demandId = STATE.activeStudioDemandId;
+  const demand = STATE.demands.find(d => d.id === demandId);
+  if (!demand) return;
+
+  const allSchools = getAllMasterSchools().slice(0, 15); // Export top 15 sample schools
+  const cols = (demand.columns || []).map(c => c.name);
+
+  let csv = 'क्र.सं.,शाला दर्पण कोड,विद्यालय का नाम,PEEO परिक्षेत्र,';
+  csv += cols.map(c => `"${c.replace(/"/g, '""')}"`).join(',') + ',प्रस्तुतकर्ता,मोबाइल,सत्यापन दिनांक,स्थिति
+';
+
+  allSchools.forEach((s, idx) => {
+    const testSub = STATE.demandTestSubmissions?.[demandId]?.[s.shala_darpan_code];
+    let rowVals = [
+      idx + 1,
+      s.shala_darpan_code,
+      `"${s.school_name.replace(/"/g, '""')}"`,
+      `"${s.peeo_name.replace(/"/g, '""')}"`
+    ];
+
+    cols.forEach(colName => {
+      let val = '';
+      if (testSub && testSub.data && testSub.data[colName] !== undefined) {
+        val = testSub.data[colName];
+      } else {
+        const cObj = demand.columns.find(c => c.name === colName);
+        if (cObj && cObj.prefillSource && cObj.prefillSource !== 'none') {
+          val = resolveSamplePrefillValue(cObj.prefillSource, s);
+          if (typeof val === 'string' && val.includes('--')) val = '';
+        }
+      }
+      rowVals.push(`"${String(val).replace(/"/g, '""')}"`);
+    });
+
+    rowVals.push(`"${testSub?.submitted_by || s.principal_name || 'संस्था प्रधान'}"`);
+    rowVals.push(`"${testSub?.submitter_mobile || s.principal_mobile || ''}"`);
+    rowVals.push(`"${testSub?.submitted_at || 'लंबित'}"`);
+    rowVals.push(`"${testSub ? 'पूर्ण (Test Submitted)' : 'लंबित'}"`);
+
+    csv += rowVals.join(',') + '
+';
+  });
+
+  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `CBEO_Bhinai_${demand.title.replace(/[^a-zA-Z0-9]/g, '_')}_Sample_Clean.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  showToast('📥 शुद्ध एक्सेल प्रारूप में टेस्ट रिपोर्ट सफलतापूर्वक डाउनलोड हो गई!', 'success');
+}
+
+function handleStudioTemplateUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const resultEl = document.getElementById('studio-template-upload-result');
+  if (resultEl) {
+    resultEl.style.display = 'block';
+    resultEl.textContent = `⏳ फ़ाइल '${file.name}' का विश्लेषण किया जा रहा है...`;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const text = e.target.result;
+    const firstLine = text.split('\n')[0] || '';
+    const uploadedHeaders = firstLine.split(',').map(h => h.replace(/[\r\n\"]/g, '').trim()).filter(h => h.length > 0);
+
+    const demand = STATE.demands.find(d => d.id === STATE.activeStudioDemandId);
+    if (!demand) return;
+
+    const demandCols = (demand.columns || []).map(c => c.name.toLowerCase());
+    let matchedCount = 0;
+    uploadedHeaders.forEach(h => {
+      if (demandCols.some(dc => dc.includes(h.toLowerCase()) || h.toLowerCase().includes(dc))) {
+        matchedCount++;
+      }
+    });
+
+    if (resultEl) {
+      resultEl.innerHTML = `✓ <strong>AI टेम्पलेट मैपिंग पूर्ण:</strong> अपलोड की गई फ़ाइल से ${uploadedHeaders.length} कॉलम प्राप्त हुए, जिनमें से <strong>${matchedCount} कॉलम</strong> इस मांग प्रपत्र से 100% सुमेलित (Matched) हैं।`;
+    }
+    showToast(`✓ फ़ाइल '${file.name}' सफलतापूर्वक मैप हो गई!`, 'success');
+  };
+  reader.readAsText(file);
+}
+
+function finalizeAndPublishDemandLive() {
+  const demandId = STATE.activeStudioDemandId;
+  const demand = STATE.demands.find(d => d.id === demandId);
+  if (!demand) return;
+
+  if (!confirm(`क्या आप टेस्ट मोड बंद करके मांग '${demand.title}' को आधिकारिक पोर्टल पर 5-स्तरीय पॉलिसी के अनुसार लाइव प्रकाशित करना चाहते हैं?
+
+(सभी डमी टेस्ट प्रविष्टियां हटा दी जाएंगी एवं पोर्टल पूर्णतः प्रोडक्शन मोड में सक्रिय हो जाएगा)`)) {
+    return;
+  }
+
+  // Clear dummy test submissions
+  if (STATE.demandTestSubmissions && STATE.demandTestSubmissions[demandId]) {
+    delete STATE.demandTestSubmissions[demandId];
+    localStorage.setItem('cbeo_demand_test_submissions', JSON.stringify(STATE.demandTestSubmissions));
+  }
+
+  demand.isTestMode = false;
+  demand.published = true;
+  saveDemandsToStorage();
+
+  closeModal('modal-demand-test-studio');
+  showToast(`🚀 मांग '${demand.title}' आधिकारिक पोर्टल पर सफलता पूर्वक LIVE प्रकाशित कर दी गई!`, 'success');
+  renderApp();
+  openDynamicDemandPortal(demandId);
+}
+
+
 function saveNewDemand() {
   const title = document.getElementById('new-demand-title').value.trim();
   const dueDate = document.getElementById('new-demand-date').value;
   const priority = document.getElementById('new-demand-priority').value;
   const level = document.getElementById('new-demand-collection-level')?.value || 'peeo';
   const scope = document.getElementById('new-demand-school-scope')?.value || 'all';
-  const colsRaw = document.getElementById('new-demand-cols').value.trim();
   const desc = document.getElementById('new-demand-desc').value.trim();
-  const isPub = document.getElementById('new-demand-publish').checked;
+  const isPub = document.getElementById('new-demand-publish') ? document.getElementById('new-demand-publish').checked : true;
+  const isTestMode = document.getElementById('new-demand-start-test-mode') ? document.getElementById('new-demand-start-test-mode').checked : true;
 
   if (!title) {
     showToast('कृपया सूचना का शीर्षक दर्ज करें!', 'error');
     return;
   }
 
-  const cols = colsRaw.split(',').map(c => c.trim()).filter(c => c.length > 0).map(c => ({
-    name: c,
-    type: 'text',
-    locked: false,
-    placeholder: c
-  }));
+  // Use configured columns from DEMAND_BUILDER_COLUMNS with prefill mappings
+  const cols = (DEMAND_BUILDER_COLUMNS.length > 0) ? DEMAND_BUILDER_COLUMNS.map(c => ({
+    name: c.name,
+    type: c.type || 'text',
+    prefillSource: c.prefillSource || 'none',
+    aiAuto: !!c.aiAuto,
+    placeholder: `${c.name} दर्ज करें`
+  })) : [
+    { name: 'विवरण', type: 'text', prefillSource: 'none', placeholder: 'विवरण दर्ज करें' }
+  ];
 
   const audCbeo = document.getElementById('demand-aud-cbeo') ? document.getElementById('demand-aud-cbeo').checked : true;
   const audPeeo = document.getElementById('demand-aud-peeo') ? document.getElementById('demand-aud-peeo').checked : true;
@@ -8781,7 +9417,8 @@ function saveNewDemand() {
     description: desc || 'समस्त संस्था प्रधान / PEEO समय सीमा में सूचना अधिकृत डिजिटल हस्ताक्षर सहित प्रेषित करें।',
     dueDate: dueDate || 'यथाशीघ्र',
     priority: priority,
-    published: isPub,
+    published: !isTestMode && isPub,
+    isTestMode: isTestMode,
     createdAt: new Date().toISOString().split('T')[0],
     columns: cols
   };
@@ -8793,15 +9430,21 @@ function saveNewDemand() {
     user: STATE.currentUser?.name || 'जितेन्द्र कुमार (Admin)',
     action: 'नई सूचना मांग सृजन (Zero-Code)',
     target: title,
-    details: `${cols.length} कॉलम का प्रपत्र सृजित | स्तर: ${level === 'school' ? 'विद्यालय स्तर' : 'PEEO स्तर'} | प्रकाशित: ${isPub ? 'हाँ' : 'नहीं'}`,
+    details: `${cols.length} कॉलम का प्रपत्र सृजित | मोड: ${isTestMode ? '🧪 टेस्ट सैंडबॉक्स' : '🚀 लाइव'} | स्तर: ${level === 'school' ? 'विद्यालय स्तर' : 'PEEO स्तर'}`,
     note: 'स्वतः फॉर्म जनरेटर'
   });
 
   closeModal('modal-create-demand');
-  showToast(`नई सूचना '${title}' सफलता पूर्वक तैयार हो गई! (${level === 'school' ? 'विद्यालय स्तर' : 'PEEO स्तर'})`, 'success');
 
-  renderApp();
-  openDynamicDemandPortal(newDemand.id);
+  if (isTestMode) {
+    showToast(`मांग '${title}' सृजित! 🧪 टेस्ट स्टूडियो में सिमुलेशन व सत्यापन प्रारंभ करें।`, 'info');
+    renderApp();
+    openDemandTestStudio(newDemand.id);
+  } else {
+    showToast(`नई सूचना '${title}' आधिकारिक पोर्टल पर सफलता पूर्वक लाइव प्रकाशित हो गई!`, 'success');
+    renderApp();
+    openDynamicDemandPortal(newDemand.id);
+  }
 }
 
 /* ========================================================

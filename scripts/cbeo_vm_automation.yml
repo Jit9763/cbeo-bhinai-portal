@@ -1,0 +1,61 @@
+name: CBEO Bhinai VM Automation & Reports
+
+on:
+  schedule:
+    # 12:00 PM IST = 06:30 UTC
+    - cron: '30 6 * * *'
+    # 02:00 PM IST = 08:30 UTC
+    - cron: '30 8 * * *'
+    # 04:00 PM IST = 10:30 UTC
+    - cron: '30 10 * * *'
+    # 08:00 PM IST = 14:30 UTC
+    - cron: '30 14 * * *'
+  workflow_dispatch:
+    inputs:
+      action_type:
+        description: 'Action to perform'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - pending_report
+          - sync_backup
+
+jobs:
+  cbeo_vm_worker:
+    name: CBEO Bhinai Virtual Machine Worker
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests openpyxl
+
+      - name: Run CBEO VM Notification & Compliance Engine
+        env:
+          AI_TOKEN: ${{ secrets.AI_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: |
+          python scripts/cbeo_vm_notifier.py
+
+      - name: Upload Report Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cbeo-compliance-report
+          path: scripts/latest_report.md
+          retention-days: 7
