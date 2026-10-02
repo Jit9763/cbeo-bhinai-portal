@@ -10,6 +10,7 @@ from manage_contacts_and_staff import (
     save_or_update_staff_member,
     relieve_or_delete_staff_member
 )
+from broadcast_email_service import broadcast_demand_emails
 
 PORT = 8089
 
@@ -180,6 +181,18 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                 self.send_json_response({'success': True, 'message': 'समान परीक्षा Google Sheet में डेटा सिंक हो गया!'})
             except Exception as e:
                 print(f"[API Error] Saman Pariksha sync failed: {e}")
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
+
+        elif parsed_url.path == '/api/broadcast_demand_email':
+            print(f"[API] Broadcasting demand email for: {req_data.get('demand_title')}...")
+            try:
+                res = broadcast_demand_emails(req_data)
+                self.send_json_response(res)
+            except Exception as e:
+                print(f"[API Error] broadcast_demand_email failed: {e}")
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
         elif parsed_url.path == '/api/update_sanstha_pradhan':
             staff_id = req_data.get('staff_id')
             is_sanstha_pradhan = req_data.get('is_sanstha_pradhan', True)

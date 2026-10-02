@@ -2110,6 +2110,122 @@
   </div>
 
 
+  <!-- 7C. BROADCAST DEMAND EMAIL MODAL (JITENDRA ADMIN AUTOMATION) -->
+  <div id="modal-broadcast-demand-email" class="modal-overlay">
+    <div class="modal-card" style="max-width:920px; width:95vw; max-height:92vh; display:flex; flex-direction:column; padding:0; background:#f8fafc; overflow:hidden">
+      <!-- Modal Header -->
+      <div class="modal-header" style="background:linear-gradient(135deg, #0f172a, #1e3a8a); color:#ffffff; padding:1rem 1.5rem; display:flex; justify-content:space-between; align-items:center">
+        <div>
+          <h3 style="color:#ffffff; margin:0; font-size:1.15rem; display:flex; align-items:center; gap:0.5rem">
+            <i class="fas fa-paper-plane text-warning"></i> मांग प्रपत्र: विद्यालयों को ईमेल सूचना प्रसारण (Broadcast Email)
+          </h3>
+          <div style="font-size:0.78rem; color:#93c5fd; margin-top:2px">
+            कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय | जिला: अजमेर (AJMER)
+          </div>
+        </div>
+        <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-broadcast-demand-email')">&times;</button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body" style="padding:1.25rem; overflow-y:auto; flex:1">
+        <!-- Demand Info Banner -->
+        <div id="broadcast-demand-summary-banner" style="background:#eff6ff; border-left:4px solid #2563eb; border-radius:0 8px 8px 0; padding:12px 16px; margin-bottom:1rem">
+          <!-- Populated dynamically -->
+        </div>
+
+        <!-- Email Stats Cards -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.75rem; margin-bottom:1.25rem">
+          <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:8px; padding:10px 14px; text-align:center">
+            <div style="font-size:0.72rem; color:#64748b; font-weight:700">लक्षित कुल विद्यालय</div>
+            <div id="broadcast-stat-total" style="font-size:1.4rem; font-weight:800; color:#1e3a8a">0</div>
+          </div>
+          <div style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:10px 14px; text-align:center">
+            <div style="font-size:0.72rem; color:#047857; font-weight:700">उपलब्ध ईमेल वाले विद्यालय</div>
+            <div id="broadcast-stat-with-email" style="font-size:1.4rem; font-weight:800; color:#065f46">0</div>
+          </div>
+          <div style="background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:10px 14px; text-align:center">
+            <div style="font-size:0.72rem; color:#b45309; font-weight:700">ईमेल अनुपलब्ध (अपडेट पेंडिंग)</div>
+            <div id="broadcast-stat-without-email" style="font-size:1.4rem; font-weight:800; color:#b45309">0</div>
+          </div>
+        </div>
+
+        <!-- Custom Email Form -->
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:1rem; margin-bottom:1.25rem">
+          <div class="form-group" style="margin-bottom:0.75rem">
+            <label style="font-weight:700; color:#1e293b; font-size:0.85rem">
+              <i class="fas fa-heading text-primary"></i> ईमेल विषय (Subject Line):
+            </label>
+            <input type="text" id="broadcast-email-subject" class="form-control" style="width:100%; padding:8px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:0.85rem; font-weight:600">
+          </div>
+
+          <div class="form-group" style="margin-bottom:0.5rem">
+            <label style="font-weight:700; color:#1e293b; font-size:0.85rem; display:flex; justify-content:space-between">
+              <span><i class="fas fa-comment-alt text-primary"></i> विद्यालयों के लिए कस्टम निर्देश / संदेश (Custom Instructions):</span>
+              <span style="font-size:0.72rem; color:#64748b; font-weight:normal">(यह संदेश प्रत्येक स्कूल के ईमेल में मुख्य रूप से दिखेगा)</span>
+            </label>
+            <textarea id="broadcast-email-custom-msg" rows="5" class="form-control" style="width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:6px; font-size:0.85rem; line-height:1.5"></textarea>
+          </div>
+        </div>
+
+        <!-- Target Schools Preview Table -->
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:1rem">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem">
+            <div style="font-weight:700; color:#0f172a; font-size:0.9rem">
+              <i class="fas fa-list-check text-primary"></i> प्राप्तकर्ता विद्यालयों की सूची (Email Recipients):
+            </div>
+            <div style="display:flex; align-items:center; gap:0.5rem">
+              <label style="font-size:0.78rem; font-weight:700; display:flex; align-items:center; gap:0.35rem; cursor:pointer">
+                <input type="checkbox" id="broadcast-select-all-schools" checked onchange="toggleAllBroadcastRecipients(this.checked)" style="width:16px; height:16px">
+                सभी उपलब्ध को चुनें
+              </label>
+            </div>
+          </div>
+
+          <div class="table-responsive" style="max-height:260px; overflow-y:auto; border:1px solid #e2e8f0; border-radius:6px">
+            <table class="data-table" style="font-size:0.8rem; margin:0">
+              <thead style="position:sticky; top:0; background:#0f172a; color:#ffffff; z-index:1">
+                <tr>
+                  <th style="width:30px; text-align:center">चयन</th>
+                  <th style="width:75px">कोड</th>
+                  <th>विद्यालय का नाम</th>
+                  <th>संबंधित PEEO</th>
+                  <th>ईमेल पता (Email Address)</th>
+                  <th style="width:90px; text-align:center">स्थिति</th>
+                </tr>
+              </thead>
+              <tbody id="broadcast-schools-table-tbody">
+                <!-- Dynamically populated rows -->
+              </tbody>
+            </table>
+          </div>
+          <div style="font-size:0.72rem; color:#64748b; margin-top:0.5rem">
+            * जिन विद्यालयों के व्यक्तिगत ईमेल अभी दर्ज नहीं हैं, उनका ईमेल पता आप तालिका में सीधे लिखकर भी प्रेषित कर सकते हैं या PEEO ईमेल पर भेजा जा सकता है।
+          </div>
+        </div>
+
+        <!-- Live Progress Status (Hidden by default) -->
+        <div id="broadcast-progress-container" style="display:none; margin-top:1rem; background:#eff6ff; border:1.5px solid #93c5fd; border-radius:8px; padding:1rem; text-align:center">
+          <div class="spinner" style="margin:0 auto 0.5rem auto"></div>
+          <div id="broadcast-progress-text" style="font-weight:700; color:#1e40af; font-size:0.9rem">
+            विद्यालयों को ईमेल भेजे जा रहे हैं... कृपया प्रतीक्षा करें...
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer" style="padding:0.75rem 1.5rem; background:#f1f5f9; border-top:1px solid #cbd5e1; display:flex; justify-content:space-between; align-items:center">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-broadcast-demand-email')">
+          रद्द करें (Cancel)
+        </button>
+        <button id="broadcast-submit-btn" class="btn btn-warning" onclick="executeDemandEmailBroadcast()" style="background:#f59e0b; color:#0f172a; font-weight:800; border:none; padding:8px 20px; box-shadow:0 2px 6px rgba(245,158,11,0.3)">
+          <i class="fas fa-paper-plane"></i> 🚀 अभी चयनित विद्यालयों को ईमेल भेजें
+        </button>
+      </div>
+    </div>
+  </div>
+
+
   <!-- 8. ADD NEW SCHOOL MODAL (GOVT / PRIVATE) -->
   <div id="modal-add-school" class="modal-overlay">
     <div class="modal-card" style="max-width:620px">
@@ -3316,7 +3432,7 @@
 
   <!-- External & Application Logic -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <script src="master_cbeo_data.js?v=20261001_57_v3"></script>
-  <script src="app.js?v=20261001_57_v3"></script>
+  <script src="master_cbeo_data.js?v=20261003_v5"></script>
+  <script src="app.js?v=20261003_v5"></script>
 </body>
 </html>

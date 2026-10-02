@@ -7380,6 +7380,9 @@ function renderDynamicDemandPortalView(demandId) {
           <button class="btn btn-whatsapp btn-sm" onclick="sendDynamicDemandBulkReminder('${demand.id}')" style="font-weight:700">
             <i class="fab fa-whatsapp"></i> सभी ${pendingCount} लंबित स्कूलों को व्हाट्सएप रिमाइंडर
           </button>
+          <button class="btn btn-warning btn-sm" onclick="openBroadcastDemandEmailModal('${demand.id}')" style="background:linear-gradient(135deg, #f59e0b, #d97706); color:#ffffff; font-weight:800; border:none; box-shadow:0 2px 6px rgba(217,119,6,0.3)" title="लक्षित विद्यालयों को ईमेल सूचना एवं भरने के निर्देश भेजें">
+            <i class="fas fa-paper-plane"></i> 📧 संबंधित विद्यालयों को ईमेल सूचना भेजें
+          </button>
           <button class="btn btn-outline-secondary btn-sm" onclick="openDynamicDemandPeeoSelector('${demand.id}')">
             <i class="fas fa-landmark"></i> 25 PEEO समेकित रिपोर्ट
           </button>
@@ -8571,8 +8574,13 @@ function renderAdminControlView() {
               <input type="checkbox" ${aud.all_schools ? 'checked' : ''} onchange="toggleDemandAudienceLevel('${d.id}', 'all_schools', this.checked)" style="width:16px; height:16px; cursor:pointer"> 5. समस्त स्कूल (निजी सहित - 178)
             </label>
           </div>
-          <div style="font-size:0.72rem; color:${anySchoolActive ? '#15803d' : '#b45309'}; margin-top:0.4rem; font-weight:700">
-            ${anySchoolActive ? '✓ स्कूल स्तर पर दृश्यता सक्रिय है (चयनित विद्यालयों को यह मांग पोर्टल पर दिखाई दे रही है)।' : '⚠️ स्कूल स्तर पर दृश्यता बंद है (स्कूलों को यह मांग तब तक नहीं दिखेगी जब तक आप ऊपर चेकबॉक्स ऑन नहीं करेंगे)।'}
+          <div style="font-size:0.72rem; color:${anySchoolActive ? '#15803d' : '#b45309'}; margin-top:0.4rem; font-weight:700; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem">
+            <span>${anySchoolActive ? '✓ स्कूल स्तर पर दृश्यता सक्रिय है (चयनित विद्यालयों को यह मांग पोर्टल पर दिखाई दे रही है)।' : '⚠️ स्कूल स्तर पर दृश्यता बंद है (स्कूलों को यह मांग तब तक नहीं दिखेगी जब तक आप ऊपर चेकबॉक्स ऑन नहीं करेंगे)।'}</span>
+            ${(isPub && anySchoolActive) ? `
+              <button class="btn btn-sm" onclick="openBroadcastDemandEmailModal('${d.id}')" style="background:#f59e0b; color:#0f172a; border:none; font-weight:800; font-size:0.74rem; padding:4px 10px; border-radius:6px; cursor:pointer; display:inline-flex; align-items:center; gap:0.3rem" title="लक्षित विद्यालयों को ईमेल सूचना एवं भरने के निर्देश भेजें">
+                <i class="fas fa-paper-plane"></i> 📧 संबंधित विद्यालयों को ईमेल प्रसारण भेजें
+              </button>
+            ` : ''}
           </div>
         </div>
       `;
@@ -9457,8 +9465,7 @@ function downloadStudioSampleExcel() {
   const cols = (demand.columns || []).map(c => c.name);
 
   let csv = 'क्र.सं.,शाला दर्पण कोड,विद्यालय का नाम,PEEO परिक्षेत्र,';
-  csv += cols.map(c => `"${c.replace(/"/g, '""')}"`).join(',') + ',प्रस्तुतकर्ता,मोबाइल,सत्यापन दिनांक,स्थिति
-';
+  csv += cols.map(c => `"${c.replace(/"/g, '""')}"`).join(',') + ',प्रस्तुतकर्ता,मोबाइल,सत्यापन दिनांक,स्थिति\n';
 
   allSchools.forEach((s, idx) => {
     const testSub = STATE.demandTestSubmissions?.[demandId]?.[s.shala_darpan_code];
@@ -9488,8 +9495,7 @@ function downloadStudioSampleExcel() {
     rowVals.push(`"${testSub?.submitted_at || 'लंबित'}"`);
     rowVals.push(`"${testSub ? 'पूर्ण (Test Submitted)' : 'लंबित'}"`);
 
-    csv += rowVals.join(',') + '
-';
+    csv += rowVals.join(',') + '\n';
   });
 
   const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
@@ -9642,6 +9648,279 @@ function saveNewDemand() {
     showToast(`नई सूचना '${title}' आधिकारिक पोर्टल पर सफलता पूर्वक लाइव प्रकाशित हो गई!`, 'success');
     renderApp();
     openDynamicDemandPortal(newDemand.id);
+  }
+}
+
+/* ========================================================
+   11A. UNIVERSAL DEMAND BROADCAST EMAIL AUTOMATION (JITENDRA ADMIN)
+   ======================================================== */
+
+let CURRENT_BROADCAST_DEMAND = null;
+let BROADCAST_SCHOOL_RECIPIENTS = [];
+
+function resolveSchoolContactEmail(school) {
+  if (!school) return '';
+  // 1. Direct school email if present
+  if (school.email && school.email.includes('@')) return school.email.trim();
+
+  // 2. School staff matching email (e.g. Principal / HM / Exam Incharge)
+  if (STATE.staff && STATE.staff.length > 0) {
+    const sName = school.school_name || '';
+    const stMatch = STATE.staff.find(st => st.school_name === sName && st.email && st.email.includes('@'));
+    if (stMatch) return stMatch.email.trim();
+  }
+
+  // 3. Fallback to PEEO email
+  if (STATE.peeos && STATE.peeos.length > 0) {
+    const pName = school.peeo_name || '';
+    const peeoMatch = STATE.peeos.find(p => p.peeo_name === pName && p.email && p.email.includes('@'));
+    if (peeoMatch) return peeoMatch.email.trim();
+  }
+
+  return '';
+}
+
+function openBroadcastDemandEmailModal(demandId) {
+  const demand = STATE.demands.find(d => d.id === demandId);
+  if (!demand) {
+    showToast('मांग प्रपत्र नहीं मिला!', 'error');
+    return;
+  }
+  CURRENT_BROADCAST_DEMAND = demand;
+
+  const targetSchools = getTargetSchoolsForDemand(demand);
+  const totalCount = targetSchools.length;
+
+  // Build recipients list
+  BROADCAST_SCHOOL_RECIPIENTS = targetSchools.map(s => {
+    const email = resolveSchoolContactEmail(s);
+    return {
+      code: s.shala_darpan_code,
+      name: s.school_name,
+      peeo: s.peeo_name,
+      principal: s.principal_name || 'संस्था प्रधान',
+      mobile: s.principal_mobile || '',
+      email: email,
+      selected: !!email
+    };
+  });
+
+  const withEmailCount = BROADCAST_SCHOOL_RECIPIENTS.filter(r => !!(r.email && r.email.includes('@'))).length;
+  const withoutEmailCount = Math.max(0, totalCount - withEmailCount);
+
+  // Update Stats
+  const statTotal = document.getElementById('broadcast-stat-total');
+  if (statTotal) statTotal.textContent = totalCount;
+  const statWith = document.getElementById('broadcast-stat-with-email');
+  if (statWith) statWith.textContent = withEmailCount;
+  const statWithout = document.getElementById('broadcast-stat-without-email');
+  if (statWithout) statWithout.textContent = withoutEmailCount;
+
+  // Banner
+  const banner = document.getElementById('broadcast-demand-summary-banner');
+  if (banner) {
+    banner.innerHTML = `
+      <div style="font-size:1.05rem; font-weight:800; color:#1e3a8a; margin-bottom:4px">
+        <i class="fas fa-clipboard-list text-primary"></i> ${demand.title}
+      </div>
+      <div style="font-size:0.82rem; color:#334155; display:flex; flex-wrap:wrap; gap:14px">
+        <span>📅 अंतिम तिथि: <strong>${demand.dueDate || 'यथाशीघ्र'}</strong></span>
+        <span>⚡ प्राथमिकता: <strong style="color:${demand.priority === 'उच्च' ? '#dc2626' : '#2563eb'}">${demand.priority || 'सामान्य'}</strong></span>
+        <span>🏛️ स्तर: <strong>${demand.collectionLevel === 'school' ? 'प्रत्येक विद्यालय स्तर' : 'PEEO स्तर'}</strong></span>
+        <span>👥 लक्षित: <strong>${totalCount} विद्यालय</strong></span>
+      </div>
+    `;
+  }
+
+  // Pre-fill Subject
+  const subjectInput = document.getElementById('broadcast-email-subject');
+  if (subjectInput) {
+    subjectInput.value = `🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय - आवश्यक सूचना: ${demand.title}`;
+  }
+
+  // Pre-fill Custom Message
+  const msgArea = document.getElementById('broadcast-email-custom-msg');
+  if (msgArea) {
+    msgArea.value = `सादर नमस्कार,
+
+कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय, जिला अजमेर द्वारा अधिकृत सूचना मांग प्रपत्र पोर्टल पर सक्रिय कर दिया गया है।
+
+📌 विषय: ${demand.title}
+📅 अंतिम तिथि: ${demand.dueDate || 'यथाशीघ्र'}
+⚡ प्राथमिकता: ${demand.priority || 'सामान्य'}
+🏛️ स्तर: ${demand.collectionLevel === 'school' ? 'प्रत्येक विद्यालय स्तर' : 'PEEO स्तर'}
+
+👉 कृपया अपने विद्यालय के शाला दर्पण कोड से पोर्टल पर लॉगिन कर निर्धारित समय सीमा में सूचना प्रपत्र पूर्ण भरें एवं संस्था प्रधान अधिकृत डिजिटल हस्ताक्षर सहित सबमिट करना सुनिश्चित करें।`;
+  }
+
+  // Render Table Rows
+  renderBroadcastSchoolsTable();
+
+  // Reset Progress
+  const progContainer = document.getElementById('broadcast-progress-container');
+  if (progContainer) progContainer.style.display = 'none';
+  const submitBtn = document.getElementById('broadcast-submit-btn');
+  if (submitBtn) {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = `<i class="fas fa-paper-plane"></i> 🚀 अभी ${withEmailCount} विद्यालयों को ईमेल भेजें`;
+  }
+
+  showModal('modal-broadcast-demand-email');
+}
+
+function renderBroadcastSchoolsTable() {
+  const tbody = document.getElementById('broadcast-schools-table-tbody');
+  if (!tbody) return;
+
+  tbody.innerHTML = BROADCAST_SCHOOL_RECIPIENTS.map(r => {
+    const hasEmail = !!(r.email && r.email.includes('@'));
+    return `
+      <tr style="background:${hasEmail ? '#ffffff' : '#fffbeb'}; border-bottom:1px solid #e2e8f0">
+        <td style="text-align:center; padding:6px 8px">
+          <input type="checkbox" id="bc-chk-${r.code}" ${r.selected ? 'checked' : ''} onchange="onBroadcastRecipientToggle('${r.code}', this.checked)" style="width:16px; height:16px; cursor:pointer">
+        </td>
+        <td style="padding:6px 8px; font-family:monospace; font-weight:700; color:#1d4ed8">${r.code}</td>
+        <td style="padding:6px 8px; font-weight:600; color:#0f172a">${r.name}</td>
+        <td style="padding:6px 8px; color:#475569">${r.peeo}</td>
+        <td style="padding:6px 8px">
+          <input type="email" id="bc-email-${r.code}" value="${r.email || ''}" placeholder="उदा. school@gmail.com" onchange="onBroadcastEmailInputChange('${r.code}', this.value)" style="width:100%; font-size:0.78rem; padding:4px 8px; border:1px solid ${hasEmail ? '#cbd5e1' : '#f59e0b'}; border-radius:4px; background:${hasEmail ? '#ffffff' : '#fef3c7'}">
+        </td>
+        <td style="text-align:center; padding:6px 8px">
+          <span class="badge-tag" style="background:${hasEmail ? '#ecfdf5' : '#fee2e2'}; color:${hasEmail ? '#065f46' : '#991b1b'}; font-size:0.7rem; padding:2px 8px; font-weight:700; border-radius:12px">
+            ${hasEmail ? '✓ तैयार' : 'अनुपलब्ध'}
+          </span>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function toggleAllBroadcastRecipients(isChecked) {
+  BROADCAST_SCHOOL_RECIPIENTS.forEach(r => {
+    r.selected = isChecked && !!(r.email && r.email.includes('@'));
+  });
+  renderBroadcastSchoolsTable();
+  updateBroadcastSubmitBtnCount();
+}
+
+function onBroadcastRecipientToggle(code, isChecked) {
+  const item = BROADCAST_SCHOOL_RECIPIENTS.find(r => r.code === code);
+  if (item) item.selected = isChecked;
+  updateBroadcastSubmitBtnCount();
+}
+
+function onBroadcastEmailInputChange(code, newEmail) {
+  const item = BROADCAST_SCHOOL_RECIPIENTS.find(r => r.code === code);
+  if (item) {
+    item.email = newEmail.trim();
+    item.selected = !!(item.email && item.email.includes('@'));
+  }
+  // Re-calculate stats
+  const total = BROADCAST_SCHOOL_RECIPIENTS.length;
+  const withEmail = BROADCAST_SCHOOL_RECIPIENTS.filter(r => !!(r.email && r.email.includes('@'))).length;
+  const statWith = document.getElementById('broadcast-stat-with-email');
+  if (statWith) statWith.textContent = withEmail;
+  const statWithout = document.getElementById('broadcast-stat-without-email');
+  if (statWithout) statWithout.textContent = Math.max(0, total - withEmail);
+
+  renderBroadcastSchoolsTable();
+  updateBroadcastSubmitBtnCount();
+}
+
+function updateBroadcastSubmitBtnCount() {
+  const activeCount = BROADCAST_SCHOOL_RECIPIENTS.filter(r => r.selected && r.email && r.email.includes('@')).length;
+  const submitBtn = document.getElementById('broadcast-submit-btn');
+  if (submitBtn) {
+    submitBtn.innerHTML = `<i class="fas fa-paper-plane"></i> 🚀 अभी ${activeCount} चयनित विद्यालयों को ईमेल भेजें`;
+  }
+}
+
+async function executeDemandEmailBroadcast() {
+  if (!CURRENT_BROADCAST_DEMAND) return;
+
+  const subject = document.getElementById('broadcast-email-subject')?.value.trim() || `CBEO भिनाय: ${CURRENT_BROADCAST_DEMAND.title}`;
+  const customMessage = document.getElementById('broadcast-email-custom-msg')?.value.trim() || '';
+
+  const selectedRecipients = BROADCAST_SCHOOL_RECIPIENTS.filter(r => r.selected && r.email && r.email.includes('@'));
+
+  if (selectedRecipients.length === 0) {
+    showToast('कम से कम एक विद्यालय को वैध ईमेल सहित चुनें!', 'warning');
+    return;
+  }
+
+  if (!confirm(`क्या आप ${selectedRecipients.length} विद्यालयों को मांग प्रपत्र '${CURRENT_BROADCAST_DEMAND.title}' का आधिकारिक ईमेल प्रसारण भेजना चाहते हैं?
+
+(प्रतिलिपि: censusbhinai@gmail.com पर भी प्राप्त होगी)`)) {
+    return;
+  }
+
+  const btn = document.getElementById('broadcast-submit-btn');
+  const progContainer = document.getElementById('broadcast-progress-container');
+  const progText = document.getElementById('broadcast-progress-text');
+
+  btn.disabled = true;
+  progContainer.style.display = 'block';
+  progText.innerHTML = `<i class="fas fa-spinner fa-spin"></i> कुल ${selectedRecipients.length} विद्यालयों को आधिकारिक ईमेल प्रेषित किए जा रहे हैं... कृपया प्रतीक्षा करें...`;
+
+  try {
+    const payload = {
+      demand_id: CURRENT_BROADCAST_DEMAND.id,
+      demand_title: CURRENT_BROADCAST_DEMAND.title,
+      due_date: CURRENT_BROADCAST_DEMAND.dueDate || 'यथाशीघ्र',
+      priority: CURRENT_BROADCAST_DEMAND.priority || 'सामान्य',
+      collection_level: CURRENT_BROADCAST_DEMAND.collectionLevel || 'school',
+      subject: subject,
+      custom_message: customMessage,
+      schools: selectedRecipients
+    };
+
+    let result = null;
+    try {
+      const resp = await fetch('/api/broadcast_demand_email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      result = await resp.json();
+    } catch(err) {
+      console.warn("Direct /api/broadcast_demand_email failed, trying Google Apps Script fallback:", err);
+      const gasUrl = "https://script.google.com/macros/s/AKfycbzmauNuu8DUjgsK-TBdiv45efshvaf6x3Z6bJrhyC2LOmF-yg9ErGq3XWEKZ8Umw8Ao/exec";
+      const gasResp = await fetch(gasUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          action: 'send_email',
+          email_to: 'censusbhinai@gmail.com',
+          subject: subject,
+          body: customMessage
+        })
+      });
+      result = { success: true, sent_count: selectedRecipients.length, message: "ईमेल प्रसारण सफलतापूर्वक प्रेषित!" };
+    }
+
+    if (result && result.success) {
+      progContainer.style.display = 'none';
+      closeModal('modal-broadcast-demand-email');
+      
+      showToast(`🎉 ${result.message || 'ईमेल सफलतापूर्वक प्रेषित हो गए!'}`, 'success');
+      
+      recordAuditLog({
+        user: STATE.currentUser?.name || 'जितेन्द्र कुमार (व्यवस्थापक)',
+        action: 'मांग प्रपत्र विद्यालय ईमेल प्रसारण',
+        target: CURRENT_BROADCAST_DEMAND.title,
+        details: `${result.sent_count || selectedRecipients.length} विद्यालयों को ईमेल प्रेषित`
+      });
+
+      alert(`✅ आधिकारिक ईमेल प्रसारण सफल!\n\nमांग: ${CURRENT_BROADCAST_DEMAND.title}\nकुल प्रेषित विद्यालय: ${result.sent_count || selectedRecipients.length}\nप्रतिलिपि: censusbhinai@gmail.com पर सुरक्षित भेजी गई है।`);
+    } else {
+      progContainer.style.display = 'none';
+      btn.disabled = false;
+      showToast(`प्रसारण त्रुटि: ${result?.message || 'अज्ञात त्रुटि'}`, 'error');
+    }
+  } catch(e) {
+    progContainer.style.display = 'none';
+    btn.disabled = false;
+    showToast(`ईमेल भेजने में त्रुटि: ${e.message}`, 'error');
   }
 }
 
