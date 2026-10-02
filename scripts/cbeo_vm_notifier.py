@@ -71,7 +71,7 @@ def main():
         sub = saman_subs.get(code)
         
         is_sub = False
-        if sub and (sub.get('is_submitted') or sub.get('grand_total') is not None or sub.get('submitted_at')):
+        if sub and (sub.get('is_submitted') is True or bool(sub.get('exam_code')) or (sub.get('grand_total', 0) > 0)):
             is_sub = True
 
         if is_sub:
