@@ -23,6 +23,16 @@
 
 var BACKUP_SPREADSHEET_ID = "1sBtbb-uWHxaI7nbrkEbyAZs8CwMYuWE4fmwJhHN2FQU";
 
+/**
+ * ⚡ केवल 1 बार इस फंक्शन को रन करें (ऊपर Run बटन दबाकर):
+ * इससे Google ईमेल भेजने की परमिशन (Authorization) मांगकर सक्रिय कर देगा!
+ */
+function testAuthorizePermissions() {
+  var quota = MailApp.getRemainingDailyQuota();
+  Logger.log("सफलता! दैनिक ईमेल कोटा उपलब्ध: " + quota);
+  MailApp.sendEmail(Session.getEffectiveUser().getEmail(), "CBEO Bhinai Email Test", "कार्यालय CBEO भिनाय: ईमेल सेवा सक्रिय हो गई है!");
+}
+
 function getTargetSpreadsheet() {
   try {
     return SpreadsheetApp.getActiveSpreadsheet() || SpreadsheetApp.openById(BACKUP_SPREADSHEET_ID);
