@@ -1,0 +1,11 @@
+{
+  "visibility": {
+    "saman-pariksha": {
+      "cbeo": true,
+      "peeo": true,
+      "sec_srsec": true,
+      "all_govt": false,
+      "all_schools": false
+    }
+  }
+}

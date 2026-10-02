@@ -5,6 +5,11 @@ import urllib.parse
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from sync_admin_access_sheet import update_single_password, sync_full_admin_sheet
 from sync_saman_pariksha_to_sheet import sync_submissions
+from manage_contacts_and_staff import (
+    update_sanstha_pradhan_in_all_files,
+    save_or_update_staff_member,
+    relieve_or_delete_staff_member
+)
 
 PORT = 8089
 
@@ -175,6 +180,58 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                 self.send_json_response({'success': True, 'message': 'समान परीक्षा Google Sheet में डेटा सिंक हो गया!'})
             except Exception as e:
                 print(f"[API Error] Saman Pariksha sync failed: {e}")
+        elif parsed_url.path == '/api/update_sanstha_pradhan':
+            staff_id = req_data.get('staff_id')
+            is_sanstha_pradhan = req_data.get('is_sanstha_pradhan', True)
+            school_name = req_data.get('school_name')
+            peeo_name = req_data.get('peeo_name')
+            name = req_data.get('name')
+            mobile = req_data.get('mobile')
+            
+            print(f"[API] Updating Sanstha Pradhan for staff {staff_id} ({name})...")
+            try:
+                res = update_sanstha_pradhan_in_all_files(
+                    staff_id=staff_id,
+                    is_sanstha_pradhan=is_sanstha_pradhan,
+                    school_name=school_name,
+                    peeo_name=peeo_name,
+                    name=name,
+                    mobile=mobile
+                )
+                self.send_json_response(res)
+            except Exception as e:
+                print(f"[API Error] update_sanstha_pradhan failed: {e}")
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
+
+        elif parsed_url.path == '/api/save_staff_member':
+            print(f"[API] Saving staff member {req_data.get('name')}...")
+            try:
+                res = save_or_update_staff_member(req_data)
+                self.send_json_response(res)
+            except Exception as e:
+                print(f"[API Error] save_staff_member failed: {e}")
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
+
+        elif parsed_url.path == '/api/relieve_staff_member':
+            staff_id = req_data.get('staff_id')
+            reason = req_data.get('reason', 'कार्यमुक्त')
+            print(f"[API] Relieving staff member {staff_id}...")
+            try:
+                res = relieve_or_delete_staff_member(staff_id, reason)
+                self.send_json_response(res)
+            except Exception as e:
+                print(f"[API Error] relieve_staff_member failed: {e}")
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
+
+        elif parsed_url.path == '/api/save_tab_visibility_5level':
+            try:
+                with open('tab_visibility_5level.json', 'w', encoding='utf-8') as f:
+                    json.dump(req_data, f, ensure_ascii=False, indent=2)
+                self.send_json_response({'success': True, 'message': '5-स्तरीय टैब दृश्यता सेटिंग्स सुरक्षित की गईं!'})
+            except Exception as e:
                 self.send_json_response({'success': False, 'message': str(e)}, status=500)
             return
 
@@ -205,6 +262,17 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                     with open('tab_config.json', 'r', encoding='utf-8') as f:
                         config = json.load(f)
                 self.send_json_response({'success': True, 'config': config})
+            except Exception as e:
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
+
+        elif parsed_url.path == '/api/get_tab_visibility_5level':
+            try:
+                vis = {}
+                if os.path.exists('tab_visibility_5level.json'):
+                    with open('tab_visibility_5level.json', 'r', encoding='utf-8') as f:
+                        vis = json.load(f)
+                self.send_json_response({'success': True, 'visibility': vis})
             except Exception as e:
                 self.send_json_response({'success': False, 'message': str(e)}, status=500)
             return

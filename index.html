@@ -648,52 +648,89 @@
       </div>
     </section>
 
-    <!-- 3. GLOBAL DIRECTORY VIEW -->
+    <!-- 3. GLOBAL DIRECTORY VIEW (3-TIER HIERARCHICAL) -->
     <section id="view-directory" class="content-view">
       <div class="section-box">
-        <div class="section-header">
-          <div class="section-title">
-            <i class="fas fa-address-book text-secondary"></i>
-            <h2>CBEO भिनाय: सम्पूर्ण ब्लॉक संपर्क डायरेक्टरी</h2>
-            <span class="section-count" id="dir-total-count">1048+ संपर्क</span>
+        <div class="section-header" style="flex-wrap:wrap; gap:1rem">
+          <div>
+            <div class="section-title">
+              <i class="fas fa-address-book text-secondary"></i>
+              <h2>CBEO भिनाय: 3-स्तरीय ब्लॉक संपर्क डायरेक्टरी</h2>
+              <span class="section-count" id="dir-total-count">1060+ संपर्क</span>
+            </div>
+            <p style="font-size:0.83rem; color:var(--neutral-600); margin-top:2px">
+              25 PEEO ➔ PEEO अधीन समस्त विद्यालय (राजकीय एवं निजी) ➔ प्रत्येक विद्यालय के कार्मिक (नाम, पद, मोबाइल, ईमेल)
+            </p>
           </div>
-          <div style="display:flex; gap:0.5rem">
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
             <button class="btn btn-success btn-sm" onclick="exportDirectoryCSV()">
               <i class="fas fa-file-excel"></i> एक्सेल डाउनलोड
             </button>
-            <button class="btn btn-outline-light btn-sm" style="color:#1e293b; border-color:#cbd5e1" onclick="window.print()">
+            <button class="btn btn-primary btn-sm" onclick="printCleanContactDirectory()">
               <i class="fas fa-print"></i> प्रिंट डायरेक्टरी
             </button>
           </div>
         </div>
 
-        <div class="toolbar-row">
-          <div class="search-box-wrapper">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" id="dir-search-input" placeholder="पूरे ब्लॉक में किसी का भी नाम, विद्यालय, पद, मोबाइल, ईमेल या PEEO खोजें..." oninput="filterDirectory()">
+        <!-- 3-Tier Hierarchical Filter Toolbar -->
+        <div class="toolbar-row" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:0.75rem; background:#f8fafc; padding:1rem; border-radius:10px; border:1px solid #e2e8f0; margin-bottom:1.25rem">
+          <!-- Tier 1: 25 PEEOs Dropdown -->
+          <div>
+            <label style="font-size:0.78rem; font-weight:700; color:#1e293b; display:block; margin-bottom:4px">
+              <i class="fas fa-university text-primary"></i> 1. PEEO चुनें (25 PEEO):
+            </label>
+            <select id="dir-peeo-select" class="filter-select" style="width:100%" onchange="onDirPeeoSelectChange()">
+              <option value="all">-- सभी 25 PEEO परिक्षेत्र --</option>
+            </select>
           </div>
-          <select id="dir-type-filter" class="filter-select" onchange="filterDirectory()">
-            <option value="all">सभी श्रेणियां (PEEO + प्रधानाचार्य + शिक्षक + निजी स्कूल)</option>
-            <option value="peeo">केवल 25 PEEO प्रभारी</option>
-            <option value="principal">केवल प्रधानाचार्य / Headmaster</option>
-            <option value="private">केवल निजी विद्यालय (Private Schools)</option>
-            <option value="staff">सभी अधीनस्थ शिक्षक / कार्मिक</option>
-          </select>
-          <select id="dir-peeo-filter" class="filter-select" onchange="filterDirectory()">
-            <option value="all">सभी PEEO क्षेत्र</option>
-          </select>
+
+          <!-- Tier 2: Schools under selected PEEO -->
+          <div>
+            <label style="font-size:0.78rem; font-weight:700; color:#1e293b; display:block; margin-bottom:4px">
+              <i class="fas fa-school text-secondary"></i> 2. विद्यालय चुनें:
+            </label>
+            <select id="dir-school-select" class="filter-select" style="width:100%" onchange="filterDirectory()">
+              <option value="all">-- समस्त विद्यालय (नोडल व अधीनस्थ) --</option>
+            </select>
+          </div>
+
+          <!-- Category Filter -->
+          <div>
+            <label style="font-size:0.78rem; font-weight:700; color:#1e293b; display:block; margin-bottom:4px">
+              <i class="fas fa-filter text-info"></i> 3. श्रेणी / पद फिल्टर:
+            </label>
+            <select id="dir-type-filter" class="filter-select" style="width:100%" onchange="filterDirectory()">
+              <option value="all">सभी कार्मिक (संस्था प्रधान + शिक्षक + स्टाफ)</option>
+              <option value="principal">👑 केवल संस्था प्रधान / PEEO</option>
+              <option value="staff">👨‍🏫 अधीनस्थ शिक्षक व स्टाफ</option>
+              <option value="private">🏢 केवल निजी विद्यालय</option>
+            </select>
+          </div>
+
+          <!-- Global Real-Time Search Box -->
+          <div>
+            <label style="font-size:0.78rem; font-weight:700; color:#1e293b; display:block; margin-bottom:4px">
+              <i class="fas fa-search text-warning"></i> 4. त्वरित खोज (Universal Search):
+            </label>
+            <div class="search-box-wrapper" style="width:100%">
+              <i class="fas fa-search search-icon"></i>
+              <input type="text" id="dir-search-input" placeholder="नाम, पद, मोबाइल, ईमेल, विद्यालय खोजें..." oninput="filterDirectory()">
+            </div>
+          </div>
         </div>
 
         <div class="table-responsive">
-          <table class="data-table">
+          <table class="data-table" id="directory-table">
             <thead>
               <tr>
-                <th>क्र.सं.</th>
-                <th>नाम व पद</th>
-                <th>संबंधित PEEO / विद्यालय</th>
+                <th style="width:50px">क्र.सं.</th>
+                <th>कार्मिक / प्रभारी का नाम</th>
+                <th>पद (Designation)</th>
                 <th>मोबाइल नंबर</th>
                 <th>ईमेल आईडी</th>
-                <th>संपर्क क्रियाएं (Call & WhatsApp)</th>
+                <th>विद्यालय / पदस्थापन कार्यालय</th>
+                <th>संबंधित PEEO</th>
+                <th style="width:140px">कॉल व WhatsApp</th>
               </tr>
             </thead>
             <tbody id="directory-tbody">
@@ -704,14 +741,19 @@
       </div>
     </section>
 
-    <!-- 4. STAFF MANAGEMENT VIEW -->
+    <!-- 4. STAFF MANAGEMENT VIEW (ELECTION / CENSUS MASTER FORMAT) -->
     <section id="view-staff" class="content-view">
       <div class="section-box">
-        <div class="section-header">
-          <div class="section-title">
-            <i class="fas fa-users-cog text-primary"></i>
-            <h2>PEEO स्टाफ प्रबंधन एवं स्थापना सूची</h2>
-            <span class="section-count" id="staff-total-count">0 कार्मिक</span>
+        <div class="section-header" style="flex-wrap:wrap; gap:1rem">
+          <div>
+            <div class="section-title">
+              <i class="fas fa-users-cog text-primary"></i>
+              <h2>CBEO भिनाय: कार्मिक प्रबंधन एवं स्थापना सूची (Census / Election Master Format)</h2>
+              <span class="section-count" id="staff-total-count">1060+ कार्मिक</span>
+            </div>
+            <p style="font-size:0.83rem; color:var(--neutral-600); margin-top:2px">
+              समस्त 1,060+ कार्मिकों का डेटाबेस (हिंदी यूनिकोड)। PEEO एवं संस्था प्रधान अपने विद्यालय के कार्मिक संपादित कर सकते हैं। 👑 संस्था प्रधान मार्क करने पर मास्टर डायरेक्टरी व Google Sheet तुरंत अपडेट होती है।
+            </p>
           </div>
           <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
             <button class="btn btn-primary btn-sm" onclick="openAddStaffModal()">
@@ -726,29 +768,98 @@
           </div>
         </div>
 
-        <div class="toolbar-row">
-          <div class="search-box-wrapper">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" id="staff-search-input" placeholder="कार्मिक का नाम, SSO ID, मोबाइल, विद्यालय या पद खोजें..." oninput="filterStaffTable()">
+        <!-- 4 KPI Staff Summary Cards -->
+        <div class="stat-cards-grid" style="grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:1.25rem">
+          <div class="stat-card blue" style="padding:1rem">
+            <div class="stat-icon-wrapper" style="width:42px; height:42px"><i class="fas fa-users"></i></div>
+            <div class="stat-info">
+              <h3 id="staff-stat-total" style="font-size:1.4rem">1,060</h3>
+              <p style="font-size:0.75rem">कुल पंजीकृत कार्मिक</p>
+            </div>
           </div>
-          <select id="staff-peeo-filter" class="filter-select" onchange="filterStaffTable()">
-            <option value="all">सभी PEEO</option>
-          </select>
+          <div class="stat-card orange" style="padding:1rem">
+            <div class="stat-icon-wrapper" style="width:42px; height:42px; background:#fef3c7; color:#d97706"><i class="fas fa-crown"></i></div>
+            <div class="stat-info">
+              <h3 id="staff-stat-pradhan" style="font-size:1.4rem; color:#d97706">50</h3>
+              <p style="font-size:0.75rem">सत्यापित संस्था प्रधान / PEEO</p>
+            </div>
+          </div>
+          <div class="stat-card green" style="padding:1rem">
+            <div class="stat-icon-wrapper" style="width:42px; height:42px; background:#ecfdf5; color:#059669"><i class="fas fa-check-circle"></i></div>
+            <div class="stat-info">
+              <h3 id="staff-stat-active" style="font-size:1.4rem; color:#059669">1,060</h3>
+              <p style="font-size:0.75rem">सक्रिय कार्यरत कार्मिक</p>
+            </div>
+          </div>
+          <div class="stat-card purple" style="padding:1rem">
+            <div class="stat-icon-wrapper" style="width:42px; height:42px"><i class="fas fa-landmark"></i></div>
+            <div class="stat-info">
+              <h3 id="staff-stat-peeos" style="font-size:1.4rem">25</h3>
+              <p style="font-size:0.75rem">PEEO परिक्षेत्र</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4-Way Staff Filtering Toolbar -->
+        <div class="toolbar-row" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:0.75rem; background:#f8fafc; padding:1rem; border-radius:10px; border:1px solid #e2e8f0; margin-bottom:1.25rem">
+          <div>
+            <label style="font-size:0.78rem; font-weight:700; color:#1e293b; display:block; margin-bottom:4px">
+              <i class="fas fa-university text-primary"></i> PEEO परिक्षेत्र:
+            </label>
+            <select id="staff-peeo-filter" class="filter-select" style="width:100%" onchange="onStaffPeeoFilterChange()">
+              <option value="all">-- सभी 25 PEEO --</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="font-size:0.78rem; font-weight:700; color:#1e293b; display:block; margin-bottom:4px">
+              <i class="fas fa-school text-secondary"></i> विद्यालय:
+            </label>
+            <select id="staff-school-filter" class="filter-select" style="width:100%" onchange="filterStaffTable()">
+              <option value="all">-- समस्त विद्यालय --</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="font-size:0.78rem; font-weight:700; color:#1e293b; display:block; margin-bottom:4px">
+              <i class="fas fa-user-tag text-info"></i> पद / संस्था प्रधान स्थिति:
+            </label>
+            <select id="staff-post-filter" class="filter-select" style="width:100%" onchange="filterStaffTable()">
+              <option value="all">सभी पद व कार्मिक</option>
+              <option value="pradhan">👑 केवल संस्था प्रधान / PEEO</option>
+              <option value="व्याख्याता">व्याख्याता (Lecturers)</option>
+              <option value="वरिष्ठ अध्यापक">वरिष्ठ अध्यापक (2nd Grade)</option>
+              <option value="अध्यापक">अध्यापक लेवल-1 व लेवल-2</option>
+              <option value="मंत्रालयीन">मंत्रालयीन व सहायक कर्मचारी</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="font-size:0.78rem; font-weight:700; color:#1e293b; display:block; margin-bottom:4px">
+              <i class="fas fa-search text-warning"></i> खोज (Search):
+            </label>
+            <div class="search-box-wrapper" style="width:100%">
+              <i class="fas fa-search search-icon"></i>
+              <input type="text" id="staff-search-input" placeholder="नाम, SSO ID, मोबाइल, विद्यालय या पद खोजें..." oninput="filterStaffTable()">
+            </div>
+          </div>
         </div>
 
         <div class="table-responsive">
-          <table class="data-table">
+          <table class="data-table" id="staff-management-table">
             <thead>
               <tr>
+                <th style="width:45px">क्र.सं.</th>
                 <th>Staff ID</th>
-                <th>कार्मिक का नाम</th>
+                <th>कार्मिक का नाम (हिन्दी)</th>
+                <th>लिंग</th>
                 <th>पद (Designation)</th>
-                <th>विद्यालय का नाम</th>
+                <th>पदस्थापन विद्यालय / कार्यालय</th>
                 <th>संबंधित PEEO</th>
                 <th>मोबाइल नंबर</th>
                 <th>SSO ID</th>
-                <th>स्थिति</th>
-                <th>कार्यवाही (Action)</th>
+                <th style="width:110px">👑 संस्था प्रधान</th>
+                <th style="width:190px">कार्यवाही (Actions)</th>
               </tr>
             </thead>
             <tbody id="staff-tbody">
@@ -992,6 +1103,81 @@
             <button class="btn btn-danger btn-sm" onclick="generateCBEOAdminSummaryPDF()">
               <i class="fas fa-file-pdf"></i> CBEO कार्यालय समग्र मॉनिटरिंग PDF
             </button>
+          </div>
+        </div>
+
+        <!-- A. CBEO EXECUTIVE DASHBOARD (MONITORING & PENDING PDF / WHATSAPP SHARE) -->
+        <div id="cbeo-executive-overview" style="background:#ffffff; border:2px solid #0284c7; border-radius:12px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1)">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; border-bottom:1.5px solid #e2e8f0; padding-bottom:0.75rem">
+            <div>
+              <h3 style="font-size:1.15rem; color:#0369a1; margin:0; display:flex; align-items:center; gap:0.5rem">
+                <i class="fas fa-chart-pie text-primary"></i> CBEO कार्यालय समग्र मॉनिटरिंग एवं लम्बित नियंत्रण डैशबोर्ड
+              </h3>
+              <p style="font-size:0.83rem; color:#475569; margin:3px 0 0 0">
+                समस्त सक्रिय सूचना मांगों का संख्यात्मक विवरण (प्राप्त vs लम्बित), लम्बित रिपोर्ट PDF जनरेशन एवं त्वरित WhatsApp शेयरिंग
+              </p>
+            </div>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+              <button class="btn btn-danger btn-sm" onclick="generateCBEOAdminSummaryPDF()" style="font-weight:700">
+                <i class="fas fa-file-pdf"></i> समग्र मॉनिटरिंग रिपोर्ट PDF
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Active Demands Executive Table -->
+          <div class="table-responsive">
+            <table class="data-table" id="cbeo-demands-summary-table">
+              <thead>
+                <tr>
+                  <th style="width:40px">क्र.सं.</th>
+                  <th>सूचना मांग प्रपत्र (Demand Title)</th>
+                  <th>अंतिम तिथि</th>
+                  <th>कुल लक्षित</th>
+                  <th>प्राप्त संख्या</th>
+                  <th>लम्बित संख्या</th>
+                  <th style="min-width:140px">प्रगति प्रतिशत</th>
+                  <th style="width:240px; text-align:center">🚨 लम्बित एक्शन (PDF / WhatsApp)</th>
+                </tr>
+              </thead>
+              <tbody id="cbeo-demands-summary-tbody">
+                <!-- Rendered dynamically by renderCBEOExecutiveDemands() -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- B. JITENDRA SUPER ADMIN 5-LEVEL TAB VISIBILITY CONTROL MATRIX -->
+        <div id="jitendra-access-control-matrix-card" style="background:#ffffff; border:2px solid #ff9933; border-radius:12px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1)">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; border-bottom:1.5px solid #fde68a; padding-bottom:0.75rem">
+            <div>
+              <h3 style="font-size:1.15rem; color:#b45309; margin:0; display:flex; align-items:center; gap:0.5rem">
+                <i class="fas fa-sliders-h" style="color:#d97706"></i> 🎛️ जितेन्द्र व्यवस्थापक नियंत्रण: 5-स्तरीय टैब दृश्यता मैट्रिक्स (Master Access Control)
+              </h3>
+              <p style="font-size:0.83rem; color:#475569; margin:3px 0 0 0">
+                तय करें कि कौन सा टैब किस भूमिका/स्तर पर दिखेगा। प्रत्येक टैब के लिए 5 स्तर उपलब्ध हैं: CBEO, PEEO, Sec/Sr.Sec, Govt, All Schools।
+              </p>
+            </div>
+            <button class="btn btn-warning btn-sm" onclick="save5LevelTabVisibilityMatrix()" style="font-weight:700">
+              <i class="fas fa-save"></i> 💾 5-स्तरीय अनुमतियां सुरक्षित करें
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table" id="table-5level-visibility-matrix">
+              <thead>
+                <tr style="background:#fffbeb">
+                  <th>पोर्टल टैब (Tab Name)</th>
+                  <th style="text-align:center">1. CBEO Admin (प्रमिला रासलोत)</th>
+                  <th style="text-align:center">2. 25 PEEO प्रभारी</th>
+                  <th style="text-align:center">3. 57 Sec / Sr.Sec स्कूल</th>
+                  <th style="text-align:center">4. समस्त राजकीय (Govt 132)</th>
+                  <th style="text-align:center">5. समस्त स्कूल (निजी सहित 178)</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-5level-visibility-matrix">
+                <!-- Rendered dynamically by render5LevelTabVisibilityMatrix() -->
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -1417,6 +1603,49 @@
     </div>
   </div>
 
+  <!-- 5B. STAFF SCHOOL TRANSFER MODAL -->
+  <div id="modal-transfer-staff" class="modal-overlay">
+    <div class="modal-card" style="max-width:540px">
+      <div class="modal-header">
+        <h3><i class="fas fa-exchange-alt text-primary"></i> कार्मिक विद्यालय स्थानान्तरण / पदस्थापन</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-transfer-staff')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="transfer-staff-id">
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:0.85rem; margin-bottom:1rem">
+          <p style="margin:0 0 4px 0; font-size:0.9rem"><strong>कार्मिक:</strong> <span id="transfer-staff-name" style="color:#1b365d; font-weight:700"></span></p>
+          <p style="margin:0 0 4px 0; font-size:0.82rem; color:#475569"><strong>पद:</strong> <span id="transfer-staff-post"></span></p>
+          <p style="margin:0; font-size:0.82rem; color:#64748b"><strong>वर्तमान विद्यालय:</strong> <span id="transfer-staff-cur-school"></span> (<span id="transfer-staff-cur-peeo"></span>)</p>
+        </div>
+
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label>नया PEEO परिक्षेत्र चुनें:</label>
+          <select id="transfer-target-peeo" class="filter-select" style="width:100%" onchange="onTransferTargetPeeoChange()">
+            <!-- Populated by JS -->
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label>नया विद्यालय चुनें:</label>
+          <select id="transfer-target-school" class="filter-select" style="width:100%">
+            <!-- Populated by JS -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>स्थानान्तरण आदेश / विवरण (Order Ref / Remarks):</label>
+          <input type="text" id="transfer-staff-remarks" placeholder="उदा. प्रशासनिक स्थानान्तरण आदेश क्र. 452">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-transfer-staff')">रद्द करें</button>
+        <button class="btn btn-primary" onclick="confirmTransferStaff()">
+          <i class="fas fa-save"></i> स्थानान्तरण सुरक्षित करें
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- 6. AUDIT LOG MODAL -->
   <div id="modal-audit-log" class="modal-overlay">
     <div class="modal-card" style="max-width:880px">
@@ -1491,15 +1720,26 @@
         </div>
 
         <div class="form-group" style="margin-bottom:0.85rem">
-          <label><strong>लागू विद्यालय वर्ग (Target Schools Filter):</strong></label>
-          <select id="new-demand-school-scope" class="filter-select" style="width:100%; border:2px solid #3b82f6; font-weight:600">
-            <option value="all">🏫 सभी विद्यालय (राजकीय एवं निजी दोनों - All 178 Schools)</option>
-            <option value="govt">🏛️ केवल राजकीय विद्यालय (Government Schools Only - 132)</option>
-            <option value="private">🏢 केवल निजी विद्यालय (Private Schools Only - 46)</option>
-            <option value="sec_srsec">🎓 केवल माध्यमिक एवं उच्च माध्यमिक विद्यालय (57 Schools)</option>
-          </select>
-          <span style="font-size:0.75rem; color:var(--neutral-500)">
-            (नोट: यदि विद्यालय स्तर चुना गया है, तो सभी लक्षित विद्यालयों का लॉगिन स्वतः एक्टिव रहेगा और उनका डिफ़ॉल्ट यूजर ID व पासवर्ड उनका शाला दर्पण/PSP कोड रहेगा)
+          <label><strong>🎯 5-स्तरीय लक्षित उपयोगकर्ता / दर्शक (Target Audience - 5 Levels):</strong></label>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:0.5rem; background:#f8fafc; padding:0.85rem; border-radius:8px; border:1px solid #cbd5e1">
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" id="demand-aud-cbeo" checked style="width:16px; height:16px"> 1. CBEO Admin
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" id="demand-aud-peeo" checked style="width:16px; height:16px"> 2. 25 PEEO प्रभारी
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" id="demand-aud-sec" checked style="width:16px; height:16px"> 3. 57 Sec/Sr.Sec स्कूल
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" id="demand-aud-govt" style="width:16px; height:16px"> 4. समस्त राजकीय स्कूल (132)
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" id="demand-aud-all" style="width:16px; height:16px"> 5. समस्त स्कूल (निजी सहित - 178)
+            </label>
+          </div>
+          <span style="font-size:0.75rem; color:var(--neutral-500); margin-top:4px; display:block">
+            (यह सूचना केवल उन्हीं स्तरों के लॉगिन पर दिखाई देगी जिन्हें टिक किया गया है)
           </span>
         </div>
         <div class="form-group" style="margin-bottom:0.85rem">
