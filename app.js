@@ -151,7 +151,7 @@ function initMasterData() {
       name: 'जितेन्द्र कुमार (Jitendra Kumar)',
       post: 'तकनीकी नोडल प्रभारी एवं व्यवस्थापक (Admin)',
       office: 'कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय',
-      mobile: '7073800244',
+      mobile: '9928254317',
       email: 'jitendrakumar.cbeo@gmail.com',
       username: 'jitendra_admin',
       shala_darpan_code: 'admin_jitendra',
@@ -964,7 +964,7 @@ function performLogin() {
       admin_id: 'ADMIN02',
       name: 'जितेन्द्र कुमार (Jitendra Kumar)',
       post: 'तकनीकी नोडल प्रभारी एवं व्यवस्थापक',
-      mobile: '7073800244',
+      mobile: '9928254317',
       email: 'jitendrakumar.cbeo@gmail.com',
       username: 'jitendra_admin',
       shala_darpan_code: 'admin_jitendra'
@@ -11288,6 +11288,7 @@ async function loadAndRenderVMControlCard() {
 
   // Populate Consolidated Demands Selector in Hub 1
   populateAdminHubDemands();
+  loadGeminiKeyStatus();
 }
 
 function setVMMasterPower(isOn, notify = true) {
@@ -11837,6 +11838,80 @@ function appendShikshaSetuMessage(sender, contentHtml) {
   container.scrollTop = container.scrollHeight;
 }
 
+function toggleGeminiKeyVisibility() {
+  const inp = document.getElementById('vm-gemini-key-input');
+  const icon = document.getElementById('vm-gemini-eye-icon');
+  if (!inp) return;
+  if (inp.type === 'password') {
+    inp.type = 'text';
+    if (icon) icon.className = 'fas fa-eye-slash';
+  } else {
+    inp.type = 'password';
+    if (icon) icon.className = 'fas fa-eye';
+  }
+}
+
+async function saveGeminiKeyFromHub() {
+  const inp = document.getElementById('vm-gemini-key-input');
+  const key = inp ? inp.value.trim() : '';
+  if (!key) {
+    showToast('कृपया वैध Gemini API Key दर्ज करें!', 'warning');
+    return;
+  }
+  showToast('Gemini API Key सुरक्षित की जा रही है...', 'info');
+  try {
+    const res = await fetch('/api/save_gemini_key', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ api_key: key })
+    });
+    const data = await res.json();
+    if (data.success) {
+      showToast('Google Gemini API Key सुरक्षित हो गई व GitHub VM के साथ सिंक हो गई!', 'success');
+      loadGeminiKeyStatus();
+    } else {
+      showToast('त्रुटि: ' + data.message, 'error');
+    }
+  } catch (err) {
+    localStorage.setItem('cbeo_gemini_api_key', key);
+    showToast('Gemini API Key सुरक्षित हो गई!', 'success');
+    loadGeminiKeyStatus();
+  }
+}
+
+async function loadGeminiKeyStatus() {
+  const badge = document.getElementById('gemini-key-status-badge');
+  const inp = document.getElementById('vm-gemini-key-input');
+  try {
+    const res = await fetch('/api/get_gemini_status');
+    const data = await res.json();
+    if (data && data.is_configured) {
+      if (badge) {
+        badge.textContent = 'सक्रिय (Configured)';
+        badge.style.color = '#059669';
+        badge.style.background = '#dcfce7';
+      }
+      if (inp && !inp.value && data.masked_key) {
+        inp.placeholder = data.masked_key;
+      }
+    } else {
+      const localKey = localStorage.getItem('cbeo_gemini_api_key');
+      if (localKey && badge) {
+        badge.textContent = 'सक्रिय (लोकल)';
+        badge.style.color = '#059669';
+        badge.style.background = '#dcfce7';
+      }
+    }
+  } catch (e) {
+    const localKey = localStorage.getItem('cbeo_gemini_api_key');
+    if (localKey && badge) {
+      badge.textContent = 'सक्रिय (लोकल)';
+      badge.style.color = '#059669';
+      badge.style.background = '#dcfce7';
+    }
+  }
+}
+
 function sendShikshaSetuUserMessage() {
   const inputEl = document.getElementById('shiksha-setu-input');
   if (!inputEl) return;
@@ -11861,13 +11936,46 @@ function sendShikshaSetuUserMessage() {
     container.scrollTop = container.scrollHeight;
   }
 
-  setTimeout(() => {
+  // First try real Gemini LLM API via backend
+  fetch('/api/ai_chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      query: rawQuery,
+      context: {
+        user: STATE.currentUser,
+        district: 'AJMER',
+        block: 'BHINAI',
+        admin_name: 'जितेन्द्र कुमार',
+        admin_phone: '9928254317'
+      }
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
     const el = document.getElementById('shiksha-setu-typing');
     if (el) el.remove();
-
+    if (data && data.success && data.response) {
+      const formatted = data.response.replace(/\n/g, '<br>');
+      appendShikshaSetuMessage('bot', `
+        <div>
+          ${formatted}
+          <div style="font-size:0.68rem; color:#2563eb; margin-top:6px; font-weight:700">
+            ✨ <em>Google Gemini 1.5 Flash AI द्वारा सत्यापित उत्तर</em>
+          </div>
+        </div>
+      `);
+    } else {
+      const responseHtml = generateShikshaSetuAIResponse(rawQuery);
+      appendShikshaSetuMessage('bot', responseHtml);
+    }
+  })
+  .catch(() => {
+    const el = document.getElementById('shiksha-setu-typing');
+    if (el) el.remove();
     const responseHtml = generateShikshaSetuAIResponse(rawQuery);
     appendShikshaSetuMessage('bot', responseHtml);
-  }, 450);
+  });
 }
 
 function generateShikshaSetuAIResponse(rawQuery) {
@@ -11950,7 +12058,7 @@ function generateShikshaSetuAIResponse(rawQuery) {
         <p style="margin:0 0 6px 0"><strong>🏛️ CBEO भिनाय संपर्क डायरेक्टरी:</strong></p>
         <p style="margin:0 0 6px 0; font-size:0.84rem">ब्लॉक के समस्त 25 PEEO एवं 57 माध्यमिक/उच्च माध्यमिक विद्यालयों के मोबाइल नंबर पोर्टल के <strong>'डायरेक्टरी'</strong> एवं <strong>'समान परीक्षा संपर्क'</strong> टैब में उपलब्ध हैं।</p>
         <div style="background:#f1f5f9; padding:8px 10px; border-radius:6px; font-size:0.8rem">
-          <div>📞 <strong>CBEO कंट्रोल रूम / IT सेल:</strong> 9829288107 (जितेन्द्र कुमार)</div>
+          <div>📞 <strong>CBEO कंट्रोल रूम / IT सेल:</strong> 9928254317 (जितेन्द्र कुमार)</div>
           <div>✉️ <strong>ईमेल:</strong> cbeobhinai@gmail.com</div>
           <div>📍 <strong>कार्यालय:</strong> मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय, <strong>जिला: अजमेर (AJMER)</strong></div>
         </div>

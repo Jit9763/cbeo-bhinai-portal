@@ -109,7 +109,7 @@
 | पद / प्रभार | नाम | मोबाइल नंबर | ईमेल |
 |:---|:---|:---:|:---|
 | **मुख्य ब्लॉक शिक्षा अधिकारी (CBEO)** | प्रमिला रासलोत | `9414000000` | `cbeo.bhinai.ajmer@rajasthan.gov.in` |
-| **तकनीकी नोडल प्रभारी एवं व्यवस्थापक (Admin)** | जितेन्द्र कुमार (Jitendra Kumar) | `7073800244` | `jitendrakumar.cbeo@gmail.com` |
+| **तकनीकी नोडल प्रभारी एवं व्यवस्थापक (Admin)** | जितेन्द्र कुमार (Jitendra Kumar) | `9928254317` | `jitendrakumar.cbeo@gmail.com` |
 
 ---
 *दस्तावेज़ निर्माण: CBEO Bhinai Portal System • अजमेर (राजस्थान)*

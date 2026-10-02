@@ -377,6 +377,89 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                 self.send_json_response({'success': False, 'message': str(e)}, status=500)
             return
 
+        elif parsed_url.path == '/api/save_gemini_key':
+            try:
+                api_key = req_data.get('api_key', '').strip()
+                # Update cbeo_vm_settings.json
+                vm_settings = {}
+                if os.path.exists('cbeo_vm_settings.json'):
+                    with open('cbeo_vm_settings.json', 'r', encoding='utf-8') as f:
+                        vm_settings = json.load(f)
+                vm_settings['gemini_api_key'] = api_key
+                vm_settings['admin_phone'] = '9928254317'
+                with open('cbeo_vm_settings.json', 'w', encoding='utf-8') as f:
+                    json.dump(vm_settings, f, ensure_ascii=False, indent=2)
+
+                # Update cbeo_notification_config.json
+                notif_config = {}
+                if os.path.exists('cbeo_notification_config.json'):
+                    with open('cbeo_notification_config.json', 'r', encoding='utf-8') as f:
+                        notif_config = json.load(f)
+                notif_config['GEMINI_API_KEY'] = api_key
+                notif_config['ADMIN_MOBILE'] = '9928254317'
+                with open('cbeo_notification_config.json', 'w', encoding='utf-8') as f:
+                    json.dump(notif_config, f, ensure_ascii=False, indent=2)
+
+                threading.Thread(target=sync_vm_settings_to_git).start()
+                self.send_json_response({'success': True, 'message': 'Google Gemini API Key सफलतापूर्वक सुरक्षित की गई!'})
+            except Exception as e:
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
+
+        elif parsed_url.path == '/api/ai_chat':
+            try:
+                query = req_data.get('query', '').strip()
+                user_context = req_data.get('context', {})
+                
+                # Fetch key
+                api_key = os.environ.get('GEMINI_API_KEY')
+                if not api_key and os.path.exists('cbeo_vm_settings.json'):
+                    try:
+                        with open('cbeo_vm_settings.json', 'r', encoding='utf-8') as sf:
+                            api_key = json.load(sf).get('gemini_api_key')
+                    except:
+                        pass
+                if not api_key and os.path.exists('cbeo_notification_config.json'):
+                    try:
+                        with open('cbeo_notification_config.json', 'r', encoding='utf-8') as nf:
+                            api_key = json.load(nf).get('GEMINI_API_KEY')
+                    except:
+                        pass
+
+                if not api_key:
+                    self.send_json_response({
+                        'success': False,
+                        'has_key': False,
+                        'message': 'Gemini API Key अभी कन्फ़िगर नहीं है। स्थानीय AI ज्ञानकोष का उपयोग किया जा रहा है।'
+                    })
+                    return
+
+                # Construct system prompt with strict rules
+                system_instruction = (
+                    "आप 'शिक्षा सेतु AI' हैं, कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर), राजस्थान के आधिकारिक AI सहायक।\n"
+                    "नियम 1: जिला सदैव 'अजमेर' (AJMER) ही रहेगा। कदापि 'केकड़ी' (KEKRI) का उल्लेख न करें।\n"
+                    "नियम 2: ब्लॉक 'भिनाय' (BHINAI) है।\n"
+                    "नियम 3: संस्था प्रधानों एवं PEEO को जिला समान परीक्षा 2026-27 (अंतिम तिथि: 05 अक्टूबर 2026), प्रपत्र-1 (कक्षा 9-10 नामांकन व संस्कृत/उर्दू तृतीय भाषा), प्रपत्र-2 (कक्षा 11-12 संकाय व ऐच्छिक विषय), बैंक चालान अपलोड, तथा अन्य सूचना मांगों में शुद्ध हिंदी में सटीक सहायता प्रदान करें।\n"
+                    "नियम 4: तकनीकी नोडल प्रभारी एवं व्यवस्थापक जितेन्द्र कुमार का मोबाइल नंबर 9928254317 है।\n"
+                )
+
+                prompt_text = f"{system_instruction}\nउपयोगकर्ता संदर्भ: {json.dumps(user_context, ensure_ascii=False)}\nउपयोगकर्ता का प्रश्न: {query}"
+                
+                gemini_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
+                req = urllib.request.Request(
+                    gemini_url,
+                    data=json.dumps({"contents": [{"parts": [{"text": prompt_text}]}]}).encode('utf-8'),
+                    headers={'Content-Type': 'application/json'},
+                    method='POST'
+                )
+                with urllib.request.urlopen(req, timeout=12) as g_resp:
+                    g_data = json.loads(g_resp.read().decode('utf-8'))
+                    ans_text = g_data['candidates'][0]['content']['parts'][0]['text']
+                    self.send_json_response({'success': True, 'has_key': True, 'source': 'gemini_flash', 'response': ans_text})
+            except Exception as e:
+                self.send_json_response({'success': False, 'has_key': True, 'message': f'Gemini API संपर्क त्रुटि: {str(e)}'})
+            return
+
         # Fallback to default
         super().do_POST()
 
@@ -456,6 +539,27 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                     with open('staff_edit_permissions.json', 'r', encoding='utf-8') as f:
                         perms = json.load(f)
                 self.send_json_response({'success': True, 'permissions': perms})
+            except Exception as e:
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
+
+        elif parsed_url.path == '/api/get_gemini_status':
+            try:
+                key = os.environ.get('GEMINI_API_KEY') or ''
+                if not key and os.path.exists('cbeo_vm_settings.json'):
+                    try:
+                        with open('cbeo_vm_settings.json', 'r', encoding='utf-8') as sf:
+                            key = json.load(sf).get('gemini_api_key', '')
+                    except:
+                        pass
+                if not key and os.path.exists('cbeo_notification_config.json'):
+                    try:
+                        with open('cbeo_notification_config.json', 'r', encoding='utf-8') as nf:
+                            key = json.load(nf).get('GEMINI_API_KEY', '')
+                    except:
+                        pass
+                masked = (key[:4] + '••••••••' + key[-4:]) if len(key) >= 10 else ('••••••••' if key else '')
+                self.send_json_response({'success': True, 'is_configured': bool(key), 'masked_key': masked, 'admin_phone': '9928254317'})
             except Exception as e:
                 self.send_json_response({'success': False, 'message': str(e)}, status=500)
             return

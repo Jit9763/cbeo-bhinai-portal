@@ -12,7 +12,9 @@
   ],
   "last_run_time": "03-10-2026 02:01 AM IST",
   "last_run_id": "local_test_pass",
-  "last_run_status": "success",
+  "admin_phone": "9928254317",
+  "gemini_api_key": "",
+  "ai_model": "gemini-1.5-flash",
   "updated_by": "admin_jitendra",
-  "updated_at": "03-10-2026 02:01 AM IST"
+  "updated_at": "03-10-2026 02:22 AM IST"
 }
