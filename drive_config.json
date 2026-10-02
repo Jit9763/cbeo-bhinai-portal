@@ -31,6 +31,11 @@
       "id": "1EnHjwz683yeBNyTsSVajjb352lq1u9vSjRukcSpJWV8",
       "name": "6_CBEO_MDM_Nirikshan_Prapatra_2",
       "url": "https://docs.google.com/spreadsheets/d/1EnHjwz683yeBNyTsSVajjb352lq1u9vSjRukcSpJWV8/edit?usp=drivesdk"
+    },
+    "master_backup_sandbox": {
+      "id": "1sBtbb-uWHxaI7nbrkEbyAZs8CwMYuWE4fmwJhHN2FQU",
+      "name": "7_CBEO_Master_Backup_And_Dummy_Sandbox_Sheet",
+      "url": "https://docs.google.com/spreadsheets/d/1sBtbb-uWHxaI7nbrkEbyAZs8CwMYuWE4fmwJhHN2FQU/edit?usp=drivesdk"
     }
   }
 }
