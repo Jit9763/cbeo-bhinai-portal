@@ -254,7 +254,22 @@ def main():
             else:
                 print(f"Telegram notification returned status {tg_res.status_code}: {tg_res.text}")
         except Exception as e:
-            print("Telegram alert error:", e)
+            # Fallback to curl if requests encounters local network timeout
+            try:
+                import subprocess
+                curl_cmd = [
+                    'curl.exe', '-s', '-X', 'POST',
+                    tg_url,
+                    '-H', 'Content-Type: application/json',
+                    '-d', json.dumps(tg_payload, ensure_ascii=False)
+                ]
+                curl_res = subprocess.run(curl_cmd, capture_output=True, text=True, timeout=15)
+                if '"ok":true' in curl_res.stdout:
+                    print("✓ Telegram notification sent successfully (via curl)!")
+                else:
+                    print("Telegram curl fallback error:", curl_res.stdout[:150])
+            except Exception as ce:
+                print("Telegram alert error:", e)
     else:
         print("Note: Telegram secrets (TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID) not provided; skipping Telegram alert.")
 
