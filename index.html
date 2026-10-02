@@ -54,7 +54,7 @@
         </div>
 
         <!-- Switch User, Change Password & Logout -->
-        <button id="btn-change-password" class="btn btn-warning btn-sm" onclick="openChangePasswordModal()" title="पासवर्ड बदलें" style="font-weight:600">
+        <button id="btn-change-password" class="btn btn-primary btn-sm" onclick="openChangePasswordModal()" title="पासवर्ड बदलें" style="font-weight:600">
           <i class="fas fa-key"></i> पासवर्ड बदलें
         </button>
         <button id="btn-open-login" class="btn btn-outline-light btn-sm" onclick="openLoginModal(false)" style="display:none">
@@ -227,10 +227,10 @@
               <p>सबमिट हो चुके प्रपत्र</p>
             </div>
           </div>
-          <div class="stat-card" style="border-left:4px solid #f59e0b">
-            <div class="stat-icon-wrapper" style="background:#fef3c7; color:#d97706"><i class="fas fa-hourglass-half"></i></div>
+          <div class="stat-card" style="border-left:4px solid #0284c7">
+            <div class="stat-icon-wrapper" style="background:#e0f2fe; color:#0369a1"><i class="fas fa-hourglass-half"></i></div>
             <div class="stat-info">
-              <h3 id="sp-admin-pending-count" style="color:#d97706">57</h3>
+              <h3 id="sp-admin-pending-count" style="color:#0369a1">57</h3>
               <p>भरना शेष (Pending)</p>
             </div>
           </div>
@@ -532,7 +532,7 @@
       <div class="section-box">
         <div class="section-header">
           <div class="section-title">
-            <i class="fas fa-clock text-warning"></i>
+            <i class="fas fa-clock text-primary"></i>
             <h2>प्रकाशित सक्रिय सूचना मांग (Active Published Demands)</h2>
           </div>
           <button class="btn btn-outline-light btn-sm text-dark" style="color:#1b365d; border-color:#cbd5e1" onclick="switchTab('demands')">
@@ -610,7 +610,7 @@
               </select>
             </div>
             <div class="form-group">
-              <label><i class="fas fa-search text-warning"></i> 3. नाम/पद/मोबाइल से त्वरित खोज:</label>
+              <label><i class="fas fa-search text-primary"></i> 3. नाम/पद/मोबाइल से त्वरित खोज:</label>
               <input type="text" id="exp-search-input" placeholder="अध्यापक का नाम, SSO ID, पद..." oninput="onExplorerSchoolChange()">
             </div>
           </div>
@@ -707,7 +707,7 @@
           <!-- Global Real-Time Search Box -->
           <div>
             <label style="font-size:0.78rem; font-weight:700; color:#1e293b; display:block; margin-bottom:4px">
-              <i class="fas fa-search text-warning"></i> 4. त्वरित खोज (Universal Search):
+              <i class="fas fa-search text-primary"></i> 4. त्वरित खोज (Universal Search):
             </label>
             <div class="search-box-wrapper" style="width:100%">
               <i class="fas fa-search search-icon"></i>
@@ -756,7 +756,7 @@
             <button class="btn btn-primary btn-sm" onclick="openAddStaffModal()">
               <i class="fas fa-user-plus"></i> + नया कार्मिक जोड़ें
             </button>
-            <button class="btn btn-warning btn-sm" onclick="openAuditLogModal()">
+            <button class="btn btn-outline-primary btn-sm" onclick="openAuditLogModal()" style="font-weight:700">
               <i class="fas fa-history"></i> ऑडिट व बैकअप लॉग
             </button>
             <button class="btn btn-success btn-sm" onclick="exportStaffCSV()">
@@ -775,9 +775,9 @@
             </div>
           </div>
           <div class="stat-card orange" style="padding:1rem">
-            <div class="stat-icon-wrapper" style="width:42px; height:42px; background:#fef3c7; color:#d97706"><i class="fas fa-crown"></i></div>
+            <div class="stat-icon-wrapper" style="width:42px; height:42px; background:#e0f2fe; color:#0369a1"><i class="fas fa-crown"></i></div>
             <div class="stat-info">
-              <h3 id="staff-stat-pradhan" style="font-size:1.4rem; color:#d97706">50</h3>
+              <h3 id="staff-stat-pradhan" style="font-size:1.4rem; color:#0369a1">50</h3>
               <p style="font-size:0.75rem">सत्यापित संस्था प्रधान / PEEO</p>
             </div>
           </div>
@@ -833,7 +833,7 @@
 
           <div>
             <label style="font-size:0.78rem; font-weight:700; color:#1e293b; display:block; margin-bottom:4px">
-              <i class="fas fa-search text-warning"></i> खोज (Search):
+              <i class="fas fa-search text-primary"></i> खोज (Search):
             </label>
             <div class="search-box-wrapper" style="width:100%">
               <i class="fas fa-search search-icon"></i>
@@ -884,7 +884,7 @@
             <button class="btn btn-primary btn-sm" onclick="openAddSchoolModal()">
               <i class="fas fa-school"></i> + नया विद्यालय जोड़ें
             </button>
-            <button class="btn btn-warning btn-sm" onclick="openAddPeeoModal()" style="font-weight:700">
+            <button class="btn btn-primary btn-sm" onclick="openAddPeeoModal()" style="font-weight:700">
               <i class="fas fa-plus-circle"></i> + नया PEEO बनाएं
             </button>
             <button class="btn btn-drive btn-sm" onclick="syncMasterSchoolsDataToSheet()" style="font-weight:700" title="मास्टर डेटा Google Sheet में सुरक्षित करें">
@@ -933,10 +933,10 @@
               <p>लॉगिन अनुमत विद्यालय</p>
             </div>
           </div>
-          <div class="stat-card" style="border-left:4px solid #f59e0b">
-            <div class="stat-icon-wrapper" style="background:#fef3c7; color:#d97706"><i class="fas fa-lock"></i></div>
+          <div class="stat-card" style="border-left:4px solid #0284c7">
+            <div class="stat-icon-wrapper" style="background:#e0f2fe; color:#0369a1"><i class="fas fa-lock"></i></div>
             <div class="stat-info">
-              <h3 id="sch-mgmt-stat-pwd-custom" style="color:#d97706">0</h3>
+              <h3 id="sch-mgmt-stat-pwd-custom" style="color:#0369a1">0</h3>
               <p>कस्टम पासवर्ड सेट</p>
             </div>
           </div>
@@ -953,7 +953,7 @@
                 यहाँ से तय करें कि कौन से विद्यालय लॉगिन गेटवे और त्वरित 2-टियर ड्रॉपडाउन में दिखाई देंगे तथा लॉगिन कर सकेंगे:
               </p>
             </div>
-            <span id="sch-mgmt-policy-status-badge" class="badge-tag" style="background:#fef3c7; color:#b45309; border:1.5px solid #fde68a; font-size:0.8rem; font-weight:700">
+            <span id="sch-mgmt-policy-status-badge" class="badge-tag" style="background:#e0f2fe; color:#0369a1; border:1.5px solid #fde68a; font-size:0.8rem; font-weight:700">
               नीति: केवल 57 माध्यमिक/उच्च माध्यमिक (Sec & Sr Sec)
             </span>
           </div>
@@ -1145,16 +1145,16 @@
 
         <!-- B. JITENDRA SUPER ADMIN 5-LEVEL TAB VISIBILITY CONTROL MATRIX -->
         <div id="jitendra-access-control-matrix-card" style="background:#ffffff; border:2px solid #ff9933; border-radius:12px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1)">
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; border-bottom:1.5px solid #fde68a; padding-bottom:0.75rem">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; border-bottom:1.5px solid #cbd5e1; padding-bottom:0.75rem">
             <div>
-              <h3 style="font-size:1.15rem; color:#b45309; margin:0; display:flex; align-items:center; gap:0.5rem">
-                <i class="fas fa-sliders-h" style="color:#d97706"></i> 🎛️ जितेन्द्र व्यवस्थापक नियंत्रण: 5-स्तरीय टैब दृश्यता मैट्रिक्स (Master Access Control)
+              <h3 style="font-size:1.15rem; color:#1e3a8a; margin:0; display:flex; align-items:center; gap:0.5rem">
+                <i class="fas fa-sliders-h" style="color:#1d4ed8"></i> 🎛️ जितेन्द्र व्यवस्थापक नियंत्रण: 5-स्तरीय टैब दृश्यता मैट्रिक्स (Master Access Control)
               </h3>
               <p style="font-size:0.83rem; color:#475569; margin:3px 0 0 0">
                 तय करें कि कौन सा टैब किस भूमिका/स्तर पर दिखेगा। प्रत्येक टैब के लिए 5 स्तर उपलब्ध हैं: CBEO, PEEO, Sec/Sr.Sec, Govt, All Schools।
               </p>
             </div>
-            <button class="btn btn-warning btn-sm" onclick="save5LevelTabVisibilityMatrix()" style="font-weight:700">
+            <button class="btn btn-primary btn-sm" onclick="save5LevelTabVisibilityMatrix()" style="font-weight:700">
               <i class="fas fa-save"></i> 💾 5-स्तरीय अनुमतियां सुरक्षित करें
             </button>
           </div>
@@ -1273,14 +1273,14 @@
               <i class="fab fa-google-drive text-success"></i> Google Drive पर सक्रिय बैकएंड शीट्स (Live Database):
             </h4>
             <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
-              <button class="btn btn-warning btn-sm" onclick="triggerAdminSheetSync()" style="font-weight:700">
+              <button class="btn btn-primary btn-sm" onclick="triggerAdminSheetSync()" style="font-weight:700">
                 <i class="fas fa-sync-alt"></i> पासवर्ड व एक्सेस शीट सिंक करें
               </button>
             </div>
           </div>
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1rem">
             <a href="https://docs.google.com/spreadsheets/d/1cz0QKWpICHkFq1-mHjDge73iDVWjKEwb_hmuBpR1QP4/edit" target="_blank" class="btn btn-outline-light" style="color:#1b365d; border-color:#cbd5e1; justify-content:flex-start">
-              <i class="fas fa-key text-warning"></i> 1_CBEO_Admin_Access_Control (पासवर्ड नियंत्रण)
+              <i class="fas fa-key text-primary"></i> 1_CBEO_Admin_Access_Control (पासवर्ड नियंत्रण)
             </a>
             <a href="https://docs.google.com/spreadsheets/d/1zl3_tUqt-VxDcjmIiA44u6aYUAjYG5wxwff-tw9ZLJs/edit" target="_blank" class="btn btn-outline-light" style="color:#1b365d; border-color:#cbd5e1; justify-content:flex-start">
               <i class="fas fa-users text-primary"></i> 2_CBEO_Staff_Directory (1048 कार्मिक)
@@ -1400,7 +1400,7 @@
             </div>
             
             <div id="login-password-hint" class="login-password-hint-box">
-              <i class="fas fa-lightbulb text-warning"></i>
+              <i class="fas fa-lightbulb text-primary"></i>
               <span><strong>संकेत:</strong> PEEO एवं विद्यालयों का डिफ़ॉल्ट पासवर्ड उनका <strong>शाला दर्पण / PSP कोड</strong> ही है।</span>
             </div>
           </div>
@@ -1440,7 +1440,7 @@
       <div class="modal-body">
         
         <!-- Helpful Instruction Banner for School-by-School & Consolidated Report -->
-        <div style="background:#fefce8; border-left:4px solid #eab308; padding:0.65rem 0.95rem; border-radius:6px; margin-bottom:1rem; font-size:0.83rem; color:#854d0e; display:flex; justify-content:space-between; align-items:center; gap:1rem">
+        <div style="background:#eff6ff; border-left:4px solid #3b82f6; padding:0.65rem 0.95rem; border-radius:6px; margin-bottom:1rem; font-size:0.83rem; color:#854d0e; display:flex; justify-content:space-between; align-items:center; gap:1rem">
           <div>
             <strong><i class="fas fa-info-circle"></i> समेकित रिपोर्ट निर्देश:</strong> प्रत्येक विद्यालय की सूचना अलग-अलग भरें। जिस विद्यालय पर सूचना लागू नहीं है या रिपोर्ट निरंक है, उसके आगे <strong>'शामिल करें' अनचेक</strong> कर दें। <em>(समेकित रिपोर्ट व अधिकृत पीडीएफ में केवल भरी गई सूचना वाले विद्यालय ही दिखेंगे)</em>।
           </div>
@@ -1958,7 +1958,7 @@
   <div id="modal-transfer-school-peeo" class="modal-overlay">
     <div class="modal-card" style="max-width:580px">
       <div class="modal-header">
-        <h3><i class="fas fa-exchange-alt text-warning"></i> विद्यालय PEEO परिक्षेत्र स्थानांतरण (Transfer School)</h3>
+        <h3><i class="fas fa-exchange-alt text-primary"></i> विद्यालय PEEO परिक्षेत्र स्थानांतरण (Transfer School)</h3>
         <button class="modal-close-btn" onclick="closeModal('modal-transfer-school-peeo')">&times;</button>
       </div>
       <div class="modal-body">
@@ -1987,7 +1987,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-transfer-school-peeo')">रद्द करें</button>
-        <button class="btn btn-warning" onclick="saveSchoolTransfer()" style="font-weight:700">
+        <button class="btn btn-primary" onclick="saveSchoolTransfer()" style="font-weight:700">
           <i class="fas fa-check-circle"></i> PEEO ट्रांसफर पूर्ण करें
         </button>
       </div>
@@ -2121,7 +2121,7 @@
             </select>
           </div>
         </div>
-        <div style="background:#fffbeb; border:1px solid #fef3c7; border-radius:8px; padding:0.75rem; font-size:0.8rem; color:#92400e">
+        <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:0.75rem; font-size:0.8rem; color:#92400e">
           <i class="fas fa-info-circle"></i> <strong>सूचना:</strong> विवरण सुरक्षित करते ही यह पोर्टल के सभी डेटाबेस (मास्टर डायरेक्टरी, 57 स्कूल सूची, गूगल शीट एवं सम्पर्क फाइल) में तुरंत अपडेट हो जाएगा।
         </div>
       </div>
@@ -2138,7 +2138,7 @@
   <div id="modal-admin-reset-password" class="modal-overlay">
     <div class="modal-card" style="max-width:540px">
       <div class="modal-header">
-        <h3><i class="fas fa-key text-warning"></i> पासवर्ड नियंत्रण एवं रीसेट (Password Control Room)</h3>
+        <h3><i class="fas fa-key text-primary"></i> पासवर्ड नियंत्रण एवं रीसेट (Password Control Room)</h3>
         <button class="modal-close-btn" onclick="closeModal('modal-admin-reset-password')">&times;</button>
       </div>
       <div class="modal-body">
@@ -2732,7 +2732,7 @@
           <i class="fas fa-file-pdf text-danger"></i> समान परीक्षा 2026-27 | अधिकृत प्रपत्र (Printable Official PDF)
         </h3>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
-          <button class="btn btn-warning btn-sm" onclick="downloadExamPDFDirect()" title="सीधे PDF फाइल डाउनलोड करें" style="font-weight:700">
+          <button class="btn btn-danger btn-sm" onclick="downloadExamPDFDirect()" title="सीधे PDF फाइल डाउनलोड करें" style="font-weight:700">
             <i class="fas fa-download"></i> PDF डाउनलोड
           </button>
           <button class="btn btn-whatsapp btn-sm" onclick="shareExamPDFWhatsApp()" title="विवरण WhatsApp पर शेयर करें">
@@ -2754,7 +2754,7 @@
           बंद करें (Close)
         </button>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
-          <button class="btn btn-warning" onclick="downloadExamPDFDirect()" style="font-weight:700">
+          <button class="btn btn-danger" onclick="downloadExamPDFDirect()" style="font-weight:700">
             <i class="fas fa-file-download"></i> सीधे PDF डाउनलोड करें
           </button>
           <button class="btn btn-whatsapp" onclick="shareExamPDFWhatsApp()">
@@ -2773,10 +2773,10 @@
     <div class="modal-card" style="max-width:1160px; width:96vw; padding:0; background:#f8fafc; overflow:hidden">
       <div class="modal-header" style="background:#1b365d; color:#ffffff; padding:1rem 1.5rem">
         <h3 style="color:#ffffff; font-size:1.15rem; display:flex; align-items:center; gap:0.5rem">
-          <i class="fas fa-file-invoice text-warning"></i> समान परीक्षा 2026-27 | परिक्षेत्र समेकित रिपोर्ट (PEEO Consolidated Report)
+          <i class="fas fa-file-invoice" style="color:#38bdf8"></i> समान परीक्षा 2026-27 | परिक्षेत्र समेकित रिपोर्ट (PEEO Consolidated Report)
         </h3>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
-          <button class="btn btn-warning btn-sm" onclick="downloadPeeoConsolidatedPDFDirect()" title="सीधे समेकित PDF फाइल डाउनलोड करें" style="font-weight:700">
+          <button class="btn btn-danger btn-sm" onclick="downloadPeeoConsolidatedPDFDirect()" title="सीधे समेकित PDF फाइल डाउनलोड करें" style="font-weight:700">
             <i class="fas fa-download"></i> PDF डाउनलोड
           </button>
           <button class="btn btn-whatsapp btn-sm" onclick="sharePeeoConsolidatedWhatsApp()" title="समेकित विवरण WhatsApp पर शेयर करें">
@@ -2798,7 +2798,7 @@
           बंद करें (Close)
         </button>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
-          <button class="btn btn-warning" onclick="downloadPeeoConsolidatedPDFDirect()" style="font-weight:700">
+          <button class="btn btn-danger" onclick="downloadPeeoConsolidatedPDFDirect()" style="font-weight:700">
             <i class="fas fa-file-download"></i> सीधे PDF डाउनलोड करें
           </button>
           <button class="btn btn-whatsapp" onclick="sharePeeoConsolidatedWhatsApp()">
@@ -2817,10 +2817,10 @@
     <div class="modal-card" style="max-width:1160px; width:96vw; padding:0; background:#f8fafc; overflow:hidden">
       <div class="modal-header" style="background:#b91c1c; color:#ffffff; padding:1rem 1.5rem">
         <h3 style="color:#ffffff; font-size:1.15rem; display:flex; align-items:center; gap:0.5rem">
-          <i class="fas fa-exclamation-triangle text-warning"></i> <span id="pending-report-modal-title">लम्बित विद्यालय एवं PEEO अनुपालना रिपोर्ट (A4 PDF)</span>
+          <i class="fas fa-exclamation-triangle" style="color:#fecaca"></i> <span id="pending-report-modal-title">लम्बित विद्यालय एवं PEEO अनुपालना रिपोर्ट (A4 PDF)</span>
         </h3>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
-          <button class="btn btn-warning btn-sm" onclick="downloadPendingReportPdfDirect()" title="सीधे PDF फाइल डाउनलोड करें" style="font-weight:700">
+          <button class="btn btn-danger btn-sm" onclick="downloadPendingReportPdfDirect()" title="सीधे PDF फाइल डाउनलोड करें" style="font-weight:700; background:#991b1b; border-color:#7f1d1d">
             <i class="fas fa-download"></i> PDF डाउनलोड
           </button>
           <button class="btn btn-whatsapp btn-sm" onclick="sharePendingReportWhatsAppPdf()" title="आधिकारिक PDF फाइल WhatsApp पर शेयर करें" style="background:#25D366; color:#ffffff; font-weight:700">
@@ -2845,7 +2845,7 @@
           बंद करें (Close)
         </button>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
-          <button class="btn btn-warning" onclick="downloadPendingReportPdfDirect()" style="font-weight:700">
+          <button class="btn btn-danger" onclick="downloadPendingReportPdfDirect()" style="font-weight:700; background:#991b1b; border-color:#7f1d1d">
             <i class="fas fa-file-download"></i> सीधे PDF डाउनलोड करें
           </button>
           <button class="btn btn-whatsapp" onclick="sharePendingReportWhatsAppPdf()" style="background:#25D366; color:#ffffff; font-weight:700">
@@ -2867,7 +2867,7 @@
     <div class="modal-card" style="max-width:850px; width:95vw">
       <div class="modal-header" style="background:#1b365d; color:#ffffff; padding:1rem 1.5rem">
         <h3 style="color:#ffffff; font-size:1.15rem; display:flex; align-items:center; gap:0.5rem">
-          <i class="fas fa-file-invoice text-warning"></i> PEEO समेकित परीक्षा मांग रिपोर्ट (A4 Landscape Print / PDF)
+          <i class="fas fa-file-invoice text-primary"></i> PEEO समेकित परीक्षा मांग रिपोर्ट (A4 Landscape Print / PDF)
         </h3>
         <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-select-peeo-report')">&times;</button>
       </div>
@@ -2907,7 +2907,7 @@
           <i class="fas fa-file-pdf text-danger"></i> अधिकृत प्रपत्र (Printable Official PDF)
         </h3>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
-          <button class="btn btn-warning btn-sm" onclick="downloadUniversalDemandPdfDirect()" title="सीधे PDF डाउनलोड करें" style="font-weight:700">
+          <button class="btn btn-danger btn-sm" onclick="downloadUniversalDemandPdfDirect()" title="सीधे PDF डाउनलोड करें" style="font-weight:700">
             <i class="fas fa-download"></i> PDF डाउनलोड
           </button>
           <button class="btn btn-whatsapp btn-sm" onclick="shareUniversalDemandPdfWhatsApp()" title="विवरण WhatsApp पर शेयर करें">
@@ -2929,7 +2929,7 @@
           बंद करें (Close)
         </button>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
-          <button class="btn btn-warning" onclick="downloadUniversalDemandPdfDirect()" style="font-weight:700">
+          <button class="btn btn-danger" onclick="downloadUniversalDemandPdfDirect()" style="font-weight:700">
             <i class="fas fa-file-download"></i> सीधे PDF डाउनलोड करें
           </button>
           <button class="btn btn-whatsapp" onclick="shareUniversalDemandPdfWhatsApp()">
@@ -2947,7 +2947,7 @@
   <div id="modal-change-password" class="modal-overlay">
     <div class="modal-card" style="max-width:460px">
       <div class="modal-header">
-        <h3><i class="fas fa-key text-warning"></i> लॉगिन पासवर्ड बदलें (Change Password)</h3>
+        <h3><i class="fas fa-key text-primary"></i> लॉगिन पासवर्ड बदलें (Change Password)</h3>
         <button class="modal-close-btn" onclick="closeModal('modal-change-password')">&times;</button>
       </div>
       <div class="modal-body">

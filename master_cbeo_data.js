@@ -1,4 +1,4 @@
-// CBEO Bhinai Master Data - Cleaned Unicode Hindi
+// CBEO Bhinai Master Data - Cleaned Unicode Hindi & English Bilingual
 const MASTER_CBEO_DATA = {
   "cbeo_info": {
     "office_name": "कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय",
@@ -2275,7 +2275,7 @@ const MASTER_CBEO_DATA = {
       "name": "आलोक मिश्रा",
       "gender": "पुरुष",
       "dob": "",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "टैगोर ग्लोबल स्कूल (एकलसिंगा)",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "",
@@ -2288,14 +2288,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "",
       "remarks": "सत्यापित संस्था प्रधान",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Alok Mishra",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "PRIN_221784",
       "name": "भागचन्द रैगर",
       "gender": "पुरुष",
       "dob": "",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.उ.मा.वि. हीरापुरा",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "",
@@ -2308,14 +2313,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "",
       "remarks": "सत्यापित संस्था प्रधान",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhagchand Raigar",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "PRIN_221772",
       "name": "विनोद कुमार राव",
       "gender": "पुरुष",
       "dob": "",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.उ.मा.वि. नागोला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "",
@@ -2328,14 +2338,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "",
       "remarks": "सत्यापित संस्था प्रधान",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vinod Kumar Rao",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "PRIN_221761",
       "name": "सुनीता शर्मा",
       "gender": "पुरुष",
       "dob": "",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.उ.मा.वि. निमेड़ा",
       "peeo_name": "PEEO LAMGARA",
       "sso_id": "",
@@ -2348,14 +2363,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "",
       "remarks": "सत्यापित संस्था प्रधान",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sunita Sharma",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "PRIN_221777",
       "name": "ज्योति प्रकाश शर्मा",
       "gender": "पुरुष",
       "dob": "",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.उ.मा.वि. कुम्हारिया",
       "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "",
@@ -2368,14 +2388,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "",
       "remarks": "सत्यापित संस्था प्रधान",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jyoti Prakash Sharma",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "PRIN_221767",
       "name": "सोहनलाल सारण",
       "gender": "पुरुष",
       "dob": "",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.उ.मा.वि. कैरोट",
       "peeo_name": "PEEO KEROT",
       "sso_id": "",
@@ -2388,14 +2413,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "",
       "remarks": "सत्यापित संस्था प्रधान",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sohanalal Saran",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "PRIN_221773",
       "name": "दीपक सांवरिया",
       "gender": "पुरुष",
       "dob": "",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.उ.मा.वि. करांटी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "",
@@ -2408,14 +2438,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "",
       "remarks": "सत्यापित संस्था प्रधान",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Deepak Sanvariya",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "PRIN_401778",
       "name": "प्रभारी संस्था प्रधान (रा.उ.मा.वि. नेमेड़ा)",
       "gender": "पुरुष",
       "dob": "",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "",
@@ -2428,14 +2463,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "",
       "remarks": "सत्यापित संस्था प्रधान",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "In-charge Sanstha Pradhan (ra.u.ma.vi. Nemeda़a)",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "401778",
+      "school_code": "401778",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA (401778) (08210703001)"
     },
     {
       "staff_id": "PRIN_488947",
       "name": "सुरेश चन्द्र",
       "gender": "पुरुष",
       "dob": "",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.उ.मा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "",
@@ -2448,14 +2488,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "",
       "remarks": "सत्यापित संस्था प्रधान",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Suresh Chandra",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "PRIN_221754",
       "name": "पूर्णिमा",
       "gender": "पुरुष",
       "dob": "",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "",
@@ -2468,14 +2513,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "",
       "remarks": "सत्यापित संस्था प्रधान",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Poornima",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "PRIN_485033",
       "name": "प्रभारी संस्था प्रधान (रा.उ.मा.वि. पीपलिया)",
       "gender": "पुरुष",
       "dob": "",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "GOVT. SENIOR SECONDARY SCHOOL PIPLIYA",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "",
@@ -2488,14 +2538,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "",
       "remarks": "सत्यापित संस्था प्रधान",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "In-charge Sanstha Pradhan (ra.u.ma.vi. Peepaliya)",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "485033",
+      "school_code": "485033",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PIPLIYA (485033) (08210702201)"
     },
     {
       "staff_id": "PRIN_221769",
       "name": "भंवर लाल जाट",
       "gender": "पुरुष",
       "dob": "",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "",
@@ -2508,7 +2563,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "",
       "remarks": "सत्यापित संस्था प्रधान",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhnvar Lal Jat",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1001",
@@ -2528,7 +2588,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "946839940273",
       "remarks": "छ।",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Chandraprakash Laddha",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1002",
@@ -2548,7 +2613,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "801936950697",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Chandraprakash Damamee",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1003",
@@ -2568,7 +2638,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "489080053827",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Ramasinh Dhakaड़",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1004",
@@ -2588,7 +2663,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "569055389122",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Gajaraj Sinh Rathaud",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1005",
@@ -2608,7 +2688,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "459516533345",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Lata Kumaree Bairaval",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1006",
@@ -2628,7 +2713,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "590448508590",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Daॅ. Vijay Shnkar Sharma",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1007",
@@ -2648,7 +2738,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "808028046575",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Bhaskar Uday",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1008",
@@ -2668,14 +2763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "392465026561",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Krishn Kumar Jat",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1009",
       "name": "श्री हरिओम पारीक",
       "gender": "पुरुष",
       "dob": "31.01.1973",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. बडगांव (सूरखण्ड)",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ199801008651",
@@ -2688,14 +2788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "575740422348",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Hariom Pareek",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1010",
       "name": "श्री धर्मेन्द्र कुमार चौधरी",
       "gender": "पुरुष",
       "dob": "01.07.1972",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. बडगांव (सूरखण्ड)",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ199601001943",
@@ -2708,14 +2813,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "453378158445",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Dharmendr Kumar Choudhary",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1011",
       "name": "श्री मुकुट मणि द्विवेदी",
       "gender": "पुरुष",
       "dob": "30.12.1981",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. बडगांव (सूरखण्ड)",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ201201037478",
@@ -2728,14 +2838,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "822992180433",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Mukut Mani Dvivedee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1012",
       "name": "श्री चन्द्रसिंह राठौड़",
       "gender": "पुरुष",
       "dob": "10.07.1968",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. बडगांव (सूरखण्ड)",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ199701002077",
@@ -2748,14 +2863,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "420555674703",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Chandrasinh Rathauड़",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1013",
       "name": "श्री रमेश चन्द खाती",
       "gender": "पुरुष",
       "dob": "15.05.1975",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. बडगांव (सूरखण्ड)",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ200501006724",
@@ -2768,14 +2888,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "906772417992",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Ramesh Chand Khatee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1014",
       "name": "श्री ग्यारसी लाल बैरवा",
       "gender": "पुरुष",
       "dob": "06.06.1992",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. बडगांव (सूरखण्ड)",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ201501004595",
@@ -2788,14 +2913,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "771414131864",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Gyarasee Lal Bairwa",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1015",
       "name": "श्री महिपाल सिंह चौहान",
       "gender": "पुरुष",
       "dob": "23.09.2003",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. बडगांव (सूरखण्ड)",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "MAHIPAL.SINGH.CHOUH4",
@@ -2808,14 +2938,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "481158008771",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Mahipal Sinh Chouhan",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1016",
       "name": "श्री राकेश चौधरी",
       "gender": "पुरुष",
       "dob": "05.06.1991",
-      "post": "बेसिक कम्प्यूटर अनुदेशक",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
       "school_name": "रा.उ.मा.वि. बडगांव (सूरखण्ड)",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RAKESHCHOUDHARY32991",
@@ -2828,14 +2963,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "539230245860",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Rakesh Choudhary",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1017",
       "name": "श्री प्रमोद कुमार",
       "gender": "पुरुष",
       "dob": "07.10.1972",
-      "post": "वरिष्ठ सहायक",
+      "post": "वरिष्ठ सहायक (UDC)",
       "school_name": "रा.उ.मा.वि. बडगांव (सूरखण्ड)",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ199601004494",
@@ -2848,14 +2988,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "298207436535",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Pramod Kumar",
+      "post_en": "Senior Assistant (UDC / L-8)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1018",
       "name": "श्री राजेन्द्र प्रसाद",
       "gender": "पुरुष",
       "dob": "16.06.1990",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "रा.उ.मा.वि. बडगांव (सूरखण्ड)",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ202101002150",
@@ -2868,14 +3013,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "561223949400",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Rajendra Prasad",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1019",
       "name": "श्री चन्द्र शेखर शर्मा",
       "gender": "पुरुष",
       "dob": "01.12.1988",
-      "post": "सहायक कर्मचारी",
+      "post": "सहायक कर्मचारी (चतुर्थ श्रेणी)",
       "school_name": "रा.उ.मा.वि. बडगांव (सूरखण्ड)",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ201101008108",
@@ -2888,14 +3038,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "365008362079",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Chandra Shekhar Sharma",
+      "post_en": "Supporting Staff (Class-IV)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1020",
       "name": "हीरालाल",
       "gender": "पुरुष",
       "dob": "01.07.1976",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. केरियाखुर्द",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ199701002010",
@@ -2908,14 +3063,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "946923991844",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Heeralal",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1021",
       "name": "बबलू लाल मीणा",
       "gender": "पुरुष",
       "dob": "07.07.1981",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. केरियाखुर्द",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ201201037147",
@@ -2928,7 +3088,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "686802291230",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Babaloo Lal Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1022",
@@ -2948,7 +3113,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "618007639990",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Anjoo Dayama",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1023",
@@ -2968,14 +3138,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "525198728176",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Abhimanyu Sinh Rathauड़",
+      "post_en": "Prabodhak",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1024",
       "name": "अजय कुमार पंचोली",
       "gender": "पुरुष",
       "dob": "26.07.1995",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. केरियाखुर्द",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ201901001976",
@@ -2988,7 +3163,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "758253968022",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ajay Kumar Pncholee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1025",
@@ -3008,7 +3188,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "633266722199",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kailash Mundotiya",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1026",
@@ -3028,14 +3213,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "711384802740",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shnkar Lal Jat",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1027",
       "name": "भागचंद बैरवा",
       "gender": "पुरुष",
       "dob": "04.07.2001",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. केरियाखुर्द",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ202201014447",
@@ -3048,14 +3238,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "314805508985",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhagachnd Bairwa",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1028",
       "name": "धनराज कुमावत",
       "gender": "पुरुष",
       "dob": "01.04.1997",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. केरियाखुर्द",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ202201014834",
@@ -3068,7 +3263,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "850813571058",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dhanaraj Kumawat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1029",
@@ -3088,7 +3288,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "326134308967",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mohan Lal Jajoriya",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1030",
@@ -3108,7 +3313,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "723038125870",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Reena Khateek",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1031",
@@ -3128,7 +3338,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "842403384748",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Prem Sinh",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1032",
@@ -3148,14 +3363,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "512548294281",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Baboo Lal Jat",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1033",
       "name": "सुभाष चंद",
       "gender": "पुरुष",
       "dob": "1994-08-05",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. रधुनाथपुरा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201801023696",
@@ -3168,14 +3388,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "497651894971",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Subhash Chnd",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1034",
       "name": "दुर्गेश कुमार मेघवंशी",
       "gender": "पुरुष",
       "dob": "1998-08-12",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. रधुनाथपुरा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202201011720",
@@ -3188,14 +3413,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "755081992245",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Durgesh Kumar Meghavnshee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1035",
       "name": "चंद्रशेखर सोनी",
       "gender": "पुरुष",
       "dob": "15-06-1996",
-      "post": "विशेष अध्यापक",
+      "post": "विशेष शिक्षक",
       "school_name": "रा.उ.प्रा.वि. रधुनाथपुरा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202201025568",
@@ -3208,14 +3438,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "681443515321",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Chndrashekhar Soni",
+      "post_en": "Special Educator",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1036",
       "name": "राम सिंह मीणा",
       "gender": "पुरुष",
       "dob": "1996-08-06",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.प्रा.वि. रधुनाथपुरा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202301046945",
@@ -3228,7 +3463,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "900673509860",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ram Sinh Meena",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1037",
@@ -3248,7 +3488,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "897902250711",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mukesh Kumar Kumhar",
+      "post_en": "Panchayat Assistant",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1038",
@@ -3268,7 +3513,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Priyanka Sonagara",
+      "post_en": "Panchayat Assistant",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1039",
@@ -3288,7 +3538,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "946713789861",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Budharaj Kumhar",
+      "post_en": "School Assistant",
+      "shala_darpan_code": "221764",
+      "school_code": "221764",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)"
     },
     {
       "staff_id": "STF1040",
@@ -3308,14 +3563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "722815547952",
       "remarks": "",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Shailendr Kumar Pandaya",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1041",
       "name": "श्री नितिश कुमार सुकरिया",
       "gender": "पुरुष",
       "dob": "1991-08-10",
-      "post": "प्राध्यापक",
+      "post": "व्याख्याता",
       "school_name": "रा.उ.मा.वि. बारली",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJPG201730010606",
@@ -3328,14 +3588,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "248825978844",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Nitish Kumar Sukariya",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1042",
       "name": "श्री महेश कुमार शर्मा",
       "gender": "पुरुष",
       "dob": "1981-04-24",
-      "post": "प्राध्यापक",
+      "post": "व्याख्याता",
       "school_name": "रा.उ.मा.वि. बारली",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJBW201108009945",
@@ -3348,14 +3613,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "587065508145",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Mahesh Kumar Sharma",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1043",
       "name": "श्रीमती कुसुम पारीक",
       "gender": "महिला",
       "dob": "1971-04-22",
-      "post": "वरिष्ठ अध्यापिका",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. बारली",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJCT199611007094",
@@ -3368,7 +3638,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "714448443691",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Kusum Pareek",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1044",
@@ -3388,7 +3663,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "621163009765",
       "remarks": "ैमअमतम ठध्सादमम व्ण्।ण्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Yogesh Kumar Vyas",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1045",
@@ -3408,14 +3688,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "493571537440",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Hemaraj Prajapat",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1046",
       "name": "श्रीमती पूर्णिमा कुमावत",
       "gender": "महिला",
       "dob": "1988-04-20",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. बारली",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJCT1201611005137",
@@ -3428,14 +3713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "513751544663",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Poornima Kumawat",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1047",
       "name": "श्री सहदेव चौधरी",
       "gender": "पुरुष",
       "dob": "1967-06-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. बारली",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJAJ199701002688",
@@ -3448,14 +3738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "627597590827",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Sahadev Choudhary",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1048",
       "name": "श्रीमती सन्जू शर्मा",
       "gender": "महिला",
       "dob": "1976-08-23",
-      "post": "अध्यापक स्.2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.मा.वि. बारली",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJAJ200806005119",
@@ -3468,14 +3763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "531494998402",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Sanjoo Sharma",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1049",
       "name": "श्रीमती सरिता शर्मा",
       "gender": "महिला",
       "dob": "1972-05-10",
-      "post": "अध्यापक स्.1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.मा.वि. बारली",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJAJ199301001844",
@@ -3488,14 +3788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "563335894003",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Sarita Sharma",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1050",
       "name": "श्री भंवर लाल शर्मा",
       "gender": "पुरुष",
       "dob": "1970-08-16",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. बारली",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJAJ199401001693",
@@ -3508,14 +3813,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "463050084603",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Bhnvar Lal Sharma",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1051",
       "name": "श्रीमती अरूणा टेलर",
       "gender": "महिला",
       "dob": "1973-03-01",
-      "post": "अध्यापक स्.1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.मा.वि. बारली",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJAJ199401001698",
@@ -3528,14 +3838,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "247852574556",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Aroona Telar",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1052",
       "name": "श्रीमती शहजाद बानो",
       "gender": "महिला",
       "dob": "1980-11-17",
-      "post": "अध्यापक स्.1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.मा.वि. बारली",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJAJ200701012926",
@@ -3548,14 +3863,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "620870881559",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Shahajad Bano",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1053",
       "name": "श्री कुलदीप मिश्रा",
       "gender": "पुरुष",
       "dob": "1993-09-16",
-      "post": "बेसिक कम्प्यूटर अनुदेशक",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
       "school_name": "रा.उ.मा.वि. बारली",
       "peeo_name": "PEEO BARLI",
       "sso_id": "KULDEEP.MISHRA2",
@@ -3568,14 +3888,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "934926617841",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Kuladeep Mishra",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1054",
       "name": "श्री लक्की परवेज",
       "gender": "पुरुष",
       "dob": "1987-09-03",
-      "post": "वरिष्ठ सहायक",
+      "post": "वरिष्ठ सहायक (UDC)",
       "school_name": "रा.उ.मा.वि. बारली",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJAJ201801016680",
@@ -3588,14 +3913,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "593441062836",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Lakkee Paravej",
+      "post_en": "Senior Assistant (UDC / L-8)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1055",
       "name": "श्री अभिषेक शर्मा",
       "gender": "पुरुष",
       "dob": "1994-04-13",
-      "post": "वरिष्ठ सहायक",
+      "post": "वरिष्ठ सहायक (UDC)",
       "school_name": "रा.उ.मा.वि. बारली",
       "peeo_name": "PEEO BARLI",
       "sso_id": "Abhishek.sharma13494",
@@ -3608,14 +3938,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "824242351032",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Abhishek Sharma",
+      "post_en": "Senior Assistant (UDC / L-8)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1056",
       "name": "श्री राकेश कुमार शर्मा",
       "gender": "पुरुष",
       "dob": "1985-11-07",
-      "post": "सहायक कर्मचारी",
+      "post": "सहायक कर्मचारी (चतुर्थ श्रेणी)",
       "school_name": "रा.उ.मा.वि. बारली",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJAJ200906001123",
@@ -3628,7 +3963,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "856452707490",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Rakesh Kumar Sharma",
+      "post_en": "Supporting Staff (Class-IV)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1057",
@@ -3648,7 +3988,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "298271027242",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Naresh Kumar Sharma",
+      "post_en": "Panchayat Teacher",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1058",
@@ -3668,7 +4013,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "533822723620",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Ahilya Sharma",
+      "post_en": "Panchayat Teacher",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1059",
@@ -3688,7 +4038,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "997393742933",
       "remarks": "",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pukharaj Khatee",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "506830",
+      "school_code": "506830",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI (506830) (08210700303)"
     },
     {
       "staff_id": "STF1060",
@@ -3708,7 +4063,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "914525568848",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jagadeesh Prasad Jangid",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "506830",
+      "school_code": "506830",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI (506830) (08210700303)"
     },
     {
       "staff_id": "STF1061",
@@ -3728,7 +4088,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "545654483073",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajendranath Siddh",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "506830",
+      "school_code": "506830",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI (506830) (08210700303)"
     },
     {
       "staff_id": "STF1062",
@@ -3748,7 +4113,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "717248284251",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Susheela Saini",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "506830",
+      "school_code": "506830",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI (506830) (08210700303)"
     },
     {
       "staff_id": "STF1063",
@@ -3768,14 +4138,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "329379405678",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Priyanka Khoraval",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "506830",
+      "school_code": "506830",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI (506830) (08210700303)"
     },
     {
       "staff_id": "STF1064",
       "name": "श्रीमती पूजा",
       "gender": "महिला",
       "dob": "1992-02-16",
-      "post": "अध्यापक स्.2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.बा.उ.मा.वि. बारली",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJAJ201801024434",
@@ -3788,14 +4163,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "705400330476",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Pooja",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "506830",
+      "school_code": "506830",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI (506830) (08210700303)"
     },
     {
       "staff_id": "STF1065",
       "name": "सुमित्रा लाम्बा",
       "gender": "महिला",
       "dob": "1994-07-01",
-      "post": "अध्यापक स्.2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.बा.उ.मा.वि. बारली",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJAJ201801053910",
@@ -3808,14 +4188,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "341595481113",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sumitra Lamba",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "506830",
+      "school_code": "506830",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI (506830) (08210700303)"
     },
     {
       "staff_id": "STF1066",
       "name": "महेन्द्र कुमार",
       "gender": "पुरुष",
       "dob": "1994-01-02",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.बा.उ.मा.वि. बारली",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJAJ201701007778",
@@ -3828,14 +4213,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "928785389689",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mahendra Kumar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "506830",
+      "school_code": "506830",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI (506830) (08210700303)"
     },
     {
       "staff_id": "STF1067",
       "name": "सतपाल चौधरी",
       "gender": "पुरुष",
       "dob": "1984-07-11",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.बा.उ.मा.वि. बारली",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJAJ201601027152",
@@ -3848,7 +4238,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "702632277428",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Satapal Choudhary",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "506830",
+      "school_code": "506830",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI (506830) (08210700303)"
     },
     {
       "staff_id": "STF1068",
@@ -3868,7 +4263,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "999023461802",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Veeresh Kumar Sharma",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1069",
@@ -3888,7 +4288,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "578954156116",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shilpa Kachchhava",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1070",
@@ -3908,7 +4313,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "728698500734",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Badree Prasad Devada",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1071",
@@ -3928,7 +4338,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "532384216432",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Beena Mundotiya",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1072",
@@ -3948,7 +4363,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "444537899936",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Saroj Kumaree Jatoliya",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1073",
@@ -3968,7 +4388,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "476256471327",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vinita Nama",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1074",
@@ -3988,7 +4413,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "543218024027",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sonal Yadav",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1075",
@@ -4008,7 +4438,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "796539485669",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mahaveer Prasad Jangid",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1076",
@@ -4028,7 +4463,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "978973367890",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mukesh Kumar Sharma",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1077",
@@ -4048,7 +4488,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "321344492309",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vinita Dhanaval",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1078",
@@ -4068,7 +4513,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "783492441329",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Komal Agraval",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1079",
@@ -4088,14 +4538,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "955004895379",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Savitree Gahalot",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1080",
       "name": "केलाशनारायण मीणा",
       "gender": "पुरुष",
       "dob": "1967-06-10",
-      "post": "अध्यापक लेवल -2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय बान्दनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ200501011949",
@@ -4108,14 +4563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "863362631176",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kelashanarayan Meena",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1081",
       "name": "राजेश कुमार वैष्णव",
       "gender": "पुरुष",
       "dob": "1976-01-05",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय बान्दनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ199601002311",
@@ -4128,14 +4588,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "852616357512",
       "remarks": "बीएलओ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajesh Kumar Vaishnav",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1082",
       "name": "सुनिल कुमार वर्मा",
       "gender": "पुरुष",
       "dob": "1986-06-11",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय बान्दनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ201201043467",
@@ -4148,14 +4613,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "543434563221",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sunil Kumar Verma",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1083",
       "name": "भंवरलाल नायक",
       "gender": "पुरुष",
       "dob": "1973-10-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय बान्दनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJJL200721011054",
@@ -4168,14 +4638,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "675532537696",
       "remarks": "बीएलओ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhnvaralal Nayak",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1084",
       "name": "खुशीराम गंर्जर",
       "gender": "पुरुष",
       "dob": "1997-01-24",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय बान्दनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ202301053211",
@@ -4188,14 +4663,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "742791541391",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Khusheeram Gnrjar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1085",
       "name": "अंशिका जांगिड",
       "gender": "महिला",
       "dob": "2001-11-30",
-      "post": "अध्यापक लेवल -1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय बान्दनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJKK202460111397",
@@ -4208,14 +4688,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "241253678784",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Anshika Jangid",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1086",
       "name": "ममता कुमारी रेगर",
       "gender": "महिला",
       "dob": "1992-03-18",
-      "post": "अध्यापक लेवल -1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय बान्दनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ202301053184",
@@ -4228,14 +4713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "435940264402",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mamta Kumaree Regar",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1087",
       "name": "शौकत अली",
       "gender": "पुरुष",
       "dob": "1966-08-30",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय बान्दनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ199601026562",
@@ -4248,14 +4738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "858726711818",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shaukat Alee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1088",
       "name": "संजु दमामी",
       "gender": "महिला",
       "dob": "1977-01-01",
-      "post": "अध्यापक लेवल -1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय बान्दनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ200501014726",
@@ -4268,14 +4763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "692554510932",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Snju Damamee",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1089",
       "name": "योगिता पाण्डे",
       "gender": "महिला",
       "dob": "1993-07-02",
-      "post": "अध्यापक लेवल -1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय बान्दनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ202301053137",
@@ -4288,7 +4788,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "212207147479",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Yogita Pande",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1090",
@@ -4308,14 +4813,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "731249051519",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Harshavardhan Svamee",
+      "post_en": "Lab Assistant",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1091",
       "name": "सांवरलाल जाट",
       "gender": "पुरुष",
       "dob": "1993-06-25",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय बान्दनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ201601005853",
@@ -4328,14 +4838,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "201424501480",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sanvaralal Jat",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1092",
       "name": "हेमन्त कुमार सुकरिया",
       "gender": "पुरुष",
       "dob": "1994-06-15",
-      "post": "वरिष्ठ सहायक",
+      "post": "वरिष्ठ सहायक (UDC)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय बान्दनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ201801003933",
@@ -4348,14 +4863,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "440276485892",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Hemant Kumar Sukariya",
+      "post_en": "Senior Assistant (UDC / L-8)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1093",
       "name": "सीमा चौधरी",
       "gender": "महिला",
       "dob": "2000-02-26",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय बान्दनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ202201028544",
@@ -4368,7 +4888,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "301841754063",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Seema Choudhary",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1094",
@@ -4388,14 +4913,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "877166398654",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Manoj Kumar",
+      "post_en": "Lab Assistant",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1095",
       "name": "विमल कुमार जांगिड",
       "gender": "पुरुष",
       "dob": "1991-12-04",
-      "post": "बेसिक कम्प्यूटर अनुदेशक",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय बान्दनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ202301011556",
@@ -4408,14 +4938,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "648268542250",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vimal Kumar Jangid",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1096",
       "name": "घर्मराज जेतावत",
       "gender": "पुरुष",
       "dob": "1974-10-22",
-      "post": "अति. प्रशा.अधिकारी",
+      "post": "अतिरिक्त प्रशासनिक अधिकारी",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय बान्दनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ199601005423",
@@ -4428,14 +4963,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "214803600981",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Gharmaraj Jetavat",
+      "post_en": "Additional Administrative Officer (L-11)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1097",
       "name": "जितेश मेहरा",
       "gender": "पुरुष",
       "dob": "1985-12-25",
-      "post": "पुस्तकालयाघ्यक्ष",
+      "post": "पुस्तकालयाध्यक्ष",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय बान्दनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJRA201831013994",
@@ -4448,7 +4988,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "880797291825",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jitesh Mehara",
+      "post_en": "Librarian",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1098",
@@ -4468,7 +5013,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "225109461679",
       "remarks": "बीएलओ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dharmeechnd Mali",
+      "post_en": "School Assistant",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1099",
@@ -4488,7 +5038,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "719571539654",
       "remarks": "बीएलओ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pavan Kumar Dhumas",
+      "post_en": "School Assistant",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1100",
@@ -4508,7 +5063,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "567206277304",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rekha Panwar",
+      "post_en": "Panchayat Teacher",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1101",
@@ -4528,7 +5088,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "918891700768",
       "remarks": "छव्",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Devendr Kumar Sankhala",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221771",
+      "school_code": "221771",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA (221771) (08210703904)"
     },
     {
       "staff_id": "STF1102",
@@ -4548,7 +5113,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "875333599014",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dinesh Kumar Yadav",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221771",
+      "school_code": "221771",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA (221771) (08210703904)"
     },
     {
       "staff_id": "STF1103",
@@ -4568,14 +5138,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "550910849295",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sanjay Vyas",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221771",
+      "school_code": "221771",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA (221771) (08210703904)"
     },
     {
       "staff_id": "STF1104",
       "name": "अंकिता चोधरी",
       "gender": "महिला",
       "dob": "1996-05-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय रेलवे कॉलोनी बांदनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ202301051374",
@@ -4588,7 +5163,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "916651146761",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ankita Chodharee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221771",
+      "school_code": "221771",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA (221771) (08210703904)"
     },
     {
       "staff_id": "STF1105",
@@ -4608,14 +5188,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "260106611051",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mona Vijay",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221771",
+      "school_code": "221771",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA (221771) (08210703904)"
     },
     {
       "staff_id": "STF1106",
       "name": "शालिनी निगम",
       "gender": "महिला",
       "dob": "1970-12-24",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय रेलवे कॉलोनी बांदनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ200501010202",
@@ -4628,14 +5213,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "889171093422",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shalinee Nigam",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221771",
+      "school_code": "221771",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA (221771) (08210703904)"
     },
     {
       "staff_id": "STF1107",
       "name": "धर्मीचंद माली",
       "gender": "पुरुष",
       "dob": "1971-06-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय रेलवे कॉलोनी बांदनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ199701001789",
@@ -4648,14 +5238,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "828146724806",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dharmeechnd Mali",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221771",
+      "school_code": "221771",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA (221771) (08210703904)"
     },
     {
       "staff_id": "STF1108",
       "name": "माया टेलर",
       "gender": "महिला",
       "dob": "1977-07-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय रेलवे कॉलोनी बांदनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ200501010197",
@@ -4668,14 +5263,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "713246782118",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Maya Telar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221771",
+      "school_code": "221771",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA (221771) (08210703904)"
     },
     {
       "staff_id": "STF1109",
       "name": "मधुबाला कुमावत",
       "gender": "महिला",
       "dob": "1969-11-25",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय रेलवे कॉलोनी बांदनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ199101004468",
@@ -4688,14 +5288,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "716184456769",
       "remarks": "विकलांग",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Madhubala Kumawat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221771",
+      "school_code": "221771",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA (221771) (08210703904)"
     },
     {
       "staff_id": "STF1110",
       "name": "पवन कुमार धुमस",
       "gender": "पुरुष",
       "dob": "1974-02-22",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय रेलवे कॉलोनी बांदनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ200701010367",
@@ -4708,14 +5313,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "944949592075",
       "remarks": "विकलांग",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pavan Kumar Dhumas",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221771",
+      "school_code": "221771",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA (221771) (08210703904)"
     },
     {
       "staff_id": "STF1111",
       "name": "तब्बसुम बानो",
       "gender": "महिला",
       "dob": "1989-06-01",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय रेलवे कॉलोनी बांदनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ201601026419",
@@ -4728,14 +5338,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "830192263996",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Tabbasum Bano",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221771",
+      "school_code": "221771",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA (221771) (08210703904)"
     },
     {
       "staff_id": "STF1112",
       "name": "विमल कुमार जांगिड",
       "gender": "पुरुष",
       "dob": "1991-07-27",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय रेलवे कॉलोनी बांदनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ201901026084",
@@ -4748,14 +5363,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "561405636570",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vimal Kumar Jangid",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221771",
+      "school_code": "221771",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA (221771) (08210703904)"
     },
     {
       "staff_id": "STF1113",
       "name": "संतोष देवी",
       "gender": "महिला",
       "dob": "1967-01-08",
-      "post": "सहायक कर्मचारी",
+      "post": "सहायक कर्मचारी (चतुर्थ श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय रेलवे कॉलोनी बांदनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ201401016134",
@@ -4768,14 +5388,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "976006797457",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Santosh Devee",
+      "post_en": "Supporting Staff (Class-IV)",
+      "shala_darpan_code": "221771",
+      "school_code": "221771",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA (221771) (08210703904)"
     },
     {
       "staff_id": "STF1114",
       "name": "मनोज कुमार",
       "gender": "पुरुष",
       "dob": "1992-08-30",
-      "post": "बेसिक कम्प्यूटर अनुदेशक",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय रेलवे कॉलोनी बांदनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ202301011950",
@@ -4788,7 +5413,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "836499260187",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Manoj Kumar",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221771",
+      "school_code": "221771",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA (221771) (08210703904)"
     },
     {
       "staff_id": "STF1115",
@@ -4808,14 +5438,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "625435918048",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mamta",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221771",
+      "school_code": "221771",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA (221771) (08210703904)"
     },
     {
       "staff_id": "STF1116",
       "name": "मीनाक्षी वर्मा",
       "gender": "महिला",
       "dob": "02/10/19988",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय रेलवे कॉलोनी बांदनवाडा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ201801031654",
@@ -4828,7 +5463,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "825535702209",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Meenakshee Verma",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221771",
+      "school_code": "221771",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA (221771) (08210703904)"
     },
     {
       "staff_id": "STF1117",
@@ -4848,14 +5488,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "897780431844",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Neelam Sharma",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1118",
       "name": "जय सिंह खटीक",
       "gender": "पुरुष",
       "dob": "1992-04-06",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "महात्मा गांधी राजकीय विद्यालय बांदनवाडा भिनाय",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJBW201808039849",
@@ -4868,7 +5513,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "340451081253",
       "remarks": "-",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jay Sinh Khateek",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1119",
@@ -4888,7 +5538,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "800442526019",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Trilok Chand Bhanbee",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1120",
@@ -4908,14 +5563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "232435498820",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhavanee Sinh Dharmavat",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1121",
       "name": "राजेश कुमार राजपूत",
       "gender": "पुरुष",
       "dob": "13-07-1984",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय बांदनवाडा भिनाय",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ201206008949",
@@ -4928,14 +5588,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "298990398940",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajesh Kumar Rajput",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1122",
       "name": "सत्यनारायण बैरवा",
       "gender": "पुरुष",
       "dob": "1997-01-06",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय बांदनवाडा भिनाय",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ202206013028",
@@ -4948,14 +5613,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "615088482305",
       "remarks": "बीएलओ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Satyanarayan Bairwa",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1123",
       "name": "शानू बैगम",
       "gender": "महिला",
       "dob": "1990-03-11",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय बांदनवाडा भिनाय",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ201201044634",
@@ -4968,14 +5638,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "794890355080",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shanoo Baigam",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1124",
       "name": "छोटू लाल बैरवा",
       "gender": "पुरुष",
       "dob": "1972-08-12",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय बांदनवाडा भिनाय",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAL200102003698",
@@ -4988,14 +5663,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "583108601888",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Chhotoo Lal Bairwa",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1125",
       "name": "सोनू आरटियां",
       "gender": "महिला",
       "dob": "1985-04-10",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय बांदनवाडा भिनाय",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJUD200737014839",
@@ -5008,14 +5688,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "359947401625",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sonoo Aaratiyan",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1126",
       "name": "संतोष कुमार",
       "gender": "पुरुष",
       "dob": "1979-01-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय बांदनवाडा भिनाय",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ201206019688",
@@ -5028,14 +5713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "868034886025",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Santosh Kumar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1127",
       "name": "श्रवण लाल गुर्जर",
       "gender": "पुरुष",
       "dob": "1974-04-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय बांदनवाडा भिनाय",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJBM200705005630",
@@ -5048,14 +5738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "914743965102",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shravan Lal Gurjar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1128",
       "name": "गीमा छीपा",
       "gender": "महिला",
       "dob": "30-08-1983",
-      "post": "पू प्रा अध्यापक",
+      "post": "पूर्व प्राथमिक अध्यापक",
       "school_name": "महात्मा गांधी राजकीय विद्यालय बांदनवाडा भिनाय",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJBW202208003000",
@@ -5068,14 +5763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "215513018188",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Geema Chheepa",
+      "post_en": "Pre-Primary Teacher",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1129",
       "name": "साधना मीश्रा",
       "gender": "महिला",
       "dob": "1970-08-01",
-      "post": "पु0 अध्याक्ष",
+      "post": "पुस्तकालयाध्यक्ष",
       "school_name": "महात्मा गांधी राजकीय विद्यालय बांदनवाडा भिनाय",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ199206000942",
@@ -5088,14 +5788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "732416219746",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sadhana Meeshra",
+      "post_en": "Librarian",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1130",
       "name": "मोनिका ओबरोय",
       "gender": "महिला",
       "dob": "1982-11-06",
-      "post": "शा0 शि0",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय बांदनवाडा भिनाय",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ200406000405",
@@ -5108,14 +5813,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "200589904158",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Monika Obaroy",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1131",
       "name": "आशीष कुमार शर्मा",
       "gender": "पुरुष",
       "dob": "15-03-1994",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय बांदनवाडा भिनाय",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ202001040350",
@@ -5128,14 +5838,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "698171105720",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aasheesh Kumar Sharma",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1132",
       "name": "सुमित्रा देवी जाट",
       "gender": "महिला",
       "dob": "19-09-1974",
-      "post": "सहायक कर्मचारी",
+      "post": "सहायक कर्मचारी (चतुर्थ श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय बांदनवाडा भिनाय",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ200401001740",
@@ -5148,14 +5863,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "709782900029",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sumitra Devee Jat",
+      "post_en": "Supporting Staff (Class-IV)",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1133",
       "name": "अनुराग रणवां",
       "gender": "पुरुष",
       "dob": "1995-04-01",
-      "post": "बे0क0 अनुदेशक",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
       "school_name": "महात्मा गांधी राजकीय विद्यालय बांदनवाडा भिनाय",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ20231012218",
@@ -5168,14 +5888,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "387913484360",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Anurag Ranavan",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1134",
       "name": "महेश कुमार गुजराती",
       "gender": "पुरुष",
       "dob": "1987-01-05",
-      "post": "पू प्रा अध्यापक",
+      "post": "पूर्व प्राथमिक अध्यापक",
       "school_name": "महात्मा गांधी राजकीय विद्यालय बांदनवाडा भिनाय",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJBW202108000345",
@@ -5188,14 +5913,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "695859004668",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mahesh Kumar Gujaratee",
+      "post_en": "Pre-Primary Teacher",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1135",
       "name": "मिंटू कंवर",
       "gender": "महिला",
       "dob": "20-11-1994",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय बांदनवाडा भिनाय",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJBM2019050228557",
@@ -5208,7 +5938,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "800229101124",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mintoo Knvar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1136",
@@ -5228,7 +5963,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "615459031204",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kiran Meena",
+      "post_en": "Contractual Staff",
+      "shala_darpan_code": "221770",
+      "school_code": "221770",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)"
     },
     {
       "staff_id": "STF1137",
@@ -5248,7 +5988,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "223877990557",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Suman Kachchhava",
+      "post_en": "Prabodhak",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1138",
@@ -5268,7 +6013,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "749987292601",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Peramalata Sharma",
+      "post_en": "Prabodhak",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1139",
@@ -5288,7 +6038,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "274304129874",
       "remarks": "ऋ",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ajay Kumar Dhabaeeai",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1140",
@@ -5308,14 +6063,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "924944145079",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhoopesh Raj",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1141",
       "name": "श्री चन्द्रावती तेजवानी",
       "gender": "महिला",
       "dob": "25/10/1977",
-      "post": "प्राध्यापक",
+      "post": "व्याख्याता",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ199701007455",
@@ -5328,14 +6088,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "545918954307",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Chandravatee Tejavanee",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1142",
       "name": "श्रीमती सीमा भारद्वाज",
       "gender": "महिला",
       "dob": "23/12/1972",
-      "post": "प्राध्यापक",
+      "post": "व्याख्याता",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201601033626",
@@ -5348,14 +6113,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "280149521968",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Seema Bharadvaj",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1143",
       "name": "श्री धर्मेन्द्र सिंगोदिया",
       "gender": "पुरुष",
       "dob": "1981-09-08",
-      "post": "प्राध्यापक",
+      "post": "व्याख्याता",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJBW200808003856",
@@ -5368,14 +6138,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "628403290653",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Dharmendr Singodiya",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1144",
       "name": "श्री रामदयाल रेगर",
       "gender": "पुरुष",
       "dob": "1968-01-02",
-      "post": "प्राध्यापक",
+      "post": "व्याख्याता",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ199401007503",
@@ -5388,14 +6163,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "472543845025",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Ramadayal Regar",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1145",
       "name": "श्री ओमव्रत",
       "gender": "पुरुष",
       "dob": "1976-05-10",
-      "post": "प्राध्यापक",
+      "post": "व्याख्याता",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201106008750",
@@ -5408,14 +6188,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "572700437783",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Omavrat",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1146",
       "name": "सुश्री प्रतिभा शर्मा",
       "gender": "महिला",
       "dob": "14/01/1994",
-      "post": "प्राध्यापक",
+      "post": "व्याख्याता",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202101003001",
@@ -5428,14 +6213,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "642407586231",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sushree Pratibha Sharma",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1147",
       "name": "महेन्द्र कुमार चौधरी",
       "gender": "पुरुष",
       "dob": "1990-08-09",
-      "post": "प्राध्यापक",
+      "post": "व्याख्याता",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RKK202460105162",
@@ -5448,14 +6238,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "295204143236",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mahendra Kumar Choudhary",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1148",
       "name": "सीमा कुलदीप",
       "gender": "महिला",
       "dob": "1990-10-07",
-      "post": "प्राध्यापक",
+      "post": "व्याख्याता",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJKK202460105569",
@@ -5468,14 +6263,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "450686789784",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Seema Kuladeep",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1149",
       "name": "विमला शर्मा",
       "gender": "महिला",
       "dob": "25/02/1998",
-      "post": "प्राध्यापक",
+      "post": "व्याख्याता",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJKK202360055148",
@@ -5488,14 +6288,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "578879553063",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vimala Sharma",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1150",
       "name": "हजारी लाल कुमावत",
       "gender": "पुरुष",
       "dob": "1986-02-07",
-      "post": "प्राध्यापक",
+      "post": "व्याख्याता",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJSR201234037562",
@@ -5508,14 +6313,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "904508795456",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Hajaree Lal Kumawat",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1151",
       "name": "अरविन्द्र कुूमार सेन",
       "gender": "पुरुष",
       "dob": "1973-03-11",
-      "post": "प्राध्यापक",
+      "post": "व्याख्याता",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ199501001457",
@@ -5528,14 +6338,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "274976837471",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aravindr Kuoomar Sen",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1152",
       "name": "शकरलाल भाम्बी",
       "gender": "पुरुष",
       "dob": "1972-01-04",
-      "post": "प्राध्यापक",
+      "post": "व्याख्याता",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJCR200112001840",
@@ -5548,7 +6363,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "537603174117",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shakaralal Bhambee",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1153",
@@ -5568,7 +6388,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "292728765510",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Mohammad Iliyas",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1154",
@@ -5588,7 +6413,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "814654654100",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Shashikala Vaishnav",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1155",
@@ -5608,7 +6438,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "787149370236",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Parasamal Vaishnav",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1156",
@@ -5628,14 +6463,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "909171129085",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Aanand Kumar",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1157",
       "name": "निखिल चौधरी",
       "gender": "पुरुष",
       "dob": "1999-01-03",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202301023643",
@@ -5648,14 +6488,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "906473421100",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Nikhil Choudhary",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1158",
       "name": "राजेश कुमार रेवाला",
       "gender": "पुरुष",
       "dob": "15/07/1985",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAP201317038583",
@@ -5668,14 +6513,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "247805029868",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajesh Kumar Revala",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1159",
       "name": "संदीप बोकोलिया",
       "gender": "पुरुष",
       "dob": "15/07/2000",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJJO202325017285",
@@ -5688,7 +6538,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "721990356058",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sndeep Bokoliya",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1160",
@@ -5708,14 +6563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "514981311864",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Chandraprakash Surana",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1161",
       "name": "श्री धर्मेन्द्र कुमार वैष्णव",
       "gender": "पुरुष",
       "dob": "1988-02-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201206020812",
@@ -5728,7 +6588,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "504650427205",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Dharmendr Kumar Vaishnav",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1162",
@@ -5748,7 +6613,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "253367520017",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Arjun Khateek",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1163",
@@ -5768,7 +6638,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "793831994488",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Rinkoo Jat",
+      "post_en": "Lab Assistant",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1164",
@@ -5788,7 +6663,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "962605144778",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sushree Krishna Tivaree",
+      "post_en": "Lab Assistant",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1165",
@@ -5808,14 +6688,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "297971854513",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Chetana Bhaskar",
+      "post_en": "Lab Assistant",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1166",
       "name": "देवेन्द्र कुमार कुमावत",
       "gender": "पुरुष",
       "dob": "15/04/1999",
-      "post": "बेसिक कम्प्यूटर अनुदेशक",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202301011463",
@@ -5828,14 +6713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "775615076759",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Devendr Kumar Kumawat",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1167",
       "name": "श्री आकाश सैनी",
       "gender": "पुरुष",
       "dob": "13/03/1996",
-      "post": "पुस्तकालय अध्यक्ष",
+      "post": "पुस्तकालयाध्यक्ष",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202101014901",
@@ -5848,14 +6738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "801454999197",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Aakash Saini",
+      "post_en": "Librarian",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1168",
       "name": "विश्वेन्द्र कुमार बैरवा",
       "gender": "पुरुष",
       "dob": "28/11/1993",
-      "post": "अति0्रप्र0अ0",
+      "post": "अतिरिक्त प्रशासनिक अधिकारी",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201301030487",
@@ -5868,14 +6763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "405469796406",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vishvendr Kumar Bairwa",
+      "post_en": "Additional Administrative Officer (L-11)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1169",
       "name": "सोहन सिंह रावत",
       "gender": "पुरुष",
       "dob": "14/10/1981",
-      "post": "सहा0्रप्र0अ",
+      "post": "सहायक प्रशासनिक अधिकारी",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ200101000797",
@@ -5888,14 +6788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "565458030163",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sohan Sinh Ravat",
+      "post_en": "Assistant Administrative Officer (L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1170",
       "name": "सुश्री निकिता सांखला",
       "gender": "महिला",
       "dob": "1994-03-12",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202001018799",
@@ -5908,14 +6813,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "749376434856",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sushree Nikita Sankhala",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1171",
       "name": "श्री अब्दुल सलीम अंसारी",
       "gender": "पुरुष",
       "dob": "1973-10-02",
-      "post": "सहायक कर्मचारी",
+      "post": "सहायक कर्मचारी (चतुर्थ श्रेणी)",
       "school_name": "रा.उ.मा.वि. भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ199501022681",
@@ -5928,7 +6838,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "845109008299",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Abdul Saleem Ansaree",
+      "post_en": "Supporting Staff (Class-IV)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1172",
@@ -5948,7 +6863,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "526319330035",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Dhanaraj Bairwa",
+      "post_en": "School Assistant",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1173",
@@ -5968,7 +6888,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "843096395572",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Sajjan Sinh Gaud",
+      "post_en": "School Assistant",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1174",
@@ -5988,7 +6913,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "791974953896",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Pavan Kumar Joshi",
+      "post_en": "School Assistant",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1175",
@@ -6008,7 +6938,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "692692156786",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Devendr Kumar Mishra",
+      "post_en": "Prabodhak",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1176",
@@ -6028,7 +6963,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "740338238499",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Najaneen Paraveen",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1177",
@@ -6048,7 +6988,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "321808746948",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Radheshyam Jangid",
+      "post_en": "Prabodhak",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1178",
@@ -6068,14 +7013,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "339838688292",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Kaminee Sanadhay",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1179",
       "name": "श्री भरतराज मीणा",
       "gender": "पुरुष",
       "dob": "24/04/1996",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. इन्दिरा कॉलोनी भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202201011906",
@@ -6088,7 +7038,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "247470457922",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Bharataraj Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "519058",
+      "school_code": "519058",
+      "school_name_en": "GOVT. PRIMARY SCHOOL INDIRA COLONY BHINAY (519058) (08210705531)"
     },
     {
       "staff_id": "STF1180",
@@ -6108,14 +7063,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "713817208835",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Maya Kumhar",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "519058",
+      "school_code": "519058",
+      "school_name_en": "GOVT. PRIMARY SCHOOL INDIRA COLONY BHINAY (519058) (08210705531)"
     },
     {
       "staff_id": "STF1181",
       "name": "चान्दमल चेन्दल",
       "gender": "पुरुष",
       "dob": "1987-01-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. माताजी का खेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJNA201228025244",
@@ -6128,7 +7088,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "949138411086",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Chandamal Chendal",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1182",
@@ -6148,14 +7113,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "272260002076",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aju Audichy",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1183",
       "name": "संजीदा परवीन",
       "gender": "महिला",
       "dob": "1970-05-02",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "महात्मा गांधी राजकीय विद्यालय भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201201036870",
@@ -6168,7 +7138,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "202906554011",
       "remarks": "",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Snjeeda Paraveen",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221778",
+      "school_code": "221778",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)"
     },
     {
       "staff_id": "STF1184",
@@ -6188,7 +7163,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "866210886082",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mamta Kalal",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221778",
+      "school_code": "221778",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)"
     },
     {
       "staff_id": "STF1185",
@@ -6208,7 +7188,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "369452068409",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vajid Husen",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221778",
+      "school_code": "221778",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)"
     },
     {
       "staff_id": "STF1186",
@@ -6228,7 +7213,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "522444715889",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mahesh Kumar Dabee",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221778",
+      "school_code": "221778",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)"
     },
     {
       "staff_id": "STF1187",
@@ -6248,7 +7238,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "771295499090",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Monika Suvalaka",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221778",
+      "school_code": "221778",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)"
     },
     {
       "staff_id": "STF1188",
@@ -6268,7 +7263,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "854824650479",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Anita Kumaree",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221778",
+      "school_code": "221778",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)"
     },
     {
       "staff_id": "STF1189",
@@ -6288,7 +7288,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "587089638219",
       "remarks": "विकलांग",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Taj Mohammad",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221778",
+      "school_code": "221778",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)"
     },
     {
       "staff_id": "STF1190",
@@ -6308,14 +7313,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "332702489497",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Reshama",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221778",
+      "school_code": "221778",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)"
     },
     {
       "staff_id": "STF1191",
       "name": "श्री राम उपाध्याय",
       "gender": "पुरुष",
       "dob": "1989-07-04",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201201044668",
@@ -6328,14 +7338,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "763612994074",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Ram Upadhyay",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221778",
+      "school_code": "221778",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)"
     },
     {
       "staff_id": "STF1192",
       "name": "मागीलाल गुर्जर",
       "gender": "पुरुष",
       "dob": "1990-07-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJJO201225045109",
@@ -6348,7 +7363,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "648243061142",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mageelal Gurjar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221778",
+      "school_code": "221778",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)"
     },
     {
       "staff_id": "STF1193",
@@ -6368,14 +7388,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "300421800127",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Priti Panue",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221778",
+      "school_code": "221778",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)"
     },
     {
       "staff_id": "STF1194",
       "name": "अनिल कुमार जोशी",
       "gender": "पुरुष",
       "dob": "1968-10-28",
-      "post": "पुस्तकाल्याध्यक्ष",
+      "post": "पुस्तकालयाध्यक्ष",
       "school_name": "महात्मा गांधी राजकीय विद्यालय भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ199101008102",
@@ -6388,14 +7413,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "654963911283",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Anil Kumar Joshi",
+      "post_en": "Librarian",
+      "shala_darpan_code": "221778",
+      "school_code": "221778",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)"
     },
     {
       "staff_id": "STF1195",
       "name": "करोडी लाल मीणा",
       "gender": "पुरुष",
       "dob": "1994-01-01",
-      "post": "बेसिक कम्प्यूटर अनुदेशक",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
       "school_name": "महात्मा गांधी राजकीय विद्यालय भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202301006850",
@@ -6408,14 +7438,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "312809033189",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Karodee Lal Meena",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221778",
+      "school_code": "221778",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)"
     },
     {
       "staff_id": "STF1196",
       "name": "पवन कुमार मील",
       "gender": "पुरुष",
       "dob": "1998-05-11",
-      "post": "बेसिक कम्प्यूटर अनुदेशक",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
       "school_name": "महात्मा गांधी राजकीय विद्यालय भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202301015408",
@@ -6428,7 +7463,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "355813150221",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pavan Kumar Meel",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221778",
+      "school_code": "221778",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)"
     },
     {
       "staff_id": "STF1197",
@@ -6448,7 +7488,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "528319294712",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Salochana Mevada",
+      "post_en": "Pre-Primary Teacher",
+      "shala_darpan_code": "221778",
+      "school_code": "221778",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)"
     },
     {
       "staff_id": "STF1198",
@@ -6468,14 +7513,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "312739579965",
       "remarks": "ठस्व 306",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ram Gopal Bairwa",
+      "post_en": "Pre-Primary Teacher",
+      "shala_darpan_code": "221778",
+      "school_code": "221778",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)"
     },
     {
       "staff_id": "STF1199",
       "name": "निखिल तिवाडी",
       "gender": "पुरुष",
       "dob": "1989-07-20",
-      "post": "वरिष्ठ सहायक",
+      "post": "वरिष्ठ सहायक (UDC)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201701000822",
@@ -6488,14 +7538,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "528747740570",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Nikhil Tivadee",
+      "post_en": "Senior Assistant (UDC / L-8)",
+      "shala_darpan_code": "221778",
+      "school_code": "221778",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)"
     },
     {
       "staff_id": "STF1200",
       "name": "अजय सिंह देवडा",
       "gender": "पुरुष",
       "dob": "1994-08-13",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJKK202460113787",
@@ -6508,14 +7563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "705635962388",
       "remarks": "ठस्व 305",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ajay Sinh Devada",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221778",
+      "school_code": "221778",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)"
     },
     {
       "staff_id": "STF1201",
       "name": "हरी सिंह",
       "gender": "पुरुष",
       "dob": "1968-07-15",
-      "post": "सहायक कर्मचारी",
+      "post": "सहायक कर्मचारी (चतुर्थ श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ199501002146",
@@ -6528,7 +7588,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "260839129546",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Haree Sinh",
+      "post_en": "Supporting Staff (Class-IV)",
+      "shala_darpan_code": "221778",
+      "school_code": "221778",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)"
     },
     {
       "staff_id": "STF1202",
@@ -6548,7 +7613,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "856832494074",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Manoj Meena",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1203",
@@ -6568,7 +7638,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "503900109607",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mukesh Mitharaval",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1204",
@@ -6588,7 +7663,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "723025987620",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Akhtar Khan",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1205",
@@ -6608,7 +7688,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "888512360290",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sooraj Prakash Sharma",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1206",
@@ -6628,14 +7713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "541869761783",
       "remarks": "विकलांग",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Peeyoosh Choudhary",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1207",
       "name": "राकेश कुमार मीणा",
       "gender": "पुरुष",
       "dob": "6/7/1994",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ. प्रा.वि. खायडा",
       "peeo_name": "PEEO KEROT",
       "sso_id": "RJAJ201901033706",
@@ -6648,14 +7738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "562913338927",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rakesh Kumar Meena",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1208",
       "name": "दुर्गेश कुमार प्रजापत",
       "gender": "पुरुष",
       "dob": "5/8/2001",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ. प्रा.वि. खायडा",
       "peeo_name": "PEEO KEROT",
       "sso_id": "RJAJ202301052362",
@@ -6668,14 +7763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "686177754930",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Durgesh Kumar Prajapat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1209",
       "name": "राजवीर सिंह रावत",
       "gender": "पुरुष",
       "dob": "1/7/1997",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ. प्रा.वि. खायडा",
       "peeo_name": "PEEO KEROT",
       "sso_id": "RJAJ202301052211",
@@ -6688,14 +7788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "563969116177",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajaveer Sinh Ravat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1210",
       "name": "प्रदीप कुमार जाट",
       "gender": "पुरुष",
       "dob": "10/04/2000",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ. प्रा.वि. खायडा",
       "peeo_name": "PEEO KEROT",
       "sso_id": "RJAJ202301052626",
@@ -6708,14 +7813,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "470526215381",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pradeep Kumar Jat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1211",
       "name": "लता मिश्रा",
       "gender": "महिला",
       "dob": "1966-12-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा. प्रा. वि. रेण",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJAJ201101007551",
@@ -6728,14 +7838,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "419308815804",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Lata Mishra",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1212",
       "name": "निसार अहमद",
       "gender": "पुरुष",
       "dob": "1988-01-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा. प्रा. वि. रेण",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJPA201229046815",
@@ -6748,14 +7863,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "987573950156",
       "remarks": "ठण्स्ण्व्ण्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Nisar Ahamad",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1213",
       "name": "सुमित वेदनाई",
       "gender": "पुरुष",
       "dob": "13/02/1999",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा. वि रेन",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202301052517",
@@ -6768,7 +7888,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "513283654137",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sumit Vedanaee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1214",
@@ -6788,14 +7913,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "485354488534",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aink।taibh।chh Jnyanda।t",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1215",
       "name": "शांति लाल जाट",
       "gender": "पुरुष",
       "dob": "1998-10-12",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा. प्रा. वि. सोल खुर्द",
       "peeo_name": "PEEO PADANGA",
       "sso_id": "SHANTI.LAL.JAT1",
@@ -6808,7 +7938,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "914666844448",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shanti Lal Jat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1216",
@@ -6828,14 +7963,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "286639668020",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Chvvchha।d Jnya।saॅ।t",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1217",
       "name": "रमेश बैरवा",
       "gender": "पुरुष",
       "dob": "1972-09-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. सोलकलां",
       "peeo_name": "PEEO PADANGA",
       "sso_id": "RJAJ199701001139",
@@ -6848,7 +7988,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "689150630399",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ramesh Bairwa",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1218",
@@ -6868,14 +8013,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "548117473174",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Topheek Ahamad",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1219",
       "name": "दिनेश कुमार रेगर",
       "gender": "पुरुष",
       "dob": "1994-01-06",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. सोलकलां",
       "peeo_name": "PEEO PADANGA",
       "sso_id": "RJAJ201701014312",
@@ -6888,7 +8038,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "711934324374",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dinesh Kumar Regar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1220",
@@ -6908,7 +8063,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "417425134230",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vikrant Vaishnav",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1221",
@@ -6928,7 +8088,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "630737994702",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kailash Ram",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1222",
@@ -6948,7 +8113,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "462354379050",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kpchhamaibh Jnyanda।t Jnyanda।ॅ।j",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1223",
@@ -6968,7 +8138,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "995051399428",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vd Cht।jnya।aibh Davtl।",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1224",
@@ -6988,7 +8163,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "627496909620",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jnyanchhak।chh Jnyanda।t Shravaibhp",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1225",
@@ -7008,7 +8188,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "447088710122",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jnya।dasmaibh Chvaiॅ।s",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1226",
@@ -7028,7 +8213,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "397170108891",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Paibhaॅ।t S।s Ta।paibhchha।t",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1227",
@@ -7048,7 +8238,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "868488722976",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "।thaknsai।llar। Ch।jbh।chh",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1228",
@@ -7068,14 +8263,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "364998923318",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bh।chhai। Jnyanda।tp Tha।ptaॅ।",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1229",
       "name": "जियाउर रहमान",
       "gender": "पुरुष",
       "dob": "1990-07-05",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. बूड़कीया",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJAJ201201044905",
@@ -7088,14 +8288,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "467194300286",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jiyaur Rahaman",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1230",
       "name": "क्प्छमैभ त्।प क्।क्भ्प्ब्भ्",
       "gender": "पुरुष",
       "dob": "1968-11-04",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. बूड़कीया",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJAJ199301017366",
@@ -7108,14 +8313,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "291185022965",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kpchhamaibh T।p K।kbhpbbh",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1231",
       "name": "राजपाल वर्मा",
       "gender": "पुरुष",
       "dob": "1994-06-25",
-      "post": "बेसिक कम्प्यूटर अनुदेशक",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
       "school_name": "रा.उ.मा.वि. बूड़कीया",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJSM202332020512",
@@ -7128,14 +8338,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "407372773266",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajapal Verma",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1232",
       "name": "ड।भ्म्छक्त्। ज्ञन्ड।त छ।ळ।त्",
       "gender": "पुरुष",
       "dob": "1970-11-21",
-      "post": "स.प्रशासनिक अधिकारी",
+      "post": "सहायक प्रशासनिक अधिकारी",
       "school_name": "रा.उ.मा.वि. बूड़कीया",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJPA199629007044",
@@ -7148,7 +8363,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "209836695835",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Da।bhmchhakt। Jnyanda।t Chha।ळ।t",
+      "post_en": "Assistant Administrative Officer (L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1233",
@@ -7168,7 +8388,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "447088710122",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Thabh।ळॅ।jp Shra।j",
+      "post_en": "Panchayat Assistant",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1234",
@@ -7188,7 +8413,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "721848993952",
       "remarks": "प्रगणक",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shra।ait।shr ळntshra।t",
+      "post_en": "Panchayat Assistant",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1235",
@@ -7208,7 +8438,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "487639542650",
       "remarks": "विकलांग",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shra।dachha। S।s Shra।j",
+      "post_en": "Panchayat Assistant",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1236",
@@ -7228,7 +8463,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "500089046908",
       "remarks": "",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ladooram Sharma",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1237",
@@ -7248,7 +8488,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "550472604233",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Govindaram Jangiड़",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1238",
@@ -7268,7 +8513,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "309624532210",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pradhan Gurjar",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1239",
@@ -7288,7 +8538,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "348464324622",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mahaveer Bairwa",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1240",
@@ -7308,14 +8563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "207697901966",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Niranjan Kumar Deval",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1241",
       "name": "सुनील कुमार जैन",
       "gender": "पुरुष",
       "dob": "1970-01-10",
-      "post": "व0अ0",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. चापानेरी",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "RJAJ199401002202",
@@ -7328,14 +8588,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "240850532573",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sunil Kumar Jain",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1242",
       "name": "मुरली यादव",
       "gender": "पुरुष",
       "dob": "1991-06-06",
-      "post": "व0अ0",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. चापानेरी",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "RJKK202360082104",
@@ -7348,14 +8613,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "830899358647",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Muralee Yadav",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1243",
       "name": "बलराम चौधरी",
       "gender": "पुरुष",
       "dob": "27-08-1996",
-      "post": "व0अ0",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. चापानेरी",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "RJKK202360082114",
@@ -7368,14 +8638,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "923370579753",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Balaram Choudhary",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1244",
       "name": "रामस्वरुप चौधरी",
       "gender": "पुरुष",
       "dob": "1982-06-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. चापानेरी",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "RJAJ201201037996",
@@ -7388,14 +8663,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "735260320628",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ramasvarup Choudhary",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1245",
       "name": "अशोक कुमार कामड़",
       "gender": "पुरुष",
       "dob": "1988-08-11",
-      "post": "अध्यापक ले-2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.मा.वि. चापानेरी",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "RJAJ202301042962",
@@ -7408,14 +8688,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "779657713758",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ashok Kumar Kamaड़",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1246",
       "name": "रामप्रसाद खारोल",
       "gender": "पुरुष",
       "dob": "1979-03-05",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. चापानेरी",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "RJAJ200501037802",
@@ -7428,7 +8713,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "858905867431",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ramaprasad Kharol",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1247",
@@ -7448,14 +8738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "324249567075",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Anoop Knvar",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1248",
       "name": "अशोक कुमार माली",
       "gender": "पुरुष",
       "dob": "22-09-1996",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. चापानेरी",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "RJAJ202201034157",
@@ -7468,7 +8763,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "354365883010",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ashok Kumar Mali",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1249",
@@ -7488,14 +8788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "577191189468",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jugaraj Khoraval",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1250",
       "name": "राजकुमार बैरवा",
       "gender": "पुरुष",
       "dob": "1992-07-09",
-      "post": "बेसिक कम्प्यूटर अनुदेशक",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
       "school_name": "रा.उ.मा.वि. चापानेरी",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "RJKK202460112348",
@@ -7508,14 +8813,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "365307238158",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajakumar Bairwa",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1251",
       "name": "अमीन मोहम्मद",
       "gender": "पुरुष",
       "dob": "1981-02-04",
-      "post": "सहायक प्रसानिक अधिकारी",
+      "post": "सहायक प्रशासनिक अधिकारी",
       "school_name": "रा.उ.मा.वि. चापानेरी",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "RJBW200308004527",
@@ -7528,14 +8838,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "909350845943",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ameen Mohammad",
+      "post_en": "Assistant Administrative Officer (L-10)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1252",
       "name": "मुकेश सिंह",
       "gender": "पुरुष",
       "dob": "17-05-1984",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "रा.उ.मा.वि. चापानेरी",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "RJAJ200601003517",
@@ -7548,7 +8863,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "292076050040",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mukesh Sinh",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1253",
@@ -7568,7 +8888,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "627907299801",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Annaraj Pareek",
+      "post_en": "School Assistant",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1254",
@@ -7588,7 +8913,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "700535717855",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Annaraj Pareek",
+      "post_en": "School Assistant",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1255",
@@ -7608,14 +8938,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "584610876134",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Annaraj Pareek",
+      "post_en": "School Assistant",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1256",
       "name": "हरि शंकर चोपदार",
       "gender": "पुरुष",
       "dob": "14-01-1988",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.बा.उ.मा.वि. चापानेरी",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "RJAJ202001033943",
@@ -7628,14 +8963,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "702502368225",
       "remarks": "",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Hari Shnkar Chopadar",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "494626",
+      "school_code": "494626",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL CHAPANERI (494626) (08210700602)"
     },
     {
       "staff_id": "STF1257",
       "name": "राजेश चांवला",
       "gender": "पुरुष",
       "dob": "24-10-1996",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.बा.उ.मा.वि. चापानेरी",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "RJTO202336020969",
@@ -7648,7 +8988,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "409311820049",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajesh Chanvala",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "494626",
+      "school_code": "494626",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL CHAPANERI (494626) (08210700602)"
     },
     {
       "staff_id": "STF1258",
@@ -7668,14 +9013,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "580586225693",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ramajee Lal",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "494626",
+      "school_code": "494626",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL CHAPANERI (494626) (08210700602)"
     },
     {
       "staff_id": "STF1259",
       "name": "ममता मीणा",
       "gender": "महिला",
       "dob": "1990-08-07",
-      "post": "अध्यापक ys&1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.बा.उ.मा.वि. चापानेरी",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "RJBM201705020254",
@@ -7688,14 +9038,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "713813244643",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mamta Meena",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "494626",
+      "school_code": "494626",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL CHAPANERI (494626) (08210700602)"
     },
     {
       "staff_id": "STF1260",
       "name": "रुचिका सोनी",
       "gender": "महिला",
       "dob": "21-11-1996",
-      "post": "अध्यापक ys&1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.बा.उ.मा.वि. चापानेरी",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "RJAJ201901007522",
@@ -7708,14 +9063,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "388140269728",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ruchika Soni",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "494626",
+      "school_code": "494626",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL CHAPANERI (494626) (08210700602)"
     },
     {
       "staff_id": "STF1261",
       "name": "कमौदी बाई मीणा",
       "gender": "महिला",
       "dob": "1989-01-07",
-      "post": "शा ॰शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.बा.उ.मा.वि. चापानेरी",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "RJNA201928035916",
@@ -7728,7 +9088,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "310414317749",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kamaudee Baee Meena",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "494626",
+      "school_code": "494626",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL CHAPANERI (494626) (08210700602)"
     },
     {
       "staff_id": "STF1262",
@@ -7748,7 +9113,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "996187602834",
       "remarks": "छव्",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Seetaram Dhobee",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1263",
@@ -7768,7 +9138,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "358831181874",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Lalita Mahavar",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1264",
@@ -7788,7 +9163,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "549796858888",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Radha Sinh",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1265",
@@ -7808,7 +9188,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "926535166469",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Lakshmee",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1266",
@@ -7828,7 +9213,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "835102085543",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Manju Sharma",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1267",
@@ -7848,7 +9238,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "352635796828",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rohit Kumar Seenee",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1268",
@@ -7868,14 +9263,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "242663791295",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Meena Gurjar",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1269",
       "name": "कविता धौलपुरिया",
       "gender": "महिला",
       "dob": "1976-04-09",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. छछुन्दरा",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJAJ200801038738",
@@ -7888,14 +9288,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "317836095401",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kavita Dhaulapuriya",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1270",
       "name": "शशिबाला",
       "gender": "महिला",
       "dob": "1979-05-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. छछुन्दरा",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJAJ200801040528",
@@ -7908,14 +9313,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "316331008395",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shashibala",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1271",
       "name": "मेहमूदा बेगम मंसूरी",
       "gender": "महिला",
       "dob": "1970-07-04",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. छछुन्दरा",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJAJ199401001416",
@@ -7928,14 +9338,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "688444881017",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mehamooda Begam Mnsooree",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1272",
       "name": "ताराचन्द कुम्हार",
       "gender": "पुरुष",
       "dob": "1967-10-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. छछुन्दरा",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJAJ199101001902",
@@ -7948,14 +9363,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "359549812493",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Tarachand Kumhar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1273",
       "name": "अब्दूल रहमान मोमिन",
       "gender": "पुरुष",
       "dob": "1975-07-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. छछुन्दरा",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJAJ199701010726",
@@ -7968,14 +9388,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "503325677565",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Abdool Rahaman Momin",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1274",
       "name": "जीतेश माली",
       "gender": "पुरुष",
       "dob": "14.04.1992",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. छछुन्दरा",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJAJ201701003222",
@@ -7988,14 +9413,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "844297332001",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jeetesh Mali",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1275",
       "name": "शबनम सुलताना",
       "gender": "महिला",
       "dob": "1975-01-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. छछुन्दरा",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJCT200411000238",
@@ -8008,14 +9438,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "806811189306",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shabanam Sulatana",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1276",
       "name": "श्योजी राम कुमावत",
       "gender": "पुरुष",
       "dob": "1994-10-10",
-      "post": "बेसिक कम्प0 अनु0",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
       "school_name": "रा.उ.मा.वि. छछुन्दरा",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJKK202460112473",
@@ -8028,14 +9463,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "585393096871",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shyojee Ram Kumawat",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1277",
       "name": "सुनीता कुमारी पूनिया",
       "gender": "महिला",
       "dob": "1991-06-05",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "रा.उ.मा.वि. छछुन्दरा",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJAJ202101009203",
@@ -8048,7 +9488,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "811027518211",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sunita Kumaree Pooniya",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1278",
@@ -8068,7 +9513,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "359371693678",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Deepak Kumar Sen",
+      "post_en": "Panchayat Assistant",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1279",
@@ -8088,7 +9538,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "528310132796",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Haradayal Gurjar",
+      "post_en": "School Assistant",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1280",
@@ -8108,7 +9563,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "548879929677",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sukha Sinh",
+      "post_en": "School Assistant",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1281",
@@ -8128,7 +9588,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "469905499880",
       "remarks": "छव्",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ritu Sharma",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1282",
@@ -8148,7 +9613,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "829309690127",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ramakumaree Meena",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1283",
@@ -8168,7 +9638,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "231068973035",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mukesh Chandra Gurjar",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1284",
@@ -8188,14 +9663,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "682670687165",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Someshvar Bakoliya",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1285",
       "name": "सत्यनारायण खटीक",
       "gender": "पुरुष",
       "dob": "1975-01-12",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. सेदरिया",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJAJ199701002013",
@@ -8208,7 +9688,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "478773070759",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Satyanarayan Khateek",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1286",
@@ -8228,14 +9713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "869117717397",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Surendra Kumar Kharol",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1287",
       "name": "प्रकाश चन्द्र वैष्णव",
       "gender": "पुरुष",
       "dob": "2301-1973",
-      "post": "शारारिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. सेदरिया",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJAJ201301032572",
@@ -8248,14 +9738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "209471564097",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Prakash Chandra Vaishnav",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1288",
       "name": "उमेश कुमार शर्मा",
       "gender": "पुरुष",
       "dob": "1993-02-06",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा प्रा वि मजरा सवाईपुरा छ्छुन्दरा भिनाय अजमेर",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201701014307",
@@ -8268,14 +9763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "420211333156",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Umesh Kumar Sharma",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1289",
       "name": "रामनिवास बैरवा",
       "gender": "पुरुष",
       "dob": "1978-01-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा प्रा वि मजरा सवाईपुरा छ्छुन्दरा भिनाय अजमेर",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJJO200725000819",
@@ -8288,14 +9788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "345927444881",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ramanivas Bairwa",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1290",
       "name": "संगीता मीणा",
       "gender": "महिला",
       "dob": "1993-04-15",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. रतनपुरा",
       "peeo_name": "PEEO PADANGA",
       "sso_id": "RJAJ201501006727",
@@ -8308,14 +9813,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "468635018530",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sngeeta Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1291",
       "name": "रेखा कुमारी चंदेल",
       "gender": "महिला",
       "dob": "1994-08-21",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. रतनपुरा",
       "peeo_name": "PEEO PADANGA",
       "sso_id": "RJBW201908005286",
@@ -8328,7 +9838,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "848079155489",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rekha Kumaree Chndel",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1292",
@@ -8348,14 +9863,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "215496924207",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kanta Kumhar",
+      "post_en": "Prabodhak",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1293",
       "name": "मुकेश शर्मा",
       "gender": "पुरुष",
       "dob": "1988-11-28",
-      "post": "व.अ.",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.प्रा.वि. सरगांव",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJAJ202001033683",
@@ -8368,14 +9888,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "748901115124",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mukesh Sharma",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1294",
       "name": "महमूद देशवाली",
       "gender": "पुरुष",
       "dob": "1974-09-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. सरगांव",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJAJ200101000820",
@@ -8388,14 +9913,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "402702852062",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mahamood Deshavalee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1295",
       "name": "नानूराम जाट",
       "gender": "पुरुष",
       "dob": "1979-04-02",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. सरगांव",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJAJ201206019118",
@@ -8408,14 +9938,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "265623761512",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Nanooram Jat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1296",
       "name": "सुल्तान लाल मीना",
       "gender": "पुरुष",
       "dob": "1984-07-31",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. सरगांव",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJAJ201701023704",
@@ -8428,14 +9963,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "452876650120",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sultan Lal Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1297",
       "name": "आरती",
       "gender": "महिला",
       "dob": "1992-04-23",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. सरगांव",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJAJ201801020999",
@@ -8448,14 +9988,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "683899418003",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aaratee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1298",
       "name": "जीतराम जाट",
       "gender": "पुरुष",
       "dob": "1997-07-15",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. सरगांव",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJBW201908015707",
@@ -8468,14 +10013,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "800939273470",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jeetaram Jat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1299",
       "name": "प्रहलाद",
       "gender": "पुरुष",
       "dob": "1994-03-15",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. सरगांव",
       "peeo_name": "PEEO BARLI",
       "sso_id": "RJAJ201801057004",
@@ -8488,14 +10038,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "418003783608",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Prahalad",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221755",
+      "school_code": "221755",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)"
     },
     {
       "staff_id": "STF1300",
       "name": "जितेन्द्र कूमार शर्मा",
       "gender": "पुरुष",
       "dob": "1968-12-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. जोरावरपुरा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJRA200731005402",
@@ -8508,14 +10063,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "647388033912",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jitendra Koomar Sharma",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1301",
       "name": "ताराचन्द धायल",
       "gender": "पुरुष",
       "dob": "1985-07-19",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. जोरावरपुरा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201301032569",
@@ -8528,14 +10088,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "823456604515",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Tarachand Dhayal",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1302",
       "name": "प्रदीप सिंह",
       "gender": "पुरुष",
       "dob": "1992-02-05",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. जोरावरपुरा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201801057010",
@@ -8548,14 +10113,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "835308889622",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pradeep Sinh",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1303",
       "name": "इन्द्रा देवी रेगर",
       "gender": "महिला",
       "dob": "2.07.1977",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. जोरावरपुरा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ200501035591",
@@ -8568,14 +10138,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "471585254545",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Indra Devee Regar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1304",
       "name": "कैलाश चन्द्र",
       "gender": "पुरुष",
       "dob": "1993-10-05",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. जोरावरपुरा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJKK202360058754",
@@ -8588,7 +10163,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "802502863975",
       "remarks": "भ्।छक्प्ब्।च्म्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kailash Chandra",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1305",
@@ -8608,7 +10188,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "575764155858",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shabbeer Husain",
+      "post_en": "शा. शिक्षक",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1306",
@@ -8616,7 +10201,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "24-1-1987`",
       "post": "प्रधानाचार्य",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJJW201222018036",
       "mobile": "9636483684",
@@ -8628,15 +10213,20 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "907623565232",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ankush Meghavnshee",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1307",
       "name": "प्रेम गर्ग",
       "gender": "महिला",
       "dob": "1976-01-01",
-      "post": "अधयापिका लेवल -1",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "post": "अध्यापक लेवल-1",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ199601014124",
       "mobile": "9414575062",
@@ -8648,15 +10238,20 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "443068378315",
       "remarks": "विकलांग",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Prem Garg",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1308",
       "name": "विमलचन्द जैन",
       "gender": "पुरुष",
       "dob": "1972-10-12",
-      "post": "लायब्रेरीयन ग्रेड -2",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "post": "पुस्तकालयाध्यक्ष ग्रेड-2",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ199701001450",
       "mobile": "9460881866",
@@ -8668,7 +10263,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "286241622299",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vimalachand Jain",
+      "post_en": "Librarian Grade-II",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1309",
@@ -8676,7 +10276,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1989-11-06",
       "post": "व्याख्याता",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJBW201408024463",
       "mobile": "9460513968",
@@ -8688,15 +10288,20 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "384421602345",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Akshita Chaturvedee",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1310",
       "name": "जय सिंह चौहान",
       "gender": "पुरुष",
       "dob": "1973-01-06",
-      "post": "व.सहायक",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "post": "वरिष्ठ सहायक (UDC)",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ201301006832",
       "mobile": "9214914296",
@@ -8708,15 +10313,20 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "367527559457",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jay Sinh Chouhan",
+      "post_en": "Senior Assistant (UDC / L-8)",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1311",
       "name": "कृष्ण कुमार तिवाड़ी",
       "gender": "पुरुष",
       "dob": "1975-12-08",
-      "post": "व शिक्षक",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "post": "वरिष्ठ अध्यापक",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJBW201308033511",
       "mobile": "9461532852",
@@ -8728,7 +10338,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "403823221621",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Krishn Kumar Tivaड़ee",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1312",
@@ -8736,7 +10351,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1984-02-05",
       "post": "प्रधानाचार्य",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJCR201112007903",
       "mobile": "7877909444",
@@ -8748,15 +10363,20 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "266391143110",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajesh Jangid",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1313",
       "name": "जितेन्द्र यादव",
       "gender": "पुरुष",
       "dob": "14-1-1989",
-      "post": "अध्यापक",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "post": "अध्यापक (तृतीय श्रेणी)",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ201801006627",
       "mobile": "9929827714",
@@ -8768,15 +10388,20 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "285428381578",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jitendra Yadav",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1314",
       "name": "अनिता यादव",
       "gender": "महिला",
       "dob": "13-11-1992",
-      "post": "व .अधयापक",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "post": "वरिष्ठ अध्यापक",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "ANITA.YADAV38",
       "mobile": "8058522564",
@@ -8788,7 +10413,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "382208549906",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Anita Yadav",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1315",
@@ -8796,7 +10426,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "26-4-88",
       "post": "व्याख्याता",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ202101003961",
       "mobile": "6350601190",
@@ -8808,15 +10438,20 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "625420388693",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Svati Sharma",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1316",
       "name": "सचिन मीना",
       "gender": "पुरुष",
       "dob": "1996-05-06",
-      "post": "व.शा.शि.",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "post": "वरिष्ठ शारीरिक शिक्षक",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "SACHIN.MEENA15",
       "mobile": "9529187617",
@@ -8828,7 +10463,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "222432685291",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sachin Meena",
+      "post_en": "Senior PTI (Grade-II)",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1317",
@@ -8836,7 +10476,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1985-12-12",
       "post": "व्याख्याता",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJBP201207023103",
       "mobile": "9950750159",
@@ -8848,7 +10488,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "882303749152",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Arun Kumar",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1318",
@@ -8856,7 +10501,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "23-3-1980",
       "post": "व्याख्याता",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ200501001410",
       "mobile": "9983611469",
@@ -8868,15 +10513,20 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "993813693450",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jyotsna",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1319",
       "name": "अर्चना जादौन",
       "gender": "महिला",
       "dob": "22-8-1981",
-      "post": "अधयापक लेवल -2",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "post": "अध्यापक लेवल-2",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ200501002061",
       "mobile": "8003918007",
@@ -8888,7 +10538,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "517541316995",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Archana Jadaun",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1320",
@@ -8896,7 +10551,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "21-9-1985",
       "post": "पंचायत शिक्षक",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ202301015410",
       "mobile": "9079021166",
@@ -8908,7 +10563,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "375395480195",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajashree Jhnvar",
+      "post_en": "Panchayat Teacher",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1321",
@@ -8916,7 +10576,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1990-01-09",
       "post": "पंचायत शिक्षक",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ202201060195",
       "mobile": "9784970296",
@@ -8928,15 +10588,20 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "424471376137",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kishan Lal Bairwa",
+      "post_en": "Panchayat Teacher",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1322",
       "name": "गोविन्द नारायण त्रिपाठी",
       "gender": "पुरुष",
       "dob": "1972-09-08",
-      "post": "व .अध्यापक",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "post": "वरिष्ठ अध्यापक",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJBW199908007709",
       "mobile": "9982352925",
@@ -8948,15 +10613,20 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "769067514562",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Govind Narayan Tripathee",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1323",
       "name": "ओमप्रकाश व्यास",
       "gender": "पुरुष",
       "dob": "1990-07-09",
-      "post": "अध्यापक",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "post": "अध्यापक (तृतीय श्रेणी)",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ201501004596",
       "mobile": "9602444210",
@@ -8968,15 +10638,20 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "8522342300080",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Omaprakash Vyas",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1324",
       "name": "गणेश गुर्जर",
       "gender": "पुरुष",
       "dob": "1993-07-07",
-      "post": "बेसिक कम्प्यूटर अनुदेशक",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ202301015398",
       "mobile": "9571732379",
@@ -8988,7 +10663,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "660153982736",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ganesh Gurjar",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1325",
@@ -8996,7 +10676,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "20-03-1984",
       "post": "व्याख्याता",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJBW201108014515",
       "mobile": "9928354317",
@@ -9008,15 +10688,20 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jitendra Chaidharee",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1326",
       "name": "रवि प्रकाश त्रिपाठी",
       "gender": "पुरुष",
       "dob": "1971-01-07",
-      "post": "कनिष्ठ सहायक",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "post": "कनिष्ठ सहायक (LDC)",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJBW199708008704",
       "mobile": "9521784613",
@@ -9028,7 +10713,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "527903081699",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ravi Prakash Tripathee",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1327",
@@ -9036,7 +10726,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "2006-02-10",
       "post": "प्रयोगशाला सहायक",
-      "school_name": "पी श्री रा उ मा वि देवलिया कलां",
+      "school_name": "पीएम श्री रा उ मा वि देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "UMESHGOKULPURA",
       "mobile": "9983522945",
@@ -9048,7 +10738,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "344438871059",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Umesh",
+      "post_en": "Lab Assistant",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1328",
@@ -9068,14 +10763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "380325900780",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ramaprasad Regar",
+      "post_en": "Prabodhak",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1329",
       "name": "राजेश कुमारी टेलर",
       "gender": "महिला",
       "dob": "20-7-1972",
-      "post": "प्रबोधाक लेवल -1",
+      "post": "प्रबोधक लेवल-1",
       "school_name": "रा.उ.प्रा.वि. माता जी का खेडा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ200901006933",
@@ -9088,14 +10788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "975349343175",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajesh Kumaree Telar",
+      "post_en": "Prabodhak Level-1",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1330",
       "name": "अभिलाषा सुखवाल",
       "gender": "महिला",
       "dob": "28-2-1992",
-      "post": "अधयापिका लेवल -1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.प्रा.वि. माता जी का खेडा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201525013526",
@@ -9108,14 +10813,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "991453481705",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Abhilasha Sukhaval",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1331",
       "name": "पवन कुमार गुर्जर",
       "gender": "पुरुष",
       "dob": "1999-07-08",
-      "post": "अधयापक लेवल -2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.प्रा.वि. माता जी का खेडा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "PAWAN.KUMARGURJAR.4",
@@ -9128,14 +10838,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "357226837047",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pavan Kumar Gurjar",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1332",
       "name": "पुष्पा देवी शर्मा",
       "gender": "महिला",
       "dob": "1973-01-06",
-      "post": "प्रबोधाक लेवल -2",
+      "post": "प्रबोधक लेवल-2",
       "school_name": "रा.उ.प्रा.वि. माता जी का खेडा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ200801005822",
@@ -9148,7 +10863,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "266468897990",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pushpa Devee Sharma",
+      "post_en": "Prabodhak Level-2",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1333",
@@ -9168,7 +10888,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "762263630008",
       "remarks": "",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rakesh Kumar Beeravat",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1334",
@@ -9188,7 +10913,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "485048188037",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Atul Kumar Jasoo",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1335",
@@ -9208,7 +10938,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "453486502197",
       "remarks": "विकलांग",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Satyanarayan Sharma",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1336",
@@ -9228,7 +10963,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "405419938687",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Heera Lal",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1337",
@@ -9248,7 +10988,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "935988268598",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kamal Kumar Bairwa",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1338",
@@ -9268,14 +11013,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "375849554938",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mukesh Sharma",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1339",
       "name": "महावीर प्रसाद बैरवा",
       "gender": "पुरुष",
       "dob": "1984-05-15",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ201301032680",
@@ -9288,14 +11038,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "914683618237",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mahaveer Prasad Bairwa",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1340",
       "name": "बुधराज माली",
       "gender": "पुरुष",
       "dob": "1988-07-28",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ201301037262",
@@ -9308,14 +11063,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "883078364587",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Budharaj Mali",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1341",
       "name": "रणजीत बैरवा",
       "gender": "पुरुष",
       "dob": "1992-04-08",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ201201045841",
@@ -9328,14 +11088,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "840463215150",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ranajeet Bairwa",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1342",
       "name": "रामचन्द्र",
       "gender": "पुरुष",
       "dob": "1994-08-15",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJBI201709000737",
@@ -9348,14 +11113,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "888750522900",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ramachandr",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1343",
       "name": "बसन्ती ओलानिया",
       "gender": "महिला",
       "dob": "1976-11-05",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ199901001602",
@@ -9368,14 +11138,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "459073624612",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Basantee Olaniya",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1344",
       "name": "विष्णु कुमार बैष्णव",
       "gender": "पुरुष",
       "dob": "1993-09-30",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ201706018855",
@@ -9388,14 +11163,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "572548006606",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vishnu Kumar Baishnav",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1345",
       "name": "अनिल कुमार कनवाडिया",
       "gender": "पुरुष",
       "dob": "1992-07-05",
-      "post": "बेसिक कम्प्यूटर अनुदेशक",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
       "school_name": "महात्मा गांधी राजकीय विद्यालय देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJKK202460111166",
@@ -9408,7 +11188,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "963558997515",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Anil Kumar Kanavadiya",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1346",
@@ -9428,14 +11213,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "617259035083",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Madan Lal Bairwa",
+      "post_en": "Pre-Primary Teacher",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1347",
       "name": "ओमप्रकाश शर्मा",
       "gender": "पुरुष",
       "dob": "1971-01-10",
-      "post": "पु. अ.",
+      "post": "पुस्तकालयाध्यक्ष",
       "school_name": "महात्मा गांधी राजकीय विद्यालय देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ199106007764",
@@ -9448,7 +11238,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "531919212011",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Omaprakash Sharma",
+      "post_en": "Librarian",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1348",
@@ -9468,14 +11263,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "816430167889",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mahaveer Sinh Choudhary",
+      "post_en": "Pre-Primary Teacher",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1349",
       "name": "इन्द्रा जोशी",
       "gender": "महिला",
       "dob": "1967-12-23",
-      "post": "शा.शि.",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ199001002784",
@@ -9488,14 +11288,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "802926573519",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Indra Joshi",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1350",
       "name": "अशोक ओझा",
       "gender": "पुरुष",
       "dob": "1996-08-20",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ202306043698",
@@ -9508,14 +11313,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "768033905011",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ashok Ojha",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1351",
       "name": "लक्ष्मण सिंह",
       "gender": "पुरुष",
       "dob": "1966-05-01",
-      "post": "सहायक कर्मचारी",
+      "post": "सहायक कर्मचारी (चतुर्थ श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ201101009977",
@@ -9528,14 +11338,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "587531437782",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Lakshman Sinh",
+      "post_en": "Supporting Staff (Class-IV)",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1352",
       "name": "परमेश्वरी शर्मा",
       "gender": "महिला",
       "dob": "1990-07-28",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "महात्मा गांधी राजकीय विद्यालय देवलिया कलां",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJAJ201701033332",
@@ -9548,7 +11363,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "780266552163",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Parameshvaree Sharma",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221753",
+      "school_code": "221753",
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)"
     },
     {
       "staff_id": "STF1353",
@@ -9568,14 +11388,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "8755 9329 2168",
       "remarks": "-",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aneeta Sharma",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1354",
       "name": "पूसालाल चमार",
       "gender": "पुरुष",
       "dob": "1970-07-01",
-      "post": "व.अ.(सा.विज्ञान)",
+      "post": "वरिष्ठ अध्यापक (सामाजिक विज्ञान)",
       "school_name": "रा.उ.मा.वि. देवरिया (देवपुरा)",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ199106001546",
@@ -9588,14 +11413,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "5878 9054 2821",
       "remarks": "ठस्व भाग सं. 273",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Poosalal Chamar",
+      "post_en": "Senior Teacher (Social Science)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1355",
       "name": "आलोक शर्मा",
       "gender": "पुरुष",
       "dob": "1972-10-26",
-      "post": "ाा.शि.",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. देवरिया (देवपुरा)",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ199701004448",
@@ -9608,14 +11438,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "8129 9951 0713",
       "remarks": "ftyk fuokZpu vf/kdkjh ¼ftyk dysDVj½ vtesj  ds vkns'k dzekad& ,uvkbZlh@ia-pq-2026@2&17 fnukad 02-01-2026 ds rgr lsok,sa vf/kxzfgr fd;s tkus ds dkj.k fn- 07-01-2026 dks dk;ZeqDr fd;s x;sA",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Alok Sharma",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1356",
       "name": "अंकिता वर्मा",
       "gender": "महिला",
       "dob": "1988-08-26",
-      "post": "अ.ले.-2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.मा.वि. देवरिया (देवपुरा)",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201201043878",
@@ -9628,14 +11463,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "6959 0168 9373",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ankita Verma",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1357",
       "name": "बाबूलाल रेगर",
       "gender": "पुरुष",
       "dob": "1969-01-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. देवरिया (देवपुरा)",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ199001006514",
@@ -9648,14 +11488,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "3328 9659 4167",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Baboolal Regar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1358",
       "name": "सीमा चैधरी",
       "gender": "महिला",
       "dob": "1995-03-04",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. देवरिया (देवपुरा)",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJCT201911001759",
@@ -9668,14 +11513,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "3914 8368 9155",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Seema Chaidharee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1359",
       "name": "प्रीतम कुमार जैन",
       "gender": "पुरुष",
       "dob": "1974-05-03",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. गज्जानाडी",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ199401016374",
@@ -9688,14 +11538,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "5838 2074 3370",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Preetam Kumar Jain",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1360",
       "name": "रामप्रसाद लक्षकार",
       "gender": "पुरुष",
       "dob": "1977-12-25",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. गज्जानाडी",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJRA200731005735",
@@ -9708,14 +11563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "6992 1503 0782",
       "remarks": "ठस्व भाग सं. 274",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ramaprasad Lakshakar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1361",
       "name": "मोनिका जांगिड.",
       "gender": "महिला",
       "dob": "2000-05-11",
-      "post": "अ.ले.-1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.प्रा.वि. गज्जानाडी",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ2023010145222",
@@ -9728,14 +11588,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "3914 1525 7047",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Monika Jangida.",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1362",
       "name": "हनुमान प्रसाद जाट",
       "gender": "पुरुष",
       "dob": "1971-02-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. रामपुरा",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJAJ200501018815",
@@ -9748,14 +11613,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "8358 9739 1210",
       "remarks": "ठस्व भाग सं. 275",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Hanuman Prasad Jat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1363",
       "name": "रेखादाना भील",
       "gender": "महिला",
       "dob": "1976-08-24",
-      "post": "अ.ले.-1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.प्रा.वि. रामपुरा",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJAJ200501018291",
@@ -9768,7 +11638,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "3937 4671 6496",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rekhadana Bheel",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1364",
@@ -9788,7 +11663,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "8795 5400 8416",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ram Sinh Choudhary",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1365",
@@ -9808,7 +11688,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "9838 5923 8539",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kumawat Pratishtha",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1366",
@@ -9828,14 +11713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "6335 9902 3078",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vinita Telar",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1367",
       "name": "किशन गोपाल परिहार",
       "gender": "पुरुष",
       "dob": "1966-04-05",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.उ.मा.वि. रुपपुरा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ199101003872",
@@ -9848,14 +11738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "8983 0108 5575",
       "remarks": "-",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kishan Gopal Parihar",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1368",
       "name": "रेणुका सिंधवी",
       "gender": "महिला",
       "dob": "1988-02-15",
-      "post": "शा.शि.",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. रुपपुरा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201301033227",
@@ -9868,7 +11763,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "2357 5886 9154",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Renuka Sindhavee",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1369",
@@ -9888,7 +11788,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "9284 4466 2440",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mamata Basoor",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1370",
@@ -9908,7 +11813,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "5795 1408 7872",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shimbhoo Dayal Gurjar",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1371",
@@ -9928,7 +11838,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "3610 5030 0963",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Renu",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1372",
@@ -9948,7 +11863,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "9451 2847 8472",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sunita",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1373",
@@ -9968,14 +11888,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "7277 0042 9956",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Anita Devee Meena",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1374",
       "name": "सत्यनारायण जाट",
       "gender": "पुरुष",
       "dob": "1992-07-14",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. अमरगढ",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ202201014831",
@@ -9988,7 +11913,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "4386 2819 4287",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Satyanarayan Jat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1375",
@@ -10008,7 +11938,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "7584 6448 7709",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ronak Kumaree",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1376",
@@ -10028,7 +11963,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "8106 7075 5732",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sarita Devee",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1377",
@@ -10048,14 +11988,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "3172 1813 7397",
       "remarks": "ठस्व भाग सं. 275",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rakesh Kumar Choudhary",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1378",
       "name": "शीला चैधरी",
       "gender": "महिला",
       "dob": "1991-01-12",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. मोतीपुरा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201701016134",
@@ -10068,7 +12013,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "9366 2799 0966",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sheela Chaidharee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1379",
@@ -10088,7 +12038,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "6509 5987 3091",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Seema Meena",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1380",
@@ -10096,7 +12051,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1987-08-10",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.प्रा.वि. रामनगर",
+      "school_name": "पीएम श्री रा.प्रा.वि. रामनगर",
       "peeo_name": "PEEO DEOLIYA KALAN",
       "sso_id": "RJCT201911005114",
       "mobile": "9829483545",
@@ -10108,7 +12063,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "6346 0396 9581",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Gogaraj Choudhary",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221754",
+      "school_code": "221754",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)"
     },
     {
       "staff_id": "STF1381",
@@ -10128,7 +12088,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "491587254569",
       "remarks": "",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Surend Nageara",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1382",
@@ -10148,7 +12113,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "820431507456",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Dileep Sih Rathaud",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1383",
@@ -10168,7 +12138,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "949261961436",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sushree Poonam",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1384",
@@ -10188,7 +12163,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "543274061213",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Gngavishan Prajapat",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1385",
@@ -10208,7 +12188,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "385129828871",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Rishikesh Meena",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1386",
@@ -10228,7 +12213,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "605852175074",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Deepa Posaval",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1387",
@@ -10248,14 +12238,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "817907177306",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Pragasee Meena",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1388",
       "name": "श्री देवी लाल जाट",
       "gender": "पुरुष",
       "dob": "1985-01-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "PEEO धंतोल",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201201037250",
@@ -10268,14 +12263,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "786981526289",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Devee Lal Jat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1389",
       "name": "श्री सत्यनारायण शर्मा",
       "gender": "पुरुष",
       "dob": "1971-01-11",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "PEEO धंतोल",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ199501001979",
@@ -10288,14 +12288,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "766844051166",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Satyanarayan Sharma",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1390",
       "name": "श्री अब्दुल सबूर खान",
       "gender": "पुरुष",
       "dob": "19-03-1969",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "PEEO धंतोल",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ199001001670",
@@ -10308,14 +12313,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "880117670270",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Abdul Saboor Khan",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1391",
       "name": "श्री रमेशचन्द काहर",
       "gender": "पुरुष",
       "dob": "13-06-1987",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "PEEO धंतोल",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201201029703",
@@ -10328,14 +12338,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "495826540456",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Rameshachand Kahar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1392",
       "name": "श्री रामकुवांर मीणा",
       "gender": "पुरुष",
       "dob": "24-05-1972",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "PEEO धंतोल",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201501016399",
@@ -10348,14 +12363,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "453476482875",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Ramakuvanr Meena",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1393",
       "name": "सुश्री प्रियंका जेवल्या",
       "gender": "महिला",
       "dob": "1996-06-11",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "PEEO धंतोल",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ202001016291",
@@ -10368,7 +12388,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "697523841972",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sushree Priyanka Jevalya",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1394",
@@ -10388,7 +12413,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "202473729434",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Omaprakash Choudhary",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1395",
@@ -10408,14 +12438,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "994264401947",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Shaitan Bairwa",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1396",
       "name": "श्री चेतन हिन्डुनिया",
       "gender": "पुरुष",
       "dob": "1982-07-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201301029428",
@@ -10428,14 +12463,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "939222522303",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Chetan Hinduniya",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1397",
       "name": "श्री शक्ति सिंह मीणा",
       "gender": "पुरुष",
       "dob": "1999-10-03",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJKK202460115512",
@@ -10448,14 +12488,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "299115826983",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Shakti Sinh Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1398",
       "name": "श्री कमल कुमार फुटेला",
       "gender": "पुरुष",
       "dob": "1992-05-03",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201801024373",
@@ -10468,14 +12513,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "334940108177",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Kamal Kumar Phutela",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1399",
       "name": "सुश्री मेघा कनौजिया",
       "gender": "महिला",
       "dob": "1991-07-15",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201801022985",
@@ -10488,14 +12538,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "247563277563",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sushree Megha Kanaujiya",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1400",
       "name": "पुखराज बैरवा",
       "gender": "पुरुष",
       "dob": "1998-02-06",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJKK202360083857",
@@ -10508,7 +12563,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "273640028024",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pukharaj Bairwa",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1401",
@@ -10528,7 +12588,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "555894442835",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhavana Beairava",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1402",
@@ -10548,14 +12613,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "657238322599",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vanita",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1403",
       "name": "श्रीमती मेनका मीणा",
       "gender": "महिला",
       "dob": "30/7/1992",
-      "post": "प्रधानाध्यापक",
+      "post": "प्रधानाचार्य / संस्था प्रधान",
       "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ201701034663",
@@ -10568,14 +12638,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "427384836343",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Menaka Meena",
+      "post_en": "Headmaster / Principal",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1404",
       "name": "श्रीमती संगीता कुमारी",
       "gender": "महिला",
       "dob": "15-06-1990",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ201801024381",
@@ -10588,14 +12663,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "213298153048",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Sngeeta Kumaree",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1405",
       "name": "श्री अजहरुदीन",
       "gender": "पुरुष",
       "dob": "17-08-1988",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ201201036399",
@@ -10608,14 +12688,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "575503961502",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Ajaharudeen",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1406",
       "name": "श्री ओमप्रकाश",
       "gender": "पुरुष",
       "dob": "1997-09-09",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ201201036971",
@@ -10628,14 +12713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "649742059644",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Omaprakash",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1407",
       "name": "श्री राजेश मीणा",
       "gender": "पुरुष",
       "dob": "1988-01-05",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ201201036965",
@@ -10648,14 +12738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "827236341545",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Rajesh Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1408",
       "name": "शंकरलाल खटीक",
       "gender": "पुरुष",
       "dob": "1986-02-07",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ201901033933",
@@ -10668,7 +12763,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "394093089994",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shnkaralal Khateek",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1409",
@@ -10688,14 +12788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "330136183600",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dharmaraj Jat",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1410",
       "name": "सुनिल कुमार मेघवंशी",
       "gender": "पुरुष",
       "dob": "1997-10-08",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ202460110395",
@@ -10708,7 +12813,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "554516838779",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sunil Kumar Meghavnshee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1411",
@@ -10728,14 +12838,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "568743396541",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Chetan Kumar Choudhary",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1412",
       "name": "सपना कुमारी बैरवा",
       "gender": "महिला",
       "dob": "2002-05-10",
-      "post": "अध्यापक लेवल1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJKK202460122254",
@@ -10748,14 +12863,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "645419357687",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sapana Kumaree Bairwa",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1413",
       "name": "एलियास खान",
       "gender": "पुरुष",
       "dob": "1991-01-02",
-      "post": "अध्यापक लेवल1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.प्रा.वि. झोपड़िया",
       "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJBM202305072603",
@@ -10768,14 +12888,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "874919104720",
       "remarks": "विकलांग",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Eliyas Khan",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1414",
       "name": "च्त्प्ल्।छज्ञ। ।स्व्त्प्ल्।",
       "gender": "महिला",
       "dob": "17/07/1996",
-      "post": "ज्म्।ब्भ्म्त्",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. संस्कृत गणेशपुरा",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "rjaj201801005299",
@@ -10788,14 +12913,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "3046 0294 3508",
       "remarks": "छव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Chtpl।chhajnya। ।svtpl।",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1415",
       "name": "ांदबींदेींतउं",
       "gender": "महिला",
       "dob": "28/03/1998",
-      "post": "ज्म्।ब्भ्म्त्",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. संस्कृत गणेशपुरा",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "rjaj202301005490",
@@ -10808,7 +12938,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "5133 4704 7531",
       "remarks": "दव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Andabeendeeentaun",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1416",
@@ -10828,7 +12963,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "279181021423",
       "remarks": "",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Vishveshvar Prasad Sharma",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1417",
@@ -10848,7 +12988,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "789647101967",
       "remarks": "विकलांग",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Ramaprasad Khatee",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1418",
@@ -10868,7 +13013,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "707711709628",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Manju Choudhary",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1419",
@@ -10888,7 +13038,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "625130536173",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Kamal Kumar Vijayavargeey",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1420",
@@ -10908,7 +13063,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "292263560614",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Raghunath Prasad",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1421",
@@ -10928,7 +13088,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "238308690954",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Rngalal Bairwa",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1422",
@@ -10948,14 +13113,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "531175033096",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Shnkar Lal Jat",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1423",
       "name": "श्रीमती अनिता स्वामी",
       "gender": "महिला",
       "dob": "1999-08-03",
-      "post": "वरिघ्ठ अध्यापक",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. एकलसिंगा",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJKK20246118754",
@@ -10968,7 +13138,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "684058224716",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Anita Svamee",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1424",
@@ -10988,7 +13163,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "432015958455",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Meenakshee Meena",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1425",
@@ -11008,14 +13188,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "611672364509",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Rajaneesh",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1426",
       "name": "श्री ओमप्रकाश औझा",
       "gender": "पुरुष",
       "dob": "1970-07-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. एकलसिंगा",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ199601002319",
@@ -11028,7 +13213,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "624898798089",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Omaprakash Aujha",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1427",
@@ -11048,7 +13238,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "692529257542",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Manohar Mishra",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1428",
@@ -11068,7 +13263,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "507120747629",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Vnshika Kavadiya",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1429",
@@ -11088,14 +13288,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "821702438144",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Pooja Bhamoo",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1430",
       "name": "श्री राधेश्याम बोहरा",
       "gender": "पुरुष",
       "dob": "1972-02-05",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. एकलसिंगा",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ200406000244",
@@ -11108,14 +13313,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "323693234230",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Radheshyam Bohara",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1431",
       "name": "श्री सुनील सैनी",
       "gender": "पुरुष",
       "dob": "14/10/1995",
-      "post": "बेसिक कम्प्यूटर अनुदेशक",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
       "school_name": "रा.उ.मा.वि. एकलसिंगा",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ202301011425",
@@ -11128,14 +13338,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "590414288519",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Sunil Saini",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1432",
       "name": "श्री सुरेन्द्र कुमार लोहिया",
       "gender": "पुरुष",
       "dob": "1991-10-06",
-      "post": "वरिष्ठ सहायक",
+      "post": "वरिष्ठ सहायक (UDC)",
       "school_name": "रा.उ.मा.वि. एकलसिंगा",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJJP201718042355",
@@ -11148,14 +13363,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "882416124135",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Surendra Kumar Lohiya",
+      "post_en": "Senior Assistant (UDC / L-8)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1433",
       "name": "श्रीमती प्रेम",
       "gender": "महिला",
       "dob": "1994-01-05",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "रा.उ.मा.वि. एकलसिंगा",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ202101013008",
@@ -11168,7 +13388,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "962720865661",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Prem",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1434",
@@ -11188,7 +13413,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "565284930590",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Bhnvar Lal Sharma",
+      "post_en": "Panchayat Assistant",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1435",
@@ -11208,7 +13438,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "588497894406",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Shuaib Mohammad Khan",
+      "post_en": "Panchayat Assistant",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1436",
@@ -11228,14 +13463,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "710913447853",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Surendra Kumar Bedee",
+      "post_en": "Panchayat Assistant",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1437",
       "name": "श्रीमती आशा देवी",
       "gender": "महिला",
       "dob": "1970-01-09",
-      "post": "वरिघ्ठ अध्यापक",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.प्रा.वि. बनेड़िया",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201701034669",
@@ -11248,7 +13488,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "643966038877",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Aasha Devee",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1438",
@@ -11268,7 +13513,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "836776848054",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Madhubala Telar",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1439",
@@ -11288,14 +13538,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "215531890303",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Vaidyanath Sharma",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1440",
       "name": "श्री सुरेन्द्र सिंह राठौड",
       "gender": "पुरुष",
       "dob": "1976-01-10",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. बनेड़िया",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJPA201229007194",
@@ -11308,14 +13563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "208177721540",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Surendra Sinh Rathaud",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1441",
       "name": "श्री बलराम चैधरी",
       "gender": "पुरुष",
       "dob": "1996-02-08",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. बनेड़िया",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ202201014529",
@@ -11328,14 +13588,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "277869596396",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Balaram Chaidharee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1442",
       "name": "श्री अजीत सिंह गुर्जर",
       "gender": "पुरुष",
       "dob": "1998-02-10",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. बनेड़िया",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ202201026176",
@@ -11348,7 +13613,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "219144507153",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Ajeet Sinh Gurjar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1443",
@@ -11368,14 +13638,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "948861692298",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Manoj Kumar Sharma",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1444",
       "name": "श्री योगेश कुमार देपन",
       "gender": "पुरुष",
       "dob": "1995-03-03",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. बनेड़िया",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ202301043884",
@@ -11388,7 +13663,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "369798437530",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Yogesh Kumar Depan",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1445",
@@ -11408,7 +13688,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "267170724133",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Snjoo Choudhary",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1446",
@@ -11428,7 +13713,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "922789347954",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Nirmala Kumaree",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1447",
@@ -11448,14 +13738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "93710751544",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Pooja Bairwa",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1448",
       "name": "श्री गोपाल माली",
       "gender": "पुरुष",
       "dob": "1976-01-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. बालापुरा",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJBW200708003593",
@@ -11468,7 +13763,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "841444092201",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Gopal Mali",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1449",
@@ -11488,7 +13788,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "838587104450",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Manju",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1450",
@@ -11508,14 +13813,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "425793370620",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Lakshman Kumar Bairwa",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1451",
       "name": "श्री पुखराज बैरवा",
       "gender": "पुरुष",
       "dob": "1993-01-06",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. DHANI एकलसिंगा",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ201701015951",
@@ -11528,7 +13838,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "33207946584",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Pukharaj Bairwa",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "488931",
+      "school_code": "488931",
+      "school_name_en": "GOVT. PRIMARY SCHOOL DHANI EKALSINGHA (488931) (08210707301)"
     },
     {
       "staff_id": "STF1452",
@@ -11548,7 +13863,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "285839720213",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Saroj Choudhary",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "488931",
+      "school_code": "488931",
+      "school_name_en": "GOVT. PRIMARY SCHOOL DHANI EKALSINGHA (488931) (08210707301)"
     },
     {
       "staff_id": "STF1453",
@@ -11568,14 +13888,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "522916318928",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Deepak Kumar Sharma",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1454",
       "name": "श्री बसंत कूमार सिंघारिया",
       "gender": "पुरुष",
       "dob": "26/03/1977",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ200801046209",
@@ -11588,14 +13913,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "360861626492",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Basnt Koomar Singhariya",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1455",
       "name": "श्री रामस्वरूप मीणा",
       "gender": "पुरुष",
       "dob": "1972-07-08",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ201701004529",
@@ -11608,14 +13938,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "923660287484",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Ramasvaroop Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1456",
       "name": "श्री दिलिप सिंह कविया",
       "gender": "पुरुष",
       "dob": "1984-01-12",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJUD201137012957",
@@ -11628,14 +13963,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "796635367682",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Dilip Sinh Kaviya",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1457",
       "name": "श्री बिल्लू",
       "gender": "पुरुष",
       "dob": "1992-02-03",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJCT201911004777",
@@ -11648,14 +13988,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "675011668174",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Billoo",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1458",
       "name": "श्री सुनील कुमार गौतम",
       "gender": "पुरुष",
       "dob": "18/12/1992",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJCT201911012831",
@@ -11668,14 +14013,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "445775744605",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Sunil Kumar Gautam",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1459",
       "name": "श्री राजेन्द्र कुमार शर्मा",
       "gender": "पुरुष",
       "dob": "1982-01-02",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ201901021050",
@@ -11688,14 +14038,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "3711098488121",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Rajendra Kumar Sharma",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1460",
       "name": "श्रीमती रेखा चौधरी",
       "gender": "महिला",
       "dob": "19/02/1991",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ201901020503",
@@ -11708,14 +14063,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "464915040616",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Rekha Choudhary",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1461",
       "name": "श्री विजय डूकिया",
       "gender": "पुरुष",
       "dob": "15/08/2000",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ202301048247",
@@ -11728,14 +14088,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "307483211208",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Vijay Dookiya",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1462",
       "name": "श्री बाबूलाल जाट",
       "gender": "पुरुष",
       "dob": "1973-01-07",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.प्रा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ201301032567",
@@ -11748,7 +14113,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "667512678236",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Baboolal Jat",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1463",
@@ -11768,7 +14138,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "769152761477",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Mangee Ram",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1464",
@@ -11788,14 +14163,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "347192495071",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Kuladeep Sinh",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1465",
       "name": "श्रीमती तारा व्यास",
       "gender": "महिला",
       "dob": "16/08/1990",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. झाबरकिया",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ202301040670",
@@ -11808,7 +14188,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "597951546854",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Tara Vyas",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1466",
@@ -11828,7 +14213,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "500549915576",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Gopee Kishan Vyas",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1467",
@@ -11848,7 +14238,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "396376859091",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Umarav Sih Baree",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1468",
@@ -11868,7 +14263,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "248517340265",
       "remarks": "(विकलांग",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Deepak Dhaka",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1469",
@@ -11888,7 +14288,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "608196659276",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Gudadee Gurjar",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1470",
@@ -11908,7 +14313,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "361334426947",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mahendra Kumar Meena",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1471",
@@ -11928,7 +14338,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "325968278060",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mahesh Nath",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1472",
@@ -11948,7 +14363,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "895392877070",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jyoti Aujha",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1473",
@@ -11968,7 +14388,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "546511256939",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jitendra Prajapati",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1474",
@@ -11988,7 +14413,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "557316021955",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kalpana Dhobee",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1475",
@@ -12008,7 +14438,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "488452355981",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mohit Kumar Jangid",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1476",
@@ -12028,14 +14463,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "847428902676",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajaram Sahoo",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1477",
       "name": "जयसिंह यादव",
       "gender": "पुरुष",
       "dob": "1989-10-08",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. देवपुरा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201701014507",
@@ -12048,14 +14488,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "579772579637",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jayasinh Yadav",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1478",
       "name": "मुकेश कुमार कुम्हार",
       "gender": "पुरुष",
       "dob": "1989-12-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. देवपुरा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJUD201939007471",
@@ -12068,7 +14513,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "909187433639",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mukesh Kumar Kumhar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1479",
@@ -12088,14 +14538,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "705535426922",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Badree Lal Bairwa",
+      "post_en": "Prabodhak",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1480",
       "name": "श्याम लाल माली",
       "gender": "पुरुष",
       "dob": "1994-07-07",
-      "post": "अध्यापक L 1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.प्रा.वि. अमरपुरा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJJW201922002398",
@@ -12108,14 +14563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "216217041970",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shyam Lal Mali",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1481",
       "name": "दीनदयाल दास",
       "gender": "पुरुष",
       "dob": "1998-11-11",
-      "post": "वरिष्ठअध्यापक",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.प्रा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "DEENDAYAL.DAS",
@@ -12128,14 +14588,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "885539477805",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Deenadayal Das",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1482",
       "name": "विजय सिंह",
       "gender": "पुरुष",
       "dob": "1978-05-04",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.प्रा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ200801022807",
@@ -12148,14 +14613,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "358112072428",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vijay Sinh",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1483",
       "name": "मनोज कुमार दाधीच",
       "gender": "पुरुष",
       "dob": "1979-05-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJCT201211037640",
@@ -12168,14 +14638,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "913216947995",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Manoj Kumar Dadhich",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1484",
       "name": "आशा",
       "gender": "पुरुष",
       "dob": "1984-01-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201201036395",
@@ -12188,14 +14663,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "374770127631",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aasha",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1485",
       "name": "सीताराम मीणा",
       "gender": "पुरुष",
       "dob": "1980-02-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201801021481",
@@ -12208,14 +14688,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "800531612742",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Seetaram Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1486",
       "name": "प्रहलाद दास भांभू",
       "gender": "पुरुष",
       "dob": "1995-01-06",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RAJ201801055705",
@@ -12228,14 +14713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "670851331123",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Prahalad Das Bhanbhoo",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1487",
       "name": "रिहाना परवीन",
       "gender": "पुरुष",
       "dob": "15/02/1990",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201701004554",
@@ -12248,14 +14738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "387896325244",
       "remarks": "दिव्यांग",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rihana Paraveen",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1488",
       "name": "सुनीतादेवी",
       "gender": "पुरुष",
       "dob": "1991-05-12",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ202101001745",
@@ -12268,7 +14763,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "512839073586",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Suneetadevee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1489",
@@ -12288,14 +14788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "732638917724",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Madan Lal Regar",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1490",
       "name": "देवराज गुर्जर",
       "gender": "पुरुष",
       "dob": "1991-05-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. पाण्डोलाई",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJJW201822029253",
@@ -12308,14 +14813,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "540533033120",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Devaraj Gurjar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1491",
       "name": "सर्वेश्वर प्रजापत",
       "gender": "पुरुष",
       "dob": "1994-07-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. पाण्डोलाई",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJBW201808034977",
@@ -12328,7 +14838,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "472022584421",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sarveshvar Prajapat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1492",
@@ -12348,7 +14863,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "429761569750",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhairon Sinh",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1493",
@@ -12368,15 +14888,20 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "365371490182",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Meenakshee Saini",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1494",
       "name": "भूपेंद्र सिंह चारण",
       "gender": "पुरुष",
       "dob": "13-09-1978",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
-      "school_name": "PM SHRI रा.उ.मा.वि. बागराई",
+      "post": "प्रधानाचार्य",
+      "school_name": "पीएम श्री रा.उ.मा.वि. बागराई",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ201301029953",
       "mobile": "9929527319",
@@ -12388,15 +14913,20 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "716016158156",
       "remarks": "प्रगणक वार्ड -6,7",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhoopendr Sinh Charan",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "485030",
+      "school_code": "485030",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI (485030) (08210701601)"
     },
     {
       "staff_id": "STF1495",
       "name": "दशरथ बैरवा",
       "gender": "पुरुष",
       "dob": "1997-06-15",
-      "post": "अध्यापक",
-      "school_name": "PM SHRI रा.उ.मा.वि. बागराई",
+      "post": "अध्यापक (तृतीय श्रेणी)",
+      "school_name": "पीएम श्री रा.उ.मा.वि. बागराई",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ202301046986",
       "mobile": "9116982528",
@@ -12408,7 +14938,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "949810287580",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dasharath Bairwa",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "485030",
+      "school_code": "485030",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI (485030) (08210701601)"
     },
     {
       "staff_id": "STF1496",
@@ -12416,7 +14951,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1992-07-01",
       "post": "अध्यापक लेवल-2",
-      "school_name": "PM SHRI रा.उ.मा.वि. बागराई",
+      "school_name": "पीएम श्री रा.उ.मा.वि. बागराई",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ202301034366",
       "mobile": "7728041483",
@@ -12428,7 +14963,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "402065402184",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Krishna Sukhaval",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "485030",
+      "school_code": "485030",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI (485030) (08210701601)"
     },
     {
       "staff_id": "STF1497",
@@ -12436,7 +14976,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1994-01-01",
       "post": "अध्यापक लेवल-1",
-      "school_name": "PM SHRI रा.उ.मा.वि. बागराई",
+      "school_name": "पीएम श्री रा.उ.मा.वि. बागराई",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ201901001151",
       "mobile": "9166891296",
@@ -12448,15 +14988,20 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "536974349124",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Priyanka Verma",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "485030",
+      "school_code": "485030",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI (485030) (08210701601)"
     },
     {
       "staff_id": "STF1498",
       "name": "ज्ञानेश्वर प्रसाद प्रजापत",
       "gender": "पुरुष",
       "dob": "1996-03-15",
-      "post": "अध्यापक",
-      "school_name": "PM SHRI रा.उ.मा.वि. बागराई",
+      "post": "अध्यापक (तृतीय श्रेणी)",
+      "school_name": "पीएम श्री रा.उ.मा.वि. बागराई",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ202201013627",
       "mobile": "9672862304",
@@ -12468,7 +15013,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "722884480066",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jnyaneshvar Prasad Prajapat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "485030",
+      "school_code": "485030",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI (485030) (08210701601)"
     },
     {
       "staff_id": "STF1499",
@@ -12476,7 +15026,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1996-10-05",
       "post": "अध्यापक लेवल-1",
-      "school_name": "PM SHRI रा.उ.मा.वि. बागराई",
+      "school_name": "पीएम श्री रा.उ.मा.वि. बागराई",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ202201013619",
       "mobile": "7742464859",
@@ -12488,7 +15038,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "452471745509",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Soniya Mali",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "485030",
+      "school_code": "485030",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI (485030) (08210701601)"
     },
     {
       "staff_id": "STF1500",
@@ -12496,7 +15051,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "2000-07-01",
       "post": "अध्यापक लेवल-1",
-      "school_name": "PM SHRI रा.उ.मा.वि. बागराई",
+      "school_name": "पीएम श्री रा.उ.मा.वि. बागराई",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ202201011780",
       "mobile": "9828724951",
@@ -12508,7 +15063,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "976255156658",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Suman Prajapat",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "485030",
+      "school_code": "485030",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI (485030) (08210701601)"
     },
     {
       "staff_id": "STF1501",
@@ -12516,7 +15076,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1972-08-15",
       "post": "प्रबोधक",
-      "school_name": "PM SHRI रा.उ.मा.वि. बागराई",
+      "school_name": "पीएम श्री रा.उ.मा.वि. बागराई",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJJP200818036090",
       "mobile": "9419488161",
@@ -12528,7 +15088,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "341182407874",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Premaprakash Purohit",
+      "post_en": "Prabodhak",
+      "shala_darpan_code": "485030",
+      "school_code": "485030",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI (485030) (08210701601)"
     },
     {
       "staff_id": "STF1502",
@@ -12548,7 +15113,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "591052814240",
       "remarks": "दोनो पैरों की नसों में खिंचाव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ramakishan Gurjar",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1503",
@@ -12568,7 +15138,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "322802158070",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajesh Kumar Mali",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1504",
@@ -12588,7 +15163,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "631285925205",
       "remarks": "छ।",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Deepesh Kumar Sisodiya",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1505",
@@ -12608,7 +15188,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "358244863283",
       "remarks": "ैन्च्म्त्टपैम्त्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dalel Sinh Raval",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1506",
@@ -12628,7 +15213,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "394356381875",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajaneesh Kumar Jangid",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1507",
@@ -12648,14 +15238,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "892849778963",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ratan Lal Jangid",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1508",
       "name": "सुरेश प्रकाश",
       "gender": "पुरुष",
       "dob": "1966-10-03",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ200501004683",
@@ -12668,14 +15263,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "852690750098",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Suresh Prakash",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1509",
       "name": "रामजस अहीर",
       "gender": "पुरुष",
       "dob": "1971-01-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ199701001787",
@@ -12688,14 +15288,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "802891902257",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ramajas Aheer",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1510",
       "name": "रघुवीर प्रसाद भांबी",
       "gender": "पुरुष",
       "dob": "31/12/1983",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ201201044899",
@@ -12708,14 +15313,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "413572774506",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Raghuveer Prasad Bhanbee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1511",
       "name": "हरीश कुमार शर्मा",
       "gender": "पुरुष",
       "dob": "24/06/1975",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ200301002348",
@@ -12728,7 +15338,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "492175364025",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Hareesh Kumar Sharma",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1512",
@@ -12748,14 +15363,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "500200808670",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pavan Kumar Bnjara",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1513",
       "name": "भैरूलाल दरोगा",
       "gender": "पुरुष",
       "dob": "1972-02-05",
-      "post": "सहायक कर्मचारी",
+      "post": "सहायक कर्मचारी (चतुर्थ श्रेणी)",
       "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ200101000759",
@@ -12768,14 +15388,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "944136969034",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhairoolal Daroga",
+      "post_en": "Supporting Staff (Class-IV)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1514",
       "name": "सुमन चौधरी",
       "gender": "महिला",
       "dob": "13/05/1996",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ202001019413",
@@ -12788,14 +15413,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "643250958045",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Suman Choudhary",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1515",
       "name": "शिवराज चौधरी",
       "gender": "पुरुष",
       "dob": "2001-01-10",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJKK202460112006",
@@ -12808,7 +15438,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "548857550276",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shivaraj Choudhary",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1516",
@@ -12828,7 +15463,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "845663336856",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ramalal Keer",
+      "post_en": "School Assistant",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1517",
@@ -12848,7 +15488,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "966042989319",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Narayan Sinh",
+      "post_en": "Panchayat Assistant",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1518",
@@ -12868,14 +15513,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "790025091012",
       "remarks": "छव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Surekha Jat",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF1519",
       "name": "नरेश कुमार",
       "gender": "पुरुष",
       "dob": "15.07.1982",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.उ.मा.वि. काणाई कलां",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "RJTO201136019886",
@@ -12888,14 +15538,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "661649073470",
       "remarks": "दव",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Naresh Kumar",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF1520",
       "name": "रामधन कुम्हार",
       "gender": "पुरुष",
       "dob": "1971-01-06",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. काणाई कलां",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "RJAJ199701010390",
@@ -12908,14 +15563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "678855360222",
       "remarks": "भ्।छक्प्ब्।च्च्म्क्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ramadhan Kumhar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF1521",
       "name": "राजेश कुमार जेतवाल",
       "gender": "पुरुष",
       "dob": "12.10.1976",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. काणाई कलां",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "RJAJ199701003563",
@@ -12928,14 +15588,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "621072934445",
       "remarks": "छव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajesh Kumar Jetaval",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF1522",
       "name": "मध्यमास वशिष्ठ",
       "gender": "महिला",
       "dob": "1986-03-06",
-      "post": "वािश्ठ अध्यापक",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. काणाई कलां",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "MADHYAMA.VASHISHTH",
@@ -12948,14 +15613,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "2110 6914 1717",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Madhyamas Vashishth",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF1523",
       "name": "कंवरी लाल सोनी",
       "gender": "पुरुष",
       "dob": "25/06/80",
-      "post": "विश्ठ अध्यापक",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. काणाई कलां",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "rjbw200808003843",
@@ -12968,14 +15638,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "806910933637",
       "remarks": "दव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Knvaree Lal Soni",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF1524",
       "name": "शंकर लाल जाट",
       "gender": "पुरुष",
       "dob": "24/03/1998",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. ढांढो का खेड़ा",
       "peeo_name": "PEEO PADANGA",
       "sso_id": "SHANKAR.LAL.JAT18",
@@ -12988,14 +15663,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "7717-0966-6567",
       "remarks": "भ्।छक्प्ब्।च्च्म्क्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shnkar Lal Jat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1525",
       "name": "हेमराज खाती",
       "gender": "पुरुष",
       "dob": "1976-10-06",
-      "post": "विश्ठ अध्यापक",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. काणाई कलां",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "RJBM199905005216",
@@ -13008,14 +15688,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "206932574986",
       "remarks": "छव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Hemaraj Khatee",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF1526",
       "name": "युद्धवीर सिंह",
       "gender": "पुरुष",
       "dob": "1985-01-07",
-      "post": "विश्ठ अध्यापक",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. काणाई कलां",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "YADUVEER..SINGH",
@@ -13028,14 +15713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "855370426756",
       "remarks": "छव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Yuddhaveer Sinh",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF1527",
       "name": "गौरव कुमार",
       "gender": "पुरुष",
       "dob": "25/10/1993",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. निमेड़ा",
       "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJDH201814023276",
@@ -13048,14 +15738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "666691227969",
       "remarks": "छव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Gaurav Kumar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1528",
       "name": "प्रीति सैनी",
       "gender": "महिला",
       "dob": "1997-03-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. निमेड़ा",
       "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJRA201731018258",
@@ -13068,14 +15763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "751629935536",
       "remarks": "छव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Preeti Saini",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1529",
       "name": "दिनेश साद",
       "gender": "पुरुष",
       "dob": "26/06/1993",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. NEMEDA",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "RJAJ201801056255",
@@ -13088,14 +15788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "861631308636",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dinesh Sad",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "401778",
+      "school_code": "401778",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA (401778) (08210703001)"
     },
     {
       "staff_id": "STF1530",
       "name": "धर्मेन्द्र चौधरी",
       "gender": "पुरुष",
       "dob": "24.12.1996",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. NEMEDA",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "Rjbw201908005069",
@@ -13108,14 +15813,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "295394496551",
       "remarks": "छव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dharmendr Choudhary",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "401778",
+      "school_code": "401778",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA (401778) (08210703001)"
     },
     {
       "staff_id": "STF1531",
       "name": "शिवराज जेतवाल",
       "gender": "पुरुष",
       "dob": "1981-01-08",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. NEMEDA",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "RJAJ201601027172",
@@ -13128,14 +15838,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "260958372357",
       "remarks": "ठसव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shivaraj Jetaval",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "401778",
+      "school_code": "401778",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA (401778) (08210703001)"
     },
     {
       "staff_id": "STF1532",
       "name": "रामस्वरूप बैरवा",
       "gender": "पुरुष",
       "dob": "1972-08-02",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. काणाई खुर्द",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "RJAJ199401009413",
@@ -13148,7 +15863,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "769494577698",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ramasvaroop Bairwa",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF1533",
@@ -13168,7 +15888,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "846464088038",
       "remarks": "छव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rakesh Meena",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF1534",
@@ -13188,7 +15913,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "819566103265",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Lala Ram Kumhar",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF1535",
@@ -13208,7 +15938,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "740496656759",
       "remarks": "छव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sunita Kumaree Sahoo",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF1536",
@@ -13228,14 +15963,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "963526570927",
       "remarks": "छव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Lokesh Kumar Meena",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1537",
       "name": "गौरी शंकर बलाई",
       "gender": "पुरुष",
       "dob": "15/07/1983",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. काणाई खुर्द",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "Rjaj201201037973",
@@ -13248,7 +15988,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "434379492328",
       "remarks": "छव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Gauree Shnkar Balaee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF1538",
@@ -13268,7 +16013,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "601364767935",
       "remarks": "छव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Narendra Kumar Verma",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF1539",
@@ -13288,14 +16038,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "818095635299",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sumanalata Pingoliya",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF1540",
       "name": "मेघराज जाट",
       "gender": "पुरुष",
       "dob": "1994-11-06",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. काणाई खुर्द",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "Rjbw201908011277",
@@ -13308,14 +16063,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "656818483455",
       "remarks": "छव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Megharaj Jat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF1541",
       "name": "सुद्धि प्रकाश जगरवाल",
       "gender": "पुरुष",
       "dob": "1993-02-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. लक्ष्मीपुरा",
       "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ202301044184",
@@ -13328,14 +16088,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "814367704999",
       "remarks": "छव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Suddhi Prakash Jagaraval",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1542",
       "name": "अब्दुल कलाम",
       "gender": "पुरुष",
       "dob": "1990-03-06",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.लक्ष्मीपुरा",
       "peeo_name": "PEEO LAMGARA",
       "sso_id": "Rjct201911002418",
@@ -13348,7 +16113,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "299032198665",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Abdul Kalam",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1543",
@@ -13368,7 +16138,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "409225057608",
       "remarks": "छव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Maneesha Naroliya",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1544",
@@ -13388,14 +16163,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "805385769962",
       "remarks": "छव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shanti Sharma",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF1545",
       "name": "सुरेश साहू",
       "gender": "पुरुष",
       "dob": "26/02/1998",
-      "post": "शा.शि.",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.प्रा.वि. काणाई खुर्द",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "RJAJ201901036216",
@@ -13408,7 +16188,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "493603222540",
       "remarks": "छव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Suresh Sahoo",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF1546",
@@ -13428,14 +16213,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "673330573093'",
       "remarks": "ब्।छब्म्त्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Shaloo Sharma",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1547",
       "name": "श्री घीसा लाल गुर्जर",
       "gender": "पुरुष",
       "dob": "1967-09-15",
-      "post": "व्याखाता रा0वि",
+      "post": "व्याख्याता (राजनीति विज्ञान)",
       "school_name": "रा.उ.मा.वि. करांटी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ199401009376",
@@ -13448,14 +16238,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "425978793359'",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Gheesa Lal Gurjar",
+      "post_en": "Lecturer (Political Science)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1548",
       "name": "श्री मुरली धर साधु",
       "gender": "पुरुष",
       "dob": "1979-12-01",
-      "post": "व्याखाता इतिहास",
+      "post": "व्याख्याता (इतिहास)",
       "school_name": "रा.उ.मा.वि. करांटी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201101015032",
@@ -13468,14 +16263,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "415535055392'",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Muralee Dhar Sadhu",
+      "post_en": "Lecturer (History)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1549",
       "name": "श्री बलराज मीना",
       "gender": "पुरुष",
       "dob": "1980-04-01",
-      "post": "व्याखाता हिन्दी",
+      "post": "व्याख्याता (हिंदी)",
       "school_name": "रा.उ.मा.वि. करांटी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJBW201308002020",
@@ -13488,7 +16288,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "407637718022'",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Balaraj Meena",
+      "post_en": "Lecturer (Hindi)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1550",
@@ -13508,7 +16313,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "702276606850'",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Ramasvaroop Jangiड़",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1551",
@@ -13528,7 +16338,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "757712354922'",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Sunil Kumar Sharma",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1552",
@@ -13548,7 +16363,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "271270690363'",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Sooryakant Jangiड़",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1553",
@@ -13568,7 +16388,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "633009023896'",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Hemaraj Jat",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1554",
@@ -13588,14 +16413,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "250984639883'",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dhanaraj Saini",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1555",
       "name": "श्री राजेन्द्र कुमार",
       "gender": "पुरुष",
       "dob": "1983-09-14",
-      "post": "अध्यापक लेवल - 2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.मा.वि. करांटी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJBI201809013661",
@@ -13608,14 +16438,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "788335112319'",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Rajendra Kumar",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1556",
       "name": "श्रीमती मीना",
       "gender": "महिला",
       "dob": "1973-03-15",
-      "post": "अध्यापिका लेवल - 2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.मा.वि. करांटी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ200501013562",
@@ -13628,14 +16463,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "385796219381",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Meena",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1557",
       "name": "श्री राजेन्द्र कुमार शर्मा",
       "gender": "पुरुष",
       "dob": "1971-08-10",
-      "post": "अध्यापक लेवल - 1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.मा.वि. करांटी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ199301002005",
@@ -13648,14 +16488,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "811402538157'",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Rajendra Kumar Sharma",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1558",
       "name": "श्री महावीर प्रसाद खाती",
       "gender": "पुरुष",
       "dob": "1972-07-12",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. करांटी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ199306008051",
@@ -13668,14 +16513,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "913613044167'",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Mahaveer Prasad Khatee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1559",
       "name": "श्री मखदूम अहमद",
       "gender": "पुरुष",
       "dob": "1969-03-22",
-      "post": "अध्यापक लेवल - 1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.मा.वि. करांटी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ199501003792",
@@ -13688,14 +16538,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "764147228382'",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Makhadoom Ahamad",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1560",
       "name": "श्री भंवर लाल सेन",
       "gender": "पुरुष",
       "dob": "1970-06-15",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. करांटी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ199601001916",
@@ -13708,14 +16563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "867759914398'",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Bhnvar Lal Sen",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1561",
       "name": "श्रीमती श्रीकांता शर्मा",
       "gender": "महिला",
       "dob": "1967-07-05",
-      "post": "अध्यापक लेवल - 1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.मा.वि. करांटी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ200601010669",
@@ -13728,14 +16588,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "924681726991'",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Shreekanta Sharma",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1562",
       "name": "श्री उमाराम जाट",
       "gender": "पुरुष",
       "dob": "1979-09-12",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. करांटी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJBW200308004524",
@@ -13748,7 +16613,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "999045631491",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Umaram Jat",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1563",
@@ -13768,14 +16638,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "555415227314'",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Abdul Raheem Pathan",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1564",
       "name": "अक्षय कुमार सुकरिया",
       "gender": "पुरुष",
       "dob": "1995-04-02",
-      "post": "बेसिक कम्प्यूटर अनुदेशक",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
       "school_name": "रा.उ.मा.वि. करांटी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "AKSHAY.KUMAR.SUKARIY",
@@ -13788,14 +16663,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "477953209677'",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Akshay Kumar Sukariya",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1565",
       "name": "भगवान कुम्हार",
       "gender": "पुरुष",
       "dob": "1994-07-05",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "रा.उ.मा.वि. करांटी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201601000569",
@@ -13808,14 +16688,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhagavan Kumhar",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1566",
       "name": "श्री श्रीकृष्ण गूर्जर",
       "gender": "पुरुष",
       "dob": "1986-06-01",
-      "post": "सहायक कर्मचारी",
+      "post": "सहायक कर्मचारी (चतुर्थ श्रेणी)",
       "school_name": "रा.उ.मा.वि. करांटी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ200801014130",
@@ -13828,14 +16713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Shreekrishn Goorjar",
+      "post_en": "Supporting Staff (Class-IV)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1567",
       "name": "शिव प्रकाश पुरोहित",
       "gender": "पुरुष",
       "dob": "23/06/1971",
-      "post": "प्रधानाद्यापक",
+      "post": "प्रधानाचार्य / संस्था प्रधान",
       "school_name": "रा.उ.प्रा.वि.गोपालपुरा",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ199501009034",
@@ -13848,14 +16738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "9374 3731 6713",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shiv Prakash Purohit",
+      "post_en": "Headmaster / Principal",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1568",
       "name": "ओमप्रकाश शर्मा",
       "gender": "पुरुष",
       "dob": "1973-01-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.गोपालपुरा",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ199401001160",
@@ -13868,14 +16763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "9117 8678 1541",
       "remarks": "ठस्व च्।त्ज छव 298",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Omaprakash Sharma",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1569",
       "name": "संतोष देवी यादव",
       "gender": "महिला",
       "dob": "1985-05-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.गोपालपुरा",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ201201037879",
@@ -13888,14 +16788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "6930 3060 2537",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Santosh Devee Yadav",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1570",
       "name": "ईश्वर",
       "gender": "पुरुष",
       "dob": "16/09/1983",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.गोपालपुरा",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ201201037971",
@@ -13908,14 +16813,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "5111 7647 2777",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Eeshvar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1571",
       "name": "ज्योति राजपूत",
       "gender": "महिला",
       "dob": "1994-02-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.गोपालपुरा",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ201901021405",
@@ -13928,14 +16838,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "6571 2040 9579",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jyoti Rajput",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1572",
       "name": "किरण डांगा",
       "gender": "महिला",
       "dob": "11/09/199",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.गोपालपुरा",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ202201012582",
@@ -13948,14 +16863,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "3447 4829 4190",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kiran Danga",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1573",
       "name": "कमल किशोरे कुमावत",
       "gender": "पुरुष",
       "dob": "1997-05-10",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.प्रा.वि.गोपालपुरा",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ202301037101",
@@ -13968,7 +16888,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "6814 2856 3034",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kamal Kishore Kumawat",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1574",
@@ -13988,7 +16913,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "383054007457",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jitendra Todavata",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1575",
@@ -14008,14 +16938,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "415004868220",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Abdul Haleem Kha",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1576",
       "name": "रगुवीर गुर्जर",
       "gender": "पुरुष",
       "dob": "01-071974",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.गोवलिया",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ199701001791",
@@ -14028,14 +16963,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "677465916105",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Raguveer Gurjar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1577",
       "name": "रमेशचन्द वैष्णव",
       "gender": "पुरुष",
       "dob": "1980-07-01",
-      "post": "ाारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.प्रा.वि.गोवलिया",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201601027175",
@@ -14048,7 +16988,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "89018257657",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rameshachand Vaishnav",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1578",
@@ -14068,7 +17013,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "693332923116",
       "remarks": "दृष्टि हीन",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sarita Kumaree",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1579",
@@ -14088,7 +17038,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "313082586118",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Birama Meena",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1580",
@@ -14108,7 +17063,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "967800857561",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Svati Choudhary",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1581",
@@ -14128,14 +17088,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "821142847215",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Lalita Saini",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1582",
       "name": "रंगलाल गुर्जर",
       "gender": "पुरुष",
       "dob": "1995-07-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.गोवलिया",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RANG.LAL.GURJAR1",
@@ -14148,14 +17113,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "900610535522",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rngalal Gurjar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1583",
       "name": "गिरिराज चैधरी",
       "gender": "पुरुष",
       "dob": "1995-09-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.गोवलिया",
       "peeo_name": "PEEO KARATI",
       "sso_id": "GIRIRAJ.CHOUDHARY1",
@@ -14168,14 +17138,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "473762034662",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Giriraj Chaidharee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1584",
       "name": "वरुण गोयल",
       "gender": "पुरुष",
       "dob": "1982-09-21",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.गोवलिया",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201801009430",
@@ -14188,14 +17163,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "796834875029",
       "remarks": "-",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Varun Goyal",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1585",
       "name": "कैलाश चन्द्र भाम्भी",
       "gender": "पुरुष",
       "dob": "1974-01-07",
-      "post": "प्रधाानाधयापक",
+      "post": "प्रधानाचार्य / संस्था प्रधान",
       "school_name": "रा.उ.प्रा.वि.प्रतापपुरा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ199701017342",
@@ -14208,14 +17188,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "542304612773",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kailash Chandra Bhambhee",
+      "post_en": "Headmaster / Principal",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF1586",
       "name": "राम प्रसाद भाम्भी",
       "gender": "पुरुष",
       "dob": "1980-01-07",
-      "post": "प्रबोधाक",
+      "post": "प्रबोधक",
       "school_name": "रा.उ.प्रा.वि.प्रतापपुरा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ200801022979",
@@ -14228,14 +17213,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "61910442708",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ram Prasad Bhambhee",
+      "post_en": "Prabodhak",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF1587",
       "name": "परसा राम",
       "gender": "पुरुष",
       "dob": "1982-07-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.प्रतापपुरा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ201301016793PR",
@@ -14248,14 +17238,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "855807308237",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Parasa Ram",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF1588",
       "name": "शिवचरण जाट",
       "gender": "पुरुष",
       "dob": "2000-05-02",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.प्रतापपुरा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "SHIVCHARANJAT.1",
@@ -14268,14 +17263,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "866127811612",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shivacharan Jat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF1589",
       "name": "अब्दुल मोहसिन खान",
       "gender": "पुरुष",
       "dob": "1993-01-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.प्रतापपुरा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "ABDUL.MOHSIN.KHAN1",
@@ -14288,14 +17288,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "757131245637",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Abdul Mohasin Khan",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF1590",
       "name": "सुखाराम",
       "gender": "पुरुष",
       "dob": "24/10/1994",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.प्रा.वि.प्रतापपुरा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "SUKHA.RAM7",
@@ -14308,7 +17313,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "712509390080",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sukharam",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF1591",
@@ -14328,14 +17338,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "278859235452",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Monika",
+      "post_en": "Special Educator",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF1592",
       "name": "मनीषा जांगिड़",
       "gender": "महिला",
       "dob": "16/02/1998",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.प्रतापपुरा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "MANISHA.JANGID3",
@@ -14348,14 +17363,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "358207892990",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Maneesha Jangiड़",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF1593",
       "name": "सुनीता",
       "gender": "महिला",
       "dob": "1991-01-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.प्रतापपुरा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "SUNITA673",
@@ -14368,14 +17388,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "829771454672",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sunita",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF1594",
       "name": "श्रीमती सुषमा पाण्डेय",
       "gender": "महिला",
       "dob": "1973-12-02",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.उ.मा.वि. खेडी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJBN199603012787",
@@ -14388,7 +17413,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "940988770909",
       "remarks": "छव्",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Sushama Pandey",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1595",
@@ -14408,7 +17438,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "857194930022",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Sndeep Bagaranee",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1596",
@@ -14428,7 +17463,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "989037677505",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Karoona Vyas",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1597",
@@ -14448,7 +17488,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "337203247669",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Kailash Chnd Meena",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1598",
@@ -14468,7 +17513,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "241677365869",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Vinod Kumar Svamee",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1599",
@@ -14488,7 +17538,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "443150908375",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Rameshee Baee Meena",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1600",
@@ -14508,14 +17563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "314559028688",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Sumanalata Beedavat",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1601",
       "name": "श्री शिवराज",
       "gender": "पुरुष",
       "dob": "1972-06-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. खेडी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ199401006449",
@@ -14528,7 +17588,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "303521326848",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Shivaraj",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1602",
@@ -14548,14 +17613,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "485349961135",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Mngal Chnd Kheenchee",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1603",
       "name": "श्री रोशन शर्मा",
       "gender": "पुरुष",
       "dob": "2000-07-13",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "रा.उ.मा.वि. खेडी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ202301012066",
@@ -14568,14 +17638,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "816668345129",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Roshan Sharma",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1604",
       "name": "श्री जलज टाक",
       "gender": "पुरुष",
       "dob": "2000-12-28",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "रा.उ.मा.वि. खेडी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "Jalaj.tak2000",
@@ -14588,14 +17663,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "475042268188",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Jalaj Tak",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1605",
       "name": "श्रीमती जेठी देवी",
       "gender": "महिला",
       "dob": "1967-05-07",
-      "post": "च.श्रै.कर्मचारी",
+      "post": "सहायक कर्मचारी (चतुर्थ श्रेणी)",
       "school_name": "रा.उ.मा.वि. खेडी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ199606001399",
@@ -14608,14 +17688,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "320824618663",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Jethee Devee",
+      "post_en": "Supporting Staff (Class-IV)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1606",
       "name": "प्रीति कुमारी",
       "gender": "महिला",
       "dob": "1990-12-20",
-      "post": "अध्यापक l-2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.प्रा.वि.दोलतपुरा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ201801057608",
@@ -14628,7 +17713,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "586273736869",
       "remarks": "छ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Preeti Kumaree",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF1607",
@@ -14648,14 +17738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "988397499812",
       "remarks": "छ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Debeesinh Shekhavat",
+      "post_en": "Prabodhak",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF1608",
       "name": "मनोज बिजारनिया",
       "gender": "महिला",
       "dob": "1988-07-01",
-      "post": "अध्यापक l-2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.प्रा.वि.दोलतपुरा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ201201050152",
@@ -14668,14 +17763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "494525261634",
       "remarks": "छ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Manoj Bijaraniya",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF1609",
       "name": "सीमा सोलंकी",
       "gender": "महिला",
       "dob": "1973-05-29",
-      "post": "अध्यापक l-1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.प्रा.वि.दोलतपुरा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ200706002573",
@@ -14688,14 +17788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "377404984048",
       "remarks": "छ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Seema Solnkee",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF1610",
       "name": "तमन्ना मंसूरी",
       "gender": "महिला",
       "dob": "1993-10-21",
-      "post": "अध्यापक l-1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.प्रा.वि.दोलतपुरा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ201701016141",
@@ -14708,14 +17813,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "207257248408",
       "remarks": "छ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Tamanna Mnsooree",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF1611",
       "name": "रंजना मीना",
       "gender": "महिला",
       "dob": "1992-03-18",
-      "post": "अध्यापक l-1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.प्रा.वि.दोलतपुरा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ201701016137",
@@ -14728,14 +17838,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "768943546386",
       "remarks": "छ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rnjana Meena",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF1612",
       "name": "सोनू कुमारी चौधरी",
       "gender": "महिला",
       "dob": "2001-12-15",
-      "post": "अध्यापक l-1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.प्रा.वि.दोलतपुरा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "SONU.KUMARI.CHOUDHA1",
@@ -14748,7 +17863,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "621381408561",
       "remarks": "छ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sonoo Kumaree Choudhary",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF1613",
@@ -14768,14 +17888,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "835593219504",
       "remarks": "छ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mo. Bilal",
+      "post_en": "शा. शिक्षक",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF1614",
       "name": "विनोदी मीणा",
       "gender": "महिला",
       "dob": "02/07/1990",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि.गोरधानपुरा",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJJO201925001863",
@@ -14788,14 +17913,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "425968770775",
       "remarks": "छव",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vinodee Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221786",
+      "school_code": "221786",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)"
     },
     {
       "staff_id": "STF1615",
       "name": "बनवारी माली",
       "gender": "पुरुष",
       "dob": "1999-03-09",
-      "post": "अध्यापक L1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.प्रा.वि.खेडी तालाब",
       "peeo_name": "PEEO KARATI",
       "sso_id": "BANWARI.MALI1",
@@ -14808,7 +17938,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "694665296631",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Banavaree Mali",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1616",
@@ -14828,7 +17963,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "236567650326",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mukesh Kumar Meena",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1617",
@@ -14848,14 +17988,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "573017291984",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Devendr Prajapat",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1618",
       "name": "राजेन्द्र कुमार",
       "gender": "पुरुष",
       "dob": "1994-06-05",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि.खेडी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "rajendar.kumar2",
@@ -14868,7 +18013,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "420951354366",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajendra Kumar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1619",
@@ -14888,14 +18038,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "807616010218",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vaibhav Raj Mehara",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1620",
       "name": "चंचल कछावा",
       "gender": "महिला",
       "dob": "1983-07-11",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.बा.उ.मा.वि.खेडी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "rjaj201201044761",
@@ -14908,14 +18063,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "335149164056",
       "remarks": "ऋ",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Chnchal Kachhava",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "488791",
+      "school_code": "488791",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL KHEDI (488791) (08210704903)"
     },
     {
       "staff_id": "STF1621",
       "name": "श्रवण लाल मीणा",
       "gender": "पुरुष",
       "dob": "1977-02-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.बा.उ.मा.वि.खेडी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "rjaj201701023731",
@@ -14928,7 +18088,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "612505926041",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shravan Lal Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "488791",
+      "school_code": "488791",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL KHEDI (488791) (08210704903)"
     },
     {
       "staff_id": "STF1622",
@@ -14948,14 +18113,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "290914219123",
       "remarks": "कार्मिक 24-04-2026 तक मातृत्व अवकाश पर है",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Usha Phaड़oliya",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "488791",
+      "school_code": "488791",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL KHEDI (488791) (08210704903)"
     },
     {
       "staff_id": "STF1623",
       "name": "उमेश गुर्जर",
       "gender": "पुरुष",
       "dob": "28-09-1991",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "रा.बा.उ.मा.वि.खेडी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "umesh.gurjar21",
@@ -14968,7 +18138,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "229807603065",
       "remarks": "ऋ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Umesh Gurjar",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "488791",
+      "school_code": "488791",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL KHEDI (488791) (08210704903)"
     },
     {
       "staff_id": "STF1624",
@@ -14988,7 +18163,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "697718707596",
       "remarks": "छव्",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Ramachandr Gurjar",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1625",
@@ -15008,7 +18188,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "895213592791",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Mukesh Ram Dhobee",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1626",
@@ -15028,7 +18213,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "876901353435",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Ramasvaroop Meena",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1627",
@@ -15048,7 +18238,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "715651974826",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Gajendr Saini",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1628",
@@ -15068,7 +18263,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "935461855266",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Ramagopal Jat",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1629",
@@ -15088,7 +18288,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "591328662622",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Ramachandr Gurjar",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1630",
@@ -15108,14 +18313,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "993843391341",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Norat Mal Balaee",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1631",
       "name": "श्री पंकज तिवारी",
       "gender": "पुरुष",
       "dob": "1988-10-28",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय कैरोट",
       "peeo_name": "PEEO KEROT",
       "sso_id": "RJAJ201206003319",
@@ -15128,14 +18338,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "595494687980",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Pankaj Tivaree",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1632",
       "name": "श्री शिवराज प्रजापत",
       "gender": "पुरुष",
       "dob": "2003-04-18",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय कैरोट",
       "peeo_name": "PEEO KEROT",
       "sso_id": "SHIVRAJ.PRAJAPAT2",
@@ -15148,7 +18363,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "644747747811",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Shivaraj Prajapat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1633",
@@ -15168,14 +18388,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "962494710190",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Indra Kumaree Balaee",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1634",
       "name": "श्री महावीर प्रसाद झारोटिया",
       "gender": "पुरुष",
       "dob": "1971-12-01",
-      "post": "शारिरिक शिक्षक-3",
+      "post": "शारीरिक शिक्षक ग्रेड-3",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय कैरोट",
       "peeo_name": "PEEO KEROT",
       "sso_id": "RJAJ199801001411",
@@ -15188,14 +18413,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "679517162122",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Mahaveer Prasad Jharotiya",
+      "post_en": "PTI Grade-III",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1635",
       "name": "श्री चन्द्रप्रकाश मंत्री",
       "gender": "पुरुष",
       "dob": "1986-01-04",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय कैरोट",
       "peeo_name": "PEEO KEROT",
       "sso_id": "RJAJ201901032116",
@@ -15208,14 +18438,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "716822131398",
       "remarks": "प्रांगणक",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Chandraprakash Mntree",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1636",
       "name": "श्रीमती संजू देवी तेली",
       "gender": "पुरुष",
       "dob": "1980-03-01",
-      "post": "चर्तुथ श्रेणी कर्मचारी",
+      "post": "सहायक कर्मचारी (चतुर्थ श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय कैरोट",
       "peeo_name": "PEEO KEROT",
       "sso_id": "RJAJ201801005942",
@@ -15228,14 +18463,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "561484483116",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Snjoo Devee Telee",
+      "post_en": "Supporting Staff (Class-IV)",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1637",
       "name": "श्री बालमुकन्द खाती",
       "gender": "पुरुष",
       "dob": "1987-07-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय प्राथमिक विद्यालय कादोलाई",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJCT201911002519",
@@ -15248,14 +18488,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "324199055461",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Balamukand Khatee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA (221766)"
     },
     {
       "staff_id": "STF1638",
       "name": "श्री अविनाश शर्मा",
       "gender": "पुरुष",
       "dob": "1996-01-17",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय प्राथमिक विद्यालय कादोलाई",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJBW201908006747",
@@ -15268,7 +18513,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "848029935378",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Avinash Sharma",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA (221766)"
     },
     {
       "staff_id": "STF1639",
@@ -15288,7 +18538,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "826019601348",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Mamta Kumaree Garg",
+      "post_en": "Panchayat Teacher",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1640",
@@ -15308,7 +18563,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "836355016238",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Hem Sinh",
+      "post_en": "Panchayat Teacher",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1641",
@@ -15328,7 +18588,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "743606813139",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Sumitra Sharma",
+      "post_en": "Panchayat Teacher",
+      "shala_darpan_code": "221767",
+      "school_code": "221767",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)"
     },
     {
       "staff_id": "STF1642",
@@ -15348,7 +18613,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "586755468516",
       "remarks": "छ।",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Juber Ahamad",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1643",
@@ -15368,7 +18638,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "471730610610",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Gngaram Regar",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1644",
@@ -15388,14 +18663,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "543011789837",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dinesh Kumar Rajput",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1645",
       "name": "दुर्गा प्रसाद",
       "gender": "पुरुष",
       "dob": "1970-06-15",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. जेतपुरा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ199401009093",
@@ -15408,14 +18688,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "816647759587",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Durga Prasad",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1646",
       "name": "नाथूलाल स्वर्णकार",
       "gender": "पुरुष",
       "dob": "1966-07-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. जेतपुरा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ199301003687",
@@ -15428,14 +18713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "365401458890",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Nathoolal Svarnakar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1647",
       "name": "जगदीश माली",
       "gender": "पुरुष",
       "dob": "1968-04-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. जेतपुरा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ199101022468",
@@ -15448,14 +18738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "902468308427",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jagadeesh Mali",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1648",
       "name": "लोकेश जाट",
       "gender": "पुरुष",
       "dob": "2000-08-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. जेतपुरा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202201011687",
@@ -15468,14 +18763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "719400770257",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Lokesh Jat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1649",
       "name": "अमरचन्द खटीक",
       "gender": "पुरुष",
       "dob": "1980-07-01",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. जेतपुरा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJSR201334015002",
@@ -15488,14 +18788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "589363608766",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Amarachand Khateek",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1650",
       "name": "चंचल चौधरी",
       "gender": "महिला",
       "dob": "1993-11-17",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "रा.उ.मा.वि. जेतपुरा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202001022149",
@@ -15508,7 +18813,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "291597851716",
       "remarks": "प्रांगणक",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Chnchal Choudhary",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1651",
@@ -15528,7 +18838,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "760631801456",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Savitree Sharma",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1652",
@@ -15548,7 +18863,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "233461061653",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shivaprakash Luniya",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1653",
@@ -15568,14 +18888,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "862678073284",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Teena Sharma",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1654",
       "name": "दुर्गेश कँवर",
       "gender": "महिला",
       "dob": "29.08.1968",
-      "post": "अधयापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माधयमिक विद्यालय कुम्हारिया",
       "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ199701000353",
@@ -15588,14 +18913,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "240025046192",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Durgesh Knvar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1655",
       "name": "किशोर कुमार चेजारा",
       "gender": "पुरुष",
       "dob": "30.03.1975",
-      "post": "अधयापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माधयमिक विद्यालय कुम्हारिया",
       "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ200506001239",
@@ -15608,14 +18938,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "957216938307",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kishor Kumar Chejara",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1656",
       "name": "सुरेन्द्र माली",
       "gender": "पुरुष",
       "dob": "30.07.1999",
-      "post": "अधयापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माधयमिक विद्यालय कुम्हारिया",
       "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "SURENDRA.MALI3",
@@ -15628,14 +18963,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "373553087732",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Surendra Mali",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1657",
       "name": "श्योजीराम गुर्जर",
       "gender": "पुरुष",
       "dob": "01.07.1973",
-      "post": "अधयापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माधयमिक विद्यालय कुम्हारिया",
       "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ199401003314",
@@ -15648,14 +18988,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "927189054884",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shyojeeram Gurjar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1658",
       "name": "राजूलाल",
       "gender": "पुरुष",
       "dob": "10.07.1979",
-      "post": "अधयापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माधयमिक विद्यालय कुम्हारिया",
       "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ200501036249",
@@ -15668,14 +19013,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "564578194836",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajoolal",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1659",
       "name": "हनुमान खटीक",
       "gender": "पुरुष",
       "dob": "24.08.1996",
-      "post": "अधयापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माधयमिक विद्यालय कुम्हारिया",
       "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "HANUMAN.KHATEEK1",
@@ -15688,14 +19038,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "849826563356",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Hanuman Khateek",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1660",
       "name": "अनिल कुमार सांखला",
       "gender": "पुरुष",
       "dob": "14.09.1994",
-      "post": "अधयापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माधयमिक विद्यालय कुम्हारिया",
       "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "ANIL.KUMAR.SANKHLA1",
@@ -15708,14 +19063,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "475898306159",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Anil Kumar Sankhala",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1661",
       "name": "मोहम्मद सिद्धीक सिलावट",
       "gender": "पुरुष",
       "dob": "01.06.1966",
-      "post": "शा.शि.",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "राजकीय उच्च माधयमिक विद्यालय कुम्हारिया",
       "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ199101001925",
@@ -15728,14 +19088,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "388521159881",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mohammad Siddheek Silavat",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1662",
       "name": "धर्मीचन्द टेलर",
       "gender": "पुरुष",
       "dob": "01.02.1966",
-      "post": "कनिष्उ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "राजकीय उच्च माधयमिक विद्यालय कुम्हारिया",
       "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ199401001426",
@@ -15748,14 +19113,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "463282618270",
       "remarks": "त्म्ज्प्त्म्डम्छज व्छ 31ण्01ण्2026",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dharmeechand Telar",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1663",
       "name": "नवीन सिंह रावत",
       "gender": "पुरुष",
       "dob": "01.08.1998",
-      "post": "बेसिक कम्प्यूटर अनुदेशक",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
       "school_name": "राजकीय उच्च माधयमिक विद्यालय कुम्हारिया",
       "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "NAVEEN.SINGH,RAWAT1",
@@ -15768,7 +19138,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "974297778652",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Naveen Sinh Ravat",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1664",
@@ -15788,7 +19163,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "811553035398",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kishan Gopal Chheepa",
+      "post_en": "Panchayat Assistant",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1665",
@@ -15808,7 +19188,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "741151156228",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kishan Gopal Chheepa",
+      "post_en": "Panchayat Assistant",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1666",
@@ -15828,14 +19213,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "437641134194",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kishan Gopal Chheepa",
+      "post_en": "Panchayat Assistant",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1667",
       "name": "सुनिल कुमार चौधरी",
       "gender": "पुरुष",
       "dob": "16/07/1988",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा प्रा वि राजपुरा मजरा",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "201118031011",
@@ -15848,14 +19238,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "532334495237",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sunil Kumar Choudhary",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1668",
       "name": "अनिल कुमार जोशी",
       "gender": "पुरुष",
       "dob": "31/08/1997",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा प्रा वि राजपुरा मजरा",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJAJ201901007788",
@@ -15868,14 +19263,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "933017584790",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Anil Kumar Joshi",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1669",
       "name": "जया तोलाणी",
       "gender": "महिला",
       "dob": "1980-01-18",
-      "post": "ज्म्।ब्भ्म्त स्2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.प्रा.वि. बगराई",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ2018010131681",
@@ -15888,14 +19288,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "764394427752",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jaya Tolanee",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1670",
       "name": "धर्मेंद्र यादव",
       "gender": "पुरुष",
       "dob": "1995-07-06",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. बगराई",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJBW201908002720",
@@ -15908,14 +19313,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "973145024513",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dharmendr Yadav",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1671",
       "name": "साक्षी शर्मा",
       "gender": "महिला",
       "dob": "1999-06-05",
-      "post": "ज्म्।ब्भ्म्त स्1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.प्रा.वि. बगराई",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202301041344",
@@ -15928,14 +19338,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "486383038283",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sakshee Sharma",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1672",
       "name": "विजय कुमार वर्मा",
       "gender": "पुरुष",
       "dob": "1975-10-07",
-      "post": "ज्मंबीमत स्.2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.प्रा.वि. हाथीपुरा",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJBW200508029082",
@@ -15948,14 +19363,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "804041965521",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vijay Kumar Verma",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1673",
       "name": "पायल वैष्णव",
       "gender": "महिला",
       "dob": "1998-11-14",
-      "post": "ज्मंबीमत स्.1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.प्रा.वि. हाथीपुरा",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ202301040572",
@@ -15968,14 +19388,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "523162345693",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Payal Vaishnav",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1674",
       "name": "कमलेश लोहिया",
       "gender": "महिला",
       "dob": "1981-12-12",
-      "post": "ज्म्।ब्भ्म्त्",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. कीटाप",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJAJ200801013843",
@@ -15988,14 +19413,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "751281489109",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kamalesh Lohiya",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1675",
       "name": "आरती मीणा",
       "gender": "महिला",
       "dob": "15/07/1990",
-      "post": "ज्म्।ब्भ्म्त्",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. कीटाप",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJAJ201801022395",
@@ -16008,14 +19438,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "322010452908",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aaratee Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1676",
       "name": "सुरेंद्र कुमार",
       "gender": "पुरुष",
       "dob": "24/7/1982",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. कीटाप",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJAJ201801053806",
@@ -16028,14 +19463,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "346669466727",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Surendr Kumar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1677",
       "name": "लक्ष्मण रैदास",
       "gender": "पुरुष",
       "dob": "20/7/1977",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. कीटाप",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJSK200133003287",
@@ -16048,14 +19488,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "330670932885",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Lakshman Raidas",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1678",
       "name": "दशरथ वैष्णव",
       "gender": "पुरुष",
       "dob": "15/12/2001",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. कीटाप",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJAJ202301041077",
@@ -16068,14 +19513,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "441605152770",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dasharath Vaishnav",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1679",
       "name": "कल्पना पंवार",
       "gender": "महिला",
       "dob": "1969-10-08",
-      "post": "ज्म्।ब्भ्म्त्",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. कीटाप",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJAJ200901007951",
@@ -16088,14 +19538,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "469883306211",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kalpana Panwar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1680",
       "name": "ममता शर्मा",
       "gender": "महिला",
       "dob": "1995-05-07",
-      "post": "ज्म्।ब्भ्म्त्",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. कीटाप",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJAJ201801019916",
@@ -16108,14 +19563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "907136831174",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mamta Sharma",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1681",
       "name": "दीपक",
       "gender": "पुरुष",
       "dob": "1990-11-03",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. कीटाप",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJBR201904023910",
@@ -16128,14 +19588,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "525935278877",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Deepak",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1682",
       "name": "पार्वती माहेशवरी",
       "gender": "महिला",
       "dob": "1979-01-08",
-      "post": "ज्म्।ब्भ्म्त्",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. कीटाप",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJAJ200901006932",
@@ -16148,14 +19613,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "329915495027",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Parvatee Maheshavaree",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1683",
       "name": "महेश कुमार पारीक",
       "gender": "पुरुष",
       "dob": "1988-09-05",
-      "post": "ज्म्।ब्भ्म्त्",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय सूरजपुरा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ201501006433",
@@ -16168,14 +19638,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "206244232478",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mahesh Kumar Pareek",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1684",
       "name": "सीता नायक",
       "gender": "महिला",
       "dob": "1978-01-06",
-      "post": "ज्म्।ब्भ्म्त्",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय सूरजपुरा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ200901007184",
@@ -16188,14 +19663,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "563068086094",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Seeta Nayak",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1685",
       "name": "लोकेश कुमार शर्मा",
       "gender": "पुरुष",
       "dob": "1989-01-01",
-      "post": "ज्म्।ब्भ्म्त्",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय सूरजपुरा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJBU201810026146",
@@ -16208,14 +19688,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "414113323361",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Lokesh Kumar Sharma",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1686",
       "name": "ममता",
       "gender": "महिला",
       "dob": "15-01-1993",
-      "post": "ज्म्।ब्भ्म्त्",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय सूरजपुरा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJNA201828037119",
@@ -16228,14 +19713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "962690364951",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mamta",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1687",
       "name": "रमेन्द्र सिंह",
       "gender": "पुरुष",
       "dob": "1994-01-07",
-      "post": "ज्म्।ब्भ्म्त्",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय सूरजपुरा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ201801056994",
@@ -16248,14 +19738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "243645010001",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ramendr Sinh",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1688",
       "name": "विनोद कुमार वर्मा",
       "gender": "पुरुष",
       "dob": "29-10-1971",
-      "post": "ैत्ण ज्म्।ब्भ्म्त्",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय सूरजपुरा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ199106001544",
@@ -16268,14 +19763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "293244393694",
       "remarks": "ैन्च्म्त्टपैव्त्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vinod Kumar Verma",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1689",
       "name": "अर्जुन कुमार जांगिड",
       "gender": "पुरुष",
       "dob": "1994-04-06",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय सूरजपुरा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "ARJUN.KUMAR.JANGID1",
@@ -16288,14 +19788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "970681452455",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Arjun Kumar Jangid",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1690",
       "name": "मीनू सैनी",
       "gender": "महिला",
       "dob": "1988-08-08",
-      "post": "ज्म्।ब्भ्म्त्",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय सूरजपुरा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "MEENU.SAINI3",
@@ -16308,14 +19813,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "957344795267",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Meenoo Saini",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1691",
       "name": "सुभाष चंद बिजारणिया",
       "gender": "पुरुष",
       "dob": "2000-10-08",
-      "post": "च्ज्प्",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय सूरजपुरा",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "SUBHASH.CHAND.BIJAR1",
@@ -16328,14 +19838,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "585433095511",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Subhash Chnd Bijaraniya",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221769",
+      "school_code": "221769",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)"
     },
     {
       "staff_id": "STF1692",
       "name": "श्री राजीव कुमार मांडोत",
       "gender": "पुरुष",
       "dob": "05.05.1971",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.उ.मा.वि. लामगरा",
       "peeo_name": "PEEO LAMGARA",
       "sso_id": "RAJ199706000635",
@@ -16348,7 +19863,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "229970070064",
       "remarks": "",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Rajeev Kumar Mandot",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1693",
@@ -16368,7 +19888,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "710666860873",
       "remarks": "दिव्यांग",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreemati Sudha Gokharoo",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1694",
@@ -16388,7 +19913,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "603514765595",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreemati Neetu Meena",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1695",
@@ -16408,7 +19938,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "603514765595",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Hemendr Kumar Telar",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1696",
@@ -16428,7 +19963,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "993708077341",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Shyoraj Choudhary",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1697",
@@ -16448,7 +19988,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "799964752567",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Praveen Pareek",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1698",
@@ -16468,7 +20013,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "969848286273",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bnsheelal Meghwal",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1699",
@@ -16488,7 +20038,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "921437754065",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Jayaveereikashanava",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1700",
@@ -16508,14 +20063,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "963380318661",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Sapana Meena",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1701",
       "name": "श्री रामधन नंगवाडा",
       "gender": "पुरुष",
       "dob": "15.06.1971",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. लामगरा",
       "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ199501001976",
@@ -16528,7 +20088,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "480083051150",
       "remarks": "ठस्व संउहंतं",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Ramadhan Nngavada",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1702",
@@ -16548,14 +20113,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "841533687505",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Abiul Hanan Ansaree",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1703",
       "name": "श्री राजेन्दर्र कुमार साहु",
       "gender": "पुरुष",
       "dob": "10.08.1982",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. लामगरा",
       "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ201606014244",
@@ -16568,14 +20138,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "792988880856",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Rajendarr Kumar Sahu",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1704",
       "name": "देव करण",
       "gender": "पुरुष",
       "dob": "01.07.1995",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. लामगरा",
       "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ202301039430",
@@ -16588,7 +20163,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "681998370763",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dev Karan",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1705",
@@ -16608,7 +20188,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "544022199155",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Narayan Lal Bairwa",
+      "post_en": "School Assistant",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1706",
@@ -16628,7 +20213,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "275911205821",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Hnsaraj Jat",
+      "post_en": "Panchayat Teacher",
+      "shala_darpan_code": "221759",
+      "school_code": "221759",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)"
     },
     {
       "staff_id": "STF1707",
@@ -16648,7 +20238,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "558735664206",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rashmi Malaveey",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1708",
@@ -16668,14 +20263,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "643376142369",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Alaka Kumaree Choudhary",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1709",
       "name": "अशोक कुमार जैन",
       "gender": "पुरुष",
       "dob": "08-12-1969",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. गनाहेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ199701002012",
@@ -16688,7 +20288,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "586690650444",
       "remarks": "विकलांग",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ashok Kumar Jain",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1710",
@@ -16708,14 +20313,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "880099794384",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dayannd Maroo",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1711",
       "name": "दिनेश कुमार वैष्णव",
       "gender": "पुरुष",
       "dob": "25-10-1982",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. गनाहेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201201037988",
@@ -16728,7 +20338,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "661199568328",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dinesh Kumar Vaishnav",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1712",
@@ -16748,7 +20363,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "674161245550",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Harilal Regar",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1713",
@@ -16768,14 +20388,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "886338647033",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Hariram Balaee",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1714",
       "name": "जाहिद हुसैन अंसारी",
       "gender": "पुरुष",
       "dob": "01-07-1970",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. गनाहेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ199501001772",
@@ -16788,7 +20413,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "228699619642",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jahid Husain Ansaree",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1715",
@@ -16808,7 +20438,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "711845752762",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mahesh Kumar Bunakar",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1716",
@@ -16828,14 +20463,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "666817527636",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Panchoolal Meghavnshee",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1717",
       "name": "प्रेम देवी बैरवा",
       "gender": "महिला",
       "dob": "23-08-1969",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. गनाहेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ199101001606",
@@ -16848,14 +20488,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "477576203544",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Prem Devee Bairwa",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1718",
       "name": "रामकरण रेगर",
       "gender": "पुरुष",
       "dob": "05-06-1974",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. गनाहेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ199901001246",
@@ -16868,7 +20513,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "894657654138",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ramakaran Regar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1719",
@@ -16888,14 +20538,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "556757873045",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ramadhan Kumhar",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1720",
       "name": "श्योजी राम बैरवा",
       "gender": "पुरुष",
       "dob": "01-06-1973",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. गनाहेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ199801008369",
@@ -16908,14 +20563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "419933310528",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shyojee Ram Bairwa",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1721",
       "name": "ताराचंद प्रजापत",
       "gender": "पुरुष",
       "dob": "23-02-1973",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. गनाहेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ199601021723",
@@ -16928,14 +20588,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "307223315823",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Tarachnd Prajapat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1722",
       "name": "विष्णु जांगिड़",
       "gender": "पुरुष",
       "dob": "04-09-1990",
-      "post": "बेसिक कम्प्यूटर अनुदेशक",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
       "school_name": "रा.उ.मा.वि. गनाहेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "VISHNU.JANGID15",
@@ -16948,14 +20613,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "681368827004",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vishnu Jangiड़",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1723",
       "name": "विवेक",
       "gender": "पुरुष",
       "dob": "16-01-1997",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. गनाहेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "VIVEK14",
@@ -16968,7 +20638,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "574623045603",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vivek",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1724",
@@ -16988,14 +20663,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "308113558928",
       "remarks": "छ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Sunita Sharma",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1725",
       "name": "श्री पाँचु लाल खींची",
       "gender": "पुरुष",
       "dob": "1966-06-26",
-      "post": "व. अ.",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. निमेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ198601008214",
@@ -17008,14 +20688,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "806226547337",
       "remarks": "छ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Panchu Lal Kheenchee",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1726",
       "name": "श्री पूरण सिंह",
       "gender": "पुरुष",
       "dob": "1973-05-14",
-      "post": "व. अ.",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. निमेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ200506001430",
@@ -17028,14 +20713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "437206777967",
       "remarks": "छ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Pooran Sinh",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1727",
       "name": "श्री गोपाल लाल मीणा",
       "gender": "पुरुष",
       "dob": "1978-10-13",
-      "post": "व. अ.",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. निमेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJNA201228022874",
@@ -17048,14 +20738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "350930133400",
       "remarks": "छ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Gopal Lal Meena",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1728",
       "name": "श्री नवल किशोर सैनी",
       "gender": "पुरुष",
       "dob": "1992-09-01",
-      "post": "अ.",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. निमेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJBW201808025631",
@@ -17068,14 +20763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "206488553583",
       "remarks": "छ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Naval Kishor Saini",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1729",
       "name": "श्री देवेन्द्र कुमार चावडा",
       "gender": "पुरुष",
       "dob": "1977-09-02",
-      "post": "व. अ.",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. निमेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJTO200536016495",
@@ -17088,14 +20788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "554753444368",
       "remarks": "छ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Devendr Kumar Chavada",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1730",
       "name": "श्री शंकर लाल भांबी",
       "gender": "पुरुष",
       "dob": "1984-12-08",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. निमेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ200701001663",
@@ -17108,14 +20813,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "776028497558",
       "remarks": "छ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Shnkar Lal Bhanbee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1731",
       "name": "श्री दीपक नकवाल",
       "gender": "पुरुष",
       "dob": "1979-10-04",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. निमेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ200301001370",
@@ -17128,14 +20838,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "354177894633",
       "remarks": "छ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Deepak Nakaval",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1732",
       "name": "श्रीमती वीणा",
       "gender": "महिला",
       "dob": "1979-07-01",
-      "post": "अ.",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. निमेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJJL200721011233",
@@ -17148,14 +20863,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "477014746578",
       "remarks": "छ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Veena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1733",
       "name": "श्रीमती मंजू देवी",
       "gender": "महिला",
       "dob": "1971-10-02",
-      "post": "अ.",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. निमेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ199301010494",
@@ -17168,14 +20888,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "727011205667",
       "remarks": "छ",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Manju Devee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1734",
       "name": "श्री राजेन्द्र कुमार शर्मा",
       "gender": "पुरुष",
       "dob": "1972-09-09",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. निमेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201201046574",
@@ -17188,7 +20913,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "839201323875",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Rajendra Kumar Sharma",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1735",
@@ -17208,7 +20938,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "369424091893",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sunita Jain",
+      "post_en": "Prabodhak",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1736",
@@ -17228,14 +20963,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "631022324774",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shivaraj Meena",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1737",
       "name": "सांवर नाथ योगी",
       "gender": "पुरुष",
       "dob": "1991-02-10",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. उदयपुरखेड़ा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201801022564",
@@ -17248,7 +20988,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "396573149500",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sanvar Nath Yogee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1738",
@@ -17268,14 +21013,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "298511743995",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sukharaj Sinh",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1739",
       "name": "सुरेन्द्र कुमार",
       "gender": "पुरुष",
       "dob": "1984-11-12",
-      "post": "अध्यापक लेवल -1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.प्रा.वि. उदयपुरखेड़ा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201901002129",
@@ -17288,14 +21038,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "618952950807",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Surendra Kumar",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1740",
       "name": "सीमा देवी डेरू",
       "gender": "महिला",
       "dob": "21/04/1995",
-      "post": "अध्यापक लेवल -1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.प्रा.वि. उदयपुरखेड़ा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201901008183",
@@ -17308,14 +21063,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "589151445315",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Seema Devee Deroo",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1741",
       "name": "रणजीत गुर्जर",
       "gender": "पुरुष",
       "dob": "24/11/1993",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.प्रा.वि. उदयपुरखेड़ा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201901034186",
@@ -17328,14 +21088,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "772603817490",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ranajeet Gurjar",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "488941",
+      "school_code": "488941",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)"
     },
     {
       "staff_id": "STF1742",
       "name": "अशोक कुमार तीरवाल",
       "gender": "पुरुष",
       "dob": "04.05.1992",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. बड़लाखेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJPA201929006942",
@@ -17348,14 +21113,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "578942875594",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ashok Kumar Teeraval",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1743",
       "name": "दिनेश कुमार बैरवा",
       "gender": "पुरुष",
       "dob": "11.02.1986",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. बड़लाखेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "DINESH.KUMAR.BAIRWA20",
@@ -17368,14 +21138,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "308588921749",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dinesh Kumar Bairwa",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1744",
       "name": "गगनदीप सिंह राठौड़",
       "gender": "पुरुष",
       "dob": "16.09.1993",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. बड़लाखेड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "201510013003",
@@ -17388,14 +21163,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "748811450212",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Gaganadeep Sinh Rathore",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1745",
       "name": "सत्यनारायण बैरवा",
       "gender": "पुरुष",
       "dob": "1989-04-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. भैरूखेड़ा",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJAJ201501004674",
@@ -17408,14 +21188,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "471504071861",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Satyanarayan Bairwa",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1746",
       "name": "आयुष कुमार जैन",
       "gender": "पुरुष",
       "dob": "30/11/1998",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. भैरूखेड़ा",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJAJ202201017656",
@@ -17428,7 +21213,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "200734793702",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aayush Kumar Jain",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1747",
@@ -17448,7 +21238,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "214223624704",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rachana God",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1748",
@@ -17468,7 +21263,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "712427160965",
       "remarks": "",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vinod Kumar Rao",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1749",
@@ -17488,7 +21288,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "380501893103",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mukesh Ravat",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1750",
@@ -17508,7 +21313,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "359944000813",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mauhammad Haneeph",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1751",
@@ -17528,7 +21338,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "906871824878",
       "remarks": "मातृत्व अवकाश",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Suman Meena",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1752",
@@ -17548,7 +21363,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "24625730956",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Baboolal Yadav",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1753",
@@ -17568,7 +21388,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "203382884189",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Renu Vyas",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1754",
@@ -17588,7 +21413,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "600568989520",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Deepak Jat",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1755",
@@ -17608,14 +21438,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "883918650087",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Nirmala Kumaree Choudhary",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1756",
       "name": "खालीक अहमद",
       "gender": "पुरुष",
       "dob": "1969-07-03",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि.नागोला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ199601002916",
@@ -17628,14 +21463,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "590705220897",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Khaleek Ahamad",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1757",
       "name": "मीनू शर्मा",
       "gender": "महिला",
       "dob": "1971-09-27",
-      "post": "अध्यापिका",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि.नागोला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ199401001408",
@@ -17648,14 +21488,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "914981853584",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Meenoo Sharma",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1758",
       "name": "मेना नाई",
       "gender": "महिला",
       "dob": "1973-09-01",
-      "post": "अध्यापिका",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि.नागोला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ199201007519",
@@ -17668,14 +21513,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "632068040684",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mena Naee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1759",
       "name": "अख्तर नीशा",
       "gender": "महिला",
       "dob": "1968-01-01",
-      "post": "अध्यापिका",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि.नागोला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ199201024090",
@@ -17688,14 +21538,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "927050078033",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Akhtar Neesha",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1760",
       "name": "केलाश चंद धोबी",
       "gender": "पुरुष",
       "dob": "1970-12-31",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि.नागोला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ199201002063",
@@ -17708,14 +21563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "605457830626",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kelash Chnd Dhobee",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1761",
       "name": "अमित सोनी",
       "gender": "पुरुष",
       "dob": "1981-08-12",
-      "post": "वरिष्ठ सहायक",
+      "post": "वरिष्ठ सहायक (UDC)",
       "school_name": "रा.उ.मा.वि.नागोला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ200801034732",
@@ -17728,14 +21588,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "896235686338",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Amit Soni",
+      "post_en": "Senior Assistant (UDC / L-8)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1762",
       "name": "ख्ुशीराज सैनी",
       "gender": "पुरुष",
       "dob": "1997-07-15",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. नागोला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ202301034046",
@@ -17748,14 +21613,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "654866051522",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Khusheeraj Saini",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1763",
       "name": "हरेन्द्र कुमार",
       "gender": "पुरुष",
       "dob": "1986-02-15",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. नागोला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "HARENDRA.KUMAR7",
@@ -17768,14 +21638,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "461006659214",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Harendr Kumar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1764",
       "name": "मुकैश बैरवा",
       "gender": "पुरुष",
       "dob": "1994-07-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. नागोला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ202301034111",
@@ -17788,14 +21663,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "574850980276",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mukaish Bairwa",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1765",
       "name": "मुकैश मीणा",
       "gender": "पुरुष",
       "dob": "2000-02-23",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. नागोला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "MUKESH.MEENA37",
@@ -17808,14 +21688,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "214118389703",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mukaish Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1766",
       "name": "दयालराम मीना",
       "gender": "पुरुष",
       "dob": "1974-07-11",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. नागोला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ201701006870",
@@ -17828,14 +21713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "213437369693",
       "remarks": "विकलांग",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dayalaram Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1767",
       "name": "प्रविण सिंह चौधरी",
       "gender": "पुरुष",
       "dob": "1990-07-01",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "रा.उ.मा.वि. नागोला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJKK202460116747",
@@ -17848,14 +21738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "10486597786",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pravin Sinh Choudhary",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1768",
       "name": "भावना कुमारी कामड",
       "gender": "महिला",
       "dob": "2004-09-11",
-      "post": "सहायक कर्मचारी",
+      "post": "सहायक कर्मचारी (चतुर्थ श्रेणी)",
       "school_name": "रा.उ.मा.वि. नागोला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJKK202460117351",
@@ -17868,14 +21763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "701365822941",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhavana Kumaree Kamad",
+      "post_en": "Supporting Staff (Class-IV)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1769",
       "name": "भागचन्द टांक",
       "gender": "पुरुष",
       "dob": "1991-07-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. सपनीखेडा",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "BHAGCHAND.TAK1",
@@ -17888,14 +21788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "970523221163",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhagchand Tank",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1770",
       "name": "मनोहर चौधरी",
       "gender": "पुरुष",
       "dob": "1997-04-02",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. सपनीखेडा",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "MANOHAR.CHOUDHRY2",
@@ -17908,14 +21813,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "444563835387",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Manohar Choudhary",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1771",
       "name": "ललिता कुमारी मीणा",
       "gender": "महिला",
       "dob": "1985-06-16",
-      "post": "अध्यापिका",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.सपनीखेडा",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "RJAJ201301032681",
@@ -17928,14 +21838,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "769749218610",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Lalita Kumaree Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1772",
       "name": "बलराम यादव",
       "gender": "पुरुष",
       "dob": "1990-10-13",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.सपनीखेडा",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "RJAJ2018012029027",
@@ -17948,14 +21863,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "820607576434",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Balaram Yadav",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1773",
       "name": "नरेश सिह भाटी",
       "gender": "पुरुष",
       "dob": "1987-07-09",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.सपनीखेडा",
       "peeo_name": "PEEO CHAPANERI",
       "sso_id": "RJPG201930018490",
@@ -17968,14 +21888,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "857519337115",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Naresh Sih Bhatee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221758",
+      "school_code": "221758",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)"
     },
     {
       "staff_id": "STF1774",
       "name": "सेवाराम",
       "gender": "पुरुष",
       "dob": "1993-12-29",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.बालापुरा",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201801057549",
@@ -17988,14 +21913,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "412545739548",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sevaram",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1775",
       "name": "हरि नारायाण यादव",
       "gender": "पुरुष",
       "dob": "1993-01-10",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.बालापुरा",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJBW201808035297",
@@ -18008,14 +21938,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "499337447500",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Hari Narayan Yadav",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1776",
       "name": "रिंकू कुमारी",
       "gender": "महिला",
       "dob": "1991-01-01",
-      "post": "अध्यापिका",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.बालापुरा",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201901017713",
@@ -18028,14 +21963,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "216511469179",
       "remarks": "मातृत्व अवकाश",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rinkoo Kumaree",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1777",
       "name": "प्रमिला पहाडिया",
       "gender": "महिला",
       "dob": "1995-08-02",
-      "post": "अध्यापिका",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.बालापुरा",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201901017707",
@@ -18048,14 +21988,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "9641774845154",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pramila Pahadiya",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1778",
       "name": "कौशल्या भांभी",
       "gender": "महिला",
       "dob": "2000-07-05",
-      "post": "अध्यापिका",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. बालापुरा",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ202301033954",
@@ -18068,14 +22013,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "408641227480",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kaushalya Bhanbhee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1779",
       "name": "सुनिता बाकोलिया",
       "gender": "महिला",
       "dob": "1984-07-05",
-      "post": "अध्यापिका",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि.बालापुरा",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201201043985",
@@ -18088,14 +22038,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "37412486156",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sunita Bakoliya",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1780",
       "name": "महावीर सिंह देवडा",
       "gender": "पुरुष",
       "dob": "1996-12-17",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि.खारोला का खेडा",
       "peeo_name": "PEEO KARATI",
       "sso_id": "MAHAVEER.SUNGH.DEVR1",
@@ -18108,14 +22063,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "844936853639",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mahaveer Sinh Devada",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1781",
       "name": "शैतान कुमावत",
       "gender": "पुरुष",
       "dob": "1995-11-26",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि.खारोला का खेडा",
       "peeo_name": "PEEO KARATI",
       "sso_id": "SHAITAN.KUMAWAT2",
@@ -18128,14 +22088,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "942311712659",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shaitan Kumawat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1782",
       "name": "आशीष चौधरी",
       "gender": "पुरुष",
       "dob": "1992-04-02",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि.धोरामण्ड खेडा",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJBW201908010902",
@@ -18148,14 +22113,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "751612112636",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aasheesh Choudhary",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1783",
       "name": "कृष्ण कान्त चैॅधरी",
       "gender": "पुरुष",
       "dob": "1994-08-11",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि.धोरामण्ड खेडा",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJBW201908010902",
@@ -18168,14 +22138,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "953900949566",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Krishn Kant Chaiॅdharee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221773",
+      "school_code": "221773",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)"
     },
     {
       "staff_id": "STF1784",
       "name": "दिलखुश वैष्णव",
       "gender": "पुरुष",
       "dob": "1990-05-01",
-      "post": "विधालय सहायक",
+      "post": "विद्यालय सहायक",
       "school_name": "रा.उ.मा.वि.नागोला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "DILKHUSHU.VAISHNAV",
@@ -18188,7 +22163,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "761930204429",
       "remarks": "ठस्व च्।त्ज छव .327",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dilakhush Vaishnav",
+      "post_en": "School Assistant",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1785",
@@ -18208,14 +22188,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "679975061384",
       "remarks": "ठस्व च्।त्ज छव .325",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhopalaram Rebaree",
+      "post_en": "Panchayat Teacher",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1786",
       "name": "वेद प्रकाश",
       "gender": "पुरुष",
       "dob": "02.06.1974",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.उ.मा.वि. बडला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ200501032035",
@@ -18228,14 +22213,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "244917604092",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ved Prakash",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1787",
       "name": "हनुमान राम",
       "gender": "पुरुष",
       "dob": "16.12.2000",
-      "post": "व.अ.",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. बडला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "HANUMANRAM75",
@@ -18248,14 +22238,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "600538232622",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Hanuman Ram",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1788",
       "name": "बद्री नारायण जाट",
       "gender": "पुरुष",
       "dob": "01.04.1986",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. बडला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ201801024247",
@@ -18268,14 +22263,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "694005928363",
       "remarks": "ठस्व च्।त्ज छव .318",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Badree Narayan Jat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1789",
       "name": "सोहन लाल",
       "gender": "पुरुष",
       "dob": "05.01.1995",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. बडला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "SOHAN.LAL70",
@@ -18288,14 +22288,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "543671815270",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sohan Lal",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1790",
       "name": "कुलदीप सिंह",
       "gender": "पुरुष",
       "dob": "25.01.1996",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. बडला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ20190103050",
@@ -18308,14 +22313,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "246838072475",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kuladeep Sinh",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1791",
       "name": "ओमप्रकाश सेन",
       "gender": "पुरुष",
       "dob": "01.06.1970",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. बडला",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ199201002985",
@@ -18328,7 +22338,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "791582596935",
       "remarks": "छप्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Omaprakash Sen",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1792",
@@ -18348,7 +22363,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "293609238188",
       "remarks": "नही",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Omaprakash Verma",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1793",
@@ -18368,7 +22388,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "527185621518",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Manoj Kumar Jain",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1794",
@@ -18388,7 +22413,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "439316651771",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shnkar Lal Saini",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1795",
@@ -18408,14 +22438,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "803309182103",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shnkar Lal Yadav",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1796",
       "name": "आशुतोष चौधरी",
       "gender": "पुरुष",
       "dob": "1995-06-09",
-      "post": "वरिष्ठ अघ्यापक",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. नांदसी",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJCT202311061637",
@@ -18428,14 +22463,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "623389603016",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aashutosh Choudhary",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1797",
       "name": "ओमप्रकाश",
       "gender": "पुरुष",
       "dob": "16/04/1981",
-      "post": "वरिष्ठ अघ्यापक",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. नांदसी",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJKK202460104144",
@@ -18448,14 +22488,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "888560195168",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Omaprakash",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1798",
       "name": "मदन लाल कलावत",
       "gender": "पुरुष",
       "dob": "1969-01-06",
-      "post": "अघ्यापक स्.2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.मा.वि. नांदसी",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ199706002073",
@@ -18468,14 +22513,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "350365250106",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Madan Lal Kalavat",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1799",
       "name": "सुरेश सिंह पँवार",
       "gender": "पुरुष",
       "dob": "1986-01-06",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. नांदसी",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ201201017707",
@@ -18488,14 +22538,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "362776976203",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Suresh Sinh Pnvar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1800",
       "name": "किशन लाल जाट",
       "gender": "पुरुष",
       "dob": "1966-10-11",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. नांदसी",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ199201001700",
@@ -18508,14 +22563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "451629028208",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kishan Lal Jat",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1801",
       "name": "महावीर प्रसाद प्रजापत",
       "gender": "पुरुष",
       "dob": "1976-01-06",
-      "post": "अघ्यापक स्.1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.मा.वि. नांदसी",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ200701004121",
@@ -18528,14 +22588,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "485396756271",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mahaveer Prasad Prajapat",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1802",
       "name": "सुमित चांवला",
       "gender": "पुरुष",
       "dob": "2000-10-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. नांदसी",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJKK202460110391",
@@ -18548,14 +22613,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "574601723513",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sumit Chanvala",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1803",
       "name": "दीपेन्द्रसिंह राठौड़",
       "gender": "पुरुष",
       "dob": "1988-02-07",
-      "post": "वरिष्ठ सहायक",
+      "post": "वरिष्ठ सहायक (UDC)",
       "school_name": "रा.उ.मा.वि. नांदसी",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ201401019737",
@@ -18568,7 +22638,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "599017620449",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Deependrasinh Rathauड़",
+      "post_en": "Senior Assistant (UDC / L-8)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1804",
@@ -18588,7 +22663,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "796226961817",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vishnu Prasad Sharma",
+      "post_en": "Panchayat Teacher",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1805",
@@ -18608,14 +22688,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "509087153854",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Banavaree Lal Gosvamee",
+      "post_en": "Panchayat Teacher",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1806",
       "name": "बलकरण सिंह",
       "gender": "पुरुष",
       "dob": "1994-12-11",
-      "post": "अघ्यापक स्.2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.बा.उ.प्रा.वि. नांदसी",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ201801057152",
@@ -18628,14 +22713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "872925193155",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Balakaran Sinh",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "410632",
+      "school_code": "410632",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL NANDSI (410632) (08210700402)"
     },
     {
       "staff_id": "STF1807",
       "name": "सुरेश कुमार",
       "gender": "पुरुष",
       "dob": "1987-07-02",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.बा.उ.प्रा.वि. नांदसी",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJBW201808026516",
@@ -18648,14 +22738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "515153644405",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Suresh Kumar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "410632",
+      "school_code": "410632",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL NANDSI (410632) (08210700402)"
     },
     {
       "staff_id": "STF1808",
       "name": "केदार मल कुमावत",
       "gender": "पुरुष",
       "dob": "1988-12-16",
-      "post": "अघ्यापक स्.1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.बा.उ.प्रा.वि. नांदसी",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ201301037274",
@@ -18668,14 +22763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "511005943498",
       "remarks": "विकलांग",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kedar Mal Kumawat",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "410632",
+      "school_code": "410632",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL NANDSI (410632) (08210700402)"
     },
     {
       "staff_id": "STF1809",
       "name": "विजय सिंह भाटी",
       "gender": "पुरुष",
       "dob": "1982-07-01",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.बा.उ.प्रा.वि. नांदसी",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ201401019722",
@@ -18688,14 +22788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "933802465809",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vijay Sinh Bhatee",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "410632",
+      "school_code": "410632",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL NANDSI (410632) (08210700402)"
     },
     {
       "staff_id": "STF1810",
       "name": "कोमल लोधा",
       "gender": "महिला",
       "dob": "1999-11-13",
-      "post": "अघ्यापक स्.1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.बा.उ.प्रा.वि. नांदसी",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ202201020722",
@@ -18708,7 +22813,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "380385023550",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Komal Lodha",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "410632",
+      "school_code": "410632",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL NANDSI (410632) (08210700402)"
     },
     {
       "staff_id": "STF1811",
@@ -18728,14 +22838,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "589738314808",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jitendr Kumar Sharma",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "410632",
+      "school_code": "410632",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL NANDSI (410632) (08210700402)"
     },
     {
       "staff_id": "STF1812",
       "name": "भुपेन्द्रसिंह राठौड़",
       "gender": "पुरुष",
       "dob": "1976-02-26",
-      "post": "प्रधानाध्यापक",
+      "post": "प्रधानाचार्य / संस्था प्रधान",
       "school_name": "रा.उ.प्रा.वि. काचरिया",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ200801003653",
@@ -18748,14 +22863,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "469761618586",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhupendrasinh Rathauड़",
+      "post_en": "Headmaster / Principal",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1813",
       "name": "सज्जना",
       "gender": "महिला",
       "dob": "1982-09-30",
-      "post": "अघ्यापक स्.2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.प्रा.वि. काचरिया",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ201201037990",
@@ -18768,14 +22888,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "200728767881",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sajjana",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1814",
       "name": "महेन्द्र पाराशर",
       "gender": "पुरुष",
       "dob": "1980-02-17",
-      "post": "अघ्यापक स्.2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.प्रा.वि. काचरिया",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ201801035639",
@@ -18788,14 +22913,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "423430364697",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mahendra Parashar",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1815",
       "name": "मितु कुमारी",
       "gender": "महिला",
       "dob": "1991-07-05",
-      "post": "अघ्यापक स्.2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.प्रा.वि. काचरिया",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ201901025015",
@@ -18808,14 +22938,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "361742849455",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mitu Kumaree",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1816",
       "name": "दीपिका चौधरी",
       "gender": "महिला",
       "dob": "1999-07-18",
-      "post": "अघ्यापक स्.1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.प्रा.वि. काचरिया",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ202201020840",
@@ -18828,14 +22963,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "624811479920",
       "remarks": "विकलांग",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Deepika Choudhary",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1817",
       "name": "रिंकू जाट",
       "gender": "महिला",
       "dob": "1998-07-05",
-      "post": "अघ्यापक स्.1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.प्रा.वि. काचरिया",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ202201021118",
@@ -18848,14 +22988,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "577870360986",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rinkoo Jat",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1818",
       "name": "चिन्ता कुमारी केवट",
       "gender": "महिला",
       "dob": "1999-06-20",
-      "post": "अघ्यापक स्.1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.प्रा.वि. काचरिया",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ202201020853",
@@ -18868,14 +23013,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "726590295649",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Chinta Kumaree Kevat",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1819",
       "name": "बबलू मेघवाल",
       "gender": "पुरुष",
       "dob": "1996-06-05",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. काचरिया",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ202301037157",
@@ -18888,14 +23038,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "650278547171",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Babaloo Meghwal",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1820",
       "name": "धनराज सैनी",
       "gender": "पुरुष",
       "dob": "1997-09-08",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.प्रा.वि. काचरिया",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ202301037718",
@@ -18908,7 +23063,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "223837726139",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dhanaraj Saini",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1821",
@@ -18928,7 +23088,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "435282176168",
       "remarks": "ठ।ब्ज्ञ च्।प्छ स्4एस्5ए51",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Banna Lal Raigar",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1822",
@@ -18948,14 +23113,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "389032164717",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sirajuddeen",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1823",
       "name": "शांतिलाल जैन",
       "gender": "पुरुष",
       "dob": "1973-05-09",
-      "post": "वरिष्ठ अघ्यापक",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. कुरथल",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ199601001555",
@@ -18968,14 +23138,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "624450767295",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shantilal Jain",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1824",
       "name": "कृष्णकुमार श्रवडिया",
       "gender": "पुरुष",
       "dob": "29/06/1987",
-      "post": "वरिष्ठ अघ्यापक",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. कुरथल",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ202001028365",
@@ -18988,14 +23163,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "694505001110",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Krishnakumar Shravadiya",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1825",
       "name": "बनवारी लाल जाट",
       "gender": "पुरुष",
       "dob": "1988-01-10",
-      "post": "वरिष्ठ अघ्यापक",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. कुरथल",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJJP201817049759",
@@ -19008,14 +23188,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "571761704038",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Banavaree Lal Jat",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1826",
       "name": "हरि सिंह मीना",
       "gender": "पुरुष",
       "dob": "1975-01-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. कुरथल",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ200506001426",
@@ -19028,14 +23213,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "538978895180",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Hari Sinh Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1827",
       "name": "राजेन्द्र प्रसाद शर्मा",
       "gender": "पुरुष",
       "dob": "30/09/1967",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. कुरथल",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ199501007100",
@@ -19048,14 +23238,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "253012061297",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajendra Prasad Sharma",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1828",
       "name": "ओम प्रकाश डोरिया",
       "gender": "पुरुष",
       "dob": "1971-02-10",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. कुरथल",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ199601001942",
@@ -19068,14 +23263,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "753409423009",
       "remarks": "नही",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Om Prakash Doriya",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1829",
       "name": "पृथ्वी राज मीणा",
       "gender": "पुरुष",
       "dob": "21/01/1975",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. कुरथल",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ199806000893",
@@ -19088,7 +23288,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "868829742459",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Prithvee Raj Meena",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221756",
+      "school_code": "221756",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)"
     },
     {
       "staff_id": "STF1830",
@@ -19108,7 +23313,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "918036599974",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aravind",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1831",
@@ -19128,7 +23338,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "725764649895",
       "remarks": "",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aasha Raj",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1832",
@@ -19148,14 +23363,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "288244824023",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Chhotoo Lal Jat",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1833",
       "name": "गजेन्द्र सिंह राठौड़",
       "gender": "पुरुष",
       "dob": "1967-09-03",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. पाडंगा",
       "peeo_name": "PEEO PADANGA",
       "sso_id": "RJAJ198601011802",
@@ -19168,14 +23388,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "207629165216",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Gajendr Sinh Rathauड़",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1834",
       "name": "हंस राज गुर्जर",
       "gender": "पुरुष",
       "dob": "1995-04-03",
-      "post": "बेसिक कम्प्यूटर अनुदेशक",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
       "school_name": "रा.उ.मा.वि. पाडंगा",
       "peeo_name": "PEEO PADANGA",
       "sso_id": "HANS.RAJ.GURJAR2",
@@ -19188,7 +23413,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "730487215138",
       "remarks": "ठस्व 270",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Hns Raj Gurjar",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1835",
@@ -19208,7 +23438,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "361145568409",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Omaprakash Seravat",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1836",
@@ -19228,14 +23463,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "796744650470",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pankaj Sharma",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1837",
       "name": "पूनम भाम्बी",
       "gender": "महिला",
       "dob": "1983-03-05",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. पाडंगा",
       "peeo_name": "PEEO PADANGA",
       "sso_id": "RJBW200808003868",
@@ -19248,7 +23488,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "926817740011",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Poonam Bhambee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1838",
@@ -19268,14 +23513,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "475648145018",
       "remarks": "च्लैप्ब्।स भ्।छक्प्ब्।त्च्ज्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Prithveeraj Ravat",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1839",
       "name": "रश्मि चौधरी",
       "gender": "महिला",
       "dob": "23/08/1986",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "रा.उ.मा.वि. पाडंगा",
       "peeo_name": "PEEO PADANGA",
       "sso_id": "RJAJ202001017940",
@@ -19288,14 +23538,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "632877404647",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rashmi Choudhary",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1840",
       "name": "रेणुका दीक्षित",
       "gender": "महिला",
       "dob": "1966-05-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. पाडंगा",
       "peeo_name": "PEEO PADANGA",
       "sso_id": "RJAJ199501001497",
@@ -19308,14 +23563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "766386517107",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Renuka Deekshit",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1841",
       "name": "रोहित कुमार जांगिड",
       "gender": "पुरुष",
       "dob": "1998-01-12",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. पाडंगा",
       "peeo_name": "PEEO PADANGA",
       "sso_id": "ROHIT.KUMAR.JANGID1",
@@ -19328,7 +23588,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "723000901673",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rohit Kumar Jangid",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1842",
@@ -19348,7 +23613,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "402151038685",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sarita Choudhary",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1843",
@@ -19368,14 +23638,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "791954310083",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Saroj Choudhary",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1844",
       "name": "सत्यनारायण राठौड़",
       "gender": "पुरुष",
       "dob": "1972-01-08",
-      "post": "वरिष्ठ सहायक",
+      "post": "वरिष्ठ सहायक (UDC)",
       "school_name": "रा.उ.मा.वि. पाडंगा",
       "peeo_name": "PEEO PADANGA",
       "sso_id": "RJJS201420018211",
@@ -19388,14 +23663,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "704080791366",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Satyanarayan Rathauड़",
+      "post_en": "Senior Assistant (UDC / L-8)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1845",
       "name": "शुभम जग्गा",
       "gender": "पुरुष",
       "dob": "1999-12-04",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. पाडंगा",
       "peeo_name": "PEEO PADANGA",
       "sso_id": "SHUBHAM.JAGGA",
@@ -19408,14 +23688,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "672335259937",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shubham Jagga",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1846",
       "name": "सोनिया माली",
       "gender": "महिला",
       "dob": "15/4/1994",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. पाडंगा",
       "peeo_name": "PEEO PADANGA",
       "sso_id": "SONIYA.MALI2",
@@ -19428,14 +23713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "268996254614",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Soniya Mali",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221788",
+      "school_code": "221788",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)"
     },
     {
       "staff_id": "STF1847",
       "name": "रिंकु जांगिड़",
       "gender": "महिला",
       "dob": "2003-10-06",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. सायमला",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RINKU.JANGID2",
@@ -19448,14 +23738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "684130130166",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rinku Jangiड़",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF1848",
       "name": "सुमीता मीणा",
       "gender": "महिला",
       "dob": "1990-03-08",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. सायमला",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ201701016266",
@@ -19468,14 +23763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "769741142982",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sumeeta Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF1849",
       "name": "काना राम",
       "gender": "पुरुष",
       "dob": "",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. सवाईपुरा",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJAJ201301031663",
@@ -19488,14 +23788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "323274385969",
       "remarks": "ठस्व 272",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kana Ram",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1850",
       "name": "भुवनेश्वर शर्मा",
       "gender": "पुरुष",
       "dob": "",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. सवाईपुरा",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJAJ201701016168",
@@ -19508,14 +23813,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "676963893621",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhuvaneshvar Sharma",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221787",
+      "school_code": "221787",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)"
     },
     {
       "staff_id": "STF1851",
       "name": "प्रताप सिंह राजपूत",
       "gender": "पुरुष",
       "dob": "28/6/1968",
-      "post": "प्रधानाघ्यापक",
+      "post": "प्रधानाचार्य / संस्था प्रधान",
       "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJBW199108005812",
@@ -19528,14 +23838,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "378156102901",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pratap Sinh Rajput",
+      "post_en": "Headmaster / Principal",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1852",
       "name": "भंवर लाल रेगर",
       "gender": "पुरुष",
       "dob": "24/7/1971",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJJS201820035296",
@@ -19548,14 +23863,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "229274704710",
       "remarks": "ठस्व 271",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhnvar Lal Regar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1853",
       "name": "गुरवन्त कौर",
       "gender": "महिला",
       "dob": "25/12/1979",
-      "post": "अध्यापिका",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ199201026588",
@@ -19568,14 +23888,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "624017938372",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Guravant Kaur",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1854",
       "name": "पूजा मीणा",
       "gender": "महिला",
       "dob": "24/5/1993",
-      "post": "अध्यापिका",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJRA201831042537",
@@ -19588,14 +23913,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "822164733936",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pooja Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1855",
       "name": "विजयलक्ष्मी शर्मा",
       "gender": "महिला",
       "dob": "1992-01-01",
-      "post": "अध्यापिका",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ201901006724",
@@ -19608,14 +23938,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "661134898667",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vijayalakshmee Sharma",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1856",
       "name": "विनोद भांबी",
       "gender": "पुरुष",
       "dob": "16/7/1997",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ202201014836   VINOD.BHAMBI1",
@@ -19628,14 +23963,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "720618725098",
       "remarks": "रश्मि",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vinod Bhanbee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1857",
       "name": "दुर्गालाल गुर्जर",
       "gender": "पुरुष",
       "dob": "14/7/1992",
-      "post": "शारिरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ201901035929",
@@ -19648,14 +23988,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "691105365393",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Durgalal Gurjar",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1858",
       "name": "बिजेन्द्र कुमार",
       "gender": "पुरुष",
       "dob": "1993-01-02",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ202301046376    BIJENDRA.KUMAR3",
@@ -19668,14 +24013,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "602228579969",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bijendr Kumar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1859",
       "name": "नाजमीन",
       "gender": "महिला",
       "dob": "31/1/1993",
-      "post": "अध्यापिका",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJKK202460001869   NAZMEEN1",
@@ -19688,7 +24038,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "744822993233",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Najameen",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221762",
+      "school_code": "221762",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)"
     },
     {
       "staff_id": "STF1860",
@@ -19708,7 +24063,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "7748-9447-2076",
       "remarks": "",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Lakshmee Popatanee",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1861",
@@ -19728,7 +24088,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "8337-7306-2766",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Meenoo Parihar",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1862",
@@ -19748,7 +24113,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "3582-6792-6481",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Bhagchand Jain",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1863",
@@ -19768,7 +24138,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "6852-4185-6810",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Om Prakash",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1864",
@@ -19788,7 +24163,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "3166-0333-6638",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Rakesh Kumar Saini",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1865",
@@ -19808,14 +24188,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "8256-9099-1759",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Mohit Kumar Vaishnav",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1866",
       "name": "श्री धनराज मोची",
       "gender": "पुरुष",
       "dob": "1982-01-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201201017690",
@@ -19828,14 +24213,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "7596-5430-1709",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Dhanaraj Mochee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1867",
       "name": "श्री गोपाल राम",
       "gender": "पुरुष",
       "dob": "1974-01-06",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ200506001155",
@@ -19848,14 +24238,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "8455-8766-1894",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Gopal Ram",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1868",
       "name": "श्री कैलाश चन्द",
       "gender": "पुरुष",
       "dob": "15/10/1996",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202301038926",
@@ -19868,14 +24263,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "9844-7244-7146",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Kailash Chand",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1869",
       "name": "श्री नवल कुमार जैन",
       "gender": "पुरुष",
       "dob": "19/04/1966",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ198801002022",
@@ -19888,14 +24288,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "8184-5352-0884",
       "remarks": "दिनांक 30.04.2026 को अधिवार्षिकी आयु पूर्ण",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Naval Kumar Jain",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1870",
       "name": "श्री रज्जाक मोहम्मद",
       "gender": "पुरुष",
       "dob": "15/09/1966",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ198701002111",
@@ -19908,14 +24313,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "4340-6122-9424",
       "remarks": "दिनांक 30.09.2026 को अधिवार्षिकी आयु पूर्ण",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Rajjak Mohammad",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1871",
       "name": "श्री रामकुवांर कुम्हार",
       "gender": "पुरुष",
       "dob": "1971-01-06",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ199701002301",
@@ -19928,14 +24338,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "3615-9950-1089",
       "remarks": "ठस्व च्।त्ज छव्.335",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Ramakuvanr Kumhar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1872",
       "name": "श्री सुरेश चन्द्र जांगिड",
       "gender": "पुरुष",
       "dob": "1986-01-06",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201201044902",
@@ -19948,14 +24363,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "9455-3807-76432",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Suresh Chandra Jangid",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1873",
       "name": "श्री दोलत कुमार खटीक",
       "gender": "पुरुष",
       "dob": "1995-05-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201801047439",
@@ -19968,14 +24388,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "7225-3126-4135",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Dolat Kumar Khateek",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1874",
       "name": "श्री मुरलीधर कुमावत",
       "gender": "पुरुष",
       "dob": "25/02/2001",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202301038828",
@@ -19988,14 +24413,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "5363-1545-3740",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Muraleedhar Kumawat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1875",
       "name": "श्री महेश्वर सिंह शक्तावत",
       "gender": "पुरुष",
       "dob": "2001-09-11",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202301038715",
@@ -20008,14 +24438,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "8570-2533-0949",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Maheshvar Sinh Shaktavat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1876",
       "name": "श्री पुष्पेन्द्र कुमार खटीक",
       "gender": "पुरुष",
       "dob": "14/07/1988",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201701002614",
@@ -20028,14 +24463,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "7379-9170-0039",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Pushpendr Kumar Khateek",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1877",
       "name": "श्री पंकज कुमार मेघवंशी",
       "gender": "पुरुष",
       "dob": "27/07/2001",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय-पाडलिया(भिनाय-अजमेर)",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202001015496",
@@ -20048,7 +24488,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "8892-8411-1894",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Pankaj Kumar Meghavnshee",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1878",
@@ -20068,7 +24513,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "4021-7660-9323",
       "remarks": "दिनांक 30.06.2026 को अधिवार्षिकी आयु पूर्ण",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Annaraj Pareek",
+      "post_en": "School Assistant",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1879",
@@ -20088,14 +24538,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "7043-4315-5460",
       "remarks": "ठस्व च्।त्ज छव्.334",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Chinta Kumhar",
+      "post_en": "Panchayat Teacher",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1880",
       "name": "सुरेश कुमार",
       "gender": "पुरुष",
       "dob": "18/08/1996",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय गोरधनपुरा पाडलिया",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ202301046314",
@@ -20108,14 +24563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "4425-6418-6877",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Suresh Kumar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA (221766)"
     },
     {
       "staff_id": "STF1881",
       "name": "अक्षय कुमार पाटीदार",
       "gender": "पुरुष",
       "dob": "1998-03-04",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय गोरधनपुरा पाडलिया",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ202301039008",
@@ -20128,14 +24588,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "2877-9074-4732",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Akshay Kumar Pateedar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA (221766)"
     },
     {
       "staff_id": "STF1882",
       "name": "मस्तराम मीणा",
       "gender": "पुरुष",
       "dob": "1991-09-06",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय गोरधनपुरा पाडलिया",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ201501006448",
@@ -20148,14 +24613,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "8881-7260-4722",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mastaram Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA (221766)"
     },
     {
       "staff_id": "STF1883",
       "name": "अभय सिंह पंवार",
       "gender": "पुरुष",
       "dob": "1981-11-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय गोरधनपुरा पाडलिया",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ201301029607",
@@ -20168,14 +24638,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "8318-6271-0655",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Abhay Sinh Panwar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA (221766)"
     },
     {
       "staff_id": "STF1884",
       "name": "शंकर लाल शर्मा",
       "gender": "पुरुष",
       "dob": "1988-05-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय गोरधनपुरा पाडलिया",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJJW201922010273",
@@ -20188,7 +24663,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "8031-0417-8849",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shnkar Lal Sharma",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA (221766)"
     },
     {
       "staff_id": "STF1885",
@@ -20208,14 +24688,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "4498-3134-2537",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Madan Lal Bairwa",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1886",
       "name": "राकेश कुमार मण्डरावलिया",
       "gender": "पुरुष",
       "dob": "13/07/1983",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय चावण्डिया पाडलिया",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201201037974",
@@ -20228,14 +24713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "4922-4173-0028",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rakesh Kumar Mandaravaliya",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1887",
       "name": "सन्जू वैष्णव",
       "gender": "महिला",
       "dob": "1980-06-11",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय चावण्डिया पाडलिया",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201201046555",
@@ -20248,7 +24738,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "6532-7075-8628",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sanjoo Vaishnav",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1888",
@@ -20268,14 +24763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "7006-2182-6004",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kailash Chandra Baser",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1889",
       "name": "कालूराम सोयल",
       "gender": "पुरुष",
       "dob": "1988-01-08",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय चावण्डिया पाडलिया",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201801024162",
@@ -20288,14 +24788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "3187-2535-2563",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kalooram Soyal",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1890",
       "name": "सुधीर कुमार",
       "gender": "पुरुष",
       "dob": "29/06/1991",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय चावण्डिया पाडलिया",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201801023750",
@@ -20308,14 +24813,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "5312-0348-3570",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sudheer Kumar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1891",
       "name": "सत्यनारायण मीणा",
       "gender": "पुरुष",
       "dob": "1993-07-06",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय चावण्डिया पाडलिया",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201801024126",
@@ -20328,14 +24838,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "4943-8643-7966",
       "remarks": "ठस्व च्।त्ज छव्.336",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Satyanarayan Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1892",
       "name": "गजानन्द खीची",
       "gender": "पुरुष",
       "dob": "1998-10-10",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय चावण्डिया पाडलिया",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJKK202460110484",
@@ -20348,14 +24863,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "8675-9823-2076",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Gajanand Kheechee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1893",
       "name": "निर्मला महावर",
       "gender": "महिला",
       "dob": "22/08/1997",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय चावण्डिया पाडलिया",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201901005748",
@@ -20368,14 +24888,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "9546-9919-4796",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Nirmala Mahavar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF1894",
       "name": "मुकेश कुमार माली",
       "gender": "पुरुष",
       "dob": "18/08/1993",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय बिलीया पाडलिया",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ201501006437",
@@ -20388,14 +24913,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "2641-0685-0759",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mukesh Kumar Mali",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA (221766)"
     },
     {
       "staff_id": "STF1895",
       "name": "पवन कुमार राॅयल",
       "gender": "पुरुष",
       "dob": "21/07/1995",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय बिलीया पाडलिया",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ202301040303",
@@ -20408,14 +24938,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "7312-9244-7466",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pavan Kumar Raॅyal",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA (221766)"
     },
     {
       "staff_id": "STF1896",
       "name": "भागचन्द बैरवा",
       "gender": "पुरुष",
       "dob": "20/11/1998",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय बिलीया पाडलिया",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ202301046213",
@@ -20428,14 +24963,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "2586-5280-4016",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhagchand Bairwa",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA (221766)"
     },
     {
       "staff_id": "STF1897",
       "name": "विनोद मीना",
       "gender": "पुरुष",
       "dob": "1998-01-02",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय बिलीया पाडलिया",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ202301040326",
@@ -20448,14 +24988,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "8474-2710-7516",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vinod Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA (221766)"
     },
     {
       "staff_id": "STF1898",
       "name": "दीपा",
       "gender": "महिला",
       "dob": "1987-12-05",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय बिलीया पाडलिया",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ201801028127",
@@ -20468,14 +25013,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "6267-6350-6721",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Deepa",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA (221766)"
     },
     {
       "staff_id": "STF1899",
       "name": "अनिता दाधीच",
       "gender": "महिला",
       "dob": "1998-11-07",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च प्राथमिक विद्यालय बिलीया पाडलिया",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ202301040261",
@@ -20488,14 +25038,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "8900-7856-6052",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Anita Dadhich",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA (221766)"
     },
     {
       "staff_id": "STF1900",
       "name": "बजरंग लाल वैष्णव",
       "gender": "पुरुष",
       "dob": "1992-02-09",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय प्राथमिक विद्यालय-मूण्डियाखेडा पाडलिया",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJJO201925016692",
@@ -20508,14 +25063,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "7068-5968-7010",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bajarng Lal Vaishnav",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA (221766)"
     },
     {
       "staff_id": "STF1901",
       "name": "राधेश्याम जाट",
       "gender": "पुरुष",
       "dob": "1991-04-05",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय प्राथमिक विद्यालय-मूण्डियाखेडा पाडलिया",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJBI201909015872",
@@ -20528,14 +25088,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "2451-1566-6266",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Radheshyam Jat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA (221766)"
     },
     {
       "staff_id": "STF1902",
       "name": "स्।स ब्भ्।छक डन्छव्ज्भ्",
       "gender": "पुरुष",
       "dob": "1983-06-16",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.उ.मा.वि. RAMMALIYA",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJAJ200801038081",
@@ -20548,14 +25113,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "663002091378",
       "remarks": "छ।",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "S।s Bbh।chhak Danchhavjbh",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1903",
       "name": "।श्रम्म्जैप्छळभ त्।ज्भ्व्त्म्",
       "gender": "पुरुष",
       "dob": "1986-12-06",
-      "post": "च्त्प्छब्प्च्।स्",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.उ.मा.वि. RAMMALIYA",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJAJ201201053297",
@@ -20568,14 +25138,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "968886864663",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "।shrammjaipchhaळbh T।jbhvtm",
+      "post_en": "Principal",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1904",
       "name": "दिलीप सिंह राठोड़",
       "gender": "पुरुष",
       "dob": "1981-03-17",
-      "post": "स्म्ब्ज्न्त्म्त्",
+      "post": "व्याख्याता",
       "school_name": "रा.उ.मा.वि. RAMMALIYA",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJAJ200501004690",
@@ -20588,14 +25163,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "946609824356",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dileep Sinh Rathoड़",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1905",
       "name": "ज्ञ।टप्ज्। ब्भ्व्न्भ्।छ",
       "gender": "महिला",
       "dob": "1989-02-15",
-      "post": "ैम्छप्व्त ज्म्।ब्भ्म्त्",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. RAMMALIYA",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJJO201725037091",
@@ -20608,14 +25188,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "476979975416",
       "remarks": "।ैज्भ्ड।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jnya।tapj। Bbhvnbh।chh",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1906",
       "name": "ठभ्।टक्म्ट",
       "gender": "पुरुष",
       "dob": "1974-01-23",
-      "post": "ैम्छप्व्त ज्म्।ब्भ्म्त्",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. RAMMALIYA",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJAJ199801004423",
@@ -20628,14 +25213,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "211468316491",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Thabh।takmt",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1907",
       "name": "च्नैभ्च्। ज्ञन्ड।त्प्",
       "gender": "महिला",
       "dob": "1980-01-26",
-      "post": "ैम्छप्व्त ज्म्।ब्भ्म्त्",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. RAMMALIYA",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJAJ200501032270",
@@ -20648,14 +25238,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "823669796107",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Chnaibhch। Jnyanda।tp",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1908",
       "name": "ैभ्।डठभ्न छ।ज्भ्",
       "gender": "पुरुष",
       "dob": "1981-08-01",
-      "post": "ज्म्।ब्भ्म्त्",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. RAMMALIYA",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJAJ200508005261",
@@ -20668,14 +25263,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "298092787648",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aibh।dathabhn Chha।jbh",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1909",
       "name": "पैभ्ट।त ब्भ्।छक ज्ञव्स्प्",
       "gender": "पुरुष",
       "dob": "1984-09-15",
-      "post": "ज्म्।ब्भ्म्त्",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. RAMMALIYA",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJAJ201801023675",
@@ -20688,14 +25288,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "991040193048",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Paibhta।t Bbh।chhak Jnyavsp",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1910",
       "name": "बुधराज कुम्हार",
       "gender": "पुरुष",
       "dob": "1972-01-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. RAMMALIYA",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJAJ199301001571",
@@ -20708,14 +25313,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "690723092831",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Budharaj Kumhar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1911",
       "name": "सहदेव रेगर",
       "gender": "पुरुष",
       "dob": "1970-06-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. RAMMALIYA",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJAJ199101001256",
@@ -20728,14 +25338,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "376306597105",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sahadev Regar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1912",
       "name": "आनंद कुमार उदई",
       "gender": "पुरुष",
       "dob": "1986-12-06",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. RAMMALIYA",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJAJ200501022397",
@@ -20748,14 +25363,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "932712486903",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aannd Kumar Udaee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1913",
       "name": "त्।डज्ञ।त्।छ ठ।प्तॅ।",
       "gender": "पुरुष",
       "dob": "1972-07-01",
-      "post": "ज्म्।ब्भ्म्त्",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. RAMMALIYA",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJAJ199601028479",
@@ -20768,14 +25388,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "233512755506",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "T।dajnya।t।chh Tha।ptaॅ।",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1914",
       "name": "च्त्।क्भ्।छ क्भ्।ज्ञम्त्",
       "gender": "पुरुष",
       "dob": "1995-04-10",
-      "post": "ज्म्।ब्भ्म्त्",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. RAMMALIYA",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJAJ202301031158",
@@ -20788,14 +25413,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "706171336469",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Cht।kbh।chh Kbh।jnyamt",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1915",
       "name": "व्ड च्त्।ज्ञ।ैभ ब्भ्व्न्भ्।छ",
       "gender": "पुरुष",
       "dob": "1989-10-08",
-      "post": "ैम्छप्व्त ।ैैपैज्।छज्",
+      "post": "वरिष्ठ सहायक (UDC)",
       "school_name": "रा.उ.मा.वि. RAMMALIYA",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJAJ201701040080",
@@ -20808,7 +25438,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "54275203966",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vd Cht।jnya।aibh Bbhvnbh।chh",
+      "post_en": "Senior Assistant (UDC / L-8)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1916",
@@ -20828,7 +25463,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "827814257169",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Prem Chnd",
+      "post_en": "Panchayat Assistant",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1917",
@@ -20848,7 +25488,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "265267904564",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vimala Devee",
+      "post_en": "Panchayat Assistant",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1918",
@@ -20868,14 +25513,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "844574537209",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Raghunath Choudhary",
+      "post_en": "School Assistant",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1919",
       "name": "श्रंहकपेी बीवनकींतल",
       "gender": "पुरुष",
       "dob": "01-10-1967",
-      "post": "जमंबीमत",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. रघुनाथगढ़",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "rjaj2012010338137",
@@ -20888,14 +25538,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "250023314445",
       "remarks": "च्भ्;ठस्प्छक्द्ध",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shrnhakapeee Beevanakeental",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1920",
       "name": "ललित किशोर शर्मा",
       "gender": "पुरुष",
       "dob": "05-07-1991",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.उ.प्रा.वि. रघुनाथगढ़",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJBN201303038392",
@@ -20908,14 +25563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "252549443040",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Lalit Kishor Sharma",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1921",
       "name": "त्।छश्र।छ।ै।प्छ",
       "gender": "पुरुष",
       "dob": "15-06-1989",
-      "post": "जमंबीमत",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. रघुनाथगढ़",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJAJ201901020359",
@@ -20928,14 +25588,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "629561290964",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "T।chhashra।chha।ai।pchh",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1922",
       "name": "ै।छज्वैभ ज्ञन्ड।त ळन्त्श्र।त्",
       "gender": "पुरुष",
       "dob": "19-04-1998",
-      "post": "ज्मंबीमत",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. रघुनाथगढ़",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJJO201925018340",
@@ -20948,14 +25613,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "205788327162",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ai।chhajvaibh Jnyanda।t ळntshra।t",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1923",
       "name": "च्त्।क्भ्।छ ब्भ्व्न्क्भ्।त्ल्",
       "gender": "पुरुष",
       "dob": "24-11-1992",
-      "post": "च्ज्प्",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.प्रा.वि. रघुनाथगढ़",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJAJ201901034220",
@@ -20968,14 +25638,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "713213178010",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Cht।kbh।chh Bbhvnkbh।tl",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1924",
       "name": "शांति लाल साधु",
       "gender": "पुरुष",
       "dob": "07-08-1999",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. रघुनाथगढ़",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "SHANTI.LAL.SADHU1",
@@ -20988,14 +25663,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "218155167719",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shanti Lal Sadhu",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1925",
       "name": "हेमराज दरोगा",
       "gender": "पुरुष",
       "dob": "15-10-1998",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. रघुनाथगढ़",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "HEMRAJ.DAROGA1",
@@ -21008,14 +25688,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "512478699003",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Hemaraj Daroga",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1926",
       "name": "भ्नै।प्छ डव्भ्।डड।कैप्च्।प्",
       "gender": "पुरुष",
       "dob": "19-12-1990",
-      "post": "जमंबीमत",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. रघुनाथगढ़",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "HUSAIN.MOHAMMAD.sipa",
@@ -21028,14 +25713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "342806437446",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhnai।pchh Davbh।dada।kaipch।p",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1927",
       "name": "रोहित मालाकार",
       "gender": "पुरुष",
       "dob": "09-10-1999",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. रघुनाथगढ़",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "ROHIT.Malakar1",
@@ -21048,14 +25738,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "348699993140",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rohit Malakar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221785",
+      "school_code": "221785",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)"
     },
     {
       "staff_id": "STF1928",
       "name": "ैन्छप्ज्। ल्।क्।ट",
       "gender": "पुरुष",
       "dob": "1991-08-08",
-      "post": "ज्म्।ब्भ्म्त स्म्टम्स्.1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.प्रा.वि. पिलोदा",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJAJ201501006449",
@@ -21068,14 +25763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "334379289438",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ainchhapj। L।k।t",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1929",
       "name": "अनिल कुमार जांगिड",
       "gender": "पुरुष",
       "dob": "1992-10-11",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. पिलोदा",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "ANIL.KUMAR.JANGID2",
@@ -21088,14 +25788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "507667360875",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Anil Kumar Jangid",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1930",
       "name": "कविता कुमारी मीणा",
       "gender": "पुरुष",
       "dob": "1992-06-05",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. पिलोदा",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "KAVITA.KUMARI.MEEN18",
@@ -21108,7 +25813,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "549839685640",
       "remarks": "छ।",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kavita Kumaree Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1931",
@@ -21128,7 +25838,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "446170212785",
       "remarks": "",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Kunj Biharee Sharma",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1932",
@@ -21148,7 +25863,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "229173930250",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Sanjay Kumar",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1933",
@@ -21168,14 +25888,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "216177961731",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Ekata Sharma",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1934",
       "name": "श्री धर्मेन्द्र सिंह राठौड़",
       "gender": "पुरुष",
       "dob": "07.09.1973",
-      "post": "व0अ0",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. राताकोट",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ199701000869",
@@ -21188,14 +25913,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "339837331070",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Dharmendr Sinh Rathauड़",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1935",
       "name": "श्री अदिल अहमद",
       "gender": "महिला",
       "dob": "16.08.1999",
-      "post": "व0अ0",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. राताकोट",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "ADIL.AHAMAD3",
@@ -21208,14 +25938,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "606470092638",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Adil Ahamad",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1936",
       "name": "श्रीमती बीना कुमारी मीणा",
       "gender": "पुरुष",
       "dob": "01.07.1984",
-      "post": "व0अ0",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. राताकोट",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "BEENA.KUMARI.MEENA3",
@@ -21228,14 +25963,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "762912028729",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Beena Kumaree Meena",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1937",
       "name": "श्री बालमुकुन्द जोशी",
       "gender": "पुरुष",
       "dob": "01.11.1969",
-      "post": "अध्या0 ले-2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.मा.वि. राताकोट",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ199206002975",
@@ -21248,14 +25988,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "773497330017",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Balamukund Joshi",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1938",
       "name": "श्री मनोज कुमार मीना",
       "gender": "पुरुष",
       "dob": "10.07.1999",
-      "post": "अध्या0 ले-2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.मा.वि. राताकोट",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "MANOJ.KUMAR.MEENA",
@@ -21268,14 +26013,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "846781182585",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Manoj Kumar Meena",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1939",
       "name": "श्री सत्यनारायण सोलंकी",
       "gender": "पुरुष",
       "dob": "01.06.1969",
-      "post": "अध्या0 ले-1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.मा.वि. राताकोट",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ199301001577",
@@ -21288,14 +26038,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "788489463063",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Satyanarayan Solnkee",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1940",
       "name": "श्री सावित्री कुमारी",
       "gender": "महिला",
       "dob": "16.12.1988",
-      "post": "अध्या0 ले-1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.मा.वि. राताकोट",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ201301032570",
@@ -21308,14 +26063,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "545180935185",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Savitree Kumaree",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1941",
       "name": "श्री हरीश कुमार वैष्णव",
       "gender": "पुरुष",
       "dob": "08.07.1996",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. राताकोट",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "HARISH.KUMAR.VAISHN2",
@@ -21328,14 +26088,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "338411164917",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Hareesh Kumar Vaishnav",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1942",
       "name": "श्री अशोक कुमार जाट",
       "gender": "पुरुष",
       "dob": "27.07.1997",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. राताकोट",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "ASHOK.KUMAR.JAT5",
@@ -21348,14 +26113,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "649821330352",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Ashok Kumar Jat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1943",
       "name": "श्री लखन वैष्णव",
       "gender": "पुरुष",
       "dob": "22.06.2000",
-      "post": "अध्या0 ले-1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.मा.वि. राताकोट",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "LAKHAN.VAISHNAV2",
@@ -21368,14 +26138,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "724689315559",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Lakhan Vaishnav",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1944",
       "name": "श्री शिवांश कुमार बैरागी",
       "gender": "पुरुष",
       "dob": "14.11.1994",
-      "post": "अध्या0 ले-1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.मा.वि. राताकोट",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "SHIVANSH.KUMAR.BAIRA",
@@ -21388,14 +26163,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "892885031066",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Shivansh Kumar Bairagee",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1945",
       "name": "श्री राजू लाल नायक",
       "gender": "पुरुष",
       "dob": "05.05.1999",
-      "post": "अध्या0 ले-1",
+      "post": "अध्यापक लेवल-1",
       "school_name": "रा.उ.मा.वि. राताकोट",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RAJU.LAL.NAYAK1",
@@ -21408,14 +26188,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "514750908555",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Rajoo Lal Nayak",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1946",
       "name": "श्रीमती शमीम बानो",
       "gender": "महिला",
       "dob": "01.07.1969",
-      "post": "शा0शि0",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. राताकोट",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ199001001664",
@@ -21428,14 +26213,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "960327743078",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Shameem Bano",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1947",
       "name": "श्री सुनील कुमार बारेसा",
       "gender": "पुरुष",
       "dob": "10.06.1981",
-      "post": "व0स0",
+      "post": "वरिष्ठ सहायक (UDC)",
       "school_name": "रा.उ.मा.वि. राताकोट",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ201301016071",
@@ -21448,14 +26238,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "955763381555",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Sunil Kumar Baresa",
+      "post_en": "Senior Assistant (UDC / L-8)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1948",
       "name": "श्रीमती सुशीला चौधरी",
       "gender": "महिला",
       "dob": "04.07.1997",
-      "post": "क0स0",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "रा.उ.मा.वि. राताकोट",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ202001014848",
@@ -21468,14 +26263,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "803440662178",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Susheela Choudhary",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1949",
       "name": "श्री गुलशन सोनवार",
       "gender": "पुरुष",
       "dob": "15.12.1996",
-      "post": "बेसिक कम्प्यूटर अनुदेशक",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
       "school_name": "रा.उ.मा.वि. राताकोट",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "15GULSHANSONWAR",
@@ -21488,7 +26288,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "422336545554",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Gulashan Sonavar",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1950",
@@ -21508,7 +26313,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "658946178598",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shreematee Aroona Sharma",
+      "post_en": "Panchayat Teacher",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1951",
@@ -21528,7 +26338,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "532821075229",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Hnsaraj Lalariya",
+      "post_en": "Panchayat Assistant",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1952",
@@ -21548,7 +26363,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "885995019553",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shree Bhnvar Lal",
+      "post_en": "Panchayat Teacher",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1953",
@@ -21568,14 +26388,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": ",890376899993",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Yogeshvaree Sharma",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1954",
       "name": "गुरु चरन",
       "gender": "पुरुष",
       "dob": "1970-07-05",
-      "post": "व.अध्यापक",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि.झीपिया",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJTO200536019182",
@@ -21588,14 +26413,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": ",738550807213",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Guru Charan",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1955",
       "name": "आरती खेनीवाल",
       "gender": "महिला",
       "dob": "1991-08-09",
-      "post": "व.अध्यापक",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि.झीपिया",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ201801020754",
@@ -21608,14 +26438,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": ",950157547578",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aaratee Kheneeval",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1956",
       "name": "महेन्द्र कुमार शर्मा",
       "gender": "पुरुष",
       "dob": "1988-06-24",
-      "post": "व.अध्यापक",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि.झीपिया",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJKK202460002181",
@@ -21628,14 +26463,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": ",936497586553",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mahendra Kumar Sharma",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1957",
       "name": "अलका माथुर",
       "gender": "महिला",
       "dob": "1968-02-03",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.उ.मा.वि.झीपिया",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ199101012921",
@@ -21648,14 +26488,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": ",226915590173",
       "remarks": "छव्",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Alaka Mathur",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1958",
       "name": "हिमांशु गुर्जर",
       "gender": "महिला",
       "dob": "1975-09-10",
-      "post": "अध्यापक L=2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.मा.वि.झीपिया",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ200501032431",
@@ -21668,14 +26513,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": ",705240325631",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Himanshu Gurjar",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1959",
       "name": "मधुसुदन पूरी गोस्वामी",
       "gender": "पुरुष",
       "dob": "1968-07-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि.झीपिया",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ199506001123",
@@ -21688,14 +26538,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": ",648773677283",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Madhusudan Pooree Gosvamee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1960",
       "name": "अविनास प्रसाद वैष्णव",
       "gender": "पुरुष",
       "dob": "1970-10-17",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि.झीपिया",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ199601002313",
@@ -21708,14 +26563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": ",585530990575",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Avinas Prasad Vaishnav",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1961",
       "name": "दिनेश कुमार पंवार",
       "gender": "पुरुष",
       "dob": "1975-09-22",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि.झीपिया",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ201601013989",
@@ -21728,7 +26588,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": ",549675083581",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dinesh Kumar Panwar",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221775",
+      "school_code": "221775",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)"
     },
     {
       "staff_id": "STF1962",
@@ -21748,7 +26613,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "879928819545",
       "remarks": "",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Seema Sharma",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1963",
@@ -21768,7 +26638,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "250862055637",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shanti Lal Choudhary",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1964",
@@ -21788,7 +26663,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "710367315563",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shimala",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1965",
@@ -21808,7 +26688,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "259682772096",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jagannath Lal Jat",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1966",
@@ -21828,7 +26713,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "912316433215",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Prabhulal Bheel",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1967",
@@ -21848,7 +26738,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "696154738371",
       "remarks": "भ्।छक्प्ब्।डच्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Chandrakanta Sharma",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1968",
@@ -21868,7 +26763,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "524610495985",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Amit Kumar",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1969",
@@ -21888,7 +26788,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "388781663542",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mana Lal Mali",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1970",
@@ -21908,7 +26813,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "888123679910",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vibha Mishra",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1971",
@@ -21928,14 +26838,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "836360643572",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Gaurav Migalanee",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1972",
       "name": "आशीष असवाल",
       "gender": "पुरुष",
       "dob": "1995-08-14",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय सिंगावल",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "ashish.aswal1",
@@ -21948,14 +26863,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "492998073142",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aasheesh Asaval",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1973",
       "name": "ललित किशोर पारीक",
       "gender": "पुरुष",
       "dob": "1971-12-28",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय सिंगावल",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJAJ199601004513",
@@ -21968,14 +26888,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "661784126020",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Lalit Kishor Pareek",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1974",
       "name": "नयन राठौड",
       "gender": "महिला",
       "dob": "1966-08-11",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय सिंगावल",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJAJ199301004974",
@@ -21988,14 +26913,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "513129080382",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Nayan Rathaud",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1975",
       "name": "मंजू देवी",
       "gender": "महिला",
       "dob": "1974-01-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय सिंगावल",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJAJ199601002576",
@@ -22008,14 +26938,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "555389602092",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Manju Devee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1976",
       "name": "रामेश्वर लाल डांगा",
       "gender": "पुरुष",
       "dob": "1976-07-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय सिंगावल",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJAJ200501018847",
@@ -22028,14 +26963,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "494689359230",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rameshvar Lal Danga",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1977",
       "name": "मोहम्मद  आरीफ मंसूरी",
       "gender": "पुरुष",
       "dob": "1970-02-03",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय सिंगावल",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJAJ199101012453",
@@ -22048,14 +26988,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "359641773695",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mohammad Aareeph Mnsooree",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1978",
       "name": "धर्मीचन्द माली",
       "gender": "पुरुष",
       "dob": "1976-06-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय सिंगावल",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJBM199905000788",
@@ -22068,14 +27013,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "309398781433",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dharmeechand Mali",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1979",
       "name": "पुष्पकान्त पारीक",
       "gender": "पुरुष",
       "dob": "1979-02-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय सिंगावल",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJAJ200701012905",
@@ -22088,14 +27038,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "694990623614",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pushpakant Pareek",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1980",
       "name": "राजूलाल रेबारी",
       "gender": "पुरुष",
       "dob": "1994-09-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय सिंगावल",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "raju.lal.rebari1",
@@ -22108,14 +27063,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "444408602119",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajoolal Rebaree",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1981",
       "name": "बबीता कंवर राठौड",
       "gender": "महिला",
       "dob": "1985-09-16",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय सिंगावल",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "babita.kamwar.shekha",
@@ -22128,14 +27088,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "759275633437",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Babeeta Knvar Rathaud",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1982",
       "name": "लोकेन्द्र सिंह चैहान",
       "gender": "पुरुष",
       "dob": "1993-09-27",
-      "post": "कनिष्ठ सहायक",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय सिंगावल",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJAJ201501009337",
@@ -22148,14 +27113,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "660801215502",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Lokendr Sinh Chaihan",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1983",
       "name": "अंकुर ओझा",
       "gender": "पुरुष",
       "dob": "1990-01-04",
-      "post": "बेसिक कम्प्यूटर अनुदेशक",
+      "post": "बेसिक कंप्यूटर अनुदेशक",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय सिंगावल",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "ankur.ojha1",
@@ -22168,14 +27138,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "894660357443",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ankur Ojha",
+      "post_en": "Basic Computer Instructor",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1984",
       "name": ",खुश्बू शर्मा",
       "gender": "महिला",
       "dob": "2002-05-20",
-      "post": "क0 सहा0",
+      "post": "कनिष्ठ सहायक (LDC)",
       "school_name": "राजकीय उच्च माध्यमिक विद्यालय सिंगावल",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "khushboo.sharma13",
@@ -22188,7 +27163,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "254801119073",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": ",khushboo Sharma",
+      "post_en": "Junior Assistant (LDC / L-5)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1985",
@@ -22208,7 +27188,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "591063378377",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhagavan Sinh",
+      "post_en": "Panchayat Assistant",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1986",
@@ -22228,7 +27213,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "416267372629",
       "remarks": "भ्।छक्प्ब्।डच्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Amit Rathaur",
+      "post_en": "Panchayat Assistant",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF1987",
@@ -22248,7 +27238,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "302446794956",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mohammad Rapheek",
+      "post_en": "Prabodhak",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1988",
@@ -22268,14 +27263,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "502169494034",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Madhu Sarva",
+      "post_en": "Prabodhak",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1989",
       "name": "मंजू चौधरी",
       "gender": "महिला",
       "dob": "1989-09-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. खटानों का खेडा",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJAJ201901006665",
@@ -22288,14 +27288,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "774791290326",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Manju Choudhary",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1990",
       "name": "वर्षा बैरवा",
       "gender": "महिला",
       "dob": "1995-06-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. खटानों का खेडा",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "varsha.bairwa2",
@@ -22308,14 +27313,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "257624080118",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Varsha Bairwa",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1991",
       "name": "मुकेश कुमार शर्मां",
       "gender": "पुरुष",
       "dob": "1990-10-14",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. खटानों का खेडा",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJAJ201801019955",
@@ -22328,14 +27338,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "611076367046",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mukesh Kumar Sharman",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1992",
       "name": "जयप्रकाश जांगिड",
       "gender": "पुरुष",
       "dob": "1995-11-09",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. खटानों का खेडा",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "jai.prakash.jangir1",
@@ -22348,14 +27363,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "895256971668",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Jayaprakash Jangid",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1993",
       "name": "भैरूलाल बलाई",
       "gender": "पुरुष",
       "dob": "1991-03-15",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. खटानों का खेडा",
       "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "bheru.lal.balai4",
@@ -22368,14 +27388,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "811976781086",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bhairoolal Balaee",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221763",
+      "school_code": "221763",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)"
     },
     {
       "staff_id": "STF1994",
       "name": "मुमताज अली खान",
       "gender": "पुरुष",
       "dob": "1973-05-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. मथानिया",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ199501001476",
@@ -22388,14 +27413,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "886539070866",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mumataj Alee Khan",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1995",
       "name": "मीनाक्षी माली",
       "gender": "महिला",
       "dob": "1997-04-02",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. मथानिया",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ201701026541",
@@ -22408,14 +27438,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "671312156565",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Meenakshee Mali",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221772",
+      "school_code": "221772",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)"
     },
     {
       "staff_id": "STF1996",
       "name": "पिंकी रेगर",
       "gender": "महिला",
       "dob": "1990-10-18",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. गूजर माली ढाणी",
       "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ201701016150",
@@ -22428,14 +27463,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "532297584301",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pinkee Regar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1997",
       "name": "पूजा सिसोदिया",
       "gender": "महिला",
       "dob": "1990-01-13",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. गूजर माली ढाणी",
       "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJJL201721033714",
@@ -22448,14 +27488,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "917730100507",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pooja Sisodiya",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF1998",
       "name": "रघुवीर जांगिड",
       "gender": "पुरुष",
       "dob": "1977-06-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. माताजी का खेडा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJBW200708003591",
@@ -22468,14 +27513,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "381981978666",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Raghuveer Jangid",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF1999",
       "name": "गीता कुमारी मीणा",
       "gender": "महिला",
       "dob": "1989-01-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. माताजी का खेडा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201701016745",
@@ -22488,14 +27538,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "493174937129",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Geeta Kumaree Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF2000",
       "name": "नीतू मीणा",
       "gender": "महिला",
       "dob": "1992-10-08",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. कुम्हार मो0 सिंगावल",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJAJ201701017331",
@@ -22508,14 +27563,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "369869980215",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Neetoo Meena",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF2001",
       "name": "सरोज माली",
       "gender": "महिला",
       "dob": "1996-07-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. कुम्हार मो0 सिंगावल",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "saroj..mali",
@@ -22528,7 +27588,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "633933565617",
       "remarks": "",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Saroj Mali",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221781",
+      "school_code": "221781",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)"
     },
     {
       "staff_id": "STF2002",
@@ -22548,7 +27613,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "786681240483",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Naresh Pareek",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF2003",
@@ -22568,14 +27638,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "300426486975",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Maina Kayat",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF2004",
       "name": "उम्मेद सिंह देवड़ा",
       "gender": "पुरुष",
       "dob": "1989-03-29",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. तेलारा",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "RJAJ201201036789",
@@ -22588,7 +27663,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "999421954432",
       "remarks": "ठस्व चंतज 259 ज्मसंतंए डेंनकं",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ummed Sinh Devaड़a",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF2005",
@@ -22608,14 +27688,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "790519179100",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dayaram",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF2006",
       "name": "सुरेन्द्र कुमार",
       "gender": "पुरुष",
       "dob": "1990-07-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. तेलारा",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "RJAJ201801053593",
@@ -22628,7 +27713,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "388650232605",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Surendra Kumar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF2007",
@@ -22648,7 +27738,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "5352 8655 0330",
       "remarks": "ड।ज्म्त्छप्ज्ल स्म्।टम्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mona Jangiड़",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF2008",
@@ -22668,14 +27763,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "6165 4267 5518",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Karishma Baira",
+      "post_en": "Teacher Level-1 (L-10)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF2009",
       "name": "भारत भूषण पंवार",
       "gender": "पुरुष",
       "dob": "1986-10-25",
-      "post": "शारीरिक शिक्षक",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.प्रा.वि. तेलारा",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "RJAJ202001000568",
@@ -22688,14 +27788,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "659417053169",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Bharat Bhooshan Panwar",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221765",
+      "school_code": "221765",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)"
     },
     {
       "staff_id": "STF2010",
       "name": "ैन्डप्ज्त्। ज्ञन्ड।त्प च्भ्न्सॅ।त्प्",
       "gender": "महिला",
       "dob": "20/07/1976",
-      "post": "प्रधानाचार्य / संस्था प्रधान",
+      "post": "प्रधानाचार्य",
       "school_name": "रा.उ.मा.वि. घाना",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJJP200318004724",
@@ -22708,7 +27813,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "950491271686",
       "remarks": "छव्",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aindapjt। Jnyanda।tp Chbhnsaॅ।tp",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2011",
@@ -22728,7 +27838,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "954305297086",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vinod Pooree",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2012",
@@ -22748,14 +27863,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "856293939144",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Satyendr Sinh",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2013",
       "name": "श्याम सिंह शेखावत",
       "gender": "पुरुष",
       "dob": "1990-02-05",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. घाना",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ20180124218",
@@ -22768,14 +27888,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "723275388020",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Shyam Sinh Shekhavat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2014",
       "name": "महावीर प्रसाद जांगिड",
       "gender": "पुरुष",
       "dob": "1971-01-06",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. घाना",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ199301001847",
@@ -22788,14 +27913,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "568125931060",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mahaveer Prasad Jangid",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2015",
       "name": "प्रशांत मल्होत्रा",
       "gender": "पुरुष",
       "dob": "17/07/1999",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. घाना",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ202301047946",
@@ -22808,14 +27938,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "379977833116",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Prashant Malhotra",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2016",
       "name": "।ैभ्ट।छप ज्ञन्ड।त च्।ज्भ्।ज्ञ",
       "gender": "पुरुष",
       "dob": "1979-01-06",
-      "post": "च्ज्प्",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. घाना",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ199501021707",
@@ -22828,14 +27963,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "504312061089",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "।aibhta।chhap Jnyanda।t Ch।jbh।jny",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2017",
       "name": "ड।भ्मैभ ज्ञन्ड।त डम्म्छ।",
       "gender": "पुरुष",
       "dob": "1982-02-17",
-      "post": "भ्म्।क्ड।ैज्म्त्",
+      "post": "प्रधानाचार्य / संस्था प्रधान",
       "school_name": "रा.उ.प्रा.वि. चावण्डिया",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ202001031830",
@@ -22848,14 +27988,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "800985042248",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Da।bhmaibh Jnyanda।t Dammchha।",
+      "post_en": "Headmaster",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF2018",
       "name": "छम्म्त्।श्रैभ्।त्ड।",
       "gender": "पुरुष",
       "dob": "1987-08-25",
-      "post": "ज्म्।ब्भ्म्त स्2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.प्रा.वि. चावण्डिया",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJSK201733039480",
@@ -22868,14 +28013,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "686398888152",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Chhammt।shraibh।tda।",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF2019",
       "name": "अनवर हुसेन अंसारी",
       "gender": "पुरुष",
       "dob": "1973-08-03",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.प्रा.वि. चावण्डिया",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ200401004040",
@@ -22888,14 +28038,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "390156025782",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Anavar Husen Ansaree",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF2020",
       "name": "ैभ्।भ्।छ।",
       "gender": "महिला",
       "dob": "1988-01-19",
-      "post": "ज्म्।ब्भ्म्त स्2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.प्रा.वि. चावण्डिया",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ 201201036388",
@@ -22908,7 +28063,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "617425428210",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aibh।bh।chha।",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF2021",
@@ -22928,14 +28088,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "728959311548",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Chndrabhan Sinh Rathod",
+      "post_en": "Prabodhak",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF2022",
       "name": "ैन्ड।छ क्म्छॅ।स्",
       "gender": "महिला",
       "dob": "1989-12-10",
-      "post": "ज्म्।ब्भ्म्त स्2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.प्रा.वि. चावण्डिया",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201801028966",
@@ -22948,14 +28113,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "623971037872",
       "remarks": "ब्ब्स्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Ainda।chh Kmchhaॅ।s",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF2023",
       "name": "टपैभ्छन ळन्त्श्र।त्",
       "gender": "पुरुष",
       "dob": "2000-02-03",
-      "post": "ज्म्।ब्भ्म्त्स1",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.प्रा.वि. चावण्डिया",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ2022010117",
@@ -22968,14 +28138,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "529298452263",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Tapaibhchhan ळntshra।t",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF2024",
       "name": "च्त्।टम्म्छ ज्ञन्ड।तैभ्।त्ड।",
       "gender": "पुरुष",
       "dob": "1980-01-09",
-      "post": "ज्म्।ब्भ्म्त स्2",
+      "post": "अध्यापक लेवल-2",
       "school_name": "रा.उ.प्रा.वि. चावण्डिया",
       "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201201038029",
@@ -22988,7 +28163,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "848633408152",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Cht।tammchh Jnyanda।taibh।tda।",
+      "post_en": "Teacher Level-2 (L-10)",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF2025",
@@ -23008,7 +28188,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "995895417960",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Aintmchhakt।aipchhaळbh T।jbhvtm",
+      "post_en": "चणेणेीपोीां",
+      "shala_darpan_code": "221783",
+      "school_code": "221783",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)"
     },
     {
       "staff_id": "STF2026",
@@ -23028,7 +28213,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "490890485699",
       "remarks": "विकलांग",
       "is_sanstha_pradhan": true,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Phayaj Mohammad",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2027",
@@ -23048,7 +28238,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "744628349573",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Preeti Bnsal",
+      "post_en": "Principal (L-16)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2028",
@@ -23068,7 +28263,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "469414025731",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mohammad Taiyab Khan",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2029",
@@ -23088,7 +28288,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "954309120477",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Rajesh Kumar",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2030",
@@ -23108,14 +28313,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "611460933250",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mukesh Kumar",
+      "post_en": "School Lecturer (L-12)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2031",
       "name": "सुनिता महावर",
       "gender": "महिला",
       "dob": "1978-04-04",
-      "post": "वरिष्ट अध्यापिका",
+      "post": "वरिष्ठ अध्यापक",
       "school_name": "रा.उ.मा.वि. सोबरी",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ200501018292",
@@ -23128,14 +28338,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "796659584906",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sunita Mahavar",
+      "post_en": "Senior Teacher (Gr-II / L-11)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2032",
       "name": "दिनेश कुमार स्वर्णकार",
       "gender": "पुरुष",
       "dob": "1976-07-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. सोबरी",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ200501035687",
@@ -23148,14 +28363,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "336108273037",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Dinesh Kumar Svarnakar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2033",
       "name": "करण  चौधरी",
       "gender": "पुरुष",
       "dob": "1998-07-21",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. सोबरी",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ202301048514",
@@ -23168,14 +28388,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "555916050628",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Karan Choudhary",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2034",
       "name": "संतोष देवी सोगन",
       "gender": "महिला",
       "dob": "1979-07-13",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. सोबरी",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ201201043410",
@@ -23188,14 +28413,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "784154715135",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Santosh Devee Sogan",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2035",
       "name": "गोपाल सिंह गुर्जर",
       "gender": "पुरुष",
       "dob": "1969-05-27",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. सोबरी",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ199101008886",
@@ -23208,14 +28438,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "687607173874",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Gopal Sinh Gurjar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2036",
       "name": "पार्वती मालावत",
       "gender": "महिला",
       "dob": "1978-05-28",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. सोबरी",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ200501018289",
@@ -23228,14 +28463,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "262513075182",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Parvatee Malavat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2037",
       "name": "मुमताज बानो",
       "gender": "महिला",
       "dob": "1972-07-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. सोबरी",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ199601001944",
@@ -23248,14 +28488,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "390821953114",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Mumataj Bano",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2038",
       "name": "विजय आलोरिया",
       "gender": "पुरुष",
       "dob": "1993-02-28",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. सोबरी",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ201701026292",
@@ -23268,14 +28513,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "896085307990",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Vijay Aaloriya",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2039",
       "name": "सेठ मांहम्मद",
       "gender": "पुरुष",
       "dob": "1976-06-15",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.उ.मा.वि. सोबरी",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ199901008392",
@@ -23288,14 +28538,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "667784369313",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Seth Manhammad",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2040",
       "name": "सुरेश कुमार मीणा",
       "gender": "पुरुष",
       "dob": "1978-07-01",
-      "post": "पीटीआइ",
+      "post": "शारीरिक शिक्षक (PTI)",
       "school_name": "रा.उ.मा.वि. सोबरी",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ201501014893",
@@ -23308,7 +28563,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "603037672956",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Suresh Kumar Meena",
+      "post_en": "Physical Education Teacher (PTI)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2041",
@@ -23328,7 +28588,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "368233763712",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Hnsaraj Gurjar",
+      "post_en": "School Assistant",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2042",
@@ -23348,7 +28613,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "505105561836",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Lalee Prajapatee",
+      "post_en": "School Assistant",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2043",
@@ -23368,14 +28638,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "894734405658",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Pachulal Bairwa",
+      "post_en": "Panchayat Assistant",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2044",
       "name": "कमलेश जाट",
       "gender": "महिला",
       "dob": "1990-05-08",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. कुम्हारिया खेड़ा",
       "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ201901001844",
@@ -23388,14 +28663,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "867381017433",
       "remarks": "ड।ज्म्त्छप्ज्ल स्म्।टम्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kamalesh Jat",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221777",
+      "school_code": "221777",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)"
     },
     {
       "staff_id": "STF2045",
       "name": "अनिल कुमार",
       "gender": "पुरुष",
       "dob": "1986-06-01",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "रा.प्रा.वि. प्रतापपुरा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ201501006466",
@@ -23408,7 +28688,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "848585740614",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Anil Kumar",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2046",
@@ -23428,14 +28713,19 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "955341064034",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Kamala Devee Bhanbee",
+      "post_en": "Prabodhak",
+      "shala_darpan_code": "221782",
+      "school_code": "221782",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)"
     },
     {
       "staff_id": "STF2047",
       "name": "गजराज बैरवा",
       "gender": "पुरुष",
       "dob": "15/07/1994",
-      "post": "अध्यापक",
+      "post": "अध्यापक (तृतीय श्रेणी)",
       "school_name": "राजकीय प्राथमिक विद्यालय गुजरो का झोपड़ा",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201901002117",
@@ -23448,7 +28738,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "682559955016",
       "remarks": "ठस्व्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Gajaraj Bairwa",
+      "post_en": "Teacher (Grade-III / L-10)",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     },
     {
       "staff_id": "STF2048",
@@ -23468,7 +28763,12 @@ const MASTER_CBEO_DATA = {
       "aadhaar": "484674605694",
       "remarks": "छव्",
       "is_sanstha_pradhan": false,
-      "status": "Active"
+      "status": "Active",
+      "name_en": "Sheela Sharma",
+      "post_en": "Prabodhak",
+      "shala_darpan_code": "221780",
+      "school_code": "221780",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)"
     }
   ],
   "total_staff_count": 1060,
@@ -24673,4 +29973,3 @@ const MASTER_CBEO_DATA = {
     }
   }
 };
-if (typeof module !== "undefined") { module.exports = MASTER_CBEO_DATA; }

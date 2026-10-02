@@ -11,13 +11,13 @@
   --primary-hover: #132742;
   --primary-light: #e8edf5;
   --secondary: #0284c7;
-  --accent: #d97706;
+  --accent: #1d4ed8;
   --success: #16a34a;
   --success-light: #dcfce7;
   --danger: #dc2626;
   --danger-light: #fee2e2;
-  --warning: #f59e0b;
-  --warning-light: #fef3c7;
+  --warning: #0369a1;
+  --warning-light: #e0f2fe;
   --neutral-50: #f8fafc;
   --neutral-100: #f1f5f9;
   --neutral-200: #e2e8f0;
@@ -262,12 +262,19 @@ body {
 }
 
 .btn-warning {
-  background: var(--warning);
-  color: #1e293b;
+  background: #1e40af;
+  color: #ffffff !important;
+  font-weight: 700;
+  border: 1px solid #1d4ed8;
 }
 .btn-warning:hover {
-  background: #d97706;
-  color: white;
+  background: #1e3a8a;
+  color: #ffffff !important;
+  border-color: #172554;
+}
+
+.text-warning {
+  color: #1e40af !important;
 }
 
 .btn-whatsapp {
@@ -428,7 +435,7 @@ body {
 .stat-card.blue .stat-icon-wrapper { background: #e0f2fe; color: #0284c7; }
 .stat-card.green .stat-icon-wrapper { background: var(--success-light); color: var(--success); }
 .stat-card.red .stat-icon-wrapper { background: var(--danger-light); color: var(--danger); }
-.stat-card.orange .stat-icon-wrapper { background: var(--warning-light); color: #d97706; }
+.stat-card.orange .stat-icon-wrapper { background: var(--warning-light); color: #0369a1; }
 .stat-card.purple .stat-icon-wrapper { background: #f3e8ff; color: #9333ea; }
 
 .stat-info h3 {
@@ -1217,9 +1224,10 @@ body {
 }
 
 .sp-status-badge.warning {
-  background: #f59e0b !important;
+  background: #0369a1 !important;
   color: #ffffff !important;
-  border: 1px solid #d97706 !important;
+  border: 1px solid #075985 !important;
+  font-weight: 800 !important;
 }
 
 /* Google Form Dedicated Full Page (अलग पेज) Mode */
@@ -2758,12 +2766,13 @@ input:checked + .switch-slider:before {
 }
 
 .sch-action-btn.pwd {
-  background: #fffbeb;
-  color: #b45309;
-  border-color: #fde68a;
+  background: #eff6ff;
+  color: #1e40af;
+  border-color: #bfdbfe;
+  font-weight: 700;
 }
 .sch-action-btn.pwd:hover {
-  background: #fef3c7;
+  background: #dbeafe;
 }
 
 .sch-action-btn.del {

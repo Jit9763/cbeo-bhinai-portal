@@ -229,7 +229,14 @@ function initMasterData() {
   const storedStaff = localStorage.getItem('cbeo_staff_data');
   if (storedStaff) {
     try {
-      STATE.staff = JSON.parse(storedStaff);
+      const parsed = JSON.parse(storedStaff);
+      // Auto-migrate if stored staff lacks bilingual fields or shala_darpan_code
+      if (!parsed || parsed.length === 0 || !parsed[0].name_en || !parsed[0].shala_darpan_code) {
+        STATE.staff = MASTER_CBEO_DATA.staff || [];
+        saveStaffToStorage();
+      } else {
+        STATE.staff = parsed;
+      }
     } catch (e) {
       STATE.staff = MASTER_CBEO_DATA.staff || [];
     }
@@ -817,8 +824,8 @@ function onQuickSelectUser() {
     usernameInput.value = 'admin_jitendra';
     passwordInput.value = '';
     if (hintBox) {
-      hintBox.innerHTML = '<i class="fas fa-shield-alt" style="color:#d97706"></i> <span><strong>सुरक्षा संकेत:</strong> एडमिन पासवर्ड गोपनीय है। कृपया अपना पासवर्ड मैन्युअली टाइप करें।</span>';
-      hintBox.style.background = '#fef3c7';
+      hintBox.innerHTML = '<i class="fas fa-shield-alt" style="color:#0369a1"></i> <span><strong>सुरक्षा संकेत:</strong> एडमिन पासवर्ड गोपनीय है। कृपया अपना पासवर्ड मैन्युअली टाइप करें।</span>';
+      hintBox.style.background = '#eff6ff';
       hintBox.style.color = '#92400e';
     }
     return;
@@ -829,8 +836,8 @@ function onQuickSelectUser() {
     usernameInput.value = '8140';
     passwordInput.value = '';
     if (hintBox) {
-      hintBox.innerHTML = '<i class="fas fa-shield-alt" style="color:#d97706"></i> <span><strong>सुरक्षा संकेत:</strong> मुख्य ब्लॉक शिक्षा अधिकारी पासवर्ड गोपनीय है। कृपया पासवर्ड टाइप करें।</span>';
-      hintBox.style.background = '#fef3c7';
+      hintBox.innerHTML = '<i class="fas fa-shield-alt" style="color:#0369a1"></i> <span><strong>सुरक्षा संकेत:</strong> मुख्य ब्लॉक शिक्षा अधिकारी पासवर्ड गोपनीय है। कृपया पासवर्ड टाइप करें।</span>';
+      hintBox.style.background = '#eff6ff';
       hintBox.style.color = '#92400e';
     }
     return;
@@ -910,7 +917,7 @@ function onQuickSelectSchoolUnderPeeo() {
       hintText.innerHTML = `🔒 <strong>चयनित:</strong> ${selectedText} | <span style="color:#b45309; font-weight:bold">सुरक्षा कारणों से पासवर्ड परिवर्तित है। कृपया अपना नवीन पासवर्ड स्वयं दर्ज करें।</span>`;
     }
     if (hintBox) {
-      hintBox.innerHTML = `<i class="fas fa-shield-alt text-warning"></i> <span><strong>गोपनीयता सूचना:</strong> इस विद्यालय/PEEO का पासवर्ड सुरक्षा कारणों से परिवर्तित है। कृपया संस्था द्वारा निर्धारित <strong>नवीन पासवर्ड</strong> स्वयं दर्ज करें।</span>`;
+      hintBox.innerHTML = `<i class="fas fa-shield-alt text-primary"></i> <span><strong>गोपनीयता सूचना:</strong> इस विद्यालय/PEEO का पासवर्ड सुरक्षा कारणों से परिवर्तित है। कृपया संस्था द्वारा निर्धारित <strong>नवीन पासवर्ड</strong> स्वयं दर्ज करें।</span>`;
       hintBox.style.background = '#fffbeb';
       hintBox.style.color = '#92400e';
     }
@@ -1622,7 +1629,7 @@ function renderSamanParikshaPeeoView() {
 
     const catBadge = school.type === 'Government' 
       ? '<span style="background:#e0f2fe; color:#0369a1; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700">🏛️ राजकीय</span>'
-      : '<span style="background:#fef3c7; color:#b45309; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700">🏢 निजी</span>';
+      : '<span style="background:#e0f2fe; color:#0369a1; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700">🏢 निजी</span>';
 
     const statusBadge = isSubmitted
       ? `<span class="sp-status-badge success"><i class="fas fa-check-circle"></i> ✓ डेटा सबमिट पूर्ण (${sub.grand_total} पेपर)</span>`
@@ -1694,7 +1701,7 @@ function renderSamanParikshaPeeoView() {
         </div>
       </div>
       <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem">
-        <button class="btn ${isSubmitted ? 'btn-warning' : 'btn-primary'} btn-sm" onclick="openSamanParikshaForm('${school.shala_darpan_code}')" style="flex:1; font-weight:700">
+        <button class="btn ${isSubmitted ? 'btn-primary' : 'btn-primary'} btn-sm" onclick="openSamanParikshaForm('${school.shala_darpan_code}')" style="flex:1; font-weight:700">
           <i class="fas ${isSubmitted ? 'fa-edit' : 'fa-file-signature'}"></i> ${isSubmitted ? '✏️ प्रपत्र में संशोधन (Edit)' : '📝 Google Form प्रपत्र भरें'}
         </button>
         <a href="saman_form.html?code=${school.shala_darpan_code}" target="_blank" class="btn btn-outline-primary btn-sm" style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:700" title="नए पेज में खोलें (अलग टैब)">
@@ -1826,7 +1833,7 @@ function filterSamanParikshaTable() {
       <td>
         ${s.type === 'Government' 
           ? '<span style="background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:4px; font-size:0.75rem; font-weight:700">राजकीय</span>'
-          : '<span style="background:#fef3c7; color:#b45309; padding:2px 6px; border-radius:4px; font-size:0.75rem; font-weight:700">निजी</span>'}
+          : '<span style="background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:4px; font-size:0.75rem; font-weight:700">निजी</span>'}
       </td>
       <td>
         <a href="javascript:void(0)" onclick="openPeeoConsolidatedPdfPreview('${s.peeo_name}')" style="font-weight:700; color:#1e3a8a; text-decoration:none; display:inline-flex; align-items:center; gap:0.25rem" title="${s.peeo_name} की समेकित रिपोर्ट देखें व प्रिंट करें">
@@ -1850,7 +1857,7 @@ function filterSamanParikshaTable() {
       <td>
         ${isSub 
           ? `<span class="status-badge" style="background:#dcfce7; color:#15803d" title="${hasSig ? 'डिजिटल हस्ताक्षर सहित सबमिट' : 'सबमिट पूर्ण'}">सबमिट ${hasSig ? '🖋️' : ''}</span>`
-          : '<span class="status-badge" style="background:#fef3c7; color:#b45309">लम्बित</span>'}
+          : '<span class="status-badge" style="background:#e0f2fe; color:#0369a1">लम्बित</span>'}
       </td>
       <td>
         <div style="display:flex; gap:0.35rem; align-items:center">
@@ -2458,8 +2465,20 @@ function submitSamanParikshaForm(andPrint = false) {
   }
 }
 
-function openExamPdfPreview(schoolCode) {
+let activeExamPdfLanguage = 'hi';
+
+function switchPdfLanguage(lang) {
+  activeExamPdfLanguage = lang;
+  if (STATE.activeExamPreviewCode) {
+    openExamPdfPreview(STATE.activeExamPreviewCode, lang);
+  }
+}
+
+function openExamPdfPreview(schoolCode, lang = null) {
   STATE.activeExamPreviewCode = schoolCode;
+  if (lang) activeExamPdfLanguage = lang;
+  const isEn = (activeExamPdfLanguage === 'en');
+
   const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
   if (!school) {
     showToast('विद्यालय का विवरण नहीं मिला!', 'warning');
@@ -2479,9 +2498,9 @@ function openExamPdfPreview(schoolCode) {
       type: school.type,
       peeo_name: school.peeo_name,
       exam_code: school.exam_code || '---',
-      principal_name: school.principal_name || 'संस्था प्रधान',
+      principal_name: school.principal_name || (isEn ? 'Principal' : 'संस्था प्रधान'),
       principal_mobile: school.principal_mobile || '---',
-      incharge_name: school.incharge_name || 'परीक्षा प्रभारी',
+      incharge_name: school.incharge_name || (isEn ? 'Exam In-charge' : 'परीक्षा प्रभारी'),
       incharge_mobile: school.incharge_mobile || '---',
       c9_total: 0,
       c9_sanskrit: 0,
@@ -2525,64 +2544,94 @@ function openExamPdfPreview(schoolCode) {
   SAMAN_PARIKSHA_OPTIONAL_SUBJECTS.forEach(s => {
     const count = sub.c11_optional?.[s.key] || 0;
     if (count > 0) {
-      c11OptPills.push(`<span style="display:inline-block; margin:1px 2px; padding:1px 4px; background:#f1f5f9; border:1px solid #cbd5e1; border-radius:3px; font-size:0.72rem; line-height:1.2"><strong>${s.label.split('(')[0].trim()}:</strong> ${count}</span>`);
+      const label = isEn 
+        ? (s.label.includes('(') ? s.label.split('(')[1].replace(')', '').trim() : s.label)
+        : s.label.split('(')[0].trim();
+      c11OptPills.push(`<span style="display:inline-block; margin:1px 2px; padding:1px 4px; background:#f1f5f9; border:1px solid #cbd5e1; border-radius:3px; font-size:0.72rem; line-height:1.2"><strong>${label}:</strong> ${count}</span>`);
     }
   });
-  const c11OptPillsHtml = c11OptPills.length > 0 ? c11OptPills.join(' ') : '<span style="color:#94a3b8">- कोई ऐच्छिक विषय दर्ज नहीं -</span>';
+  const c11OptPillsHtml = c11OptPills.length > 0 ? c11OptPills.join(' ') : `<span style="color:#94a3b8">${isEn ? '- No Optional Subjects Enrolled -' : '- कोई ऐच्छिक विषय दर्ज नहीं -'}</span>`;
 
   const c12OptPills = [];
   SAMAN_PARIKSHA_OPTIONAL_SUBJECTS.forEach(s => {
     const count = sub.c12_optional?.[s.key] || 0;
     if (count > 0) {
-      c12OptPills.push(`<span style="display:inline-block; margin:1px 2px; padding:1px 4px; background:#f1f5f9; border:1px solid #cbd5e1; border-radius:3px; font-size:0.72rem; line-height:1.2"><strong>${s.label.split('(')[0].trim()}:</strong> ${count}</span>`);
+      const label = isEn 
+        ? (s.label.includes('(') ? s.label.split('(')[1].replace(')', '').trim() : s.label)
+        : s.label.split('(')[0].trim();
+      c12OptPills.push(`<span style="display:inline-block; margin:1px 2px; padding:1px 4px; background:#f1f5f9; border:1px solid #cbd5e1; border-radius:3px; font-size:0.72rem; line-height:1.2"><strong>${label}:</strong> ${count}</span>`);
     }
   });
-  const c12OptPillsHtml = c12OptPills.length > 0 ? c12OptPills.join(' ') : '<span style="color:#94a3b8">- कोई ऐच्छिक विषय दर्ज नहीं -</span>';
+  const c12OptPillsHtml = c12OptPills.length > 0 ? c12OptPills.join(' ') : `<span style="color:#94a3b8">${isEn ? '- No Optional Subjects Enrolled -' : '- कोई ऐच्छिक विषय दर्ज नहीं -'}</span>`;
 
+  const facultyMapEn = { 'arts': 'Arts', 'science': 'Science', 'commerce': 'Commerce', 'agri': 'Agriculture' };
   const c11FacNames = (sub.c11_faculties && sub.c11_faculties.length > 0) 
-    ? sub.c11_faculties.map(f => FACULTIES_CONFIG[f]?.name || f).join(', ') 
-    : 'सामान्य';
+    ? sub.c11_faculties.map(f => isEn ? (facultyMapEn[f] || f) : (FACULTIES_CONFIG[f]?.name || f)).join(', ') 
+    : (isEn ? 'General' : 'सामान्य');
   const c12FacNames = (sub.c12_faculties && sub.c12_faculties.length > 0) 
-    ? sub.c12_faculties.map(f => FACULTIES_CONFIG[f]?.name || f).join(', ') 
-    : 'सामान्य';
+    ? sub.c12_faculties.map(f => isEn ? (facultyMapEn[f] || f) : (FACULTIES_CONFIG[f]?.name || f)).join(', ') 
+    : (isEn ? 'General' : 'सामान्य');
+
+  const schoolDisplayName = isEn ? (school.school_name_en || school.school_name) : school.school_name;
 
   container.innerHTML = `
+    <!-- Language Toggle Toolbar (Excluded from Print/PDF) -->
+    <div class="no-print" style="display:flex; justify-content:space-between; align-items:center; background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:8px; padding:0.5rem 1rem; margin-bottom:0.75rem">
+      <div style="font-size:0.85rem; font-weight:700; color:#1e40af">
+        <i class="fas fa-language"></i> अधिकृत प्रपत्र भाषा (Proforma Language):
+      </div>
+      <div style="display:flex; gap:0.5rem">
+        <button type="button" class="btn ${!isEn ? 'btn-primary' : 'btn-outline-primary'} btn-sm" onclick="switchPdfLanguage('hi')" style="font-weight:700; border-radius:20px; padding:3px 14px">
+          🇮🇳 शुद्ध हिंदी प्रारूप (Official Hindi)
+        </button>
+        <button type="button" class="btn ${isEn ? 'btn-primary' : 'btn-outline-primary'} btn-sm" onclick="switchPdfLanguage('en')" style="font-weight:700; border-radius:20px; padding:3px 14px">
+          🌐 Official English Format
+        </button>
+      </div>
+    </div>
+
     <!-- Top Emblem & Departmental Header (Single Page A4 Landscape Layout) -->
     <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:2px; margin-bottom:4px">
-      <div style="font-size:0.80rem; font-weight:700; color:#000; letter-spacing:normal">राजस्थान सरकार | स्कूल शिक्षा विभाग</div>
+      <div style="font-size:0.80rem; font-weight:700; color:#000; letter-spacing:normal">
+        ${isEn ? 'GOVERNMENT OF RAJASTHAN | DEPARTMENT OF SCHOOL EDUCATION' : 'राजस्थान सरकार | स्कूल शिक्षा विभाग'}
+      </div>
       <div style="font-size:1.12rem; font-weight:900; color:#000; margin:1px 0">
-        कार्यालय संस्था प्रधान, ${school.school_name}
+        ${isEn ? `OFFICE OF THE PRINCIPAL, ${schoolDisplayName}` : `कार्यालय संस्था प्रधान, ${schoolDisplayName}`}
       </div>
       <div style="font-size:0.78rem; font-weight:700; color:#111; margin-bottom:1px">
-        ग्राम / परिक्षेत्र: ${school.peeo_name.replace('PEEO ', '')}, ब्लॉक-भिनाय, जिला-अजमेर (राज.) | शाला दर्पण / PSP कोड: ${school.shala_darpan_code}
+        ${isEn 
+          ? `Jurisdiction: ${school.peeo_name.replace('PEEO ', '')}, Block-Bhinai, District-Ajmer (Raj.) | Shala Darpan / PSP Code: ${school.shala_darpan_code}`
+          : `ग्राम / परिक्षेत्र: ${school.peeo_name.replace('PEEO ', '')}, ब्लॉक-भिनाय, जिला-अजमेर (राज.) | शाला दर्पण / PSP कोड: ${school.shala_darpan_code}`}
       </div>
       <div style="font-size:0.95rem; font-weight:800; color:#000; letter-spacing:normal">
-        जिला समान परीक्षा योजना (सत्र 2026-27)
+        ${isEn ? 'DISTRICT UNIFORM EXAMINATION SCHEME (SESSION 2026-27)' : 'जिला समान परीक्षा योजना (सत्र 2026-27)'}
       </div>
       <div style="font-size:0.80rem; font-weight:700; color:#222">
-        कक्षा 9 से 12 विद्यार्थी नामांकन एवं प्रश्न-पत्र मांग अधिकृत विवरण प्रपत्र
+        ${isEn 
+          ? 'Classes 9 to 12 Student Enrolment and Question Paper Demand Official Proforma'
+          : 'कक्षा 9 से 12 विद्यार्थी नामांकन एवं प्रश्न-पत्र मांग अधिकृत विवरण प्रपत्र'}
       </div>
     </div>
 
     <!-- School Meta Table (Laser Print-Friendly Clean Grid) -->
     <table style="width:100%; border-collapse:collapse; margin-bottom:4px; font-size:0.78rem; border:1.5px solid #000">
       <tr style="background:#f8fafc">
-        <td style="padding:2px 5px; border:1px solid #000; width:15%"><strong>विद्यालय का नाम:</strong></td>
-        <td style="padding:2px 5px; border:1px solid #000; font-weight:800; width:35%">${school.school_name}</td>
-        <td style="padding:2px 5px; border:1px solid #000; width:18%"><strong>शाला दर्पण / PSP कोड:</strong></td>
+        <td style="padding:2px 5px; border:1px solid #000; width:15%"><strong>${isEn ? 'School Name:' : 'विद्यालय का नाम:'}</strong></td>
+        <td style="padding:2px 5px; border:1px solid #000; font-weight:800; width:35%">${schoolDisplayName}</td>
+        <td style="padding:2px 5px; border:1px solid #000; width:18%"><strong>${isEn ? 'Shala Darpan / PSP Code:' : 'शाला दर्पण / PSP कोड:'}</strong></td>
         <td style="padding:2px 5px; border:1px solid #000; font-weight:800; width:32%">${school.shala_darpan_code} <span style="font-size:0.72rem; font-weight:normal">(${school.category} - ${school.type})</span></td>
       </tr>
       <tr>
-        <td style="padding:2px 5px; border:1px solid #000; background:#f8fafc"><strong>संबंधित PEEO:</strong></td>
+        <td style="padding:2px 5px; border:1px solid #000; background:#f8fafc"><strong>${isEn ? 'Nodal PEEO:' : 'संबंधित PEEO:'}</strong></td>
         <td style="padding:2px 5px; border:1px solid #000">${school.peeo_name}</td>
-        <td style="padding:2px 5px; border:1px solid #000; background:#f8fafc"><strong>स्कूल परीक्षा कोड:</strong></td>
+        <td style="padding:2px 5px; border:1px solid #000; background:#f8fafc"><strong>${isEn ? 'School Exam Code:' : 'स्कूल परीक्षा कोड:'}</strong></td>
         <td style="padding:2px 5px; border:1px solid #000; font-weight:900; font-size:0.92rem">${sub.exam_code}</td>
       </tr>
       <tr style="background:#f8fafc">
-        <td style="padding:2px 5px; border:1px solid #000"><strong>संस्था प्रधान:</strong></td>
-        <td style="padding:2px 5px; border:1px solid #000"><strong>${sub.principal_name}</strong> (मो. ${sub.principal_mobile})</td>
-        <td style="padding:2px 5px; border:1px solid #000"><strong>परीक्षा प्रभारी:</strong></td>
-        <td style="padding:2px 5px; border:1px solid #000"><strong>${sub.incharge_name}</strong> (मो. ${sub.incharge_mobile})</td>
+        <td style="padding:2px 5px; border:1px solid #000"><strong>${isEn ? 'Principal / Head:' : 'संस्था प्रधान:'}</strong></td>
+        <td style="padding:2px 5px; border:1px solid #000"><strong>${sub.principal_name}</strong> (${isEn ? 'Mob:' : 'मो.'} ${sub.principal_mobile})</td>
+        <td style="padding:2px 5px; border:1px solid #000"><strong>${isEn ? 'Exam In-charge:' : 'परीक्षा प्रभारी:'}</strong></td>
+        <td style="padding:2px 5px; border:1px solid #000"><strong>${sub.incharge_name}</strong> (${isEn ? 'Mob:' : 'मो.'} ${sub.incharge_mobile})</td>
       </tr>
     </table>
 
@@ -2590,29 +2639,33 @@ function openExamPdfPreview(schoolCode) {
     <table class="exam-excel-table" style="width:100%; border-collapse:collapse; border:2px solid #000; text-align:center; font-size:0.77rem; margin-bottom:4px">
       <thead>
         <tr style="background:#f1f5f9; color:#000; font-weight:800">
-          <th style="padding:3px 2px; border:1.5px solid #000; width:35px">क्र.सं.</th>
-          <th style="padding:3px 3px; border:1.5px solid #000; width:70px">कक्षा</th>
-          <th style="padding:3px 5px; border:1.5px solid #000; width:210px; text-align:left">अनिवार्य विषय (Compulsory Subjects)</th>
-          <th style="padding:3px 3px; border:1.5px solid #000; width:140px">तृतीय भाषा (Third Language)</th>
-          <th style="padding:3px 3px; border:1.5px solid #000; width:110px">संचालित संकाय (Faculty)</th>
-          <th style="padding:3px 5px; border:1.5px solid #000; text-align:left">ऐच्छिक विषय मांग विवरण (Optional Subjects)</th>
-          <th style="padding:3px 3px; border:1.5px solid #000; width:75px">नामांकन</th>
-          <th style="padding:3px 3px; border:1.5px solid #000; width:75px; background:#e2e8f0; font-weight:900">मांग संख्या</th>
+          <th style="padding:3px 2px; border:1.5px solid #000; width:35px">${isEn ? 'S.No.' : 'क्र.सं.'}</th>
+          <th style="padding:3px 3px; border:1.5px solid #000; width:70px">${isEn ? 'Class' : 'कक्षा'}</th>
+          <th style="padding:3px 5px; border:1.5px solid #000; width:210px; text-align:left">${isEn ? 'Compulsory Subjects' : 'अनिवार्य विषय'}</th>
+          <th style="padding:3px 3px; border:1.5px solid #000; width:140px">${isEn ? 'Third Language' : 'तृतीय भाषा'}</th>
+          <th style="padding:3px 3px; border:1.5px solid #000; width:110px">${isEn ? 'Faculties' : 'संचालित संकाय'}</th>
+          <th style="padding:3px 5px; border:1.5px solid #000; text-align:left">${isEn ? 'Optional Subjects Demand Breakdown' : 'ऐच्छिक विषय मांग विवरण'}</th>
+          <th style="padding:3px 3px; border:1.5px solid #000; width:75px">${isEn ? 'Enrolment' : 'नामांकन'}</th>
+          <th style="padding:3px 3px; border:1.5px solid #000; width:75px; background:#e2e8f0; font-weight:900">${isEn ? 'Demand Count' : 'मांग संख्या'}</th>
         </tr>
       </thead>
       <tbody>
         <!-- Class 9 Row -->
         <tr style="border-bottom:1px solid #000">
           <td style="padding:2.5px 2px; border:1px solid #000; font-weight:700">1</td>
-          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800; background:#f8fafc">कक्षा 9वीं</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800; background:#f8fafc">${isEn ? 'Class 9th' : 'कक्षा 9वीं'}</td>
           <td style="padding:2.5px 5px; border:1px solid #000; text-align:left">
-            ${(sub.c9_total > 0) ? 'हिंदी, अंग्रेजी, विज्ञान, सामाजिक विज्ञान, गणित (5 अनिवार्य विषय)' : '<span style="color:#475569; font-style:italic">कक्षा 9वीं में शून्य नामांकन (NIL / संचालित नहीं)</span>'}
+            ${(sub.c9_total > 0) 
+              ? (isEn ? 'Hindi, English, Science, Social Science, Mathematics (5 Subjects)' : 'हिंदी, अंग्रेजी, विज्ञान, सामाजिक विज्ञान, गणित (5 अनिवार्य विषय)') 
+              : `<span style="color:#475569; font-style:italic">${isEn ? 'Nil Enrolment in Class 9' : 'कक्षा 9वीं में शून्य नामांकन (NIL)'}</span>`}
           </td>
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:700">
-            ${(sub.c9_total > 0) ? `संस्कृत: ${sub.c9_sanskrit || 0} | उर्दू: ${sub.c9_urdu || 0}` : '<span style="color:#64748b">- (लागू नहीं) -</span>'}
+            ${(sub.c9_total > 0) 
+              ? (isEn ? `Sanskrit: ${sub.c9_sanskrit || 0} | Urdu: ${sub.c9_urdu || 0}` : `संस्कृत: ${sub.c9_sanskrit || 0} | उर्दू: ${sub.c9_urdu || 0}`) 
+              : `<span style="color:#64748b">-</span>`}
           </td>
-          <td style="padding:2.5px 3px; border:1px solid #000">${(sub.c9_total > 0) ? 'सामान्य (General)' : '<span style="color:#64748b">-</span>'}</td>
-          <td style="padding:2.5px 5px; border:1px solid #000; color:#64748b; text-align:center">- (कक्षा 9 में लागू नहीं) -</td>
+          <td style="padding:2.5px 3px; border:1px solid #000">${(sub.c9_total > 0) ? (isEn ? 'General' : 'सामान्य') : '<span style="color:#64748b">-</span>'}</td>
+          <td style="padding:2.5px 5px; border:1px solid #000; color:#64748b; text-align:center">${isEn ? '- (Not Applicable) -' : '- (कक्षा 9 में लागू नहीं) -'}</td>
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800">${sub.c9_total}</td>
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:900; background:#f8fafc">${(sub.c9_total > 0) ? sub.c9_total : '0 (NIL)'}</td>
         </tr>
@@ -2620,15 +2673,19 @@ function openExamPdfPreview(schoolCode) {
         <!-- Class 10 Row -->
         <tr style="border-bottom:1px solid #000">
           <td style="padding:2.5px 2px; border:1px solid #000; font-weight:700">2</td>
-          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800; background:#f8fafc">कक्षा 10वीं</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800; background:#f8fafc">${isEn ? 'Class 10th' : 'कक्षा 10वीं'}</td>
           <td style="padding:2.5px 5px; border:1px solid #000; text-align:left">
-            ${(sub.c10_total > 0) ? 'हिंदी, अंग्रेजी, विज्ञान, सामाजिक विज्ञान, गणित (5 अनिवार्य विषय)' : '<span style="color:#475569; font-style:italic">कक्षा 10वीं में शून्य नामांकन (NIL / संचालित नहीं)</span>'}
+            ${(sub.c10_total > 0) 
+              ? (isEn ? 'Hindi, English, Science, Social Science, Mathematics (5 Subjects)' : 'हिंदी, अंग्रेजी, विज्ञान, सामाजिक विज्ञान, गणित (5 अनिवार्य विषय)') 
+              : `<span style="color:#475569; font-style:italic">${isEn ? 'Nil Enrolment in Class 10' : 'कक्षा 10वीं में शून्य नामांकन (NIL)'}</span>`}
           </td>
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:700">
-            ${(sub.c10_total > 0) ? `संस्कृत: ${sub.c10_sanskrit || 0} | उर्दू: ${sub.c10_urdu || 0}` : '<span style="color:#64748b">- (लागू नहीं) -</span>'}
+            ${(sub.c10_total > 0) 
+              ? (isEn ? `Sanskrit: ${sub.c10_sanskrit || 0} | Urdu: ${sub.c10_urdu || 0}` : `संस्कृत: ${sub.c10_sanskrit || 0} | उर्दू: ${sub.c10_urdu || 0}`) 
+              : `<span style="color:#64748b">-</span>`}
           </td>
-          <td style="padding:2.5px 3px; border:1px solid #000">${(sub.c10_total > 0) ? 'सामान्य (General)' : '<span style="color:#64748b">-</span>'}</td>
-          <td style="padding:2.5px 5px; border:1px solid #000; color:#64748b; text-align:center">- (कक्षा 10 में लागू नहीं) -</td>
+          <td style="padding:2.5px 3px; border:1px solid #000">${(sub.c10_total > 0) ? (isEn ? 'General' : 'सामान्य') : '<span style="color:#64748b">-</span>'}</td>
+          <td style="padding:2.5px 5px; border:1px solid #000; color:#64748b; text-align:center">${isEn ? '- (Not Applicable) -' : '- (कक्षा 10 में लागू नहीं) -'}</td>
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800">${sub.c10_total}</td>
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:900; background:#f8fafc">${(sub.c10_total > 0) ? sub.c10_total : '0 (NIL)'}</td>
         </tr>
@@ -2636,14 +2693,16 @@ function openExamPdfPreview(schoolCode) {
         <!-- Class 11 Row -->
         <tr style="border-bottom:1px solid #000">
           <td style="padding:2.5px 2px; border:1px solid #000; font-weight:700">3</td>
-          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800; background:#f8fafc">कक्षा 11वीं</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800; background:#f8fafc">${isEn ? 'Class 11th' : 'कक्षा 11वीं'}</td>
           <td style="padding:2.5px 5px; border:1px solid #000; text-align:left">
-            ${(sub.c11_total > 0) ? `अनिवार्य हिंदी (${sub.c11_comp_hindi}), अनिवार्य अंग्रेजी (${sub.c11_comp_english})` : '<span style="color:#475569; font-style:italic">कक्षा 11वीं संचालित नहीं (NIL)</span>'}
+            ${(sub.c11_total > 0) 
+              ? (isEn ? `Compulsory Hindi (${sub.c11_comp_hindi}), Compulsory English (${sub.c11_comp_english})` : `अनिवार्य हिंदी (${sub.c11_comp_hindi}), अनिवार्य अंग्रेजी (${sub.c11_comp_english})`) 
+              : `<span style="color:#475569; font-style:italic">${isEn ? 'Class 11 Not Operating (NIL)' : 'कक्षा 11वीं संचालित नहीं (NIL)'}</span>`}
           </td>
-          <td style="padding:2.5px 3px; border:1px solid #000; color:#64748b">- (लागू नहीं) -</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; color:#64748b">${isEn ? '- (N/A) -' : '- (लागू नहीं) -'}</td>
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:700">${(sub.c11_total > 0) ? c11FacNames : '<span style="color:#64748b">-</span>'}</td>
           <td style="padding:2.5px 5px; border:1px solid #000; text-align:left">
-            ${(sub.c11_total > 0) ? c11OptPillsHtml : '<span style="color:#64748b">- कोई ऐच्छिक विषय लागू नहीं (NIL) -</span>'}
+            ${(sub.c11_total > 0) ? c11OptPillsHtml : `<span style="color:#64748b">${isEn ? '- Nil -' : '- कोई ऐच्छिक विषय लागू नहीं -'}</span>`}
           </td>
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800">${sub.c11_total}</td>
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:900; background:#f8fafc">${(sub.c11_total > 0) ? sub.c11_total : '0 (NIL)'}</td>
@@ -2652,14 +2711,16 @@ function openExamPdfPreview(schoolCode) {
         <!-- Class 12 Row -->
         <tr style="border-bottom:2px solid #000">
           <td style="padding:2.5px 2px; border:1px solid #000; font-weight:700">4</td>
-          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800; background:#f8fafc">कक्षा 12वीं</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800; background:#f8fafc">${isEn ? 'Class 12th' : 'कक्षा 12वीं'}</td>
           <td style="padding:2.5px 5px; border:1px solid #000; text-align:left">
-            ${(sub.c12_total > 0) ? `अनिवार्य हिंदी (${sub.c12_comp_hindi}), अनिवार्य अंग्रेजी (${sub.c12_comp_english})` : '<span style="color:#475569; font-style:italic">कक्षा 12वीं संचालित नहीं (NIL)</span>'}
+            ${(sub.c12_total > 0) 
+              ? (isEn ? `Compulsory Hindi (${sub.c12_comp_hindi}), Compulsory English (${sub.c12_comp_english})` : `अनिवार्य हिंदी (${sub.c12_comp_hindi}), अनिवार्य अंग्रेजी (${sub.c12_comp_english})`) 
+              : `<span style="color:#475569; font-style:italic">${isEn ? 'Class 12 Not Operating (NIL)' : 'कक्षा 12वीं संचालित नहीं (NIL)'}</span>`}
           </td>
-          <td style="padding:2.5px 3px; border:1px solid #000; color:#64748b">- (लागू नहीं) -</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; color:#64748b">${isEn ? '- (N/A) -' : '- (लागू नहीं) -'}</td>
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:700">${(sub.c12_total > 0) ? c12FacNames : '<span style="color:#64748b">-</span>'}</td>
           <td style="padding:2.5px 5px; border:1px solid #000; text-align:left">
-            ${(sub.c12_total > 0) ? c12OptPillsHtml : '<span style="color:#64748b">- कोई ऐच्छिक विषय लागू नहीं (NIL) -</span>'}
+            ${(sub.c12_total > 0) ? c12OptPillsHtml : `<span style="color:#64748b">${isEn ? '- Nil -' : '- कोई ऐच्छिक विषय लागू नहीं -'}</span>`}
           </td>
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800">${sub.c12_total}</td>
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:900; background:#f8fafc">${(sub.c12_total > 0) ? sub.c12_total : '0 (NIL)'}</td>
@@ -2668,11 +2729,11 @@ function openExamPdfPreview(schoolCode) {
         <!-- Grand Total Banner Row -->
         <tr style="background:#f1f5f9; font-weight:900; border:2px solid #000">
           <td colspan="6" style="padding:4px 6px; border:2px solid #000; text-align:right; font-size:0.86rem; color:#000">
-            🎯 सत्र 2026-27 कुल मांग प्रश्न-पत्र संख्या (कक्षा 9 से 12 महायोग - Grand Total):
+            🎯 ${isEn ? 'Session 2026-27 Total Question Paper Demand (Classes 9 to 12 Grand Total):' : 'सत्र 2026-27 कुल मांग प्रश्न-पत्र संख्या (कक्षा 9 से 12 महायोग):'}
           </td>
           <td style="padding:4px 3px; border:2px solid #000; font-size:0.95rem; color:#000">${sub.grand_total}</td>
           <td style="padding:4px 3px; border:2px solid #000; font-size:1.05rem; color:#000; background:#e2e8f0">
-            ${(sub.grand_total > 0) ? sub.grand_total : '<span style="font-size:0.82rem">0 (NIL प्रपत्र)</span>'}
+            ${(sub.grand_total > 0) ? sub.grand_total : `<span style="font-size:0.82rem">${isEn ? '0 (NIL Demand)' : '0 (NIL प्रपत्र)'}</span>`}
           </td>
         </tr>
       </tbody>
@@ -2680,17 +2741,19 @@ function openExamPdfPreview(schoolCode) {
 
     <!-- Verification & Responsibility Declaration -->
     <div style="margin-top:4px; margin-bottom:4px; padding:3px 6px; background:#ffffff; border:1px solid #000; border-left:4px solid #000; border-radius:3px; font-size:0.70rem; line-height:1.25; color:#000">
-      <strong>सत्यापन एवं उत्तरदायित्व घोषणा:</strong> प्रमाणित किया जाता है कि उपर्युक्त परीक्षा संबंधी सभी छात्र संख्या, संकाय एवं विषयवार प्रविष्टियों का विद्यालय की प्रवेश पंजिका व शाला दर्पण पोर्टल से शत-प्रतिशत मिलान कर लिया गया है तथा इसमें कोई लिपिकीय अथवा तथ्यात्मक त्रुटि नहीं है। यदि भविष्य में किसी भी प्रकार की त्रुटि, विसंगति अथवा प्रश्न-पत्रों की कमी/अधिकता पाई जाती है, तो इसका संपूर्ण व्यक्तिगत एवं विभागीय उत्तरदायित्व संबंधित संस्था प्रधान एवं परीक्षा प्रभारी का होगा।
+      <strong>${isEn ? 'VERIFICATION & RESPONSIBILITY DECLARATION:' : 'सत्यापन एवं उत्तरदायित्व घोषणा:'}</strong> ${isEn 
+        ? 'Certified that all student enrolment figures, faculties, and subject-wise entries have been 100% matched and verified with the school admission register and Shala Darpan portal without any clerical or factual discrepancy. In case of any error or question paper deficiency/excess in future, the concerned Principal and Examination In-charge shall be solely responsible.'
+        : 'प्रमाणित किया जाता है कि उपर्युक्त परीक्षा संबंधी सभी छात्र संख्या, संकाय एवं विषयवार प्रविष्टियों का विद्यालय की प्रवेश पंजिका व शाला दर्पण पोर्टल से शत-प्रतिशत मिलान कर लिया गया है तथा इसमें कोई लिपिकीय अथवा तथ्यात्मक त्रुटि नहीं है। यदि भविष्य में किसी भी प्रकार की त्रुटि, विसंगति अथवा प्रश्न-पत्रों की कमी/अधिकता पाई जाती है, तो इसका संपूर्ण व्यक्तिगत एवं विभागीय उत्तरदायित्व संबंधित संस्था प्रधान एवं परीक्षा प्रभारी का होगा।'}
     </div>
 
     <!-- Official Signatures: Incharge (Left) & Principal (Right) -->
     <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 30px; margin-top:8px; margin-bottom:2px">
       
-      <!-- Left: Incharge Signature (Only 'हस्ताक्षर परीक्षा प्रभारी') -->
+      <!-- Left: Incharge Signature -->
       <div style="text-align:center; width:36%">
         <div style="height:28px"></div>
         <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.86rem; color:#000">
-          हस्ताक्षर परीक्षा प्रभारी
+          ${isEn ? 'Signature: Examination In-charge' : 'हस्ताक्षर परीक्षा प्रभारी'}
         </div>
       </div>
 
@@ -2698,20 +2761,20 @@ function openExamPdfPreview(schoolCode) {
       <div style="text-align:center; width:44%">
         ${sub.signature_data ? `
           <div style="height:28px; display:flex; align-items:center; justify-content:center">
-            <img src="${sub.signature_data}" style="max-height:26px; max-width:140px; object-fit:contain" alt="हस्ताक्षर">
+            <img src="${sub.signature_data}" style="max-height:26px; max-width:140px; object-fit:contain" alt="${isEn ? 'Signature' : 'हस्ताक्षर'}">
           </div>
           <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.86rem; color:#000">
-            हस्ताक्षर संस्था प्रधान
+            ${isEn ? 'Signature: Principal / Head of Institution' : 'हस्ताक्षर संस्था प्रधान'}
           </div>
         ` : `
           <div style="height:28px"></div>
           <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.86rem; color:#000">
-            हस्ताक्षर संस्था प्रधान
+            ${isEn ? 'Signature: Principal / Head of Institution' : 'हस्ताक्षर संस्था प्रधान'}
           </div>
         `}
-        <div style="font-size:0.78rem; font-weight:700; color:#000; margin-top:1px">प्रधानाचार्य / संस्था प्रधान</div>
-        <div style="font-size:0.75rem; color:#111; margin-top:1px">${school.school_name}</div>
-        <div style="font-size:0.72rem; color:#222; margin-top:1px">ब्लॉक-भिनाय (अजमेर)</div>
+        <div style="font-size:0.78rem; font-weight:700; color:#000; margin-top:1px">${isEn ? 'Principal / Head of Institution' : 'प्रधानाचार्य / संस्था प्रधान'}</div>
+        <div style="font-size:0.75rem; color:#111; margin-top:1px">${schoolDisplayName}</div>
+        <div style="font-size:0.72rem; color:#222; margin-top:1px">${isEn ? 'Block-Bhinai (District: Ajmer)' : 'ब्लॉक-भिनाय (अजमेर)'}</div>
       </div>
 
     </div>
@@ -2719,6 +2782,7 @@ function openExamPdfPreview(schoolCode) {
 
   showModal('modal-exam-pdf-preview');
 }
+
 
 /* ========================================================
    STANDALONE PRINT HELPER (STRICTLY 1 PAGE, ZERO BLANK PAGES)
@@ -2873,15 +2937,22 @@ async function exportDocumentToPdfBlob(elementId, filename, customOptions = {}) 
 function printOfficialExamDocument() {
   const schoolCode = STATE.activeExamPreviewCode || 'School';
   const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
-  const title = `समान परीक्षा 2026-27 मांग प्रपत्र - ${school ? school.school_name : schoolCode}`;
+  const isEn = (typeof activeExamPdfLanguage !== 'undefined' && activeExamPdfLanguage === 'en');
+  const schoolName = isEn ? (school?.school_name_en || school?.school_name || schoolCode) : (school?.school_name || schoolCode);
+  const title = isEn 
+    ? `Uniform Exam 2026-27 Demand Proforma - ${schoolName}`
+    : `समान परीक्षा 2026-27 मांग प्रपत्र - ${schoolName}`;
   printCleanA4Landscape('printable-exam-document-content', title);
 }
 
 async function downloadExamPDFDirect() {
   const schoolCode = STATE.activeExamPreviewCode || 'School';
   const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
-  const nameSafe = school ? school.school_name.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 30) : 'Exam_Indent';
-  const filename = `Saman_Pariksha_2026_${schoolCode}_${nameSafe}.pdf`;
+  const isEn = (typeof activeExamPdfLanguage !== 'undefined' && activeExamPdfLanguage === 'en');
+  const schoolName = isEn ? (school?.school_name_en || school?.school_name || 'School') : (school?.school_name || 'School');
+  const nameSafe = schoolName.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 30);
+  const langTag = isEn ? 'EN' : 'HI';
+  const filename = `Saman_Pariksha_2026_${schoolCode}_${langTag}_${nameSafe}.pdf`;
 
   showToast('अधिकृत Landscape PDF तैयार किया जा रहा है...', 'info');
 
@@ -3005,7 +3076,7 @@ function openPeeoSelectorModal() {
       <div>
         <div style="font-weight:800; color:#1e3a8a; font-size:0.92rem; display:flex; justify-content:space-between; align-items:center">
           <span>${clean}</span>
-          <span style="font-size:0.72rem; padding:2px 6px; border-radius:4px; font-weight:700; ${isComplete ? 'background:#dcfce7; color:#15803d' : 'background:#fef3c7; color:#b45309'}">
+          <span style="font-size:0.72rem; padding:2px 6px; border-radius:4px; font-weight:700; ${isComplete ? 'background:#dcfce7; color:#15803d' : 'background:#e0f2fe; color:#0369a1'}">
             ${subCount}/${schools.length} पूर्ण
           </span>
         </div>
@@ -3642,9 +3713,9 @@ function openPendingReportPdf(type = 'saman-pariksha', demandId = null) {
           <div style="font-size:16pt; font-weight:900; color:#dc2626; line-height:1.2">${pendingCount}</div>
           <div style="font-size:7.5pt; color:#b91c1c; font-weight:700">प्रपत्र अप्राप्त / शेष</div>
         </div>
-        <div style="background:#fffbeb; border-left:4px solid #d97706; padding:8px 12px; border-radius:4px; border:1px solid #fde68a; border-left-width:4px">
+        <div style="background:#eff6ff; border-left:4px solid #0284c7; padding:8px 12px; border-radius:4px; border:1px solid #fde68a; border-left-width:4px">
           <div style="font-size:7.5pt; color:#b45309; font-weight:800; text-transform:uppercase">लम्बित PEEO परिक्षेत्र</div>
-          <div style="font-size:16pt; font-weight:900; color:#d97706; line-height:1.2">${pendingPeeoCount} <span style="font-size:10pt; color:#64748b; font-weight:600">/ ${totalPeeos}</span></div>
+          <div style="font-size:16pt; font-weight:900; color:#0369a1; line-height:1.2">${pendingPeeoCount} <span style="font-size:10pt; color:#64748b; font-weight:600">/ ${totalPeeos}</span></div>
           <div style="font-size:7.5pt; color:#b45309">जहाँ विद्यालय लम्बित हैं</div>
         </div>
       </div>
@@ -3707,7 +3778,7 @@ function openPendingReportPdf(type = 'saman-pariksha', demandId = null) {
       </div>
 
       <!-- Formal Administrative Order Box & Signatures -->
-      <div style="background:#fffbeb; border-left:4px solid #d97706; padding:8px 12px; border-radius:4px; font-size:8pt; color:#92400e; margin-bottom:18px; border:1px solid #fde68a; border-left-width:4px">
+      <div style="background:#eff6ff; border-left:4px solid #0284c7; padding:8px 12px; border-radius:4px; font-size:8pt; color:#92400e; margin-bottom:18px; border:1px solid #fde68a; border-left-width:4px">
         <strong>📌 महत्वपूर्ण प्रशासनिक निर्देश:</strong> उपरोक्त समस्त संस्था प्रधान एवं संबंधित PEEO साहिबान आज ही प्राथमिकता के आधार पर पोर्टल पर प्रपत्र ऑनलाइन सबमिट करना सुनिश्चित करें ताकि समेकित रिपोर्ट जिला स्तर पर प्रेषित की जा सके।
       </div>
 
@@ -4725,7 +4796,7 @@ function onExplorerSchoolChange() {
       <td><strong>${s.name}</strong></td>
       <td>${s.post}</td>
       <td><strong>${s.school_name || s.peeo_name}</strong></td>
-      <td><span class="status-badge" style="background:${isPvt ? '#fef3c7' : '#e0f2fe'}; color:${isPvt ? '#b45309' : '#0369a1'}">${isPvt ? 'निजी (Pvt)' : 'राजकीय (Govt)'}</span></td>
+      <td><span class="status-badge" style="background:${isPvt ? '#f1f5f9' : '#e0f2fe'}; color:${isPvt ? '#334155' : '#0369a1'}">${isPvt ? 'निजी (Pvt)' : 'राजकीय (Govt)'}</span></td>
       <td><span style="font-weight:600; color:var(--primary)">${s.peeo_name}</span></td>
       <td>${s.mobile ? `<a href="tel:${s.mobile}" style="text-decoration:none; color:var(--primary); font-weight:600"><i class="fas fa-phone-alt"></i> ${s.mobile}</a>` : '---'}</td>
       <td>${s.sso_id ? `<code>${s.sso_id}</code>` : '---'}</td>
@@ -4917,7 +4988,7 @@ function filterDirectory() {
       <td>${idx + 1}</td>
       <td>
         <strong>${item.name}</strong>
-        ${item.is_principal ? '<span class="badge-tag" style="background:#fef3c7; color:#92400e; font-size:0.75rem; margin-left:4px; font-weight:800; border:1px solid #d97706">👑 संस्था प्रधान</span>' : ''}
+        ${item.is_principal ? '<span class="badge-tag" style="background:#0f172a; color:#f8fafc; font-size:0.75rem; margin-left:4px; font-weight:800; border:1px solid #3b82f6">👑 संस्था प्रधान</span>' : ''}
         ${item.is_private ? '<span class="badge-tag" style="background:#ede9fe; color:#6b21a8; font-size:0.7rem; margin-left:4px; font-weight:700">निजी</span>' : ''}
       </td>
       <td>
@@ -4946,7 +5017,7 @@ function filterDirectory() {
             </button>
           ` : ''}
           ${canEditHead ? `
-            <button class="btn btn-outline-warning btn-sm" onclick="openEditSchoolHeadModal('${item.school_code}', '${item.school}', '${item.peeo_name}', '${item.name}', '${item.mobile}', '${item.post}')" title="संस्था प्रधान / संचालक विवरण बदलें" style="font-size:0.72rem; padding:2px 6px; font-weight:700; color:#92400e; border-color:#d97706">
+            <button class="btn btn-outline-primary btn-sm" onclick="openEditSchoolHeadModal('${item.school_code}', '${item.school}', '${item.peeo_name}', '${item.name}', '${item.mobile}', '${item.post}')" title="संस्था प्रधान / संचालक विवरण बदलें" style="font-size:0.72rem; padding:2px 6px; font-weight:700; color:#1e40af; border-color:#3b82f6">
               <i class="fas fa-user-edit"></i> संचालक विवरण
             </button>
           ` : ''}
@@ -5043,34 +5114,53 @@ function onStaffPeeoFilterChange() {
 
   schFilter.innerHTML = '<option value="all">-- समस्त विद्यालय (नोडल व अधीनस्थ) --</option>';
 
-  let schoolsList = [];
-  if (peeoVal === 'all') {
-    schoolsList = Array.from(new Set([
-      ...(STATE.staff || []).map(s => s.school_name),
-      ...(STATE.schools56 || []).map(s => s.school_name)
-    ].filter(Boolean))).sort();
-  } else {
-    schoolsList = Array.from(new Set([
-      ...(STATE.staff || []).filter(s => s.peeo_name === peeoVal).map(s => s.school_name),
-      ...(STATE.schools56 || []).filter(s => s.peeo_name === peeoVal).map(s => s.school_name)
-    ].filter(Boolean))).sort();
+  let relevantStaff = STATE.staff || [];
+  if (peeoVal !== 'all') {
+    relevantStaff = relevantStaff.filter(s => s.peeo_name === peeoVal);
+  }
 
-    // Include registered schools from PEEO object
+  const uniqueSchools = [];
+  const seenCodes = new Set();
+
+  relevantStaff.forEach(s => {
+    const codeKey = s.shala_darpan_code || s.school_name;
+    if (codeKey && !seenCodes.has(codeKey)) {
+      seenCodes.add(codeKey);
+      uniqueSchools.push({
+        code: s.shala_darpan_code || '',
+        name_hi: s.school_name || '',
+        name_en: s.school_name_en || s.school_name || ''
+      });
+    }
+  });
+
+  // Also include any schools from PEEO object that might have no staff yet
+  if (peeoVal !== 'all') {
     const p = (STATE.peeos || []).find(x => x.peeo_name === peeoVal);
     if (p && p.schools) {
       p.schools.forEach(s => {
-        if (!schoolsList.some(name => name.includes(s.school_name) || s.school_name.includes(name))) {
-          schoolsList.push(s.school_name);
+        const codeKey = String(s.shala_darpan_code || s.school_name);
+        if (codeKey && !seenCodes.has(codeKey)) {
+          seenCodes.add(codeKey);
+          uniqueSchools.push({
+            code: String(s.shala_darpan_code || ''),
+            name_hi: s.school_name || '',
+            name_en: s.school_name || ''
+          });
         }
       });
     }
   }
 
-  schoolsList.forEach(sch => {
+  uniqueSchools.sort((a, b) => a.name_hi.localeCompare(b.name_hi, 'hi'));
+
+  uniqueSchools.forEach(sch => {
     const opt = document.createElement('option');
-    opt.value = sch;
-    const isNodal = sch.includes('नोडल') || (peeoVal !== 'all' && sch.includes(peeoVal.replace('PEEO ', '')));
-    opt.textContent = `${isNodal ? '👑 [नोडल] ' : ''}${sch}`;
+    opt.value = sch.code || sch.name_hi;
+    const cleanEn = (sch.name_en || '').split('(')[0].trim();
+    opt.textContent = sch.code 
+      ? `[शा.दा. ${sch.code}] ${sch.name_hi} (${cleanEn})` 
+      : sch.name_hi;
     schFilter.appendChild(opt);
   });
 
@@ -5104,10 +5194,13 @@ function filterStaffTable() {
       pf.disabled = true;
     }
   } else if (STATE.currentUser && STATE.currentUser.role === 'school') {
+    const schCode = STATE.currentUser.shala_darpan_code;
     const schName = STATE.currentUser.school_name || '';
-    if (schName) {
-      activeList = activeList.filter(s => s.school_name === schName || (s.school_name && s.school_name.includes(schName)));
-    }
+    activeList = activeList.filter(s => {
+      if (schCode && s.shala_darpan_code === schCode) return true;
+      if (schName && (s.school_name === schName || s.school_name_en === schName)) return true;
+      return false;
+    });
   } else {
     const pf = document.getElementById('staff-peeo-filter');
     if (pf) pf.disabled = false;
@@ -5116,26 +5209,27 @@ function filterStaffTable() {
     }
   }
 
-  // School filter with robust matching
+  // School filter with robust matching by code, standard English name, or Hindi name
   if (schoolFilter !== 'all') {
     activeList = activeList.filter(s => {
-      if (!s.school_name) return false;
-      if (s.school_name === schoolFilter) return true;
-      const s1 = s.school_name.toLowerCase().trim();
+      if (s.shala_darpan_code && String(s.shala_darpan_code).trim() === schoolFilter.trim()) return true;
+      if (s.school_name === schoolFilter || s.school_name_en === schoolFilter) return true;
+      const s1 = (s.school_name || '').toLowerCase().trim();
+      const sEn = (s.school_name_en || '').toLowerCase().trim();
       const s2 = schoolFilter.toLowerCase().trim();
-      return s1.includes(s2) || s2.includes(s1);
+      return s1.includes(s2) || s2.includes(s1) || sEn.includes(s2) || s2.includes(sEn);
     });
   }
 
   if (postFilter === 'pradhan') {
     activeList = activeList.filter(s => s.is_sanstha_pradhan || (s.post && (s.post.includes('प्रधानाचार्य') || s.post.includes('संस्था प्रधान'))));
   } else if (postFilter !== 'all') {
-    activeList = activeList.filter(s => s.post && s.post.includes(postFilter));
+    activeList = activeList.filter(s => (s.post && s.post.includes(postFilter)) || (s.post_en && s.post_en.toLowerCase().includes(postFilter.toLowerCase())));
   }
 
   if (search) {
     activeList = activeList.filter(s => {
-      const hay = `${s.staff_id} ${s.name} ${s.post} ${s.school_name} ${s.peeo_name} ${s.mobile} ${s.sso_id}`.toLowerCase();
+      const hay = `${s.staff_id} ${s.name} ${s.name_en || ''} ${s.post} ${s.post_en || ''} ${s.school_name} ${s.school_name_en || ''} ${s.shala_darpan_code || ''} ${s.peeo_name} ${s.mobile} ${s.sso_id}`.toLowerCase();
       return hay.includes(search);
     });
   }
@@ -5158,7 +5252,7 @@ function filterStaffTable() {
     return;
   }
 
-  // Render in election / census format
+  // Render in standardized bilingual format
   activeList.slice(0, 150).forEach((s, idx) => {
     const isPradhan = s.is_sanstha_pradhan || false;
     const canEditKarmik = canCurrentUserEditStaff(s);
@@ -5168,16 +5262,26 @@ function filterStaffTable() {
     tr.innerHTML = `
       <td>${idx + 1}</td>
       <td><code>${s.staff_id}</code></td>
-      <td><strong>${s.name}</strong></td>
+      <td>
+        <strong style="font-size:0.92rem; color:#0f172a">${s.name}</strong>
+        ${s.name_en ? `<div style="font-size:0.75rem; color:#475569; font-weight:600">${s.name_en}</div>` : ''}
+      </td>
       <td>${s.gender || 'पुरुष'}</td>
-      <td>${s.post || 'अध्यापक'}</td>
-      <td><strong>${s.school_name || s.peeo_name}</strong></td>
+      <td>
+        <strong style="color:#0f172a">${s.post || 'अध्यापक'}</strong>
+        ${s.post_en ? `<div style="font-size:0.75rem; color:#0369a1; font-weight:600">${s.post_en}</div>` : ''}
+      </td>
+      <td>
+        <strong style="color:#1e3a8a">${s.school_name || s.peeo_name}</strong>
+        ${s.shala_darpan_code ? `<span class="badge-tag" style="background:#e2e8f0; color:#1e293b; font-size:0.7rem; font-weight:700; margin-left:4px">शा.दा. ${s.shala_darpan_code}</span>` : ''}
+        ${s.school_name_en ? `<div style="font-size:0.72rem; color:#64748b; font-family:monospace">${s.school_name_en}</div>` : ''}
+      </td>
       <td><span class="badge-tag blue" style="font-size:0.75rem; font-weight:700">${s.peeo_name}</span></td>
       <td>${s.mobile ? `<a href="tel:${s.mobile}" style="text-decoration:none; color:#0f766e; font-weight:800"><i class="fas fa-phone-alt"></i> ${s.mobile}</a>` : '---'}</td>
       <td>${s.sso_id ? `<code>${s.sso_id}</code>` : '---'}</td>
       <td style="text-align:center">
         ${isPradhan 
-          ? `<span class="badge-tag" style="background:#fef3c7; color:#92400e; font-weight:800; border:1px solid #d97706">👑 संस्था प्रधान</span>` 
+          ? `<span class="badge-tag" style="background:#0f172a; color:#f8fafc; font-weight:800; border:1.5px solid #334155; padding:3px 8px"><i class="fas fa-crown" style="color:#ffffff"></i> संस्था प्रधान</span>` 
           : `<span style="color:#94a3b8; font-size:0.78rem">--</span>`
         }
       </td>
@@ -5188,8 +5292,8 @@ function filterStaffTable() {
               ? `<button class="btn btn-outline-danger btn-sm" onclick="unmarkKarmikAsSansthaPradhan('${s.staff_id}')" title="संस्था प्रधान पद से हटाएं" style="font-size:0.75rem; padding:2px 6px; font-weight:700">
                   <i class="fas fa-times-circle"></i> पदमुक्त
                  </button>` 
-              : `<button class="btn btn-warning btn-sm" onclick="markKarmikAsSansthaPradhan('${s.staff_id}')" title="इस कार्मिक को विद्यालय का संस्था प्रधान बनाएं" style="font-size:0.75rem; padding:2px 6px; font-weight:800; color:#78350f; background:#fde68a; border-color:#d97706">
-                  <i class="fas fa-crown"></i> प्रधान बनाएं
+              : `<button class="btn btn-primary btn-sm" onclick="markKarmikAsSansthaPradhan('${s.staff_id}')" title="इस कार्मिक को विद्यालय का संस्था प्रधान बनाएं" style="font-size:0.75rem; padding:2px 8px; font-weight:700; background:#1e3a8a; border-color:#1e40af; color:#ffffff">
+                  <i class="fas fa-crown" style="color:#ffffff"></i> प्रधान बनाएं
                  </button>`
           ) : ''}
           ${canEditKarmik ? `
@@ -6332,7 +6436,7 @@ function createDemandCardElement(demand, isArchive = false) {
           </button>
         ` : ''}
         ${isSchoolUser ? `
-          <button class="btn btn-warning btn-sm" onclick="openFillDemandForSchoolModal('${demand.id}', '${STATE.currentUser.shala_darpan_code}')" style="font-weight:700">
+          <button class="btn btn-primary btn-sm" onclick="openFillDemandForSchoolModal('${demand.id}', '${STATE.currentUser.shala_darpan_code}')" style="font-weight:700">
             <i class="fas fa-pen-nib"></i> ${isDynamicDemandSubmitted(demand.id, STATE.currentUser.shala_darpan_code) ? 'संशोधित करें' : 'प्रपत्र भरें'}
           </button>
           <button class="btn btn-outline-success btn-sm" onclick="openUniversalDemandPdfPreview('${demand.id}', '${STATE.currentUser.shala_darpan_code}')" style="font-weight:700">
@@ -6344,7 +6448,7 @@ function createDemandCardElement(demand, isArchive = false) {
             <i class="fas fa-list-ul"></i> 📋 PEEO समेकित रिपोर्ट
           </button>
           ${isArchive ? `
-            <button class="btn btn-warning btn-sm" onclick="restoreArchivedDemand('${demand.id}')" style="font-weight:800; color:#78350f; background:#fde68a; border-color:#d97706" title="इस मांग को सभी लॉगिन पर पुनः लाइव करें">
+            <button class="btn btn-success btn-sm" onclick="restoreArchivedDemand('${demand.id}')" style="font-weight:700; color:#ffffff; background:#16a34a; border-color:#15803d" title="इस मांग को सभी लॉगिन पर पुनः लाइव करें">
               <i class="fas fa-undo"></i> 🔄 पुनः सक्रिय करें (Restore)
             </button>
           ` : `
@@ -6356,7 +6460,7 @@ function createDemandCardElement(demand, isArchive = false) {
             </button>
           `}
         ` : (isArchive && isAdminUser ? `
-          <button class="btn btn-warning btn-sm" onclick="restoreArchivedDemand('${demand.id}')" style="font-weight:800; color:#78350f; background:#fde68a; border-color:#d97706">
+          <button class="btn btn-success btn-sm" onclick="restoreArchivedDemand('${demand.id}')" style="font-weight:700; color:#ffffff; background:#16a34a; border-color:#15803d">
             <i class="fas fa-undo"></i> 🔄 पुनः सक्रिय करें (Restore)
           </button>
         ` : '')}
@@ -6455,7 +6559,7 @@ function openFillDemandModal(demandId, forcePeeoId = null) {
           <span style="font-size:0.75rem; color:var(--neutral-500)">${sch.village || sch.panchayat || ''}</span>
         </td>
         <td>
-          <span class="status-badge" style="background:${isPvt ? '#fef3c7' : '#e0f2fe'}; color:${isPvt ? '#b45309' : '#0369a1'}; font-size:0.75rem">
+          <span class="status-badge" style="background:${isPvt ? '#f1f5f9' : '#e0f2fe'}; color:${isPvt ? '#334155' : '#0369a1'}; font-size:0.75rem">
             ${isPvt ? 'निजी' : 'राजकीय'}
           </span><br>
           <code style="font-size:0.75rem">${sch.shala_darpan_code || sch.dise_code || '---'}</code>
@@ -7071,7 +7175,7 @@ function renderDynamicDemandPortalView(demandId) {
           <i class="fas fa-file-pdf"></i> 🚨 लम्बित स्कूल/PEEO PDF
         </button>
         ${isAdminUser ? `
-          <button class="btn btn-warning btn-sm" onclick="openDynamicDemandPeeoSelector('${demand.id}')" style="font-weight:700">
+          <button class="btn btn-primary btn-sm" onclick="openDynamicDemandPeeoSelector('${demand.id}')" style="font-weight:700">
             <i class="fas fa-list-ul"></i> PEEO समेकित रिपोर्ट
           </button>
         ` : ''}
@@ -7113,7 +7217,7 @@ function renderDynamicDemandPortalView(demandId) {
               <button class="btn btn-success" onclick="openUniversalDemandPdfPreview('${demand.id}', '${schoolCode}')" style="font-weight:700">
                 <i class="fas fa-print"></i> अधिकृत A4 PDF प्रपत्र देखें / प्रिंट करें
               </button>
-              <button class="btn btn-outline-warning" onclick="openFillDemandForSchoolModal('${demand.id}', '${schoolCode}')" style="font-weight:700">
+              <button class="btn btn-outline-primary" onclick="openFillDemandForSchoolModal('${demand.id}', '${schoolCode}')" style="font-weight:700">
                 <i class="fas fa-edit"></i> प्रपत्र विवरण संशोधित करें
               </button>
             </div>
@@ -7150,7 +7254,7 @@ function renderDynamicDemandPortalView(demandId) {
             </div>
           </div>
           <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
-            <button class="btn btn-warning btn-sm" onclick="openDynamicDemandPeeoPdf('${demand.id}', '${user.peeo_name}')" style="font-weight:700">
+            <button class="btn btn-primary btn-sm" onclick="openDynamicDemandPeeoPdf('${demand.id}', '${user.peeo_name}')" style="font-weight:700">
               <i class="fas fa-file-invoice"></i> PEEO समेकित A4 रिपोर्ट
             </button>
             <button class="btn btn-danger btn-sm" onclick="openPendingReportPdf('demand', '${demand.id}')" style="background:#dc2626; border-color:#dc2626; font-weight:700" title="लम्बित स्कूल सूची PDF">
@@ -7184,12 +7288,12 @@ function renderDynamicDemandPortalView(demandId) {
                     <td><strong>${idx + 1}</strong></td>
                     <td><code>${s.shala_darpan_code}</code></td>
                     <td><strong>${s.school_name}</strong> ${s.is_peeo_nodal ? '<span class="status-badge" style="background:#dbeafe; color:#1e40af; font-size:0.7rem">नोडल HQ</span>' : ''}</td>
-                    <td><span class="status-badge" style="background:${s.type === 'Private' ? '#fef3c7' : '#e0f2fe'}; color:${s.type === 'Private' ? '#b45309' : '#0369a1'}">${s.type === 'Private' ? 'निजी' : 'राजकीय'}</span></td>
+                    <td><span class="status-badge" style="background:${s.type === 'Private' ? '#f1f5f9' : '#e0f2fe'}; color:${s.type === 'Private' ? '#334155' : '#0369a1'}">${s.type === 'Private' ? 'निजी' : 'राजकीय'}</span></td>
                     <td><span class="status-badge ${isSub ? 'green' : 'red'}">${isSub ? '✓ पूर्ण' : 'बाकी'}</span></td>
                     <td>${sub.submitted_by ? `${sub.submitted_by} <br><span style="font-size:0.72rem; color:#64748b">${sub.submitter_mobile || ''}</span>` : '---'}</td>
                     <td>
                       <div style="display:flex; gap:0.4rem; flex-wrap:wrap">
-                        <button class="btn ${isSub ? 'btn-outline-warning' : 'btn-primary'} btn-sm" onclick="openFillDemandForSchoolModal('${demand.id}', '${s.shala_darpan_code}')">
+                        <button class="btn ${isSub ? 'btn-outline-primary' : 'btn-primary'} btn-sm" onclick="openFillDemandForSchoolModal('${demand.id}', '${s.shala_darpan_code}')">
                           <i class="fas ${isSub ? 'fa-edit' : 'fa-pen-nib'}"></i> ${isSub ? 'संशोधन' : 'प्रपत्र भरें'}
                         </button>
                         ${isSub ? `
@@ -7239,7 +7343,7 @@ function renderDynamicDemandPortalView(demandId) {
       <!-- Action Toolbar & Quick WhatsApp Reminder -->
       <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:1rem 1.25rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem">
         <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap">
-          <span style="font-weight:700; color:#1e293b"><i class="fas fa-bolt text-warning"></i> त्वरित कार्यवाहियां:</span>
+          <span style="font-weight:700; color:#1e293b"><i class="fas fa-bolt text-primary"></i> त्वरित कार्यवाहियां:</span>
           <button class="btn btn-danger btn-sm" onclick="openPendingReportPdf('demand', '${demand.id}')" style="background:#dc2626; border-color:#dc2626; font-weight:700" title="लम्बित स्कूलों एवं PEEOs की आधिकारिक PDF सूची">
             <i class="fas fa-file-pdf"></i> 🚨 लम्बित स्कूल/PEEO PDF
           </button>
@@ -7363,7 +7467,7 @@ function filterDynamicDemandTable(demandId) {
           ${s.is_peeo_nodal ? '<span class="status-badge" style="background:#dbeafe; color:#1e40af; font-size:0.7rem; margin-left:4px">PEEO HQ</span>' : ''}
         </td>
         <td>
-          <span class="status-badge" style="background:${s.type === 'Private' ? '#fef3c7' : '#e0f2fe'}; color:${s.type === 'Private' ? '#b45309' : '#0369a1'}">
+          <span class="status-badge" style="background:${s.type === 'Private' ? '#f1f5f9' : '#e0f2fe'}; color:${s.type === 'Private' ? '#334155' : '#0369a1'}">
             ${s.type === 'Private' ? 'निजी' : 'राजकीय'}
           </span>
         </td>
@@ -7383,7 +7487,7 @@ function filterDynamicDemandTable(demandId) {
         </td>
         <td style="text-align:center">
           <div style="display:flex; justify-content:center; gap:0.4rem; flex-wrap:wrap">
-            <button class="btn ${isSub ? 'btn-outline-warning' : 'btn-primary'} btn-sm" onclick="openFillDemandForSchoolModal('${demand.id}', '${s.shala_darpan_code}')" title="${isSub ? 'प्रपत्र संशोधित करें' : 'प्रपत्र भरें'}">
+            <button class="btn ${isSub ? 'btn-outline-primary' : 'btn-primary'} btn-sm" onclick="openFillDemandForSchoolModal('${demand.id}', '${s.shala_darpan_code}')" title="${isSub ? 'प्रपत्र संशोधित करें' : 'प्रपत्र भरें'}">
               <i class="fas ${isSub ? 'fa-edit' : 'fa-pen-nib'}"></i> ${isSub ? 'संशोधन' : 'भरें'}
             </button>
             ${isSub ? `
@@ -7630,8 +7734,21 @@ async function submitDynamicDemandSchoolForm() {
   }, 350);
 }
 
-// 8. Official A4 Landscape PDF Generation (Exact Saman Pariksha Standard, STRICTLY NO RUBBER STAMP)
-function openUniversalDemandPdfPreview(demandId, schoolCode) {
+let activeUniversalDemandPdfLanguage = 'hi';
+
+function switchUniversalDemandPdfLanguage(lang) {
+  activeUniversalDemandPdfLanguage = lang;
+  if (STATE.activeUniversalDemandPreview) {
+    openUniversalDemandPdfPreview(STATE.activeUniversalDemandPreview.demandId, STATE.activeUniversalDemandPreview.schoolCode, lang);
+  }
+}
+
+// 8. Official A4 Landscape PDF Generation (Exact Saman Pariksha Standard, Bilingual Pure Toggle)
+function openUniversalDemandPdfPreview(demandId, schoolCode, lang = null) {
+  STATE.activeUniversalDemandPreview = { demandId, schoolCode };
+  if (lang) activeUniversalDemandPdfLanguage = lang;
+  const isEn = (activeUniversalDemandPdfLanguage === 'en');
+
   const demand = STATE.demands.find(d => d.id === demandId);
   if (!demand) {
     showToast('मांग प्रपत्र नहीं मिला!', 'error');
@@ -7641,19 +7758,21 @@ function openUniversalDemandPdfPreview(demandId, schoolCode) {
   // If this demand is Saman Pariksha, open the official Saman Pariksha Landscape PDF preview!
   const dId = String(demand.id).toLowerCase();
   if (dId === 'demand_saman_pariksha_2026' || dId.includes('saman_pariksha') || dId === 'saman_pariksha_2026_27' || demand.title.includes('समान परीक्षा')) {
-    openExamPdfPreview(schoolCode);
+    openExamPdfPreview(schoolCode, lang);
     return;
   }
 
   const targetSchools = getTargetSchoolsForDemand(demand);
   const school = targetSchools.find(s => s.shala_darpan_code === schoolCode) || STATE.schools56.find(s => s.shala_darpan_code === schoolCode) || {
     school_name: 'विद्यालय',
+    school_name_en: 'School',
     shala_darpan_code: schoolCode,
     peeo_name: 'CBEO Bhinai',
     type: 'Government',
     category: 'राजकीय'
   };
 
+  const schoolDisplayName = isEn ? (school.school_name_en || school.school_name) : school.school_name;
   const sub = getDemandSubmissionRecord(demandId, schoolCode);
 
   const container = document.getElementById('printable-universal-demand-content');
@@ -7661,7 +7780,7 @@ function openUniversalDemandPdfPreview(demandId, schoolCode) {
 
   const titleEl = document.getElementById('universal-demand-pdf-title');
   if (titleEl) {
-    titleEl.innerHTML = `<i class="fas fa-file-pdf text-danger"></i> अधिकृत प्रपत्र (A4 Landscape) - ${school.school_name}`;
+    titleEl.innerHTML = `<i class="fas fa-file-pdf text-danger"></i> ${isEn ? 'Official Proforma (A4 Landscape)' : 'अधिकृत प्रपत्र (A4 Landscape)'} - ${schoolDisplayName}`;
   }
 
   // Build dynamic table rows for all columns
@@ -7669,7 +7788,7 @@ function openUniversalDemandPdfPreview(demandId, schoolCode) {
   (demand.columns || []).forEach((col, idx) => {
     const val = (sub.data && sub.data[col.name] !== undefined && sub.data[col.name] !== '')
       ? sub.data[col.name]
-      : '<span style="color:#64748b; font-style:italic">प्रविष्ट नहीं / शून्य</span>';
+      : `<span style="color:#64748b; font-style:italic">${isEn ? 'Not Entered / NIL' : 'प्रविष्ट नहीं / शून्य'}</span>`;
     
     colRowsHtml += `
       <tr style="border-bottom:1px solid #000">
@@ -7681,19 +7800,34 @@ function openUniversalDemandPdfPreview(demandId, schoolCode) {
   });
 
   const printHtml = `
+    <!-- Language Toggle Toolbar (Excluded from Print/PDF) -->
+    <div class="no-print" style="display:flex; justify-content:space-between; align-items:center; background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:8px; padding:0.5rem 1rem; margin-bottom:0.75rem">
+      <div style="font-size:0.85rem; font-weight:700; color:#1e40af">
+        <i class="fas fa-language"></i> अधिकृत प्रपत्र भाषा (Proforma Language):
+      </div>
+      <div style="display:flex; gap:0.5rem">
+        <button type="button" class="btn ${!isEn ? 'btn-primary' : 'btn-outline-primary'} btn-sm" onclick="switchUniversalDemandPdfLanguage('hi')" style="font-weight:700; border-radius:20px; padding:3px 14px">
+          🇮🇳 शुद्ध हिंदी प्रारूप (Official Hindi)
+        </button>
+        <button type="button" class="btn ${isEn ? 'btn-primary' : 'btn-outline-primary'} btn-sm" onclick="switchUniversalDemandPdfLanguage('en')" style="font-weight:700; border-radius:20px; padding:3px 14px">
+          🌐 Official English Format
+        </button>
+      </div>
+    </div>
+
     <!-- Top Official Government Header -->
     <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:4px; margin-bottom:5px">
       <div style="font-size:0.84rem; font-weight:700; letter-spacing:0.04em; color:#111">
-        राजस्थान सरकार • स्कूल शिक्षा विभाग
+        ${isEn ? 'GOVERNMENT OF RAJASTHAN | DEPARTMENT OF SCHOOL EDUCATION' : 'राजस्थान सरकार | स्कूल शिक्षा विभाग'}
       </div>
       <h2 style="margin:2px 0; font-size:1.15rem; font-weight:900; color:#000; letter-spacing:0.02em">
-        कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय
+        ${isEn ? 'OFFICE OF THE CHIEF BLOCK EDUCATION OFFICER (CBEO), BHINAI' : 'कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय'}
       </h2>
       <div style="font-size:0.75rem; color:#333; margin-top:1px">
-        समग्र शिक्षा अभियान | NIC-SD ID: 8140 | ब्लॉक-भिनाय, जिला-अजमेर (राजस्थान)
+        ${isEn ? 'Samagra Shiksha Abhiyan | NIC-SD ID: 8140 | Block-Bhinai, District-Ajmer (Rajasthan)' : 'समग्र शिक्षा अभियान | NIC-SD ID: 8140 | ब्लॉक-भिनाय, जिला-अजमेर (राजस्थान)'}
       </div>
       <div style="margin-top:3px; display:inline-block; border:1.5px solid #000; background:#f1f5f9; padding:2px 14px; border-radius:4px; font-size:0.88rem; font-weight:900; color:#000">
-        ${demand.title} (सत्र 2026-27)
+        ${demand.title} (${isEn ? 'Session 2026-27' : 'सत्र 2026-27'})
       </div>
       ${demand.description ? `<div style="font-size:0.72rem; color:#444; margin-top:2px">${demand.description}</div>` : ''}
     </div>
@@ -7701,22 +7835,22 @@ function openUniversalDemandPdfPreview(demandId, schoolCode) {
     <!-- School Meta Table (Laser Print-Friendly Clean Grid) -->
     <table style="width:100%; border-collapse:collapse; margin-bottom:6px; font-size:0.78rem; border:1.5px solid #000">
       <tr style="background:#f8fafc">
-        <td style="padding:2.5px 6px; border:1px solid #000; width:15%"><strong>विद्यालय का नाम:</strong></td>
-        <td style="padding:2.5px 6px; border:1px solid #000; font-weight:800; width:35%">${school.school_name}</td>
-        <td style="padding:2.5px 6px; border:1px solid #000; width:18%"><strong>शाला दर्पण / PSP कोड:</strong></td>
-        <td style="padding:2.5px 6px; border:1px solid #000; font-weight:800; width:32%">${school.shala_darpan_code} <span style="font-size:0.72rem; font-weight:normal">(${school.category || school.type || 'राजकीय'})</span></td>
+        <td style="padding:2.5px 6px; border:1px solid #000; width:15%"><strong>${isEn ? 'School Name:' : 'विद्यालय का नाम:'}</strong></td>
+        <td style="padding:2.5px 6px; border:1px solid #000; font-weight:800; width:35%">${schoolDisplayName}</td>
+        <td style="padding:2.5px 6px; border:1px solid #000; width:18%"><strong>${isEn ? 'Shala Darpan / PSP Code:' : 'शाला दर्पण / PSP कोड:'}</strong></td>
+        <td style="padding:2.5px 6px; border:1px solid #000; font-weight:800; width:32%">${school.shala_darpan_code} <span style="font-size:0.72rem; font-weight:normal">(${school.category || school.type || (isEn ? 'Government' : 'राजकीय')})</span></td>
       </tr>
       <tr>
-        <td style="padding:2.5px 6px; border:1px solid #000; background:#f8fafc"><strong>संबंधित PEEO:</strong></td>
+        <td style="padding:2.5px 6px; border:1px solid #000; background:#f8fafc"><strong>${isEn ? 'Nodal PEEO:' : 'संबंधित PEEO:'}</strong></td>
         <td style="padding:2.5px 6px; border:1px solid #000">${school.peeo_name}</td>
-        <td style="padding:2.5px 6px; border:1px solid #000; background:#f8fafc"><strong>U-DISE कोड:</strong></td>
+        <td style="padding:2.5px 6px; border:1px solid #000; background:#f8fafc"><strong>${isEn ? 'U-DISE Code:' : 'U-DISE कोड:'}</strong></td>
         <td style="padding:2.5px 6px; border:1px solid #000; font-weight:800">${school.dise_code || '---'}</td>
       </tr>
       <tr style="background:#f8fafc">
-        <td style="padding:2.5px 6px; border:1px solid #000"><strong>संस्था प्रधान / प्रस्तुतकर्ता:</strong></td>
-        <td style="padding:2.5px 6px; border:1px solid #000"><strong>${sub.submitted_by || 'संस्था प्रधान'}</strong> ${sub.submitter_mobile ? `(मो. ${sub.submitter_mobile})` : ''}</td>
-        <td style="padding:2.5px 6px; border:1px solid #000"><strong>सत्यापन दिनांक व समय:</strong></td>
-        <td style="padding:2.5px 6px; border:1px solid #000"><strong>${sub.submitted_at || new Date().toLocaleString('hi-IN')}</strong></td>
+        <td style="padding:2.5px 6px; border:1px solid #000"><strong>${isEn ? 'Principal / Submitter:' : 'संस्था प्रधान / प्रस्तुतकर्ता:'}</strong></td>
+        <td style="padding:2.5px 6px; border:1px solid #000"><strong>${sub.submitted_by || (isEn ? 'Principal' : 'संस्था प्रधान')}</strong> ${sub.submitter_mobile ? `(${isEn ? 'Mob:' : 'मो.'} ${sub.submitter_mobile})` : ''}</td>
+        <td style="padding:2.5px 6px; border:1px solid #000"><strong>${isEn ? 'Verification Date & Time:' : 'सत्यापन दिनांक व समय:'}</strong></td>
+        <td style="padding:2.5px 6px; border:1px solid #000"><strong>${sub.submitted_at || new Date().toLocaleString(isEn ? 'en-IN' : 'hi-IN')}</strong></td>
       </tr>
     </table>
 
@@ -7724,9 +7858,9 @@ function openUniversalDemandPdfPreview(demandId, schoolCode) {
     <table style="width:100%; border-collapse:collapse; border:2px solid #000; font-size:0.80rem; margin-bottom:6px">
       <thead>
         <tr style="background:#f1f5f9; color:#000; font-weight:900">
-          <th style="padding:4px 6px; border:1.5px solid #000; width:45px; text-align:center">क्र.सं.</th>
-          <th style="padding:4px 10px; border:1.5px solid #000; width:40%; text-align:left">मांगी गई सूचना का विषय / मद (Field Parameter)</th>
-          <th style="padding:4px 12px; border:1.5px solid #000; text-align:left">विद्यालय द्वारा सत्यापित वास्तविक प्रविष्टि (Verified Data / Value)</th>
+          <th style="padding:4px 6px; border:1.5px solid #000; width:45px; text-align:center">${isEn ? 'S.No.' : 'क्र.सं.'}</th>
+          <th style="padding:4px 10px; border:1.5px solid #000; width:40%; text-align:left">${isEn ? 'Requested Information Field / Parameter' : 'मांगी गई सूचना का विषय अथवा मद'}</th>
+          <th style="padding:4px 12px; border:1.5px solid #000; text-align:left">${isEn ? 'Verified Real Data / Submission by School' : 'विद्यालय द्वारा सत्यापित वास्तविक प्रविष्टि'}</th>
         </tr>
       </thead>
       <tbody>
@@ -7736,7 +7870,9 @@ function openUniversalDemandPdfPreview(demandId, schoolCode) {
 
     <!-- Verification & Responsibility Declaration -->
     <div style="margin-top:6px; margin-bottom:8px; padding:4px 8px; background:#ffffff; border:1px solid #000; border-left:4px solid #000; border-radius:3px; font-size:0.72rem; line-height:1.3; color:#000">
-      <strong>सत्यापन एवं उत्तरदायित्व घोषणा:</strong> प्रमाणित किया जाता है कि उपर्युक्त प्रपत्र में भरी गई सभी सूचनाएं विद्यालय के मूल भौतिक एवं कार्यालय अभिलेखों के अनुसार शत-प्रतिशत सत्य एवं सही हैं। इसमें किसी भी प्रकार का तथ्य छुपाया नहीं गया है। किसी भी त्रुटि, विसंगति अथवा असत्यता की स्थिति में समस्त व्यक्तिगत एवं प्रशासनिक उत्तरदायित्व संबंधित संस्था प्रधान / प्रस्तुतकर्ता का होगा।
+      <strong>${isEn ? 'VERIFICATION & RESPONSIBILITY DECLARATION:' : 'सत्यापन एवं उत्तरदायित्व घोषणा:'}</strong> ${isEn 
+        ? 'Certified that all information entered in this proforma is 100% verified, true, and correct as per the official physical and office records of the school. No material facts have been concealed. In case of any error, discrepancy, or misrepresentation, the concerned Principal / Submitter shall be solely held responsible.'
+        : 'प्रमाणित किया जाता है कि उपर्युक्त प्रपत्र में भरी गई सभी सूचनाएं विद्यालय के मूल भौतिक एवं कार्यालय अभिलेखों के अनुसार शत-प्रतिशत सत्य एवं सही हैं। इसमें किसी भी प्रकार का तथ्य छुपाया नहीं गया है। किसी भी त्रुटि, विसंगति अथवा असत्यता की स्थिति में समस्त व्यक्तिगत एवं प्रशासनिक उत्तरदायित्व संबंधित संस्था प्रधान / प्रस्तुतकर्ता का होगा।'}
     </div>
 
     <!-- Official Signatures: Strictly NO rubber stamp, only official signatures -->
@@ -7745,7 +7881,7 @@ function openUniversalDemandPdfPreview(demandId, schoolCode) {
       <div style="text-align:center; width:36%">
         <div style="height:32px"></div>
         <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.86rem; color:#000">
-          हस्ताक्षर प्रपत्र प्रभारी / नोडल अधिकारी
+          ${isEn ? 'Signature: Proforma In-charge / Nodal Officer' : 'हस्ताक्षर प्रपत्र प्रभारी / नोडल अधिकारी'}
         </div>
       </div>
 
@@ -7753,20 +7889,20 @@ function openUniversalDemandPdfPreview(demandId, schoolCode) {
       <div style="text-align:center; width:44%">
         ${sub.signature_data ? `
           <div style="height:32px; display:flex; align-items:center; justify-content:center">
-            <img src="${sub.signature_data}" style="max-height:30px; max-width:150px; object-fit:contain" alt="हस्ताक्षर">
+            <img src="${sub.signature_data}" style="max-height:30px; max-width:150px; object-fit:contain" alt="${isEn ? 'Signature' : 'हस्ताक्षर'}">
           </div>
           <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.86rem; color:#000">
-            हस्ताक्षर संस्था प्रधान
+            ${isEn ? 'Signature: Principal / Head of Institution' : 'हस्ताक्षर संस्था प्रधान'}
           </div>
         ` : `
           <div style="height:32px"></div>
           <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.86rem; color:#000">
-            हस्ताक्षर संस्था प्रधान
+            ${isEn ? 'Signature: Principal / Head of Institution' : 'हस्ताक्षर संस्था प्रधान'}
           </div>
         `}
-        <div style="font-size:0.78rem; font-weight:700; color:#000; margin-top:1px">प्रधानाचार्य / संस्था प्रधान</div>
-        <div style="font-size:0.75rem; color:#111; margin-top:1px">${school.school_name}</div>
-        <div style="font-size:0.72rem; color:#222; margin-top:1px">ब्लॉक-भिनाय (अजमेर)</div>
+        <div style="font-size:0.78rem; font-weight:700; color:#000; margin-top:1px">${isEn ? 'Principal / Head of Institution' : 'प्रधानाचार्य / संस्था प्रधान'}</div>
+        <div style="font-size:0.75rem; color:#111; margin-top:1px">${schoolDisplayName}</div>
+        <div style="font-size:0.72rem; color:#222; margin-top:1px">${isEn ? 'Block-Bhinai (District: Ajmer)' : 'ब्लॉक-भिनाय (अजमेर)'}</div>
       </div>
     </div>
   `;
@@ -8315,7 +8451,7 @@ function renderCBEOExecutiveDemands() {
       <td>
         <div style="display:flex; align-items:center; gap:0.5rem">
           <div style="flex:1; background:#e2e8f0; height:8px; border-radius:4px; overflow:hidden">
-            <div style="width:${d.pct}%; background:${d.pct === 100 ? '#10b981' : (d.pct > 50 ? '#0284c7' : '#f59e0b')}; height:100%"></div>
+            <div style="width:${d.pct}%; background:${d.pct === 100 ? '#10b981' : (d.pct > 50 ? '#0284c7' : '#0369a1')}; height:100%"></div>
           </div>
           <span style="font-size:0.8rem; font-weight:700">${d.pct}%</span>
         </div>
@@ -8751,7 +8887,7 @@ function updateSchoolManagementPolicyUI() {
     };
     const badgeStyles = {
       'all': { bg: '#dcfce7', color: '#15803d', border: '#86efac' },
-      'sec_srsec': { bg: '#fef3c7', color: '#b45309', border: '#fde68a' },
+      'sec_srsec': { bg: '#e0f2fe', color: '#0369a1', border: '#bae6fd' },
       'peeo_nodal': { bg: '#e0f2fe', color: '#0369a1', border: '#bae6fd' },
       'custom': { bg: '#f3e8ff', color: '#7e22ce', border: '#e9d5ff' }
     };
@@ -8961,7 +9097,7 @@ function filterSchoolManagementTable() {
       </td>
       <td>
         <div style="display:flex; align-items:center; gap:0.4rem">
-          <span class="badge-tag" style="background:${isCustomPwd ? '#fef3c7' : '#f1f5f9'}; color:${isCustomPwd ? '#b45309' : '#475569'}; font-size:0.72rem; font-weight:700">
+          <span class="badge-tag" style="background:${isCustomPwd ? '#e0f2fe' : '#f1f5f9'}; color:${isCustomPwd ? '#0369a1' : '#475569'}; font-size:0.72rem; font-weight:700">
             ${isCustomPwd ? '🔑 कस्टम' : 'डिफ़ॉल्ट SD'}
           </span>
           <button class="sch-action-btn pwd" onclick="openAdminResetPasswordModal('${s.shala_darpan_code}')" title="पासवर्ड रीसेट / देखें">
