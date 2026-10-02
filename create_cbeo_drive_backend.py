@@ -411,7 +411,7 @@ def main():
         'cbeo_info': {
             'office_name': 'कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय',
             'block': 'भिनाय (BHINAI)',
-            'district': 'अजमेर / केकड़ी (AJMER)',
+            'district': 'अजमेर (AJMER)',
             'nic_sd_id': '8140',
             'ifms_id': '1408',
             'cbeo_officer': 'प्रमिला रासलोत',

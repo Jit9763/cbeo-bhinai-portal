@@ -171,6 +171,9 @@
               <span id="sp-peeo-progress-badge" class="sp-status-badge warning" style="font-size:0.85rem; padding:0.4rem 0.9rem">
                 0 पूर्ण | 0 शेष
               </span>
+              <button class="btn btn-outline-danger btn-sm" id="btn-peeo-pending-report-top" onclick="openPendingReportPdf('saman-pariksha')" style="font-weight:700; display:none; align-items:center; gap:0.4rem">
+                <i class="fas fa-file-pdf"></i> ⚠️ लम्बित विद्यालय रिपोर्ट (PDF)
+              </button>
               <button class="btn btn-success btn-sm" id="btn-peeo-consolidated-top" onclick="openPeeoConsolidatedPdfPreview()" style="font-weight:700; display:none; align-items:center; gap:0.4rem">
                 <i class="fas fa-file-invoice"></i> 📑 परिक्षेत्र समेकित परीक्षा मांग रिपोर्ट (A4 Print / PDF)
               </button>
@@ -255,6 +258,9 @@
               </p>
             </div>
             <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+              <button class="btn btn-danger btn-sm" onclick="openPendingReportPdf('saman-pariksha')" style="font-weight:700; background:#dc2626; border-color:#dc2626" title="समान परीक्षा हेतु लम्बित 57 स्कूलों एवं संबंधित PEEOs की आधिकारिक PDF सूची">
+                <i class="fas fa-file-pdf"></i> 📄 लम्बित स्कूल व PEEO सूची (PDF)
+              </button>
               <button class="btn btn-success btn-sm" onclick="exportSamanParikshaMasterCSV()" title="गूगल शीट के समान 72-कॉलम विस्तृत एक्सेल CSV डाउनलोड करें">
                 <i class="fas fa-file-excel"></i> 72-कॉलम एक्सेल (CSV) डाउनलोड
               </button>
@@ -423,6 +429,9 @@
                 </p>
               </div>
               <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+                <button class="btn btn-danger btn-sm" onclick="openPendingReportPdf('saman-pariksha')" style="font-weight:700; background:#dc2626; border-color:#dc2626" title="लम्बित स्कूल व PEEO सूची (PDF)">
+                  <i class="fas fa-file-pdf"></i> 📄 लम्बित सूची (PDF)
+                </button>
                 <button class="btn btn-whatsapp btn-sm" onclick="sendBulkPendingWhatsAppReminder()">
                   <i class="fab fa-whatsapp"></i> 📢 लम्बित स्कूलों को WhatsApp रिमाइंडर
                 </button>
@@ -2366,6 +2375,50 @@
             <i class="fab fa-whatsapp"></i> WhatsApp शेयर
           </button>
           <button class="btn btn-primary" onclick="printPeeoConsolidatedDocument()">
+            <i class="fas fa-print"></i> A4 साइज प्रिंट करें (Print)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11B. UNIVERSAL PENDING SCHOOLS & PEEOS REPORT PDF PREVIEW MODAL -->
+  <div id="modal-pending-report-preview" class="modal-overlay">
+    <div class="modal-card" style="max-width:1160px; width:96vw; padding:0; background:#f8fafc; overflow:hidden">
+      <div class="modal-header" style="background:#b91c1c; color:#ffffff; padding:1rem 1.5rem">
+        <h3 style="color:#ffffff; font-size:1.15rem; display:flex; align-items:center; gap:0.5rem">
+          <i class="fas fa-exclamation-triangle text-warning"></i> <span id="pending-report-modal-title">लम्बित विद्यालय एवं PEEO अनुपालना रिपोर्ट (A4 PDF)</span>
+        </h3>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+          <button class="btn btn-warning btn-sm" onclick="downloadPendingReportPdfDirect()" title="सीधे PDF फाइल डाउनलोड करें" style="font-weight:700">
+            <i class="fas fa-download"></i> PDF डाउनलोड
+          </button>
+          <button class="btn btn-whatsapp btn-sm" onclick="sharePendingReportWhatsApp()" title="लम्बित विवरण WhatsApp पर शेयर करें">
+            <i class="fab fa-whatsapp"></i> WhatsApp शेयर
+          </button>
+          <button class="btn btn-success btn-sm" onclick="printPendingReportDocument()" title="ब्राउज़र प्रिंट / सेव एज PDF">
+            <i class="fas fa-print"></i> प्रिंट / PDF सेव
+          </button>
+          <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-pending-report-preview')">&times;</button>
+        </div>
+      </div>
+      <div class="modal-body" style="padding:1.5rem; max-height:calc(90vh - 130px); overflow-y:auto">
+        <div id="printable-pending-report-content" class="printable-exam-sheet" style="max-width:1080px; margin:0 auto; background:#ffffff">
+          <!-- Populated dynamically by openPendingReportPdf() -->
+        </div>
+      </div>
+      <div class="modal-footer" style="padding:0.85rem 1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-pending-report-preview')">
+          बंद करें (Close)
+        </button>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+          <button class="btn btn-warning" onclick="downloadPendingReportPdfDirect()" style="font-weight:700">
+            <i class="fas fa-file-download"></i> सीधे PDF डाउनलोड करें
+          </button>
+          <button class="btn btn-whatsapp" onclick="sharePendingReportWhatsApp()">
+            <i class="fab fa-whatsapp"></i> WhatsApp पर शेयर करें
+          </button>
+          <button class="btn btn-primary" onclick="printPendingReportDocument()">
             <i class="fas fa-print"></i> A4 साइज प्रिंट करें (Print)
           </button>
         </div>

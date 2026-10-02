@@ -1440,10 +1440,14 @@ function renderSamanParikshaPeeoView() {
 
   grid.innerHTML = '';
 
-  // समेकित मांग रिपोर्ट बटन केवल PEEO लॉगिन पर उपलब्ध रहेगा
+  // समेकित मांग रिपोर्ट व लम्बित स्कूल PDF बटन केवल PEEO लॉगिन पर उपलब्ध रहेगा
   const isPeeo = STATE.currentUser && STATE.currentUser.role === 'peeo';
   if (btnConsolidated) {
     btnConsolidated.style.display = isPeeo ? 'inline-flex' : 'none';
+  }
+  const btnPending = document.getElementById('btn-peeo-pending-report-top');
+  if (btnPending) {
+    btnPending.style.display = isPeeo ? 'inline-flex' : 'none';
   }
 
   let targetSchools = [];
@@ -3271,6 +3275,447 @@ async function sharePeeoConsolidatedWhatsApp() {
 }
 
 /* ========================================================
+   UNIVERSAL PENDING SCHOOLS & PEEOs REPORT PDF SYSTEM
+   Supports: Saman Pariksha (57 Schools) + Any Future Demand
+   ======================================================== */
+function openPendingReportPdf(type = 'saman-pariksha', demandId = null) {
+  let reportTitle = '';
+  let subTitle = '';
+  let filename = '';
+  let targetSchools = [];
+  let isSchoolPendingFn = null;
+
+  const isSaman = (type === 'saman-pariksha' || demandId === 'saman_pariksha_2026_27' || !type);
+
+  if (isSaman) {
+    reportTitle = 'जिला समान परीक्षा 2026-27 (57 विद्यालय)';
+    subTitle = 'माध्यमिक एवं उच्च माध्यमिक विद्यालय मांग प्रपत्र - लम्बित अनुपालना रिपोर्ट';
+    filename = 'CBEO_Bhinai_Saman_Pariksha_Pending_Schools_Report.pdf';
+    targetSchools = [...STATE.schools56];
+    isSchoolPendingFn = (s) => {
+      const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
+      return !isSamanParikshaSubmitted(sub);
+    };
+  } else {
+    const demand = STATE.demands.find(d => d.id === demandId) || STATE.demands[0];
+    if (!demand) {
+      showToast('मांग प्रपत्र नहीं मिला!', 'warning');
+      return;
+    }
+    reportTitle = demand.title || 'अधिकृत सूचना मांग प्रपत्र';
+    subTitle = `${demand.description || 'कार्यालय सूचना मांग'} - लम्बित अनुपालना रिपोर्ट`;
+    filename = `CBEO_Bhinai_${demand.id}_Pending_Report.pdf`;
+    targetSchools = getTargetSchoolsForDemand(demand);
+    isSchoolPendingFn = (s) => !isDynamicDemandSubmitted(demand.id, s.shala_darpan_code);
+  }
+
+  // If current logged in user is PEEO, filter to their schools
+  const currentUser = STATE.currentUser;
+  if (currentUser && currentUser.role === 'peeo') {
+    const peeoFilterName = currentUser.peeo_name;
+    const cleanTarget = peeoFilterName.replace(/PEEO\s+/i, '').trim().toLowerCase();
+    targetSchools = targetSchools.filter(s => s.peeo_name.toLowerCase().includes(cleanTarget));
+    subTitle += ` | ${peeoFilterName} परिक्षेत्र`;
+    filename = `${peeoFilterName.replace(/\s+/g, '_')}_Pending_Report.pdf`;
+  }
+
+  const totalSchools = targetSchools.length;
+  const pendingSchools = targetSchools.filter(isSchoolPendingFn);
+  const submittedSchools = targetSchools.filter(s => !isSchoolPendingFn(s));
+  const pendingCount = pendingSchools.length;
+  const submittedCount = submittedSchools.length;
+
+  // Build PEEO-wise statistics
+  const peeoStatsMap = {};
+  targetSchools.forEach(s => {
+    const pName = s.peeo_name || 'अन्य';
+    if (!peeoStatsMap[pName]) {
+      const peeoInfo = STATE.peeos.find(p => p.peeo_name && p.peeo_name.toLowerCase().includes(pName.toLowerCase().replace(/PEEO\s+/i, '').trim()));
+      peeoStatsMap[pName] = {
+        name: pName,
+        shala_darpan_code: s.peeo_code || peeoInfo?.shala_darpan_code || '---',
+        principal: peeoInfo?.principal_incharge || s.principal_name || 'संस्था प्रधान',
+        mobile: peeoInfo?.mobile || s.principal_mobile || '---',
+        total: 0,
+        submitted: 0,
+        pending: 0
+      };
+    }
+    peeoStatsMap[pName].total++;
+    if (isSchoolPendingFn(s)) {
+      peeoStatsMap[pName].pending++;
+    } else {
+      peeoStatsMap[pName].submitted++;
+    }
+  });
+
+  const peeoStatsList = Object.values(peeoStatsMap).sort((a, b) => b.pending - a.pending || a.name.localeCompare(b.name));
+  const pendingPeeoCount = peeoStatsList.filter(p => p.pending > 0).length;
+  const totalPeeos = peeoStatsList.length;
+
+  STATE.activePendingReportState = {
+    type,
+    demandId,
+    reportTitle,
+    filename,
+    totalSchools,
+    submittedCount,
+    pendingCount,
+    pendingPeeoCount,
+    totalPeeos,
+    pendingSchools
+  };
+
+  const container = document.getElementById('printable-pending-report-content');
+  const modalTitle = document.getElementById('pending-report-modal-title');
+  if (modalTitle) {
+    modalTitle.innerHTML = `📄 ${reportTitle} — लम्बित स्कूल व PEEO सूची (PDF)`;
+  }
+  if (!container) return;
+
+  const nowStr = new Date().toLocaleString('hi-IN', {
+    day: '2-digit', month: '2-digit', year: 'numeric',
+    hour: '2-digit', minute: '2-digit', hour12: true
+  });
+
+  // Build Pending Schools Rows HTML
+  let pendingRowsHtml = '';
+  if (pendingCount === 0) {
+    pendingRowsHtml = `
+      <tr>
+        <td colspan="8" style="text-align:center; padding:30px 15px; background:#f0fdf4; color:#166534">
+          <div style="font-size:24pt; margin-bottom:8px">🎉</div>
+          <div style="font-size:13pt; font-weight:800">अत्यंत हर्ष का विषय है!</div>
+          <div style="font-size:10.5pt; margin-top:4px">समस्त ${totalSchools} विद्यालयों की सूचना शत-प्रतिशत प्राप्त हो चुकी है। कोई भी विद्यालय लम्बित नहीं है।</div>
+        </td>
+      </tr>
+    `;
+  } else {
+    pendingSchools.forEach((s, idx) => {
+      const pName = s.principal_name || 'संस्था प्रधान';
+      const pMob = s.principal_mobile || '---';
+      const iName = s.incharge_name || 'परीक्षा प्रभारी';
+      const iMob = s.incharge_mobile || '---';
+      const exCode = s.exam_code || '---';
+
+      pendingRowsHtml += `
+        <tr style="background:${idx % 2 === 0 ? '#ffffff' : '#fef2f2'}">
+          <td style="text-align:center; font-weight:700">${idx + 1}</td>
+          <td>
+            <div style="font-weight:700; color:#1e293b; font-size:9pt">${s.school_name}</div>
+            <div style="font-size:7.5pt; color:#64748b">श्रेणी: ${s.category || s.type || 'Govt'}</div>
+          </td>
+          <td style="text-align:center; font-family:monospace; font-weight:700">${s.shala_darpan_code}</td>
+          <td style="text-align:center; font-weight:800; color:#1e3a8a">${exCode}</td>
+          <td style="font-size:8pt; font-weight:600; color:#334155">${s.peeo_name}</td>
+          <td>
+            <div style="font-weight:700; font-size:8pt; color:#1e293b">${pName}</div>
+            <div style="font-size:7.5pt; color:#0369a1; font-weight:600">📞 ${pMob}</div>
+          </td>
+          <td>
+            <div style="font-weight:700; font-size:8pt; color:#1e293b">${iName}</div>
+            <div style="font-size:7.5pt; color:#0369a1; font-weight:600">📞 ${iMob}</div>
+          </td>
+          <td style="text-align:center">
+            <span style="display:inline-block; padding:2px 8px; background:#fee2e2; border:1px solid #f87171; color:#991b1b; border-radius:12px; font-size:7.5pt; font-weight:800">
+              🔴 लम्बित
+            </span>
+          </td>
+        </tr>
+      `;
+    });
+  }
+
+  // Build PEEO Summary Table HTML
+  let peeoRowsHtml = '';
+  peeoStatsList.forEach((p, idx) => {
+    const isCompleted = p.pending === 0;
+    const badge = isCompleted 
+      ? '<span style="display:inline-block; padding:2px 8px; background:#dcfce7; color:#15803d; border:1px solid #86efac; border-radius:12px; font-size:7.5pt; font-weight:700">🟢 शत-प्रतिशत पूर्ण</span>'
+      : `<span style="display:inline-block; padding:2px 8px; background:#fee2e2; color:#b91c1c; border:1px solid #fca5a5; border-radius:12px; font-size:7.5pt; font-weight:800">🔴 ${p.pending} विद्यालय लम्बित</span>`;
+
+    peeoRowsHtml += `
+      <tr style="background:${isCompleted ? '#ffffff' : '#fff7ed'}">
+        <td style="text-align:center; font-weight:700">${idx + 1}</td>
+        <td>
+          <div style="font-weight:700; color:#1e3a8a; font-size:8.5pt">${p.name}</div>
+          <div style="font-size:7pt; color:#64748b">शा.दा.: ${p.shala_darpan_code}</div>
+        </td>
+        <td style="text-align:center; font-weight:700">${p.total}</td>
+        <td style="text-align:center; font-weight:700; color:#15803d">${p.submitted}</td>
+        <td style="text-align:center; font-weight:800; color:${p.pending > 0 ? '#b91c1c' : '#64748b'}">${p.pending}</td>
+        <td>
+          <div style="font-size:8pt; font-weight:600">${p.principal}</div>
+          <div style="font-size:7.5pt; color:#0369a1; font-weight:700">📞 ${p.mobile}</div>
+        </td>
+        <td style="text-align:center">${badge}</td>
+      </tr>
+    `;
+  });
+
+  const fullHtml = `
+    <div style="font-family:'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color:#0f172a; line-height:1.4">
+      
+      <!-- Official Rajasthan Government Header (Strictly AJMER ONLY) -->
+      <div style="text-align:center; border-bottom:2.5px solid #1b365d; padding-bottom:10px; margin-bottom:14px">
+        <div style="font-size:10.5pt; font-weight:700; color:#475569; letter-spacing:0.05em">राजस्थान सरकार • स्कूल शिक्षा विभाग</div>
+        <h2 style="margin:4px 0; color:#1b365d; font-size:15pt; font-weight:900">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)</h2>
+        <div style="font-size:9.5pt; color:#334155; font-weight:600">
+          <span>जिला: <strong>अजमेर</strong></span> &nbsp;•&nbsp; <span>ब्लॉक: <strong>भिनाय</strong></span> &nbsp;•&nbsp; <span>NIC-SD ID: <strong>8140</strong></span> &nbsp;•&nbsp; <span>IFMS ID: <strong>1408</strong></span>
+        </div>
+        <div style="margin-top:8px">
+          <span style="display:inline-block; background:#fee2e2; border:1.5px solid #dc2626; border-radius:6px; padding:4px 16px; color:#991b1b; font-weight:900; font-size:11pt">
+            ⚠️ ${reportTitle} — लम्बित विद्यालय एवं PEEO अनुपालना रिपोर्ट
+          </span>
+        </div>
+        <div style="font-size:8pt; color:#64748b; margin-top:4px">
+          रिपोर्ट जनरेशन दिनांक व समय: <strong>${nowStr}</strong> | आधिकारिक पोर्टल: <strong>CBEO Bhinai Portal</strong>
+        </div>
+      </div>
+
+      <!-- Metric KPI Overview Cards -->
+      <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; margin-bottom:14px">
+        <div style="background:#f8fafc; border-left:4px solid #1e3a8a; padding:8px 12px; border-radius:4px; border:1px solid #cbd5e1; border-left-width:4px">
+          <div style="font-size:7.5pt; color:#64748b; font-weight:800; text-transform:uppercase">कुल लक्षित विद्यालय</div>
+          <div style="font-size:16pt; font-weight:900; color:#1e3a8a; line-height:1.2">${totalSchools}</div>
+          <div style="font-size:7.5pt; color:#64748b">माध्यमिक व उच्च माध्यमिक</div>
+        </div>
+        <div style="background:#f0fdf4; border-left:4px solid #16a34a; padding:8px 12px; border-radius:4px; border:1px solid #bbf7d0; border-left-width:4px">
+          <div style="font-size:7.5pt; color:#15803d; font-weight:800; text-transform:uppercase">प्राप्त सूचनाएं (पूर्ण)</div>
+          <div style="font-size:16pt; font-weight:900; color:#15803d; line-height:1.2">${submittedCount}</div>
+          <div style="font-size:7.5pt; color:#16a34a">सफलतापूर्वक सबमिट</div>
+        </div>
+        <div style="background:#fef2f2; border-left:4px solid #dc2626; padding:8px 12px; border-radius:4px; border:1px solid #fecaca; border-left-width:4px">
+          <div style="font-size:7.5pt; color:#b91c1c; font-weight:800; text-transform:uppercase">🔴 लम्बित विद्यालय (Pending)</div>
+          <div style="font-size:16pt; font-weight:900; color:#dc2626; line-height:1.2">${pendingCount}</div>
+          <div style="font-size:7.5pt; color:#b91c1c; font-weight:700">प्रपत्र अप्राप्त / शेष</div>
+        </div>
+        <div style="background:#fffbeb; border-left:4px solid #d97706; padding:8px 12px; border-radius:4px; border:1px solid #fde68a; border-left-width:4px">
+          <div style="font-size:7.5pt; color:#b45309; font-weight:800; text-transform:uppercase">लम्बित PEEO परिक्षेत्र</div>
+          <div style="font-size:16pt; font-weight:900; color:#d97706; line-height:1.2">${pendingPeeoCount} <span style="font-size:10pt; color:#64748b; font-weight:600">/ ${totalPeeos}</span></div>
+          <div style="font-size:7.5pt; color:#b45309">जहाँ विद्यालय लम्बित हैं</div>
+        </div>
+      </div>
+
+      <!-- Table 1: Detailed Pending Schools Contact List -->
+      <div style="margin-bottom:18px">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px">
+          <h3 style="font-size:10pt; font-weight:800; color:#991b1b; margin:0; display:flex; align-items:center; gap:6px">
+            <span style="background:#dc2626; color:#fff; width:18px; height:18px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:7.5pt">1</span>
+            लम्बित विद्यालयों की विस्तृत संपर्क सूची (${pendingCount} विद्यालय)
+          </h3>
+          <span style="font-size:8pt; color:#64748b">त्वरित संपर्क एवं फॉलो-अप हेतु अधिकृत सूची</span>
+        </div>
+
+        <table style="width:100%; border-collapse:collapse; font-size:8pt; border:1.5px solid #cbd5e1">
+          <thead>
+            <tr style="background:#1b365d; color:#ffffff; font-weight:800">
+              <th style="border:1px solid #475569; padding:5px 4px; text-align:center; width:30px">क्र.</th>
+              <th style="border:1px solid #475569; padding:5px 6px; text-align:left">विद्यालय का नाम व श्रेणी</th>
+              <th style="border:1px solid #475569; padding:5px 4px; text-align:center; width:70px">शा.दा. कोड</th>
+              <th style="border:1px solid #475569; padding:5px 4px; text-align:center; width:65px">परीक्षा कोड</th>
+              <th style="border:1px solid #475569; padding:5px 6px; text-align:left">संबंधित PEEO</th>
+              <th style="border:1px solid #475569; padding:5px 6px; text-align:left">संस्था प्रधान (नाम व मो.)</th>
+              <th style="border:1px solid #475569; padding:5px 6px; text-align:left">परीक्षा प्रभारी (नाम व मो.)</th>
+              <th style="border:1px solid #475569; padding:5px 4px; text-align:center; width:65px">स्थिति</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${pendingRowsHtml}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table 2: PEEO-wise Compliance Summary -->
+      <div style="margin-bottom:16px">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px">
+          <h3 style="font-size:10pt; font-weight:800; color:#1b365d; margin:0; display:flex; align-items:center; gap:6px">
+            <span style="background:#1b365d; color:#fff; width:18px; height:18px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:7.5pt">2</span>
+            PEEO-वार प्रपत्र अनुपालना सारांश (समस्त ${totalPeeos} PEEO परिक्षेत्र)
+          </h3>
+          <span style="font-size:8pt; color:#64748b">लम्बित PEEO संख्या: ${pendingPeeoCount}</span>
+        </div>
+
+        <table style="width:100%; border-collapse:collapse; font-size:7.8pt; border:1.5px solid #cbd5e1">
+          <thead>
+            <tr style="background:#334155; color:#ffffff; font-weight:800">
+              <th style="border:1px solid #64748b; padding:4px 3px; text-align:center; width:28px">क्र.</th>
+              <th style="border:1px solid #64748b; padding:4px 6px; text-align:left">PEEO परिक्षेत्र</th>
+              <th style="border:1px solid #64748b; padding:4px 4px; text-align:center; width:45px">कुल स्कूल</th>
+              <th style="border:1px solid #64748b; padding:4px 4px; text-align:center; width:45px">पूर्ण</th>
+              <th style="border:1px solid #64748b; padding:4px 4px; text-align:center; width:45px">लम्बित</th>
+              <th style="border:1px solid #64748b; padding:4px 6px; text-align:left">PEEO नोडल संस्था प्रधान व मोबाइल</th>
+              <th style="border:1px solid #64748b; padding:4px 4px; text-align:center; width:100px">अनुपालना स्थिति</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${peeoRowsHtml}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Formal Administrative Order Box & Signatures -->
+      <div style="background:#fffbeb; border-left:4px solid #d97706; padding:8px 12px; border-radius:4px; font-size:8pt; color:#92400e; margin-bottom:18px; border:1px solid #fde68a; border-left-width:4px">
+        <strong>📌 महत्वपूर्ण प्रशासनिक निर्देश:</strong> उपरोक्त समस्त संस्था प्रधान एवं संबंधित PEEO साहिबान आज ही प्राथमिकता के आधार पर पोर्टल पर प्रपत्र ऑनलाइन सबमिट करना सुनिश्चित करें ताकि समेकित रिपोर्ट जिला स्तर पर प्रेषित की जा सके।
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; padding-top:10px; border-top:1px solid #e2e8f0">
+        <div style="font-size:7.5pt; color:#64748b">
+          <div>कंप्यूटर जनरेटेड अधिकृत रिपोर्ट • CBEO भिनाय पोर्टल</div>
+          <div>वेबसाइट: https://jit9763.github.io/cbeo-bhinai-portal/</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-weight:900; color:#1b365d; font-size:10pt">मुख्य ब्लॉक शिक्षा अधिकारी (CBEO)</div>
+          <div style="font-size:8.5pt; color:#334155; font-weight:700">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय (अजमेर)</div>
+          <div style="font-size:7.5pt; color:#15803d; font-weight:700; margin-top:2px">✓ अधिकृत डिजिटल प्रति</div>
+        </div>
+      </div>
+
+    </div>
+  `;
+
+  container.innerHTML = fullHtml;
+  showModal('modal-pending-report-preview');
+}
+
+function printPendingReportDocument() {
+  const container = document.getElementById('printable-pending-report-content');
+  if (!container) return;
+
+  const contentHtml = container.innerHTML;
+  const printWindow = window.open('', '_blank');
+  if (!printWindow) {
+    showToast('पॉपअप ब्लॉक है, कृपया अनुमति दें!', 'warning');
+    return;
+  }
+
+  printWindow.document.write(`<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>लम्बित विद्यालय एवं PEEO अनुपालना रिपोर्ट - CBEO भिनाय (अजमेर)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 8mm;
+    }
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #ffffff;
+      color: #000000;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    tr {
+      page-break-inside: avoid;
+    }
+  </style>
+</head>
+<body>
+  ${contentHtml}
+</body>
+</html>`);
+
+  printWindow.document.close();
+  printWindow.focus();
+  setTimeout(() => {
+    printWindow.print();
+    printWindow.close();
+  }, 450);
+}
+
+async function downloadPendingReportPdfDirect() {
+  const state = STATE.activePendingReportState || {};
+  const filename = state.filename || 'CBEO_Bhinai_Pending_Report.pdf';
+  showToast('लम्बित विद्यालय रिपोर्ट की PDF तैयार की जा रही है...', 'info');
+
+  try {
+    const blob = await exportDocumentToPdfBlob('printable-pending-report-content', filename);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('लम्बित विद्यालय सूची PDF सफलतापूर्वक डाउनलोड हो गई!', 'success');
+  } catch (err) {
+    console.warn('PDF download fallback to print:', err);
+    printPendingReportDocument();
+  }
+}
+
+async function sharePendingReportWhatsApp() {
+  const state = STATE.activePendingReportState || {};
+  const reportTitle = state.reportTitle || 'सूचना मांग प्रपत्र';
+  const totalSchools = state.totalSchools || 0;
+  const submittedCount = state.submittedCount || 0;
+  const pendingCount = state.pendingCount || 0;
+  const pendingPeeoCount = state.pendingPeeoCount || 0;
+  const filename = state.filename || 'CBEO_Bhinai_Pending_Report.pdf';
+
+  let listSnippet = '';
+  if (state.pendingSchools && state.pendingSchools.length > 0) {
+    state.pendingSchools.slice(0, 15).forEach((s, idx) => {
+      listSnippet += `${idx + 1}. ${s.school_name} (${s.peeo_name}) - 📞 ${s.principal_mobile || '---'}\n`;
+    });
+    if (state.pendingSchools.length > 15) {
+      listSnippet += `...एवं ${state.pendingSchools.length - 15} अन्य विद्यालय (विस्तृत PDF संलग्न देखें)\n`;
+    }
+  } else {
+    listSnippet = '🎉 समस्त विद्यालयों की सूचना प्राप्त हो चुकी है!\n';
+  }
+
+  const waSummary = `*🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)*\n*⚠️ अति आवश्यक - लम्बित विद्यालय एवं PEEO अनुपालना रिपोर्ट*\n*विषय:* ${reportTitle}\n\n📊 *प्रगति स्थिति:* ${submittedCount}/${totalSchools} पूर्ण | 🔴 *${pendingCount} विद्यालय लम्बित*\n⚠️ *लम्बित PEEO परिक्षेत्र:* ${pendingPeeoCount} PEEO\n\n📋 *लम्बित विद्यालयों की सूची:*\n${listSnippet}\n📌 *निर्देश:* कृपया उपरोक्त समस्त विद्यालय आज ही पोर्टल पर प्रपत्र ऑनलाइन सबमिट करें।\n📄 *अधिकृत लम्बित रिपोर्ट PDF संलग्न है।*\n🌐 *CBEO भिनाय पोर्टल:* https://jit9763.github.io/cbeo-bhinai-portal/`;
+
+  showToast('WhatsApp शेयर तैयार किया जा रहा है...', 'info');
+
+  try {
+    const blob = await exportDocumentToPdfBlob('printable-pending-report-content', filename);
+    const pdfFile = new File([blob], filename, { type: 'application/pdf' });
+
+    if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
+      await navigator.share({
+        files: [pdfFile],
+        title: `लम्बित विद्यालय रिपोर्ट - CBEO भिनाय`,
+        text: waSummary
+      });
+      showToast('WhatsApp शेयर विंडो सफलतापूर्वक खुल गई!', 'success');
+    } else {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(waSummary + '\n\n*(नोट: आधिकारिक PDF फाइल आपके डिवाइस में डाउनलोड हो गई है, कृपया चैट में अटैच करें)*')}`;
+      window.open(waUrl, '_blank');
+      showToast('PDF डाउनलोड हो गई है एवं WhatsApp खुल गया है! कृपया फाइल अटैच करें।', 'info');
+    }
+  } catch (err) {
+    console.warn('WhatsApp share fallback:', err);
+    const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(waSummary)}`;
+    window.open(waUrl, '_blank');
+  }
+}
+
+/* ========================================================
    ADMIN SAMAN PARIKSHA CALL DIRECTORY (56 SCHOOLS)
    ======================================================== */
 function switchSamanSubView(subview) {
@@ -4680,6 +5125,9 @@ function createDemandCardElement(demand, isArchive = false) {
         <button class="btn btn-primary btn-sm" onclick="switchTab('saman-pariksha')" style="font-weight:700">
           <i class="fas fa-file-signature"></i> 📋 समान परीक्षा पोर्टल
         </button>
+        <button class="btn btn-danger btn-sm" onclick="openPendingReportPdf('saman-pariksha')" style="font-weight:700; background:#dc2626; border-color:#dc2626" title="समान परीक्षा हेतु लम्बित 57 स्कूलों एवं संबंधित PEEOs की आधिकारिक PDF सूची">
+          <i class="fas fa-file-pdf"></i> 🚨 लम्बित स्कूल/PEEO PDF
+        </button>
         ${isAdminUser ? `
           <button class="btn btn-success btn-sm" onclick="exportSamanParikshaMasterCSV()" title="72-कॉलम विस्तृत एक्सेल डाउनलोड">
             <i class="fas fa-file-excel"></i> 📊 72-कॉलम एक्सेल
@@ -4688,6 +5136,9 @@ function createDemandCardElement(demand, isArchive = false) {
       ` : `
         <button class="btn btn-primary btn-sm" onclick="openDynamicDemandPortal('${demand.id}')" style="font-weight:700">
           <i class="fas fa-desktop"></i> 📋 सूचना पोर्टल व प्रपत्र स्थिति खोलें
+        </button>
+        <button class="btn btn-danger btn-sm" onclick="openPendingReportPdf('demand', '${demand.id}')" style="font-weight:700; background:#dc2626; border-color:#dc2626" title="इस सूचना मांग में लम्बित स्कूलों एवं PEEOs की आधिकारिक PDF सूची">
+          <i class="fas fa-file-pdf"></i> 🚨 लम्बित सूची PDF
         </button>
         <button class="btn btn-success btn-sm" onclick="exportDynamicDemandExcel('${demand.id}')" title="इस मांग का एक्सेल डाउनलोड" style="font-weight:700">
           <i class="fas fa-file-excel"></i> 📊 एक्सेल डाउनलोड
@@ -5158,7 +5609,7 @@ function openPreviewPDFModal(demandId, peeoId) {
         <div class="rubber-stamp" style="width:260px; min-height:76px">
           <div class="stamp-line1">प्रधानाचार्य एवं पदेन पंचायत प्रारम्भिक शिक्षा अधिकारी (PEEO)</div>
           <div class="stamp-line2">रा.उ.मा.वि. ${sub.panchayat || ''} (${sub.peeoName.replace('PEEO ', '')})</div>
-          <div class="stamp-line3">पंचायत समिति - भिनाय (केकड़ी/अजमेर)</div>
+          <div class="stamp-line3">पंचायत समिति - भिनाय (अजमेर)</div>
         </div>
         <div style="font-size:8pt; font-weight:700; color:#15803d; margin-top:4px">✓ अधिकृत सीधी डिजिटल मोहर</div>
       </div>
@@ -5405,6 +5856,9 @@ function renderDynamicDemandPortalView(demandId) {
         <button class="btn btn-light btn-sm" onclick="exportDynamicDemandExcel('${demand.id}')" style="color:#1e3a8a; font-weight:700">
           <i class="fas fa-file-excel text-success"></i> समेकित एक्सेल डाउनलोड
         </button>
+        <button class="btn btn-danger btn-sm" onclick="openPendingReportPdf('demand', '${demand.id}')" style="background:#dc2626; border-color:#dc2626; font-weight:700" title="लम्बित स्कूल एवं PEEO सूची PDF">
+          <i class="fas fa-file-pdf"></i> 🚨 लम्बित स्कूल/PEEO PDF
+        </button>
         ${isAdminUser ? `
           <button class="btn btn-warning btn-sm" onclick="openDynamicDemandPeeoSelector('${demand.id}')" style="font-weight:700">
             <i class="fas fa-list-ul"></i> PEEO समेकित रिपोर्ट
@@ -5487,6 +5941,9 @@ function renderDynamicDemandPortalView(demandId) {
           <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
             <button class="btn btn-warning btn-sm" onclick="openDynamicDemandPeeoPdf('${demand.id}', '${user.peeo_name}')" style="font-weight:700">
               <i class="fas fa-file-invoice"></i> PEEO समेकित A4 रिपोर्ट
+            </button>
+            <button class="btn btn-danger btn-sm" onclick="openPendingReportPdf('demand', '${demand.id}')" style="background:#dc2626; border-color:#dc2626; font-weight:700" title="लम्बित स्कूल सूची PDF">
+              <i class="fas fa-file-pdf"></i> लम्बित स्कूल PDF
             </button>
             <button class="btn btn-outline-primary btn-sm" onclick="exportDynamicDemandExcel('${demand.id}', '${user.peeo_name}')" style="font-weight:700">
               <i class="fas fa-download"></i> एक्सेल सूची
@@ -5572,6 +6029,9 @@ function renderDynamicDemandPortalView(demandId) {
       <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:1rem 1.25rem; margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem">
         <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap">
           <span style="font-weight:700; color:#1e293b"><i class="fas fa-bolt text-warning"></i> त्वरित कार्यवाहियां:</span>
+          <button class="btn btn-danger btn-sm" onclick="openPendingReportPdf('demand', '${demand.id}')" style="background:#dc2626; border-color:#dc2626; font-weight:700" title="लम्बित स्कूलों एवं PEEOs की आधिकारिक PDF सूची">
+            <i class="fas fa-file-pdf"></i> 🚨 लम्बित स्कूल/PEEO PDF
+          </button>
           <button class="btn btn-whatsapp btn-sm" onclick="sendDynamicDemandBulkReminder('${demand.id}')" style="font-weight:700">
             <i class="fab fa-whatsapp"></i> सभी ${pendingCount} लंबित स्कूलों को व्हाट्सएप रिमाइंडर
           </button>
