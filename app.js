@@ -7804,20 +7804,25 @@ function openUniversalDemandPdfPreview(demandId, schoolCode, lang = null) {
     titleEl.innerHTML = `<i class="fas fa-file-pdf text-danger"></i> ${isEn ? 'Official Proforma (A4 Landscape)' : 'अधिकृत प्रपत्र (A4 Landscape)'} - ${schoolDisplayName}`;
   }
 
-  // Build dynamic table rows for all columns
-  let colRowsHtml = '';
+  // Build Horizontal Excel Table Grid matching uploaded Excel format & headers
+  let excelTheadCols = '';
+  let excelTbodyCols = '';
+
   (demand.columns || []).forEach((col, idx) => {
-    const val = (sub.data && sub.data[col.name] !== undefined && sub.data[col.name] !== '')
+    const colTitle = col.name || (isEn ? `Column ${idx + 1}` : `कॉलम ${idx + 1}`);
+    excelTheadCols += `
+      <th style="padding:4px 6px; border:1.5px solid #000; background:#f1f5f9; color:#000; font-weight:800; text-align:center; vertical-align:middle; font-size:0.76rem; word-break:break-word">
+        ${colTitle}
+      </th>`;
+
+    const rawVal = (sub.data && sub.data[col.name] !== undefined && sub.data[col.name] !== '')
       ? sub.data[col.name]
-      : `<span style="color:#64748b; font-style:italic">${isEn ? 'Not Entered / NIL' : 'प्रविष्ट नहीं / शून्य'}</span>`;
+      : (sub.is_submitted ? '-' : `<span style="color:#64748b; font-style:italic">${isEn ? 'NIL' : 'शून्य / रिक्त'}</span>`);
     
-    colRowsHtml += `
-      <tr style="border-bottom:1px solid #000">
-        <td style="padding:4px 6px; border:1px solid #000; text-align:center; font-weight:700; width:45px; background:#f8fafc">${idx + 1}</td>
-        <td style="padding:4px 10px; border:1px solid #000; font-weight:800; width:40%; background:#f8fafc; color:#0f172a">${col.name}</td>
-        <td style="padding:4px 12px; border:1px solid #000; font-weight:700; font-size:0.86rem; color:#000">${val}</td>
-      </tr>
-    `;
+    excelTbodyCols += `
+      <td style="padding:5px 6px; border:1px solid #000; font-weight:700; color:#000; text-align:center; vertical-align:middle; font-size:0.78rem; word-break:break-word">
+        ${rawVal}
+      </td>`;
   });
 
   const printHtml = `
@@ -7875,48 +7880,54 @@ function openUniversalDemandPdfPreview(demandId, schoolCode, lang = null) {
       </tr>
     </table>
 
-    <!-- Dynamic Information Demand Table (Laser Print-Friendly High-Contrast) -->
-    <table style="width:100%; border-collapse:collapse; border:2px solid #000; font-size:0.80rem; margin-bottom:6px">
+    <!-- Horizontal Excel Table Grid (Matching Uploaded Excel Headers & Columns) -->
+    <table class="exam-excel-table" style="width:100%; border-collapse:collapse; border:2px solid #000; font-size:0.78rem; margin-bottom:6px; text-align:center">
       <thead>
-        <tr style="background:#f1f5f9; color:#000; font-weight:900">
-          <th style="padding:4px 6px; border:1.5px solid #000; width:45px; text-align:center">${isEn ? 'S.No.' : 'क्र.सं.'}</th>
-          <th style="padding:4px 10px; border:1.5px solid #000; width:40%; text-align:left">${isEn ? 'Requested Information Field / Parameter' : 'मांगी गई सूचना का विषय अथवा मद'}</th>
-          <th style="padding:4px 12px; border:1.5px solid #000; text-align:left">${isEn ? 'Verified Real Data / Submission by School' : 'विद्यालय द्वारा सत्यापित वास्तविक प्रविष्टि'}</th>
+        <tr style="background:#f1f5f9; color:#000; font-weight:800; border-bottom:2px solid #000">
+          <th style="padding:4px 3px; border:1.5px solid #000; width:36px; text-align:center; vertical-align:middle">${isEn ? 'S.No.' : 'क्र.सं.'}</th>
+          <th style="padding:4px 4px; border:1.5px solid #000; width:75px; text-align:center; vertical-align:middle">${isEn ? 'SD Code' : 'शा.दा. कोड'}</th>
+          <th style="padding:4px 6px; border:1.5px solid #000; text-align:left; min-width:140px; vertical-align:middle">${isEn ? 'School Name' : 'विद्यालय का नाम'}</th>
+          ${excelTheadCols}
         </tr>
       </thead>
       <tbody>
-        ${colRowsHtml}
+        <tr style="border-bottom:2px solid #000; background:#ffffff">
+          <td style="padding:5px 3px; border:1px solid #000; font-weight:700; text-align:center">1</td>
+          <td style="padding:5px 4px; border:1px solid #000; font-weight:800; text-align:center"><code>${school.shala_darpan_code}</code></td>
+          <td style="padding:5px 6px; border:1px solid #000; font-weight:800; text-align:left">${schoolDisplayName}</td>
+          ${excelTbodyCols}
+        </tr>
       </tbody>
     </table>
 
     <!-- Verification & Responsibility Declaration -->
-    <div style="margin-top:6px; margin-bottom:8px; padding:4px 8px; background:#ffffff; border:1px solid #000; border-left:4px solid #000; border-radius:3px; font-size:0.72rem; line-height:1.3; color:#000">
+    <div style="margin-top:4px; margin-bottom:4px; padding:3px 6px; background:#ffffff; border:1px solid #000; border-left:4px solid #000; border-radius:3px; font-size:0.70rem; line-height:1.25; color:#000">
       <strong>${isEn ? 'VERIFICATION & RESPONSIBILITY DECLARATION:' : 'सत्यापन एवं उत्तरदायित्व घोषणा:'}</strong> ${isEn 
-        ? 'Certified that all information entered in this proforma is 100% verified, true, and correct as per the official physical and office records of the school. No material facts have been concealed. In case of any error, discrepancy, or misrepresentation, the concerned Principal / Submitter shall be solely held responsible.'
-        : 'प्रमाणित किया जाता है कि उपर्युक्त प्रपत्र में भरी गई सभी सूचनाएं विद्यालय के मूल भौतिक एवं कार्यालय अभिलेखों के अनुसार शत-प्रतिशत सत्य एवं सही हैं। इसमें किसी भी प्रकार का तथ्य छुपाया नहीं गया है। किसी भी त्रुटि, विसंगति अथवा असत्यता की स्थिति में समस्त व्यक्तिगत एवं प्रशासनिक उत्तरदायित्व संबंधित संस्था प्रधान / प्रस्तुतकर्ता का होगा।'}
+        ? 'Certified that all information entered in this proforma is 100% verified, true, and correct as per the official physical and office records of the school. No material facts have been concealed. In case of any error, discrepancy, or misrepresentation in future, the concerned Principal and Proforma In-charge shall be solely held responsible.'
+        : 'प्रमाणित किया जाता है कि उपर्युक्त प्रपत्र में भरी गई सभी सूचनाएं विद्यालय के मूल भौतिक एवं कार्यालय अभिलेखों के अनुसार शत-प्रतिशत सत्य एवं सही हैं तथा इनका शाला दर्पण पोर्टल से मिलान कर लिया गया है। इसमें किसी भी प्रकार का तथ्य छुपाया नहीं गया है। किसी भी त्रुटि, विसंगति अथवा असत्यता की स्थिति में समस्त व्यक्तिगत एवं प्रशासनिक उत्तरदायित्व संबंधित संस्था प्रधान एवं प्रपत्र प्रभारी का होगा।'}
     </div>
 
-    <!-- Official Signatures: Strictly NO rubber stamp, only official signatures -->
-    <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 35px; margin-top:12px; margin-bottom:4px">
+    <!-- Official Signatures: Incharge (Left) & Principal (Right) matching Saman Pariksha -->
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 30px; margin-top:8px; margin-bottom:2px">
       <!-- Left: Incharge / Verifier -->
       <div style="text-align:center; width:36%">
-        <div style="height:32px"></div>
+        <div style="height:28px"></div>
         <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.86rem; color:#000">
           ${isEn ? 'Signature: Proforma In-charge / Nodal Officer' : 'हस्ताक्षर प्रपत्र प्रभारी / नोडल अधिकारी'}
         </div>
       </div>
 
-      <!-- Right: Principal Signature & School Details -->
+      <!-- Right: Principal Signature & School Details (Official Govt Format) -->
       <div style="text-align:center; width:44%">
         ${sub.signature_data ? `
-          <div style="height:32px; display:flex; align-items:center; justify-content:center">
-            <img src="${sub.signature_data}" style="max-height:30px; max-width:150px; object-fit:contain" alt="${isEn ? 'Signature' : 'हस्ताक्षर'}">
+          <div style="height:28px; display:flex; align-items:center; justify-content:center">
+            <img src="${sub.signature_data}" style="max-height:26px; max-width:140px; object-fit:contain" alt="${isEn ? 'Signature' : 'हस्ताक्षर'}">
           </div>
           <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.86rem; color:#000">
             ${isEn ? 'Signature: Principal / Head of Institution' : 'हस्ताक्षर संस्था प्रधान'}
           </div>
         ` : `
-          <div style="height:32px"></div>
+          <div style="height:28px"></div>
           <div style="border-top:1.5px solid #000; padding-top:2px; font-weight:800; font-size:0.86rem; color:#000">
             ${isEn ? 'Signature: Principal / Head of Institution' : 'हस्ताक्षर संस्था प्रधान'}
           </div>
@@ -8193,16 +8204,34 @@ function sendDynamicDemandBulkReminder(demandId) {
 
 // 13. PDF Actions for Universal Dynamic Demand
 function printUniversalDemandDocument() {
-  const demand = STATE.demands.find(d => d.id === STATE.activeDemandPortalId) || { title: 'CBEO_Bhinai_Report' };
-  printCleanA4Landscape('printable-universal-demand-content', demand.title);
+  const previewInfo = STATE.activeUniversalDemandPreview || {};
+  const demandId = previewInfo.demandId || STATE.activeDemandPortalId;
+  const schoolCode = previewInfo.schoolCode || STATE.currentUser?.shala_darpan_code || (STATE.schools56[0]?.shala_darpan_code);
+  const demand = STATE.demands.find(d => d.id === demandId) || { title: 'CBEO_Bhinai_Report' };
+  const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
+  const isEn = (typeof activeUniversalDemandPdfLanguage !== 'undefined' && activeUniversalDemandPdfLanguage === 'en');
+  const schoolName = isEn ? (school?.school_name_en || school?.school_name || schoolCode) : (school?.school_name || schoolCode);
+  const title = `${demand.title} - ${schoolName}`;
+  printCleanA4Landscape('printable-universal-demand-content', title);
 }
 
-function downloadUniversalDemandPdfDirect() {
-  const demand = STATE.demands.find(d => d.id === STATE.activeDemandPortalId) || { title: 'CBEO_Bhinai_Report' };
-  const filename = `${demand.title.replace(/[^a-zA-Z0-9_\u0900-\u097F]/g, '_')}_${Date.now()}.pdf`;
+async function downloadUniversalDemandPdfDirect() {
+  const previewInfo = STATE.activeUniversalDemandPreview || {};
+  const demandId = previewInfo.demandId || STATE.activeDemandPortalId;
+  const schoolCode = previewInfo.schoolCode || STATE.currentUser?.shala_darpan_code || (STATE.schools56[0]?.shala_darpan_code);
+
+  const demand = STATE.demands.find(d => d.id === demandId) || { title: 'CBEO_Bhinai_Report' };
+  const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode) || { school_name: 'School' };
+  const isEn = (typeof activeUniversalDemandPdfLanguage !== 'undefined' && activeUniversalDemandPdfLanguage === 'en');
+  const schoolName = isEn ? (school.school_name_en || school.school_name || 'School') : (school.school_name || 'School');
+  const nameSafe = schoolName.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 30);
+  const demandSafe = demand.title.replace(/[^a-zA-Z0-9_\u0900-\u097F]/g, '_').substring(0, 30);
+  const langTag = isEn ? 'EN' : 'HI';
+  const filename = `${demandSafe}_${schoolCode}_${langTag}_${nameSafe}.pdf`;
 
   showToast('आधिकारिक Landscape PDF तैयार किया जा रहा है...', 'info');
-  exportDocumentToPdfBlob('printable-universal-demand-content', filename).then(blob => {
+  try {
+    const blob = await exportDocumentToPdfBlob('printable-universal-demand-content', filename);
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -8211,18 +8240,81 @@ function downloadUniversalDemandPdfDirect() {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    showToast('PDF सफलतापूर्वक डाउनलोड हो गई!', 'success');
-  }).catch(e => {
+    showToast('अधिकृत A4 Landscape PDF सफलतापूर्वक डाउनलोड हो गया!', 'success');
+  } catch (e) {
     console.error('Direct PDF error, falling back to print:', e);
     printUniversalDemandDocument();
-  });
+  }
 }
 
-function shareUniversalDemandPdfWhatsApp() {
-  const demand = STATE.demands.find(d => d.id === STATE.activeDemandPortalId) || { title: 'CBEO सूचना प्रपत्र' };
-  const msg = `नमस्ते, CBEO भिनाय पोर्टल पर '${demand.title}' का अधिकृत सत्यापन विवरण तैयार है। कृपया पोर्टल लिंक से प्रपत्र का अवलोकन करें: ${window.location.href}`;
-  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
-  window.open(url, '_blank');
+async function shareUniversalDemandPdfWhatsApp() {
+  const previewInfo = STATE.activeUniversalDemandPreview || {};
+  const demandId = previewInfo.demandId || STATE.activeDemandPortalId;
+  const schoolCode = previewInfo.schoolCode || STATE.currentUser?.shala_darpan_code || (STATE.schools56[0]?.shala_darpan_code);
+
+  const demand = STATE.demands.find(d => d.id === demandId);
+  if (!demand) {
+    showToast('मांग प्रपत्र नहीं मिला!', 'warning');
+    return;
+  }
+
+  const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode) || {
+    school_name: 'विद्यालय',
+    shala_darpan_code: schoolCode,
+    peeo_name: 'CBEO Bhinai'
+  };
+  const sub = getDemandSubmissionRecord(demandId, schoolCode);
+
+  const isEn = (typeof activeUniversalDemandPdfLanguage !== 'undefined' && activeUniversalDemandPdfLanguage === 'en');
+  const schoolName = isEn ? (school.school_name_en || school.school_name || 'School') : (school.school_name || 'School');
+  const nameSafe = schoolName.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 30);
+  const demandSafe = demand.title.replace(/[^a-zA-Z0-9_\u0900-\u097F]/g, '_').substring(0, 30);
+  const langTag = isEn ? 'EN' : 'HI';
+  const filename = `${demandSafe}_${schoolCode}_${langTag}_${nameSafe}.pdf`;
+
+  // Build summary message
+  let dataSummary = '';
+  if (sub && sub.data) {
+    const entries = Object.entries(sub.data).slice(0, 5);
+    if (entries.length > 0) {
+      dataSummary = '\n' + entries.map(([k, v]) => `▫️ *${k}:* ${v || '-'}`).join('\n');
+    }
+  }
+
+  const waSummary = `*🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)*\n*📋 अधिकृत प्रपत्र सत्यापन (सत्र 2026-27)*\n\n📌 *सूचना शीर्षक:* ${demand.title}\n📌 *विद्यालय:* ${school.school_name}\n📌 *शाला दर्पण कोड:* ${school.shala_darpan_code}\n📌 *संस्था प्रधान / प्रस्तुतकर्ता:* ${sub.submitted_by || 'संस्था प्रधान'} ${sub.submitter_mobile ? `(${sub.submitter_mobile})` : ''}\n📌 *सत्यापन दिनांक:* ${sub.submitted_at || new Date().toLocaleString('hi-IN')}${dataSummary}\n\n📄 *अधिकृत A4 Landscape PDF (एक्सेल प्रारूप) संलग्न है।*\n🌐 *सत्यापन पोर्टल:* https://jit9763.github.io/cbeo-bhinai-portal/`;
+
+  showToast('WhatsApp शेयर हेतु अधिकृत PDF तैयार की जा रही है...', 'info');
+
+  try {
+    const blob = await exportDocumentToPdfBlob('printable-universal-demand-content', filename);
+    const pdfFile = new File([blob], filename, { type: 'application/pdf' });
+
+    if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
+      await navigator.share({
+        files: [pdfFile],
+        title: `${demand.title} - ${school.school_name}`,
+        text: waSummary
+      });
+      showToast('WhatsApp शेयर विंडो सफलतापूर्वक खुल गई!', 'success');
+    } else {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(waSummary + '\n\n*(नोट: PDF फाइल आपके सिस्टम में डाउनलोड हो गई है, कृपया WhatsApp चैट में अटैच करें)*')}`;
+      window.open(waUrl, '_blank');
+      showToast('PDF डाउनलोड हो गई है एवं WhatsApp खुल गया है! कृपया फाइल अटैच करें।', 'info');
+    }
+  } catch (err) {
+    console.warn('WhatsApp share fallback:', err);
+    const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(waSummary)}`;
+    window.open(waUrl, '_blank');
+  }
 }
 
 // 14. 25 PEEO Compliance & Form Status Matrix (Saman Pariksha + All Dynamic Demands)
