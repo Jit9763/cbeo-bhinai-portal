@@ -11775,7 +11775,37 @@ async function generateDemandWithAI() {
 /* ========================================================
    SHIKSHA SETU (शिक्षा सेतु) - CBEO AI HELPDESK ASSISTANT
    ======================================================== */
+function isShikshaSetuActive() {
+  return localStorage.getItem('cbeo_shiksha_setu_active') === 'true';
+}
+
+function setShikshaSetuActive(enabled) {
+  localStorage.setItem('cbeo_shiksha_setu_active', enabled ? 'true' : 'false');
+  applyShikshaSetuVisibility();
+  showToast(enabled ? '✅ शिक्षा सेतु AI डेस्क चालू (ON) कर दिया गया है।' : '⏸️ शिक्षा सेतु AI डेस्क बंद (OFF) कर दिया गया है।', enabled ? 'success' : 'info');
+}
+
+function applyShikshaSetuVisibility() {
+  const btn = document.getElementById('shiksha-setu-floating-btn');
+  const toggleCheckbox = document.getElementById('toggle-shiksha-setu-switch');
+  const active = isShikshaSetuActive();
+  if (btn) {
+    if (active) {
+      btn.style.setProperty('display', 'flex', 'important');
+    } else {
+      btn.style.setProperty('display', 'none', 'important');
+    }
+  }
+  if (toggleCheckbox) {
+    toggleCheckbox.checked = active;
+  }
+}
+
 function toggleShikshaSetuChat() {
+  if (!isShikshaSetuActive()) {
+    showToast('ℹ️ शिक्षा सेतु AI डेस्क वर्तमान में बंद (OFF) है।', 'info');
+    return;
+  }
   const modal = document.getElementById('modal-shiksha-setu');
   if (!modal) return;
   if (modal.classList.contains('active')) {
@@ -11786,6 +11816,10 @@ function toggleShikshaSetuChat() {
 }
 
 function openShikshaSetuChat() {
+  if (!isShikshaSetuActive()) {
+    showToast('ℹ️ शिक्षा सेतु AI डेस्क वर्तमान में बंद (OFF) है।', 'info');
+    return;
+  }
   const modal = document.getElementById('modal-shiksha-setu');
   if (!modal) return;
   modal.classList.add('active');
