@@ -11569,3 +11569,473 @@ async function syncSamanParikshaToSheet() {
     showToast('सर्वर से संपर्क त्रुटि: ' + err.message, 'error');
   }
 }
+
+/* ========================================================
+   AI DEMAND CREATOR & DYNAMIC FORM GENERATOR
+   ======================================================== */
+function quickFillAIPrompt(text) {
+  const inp = document.getElementById('ai-demand-prompt-input');
+  if (inp) {
+    inp.value = text;
+    generateDemandWithAI();
+  }
+}
+
+function generateDemandWithAI() {
+  const inputEl = document.getElementById('ai-demand-prompt-input');
+  const query = (inputEl ? inputEl.value : '').trim().toLowerCase();
+
+  if (!query) {
+    showToast('कृपया पहले मांग संबंधी विषय या निर्देश लिखें!', 'warning');
+    if (inputEl) inputEl.focus();
+    return;
+  }
+
+  showToast('✨ AI प्रपत्र सहायक संरचना तैयार कर रहा है...', 'info');
+
+  let title = '';
+  let cols = '';
+  let priority = 'अति आवश्यक (Urgent)';
+  let level = 'school';
+  let desc = '';
+  let audSec = true;
+  let audGovt = true;
+  let audAll = false;
+  let audPeeo = true;
+  let audCbeo = true;
+
+  if (query.includes('यूनिफॉर्म') || query.includes('पोशाक') || query.includes('uniform') || query.includes('सिलाई')) {
+    title = 'कक्षा 1 से 8 निःशुल्क यूनिफॉर्म वितरण एवं सिलाई अनुदान सत्यापन रिपोर्ट 2026-27';
+    cols = 'कक्षा 1 से 8 कुल नामांकित छात्र, पात्र विद्यार्थी, वितरित यूनिफॉर्म सेट संख्या, सिलाई राशि DBT पूर्ण संख्या, अवशेष वंचित विद्यार्थी, वंचित रहने का कारण, संस्था प्रधान टीप';
+    priority = 'अति आवश्यक (Urgent)';
+    level = 'school';
+    desc = 'समस्त संबंधित संस्था प्रधान निःशुल्क यूनिफॉर्म वितरण व सिलाई अनुदान DBT स्थिति का सत्यापन कर प्रपत्र आज ही सबमिट करें।';
+    audSec = true;
+    audGovt = true;
+    audAll = false;
+  } else if (query.includes('mdm') || query.includes('पोषाहार') || query.includes('खाद्यान्न') || query.includes('स्टॉक') || query.includes('गेहूं') || query.includes('चावल')) {
+    title = 'MDM खाद्यान्न स्टॉक अवशेष (गेहूं/चावल) व पोषाहार दैनिक उपभोग रिपोर्ट 2026';
+    cols = 'गेहूं प्रारंभिक शेष (किग्रा), गेहूं प्राप्त आवंटन, कुल गेहूं उपभोग, गेहूं अंतिम अवशेष (किग्रा), चावल अंतिम अवशेष (किग्रा), कुक कम हेल्पर मानदेय भुगतान माह, स्टॉक भौतिक सत्यापन स्थिति';
+    priority = 'अति आवश्यक (Urgent)';
+    level = 'school';
+    desc = 'विद्यालय में MDM खाद्यान्न का भौतिक सत्यापन कर वास्तविक स्टॉक एवं उपभोग रिपोर्ट दर्ज करें।';
+    audSec = true;
+    audGovt = true;
+    audAll = false;
+  } else if (query.includes('ict') || query.includes('कंप्यूटर') || query.includes('इंटरनेट') || query.includes('लैब') || query.includes('lab')) {
+    title = 'विद्यालय ICT कम्प्यूटर लैब क्रियाशीलता, स्मार्ट क्लास एवं इंटरनेट कनेक्टिविटी रिपोर्ट';
+    cols = 'स्वीकृत कंप्यूटर संख्या, क्रियाशील कंप्यूटर, अक्रियाशील कंप्यूटर, इंटरनेट प्रदाता व स्पीड (Mbps), स्मार्ट टीवी/इंटरएक्टिव बोर्ड स्थिति, कंप्यूटर अनुदेशक कार्यरत (हां/नहीं), विशेष आवश्यकता';
+    priority = 'साधारण (Normal)';
+    level = 'school';
+    desc = 'आईसीटी लैब व स्मार्ट क्लास के समस्त उपकरणों की कार्यदशा सत्यापित कर अपलोड करें।';
+    audSec = true;
+    audGovt = true;
+    audAll = false;
+  } else if (query.includes('खेल') || query.includes('मैदान') || query.includes('sports') || query.includes('ग्राउंड')) {
+    title = 'शाला खेल मैदान चारदीवारी, खेलकूद संसाधन एवं विकास योजना 2026';
+    cols = 'कुल खेल मैदान क्षेत्रफल (बीघा), वर्तमान चारदीवारी स्थिति, विकसित खेल संसाधन (ट्रैक/कोर्ट), आवश्यक विकास कार्य, अनुमानित बजट (लाखों में), विशेष विवरण';
+    priority = 'साधारण (Normal)';
+    level = 'school';
+    desc = 'खेल मैदान का सीमाज्ञान व भौतिक स्थिति दर्ज कर विकास प्रस्ताव प्रस्तुत करें।';
+    audSec = true;
+    audGovt = true;
+    audAll = false;
+  } else if (query.includes('पेयजल') || query.includes('पानी') || query.includes('विद्युत') || query.includes('बिजली') || query.includes('water')) {
+    title = 'ग्रीष्मकालीन पेयजल व्यवस्था, ट्यूबवेल/नल कनेक्शन एवं विद्युत कनेक्शन सत्यापन रिपोर्ट';
+    cols = 'मुख्य पेयजल स्रोत (नल/हैंडपंप/ट्यूबवेल), पेयजल क्रियाशीलता स्थिति, वाटर कूलर कार्यरत संख्या, विद्युत कनेक्शन थ्री-फेज/सिंगल-फेज, बकाया विद्युत बिल राशि, आपातकालीन टैंकर आवश्यकता';
+    priority = 'अति आवश्यक (Urgent)';
+    level = 'school';
+    desc = 'पेयजल व विद्युत आपूर्ति में किसी भी प्रकार की बाधा होने पर तुरंत विवरण दर्ज करें ताकि त्वरित समाधान कराया जा सके।';
+    audSec = true;
+    audGovt = true;
+    audAll = true;
+  } else {
+    // Universal Smart Prompt Formatter
+    const cleanPrompt = query.charAt(0).toUpperCase() + query.slice(1);
+    title = `${cleanPrompt.slice(0, 50)} - सूचना मांग प्रपत्र 2026`;
+    cols = 'स्वीकृत संख्या, वर्तमान वास्तविक स्थिति, उपलब्ध भौतिक संसाधन, कमी / आवश्यकता, संस्था प्रधान प्रमाणित टिप्पणी';
+    priority = 'अति आवश्यक (Urgent)';
+    level = query.includes('peeo') ? 'peeo' : 'school';
+    desc = `समस्त संबंधित विद्यालय ${cleanPrompt} के संदर्भ में तथ्यात्मक सूचना पोर्टल पर दर्ज करें।`;
+    audSec = true;
+    audGovt = true;
+    audAll = false;
+  }
+
+  // Populate title, date (+7 days), priority, collection level
+  const titleInput = document.getElementById('new-demand-title');
+  if (titleInput) titleInput.value = title;
+
+  const dateInput = document.getElementById('new-demand-date');
+  if (dateInput) {
+    const d = new Date(Date.now() + 7 * 86400000);
+    dateInput.value = d.toISOString().split('T')[0];
+  }
+
+  const prioSelect = document.getElementById('new-demand-priority');
+  if (prioSelect) prioSelect.value = priority;
+
+  const lvlSelect = document.getElementById('new-demand-collection-level');
+  if (lvlSelect) {
+    lvlSelect.value = level;
+    if (typeof onDemandCollectionLevelChange === 'function') onDemandCollectionLevelChange();
+  }
+
+  // Set audience checkboxes
+  const cbCbeo = document.getElementById('demand-aud-cbeo');
+  if (cbCbeo) cbCbeo.checked = audCbeo;
+  const cbPeeo = document.getElementById('demand-aud-peeo');
+  if (cbPeeo) cbPeeo.checked = audPeeo;
+  const cbSec = document.getElementById('demand-aud-sec');
+  if (cbSec) cbSec.checked = audSec;
+  const cbGovt = document.getElementById('demand-aud-govt');
+  if (cbGovt) cbGovt.checked = audGovt;
+  const cbAll = document.getElementById('demand-aud-all');
+  if (cbAll) cbAll.checked = audAll;
+
+  // Set columns and instructions
+  const colsInput = document.getElementById('new-demand-cols');
+  if (colsInput) colsInput.value = cols;
+
+  const descInput = document.getElementById('new-demand-desc');
+  if (descInput) descInput.value = desc;
+
+  // Trigger Dynamic Column Builder & AI Auto-detection table refresh
+  if (typeof generateDemandColumnsFromInput === 'function') {
+    generateDemandColumnsFromInput();
+  }
+  if (typeof aiAutoDetectAllDemandColumns === 'function') {
+    setTimeout(aiAutoDetectAllDemandColumns, 100);
+  }
+
+  const colCount = cols.split(',').length;
+  showToast(`✨ AI सहायक द्वारा प्रपत्र शीर्षक एवं ${colCount} कॉलम सफलतापूर्वक तैयार किए गए!`, 'success');
+}
+
+/* ========================================================
+   SHIKSHA SETU (शिक्षा सेतु) - CBEO AI HELPDESK ASSISTANT
+   ======================================================== */
+function toggleShikshaSetuChat() {
+  const modal = document.getElementById('modal-shiksha-setu');
+  if (!modal) return;
+  if (modal.classList.contains('active')) {
+    closeShikshaSetuChat();
+  } else {
+    openShikshaSetuChat();
+  }
+}
+
+function openShikshaSetuChat() {
+  const modal = document.getElementById('modal-shiksha-setu');
+  if (!modal) return;
+  modal.classList.add('active');
+
+  // Update active user context card
+  const ctxCard = document.getElementById('shiksha-setu-context-card');
+  if (ctxCard) {
+    let userLabel = 'सामान्य नागरिक / विद्यालय अतिथि';
+    let subLabel = 'जिला: अजमेर (AJMER) • ब्लॉक: भिनाय';
+
+    if (STATE.currentUser) {
+      if (STATE.currentUser.role === 'admin') {
+        userLabel = `👑 CBEO एडमिन: ${STATE.currentUser.name || 'जितेन्द्र कुमार'}`;
+        subLabel = `कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय (अजमेर)`;
+      } else if (STATE.currentUser.role === 'peeo') {
+        userLabel = `🏛️ PEEO: ${STATE.currentUser.peeo_name || STATE.currentUser.name}`;
+        subLabel = `प्रभारी: ${STATE.currentUser.principal_incharge || 'प्रधानाचार्य'} | कोड: ${STATE.currentUser.shala_darpan_code || ''} (अजमेर)`;
+      } else if (STATE.currentUser.role === 'school') {
+        const sch = STATE.schools56.find(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code);
+        const schName = STATE.currentUser.school_name || (sch && sch.school_name) || STATE.currentUser.name;
+        const peeoName = (sch && sch.peeo_name) || STATE.currentUser.peeo_name || 'भिनाय';
+        userLabel = `🏫 ${schName}`;
+        subLabel = `शा.दा.: <strong>${STATE.currentUser.shala_darpan_code}</strong> | PEEO: ${peeoName} (अजमेर)`;
+      }
+    }
+
+    ctxCard.innerHTML = `
+      <div style="line-height:1.35">
+        <div style="font-weight:700; color:#0f172a">${userLabel}</div>
+        <div style="font-size:0.72rem; color:#475569">${subLabel}</div>
+      </div>
+      <span class="badge" style="background:#e0f2fe; color:#0369a1; font-size:0.7rem; padding:3px 8px; font-weight:800; border-radius:12px">
+        AI डेस्क
+      </span>
+    `;
+  }
+
+  // Seed initial welcome message if chat is empty
+  const msgContainer = document.getElementById('shiksha-setu-chat-messages');
+  if (msgContainer && msgContainer.children.length === 0) {
+    const welcomeHtml = `
+      <div>
+        <p style="margin:0 0 6px 0; font-weight:700; color:#1e3a8a">नमस्ते! 🙏 मैं <strong>शिक्षा सेतु AI</strong> हूँ</p>
+        <p style="margin:0 0 6px 0; font-size:0.84rem; color:#334155">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), <strong>भिनाय (अजमेर)</strong> का आधिकारिक AI सहायता डेस्क।</p>
+        <p style="margin:0; font-size:0.82rem; color:#475569">
+          आप मुझसे पोर्टल पर प्रपत्र भरने, किसी भी कॉलम में क्या प्रविष्ट करना है, जिला समान परीक्षा 2026-27 के नियम, संस्था प्रधान / PEEO संपर्क विवरण, अंतिम तिथि अथवा बैंक चालान से संबंधित कोई भी सवाल पूछ सकते हैं।
+        </p>
+      </div>
+    `;
+    appendShikshaSetuMessage('bot', welcomeHtml);
+  }
+
+  // Focus input
+  const inputEl = document.getElementById('shiksha-setu-input');
+  if (inputEl) {
+    setTimeout(() => inputEl.focus(), 150);
+  }
+}
+
+function closeShikshaSetuChat() {
+  const modal = document.getElementById('modal-shiksha-setu');
+  if (modal) modal.classList.remove('active');
+}
+
+function askShikshaSetuQuestion(qText) {
+  const inputEl = document.getElementById('shiksha-setu-input');
+  if (inputEl) {
+    inputEl.value = qText;
+    sendShikshaSetuUserMessage();
+  }
+}
+
+function appendShikshaSetuMessage(sender, contentHtml) {
+  const container = document.getElementById('shiksha-setu-chat-messages');
+  if (!container) return;
+
+  const now = new Date();
+  const timeStr = now.toLocaleTimeString('hi-IN', { hour: '2-digit', minute: '2-digit' });
+
+  const msgDiv = document.createElement('div');
+  msgDiv.style.cssText = 'display:flex; flex-direction:column; gap:4px; max-width:88%; word-break:break-word;';
+
+  if (sender === 'user') {
+    msgDiv.style.alignSelf = 'flex-end';
+    msgDiv.innerHTML = `
+      <div style="background:linear-gradient(135deg, #1e40af 0%, #2563eb 100%); color:#ffffff; padding:10px 14px; border-radius:16px 16px 2px 16px; font-size:0.86rem; box-shadow:0 2px 6px rgba(37,99,235,0.25); line-height:1.45">
+        ${contentHtml}
+      </div>
+      <div style="font-size:0.65rem; color:#94a3b8; text-align:right; margin-right:4px">${timeStr}</div>
+    `;
+  } else {
+    msgDiv.style.alignSelf = 'flex-start';
+    msgDiv.innerHTML = `
+      <div style="display:flex; gap:8px; align-items:flex-start">
+        <div style="background:#2563eb; color:#ffffff; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.85rem; flex-shrink:0; margin-top:2px">
+          🤖
+        </div>
+        <div>
+          <div style="background:#ffffff; color:#0f172a; padding:11px 14px; border-radius:4px 16px 16px 16px; font-size:0.85rem; border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,0.04); line-height:1.55">
+            ${contentHtml}
+          </div>
+          <div style="font-size:0.65rem; color:#94a3b8; margin-left:4px; margin-top:2px">शिक्षा सेतु AI • ${timeStr}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  container.appendChild(msgDiv);
+  container.scrollTop = container.scrollHeight;
+}
+
+function sendShikshaSetuUserMessage() {
+  const inputEl = document.getElementById('shiksha-setu-input');
+  if (!inputEl) return;
+  const rawQuery = inputEl.value.trim();
+  if (!rawQuery) return;
+
+  // Append user message
+  appendShikshaSetuMessage('user', rawQuery);
+  inputEl.value = '';
+
+  // Show typing indicator
+  const container = document.getElementById('shiksha-setu-chat-messages');
+  const typingDiv = document.createElement('div');
+  typingDiv.id = 'shiksha-setu-typing';
+  typingDiv.style.cssText = 'align-self:flex-start; display:flex; gap:8px; align-items:center; font-size:0.78rem; color:#64748b; padding:4px 8px;';
+  typingDiv.innerHTML = `
+    <div style="background:#2563eb; color:#ffffff; width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.75rem">🤖</div>
+    <span>शिक्षा सेतु उत्तर तैयार कर रहा है...</span>
+  `;
+  if (container) {
+    container.appendChild(typingDiv);
+    container.scrollTop = container.scrollHeight;
+  }
+
+  setTimeout(() => {
+    const el = document.getElementById('shiksha-setu-typing');
+    if (el) el.remove();
+
+    const responseHtml = generateShikshaSetuAIResponse(rawQuery);
+    appendShikshaSetuMessage('bot', responseHtml);
+  }, 450);
+}
+
+function generateShikshaSetuAIResponse(rawQuery) {
+  const q = rawQuery.toLowerCase();
+  const user = STATE.currentUser;
+
+  // 1. Column Guidance (इस कॉलम में क्या भरना है?)
+  if (q.includes('कॉलम') || q.includes('column') || q.includes('क्या भरना') || q.includes('भरना है') || q.includes('प्रपत्र-1') || q.includes('प्रपत्र-2') || q.includes('नामांकन')) {
+    return `
+      <div style="line-height:1.55">
+        <strong style="color:#1e3a8a; font-size:0.92rem"><i class="fas fa-edit text-primary"></i> प्रपत्र के प्रमुख कॉलम भरने के नियम:</strong>
+        <div style="margin-top:8px; border-top:1px solid #e2e8f0; padding-top:6px">
+          <strong>1. प्रपत्र-1 (कक्षा 9 व 10 नामांकन):</strong>
+          <ul style="margin:4px 0 8px 18px; padding:0; font-size:0.83rem; color:#334155">
+            <li><strong>कुल नामांकन (Total):</strong> शाला दर्पण अनुसार 9वीं व 10वीं के कुल अध्ययनरत छात्र संख्या भरें।</li>
+            <li><strong>तृतीय भाषा (संस्कृत / उर्दू):</strong> जिस भाषा को छात्रों ने चुना है, उनकी संख्या भरें। (नोट: संस्कृत + उर्दू का योग कुल नामांकन से अधिक नहीं हो सकता)।</li>
+          </ul>
+        </div>
+        <div style="margin-top:6px; border-top:1px solid #e2e8f0; padding-top:6px">
+          <strong>2. प्रपत्र-2 (कक्षा 11 व 12 संकाय एवं ऐच्छिक विषय):</strong>
+          <ul style="margin:4px 0 8px 18px; padding:0; font-size:0.83rem; color:#334155">
+            <li><strong>संकाय चयन:</strong> विद्यालय में स्वीकृत संकाय (कला, विज्ञान, वाणिज्य, कृषि) पर टिक करें। टिक करने पर ही संबंधित विषय खुलेंगे।</li>
+            <li><strong>अनिवार्य विषय:</strong> अनिवार्य हिंदी व अनिवार्य अंग्रेजी का कुल योग कुल नामांकन अनुसार स्वतः कैलकुलेट होगा।</li>
+            <li><strong>ऐच्छिक विषय:</strong> प्रत्येक विषय (उदा. राजनीति, इतिहास, भूगोल, भौतिकी, रसायन, आदि) में वास्तविक छात्र संख्या दर्ज करें।</li>
+          </ul>
+        </div>
+        <div style="margin-top:6px; background:#eff6ff; padding:6px 10px; border-radius:6px; font-size:0.8rem; color:#1e40af">
+          💡 <em>सुझाव:</em> मोबाइल पर स्क्रीन के नीचे 'NIL' बटन से जो कक्षा आपके स्कूल में नहीं है उसे शून्य (0) कर सकते हैं।
+        </div>
+      </div>
+    `;
+  }
+
+  // 2. School / PEEO / Principal Directory Search
+  if (q.includes('peeo') || q.includes('संस्था प्रधान') || q.includes('प्रधानाचार्य') || q.includes('मोबाइल') || q.includes('फोन') || q.includes('संपर्क') || q.includes('contact') || q.includes('phone')) {
+    if (user && user.role === 'school') {
+      const sch = STATE.schools56.find(s => s.shala_darpan_code === user.shala_darpan_code);
+      if (sch) {
+        return `
+          <div style="line-height:1.55">
+            <strong style="color:#0f172a; font-size:0.92rem"><i class="fas fa-school text-primary"></i> आपके विद्यालय का अधिकृत संपर्क विवरण:</strong>
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:10px; margin-top:8px; font-size:0.83rem">
+              <div>🏫 <strong>विद्यालय:</strong> ${sch.school_name} (${sch.shala_darpan_code})</div>
+              <div>🏛️ <strong>नोडल PEEO:</strong> ${sch.peeo_name}</div>
+              <div>📝 <strong>परीक्षा कोड:</strong> <span style="font-weight:800; color:#dc2626">${sch.exam_code || 'आवंटित'}</span></div>
+              <div style="margin-top:4px">👑 <strong>संस्था प्रधान:</strong> ${sch.principal_name || 'दर्ज नहीं'} ${sch.principal_mobile ? `(📞 <a href="tel:${sch.principal_mobile}">${sch.principal_mobile}</a>)` : ''}</div>
+              <div>📋 <strong>परीक्षा प्रभारी:</strong> ${sch.incharge_name || 'दर्ज नहीं'} ${sch.incharge_mobile ? `(📞 <a href="tel:${sch.incharge_mobile}">${sch.incharge_mobile}</a>)` : ''}</div>
+            </div>
+            <div style="font-size:0.78rem; color:#64748b; margin-top:6px">
+              यदि संस्था प्रधान या प्रभारी का मोबाइल नंबर बदलना हो, तो प्रपत्र खोलकर ऊपर सीधे एडिट कर सुरक्षित कर सकते हैं।
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // Try finding matching school or PEEO from query text
+    const matchedSchool = STATE.schools56.find(s => 
+      q.includes(s.shala_darpan_code.toLowerCase()) || 
+      q.includes(s.school_name.toLowerCase()) || 
+      (s.peeo_name && q.includes(s.peeo_name.toLowerCase()))
+    );
+
+    if (matchedSchool) {
+      return `
+        <div style="line-height:1.55">
+          <strong style="color:#0f172a; font-size:0.92rem"><i class="fas fa-address-book text-primary"></i> विद्यालय विवरण प्राप्त हुआ:</strong>
+          <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:10px; margin-top:8px; font-size:0.83rem">
+            <div>🏫 <strong>${matchedSchool.school_name}</strong> [शा.दा. ${matchedSchool.shala_darpan_code}]</div>
+            <div>🏛️ <strong>PEEO:</strong> ${matchedSchool.peeo_name} | कोड: ${matchedSchool.exam_code || '---'}</div>
+            <div style="margin-top:4px">👑 <strong>संस्था प्रधान:</strong> ${matchedSchool.principal_name || 'उपलब्ध नहीं'} ${matchedSchool.principal_mobile ? `(📞 <a href="tel:${matchedSchool.principal_mobile}">${matchedSchool.principal_mobile}</a>)` : ''}</div>
+            <div>📋 <strong>परीक्षा प्रभारी:</strong> ${matchedSchool.incharge_name || 'उपलब्ध नहीं'} ${matchedSchool.incharge_mobile ? `(📞 <a href="tel:${matchedSchool.incharge_mobile}">${matchedSchool.incharge_mobile}</a>)` : ''}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    return `
+      <div>
+        <p style="margin:0 0 6px 0"><strong>🏛️ CBEO भिनाय संपर्क डायरेक्टरी:</strong></p>
+        <p style="margin:0 0 6px 0; font-size:0.84rem">ब्लॉक के समस्त 25 PEEO एवं 57 माध्यमिक/उच्च माध्यमिक विद्यालयों के मोबाइल नंबर पोर्टल के <strong>'डायरेक्टरी'</strong> एवं <strong>'समान परीक्षा संपर्क'</strong> टैब में उपलब्ध हैं।</p>
+        <div style="background:#f1f5f9; padding:8px 10px; border-radius:6px; font-size:0.8rem">
+          <div>📞 <strong>CBEO कंट्रोल रूम / IT सेल:</strong> 9829288107 (जितेन्द्र कुमार)</div>
+          <div>✉️ <strong>ईमेल:</strong> cbeobhinai@gmail.com</div>
+          <div>📍 <strong>कार्यालय:</strong> मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय, <strong>जिला: अजमेर (AJMER)</strong></div>
+        </div>
+      </div>
+    `;
+  }
+
+  // 3. Deadline / Last Date (अंतिम तिथि)
+  if (q.includes('अंतिम') || q.includes('तिथि') || q.includes('last date') || q.includes('deadline') || q.includes('समय-सीमा') || q.includes('डेट')) {
+    return `
+      <div style="line-height:1.55">
+        <strong style="color:#b91c1c; font-size:0.92rem"><i class="fas fa-calendar-alt"></i> प्रपत्र सबमिशन की महत्वपूर्ण तिथियां:</strong>
+        <div style="background:#fff7ed; border-left:4px solid #f97316; padding:10px 12px; border-radius:6px; margin-top:8px; font-size:0.84rem">
+          <div style="font-weight:800; color:#9a3412">📌 जिला समान परीक्षा 2026-27 प्रपत्र:</div>
+          <div style="margin-top:3px; color:#7c2d12">
+            अंतिम तिथि: <strong>05 अक्टूबर 2026</strong> (शाम 5:00 बजे तक)
+          </div>
+          <div style="font-size:0.78rem; color:#ea580c; margin-top:4px">
+            समस्त 57 माध्यमिक एवं उच्च माध्यमिक विद्यालय समय पर प्रपत्र भरकर हस्ताक्षरित PDF अपने नोडल PEEO को प्रेषित करें।
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // 4. Bank Challan & Fees (बैंक चालान / फीस)
+  if (q.includes('चालान') || q.includes('challan') || q.includes('फीस') || q.includes('fee') || q.includes('बैंक') || q.includes('खाता')) {
+    return `
+      <div style="line-height:1.55">
+        <strong style="color:#1e3a8a; font-size:0.92rem"><i class="fas fa-file-invoice-dollar text-primary"></i> बैंक चालान एवं परीक्षा शुल्क प्रक्रिया:</strong>
+        <ol style="margin:8px 0 8px 18px; padding:0; font-size:0.83rem; color:#334155">
+          <li><strong>शुल्क गणना:</strong> कक्षा 9, 10, 11 व 12 के नामांकित छात्रों की संख्या अनुसार निर्धारित दर से कुल राशि की गणना करें।</li>
+          <li><strong>बैंक जमा:</strong> जिला समान परीक्षा समिति के अधिकृत बैंक खाते में चालान द्वारा राशि जमा करवाएं।</li>
+          <li><strong>प्रपत्र प्रविष्टि:</strong> बैंक से प्राप्त चालान की <strong>चालान संख्या</strong>, <strong>जमा दिनांक</strong> व <strong>राशि</strong> प्रपत्र में दर्ज करें।</li>
+          <li><strong>फाइल अपलोड:</strong> चालान की स्पष्ट प्रति (JPG/PDF) प्रपत्र में अपलोड करें तथा मूल रसीद विद्यालय रिकॉर्ड में सुरक्षित रखें।</li>
+        </ol>
+      </div>
+    `;
+  }
+
+  // 5. Password & Login Issues
+  if (q.includes('पासवर्ड') || q.includes('password') || q.includes('लॉगिन') || q.includes('login') || q.includes('आईडी') || q.includes('reset')) {
+    return `
+      <div style="line-height:1.55">
+        <strong style="color:#0f172a; font-size:0.92rem"><i class="fas fa-key text-primary"></i> लॉगिन एवं पासवर्ड सहायता:</strong>
+        <div style="font-size:0.83rem; color:#334155; margin-top:8px">
+          <div>🔑 <strong>यूजर आईडी:</strong> आपके विद्यालय का 6-अंकों का <strong>शाला दर्पण कोड</strong> (PSP कोड)।</div>
+          <div>🔒 <strong>डिफ़ॉल्ट पासवर्ड:</strong> प्राथमिक रूप से शाला दर्पण कोड ही सक्रिय रहता है।</div>
+          <div style="margin-top:6px; background:#eff6ff; padding:8px; border-radius:6px; font-size:0.8rem; color:#1e40af">
+            यदि आप पासवर्ड भूल गए हैं या बदलना चाहते हैं, तो ऊपर दाएँ कोने में <strong>'पासवर्ड बदलें'</strong> बटन का उपयोग करें अथवा अपने नोडल PEEO या CBEO कार्यालय (IT सेल) से पासवर्ड रीसेट करवाएं।
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // 6. District Rule (District is ALWAYS AJMER)
+  if (q.includes('जिला') || q.includes('district') || q.includes('अजमेर') || q.includes('केकड़ी') || q.includes('kekri') || q.includes('ajmer')) {
+    return `
+      <div style="line-height:1.55">
+        <strong style="color:#15803d; font-size:0.92rem"><i class="fas fa-map-marker-alt"></i> आधिकारिक क्षेत्राधिकार एवं जिला:</strong>
+        <div style="background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:8px; padding:10px; margin-top:8px; font-size:0.84rem; color:#065f46">
+          <div>🏛️ <strong>कार्यालय:</strong> मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</div>
+          <div>📍 <strong>जिला (District):</strong> सदैव <strong>अजमेर (AJMER)</strong> ही रहेगा।</div>
+          <div>🚫 <strong>महत्वपूर्ण नियम:</strong> किसी भी प्रपत्र, हेडर, गूगल शीट या रिपोर्ट में केकड़ी (Kekri) मान्य नहीं है।</div>
+        </div>
+      </div>
+    `;
+  }
+
+  // 7. General / Smart Default AI Response
+  return `
+    <div style="line-height:1.55">
+      <p style="margin:0 0 6px 0; color:#0f172a">मैंने आपका प्रश्न नोट कर लिया है: <em>"${rawQuery}"</em></p>
+      <div style="font-size:0.84rem; color:#334155; margin-bottom:8px">
+        कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), <strong>भिनाय (अजमेर)</strong> के पोर्टल पर आप निम्नलिखित त्वरित सहायता प्राप्त कर सकते हैं:
+      </div>
+      <div style="display:flex; flex-direction:column; gap:4px; font-size:0.82rem">
+        <div>👉 <strong>कॉलम विवरण:</strong> ऊपर दिए गए <em>'इस कॉलम में क्या भरना है?'</em> बटन पर क्लिक करें।</div>
+        <div>👉 <strong>संस्था प्रधान / PEEO संपर्क:</strong> अपने विद्यालय का शाला दर्पण कोड लिखकर भेजें।</div>
+        <div>👉 <strong>अंतिम तिथि:</strong> समान परीक्षा प्रपत्र की अंतिम तिथि <strong>05 अक्टूबर 2026</strong> है।</div>
+      </div>
+      <div style="font-size:0.75rem; color:#64748b; margin-top:8px; border-top:1px solid #e2e8f0; padding-top:6px">
+        💬 आप अपना प्रश्न हिंदी या हिंग्लिश में सीधे टाइप करके भी पूछ सकते हैं।
+      </div>
+    </div>
+  `;
+}

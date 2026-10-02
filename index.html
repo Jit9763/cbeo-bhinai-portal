@@ -2031,9 +2031,30 @@
         <button class="modal-close-btn" onclick="closeModal('modal-create-demand')">&times;</button>
       </div>
       <div class="modal-body">
-        <p style="font-size:0.875rem; color:var(--neutral-600); margin-bottom:1rem">
-          नया प्रपत्र बनाते ही सभी 25 PEEO के लिए स्वतः फॉर्म बन जाएगा एवं Google Sheets में नया टैब जुड़ जाएगा:
-        </p>
+        <!-- ✨ AI SMART DEMAND CREATOR ASSISTANT -->
+        <div style="background:linear-gradient(135deg, #eff6ff 0%, #f5f3ff 100%); border:1.5px solid #a5b4fc; border-radius:10px; padding:12px 14px; margin-bottom:1.15rem; box-shadow:0 2px 8px rgba(99,102,241,0.08)">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px">
+            <strong style="color:#4338ca; font-size:0.88rem; display:flex; align-items:center; gap:6px">
+              <i class="fas fa-magic text-purple"></i> ✨ AI प्रपत्र सहायक: केवल विषय या आदेश लिखें (Zero-Effort)
+            </strong>
+            <span class="badge" style="background:#e0e7ff; color:#3730a3; font-size:0.7rem; font-weight:700">AI Neural Engine</span>
+          </div>
+          <div style="display:flex; gap:6px">
+            <input type="text" id="ai-demand-prompt-input" placeholder="उदा. कक्षा 1 से 8 तक के छात्र-छात्राओं के लिए निःशुल्क यूनिफॉर्म वितरण की सूचना चाहिए" style="flex:1; font-size:0.84rem; padding:8px 12px; border-radius:6px; border:1.5px solid #c7d2fe; outline:none">
+            <button type="button" class="btn btn-sm" onclick="generateDemandWithAI()" style="background:#4f46e5; color:#fff; font-weight:700; font-size:0.82rem; white-space:nowrap; padding:0 14px; border:none; box-shadow:0 2px 6px rgba(79,70,229,0.3)">
+              <i class="fas fa-wand-magic-sparkles"></i> AI से तैयार करें
+            </button>
+          </div>
+          <div style="display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; align-items:center">
+            <span style="font-size:0.72rem; color:#64748b; font-weight:600">त्वरित सुझाव:</span>
+            <span class="badge" style="background:#ffffff; color:#4f46e5; border:1px solid #c7d2fe; font-size:0.72rem; cursor:pointer; padding:3px 8px" onclick="quickFillAIPrompt('कक्षा 1 से 8 निःशुल्क यूनिफॉर्म वितरण एवं सिलाई अनुदान')">💡 यूनिफॉर्म वितरण</span>
+            <span class="badge" style="background:#ffffff; color:#4f46e5; border:1px solid #c7d2fe; font-size:0.72rem; cursor:pointer; padding:3px 8px" onclick="quickFillAIPrompt('MDM खाद्यान्न स्टॉक अवशेष व पोषाहार उपभोग रिपोर्ट')">💡 MDM खाद्यान्न स्टॉक</span>
+            <span class="badge" style="background:#ffffff; color:#4f46e5; border:1px solid #c7d2fe; font-size:0.72rem; cursor:pointer; padding:3px 8px" onclick="quickFillAIPrompt('ICT लैब कंप्यूटर क्रियाशीलता व इंटरनेट कनेक्टिविटी स्थिति')">💡 ICT कंप्यूटर लैब</span>
+            <span class="badge" style="background:#ffffff; color:#4f46e5; border:1px solid #c7d2fe; font-size:0.72rem; cursor:pointer; padding:3px 8px" onclick="quickFillAIPrompt('शाला खेल मैदान चारदीवारी व खेलकूद संसाधन विकास')">💡 खेलकूद मैदान विकास</span>
+            <span class="badge" style="background:#ffffff; color:#4f46e5; border:1px solid #c7d2fe; font-size:0.72rem; cursor:pointer; padding:3px 8px" onclick="quickFillAIPrompt('ग्रीष्मकालीन पेयजल व्यवस्था एवं विद्युत कनेक्शन सत्यापन')">💡 पेयजल व विद्युत</span>
+          </div>
+        </div>
+
         <div class="form-group" style="margin-bottom:0.85rem">
           <label>सूचना का नाम / शीर्षक (Title):</label>
           <input type="text" id="new-demand-title" placeholder="उदा. शाला खेलकूद मैदान विकास सूचना 2026">
@@ -3645,6 +3666,66 @@
           <i class="fas fa-save"></i> सुरक्षित करें व लॉगआउट करें
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- 🤖 SHIKSHA SETU FLOATING LAUNCHER -->
+  <div id="shiksha-setu-floating-btn" onclick="toggleShikshaSetuChat()" style="position:fixed; bottom:24px; right:24px; z-index:9999; background:linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color:#ffffff; padding:12px 20px; border-radius:30px; box-shadow:0 8px 24px rgba(37,99,235,0.45); cursor:pointer; display:flex; align-items:center; gap:10px; font-weight:700; font-size:0.92rem; border:2px solid #93c5fd; transition:transform 0.2s ease;">
+    <span style="font-size:1.35rem">🤖</span>
+    <span>शिक्षा सेतु AI</span>
+    <span class="badge" style="background:#fde047; color:#854d0e; font-size:0.68rem; font-weight:800; padding:2px 7px; border-radius:10px">सहायता</span>
+  </div>
+
+  <!-- 12. SHIKSHA SETU AI SMART ASSISTANT MODAL -->
+  <div id="modal-shiksha-setu" class="modal-overlay" style="align-items:flex-end; justify-content:flex-end; padding:20px;">
+    <div class="modal-card" style="max-width:520px; width:100%; height:85vh; max-height:720px; display:flex; flex-direction:column; border-radius:16px; border:2px solid #3b82f6; box-shadow:0 20px 40px rgba(0,0,0,0.25); overflow:hidden; margin:0">
+      
+      <!-- Header -->
+      <div class="modal-header" style="background:linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color:#ffffff; padding:1rem 1.25rem; border-bottom:3px solid #f59e0b">
+        <div style="display:flex; align-items:center; gap:10px">
+          <div style="background:#2563eb; width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.4rem; box-shadow:0 0 10px rgba(59,130,246,0.5)">
+            🤖
+          </div>
+          <div>
+            <h3 style="margin:0; font-size:1.1rem; color:#ffffff; display:flex; align-items:center; gap:6px">
+              शिक्षा सेतु • CBEO AI डेस्क
+              <span class="badge" style="background:#10b981; color:#ffffff; font-size:0.65rem; padding:2px 6px">ONLINE</span>
+            </h3>
+            <div style="font-size:0.75rem; color:#93c5fd; margin-top:2px">
+              जिला: अजमेर (AJMER) • ब्लॉक: भिनाय (BHINAI)
+            </div>
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="closeShikshaSetuChat()" style="color:#ffffff; font-size:1.6rem">&times;</button>
+      </div>
+
+      <!-- Active User Context Card -->
+      <div id="shiksha-setu-context-card" style="background:#f1f5f9; padding:8px 14px; font-size:0.76rem; color:#334155; border-bottom:1px solid #cbd5e1; display:flex; justify-content:space-between; align-items:center">
+        <!-- Injected dynamically -->
+      </div>
+
+      <!-- Quick Question Suggestions -->
+      <div style="background:#f8fafc; padding:8px 12px; border-bottom:1px solid #e2e8f0; display:flex; gap:6px; overflow-x:auto; white-space:nowrap">
+        <span class="badge" style="background:#ffffff; color:#2563eb; border:1px solid #bfdbfe; font-size:0.72rem; cursor:pointer; padding:4px 8px" onclick="askShikshaSetuQuestion('इस कॉलम में क्या भरना है?')">💡 इस कॉलम में क्या भरना है?</span>
+        <span class="badge" style="background:#ffffff; color:#2563eb; border:1px solid #bfdbfe; font-size:0.72rem; cursor:pointer; padding:4px 8px" onclick="askShikshaSetuQuestion('हमारे विद्यालय के संस्था प्रधान व PEEO कौन हैं?')">💡 हमारे PEEO कौन हैं?</span>
+        <span class="badge" style="background:#ffffff; color:#2563eb; border:1px solid #bfdbfe; font-size:0.72rem; cursor:pointer; padding:4px 8px" onclick="askShikshaSetuQuestion('समान परीक्षा प्रपत्र भरने की अंतिम तिथि क्या है?')">💡 परीक्षा प्रपत्र अंतिम तिथि?</span>
+        <span class="badge" style="background:#ffffff; color:#2563eb; border:1px solid #bfdbfe; font-size:0.72rem; cursor:pointer; padding:4px 8px" onclick="askShikshaSetuQuestion('प्रपत्र-1 में कक्षा 9 व 11 की छात्र संख्या कैसे भरें?')">💡 प्रपत्र-1 में क्या भरें?</span>
+        <span class="badge" style="background:#ffffff; color:#2563eb; border:1px solid #bfdbfe; font-size:0.72rem; cursor:pointer; padding:4px 8px" onclick="askShikshaSetuQuestion('बैंक चालान कैसे अपलोड करें?')">💡 चालान कैसे अपलोड करें?</span>
+      </div>
+
+      <!-- Messages Body -->
+      <div id="shiksha-setu-chat-messages" style="flex:1; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:12px; background:#fafafa">
+        <!-- Chat bubbles dynamically appended -->
+      </div>
+
+      <!-- Input Footer -->
+      <div style="padding:10px 14px; background:#ffffff; border-top:1.5px solid #e2e8f0; display:flex; gap:8px; align-items:center">
+        <input type="text" id="shiksha-setu-input" placeholder="पोर्टल या कॉलम से संबंधित सवाल पूछें..." style="flex:1; padding:10px 14px; border-radius:24px; border:1.5px solid #cbd5e1; font-size:0.88rem; outline:none; transition:border-color 0.2s" onkeydown="if(event.key==='Enter') sendShikshaSetuUserMessage()">
+        <button type="button" id="btn-shiksha-setu-send" onclick="sendShikshaSetuUserMessage()" style="background:#2563eb; color:#ffffff; width:42px; height:42px; border-radius:50%; border:none; display:flex; align-items:center; justify-content:center; font-size:1.1rem; cursor:pointer; box-shadow:0 4px 10px rgba(37,99,235,0.3)">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+
     </div>
   </div>
 
