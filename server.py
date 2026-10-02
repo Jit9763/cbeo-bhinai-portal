@@ -442,8 +442,8 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                 if os.path.exists('cbeo_vm_settings.json'):
                     with open('cbeo_vm_settings.json', 'r', encoding='utf-8') as f:
                         vm_settings = json.load(f)
-                vm_settings['gemini_api_key'] = api_key
                 vm_settings['admin_phone'] = '9928254317'
+                vm_settings['gemini_api_key'] = "" # Kept empty in git-synced file for security
                 with open('cbeo_vm_settings.json', 'w', encoding='utf-8') as f:
                     json.dump(vm_settings, f, ensure_ascii=False, indent=2)
 
@@ -510,7 +510,7 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                     "contents": [{"parts": [{"text": prompt_text}]}],
                     "generationConfig": {
                         "temperature": 0.2,
-                        "maxOutputTokens": 320,
+                        "maxOutputTokens": 800,
                         "topP": 0.8
                     }
                 }).encode('utf-8')
@@ -520,7 +520,7 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                 success_resp = None
                 used_key_idx = 0
 
-                models_to_try = ["gemini-1.5-flash", "gemini-2.0-flash", "gemini-1.5-flash-8b"]
+                models_to_try = ["gemini-3.8-flash", "gemini-flash-latest"]
                 for idx, raw_key in enumerate(key_pool):
                     api_key = raw_key.strip()
                     if not api_key:

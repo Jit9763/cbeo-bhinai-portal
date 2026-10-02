@@ -243,25 +243,28 @@ def main():
             print("Note reading cbeo_notification_config.json:", e)
 
     # 5B. Google Gemini AI Executive Analysis
-    gemini_key = (os.environ.get('GEMINI_API_KEY') or local_cfg.get('GEMINI_API_KEY') or vm_settings.get('gemini_api_key') or '').strip()
+    raw_gemini_keys = (os.environ.get('GEMINI_API_KEY') or local_cfg.get('GEMINI_API_KEY') or vm_settings.get('gemini_api_key') or '').strip()
     gemini_ai_brief = ""
-    if gemini_key and requests:
-        try:
-            print("[CBEO-VM] Generating AI Executive Analysis via Google Gemini Flash...")
-            g_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={gemini_key}"
-            g_prompt = (
-                f"You are Chief AI Officer for CBEO Bhinai, District AJMER (अजमेर), Rajasthan. "
-                f"Rule: District is strictly AJMER (अजमेर); never Kekri. "
-                f"Status: {sp_sub_count}/{total_sp_schools} schools submitted Saman Pariksha forms, {sp_pend_count} pending. "
-                f"Write a crisp, authoritative 2-line Hindi executive directive for the CBEO bulletin urging urgent compliance before 05 October 2026."
-            )
-            g_payload = {"contents": [{"parts": [{"text": g_prompt}]}]}
-            g_resp = requests.post(g_url, json=g_payload, timeout=8)
-            if g_resp.status_code == 200:
-                gemini_ai_brief = g_resp.json()['candidates'][0]['content']['parts'][0]['text'].strip()
-                print("[CBEO-VM] ✓ Gemini AI Analysis generated successfully!")
-        except Exception as ge:
-            print("[CBEO-VM] Note on Gemini:", ge)
+    if raw_gemini_keys and requests:
+        gemini_pool = [k.strip() for k in re.split(r'[,;\n]+', raw_gemini_keys) if k.strip()]
+        for g_idx, gemini_key in enumerate(gemini_pool):
+            try:
+                print(f"[CBEO-VM] Generating AI Executive Analysis via Gemini Key #{g_idx+1}...")
+                g_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key={gemini_key}"
+                g_prompt = (
+                    f"You are Chief AI Officer for CBEO Bhinai, District AJMER (अजमेर), Rajasthan. "
+                    f"Rule: District is strictly AJMER (अजमेर); never Kekri. "
+                    f"Status: {sp_sub_count}/{total_sp_schools} schools submitted Saman Pariksha forms, {sp_pend_count} pending. "
+                    f"Write a crisp, authoritative 2-line Hindi executive directive for the CBEO bulletin urging urgent compliance before 05 October 2026."
+                )
+                g_payload = {"contents": [{"parts": [{"text": g_prompt}]}]}
+                g_resp = requests.post(g_url, json=g_payload, timeout=8)
+                if g_resp.status_code == 200:
+                    gemini_ai_brief = g_resp.json()['candidates'][0]['content']['parts'][0]['text'].strip()
+                    print(f"[CBEO-VM] ✓ Gemini AI Analysis generated successfully via Key #{g_idx+1}!")
+                    break
+            except Exception as ge:
+                print(f"[CBEO-VM] Note on Gemini Key #{g_idx+1}:", ge)
 
     # 6. Telegram Compliance Alert
     tg_token = (os.environ.get('TELEGRAM_BOT_TOKEN') or local_cfg.get('TELEGRAM_BOT_TOKEN') or '').strip()
