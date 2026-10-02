@@ -225,6 +225,33 @@ function handleRequest(e, method) {
       output.message = "ऑडिट लॉग सुरक्षित हुआ!";
     }
 
+    // 7. Automated Email Alert Dispatch (Uses Google account native MailApp - Zero SMTP setup needed!)
+    else if (action === 'send_email' || action === 'dispatch_compliance_email') {
+      var emailTo = (params.to || params.email_to || Session.getEffectiveUser().getEmail()).trim();
+      var subject = params.subject || ("कार्यालय CBEO भिनाय (अजमेर) - दैनिक लंबित रिपोर्ट");
+      var body = params.body || "CBEO Bhinai Automated Compliance Report";
+      var htmlBody = params.html_body || null;
+
+      if (emailTo) {
+        if (htmlBody) {
+          MailApp.sendEmail({
+            to: emailTo,
+            subject: subject,
+            body: body,
+            htmlBody: htmlBody
+          });
+        } else {
+          MailApp.sendEmail(emailTo, subject, body);
+        }
+        output.success = true;
+        output.message = "ईमेल सफलतापूर्वक प्रेषित: " + emailTo;
+        logAudit(ss, "Google Apps Script Engine", "ईमेल प्रेषण", emailTo, subject);
+      } else {
+        output.success = false;
+        output.message = "प्राप्तकर्ता ईमेल पता अनुपलब्ध है।";
+      }
+    }
+
     else {
       output.success = false;
       output.message = "अमान्य एक्शन: " + action;

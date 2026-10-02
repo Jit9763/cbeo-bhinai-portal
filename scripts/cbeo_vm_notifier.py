@@ -185,9 +185,19 @@ def main():
         with open(summary_file, 'a', encoding='utf-8') as f:
             f.write(report_content)
 
+    # Load optional notification credentials from config file if present
+    cfg_file = os.path.join(root_dir, 'cbeo_notification_config.json')
+    local_cfg = {}
+    if os.path.exists(cfg_file):
+        try:
+            with open(cfg_file, 'r', encoding='utf-8') as cf:
+                local_cfg = json.load(cf)
+        except Exception as e:
+            print("Note reading cbeo_notification_config.json:", e)
+
     # 6. Telegram Compliance Alert (if TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID are set)
-    tg_token = os.environ.get('TELEGRAM_BOT_TOKEN', '').strip()
-    tg_chat_id = os.environ.get('TELEGRAM_CHAT_ID', '').strip()
+    tg_token = (os.environ.get('TELEGRAM_BOT_TOKEN') or local_cfg.get('TELEGRAM_BOT_TOKEN') or '').strip()
+    tg_chat_id = (os.environ.get('TELEGRAM_CHAT_ID') or local_cfg.get('TELEGRAM_CHAT_ID') or '').strip()
 
     if tg_token and tg_chat_id and requests:
         try:
@@ -245,102 +255,124 @@ def main():
     else:
         print("Note: Telegram secrets (TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID) not provided; skipping Telegram alert.")
 
-    # 7. Email Notification Engine (SMTP via Gmail or any provider)
-    email_user = os.environ.get('EMAIL_USER', '').strip()
-    email_pass = os.environ.get('EMAIL_PASS', '').strip()
-    email_to = os.environ.get('EMAIL_TO', '').strip()
+    # 7. Email Notification Engine (SMTP via Gmail OR Google Apps Script Native MailApp)
+    email_user = (os.environ.get('EMAIL_USER') or local_cfg.get('EMAIL_USER') or '').strip()
+    email_pass = (os.environ.get('EMAIL_PASS') or local_cfg.get('EMAIL_PASS') or '').strip()
+    email_to = (os.environ.get('EMAIL_TO') or local_cfg.get('EMAIL_TO') or '').strip()
 
-    if email_user and email_pass and email_to:
-        try:
-            print(f"Sending Email compliance notification to {email_to}...")
-            # Build HTML Email
-            pending_rows_html = ""
-            for idx, ps in enumerate(sp_pending_schools):
-                pending_rows_html += f"""
-                <tr style="border-bottom:1px solid #e2e8f0; background:{'#ffffff' if idx%2==0 else '#f8fafc'};">
-                    <td style="padding:10px 12px; font-weight:bold; color:#1e293b; text-align:center;">{idx + 1}</td>
-                    <td style="padding:10px 12px; font-family:monospace; font-weight:bold; color:#2563eb;">{ps['code']}</td>
-                    <td style="padding:10px 12px; font-weight:600; color:#0f172a;">{ps['name']}</td>
-                    <td style="padding:10px 12px; color:#475569;">{ps['peeo']}</td>
-                    <td style="padding:10px 12px; color:#334155;">{ps['principal']}</td>
-                    <td style="padding:10px 12px; text-align:center;"><a href="tel:{ps['mobile']}" style="color:#059669; font-weight:bold; text-decoration:none;">{ps['mobile']}</a></td>
-                </tr>
-                """
+    # Pre-build HTML and Text Email
+    pending_rows_html = ""
+    for idx, ps in enumerate(sp_pending_schools):
+        pending_rows_html += f"""
+        <tr style="border-bottom:1px solid #e2e8f0; background:{'#ffffff' if idx%2==0 else '#f8fafc'};">
+            <td style="padding:10px 12px; font-weight:bold; color:#1e293b; text-align:center;">{idx + 1}</td>
+            <td style="padding:10px 12px; font-family:monospace; font-weight:bold; color:#2563eb;">{ps['code']}</td>
+            <td style="padding:10px 12px; font-weight:600; color:#0f172a;">{ps['name']}</td>
+            <td style="padding:10px 12px; color:#475569;">{ps['peeo']}</td>
+            <td style="padding:10px 12px; color:#334155;">{ps['principal']}</td>
+            <td style="padding:10px 12px; text-align:center;"><a href="tel:{ps['mobile']}" style="color:#059669; font-weight:bold; text-decoration:none;">{ps['mobile']}</a></td>
+        </tr>
+        """
 
-            html_email = f"""
-            <!DOCTYPE html>
-            <html>
-            <head><meta charset="utf-8"></head>
-            <body style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color:#f1f5f9; margin:0; padding:20px; color:#1e293b;">
-                <div style="max-width:750px; margin:0 auto; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,0.08); border:1px solid #e2e8f0;">
-                    <div style="background:linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color:#ffffff; padding:24px 28px; text-align:center; border-bottom:4px solid #f59e0b;">
-                        <h2 style="margin:0 0 6px 0; font-size:20px; font-weight:bold; letter-spacing:0.5px;">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</h2>
-                        <div style="font-size:13px; color:#93c5fd; font-weight:600;">जिला: अजमेर (AJMER) | ब्लॉक: भिनाय (BHINAI)</div>
-                        <div style="margin-top:10px; display:inline-block; background:rgba(255,255,255,0.15); padding:4px 14px; border-radius:20px; font-size:12px; color:#fde047;">
-                            🤖 GitHub Cloud VM स्वचालित अनुपालन रिपोर्ट • {time_str} IST
-                        </div>
+    html_email = f"""
+    <!DOCTYPE html>
+    <html>
+    <head><meta charset="utf-8"></head>
+    <body style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color:#f1f5f9; margin:0; padding:20px; color:#1e293b;">
+        <div style="max-width:750px; margin:0 auto; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,0.08); border:1px solid #e2e8f0;">
+            <div style="background:linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color:#ffffff; padding:24px 28px; text-align:center; border-bottom:4px solid #f59e0b;">
+                <h2 style="margin:0 0 6px 0; font-size:20px; font-weight:bold; letter-spacing:0.5px;">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</h2>
+                <div style="font-size:13px; color:#93c5fd; font-weight:600;">जिला: अजमेर (AJMER) | ब्लॉक: भिनाय (BHINAI)</div>
+                <div style="margin-top:10px; display:inline-block; background:rgba(255,255,255,0.15); padding:4px 14px; border-radius:20px; font-size:12px; color:#fde047;">
+                    🤖 GitHub Cloud VM स्वचालित अनुपालन रिपोर्ट • {time_str} IST
+                </div>
+            </div>
+
+            <div style="padding:24px 28px;">
+                <h3 style="margin:0 0 16px 0; color:#0f172a; border-left:4px solid #2563eb; padding-left:10px; font-size:16px;">
+                    📋 1. जिला समान परीक्षा (सत्र 2026-27) - प्रगति सारांश
+                </h3>
+
+                <div style="display:flex; gap:12px; margin-bottom:20px;">
+                    <div style="flex:1; background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:12px; text-align:center;">
+                        <div style="font-size:11px; color:#1d4ed8; font-weight:700; text-transform:uppercase;">कुल विद्यालय</div>
+                        <div style="font-size:24px; font-weight:800; color:#1e3a8a; margin-top:4px;">{total_sp_schools}</div>
                     </div>
-
-                    <div style="padding:24px 28px;">
-                        <h3 style="margin:0 0 16px 0; color:#0f172a; border-left:4px solid #2563eb; padding-left:10px; font-size:16px;">
-                            📋 1. जिला समान परीक्षा (सत्र 2026-27) - प्रगति सारांश
-                        </h3>
-
-                        <div style="display:flex; gap:12px; margin-bottom:20px;">
-                            <div style="flex:1; background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:12px; text-align:center;">
-                                <div style="font-size:11px; color:#1d4ed8; font-weight:700; text-transform:uppercase;">कुल विद्यालय</div>
-                                <div style="font-size:24px; font-weight:800; color:#1e3a8a; margin-top:4px;">{total_sp_schools}</div>
-                            </div>
-                            <div style="flex:1; background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:12px; text-align:center;">
-                                <div style="font-size:11px; color:#047857; font-weight:700; text-transform:uppercase;">प्रपत्र प्राप्त</div>
-                                <div style="font-size:24px; font-weight:800; color:#065f46; margin-top:4px;">{sp_sub_count}</div>
-                                <div style="font-size:11px; color:#059669; font-weight:600;">({sp_percent}%)</div>
-                            </div>
-                            <div style="flex:1; background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:12px; text-align:center;">
-                                <div style="font-size:11px; color:#b91c1c; font-weight:700; text-transform:uppercase;">लंबित विद्यालय</div>
-                                <div style="font-size:24px; font-weight:800; color:#991b1b; margin-top:4px;">{sp_pend_count}</div>
-                                <div style="font-size:11px; color:#dc2626; font-weight:600;">({round(100 - sp_percent, 1)}%)</div>
-                            </div>
-                        </div>
-
-                        {'<h4 style="margin:20px 0 10px 0; color:#991b1b; font-size:14px;">🚨 लंबित विद्यालयों की विवरण सूची:</h4><div style="overflow-x:auto;"><table style="width:100%; border-collapse:collapse; font-size:12px;"><thead style="background:#0f172a; color:#ffffff;"><tr><th style="padding:8px 10px;">क्र.</th><th style="padding:8px 10px;">शा.दा. कोड</th><th style="padding:8px 10px;">विद्यालय</th><th style="padding:8px 10px;">PEEO</th><th style="padding:8px 10px;">संस्था प्रधान</th><th style="padding:8px 10px;">मोबाइल</th></tr></thead><tbody>' + pending_rows_html + '</tbody></table></div>' if sp_pend_count > 0 else '<div style="background:#ecfdf5; color:#065f46; padding:14px; border-radius:8px; font-weight:bold; text-align:center;">✓ समान परीक्षा 2026-27 के सभी विद्यालयों के प्रपत्र शत-प्रतिशत संकलित हो चुके हैं।</div>'}
-
-                        <div style="margin-top:28px; text-align:center;">
-                            <a href="https://jit9763.github.io/cbeo-bhinai-portal/" style="display:inline-block; background:#1e3a8a; color:#ffffff; font-weight:bold; font-size:14px; padding:12px 28px; border-radius:8px; text-decoration:none; box-shadow:0 4px 12px rgba(30,58,138,0.25);">
-                                🌐 CBEO भिनाय आधिकारिक पोर्टल खोलें
-                            </a>
-                        </div>
+                    <div style="flex:1; background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:12px; text-align:center;">
+                        <div style="font-size:11px; color:#047857; font-weight:700; text-transform:uppercase;">प्रपत्र प्राप्त</div>
+                        <div style="font-size:24px; font-weight:800; color:#065f46; margin-top:4px;">{sp_sub_count}</div>
+                        <div style="font-size:11px; color:#059669; font-weight:600;">({sp_percent}%)</div>
                     </div>
-
-                    <div style="background:#f8fafc; padding:16px 28px; border-top:1px solid #e2e8f0; font-size:11px; color:#64748b; text-align:center;">
-                        कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), ब्लॉक भिनाय, जिला अजमेर (राजस्थान)<br>
-                        यह एक स्वचालित प्रणाली द्वारा प्रेषित आधिकारिक संदेश है। कृपया इस पर सीधे रिप्लाई न करें।
+                    <div style="flex:1; background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:12px; text-align:center;">
+                        <div style="font-size:11px; color:#b91c1c; font-weight:700; text-transform:uppercase;">लंबित विद्यालय</div>
+                        <div style="font-size:24px; font-weight:800; color:#991b1b; margin-top:4px;">{sp_pend_count}</div>
+                        <div style="font-size:11px; color:#dc2626; font-weight:600;">({round(100 - sp_percent, 1)}%)</div>
                     </div>
                 </div>
-            </body>
-            </html>
-            """
 
+                {'<h4 style="margin:20px 0 10px 0; color:#991b1b; font-size:14px;">🚨 लंबित विद्यालयों की विवरण सूची:</h4><div style="overflow-x:auto;"><table style="width:100%; border-collapse:collapse; font-size:12px;"><thead style="background:#0f172a; color:#ffffff;"><tr><th style="padding:8px 10px;">क्र.</th><th style="padding:8px 10px;">शा.दा. कोड</th><th style="padding:8px 10px;">विद्यालय</th><th style="padding:8px 10px;">PEEO</th><th style="padding:8px 10px;">संस्था प्रधान</th><th style="padding:8px 10px;">मोबाइल</th></tr></thead><tbody>' + pending_rows_html + '</tbody></table></div>' if sp_pend_count > 0 else '<div style="background:#ecfdf5; color:#065f46; padding:14px; border-radius:8px; font-weight:bold; text-align:center;">✓ समान परीक्षा 2026-27 के सभी विद्यालयों के प्रपत्र शत-प्रतिशत संकलित हो चुके हैं।</div>'}
+
+                <div style="margin-top:28px; text-align:center;">
+                    <a href="https://jit9763.github.io/cbeo-bhinai-portal/" style="display:inline-block; background:#1e3a8a; color:#ffffff; font-weight:bold; font-size:14px; padding:12px 28px; border-radius:8px; text-decoration:none; box-shadow:0 4px 12px rgba(30,58,138,0.25);">
+                        🌐 CBEO भिनाय आधिकारिक पोर्टल खोलें
+                    </a>
+                </div>
+            </div>
+
+            <div style="background:#f8fafc; padding:16px 28px; border-top:1px solid #e2e8f0; font-size:11px; color:#64748b; text-align:center;">
+                कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), ब्लॉक भिनाय, जिला अजमेर (राजस्थान)<br>
+                यह एक स्वचालित प्रणाली द्वारा प्रेषित आधिकारिक संदेश है। कृपया इस पर सीधे रिप्लाई न करें।
+            </div>
+        </div>
+    </body>
+    </html>
+    """
+
+    email_sent_successfully = False
+
+    # Attempt 1: Direct SMTP via Gmail if credentials provided
+    if email_user and email_pass and email_to:
+        try:
+            print(f"Sending direct SMTP Email to {email_to}...")
             recipients = [r.strip() for r in email_to.split(',') if r.strip()]
             msg = MIMEMultipart('alternative')
             msg['From'] = f"CBEO भिनाय (अजमेर) <{email_user}>"
             msg['To'] = ", ".join(recipients)
             msg['Subject'] = f"🏛️ CBEO भिनाय दैनिक अनुपालन रिपोर्ट ({time_str} IST) - समान परीक्षा {sp_pend_count} लंबित"
-            
-            # Attach plain text and HTML versions
             msg.attach(MIMEText(report_content, 'plain', 'utf-8'))
             msg.attach(MIMEText(html_email, 'html', 'utf-8'))
 
-            # Send via SMTP SSL
             server = smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=15)
             server.login(email_user, email_pass)
             server.sendmail(email_user, recipients, msg.as_string())
             server.quit()
-            print("✓ Email notification sent successfully to", recipients)
+            print("✓ SMTP Email sent successfully to", recipients)
+            email_sent_successfully = True
         except Exception as e:
-            print("Email notification error:", e)
-    else:
-        print("Note: Email secrets (EMAIL_USER / EMAIL_PASS / EMAIL_TO) not provided; skipping direct SMTP email.")
+            print("Direct SMTP failed, will attempt Google Apps Script MailApp fallback:", e)
+
+    # Attempt 2: Google Apps Script Native MailApp (Requires zero SMTP passwords)
+    if not email_sent_successfully and email_to and requests:
+        try:
+            print(f"Dispatching Email via Google Apps Script MailApp to {email_to}...")
+            payload = {
+                "action": "send_email",
+                "email_to": email_to,
+                "subject": f"🏛️ CBEO भिनाय दैनिक अनुपालन रिपोर्ट ({time_str} IST) - समान परीक्षा {sp_pend_count} लंबित",
+                "html_body": html_email,
+                "body": report_content
+            }
+            res = requests.post(backup_gas_url, data=json.dumps(payload), headers={'Content-Type': 'text/plain;charset=utf-8'}, timeout=12)
+            if res.status_code == 200:
+                print("✓ Email dispatched successfully via Google Apps Script MailApp!")
+                email_sent_successfully = True
+            else:
+                print(f"GAS Email dispatch returned status {res.status_code}: {res.text}")
+        except Exception as e:
+            print("Google Apps Script email dispatch note:", e)
+
+    if not email_sent_successfully and not email_to:
+        print("Note: Email address (EMAIL_TO) not provided; skipping email notification.")
 
     # 8. Ping Master Backup Apps Script to record audit log
     backup_gas_url = "https://script.google.com/macros/s/AKfycbzmauNuu8DUjgsK-TBdiv45efshvaf6x3Z6bJrhyC2LOmF-yg9ErGq3XWEKZ8Umw8Ao/exec"
