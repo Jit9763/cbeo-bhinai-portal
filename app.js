@@ -5999,6 +5999,29 @@ function archiveDemandAndBackup(demandId) {
     body: JSON.stringify({ demand: demand })
   }).catch(() => {});
 
+  // Sync to Google Drive Master Backup Sheet (7_CBEO_Master_Backup_And_Dummy_Sandbox_Sheet)
+  try {
+    const backupGasUrl = localStorage.getItem('cbeo_backup_webhook_url') 
+      || 'https://script.google.com/macros/s/AKfycbzmauNuu8DUjgsK-TBdiv45efshvaf6x3Z6bJrhyC2LOmF-yg9ErGq3XWEKZ8Umw8Ao/exec';
+    if (backupGasUrl) {
+      const subs = (STATE.demandSubmissions && STATE.demandSubmissions[demand.id]) || {};
+      fetch(backupGasUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          action: 'archive_demand',
+          demand_id: demand.id,
+          demand_title: demand.title,
+          demand_data: demand,
+          submissions: subs,
+          archived_by: STATE.currentUser?.name || 'जितेन्द्र कुमार (सुपर एडमिन)'
+        })
+      }).then(r => r.json()).then(res => {
+        console.log('✅ Google Drive Archive Sheet Sync:', res);
+      }).catch(e => console.log('Archive GAS Sync Note:', e));
+    }
+  } catch(e) {}
+
   showToast(`मांग '${demand.title}' सफलतापूर्वक आर्काइव कर बैकअप में सुरक्षित कर दी गई!`, 'success');
   renderApp();
 }
@@ -9380,14 +9403,17 @@ function submitStudioTestForm() {
   showToast(`🧪 [टेस्ट सैंडबॉक्स] विद्यालय '${school.school_name}' का प्रपत्र सफलतापूर्वक सबमिट हुआ!`, 'success');
   renderStudioSchoolForm(demandId, schoolCode);
 
-  // Also post to backup sheet if webhook is configured
+  // Also post to backup sheet (Google Drive 7_CBEO_Master_Backup_And_Dummy_Sandbox_Sheet)
   try {
-    const backupUrl = localStorage.getItem('cbeo_backup_webhook_url');
+    const backupUrl = localStorage.getItem('cbeo_backup_webhook_url') 
+      || 'https://script.google.com/macros/s/AKfycbzmauNuu8DUjgsK-TBdiv45efshvaf6x3Z6bJrhyC2LOmF-yg9ErGq3XWEKZ8Umw8Ao/exec';
     if (backupUrl) {
       fetch(backupUrl, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({ action: 'sandbox_test_entry', test_entry: testEntry })
+      }).then(r => r.json()).then(res => {
+        console.log('✅ Google Drive Dummy Sandbox Sync:', res);
       }).catch(e => console.log('Backup webhook sandbox note:', e));
     }
   } catch(e) {}
