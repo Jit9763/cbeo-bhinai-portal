@@ -63,6 +63,47 @@ function doPost(e) {
     }
 
     // -------------------------------------------------------------
+    // ACTION 0.1: SAVE GEMINI API KEY TO CLOUD (Available for all 57 schools & 25 PEEOs)
+    // -------------------------------------------------------------
+    if (data.action === 'saveGeminiKey') {
+      var newKey = String(data.api_key || data.key || '').trim();
+      if (!newKey) {
+        return ContentService.createTextOutput(JSON.stringify({
+          success: false,
+          message: "api_key is required."
+        })).setMimeType(ContentService.MimeType.JSON);
+      }
+      // 1. Save in Script Properties (Never visible on GitHub, fast cloud access)
+      PropertiesService.getScriptProperties().setProperty("GEMINI_API_KEY", newKey);
+
+      // 2. Also save in a dedicated tab 'AI_Config' in Google Sheet
+      var cfgSheet = ss.getSheetByName("AI_Config");
+      if (!cfgSheet) {
+        cfgSheet = ss.insertSheet("AI_Config");
+        cfgSheet.appendRow(["Key_Name", "Key_Value", "Updated_At", "Updated_By"]);
+      }
+      var cfgData = cfgSheet.getDataRange().getValues();
+      var found = false;
+      for (var ci = 1; ci < cfgData.length; ci++) {
+        if (String(cfgData[ci][0]).trim() === "GEMINI_API_KEY") {
+          cfgSheet.getRange(ci + 1, 2).setValue(newKey);
+          cfgSheet.getRange(ci + 1, 3).setValue(Utilities.formatDate(new Date(), "GMT+5:30", "dd-MM-yyyy HH:mm:ss"));
+          cfgSheet.getRange(ci + 1, 4).setValue(data.updated_by || "Admin_Jitendra");
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        cfgSheet.appendRow(["GEMINI_API_KEY", newKey, Utilities.formatDate(new Date(), "GMT+5:30", "dd-MM-yyyy HH:mm:ss"), data.updated_by || "Admin_Jitendra"]);
+      }
+
+      return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        message: "Gemini Key क्लाउड सर्वर पर सुरक्षित हो गई! अब भिनाय ब्लॉक के सभी 57 स्कूल व 25 PEEO किसी भी मोबाइल या कंप्यूटर से 24x7 AI का उपयोग कर सकेंगे।"
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // -------------------------------------------------------------
     // ACTION 1: UPDATE PASSWORD (Single Textbox Save)
     // -------------------------------------------------------------
     if (data.action === 'updatePassword') {
@@ -645,9 +686,24 @@ function handleServerlessAiRequest(data) {
     // Load API Keys from Script Properties (Secure, never visible on GitHub)
     var sp = PropertiesService.getScriptProperties();
     var rawKeys = sp.getProperty("GEMINI_API_KEY") || "";
+    
+    // Fallback: check AI_Config sheet if ScriptProperties is empty
+    if (!rawKeys) {
+      var cfgSheet = ss.getSheetByName("AI_Config");
+      if (cfgSheet) {
+        var cfgData = cfgSheet.getDataRange().getValues();
+        for (var ci = 1; ci < cfgData.length; ci++) {
+          if (String(cfgData[ci][0]).trim() === "GEMINI_API_KEY") {
+            rawKeys = String(cfgData[ci][1]).trim();
+            break;
+          }
+        }
+      }
+    }
+
     var keyPool = rawKeys.split(/[,;\n]+/).map(function(k){ return k.trim(); }).filter(Boolean);
     
-    // If not set in Script Properties, check passed key parameter
+    // If not set in Script Properties or Sheet, check passed key parameter
     if (keyPool.length === 0 && data.key) {
       keyPool = [String(data.key).trim()];
     }

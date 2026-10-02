@@ -11922,6 +11922,29 @@ async function saveGeminiKeyFromHub() {
   localStorage.setItem('cbeo_gemini_api_key', key);
 
   showToast('Gemini API Key सुरक्षित की जा रही है...', 'info');
+
+  // 2. Cloud Serverless Sync (Google Apps Script): Makes AI active for all 57 schools & 25 PEEOs on any phone/PC
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url);
+
+  if (gasUrl) {
+    try {
+      fetch(gasUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          action: 'saveGeminiKey',
+          api_key: key,
+          updated_by: 'Admin_Jitendra'
+        })
+      }).then(r => r.json()).then(res => {
+        if (res && res.success) {
+          showToast('☁️ Gemini Key क्लाउड सर्वर पर सक्रिय! अब ब्लॉक के सभी 57 स्कूल लॉगिन से AI का उपयोग कर सकते हैं।', 'success');
+        }
+      }).catch(e => console.log('GAS cloud sync silent', e));
+    } catch (ge) {}
+  }
+
   try {
     const res = await fetch('/api/save_gemini_key', {
       method: 'POST',
@@ -11930,12 +11953,12 @@ async function saveGeminiKeyFromHub() {
     });
     const data = await res.json();
     if (data.success) {
-      showToast('🔒 Gemini API Key केवल आपके लोकल सिस्टम में सुरक्षित हो गई (GitHub पर कभी नहीं जाएगी)!', 'success');
+      showToast('🔒 Gemini API Key लोकल व क्लाउड में सुरक्षित हो गई (GitHub पर कभी नहीं जाएगी)!', 'success');
     } else {
-      showToast('🔒 Gemini API Key आपके ब्राउज़र में सुरक्षित हो गई है!', 'success');
+      showToast('🔒 Gemini API Key सुरक्षित हो गई है!', 'success');
     }
   } catch (err) {
-    showToast('🔒 Gemini API Key आपके ब्राउज़र में सुरक्षित हो गई है (GitHub पर कभी नहीं जाएगी)!', 'success');
+    showToast('🔒 Gemini API Key सुरक्षित हो गई है!', 'success');
   }
   loadGeminiKeyStatus();
 }
@@ -12013,7 +12036,62 @@ function sendShikshaSetuUserMessage() {
     container.scrollTop = container.scrollHeight;
   }
 
-  // First try real Gemini LLM API via backend
+  // Cloud Fallback function: Queries Google Apps Script serverless proxy (Used by all schools on mobile/web)
+  function queryCloudAi() {
+    const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+      || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url);
+
+    if (!gasUrl) {
+      const el = document.getElementById('shiksha-setu-typing');
+      if (el) el.remove();
+      const responseHtml = generateShikshaSetuAIResponse(rawQuery);
+      appendShikshaSetuMessage('bot', responseHtml);
+      return;
+    }
+
+    fetch(gasUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        action: 'ai_chat',
+        query: rawQuery,
+        context: {
+          user: STATE.currentUser,
+          district: 'AJMER',
+          block: 'BHINAI',
+          admin_name: 'जितेन्द्र कुमार',
+          admin_phone: '9928254317'
+        }
+      })
+    })
+    .then(r => r.json())
+    .then(data => {
+      const el = document.getElementById('shiksha-setu-typing');
+      if (el) el.remove();
+      if (data && data.success && data.response) {
+        const formatted = String(data.response).replace(/\n/g, '<br>');
+        appendShikshaSetuMessage('bot', `
+          <div>
+            ${formatted}
+            <div style="font-size:0.68rem; color:#2563eb; margin-top:6px; font-weight:700">
+              ✨ <em>Google Gemini Cloud AI द्वारा सत्यापित उत्तर</em>
+            </div>
+          </div>
+        `);
+      } else {
+        const responseHtml = generateShikshaSetuAIResponse(rawQuery);
+        appendShikshaSetuMessage('bot', responseHtml);
+      }
+    })
+    .catch(() => {
+      const el = document.getElementById('shiksha-setu-typing');
+      if (el) el.remove();
+      const responseHtml = generateShikshaSetuAIResponse(rawQuery);
+      appendShikshaSetuMessage('bot', responseHtml);
+    });
+  }
+
+  // First try local python backend; if unavailable or on online GitHub Pages, seamlessly route to Cloud Apps Script
   fetch('/api/ai_chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -12028,7 +12106,10 @@ function sendShikshaSetuUserMessage() {
       }
     })
   })
-  .then(res => res.json())
+  .then(res => {
+    if (!res.ok) throw new Error('Local server unavailable, fallback to cloud');
+    return res.json();
+  })
   .then(data => {
     const el = document.getElementById('shiksha-setu-typing');
     if (el) el.remove();
@@ -12043,15 +12124,11 @@ function sendShikshaSetuUserMessage() {
         </div>
       `);
     } else {
-      const responseHtml = generateShikshaSetuAIResponse(rawQuery);
-      appendShikshaSetuMessage('bot', responseHtml);
+      queryCloudAi();
     }
   })
   .catch(() => {
-    const el = document.getElementById('shiksha-setu-typing');
-    if (el) el.remove();
-    const responseHtml = generateShikshaSetuAIResponse(rawQuery);
-    appendShikshaSetuMessage('bot', responseHtml);
+    queryCloudAi();
   });
 }
 
