@@ -722,12 +722,80 @@ function handleServerlessAiRequest(data) {
         "  \"recommended_days\": 5\n" +
         "}";
     } else {
-      prompt = "You are CBEO AI Assistant for Bhinai, District AJMER (अजमेर), Rajasthan. " +
-        "Rule: District is strictly AJMER (अजमेर); never Kekri. " +
-        "Answer school and PEEO queries in 2-3 concise Hindi bullet points. " +
-        "Help with form columns, deadlines (समान परीक्षा अंतिम तिथि: 05 अक्टूबर 2026), rules and portals. " +
-        "IT Cell Jitendra Kumar: 9928254317.\n" +
-        "Question: " + query;
+      // 25 PEEO Directory Lookup (Local RAG)
+      var peeoDirectory = [
+        {name: "PEEO BANDANWARA", aliases: ["बांदनवाड़ा", "bandanwara"], code: "221769", head: "BHANWAR LAL JAT", mobile: "9587293842", email: "gsssbandanwara3579@gmail.com"},
+        {name: "PEEO BARGAON", aliases: ["बड़गांव", "bargaon"], code: "221764", head: "CHANDRA PRAKASH LADDHA", mobile: "9001450275", email: "bargaonschool@gmail.com"},
+        {name: "PEEO BARLI", aliases: ["बड़ली", "barli"], code: "221755", head: "SHAILENDRA KUMAR PANDYA", mobile: "9950985201", email: "gsssbarliajm@gmail.com"},
+        {name: "PEEO BHINAY", aliases: ["भिनाय", "bhinay"], code: "221780", head: "AJAY KUMAR DHABAI", mobile: "9549240545", email: "principalbhinai123@gmail.com"},
+        {name: "PEEO BOOBKIYA", aliases: ["बूबकिया", "boobkiya"], code: "221763", head: "RAM CHANDRA GUJAR", mobile: "9252068645", email: "gssboobkiya@gmail.com"},
+        {name: "PEEO CHAPANERI", aliases: ["चापानेरी", "chapaneri"], code: "221758", head: "LADURAM SHARMA", mobile: "9462507510", email: "chapanerischool@gmail.com"},
+        {name: "PEEO CHHACHHUNDRA", aliases: ["छाछून्दरा", "chhachhundra"], code: "221787", head: "SITARAM DHOBI", mobile: "9413781124", email: "gsschhachhundrabhinai@gmail.com"},
+        {name: "PEEO DEOLIYA KALAN", aliases: ["देवलिया", "deoliya", "devliya", "devlia"], code: "221754", head: "PURNIMA", mobile: "9414343109", email: "deoliakalan105@gmail.com"},
+        {name: "PEEO DEVPURA", aliases: ["देवपुरा", "devpura"], code: "488941", head: "ANITA SHARMA", mobile: "9414550658", email: "devpuraschool@gmail.com"},
+        {name: "PEEO DHANTOL", aliases: ["धांतोल", "dhantol"], code: "221783", head: "SURENDRA NAGORA", mobile: "9413695182", email: "gssdhantol2013@gmail.com"},
+        {name: "PEEO EKALSEENGA", aliases: ["एकलसिंघा", "ekalsingha", "ekalseenga"], code: "221786", head: "VISHWASHWAR PRASAD SHARMA", mobile: "7728052397", email: "ekalseengaschool@gmail.com"},
+        {name: "PEEO GURHA KHURD", aliases: ["गुढ़ा खुर्द", "gudda", "gurha"], code: "221762", head: "DEEPESH KUMAR SISODIA", mobile: "9414554344", email: "gurhakhurdschool@gmail.com"},
+        {name: "PEEO KANAI KALAN", aliases: ["कनाई कलां", "kanai"], code: "221765", head: "NARESH KUMAR", mobile: "9166233899", email: "kanaikalanschool@gmail.com"},
+        {name: "PEEO KARATI", aliases: ["कराटी", "karati"], code: "221773", head: "DEEPAK SANWARIYA", mobile: "9950736300", email: "karatischool@gmail.com"},
+        {name: "PEEO KEROT", aliases: ["केरोट", "kerot"], code: "221767", head: "SOHANLAL SARAN", mobile: "9929526324", email: "kerotschool@gmail.com"},
+        {name: "PEEO KUMHARIYA", aliases: ["कुम्हारिया", "kumhariya"], code: "221777", head: "JYOTI PRAKASH SHARMA", mobile: "9460690289", email: "Gssskumhariya108@gmail.com"},
+        {name: "PEEO LAMGARA", aliases: ["लामगरा", "lamgara"], code: "221759", head: "RAJEEV KUMAR MANDOT", mobile: "9413134849", email: "gsslamgara@gmail.com"},
+        {name: "PEEO NAGOLA", aliases: ["नागोला", "nagola"], code: "221772", head: "VINOD KUMAR RAO", mobile: "8955306674", email: "gsssnagola79@gmail.com"},
+        {name: "PEEO NANDSI", aliases: ["नांदसी", "nandsi"], code: "221756", head: "OM PRAKASH VERMA", mobile: "9001637473", email: "pgsssnandsi@gmail.com"},
+        {name: "PEEO PADALIYA", aliases: ["पाडलिया", "padaliya", "padliya"], code: "221766", head: "LAXMI POPTANI", mobile: "9549364023", email: "padaliyaschool@gmail.com"},
+        {name: "PEEO PADANGA", aliases: ["पानांगा", "padanga", "pananga"], code: "221788", head: "SMT ASHA RAJ", mobile: "7877090975", email: "gssspadanga@gmail.com"},
+        {name: "PEEO RAMMALIA", aliases: ["राममालिया", "rammalia", "rammaliya"], code: "221785", head: "LAL CHAND MUNOTH", mobile: "9928328808", email: "rammaliaschool@gmail.com"},
+        {name: "PEEO RATAKOT", aliases: ["राताकोट", "ratakot"], code: "221775", head: "KUNJ BIHARI SHARMA", mobile: "9887753471", email: "gssratakot@gmail.com"},
+        {name: "PEEO SINGAWAL", aliases: ["सिंगावल", "singawal"], code: "221781", head: "SEEMA SHARMA", mobile: "8290911983", email: "singawalschool1234@gmail.com"},
+        {name: "PEEO SOBRI", aliases: ["सोबरी", "sobri"], code: "221782", head: "FAYYAZ MOHAMMED", mobile: "9829487158", email: "gsssobri@gmail.com"}
+      ];
+
+      var matchedRecord = "";
+      var qLower = query.toLowerCase();
+      for (var pi = 0; pi < peeoDirectory.length; pi++) {
+        var rec = peeoDirectory[pi];
+        var isMatch = (qLower.indexOf(rec.code) !== -1);
+        if (!isMatch) {
+          for (var ai = 0; ai < rec.aliases.length; ai++) {
+            if (qLower.indexOf(rec.aliases[ai].toLowerCase()) !== -1) {
+              isMatch = true;
+              break;
+            }
+          }
+        }
+        if (isMatch) {
+          matchedRecord = "• " + rec.name + " | शाला दर्पण कोड: " + rec.code + " | प्रधानाचार्य/PEEO: " + rec.head + " | मोबाइल: " + rec.mobile + " | ईमेल: " + rec.email;
+          break;
+        }
+      }
+
+      if (matchedRecord) {
+        var directAns = "📍 **" + rec.name + "** (ब्लॉक भिनाय, जिला अजमेर)\n" +
+          "• **शाला दर्पण कोड:** `" + rec.code + "`\n" +
+          "• **प्रधानाचार्य / PEEO प्रभारी:** " + rec.head + "\n" +
+          "• **आधिकारिक मोबाइल:** **" + rec.mobile + "**\n" +
+          "• **ईमेल:** " + rec.email + "\n\n" +
+          "*(अतिरिक्त तकनीकी सहायता हेतु CBEO भिनाय IT सेल प्रभारी श्री जितेन्द्र कुमार: **9928254317** पर संपर्क करें।)*";
+        
+        try {
+          cacheSheet.appendRow([cacheKey, directAns, Utilities.formatDate(new Date(), "GMT+5:30", "dd-MM-yyyy HH:mm:ss")]);
+        } catch(ce){}
+
+        return ContentService.createTextOutput(JSON.stringify({
+          success: true,
+          source: "cbeo_master_directory",
+          response: directAns,
+          saved_tokens: 350
+        })).setMimeType(ContentService.MimeType.JSON);
+      } else {
+        prompt = "आप 'शिक्षा सेतु AI', CBEO भिनाय, जिला अजमेर (AJMER) के आधिकारिक सहायक हैं। " +
+          "नियम: जिला केवल अजमेर (AJMER) है (केकड़ी कभी नहीं लिखना है)। " +
+          "समान परीक्षा 2026-27 अंतिम तिथि: 05 अक्टूबर 2026। " +
+          "प्रपत्र-1 (9वीं-10वीं नामांकन व संस्कृत/उर्दू) व प्रपत्र-2 (11वीं-12वीं संकाय व ऐच्छिक विषय) से जुड़े प्रश्नों के 2-3 संक्षिप्त, स्पष्ट व सटीक बिंदुवार उत्तर दें। " +
+          "तकनीकी सहायता: IT सेल प्रभारी जितेन्द्र कुमार: 9928254317।\n\n" +
+          "प्रश्न: " + query;
+      }
     }
 
     var payload = JSON.stringify({

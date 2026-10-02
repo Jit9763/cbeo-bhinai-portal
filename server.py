@@ -76,6 +76,78 @@ from broadcast_email_service import broadcast_demand_emails
 
 PORT = 8089
 
+def find_portal_context(query):
+    """Local RAG: finds matching PEEO, School, or Staff from master_cbeo_data.json"""
+    q_norm = query.lower().strip()
+    results = []
+    
+    variants = {
+        'bandanwara': ['बांदनवाड़ा', 'bandanwara', 'bandanwada'],
+        'bargaon': ['बड़गांव', 'bargaon', 'badgaon'],
+        'barli': ['बड़ली', 'barli', 'badli'],
+        'bhinay': ['भिनाय', 'bhinay', 'bhinai'],
+        'boobkiya': ['बूबकिया', 'boobkiya', 'bubkiya'],
+        'chapaneri': ['चापानेरी', 'chapaneri'],
+        'chhachhundra': ['छाछून्दरा', 'छाछूंदरा', 'chhachhundra'],
+        'deoliya': ['देवलिया', 'deoliya', 'devliya', 'devlia', 'deolia', 'devlya'],
+        'devpura': ['देवपुरा', 'devpura', 'deopura'],
+        'dhantol': ['धांतोल', 'dhantol'],
+        'dheengarya': ['ढींगरिया', 'dheengarya', 'dhingariya'],
+        'ekalsingha': ['एकलसिंघा', 'ekalsingha'],
+        'ganahera': ['गनाहेड़ा', 'ganahera', 'ganeheda'],
+        'gohana': ['गोहाना', 'gohana'],
+        'gudda': ['गुढ़ा', 'gudda'],
+        'kanai': ['कनाई', 'kanai'],
+        'kerot': ['केरोट', 'kerot'],
+        'khedi': ['खेड़ी', 'khedi'],
+        'korikhed': ['कोरीखेड़', 'korikhed'],
+        'kumhariya': ['कुम्हारिया', 'kumhariya'],
+        'nagola': ['नागोला', 'nagola'],
+        'padliya': ['पाडलिया', 'padliya'],
+        'pananga': ['पानांगा', 'pananga'],
+        'rammaliya': ['राममालिया', 'rammaliya'],
+        'sobri': ['सोबरी', 'sobri']
+    }
+
+    try:
+        if os.path.exists('master_cbeo_data.json'):
+            with open('master_cbeo_data.json', 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            for p in data.get('peeos', []):
+                p_name = p.get('peeo_name', '').lower()
+                panchayat = p.get('panchayat_name', '').lower()
+                p_code = str(p.get('shala_darpan_code', ''))
+                
+                matched = False
+                if p_code and p_code in q_norm:
+                    matched = True
+                else:
+                    for key, words in variants.items():
+                        if key in p_name or key in panchayat:
+                            if any(w in q_norm for w in words):
+                                matched = True
+                                break
+
+                if matched:
+                    results.append(
+                        f"📍 **{p.get('peeo_name')}** (ब्लॉक भिनाय, जिला अजमेर)\n"
+                        f"• **नोडल विद्यालय:** PM SHRI रा.उ.मा.वि. {p.get('panchayat_name')} (शाला दर्पण कोड: `{p.get('shala_darpan_code')}`)\n"
+                        f"• **प्रधानाचार्य / PEEO प्रभारी:** {p.get('principal_incharge')}\n"
+                        f"• **आधिकारिक मोबाइल:** **{p.get('mobile')}**\n"
+                        f"• **ईमेल:** {p.get('email')}\n"
+                        f"• **कुल अधीनस्थ विद्यालय:** {p.get('school_count', len(p.get('schools', [])))}"
+                    )
+                    for sub in p.get('schools', []):
+                        sub_name = sub.get('school_name', '')
+                        sub_code = str(sub.get('shala_darpan_code', ''))
+                        if sub_code in q_norm or any(w in sub_name.lower() for w in q_norm.split() if len(w) > 3):
+                            contact_info = f" | प्रभारी: {sub.get('principal_name')} (मो: **{sub.get('mobile')}**)" if sub.get('mobile') else ""
+                            results.append(f"  - अधीनस्थ विद्यालय: {sub_name} (कोड: `{sub_code}`){contact_info}")
+    except Exception:
+        pass
+    return "\n\n".join(results[:2])
+
 def update_dynamic_master_contacts(school_code, req_data):
     try:
         p_name = req_data.get('principal_name')
@@ -491,6 +563,25 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                 user_context = req_data.get('context', {})
                 q_clean = query.lower().strip()
 
+                mode = req_data.get('mode', 'chat')
+
+                # Step 0: Master Directory Lookup (Local RAG - 0 Tokens, 100% Truth)
+                if mode != 'demand':
+                    ref_context = find_portal_context(query)
+                    if ref_context:
+                        verified_ans = (
+                            f"{ref_context}\n\n"
+                            f"*(तकनीकी सहायता हेतु: CBEO भिनाय IT सेल प्रभारी श्री जितेन्द्र कुमार, मो. **9928254317**)*"
+                        )
+                        self.send_json_response({
+                            'success': True,
+                            'has_key': True,
+                            'source': 'cbeo_master_directory',
+                            'response': verified_ans,
+                            'saved_tokens': 350
+                        })
+                        return
+
                 # Step 1: Check Local Fast-Cache (0 Tokens consumed!)
                 cache = get_ai_cache()
                 cache_key = hashlib.md5(q_clean.encode('utf-8')).hexdigest()
@@ -531,14 +622,37 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                     )
                     prompt_text = f"{system_instruction}\nTopic: {query}"
                 else:
-                    system_instruction = (
+                    ref_context = find_portal_context(query)
+                    if ref_context:
+                        verified_ans = (
+                            f"{ref_context}\n\n"
+                            f"*(अतिरिक्त तकनीकी सहायता हेतु CBEO भिनाय IT सेल प्रभारी श्री जितेन्द्र कुमार: **9928254317** पर संपर्क कर सकते हैं।)*"
+                        )
+                        cache[cache_key] = {
+                            'query': query,
+                            'response': verified_ans,
+                            'created_at': time.strftime('%Y-%m-%d %H:%M:%S'),
+                            'hits': 1,
+                            'tokens': 0
+                        }
+                        save_ai_cache(cache)
+                        self.send_json_response({
+                            'success': True,
+                            'has_key': True,
+                            'source': 'cbeo_master_directory',
+                            'response': verified_ans,
+                            'saved_tokens': 350
+                        })
+                        return
+
+                    prompt_text = (
                         "आप 'शिक्षा सेतु AI', CBEO भिनाय, जिला अजमेर (AJMER) के आधिकारिक सहायक हैं। "
-                        "नियम: जिला केवल अजमेर (AJMER) है (केकड़ी कभी नहीं)। "
+                        "नियम: जिला केवल अजमेर (AJMER) है (केकड़ी कभी नहीं लिखना है)। "
                         "समान परीक्षा 2026-27 अंतिम तिथि: 05 अक्टूबर 2026। "
-                        "प्रपत्र-1 (9वीं-10वीं नामांकन व संस्कृत/उर्दू) व प्रपत्र-2 (11वीं-12वीं संकाय व ऐच्छिक विषय) में शुद्ध, बिंदुवार, संक्षिप्त (2-4 वाक्य) उत्तर दें। "
-                        "IT सेल जितेन्द्र कुमार: 9928254317।"
+                        "प्रपत्र-1 (9वीं-10वीं नामांकन व संस्कृत/उर्दू) व प्रपत्र-2 (11वीं-12वीं संकाय व ऐच्छिक विषय) से जुड़े प्रश्नों के 2-3 संक्षिप्त व सटीक बिंदुवार उत्तर दें। "
+                        "तकनीकी सहायता: IT सेल प्रभारी जितेन्द्र कुमार, मोबाइल: 9928254317।\n\n"
+                        f"प्रश्न: {query}"
                     )
-                    prompt_text = f"{system_instruction}\nप्रश्न: {query}"
 
                 payload = json.dumps({
                     "contents": [{"parts": [{"text": prompt_text}]}],
