@@ -185,6 +185,9 @@ def main():
         with open(summary_file, 'a', encoding='utf-8') as f:
             f.write(report_content)
 
+    # Master Backup Apps Script Web App Endpoint
+    backup_gas_url = "https://script.google.com/macros/s/AKfycbzmauNuu8DUjgsK-TBdiv45efshvaf6x3Z6bJrhyC2LOmF-yg9ErGq3XWEKZ8Umw8Ao/exec"
+
     # Load optional notification credentials from config file if present
     cfg_file = os.path.join(root_dir, 'cbeo_notification_config.json')
     local_cfg = {}
@@ -256,9 +259,10 @@ def main():
         print("Note: Telegram secrets (TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID) not provided; skipping Telegram alert.")
 
     # 7. Email Notification Engine (SMTP via Gmail OR Google Apps Script Native MailApp)
+    DEFAULT_REPORT_EMAIL = "censusbhinai@gmail.com"
     email_user = (os.environ.get('EMAIL_USER') or local_cfg.get('EMAIL_USER') or '').strip()
     email_pass = (os.environ.get('EMAIL_PASS') or local_cfg.get('EMAIL_PASS') or '').strip()
-    email_to = (os.environ.get('EMAIL_TO') or local_cfg.get('EMAIL_TO') or '').strip()
+    email_to = (os.environ.get('EMAIL_TO') or local_cfg.get('EMAIL_TO') or DEFAULT_REPORT_EMAIL).strip()
 
     # Pre-build HTML and Text Email
     pending_rows_html = ""
