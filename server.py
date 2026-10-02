@@ -668,7 +668,7 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                 success_resp = None
                 used_key_idx = 0
 
-                models_to_try = ["gemini-3.8-flash", "gemini-flash-latest"]
+                models_to_try = ["gemini-flash-lite-latest", "gemini-3.8-flash", "gemini-flash-latest", "gemini-2.5-flash-lite"]
                 for idx, raw_key in enumerate(key_pool):
                     api_key = raw_key.strip()
                     if not api_key:

@@ -807,7 +807,7 @@ function handleServerlessAiRequest(data) {
       }
     });
 
-    var models = ["gemini-flash-latest", "gemini-3.8-flash"];
+    var models = ["gemini-flash-lite-latest", "gemini-3.8-flash", "gemini-flash-latest", "gemini-2.5-flash-lite"];
     var successText = null;
 
     for (var k = 0; k < keyPool.length; k++) {
