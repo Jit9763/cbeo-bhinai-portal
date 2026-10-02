@@ -11572,8 +11572,64 @@ async function syncSamanParikshaToSheet() {
 }
 
 /* ========================================================
-   AI DEMAND CREATOR & DYNAMIC FORM GENERATOR
+/* ========================================================
+   AI DEMAND CREATOR & UNIVERSAL SERVERLESS AI ENGINE
    ======================================================== */
+async function callUniversalAiService(query, options = {}) {
+  const mode = options.mode || 'chat';
+  const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+  // 1. Try Local Backend if on localhost
+  if (isLocal) {
+    try {
+      const resp = await fetch('/api/ai_chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: query,
+          mode: mode,
+          context: {
+            user: STATE.currentUser,
+            district: 'AJMER',
+            block: 'BHINAI',
+            admin_name: 'जितेन्द्र कुमार',
+            admin_phone: '9928254317'
+          }
+        })
+      });
+      if (resp.ok) {
+        const d = await resp.json();
+        if (d && d.success && d.response) {
+          return d;
+        }
+      }
+    } catch (e) {
+      console.warn('[AI Local] Switching to Serverless Cloud Proxy:', e);
+    }
+  }
+
+  // 2. Serverless Cloud Proxy (Google Apps Script Web App)
+  // Works 24/7 on ANY mobile device with ZERO token exposure on GitHub!
+  const gasUrl = (STATE.settings && STATE.settings.google_apps_script_url) ||
+    'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+  
+  try {
+    const action = mode === 'demand' ? 'ai_demand_assist' : 'ai_chat';
+    const targetUrl = `${gasUrl}?action=${action}&query=${encodeURIComponent(query)}&t=${Date.now()}`;
+    const gasResp = await fetch(targetUrl, { method: 'GET', mode: 'cors' });
+    if (gasResp.ok) {
+      const gasData = await gasResp.json();
+      if (gasData && gasData.success && gasData.response) {
+        return gasData;
+      }
+    }
+  } catch (err) {
+    console.warn('[AI Serverless Fallback] Apps Script proxy error:', err);
+  }
+
+  return null;
+}
+
 function quickFillAIPrompt(text) {
   const inp = document.getElementById('ai-demand-prompt-input');
   if (inp) {
@@ -11582,94 +11638,98 @@ function quickFillAIPrompt(text) {
   }
 }
 
-function generateDemandWithAI() {
+async function generateDemandWithAI() {
   const inputEl = document.getElementById('ai-demand-prompt-input');
-  const query = (inputEl ? inputEl.value : '').trim().toLowerCase();
+  const rawQuery = (inputEl ? inputEl.value : '').trim();
 
-  if (!query) {
+  if (!rawQuery) {
     showToast('कृपया पहले मांग संबंधी विषय या निर्देश लिखें!', 'warning');
     if (inputEl) inputEl.focus();
     return;
   }
 
-  showToast('✨ AI प्रपत्र सहायक संरचना तैयार कर रहा है...', 'info');
+  const query = rawQuery.toLowerCase();
+  showToast('✨ AI प्रपत्र सहायक संरचना व मानक कॉलम तैयार कर रहा है...', 'info');
 
   let title = '';
   let cols = '';
   let priority = 'अति आवश्यक (Urgent)';
   let level = 'school';
   let desc = '';
+  let recommendedDays = 5;
   let audSec = true;
   let audGovt = true;
   let audAll = false;
   let audPeeo = true;
   let audCbeo = true;
 
-  if (query.includes('यूनिफॉर्म') || query.includes('पोशाक') || query.includes('uniform') || query.includes('सिलाई')) {
-    title = 'कक्षा 1 से 8 निःशुल्क यूनिफॉर्म वितरण एवं सिलाई अनुदान सत्यापन रिपोर्ट 2026-27';
-    cols = 'कक्षा 1 से 8 कुल नामांकित छात्र, पात्र विद्यार्थी, वितरित यूनिफॉर्म सेट संख्या, सिलाई राशि DBT पूर्ण संख्या, अवशेष वंचित विद्यार्थी, वंचित रहने का कारण, संस्था प्रधान टीप';
-    priority = 'अति आवश्यक (Urgent)';
-    level = 'school';
-    desc = 'समस्त संबंधित संस्था प्रधान निःशुल्क यूनिफॉर्म वितरण व सिलाई अनुदान DBT स्थिति का सत्यापन कर प्रपत्र आज ही सबमिट करें।';
-    audSec = true;
-    audGovt = true;
-    audAll = false;
-  } else if (query.includes('mdm') || query.includes('पोषाहार') || query.includes('खाद्यान्न') || query.includes('स्टॉक') || query.includes('गेहूं') || query.includes('चावल')) {
-    title = 'MDM खाद्यान्न स्टॉक अवशेष (गेहूं/चावल) व पोषाहार दैनिक उपभोग रिपोर्ट 2026';
-    cols = 'गेहूं प्रारंभिक शेष (किग्रा), गेहूं प्राप्त आवंटन, कुल गेहूं उपभोग, गेहूं अंतिम अवशेष (किग्रा), चावल अंतिम अवशेष (किग्रा), कुक कम हेल्पर मानदेय भुगतान माह, स्टॉक भौतिक सत्यापन स्थिति';
-    priority = 'अति आवश्यक (Urgent)';
-    level = 'school';
-    desc = 'विद्यालय में MDM खाद्यान्न का भौतिक सत्यापन कर वास्तविक स्टॉक एवं उपभोग रिपोर्ट दर्ज करें।';
-    audSec = true;
-    audGovt = true;
-    audAll = false;
-  } else if (query.includes('ict') || query.includes('कंप्यूटर') || query.includes('इंटरनेट') || query.includes('लैब') || query.includes('lab')) {
-    title = 'विद्यालय ICT कम्प्यूटर लैब क्रियाशीलता, स्मार्ट क्लास एवं इंटरनेट कनेक्टिविटी रिपोर्ट';
-    cols = 'स्वीकृत कंप्यूटर संख्या, क्रियाशील कंप्यूटर, अक्रियाशील कंप्यूटर, इंटरनेट प्रदाता व स्पीड (Mbps), स्मार्ट टीवी/इंटरएक्टिव बोर्ड स्थिति, कंप्यूटर अनुदेशक कार्यरत (हां/नहीं), विशेष आवश्यकता';
-    priority = 'साधारण (Normal)';
-    level = 'school';
-    desc = 'आईसीटी लैब व स्मार्ट क्लास के समस्त उपकरणों की कार्यदशा सत्यापित कर अपलोड करें।';
-    audSec = true;
-    audGovt = true;
-    audAll = false;
-  } else if (query.includes('खेल') || query.includes('मैदान') || query.includes('sports') || query.includes('ग्राउंड')) {
-    title = 'शाला खेल मैदान चारदीवारी, खेलकूद संसाधन एवं विकास योजना 2026';
-    cols = 'कुल खेल मैदान क्षेत्रफल (बीघा), वर्तमान चारदीवारी स्थिति, विकसित खेल संसाधन (ट्रैक/कोर्ट), आवश्यक विकास कार्य, अनुमानित बजट (लाखों में), विशेष विवरण';
-    priority = 'साधारण (Normal)';
-    level = 'school';
-    desc = 'खेल मैदान का सीमाज्ञान व भौतिक स्थिति दर्ज कर विकास प्रस्ताव प्रस्तुत करें।';
-    audSec = true;
-    audGovt = true;
-    audAll = false;
-  } else if (query.includes('पेयजल') || query.includes('पानी') || query.includes('विद्युत') || query.includes('बिजली') || query.includes('water')) {
-    title = 'ग्रीष्मकालीन पेयजल व्यवस्था, ट्यूबवेल/नल कनेक्शन एवं विद्युत कनेक्शन सत्यापन रिपोर्ट';
-    cols = 'मुख्य पेयजल स्रोत (नल/हैंडपंप/ट्यूबवेल), पेयजल क्रियाशीलता स्थिति, वाटर कूलर कार्यरत संख्या, विद्युत कनेक्शन थ्री-फेज/सिंगल-फेज, बकाया विद्युत बिल राशि, आपातकालीन टैंकर आवश्यकता';
-    priority = 'अति आवश्यक (Urgent)';
-    level = 'school';
-    desc = 'पेयजल व विद्युत आपूर्ति में किसी भी प्रकार की बाधा होने पर तुरंत विवरण दर्ज करें ताकि त्वरित समाधान कराया जा सके।';
-    audSec = true;
-    audGovt = true;
-    audAll = true;
-  } else {
-    // Universal Smart Prompt Formatter
-    const cleanPrompt = query.charAt(0).toUpperCase() + query.slice(1);
-    title = `${cleanPrompt.slice(0, 50)} - सूचना मांग प्रपत्र 2026`;
-    cols = 'स्वीकृत संख्या, वर्तमान वास्तविक स्थिति, उपलब्ध भौतिक संसाधन, कमी / आवश्यकता, संस्था प्रधान प्रमाणित टिप्पणी';
-    priority = 'अति आवश्यक (Urgent)';
-    level = query.includes('peeo') ? 'peeo' : 'school';
-    desc = `समस्त संबंधित विद्यालय ${cleanPrompt} के संदर्भ में तथ्यात्मक सूचना पोर्टल पर दर्ज करें।`;
-    audSec = true;
-    audGovt = true;
-    audAll = false;
+  // 1. First try Live Gemini AI (Cloud Serverless / Localhost)
+  try {
+    const aiResult = await callUniversalAiService(rawQuery, { mode: 'demand' });
+    if (aiResult && aiResult.response) {
+      const d = aiResult.response;
+      if (typeof d === 'object') {
+        title = d.title || `${rawQuery} - प्रपत्र 2026`;
+        desc = d.description || `समस्त संबंधित विद्यालय ${rawQuery} के संबंध में तथ्यात्मक सूचना पोर्टल पर दर्ज करें।`;
+        cols = Array.isArray(d.columns) ? d.columns.join(', ') : (d.columns || '');
+        priority = d.priority || 'अति आवश्यक (Urgent)';
+        recommendedDays = d.recommended_days || 5;
+      }
+    }
+  } catch (aiErr) {
+    console.warn('[AI Demand Assist] Error calling AI service:', aiErr);
   }
 
-  // Populate title, date (+7 days), priority, collection level
+  // 2. Keyword-based intelligent fallback if AI service was offline
+  if (!cols) {
+    if (query.includes('यूनिफॉर्म') || query.includes('पोशाक') || query.includes('uniform') || query.includes('सिलाई')) {
+      title = 'कक्षा 1 से 8 निःशुल्क यूनिफॉर्म वितरण एवं सिलाई अनुदान सत्यापन रिपोर्ट 2026-27';
+      cols = 'कक्षा 1 से 8 कुल नामांकित छात्र, पात्र विद्यार्थी, वितरित यूनिफॉर्म सेट संख्या, सिलाई राशि DBT पूर्ण संख्या, अवशेष वंचित विद्यार्थी, वंचित रहने का कारण, संस्था प्रधान टीप';
+      priority = 'अति आवश्यक (Urgent)';
+      level = 'school';
+      desc = 'समस्त संबंधित संस्था प्रधान निःशुल्क यूनिफॉर्म वितरण व सिलाई अनुदान DBT स्थिति का सत्यापन कर प्रपत्र आज ही सबमिट करें।';
+    } else if (query.includes('mdm') || query.includes('पोषाहार') || query.includes('खाद्यान्न') || query.includes('स्टॉक') || query.includes('गेहूं') || query.includes('चावल')) {
+      title = 'MDM खाद्यान्न स्टॉक अवशेष (गेहूं/चावल) व पोषाहार दैनिक उपभोग रिपोर्ट 2026';
+      cols = 'गेहूं प्रारंभिक शेष (किग्रा), गेहूं प्राप्त आवंटन, कुल गेहूं उपभोग, गेहूं अंतिम अवशेष (किग्रा), चावल अंतिम अवशेष (किग्रा), कुक कम हेल्पर मानदेय भुगतान माह, स्टॉक भौतिक सत्यापन स्थिति';
+      priority = 'अति आवश्यक (Urgent)';
+      level = 'school';
+      desc = 'विद्यालय में MDM खाद्यान्न का भौतिक सत्यापन कर वास्तविक स्टॉक एवं उपभोग रिपोर्ट दर्ज करें।';
+    } else if (query.includes('ict') || query.includes('कंप्यूटर') || query.includes('इंटरनेट') || query.includes('लैब') || query.includes('lab')) {
+      title = 'विद्यालय ICT कम्प्यूटर लैब क्रियाशीलता, स्मार्ट क्लास एवं इंटरनेट कनेक्टिविटी रिपोर्ट';
+      cols = 'स्वीकृत कंप्यूटर संख्या, क्रियाशील कंप्यूटर, अक्रियाशील कंप्यूटर, इंटरनेट प्रदाता व स्पीड (Mbps), स्मार्ट टीवी/इंटरएक्टिव बोर्ड स्थिति, कंप्यूटर अनुदेशक कार्यरत (हां/नहीं), विशेष आवश्यकता';
+      priority = 'साधारण (Normal)';
+      level = 'school';
+      desc = 'आईसीटी लैब व स्मार्ट क्लास के समस्त उपकरणों की कार्यदशा सत्यापित कर अपलोड करें।';
+    } else if (query.includes('खेल') || query.includes('मैदान') || query.includes('sports') || query.includes('ग्राउंड')) {
+      title = 'शाला खेल मैदान चारदीवारी, खेलकूद संसाधन एवं विकास योजना 2026';
+      cols = 'कुल खेल मैदान क्षेत्रफल (बीघा), वर्तमान चारदीवारी स्थिति, विकसित खेल संसाधन (ट्रैक/कोर्ट), आवश्यक विकास कार्य, अनुमानित बजट (लाखों में), विशेष विवरण';
+      priority = 'साधारण (Normal)';
+      level = 'school';
+      desc = 'खेल मैदान का सीमाज्ञान व भौतिक स्थिति दर्ज कर विकास प्रस्ताव प्रस्तुत करें।';
+    } else if (query.includes('पेयजल') || query.includes('पानी') || query.includes('विद्युत') || query.includes('बिजली') || query.includes('water')) {
+      title = 'ग्रीष्मकालीन पेयजल व्यवस्था, ट्यूबवेल/नल कनेक्शन एवं विद्युत कनेक्शन सत्यापन रिपोर्ट';
+      cols = 'मुख्य पेयजल स्रोत (नल/हैंडपंप/ट्यूबवेल), पेयजल क्रियाशीलता स्थिति, वाटर कूलर कार्यरत संख्या, विद्युत कनेक्शन थ्री-फेज/सिंगल-फेज, बकाया विद्युत बिल राशि, आपातकालीन टैंकर आवश्यकता';
+      priority = 'अति आवश्यक (Urgent)';
+      level = 'school';
+      desc = 'पेयजल व विद्युत आपूर्ति में किसी भी प्रकार की बाधा होने पर तुरंत विवरण दर्ज करें ताकि त्वरित समाधान कराया जा सके।';
+      audAll = true;
+    } else {
+      const cleanPrompt = rawQuery.charAt(0).toUpperCase() + rawQuery.slice(1);
+      title = `${cleanPrompt.slice(0, 50)} - सूचना मांग प्रपत्र 2026`;
+      cols = 'स्वीकृत संख्या, वर्तमान वास्तविक स्थिति, उपलब्ध भौतिक संसाधन, कमी / आवश्यकता, संस्था प्रधान प्रमाणित टिप्पणी';
+      priority = 'अति आवश्यक (Urgent)';
+      level = query.includes('peeo') ? 'peeo' : 'school';
+      desc = `समस्त संबंधित विद्यालय ${cleanPrompt} के संदर्भ में तथ्यात्मक सूचना पोर्टल पर दर्ज करें।`;
+    }
+  }
+
+  // Populate title, date, priority, collection level
   const titleInput = document.getElementById('new-demand-title');
   if (titleInput) titleInput.value = title;
 
   const dateInput = document.getElementById('new-demand-date');
   if (dateInput) {
-    const d = new Date(Date.now() + 7 * 86400000);
+    const d = new Date(Date.now() + recommendedDays * 86400000);
     dateInput.value = d.toISOString().split('T')[0];
   }
 
@@ -11709,8 +11769,7 @@ function generateDemandWithAI() {
     setTimeout(aiAutoDetectAllDemandColumns, 100);
   }
 
-  const colCount = cols.split(',').length;
-  showToast(`✨ AI सहायक द्वारा प्रपत्र शीर्षक एवं ${colCount} कॉलम सफलतापूर्वक तैयार किए गए!`, 'success');
+  showToast('✨ AI ने मांग प्रपत्र, विवरण व कॉलम सफलतापूर्वक तैयार कर दिए!', 'success');
 }
 
 /* ========================================================

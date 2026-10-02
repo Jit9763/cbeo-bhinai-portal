@@ -56,6 +56,13 @@ function doPost(e) {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
 
     // -------------------------------------------------------------
+    // ACTION 0: SERVERLESS AI CHAT & DEMAND ASSIST (24/7 Mobile Access & 0 GitHub Leak)
+    // -------------------------------------------------------------
+    if (data.action === 'ai_chat' || data.action === 'ai_demand_assist') {
+      return handleServerlessAiRequest(data);
+    }
+
+    // -------------------------------------------------------------
     // ACTION 1: UPDATE PASSWORD (Single Textbox Save)
     // -------------------------------------------------------------
     if (data.action === 'updatePassword') {
@@ -397,6 +404,14 @@ function doGet(e) {
   try {
     var params = (e && e.parameter) || {};
     var action = params.action || '';
+
+    // -------------------------------------------------------------
+    // 0. AI CHAT & DEMAND ASSIST VIA GET (100% Mobile CORS Free & Serverless)
+    // -------------------------------------------------------------
+    if (action === 'ai_chat' || action === 'ai_demand_assist') {
+      return handleServerlessAiRequest(params);
+    }
+
     var ss = SpreadsheetApp.getActiveSpreadsheet();
 
     // -------------------------------------------------------------
@@ -598,3 +613,143 @@ function rowToSubmission(row) {
     timestamp: String(row[71] || '').trim()
   };
 }
+
+/**
+ * =========================================================================
+ * SERVERLESS AI ASSISTANT & ZERO-LEAK PROXY ENGINE
+ * Runs 24/7 on Google Cloud - Works for all mobile logins with 0 key exposure on GitHub
+ * =========================================================================
+ */
+function handleServerlessAiRequest(data) {
+  try {
+    var query = String(data.query || '').trim();
+    if (!query) {
+      return ContentService.createTextOutput(JSON.stringify({ success: false, message: "Query is required" }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    var isDemandAssist = (data.action === 'ai_demand_assist' || data.mode === 'demand');
+    var cache = CacheService.getScriptCache();
+    var cacheDigest = Utilities.base64Encode(Utilities.computeDigest(Utilities.DigestAlgorithm.MD5, query + (isDemandAssist ? "_d" : "_c"))).substring(0, 30);
+    var cacheKey = "ai_" + cacheDigest.replace(/[^a-zA-Z0-9_]/g, '');
+    var cached = cache.get(cacheKey);
+    if (cached) {
+      return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        source: "gas_smart_cache",
+        response: isDemandAssist ? JSON.parse(cached) : cached,
+        saved_tokens: 300
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // Load API Keys from Script Properties (Secure, never visible on GitHub)
+    var sp = PropertiesService.getScriptProperties();
+    var rawKeys = sp.getProperty("GEMINI_API_KEY") || "";
+    var keyPool = rawKeys.split(/[,;\n]+/).map(function(k){ return k.trim(); }).filter(Boolean);
+    
+    // If not set in Script Properties, check passed key parameter
+    if (keyPool.length === 0 && data.key) {
+      keyPool = [String(data.key).trim()];
+    }
+
+    var prompt = "";
+    if (isDemandAssist) {
+      prompt = "You are Educational Administration AI for CBEO Bhinai, District AJMER (अजमेर), Rajasthan. " +
+        "Rule: District is strictly AJMER (अजमेर); never Kekri. " +
+        "Topic for new demand/form: " + query + "\n" +
+        "Generate a complete educational dynamic demand form. Output ONLY valid JSON with keys:\n" +
+        "{\n" +
+        "  \"title\": \"औपचारिक हिंदी शीर्षक\",\n" +
+        "  \"description\": \"संक्षिप्त आधिकारिक निर्देश (2 वाक्य)\",\n" +
+        "  \"columns\": [\"कॉलम 1\", \"कॉलम 2\", \"कॉलम 3\", \"कॉलम 4\", \"कॉलम 5\"],\n" +
+        "  \"priority\": \"अति आवश्यक (Urgent)\",\n" +
+        "  \"recommended_days\": 5\n" +
+        "}";
+    } else {
+      prompt = "You are CBEO AI Assistant for Bhinai, District AJMER (अजमेर), Rajasthan. " +
+        "Rule: District is strictly AJMER (अजमेर); never Kekri. " +
+        "Answer school and PEEO queries in 2-3 concise Hindi bullet points. " +
+        "Help with form columns, deadlines (समान परीक्षा अंतिम तिथि: 05 अक्टूबर 2026), rules and portals. " +
+        "IT Cell Jitendra Kumar: 9928254317.\n" +
+        "Question: " + query;
+    }
+
+    var payload = JSON.stringify({
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig: {
+        temperature: 0.2,
+        maxOutputTokens: 800,
+        topP: 0.8
+      }
+    });
+
+    var models = ["gemini-flash-latest", "gemini-3.8-flash"];
+    var successText = null;
+
+    for (var k = 0; k < keyPool.length; k++) {
+      var apiKey = keyPool[k];
+      for (var m = 0; m < models.length; m++) {
+        try {
+          var url = "https://generativelanguage.googleapis.com/v1beta/models/" + models[m] + ":generateContent?key=" + apiKey;
+          var resp = UrlFetchApp.fetch(url, {
+            method: "post",
+            contentType: "application/json",
+            payload: payload,
+            muteHttpExceptions: true
+          });
+          if (resp.getResponseCode() === 200) {
+            var resJson = JSON.parse(resp.getContentText());
+            if (resJson.candidates && resJson.candidates[0] && resJson.candidates[0].content) {
+              successText = resJson.candidates[0].content.parts[0].text;
+              break;
+            }
+          }
+        } catch (fetchErr) {
+          // Try next
+        }
+      }
+      if (successText) break;
+    }
+
+    if (!successText) {
+      return ContentService.createTextOutput(JSON.stringify({
+        success: false,
+        message: "AI सेवा वर्तमान में व्यस्त है। कृपया कुछ क्षण पश्चात पुनः प्रयास करें।"
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    var finalResult = successText;
+    if (isDemandAssist) {
+      try {
+        var cleanJson = successText.replace(/```json/gi, '').replace(/```/g, '').trim();
+        finalResult = JSON.parse(cleanJson);
+      } catch (pe) {
+        finalResult = {
+          title: query + " विवरण प्रपत्र 2026",
+          description: "उक्त विषय की अद्यतन स्थिति दर्ज कर प्रमाणित रिपोर्ट सबमिट करें।",
+          columns: ["स्वीकृत विवरण", "वर्तमान स्थिति", "अनुमानित व्यय", "विशेष टीप"],
+          priority: "अति आवश्यक (Urgent)",
+          recommended_days: 5
+        };
+      }
+    }
+
+    // Cache result for 6 hours (21600 seconds) - 0 tokens for repeat queries!
+    try {
+      cache.put(cacheKey, isDemandAssist ? JSON.stringify(finalResult) : finalResult, 21600);
+    } catch(ce){}
+
+    return ContentService.createTextOutput(JSON.stringify({
+      success: true,
+      source: "gas_serverless_gemini",
+      response: finalResult
+    })).setMimeType(ContentService.MimeType.JSON);
+
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({
+      success: false,
+      error: err.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+

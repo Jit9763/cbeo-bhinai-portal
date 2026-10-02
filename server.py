@@ -496,15 +496,27 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                     })
                     return
 
-                # Step 3: Concise Token-Optimized System Prompt (saves 65% tokens)
-                system_instruction = (
-                    "आप 'शिक्षा सेतु AI', CBEO भिनाय, जिला अजमेर (AJMER) के आधिकारिक सहायक हैं। "
-                    "नियम: जिला केवल अजमेर (AJMER) है (केकड़ी कभी नहीं)। "
-                    "समान परीक्षा 2026-27 अंतिम तिथि: 05 अक्टूबर 2026। "
-                    "प्रपत्र-1 (9वीं-10वीं नामांकन व संस्कृत/उर्दू) व प्रपत्र-2 (11वीं-12वीं संकाय व ऐच्छिक विषय) में शुद्ध, बिंदुवार, संक्षिप्त (2-4 वाक्य) उत्तर दें। "
-                    "IT सेल जितेन्द्र कुमार: 9928254317।"
-                )
-                prompt_text = f"{system_instruction}\nप्रश्न: {query}"
+                mode = req_data.get('mode', 'chat')
+                if mode == 'demand':
+                    system_instruction = (
+                        "You are Educational Administration AI for CBEO Bhinai, District AJMER (अजमेर), Rajasthan. "
+                        "Rule: District is strictly AJMER (अजमेर); never Kekri. "
+                        "Generate a complete educational dynamic demand form. Output ONLY valid JSON with keys: "
+                        "title (formal Hindi title), description (2-line official directive), "
+                        "columns (array of 4-7 relevant standard Hindi column names), "
+                        "priority ('अति आवश्यक (Urgent)' or 'साधारण (Normal)'), "
+                        "recommended_days (number of days like 5)."
+                    )
+                    prompt_text = f"{system_instruction}\nTopic: {query}"
+                else:
+                    system_instruction = (
+                        "आप 'शिक्षा सेतु AI', CBEO भिनाय, जिला अजमेर (AJMER) के आधिकारिक सहायक हैं। "
+                        "नियम: जिला केवल अजमेर (AJMER) है (केकड़ी कभी नहीं)। "
+                        "समान परीक्षा 2026-27 अंतिम तिथि: 05 अक्टूबर 2026। "
+                        "प्रपत्र-1 (9वीं-10वीं नामांकन व संस्कृत/उर्दू) व प्रपत्र-2 (11वीं-12वीं संकाय व ऐच्छिक विषय) में शुद्ध, बिंदुवार, संक्षिप्त (2-4 वाक्य) उत्तर दें। "
+                        "IT सेल जितेन्द्र कुमार: 9928254317।"
+                    )
+                    prompt_text = f"{system_instruction}\nप्रश्न: {query}"
 
                 payload = json.dumps({
                     "contents": [{"parts": [{"text": prompt_text}]}],
@@ -571,11 +583,20 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                     }
                     save_ai_cache(cache)
 
+                    final_resp = success_resp
+                    if mode == 'demand':
+                        try:
+                            clean_j = re.sub(r'^```json\s*', '', success_resp.strip(), flags=re.MULTILINE)
+                            clean_j = re.sub(r'```$', '', clean_j.strip(), flags=re.MULTILINE)
+                            final_resp = json.loads(clean_j)
+                        except Exception:
+                            final_resp = success_resp
+
                     self.send_json_response({
                         'success': True,
                         'has_key': True,
                         'source': f'gemini_flash (Key #{used_key_idx}/{len(key_pool)})',
-                        'response': success_resp,
+                        'response': final_resp,
                         'key_pool_size': len(key_pool)
                     })
                 else:
