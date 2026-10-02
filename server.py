@@ -30,18 +30,11 @@ def save_ai_cache(cache_data):
 
 def get_gemini_key_pool():
     keys = []
-    # 1. Environment variable
-    env_keys = os.environ.get('GEMINI_API_KEY', '')
-    if env_keys:
-        for k in env_keys.replace('\n', ',').split(','):
-            k = k.strip()
-            if k and k not in keys:
-                keys.append(k)
-    # 2. cbeo_vm_settings.json
-    if os.path.exists('cbeo_vm_settings.json'):
+    # 1. Local Secrets File (Strictly in .gitignore, NEVER pushed to GitHub)
+    if os.path.exists('cbeo_local_secrets.json'):
         try:
-            with open('cbeo_vm_settings.json', 'r', encoding='utf-8') as sf:
-                cfg = json.load(sf)
+            with open('cbeo_local_secrets.json', 'r', encoding='utf-8') as lsf:
+                cfg = json.load(lsf)
                 val = cfg.get('gemini_api_key', '')
                 if isinstance(val, list):
                     for k in val:
@@ -52,7 +45,7 @@ def get_gemini_key_pool():
                         if k and k not in keys: keys.append(k)
         except:
             pass
-    # 3. cbeo_notification_config.json
+    # 2. cbeo_notification_config.json (Strictly in .gitignore)
     if os.path.exists('cbeo_notification_config.json'):
         try:
             with open('cbeo_notification_config.json', 'r', encoding='utf-8') as nf:
@@ -64,6 +57,13 @@ def get_gemini_key_pool():
                         if k and k not in keys: keys.append(k)
         except:
             pass
+    # 3. Environment variable
+    env_keys = os.environ.get('GEMINI_API_KEY', '')
+    if env_keys:
+        for k in env_keys.replace('\n', ',').split(','):
+            k = k.strip()
+            if k and k not in keys:
+                keys.append(k)
     return keys
 from sync_admin_access_sheet import update_single_password, sync_full_admin_sheet
 from sync_saman_pariksha_to_sheet import sync_submissions
@@ -437,28 +437,50 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
         elif parsed_url.path == '/api/save_gemini_key':
             try:
                 api_key = req_data.get('api_key', '').strip()
-                # Update cbeo_vm_settings.json
-                vm_settings = {}
-                if os.path.exists('cbeo_vm_settings.json'):
-                    with open('cbeo_vm_settings.json', 'r', encoding='utf-8') as f:
-                        vm_settings = json.load(f)
-                vm_settings['admin_phone'] = '9928254317'
-                vm_settings['gemini_api_key'] = "" # Kept empty in git-synced file for security
-                with open('cbeo_vm_settings.json', 'w', encoding='utf-8') as f:
-                    json.dump(vm_settings, f, ensure_ascii=False, indent=2)
+                # 1. Update cbeo_local_secrets.json (Strictly .gitignored)
+                local_secrets = {}
+                if os.path.exists('cbeo_local_secrets.json'):
+                    try:
+                        with open('cbeo_local_secrets.json', 'r', encoding='utf-8') as f:
+                            local_secrets = json.load(f)
+                    except:
+                        pass
+                local_secrets['gemini_api_key'] = api_key
+                local_secrets['admin_phone'] = '9928254317'
+                with open('cbeo_local_secrets.json', 'w', encoding='utf-8') as f:
+                    json.dump(local_secrets, f, ensure_ascii=False, indent=2)
 
-                # Update cbeo_notification_config.json
+                # 2. Update cbeo_notification_config.json (Strictly .gitignored)
                 notif_config = {}
                 if os.path.exists('cbeo_notification_config.json'):
-                    with open('cbeo_notification_config.json', 'r', encoding='utf-8') as f:
-                        notif_config = json.load(f)
+                    try:
+                        with open('cbeo_notification_config.json', 'r', encoding='utf-8') as f:
+                            notif_config = json.load(f)
+                    except:
+                        pass
                 notif_config['GEMINI_API_KEY'] = api_key
                 notif_config['ADMIN_MOBILE'] = '9928254317'
                 with open('cbeo_notification_config.json', 'w', encoding='utf-8') as f:
                     json.dump(notif_config, f, ensure_ascii=False, indent=2)
 
-                threading.Thread(target=sync_vm_settings_to_git).start()
-                self.send_json_response({'success': True, 'message': 'Google Gemini API Key सफलतापूर्वक सुरक्षित की गई!'})
+                # 3. Ensure git-tracked cbeo_vm_settings.json has NO secret
+                if os.path.exists('cbeo_vm_settings.json'):
+                    try:
+                        with open('cbeo_vm_settings.json', 'r', encoding='utf-8') as f:
+                            vm_settings = json.load(f)
+                        vm_settings['admin_phone'] = '9928254317'
+                        vm_settings['gemini_api_key'] = "" # Strict Zero-Leak: Never store key in git file
+                        with open('cbeo_vm_settings.json', 'w', encoding='utf-8') as f:
+                            json.dump(vm_settings, f, ensure_ascii=False, indent=2)
+                    except:
+                        pass
+
+                keys = get_gemini_key_pool()
+                self.send_json_response({
+                    'success': True,
+                    'message': 'Google Gemini API Key केवल आपके लोकल सिस्टम में सुरक्षित हो गई (GitHub पर कभी नहीं जाएगी)!',
+                    'key_count': len(keys)
+                })
             except Exception as e:
                 self.send_json_response({'success': False, 'message': str(e)}, status=500)
             return

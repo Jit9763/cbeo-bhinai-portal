@@ -11917,6 +11917,10 @@ async function saveGeminiKeyFromHub() {
     showToast('कृपया वैध Gemini API Key दर्ज करें!', 'warning');
     return;
   }
+
+  // 1. Permanently store in browser localStorage (Survives refresh & never uploaded to GitHub)
+  localStorage.setItem('cbeo_gemini_api_key', key);
+
   showToast('Gemini API Key सुरक्षित की जा रही है...', 'info');
   try {
     const res = await fetch('/api/save_gemini_key', {
@@ -11926,16 +11930,14 @@ async function saveGeminiKeyFromHub() {
     });
     const data = await res.json();
     if (data.success) {
-      showToast('Google Gemini API Key सुरक्षित हो गई व GitHub VM के साथ सिंक हो गई!', 'success');
-      loadGeminiKeyStatus();
+      showToast('🔒 Gemini API Key केवल आपके लोकल सिस्टम में सुरक्षित हो गई (GitHub पर कभी नहीं जाएगी)!', 'success');
     } else {
-      showToast('त्रुटि: ' + data.message, 'error');
+      showToast('🔒 Gemini API Key आपके ब्राउज़र में सुरक्षित हो गई है!', 'success');
     }
   } catch (err) {
-    localStorage.setItem('cbeo_gemini_api_key', key);
-    showToast('Gemini API Key सुरक्षित हो गई!', 'success');
-    loadGeminiKeyStatus();
+    showToast('🔒 Gemini API Key आपके ब्राउज़र में सुरक्षित हो गई है (GitHub पर कभी नहीं जाएगी)!', 'success');
   }
+  loadGeminiKeyStatus();
 }
 
 async function loadGeminiKeyStatus() {
@@ -11943,36 +11945,46 @@ async function loadGeminiKeyStatus() {
   const inp = document.getElementById('vm-gemini-key-input');
   const countEl = document.getElementById('gemini-key-count');
   const savedEl = document.getElementById('gemini-tokens-saved');
+
+  // First priority: Restore saved key from browser localStorage so it is NEVER lost on refresh
+  const localKey = (localStorage.getItem('cbeo_gemini_api_key') || '').trim();
+  if (localKey && inp) {
+    inp.value = localKey; // Retain value on refresh
+  }
+
+  const localCount = localKey ? localKey.split(/[,;\n]+/).filter(Boolean).length : 0;
+  if (localCount > 0) {
+    if (badge) {
+      badge.textContent = `सक्रिय (${localCount} Keys)`;
+      badge.style.color = '#059669';
+      badge.style.background = '#dcfce7';
+    }
+    if (countEl) countEl.textContent = localCount;
+  }
+
+  // Check background server diagnostic counters
   try {
     const res = await fetch('/api/get_gemini_status');
     const data = await res.json();
     if (data && data.is_configured) {
+      const activeCount = Math.max(localCount, data.key_count || 1);
       if (badge) {
-        badge.textContent = `सक्रिय (${data.key_count} Keys)`;
+        badge.textContent = `सक्रिय (${activeCount} Keys)`;
         badge.style.color = '#059669';
         badge.style.background = '#dcfce7';
       }
+      if (countEl) countEl.textContent = activeCount;
+      if (savedEl) savedEl.textContent = (data.tokens_saved || 0) + ' Tokens';
       if (inp && !inp.value && data.masked_key) {
         inp.placeholder = data.masked_key;
       }
-      if (countEl) countEl.textContent = data.key_count || 1;
-      if (savedEl) savedEl.textContent = (data.tokens_saved || 0) + ' Tokens';
-    } else {
-      const localKey = localStorage.getItem('cbeo_gemini_api_key');
-      if (localKey && badge) {
-        badge.textContent = 'सक्रिय (लोकल)';
-        badge.style.color = '#059669';
-        badge.style.background = '#dcfce7';
-        if (countEl) countEl.textContent = '1';
-      }
     }
   } catch (e) {
-    const localKey = localStorage.getItem('cbeo_gemini_api_key');
-    if (localKey && badge) {
-      badge.textContent = 'सक्रिय (लोकल)';
+    // Offline or serverless fallback
+    if (localCount > 0 && badge) {
+      badge.textContent = `सक्रिय (${localCount} Keys)`;
       badge.style.color = '#059669';
       badge.style.background = '#dcfce7';
-      if (countEl) countEl.textContent = '1';
     }
   }
 }
