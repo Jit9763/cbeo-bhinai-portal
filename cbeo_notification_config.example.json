@@ -1,0 +1,7 @@
+{
+  "TELEGRAM_BOT_TOKEN": "YOUR_TELEGRAM_BOT_TOKEN_HERE",
+  "TELEGRAM_CHAT_ID": "YOUR_TELEGRAM_CHAT_ID_HERE",
+  "EMAIL_TO": "cbeobhinai@gmail.com",
+  "EMAIL_USER": "your_email@gmail.com",
+  "EMAIL_PASS": "your_16_digit_gmail_app_password"
+}
