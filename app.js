@@ -6180,46 +6180,53 @@ function openAuditLogModal() {
    ======================================================== */
 function isDemandVisibleForCurrentUser(demand) {
   if (!demand) return false;
-  if (!STATE.currentUser) return demand.published === true;
+  if (!STATE.currentUser) return false;
 
   const isJitendra = STATE.currentUser.shala_darpan_code === 'admin_jitendra' || 
                      STATE.currentUser.admin_id === 'ADMIN02' || 
                      STATE.currentUser.username === 'jitendra_admin';
-  if (isJitendra) return true; // Super Admin always sees everything
+  if (isJitendra) return true; // Super Admin Jitendra always sees everything
 
-  const aud = demand.targetAudience;
+  // Non-admins must NEVER see a demand in test mode or unpublished
+  if (demand.isTestMode) return false;
+  if (demand.published === false) return false;
+
+  const aud = demand.targetAudience || { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false };
+
+  // 1. CBEO Admin
   const isCBEO = STATE.currentUser.shala_darpan_code === '8140' || 
                  STATE.currentUser.admin_id === 'ADMIN01' || 
                  (STATE.currentUser.role === 'admin' && !isJitendra);
-
   if (isCBEO) {
-    return aud ? aud.cbeo !== false : true;
+    return !!aud.cbeo;
   }
-
-  // Non-admins only see published demands
-  if (!demand.published) return false;
-  if (!aud) return true; // Legacy demand without target audience
 
   // 2. PEEO
   if (STATE.currentUser.role === 'peeo') {
     return !!aud.peeo;
   }
 
-  // 3, 4, 5. School
+  // 3, 4, 5. School Level: STRICT CHECK - ONLY visible if Jitendra checked the box!
   if (STATE.currentUser.role === 'school') {
     const isPvt = STATE.currentUser.type === 'Private' || String(STATE.currentUser.shala_darpan_code).startsWith('P');
     if (isPvt) {
+      // Private schools ONLY see if Level 5 (all_schools) is explicitly checked!
       return !!aud.all_schools;
     }
+
     const isSecSrSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code) ||
       (STATE.currentUser.category && (STATE.currentUser.category.includes('Secondary') || STATE.currentUser.category.includes('माध्यमिक')));
+
     if (isSecSrSec) {
+      // 57 Sec/Sr.Sec schools see ONLY if Level 3 OR Level 4 OR Level 5 is checked!
       return !!(aud.sec_srsec || aud.all_govt || aud.all_schools);
     }
+
+    // Other Govt schools (Primary / Upper Primary) ONLY see if Level 4 OR Level 5 is checked!
     return !!(aud.all_govt || aud.all_schools);
   }
 
-  return true;
+  return false;
 }
 
 function getVisibleDemands() {
@@ -7572,16 +7579,30 @@ function openFillDemandForSchoolModal(demandId, schoolCode) {
     </div>
   `;
 
-  // Each dynamic column rendered as an individual Google Form Question Card
+  // Each dynamic column rendered as an individual Google Form Question Card (Exact Saman Pariksha Standard)
   (demand.columns || []).forEach((col, idx) => {
-    const existingVal = (existingData[col.name] !== undefined) ? existingData[col.name] : '';
+    let existingVal = (existingData[col.name] !== undefined) ? existingData[col.name] : '';
+    let isPrefilledFromDB = false;
+
+    // If no existing saved submission, prefill from master DB if prefillSource was configured
+    if (existingVal === '' && col.prefillSource && col.prefillSource !== 'none') {
+      const dbVal = resolveSamplePrefillValue(col.prefillSource, school);
+      if (typeof dbVal === 'string' && !dbVal.includes('--')) {
+        existingVal = dbVal;
+        isPrefilledFromDB = true;
+      }
+    }
+
     fieldsHtml += `
-      <div class="gform-card" style="background:#ffffff; border:1px solid #dadce0; border-radius:8px; padding:1.25rem 1.5rem; margin-bottom:1rem; box-shadow:0 1px 3px rgba(60,64,67,0.08); transition:all 0.2s">
-        <label style="font-weight:700; color:#202124; font-size:0.98rem; margin-bottom:0.35rem; display:block">
-          ${idx + 1}. ${col.name} <span style="color:#d93025">*</span>
+      <div class="gform-card" style="background:#ffffff; border:1px solid #dadce0; border-left:4px solid ${isPrefilledFromDB ? '#16a34a' : '#1a73e8'}; border-radius:8px; padding:1.25rem 1.5rem; margin-bottom:1rem; box-shadow:0 1px 3px rgba(60,64,67,0.08); transition:all 0.2s">
+        <label style="font-weight:700; color:#202124; font-size:0.98rem; margin-bottom:0.35rem; display:flex; justify-content:space-between; align-items:center">
+          <span>${idx + 1}. ${col.name} <span style="color:#d93025">*</span></span>
+          ${isPrefilledFromDB ? '<span style="font-size:0.72rem; font-weight:800; color:#15803d; background:#dcfce7; padding:2px 8px; border-radius:4px"><i class="fas fa-check-circle"></i> ✓ अधिकृत DB रिकॉर्ड</span>' : ''}
         </label>
-        <div style="font-size:0.8rem; color:#5f6368; margin-bottom:0.6rem">कृपया इस कॉलम हेतु सही मान अथवा छात्र संख्या दर्ज करें</div>
-        <input type="text" id="demand_input_col_${idx}" value="${existingVal}" placeholder="${col.placeholder || col.name + ' दर्ज करें'}" style="width:100%; padding:0.75rem 1rem; border:1.5px solid #dadce0; border-radius:6px; font-size:0.95rem; outline:none; transition:all 0.2s; background:#f8fafc" onfocus="this.style.borderColor='#1a73e8'; this.style.background='#fff'; this.style.boxShadow='0 0 0 2px rgba(26,115,232,0.2)'" onblur="this.style.borderColor='#dadce0'; this.style.boxShadow='none'">
+        <div style="font-size:0.8rem; color:#5f6368; margin-bottom:0.6rem">
+          ${isPrefilledFromDB ? 'यह विवरण मास्टर डेटाबेस से स्वतः प्राप्त हुआ है।' : 'कृपया इस कॉलम हेतु सही मान अथवा छात्र संख्या दर्ज करें'}
+        </div>
+        <input type="${col.type === 'number' ? 'number' : (col.type === 'date' ? 'date' : 'text')}" id="demand_input_col_${idx}" value="${existingVal}" placeholder="${col.placeholder || col.name + ' दर्ज करें'}" style="width:100%; padding:0.75rem 1rem; border:1.5px solid ${isPrefilledFromDB ? '#86efac' : '#dadce0'}; border-radius:6px; font-size:0.95rem; outline:none; transition:all 0.2s; background:${isPrefilledFromDB ? '#f0fdf4' : '#f8fafc'}" onfocus="this.style.borderColor='#1a73e8'; this.style.background='#fff'; this.style.boxShadow='0 0 0 2px rgba(26,115,232,0.2)'" onblur="this.style.borderColor='${isPrefilledFromDB ? '#86efac' : '#dadce0'}'; this.style.boxShadow='none'">
       </div>
     `;
   });
@@ -8342,6 +8363,26 @@ function renderAdminMatrix() {
 }
 
 // 15. Admin Control Room View
+
+function toggleDemandAudienceLevel(demandId, levelKey, isChecked) {
+  const demand = STATE.demands.find(d => d.id === demandId);
+  if (!demand) return;
+
+  if (!demand.targetAudience) {
+    demand.targetAudience = { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false };
+  }
+
+  demand.targetAudience[levelKey] = isChecked;
+
+  // If at least one audience level is checked, demand is published
+  const hasAnyAudience = Object.values(demand.targetAudience).some(v => !!v);
+  demand.published = hasAnyAudience;
+
+  saveDemandsToStorage();
+  showToast(`मांग '${demand.title}' की दृश्यता अनुमति सफलतापूर्वक अपडेट की गई!`, 'success');
+  renderAdminControlView();
+}
+
 function renderAdminControlView() {
   const isJitendra = STATE.currentUser && (
     STATE.currentUser.shala_darpan_code === 'admin_jitendra' || 
@@ -8362,26 +8403,65 @@ function renderAdminControlView() {
   if (publishList) {
     publishList.innerHTML = '';
     STATE.demands.forEach(d => {
-      const isPub = d.published !== false;
-      const div = document.createElement('div');
-      div.style.cssText = 'display:flex; align-items:center; justify-content:space-between; padding:0.6rem 0.85rem; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px';
-      div.innerHTML = `
-        <div style="display:flex; align-items:center; gap:0.75rem">
-          <input type="checkbox" id="pub_chk_${d.id}" ${isPub ? 'checked' : ''} onchange="toggleDemandPublish('${d.id}')" style="width:18px; height:18px; cursor:pointer">
-          <label for="pub_chk_${d.id}" style="cursor:pointer; font-weight:600; color:#1e293b">
-            ${d.title}
-          </label>
+      const isPub = d.published !== false && !d.isTestMode;
+      const aud = d.targetAudience || { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false };
+      const anySchoolActive = !!(aud.sec_srsec || aud.all_govt || aud.all_schools);
+
+      const card = document.createElement('div');
+      card.style.cssText = 'background:#ffffff; border:1.5px solid #cbd5e1; border-radius:10px; padding:1rem; margin-bottom:0.75rem; box-shadow:0 1px 3px rgba(0,0,0,0.04)';
+      card.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem; border-bottom:1px solid #e2e8f0; padding-bottom:0.5rem">
+          <div>
+            <div style="display:flex; align-items:center; gap:0.5rem">
+              <strong style="font-size:1rem; color:#0f172a">${d.title}</strong>
+              ${d.isTestMode ? '<span class="badge-tag pradhan" style="background:#fef3c7; color:#78350f; font-weight:800; font-size:0.7rem">🧪 टेस्ट मोड में सक्रिय</span>' : ''}
+              <span class="status-badge ${isPub ? 'green' : 'red'}" style="font-size:0.72rem">
+                ${isPub ? '✓ लाइव प्रकाशित' : (d.isTestMode ? '🧪 परीक्षण मोड' : '✗ अप्रकाशित')}
+              </span>
+            </div>
+            <div style="font-size:0.76rem; color:#64748b; margin-top:2px">
+              अंतिम तिथि: ${d.dueDate || 'यथाशीघ्र'} | संकलन स्तर: ${d.collectionLevel === 'school' ? 'विद्यालय स्तर' : 'PEEO स्तर'} | कॉलम: ${d.columns ? d.columns.length : 0}
+            </div>
+          </div>
+          <div style="display:flex; gap:0.4rem; flex-wrap:wrap">
+            <button class="btn btn-outline-secondary btn-sm" onclick="openDemandTestStudio('${d.id}')" style="font-size:0.75rem; font-weight:700">
+              <i class="fas fa-flask"></i> टेस्ट स्टूडियो
+            </button>
+            <button class="btn btn-primary btn-sm" onclick="openDynamicDemandPortal('${d.id}')" style="font-size:0.75rem; font-weight:700">
+              <i class="fas fa-desktop"></i> पोर्टल खोलें
+            </button>
+          </div>
         </div>
-        <div style="display:flex; align-items:center; gap:0.5rem">
-          <button class="btn btn-outline-primary btn-sm" onclick="openDynamicDemandPortal('${d.id}')" style="font-size:0.75rem; padding:2px 8px">
-            <i class="fas fa-desktop"></i> पोर्टल खोलें
-          </button>
-          <span class="status-badge ${isPub ? 'green' : 'red'}" style="font-size:0.75rem">
-            ${isPub ? '✓ PEEO स्तर पर LIVE (प्रकाशित)' : '✗ अप्रकाशित (PEEO से छुपा हुआ)'}
-          </span>
+
+        <!-- 5-Level Audience Checkboxes Panel -->
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:0.65rem 0.85rem">
+          <div style="font-size:0.76rem; font-weight:800; color:#1e293b; margin-bottom:0.45rem; display:flex; justify-content:space-between; align-items:center">
+            <span><i class="fas fa-users-cog text-primary"></i> 5-स्तरीय दृश्यता एवं प्रकाशन नियंत्रण (Audience Access Permissions):</span>
+            <span style="font-size:0.7rem; font-weight:normal; color:#64748b">(चेकबॉक्स ऑन करते ही उस स्तर पर तत्काल दृश्यमान)</span>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.5rem">
+            <label style="display:flex; align-items:center; gap:0.45rem; font-size:0.8rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" ${aud.cbeo ? 'checked' : ''} onchange="toggleDemandAudienceLevel('${d.id}', 'cbeo', this.checked)" style="width:16px; height:16px; cursor:pointer"> 1. CBEO Admin
+            </label>
+            <label style="display:flex; align-items:center; gap:0.45rem; font-size:0.8rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" ${aud.peeo ? 'checked' : ''} onchange="toggleDemandAudienceLevel('${d.id}', 'peeo', this.checked)" style="width:16px; height:16px; cursor:pointer"> 2. 25 PEEO प्रभारी
+            </label>
+            <label style="display:flex; align-items:center; gap:0.45rem; font-size:0.8rem; font-weight:700; color:#1e40af; cursor:pointer">
+              <input type="checkbox" ${aud.sec_srsec ? 'checked' : ''} onchange="toggleDemandAudienceLevel('${d.id}', 'sec_srsec', this.checked)" style="width:16px; height:16px; cursor:pointer"> 3. 57 Sec/Sr.Sec स्कूल
+            </label>
+            <label style="display:flex; align-items:center; gap:0.45rem; font-size:0.8rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" ${aud.all_govt ? 'checked' : ''} onchange="toggleDemandAudienceLevel('${d.id}', 'all_govt', this.checked)" style="width:16px; height:16px; cursor:pointer"> 4. समस्त राजकीय स्कूल (132)
+            </label>
+            <label style="display:flex; align-items:center; gap:0.45rem; font-size:0.8rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" ${aud.all_schools ? 'checked' : ''} onchange="toggleDemandAudienceLevel('${d.id}', 'all_schools', this.checked)" style="width:16px; height:16px; cursor:pointer"> 5. समस्त स्कूल (निजी सहित - 178)
+            </label>
+          </div>
+          <div style="font-size:0.72rem; color:${anySchoolActive ? '#15803d' : '#b45309'}; margin-top:0.4rem; font-weight:700">
+            ${anySchoolActive ? '✓ स्कूल स्तर पर दृश्यता सक्रिय है (चयनित विद्यालयों को यह मांग पोर्टल पर दिखाई दे रही है)।' : '⚠️ स्कूल स्तर पर दृश्यता बंद है (स्कूलों को यह मांग तब तक नहीं दिखेगी जब तक आप ऊपर चेकबॉक्स ऑन नहीं करेंगे)।'}
+          </div>
         </div>
       `;
-      publishList.appendChild(div);
+      publishList.appendChild(card);
     });
   }
 
