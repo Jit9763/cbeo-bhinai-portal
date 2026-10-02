@@ -2653,7 +2653,7 @@ function printCleanA4Landscape(containerId, title) {
 /* ========================================================
    OFFSCREEN PDF BLOB GENERATOR FOR DIRECT DOWNLOAD & WHATSAPP
    ======================================================== */
-async function exportDocumentToPdfBlob(elementId, filename) {
+async function exportDocumentToPdfBlob(elementId, filename, customOptions = {}) {
   const container = document.getElementById(elementId);
   if (!container) throw new Error('Container not found: ' + elementId);
 
@@ -2678,20 +2678,25 @@ async function exportDocumentToPdfBlob(elementId, filename) {
     } catch (eFont) {}
   }
 
-  // Set fixed 1080px width & pristine font styles for clean single-page A4 landscape
-  container.style.width = '1080px';
-  container.style.maxWidth = '1080px';
+  const orientation = customOptions.orientation || 'landscape';
+  const targetWidth = customOptions.targetWidth || (orientation === 'portrait' ? '800px' : '1080px');
+  const scale = customOptions.scale || (orientation === 'portrait' ? 1.5 : 2);
+  const quality = customOptions.quality || (orientation === 'portrait' ? 0.85 : 0.98);
+
+  // Set pristine font styles & width
+  container.style.width = targetWidth;
+  container.style.maxWidth = targetWidth;
   container.style.boxSizing = 'border-box';
   container.style.background = '#ffffff';
   container.style.fontFamily = "'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
   container.style.letterSpacing = 'normal';
 
   const opt = {
-    margin: 0,
+    margin: customOptions.margin ?? 0,
     filename: filename,
-    image: { type: 'jpeg', quality: 0.98 },
+    image: { type: 'jpeg', quality: quality },
     html2canvas: {
-      scale: 2,
+      scale: scale,
       useCORS: true,
       logging: false,
       windowWidth: window.innerWidth,
@@ -2699,7 +2704,7 @@ async function exportDocumentToPdfBlob(elementId, filename) {
       scrollX: 0,
       scrollY: 0
     },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: orientation },
     pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
   };
 
@@ -3642,7 +3647,12 @@ async function downloadPendingReportPdfDirect() {
   showToast('लम्बित विद्यालय रिपोर्ट की PDF तैयार की जा रही है...', 'info');
 
   try {
-    const blob = await exportDocumentToPdfBlob('printable-pending-report-content', filename);
+    const blob = await exportDocumentToPdfBlob('printable-pending-report-content', filename, {
+      orientation: 'portrait',
+      targetWidth: '800px',
+      scale: 1.5,
+      quality: 0.85
+    });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -3658,61 +3668,126 @@ async function downloadPendingReportPdfDirect() {
   }
 }
 
-async function sharePendingReportWhatsApp() {
+function getPendingReportWhatsAppText() {
   const state = STATE.activePendingReportState || {};
   const reportTitle = state.reportTitle || 'सूचना मांग प्रपत्र';
   const totalSchools = state.totalSchools || 0;
   const submittedCount = state.submittedCount || 0;
   const pendingCount = state.pendingCount || 0;
   const pendingPeeoCount = state.pendingPeeoCount || 0;
-  const filename = state.filename || 'CBEO_Bhinai_Pending_Report.pdf';
 
   let listSnippet = '';
   if (state.pendingSchools && state.pendingSchools.length > 0) {
-    state.pendingSchools.slice(0, 15).forEach((s, idx) => {
-      listSnippet += `${idx + 1}. ${s.school_name} (${s.peeo_name}) - 📞 ${s.principal_mobile || '---'}\n`;
+    state.pendingSchools.forEach((s, idx) => {
+      const pName = s.principal_name || 'संस्था प्रधान';
+      const pMob = s.principal_mobile || '';
+      const mobStr = pMob ? ` (📞 ${pMob})` : '';
+      listSnippet += `${idx + 1}. *${s.school_name}* [${s.shala_darpan_code}]\n   PEEO: ${s.peeo_name} | ${pName}${mobStr}\n`;
     });
-    if (state.pendingSchools.length > 15) {
-      listSnippet += `...एवं ${state.pendingSchools.length - 15} अन्य विद्यालय (विस्तृत PDF संलग्न देखें)\n`;
-    }
   } else {
-    listSnippet = '🎉 समस्त विद्यालयों की सूचना प्राप्त हो चुकी है!\n';
+    listSnippet = '🎉 *समस्त विद्यालयों की सूचना प्राप्त हो चुकी है! कोई भी विद्यालय लम्बित नहीं है।*\n';
   }
 
-  const waSummary = `*🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)*\n*⚠️ अति आवश्यक - लम्बित विद्यालय एवं PEEO अनुपालना रिपोर्ट*\n*विषय:* ${reportTitle}\n\n📊 *प्रगति स्थिति:* ${submittedCount}/${totalSchools} पूर्ण | 🔴 *${pendingCount} विद्यालय लम्बित*\n⚠️ *लम्बित PEEO परिक्षेत्र:* ${pendingPeeoCount} PEEO\n\n📋 *लम्बित विद्यालयों की सूची:*\n${listSnippet}\n📌 *निर्देश:* कृपया उपरोक्त समस्त विद्यालय आज ही पोर्टल पर प्रपत्र ऑनलाइन सबमिट करें।\n📄 *अधिकृत लम्बित रिपोर्ट PDF संलग्न है।*\n🌐 *CBEO भिनाय पोर्टल:* https://jit9763.github.io/cbeo-bhinai-portal/`;
+  return `*🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)*\n*⚠️ अति आवश्यक - लम्बित विद्यालय एवं PEEO अनुपालना रिपोर्ट*\n*विषय:* ${reportTitle}\n\n📊 *प्रगति स्थिति:* ${submittedCount}/${totalSchools} पूर्ण | 🔴 *${pendingCount} विद्यालय लम्बित*\n⚠️ *लम्बित PEEO परिक्षेत्र:* ${pendingPeeoCount} PEEO\n\n📋 *लम्बित विद्यालयों की सूची:*\n${listSnippet}\n📌 *निर्देश:* कृपया उपरोक्त समस्त विद्यालय आज ही CBEO पोर्टल पर ऑनलाइन प्रपत्र सबमिट करें।\n🌐 *CBEO भिनाय पोर्टल:* https://jit9763.github.io/cbeo-bhinai-portal/`;
+}
 
-  showToast('WhatsApp शेयर तैयार किया जा रहा है...', 'info');
+function openWhatsAppDirectText(text) {
+  const encoded = encodeURIComponent(text);
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  
+  if (isMobile) {
+    // Protocol handler directly opens the installed WhatsApp Application!
+    window.location.href = `whatsapp://send?text=${encoded}`;
+  } else {
+    // Desktop: first try desktop app protocol, fallback to web.whatsapp.com
+    const a = document.createElement('a');
+    a.href = `whatsapp://send?text=${encoded}`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    setTimeout(() => {
+      window.open(`https://api.whatsapp.com/send?text=${encoded}`, '_blank');
+    }, 600);
+  }
+}
+
+async function sharePendingReportWhatsAppPdf() {
+  const state = STATE.activePendingReportState || {};
+  const filename = state.filename || 'CBEO_Bhinai_Pending_Report.pdf';
+  const waSummary = getPendingReportWhatsAppText();
+
+  showToast('WhatsApp शेयर हेतु PDF तैयार की जा रही है...', 'info');
 
   try {
-    const blob = await exportDocumentToPdfBlob('printable-pending-report-content', filename);
+    const blob = await exportDocumentToPdfBlob('printable-pending-report-content', filename, {
+      orientation: 'portrait',
+      targetWidth: '800px',
+      scale: 1.5,
+      quality: 0.85
+    });
     const pdfFile = new File([blob], filename, { type: 'application/pdf' });
 
     if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
+      try {
+        await navigator.share({
+          files: [pdfFile],
+          title: `लम्बित विद्यालय अनुपालना रिपोर्ट - CBEO भिनाय`,
+          text: waSummary
+        });
+        showToast('WhatsApp शेयर विंडो सफलतापूर्वक खुल गई!', 'success');
+        return;
+      } catch (shareErr) {
+        if (shareErr.name === 'AbortError') return;
+        console.warn('Share file aborted or failed:', shareErr);
+      }
+    }
+
+    // Fallback: Download the PDF automatically and launch WhatsApp App
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    openWhatsAppDirectText(waSummary + '\n\n*(नोट: आधिकारिक PDF फाइल आपके डिवाइस में डाउनलोड हो गई है, कृपया चैट में अटैच करें)*');
+    showToast('PDF डाउनलोड हो गई है एवं WhatsApp खुल रहा है! कृपया फाइल अटैच करें।', 'success');
+
+  } catch (err) {
+    console.warn('WhatsApp PDF share fallback:', err);
+    openWhatsAppDirectText(waSummary);
+  }
+}
+
+async function sharePendingReportWhatsAppMsg() {
+  const waSummary = getPendingReportWhatsAppText();
+  showToast('WhatsApp मैसेज खोला जा रहा है...', 'info');
+
+  if (navigator.share) {
+    try {
       await navigator.share({
-        files: [pdfFile],
-        title: `लम्बित विद्यालय रिपोर्ट - CBEO भिनाय`,
+        title: 'लम्बित विद्यालय रिपोर्ट - CBEO भिनाय',
         text: waSummary
       });
       showToast('WhatsApp शेयर विंडो सफलतापूर्वक खुल गई!', 'success');
-    } else {
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-
-      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(waSummary + '\n\n*(नोट: आधिकारिक PDF फाइल आपके डिवाइस में डाउनलोड हो गई है, कृपया चैट में अटैच करें)*')}`;
-      window.open(waUrl, '_blank');
-      showToast('PDF डाउनलोड हो गई है एवं WhatsApp खुल गया है! कृपया फाइल अटैच करें।', 'info');
+      return;
+    } catch (e) {
+      if (e.name === 'AbortError') return;
     }
-  } catch (err) {
-    console.warn('WhatsApp share fallback:', err);
-    const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(waSummary)}`;
-    window.open(waUrl, '_blank');
   }
+
+  // Direct WhatsApp App Launch
+  openWhatsAppDirectText(waSummary);
+}
+
+function sharePendingReportWhatsApp(mode = 'pdf') {
+  if (mode === 'msg') {
+    return sharePendingReportWhatsAppMsg();
+  }
+  return sharePendingReportWhatsAppPdf();
 }
 
 /* ========================================================
