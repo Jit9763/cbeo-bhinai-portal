@@ -1214,23 +1214,23 @@
           </div>
         </div>
 
-        <!-- A2. JITENDRA SUPER ADMIN CLOUD VM CONTROLLER & SCHEDULER -->
-        <div id="jitendra-cloud-vm-control-card" style="background:#ffffff; border:2px solid #3b82f6; border-radius:12px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:0 10px 25px -5px rgba(59,130,246,0.12)">
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; border-bottom:1.5px solid #bfdbfe; padding-bottom:0.75rem">
+        <!-- A2. JITENDRA SUPER ADMIN CLOUD VM CONTROLLER & ADVANCED SCHEDULER -->
+        <div id="jitendra-cloud-vm-control-card" style="background:#ffffff; border:2.5px solid #2563eb; border-radius:14px; padding:1.35rem; margin-bottom:1.75rem; box-shadow:0 12px 28px -5px rgba(37,99,235,0.15)">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.25rem; border-bottom:1.5px solid #bfdbfe; padding-bottom:0.85rem">
             <div>
               <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap">
-                <h3 style="font-size:1.15rem; color:#1e3a8a; margin:0; display:flex; align-items:center; gap:0.5rem">
-                  <i class="fas fa-robot text-primary"></i> 🤖 जितेन्द्र व्यवस्थापक नियंत्रण: GitHub Actions Cloud VM स्वचालन एवं टाइमर
+                <h3 style="font-size:1.2rem; color:#1e3a8a; margin:0; display:flex; align-items:center; gap:0.5rem">
+                  <i class="fas fa-robot text-primary"></i> 🤖 जितेन्द्र व्यवस्थापक नियंत्रण: GitHub Actions Cloud VM स्वचालन एवं समय शेड्यूलर
                 </h3>
-                <span class="badge-tag" style="background:#dbeafe; color:#1e40af; font-weight:800; font-size:0.72rem">
+                <span class="badge-tag" style="background:#dbeafe; color:#1e40af; font-weight:800; font-size:0.75rem">
                   जिला: अजमेर (AJMER) • ब्लॉक: भिनाय
                 </span>
-                <span id="vm-live-master-badge" class="badge-tag" style="background:#ecfdf5; color:#065f46; font-weight:800; font-size:0.75rem; border:1px solid #a7f3d0">
+                <span id="vm-live-master-badge" class="badge-tag" style="background:#ecfdf5; color:#065f46; font-weight:800; font-size:0.78rem; border:1px solid #a7f3d0">
                   ● VM सक्रिय (Active)
                 </span>
               </div>
               <p style="font-size:0.83rem; color:#475569; margin:4px 0 0 0">
-                क्लाउड में बिना कंप्यूटर चालू रखे स्वचालित रिपोर्टिंग, टेलीग्राम अलर्ट एवं ईमेल प्रेषण का केंद्रीय ऑन/ऑफ स्विच व टाइमर।
+                क्लाउड में बिना कंप्यूटर चालू रखे 24×7 स्वचालित रिपोर्टिंग, टेलीग्राम बॉट, Gmail SMTP, रेड-अलर्ट डिफ़ॉल्टर नोटिस एवं MDM विसंगति स्कैनर का केंद्रीय नियंत्रण।
               </p>
             </div>
             <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
@@ -1238,95 +1238,204 @@
                 <i class="fas fa-bolt"></i> 🚀 क्लाउड VM अभी चलाएं
               </button>
               <button class="btn btn-primary btn-sm" onclick="saveCloudVMSettings()" style="font-weight:700">
-                <i class="fas fa-save"></i> 💾 VM सेटिंग्स सुरक्षित करें
+                <i class="fas fa-save"></i> 💾 सेटिंग्स व समय सुरक्षित करें
               </button>
             </div>
           </div>
 
-          <!-- Controls Grid -->
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem; margin-bottom:1rem">
+          <!-- Master Control Grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:1.1rem; margin-bottom:1.25rem">
             
-            <!-- Master Power Switch Card -->
-            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:1rem">
-              <div style="font-size:0.82rem; font-weight:800; color:#0f172a; margin-bottom:0.75rem; display:flex; align-items:center; gap:0.4rem">
-                <i class="fas fa-power-off text-danger"></i> 1. मास्टर पावर स्विच (Master ON/OFF)
+            <!-- 1. Master Power Switch -->
+            <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:10px; padding:1.1rem">
+              <div style="font-size:0.84rem; font-weight:800; color:#0f172a; margin-bottom:0.75rem; display:flex; justify-content:space-between; align-items:center">
+                <span><i class="fas fa-power-off text-danger"></i> 1. मास्टर पावर स्विच (Master Switch)</span>
+                <span id="label-master-vm-state" style="font-size:0.72rem; font-weight:700; color:#059669">चालू (ACTIVE)</span>
               </div>
-              <div style="display:flex; flex-direction:column; gap:0.5rem">
-                <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.88rem; font-weight:700; cursor:pointer; background:#ffffff; padding:0.6rem 0.8rem; border-radius:8px; border:1.5px solid #cbd5e1">
-                  <input type="radio" name="vm_master_switch" id="vm_switch_on" value="on" checked onchange="updateVMSwitchUI()" style="width:18px; height:18px; cursor:pointer">
-                  <span style="color:#059669">🟢 VM स्वचालन चालू (ACTIVE)</span>
-                </label>
-                <label style="display:flex; align-items:center; gap:0.6rem; font-size:0.88rem; font-weight:700; cursor:pointer; background:#ffffff; padding:0.6rem 0.8rem; border-radius:8px; border:1.5px solid #cbd5e1">
-                  <input type="radio" name="vm_master_switch" id="vm_switch_off" value="off" onchange="updateVMSwitchUI()" style="width:18px; height:18px; cursor:pointer">
-                  <span style="color:#dc2626">🔴 VM स्वचालन बंद (PAUSED - जब ज़रूरत न हो)</span>
-                </label>
+              <div style="display:flex; gap:0.5rem">
+                <button type="button" id="btn-vm-master-on" onclick="setVMMasterPower(true)" class="btn btn-sm" style="flex:1; font-weight:700; background:#059669; color:#ffffff; border:none; padding:8px">
+                  <i class="fas fa-check-circle"></i> 🟢 VM चालू (ON)
+                </button>
+                <button type="button" id="btn-vm-master-off" onclick="setVMMasterPower(false)" class="btn btn-sm" style="flex:1; font-weight:700; background:#e2e8f0; color:#475569; border:none; padding:8px">
+                  <i class="fas fa-pause-circle"></i> 🔴 VM बंद (OFF)
+                </button>
               </div>
-              <div style="font-size:0.74rem; color:#64748b; margin-top:0.5rem">
+              <div style="font-size:0.74rem; color:#64748b; margin-top:0.6rem">
                 (बंद करने पर Cloud VM निर्धारित समय पर भी कोई रिपोर्ट या अलर्ट नहीं भेजेगा)
               </div>
             </div>
 
-            <!-- Schedule Slot Timers -->
-            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:1rem">
-              <div style="font-size:0.82rem; font-weight:800; color:#0f172a; margin-bottom:0.75rem; display:flex; align-items:center; gap:0.4rem">
-                <i class="fas fa-clock text-primary"></i> 2. दैनिक स्वचालित समय स्लॉट (Daily Cloud Schedule)
+            <!-- 2. Alert Channels & Engine Toggles -->
+            <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:10px; padding:1.1rem">
+              <div style="font-size:0.84rem; font-weight:800; color:#0f172a; margin-bottom:0.75rem; display:flex; align-items:center; gap:0.4rem">
+                <i class="fas fa-satellite-dish text-success"></i> 2. अलर्ट चैनल व इंजन स्विच (Engine Toggles)
               </div>
-              <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem">
-                <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.82rem; font-weight:600; background:#ffffff; padding:0.45rem 0.6rem; border-radius:6px; border:1px solid #cbd5e1; cursor:pointer">
-                  <input type="checkbox" id="vm_slot_12pm" checked style="width:16px; height:16px"> 🕛 दोपहर 12:00 PM
-                </label>
-                <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.82rem; font-weight:600; background:#ffffff; padding:0.45rem 0.6rem; border-radius:6px; border:1px solid #cbd5e1; cursor:pointer">
-                  <input type="checkbox" id="vm_slot_02pm" checked style="width:16px; height:16px"> 🕑 दोपहर 02:00 PM
-                </label>
-                <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.82rem; font-weight:600; background:#ffffff; padding:0.45rem 0.6rem; border-radius:6px; border:1px solid #cbd5e1; cursor:pointer">
-                  <input type="checkbox" id="vm_slot_04pm" checked style="width:16px; height:16px"> 🕓 शाम 04:00 PM
-                </label>
-                <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.82rem; font-weight:600; background:#ffffff; padding:0.45rem 0.6rem; border-radius:6px; border:1px solid #cbd5e1; cursor:pointer">
-                  <input type="checkbox" id="vm_slot_08pm" checked style="width:16px; height:16px"> 🕗 रात 08:00 PM
-                </label>
-              </div>
-              <div style="font-size:0.74rem; color:#64748b; margin-top:0.5rem">
-                (Ubuntu Cloud Runner 24x7 ऑटोमैटिक क्रॉन पर चलता है)
+              <div style="display:flex; flex-direction:column; gap:0.45rem">
+                <!-- Telegram Toggle -->
+                <div style="display:flex; justify-content:space-between; align-items:center; background:#ffffff; padding:0.45rem 0.65rem; border-radius:6px; border:1px solid #cbd5e1">
+                  <span style="font-size:0.8rem; font-weight:600; color:#1e293b"><i class="fab fa-telegram text-primary"></i> Telegram अलर्ट (@cbeo_bhinai_alert_bot)</span>
+                  <button type="button" id="toggle-vm-telegram" onclick="toggleAlertChannel('telegram')" class="btn btn-sm" style="font-size:0.72rem; font-weight:700; padding:2px 10px; background:#059669; color:#fff; border:none">
+                    चालू (ON)
+                  </button>
+                </div>
+                <!-- Email Toggle -->
+                <div style="display:flex; justify-content:space-between; align-items:center; background:#ffffff; padding:0.45rem 0.65rem; border-radius:6px; border:1px solid #cbd5e1">
+                  <span style="font-size:0.8rem; font-weight:600; color:#1e293b"><i class="fas fa-envelope text-danger"></i> Gmail रिपोर्ट (censusbhinai@gmail.com)</span>
+                  <button type="button" id="toggle-vm-email" onclick="toggleAlertChannel('email')" class="btn btn-sm" style="font-size:0.72rem; font-weight:700; padding:2px 10px; background:#059669; color:#fff; border:none">
+                    चालू (ON)
+                  </button>
+                </div>
+                <!-- Overdue Escalation Toggle -->
+                <div style="display:flex; justify-content:space-between; align-items:center; background:#ffffff; padding:0.45rem 0.65rem; border-radius:6px; border:1px solid #cbd5e1">
+                  <span style="font-size:0.8rem; font-weight:600; color:#1e293b"><i class="fas fa-exclamation-triangle text-warning"></i> रेड-अलर्ट डिफ़ॉल्टर नोटिस (Escalation)</span>
+                  <button type="button" id="toggle-vm-escalation" onclick="toggleAlertChannel('escalation')" class="btn btn-sm" style="font-size:0.72rem; font-weight:700; padding:2px 10px; background:#059669; color:#fff; border:none">
+                    चालू (ON)
+                  </button>
+                </div>
+                <!-- MDM Scanner Toggle -->
+                <div style="display:flex; justify-content:space-between; align-items:center; background:#ffffff; padding:0.45rem 0.65rem; border-radius:6px; border:1px solid #cbd5e1">
+                  <span style="font-size:0.8rem; font-weight:600; color:#1e293b"><i class="fas fa-utensils text-info"></i> MDM निरीक्षण प्रपत्र-2 विसंगति स्कैनर</span>
+                  <button type="button" id="toggle-vm-mdm" onclick="toggleAlertChannel('mdm')" class="btn btn-sm" style="font-size:0.72rem; font-weight:700; padding:2px 10px; background:#059669; color:#fff; border:none">
+                    चालू (ON)
+                  </button>
+                </div>
               </div>
             </div>
 
-            <!-- Channels & Destinations -->
-            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:1rem">
-              <div style="font-size:0.82rem; font-weight:800; color:#0f172a; margin-bottom:0.75rem; display:flex; align-items:center; gap:0.4rem">
-                <i class="fas fa-satellite-dish text-success"></i> 3. अधिसूचना चैनल (Active Channels)
+            <!-- 3. Dynamic Schedule Time Changer -->
+            <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:10px; padding:1.1rem">
+              <div style="font-size:0.84rem; font-weight:800; color:#0f172a; margin-bottom:0.75rem; display:flex; justify-content:space-between; align-items:center">
+                <span><i class="fas fa-clock text-primary"></i> 3. शेड्यूल टाइमर कंट्रोलर (Schedule Slots)</span>
+                <span style="font-size:0.72rem; color:#64748b">(क्लिक कर समय बदलें/हटाएं)</span>
               </div>
-              <div style="display:flex; flex-direction:column; gap:0.5rem">
-                <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.82rem; font-weight:600; background:#ffffff; padding:0.45rem 0.6rem; border-radius:6px; border:1px solid #cbd5e1; cursor:pointer">
-                  <input type="checkbox" id="vm_channel_telegram" checked style="width:16px; height:16px">
-                  <span>📱 Telegram बॉट (@cbeo_bhinai_alert_bot)</span>
-                </label>
-                <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.82rem; font-weight:600; background:#ffffff; padding:0.45rem 0.6rem; border-radius:6px; border:1px solid #cbd5e1; cursor:pointer">
-                  <input type="checkbox" id="vm_channel_email" checked style="width:16px; height:16px">
-                  <span>📧 Gmail रिपोर्ट (censusbhinai@gmail.com)</span>
-                </label>
+              
+              <!-- Active Slot Chips -->
+              <div id="vm-schedule-chips-container" style="display:flex; flex-wrap:wrap; gap:0.45rem; min-height:38px; margin-bottom:0.75rem; background:#ffffff; padding:0.45rem; border-radius:6px; border:1px solid #cbd5e1">
+                <!-- Rendered dynamically -->
               </div>
-              <div style="font-size:0.74rem; color:#64748b; margin-top:0.5rem">
-                (दोनों चैनल्स पर अनुपालन डेटा रीयल-टाइम डिलीवर होता है)
+
+              <!-- Add Time Slot Controls -->
+              <div style="display:flex; gap:0.4rem; margin-bottom:0.5rem">
+                <input type="text" id="vm-new-slot-input" placeholder="उदा. 10:30 AM" style="flex:1; padding:0.4rem 0.6rem; font-size:0.82rem; border-radius:6px; border:1px solid #cbd5e1">
+                <button type="button" onclick="addCustomVMSlot()" class="btn btn-secondary btn-sm" style="font-weight:700; font-size:0.78rem">
+                  <i class="fas fa-plus"></i> स्लॉट जोड़ें
+                </button>
+              </div>
+
+              <!-- Quick Presets -->
+              <div style="display:flex; flex-wrap:wrap; gap:0.3rem">
+                <button type="button" onclick="addPresetVMSlot('10:00 AM')" class="btn btn-outline-secondary btn-sm" style="font-size:0.7rem; padding:2px 6px">+ 10:00 AM</button>
+                <button type="button" onclick="addPresetVMSlot('12:00 PM')" class="btn btn-outline-secondary btn-sm" style="font-size:0.7rem; padding:2px 6px">+ 12:00 PM</button>
+                <button type="button" onclick="addPresetVMSlot('02:00 PM')" class="btn btn-outline-secondary btn-sm" style="font-size:0.7rem; padding:2px 6px">+ 02:00 PM</button>
+                <button type="button" onclick="addPresetVMSlot('04:00 PM')" class="btn btn-outline-secondary btn-sm" style="font-size:0.7rem; padding:2px 6px">+ 04:00 PM</button>
+                <button type="button" onclick="addPresetVMSlot('06:00 PM')" class="btn btn-outline-secondary btn-sm" style="font-size:0.7rem; padding:2px 6px">+ 06:00 PM</button>
+                <button type="button" onclick="addPresetVMSlot('08:00 PM')" class="btn btn-outline-secondary btn-sm" style="font-size:0.7rem; padding:2px 6px">+ 08:00 PM</button>
               </div>
             </div>
 
           </div>
 
-          <!-- Live Status Bar -->
+          <!-- Live Status Diagnostics Bar -->
           <div style="background:#0f172a; color:#f8fafc; border-radius:8px; padding:0.75rem 1rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; font-size:0.8rem">
             <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap">
-              <span><strong>अंतिम VM रन:</strong> <span id="vm-last-run-time" style="color:#93c5fd">03-10-2026 01:22 AM IST</span></span>
+              <span><strong>अंतिम VM निष्पादन:</strong> <span id="vm-last-run-time" style="color:#93c5fd">03-10-2026 02:01 AM IST</span></span>
               <span>|</span>
               <span><strong>स्थिति:</strong> <span id="vm-last-run-status" style="color:#34d399; font-weight:700">✓ SUCCESS</span></span>
               <span>|</span>
-              <span><strong>लक्षित:</strong> 57 Sec स्कूल (4 लंबित, 53 प्राप्त)</span>
+              <span><strong>समान परीक्षा:</strong> 57 कुल (4 डिफ़ॉल्टर, 53 पूर्ण)</span>
+              <span>|</span>
+              <span><strong>MDM प्रपत्र-2:</strong> 25 PEEO मॉनिटरिंग सक्रिय</span>
             </div>
-            <div>
-              <a href="https://github.com/Jit9763/cbeo-bhinai-portal/actions" target="_blank" style="color:#60a5fa; text-decoration:none; font-weight:700">
-                <i class="fab fa-github"></i> GitHub Actions रन इतिहास देखें →
+            <div style="display:flex; gap:0.5rem">
+              <button class="btn btn-sm" onclick="openVMReportModal()" style="background:#3b82f6; color:#ffffff; font-weight:700; border:none; font-size:0.75rem">
+                <i class="fas fa-file-invoice"></i> विस्तृत रिपोर्ट
+              </button>
+              <a href="https://github.com/Jit9763/cbeo-bhinai-portal/actions" target="_blank" style="color:#60a5fa; text-decoration:none; font-weight:700; align-self:center; font-size:0.75rem">
+                <i class="fab fa-github"></i> Actions रन इतिहास →
               </a>
             </div>
           </div>
+        </div>
+
+        <!-- =========================================================================
+             CONSOLIDATED ADMIN COMMAND HUBS (बिखरे हुए कंट्रोल्स का एकीकरण)
+             ========================================================================= -->
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.25rem; margin-bottom:1.75rem">
+
+          <!-- HUB 1: UNIVERSAL DEMAND EMAIL BROADCAST HUB -->
+          <div style="background:#ffffff; border:2px solid #8b5cf6; border-radius:12px; padding:1.25rem; box-shadow:0 4px 6px -1px rgba(139,92,246,0.1)">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1.5px solid #ede9fe; padding-bottom:0.6rem; margin-bottom:0.75rem">
+              <h4 style="margin:0; font-size:1.05rem; color:#5b21b6; display:flex; align-items:center; gap:0.4rem">
+                <i class="fas fa-mail-bulk text-purple"></i> 📧 मांग ईमेल प्रसारण केंद्र (Demand Broadcast Hub)
+              </h4>
+              <span class="badge-tag" style="background:#f3e8ff; color:#6b21a8; font-weight:800; font-size:0.7rem">
+                57/57 ईमेल उपलब्ध
+              </span>
+            </div>
+            <p style="font-size:0.8rem; color:#475569; margin:0 0 0.85rem 0">
+              किसी भी लाइव मांग का चयन करके संबंधित विद्यालयों/PEEOs को आधिकारिक पोर्टल लिंक, समय-सीमा व कस्टम निर्देशों सहित तत्काल ईमेल भेजें।
+            </p>
+            <div style="display:flex; flex-direction:column; gap:0.5rem">
+              <select id="admin-hub-demand-select" class="form-control" style="font-size:0.82rem; padding:0.45rem">
+                <!-- Populated dynamically -->
+              </select>
+              <button class="btn btn-sm" onclick="triggerAdminHubBroadcastEmail()" style="background:#7c3aed; color:#ffffff; font-weight:700; border:none; padding:8px; box-shadow:0 2px 6px rgba(124,58,237,0.3)">
+                <i class="fas fa-paper-plane"></i> संबंधित विद्यालयों को ईमेल सूचना भेजें (Launch Broadcast)
+              </button>
+            </div>
+          </div>
+
+          <!-- HUB 2: GOOGLE DRIVE MASTER BACKUP & SHEET SYNC HUB -->
+          <div style="background:#ffffff; border:2px solid #10b981; border-radius:12px; padding:1.25rem; box-shadow:0 4px 6px -1px rgba(16,185,129,0.1)">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1.5px solid #d1fae5; padding-bottom:0.6rem; margin-bottom:0.75rem">
+              <h4 style="margin:0; font-size:1.05rem; color:#065f46; display:flex; align-items:center; gap:0.4rem">
+                <i class="fab fa-google-drive text-success"></i> ☁️ Google Drive एवं मास्टर डेटा सिंक केंद्र
+              </h4>
+              <span class="badge-tag" style="background:#ecfdf5; color:#065f46; font-weight:800; font-size:0.7rem">
+                6 Sheets कनेक्टेड
+              </span>
+            </div>
+            <p style="font-size:0.8rem; color:#475569; margin:0 0 0.85rem 0">
+              बैकअप-रीस्टोर टैब में जाने की आवश्यकता नहीं; यहीं से 1 क्लिक में Google Sheets सिंक करें अथवा मास्टर डेटा डाउनलोड करें।
+            </p>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.45rem">
+              <button class="btn btn-outline-secondary btn-sm" onclick="syncAdminAccessSheetFromPortal()" style="font-size:0.74rem; font-weight:700; text-align:left">
+                <i class="fas fa-sync-alt text-primary"></i> Admin Access सिंक
+              </button>
+              <button class="btn btn-outline-secondary btn-sm" onclick="syncSamanParikshaToSheet()" style="font-size:0.74rem; font-weight:700; text-align:left">
+                <i class="fas fa-sync-alt text-success"></i> समान परीक्षा सिंक
+              </button>
+              <button class="btn btn-outline-secondary btn-sm" onclick="window.open('https://docs.google.com/spreadsheets/d/1EnHjwz683yeBNyTsSVajjb352lq1u9vSjRukcSpJWV8/edit', '_blank')" style="font-size:0.74rem; font-weight:700; text-align:left">
+                <i class="fas fa-external-link-alt text-info"></i> MDM प्रपत्र-2 शीट
+              </button>
+              <button class="btn btn-outline-secondary btn-sm" onclick="downloadMasterDataJson()" style="font-size:0.74rem; font-weight:700; text-align:left">
+                <i class="fas fa-download text-warning"></i> Master JSON बैकअप
+              </button>
+            </div>
+          </div>
+
+          <!-- HUB 3: QUICK SANSTHA PRADHAN & STAFF INCHARGE CONTROL -->
+          <div style="background:#ffffff; border:2px solid #f59e0b; border-radius:12px; padding:1.25rem; box-shadow:0 4px 6px -1px rgba(245,158,11,0.1)">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1.5px solid #fef3c7; padding-bottom:0.6rem; margin-bottom:0.75rem">
+              <h4 style="margin:0; font-size:1.05rem; color:#92400e; display:flex; align-items:center; gap:0.4rem">
+                <i class="fas fa-user-tie text-warning"></i> 👥 संस्था प्रधान त्वरित प्रबंधन (Sanstha Pradhan)
+              </h4>
+              <span class="badge-tag" style="background:#fffbeb; color:#b45309; font-weight:800; font-size:0.7rem">
+                1,060+ कार्मिक
+              </span>
+            </div>
+            <p style="font-size:0.8rem; color:#475569; margin:0 0 0.85rem 0">
+              विद्यालय या कार्मिक का नाम खोजकर सीधे यहीं से संस्था प्रधान टैग मार्क/अनमार्क करें अथवा कार्मिक टैब खोलें।
+            </p>
+            <div style="display:flex; gap:0.45rem">
+              <input type="text" id="admin-hub-staff-search" placeholder="कार्मिक या स्कूल का नाम लिखें..." class="form-control" style="font-size:0.82rem; padding:0.45rem">
+              <button class="btn btn-warning btn-sm" onclick="quickJumpToStaffSearch()" style="font-weight:700; white-space:nowrap">
+                <i class="fas fa-search"></i> खोजें
+              </button>
+            </div>
+          </div>
+
         </div>
 
         <!-- B. JITENDRA SUPER ADMIN 5-LEVEL TAB VISIBILITY CONTROL MATRIX -->

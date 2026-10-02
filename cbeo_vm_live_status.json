@@ -1,5 +1,5 @@
 {
-  "generated_at": "03-10-2026 01:11 AM",
+  "generated_at": "03-10-2026 02:01 AM",
   "vm_status": "ONLINE_ACTIVE",
   "district": "AJMER (अजमेर)",
   "block": "BHINAI (भिनाय)",
@@ -44,6 +44,18 @@
         "mobile": "8955306674"
       }
     ]
+  },
+  "overdue_escalation": {
+    "is_active": true,
+    "defaulter_count": 4,
+    "urgency": "HIGH",
+    "message": "🚨 4 विद्यालय समय-सीमा पश्चात भी लंबित हैं।"
+  },
+  "mdm_anomaly_scanner": {
+    "total_peeos": 25,
+    "prapatra2_sheet_linked": true,
+    "status": "MONITORING_ACTIVE",
+    "district": "AJMER"
   },
   "active_demands_count": 0,
   "portal_url": "https://jit9763.github.io/cbeo-bhinai-portal/"

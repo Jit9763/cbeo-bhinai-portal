@@ -11240,12 +11240,9 @@ let CURRENT_VM_SETTINGS = {
   vm_enabled: true,
   telegram_alerts: true,
   email_alerts: true,
-  slots: {
-    "12:00 PM": true,
-    "02:00 PM": true,
-    "04:00 PM": true,
-    "08:00 PM": true
-  }
+  overdue_escalation: true,
+  mdm_anomaly_scanner: true,
+  slots: ["12:00 PM", "02:00 PM", "04:00 PM", "08:00 PM"]
 };
 
 async function loadAndRenderVMControlCard() {
@@ -11257,33 +11254,23 @@ async function loadAndRenderVMControlCard() {
     if (res.ok) {
       const data = await res.json();
       if (data.settings) {
-        CURRENT_VM_SETTINGS = data.settings;
-      }
-      // Populate master switch
-      const onRadio = document.getElementById('vm_switch_on');
-      const offRadio = document.getElementById('vm_switch_off');
-      if (CURRENT_VM_SETTINGS.vm_enabled !== false) {
-        if (onRadio) onRadio.checked = true;
-      } else {
-        if (offRadio) offRadio.checked = true;
+        CURRENT_VM_SETTINGS = Object.assign({}, CURRENT_VM_SETTINGS, data.settings);
+        if (!Array.isArray(CURRENT_VM_SETTINGS.slots)) {
+          CURRENT_VM_SETTINGS.slots = ["12:00 PM", "02:00 PM", "04:00 PM", "08:00 PM"];
+        }
       }
 
-      // Populate slots
-      const s = CURRENT_VM_SETTINGS.slots || {};
-      const s12 = document.getElementById('vm_slot_12pm');
-      const s02 = document.getElementById('vm_slot_02pm');
-      const s04 = document.getElementById('vm_slot_04pm');
-      const s08 = document.getElementById('vm_slot_08pm');
-      if (s12) s12.checked = s['12:00 PM'] !== false;
-      if (s02) s02.checked = s['02:00 PM'] !== false;
-      if (s04) s04.checked = s['04:00 PM'] !== false;
-      if (s08) s08.checked = s['08:00 PM'] !== false;
+      // Update Power switch UI
+      setVMMasterPower(CURRENT_VM_SETTINGS.vm_enabled !== false, false);
 
-      // Populate channels
-      const chTg = document.getElementById('vm_channel_telegram');
-      const chEm = document.getElementById('vm_channel_email');
-      if (chTg) chTg.checked = CURRENT_VM_SETTINGS.telegram_alerts !== false;
-      if (chEm) chEm.checked = CURRENT_VM_SETTINGS.email_alerts !== false;
+      // Update Channel toggles
+      updateChannelToggleBtn('toggle-vm-telegram', CURRENT_VM_SETTINGS.telegram_alerts !== false);
+      updateChannelToggleBtn('toggle-vm-email', CURRENT_VM_SETTINGS.email_alerts !== false);
+      updateChannelToggleBtn('toggle-vm-escalation', CURRENT_VM_SETTINGS.overdue_escalation !== false);
+      updateChannelToggleBtn('toggle-vm-mdm', CURRENT_VM_SETTINGS.mdm_anomaly_scanner !== false);
+
+      // Render schedule chips
+      renderVMScheduleChips();
 
       // Populate diagnostics
       const lastTimeEl = document.getElementById('vm-last-run-time');
@@ -11294,54 +11281,146 @@ async function loadAndRenderVMControlCard() {
       if (lastStatusEl && CURRENT_VM_SETTINGS.last_run_status) {
         lastStatusEl.textContent = '✓ ' + CURRENT_VM_SETTINGS.last_run_status.toUpperCase();
       }
-      updateVMSwitchUI();
     }
   } catch (err) {
     console.warn("Could not load VM status from server:", err);
   }
+
+  // Populate Consolidated Demands Selector in Hub 1
+  populateAdminHubDemands();
 }
 
-function updateVMSwitchUI() {
-  const onRadio = document.getElementById('vm_switch_on');
-  const isEnabled = onRadio ? onRadio.checked : true;
+function setVMMasterPower(isOn, notify = true) {
+  CURRENT_VM_SETTINGS.vm_enabled = isOn;
+  const btnOn = document.getElementById('btn-vm-master-on');
+  const btnOff = document.getElementById('btn-vm-master-off');
+  const lbl = document.getElementById('label-master-vm-state');
   const badge = document.getElementById('vm-live-master-badge');
-  if (badge) {
-    if (isEnabled) {
+
+  if (isOn) {
+    if (btnOn) { btnOn.style.background = '#059669'; btnOn.style.color = '#ffffff'; }
+    if (btnOff) { btnOff.style.background = '#e2e8f0'; btnOff.style.color = '#475569'; }
+    if (lbl) { lbl.textContent = 'चालू (ACTIVE)'; lbl.style.color = '#059669'; }
+    if (badge) {
       badge.textContent = '● VM सक्रिय (Active)';
       badge.style.background = '#ecfdf5';
       badge.style.color = '#065f46';
       badge.style.borderColor = '#a7f3d0';
-    } else {
+    }
+  } else {
+    if (btnOn) { btnOn.style.background = '#e2e8f0'; btnOn.style.color = '#475569'; }
+    if (btnOff) { btnOff.style.background = '#dc2626'; btnOff.style.color = '#ffffff'; }
+    if (lbl) { lbl.textContent = 'बंद (PAUSED)'; lbl.style.color = '#dc2626'; }
+    if (badge) {
       badge.textContent = '⏸ VM बंद (Paused)';
       badge.style.background = '#fef2f2';
       badge.style.color = '#991b1b';
       badge.style.borderColor = '#fecaca';
     }
   }
+  if (notify) {
+    showToast(isOn ? '🟢 VM स्वचालन चालू (ACTIVE) किया गया' : '🔴 VM स्वचालन बंद (PAUSED) किया गया', isOn ? 'success' : 'warning');
+  }
+}
+
+function toggleAlertChannel(channel) {
+  let newState = true;
+  if (channel === 'telegram') {
+    CURRENT_VM_SETTINGS.telegram_alerts = !CURRENT_VM_SETTINGS.telegram_alerts;
+    newState = CURRENT_VM_SETTINGS.telegram_alerts;
+    updateChannelToggleBtn('toggle-vm-telegram', newState);
+    showToast(newState ? 'Telegram अलर्ट चालू किए गए' : 'Telegram अलर्ट बंद किए गए', newState ? 'success' : 'warning');
+  } else if (channel === 'email') {
+    CURRENT_VM_SETTINGS.email_alerts = !CURRENT_VM_SETTINGS.email_alerts;
+    newState = CURRENT_VM_SETTINGS.email_alerts;
+    updateChannelToggleBtn('toggle-vm-email', newState);
+    showToast(newState ? 'Gmail रिपोर्ट चालू की गई' : 'Gmail रिपोर्ट बंद की गई', newState ? 'success' : 'warning');
+  } else if (channel === 'escalation') {
+    CURRENT_VM_SETTINGS.overdue_escalation = !CURRENT_VM_SETTINGS.overdue_escalation;
+    newState = CURRENT_VM_SETTINGS.overdue_escalation;
+    updateChannelToggleBtn('toggle-vm-escalation', newState);
+    showToast(newState ? 'रेड-अलर्ट डिफ़ॉल्टर नोटिस सक्रिय' : 'रेड-अलर्ट डिफ़ॉल्टर नोटिस बंद', newState ? 'success' : 'warning');
+  } else if (channel === 'mdm') {
+    CURRENT_VM_SETTINGS.mdm_anomaly_scanner = !CURRENT_VM_SETTINGS.mdm_anomaly_scanner;
+    newState = CURRENT_VM_SETTINGS.mdm_anomaly_scanner;
+    updateChannelToggleBtn('toggle-vm-mdm', newState);
+    showToast(newState ? 'MDM विसंगति स्कैनर चालू' : 'MDM विसंगति स्कैनर बंद', newState ? 'success' : 'warning');
+  }
+}
+
+function updateChannelToggleBtn(btnId, isOn) {
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+  if (isOn) {
+    btn.textContent = 'चालू (ON)';
+    btn.style.background = '#059669';
+    btn.style.color = '#ffffff';
+  } else {
+    btn.textContent = 'बंद (OFF)';
+    btn.style.background = '#dc2626';
+    btn.style.color = '#ffffff';
+  }
+}
+
+function renderVMScheduleChips() {
+  const container = document.getElementById('vm-schedule-chips-container');
+  if (!container) return;
+  container.innerHTML = '';
+
+  if (!CURRENT_VM_SETTINGS.slots || CURRENT_VM_SETTINGS.slots.length === 0) {
+    container.innerHTML = '<span style="font-size:0.75rem; color:#94a3b8; font-style:italic">कोई समय स्लॉट निर्धारित नहीं है</span>';
+    return;
+  }
+
+  CURRENT_VM_SETTINGS.slots.forEach(slot => {
+    const chip = document.createElement('span');
+    chip.style.cssText = 'background:#eff6ff; color:#1e40af; border:1px solid #bfdbfe; padding:4px 8px; border-radius:6px; font-weight:700; font-size:0.78rem; display:inline-flex; align-items:center; gap:6px';
+    chip.innerHTML = `
+      <i class="fas fa-clock text-primary"></i> ${slot}
+      <i class="fas fa-times text-danger" style="cursor:pointer; font-size:0.82rem; padding:1px 3px" title="हटाएं" onclick="removeVMSlot('${slot}')"></i>
+    `;
+    container.appendChild(chip);
+  });
+}
+
+function addCustomVMSlot() {
+  const input = document.getElementById('vm-new-slot-input');
+  if (!input) return;
+  const val = input.value.trim().toUpperCase();
+  if (!val) {
+    showToast('कृपया समय लिखें (उदा. 10:30 AM या 05:00 PM)', 'warning');
+    return;
+  }
+  addPresetVMSlot(val);
+  input.value = '';
+}
+
+function addPresetVMSlot(slotStr) {
+  if (!CURRENT_VM_SETTINGS.slots) CURRENT_VM_SETTINGS.slots = [];
+  if (CURRENT_VM_SETTINGS.slots.includes(slotStr)) {
+    showToast(`स्लॉट '${slotStr}' पहले से जुड़ा हुआ है!`, 'info');
+    return;
+  }
+  CURRENT_VM_SETTINGS.slots.push(slotStr);
+  renderVMScheduleChips();
+  showToast(`नया समय स्लॉट '${slotStr}' जोड़ा गया! सेव करना न भूलें।`, 'success');
+}
+
+function removeVMSlot(slotStr) {
+  if (!CURRENT_VM_SETTINGS.slots) return;
+  CURRENT_VM_SETTINGS.slots = CURRENT_VM_SETTINGS.slots.filter(s => s !== slotStr);
+  renderVMScheduleChips();
+  showToast(`समय स्लॉट '${slotStr}' हटाया गया!`, 'info');
 }
 
 async function saveCloudVMSettings() {
-  const onRadio = document.getElementById('vm_switch_on');
-  const isEnabled = onRadio ? onRadio.checked : true;
-
-  const s12 = document.getElementById('vm_slot_12pm');
-  const s02 = document.getElementById('vm_slot_02pm');
-  const s04 = document.getElementById('vm_slot_04pm');
-  const s08 = document.getElementById('vm_slot_08pm');
-
-  const chTg = document.getElementById('vm_channel_telegram');
-  const chEm = document.getElementById('vm_channel_email');
-
   const payload = {
-    vm_enabled: isEnabled,
-    telegram_alerts: chTg ? chTg.checked : true,
-    email_alerts: chEm ? chEm.checked : true,
-    slots: {
-      "12:00 PM": s12 ? s12.checked : true,
-      "02:00 PM": s02 ? s02.checked : true,
-      "04:00 PM": s04 ? s04.checked : true,
-      "08:00 PM": s08 ? s08.checked : true
-    },
+    vm_enabled: CURRENT_VM_SETTINGS.vm_enabled !== false,
+    telegram_alerts: CURRENT_VM_SETTINGS.telegram_alerts !== false,
+    email_alerts: CURRENT_VM_SETTINGS.email_alerts !== false,
+    overdue_escalation: CURRENT_VM_SETTINGS.overdue_escalation !== false,
+    mdm_anomaly_scanner: CURRENT_VM_SETTINGS.mdm_anomaly_scanner !== false,
+    slots: CURRENT_VM_SETTINGS.slots || ["12:00 PM", "02:00 PM", "04:00 PM", "08:00 PM"],
     updated_by: STATE.currentUser ? STATE.currentUser.username : 'admin_jitendra',
     updated_at: new Date().toLocaleString('hi-IN') + ' IST'
   };
@@ -11355,7 +11434,6 @@ async function saveCloudVMSettings() {
     const data = await res.json();
     if (data.success) {
       showToast(data.message || 'क्लाउड VM टाइमर व स्वचालन सेटिंग्स सुरक्षित की गईं!', 'success');
-      updateVMSwitchUI();
     } else {
       showToast('त्रुटि: ' + (data.message || 'सेव नहीं हो सका'), 'error');
     }
@@ -11397,3 +11475,97 @@ async function triggerCloudVMManualNow() {
   }
 }
 
+/* =========================================================================
+   CONSOLIDATED ADMIN HUBS HELPERS (लाए गए बिखरे हुए कंट्रोल्स)
+   ========================================================================= */
+
+function populateAdminHubDemands() {
+  const select = document.getElementById('admin-hub-demand-select');
+  if (!select) return;
+  select.innerHTML = '';
+
+  const opt1 = document.createElement('option');
+  opt1.value = 'saman-pariksha-2026';
+  opt1.textContent = '📋 जिला समान परीक्षा 2026-27 (57 Sec/Sr.Sec स्कूल)';
+  select.appendChild(opt1);
+
+  if (STATE.demands && STATE.demands.length > 0) {
+    STATE.demands.forEach(d => {
+      const opt = document.createElement('option');
+      opt.value = d.id;
+      opt.textContent = `📌 ${d.title} (अंतिम तिथि: ${d.dueDate || 'यथाशीघ्र'})`;
+      select.appendChild(opt);
+    });
+  }
+}
+
+function triggerAdminHubBroadcastEmail() {
+  const select = document.getElementById('admin-hub-demand-select');
+  const dId = select ? select.value : 'saman-pariksha-2026';
+  openDemandBroadcastModal(dId);
+}
+
+function quickJumpToStaffSearch() {
+  const input = document.getElementById('admin-hub-staff-search');
+  const q = input ? input.value.trim() : '';
+  switchTab('staff');
+  if (q) {
+    const staffSearchInput = document.getElementById('staff-search-input');
+    if (staffSearchInput) {
+      staffSearchInput.value = q;
+      if (typeof renderStaffTable === 'function') renderStaffTable();
+    }
+  }
+}
+
+async function syncAdminAccessSheetFromPortal() {
+  showToast('Google Sheet सिंक आरंभ हो रहा है...', 'info');
+  try {
+    const res = await fetch('/api/sync_admin_sheet', { method: 'POST' });
+    const data = await res.json();
+    if (data.success) {
+      showToast(data.message || 'Admin Access Google Sheet पूर्णतः सिंक हो गई!', 'success');
+    } else {
+      showToast('सिंक त्रुटि: ' + (data.message || 'विफल'), 'error');
+    }
+  } catch (err) {
+    showToast('सर्वर से संपर्क त्रुटि: ' + err.message, 'error');
+  }
+}
+
+function downloadMasterDataJson() {
+  if (!window.MASTER_CBEO_DATA) {
+    showToast('मास्टर डेटा लोड नहीं है!', 'warning');
+    return;
+  }
+  const jsonStr = JSON.stringify(window.MASTER_CBEO_DATA, null, 2);
+  const blob = new Blob([jsonStr], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `master_cbeo_data_${Date.now()}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('master_cbeo_data.json डाउनलोड हो गया!', 'success');
+}
+
+function triggerAdminSheetSync() {
+  syncAdminAccessSheetFromPortal();
+}
+
+async function syncSamanParikshaToSheet() {
+  showToast('समान परीक्षा Google Sheet सिंक आरंभ हो रहा है...', 'info');
+  try {
+    const res = await fetch('/api/sync_saman_pariksha_sheet', { method: 'POST' });
+    const data = await res.json();
+    if (data.success) {
+      showToast(data.message || 'समान परीक्षा Google Sheet सफलतापूर्वक सिंक हो गई!', 'success');
+    } else {
+      showToast('सिंक त्रुटि: ' + (data.message || 'विफल'), 'error');
+    }
+  } catch (err) {
+    showToast('सर्वर से संपर्क त्रुटि: ' + err.message, 'error');
+  }
+}

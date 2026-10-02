@@ -365,6 +365,18 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                 self.send_json_response({'success': False, 'message': str(e)}, status=500)
             return
 
+        elif parsed_url.path == '/api/sync_saman_pariksha_sheet':
+            try:
+                submissions = {}
+                if os.path.exists('saman_pariksha_submissions.json'):
+                    with open('saman_pariksha_submissions.json', 'r', encoding='utf-8') as f:
+                        submissions = json.load(f)
+                sync_submissions(submissions)
+                self.send_json_response({'success': True, 'message': 'समान परीक्षा Google Sheet सफलतापूर्वक सिंक हो गई!'})
+            except Exception as e:
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
+
         # Fallback to default
         super().do_POST()
 
