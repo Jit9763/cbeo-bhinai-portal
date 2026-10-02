@@ -367,11 +367,16 @@ def main():
                 "body": report_content
             }
             res = requests.post(backup_gas_url, data=json.dumps(payload), headers={'Content-Type': 'text/plain;charset=utf-8'}, timeout=12)
-            if res.status_code == 200:
+            try:
+                res_data = res.json()
+            except Exception:
+                res_data = {}
+            if res.status_code == 200 and res_data.get('success'):
                 print("✓ Email dispatched successfully via Google Apps Script MailApp!")
                 email_sent_successfully = True
             else:
-                print(f"GAS Email dispatch returned status {res.status_code}: {res.text}")
+                err_msg = res_data.get('message') or res_data.get('error') or f"Status {res.status_code}"
+                print(f"GAS Email dispatch failed: {err_msg}")
         except Exception as e:
             print("Google Apps Script email dispatch note:", e)
 
