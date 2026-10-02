@@ -4988,7 +4988,7 @@ function filterDirectory() {
       <td>${idx + 1}</td>
       <td>
         <strong>${item.name}</strong>
-        ${item.is_principal ? '<span class="badge-tag" style="background:#0f172a; color:#f8fafc; font-size:0.75rem; margin-left:4px; font-weight:800; border:1px solid #3b82f6">👑 संस्था प्रधान</span>' : ''}
+        ${item.is_principal ? '<span class="badge-tag pradhan" style="background:#fef3c7; color:#78350f; font-size:0.75rem; margin-left:4px; font-weight:800; border:1.5px solid #f59e0b; padding:2px 8px"><i class="fas fa-crown" style="color:#b45309"></i> संस्था प्रधान</span>' : ''}
         ${item.is_private ? '<span class="badge-tag" style="background:#ede9fe; color:#6b21a8; font-size:0.7rem; margin-left:4px; font-weight:700">निजी</span>' : ''}
       </td>
       <td>
@@ -5281,7 +5281,7 @@ function filterStaffTable() {
       <td>${s.sso_id ? `<code>${s.sso_id}</code>` : '---'}</td>
       <td style="text-align:center">
         ${isPradhan 
-          ? `<span class="badge-tag" style="background:#0f172a; color:#f8fafc; font-weight:800; border:1.5px solid #334155; padding:3px 8px"><i class="fas fa-crown" style="color:#ffffff"></i> संस्था प्रधान</span>` 
+          ? `<span class="badge-tag pradhan" style="background:#fef3c7; color:#78350f; font-weight:800; border:1.5px solid #f59e0b; padding:3px 10px; font-size:0.78rem"><i class="fas fa-crown" style="color:#b45309"></i> संस्था प्रधान</span>` 
           : `<span style="color:#94a3b8; font-size:0.78rem">--</span>`
         }
       </td>
@@ -5293,7 +5293,7 @@ function filterStaffTable() {
                   <i class="fas fa-times-circle"></i> पदमुक्त
                  </button>` 
               : `<button class="btn btn-primary btn-sm" onclick="markKarmikAsSansthaPradhan('${s.staff_id}')" title="इस कार्मिक को विद्यालय का संस्था प्रधान बनाएं" style="font-size:0.75rem; padding:2px 8px; font-weight:700; background:#1e3a8a; border-color:#1e40af; color:#ffffff">
-                  <i class="fas fa-crown" style="color:#ffffff"></i> प्रधान बनाएं
+                  <i class="fas fa-crown" style="color:#fde047"></i> प्रधान बनाएं
                  </button>`
           ) : ''}
           ${canEditKarmik ? `
