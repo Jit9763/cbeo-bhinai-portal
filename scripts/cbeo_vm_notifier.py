@@ -242,6 +242,27 @@ def main():
         except Exception as e:
             print("Note reading cbeo_notification_config.json:", e)
 
+    # 5B. Google Gemini AI Executive Analysis
+    gemini_key = (os.environ.get('GEMINI_API_KEY') or local_cfg.get('GEMINI_API_KEY') or vm_settings.get('gemini_api_key') or '').strip()
+    gemini_ai_brief = ""
+    if gemini_key and requests:
+        try:
+            print("[CBEO-VM] Generating AI Executive Analysis via Google Gemini Flash...")
+            g_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={gemini_key}"
+            g_prompt = (
+                f"You are Chief AI Officer for CBEO Bhinai, District AJMER (अजमेर), Rajasthan. "
+                f"Rule: District is strictly AJMER (अजमेर); never Kekri. "
+                f"Status: {sp_sub_count}/{total_sp_schools} schools submitted Saman Pariksha forms, {sp_pend_count} pending. "
+                f"Write a crisp, authoritative 2-line Hindi executive directive for the CBEO bulletin urging urgent compliance before 05 October 2026."
+            )
+            g_payload = {"contents": [{"parts": [{"text": g_prompt}]}]}
+            g_resp = requests.post(g_url, json=g_payload, timeout=8)
+            if g_resp.status_code == 200:
+                gemini_ai_brief = g_resp.json()['candidates'][0]['content']['parts'][0]['text'].strip()
+                print("[CBEO-VM] ✓ Gemini AI Analysis generated successfully!")
+        except Exception as ge:
+            print("[CBEO-VM] Note on Gemini:", ge)
+
     # 6. Telegram Compliance Alert
     tg_token = (os.environ.get('TELEGRAM_BOT_TOKEN') or local_cfg.get('TELEGRAM_BOT_TOKEN') or '').strip()
     tg_chat_id = (os.environ.get('TELEGRAM_CHAT_ID') or local_cfg.get('TELEGRAM_CHAT_ID') or '').strip()
@@ -261,6 +282,10 @@ def main():
                 f"• कुल लंबित: <b>{sp_pend_count} विद्यालय ({round(100 - sp_percent, 1)}%)</b>",
                 ""
             ]
+
+            if gemini_ai_brief:
+                tg_html_lines.append(f"🤖 <b>AI कार्यकारी विश्लेषण (Google Gemini):</b>\n<i>{gemini_ai_brief}</i>\n")
+
 
             if sp_pend_count > 0:
                 tg_html_lines.append("🚨 <b>2. रेड-अलर्ट डिफ़ॉल्टर सूची (Overdue Escalation):</b>")
@@ -358,6 +383,7 @@ def main():
             </div>
 
             <div style="padding:24px 28px;">
+                {f"""<div style="background:#eff6ff; border-left:4px solid #2563eb; padding:12px 16px; border-radius:6px; margin-bottom:16px;"><strong style="color:#1e40af; font-size:13px;">🤖 Google Gemini AI कार्यकारी विश्लेषण (Executive Briefing):</strong><p style="margin:4px 0 0 0; color:#1e293b; font-size:13px; line-height:1.45; font-style:italic;">{gemini_ai_brief}</p></div>""" if gemini_ai_brief else ""}
                 <h3 style="margin:0 0 16px 0; color:#0f172a; border-left:4px solid #2563eb; padding-left:10px; font-size:16px;">
                     📋 1. जिला समान परीक्षा (सत्र 2026-27) - प्रगति सारांश
                 </h3>
