@@ -7,3 +7,4 @@ patch_app_js_*.py
 run_portal_test.py
 scratch/
 *.png
+cbeo_notification_config.json
