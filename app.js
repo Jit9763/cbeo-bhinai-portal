@@ -11882,24 +11882,29 @@ async function saveGeminiKeyFromHub() {
 async function loadGeminiKeyStatus() {
   const badge = document.getElementById('gemini-key-status-badge');
   const inp = document.getElementById('vm-gemini-key-input');
+  const countEl = document.getElementById('gemini-key-count');
+  const savedEl = document.getElementById('gemini-tokens-saved');
   try {
     const res = await fetch('/api/get_gemini_status');
     const data = await res.json();
     if (data && data.is_configured) {
       if (badge) {
-        badge.textContent = 'सक्रिय (Configured)';
+        badge.textContent = `सक्रिय (${data.key_count} Keys)`;
         badge.style.color = '#059669';
         badge.style.background = '#dcfce7';
       }
       if (inp && !inp.value && data.masked_key) {
         inp.placeholder = data.masked_key;
       }
+      if (countEl) countEl.textContent = data.key_count || 1;
+      if (savedEl) savedEl.textContent = (data.tokens_saved || 0) + ' Tokens';
     } else {
       const localKey = localStorage.getItem('cbeo_gemini_api_key');
       if (localKey && badge) {
         badge.textContent = 'सक्रिय (लोकल)';
         badge.style.color = '#059669';
         badge.style.background = '#dcfce7';
+        if (countEl) countEl.textContent = '1';
       }
     }
   } catch (e) {
@@ -11908,6 +11913,7 @@ async function loadGeminiKeyStatus() {
       badge.textContent = 'सक्रिय (लोकल)';
       badge.style.color = '#059669';
       badge.style.background = '#dcfce7';
+      if (countEl) countEl.textContent = '1';
     }
   }
 }

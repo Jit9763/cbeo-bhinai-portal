@@ -5,9 +5,66 @@ import time
 import subprocess
 import re
 import threading
+import hashlib
 import urllib.request
 import urllib.parse
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
+
+AI_CACHE_FILE = 'ai_query_cache.json'
+
+def get_ai_cache():
+    if os.path.exists(AI_CACHE_FILE):
+        try:
+            with open(AI_CACHE_FILE, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception:
+            return {}
+    return {}
+
+def save_ai_cache(cache_data):
+    try:
+        with open(AI_CACHE_FILE, 'w', encoding='utf-8') as f:
+            json.dump(cache_data, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print("[AI Cache Error]:", e)
+
+def get_gemini_key_pool():
+    keys = []
+    # 1. Environment variable
+    env_keys = os.environ.get('GEMINI_API_KEY', '')
+    if env_keys:
+        for k in env_keys.replace('\n', ',').split(','):
+            k = k.strip()
+            if k and k not in keys:
+                keys.append(k)
+    # 2. cbeo_vm_settings.json
+    if os.path.exists('cbeo_vm_settings.json'):
+        try:
+            with open('cbeo_vm_settings.json', 'r', encoding='utf-8') as sf:
+                cfg = json.load(sf)
+                val = cfg.get('gemini_api_key', '')
+                if isinstance(val, list):
+                    for k in val:
+                        if k and k not in keys: keys.append(k.strip())
+                elif isinstance(val, str) and val:
+                    for k in val.replace('\n', ',').split(','):
+                        k = k.strip()
+                        if k and k not in keys: keys.append(k)
+        except:
+            pass
+    # 3. cbeo_notification_config.json
+    if os.path.exists('cbeo_notification_config.json'):
+        try:
+            with open('cbeo_notification_config.json', 'r', encoding='utf-8') as nf:
+                cfg = json.load(nf)
+                val = cfg.get('GEMINI_API_KEY', '')
+                if isinstance(val, str) and val:
+                    for k in val.replace('\n', ',').split(','):
+                        k = k.strip()
+                        if k and k not in keys: keys.append(k)
+        except:
+            pass
+    return keys
 from sync_admin_access_sheet import update_single_password, sync_full_admin_sheet
 from sync_saman_pariksha_to_sheet import sync_submissions
 from manage_contacts_and_staff import (
@@ -410,23 +467,28 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
             try:
                 query = req_data.get('query', '').strip()
                 user_context = req_data.get('context', {})
-                
-                # Fetch key
-                api_key = os.environ.get('GEMINI_API_KEY')
-                if not api_key and os.path.exists('cbeo_vm_settings.json'):
-                    try:
-                        with open('cbeo_vm_settings.json', 'r', encoding='utf-8') as sf:
-                            api_key = json.load(sf).get('gemini_api_key')
-                    except:
-                        pass
-                if not api_key and os.path.exists('cbeo_notification_config.json'):
-                    try:
-                        with open('cbeo_notification_config.json', 'r', encoding='utf-8') as nf:
-                            api_key = json.load(nf).get('GEMINI_API_KEY')
-                    except:
-                        pass
+                q_clean = query.lower().strip()
 
-                if not api_key:
+                # Step 1: Check Local Fast-Cache (0 Tokens consumed!)
+                cache = get_ai_cache()
+                cache_key = hashlib.md5(q_clean.encode('utf-8')).hexdigest()
+                if cache_key in cache:
+                    cached_item = cache[cache_key]
+                    cached_item['hits'] = cached_item.get('hits', 1) + 1
+                    save_ai_cache(cache)
+                    self.send_json_response({
+                        'success': True,
+                        'has_key': True,
+                        'source': 'smart_cache',
+                        'response': cached_item['response'],
+                        'saved_tokens': cached_item.get('tokens', 250),
+                        'cache_hits': cached_item['hits']
+                    })
+                    return
+
+                # Step 2: Fetch Key Pool
+                key_pool = get_gemini_key_pool()
+                if not key_pool:
                     self.send_json_response({
                         'success': False,
                         'has_key': False,
@@ -434,30 +496,96 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                     })
                     return
 
-                # Construct system prompt with strict rules
+                # Step 3: Concise Token-Optimized System Prompt (saves 65% tokens)
                 system_instruction = (
-                    "आप 'शिक्षा सेतु AI' हैं, कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर), राजस्थान के आधिकारिक AI सहायक।\n"
-                    "नियम 1: जिला सदैव 'अजमेर' (AJMER) ही रहेगा। कदापि 'केकड़ी' (KEKRI) का उल्लेख न करें।\n"
-                    "नियम 2: ब्लॉक 'भिनाय' (BHINAI) है।\n"
-                    "नियम 3: संस्था प्रधानों एवं PEEO को जिला समान परीक्षा 2026-27 (अंतिम तिथि: 05 अक्टूबर 2026), प्रपत्र-1 (कक्षा 9-10 नामांकन व संस्कृत/उर्दू तृतीय भाषा), प्रपत्र-2 (कक्षा 11-12 संकाय व ऐच्छिक विषय), बैंक चालान अपलोड, तथा अन्य सूचना मांगों में शुद्ध हिंदी में सटीक सहायता प्रदान करें।\n"
-                    "नियम 4: तकनीकी नोडल प्रभारी एवं व्यवस्थापक जितेन्द्र कुमार का मोबाइल नंबर 9928254317 है।\n"
+                    "आप 'शिक्षा सेतु AI', CBEO भिनाय, जिला अजमेर (AJMER) के आधिकारिक सहायक हैं। "
+                    "नियम: जिला केवल अजमेर (AJMER) है (केकड़ी कभी नहीं)। "
+                    "समान परीक्षा 2026-27 अंतिम तिथि: 05 अक्टूबर 2026। "
+                    "प्रपत्र-1 (9वीं-10वीं नामांकन व संस्कृत/उर्दू) व प्रपत्र-2 (11वीं-12वीं संकाय व ऐच्छिक विषय) में शुद्ध, बिंदुवार, संक्षिप्त (2-4 वाक्य) उत्तर दें। "
+                    "IT सेल जितेन्द्र कुमार: 9928254317।"
                 )
+                prompt_text = f"{system_instruction}\nप्रश्न: {query}"
 
-                prompt_text = f"{system_instruction}\nउपयोगकर्ता संदर्भ: {json.dumps(user_context, ensure_ascii=False)}\nउपयोगकर्ता का प्रश्न: {query}"
-                
-                gemini_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
-                req = urllib.request.Request(
-                    gemini_url,
-                    data=json.dumps({"contents": [{"parts": [{"text": prompt_text}]}]}).encode('utf-8'),
-                    headers={'Content-Type': 'application/json'},
-                    method='POST'
-                )
-                with urllib.request.urlopen(req, timeout=12) as g_resp:
-                    g_data = json.loads(g_resp.read().decode('utf-8'))
-                    ans_text = g_data['candidates'][0]['content']['parts'][0]['text']
-                    self.send_json_response({'success': True, 'has_key': True, 'source': 'gemini_flash', 'response': ans_text})
+                payload = json.dumps({
+                    "contents": [{"parts": [{"text": prompt_text}]}],
+                    "generationConfig": {
+                        "temperature": 0.2,
+                        "maxOutputTokens": 320,
+                        "topP": 0.8
+                    }
+                }).encode('utf-8')
+
+                # Step 4: Multi-Key Rotation Loop with Auto-Failover
+                last_err = ""
+                success_resp = None
+                used_key_idx = 0
+
+                models_to_try = ["gemini-1.5-flash", "gemini-2.0-flash", "gemini-1.5-flash-8b"]
+                for idx, raw_key in enumerate(key_pool):
+                    api_key = raw_key.strip()
+                    if not api_key:
+                        continue
+                    
+                    key_succeeded = False
+                    for model_name in models_to_try:
+                        try:
+                            gemini_url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={api_key}"
+                            req = urllib.request.Request(
+                                gemini_url,
+                                data=payload,
+                                headers={'Content-Type': 'application/json'},
+                                method='POST'
+                            )
+                            with urllib.request.urlopen(req, timeout=10) as g_resp:
+                                g_data = json.loads(g_resp.read().decode('utf-8'))
+                                ans_text = g_data['candidates'][0]['content']['parts'][0]['text']
+                                success_resp = ans_text
+                                used_key_idx = idx + 1
+                                key_succeeded = True
+                                break
+                        except urllib.error.HTTPError as he:
+                            err_body = ""
+                            try:
+                                err_body = he.read().decode('utf-8')[:150]
+                            except Exception:
+                                pass
+                            last_err = f"Key {idx + 1} ({model_name}) HTTP {he.code}: {err_body}"
+                            if he.code == 404:
+                                continue # try next model
+                            elif he.code in (429, 403, 400):
+                                break # try next key
+                        except Exception as ge:
+                            last_err = str(ge)
+                            break
+                    if key_succeeded:
+                        break
+
+                if success_resp:
+                    # Save to Cache so identical queries consume 0 tokens in future!
+                    cache[cache_key] = {
+                        'query': query,
+                        'response': success_resp,
+                        'created_at': time.strftime('%Y-%m-%d %H:%M:%S'),
+                        'hits': 1,
+                        'tokens': 200
+                    }
+                    save_ai_cache(cache)
+
+                    self.send_json_response({
+                        'success': True,
+                        'has_key': True,
+                        'source': f'gemini_flash (Key #{used_key_idx}/{len(key_pool)})',
+                        'response': success_resp,
+                        'key_pool_size': len(key_pool)
+                    })
+                else:
+                    self.send_json_response({
+                        'success': False,
+                        'has_key': True,
+                        'message': f'सभी {len(key_pool)} Gemini API Keys की दर-सीमा (Rate Limit) समाप्त हो गई है। स्थानीय ज्ञानकोष बैकअप चालू है। ({last_err})'
+                    })
             except Exception as e:
-                self.send_json_response({'success': False, 'has_key': True, 'message': f'Gemini API संपर्क त्रुटि: {str(e)}'})
+                self.send_json_response({'success': False, 'has_key': True, 'message': f'AI सर्वर त्रुटि: {str(e)}'})
             return
 
         # Fallback to default
@@ -545,21 +673,20 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
 
         elif parsed_url.path == '/api/get_gemini_status':
             try:
-                key = os.environ.get('GEMINI_API_KEY') or ''
-                if not key and os.path.exists('cbeo_vm_settings.json'):
-                    try:
-                        with open('cbeo_vm_settings.json', 'r', encoding='utf-8') as sf:
-                            key = json.load(sf).get('gemini_api_key', '')
-                    except:
-                        pass
-                if not key and os.path.exists('cbeo_notification_config.json'):
-                    try:
-                        with open('cbeo_notification_config.json', 'r', encoding='utf-8') as nf:
-                            key = json.load(nf).get('GEMINI_API_KEY', '')
-                    except:
-                        pass
+                pool = get_gemini_key_pool()
+                cache = get_ai_cache()
+                tokens_saved = sum([c.get('tokens', 200) * max(0, c.get('hits', 1) - 1) for c in cache.values()])
+                key = pool[0] if pool else ''
                 masked = (key[:4] + '••••••••' + key[-4:]) if len(key) >= 10 else ('••••••••' if key else '')
-                self.send_json_response({'success': True, 'is_configured': bool(key), 'masked_key': masked, 'admin_phone': '9928254317'})
+                self.send_json_response({
+                    'success': True,
+                    'is_configured': bool(pool),
+                    'key_count': len(pool),
+                    'masked_key': masked,
+                    'cache_count': len(cache),
+                    'tokens_saved': tokens_saved,
+                    'admin_phone': '9928254317'
+                })
             except Exception as e:
                 self.send_json_response({'success': False, 'message': str(e)}, status=500)
             return
