@@ -1,19 +1,35 @@
 /**
  * ==============================================================================================
  * कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय, जिला - अजमेर (AJMER)
- * MASTER BACKUP & ARCHIVE GOOGLE APPS SCRIPT (FULL POWER V1.0)
+ * MASTER BACKUP & DUMMY SANDBOX GOOGLE APPS SCRIPT (V2.0 OFFICIAL)
  * ==============================================================================================
  * MANDATORY RULE: जिला सदैव अजमेर (AJMER) रहेगा। केकड़ी (KEKRI) कदापि प्रयोग न करें।
  * 
- * निर्देश (DEPLOYMENT STEPS):
- * 1. अपनी नई "CBEO Bhinai Master Backup Sheet" Google Spreadsheet खोलें।
+ * संबद्ध गूगल स्प्रेडशीट:
+ * नाम: 7_CBEO_Master_Backup_And_Dummy_Sandbox_Sheet
+ * ID: 1sBtbb-uWHxaI7nbrkEbyAZs8CwMYuWE4fmwJhHN2FQU
+ * URL: https://docs.google.com/spreadsheets/d/1sBtbb-uWHxaI7nbrkEbyAZs8CwMYuWE4fmwJhHN2FQU/edit
+ * 
+ * 🚀 इंस्टॉलेशन निर्देश (2 आसान स्टेप):
+ * 1. अपनी गूगल शीट (7_CBEO_Master_Backup_And_Dummy_Sandbox_Sheet) खोलें।
  * 2. Extensions > Apps Script पर क्लिक करें।
- * 3. यह सम्पूर्ण कोड पेस्ट करें और Ctrl+S दबाएं।
+ * 3. यह सम्पूर्ण कोड पेस्ट करें और Ctrl+S (Save) दबाएं।
  * 4. Deploy > New Deployment > Web app चुनें।
- * 5. Execute as: "Me" | Who has access: "Anyone" चुनें।
- * 6. "Deploy" दबाएं और जनरेट हुआ Web App URL कॉपी कर लें।
+ *    - Execute as: "Me"
+ *    - Who has access: "Anyone"
+ * 5. Deploy दबाएं और प्राप्त Web App URL को कॉपी कर लें।
  * ==============================================================================================
  */
+
+var BACKUP_SPREADSHEET_ID = "1sBtbb-uWHxaI7nbrkEbyAZs8CwMYuWE4fmwJhHN2FQU";
+
+function getTargetSpreadsheet() {
+  try {
+    return SpreadsheetApp.getActiveSpreadsheet() || SpreadsheetApp.openById(BACKUP_SPREADSHEET_ID);
+  } catch(e) {
+    return SpreadsheetApp.openById(BACKUP_SPREADSHEET_ID);
+  }
+}
 
 function doGet(e) {
   return handleRequest(e, 'GET');
@@ -24,7 +40,12 @@ function doPost(e) {
 }
 
 function handleRequest(e, method) {
-  var output = { success: false, district: "AJMER (अजमेर)", office: "CBEO BHINAI (AJMER)" };
+  var output = { 
+    success: false, 
+    district: "AJMER (अजमेर)", 
+    office: "CBEO BHINAI (AJMER)",
+    spreadsheet_id: BACKUP_SPREADSHEET_ID
+  };
   
   try {
     var params = {};
@@ -41,17 +62,51 @@ function handleRequest(e, method) {
     }
 
     var action = String(params.action || 'health_check').trim().toLowerCase();
-    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var ss = getTargetSpreadsheet();
 
     // 1. Health Check
     if (action === 'health_check' || action === 'ping') {
       output.success = true;
-      output.message = "CBEO Bhinai Backup Web App is Active & Ready (District: AJMER)";
-      output.timestamp = new Date().toISOString();
+      output.message = "CBEO Bhinai Master Backup Web App Active & Ready (District: AJMER)";
+      output.timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
       output.sheets_available = ss.getSheets().map(function(s) { return s.getName(); });
     }
 
-    // 2. Archive Demand & Submissions Backup
+    // 2. 🧪 Sandbox Test Entry (डमी स्टोरेज / टेस्ट मोड)
+    else if (action === 'sandbox_test_entry' || action === 'save_dummy_submission') {
+      var entry = params.test_entry || params;
+      var dummySheet = getOrCreateSheet(ss, "DUMMY_SANDBOX_STORAGE", [
+        "क्र.सं.", "टेस्ट सबमिशन ID", "मांग ID", "मांग शीर्षक", "विद्यालय SD कोड", 
+        "विद्यालय का नाम", "संबंधित PEEO", "प्रस्तुतकर्ता अधिकारी", "मोबाइल नंबर", 
+        "टेस्ट सबमिशन दिनांक", "डेटा प्रविष्टियां (JSON)", "डिजिटल हस्ताक्षर (Base64)"
+      ], false, "#059669");
+
+      var nextRow = dummySheet.getLastRow() + 1;
+      var testId = "TEST_" + Date.now();
+
+      dummySheet.appendRow([
+        nextRow - 1,
+        testId,
+        entry.demand_id || '',
+        entry.demand_title || 'टेस्ट मांग',
+        entry.school_code || '',
+        entry.school_name || '',
+        entry.peeo_name || '',
+        entry.submitted_by || 'टेस्ट संस्था प्रधान',
+        entry.submitter_mobile || '',
+        new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+        JSON.stringify(entry.data || {}),
+        entry.signature_data ? "हस्ताक्षर सुरक्षित (Base64)" : "हस्ताक्षर नहीं"
+      ]);
+
+      logAudit(ss, entry.submitted_by || 'Admin', "डमी टेस्ट सबमिशन (Sandbox)", entry.school_name || '', "टेस्ट डेटा सैंडबॉक्स स्टोरेज में सुरक्षित");
+
+      output.success = true;
+      output.test_id = testId;
+      output.message = "डमी टेस्ट डेटा सफलतापूर्वक 'DUMMY_SANDBOX_STORAGE' टैब में सुरक्षित हो गया!";
+    }
+
+    // 3. 📦 Archive Demand & Submissions Backup (आर्काइव बैकअप)
     else if (action === 'archive_demand' || action === 'backup_demand') {
       var demandId = params.demand_id || ('DEMAND_' + Date.now());
       var demandTitle = params.demand_title || 'अनाम मांग';
@@ -63,7 +118,7 @@ function handleRequest(e, method) {
       var regSheet = getOrCreateSheet(ss, "मांग_आर्काइव_रजिस्ट्री", [
         "क्र.सं.", "मांग ID", "मांग शीर्षक", "संग्रह स्तर", "कॉलम संख्या", 
         "कुल सबमिशन", "आर्काइव दिनांक", "आर्काइवकर्ता", "मांग कॉन्फ़िगरेशन (JSON)"
-      ]);
+      ], false, "#1e3a8a");
       
       var nextRow = regSheet.getLastRow() + 1;
       regSheet.appendRow([
@@ -78,12 +133,12 @@ function handleRequest(e, method) {
         JSON.stringify(demandData)
       ]);
 
-      // Save Detailed Submissions Data
+      // Save Detailed Submissions Data in dedicated tab
       var subSheetName = "आर्काइव_" + sanitizeSheetName(demandTitle).substring(0, 20);
       var subSheet = getOrCreateSheet(ss, subSheetName, [
         "क्र.सं.", "मांग ID", "इकाई कोड / SD Code", "इकाई नाम / विद्यालय", "PEEO परिक्षेत्र", 
         "सत्यापन स्थिति", "प्रविष्टि दिनांक", "सबमिशन डेटा (JSON)"
-      ]);
+      ], false, "#0369a1");
 
       var subList = Array.isArray(submissions) ? submissions : Object.values(submissions);
       subList.forEach(function(sub, idx) {
@@ -99,8 +154,7 @@ function handleRequest(e, method) {
         ]);
       });
 
-      // Audit Log
-      logAudit(ss, archivedBy, "मांग आर्काइव व बैकअप", demandTitle, "सफल स्थानांतरण: " + subList.length + " सबमिशन");
+      logAudit(ss, archivedBy, "मांग आर्काइव व बैकअप", demandTitle, "सफल बैकअप: " + subList.length + " सबमिशन");
 
       output.success = true;
       output.message = "मांग '" + demandTitle + "' का सम्पूर्ण डेटा बैकअप शीट में सुरक्षित कर लिया गया!";
@@ -108,7 +162,36 @@ function handleRequest(e, method) {
       output.backup_sheet_name = subSheetName;
     }
 
-    // 3. Restore Archived Demand
+    // 4. 🔄 Live Dynamic Demand Submission Backup (लाइव सबमिशन सिंक)
+    else if (action === 'save_live_submission') {
+      var liveSheet = getOrCreateSheet(ss, "लाइव_मांग_सबमिशन_बैकअप", [
+        "क्र.सं.", "सबमिशन ID", "मांग ID", "मांग शीर्षक", "विद्यालय SD कोड",
+        "विद्यालय का नाम", "संबंधित PEEO", "प्रस्तुतकर्ता", "मोबाइल नंबर",
+        "सबमिशन दिनांक व समय", "डेटा प्रविष्टियां (JSON)", "सत्यापन स्थिति"
+      ], false, "#b45309");
+
+      var subRow = [
+        liveSheet.getLastRow(),
+        "SUB_" + Date.now(),
+        params.demand_id || '',
+        params.demand_title || '',
+        params.school_code || '',
+        params.school_name || '',
+        params.peeo_name || '',
+        params.submitted_by || '',
+        params.submitter_mobile || '',
+        new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+        JSON.stringify(params.data || {}),
+        "सत्यापित (Verified)"
+      ];
+
+      liveSheet.appendRow(subRow);
+
+      output.success = true;
+      output.message = "लाइव सबमिशन बैकअप शीट में सुरक्षित हुआ!";
+    }
+
+    // 5. Restore Archived Demand
     else if (action === 'restore_demand') {
       var resDemandId = params.demand_id;
       var restoredBy = params.restored_by || 'जितेन्द्र कुमार (सुपर एडमिन)';
@@ -135,74 +218,6 @@ function handleRequest(e, method) {
       output.demand = restoredDemand;
     }
 
-    // 4. Staff Master Complete Backup
-    else if (action === 'sync_staff_master_backup') {
-      var staffList = params.staff || [];
-      var syncBy = params.synced_by || 'जितेन्द्र कुमार (सुपर एडमिन)';
-      var stSheet = getOrCreateSheet(ss, "कार्मिक_मास्टर_बैकअप", [
-        "क्र.सं.", "Staff ID", "कार्मिक नाम (हिन्दी)", "लिंग", "पद", "पदस्थापन विद्यालय", 
-        "PEEO परिक्षेत्र", "मोबाइल नम्बर", "SSO ID", "संस्था प्रधान स्थिति", "अपडेट दिनांक"
-      ], true); // true = overwrite
-
-      var rows = staffList.map(function(s, idx) {
-        return [
-          idx + 1,
-          s.staff_id || '',
-          s.name || '',
-          s.gender || '',
-          s.post || '',
-          s.school_name || '',
-          s.peeo_name || '',
-          s.mobile || '',
-          s.sso_id || '',
-          s.is_sanstha_pradhan ? "👑 संस्था प्रधान" : "कार्मिक",
-          new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
-        ];
-      });
-
-      if (rows.length > 0) {
-        stSheet.getRange(2, 1, rows.length, rows[0].length).setValues(rows);
-      }
-
-      logAudit(ss, syncBy, "कार्मिक मास्टर बैकअप सिंक", staffList.length + " कार्मिक", "देवनागरी यूनिकोड डेटा बैकअप पूर्ण");
-
-      output.success = true;
-      output.message = staffList.length + " कार्मिकों का सम्पूर्ण बैकअप गूगल शीट में सुरक्षित हुआ!";
-      output.total_staff_backed_up = staffList.length;
-    }
-
-    // 5. Schools & Contacts Complete Backup
-    else if (action === 'sync_schools_master_backup') {
-      var schools = params.schools || [];
-      var peeos = params.peeos || [];
-      var schSheet = getOrCreateSheet(ss, "विद्यालय_एवं_सम्पर्क_बैकअप", [
-        "क्र.सं.", "शाला दर्पण कोड", "विद्यालय का नाम", "श्रेणी", "प्रकार", 
-        "PEEO परिक्षेत्र", "संस्था प्रधान / संचालक", "मोबाइल नम्बर", "परीक्षा प्रभारी", "प्रभारी मोबाइल"
-      ], true);
-
-      var rows = schools.map(function(s, idx) {
-        return [
-          idx + 1,
-          s.shala_darpan_code || '',
-          s.school_name || '',
-          s.category || '',
-          s.type || '',
-          s.peeo_name || '',
-          s.principal_name || '',
-          s.principal_mobile || '',
-          s.incharge_name || '',
-          s.incharge_mobile || ''
-        ];
-      });
-
-      if (rows.length > 0) {
-        schSheet.getRange(2, 1, rows.length, rows[0].length).setValues(rows);
-      }
-
-      output.success = true;
-      output.message = schools.length + " विद्यालयों का मास्टर डेटा बैकअप सुरक्षित हुआ!";
-    }
-
     // 6. Universal Audit Log
     else if (action === 'log_audit') {
       logAudit(ss, params.user || 'Unknown', params.action_name || 'Action', params.target || '', params.details || '');
@@ -226,14 +241,16 @@ function handleRequest(e, method) {
 }
 
 // --- HELPER FUNCTIONS ---
-function getOrCreateSheet(ss, sheetName, headers, clearExisting) {
+function getOrCreateSheet(ss, sheetName, headers, clearExisting, headerBgColor) {
   var sheet = ss.getSheetByName(sheetName);
+  var bg = headerBgColor || "#1e293b";
+
   if (!sheet) {
     sheet = ss.insertSheet(sheetName);
     if (headers && headers.length > 0) {
       sheet.appendRow(headers);
       var headerRange = sheet.getRange(1, 1, 1, headers.length);
-      headerRange.setBackground("#1e293b");
+      headerRange.setBackground(bg);
       headerRange.setFontColor("#ffffff");
       headerRange.setFontWeight("bold");
     }
@@ -242,7 +259,7 @@ function getOrCreateSheet(ss, sheetName, headers, clearExisting) {
     if (headers && headers.length > 0) {
       sheet.appendRow(headers);
       var headerRange = sheet.getRange(1, 1, 1, headers.length);
-      headerRange.setBackground("#1e293b");
+      headerRange.setBackground(bg);
       headerRange.setFontColor("#ffffff");
       headerRange.setFontWeight("bold");
     }
@@ -258,7 +275,7 @@ function logAudit(ss, user, action, target, details) {
   try {
     var auditSheet = getOrCreateSheet(ss, "पोर्टल_ऑडिट_ट्रेल", [
       "समय मोहर", "उपयोगकर्ता (User)", "कार्यवाही (Action)", "लक्षित विषय (Target)", "विस्तृत विवरण (Details)", "जिला"
-    ]);
+    ], false, "#475569");
     auditSheet.appendRow([
       new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
       user,
