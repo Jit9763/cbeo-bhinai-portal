@@ -738,7 +738,7 @@ function updateUserHeaderBadge() {
       const sub = STATE.samanParikshaSubmissions[sdCode];
       const exCode = sub?.exam_code || schData?.exam_code || '';
       if (headerCodeLabel) {
-        headerCodeLabel.innerHTML = `शा.दा./PSP कोड: <strong style="color:#fde047">${sdCode}</strong>` + (exCode ? ` <span class="sep-dot">•</span> परीक्षा कोड: <strong style="color:#86efac">${exCode}</strong>` : '');
+        headerCodeLabel.innerHTML = `शा.दा./PSP कोड: <strong style="color:#ffffff; background:rgba(255,255,255,0.2); padding:1px 6px; border-radius:4px">${sdCode}</strong>` + (exCode ? ` <span class="sep-dot">•</span> परीक्षा कोड: <strong style="color:#86efac">${exCode}</strong>` : '');
       }
       if (headerSubCode) headerSubCode.innerHTML = `PEEO परिक्षेत्र: <strong>${currentPeeoName}</strong>`;
       if (headerBadge) headerBadge.textContent = '🏛️ विद्यालय आधिकारिक पोर्टल';
@@ -749,7 +749,7 @@ function updateUserHeaderBadge() {
       const peeoSub = STATE.samanParikshaSubmissions[sdCode];
       const peeoExCode = peeoSub?.exam_code || '';
       if (headerCodeLabel) {
-        headerCodeLabel.innerHTML = `PEEO कोड: <strong style="color:#fde047">${sdCode}</strong>` + (peeoExCode ? ` <span class="sep-dot">•</span> परीक्षा कोड: <strong style="color:#86efac">${peeoExCode}</strong>` : '');
+        headerCodeLabel.innerHTML = `PEEO कोड: <strong style="color:#ffffff; background:rgba(255,255,255,0.2); padding:1px 6px; border-radius:4px">${sdCode}</strong>` + (peeoExCode ? ` <span class="sep-dot">•</span> परीक्षा कोड: <strong style="color:#86efac">${peeoExCode}</strong>` : '');
       }
       if (headerSubCode) headerSubCode.innerHTML = `ब्लॉक: <strong>भिनाय (अजमेर)</strong>`;
       if (headerBadge) headerBadge.textContent = `🏫 PEEO नोडल पोर्टल (${STATE.currentUser.schools?.length || 0} स्कूल)`;
@@ -5004,7 +5004,7 @@ function filterDirectory() {
         <span style="font-size:0.85rem; color:#0f172a; font-weight:700">${item.school}</span>
       </td>
       <td>
-        <span class="badge-tag blue" style="font-size:0.75rem; font-weight:700">${item.peeo_name}</span>
+        <span class="badge-tag blue" style="font-size:0.75rem; font-weight:700; background:#eff6ff; color:#1e40af; border:1px solid #bfdbfe">${item.peeo_name}</span>
       </td>
       <td>
         <div style="display:flex; gap:0.35rem; align-items:center; flex-wrap:wrap">
@@ -5276,7 +5276,7 @@ function filterStaffTable() {
         ${s.shala_darpan_code ? `<span class="badge-tag" style="background:#e2e8f0; color:#1e293b; font-size:0.7rem; font-weight:700; margin-left:4px">शा.दा. ${s.shala_darpan_code}</span>` : ''}
         ${s.school_name_en ? `<div style="font-size:0.72rem; color:#64748b; font-family:monospace">${s.school_name_en}</div>` : ''}
       </td>
-      <td><span class="badge-tag blue" style="font-size:0.75rem; font-weight:700">${s.peeo_name}</span></td>
+      <td><span class="badge-tag blue" style="font-size:0.75rem; font-weight:700; background:#eff6ff; color:#1e40af; border:1px solid #bfdbfe">${s.peeo_name}</span></td>
       <td>${s.mobile ? `<a href="tel:${s.mobile}" style="text-decoration:none; color:#0f766e; font-weight:800"><i class="fas fa-phone-alt"></i> ${s.mobile}</a>` : '---'}</td>
       <td>${s.sso_id ? `<code>${s.sso_id}</code>` : '---'}</td>
       <td style="text-align:center">
@@ -8264,7 +8264,7 @@ function renderAdminMatrix() {
       pendingDemandsForPeeo.push(`समान परीक्षा 2026-27 (${spDoneCount}/${spTotal} पूर्ण)`);
       spCellHtml = `
         <td>
-          <button class="status-badge ${spDoneCount > 0 ? 'yellow' : 'red'}" style="border:none; cursor:pointer" onclick="openPeeoConsolidatedExamPreview('${peeo.peeo_name}')" title="समेकित रिपोर्ट देखें">
+          <button class="status-badge ${spDoneCount > 0 ? 'blue' : 'red'}" style="border:none; cursor:pointer" onclick="openPeeoConsolidatedExamPreview('${peeo.peeo_name}')" title="समेकित रिपोर्ट देखें">
             <i class="fas fa-clock"></i> ${spDoneCount}/${spTotal} पूर्ण
           </button>
         </td>
@@ -8299,7 +8299,7 @@ function renderAdminMatrix() {
         pendingDemandsForPeeo.push(`${d.title} (${dDoneCount}/${dTotal} पूर्ण)`);
         dynamicCellsHtml += `
           <td>
-            <button class="status-badge ${dDoneCount > 0 ? 'yellow' : 'red'}" style="border:none; cursor:pointer" onclick="openDynamicDemandPortal('${d.id}')" title="पोर्टल स्थिति देखें">
+            <button class="status-badge ${dDoneCount > 0 ? 'blue' : 'red'}" style="border:none; cursor:pointer" onclick="openDynamicDemandPortal('${d.id}')" title="पोर्टल स्थिति देखें">
               <i class="fas fa-clock"></i> ${dDoneCount}/${dTotal} पूर्ण
             </button>
           </td>

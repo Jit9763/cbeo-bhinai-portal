@@ -144,13 +144,52 @@ body {
 }
 
 .badge-tag {
-  background: rgba(255, 255, 255, 0.15);
-  padding: 2px 8px;
+  background: #eff6ff;
+  padding: 2px 10px;
   border-radius: var(--radius-full);
   font-size: 0.75rem;
-  font-weight: 600;
-  color: #fef08a;
-  border: 1px solid rgba(254, 240, 138, 0.3);
+  font-weight: 700;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.badge-tag.blue {
+  background: #eff6ff !important;
+  color: #1e40af !important;
+  border: 1px solid #bfdbfe !important;
+}
+
+.badge-tag.green {
+  background: #ecfdf5 !important;
+  color: #047857 !important;
+  border: 1px solid #a7f3d0 !important;
+}
+
+.badge-tag.purple {
+  background: #faf5ff !important;
+  color: #7e22ce !important;
+  border: 1px solid #e9d5ff !important;
+}
+
+.badge-tag.red {
+  background: #fef2f2 !important;
+  color: #b91c1c !important;
+  border: 1px solid #fecaca !important;
+}
+
+.header-brand .badge-tag,
+.user-session-card .badge-tag,
+#portal-header-badge {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+}
+
+.text-info {
+  color: #0284c7 !important;
 }
 
 /* User & Session Status Badge */
@@ -435,7 +474,7 @@ body {
 .stat-card.blue .stat-icon-wrapper { background: #e0f2fe; color: #0284c7; }
 .stat-card.green .stat-icon-wrapper { background: var(--success-light); color: var(--success); }
 .stat-card.red .stat-icon-wrapper { background: var(--danger-light); color: var(--danger); }
-.stat-card.orange .stat-icon-wrapper { background: var(--warning-light); color: #0369a1; }
+.stat-card.orange .stat-icon-wrapper { background: #e0f2fe; color: #0369a1; }
 .stat-card.purple .stat-icon-wrapper { background: #f3e8ff; color: #9333ea; }
 
 .stat-info h3 {
@@ -1066,7 +1105,7 @@ body {
 .toast.success { background: #065f46; border-left: 4px solid #34d399; }
 .toast.error { background: #991b1b; border-left: 4px solid #f87171; }
 .toast.info { background: #1e3a8a; border-left: 4px solid #60a5fa; }
-.toast.warning { background: #854d0e; border-left: 4px solid #facc15; }
+.toast.warning { background: #0c4a6e; border-left: 4px solid #0284c7; }
 
 @keyframes slideUp {
   from { transform: translateY(20px); opacity: 0; }
