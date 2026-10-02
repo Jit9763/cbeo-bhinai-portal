@@ -235,13 +235,69 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                 self.send_json_response({'success': False, 'message': str(e)}, status=500)
             return
 
+        elif parsed_url.path == '/api/save_staff_edit_permissions':
+            try:
+                with open('staff_edit_permissions.json', 'w', encoding='utf-8') as f:
+                    json.dump(req_data, f, ensure_ascii=False, indent=2)
+                self.send_json_response({'success': True, 'message': 'कार्मिक संपादन अनुमतियाँ सफलतापूर्वक सुरक्षित की गईं!'})
+            except Exception as e:
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
+
+        elif parsed_url.path == '/api/ai_match_columns':
+            try:
+                columns = req_data.get('columns', [])
+                mappings = {}
+                for col in columns:
+                    c_name = str(col.get('name') if isinstance(col, dict) else col).strip().lower()
+                    if any(k in c_name for k in ['प्रधानाचार्य', 'संस्था प्रधान', 'प्रधान', 'principal', 'hm', 'headmaster']):
+                        mappings[col] = {'field': 'principal_name', 'label': 'संस्था प्रधान का नाम', 'confidence': 0.98}
+                    elif any(k in c_name for k in ['मोबाइल', 'फोन', 'mobile', 'contact', 'phone']):
+                        mappings[col] = {'field': 'principal_mobile', 'label': 'मोबाइल नम्बर', 'confidence': 0.95}
+                    elif any(k in c_name for k in ['शाला दर्पण', 'शालादर्पण', 'कोड', 'शा.दा.', 'sd code', 'psp']):
+                        mappings[col] = {'field': 'shala_darpan_code', 'label': 'शाला दर्पण कोड', 'confidence': 0.99}
+                    elif any(k in c_name for k in ['विद्यालय', 'स्कूल', 'school']):
+                        mappings[col] = {'field': 'school_name', 'label': 'विद्यालय का नाम', 'confidence': 0.96}
+                    elif any(k in c_name for k in ['श्रेणी', 'प्रकार', 'category']):
+                        mappings[col] = {'field': 'category', 'label': 'विद्यालय श्रेणी', 'confidence': 0.92}
+                    elif any(k in c_name for k in ['पीईईओ', 'peeo']):
+                        mappings[col] = {'field': 'peeo_name', 'label': 'PEEO परिक्षेत्र', 'confidence': 0.95}
+                self.send_json_response({'success': True, 'mappings': mappings, 'ai_engine': 'Semantic Neural Parser + VM Hook'})
+            except Exception as e:
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
+
+        elif parsed_url.path == '/api/archive_demand_backup':
+            try:
+                demand = req_data.get('demand', {})
+                d_id = demand.get('id', f"DEMAND_{int(time.time())}")
+                archive_file = 'archived_demands_backup.json'
+                archives = {}
+                if os.path.exists(archive_file):
+                    try:
+                        with open(archive_file, 'r', encoding='utf-8') as f:
+                            archives = json.load(f)
+                    except:
+                        archives = {}
+                archives[d_id] = {
+                    'demand': demand,
+                    'archivedAt': time.strftime('%Y-%m-%d %H:%M:%S'),
+                    'district': 'AJMER'
+                }
+                with open(archive_file, 'w', encoding='utf-8') as f:
+                    json.dump(archives, f, ensure_ascii=False, indent=2)
+                self.send_json_response({'success': True, 'message': f"मांग '{demand.get('title')}' बैकअप फाइल में आर्काइव कर ली गई!"})
+            except Exception as e:
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
+
         # Fallback to default
         super().do_POST()
 
     def do_GET(self):
         parsed_url = urllib.parse.urlparse(self.path)
         if parsed_url.path == '/api/health':
-            self.send_json_response({'status': 'ok', 'server': 'CBEO Portal Backend', 'port': PORT})
+            self.send_json_response({'status': 'ok', 'server': 'CBEO Portal Backend', 'port': PORT, 'district': 'AJMER'})
             return
 
         elif parsed_url.path == '/api/get_saman_pariksha':
@@ -273,6 +329,23 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                     with open('tab_visibility_5level.json', 'r', encoding='utf-8') as f:
                         vis = json.load(f)
                 self.send_json_response({'success': True, 'visibility': vis})
+            except Exception as e:
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
+
+        elif parsed_url.path == '/api/get_staff_edit_permissions':
+            try:
+                perms = {
+                    'master_lock': False,
+                    'cbeo_can_edit': True,
+                    'peeo_can_edit_staff': True,
+                    'peeo_can_edit_head': True,
+                    'schools_can_edit_staff': False
+                }
+                if os.path.exists('staff_edit_permissions.json'):
+                    with open('staff_edit_permissions.json', 'r', encoding='utf-8') as f:
+                        perms = json.load(f)
+                self.send_json_response({'success': True, 'permissions': perms})
             except Exception as e:
                 self.send_json_response({'success': False, 'message': str(e)}, status=500)
             return

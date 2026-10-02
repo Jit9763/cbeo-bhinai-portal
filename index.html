@@ -77,9 +77,6 @@
       <button class="nav-tab" id="nav-tab-dashboard" onclick="switchTab('dashboard')">
         <i class="fas fa-chart-pie"></i> मुख्य डैशबोर्ड
       </button>
-      <button class="nav-tab" id="nav-tab-explorer" onclick="switchTab('explorer')">
-        <i class="fas fa-sitemap"></i> स्कूल व स्टाफ एक्सप्लोरर
-      </button>
       <button class="nav-tab" id="nav-tab-directory" onclick="switchTab('directory')">
         <i class="fas fa-address-book"></i> ब्लॉक संपर्क डायरेक्टरी
       </button>
@@ -1181,6 +1178,59 @@
           </div>
         </div>
 
+        <!-- C. JITENDRA SUPER ADMIN STAFF DATA EDIT & LOCK CONTROLS -->
+        <div id="jitendra-staff-permissions-card" style="background:#ffffff; border:2px solid #059669; border-radius:12px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1)">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; border-bottom:1.5px solid #a7f3d0; padding-bottom:0.75rem">
+            <div>
+              <h3 style="font-size:1.15rem; color:#047857; margin:0; display:flex; align-items:center; gap:0.5rem">
+                <i class="fas fa-user-lock" style="color:#059669"></i> 🔒 कार्मिक डेटा संपादन एवं संस्था प्रधान लॉक/अनलॉक नियंत्रण
+              </h3>
+              <p style="font-size:0.83rem; color:#475569; margin:3px 0 0 0">
+                शिक्षक डेटा अपडेट होने के बाद संपादन लॉक करें या आवश्यकतानुसार PEEO व स्कूल स्तर पर संपादन अधिकार खोलें।
+              </p>
+            </div>
+            <div style="display:flex; gap:0.5rem; align-items:center">
+              <button class="btn btn-outline-danger btn-sm" id="btn-toggle-staff-master-lock" onclick="toggleStaffMasterLock()" style="font-weight:700">
+                <i class="fas fa-lock"></i> समस्त संपादन लॉक करें
+              </button>
+              <button class="btn btn-success btn-sm" onclick="saveStaffEditPermissionsMatrix()" style="font-weight:700">
+                <i class="fas fa-save"></i> 💾 अनुमतियां सुरक्षित करें
+              </button>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1rem; padding:0.5rem">
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1rem">
+              <label style="display:flex; align-items:center; gap:0.75rem; font-weight:700; color:#1e293b; cursor:pointer">
+                <input type="checkbox" id="perm-cbeo-edit" style="width:18px; height:18px">
+                1. CBEO Admin कार्मिक एडिट कर सकते हैं
+              </label>
+              <p style="font-size:0.78rem; color:#64748b; margin:0.35rem 0 0 1.8rem">CBEO लॉगिन पर कार्मिकों के विवरण में बदलाव व संस्था प्रधान मार्क करने की अनुमति</p>
+            </div>
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1rem">
+              <label style="display:flex; align-items:center; gap:0.75rem; font-weight:700; color:#1e293b; cursor:pointer">
+                <input type="checkbox" id="perm-peeo-edit-staff" style="width:18px; height:18px">
+                2. 25 PEEO अपने अधीनस्थ कार्मिक एडिट कर सकते हैं
+              </label>
+              <p style="font-size:0.78rem; color:#64748b; margin:0.35rem 0 0 1.8rem">PEEO लॉगिन पर अधीनस्थ स्कूलों के स्टाफ की जानकारी एडिट करने की अनुमति</p>
+            </div>
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1rem">
+              <label style="display:flex; align-items:center; gap:0.75rem; font-weight:700; color:#1e293b; cursor:pointer">
+                <input type="checkbox" id="perm-peeo-edit-head" style="width:18px; height:18px">
+                3. 👑 PEEO संस्था प्रधान / निजी संचालक विवरण बदल सकते हैं
+              </label>
+              <p style="font-size:0.78rem; color:#64748b; margin:0.35rem 0 0 1.8rem">विशेष अधिकार: PEEO द्वारा निजी व अधीनस्थ स्कूलों के संस्था प्रधान का नाम/मोबाइल दर्ज करने की अनुमति</p>
+            </div>
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1rem">
+              <label style="display:flex; align-items:center; gap:0.75rem; font-weight:700; color:#1e293b; cursor:pointer">
+                <input type="checkbox" id="perm-school-edit" style="width:18px; height:18px">
+                4. स्कूल लॉगिन पर अपने कार्मिक एडिट कर सकते हैं
+              </label>
+              <p style="font-size:0.78rem; color:#64748b; margin:0.35rem 0 0 1.8rem">विद्यालय स्तर पर केवल अपने विद्यालय के शिक्षकों का विवरण अपडेट करने की अनुमति</p>
+            </div>
+          </div>
+        </div>
+
         <!-- Demand Publish / Unpublish Control Box -->
         <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:1.25rem; margin-bottom:1.5rem">
           <h3 style="font-size:1.05rem; color:#1b365d; margin-bottom:0.5rem">
@@ -1939,6 +1989,146 @@
         <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-transfer-school-peeo')">रद्द करें</button>
         <button class="btn btn-warning" onclick="saveSchoolTransfer()" style="font-weight:700">
           <i class="fas fa-check-circle"></i> PEEO ट्रांसफर पूर्ण करें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8C1. EDIT INFORMATION DEMAND & DYNAMIC COLUMN BUILDER MODAL -->
+  <div id="modal-edit-demand" class="modal-overlay">
+    <div class="modal-card" style="max-width:760px">
+      <div class="modal-header">
+        <h3><i class="fas fa-edit text-primary"></i> सूचना मांग प्रपत्र संपादन एवं कॉलम प्रबंधन (Edit Demand)</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-edit-demand')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="edit-demand-id">
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label style="font-weight:700">सूचना का नाम / शीर्षक (Title):</label>
+          <input type="text" id="edit-demand-title" class="filter-input" style="width:100%">
+        </div>
+        <div class="form-grid" style="margin-bottom:0.85rem">
+          <div class="form-group">
+            <label style="font-weight:700">अंतिम तिथि (Due Date):</label>
+            <input type="date" id="edit-demand-date" class="filter-input" style="width:100%">
+          </div>
+          <div class="form-group">
+            <label style="font-weight:700">प्राथमिकता (Priority):</label>
+            <select id="edit-demand-priority" class="filter-select" style="width:100%">
+              <option value="high">उच्च प्राथमिकता (High)</option>
+              <option value="medium">मध्यम (Medium)</option>
+              <option value="low">सामान्य (Low)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label style="font-weight:700">5-स्तरीय लक्षित ऑडियंस (Target Audience):</label>
+          <div style="display:flex; gap:1rem; flex-wrap:wrap; background:#f8fafc; padding:0.75rem; border-radius:8px; border:1px solid #e2e8f0">
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; font-weight:700">
+              <input type="checkbox" id="edit-demand-aud-cbeo" style="width:16px; height:16px"> 1. CBEO Admin
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; font-weight:700">
+              <input type="checkbox" id="edit-demand-aud-peeo" style="width:16px; height:16px"> 2. 25 PEEO प्रभारी
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; font-weight:700">
+              <input type="checkbox" id="edit-demand-aud-sec" style="width:16px; height:16px"> 3. 57 Sec/Sr.Sec स्कूल
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; font-weight:700">
+              <input type="checkbox" id="edit-demand-aud-govt" style="width:16px; height:16px"> 4. समस्त राजकीय स्कूल (132)
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; font-weight:700">
+              <input type="checkbox" id="edit-demand-aud-all" style="width:16px; height:16px"> 5. समस्त स्कूल (निजी सहित - 178)
+            </label>
+          </div>
+        </div>
+
+        <!-- Dynamic Column Manager -->
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem">
+            <label style="font-weight:700">प्रपत्र के कॉलम (Dynamic Columns):</label>
+            <span style="font-size:0.8rem; color:#64748b">कॉलम जोड़ें या हटाएं</span>
+          </div>
+          <div id="edit-demand-columns-list" style="display:flex; flex-direction:column; gap:0.5rem; max-height:220px; overflow-y:auto; padding:0.5rem; background:#f1f5f9; border-radius:8px">
+            <!-- Rendered dynamically by renderEditDemandColumns() -->
+          </div>
+          <div style="display:flex; gap:0.5rem; margin-top:0.75rem">
+            <input type="text" id="new-column-input" placeholder="नए कॉलम का नाम लिखें..." class="filter-input" style="flex:1">
+            <select id="new-column-type" class="filter-select" style="width:130px">
+              <option value="text">टेक्स्ट (Text)</option>
+              <option value="number">संख्या (Number)</option>
+              <option value="date">दिनांक (Date)</option>
+            </select>
+            <button class="btn btn-outline-primary btn-sm" type="button" onclick="addNewColumnToEditList()">
+              <i class="fas fa-plus"></i> कॉलम जोड़ें
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label style="font-weight:700">संक्षिप्त निर्देश / टिप्पणी:</label>
+          <textarea id="edit-demand-desc" rows="2" class="filter-input" style="width:100%"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-edit-demand')">रद्द करें</button>
+        <button class="btn btn-primary" onclick="saveEditedDemand()">
+          <i class="fas fa-save"></i> परिवर्तन सुरक्षित करें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8C2. EDIT SCHOOL PRINCIPAL / SANCHALAK MODAL (PRIVATE & GOVT) -->
+  <div id="modal-edit-school-head" class="modal-overlay">
+    <div class="modal-card" style="max-width:580px">
+      <div class="modal-header">
+        <h3><i class="fas fa-user-tie text-primary"></i> संस्था प्रधान / संचालक विवरण अद्यतन</h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-edit-school-head')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="edit-head-school-code">
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label style="font-weight:700">विद्यालय का नाम:</label>
+          <input type="text" id="edit-head-school-name" class="filter-input" style="width:100%" readonly>
+        </div>
+        <div class="form-grid" style="margin-bottom:0.85rem">
+          <div class="form-group">
+            <label style="font-weight:700">शाला दर्पण / PSP कोड:</label>
+            <input type="text" id="edit-head-school-code-display" class="filter-input" style="width:100%" readonly>
+          </div>
+          <div class="form-group">
+            <label style="font-weight:700">PEEO परिक्षेत्र:</label>
+            <input type="text" id="edit-head-peeo-name" class="filter-input" style="width:100%" readonly>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label style="font-weight:700">👑 संस्था प्रधान / संचालक का नाम:</label>
+          <input type="text" id="edit-head-name" class="filter-input" style="width:100%" placeholder="उदा. आलोक मिश्रा / श्री रामचन्द्र...">
+        </div>
+        <div class="form-grid" style="margin-bottom:0.85rem">
+          <div class="form-group">
+            <label style="font-weight:700">मोबाइल नम्बर (10 अंक):</label>
+            <input type="tel" id="edit-head-mobile" class="filter-input" style="width:100%" placeholder="9829xxxxxx" maxlength="10">
+          </div>
+          <div class="form-group">
+            <label style="font-weight:700">पद (Designation):</label>
+            <select id="edit-head-designation" class="filter-select" style="width:100%">
+              <option value="प्रधानाचार्य">प्रधानाचार्य (Principal)</option>
+              <option value="संस्था प्रधान">संस्था प्रधान (Head Master)</option>
+              <option value="संचालक / व्यवस्थापक">संचालक / व्यवस्थापक (Private Director)</option>
+              <option value="प्रभारी संस्था प्रधान">प्रभारी संस्था प्रधान</option>
+            </select>
+          </div>
+        </div>
+        <div style="background:#fffbeb; border:1px solid #fef3c7; border-radius:8px; padding:0.75rem; font-size:0.8rem; color:#92400e">
+          <i class="fas fa-info-circle"></i> <strong>सूचना:</strong> विवरण सुरक्षित करते ही यह पोर्टल के सभी डेटाबेस (मास्टर डायरेक्टरी, 57 स्कूल सूची, गूगल शीट एवं सम्पर्क फाइल) में तुरंत अपडेट हो जाएगा।
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-edit-school-head')">रद्द करें</button>
+        <button class="btn btn-success" onclick="saveSchoolHeadDetails()">
+          <i class="fas fa-save"></i> 💾 सुरक्षित करें
         </button>
       </div>
     </div>

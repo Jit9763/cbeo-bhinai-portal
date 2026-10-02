@@ -1,0 +1,7 @@
+{
+  "master_lock": false,
+  "cbeo_can_edit": true,
+  "peeo_can_edit_staff": true,
+  "peeo_can_edit_head": true,
+  "schools_can_edit_staff": false
+}
