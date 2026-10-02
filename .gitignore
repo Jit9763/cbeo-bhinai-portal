@@ -8,3 +8,4 @@ run_portal_test.py
 scratch/
 *.png
 cbeo_notification_config.json
+scripts/check_vm_run.py

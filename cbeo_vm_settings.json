@@ -1,0 +1,16 @@
+{
+  "vm_enabled": true,
+  "telegram_alerts": true,
+  "email_alerts": true,
+  "slots": {
+    "12:00 PM": true,
+    "02:00 PM": true,
+    "04:00 PM": true,
+    "08:00 PM": true
+  },
+  "last_run_time": "03-10-2026 01:22 AM IST",
+  "last_run_id": "37056925474",
+  "last_run_status": "success",
+  "updated_by": "admin_jitendra",
+  "updated_at": "03-10-2026 01:25 AM IST"
+}

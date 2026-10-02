@@ -1201,7 +1201,10 @@ function applyTabVisibility() {
   if (tabAdmin) tabAdmin.style.display = (isJitendra || isCBEO) ? 'inline-flex' : 'none';
   if (quickBanner) quickBanner.style.display = isTabVisibleForCurrentUser('directory') ? 'flex' : 'none';
 
-  // Inside Admin Tab: Jitendra sees the 5-Level Control Matrix card & Staff Permissions card; CBEO does NOT!
+  // Inside Admin Tab: Jitendra sees Cloud VM Controller, 5-Level Control Matrix & Staff Permissions
+  const vmCard = document.getElementById('jitendra-cloud-vm-control-card');
+  if (vmCard) vmCard.style.display = isJitendra ? 'block' : 'none';
+
   const matrixCard = document.getElementById('jitendra-access-control-matrix-card');
   if (matrixCard) matrixCard.style.display = isJitendra ? 'block' : 'none';
 
@@ -8511,8 +8514,9 @@ function renderAdminControlView() {
   // Render CBEO Executive Dashboard (visible to both Jitendra and CBEO)
   renderCBEOExecutiveDemands();
 
-  // Render 5-Level Control Matrix & Staff Permissions (for Jitendra Super Admin)
+  // Render Cloud VM Controller, 5-Level Control Matrix & Staff Permissions (for Jitendra Super Admin)
   if (isJitendra) {
+    loadAndRenderVMControlCard();
     render5LevelTabVisibilityMatrix();
     renderStaffEditPermissionsMatrix();
   }
@@ -11227,3 +11231,169 @@ function downloadVMReportMarkdown() {
   URL.revokeObjectURL(url);
   showToast('VM लंबित रिपोर्ट (.md) डाउनलोड हो गई!', 'success');
 }
+
+/* =========================================================================
+   11B. JITENDRA SUPER ADMIN CLOUD VM CONTROLLER & SCHEDULER
+   ========================================================================= */
+
+let CURRENT_VM_SETTINGS = {
+  vm_enabled: true,
+  telegram_alerts: true,
+  email_alerts: true,
+  slots: {
+    "12:00 PM": true,
+    "02:00 PM": true,
+    "04:00 PM": true,
+    "08:00 PM": true
+  }
+};
+
+async function loadAndRenderVMControlCard() {
+  const card = document.getElementById('jitendra-cloud-vm-control-card');
+  if (!card) return;
+
+  try {
+    const res = await fetch('/api/get_vm_status');
+    if (res.ok) {
+      const data = await res.json();
+      if (data.settings) {
+        CURRENT_VM_SETTINGS = data.settings;
+      }
+      // Populate master switch
+      const onRadio = document.getElementById('vm_switch_on');
+      const offRadio = document.getElementById('vm_switch_off');
+      if (CURRENT_VM_SETTINGS.vm_enabled !== false) {
+        if (onRadio) onRadio.checked = true;
+      } else {
+        if (offRadio) offRadio.checked = true;
+      }
+
+      // Populate slots
+      const s = CURRENT_VM_SETTINGS.slots || {};
+      const s12 = document.getElementById('vm_slot_12pm');
+      const s02 = document.getElementById('vm_slot_02pm');
+      const s04 = document.getElementById('vm_slot_04pm');
+      const s08 = document.getElementById('vm_slot_08pm');
+      if (s12) s12.checked = s['12:00 PM'] !== false;
+      if (s02) s02.checked = s['02:00 PM'] !== false;
+      if (s04) s04.checked = s['04:00 PM'] !== false;
+      if (s08) s08.checked = s['08:00 PM'] !== false;
+
+      // Populate channels
+      const chTg = document.getElementById('vm_channel_telegram');
+      const chEm = document.getElementById('vm_channel_email');
+      if (chTg) chTg.checked = CURRENT_VM_SETTINGS.telegram_alerts !== false;
+      if (chEm) chEm.checked = CURRENT_VM_SETTINGS.email_alerts !== false;
+
+      // Populate diagnostics
+      const lastTimeEl = document.getElementById('vm-last-run-time');
+      const lastStatusEl = document.getElementById('vm-last-run-status');
+      if (lastTimeEl && CURRENT_VM_SETTINGS.last_run_time) {
+        lastTimeEl.textContent = CURRENT_VM_SETTINGS.last_run_time;
+      }
+      if (lastStatusEl && CURRENT_VM_SETTINGS.last_run_status) {
+        lastStatusEl.textContent = '✓ ' + CURRENT_VM_SETTINGS.last_run_status.toUpperCase();
+      }
+      updateVMSwitchUI();
+    }
+  } catch (err) {
+    console.warn("Could not load VM status from server:", err);
+  }
+}
+
+function updateVMSwitchUI() {
+  const onRadio = document.getElementById('vm_switch_on');
+  const isEnabled = onRadio ? onRadio.checked : true;
+  const badge = document.getElementById('vm-live-master-badge');
+  if (badge) {
+    if (isEnabled) {
+      badge.textContent = '● VM सक्रिय (Active)';
+      badge.style.background = '#ecfdf5';
+      badge.style.color = '#065f46';
+      badge.style.borderColor = '#a7f3d0';
+    } else {
+      badge.textContent = '⏸ VM बंद (Paused)';
+      badge.style.background = '#fef2f2';
+      badge.style.color = '#991b1b';
+      badge.style.borderColor = '#fecaca';
+    }
+  }
+}
+
+async function saveCloudVMSettings() {
+  const onRadio = document.getElementById('vm_switch_on');
+  const isEnabled = onRadio ? onRadio.checked : true;
+
+  const s12 = document.getElementById('vm_slot_12pm');
+  const s02 = document.getElementById('vm_slot_02pm');
+  const s04 = document.getElementById('vm_slot_04pm');
+  const s08 = document.getElementById('vm_slot_08pm');
+
+  const chTg = document.getElementById('vm_channel_telegram');
+  const chEm = document.getElementById('vm_channel_email');
+
+  const payload = {
+    vm_enabled: isEnabled,
+    telegram_alerts: chTg ? chTg.checked : true,
+    email_alerts: chEm ? chEm.checked : true,
+    slots: {
+      "12:00 PM": s12 ? s12.checked : true,
+      "02:00 PM": s02 ? s02.checked : true,
+      "04:00 PM": s04 ? s04.checked : true,
+      "08:00 PM": s08 ? s08.checked : true
+    },
+    updated_by: STATE.currentUser ? STATE.currentUser.username : 'admin_jitendra',
+    updated_at: new Date().toLocaleString('hi-IN') + ' IST'
+  };
+
+  try {
+    const res = await fetch('/api/save_vm_settings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if (data.success) {
+      showToast(data.message || 'क्लाउड VM टाइमर व स्वचालन सेटिंग्स सुरक्षित की गईं!', 'success');
+      updateVMSwitchUI();
+    } else {
+      showToast('त्रुटि: ' + (data.message || 'सेव नहीं हो सका'), 'error');
+    }
+  } catch (err) {
+    showToast('सर्वर से संपर्क नहीं हो सका: ' + err.message, 'error');
+  }
+}
+
+async function triggerCloudVMManualNow() {
+  const btn = document.getElementById('btn-trigger-cloud-vm');
+  const origHtml = btn ? btn.innerHTML : '';
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> क्लाउड VM आरंभ हो रहा है...';
+  }
+
+  try {
+    const res = await fetch('/api/trigger_vm', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'manual_trigger' })
+    });
+    const data = await res.json();
+    if (data.success) {
+      showToast(data.message || '🚀 क्लाउड VM सफलतापूर्वक ट्रिगर कर दिया गया!', 'success');
+      setTimeout(() => {
+        loadAndRenderVMControlCard();
+      }, 5000);
+    } else {
+      showToast('त्रुटि: ' + (data.message || 'VM ट्रिगर विफल'), 'error');
+    }
+  } catch (err) {
+    showToast('सर्वर से संपर्क नहीं हो सका: ' + err.message, 'error');
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = origHtml;
+    }
+  }
+}
+

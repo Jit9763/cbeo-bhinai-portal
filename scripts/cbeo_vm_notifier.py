@@ -32,10 +32,32 @@ def main():
     time_str = ist_time.strftime('%d-%m-%Y %I:%M %p')
     print(f"=== CBEO Bhinai VM Engine Started at {time_str} IST ===")
 
-    # 1. Load Master Data & Submissions
+    # 1. Load Master Data & VM Settings
     root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     data_path = os.path.join(root_dir, 'master_cbeo_data.json')
     saman_subs_path = os.path.join(root_dir, 'saman_pariksha_submissions.json')
+    settings_file = os.path.join(root_dir, 'cbeo_vm_settings.json')
+
+    vm_settings = {
+        'vm_enabled': True,
+        'telegram_alerts': True,
+        'email_alerts': True,
+        'slots': {'12:00 PM': True, '02:00 PM': True, '04:00 PM': True, '08:00 PM': True}
+    }
+    if os.path.exists(settings_file):
+        try:
+            with open(settings_file, 'r', encoding='utf-8') as sf:
+                vm_settings.update(json.load(sf))
+        except Exception as e:
+            print("Note reading cbeo_vm_settings.json:", e)
+
+    # Check if VM is disabled by Jitendra Admin
+    action_type = os.environ.get('ACTION_TYPE', 'all').lower()
+    is_manual = action_type in ['manual', 'force'] or len(sys.argv) > 1 and sys.argv[1] == '--force'
+
+    if not vm_settings.get('vm_enabled', True) and not is_manual:
+        print("[CBEO-VM] 🛑 VM Automation is currently turned OFF by Jitendra Admin in Portal Settings. Exiting safely.")
+        return
 
     if not os.path.exists(data_path):
         print(f"ERROR: master_cbeo_data.json not found at {data_path}")
@@ -202,7 +224,7 @@ def main():
     tg_token = (os.environ.get('TELEGRAM_BOT_TOKEN') or local_cfg.get('TELEGRAM_BOT_TOKEN') or '').strip()
     tg_chat_id = (os.environ.get('TELEGRAM_CHAT_ID') or local_cfg.get('TELEGRAM_CHAT_ID') or '').strip()
 
-    if tg_token and tg_chat_id and requests:
+    if tg_token and tg_chat_id and requests and vm_settings.get('telegram_alerts', True):
         try:
             print("Sending Telegram compliance notification...")
             tg_html_lines = [
@@ -349,8 +371,8 @@ def main():
 
     email_sent_successfully = False
 
-    # Attempt 1: Direct SMTP via Gmail if credentials provided
-    if email_user and email_pass and email_to:
+    # Attempt 1: Direct SMTP via Gmail if credentials provided and email enabled
+    if email_user and email_pass and email_to and vm_settings.get('email_alerts', True):
         try:
             print(f"Sending direct SMTP Email to {email_to}...")
             recipients = [r.strip() for r in email_to.split(',') if r.strip()]

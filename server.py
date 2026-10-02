@@ -1,6 +1,11 @@
 import os
 import sys
 import json
+import time
+import subprocess
+import re
+import threading
+import urllib.request
 import urllib.parse
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from sync_admin_access_sheet import update_single_password, sync_full_admin_sheet
@@ -79,6 +84,43 @@ def update_dynamic_master_contacts(school_code, req_data):
         print(f"[API] Updated dynamic contacts in master_cbeo_data for school {school_code}")
     except Exception as e:
         print(f"[API Warning] Failed to update dynamic master contacts: {e}")
+
+def trigger_github_actions_vm():
+    try:
+        url_bytes = subprocess.check_output(['git', 'config', '--get', 'remote.origin.url'])
+        url_str = url_bytes.decode().strip()
+        m = re.search(r'https://([^@]+)@github\.com', url_str)
+        token = m.group(1) if m else ''
+        if not token:
+            return {'success': False, 'message': 'GitHub PAT token not found in git remote.'}
+        
+        api_url = 'https://api.github.com/repos/Jit9763/cbeo-bhinai-portal/actions/workflows/cbeo_vm_automation.yml/dispatches'
+        req = urllib.request.Request(
+            api_url,
+            data=json.dumps({'ref': 'main', 'inputs': {'action_type': 'all'}}).encode('utf-8'),
+            headers={
+                'Authorization': f'token {token}',
+                'Accept': 'application/vnd.github.v3+json',
+                'User-Agent': 'CBEO-Server'
+            },
+            method='POST'
+        )
+        with urllib.request.urlopen(req) as resp:
+            if resp.status in (200, 204):
+                return {'success': True, 'message': '🚀 GitHub Actions Cloud VM सफलतापूर्वक ट्रिगर कर दिया गया! कुछ ही सेकंडों में टेलीग्राम व ईमेल पर रिपोर्ट आ जाएगी।'}
+            return {'success': False, 'message': f'GitHub API Status: {resp.status}'}
+    except Exception as e:
+        return {'success': False, 'message': f'VM ट्रिगर त्रुटि: {str(e)}'}
+
+def sync_vm_settings_to_git():
+    try:
+        subprocess.run(['git', 'add', 'cbeo_vm_settings.json', 'cbeo_vm_live_status.json', 'scripts/cbeo_vm_notifier.py'], capture_output=True)
+        subprocess.run(['git', 'commit', '-m', 'Update Cloud VM schedule and settings from Jitendra Portal'], capture_output=True)
+        subprocess.run(['git', 'push', 'origin', 'main'], capture_output=True)
+        print("[Git-Sync] Pushed updated VM settings to origin/main successfully.")
+    except Exception as e:
+        print("[Git-Sync Warning] Could not push VM settings:", e)
+
 
 class CBEORequestHandler(SimpleHTTPRequestHandler):
     def end_headers(self):
@@ -304,6 +346,25 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                 self.send_json_response({'success': False, 'message': str(e)}, status=500)
             return
 
+        elif parsed_url.path == '/api/save_vm_settings':
+            try:
+                with open('cbeo_vm_settings.json', 'w', encoding='utf-8') as f:
+                    json.dump(req_data, f, ensure_ascii=False, indent=2)
+                # Auto-sync git commit/push to origin/main in background
+                threading.Thread(target=sync_vm_settings_to_git).start()
+                self.send_json_response({'success': True, 'message': 'क्लाउड VM टाइमर व स्वचालन सेटिंग्स सुरक्षित की गईं!'})
+            except Exception as e:
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
+
+        elif parsed_url.path == '/api/trigger_vm':
+            try:
+                res = trigger_github_actions_vm()
+                self.send_json_response(res)
+            except Exception as e:
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
+
         # Fallback to default
         super().do_POST()
 
@@ -311,6 +372,30 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
         parsed_url = urllib.parse.urlparse(self.path)
         if parsed_url.path == '/api/health':
             self.send_json_response({'status': 'ok', 'server': 'CBEO Portal Backend', 'port': PORT, 'district': 'AJMER'})
+            return
+
+        elif parsed_url.path == '/api/get_vm_status':
+            try:
+                settings_file = 'cbeo_vm_settings.json'
+                vm_settings = {
+                    'vm_enabled': True,
+                    'telegram_alerts': True,
+                    'email_alerts': True,
+                    'slots': {'12:00 PM': True, '02:00 PM': True, '04:00 PM': True, '08:00 PM': True}
+                }
+                if os.path.exists(settings_file):
+                    with open(settings_file, 'r', encoding='utf-8') as f:
+                        vm_settings = json.load(f)
+                
+                live_file = 'cbeo_vm_live_status.json'
+                live_status = {}
+                if os.path.exists(live_file):
+                    with open(live_file, 'r', encoding='utf-8') as lf:
+                        live_status = json.load(lf)
+
+                self.send_json_response({'success': True, 'settings': vm_settings, 'live_status': live_status})
+            except Exception as e:
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
             return
 
         elif parsed_url.path == '/api/get_saman_pariksha':
