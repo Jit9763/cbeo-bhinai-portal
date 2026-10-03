@@ -1,55 +1,21 @@
 {
-  "generated_at": "03-10-2026 09:28 PM",
+  "generated_at": "03-10-2026 09:31 PM",
   "vm_status": "ONLINE_ACTIVE",
   "district": "AJMER (अजमेर)",
   "block": "BHINAI (भिनाय)",
   "saman_pariksha": {
     "total_schools": 57,
-    "submitted_count": 53,
-    "pending_count": 4,
-    "completion_percentage": 93.0,
-    "peeo_pending_map": {
-      "PEEO BARGAON": 1,
-      "PEEO BOOBKIYA": 1,
-      "PEEO DEVPURA": 1,
-      "PEEO NAGOLA": 1
-    },
-    "pending_schools": [
-      {
-        "code": "221764",
-        "name": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND",
-        "peeo": "PEEO BARGAON",
-        "principal": "CHANDRA PRAKASH LADDHA",
-        "mobile": "9001450275"
-      },
-      {
-        "code": "221763",
-        "name": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA",
-        "peeo": "PEEO BOOBKIYA",
-        "principal": "RAM CHANDRA GUJAR",
-        "mobile": "9252068645"
-      },
-      {
-        "code": "488941",
-        "name": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA",
-        "peeo": "PEEO DEVPURA",
-        "principal": "ANITA SHARMA",
-        "mobile": "9414550658"
-      },
-      {
-        "code": "221772",
-        "name": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA",
-        "peeo": "PEEO NAGOLA",
-        "principal": "VINOD KUMAR RAO",
-        "mobile": "8955306674"
-      }
-    ]
+    "submitted_count": 57,
+    "pending_count": 0,
+    "completion_percentage": 100.0,
+    "peeo_pending_map": {},
+    "pending_schools": []
   },
   "overdue_escalation": {
-    "is_active": true,
-    "defaulter_count": 4,
-    "urgency": "HIGH",
-    "message": "🚨 4 विद्यालय समय-सीमा पश्चात भी लंबित हैं।"
+    "is_active": false,
+    "defaulter_count": 0,
+    "urgency": "NORMAL",
+    "message": "✓ शत-प्रतिशत अनुपालन पूर्ण।"
   },
   "mdm_anomaly_scanner": {
     "total_peeos": 25,
