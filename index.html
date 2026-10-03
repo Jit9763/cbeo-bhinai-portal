@@ -1710,7 +1710,7 @@
             <label class="login-label">यूजर ID (शाला दर्पण / PSP कोड):</label>
             <div class="login-input-wrap">
               <i class="fas fa-id-card login-input-icon"></i>
-              <input type="text" id="login-username" value="" placeholder="उदा. 221754" class="login-input" autocomplete="username">
+              <input type="text" id="login-username" value="" placeholder="उदा. 221754" class="login-input" autocomplete="username" oninput="checkLoginDefaultPasswordWarning()">
             </div>
           </div>
 
@@ -1719,7 +1719,7 @@
             <label class="login-label">पासवर्ड (Password):</label>
             <div class="login-input-wrap">
               <i class="fas fa-lock login-input-icon"></i>
-              <input type="password" id="login-password" value="" placeholder="पासवर्ड दर्ज करें (डिफ़ॉल्ट: शाला दर्पण कोड)" class="login-input" autocomplete="current-password">
+              <input type="password" id="login-password" value="" placeholder="पासवर्ड दर्ज करें (डिफ़ॉल्ट: शाला दर्पण कोड)" class="login-input" autocomplete="current-password" oninput="checkLoginDefaultPasswordWarning()">
               <button type="button" class="login-pwd-toggle" onclick="toggleLoginPasswordVisibility()" title="पासवर्ड देखें / छुपाएं">
                 <i class="fas fa-eye" id="login-pwd-eye-icon"></i>
               </button>
@@ -1727,7 +1727,7 @@
             
             <div id="login-password-hint" class="login-password-hint-box">
               <i class="fas fa-lightbulb text-primary"></i>
-              <span><strong>संकेत:</strong> PEEO एवं विद्यालयों का डिफ़ॉल्ट पासवर्ड उनका <strong>शाला दर्पण / PSP कोड</strong> ही है।</span>
+              <span><strong>संकेत:</strong> PEEO एवं विद्यालयों का डिफ़ॉल्ट पासवर्ड उनका <strong>शाला दर्पण / PSP कोड</strong> है। सुरक्षा हेतु लॉगिन करने के बाद कृपया अपना <strong>पासवर्ड अवश्य बदलें</strong>।</span>
             </div>
           </div>
 

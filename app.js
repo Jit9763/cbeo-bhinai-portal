@@ -940,13 +940,44 @@ function onQuickSelectSchoolUnderPeeo() {
   } else {
     passwordInput.value = defaultPwd;
     if (hintText) {
-      hintText.innerHTML = `✨ <strong>चयनित:</strong> ${selectedText} | User ID व डिफ़ॉल्ट Password स्वतः भर गया है। <span style="color:#16a34a; font-weight:bold">लॉगिन बटन दबाएं!</span>`;
+      hintText.innerHTML = `✨ <strong>चयनित:</strong> ${selectedText} | User ID व डिफ़ॉल्ट Password स्वतः भर गया है। <span style="color:#b45309; font-weight:bold">⚠️ सुरक्षा हेतु लॉगिन बाद पासवर्ड अवश्य बदलें!</span>`;
     }
     if (hintBox) {
-      hintBox.innerHTML = `<i class="fas fa-check-circle text-success"></i> <span><strong>विद्यालय चयनित:</strong> कोड <code>${code}</code> एवं डिफ़ॉल्ट पासवर्ड स्वतः भर दिया गया है। 'लॉगिन करें' दबाएं।</span>`;
-      hintBox.style.background = '#ecfdf5';
-      hintBox.style.color = '#065f46';
+      hintBox.innerHTML = `
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div><i class="fas fa-check-circle text-success"></i> <span><strong>विद्यालय चयनित:</strong> कोड <code>${code}</code> एवं डिफ़ॉल्ट पासवर्ड स्वतः भर दिया गया है।</span></div>
+          <div style="padding:8px 12px; background:#fff7ed; border-left:3px solid #ea580c; border-radius:6px; color:#9a3412; font-size:0.8rem; line-height:1.45;">
+            ⚠️ <strong>पासवर्ड सुरक्षा सूचना:</strong> आप डिफ़ॉल्ट पासवर्ड (शाला दर्पण कोड) का उपयोग कर रहे हैं। डेटा सुरक्षा हेतु लॉगिन करने के बाद कृपया ऊपर <strong>'पासवर्ड बदलें' (Change Password)</strong> बटन से अपना नया सुरक्षित पासवर्ड अवश्य बनाएं।
+          </div>
+        </div>
+      `;
+      hintBox.style.background = '#fffbeb';
+      hintBox.style.color = '#78350f';
     }
+  }
+}
+
+function checkLoginDefaultPasswordWarning() {
+  const u = document.getElementById('login-username')?.value.trim();
+  const p = document.getElementById('login-password')?.value.trim();
+  const hintBox = document.getElementById('login-password-hint');
+  if (!hintBox) return;
+
+  if (u && p && p === u && u !== 'admin_jitendra' && u !== 'cbeo_admin' && u !== '8140') {
+    hintBox.innerHTML = `
+      <div style="display:flex; flex-direction:column; gap:6px;">
+        <div><i class="fas fa-key" style="color:#ea580c"></i> <strong>यूजर ID:</strong> <code>${u}</code> (डिफ़ॉल्ट पासवर्ड प्रविष्ट)</div>
+        <div style="padding:8px 12px; background:#fff7ed; border-left:3px solid #ea580c; border-radius:6px; color:#9a3412; font-size:0.8rem; line-height:1.45;">
+          ⚠️ <strong>पासवर्ड सुरक्षा संदेश:</strong> यह संस्था का <strong>डिफ़ॉल्ट पासवर्ड</strong> है। अनाधिकृत लॉगिन से बचने हेतु कृपया लॉगिन उपरांत ऊपर <strong>'पासवर्ड बदलें'</strong> से अपना नया पासवर्ड अवश्य सेट करें।
+        </div>
+      </div>
+    `;
+    hintBox.style.background = '#fffbeb';
+    hintBox.style.color = '#78350f';
+  } else if (!u && !p) {
+    hintBox.innerHTML = '<i class="fas fa-lightbulb text-primary"></i> <span><strong>संकेत:</strong> कृपया ऊपर ड्रॉपडाउन से <strong>PEEO</strong> चुनें, अथवा सीधे अपना <strong>शाला दर्पण / PSP कोड</strong> व पासवर्ड दर्ज करें।</span>';
+    hintBox.style.background = '#f8fafc';
+    hintBox.style.color = '#334155';
   }
 }
 
@@ -970,6 +1001,12 @@ function performLogin() {
     switchTab('saman-pariksha');
     if (openForm && userObj.role === 'school') {
       openSamanParikshaForm(userObj.shala_darpan_code);
+    }
+    // Prominent security reminder if logged in with default password
+    if (userObj.role !== 'admin' && (p === u || p === userObj.shala_darpan_code)) {
+      setTimeout(() => {
+        showToast('⚠️ ध्यान दें: आप डिफ़ॉल्ट पासवर्ड से लॉगिन हैं। संस्था की सुरक्षा हेतु कृपया ऊपर "पासवर्ड बदलें" पर क्लिक करके नया पासवर्ड बनाएं!', 'warning');
+      }, 1200);
     }
   }
 
