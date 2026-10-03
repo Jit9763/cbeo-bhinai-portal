@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (gformModal) {
     gformModal.addEventListener('input', autoSaveGFormDraft);
     gformModal.addEventListener('change', autoSaveGFormDraft);
+  }
 });
 
 // Standard School Name Resolver (57 Schools - Hindi / English)
