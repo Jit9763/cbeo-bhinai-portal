@@ -1,7 +1,7 @@
 [
   {
     "s_no": 1,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND",
+    "school_name": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
     "shala_darpan_code": "221764",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -13,11 +13,13 @@
     "principal_name": "CHANDRA PRAKASH LADDHA",
     "principal_mobile": "9001450275",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+    "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
   },
   {
     "s_no": 2,
-    "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI",
+    "school_name": "रा.बा.उ.मा.वि. बड़ली",
     "shala_darpan_code": "506830",
     "type": "Government",
     "category": "Govt. Girls Sr. Sec.",
@@ -29,11 +31,13 @@
     "principal_name": "PUKHRAJ KHATI",
     "principal_mobile": "9667157047",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.बा.उ.मा.वि. बड़ली",
+    "school_name_en": "Govt. Girls Sr. Sec. School Barli"
   },
   {
     "s_no": 3,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL BADLI",
+    "school_name": "रा.उ.मा.वि. बड़ली",
     "shala_darpan_code": "221755",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -45,11 +49,13 @@
     "principal_name": "SHAILENDRA KUMAR PANDYA",
     "principal_mobile": "9950985201",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. बड़ली",
+    "school_name_en": "Govt. Sr. Sec. School Barli"
   },
   {
     "s_no": 4,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA",
+    "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
     "shala_darpan_code": "221769",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -61,11 +67,13 @@
     "principal_name": "BHANWAR LAL JAT",
     "principal_mobile": "9587293842",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+    "school_name_en": "Govt. Sr. Sec. School Bandanwara"
   },
   {
     "s_no": 5,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA",
+    "school_name": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
     "shala_darpan_code": "221771",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -77,11 +85,13 @@
     "principal_name": "DEVENDRA KUMAR SANKHLA",
     "principal_mobile": "8949599466",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+    "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara"
   },
   {
     "s_no": 6,
-    "school_name": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA",
+    "school_name": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
     "shala_darpan_code": "221770",
     "type": "Government",
     "category": "MGGS",
@@ -93,11 +103,13 @@
     "principal_name": "JAY SINGH KHATIK",
     "principal_mobile": "9649149083",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+    "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
   },
   {
     "s_no": 7,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL BHINAI",
+    "school_name": "रा.उ.मा.वि. भिनाय",
     "shala_darpan_code": "221780",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -109,11 +121,13 @@
     "principal_name": "AJAY KUMAR DHABAI",
     "principal_mobile": "9549240545",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. भिनाय",
+    "school_name_en": "Govt. Sr. Sec. School Bhinai"
   },
   {
     "s_no": 8,
-    "school_name": "MAHATMA GANDHI GOVT. SCHOOL BHINAI",
+    "school_name": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
     "shala_darpan_code": "221778",
     "type": "Government",
     "category": "MGGS",
@@ -125,11 +139,13 @@
     "principal_name": "sanjeeda parveen",
     "principal_mobile": "9468855086",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+    "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
   },
   {
     "s_no": 9,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA",
+    "school_name": "रा.उ.मा.वि. बूबकिया",
     "shala_darpan_code": "221763",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -141,11 +157,13 @@
     "principal_name": "RAM CHANDRA GUJAR",
     "principal_mobile": "9252068645",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+    "school_name_en": "Govt. Sr. Sec. School Boobkiya"
   },
   {
     "s_no": 10,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL PIPLIYA",
+    "school_name": "रा.उ.मा.वि. पीपलिया",
     "shala_darpan_code": "485033",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -157,11 +175,13 @@
     "principal_name": "प्रभारी संस्था प्रधान (रा.उ.मा.वि. पीपलिया)",
     "principal_mobile": "9784793783",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. पीपलिया",
+    "school_name_en": "Govt. Sr. Sec. School Pipliya"
   },
   {
     "s_no": 11,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA",
+    "school_name": "रा.उ.मा.वि. छाछून्दरा",
     "shala_darpan_code": "221787",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -173,11 +193,13 @@
     "principal_name": "SITARAM DHOBI",
     "principal_mobile": "9413781124",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+    "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
   },
   {
     "s_no": 12,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL SEDRIYA",
+    "school_name": "रा.उ.मा.वि. सेदरिया",
     "shala_darpan_code": "488946",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -189,11 +211,13 @@
     "principal_name": "RITU SHARMA",
     "principal_mobile": "9829790044",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. सेदरिया",
+    "school_name_en": "Govt. Sr. Sec. School Sedriya"
   },
   {
     "s_no": 13,
-    "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL CHAPANERI",
+    "school_name": "रा.बा.उ.मा.वि. चापानेरी",
     "shala_darpan_code": "494626",
     "type": "Government",
     "category": "Govt. Girls Sr. Sec.",
@@ -205,11 +229,13 @@
     "principal_name": "HARI SHANKAR CHOPDAR",
     "principal_mobile": "9602676785",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.बा.उ.मा.वि. चापानेरी",
+    "school_name_en": "Govt. Girls Sr. Sec. School Chapaneri"
   },
   {
     "s_no": 14,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI",
+    "school_name": "रा.उ.मा.वि. चापानेरी",
     "shala_darpan_code": "221758",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -221,11 +247,13 @@
     "principal_name": "LADURAM SHARMA",
     "principal_mobile": "9462507510",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+    "school_name_en": "Govt. Sr. Sec. School Chapaneri"
   },
   {
     "s_no": 15,
-    "school_name": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN",
+    "school_name": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
     "shala_darpan_code": "221753",
     "type": "Government",
     "category": "MGGS",
@@ -237,11 +265,13 @@
     "principal_name": "RAKESH KUMAR BIRAWAT",
     "principal_mobile": "9829835751",
     "incharge_name": "Basanti olaniya",
-    "incharge_mobile": "7727945324"
+    "incharge_mobile": "7727945324",
+    "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+    "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
   },
   {
     "s_no": 16,
-    "school_name": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN",
+    "school_name": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
     "shala_darpan_code": "221754",
     "type": "Government",
     "category": "PM SHRI Govt. Sr. Sec.",
@@ -253,11 +283,13 @@
     "principal_name": "PURNIMA",
     "principal_mobile": "9414343109",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+    "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
   },
   {
     "s_no": 17,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA",
+    "school_name": "रा.उ.मा.वि. देवरिया",
     "shala_darpan_code": "488941",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -269,11 +301,13 @@
     "principal_name": "ANITA SHARMA",
     "principal_mobile": "9414550658",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. देवरिया",
+    "school_name_en": "Govt. Sr. Sec. School Devriya"
   },
   {
     "s_no": 18,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL ROOPPURA",
+    "school_name": "रा.उ.मा.वि. रूपपुरा",
     "shala_darpan_code": "410704",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -285,11 +319,13 @@
     "principal_name": "KISHAN GOPAL PARIHAR",
     "principal_mobile": "9413225666",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. रूपपुरा",
+    "school_name_en": "Govt. Sr. Sec. School Rooppura"
   },
   {
     "s_no": 19,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL",
+    "school_name": "रा.उ.मा.वि. धांतोल",
     "shala_darpan_code": "221783",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -301,11 +337,13 @@
     "principal_name": "SURENDRA NAGORA",
     "principal_mobile": "9413695182",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. धांतोल",
+    "school_name_en": "Govt. Sr. Sec. School Dhantol"
   },
   {
     "s_no": 20,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA",
+    "school_name": "रा.उ.मा.वि. एकलसिंघा",
     "shala_darpan_code": "221786",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -317,11 +355,13 @@
     "principal_name": "VISHWASHWAR PRASAD SHARMA",
     "principal_mobile": "7728052397",
     "incharge_name": "MANJU CHOUDHARY",
-    "incharge_mobile": "8107003655"
+    "incharge_mobile": "8107003655",
+    "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+    "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
   },
   {
     "s_no": 21,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL HIYALIYA",
+    "school_name": "रा.उ.मा.वि. हियालिया",
     "shala_darpan_code": "488947",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -333,11 +373,13 @@
     "principal_name": "SURESH CHANDRA",
     "principal_mobile": "9636233704",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. हियालिया",
+    "school_name_en": "Govt. Sr. Sec. School Hiyaliya"
   },
   {
     "s_no": 22,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD",
+    "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
     "shala_darpan_code": "221762",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -349,11 +391,13 @@
     "principal_name": "deepesh kumar sisodia",
     "principal_mobile": "9414554344",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+    "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
   },
   {
     "s_no": 23,
-    "school_name": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI",
+    "school_name": "पीएम श्री रा.उ.मा.वि. बागरिया",
     "shala_darpan_code": "485030",
     "type": "Government",
     "category": "PM SHRI Govt. Sr. Sec.",
@@ -365,11 +409,13 @@
     "principal_name": "श्री भूपेंद्र सिंह चारण (वरिष्ठ अध्यापक / संस्था प्रधान)",
     "principal_mobile": "9929527319",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "पीएम श्री रा.उ.मा.वि. बागरिया",
+    "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai"
   },
   {
     "s_no": 24,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA",
+    "school_name": "रा.उ.मा.वि. कनाई कलां",
     "shala_darpan_code": "221765",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -381,11 +427,13 @@
     "principal_name": "NARESH KUMAR",
     "principal_mobile": "9166233899",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. कनाई कलां",
+    "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
   },
   {
     "s_no": 25,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA",
+    "school_name": "रा.उ.मा.वि. नेमेड़ा",
     "shala_darpan_code": "401778",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -397,11 +445,13 @@
     "principal_name": "प्रभारी संस्था प्रधान (रा.उ.मा.वि. नेमेड़ा)",
     "principal_mobile": "9461249418",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. नेमेड़ा",
+    "school_name_en": "Govt. Sr. Sec. School Nemeda"
   },
   {
     "s_no": 26,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL KARANTI",
+    "school_name": "रा.उ.मा.वि. करांटी",
     "shala_darpan_code": "221773",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -413,11 +463,13 @@
     "principal_name": "DEEPAK SANWARIYA",
     "principal_mobile": "9950736300",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. करांटी",
+    "school_name_en": "Govt. Sr. Sec. School Karanti"
   },
   {
     "s_no": 27,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL KHEDI",
+    "school_name": "रा.उ.मा.वि. खेड़ी",
     "shala_darpan_code": "221774",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -429,11 +481,13 @@
     "principal_name": "SUSHAMA PANDEY",
     "principal_mobile": "8107098772",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. खेड़ी",
+    "school_name_en": "Govt. Sr. Sec. School Khedi"
   },
   {
     "s_no": 28,
-    "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL KHEDI",
+    "school_name": "रा.बा.उ.मा.वि. खेड़ी",
     "shala_darpan_code": "488791",
     "type": "Government",
     "category": "Govt. Girls Sr. Sec.",
@@ -445,11 +499,13 @@
     "principal_name": "सुश्री चंचल कछावा (प्रभारी संस्था प्रधान)",
     "principal_mobile": "8094606900",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.बा.उ.मा.वि. खेड़ी",
+    "school_name_en": "Govt. Girls Sr. Sec. School Khedi"
   },
   {
     "s_no": 29,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL JETPURA",
+    "school_name": "रा.उ.मा.वि. जेतपुरा",
     "shala_darpan_code": "221768",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -461,11 +517,13 @@
     "principal_name": "JUBER AHMED",
     "principal_mobile": "9414942132",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. जेतपुरा",
+    "school_name_en": "Govt. Sr. Sec. School Jetpura"
   },
   {
     "s_no": 30,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD",
+    "school_name": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
     "shala_darpan_code": "221767",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -477,11 +535,13 @@
     "principal_name": "SOHANLAL SARAN",
     "principal_mobile": "9929526324",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+    "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
   },
   {
     "s_no": 31,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA",
+    "school_name": "रा.उ.मा.वि. कुम्हारिया",
     "shala_darpan_code": "221777",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -493,11 +553,13 @@
     "principal_name": "JYOTI PRAKASH SHARMA",
     "principal_mobile": "9460690289",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+    "school_name_en": "Govt. Sr. Sec. School Kumhariya"
   },
   {
     "s_no": 32,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL GANAHERA",
+    "school_name": "रा.उ.मा.वि. गनाहेड़ा",
     "shala_darpan_code": "221760",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -509,11 +571,13 @@
     "principal_name": "RASHMI MALVIYA",
     "principal_mobile": "9461981723",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+    "school_name_en": "Govt. Sr. Sec. School Ganahera"
   },
   {
     "s_no": 33,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA",
+    "school_name": "रा.उ.मा.वि. लामगरा",
     "shala_darpan_code": "221759",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -525,11 +589,13 @@
     "principal_name": "RAJEEV KUMAR MANDOT",
     "principal_mobile": "9413134849",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. लामगरा",
+    "school_name_en": "Govt. Sr. Sec. School Lamgara"
   },
   {
     "s_no": 34,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL NIMEDA",
+    "school_name": "रा.उ.मा.वि. निमेड़ा",
     "shala_darpan_code": "221761",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -541,11 +607,13 @@
     "principal_name": "SUNITA SHARMA",
     "principal_mobile": "9462905104",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
+    "school_name_en": "Govt. Sr. Sec. School Nimeda"
   },
   {
     "s_no": 35,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL BADLA",
+    "school_name": "रा.उ.मा.वि. बडला (नागोला)",
     "shala_darpan_code": "488781",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -557,11 +625,13 @@
     "principal_name": "VED PRAKASH",
     "principal_mobile": "9413682497",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. बडला (नागोला)",
+    "school_name_en": "Govt. Sr. Sec. School Badla (Nagola)"
   },
   {
     "s_no": 36,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA",
+    "school_name": "रा.उ.मा.वि. नागोला",
     "shala_darpan_code": "221772",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -573,11 +643,13 @@
     "principal_name": "VINOD KUMAR RAO",
     "principal_mobile": "8955306674",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. नागोला",
+    "school_name_en": "Govt. Sr. Sec. School Nagola"
   },
   {
     "s_no": 37,
-    "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL NANDSI",
+    "school_name": "रा.बा.उ.मा.वि. नांदसी",
     "shala_darpan_code": "410632",
     "type": "Government",
     "category": "Govt. Girls Sr. Sec.",
@@ -589,11 +661,13 @@
     "principal_name": "JITENDRA KUMAR SHARMA",
     "principal_mobile": "7073800244",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.बा.उ.मा.वि. नांदसी",
+    "school_name_en": "Govt. Girls Sr. Sec. School Nandsi"
   },
   {
     "s_no": 38,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL KURTHAL",
+    "school_name": "रा.उ.मा.वि. कुरथल",
     "shala_darpan_code": "221757",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -605,11 +679,13 @@
     "principal_name": "BANNA LAL RAIGAR",
     "principal_mobile": "9829157423",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. कुरथल",
+    "school_name_en": "Govt. Sr. Sec. School Kurthal"
   },
   {
     "s_no": 39,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL NANDSI",
+    "school_name": "रा.उ.मा.वि. नांदसी",
     "shala_darpan_code": "221756",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -621,11 +697,13 @@
     "principal_name": "OM PRAKASH VERMA",
     "principal_mobile": "9001637473",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. नांदसी",
+    "school_name_en": "Govt. Sr. Sec. School Nandsi"
   },
   {
     "s_no": 40,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL PADANGA",
+    "school_name": "रा.उ.मा.वि. पाडंगा",
     "shala_darpan_code": "221788",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -637,11 +715,13 @@
     "principal_name": "SMT ASHA RAJ",
     "principal_mobile": "7877090975",
     "incharge_name": "Pankaj sharma",
-    "incharge_mobile": "9413135717"
+    "incharge_mobile": "9413135717",
+    "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+    "school_name_en": "Govt. Sr. Sec. School Padanga"
   },
   {
     "s_no": 41,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA",
+    "school_name": "रा.उ.मा.वि. पाडलिया",
     "shala_darpan_code": "221766",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -653,11 +733,13 @@
     "principal_name": "LAXMI POPTANI",
     "principal_mobile": "9549364023",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+    "school_name_en": "Govt. Sr. Sec. School Padliya"
   },
   {
     "s_no": 42,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL HEERAPURA",
+    "school_name": "रा.उ.मा.वि. हीरापुरा",
     "shala_darpan_code": "221784",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -669,11 +751,13 @@
     "principal_name": "BHAGCHAND REGAR",
     "principal_mobile": "9829219564",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. हीरापुरा",
+    "school_name_en": "Govt. Sr. Sec. School Heerapura"
   },
   {
     "s_no": 43,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL RAGHUNATHGADH",
+    "school_name": "रा.उ.मा.वि. रघुनाथगढ़",
     "shala_darpan_code": "410677",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -685,11 +769,13 @@
     "principal_name": "Lalit Kishore Sharma",
     "principal_mobile": "8104466893",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. रघुनाथगढ़",
+    "school_name_en": "Govt. Sr. Sec. School Raghunathgadh"
   },
   {
     "s_no": 44,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA",
+    "school_name": "रा.उ.मा.वि. राममालिया",
     "shala_darpan_code": "221785",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -701,11 +787,13 @@
     "principal_name": "LAL CHAND MUNOTH",
     "principal_mobile": "9928328808",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. राममालिया",
+    "school_name_en": "Govt. Sr. Sec. School Rammaliya"
   },
   {
     "s_no": 45,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL JHIPIYA",
+    "school_name": "रा.उ.मा.वि. झीपिया",
     "shala_darpan_code": "221776",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -717,11 +805,13 @@
     "principal_name": "सुश्री अलका माथुर (प्रभारी संस्था प्रधान)",
     "principal_mobile": "9468751626",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. झीपिया",
+    "school_name_en": "Govt. Sr. Sec. School Jhipiya"
   },
   {
     "s_no": 46,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT",
+    "school_name": "रा.उ.मा.वि. राताकोट",
     "shala_darpan_code": "221775",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -733,11 +823,13 @@
     "principal_name": "KUNJ BIHARI SHARMA",
     "principal_mobile": "9887753471",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. राताकोट",
+    "school_name_en": "Govt. Sr. Sec. School Ratakot"
   },
   {
     "s_no": 47,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL",
+    "school_name": "रा.उ.मा.वि. सिंगावल",
     "shala_darpan_code": "221781",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -749,11 +841,13 @@
     "principal_name": "SEEMA SHARMA",
     "principal_mobile": "8290911983",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+    "school_name_en": "Govt. Sr. Sec. School Singawal"
   },
   {
     "s_no": 48,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL GHANA",
+    "school_name": "रा.उ.मा.वि. घाणा",
     "shala_darpan_code": "488897",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -765,11 +859,13 @@
     "principal_name": "SUMITRA KUMARI PHULWARI",
     "principal_mobile": "9928994663",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. घाणा",
+    "school_name_en": "Govt. Sr. Sec. School Ghana"
   },
   {
     "s_no": 49,
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL SOBRI",
+    "school_name": "रा.उ.मा.वि. सोबड़ी",
     "shala_darpan_code": "221782",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -781,11 +877,13 @@
     "principal_name": "FAYYAZ MOHAMMED",
     "principal_mobile": "9829487158",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+    "school_name_en": "Govt. Sr. Sec. School Sobri"
   },
   {
     "s_no": 50,
-    "school_name": "TAGORE GLOBAL SCHOOL (EKALSINGHA)",
+    "school_name": "टैगोर ग्लोबल स्कूल, एकलसिंघा",
     "shala_darpan_code": "P55700",
     "type": "Private",
     "category": "Private Secondary",
@@ -797,11 +895,13 @@
     "principal_name": "AALOK MISHRA",
     "principal_mobile": "9251300400",
     "incharge_name": "RAVI SHANKAR SHARMA",
-    "incharge_mobile": "8504872321"
+    "incharge_mobile": "8504872321",
+    "school_name_hi": "टैगोर ग्लोबल स्कूल, एकलसिंघा",
+    "school_name_en": "Tagore Global School (Ekalsingha)"
   },
   {
     "s_no": 51,
-    "school_name": "GURUKUL KESARI PUBLIC SECONDARY SCHOOL BANDANWARA",
+    "school_name": "गुरुकुल केसरी पब्लिक माध्यमिक विद्यालय, बांदनवाड़ा",
     "shala_darpan_code": "P16099",
     "type": "Private",
     "category": "Private Secondary",
@@ -813,11 +913,13 @@
     "principal_name": "",
     "principal_mobile": "",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "गुरुकुल केसरी पब्लिक माध्यमिक विद्यालय, बांदनवाड़ा",
+    "school_name_en": "Gurukul Kesari Public Secondary School Bandanwara"
   },
   {
     "s_no": 52,
-    "school_name": "KUCHAMAN SHIKSHAN SANSTHAN BANDANWARA",
+    "school_name": "कुचामन शिक्षण संस्थान, बांदनवाड़ा",
     "shala_darpan_code": "P48759",
     "type": "Private",
     "category": "Private Sr. Sec.",
@@ -829,11 +931,13 @@
     "principal_name": "",
     "principal_mobile": "",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "कुचामन शिक्षण संस्थान, बांदनवाड़ा",
+    "school_name_en": "Kuchaman Shikshan Sansthan Bandanwara"
   },
   {
     "s_no": 53,
-    "school_name": "SAMRAT INTERNATIONAL SCHOOL BANDANWARA",
+    "school_name": "सम्राट इंटरनेशनल स्कूल, बांदनवाड़ा",
     "shala_darpan_code": "P16964",
     "type": "Private",
     "category": "Private Secondary",
@@ -845,11 +949,13 @@
     "principal_name": "",
     "principal_mobile": "",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "सम्राट इंटरनेशनल स्कूल, बांदनवाड़ा",
+    "school_name_en": "Samrat International School Bandanwara"
   },
   {
     "s_no": 54,
-    "school_name": "SIDDHARTH INTERNATIONAL SCHOOL BANDANWARA",
+    "school_name": "सिद्धार्थ इंटरनेशनल स्कूल, बांदनवाड़ा",
     "shala_darpan_code": "P19054",
     "type": "Private",
     "category": "Private Secondary",
@@ -861,11 +967,13 @@
     "principal_name": "",
     "principal_mobile": "",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "सिद्धार्थ इंटरनेशनल स्कूल, बांदनवाड़ा",
+    "school_name_en": "Siddharth International School Bandanwara"
   },
   {
     "s_no": 55,
-    "school_name": "SUN RISE CONVENT SCHOOL BHINAI",
+    "school_name": "सन राइज कॉन्वेंट स्कूल, भिनाय",
     "shala_darpan_code": "P19678",
     "type": "Private",
     "category": "Private Secondary",
@@ -877,11 +985,13 @@
     "principal_name": "",
     "principal_mobile": "",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "सन राइज कॉन्वेंट स्कूल, भिनाय",
+    "school_name_en": "Sun Rise Convent School Bhinai"
   },
   {
     "s_no": 56,
-    "school_name": "SUMER SENIOR SECONDARY SCHOOL BHINAI",
+    "school_name": "सुमेर उच्च माध्यमिक विद्यालय, भिनाय",
     "shala_darpan_code": "P16865",
     "type": "Private",
     "category": "Private Sr. Sec.",
@@ -893,11 +1003,13 @@
     "principal_name": "",
     "principal_mobile": "",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "सुमेर उच्च माध्यमिक विद्यालय, भिनाय",
+    "school_name_en": "Sumer Senior Secondary School Bhinai"
   },
   {
     "s_no": 57,
-    "school_name": "DRONA CHARYA SECONDARY SCHOOL BHINAI",
+    "school_name": "द्रोणाचार्य माध्यमिक विद्यालय, भिनाय",
     "shala_darpan_code": "P16968",
     "type": "Private",
     "category": "Private Secondary",
@@ -909,6 +1021,8 @@
     "principal_name": "",
     "principal_mobile": "",
     "incharge_name": "",
-    "incharge_mobile": ""
+    "incharge_mobile": "",
+    "school_name_hi": "द्रोणाचार्य माध्यमिक विद्यालय, भिनाय",
+    "school_name_en": "Drona Charya Secondary School Bhinai"
   }
 ]

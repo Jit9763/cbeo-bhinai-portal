@@ -1,7 +1,7 @@
 {
   "221764": {
     "school_code": "221764",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND",
+    "school_name": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO BARGAON",
     "exam_code": "AJM04G221764",
@@ -79,11 +79,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BARGAON",
-    "timestamp": "Sat Oct 03 2026 11:32:14 GMT+0530 (India Standard Time)"
+    "timestamp": "Sat Oct 03 2026 11:32:14 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+    "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
   },
   "506830": {
     "school_code": "506830",
-    "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI",
+    "school_name": "रा.बा.उ.मा.वि. बड़ली",
     "category": "Govt. Girls Sr. Sec.",
     "peeo_name": "PEEO BARLI",
     "exam_code": "AJM04G506830",
@@ -161,11 +163,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BARLI",
-    "timestamp": "Fri Oct 02 2026 09:17:19 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 09:17:19 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.बा.उ.मा.वि. बड़ली",
+    "school_name_en": "Govt. Girls Sr. Sec. School Barli"
   },
   "221755": {
     "school_code": "221755",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL BADLI",
+    "school_name": "रा.उ.मा.वि. बड़ली",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO BARLI",
     "exam_code": "AJM04G221755",
@@ -243,11 +247,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BARLI",
-    "timestamp": "Fri Oct 02 2026 08:54:46 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 08:54:46 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. बड़ली",
+    "school_name_en": "Govt. Sr. Sec. School Barli"
   },
   "221769": {
     "school_code": "221769",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA",
+    "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO BANDANWARA",
     "exam_code": "AJM04G221769",
@@ -329,11 +335,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BANDANWARA",
-    "timestamp": "Fri Oct 02 2026 10:53:55 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 10:53:55 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+    "school_name_en": "Govt. Sr. Sec. School Bandanwara"
   },
   "221771": {
     "school_code": "221771",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA",
+    "school_name": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO BANDANWARA",
     "exam_code": "AJM04G221771",
@@ -411,11 +419,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BANDANWARA",
-    "timestamp": "Fri Oct 02 2026 11:37:48 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 11:37:48 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+    "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara"
   },
   "221770": {
     "school_code": "221770",
-    "school_name": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA",
+    "school_name": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
     "category": "MGGS",
     "peeo_name": "PEEO BANDANWARA",
     "exam_code": "221770",
@@ -489,11 +499,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "Afsar Ahmed",
-    "timestamp": "Fri Oct 02 2026 11:49:39 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 11:49:39 GMT+0530 (India Standard Time)",
+    "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+    "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
   },
   "221780": {
     "school_code": "221780",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL BHINAI",
+    "school_name": "रा.उ.मा.वि. भिनाय",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO BHINAY",
     "exam_code": "AJM04G221780",
@@ -577,11 +589,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BHINAY",
-    "timestamp": "Fri Oct 02 2026 11:46:32 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 11:46:32 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. भिनाय",
+    "school_name_en": "Govt. Sr. Sec. School Bhinai"
   },
   "221778": {
     "school_code": "221778",
-    "school_name": "MAHATMA GANDHI GOVT. SCHOOL BHINAI",
+    "school_name": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
     "category": "MGGS",
     "peeo_name": "PEEO BHINAY",
     "exam_code": "AJM04G221778",
@@ -661,11 +675,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BHINAY",
-    "timestamp": "Fri Oct 02 2026 08:49:56 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 08:49:56 GMT+0530 (India Standard Time)",
+    "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+    "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
   },
   "221763": {
     "school_code": "221763",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA",
+    "school_name": "रा.उ.मा.वि. बूबकिया",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO BOOBKIYA",
     "exam_code": "AJM04G221763",
@@ -743,11 +759,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BOOBKIYA",
-    "timestamp": "Sat Oct 03 2026 11:43:19 GMT+0530 (India Standard Time)"
+    "timestamp": "Sat Oct 03 2026 11:43:19 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+    "school_name_en": "Govt. Sr. Sec. School Boobkiya"
   },
   "485033": {
     "school_code": "485033",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL PIPLIYA",
+    "school_name": "रा.उ.मा.वि. पीपलिया",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO BOOBKIYA",
     "exam_code": "AJM04G485033",
@@ -825,11 +843,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BOOBKIYA",
-    "timestamp": "Fri Oct 02 2026 10:07:00 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 10:07:00 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. पीपलिया",
+    "school_name_en": "Govt. Sr. Sec. School Pipliya"
   },
   "221787": {
     "school_code": "221787",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA",
+    "school_name": "रा.उ.मा.वि. छाछून्दरा",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO CHHACHHUNDRA",
     "exam_code": "AJM04G221787",
@@ -907,11 +927,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO CHHACHHUNDRA",
-    "timestamp": "Fri Oct 02 2026 11:36:20 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 11:36:20 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+    "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
   },
   "488946": {
     "school_code": "488946",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL SEDRIYA",
+    "school_name": "रा.उ.मा.वि. सेदरिया",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO CHHACHHUNDRA",
     "exam_code": "AJM04G488946",
@@ -989,11 +1011,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO CHHACHHUNDRA",
-    "timestamp": "Fri Oct 02 2026 09:45:50 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 09:45:50 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. सेदरिया",
+    "school_name_en": "Govt. Sr. Sec. School Sedriya"
   },
   "494626": {
     "school_code": "494626",
-    "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL CHAPANERI",
+    "school_name": "रा.बा.उ.मा.वि. चापानेरी",
     "category": "Govt. Girls Sr. Sec.",
     "peeo_name": "PEEO CHAPANERI",
     "exam_code": "AJM04G494626",
@@ -1071,11 +1095,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO CHAPANERI",
-    "timestamp": "Fri Oct 02 2026 08:27:04 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 08:27:04 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.बा.उ.मा.वि. चापानेरी",
+    "school_name_en": "Govt. Girls Sr. Sec. School Chapaneri"
   },
   "221758": {
     "school_code": "221758",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI",
+    "school_name": "रा.उ.मा.वि. चापानेरी",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO CHAPANERI",
     "exam_code": "AJM04G221758",
@@ -1153,11 +1179,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO CHAPANERI",
-    "timestamp": "Fri Oct 02 2026 08:54:17 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 08:54:17 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+    "school_name_en": "Govt. Sr. Sec. School Chapaneri"
   },
   "221753": {
     "school_code": "221753",
-    "school_name": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN",
+    "school_name": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
     "category": "MGGS",
     "peeo_name": "PEEO DEOLIYA KALAN",
     "exam_code": "AJM04G221753",
@@ -1235,11 +1263,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO DEOLIYA KALAN",
-    "timestamp": "Fri Oct 02 2026 08:11:34 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 08:11:34 GMT+0530 (India Standard Time)",
+    "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+    "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
   },
   "221754": {
     "school_code": "221754",
-    "school_name": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN",
+    "school_name": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
     "category": "PM SHRI Govt. Sr. Sec.",
     "peeo_name": "PEEO DEOLIYA KALAN",
     "exam_code": "AJM04G221754",
@@ -1319,11 +1349,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO DEOLIYA KALAN",
-    "timestamp": "Fri Oct 02 2026 08:23:31 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 08:23:31 GMT+0530 (India Standard Time)",
+    "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+    "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
   },
   "488941": {
     "school_code": "488941",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA",
+    "school_name": "रा.उ.मा.वि. देवरिया",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO DEVPURA",
     "exam_code": "AJM04G488941",
@@ -1401,11 +1433,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO DEVPURA",
-    "timestamp": "Sat Oct 03 2026 13:15:20 GMT+0530 (India Standard Time)"
+    "timestamp": "Sat Oct 03 2026 13:15:20 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. देवरिया",
+    "school_name_en": "Govt. Sr. Sec. School Devriya"
   },
   "410704": {
     "school_code": "410704",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL ROOPPURA",
+    "school_name": "रा.उ.मा.वि. रूपपुरा",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO DEVPURA",
     "exam_code": "AJM04G410704",
@@ -1483,11 +1517,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO DEVPURA",
-    "timestamp": "Fri Oct 02 2026 10:24:22 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 10:24:22 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. रूपपुरा",
+    "school_name_en": "Govt. Sr. Sec. School Rooppura"
   },
   "221783": {
     "school_code": "221783",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL",
+    "school_name": "रा.उ.मा.वि. धांतोल",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO DHANTOL",
     "exam_code": "AJM04G221783",
@@ -1565,11 +1601,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO DHANTOL",
-    "timestamp": "Fri Oct 02 2026 09:45:13 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 09:45:13 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. धांतोल",
+    "school_name_en": "Govt. Sr. Sec. School Dhantol"
   },
   "221786": {
     "school_code": "221786",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA",
+    "school_name": "रा.उ.मा.वि. एकलसिंघा",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO EKALSEENGA",
     "exam_code": "AJM04G221786",
@@ -1647,11 +1685,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO EKALSEENGA",
-    "timestamp": "Thu Oct 01 2026 20:40:06 GMT+0530 (India Standard Time)"
+    "timestamp": "Thu Oct 01 2026 20:40:06 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+    "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
   },
   "488947": {
     "school_code": "488947",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL HIYALIYA",
+    "school_name": "रा.उ.मा.वि. हियालिया",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO EKALSEENGA",
     "exam_code": "AJM04G488947",
@@ -1725,11 +1765,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO EKALSEENGA",
-    "timestamp": "Fri Oct 02 2026 09:42:37 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 09:42:37 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. हियालिया",
+    "school_name_en": "Govt. Sr. Sec. School Hiyaliya"
   },
   "221762": {
     "school_code": "221762",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD",
+    "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO GURHA KHURD",
     "exam_code": "AJM04G221762",
@@ -1807,11 +1849,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO GURHA KHURD",
-    "timestamp": "Fri Oct 02 2026 08:44:04 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 08:44:04 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+    "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
   },
   "485030": {
     "school_code": "485030",
-    "school_name": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI",
+    "school_name": "पीएम श्री रा.उ.मा.वि. बागरिया",
     "category": "PM SHRI Govt. Sr. Sec.",
     "peeo_name": "PEEO GURHA KHURD",
     "exam_code": "AJM04G485030",
@@ -1889,11 +1933,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO GURHA KHURD",
-    "timestamp": "Fri Oct 02 2026 09:13:23 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 09:13:23 GMT+0530 (India Standard Time)",
+    "school_name_hi": "पीएम श्री रा.उ.मा.वि. बागरिया",
+    "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai"
   },
   "221765": {
     "school_code": "221765",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA",
+    "school_name": "रा.उ.मा.वि. कनाई कलां",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO KANAI KALAN",
     "exam_code": "AJM04G221765",
@@ -1971,11 +2017,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO KANAI KALAN",
-    "timestamp": "Fri Oct 02 2026 08:31:45 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 08:31:45 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. कनाई कलां",
+    "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
   },
   "401778": {
     "school_code": "401778",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA",
+    "school_name": "रा.उ.मा.वि. नेमेड़ा",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO KANAI KALAN",
     "exam_code": "AJM04G401778",
@@ -2053,11 +2101,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO KANAI KALAN",
-    "timestamp": "Fri Oct 02 2026 09:14:31 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 09:14:31 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. नेमेड़ा",
+    "school_name_en": "Govt. Sr. Sec. School Nemeda"
   },
   "221773": {
     "school_code": "221773",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL KARANTI",
+    "school_name": "रा.उ.मा.वि. करांटी",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO KARATI",
     "exam_code": "AJM04G221773",
@@ -2135,11 +2185,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO KARATI",
-    "timestamp": "Fri Oct 02 2026 11:27:25 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 11:27:25 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. करांटी",
+    "school_name_en": "Govt. Sr. Sec. School Karanti"
   },
   "221774": {
     "school_code": "221774",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL KHEDI",
+    "school_name": "रा.उ.मा.वि. खेड़ी",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO KARATI",
     "exam_code": "AJM04G221774",
@@ -2217,11 +2269,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO KARATI",
-    "timestamp": "Fri Oct 02 2026 09:19:52 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 09:19:52 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. खेड़ी",
+    "school_name_en": "Govt. Sr. Sec. School Khedi"
   },
   "488791": {
     "school_code": "488791",
-    "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL KHEDI",
+    "school_name": "रा.बा.उ.मा.वि. खेड़ी",
     "category": "Govt. Girls Sr. Sec.",
     "peeo_name": "PEEO KARATI",
     "exam_code": "AJM04G488791",
@@ -2297,11 +2351,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO KARATI",
-    "timestamp": "Fri Oct 02 2026 10:36:07 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 10:36:07 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.बा.उ.मा.वि. खेड़ी",
+    "school_name_en": "Govt. Girls Sr. Sec. School Khedi"
   },
   "221768": {
     "school_code": "221768",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL JETPURA",
+    "school_name": "रा.उ.मा.वि. जेतपुरा",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO KEROT",
     "exam_code": "AJM04G221768",
@@ -2379,11 +2435,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO KEROT",
-    "timestamp": "Fri Oct 02 2026 09:14:38 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 09:14:38 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. जेतपुरा",
+    "school_name_en": "Govt. Sr. Sec. School Jetpura"
   },
   "221767": {
     "school_code": "221767",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD",
+    "school_name": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO KEROT",
     "exam_code": "AJM04G221767",
@@ -2461,11 +2519,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO KEROT",
-    "timestamp": "Fri Oct 02 2026 10:05:25 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 10:05:25 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+    "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
   },
   "221777": {
     "school_code": "221777",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA",
+    "school_name": "रा.उ.मा.वि. कुम्हारिया",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO KUMHARIYA",
     "exam_code": "AJM04G221777",
@@ -2543,11 +2603,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO KUMHARIYA",
-    "timestamp": "Fri Oct 02 2026 08:41:21 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 08:41:21 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+    "school_name_en": "Govt. Sr. Sec. School Kumhariya"
   },
   "221760": {
     "school_code": "221760",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL GANAHERA",
+    "school_name": "रा.उ.मा.वि. गनाहेड़ा",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO LAMGARA",
     "exam_code": "AJM04G221760",
@@ -2625,11 +2687,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO LAMGARA",
-    "timestamp": "Fri Oct 02 2026 09:20:02 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 09:20:02 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+    "school_name_en": "Govt. Sr. Sec. School Ganahera"
   },
   "221759": {
     "school_code": "221759",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA",
+    "school_name": "रा.उ.मा.वि. लामगरा",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO LAMGARA",
     "exam_code": "AJM03G221759",
@@ -2707,11 +2771,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "RAJEEV KUMAR MANDOT",
-    "timestamp": "Fri Oct 02 2026 10:30:13 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 10:30:13 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. लामगरा",
+    "school_name_en": "Govt. Sr. Sec. School Lamgara"
   },
   "221761": {
     "school_code": "221761",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL NIMEDA",
+    "school_name": "रा.उ.मा.वि. निमेड़ा",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO LAMGARA",
     "exam_code": "AJM04G221761",
@@ -2789,11 +2855,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO LAMGARA",
-    "timestamp": "Fri Oct 02 2026 10:56:17 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 10:56:17 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
+    "school_name_en": "Govt. Sr. Sec. School Nimeda"
   },
   "488781": {
     "school_code": "488781",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL BADLA",
+    "school_name": "रा.उ.मा.वि. बडला (नागोला)",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO NAGOLA",
     "exam_code": "AJM04G488781",
@@ -2871,11 +2939,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO NAGOLA",
-    "timestamp": "Fri Oct 02 2026 09:15:07 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 09:15:07 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. बडला (नागोला)",
+    "school_name_en": "Govt. Sr. Sec. School Badla (Nagola)"
   },
   "221772": {
     "school_code": "221772",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA",
+    "school_name": "रा.उ.मा.वि. नागोला",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO NAGOLA",
     "exam_code": "AJM04G221772",
@@ -2955,11 +3025,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO NAGOLA",
-    "timestamp": "Sat Oct 03 2026 11:38:38 GMT+0530 (India Standard Time)"
+    "timestamp": "Sat Oct 03 2026 11:38:38 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. नागोला",
+    "school_name_en": "Govt. Sr. Sec. School Nagola"
   },
   "410632": {
     "school_code": "410632",
-    "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL NANDSI",
+    "school_name": "रा.बा.उ.मा.वि. नांदसी",
     "category": "Govt. Girls Sr. Sec.",
     "peeo_name": "PEEO NANDSI",
     "exam_code": "AJM04G410632",
@@ -3035,11 +3107,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO NANDSI",
-    "timestamp": "Fri Oct 02 2026 09:02:40 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 09:02:40 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.बा.उ.मा.वि. नांदसी",
+    "school_name_en": "Govt. Girls Sr. Sec. School Nandsi"
   },
   "221757": {
     "school_code": "221757",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL KURTHAL",
+    "school_name": "रा.उ.मा.वि. कुरथल",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO NANDSI",
     "exam_code": "AJM04G221757",
@@ -3117,11 +3191,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO NANDSI",
-    "timestamp": "Fri Oct 02 2026 11:13:56 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 11:13:56 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. कुरथल",
+    "school_name_en": "Govt. Sr. Sec. School Kurthal"
   },
   "221756": {
     "school_code": "221756",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL NANDSI",
+    "school_name": "रा.उ.मा.वि. नांदसी",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO NANDSI",
     "exam_code": "AJM04G221756",
@@ -3199,11 +3275,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO NANDSI",
-    "timestamp": "Fri Oct 02 2026 11:48:32 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 11:48:32 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. नांदसी",
+    "school_name_en": "Govt. Sr. Sec. School Nandsi"
   },
   "221788": {
     "school_code": "221788",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL PADANGA",
+    "school_name": "रा.उ.मा.वि. पाडंगा",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO PADANGA",
     "exam_code": "AJM04G221788",
@@ -3281,11 +3359,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "SMT ASHA RAJ",
-    "timestamp": "Fri Oct 02 2026 20:49:35 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 20:49:35 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+    "school_name_en": "Govt. Sr. Sec. School Padanga"
   },
   "221766": {
     "school_code": "221766",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA",
+    "school_name": "रा.उ.मा.वि. पाडलिया",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO PADALIYA",
     "exam_code": "AJM04G221766",
@@ -3361,11 +3441,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO PADALIYA",
-    "timestamp": "Fri Oct 02 2026 10:54:32 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 10:54:32 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+    "school_name_en": "Govt. Sr. Sec. School Padliya"
   },
   "221784": {
     "school_code": "221784",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL HEERAPURA",
+    "school_name": "रा.उ.मा.वि. हीरापुरा",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO RAMMALIA",
     "exam_code": "AJM04G221784",
@@ -3443,11 +3525,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO RAMMALIA",
-    "timestamp": "Fri Oct 02 2026 12:21:06 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 12:21:06 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. हीरापुरा",
+    "school_name_en": "Govt. Sr. Sec. School Heerapura"
   },
   "410677": {
     "school_code": "410677",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL RAGHUNATHGADH",
+    "school_name": "रा.उ.मा.वि. रघुनाथगढ़",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO RAMMALIA",
     "exam_code": "AJM04G410677",
@@ -3521,11 +3605,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO RAMMALIA",
-    "timestamp": "Fri Oct 02 2026 10:56:11 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 10:56:11 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. रघुनाथगढ़",
+    "school_name_en": "Govt. Sr. Sec. School Raghunathgadh"
   },
   "221785": {
     "school_code": "221785",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA",
+    "school_name": "रा.उ.मा.वि. राममालिया",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO RAMMALIA",
     "exam_code": "AJM04G221785",
@@ -3603,11 +3689,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO RAMMALIA",
-    "timestamp": "Fri Oct 02 2026 10:44:34 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 10:44:34 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. राममालिया",
+    "school_name_en": "Govt. Sr. Sec. School Rammaliya"
   },
   "221776": {
     "school_code": "221776",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL JHIPIYA",
+    "school_name": "रा.उ.मा.वि. झीपिया",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO RATAKOT",
     "exam_code": "AJM04G221776",
@@ -3681,11 +3769,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO RATAKOT",
-    "timestamp": "Fri Oct 02 2026 10:19:32 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 10:19:32 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. झीपिया",
+    "school_name_en": "Govt. Sr. Sec. School Jhipiya"
   },
   "221775": {
     "school_code": "221775",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT",
+    "school_name": "रा.उ.मा.वि. राताकोट",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO RATAKOT",
     "exam_code": "AJM04G221775",
@@ -3763,11 +3853,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO RATAKOT",
-    "timestamp": "Fri Oct 02 2026 09:23:19 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 09:23:19 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. राताकोट",
+    "school_name_en": "Govt. Sr. Sec. School Ratakot"
   },
   "221781": {
     "school_code": "221781",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL",
+    "school_name": "रा.उ.मा.वि. सिंगावल",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO SINGAWAL",
     "exam_code": "AJM04G221781",
@@ -3845,11 +3937,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO SINGAWAL",
-    "timestamp": "Fri Oct 02 2026 09:35:00 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 09:35:00 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+    "school_name_en": "Govt. Sr. Sec. School Singawal"
   },
   "488897": {
     "school_code": "488897",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL GHANA",
+    "school_name": "रा.उ.मा.वि. घाणा",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO SOBRI",
     "exam_code": "AJM04G488897",
@@ -3927,11 +4021,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO SOBRI",
-    "timestamp": "Fri Oct 02 2026 09:49:47 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 09:49:47 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. घाणा",
+    "school_name_en": "Govt. Sr. Sec. School Ghana"
   },
   "221782": {
     "school_code": "221782",
-    "school_name": "GOVT. SENIOR SECONDARY SCHOOL SOBRI",
+    "school_name": "रा.उ.मा.वि. सोबड़ी",
     "category": "Govt. Sr. Sec.",
     "peeo_name": "PEEO SOBRI",
     "exam_code": "AJM04G221782",
@@ -4009,11 +4105,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO SOBRI",
-    "timestamp": "Fri Oct 02 2026 09:41:30 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 09:41:30 GMT+0530 (India Standard Time)",
+    "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+    "school_name_en": "Govt. Sr. Sec. School Sobri"
   },
   "P55700": {
     "school_code": "P55700",
-    "school_name": "TAGORE GLOBAL SCHOOL (EKALSINGHA)",
+    "school_name": "टैगोर ग्लोबल स्कूल, एकलसिंघा",
     "category": "Private Secondary",
     "peeo_name": "PEEO EKALSEENGA",
     "exam_code": "AJM04P055700",
@@ -4087,11 +4185,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "AALOK MISHRA",
-    "timestamp": "01/10/2026, 15:00:00"
+    "timestamp": "01/10/2026, 15:00:00",
+    "school_name_hi": "टैगोर ग्लोबल स्कूल, एकलसिंघा",
+    "school_name_en": "Tagore Global School (Ekalsingha)"
   },
   "P16099": {
     "school_code": "P16099",
-    "school_name": "GURUKUL KESARI PUBLIC SECONDARY SCHOOL BANDANWARA",
+    "school_name": "गुरुकुल केसरी पब्लिक माध्यमिक विद्यालय, बांदनवाड़ा",
     "category": "Private Secondary",
     "peeo_name": "PEEO BANDANWARA",
     "exam_code": "AJM04P016099",
@@ -4173,11 +4273,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BANDANWARA",
-    "timestamp": "Fri Oct 02 2026 11:27:45 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 11:27:45 GMT+0530 (India Standard Time)",
+    "school_name_hi": "गुरुकुल केसरी पब्लिक माध्यमिक विद्यालय, बांदनवाड़ा",
+    "school_name_en": "Gurukul Kesari Public Secondary School Bandanwara"
   },
   "P48759": {
     "school_code": "P48759",
-    "school_name": "KUCHAMAN SHIKSHAN SANSTHAN BANDANWARA",
+    "school_name": "कुचामन शिक्षण संस्थान, बांदनवाड़ा",
     "category": "Private Sr. Sec.",
     "peeo_name": "PEEO BANDANWARA",
     "exam_code": "AJM04P048759",
@@ -4257,11 +4359,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BANDANWARA",
-    "timestamp": "Fri Oct 02 2026 14:08:25 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 14:08:25 GMT+0530 (India Standard Time)",
+    "school_name_hi": "कुचामन शिक्षण संस्थान, बांदनवाड़ा",
+    "school_name_en": "Kuchaman Shikshan Sansthan Bandanwara"
   },
   "P16964": {
     "school_code": "P16964",
-    "school_name": "SAMRAT INTERNATIONAL SCHOOL BANDANWARA",
+    "school_name": "सम्राट इंटरनेशनल स्कूल, बांदनवाड़ा",
     "category": "Private Secondary",
     "peeo_name": "PEEO BANDANWARA",
     "exam_code": "AJM04P016964",
@@ -4335,11 +4439,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BANDANWARA",
-    "timestamp": "Fri Oct 02 2026 08:53:05 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 08:53:05 GMT+0530 (India Standard Time)",
+    "school_name_hi": "सम्राट इंटरनेशनल स्कूल, बांदनवाड़ा",
+    "school_name_en": "Samrat International School Bandanwara"
   },
   "P19054": {
     "school_code": "P19054",
-    "school_name": "SIDDHARTH INTERNATIONAL SCHOOL BANDANWARA",
+    "school_name": "सिद्धार्थ इंटरनेशनल स्कूल, बांदनवाड़ा",
     "category": "Private Secondary",
     "peeo_name": "PEEO BANDANWARA",
     "exam_code": "AJM04P019054",
@@ -4413,11 +4519,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BANDANWARA",
-    "timestamp": "Fri Oct 02 2026 09:51:41 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 09:51:41 GMT+0530 (India Standard Time)",
+    "school_name_hi": "सिद्धार्थ इंटरनेशनल स्कूल, बांदनवाड़ा",
+    "school_name_en": "Siddharth International School Bandanwara"
   },
   "P19678": {
     "school_code": "P19678",
-    "school_name": "SUN RISE CONVENT SCHOOL BHINAI",
+    "school_name": "सन राइज कॉन्वेंट स्कूल, भिनाय",
     "category": "Private Secondary",
     "peeo_name": "PEEO BHINAY",
     "exam_code": "AJM04P019678",
@@ -4491,11 +4599,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BHINAY",
-    "timestamp": "Fri Oct 02 2026 09:30:43 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 09:30:43 GMT+0530 (India Standard Time)",
+    "school_name_hi": "सन राइज कॉन्वेंट स्कूल, भिनाय",
+    "school_name_en": "Sun Rise Convent School Bhinai"
   },
   "P16865": {
     "school_code": "P16865",
-    "school_name": "SUMER SENIOR SECONDARY SCHOOL BHINAI",
+    "school_name": "सुमेर उच्च माध्यमिक विद्यालय, भिनाय",
     "category": "Private Sr. Sec.",
     "peeo_name": "PEEO BHINAY",
     "exam_code": "AJM04P016865",
@@ -4573,11 +4683,13 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BHINAY",
-    "timestamp": "Sat Oct 03 2026 08:09:55 GMT+0530 (India Standard Time)"
+    "timestamp": "Sat Oct 03 2026 08:09:55 GMT+0530 (India Standard Time)",
+    "school_name_hi": "सुमेर उच्च माध्यमिक विद्यालय, भिनाय",
+    "school_name_en": "Sumer Senior Secondary School Bhinai"
   },
   "P16968": {
     "school_code": "P16968",
-    "school_name": "DRONA CHARYA SECONDARY SCHOOL BHINAI",
+    "school_name": "द्रोणाचार्य माध्यमिक विद्यालय, भिनाय",
     "category": "Private Secondary",
     "peeo_name": "PEEO BHINAY",
     "exam_code": "AJM04P016968",
@@ -4651,6 +4763,8 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BHINAY",
-    "timestamp": "Fri Oct 02 2026 09:53:29 GMT+0530 (India Standard Time)"
+    "timestamp": "Fri Oct 02 2026 09:53:29 GMT+0530 (India Standard Time)",
+    "school_name_hi": "द्रोणाचार्य माध्यमिक विद्यालय, भिनाय",
+    "school_name_en": "Drona Charya Secondary School Bhinai"
   }
 }

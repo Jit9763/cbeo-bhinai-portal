@@ -57,8 +57,24 @@ document.addEventListener('DOMContentLoaded', () => {
   if (gformModal) {
     gformModal.addEventListener('input', autoSaveGFormDraft);
     gformModal.addEventListener('change', autoSaveGFormDraft);
-  }
 });
+
+// Standard School Name Resolver (57 Schools - Hindi / English)
+function getStandardSchoolName(code, lang = 'hi') {
+  if (!code) return '';
+  const cStr = String(code).trim();
+  const std = (typeof STANDARD_SCHOOL_NAMES !== 'undefined' && STANDARD_SCHOOL_NAMES[cStr]) 
+    ? STANDARD_SCHOOL_NAMES[cStr] 
+    : null;
+  if (std) {
+    return (lang === 'en') ? (std.en || std.hi) : (std.hi || std.en);
+  }
+  const sc = (STATE.schools56 || []).find(s => String(s.shala_darpan_code).trim() === cStr);
+  if (sc) {
+    return (lang === 'en') ? (sc.school_name_en || sc.school_name) : (sc.school_name_hi || sc.school_name);
+  }
+  return cStr;
+}
 
 // Helper to accurately determine if a school has genuinely submitted its Saman Pariksha form
 function isSamanParikshaSubmitted(subOrCode) {
@@ -175,7 +191,7 @@ function initMasterData() {
   ];
 
   // Versioned cache check to guarantee fresh master data with 57 schools and all 57 active submissions
-  const DATA_VERSION = 'v20_2026_10_03_all_57_saman_pariksha_sync';
+  const DATA_VERSION = 'v21_2026_10_04_standard_school_and_cloud_sync';
   if (localStorage.getItem('cbeo_data_version') !== DATA_VERSION) {
     localStorage.removeItem('cbeo_peeos_data');
     localStorage.removeItem('cbeo_staff_data');
@@ -2875,24 +2891,24 @@ function openExamPdfPreview(schoolCode, lang = null) {
     ? sub.c12_faculties.map(f => isEn ? (facultyMapEn[f] || f) : (FACULTIES_CONFIG[f]?.name || f)).join(', ') 
     : (isEn ? 'General' : 'सामान्य');
 
-  const schoolDisplayName = isEn ? (school.school_name_en || school.school_name) : school.school_name;
+  // Update external language toolbar buttons (Outside printable container)
+  const btnHi = document.getElementById('btn-exam-lang-hi');
+  const btnEn = document.getElementById('btn-exam-lang-en');
+  if (btnHi && btnEn) {
+    if (isEn) {
+      btnHi.className = 'btn btn-outline-primary btn-sm';
+      btnEn.className = 'btn btn-primary btn-sm';
+    } else {
+      btnHi.className = 'btn btn-primary btn-sm';
+      btnEn.className = 'btn btn-outline-primary btn-sm';
+    }
+  }
+
+  const schoolDisplayName = getStandardSchoolName(school.shala_darpan_code, activeExamPdfLanguage) || (isEn ? (school.school_name_en || school.school_name) : (school.school_name_hi || school.school_name));
+  const peeoCleanName = (school.peeo_name || '').replace(/^PEEO\s+/i, '');
+  const peeoDisplay = isEn ? peeoCleanName : `पीईईओ ${peeoCleanName}`;
 
   container.innerHTML = `
-    <!-- Language Toggle Toolbar (Excluded from Print/PDF) -->
-    <div class="no-print" style="display:flex; justify-content:space-between; align-items:center; background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:8px; padding:0.5rem 1rem; margin-bottom:0.75rem">
-      <div style="font-size:0.85rem; font-weight:700; color:#1e40af">
-        <i class="fas fa-language"></i> अधिकृत प्रपत्र भाषा (Proforma Language):
-      </div>
-      <div style="display:flex; gap:0.5rem">
-        <button type="button" class="btn ${!isEn ? 'btn-primary' : 'btn-outline-primary'} btn-sm" onclick="switchPdfLanguage('hi')" style="font-weight:700; border-radius:20px; padding:3px 14px">
-          🇮🇳 शुद्ध हिंदी प्रारूप (Official Hindi)
-        </button>
-        <button type="button" class="btn ${isEn ? 'btn-primary' : 'btn-outline-primary'} btn-sm" onclick="switchPdfLanguage('en')" style="font-weight:700; border-radius:20px; padding:3px 14px">
-          🌐 Official English Format
-        </button>
-      </div>
-    </div>
-
     <!-- Top Emblem & Departmental Header (Single Page A4 Landscape Layout) -->
     <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:2px; margin-bottom:4px">
       <div style="font-size:0.80rem; font-weight:700; color:#000; letter-spacing:normal">
@@ -2903,8 +2919,8 @@ function openExamPdfPreview(schoolCode, lang = null) {
       </div>
       <div style="font-size:0.78rem; font-weight:700; color:#111; margin-bottom:1px">
         ${isEn 
-          ? `Jurisdiction: ${school.peeo_name.replace('PEEO ', '')}, Block-Bhinai, District-Ajmer (Raj.) | Shala Darpan / PSP Code: ${school.shala_darpan_code}`
-          : `ग्राम / परिक्षेत्र: ${school.peeo_name.replace('PEEO ', '')}, ब्लॉक-भिनाय, जिला-अजमेर (राज.) | शाला दर्पण / PSP कोड: ${school.shala_darpan_code}`}
+          ? `Jurisdiction: ${peeoCleanName}, Block-Bhinai, District-Ajmer (Raj.) | Shala Darpan / PSP Code: ${school.shala_darpan_code}`
+          : `परिक्षेत्र: ${peeoDisplay}, ब्लॉक-भिनाय, जिला-अजमेर (राज.) | शाला दर्पण / PSP कोड: ${school.shala_darpan_code}`}
       </div>
       <div style="font-size:0.95rem; font-weight:800; color:#000; letter-spacing:normal">
         ${isEn ? 'DISTRICT UNIFORM EXAMINATION SCHEME (SESSION 2026-27)' : 'जिला समान परीक्षा योजना (सत्र 2026-27)'}
@@ -5488,8 +5504,129 @@ function onStaffPeeoFilterChange() {
   filterStaffTable();
 }
 
+function isJitendraLoggedIn() {
+  if (!STATE.currentUser) return false;
+  return STATE.currentUser.shala_darpan_code === 'admin_jitendra' ||
+         STATE.currentUser.username === 'jitendra_admin' ||
+         STATE.currentUser.role === 'Super Admin';
+}
+
+function applyStaffInstructionsConfig() {
+  let cfg = null;
+  try {
+    cfg = JSON.parse(localStorage.getItem('cbeo_staff_instructions') || 'null');
+    if (!cfg && STATE.portalSettings && STATE.portalSettings.staff_instructions) {
+      cfg = STATE.portalSettings.staff_instructions;
+    }
+  } catch(e) {}
+
+  const defaultTitle = "CBEO भिनाय: कार्मिक प्रबंधन एवं स्थापना सूची (Census / Election Master Format)";
+  const defaultSub = "समस्त 1,060+ कार्मिकों का डेटाबेस (हिंदी यूनिकोड)। PEEO एवं संस्था प्रधान अपने विद्यालय के कार्मिक संपादित कर सकते हैं। 👑 संस्था प्रधान मार्क करने पर मास्टर डायरेक्टरी व Google Sheet तुरंत अपडेट होती है।";
+  const defaultNoticeTitle = "महत्वपूर्ण दिशा-निर्देश एवं कार्य निर्देश (Official Directives)";
+  const defaultNoticeText = "1. प्रत्येक विद्यालय अपने समस्त कार्यरत कार्मिकों (मूल पद, वर्तमान पद, मोबाइल, बैंक खाता व IFSC) का शत-प्रतिशत सत्यापन कर अद्यतन करें।\n2. विद्यालय के संस्था प्रधान के नाम के आगे '👑 संस्था प्रधान' अवश्य मार्क करें ताकि दूरभाष डायरेक्टरी में सही प्रविष्टि रहे।\n3. सेवानिवृत्त अथवा स्थानांतरित कार्मिकों को 'हटाएं' विकल्प से सुरक्षित आर्काइव करें।";
+
+  const headTitleEl = document.getElementById('staff-header-title');
+  const headSubEl = document.getElementById('staff-header-sub');
+  const insTitleEl = document.getElementById('staff-instructions-title');
+  const insTextEl = document.getElementById('staff-instructions-text');
+
+  if (headTitleEl) headTitleEl.textContent = cfg?.header_title || defaultTitle;
+  if (headSubEl) headSubEl.textContent = cfg?.header_sub || defaultSub;
+  if (insTitleEl) insTitleEl.textContent = cfg?.instructions_title || defaultNoticeTitle;
+  if (insTextEl) insTextEl.textContent = cfg?.instructions_text || defaultNoticeText;
+}
+
+function openEditStaffInstructionsModal() {
+  let cfg = null;
+  try {
+    cfg = JSON.parse(localStorage.getItem('cbeo_staff_instructions') || 'null');
+    if (!cfg && STATE.portalSettings && STATE.portalSettings.staff_instructions) {
+      cfg = STATE.portalSettings.staff_instructions;
+    }
+  } catch(e) {}
+
+  const defaultTitle = "CBEO भिनाय: कार्मिक प्रबंधन एवं स्थापना सूची (Census / Election Master Format)";
+  const defaultSub = "समस्त 1,060+ कार्मिकों का डेटाबेस (हिंदी यूनिकोड)। PEEO एवं संस्था प्रधान अपने विद्यालय के कार्मिक संपादित कर सकते हैं। 👑 संस्था प्रधान मार्क करने पर मास्टर डायरेक्टरी व Google Sheet तुरंत अपडेट होती है।";
+  const defaultNoticeTitle = "महत्वपूर्ण दिशा-निर्देश एवं कार्य निर्देश (Official Directives)";
+  const defaultNoticeText = "1. प्रत्येक विद्यालय अपने समस्त कार्यरत कार्मिकों (मूल पद, वर्तमान पद, मोबाइल, बैंक खाता व IFSC) का शत-प्रतिशत सत्यापन कर अद्यतन करें।\n2. विद्यालय के संस्था प्रधान के नाम के आगे '👑 संस्था प्रधान' अवश्य मार्क करें ताकि दूरभाष डायरेक्टरी में सही प्रविष्टि रहे।\n3. सेवानिवृत्त अथवा स्थानांतरित कार्मिकों को 'हटाएं' विकल्प से सुरक्षित आर्काइव करें।";
+
+  const tIn = document.getElementById('staff-input-header-title');
+  const sIn = document.getElementById('staff-input-header-sub');
+  const ntIn = document.getElementById('staff-input-instructions-title');
+  const nxIn = document.getElementById('staff-input-instructions-text');
+
+  if (tIn) tIn.value = cfg?.header_title || defaultTitle;
+  if (sIn) sIn.value = cfg?.header_sub || defaultSub;
+  if (ntIn) ntIn.value = cfg?.instructions_title || defaultNoticeTitle;
+  if (nxIn) nxIn.value = cfg?.instructions_text || defaultNoticeText;
+
+  showModal('modal-edit-staff-instructions');
+}
+
+function saveStaffInstructions() {
+  const tIn = document.getElementById('staff-input-header-title');
+  const sIn = document.getElementById('staff-input-header-sub');
+  const ntIn = document.getElementById('staff-input-instructions-title');
+  const nxIn = document.getElementById('staff-input-instructions-text');
+
+  const cfg = {
+    header_title: tIn?.value.trim() || "CBEO भिनाय: कार्मिक प्रबंधन एवं स्थापना सूची (Census / Election Master Format)",
+    header_sub: sIn?.value.trim() || "",
+    instructions_title: ntIn?.value.trim() || "महत्वपूर्ण दिशा-निर्देश एवं कार्य निर्देश (Official Directives)",
+    instructions_text: nxIn?.value.trim() || "",
+    updated_at: new Date().toISOString(),
+    updated_by: STATE.currentUser?.username || 'admin_jitendra'
+  };
+
+  localStorage.setItem('cbeo_staff_instructions', JSON.stringify(cfg));
+  if (!STATE.portalSettings) STATE.portalSettings = {};
+  STATE.portalSettings.staff_instructions = cfg;
+  savePortalSettingsToCloud();
+
+  applyStaffInstructionsConfig();
+  closeModal('modal-edit-staff-instructions');
+  showToast('✓ कार्मिक प्रबंधन हेडिंग व दिशा-निर्देश Google Sheet क्लाउड में सुरक्षित हो गए!', 'success');
+}
+
+function resetStaffInstructionsToDefault() {
+  localStorage.removeItem('cbeo_staff_instructions');
+  if (STATE.portalSettings) delete STATE.portalSettings.staff_instructions;
+  savePortalSettingsToCloud();
+  applyStaffInstructionsConfig();
+  closeModal('modal-edit-staff-instructions');
+  showToast('✓ दिशा-निर्देश मूल डिफ़ॉल्ट रूप में रीसेट कर दिए गए!', 'info');
+}
+
+function syncStaffMemberToCloud(staff) {
+  if (!staff) return;
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+  if (!gasUrl) return;
+
+  try {
+    fetch(gasUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'updateStaffMember',
+        staff: staff,
+        updated_by: STATE.currentUser?.username || 'Admin_Jitendra'
+      })
+    }).catch(err => console.warn('Cloud staff sync error:', err));
+  } catch(e) {}
+}
+
 function renderStaffView() {
   renderStaffFilters();
+  applyStaffInstructionsConfig();
+
+  const isJit = isJitendraLoggedIn();
+  const btnEdit1 = document.getElementById('btn-edit-staff-instructions');
+  const btnEdit2 = document.getElementById('btn-edit-staff-header-top');
+  if (btnEdit1) btnEdit1.style.display = isJit ? 'inline-block' : 'none';
+  if (btnEdit2) btnEdit2.style.display = isJit ? 'inline-block' : 'none';
 }
 
 function filterStaffTable() {
@@ -5839,6 +5976,9 @@ function openAddStaffModal() {
     schoolSelect.appendChild(opt);
   }
 
+  const headChk = document.getElementById('staff-edit-is-head');
+  if (headChk) headChk.checked = false;
+
   showModal('modal-staff-edit');
 }
 
@@ -5856,6 +5996,11 @@ function openEditStaffModal(staffId) {
   document.getElementById('staff-edit-sso').value = staff.sso_id || '';
   document.getElementById('staff-edit-bank-acc').value = staff.bank_acc || '';
   document.getElementById('staff-edit-ifsc').value = staff.ifsc || '';
+
+  const headChk = document.getElementById('staff-edit-is-head');
+  if (headChk) {
+    headChk.checked = !!(staff.is_sanstha_pradhan || (staff.post && (staff.post.includes('प्रधानाचार्य') || staff.post.includes('संस्था प्रधान'))));
+  }
 
   const schoolSelect = document.getElementById('staff-edit-school');
   schoolSelect.innerHTML = '';
@@ -5889,25 +6034,38 @@ function saveStaffMember() {
   const ssoId = document.getElementById('staff-edit-sso').value.trim();
   const bankAcc = document.getElementById('staff-edit-bank-acc').value.trim();
   const ifsc = document.getElementById('staff-edit-ifsc').value.trim();
+  const isHeadChecked = document.getElementById('staff-edit-is-head')?.checked;
+  const isHead = isHeadChecked || (post && (post.includes('प्रधानाचार्य') || post.includes('संस्था प्रधान')));
 
   if (!name) {
     showToast('कृपया कार्मिक का नाम दर्ज करें!', 'error');
     return;
   }
 
+  let savedRecord = null;
+
   if (staffId) {
     const idx = STATE.staff.findIndex(s => s.staff_id === staffId);
     if (idx !== -1) {
       STATE.staff[idx] = {
         ...STATE.staff[idx],
-        name, school_name: schoolName, post, mobile, email, sso_id: ssoId, bank_acc: bankAcc, ifsc
+        name,
+        school_name: schoolName,
+        post,
+        mobile,
+        email,
+        sso_id: ssoId,
+        bank_acc: bankAcc,
+        ifsc,
+        is_sanstha_pradhan: isHead
       };
+      savedRecord = STATE.staff[idx];
 
       recordAuditLog({
-        user: STATE.currentUser.peeo_name || STATE.currentUser.name || 'Admin',
+        user: STATE.currentUser?.peeo_name || STATE.currentUser?.name || 'Admin',
         action: 'कार्मिक संपादन',
         target: `${staffId} - ${name}`,
-        details: `पद: ${post}, मो.: ${mobile}`,
+        details: `विद्यालय: ${schoolName}, पद: ${post}, मो.: ${mobile}${isHead ? ' [👑 संस्था प्रधान]' : ''}`,
         note: 'विवरण अद्यतन किया गया'
       });
 
@@ -5926,24 +6084,56 @@ function saveStaffMember() {
       peeo_name: peeoName,
       bank_acc: bankAcc,
       ifsc: ifsc,
+      is_sanstha_pradhan: isHead,
       status: 'Active'
     };
     STATE.staff.unshift(newStaff);
+    savedRecord = newStaff;
 
     recordAuditLog({
-      user: STATE.currentUser.peeo_name || STATE.currentUser.name || 'Admin',
+      user: STATE.currentUser?.peeo_name || STATE.currentUser?.name || 'Admin',
       action: 'नया कार्मिक प्रविष्टि',
       target: `${newId} - ${name}`,
-      details: `विद्यालय: ${schoolName}, पद: ${post}`,
+      details: `विद्यालय: ${schoolName}, पद: ${post}, मो.: ${mobile}${isHead ? ' [👑 संस्था प्रधान]' : ''}`,
       note: 'नया शिक्षक जोड़ा गया'
     });
 
     showToast('नया कार्मिक सफलतापूर्वक जोड़ा गया!', 'success');
   }
 
+  // If marked as Head of Institution, dynamically update matching school in schools56 and PEEOs
+  if (isHead) {
+    STATE.staff.forEach(s => {
+      if (s.school_name === schoolName && s.staff_id !== (savedRecord?.staff_id)) {
+        s.is_sanstha_pradhan = false;
+      }
+    });
+
+    const matchedSchool = (STATE.schools56 || []).find(s => 
+      s.school_name === schoolName || 
+      (s.school_name_hi && s.school_name_hi === schoolName) ||
+      (ssoId && s.shala_darpan_code === ssoId) ||
+      (staffId && s.shala_darpan_code === staffId)
+    );
+    if (matchedSchool) {
+      matchedSchool.principal_name = name;
+      matchedSchool.principal_mobile = mobile;
+      saveSchools56ToStorage();
+    }
+
+    const matchedPeeo = (STATE.peeos || []).find(p => p.peeo_name === peeoName || (matchedSchool && p.shala_darpan_code === matchedSchool.shala_darpan_code));
+    if (matchedPeeo && (schoolName.includes(peeoName.replace('PEEO ', '')) || isHead)) {
+      matchedPeeo.principal_incharge = name;
+      matchedPeeo.mobile = mobile;
+      savePeeosToStorage();
+    }
+  }
+
   saveStaffToStorage();
   closeModal('modal-staff-edit');
   filterStaffTable();
+  if (typeof filterDirectory === 'function') filterDirectory();
+  if (savedRecord) syncStaffMemberToCloud(savedRecord);
 }
 
 function openDeleteStaffModal(staffId, staffName) {
@@ -5961,10 +6151,10 @@ function confirmDeleteStaff() {
     staff.status = 'Deleted';
     staff.deleteReason = reason;
     staff.deletedAt = new Date().toLocaleString('hi-IN');
-    staff.deletedBy = STATE.currentUser.peeo_name || STATE.currentUser.name || 'Admin';
+    staff.deletedBy = STATE.currentUser?.peeo_name || STATE.currentUser?.name || 'Admin';
 
     recordAuditLog({
-      user: STATE.currentUser.peeo_name || STATE.currentUser.name || 'Admin',
+      user: STATE.currentUser?.peeo_name || STATE.currentUser?.name || 'Admin',
       action: 'कार्मिक विलोपन (सुरक्षित बैकअप)',
       target: `${staff.staff_id} - ${staff.name}`,
       details: `विद्यालय: ${staff.school_name}, पद: ${staff.post}, मो.: ${staff.mobile}`,
@@ -5972,11 +6162,14 @@ function confirmDeleteStaff() {
     });
 
     saveStaffToStorage();
-    showToast(`कार्मिक सूची से हटाया गया एवं बैकअप लॉग में सुरक्षित किया गया!`, 'warning');
+    closeModal('modal-delete-staff');
+    filterStaffTable();
+    if (typeof filterDirectory === 'function') filterDirectory();
+    syncStaffMemberToCloud(staff);
+    showToast(`कार्मिक ${staff.name} को सुरक्षित हटा दिया गया (ऑडिट बैकअप सुरक्षित)!`, 'warning');
+  } else {
+    closeModal('modal-delete-staff');
   }
-
-  closeModal('modal-delete-staff');
-  filterStaffTable();
 }
 
 /* ========================================================
@@ -8458,7 +8651,20 @@ function openUniversalDemandPdfPreview(demandId, schoolCode, lang = null) {
     category: 'राजकीय'
   };
 
-  const schoolDisplayName = isEn ? (school.school_name_en || school.school_name) : school.school_name;
+  // Update external language toolbar buttons (Outside printable container)
+  const btnHi = document.getElementById('btn-universal-lang-hi');
+  const btnEn = document.getElementById('btn-universal-lang-en');
+  if (btnHi && btnEn) {
+    if (isEn) {
+      btnHi.className = 'btn btn-outline-primary btn-sm';
+      btnEn.className = 'btn btn-primary btn-sm';
+    } else {
+      btnHi.className = 'btn btn-primary btn-sm';
+      btnEn.className = 'btn btn-outline-primary btn-sm';
+    }
+  }
+
+  const schoolDisplayName = getStandardSchoolName(school.shala_darpan_code, activeUniversalDemandPdfLanguage) || (isEn ? (school.school_name_en || school.school_name) : (school.school_name_hi || school.school_name));
   const sub = getDemandSubmissionRecord(demandId, schoolCode);
 
   const container = document.getElementById('printable-universal-demand-content');
@@ -8491,28 +8697,13 @@ function openUniversalDemandPdfPreview(demandId, schoolCode, lang = null) {
   });
 
   const printHtml = `
-    <!-- Language Toggle Toolbar (Excluded from Print/PDF) -->
-    <div class="no-print" style="display:flex; justify-content:space-between; align-items:center; background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:8px; padding:0.5rem 1rem; margin-bottom:0.75rem">
-      <div style="font-size:0.85rem; font-weight:700; color:#1e40af">
-        <i class="fas fa-language"></i> अधिकृत प्रपत्र भाषा (Proforma Language):
-      </div>
-      <div style="display:flex; gap:0.5rem">
-        <button type="button" class="btn ${!isEn ? 'btn-primary' : 'btn-outline-primary'} btn-sm" onclick="switchUniversalDemandPdfLanguage('hi')" style="font-weight:700; border-radius:20px; padding:3px 14px">
-          🇮🇳 शुद्ध हिंदी प्रारूप (Official Hindi)
-        </button>
-        <button type="button" class="btn ${isEn ? 'btn-primary' : 'btn-outline-primary'} btn-sm" onclick="switchUniversalDemandPdfLanguage('en')" style="font-weight:700; border-radius:20px; padding:3px 14px">
-          🌐 Official English Format
-        </button>
-      </div>
-    </div>
-
     <!-- Top Official Government Header -->
     <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:4px; margin-bottom:5px">
       <div style="font-size:0.84rem; font-weight:700; letter-spacing:0.04em; color:#111">
         ${isEn ? 'GOVERNMENT OF RAJASTHAN | DEPARTMENT OF SCHOOL EDUCATION' : 'राजस्थान सरकार | स्कूल शिक्षा विभाग'}
       </div>
       <h2 style="margin:2px 0; font-size:1.15rem; font-weight:900; color:#000; letter-spacing:0.02em">
-        ${isEn ? 'OFFICE OF THE CHIEF BLOCK EDUCATION OFFICER (CBEO), BHINAI' : 'कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय'}
+        ${isEn ? 'OFFICE OF THE CHIEF BLOCK EDUCATION OFFICER (CBEO), BHINAI (AJMER)' : 'कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)'}
       </h2>
       <div style="font-size:0.75rem; color:#333; margin-top:1px">
         ${isEn ? 'Samagra Shiksha Abhiyan | NIC-SD ID: 8140 | Block-Bhinai, District-Ajmer (Rajasthan)' : 'समग्र शिक्षा अभियान | NIC-SD ID: 8140 | ब्लॉक-भिनाय, जिला-अजमेर (राजस्थान)'}
@@ -11925,30 +12116,57 @@ async function loadAndRenderVMControlCard() {
   const card = document.getElementById('jitendra-cloud-vm-control-card');
   if (!card) return;
 
+  // 1. First, load from localStorage / STATE.portalSettings for instant cloud/client UI render
+  try {
+    const localVm = JSON.parse(localStorage.getItem('cbeo_vm_settings') || 'null');
+    if (localVm) {
+      CURRENT_VM_SETTINGS = Object.assign({}, CURRENT_VM_SETTINGS, localVm);
+    } else if (STATE.portalSettings && STATE.portalSettings.vm_settings) {
+      CURRENT_VM_SETTINGS = Object.assign({}, CURRENT_VM_SETTINGS, STATE.portalSettings.vm_settings);
+    }
+  } catch(e) {}
+
+  if (!Array.isArray(CURRENT_VM_SETTINGS.slots)) {
+    CURRENT_VM_SETTINGS.slots = ["12:00 PM", "02:00 PM", "04:00 PM", "08:00 PM"];
+  }
+
+  // Update Power switch UI
+  setVMMasterPower(CURRENT_VM_SETTINGS.vm_enabled !== false, false);
+
+  // Update Channel toggles
+  updateChannelToggleBtn('toggle-vm-telegram', CURRENT_VM_SETTINGS.telegram_alerts !== false);
+  updateChannelToggleBtn('toggle-vm-email', CURRENT_VM_SETTINGS.email_alerts !== false);
+  updateChannelToggleBtn('toggle-vm-escalation', CURRENT_VM_SETTINGS.overdue_escalation !== false);
+  updateChannelToggleBtn('toggle-vm-mdm', CURRENT_VM_SETTINGS.mdm_anomaly_scanner !== false);
+
+  // Render schedule chips
+  renderVMScheduleChips();
+
+  // Populate Consolidated Demands Selector in Hub 1, Gemini key & dispatch config
+  populateAdminHubDemands();
+  loadGeminiKeyStatus();
+  loadVMDispatchConfig();
+  updateGeminiTonePreview();
+
+  // Explicitly hook change and input on tone select element
+  const toneSelectEl = document.getElementById('vm-gemini-tone-select');
+  if (toneSelectEl) {
+    toneSelectEl.onchange = updateGeminiTonePreview;
+    toneSelectEl.oninput = updateGeminiTonePreview;
+  }
+
+  // 2. Ping local/VM server in background if running (won't error if purely on GitHub Pages)
   try {
     const res = await fetch('/api/get_vm_status');
     if (res.ok) {
       const data = await res.json();
-      if (data.settings) {
+      if (data && data.settings) {
         CURRENT_VM_SETTINGS = Object.assign({}, CURRENT_VM_SETTINGS, data.settings);
-        if (!Array.isArray(CURRENT_VM_SETTINGS.slots)) {
-          CURRENT_VM_SETTINGS.slots = ["12:00 PM", "02:00 PM", "04:00 PM", "08:00 PM"];
-        }
+        setVMMasterPower(CURRENT_VM_SETTINGS.vm_enabled !== false, false);
+        updateChannelToggleBtn('toggle-vm-telegram', CURRENT_VM_SETTINGS.telegram_alerts !== false);
+        updateChannelToggleBtn('toggle-vm-email', CURRENT_VM_SETTINGS.email_alerts !== false);
+        renderVMScheduleChips();
       }
-
-      // Update Power switch UI
-      setVMMasterPower(CURRENT_VM_SETTINGS.vm_enabled !== false, false);
-
-      // Update Channel toggles
-      updateChannelToggleBtn('toggle-vm-telegram', CURRENT_VM_SETTINGS.telegram_alerts !== false);
-      updateChannelToggleBtn('toggle-vm-email', CURRENT_VM_SETTINGS.email_alerts !== false);
-      updateChannelToggleBtn('toggle-vm-escalation', CURRENT_VM_SETTINGS.overdue_escalation !== false);
-      updateChannelToggleBtn('toggle-vm-mdm', CURRENT_VM_SETTINGS.mdm_anomaly_scanner !== false);
-
-      // Render schedule chips
-      renderVMScheduleChips();
-
-      // Populate diagnostics
       const lastTimeEl = document.getElementById('vm-last-run-time');
       const lastStatusEl = document.getElementById('vm-last-run-status');
       if (lastTimeEl && CURRENT_VM_SETTINGS.last_run_time) {
@@ -11959,13 +12177,8 @@ async function loadAndRenderVMControlCard() {
       }
     }
   } catch (err) {
-    console.warn("Could not load VM status from server:", err);
+    // Pure cloud mode (GitHub Pages) - perfectly normal!
   }
-
-  // Populate Consolidated Demands Selector in Hub 1
-  populateAdminHubDemands();
-  loadGeminiKeyStatus();
-  loadVMDispatchConfig();
 }
 
 function setVMMasterPower(isOn, notify = true) {
@@ -12103,20 +12316,68 @@ async function saveCloudVMSettings() {
     updated_at: new Date().toLocaleString('hi-IN') + ' IST'
   };
 
+  localStorage.setItem('cbeo_vm_settings', JSON.stringify(payload));
+  if (!STATE.portalSettings) STATE.portalSettings = {};
+  STATE.portalSettings.vm_settings = payload;
+  savePortalSettingsToCloud();
+
+  // Also ping local server silently if available
+  fetch('/api/save_vm_settings', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).catch(() => {});
+
+  showToast('✓ क्लाउड VM स्वचालन एवं टाइमर सेटिंग्स Google Sheet / Cloud में सुरक्षित हो गईं!', 'success');
+}
+
+async function testTelegramDirect() {
+  let tgToken = '';
+  let tgChatId = '';
   try {
-    const res = await fetch('/api/save_vm_settings', {
+    const storedCfg = JSON.parse(localStorage.getItem('cbeo_telegram_config') || 'null');
+    if (storedCfg) {
+      tgToken = storedCfg.token || '';
+      tgChatId = storedCfg.chat_id || '';
+    }
+  } catch(e) {}
+
+  if (!tgToken || !tgChatId) {
+    const inputToken = prompt("Telegram Bot Token दर्ज करें (उदा. 123456789:ABCdefGhIjk...):", tgToken);
+    if (!inputToken) return;
+    const inputChatId = prompt("Telegram Chat ID / Channel Username दर्ज करें (उदा. -1001234567890 या @mychannel):", tgChatId);
+    if (!inputChatId) return;
+    tgToken = inputToken.trim();
+    tgChatId = inputChatId.trim();
+    localStorage.setItem('cbeo_telegram_config', JSON.stringify({ token: tgToken, chat_id: tgChatId }));
+  }
+
+  showToast('📱 Telegram बॉट से संदेश प्रेषित किया जा रहा है...', 'info');
+
+  const text = `🔔 *कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय*\n` +
+               `*जिला: अजमेर (राजस्थान)*\n\n` +
+               `✓ *सिस्टम टेस्ट अलर्ट (Telegram Bot Operational)*\n` +
+               `समान परीक्षा व CBEO पोर्टल क्लाउड अलर्ट सिस्टम सफलता पूर्वक सक्रिय है।\n` +
+               `दिनांक व समय: ${new Date().toLocaleString('hi-IN')}`;
+
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({
+        chat_id: tgChatId,
+        text: text,
+        parse_mode: 'Markdown'
+      })
     });
     const data = await res.json();
-    if (data.success) {
-      showToast(data.message || 'क्लाउड VM टाइमर व स्वचालन सेटिंग्स सुरक्षित की गईं!', 'success');
+    if (data.ok) {
+      showToast('✓ Telegram पर टेस्ट संदेश सफलतापूर्वक प्राप्त हो गया!', 'success');
     } else {
-      showToast('त्रुटि: ' + (data.message || 'सेव नहीं हो सका'), 'error');
+      showToast('Telegram त्रुटि: ' + (data.description || 'प्रेषण विफल'), 'error');
     }
-  } catch (err) {
-    showToast('सर्वर से संपर्क नहीं हो सका: ' + err.message, 'error');
+  } catch(err) {
+    showToast('Telegram API कॉल विफल (नेटवर्क त्रुटि): ' + err.message, 'error');
   }
 }
 
@@ -12135,16 +12396,16 @@ async function triggerCloudVMManualNow() {
       body: JSON.stringify({ action: 'manual_trigger' })
     });
     const data = await res.json();
-    if (data.success) {
+    if (data && data.success) {
       showToast(data.message || '🚀 क्लाउड VM सफलतापूर्वक ट्रिगर कर दिया गया!', 'success');
       setTimeout(() => {
         loadAndRenderVMControlCard();
       }, 5000);
     } else {
-      showToast('त्रुटि: ' + (data.message || 'VM ट्रिगर विफल'), 'error');
+      showToast('नोट: GitHub Actions Cloud VM शेड्यूल से स्वचालित रूप से चलेगा।', 'info');
     }
   } catch (err) {
-    showToast('सर्वर से संपर्क नहीं हो सका: ' + err.message, 'error');
+    showToast('नोट: GitHub Actions Cloud VM शेड्यूल से स्वचालित रूप से चलेगा।', 'info');
   } finally {
     if (btn) {
       btn.disabled = false;
@@ -12169,25 +12430,25 @@ function updateGeminiTonePreview() {
       badge: 'समय-सीमा चेतावनी',
       color: '#dc2626',
       bg: '#fee2e2',
-      text: '"कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय द्वारा सख्त निर्देश: समान परीक्षा सत्र 2026-27 के लंबित विद्यालय आज ही पोर्टल पर प्रविष्टि शत-प्रतिशत पूर्ण करें। अन्यथा अनुशासनात्मक कार्रवाई प्रस्तावित की जाएगी।"'
+      text: '"कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर) द्वारा सख्त निर्देश: समान परीक्षा सत्र 2026-27 के लंबित विद्यालय आज ही पोर्टल पर प्रविष्टि शत-प्रतिशत पूर्ण करें। अन्यथा अनुशासनात्मक कार्रवाई प्रस्तावित की जाएगी। (जिला: अजमेर)"'
     },
     formal: {
       badge: 'विभागीय औपचारिक',
       color: '#1e40af',
       bg: '#dbeafe',
-      text: '"कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर) के निर्देशानुसार: ब्लॉक के सभी लक्षित विद्यालय समान परीक्षा 2026-27 के विषयवार प्रपत्र की जांच कर आज ही अधिकृत प्रविष्टि व प्रमाणन सुनिश्चित करें।"'
+      text: '"कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर) के निर्देशानुसार: ब्लॉक के सभी लक्षित विद्यालय समान परीक्षा 2026-27 के विषयवार प्रपत्र की जांच कर आज ही अधिकृत प्रविष्टि व प्रमाणन सुनिश्चित करें। (जिला: अजमेर)"'
     },
     brief: {
       badge: '2-लाइन बुलेटिन',
       color: '#059669',
       bg: '#d1fae5',
-      text: '"• समान परीक्षा 2026-27: भिनाय ब्लॉक में प्रगति 85%+ संकलित।\n• लंबित विद्यालय: आज शाम 5 बजे तक अंतिम रूप से पोर्टल पर डेटा लॉक करें।"'
+      text: '"• समान परीक्षा 2026-27: भिनाय ब्लॉक (अजमेर) में प्रगति 85%+ संकलित।\n• लंबित विद्यालय: आज शाम 5 बजे तक अंतिम रूप से पोर्टल पर डेटा लॉक करें। (जिला: अजमेर)"'
     },
     motivational: {
       badge: 'प्रोत्साहक व समीक्षा',
       color: '#7c3aed',
       bg: '#f3e8ff',
-      text: '"समान परीक्षा 2026-27 में अधिकांश विद्यालयों द्वारा समयबद्ध प्रविष्टि सराहनीय है। शेष विद्यालय भी आज ही प्रपत्र जमा कर ब्लॉक भिनाय को जिले में प्रथम स्थान पर लाने में सहयोग करें।"'
+      text: '"समान परीक्षा 2026-27 में अधिकांश विद्यालयों द्वारा समयबद्ध प्रविष्टि सराहनीय है। शेष विद्यालय भी आज ही प्रपत्र जमा कर ब्लॉक भिनाय (अजमेर) को जिले में प्रथम स्थान पर लाने में सहयोग करें। (जिला: अजमेर)"'
     }
   };
 

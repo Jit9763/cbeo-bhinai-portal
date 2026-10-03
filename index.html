@@ -745,14 +745,17 @@
           <div>
             <div class="section-title">
               <i class="fas fa-users-cog text-primary"></i>
-              <h2>CBEO भिनाय: कार्मिक प्रबंधन एवं स्थापना सूची (Census / Election Master Format)</h2>
+              <h2 id="staff-header-title">CBEO भिनाय: कार्मिक प्रबंधन एवं स्थापना सूची (Census / Election Master Format)</h2>
               <span class="section-count" id="staff-total-count">1060+ कार्मिक</span>
             </div>
-            <p style="font-size:0.83rem; color:var(--neutral-600); margin-top:2px">
+            <p id="staff-header-sub" style="font-size:0.83rem; color:var(--neutral-600); margin-top:2px">
               समस्त 1,060+ कार्मिकों का डेटाबेस (हिंदी यूनिकोड)। PEEO एवं संस्था प्रधान अपने विद्यालय के कार्मिक संपादित कर सकते हैं। 👑 संस्था प्रधान मार्क करने पर मास्टर डायरेक्टरी व Google Sheet तुरंत अपडेट होती है।
             </p>
           </div>
           <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+            <button id="btn-edit-staff-header-top" class="btn btn-outline-warning btn-sm" onclick="openEditStaffInstructionsModal()" style="font-weight:700; display:none">
+              <i class="fas fa-edit"></i> ⚙️ हेडिंग व निर्देश बदलें
+            </button>
             <button class="btn btn-primary btn-sm" onclick="openAddStaffModal()">
               <i class="fas fa-user-plus"></i> + नया कार्मिक जोड़ें
             </button>
@@ -763,6 +766,23 @@
               <i class="fas fa-file-download"></i> CSV एक्सपोर्ट
             </button>
           </div>
+        </div>
+
+        <!-- Customizable Staff Instructions & Notice Banner (Jitendra Configurable) -->
+        <div id="staff-instructions-banner" style="background:#eff6ff; border:1.5px solid #93c5fd; border-left:5px solid #2563eb; border-radius:10px; padding:0.9rem 1.15rem; margin-bottom:1.25rem; display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; box-shadow:0 2px 4px rgba(37,99,235,0.06)">
+          <div style="flex:1">
+            <div style="font-weight:800; color:#1e40af; font-size:0.92rem; display:flex; align-items:center; gap:0.5rem; margin-bottom:4px">
+              <i class="fas fa-bullhorn text-primary"></i> <span id="staff-instructions-title">महत्वपूर्ण दिशा-निर्देश एवं कार्य निर्देश (Official Directives)</span>
+            </div>
+            <div id="staff-instructions-text" style="font-size:0.82rem; color:#1e293b; line-height:1.55; white-space:pre-line">
+1. प्रत्येक विद्यालय अपने समस्त कार्यरत कार्मिकों (मूल पद, वर्तमान पद, मोबाइल, बैंक खाता व IFSC) का शत-प्रतिशत सत्यापन कर अद्यतन करें।
+2. विद्यालय के संस्था प्रधान के नाम के आगे '👑 संस्था प्रधान' अवश्य मार्क करें ताकि दूरभाष डायरेक्टरी में सही प्रविष्टि रहे।
+3. सेवानिवृत्त अथवा स्थानांतरित कार्मिकों को 'हटाएं' विकल्प से सुरक्षित आर्काइव करें।
+            </div>
+          </div>
+          <button id="btn-edit-staff-instructions" class="btn btn-outline-primary btn-sm" onclick="openEditStaffInstructionsModal()" style="font-weight:700; white-space:nowrap; display:none">
+            <i class="fas fa-edit"></i> निर्देश बदलें
+          </button>
         </div>
 
         <!-- 4 KPI Staff Summary Cards -->
@@ -1297,6 +1317,15 @@
                   <span style="font-size:0.8rem; font-weight:600; color:#1e293b"><i class="fas fa-utensils text-info"></i> MDM निरीक्षण प्रपत्र-2 विसंगति स्कैनर</span>
                   <button type="button" id="toggle-vm-mdm" onclick="toggleAlertChannel('mdm')" class="btn btn-sm" style="font-size:0.72rem; font-weight:700; padding:2px 10px; background:#059669; color:#fff; border:none">
                     चालू (ON)
+                  </button>
+                </div>
+                <!-- Telegram Test & Master VM Save Actions -->
+                <div style="display:flex; gap:0.4rem; margin-top:0.4rem; flex-wrap:wrap">
+                  <button type="button" id="btn-test-telegram-vm" onclick="testTelegramDirect()" class="btn btn-outline-primary btn-sm" style="font-size:0.75rem; font-weight:700; padding:4px 10px; flex:1">
+                    <i class="fab fa-telegram"></i> 📱 Telegram टेस्ट भेजें
+                  </button>
+                  <button type="button" onclick="saveCloudVMSettings()" class="btn btn-success btn-sm" style="font-size:0.75rem; font-weight:700; padding:4px 12px">
+                    <i class="fas fa-save"></i> 💾 स्विच सेटिंग्स सहेजें
                   </button>
                 </div>
               </div>
@@ -2035,6 +2064,15 @@
                 <option value="संविदा कर्मी / गार्ड / अन्य">संविदा कर्मी / गार्ड / अन्य</option>
               </optgroup>
             </select>
+          </div>
+          <div class="form-group" style="grid-column:1 / -1; background:#fffbeb; border:1.5px solid #fde68a; border-radius:8px; padding:8px 12px; margin-bottom:2px">
+            <label style="display:flex; align-items:center; gap:0.6rem; cursor:pointer; font-weight:700; color:#92400e; margin:0">
+              <input type="checkbox" id="staff-edit-is-head" style="width:18px; height:18px; accent-color:#d97706">
+              <span>👑 यह कार्मिक विद्यालय के संस्था प्रधान / प्रधानाचार्य / कार्यवाहक प्रभारी हैं (Head of Institution)</span>
+            </label>
+            <div style="font-size:0.72rem; color:#78350f; margin-left:26px; margin-top:2px">
+              (टिक करने पर दूरभाष डायरेक्टरी, संस्था प्रधान विवरण व Google Sheet में स्वतः अद्यतन होगा)
+            </div>
           </div>
           <div class="form-group">
             <label>मोबाइल नंबर:</label>
@@ -3567,6 +3605,20 @@
         </div>
       </div>
       <div class="modal-body" style="padding:1.5rem; max-height:calc(90vh - 130px); overflow-y:auto">
+        <!-- Language Toggle Toolbar (Excluded from Print/PDF) -->
+        <div id="exam-pdf-language-toolbar" style="display:flex; justify-content:space-between; align-items:center; background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:8px; padding:0.5rem 1rem; margin-bottom:0.75rem">
+          <div style="font-size:0.85rem; font-weight:700; color:#1e40af">
+            <i class="fas fa-language"></i> अधिकृत प्रपत्र भाषा (Proforma Language):
+          </div>
+          <div style="display:flex; gap:0.5rem">
+            <button type="button" id="btn-exam-lang-hi" class="btn btn-primary btn-sm" onclick="switchPdfLanguage('hi')" style="font-weight:700; border-radius:20px; padding:3px 14px">
+              🇮🇳 शुद्ध हिंदी प्रारूप (Official Hindi)
+            </button>
+            <button type="button" id="btn-exam-lang-en" class="btn btn-outline-primary btn-sm" onclick="switchPdfLanguage('en')" style="font-weight:700; border-radius:20px; padding:3px 14px">
+              🌐 Official English Format
+            </button>
+          </div>
+        </div>
         <div id="printable-exam-document-content" class="printable-exam-sheet">
           <!-- Populated dynamically with official government layout, seal, and signatures -->
         </div>
@@ -3742,6 +3794,20 @@
         </div>
       </div>
       <div class="modal-body" style="padding:1.5rem; max-height:calc(90vh - 130px); overflow-y:auto">
+        <!-- Language Toggle Toolbar (Excluded from Print/PDF) -->
+        <div id="universal-demand-pdf-language-toolbar" style="display:flex; justify-content:space-between; align-items:center; background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:8px; padding:0.5rem 1rem; margin-bottom:0.75rem">
+          <div style="font-size:0.85rem; font-weight:700; color:#1e40af">
+            <i class="fas fa-language"></i> अधिकृत प्रपत्र भाषा (Proforma Language):
+          </div>
+          <div style="display:flex; gap:0.5rem">
+            <button type="button" id="btn-universal-lang-hi" class="btn btn-primary btn-sm" onclick="switchUniversalDemandPdfLanguage('hi')" style="font-weight:700; border-radius:20px; padding:3px 14px">
+              🇮🇳 शुद्ध हिंदी प्रारूप (Official Hindi)
+            </button>
+            <button type="button" id="btn-universal-lang-en" class="btn btn-outline-primary btn-sm" onclick="switchUniversalDemandPdfLanguage('en')" style="font-weight:700; border-radius:20px; padding:3px 14px">
+              🌐 Official English Format
+            </button>
+          </div>
+        </div>
         <div id="printable-universal-demand-content" class="printable-exam-sheet">
           <!-- Populated dynamically with official government layout, clean table, and signatures -->
         </div>
@@ -3759,6 +3825,56 @@
           </button>
           <button class="btn btn-primary" onclick="printUniversalDemandDocument()">
             <i class="fas fa-print"></i> A4 साइज प्रिंट करें (Print)
+          </button>
+        </div>
+  <!-- 10D. JITENDRA ADMIN: STAFF MANAGEMENT HEADING & DIRECTIVES CUSTOMIZER MODAL -->
+  <div id="modal-edit-staff-instructions" class="modal-overlay">
+    <div class="modal-card" style="max-width:680px; width:95vw; background:#ffffff; border-radius:12px; overflow:hidden">
+      <div class="modal-header" style="background:#1b365d; color:#ffffff; padding:1rem 1.25rem">
+        <h3 style="color:#ffffff; font-size:1.1rem; display:flex; align-items:center; gap:0.5rem; margin:0">
+          <i class="fas fa-edit text-warning"></i> ⚙️ कार्मिक प्रबंधन: मुख्य हेडिंग व दिशा-निर्देश संपादक
+        </h3>
+        <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-edit-staff-instructions')">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:1.25rem; max-height:75vh; overflow-y:auto">
+        <div style="background:#eff6ff; border:1px solid #bfdbfe; border-left:4px solid #2563eb; border-radius:6px; padding:0.6rem 0.85rem; margin-bottom:1rem; font-size:0.8rem; color:#1e40af">
+          <strong><i class="fas fa-info-circle"></i> सुपर एडमिन नियंत्रण:</strong> यह हेडिंग व दिशा-निर्देश सभी 25 PEEO व 150+ विद्यालयों को कार्मिक प्रबंधन टैब पर सबसे ऊपर दिखाई देंगे। यह बदलाव सीधे Google Sheet व क्लाउड में सुरक्षित होगा।
+        </div>
+
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label style="font-size:0.82rem; font-weight:700; color:#1e293b; display:block; margin-bottom:4px">
+            1. टैब मुख्य शीर्षक (Main Heading Title):
+          </label>
+          <input type="text" id="staff-input-header-title" class="form-control" style="width:100%; padding:0.5rem 0.75rem; font-size:0.88rem; border:1.5px solid #cbd5e1; border-radius:6px" placeholder="CBEO भिनाय: कार्मिक प्रबंधन एवं स्थापना सूची (Census / Election Master Format)">
+        </div>
+
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label style="font-size:0.82rem; font-weight:700; color:#1e293b; display:block; margin-bottom:4px">
+            2. टैब उप-शीर्षक / विवरण (Subtitle / Note):
+          </label>
+          <textarea id="staff-input-header-sub" class="form-control" rows="2" style="width:100%; padding:0.5rem 0.75rem; font-size:0.82rem; border:1.5px solid #cbd5e1; border-radius:6px" placeholder="समस्त 1,060+ कार्मिकों का डेटाबेस (हिंदी यूनिकोड)..."></textarea>
+        </div>
+
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label style="font-size:0.82rem; font-weight:700; color:#1e293b; display:block; margin-bottom:4px">
+            3. नोटिस बॉक्स शीर्षक (Notice Box Title):
+          </label>
+          <input type="text" id="staff-input-instructions-title" class="form-control" style="width:100%; padding:0.5rem 0.75rem; font-size:0.88rem; border:1.5px solid #cbd5e1; border-radius:6px" placeholder="महत्वपूर्ण दिशा-निर्देश एवं कार्य निर्देश (Official Directives)">
+        </div>
+
+        <div class="form-group" style="margin-bottom:0.5rem">
+          <label style="font-size:0.82rem; font-weight:700; color:#1e293b; display:block; margin-bottom:4px">
+            4. विस्तृत दिशा-निर्देश (Instructions Content - बिंदुवार लिखें):
+          </label>
+          <textarea id="staff-input-instructions-text" class="form-control" rows="5" style="width:100%; padding:0.5rem 0.75rem; font-size:0.82rem; border:1.5px solid #cbd5e1; border-radius:6px; line-height:1.45" placeholder="1. प्रत्येक विद्यालय अपने समस्त कार्यरत कार्मिकों..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer" style="padding:0.75rem 1.25rem; display:flex; justify-content:space-between; align-items:center; background:#f8fafc; border-top:1px solid #e2e8f0">
+        <button type="button" class="btn btn-outline-secondary" onclick="closeModal('modal-edit-staff-instructions')">रद्द करें</button>
+        <div style="display:flex; gap:0.5rem">
+          <button type="button" class="btn btn-outline-danger btn-sm" onclick="resetStaffInstructionsToDefault()" style="font-size:0.75rem">डिफ़ॉल्ट सेट करें</button>
+          <button type="button" class="btn btn-primary" onclick="saveStaffInstructions()" style="font-weight:700">
+            <i class="fas fa-save"></i> 💾 सेटिंग्स सहेजें (Save)
           </button>
         </div>
       </div>
@@ -3948,7 +4064,7 @@
 
   <!-- External & Application Logic -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <script src="master_cbeo_data.js?v=20261003_v6"></script>
-  <script src="app.js?v=20261003_v6"></script>
+  <script src="master_cbeo_data.js?v=20261004_v21"></script>
+  <script src="app.js?v=20261004_v21"></script>
 </body>
 </html>
