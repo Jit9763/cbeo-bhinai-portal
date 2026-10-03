@@ -756,6 +756,9 @@
             <button id="btn-edit-staff-header-top" class="btn btn-outline-warning btn-sm" onclick="openEditStaffInstructionsModal()" style="font-weight:700; display:none">
               <i class="fas fa-edit"></i> ⚙️ हेडिंग व निर्देश बदलें
             </button>
+            <button id="btn-add-staff-post-top" class="btn btn-outline-success btn-sm" onclick="openAddDesignationModal()" style="font-weight:700; display:none">
+              <i class="fas fa-plus-circle"></i> ➕ नया पद जोड़ें
+            </button>
             <button class="btn btn-primary btn-sm" onclick="openAddStaffModal()">
               <i class="fas fa-user-plus"></i> + नया कार्मिक जोड़ें
             </button>
@@ -766,6 +769,11 @@
               <i class="fas fa-file-download"></i> CSV एक्सपोर्ट
             </button>
           </div>
+        </div>
+
+        <!-- View-Only Active Warning Banner (When Edit Permission is Off) -->
+        <div id="staff-view-only-banner" style="display:none; background:#fffbeb; border:1.5px solid #fde68a; border-left:5px solid #f59e0b; border-radius:8px; padding:0.75rem 1rem; margin-bottom:1rem; color:#92400e; font-weight:700; font-size:0.85rem">
+          <i class="fas fa-lock text-warning"></i> केवल अवलोकन मोड (View-Only Mode Active): आपके लॉगिन स्तर हेतु कार्मिक संपादन/स्थानान्तरण अनुमति CBEO कार्यालय (सुपर एडमिन) द्वारा प्रतिबंधित है। आप केवल डेटा देख व खोज सकते हैं।
         </div>
 
         <!-- Customizable Staff Instructions & Notice Banner (Jitendra Configurable) -->
@@ -1596,6 +1604,41 @@
           </div>
         </div>
 
+        <!-- B2. JITENDRA SUPER ADMIN 5-LEVEL DATA EDIT PERMISSION MATRIX -->
+        <div id="jitendra-edit-control-matrix-card" style="background:#ffffff; border:2px solid #0284c7; border-radius:12px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1)">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; border-bottom:1.5px solid #bae6fd; padding-bottom:0.75rem">
+            <div>
+              <h3 style="font-size:1.15rem; color:#0369a1; margin:0; display:flex; align-items:center; gap:0.5rem">
+                <i class="fas fa-edit" style="color:#0284c7"></i> 📝 जितेन्द्र व्यवस्थापक: 5-स्तरीय डेटा संपादन अनुमति मैट्रिक्स (Data Edit Permissions vs View-Only)
+              </h3>
+              <p style="font-size:0.83rem; color:#475569; margin:3px 0 0 0">
+                नियंत्रित करें कि कौन सा स्तर डेटा संपादित कर सकता है अथवा केवल अवलोकन (View-Only) मोड में रहेगा। चेकबॉक्स अनचेक करने पर वह स्तर केवल अवलोकन कर सकेगा।
+              </p>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="save5LevelEditPermissionsMatrix()" style="font-weight:700; background:#0284c7; border-color:#0369a1">
+              <i class="fas fa-save"></i> 💾 संपादन अनुमतियां सुरक्षित करें
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table" id="table-5level-edit-matrix">
+              <thead>
+                <tr style="background:#f0f9ff">
+                  <th>मॉड्यूल / प्रपत्र (Module Name)</th>
+                  <th style="text-align:center">1. CBEO Admin (प्रमिला रासलोत)</th>
+                  <th style="text-align:center">2. 25 PEEO प्रभारी</th>
+                  <th style="text-align:center">3. 57 Sec / Sr.Sec</th>
+                  <th style="text-align:center">4. समस्त राजकीय (Govt 132)</th>
+                  <th style="text-align:center">5. समस्त स्कूल (निजी सहित 178)</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-5level-edit-matrix">
+                <!-- Rendered dynamically by render5LevelEditPermissionsMatrix() -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         <!-- C. JITENDRA SUPER ADMIN STAFF DATA EDIT & LOCK CONTROLS -->
         <div id="jitendra-staff-permissions-card" style="background:#ffffff; border:2px solid #059669; border-radius:12px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1)">
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; border-bottom:1.5px solid #a7f3d0; padding-bottom:0.75rem">
@@ -1996,11 +2039,11 @@
           <input type="hidden" id="staff-edit-id">
           
           <div class="form-group">
-            <label>संबंधित PEEO: <span class="status-badge locked">LOCKED</span></label>
-            <input type="text" id="staff-edit-peeo" readonly>
+            <label id="staff-edit-peeo-label">संबंधित PEEO:</label>
+            <select id="staff-edit-peeo" class="filter-select" style="width:100%" onchange="onStaffEditPeeoChange()"></select>
           </div>
           <div class="form-group">
-            <label>विद्यालय का नाम:</label>
+            <label>विद्यालय का नाम (ड्रॉपडाउन चयन अनिवार्य):</label>
             <select id="staff-edit-school" class="filter-select" style="width:100%"></select>
           </div>
           <div class="form-group">
@@ -3827,6 +3870,56 @@
             <i class="fas fa-print"></i> A4 साइज प्रिंट करें (Print)
           </button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10C2. JITENDRA ADMIN: ADD NEW DESIGNATION / POST MODAL -->
+  <div id="modal-add-designation" class="modal-overlay">
+    <div class="modal-card" style="max-width:520px; width:95vw; background:#ffffff; border-radius:12px; overflow:hidden">
+      <div class="modal-header" style="background:#166534; color:#ffffff; padding:1rem 1.25rem">
+        <h3 style="color:#ffffff; font-size:1.1rem; display:flex; align-items:center; gap:0.5rem; margin:0">
+          <i class="fas fa-plus-circle text-warning"></i> ➕ नया पद जोड़ें (Add Designation Master)
+        </h3>
+        <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-add-designation')">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:1.25rem">
+        <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-left:4px solid #16a34a; border-radius:6px; padding:0.6rem 0.85rem; margin-bottom:1rem; font-size:0.8rem; color:#166534">
+          <strong><i class="fas fa-info-circle"></i> मास्टर पद नियंत्रण:</strong> यहाँ जोड़ा गया पद पोर्टल के सभी ड्रॉपडाउन (स्टाफ संपादन, नया कार्मिक प्रविष्टि) में तुरंत जुड़ जाएगा।
+        </div>
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label style="font-size:0.82rem; font-weight:700; color:#1e293b; display:block; margin-bottom:4px">
+            पद का नाम (हिंदी में): <span style="color:#dc2626">*</span>
+          </label>
+          <input type="text" id="new-post-name-hi" class="form-control" style="width:100%; padding:0.5rem 0.75rem; font-size:0.88rem; border:1.5px solid #cbd5e1; border-radius:6px" placeholder="उदा. पुस्तकालयाध्यक्ष ग्रेड-II">
+        </div>
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label style="font-size:0.82rem; font-weight:700; color:#1e293b; display:block; margin-bottom:4px">
+            पद का नाम व पे-लेवल (अंग्रेजी में - वैकल्पिक):
+          </label>
+          <input type="text" id="new-post-name-en" class="form-control" style="width:100%; padding:0.5rem 0.75rem; font-size:0.88rem; border:1.5px solid #cbd5e1; border-radius:6px" placeholder="उदा. Librarian Gr-II (L-11)">
+        </div>
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label style="font-size:0.82rem; font-weight:700; color:#1e293b; display:block; margin-bottom:4px">
+            पद की श्रेणी (Category):
+          </label>
+          <select id="new-post-category" class="filter-select" style="width:100%; padding:0.5rem 0.75rem">
+            <option value="शिक्षण पद (Teaching Post)">शिक्षण पद (Teaching Post)</option>
+            <option value="प्रशासनिक व उच्च पद (Admin & Leadership)">प्रशासनिक व उच्च पद (Admin & Leadership)</option>
+            <option value="विशेषज्ञ व तकनीकी पद (Technical / Specialist)">विशेषज्ञ व तकनीकी पद (Technical / Specialist)</option>
+            <option value="मंत्रालयीन व सहायक कर्मचारी (Office / Support Staff)">मंत्रालयीन व सहायक कर्मचारी (Office / Support Staff)</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer" style="padding:0.75rem 1.25rem; display:flex; justify-content:space-between; align-items:center; background:#f8fafc; border-top:1px solid #e2e8f0">
+        <button type="button" class="btn btn-outline-secondary" onclick="closeModal('modal-add-designation')">रद्द करें</button>
+        <button type="button" class="btn btn-success" onclick="saveNewDesignation()" style="font-weight:700">
+          <i class="fas fa-save"></i> 💾 पद सुरक्षित करें
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- 10D. JITENDRA ADMIN: STAFF MANAGEMENT HEADING & DIRECTIVES CUSTOMIZER MODAL -->
   <div id="modal-edit-staff-instructions" class="modal-overlay">
     <div class="modal-card" style="max-width:680px; width:95vw; background:#ffffff; border-radius:12px; overflow:hidden">

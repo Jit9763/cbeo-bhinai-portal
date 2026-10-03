@@ -74,124 +74,172 @@ const MASTER_CBEO_DATA = {
       "password": "221769",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA (221769)",
+          "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "BANDANWARA",
           "village": "BANDANWARA",
           "dise_code": "08210700101",
           "shala_darpan_code": "221769",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+          "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+          "peeo_name": "PEEO BANDANWARA",
+          "peeo_code": "221769"
         },
         {
-          "school_name": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770) (08210703902)",
+          "school_name": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BANDANWARA",
           "village": "BADANVADA",
           "dise_code": "8210703902",
           "shala_darpan_code": "221770",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+          "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+          "peeo_name": "PEEO BANDANWARA",
+          "peeo_code": "221769"
         },
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA (221771) (08210703904)",
+          "school_name": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BANDANWARA",
           "village": "BADANVADA",
           "dise_code": "8210703904",
           "shala_darpan_code": "221771",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+          "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara",
+          "peeo_name": "PEEO BANDANWARA",
+          "peeo_code": "221769"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL RAMESHWARPURA (468188) (08210703907)",
+          "school_name": "रा.प्रा.वि. रामेश्वरपुरा (बांदनवाड़ा)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BANDANWARA",
           "village": "BADANVADA",
           "dise_code": "8210703907",
           "shala_darpan_code": "468188",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. रामेश्वरपुरा (बांदनवाड़ा)",
+          "school_name_en": "Govt. Primary School Rameshwarpura Bandanwara",
+          "peeo_name": "PEEO BANDANWARA",
+          "peeo_code": "221769"
         },
         {
-          "school_name": "NAVEEN PUBLIC SCHOOL (P34025)",
+          "school_name": "नवीन पब्लिक स्कूल, बांदनवाड़ा",
           "category": "Private (Primary)",
           "panchayat": "BANDANWARA",
           "village": "BADANVADA",
           "dise_code": "",
           "shala_darpan_code": "P34025",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "नवीन पब्लिक स्कूल, बांदनवाड़ा",
+          "school_name_en": "Naveen Public School Bandanwara",
+          "peeo_name": "PEEO BANDANWARA",
+          "peeo_code": "221769"
         },
         {
-          "school_name": "FUTURE GENIUS ACADEMY (P68859)",
+          "school_name": "फ्यूचर जीनियस एकेडमी, बांदनवाड़ा",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "BANDANWARA",
           "village": "BADANVADA",
           "dise_code": "",
           "shala_darpan_code": "P68859",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "फ्यूचर जीनियस एकेडमी, बांदनवाड़ा",
+          "school_name_en": "Future Genius Academy Bandanwara",
+          "peeo_name": "PEEO BANDANWARA",
+          "peeo_code": "221769"
         },
         {
-          "school_name": "NAVEEN PUBLIC SCHOOL (P34025)",
+          "school_name": "नवीन पब्लिक स्कूल, बांदनवाड़ा",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "BANDANWARA",
           "village": "BADANVADA",
           "dise_code": "",
           "shala_darpan_code": "P34025",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "नवीन पब्लिक स्कूल, बांदनवाड़ा",
+          "school_name_en": "Naveen Public School Bandanwara",
+          "peeo_name": "PEEO BANDANWARA",
+          "peeo_code": "221769"
         },
         {
-          "school_name": "Siddharth International School Bandanwara (P19054)",
+          "school_name": "सिद्धार्थ इंटरनेशनल स्कूल, बांदनवाड़ा",
           "category": "Private (Pr. with Up.Pr. with sec. Only)",
           "panchayat": "BANDANWARA",
           "village": "BADANVADA",
           "dise_code": "",
           "shala_darpan_code": "P19054",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "सिद्धार्थ इंटरनेशनल स्कूल, बांदनवाड़ा",
+          "school_name_en": "Siddharth International School Bandanwara",
+          "peeo_name": "PEEO BANDANWARA",
+          "peeo_code": "221769"
         },
         {
-          "school_name": "Samrat International School Bandanwara (P16964)",
+          "school_name": "सम्राट इंटरनेशनल स्कूल, बांदनवाड़ा",
           "category": "Private (Pr. with Up.Pr. with sec. Only)",
           "panchayat": "BANDANWARA",
           "village": "BADANVADA",
           "dise_code": "",
           "shala_darpan_code": "P16964",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "सम्राट इंटरनेशनल स्कूल, बांदनवाड़ा",
+          "school_name_en": "Samrat International School Bandanwara",
+          "peeo_name": "PEEO BANDANWARA",
+          "peeo_code": "221769"
         },
         {
-          "school_name": "Samrat International School Bandanwara (P16964)",
+          "school_name": "सम्राट इंटरनेशनल स्कूल, बांदनवाड़ा",
           "category": "Private (Up. Primary with sec Only)",
           "panchayat": "BANDANWARA",
           "village": "BADANVADA",
           "dise_code": "",
           "shala_darpan_code": "P16964",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "सम्राट इंटरनेशनल स्कूल, बांदनवाड़ा",
+          "school_name_en": "Samrat International School Bandanwara",
+          "peeo_name": "PEEO BANDANWARA",
+          "peeo_code": "221769"
         },
         {
-          "school_name": "KUCHAMAN SHIKSHAN SANSTHAN BANDANWARA (P48759)",
+          "school_name": "कुचामन शिक्षण संस्थान, बांदनवाड़ा",
           "category": "Private (Pr. with Up.Pr. sec. with Higher Sec)",
           "panchayat": "BANDANWARA",
           "village": "BADANVADA",
           "dise_code": "",
           "shala_darpan_code": "P48759",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "कुचामन शिक्षण संस्थान, बांदनवाड़ा",
+          "school_name_en": "Kuchaman Shikshan Sansthan Bandanwara",
+          "peeo_name": "PEEO BANDANWARA",
+          "peeo_code": "221769"
         },
         {
-          "school_name": "GURUKUL KESARI PUBLIC SECONDARY SCHOOL BANDANWARA (P16099)",
+          "school_name": "गुरुकुल केसरी पब्लिक माध्यमिक विद्यालय, बांदनवाड़ा",
           "category": "Private (Pr. with Up.Pr. sec. with Higher Sec)",
           "panchayat": "BANDANWARA",
           "village": "BADANVADA",
           "dise_code": "",
           "shala_darpan_code": "P16099",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "गुरुकुल केसरी पब्लिक माध्यमिक विद्यालय, बांदनवाड़ा",
+          "school_name_en": "Gurukul Kesari Public Secondary School Bandanwara",
+          "peeo_name": "PEEO BANDANWARA",
+          "peeo_code": "221769"
         }
       ],
       "school_count": 12,
@@ -211,34 +259,46 @@ const MASTER_CBEO_DATA = {
       "password": "221764",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND (221764)",
+          "school_name": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "BARGAON",
           "village": "BARGAON",
           "dise_code": "08210700201",
           "shala_darpan_code": "221764",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+          "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+          "peeo_name": "PEEO BARGAON",
+          "peeo_code": "221764"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL KERIYA KHURD (468216) (08210702501)",
+          "school_name": "रा.उ.प्रा.वि. केरिया खुर्द",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BADGAON",
           "village": "KERIYA KHURD",
           "dise_code": "8210702501",
           "shala_darpan_code": "468216",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. केरिया खुर्द",
+          "school_name_en": "Govt. Upper Primary School Keriya Khurd",
+          "peeo_name": "PEEO BARGAON",
+          "peeo_code": "221764"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL RAGHUNATHPURA (485031) (08210702601)",
+          "school_name": "रा.उ.प्रा.वि. रघुनाथपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BADGAON",
           "village": "RAGHUNATH PURA",
           "dise_code": "8210702601",
           "shala_darpan_code": "485031",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. रघुनाथपुरा",
+          "school_name_en": "Govt. Upper Primary School Raghunathpura",
+          "peeo_name": "PEEO BARGAON",
+          "peeo_code": "221764"
         }
       ],
       "school_count": 3,
@@ -258,24 +318,32 @@ const MASTER_CBEO_DATA = {
       "password": "221755",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL BADLI (221755)",
+          "school_name": "रा.उ.मा.वि. बड़ली",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "BARLI",
           "village": "BARLI",
           "dise_code": "08210700301",
           "shala_darpan_code": "221755",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. बड़ली",
+          "school_name_en": "Govt. Sr. Sec. School Barli",
+          "peeo_name": "PEEO BARLI",
+          "peeo_code": "221755"
         },
         {
-          "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI (506830) (08210700303)",
+          "school_name": "रा.बा.उ.मा.वि. बड़ली",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BADLI",
           "village": "BADLI",
           "dise_code": "8210700303",
           "shala_darpan_code": "506830",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.बा.उ.मा.वि. बड़ली",
+          "school_name_en": "Govt. Girls Sr. Sec. School Barli",
+          "peeo_name": "PEEO BARLI",
+          "peeo_code": "221755"
         }
       ],
       "school_count": 2,
@@ -295,164 +363,228 @@ const MASTER_CBEO_DATA = {
       "password": "221780",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)",
+          "school_name": "रा.उ.मा.वि. भिनाय",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "BHINAY",
           "village": "BHINAY",
           "dise_code": "08210700401",
           "shala_darpan_code": "221780",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. भिनाय",
+          "school_name_en": "Govt. Sr. Sec. School Bhinai",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL INDIRA COLONY BHINAY (519058) (08210705531)",
+          "school_name": "रा.प्रा.वि. इंदिरा कॉलोनी भिनाय",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BHINAY",
           "village": "BHINAY",
           "dise_code": "8210705531",
           "shala_darpan_code": "519058",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. इंदिरा कॉलोनी भिनाय",
+          "school_name_en": "Govt. Primary School Indira Colony Bhinai",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL AAV (488683) (08210705521)",
+          "school_name": "रा.प्रा.वि. आंव (भिनाय)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BHINAY",
           "village": "BHINAY",
           "dise_code": "8210705521",
           "shala_darpan_code": "488683",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. आंव (भिनाय)",
+          "school_name_en": "Govt. Primary School Aav Bhinai",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL REBARIYON KI DHANI (493708) (08210705511)",
+          "school_name": "रा.प्रा.वि. रेबारियों की ढाणी (भिनाय)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BHINAY",
           "village": "BHINAY",
           "dise_code": "8210705511",
           "shala_darpan_code": "493708",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. रेबारियों की ढाणी (भिनाय)",
+          "school_name_en": "Govt. Primary School Rebariyon Ki Dhani Bhinai",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
-          "school_name": "MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778) (08210705501)",
+          "school_name": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BHINAY",
           "village": "BHINAY",
           "dise_code": "8210705501",
           "shala_darpan_code": "221778",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+          "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL MATAJI KA KHEDA (488896) (08210706102)",
+          "school_name": "रा.प्रा.वि. माताजी का खेड़ा (भिनाय)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SOBDI",
           "village": "CHAVANDIYA",
           "dise_code": "8210706102",
           "shala_darpan_code": "488896",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. माताजी का खेड़ा (भिनाय)",
+          "school_name_en": "Govt. Primary School Mataji Ka Kheda Bhinai",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
-          "school_name": "shri pragya public school (P60694)",
+          "school_name": "श्री प्राज्ञ पब्लिक स्कूल, भिनाय",
           "category": "Private (Primary)",
           "panchayat": "BHINAY",
           "village": "BHINAY",
           "dise_code": "",
           "shala_darpan_code": "P60694",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "श्री प्राज्ञ पब्लिक स्कूल, भिनाय",
+          "school_name_en": "Shri Pragya Public School Bhinai",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
-          "school_name": "HARSH INTERNATIONAL SCHOOL (P47329)",
+          "school_name": "हर्ष इंटरनेशनल स्कूल, भिनाय",
           "category": "Private (Primary)",
           "panchayat": "KARANTHI",
           "village": "KHEDI",
           "dise_code": "",
           "shala_darpan_code": "P47329",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "हर्ष इंटरनेशनल स्कूल, भिनाय",
+          "school_name_en": "Harsh International School Bhinai",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
-          "school_name": "NEW MODERN ENGLISH MEDIUM SCHOOL BARLI BHINAY AJMER (P73653)",
+          "school_name": "न्यू मॉडर्न इंग्लिश मीडियम स्कूल, बड़ली",
           "category": "Private (Primary)",
           "panchayat": "BADLI",
           "village": "BADLI",
           "dise_code": "",
           "shala_darpan_code": "P73653",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "न्यू मॉडर्न इंग्लिश मीडियम स्कूल, बड़ली",
+          "school_name_en": "New Modern English Medium School Barli",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
-          "school_name": "GURUKRIPA PUBLIC SCHOOL KHEDI (P56254)",
+          "school_name": "गुरुकृपा पब्लिक स्कूल, खेड़ी",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "KARANTHI",
           "village": "KHEDI",
           "dise_code": "",
           "shala_darpan_code": "P56254",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "गुरुकृपा पब्लिक स्कूल, खेड़ी",
+          "school_name_en": "Gurukripa Public School Khedi",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
-          "school_name": "ADARSH SHIVA VIDYA MANDIR CHAPANERI (P35780)",
+          "school_name": "आदर्श शिव विद्या मंदिर, चापानेरी",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "CHANPANER",
           "village": "CHAMPANERI",
           "dise_code": "",
           "shala_darpan_code": "P35780",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "आदर्श शिव विद्या मंदिर, चापानेरी",
+          "school_name_en": "Adarsh Shiva Vidya Mandir Chapaneri",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
-          "school_name": "Gayatri Public School Gudda khurd (P16189)",
+          "school_name": "गायत्री पब्लिक स्कूल, गुढ़ा खुर्द",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "GUDHA KHURD",
           "village": "GUDHA KHURD",
           "dise_code": "",
           "shala_darpan_code": "P16189",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "गायत्री पब्लिक स्कूल, गुढ़ा खुर्द",
+          "school_name_en": "Gayatri Public School Gudha Khurd",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
-          "school_name": "NEW RADHA KRISHNAN PUBLIC SCHOOL (P46672)",
+          "school_name": "न्यू राधा कृष्णन पब्लिक स्कूल, भिनाय",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "BADGAON",
           "village": "BADGAON",
           "dise_code": "",
           "shala_darpan_code": "P46672",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "न्यू राधा कृष्णन पब्लिक स्कूल, भिनाय",
+          "school_name_en": "New Radha Krishnan Public School Bhinai",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
-          "school_name": "ROYAL CONVENT SCHOOL (P56394)",
+          "school_name": "रॉयल कॉन्वेंट स्कूल, भिनाय",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "BADLI",
           "village": "BADLI",
           "dise_code": "",
           "shala_darpan_code": "P56394",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रॉयल कॉन्वेंट स्कूल, भिनाय",
+          "school_name_en": "Royal Convent School Bhinai",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
-          "school_name": "Pahal Public School Devliya kalan (P34429)",
+          "school_name": "पहल पब्लिक स्कूल, देवलिया कलां",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "DEVLIYA KALA",
           "village": "DEVLIYA KALAN",
           "dise_code": "",
           "shala_darpan_code": "P34429",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "पहल पब्लिक स्कूल, देवलिया कलां",
+          "school_name_en": "Pahal Public School Deoliya Kalan",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
-          "school_name": "VIJAYSHEE PUBLIC SCHOOL BADLI (P19230)",
+          "school_name": "विजयश्री पब्लिक स्कूल, बड़ली",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "BADLI",
           "village": "BADLI",
           "dise_code": "",
           "shala_darpan_code": "P19230",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "विजयश्री पब्लिक स्कूल, बड़ली",
+          "school_name_en": "Vijayshee Public School Barli",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
           "school_name": "SANTORIUM NEW MODERN  (P16738)",
@@ -462,7 +594,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "",
           "shala_darpan_code": "P16738",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "SANTORIUM NEW MODERN",
+          "school_name_hi": "SANTORIUM NEW MODERN  (P16738)",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
           "school_name": "RAJ RHISHI PUBLIC SCHOOL KUMHARIYA (P16463)",
@@ -472,7 +608,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "",
           "shala_darpan_code": "P16463",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "RAJ RHISHI PUBLIC SCHOOL KUMHARIYA",
+          "school_name_hi": "RAJ RHISHI PUBLIC SCHOOL KUMHARIYA (P16463)",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
           "school_name": "LAKHDATAR SHRI SHYAM U.P.S. BHINAI (P16966)",
@@ -482,7 +622,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "",
           "shala_darpan_code": "P16966",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "LAKHDATAR SHRI SHYAM U.P.S. BHINAI",
+          "school_name_hi": "LAKHDATAR SHRI SHYAM U.P.S. BHINAI (P16966)",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
           "school_name": "Sumer Public UPS (P16418)",
@@ -492,7 +636,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "",
           "shala_darpan_code": "P16418",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "Sumer Public UPS",
+          "school_name_hi": "Sumer Public UPS (P16418)",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
           "school_name": "VAID BAL VIDYA NIKATEN (P11513)",
@@ -502,7 +650,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "",
           "shala_darpan_code": "P11513",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "VAID BAL VIDYA NIKATEN",
+          "school_name_hi": "VAID BAL VIDYA NIKATEN (P11513)",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
           "school_name": "SANSKAR CONVENT SCHOOL (P59958)",
@@ -512,7 +664,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "",
           "shala_darpan_code": "P59958",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "SANSKAR CONVENT SCHOOL",
+          "school_name_hi": "SANSKAR CONVENT SCHOOL (P59958)",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
           "school_name": "SARVODAYA BAL NIKETAN,RAMMALIYA (P60314)",
@@ -522,7 +678,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "",
           "shala_darpan_code": "P60314",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "SARVODAYA BAL NIKETAN,RAMMALIYA",
+          "school_name_hi": "SARVODAYA BAL NIKETAN,RAMMALIYA (P60314)",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
           "school_name": "Aimway Public School (P61242)",
@@ -532,7 +692,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "",
           "shala_darpan_code": "P61242",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "Aimway Public School",
+          "school_name_hi": "Aimway Public School (P61242)",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
           "school_name": "DIVYAGYAN PUBLIC SCHOOL  (P61263)",
@@ -542,7 +706,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "",
           "shala_darpan_code": "P61263",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "DIVYAGYAN PUBLIC SCHOOL",
+          "school_name_hi": "DIVYAGYAN PUBLIC SCHOOL  (P61263)",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
           "school_name": "Guru Sohan Public School Devliya Kala (P16737)",
@@ -552,7 +720,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "",
           "shala_darpan_code": "P16737",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "Guru Sohan Public School Devliya Kala",
+          "school_name_hi": "Guru Sohan Public School Devliya Kala (P16737)",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
           "school_name": "JYOTI PUBLIC SCHOOL BADLI (P27638)",
@@ -562,7 +734,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "",
           "shala_darpan_code": "P27638",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "JYOTI PUBLIC SCHOOL BADLI",
+          "school_name_hi": "JYOTI PUBLIC SCHOOL BADLI (P27638)",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
           "school_name": "ADARSH PUBLIC SCHOOL  (P49351)",
@@ -572,7 +748,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "",
           "shala_darpan_code": "P49351",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "ADARSH PUBLIC SCHOOL",
+          "school_name_hi": "ADARSH PUBLIC SCHOOL  (P49351)",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
           "school_name": "VIDYASTHALI ADARSH PRIMARY SCHOOL (P49643)",
@@ -582,27 +762,39 @@ const MASTER_CBEO_DATA = {
           "dise_code": "",
           "shala_darpan_code": "P49643",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "VIDYASTHALI ADARSH PRIMARY SCHOOL",
+          "school_name_hi": "VIDYASTHALI ADARSH PRIMARY SCHOOL (P49643)",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
-          "school_name": "DRONA CHARYA SEC. SCHOOL. BHINAI (P16968)",
+          "school_name": "द्रोणाचार्य माध्यमिक विद्यालय, भिनाय",
           "category": "Private (Pr. with Up.Pr. with sec. Only)",
           "panchayat": "BHINAY",
           "village": "BHINAY",
           "dise_code": "",
           "shala_darpan_code": "P16968",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "द्रोणाचार्य माध्यमिक विद्यालय, भिनाय",
+          "school_name_en": "Drona Charya Secondary School Bhinai",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
-          "school_name": "SUN RISE CONVENT SCHOOL BHINAY (P19678)",
+          "school_name": "सन राइज कॉन्वेंट स्कूल, भिनाय",
           "category": "Private (Pr. with Up.Pr. with sec. Only)",
           "panchayat": "BHINAY",
           "village": "BHINAY",
           "dise_code": "",
           "shala_darpan_code": "P19678",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "सन राइज कॉन्वेंट स्कूल, भिनाय",
+          "school_name_en": "Sun Rise Convent School Bhinai",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
           "school_name": "ANNAPURNA P.S. BHINAY (P25290)",
@@ -612,27 +804,39 @@ const MASTER_CBEO_DATA = {
           "dise_code": "",
           "shala_darpan_code": "P25290",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "ANNAPURNA P.S. BHINAY",
+          "school_name_hi": "ANNAPURNA P.S. BHINAY (P25290)",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
-          "school_name": "Sumer Senior Secondary School (P16865)",
+          "school_name": "सुमेर उच्च माध्यमिक विद्यालय, भिनाय",
           "category": "Private (Pr. with Up.Pr. sec. with Higher Sec)",
           "panchayat": "BHINAY",
           "village": "BHINAY",
           "dise_code": "",
           "shala_darpan_code": "P16865",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "सुमेर उच्च माध्यमिक विद्यालय, भिनाय",
+          "school_name_en": "Sumer Senior Secondary School Bhinai",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         },
         {
-          "school_name": "Sumer Senior Secondary School (P16865)",
+          "school_name": "सुमेर उच्च माध्यमिक विद्यालय, भिनाय",
           "category": "Private (Up. Primary sec with Higher Sec)",
           "panchayat": "BHINAY",
           "village": "BHINAY",
           "dise_code": "",
           "shala_darpan_code": "P16865",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "सुमेर उच्च माध्यमिक विद्यालय, भिनाय",
+          "school_name_en": "Sumer Senior Secondary School Bhinai",
+          "peeo_name": "PEEO BHINAY",
+          "peeo_code": "221780"
         }
       ],
       "school_count": 35,
@@ -652,14 +856,18 @@ const MASTER_CBEO_DATA = {
       "password": "221763",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA (221763)",
+          "school_name": "रा.उ.मा.वि. बूबकिया",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "BOOBKIYA",
           "village": "BOOBKIYA",
           "dise_code": "08210700501",
           "shala_darpan_code": "221763",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+          "school_name_en": "Govt. Sr. Sec. School Boobkiya",
+          "peeo_name": "PEEO BOOBKIYA",
+          "peeo_code": "221763"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL SOLKHURD (410859) (08210702101)",
@@ -669,17 +877,25 @@ const MASTER_CBEO_DATA = {
           "dise_code": "8210702101",
           "shala_darpan_code": "410859",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "GOVT. PRIMARY SCHOOL SOLKHURD",
+          "school_name_hi": "GOVT. PRIMARY SCHOOL SOLKHURD (410859) (08210702101)",
+          "peeo_name": "PEEO BOOBKIYA",
+          "peeo_code": "221763"
         },
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL PIPLIYA (485033) (08210702201)",
+          "school_name": "रा.उ.मा.वि. पीपलिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BUBKIYA",
           "village": "PIPLIYA",
           "dise_code": "8210702201",
           "shala_darpan_code": "485033",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.मा.वि. पीपलिया",
+          "school_name_en": "Govt. Sr. Sec. School Pipliya",
+          "peeo_name": "PEEO BOOBKIYA",
+          "peeo_code": "221763"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL KALBELIYON KI DHANI BOOBKIYA (485023) (08210701802)",
@@ -689,7 +905,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "8210701802",
           "shala_darpan_code": "485023",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "GOVT. PRIMARY SCHOOL KALBELIYON KI DHANI BOOBKIYA",
+          "school_name_hi": "GOVT. PRIMARY SCHOOL KALBELIYON KI DHANI BOOBKIYA (485023) (08210701802)",
+          "peeo_name": "PEEO BOOBKIYA",
+          "peeo_code": "221763"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL REN BHINAI AJMER RAJASTHAN (462777) (08210701901)",
@@ -699,17 +919,25 @@ const MASTER_CBEO_DATA = {
           "dise_code": "8210701901",
           "shala_darpan_code": "462777",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "GOVT. PRIMARY SCHOOL REN BHINAI AJMER RAJASTHAN",
+          "school_name_hi": "GOVT. PRIMARY SCHOOL REN BHINAI AJMER RAJASTHAN (462777) (08210701901)",
+          "peeo_name": "PEEO BOOBKIYA",
+          "peeo_code": "221763"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL KHAYADA (485032) (08210702301)",
+          "school_name": "रा.उ.प्रा.वि. जोधपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BUBKIYA",
           "village": "KHAYADA",
           "dise_code": "8210702301",
           "shala_darpan_code": "485032",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. जोधपुरा",
+          "school_name_en": "Govt. Upper Primary School Jodhpura",
+          "peeo_name": "PEEO BOOBKIYA",
+          "peeo_code": "221763"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL SOLKALA (485052) (08210702001)",
@@ -719,7 +947,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "8210702001",
           "shala_darpan_code": "485052",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "GOVT. UPPER PRIMARY SCHOOL SOLKALA",
+          "school_name_hi": "GOVT. UPPER PRIMARY SCHOOL SOLKALA (485052) (08210702001)",
+          "peeo_name": "PEEO BOOBKIYA",
+          "peeo_code": "221763"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL REN KA JHOPADA (485053) (08210701902)",
@@ -729,7 +961,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "8210701902",
           "shala_darpan_code": "485053",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "GOVT. PRIMARY SCHOOL REN KA JHOPADA",
+          "school_name_hi": "GOVT. PRIMARY SCHOOL REN KA JHOPADA (485053) (08210701902)",
+          "peeo_name": "PEEO BOOBKIYA",
+          "peeo_code": "221763"
         }
       ],
       "school_count": 8,
@@ -749,24 +985,32 @@ const MASTER_CBEO_DATA = {
       "password": "221758",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)",
+          "school_name": "रा.उ.मा.वि. चापानेरी",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "CHAPANERI",
           "village": "CHAPANERI",
           "dise_code": "08210700601",
           "shala_darpan_code": "221758",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+          "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+          "peeo_name": "PEEO CHAPANERI",
+          "peeo_code": "221758"
         },
         {
-          "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL CHAPANERI (494626) (08210700602)",
+          "school_name": "रा.बा.उ.मा.वि. चापानेरी",
           "category": "Govt. Elementary / Sec",
           "panchayat": "CHANPANER",
           "village": "CHAMPANERI",
           "dise_code": "8210700602",
           "shala_darpan_code": "494626",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.बा.उ.मा.वि. चापानेरी",
+          "school_name_en": "Govt. Girls Sr. Sec. School Chapaneri",
+          "peeo_name": "PEEO CHAPANERI",
+          "peeo_code": "221758"
         }
       ],
       "school_count": 2,
@@ -786,14 +1030,18 @@ const MASTER_CBEO_DATA = {
       "password": "221787",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA (221787)",
+          "school_name": "रा.उ.मा.वि. छाछून्दरा",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "CHHACHHUNDRA",
           "village": "CHHACHHUNDRA",
           "dise_code": "08210700701",
           "shala_darpan_code": "221787",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+          "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+          "peeo_name": "PEEO CHHACHHUNDRA",
+          "peeo_code": "221787"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL MAJRA SAWAIPURA (505598) (08210707802)",
@@ -803,7 +1051,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "8210707802",
           "shala_darpan_code": "505598",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "GOVT. PRIMARY SCHOOL MAJRA SAWAIPURA",
+          "school_name_hi": "GOVT. PRIMARY SCHOOL MAJRA SAWAIPURA (505598) (08210707802)",
+          "peeo_name": "PEEO CHHACHHUNDRA",
+          "peeo_code": "221787"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL SHIVNAGAR (488953) (08210707702)",
@@ -813,7 +1065,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "8210707702",
           "shala_darpan_code": "488953",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "GOVT. PRIMARY SCHOOL SHIVNAGAR",
+          "school_name_hi": "GOVT. PRIMARY SCHOOL SHIVNAGAR (488953) (08210707702)",
+          "peeo_name": "PEEO CHHACHHUNDRA",
+          "peeo_code": "221787"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL JORAVARPURA BHINAI AJMER (488980) (08210708001)",
@@ -823,17 +1079,25 @@ const MASTER_CBEO_DATA = {
           "dise_code": "8210708001",
           "shala_darpan_code": "488980",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "GOVT. UPPER PRIMARY SCHOOL JORAVARPURA BHINAI AJMER",
+          "school_name_hi": "GOVT. UPPER PRIMARY SCHOOL JORAVARPURA BHINAI AJMER (488980) (08210708001)",
+          "peeo_name": "PEEO CHHACHHUNDRA",
+          "peeo_code": "221787"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL SARGAON (488945) (08210707901)",
+          "school_name": "रा.उ.प्रा.वि. जोरावरपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "CHACHUNDRA",
           "village": "SARGAON",
           "dise_code": "8210707901",
           "shala_darpan_code": "488945",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. जोरावरपुरा",
+          "school_name_en": "Govt. Upper Primary School Jorawarpura",
+          "peeo_name": "PEEO CHHACHHUNDRA",
+          "peeo_code": "221787"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL RATANPURA (488935) (08210708101)",
@@ -843,17 +1107,25 @@ const MASTER_CBEO_DATA = {
           "dise_code": "8210708101",
           "shala_darpan_code": "488935",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "GOVT. PRIMARY SCHOOL RATANPURA",
+          "school_name_hi": "GOVT. PRIMARY SCHOOL RATANPURA (488935) (08210708101)",
+          "peeo_name": "PEEO CHHACHHUNDRA",
+          "peeo_code": "221787"
         },
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL SEDRIYA (488946) (08210707801)",
+          "school_name": "रा.उ.मा.वि. सेदरिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "CHACHUNDRA",
           "village": "SEDRIYA",
           "dise_code": "8210707801",
           "shala_darpan_code": "488946",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.मा.वि. सेदरिया",
+          "school_name_en": "Govt. Sr. Sec. School Sedriya",
+          "peeo_name": "PEEO CHHACHHUNDRA",
+          "peeo_code": "221787"
         }
       ],
       "school_count": 7,
@@ -873,17 +1145,21 @@ const MASTER_CBEO_DATA = {
       "password": "221754",
       "schools": [
         {
-          "school_name": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN (221754)",
+          "school_name": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "DEOLIYA KALAN",
           "village": "DEOLIYA KALAN",
           "dise_code": "08210700801",
           "shala_darpan_code": "221754",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+          "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+          "peeo_name": "PEEO DEOLIYA KALAN",
+          "peeo_code": "221754"
         },
         {
-          "school_name": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753) (08210700103)",
+          "school_name": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
           "category": "Govt. Elementary / Sec",
           "panchayat": "DEVLIYA KALA",
           "village": "DEVLIYA KALAN",
@@ -893,7 +1169,11 @@ const MASTER_CBEO_DATA = {
           "is_peeo_nodal": false,
           "principal_name": "RAKESH KUMAR BIRAWAT",
           "mobile": "9829835751",
-          "incharge_name": ""
+          "incharge_name": "",
+          "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+          "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+          "peeo_name": "PEEO DEOLIYA KALAN",
+          "peeo_code": "221754"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL MATAJI KA KHEDA (410612) (08210700201)",
@@ -903,7 +1183,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "8210700201",
           "shala_darpan_code": "410612",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "GOVT. UPPER PRIMARY SCHOOL MATAJI KA KHEDA",
+          "school_name_hi": "GOVT. UPPER PRIMARY SCHOOL MATAJI KA KHEDA (410612) (08210700201)",
+          "peeo_name": "PEEO DEOLIYA KALAN",
+          "peeo_code": "221754"
         },
         {
           "school_name": "KASTURBA GANDHI BALIKA VIDYALAYA DEOLIYA KALAN (526760) (08210700113)",
@@ -913,7 +1197,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "8210700113",
           "shala_darpan_code": "526760",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "KASTURBA GANDHI BALIKA VIDYALAYA DEOLIYA KALAN",
+          "school_name_hi": "KASTURBA GANDHI BALIKA VIDYALAYA DEOLIYA KALAN (526760) (08210700113)",
+          "peeo_name": "PEEO DEOLIYA KALAN",
+          "peeo_code": "221754"
         }
       ],
       "school_count": 4,
@@ -933,14 +1221,18 @@ const MASTER_CBEO_DATA = {
       "password": "488941",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA (488941)",
+          "school_name": "रा.उ.मा.वि. देवरिया",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "DEVPURA",
           "village": "DEVPURA",
           "dise_code": "08210700901",
           "shala_darpan_code": "488941",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. देवरिया",
+          "school_name_en": "Govt. Sr. Sec. School Devriya",
+          "peeo_name": "PEEO DEVPURA",
+          "peeo_code": "488941"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL RAMNAGAR (488937) (08210708703)",
@@ -950,7 +1242,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "8210708703",
           "shala_darpan_code": "488937",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "GOVT. PRIMARY SCHOOL RAMNAGAR",
+          "school_name_hi": "GOVT. PRIMARY SCHOOL RAMNAGAR (488937) (08210708703)",
+          "peeo_name": "PEEO DEVPURA",
+          "peeo_code": "488941"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL RAMPURA (488938) (08210708901)",
@@ -960,17 +1256,25 @@ const MASTER_CBEO_DATA = {
           "dise_code": "8210708901",
           "shala_darpan_code": "488938",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "GOVT. PRIMARY SCHOOL RAMPURA",
+          "school_name_hi": "GOVT. PRIMARY SCHOOL RAMPURA (488938) (08210708901)",
+          "peeo_name": "PEEO DEVPURA",
+          "peeo_code": "488941"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL AMARGARH (488942) (08210709101)",
+          "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "DEVPURA",
           "village": "AMARGADH",
           "dise_code": "8210709101",
           "shala_darpan_code": "488942",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+          "school_name_en": "Govt. Upper Primary School Gurjarwada",
+          "peeo_name": "PEEO DEVPURA",
+          "peeo_code": "488941"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL GAJJANADI (468181) (08210708702)",
@@ -980,7 +1284,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "8210708702",
           "shala_darpan_code": "468181",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "GOVT. PRIMARY SCHOOL GAJJANADI",
+          "school_name_hi": "GOVT. PRIMARY SCHOOL GAJJANADI (468181) (08210708702)",
+          "peeo_name": "PEEO DEVPURA",
+          "peeo_code": "488941"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL MOTIPURA (410651) (08210709001)",
@@ -990,17 +1298,25 @@ const MASTER_CBEO_DATA = {
           "dise_code": "8210709001",
           "shala_darpan_code": "410651",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "GOVT. UPPER PRIMARY SCHOOL MOTIPURA",
+          "school_name_hi": "GOVT. UPPER PRIMARY SCHOOL MOTIPURA (410651) (08210709001)",
+          "peeo_name": "PEEO DEVPURA",
+          "peeo_code": "488941"
         },
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL ROOPPURA (410704) (08210708801)",
+          "school_name": "रा.उ.मा.वि. रूपपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "DEVPURA",
           "village": "RUPPURA",
           "dise_code": "8210708801",
           "shala_darpan_code": "410704",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.मा.वि. रूपपुरा",
+          "school_name_en": "Govt. Sr. Sec. School Rooppura",
+          "peeo_name": "PEEO DEVPURA",
+          "peeo_code": "488941"
         }
       ],
       "school_count": 7,
@@ -1020,14 +1336,18 @@ const MASTER_CBEO_DATA = {
       "password": "221783",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL (221783)",
+          "school_name": "रा.उ.मा.वि. धांतोल",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "DHANTOL",
           "village": "DHANTOL",
           "dise_code": "08210701001",
           "shala_darpan_code": "221783",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. धांतोल",
+          "school_name_en": "Govt. Sr. Sec. School Dhantol",
+          "peeo_name": "PEEO DHANTOL",
+          "peeo_code": "221783"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL SHYALABHATA (488939) (08210706803)",
@@ -1037,37 +1357,53 @@ const MASTER_CBEO_DATA = {
           "dise_code": "8210706803",
           "shala_darpan_code": "488939",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "GOVT. PRIMARY SCHOOL SHYALABHATA",
+          "school_name_hi": "GOVT. PRIMARY SCHOOL SHYALABHATA (488939) (08210706803)",
+          "peeo_name": "PEEO DHANTOL",
+          "peeo_code": "221783"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL JHOPDIYA (488940) (08210706801)",
+          "school_name": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "DHATOL",
           "village": "UDAYGADH KHEDA",
           "dise_code": "8210706801",
           "shala_darpan_code": "488940",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
+          "school_name_en": "Govt. Upper Primary School Udaigarh Kheda",
+          "peeo_name": "PEEO DHANTOL",
+          "peeo_code": "221783"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL UDAIGARH KHEDA (488949) (08210706802)",
+          "school_name": "रा.उ.प्रा.वि. मोतीपुरा (धांतोल)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "DHATOL",
           "village": "UDAYGADH KHEDA",
           "dise_code": "8210706802",
           "shala_darpan_code": "488949",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. मोतीपुरा (धांतोल)",
+          "school_name_en": "Govt. Upper Primary School Motipura Dhantol",
+          "peeo_name": "PEEO DHANTOL",
+          "peeo_code": "221783"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL GUJARVADA (488950) (08210706601)",
+          "school_name": "रा.उ.प्रा.वि. संस्कृत गणेशपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "DHATOL",
           "village": "GUJARVADA",
           "dise_code": "8210706601",
           "shala_darpan_code": "488950",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. संस्कृत गणेशपुरा",
+          "school_name_en": "Govt. Upper Primary Sanskrit School Ganeshpura",
+          "peeo_name": "PEEO DHANTOL",
+          "peeo_code": "221783"
         }
       ],
       "school_count": 5,
@@ -1087,24 +1423,32 @@ const MASTER_CBEO_DATA = {
       "password": "221786",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA (221786)",
+          "school_name": "रा.उ.मा.वि. एकलसिंघा",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "EKALSEENGA",
           "village": "EKALSEENGA",
           "dise_code": "08210701101",
           "shala_darpan_code": "221786",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+          "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+          "peeo_name": "PEEO EKALSEENGA",
+          "peeo_code": "221786"
         },
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL HIYALIYA (488947) (08210707401)",
+          "school_name": "रा.उ.मा.वि. हियालिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "EKALSINGA",
           "village": "HIYALIYA",
           "dise_code": "8210707401",
           "shala_darpan_code": "488947",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.मा.वि. हियालिया",
+          "school_name_en": "Govt. Sr. Sec. School Hiyaliya",
+          "peeo_name": "PEEO EKALSEENGA",
+          "peeo_code": "221786"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL DHANI EKALSINGHA (488931) (08210707301)",
@@ -1114,7 +1458,11 @@ const MASTER_CBEO_DATA = {
           "dise_code": "8210707301",
           "shala_darpan_code": "488931",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "GOVT. PRIMARY SCHOOL DHANI EKALSINGHA",
+          "school_name_hi": "GOVT. PRIMARY SCHOOL DHANI EKALSINGHA (488931) (08210707301)",
+          "peeo_name": "PEEO EKALSEENGA",
+          "peeo_code": "221786"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL JHABARKIYA (468173) (08210706301)",
@@ -1124,17 +1472,25 @@ const MASTER_CBEO_DATA = {
           "dise_code": "8210706301",
           "shala_darpan_code": "468173",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "GOVT. UPPER PRIMARY SCHOOL JHABARKIYA",
+          "school_name_hi": "GOVT. UPPER PRIMARY SCHOOL JHABARKIYA (468173) (08210706301)",
+          "peeo_name": "PEEO EKALSEENGA",
+          "peeo_code": "221786"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL BANEDIYA (488948) (08210707501)",
+          "school_name": "रा.उ.प्रा.वि. अमरगढ़",
           "category": "Govt. Elementary / Sec",
           "panchayat": "EKALSINGA",
           "village": "BANEDIYA",
           "dise_code": "8210707501",
           "shala_darpan_code": "488948",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. अमरगढ़",
+          "school_name_en": "Govt. Upper Primary School Amargarh",
+          "peeo_name": "PEEO EKALSEENGA",
+          "peeo_code": "221786"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL BALAPURA (493650) (08210707601)",
@@ -1144,16 +1500,24 @@ const MASTER_CBEO_DATA = {
           "dise_code": "8210707601",
           "shala_darpan_code": "493650",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_en": "GOVT. PRIMARY SCHOOL BALAPURA",
+          "school_name_hi": "GOVT. PRIMARY SCHOOL BALAPURA (493650) (08210707601)",
+          "peeo_name": "PEEO EKALSEENGA",
+          "peeo_code": "221786"
         },
         {
-          "school_name": "TAGORE GLOBAL SCHOOL (EKALSINGHA)",
+          "school_name": "टैगोर ग्लोबल स्कूल, एकलसिंघा",
           "shala_darpan_code": "P55700",
           "type": "Private",
           "category": "Private Secondary",
           "principal_name": "AALOK MISHRA",
           "mobile": "9251300400",
-          "incharge_name": "RAVI SHANKAR SHARMA"
+          "incharge_name": "RAVI SHANKAR SHARMA",
+          "school_name_hi": "टैगोर ग्लोबल स्कूल, एकलसिंघा",
+          "school_name_en": "Tagore Global School (Ekalsingha)",
+          "peeo_name": "PEEO EKALSEENGA",
+          "peeo_code": "221786"
         }
       ],
       "school_count": 6,
@@ -1173,94 +1537,130 @@ const MASTER_CBEO_DATA = {
       "password": "221762",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD BLOCK BHINAI DIST AJMER (221762)",
+          "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "GURHA KHURD",
           "village": "GURHA KHURD",
           "dise_code": "08210701201",
           "shala_darpan_code": "221762",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+          "school_name_en": "Govt. Sr. Sec. School Gudha Khurd",
+          "peeo_name": "PEEO GURHA KHURD",
+          "peeo_code": "221762"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL AMARPURA (506583) (08210701603)",
+          "school_name": "रा.प्रा.वि. अमरपुरा (गुढ़ा खुर्द)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "GUDHA KHURD",
           "village": "BAGRAI (GURHA KHURD)",
           "dise_code": "8210701603",
           "shala_darpan_code": "506583",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. अमरपुरा (गुढ़ा खुर्द)",
+          "school_name_en": "Govt. Primary School Amarpura",
+          "peeo_name": "PEEO GURHA KHURD",
+          "peeo_code": "221762"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL PURANIBAGRAI (510079) (08210701604)",
+          "school_name": "रा.प्रा.वि. पुरानी बागरिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "GUDHA KHURD",
           "village": "BAGRAI (GURHA KHURD)",
           "dise_code": "8210701604",
           "shala_darpan_code": "510079",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. पुरानी बागरिया",
+          "school_name_en": "Govt. Primary School Purani Bagrai",
+          "peeo_name": "PEEO GURHA KHURD",
+          "peeo_code": "221762"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL GUDHAKALAN (485029) (08210701401)",
+          "school_name": "रा.उ.प्रा.वि. गुढ़ाकलां",
           "category": "Govt. Elementary / Sec",
           "panchayat": "GUDHA KHURD",
           "village": "GUDHA KALAN",
           "dise_code": "8210701401",
           "shala_darpan_code": "485029",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. गुढ़ाकलां",
+          "school_name_en": "Govt. Upper Primary School Gudhakalan",
+          "peeo_name": "PEEO GURHA KHURD",
+          "peeo_code": "221762"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL DEVPURA (485018) (08210701602)",
+          "school_name": "रा.प्रा.वि. देवपुरा (गुढ़ा खुर्द)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "GUDHA KHURD",
           "village": "BAGRAI (GURHA KHURD)",
           "dise_code": "8210701602",
           "shala_darpan_code": "485018",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. देवपुरा (गुढ़ा खुर्द)",
+          "school_name_en": "Govt. Primary School Devpura Gudha Khurd",
+          "peeo_name": "PEEO GURHA KHURD",
+          "peeo_code": "221762"
         },
         {
-          "school_name": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI (485030) (08210701601)",
+          "school_name": "पीएम श्री रा.उ.मा.वि. बागरिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "GUDHA KHURD",
           "village": "BAGRAI (GURHA KHURD)",
           "dise_code": "8210701601",
           "shala_darpan_code": "485030",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "पीएम श्री रा.उ.मा.वि. बागरिया",
+          "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai",
+          "peeo_name": "PEEO GURHA KHURD",
+          "peeo_code": "221762"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL INDRAPURA (410554) (08210701303)",
+          "school_name": "रा.प्रा.वि. इंद्रापुरा (गुढ़ा खुर्द)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "GUDHA KHURD",
           "village": "GUDHA KHURD",
           "dise_code": "8210701303",
           "shala_darpan_code": "410554",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. इंद्रापुरा (गुढ़ा खुर्द)",
+          "school_name_en": "Govt. Primary School Indrapura",
+          "peeo_name": "PEEO GURHA KHURD",
+          "peeo_code": "221762"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL KHEDI GUDHA KHURD (402646) (08210701701)",
+          "school_name": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
           "category": "Govt. Elementary / Sec",
           "panchayat": "GUDHA KHURD",
           "village": "KHEDI",
           "dise_code": "8210701701",
           "shala_darpan_code": "402646",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
+          "school_name_en": "Govt. Upper Primary School Khedi Gudha Khurd",
+          "peeo_name": "PEEO GURHA KHURD",
+          "peeo_code": "221762"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL PANDOLAI (402702) (08210701501)",
+          "school_name": "रा.उ.प्रा.वि. पांडोलाई",
           "category": "Govt. Elementary / Sec",
           "panchayat": "GUDHA KHURD",
           "village": "PANDOLAI",
           "dise_code": "8210701501",
           "shala_darpan_code": "402702",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. पांडोलाई",
+          "school_name_en": "Govt. Upper Primary School Pandolai",
+          "peeo_name": "PEEO GURHA KHURD",
+          "peeo_code": "221762"
         }
       ],
       "school_count": 9,
@@ -1280,64 +1680,88 @@ const MASTER_CBEO_DATA = {
       "password": "221765",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA (221765)",
+          "school_name": "रा.उ.मा.वि. कनाई कलां",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "KANAI KALAN",
           "village": "KANAI KALAN",
           "dise_code": "08210701301",
           "shala_darpan_code": "221765",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. कनाई कलां",
+          "school_name_en": "Govt. Sr. Sec. School Kanai Kala",
+          "peeo_name": "PEEO KANAI KALAN",
+          "peeo_code": "221765"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL KANAI KHURD (485028) (08210702901)",
+          "school_name": "रा.उ.प्रा.वि. कनाई खुर्द",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KANAIKALA",
           "village": "KANAI KHURD",
           "dise_code": "8210702901",
           "shala_darpan_code": "485028",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. कनाई खुर्द",
+          "school_name_en": "Govt. Upper Primary School Kanai Khurd",
+          "peeo_name": "PEEO KANAI KALAN",
+          "peeo_code": "221765"
         },
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA (401778) (08210703001)",
+          "school_name": "रा.उ.मा.वि. नेमेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KANAIKALA",
           "village": "NIMEDA (KEROT)",
           "dise_code": "8210703001",
           "shala_darpan_code": "401778",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.मा.वि. नेमेड़ा",
+          "school_name_en": "Govt. Sr. Sec. School Nemeda",
+          "peeo_name": "PEEO KANAI KALAN",
+          "peeo_code": "221765"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL LAKSHMIPURA KANAIKALA (410623) (08210703101)",
+          "school_name": "रा.उ.प्रा.वि. लक्ष्मीपुरा कनाईकलां",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KANAIKALA",
           "village": "LAKSHMIPURA",
           "dise_code": "8210703101",
           "shala_darpan_code": "410623",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. लक्ष्मीपुरा कनाईकलां",
+          "school_name_en": "Govt. Upper Primary School Lakshmipura",
+          "peeo_name": "PEEO KANAI KALAN",
+          "peeo_code": "221765"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL DHANDHO KA KHEDA (506627) (08210702902)",
+          "school_name": "रा.प्रा.वि. ढांढो का खेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KANAIKALA",
           "village": "DHANDHO KA KHERA",
           "dise_code": "8210702902",
           "shala_darpan_code": "506627",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. ढांढो का खेड़ा",
+          "school_name_en": "Govt. Primary School Dhandho Ka Kheda",
+          "peeo_name": "PEEO KANAI KALAN",
+          "peeo_code": "221765"
         },
         {
-          "school_name": "MARUDHAR BAL VIDHYA NIKETAN KANAIKALA (P46678)",
+          "school_name": "मरुधर बाल विद्या निकेतन, कनाईकलां",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "KANAIKALA",
           "village": "KANAI KALA",
           "dise_code": "",
           "shala_darpan_code": "P46678",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "मरुधर बाल विद्या निकेतन, कनाईकलां",
+          "school_name_en": "Marudhar Bal Vidhya Niketan Kanaikala",
+          "peeo_name": "PEEO KANAI KALAN",
+          "peeo_code": "221765"
         }
       ],
       "school_count": 6,
@@ -1357,114 +1781,158 @@ const MASTER_CBEO_DATA = {
       "password": "221773",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL KARANTI (221773)",
+          "school_name": "रा.उ.मा.वि. करांटी",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "KARATI",
           "village": "KARATI",
           "dise_code": "08210701401",
           "shala_darpan_code": "221773",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. करांटी",
+          "school_name_en": "Govt. Sr. Sec. School Karanti",
+          "peeo_name": "PEEO KARATI",
+          "peeo_code": "221773"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL GORDHANPURANA CHACHUNDRA (506514) (08210708301)",
+          "school_name": "रा.प्रा.वि. गोरधनपुरा छाछून्दरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KARANTHI",
           "village": "GORDHANPURA",
           "dise_code": "8210708301",
           "shala_darpan_code": "506514",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. गोरधनपुरा छाछून्दरा",
+          "school_name_en": "Govt. Primary School Gordhanpura",
+          "peeo_name": "PEEO KARATI",
+          "peeo_code": "221773"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL KHEDI (515685) (08210704906)",
+          "school_name": "रा.प्रा.वि. खेड़ी (करांती)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KARANTHI",
           "village": "KARANTHI",
           "dise_code": "8210704906",
           "shala_darpan_code": "515685",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. खेड़ी (करांती)",
+          "school_name_en": "Govt. Primary School Khedi",
+          "peeo_name": "PEEO KARATI",
+          "peeo_code": "221773"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL KHEDA KARANTI (519282) (08210704602)",
+          "school_name": "रा.प्रा.वि. खेड़ा करांती",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KARANTHI",
           "village": "KARANTHI",
           "dise_code": "8210704602",
           "shala_darpan_code": "519282",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. खेड़ा करांती",
+          "school_name_en": "Govt. Primary School Kheda Karanti",
+          "peeo_name": "PEEO KARATI",
+          "peeo_code": "221773"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL DOLATPURA (488944) (08210708201)",
+          "school_name": "रा.उ.प्रा.वि. दौलतपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KARANTHI",
           "village": "DOLATPURA",
           "dise_code": "8210708201",
           "shala_darpan_code": "488944",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. दौलतपुरा",
+          "school_name_en": "Govt. Upper Primary School Dolatpura",
+          "peeo_name": "PEEO KARATI",
+          "peeo_code": "221773"
         },
         {
-          "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL KHEDI (488791) (08210704903)",
+          "school_name": "रा.बा.उ.मा.वि. खेड़ी",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KARANTHI",
           "village": "KHEDI",
           "dise_code": "8210704903",
           "shala_darpan_code": "488791",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.बा.उ.मा.वि. खेड़ी",
+          "school_name_en": "Govt. Girls Sr. Sec. School Khedi",
+          "peeo_name": "PEEO KARATI",
+          "peeo_code": "221773"
         },
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL KHEDI (221774) (08210704901)",
+          "school_name": "रा.उ.मा.वि. खेड़ी",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KARANTHI",
           "village": "KHEDI",
           "dise_code": "8210704901",
           "shala_darpan_code": "221774",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.मा.वि. खेड़ी",
+          "school_name_en": "Govt. Sr. Sec. School Khedi",
+          "peeo_name": "PEEO KARATI",
+          "peeo_code": "221773"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL GOPALPURA (488792) (08210704701)",
+          "school_name": "रा.उ.प्रा.वि. गोपालपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KARANTHI",
           "village": "GOPALPURA",
           "dise_code": "8210704701",
           "shala_darpan_code": "488792",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. गोपालपुरा",
+          "school_name_en": "Govt. Upper Primary School Gopalpura",
+          "peeo_name": "PEEO KARATI",
+          "peeo_code": "221773"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL PRATAPPURA KARANTI (488793) (08210705001)",
+          "school_name": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KARANTHI",
           "village": "PRATAPPURA (KARATI)",
           "dise_code": "8210705001",
           "shala_darpan_code": "488793",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
+          "school_name_en": "Govt. Upper Primary School Pratappura Karanti",
+          "peeo_name": "PEEO KARATI",
+          "peeo_code": "221773"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL KHEDI TALAB (488787) (08210704902)",
+          "school_name": "रा.प्रा.वि. खेड़ी तालाब",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KARANTHI",
           "village": "KHEDI",
           "dise_code": "8210704902",
           "shala_darpan_code": "488787",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. खेड़ी तालाब",
+          "school_name_en": "Govt. Primary School Khedi Talab",
+          "peeo_name": "PEEO KARATI",
+          "peeo_code": "221773"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL GOVLIYA (468185) (08210704801)",
+          "school_name": "रा.उ.प्रा.वि. गोवलिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KARANTHI",
           "village": "GOVLIYA",
           "dise_code": "8210704801",
           "shala_darpan_code": "468185",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. गोवलिया",
+          "school_name_en": "Govt. Upper Primary School Govliya",
+          "peeo_name": "PEEO KARATI",
+          "peeo_code": "221773"
         }
       ],
       "school_count": 11,
@@ -1484,44 +1952,60 @@ const MASTER_CBEO_DATA = {
       "password": "221767",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD (221767)",
+          "school_name": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "KEROT",
           "village": "KEROT",
           "dise_code": "08210701501",
           "shala_darpan_code": "221767",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+          "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+          "peeo_name": "PEEO KEROT",
+          "peeo_code": "221767"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL KADOLAI (468213) (08210703801)",
+          "school_name": "रा.प्रा.वि. कादोलाई",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KEROT",
           "village": "KADOLAI",
           "dise_code": "8210703801",
           "shala_darpan_code": "468213",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. कादोलाई",
+          "school_name_en": "Govt. Primary School Kadolai",
+          "peeo_name": "PEEO KEROT",
+          "peeo_code": "221767"
         },
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL JETPURA (221768) (08210703701)",
+          "school_name": "रा.उ.मा.वि. जेतपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KEROT",
           "village": "JETPURA",
           "dise_code": "8210703701",
           "shala_darpan_code": "221768",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.मा.वि. जेतपुरा",
+          "school_name_en": "Govt. Sr. Sec. School Jetpura",
+          "peeo_name": "PEEO KEROT",
+          "peeo_code": "221767"
         },
         {
-          "school_name": "shri shyam vidhya niketan  (P39815)",
+          "school_name": "श्री श्याम विद्या निकेतन, कैरोट",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "KEROT",
           "village": "KEROT",
           "dise_code": "",
           "shala_darpan_code": "P39815",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "श्री श्याम विद्या निकेतन, कैरोट",
+          "school_name_en": "Shri Shyam Vidhya Niketan Kerot",
+          "peeo_name": "PEEO KEROT",
+          "peeo_code": "221767"
         }
       ],
       "school_count": 4,
@@ -1541,64 +2025,88 @@ const MASTER_CBEO_DATA = {
       "password": "221777",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA THASIL BHINAI DISTRICT AJMER (221777)",
+          "school_name": "रा.उ.मा.वि. कुम्हारिया",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "KUMHARIYA",
           "village": "KUMHARIYA",
           "dise_code": "08210701601",
           "shala_darpan_code": "221777",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+          "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+          "peeo_name": "PEEO KUMHARIYA",
+          "peeo_code": "221777"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL SURAJPURA (410903) (08210704001)",
+          "school_name": "रा.उ.प्रा.वि. सूरजपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KUMAHARIYA",
           "village": "SURAJPURA",
           "dise_code": "8210704001",
           "shala_darpan_code": "410903",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. सूरजपुरा",
+          "school_name_en": "Govt. Upper Primary School Surajpura",
+          "peeo_name": "PEEO KUMHARIYA",
+          "peeo_code": "221777"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL RAJPURA MAJRA (410622) (08210705302)",
+          "school_name": "रा.प्रा.वि. राजपुरा मजरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KUMAHARIYA",
           "village": "KUMAHARIYA",
           "dise_code": "8210705302",
           "shala_darpan_code": "410622",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. राजपुरा मजरा",
+          "school_name_en": "Govt. Primary School Rajpura Majra",
+          "peeo_name": "PEEO KUMHARIYA",
+          "peeo_code": "221777"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL KEETAP (463076) (08210705401)",
+          "school_name": "रा.उ.प्रा.वि. कीटाप",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KUMAHARIYA",
           "village": "KITAP",
           "dise_code": "8210705401",
           "shala_darpan_code": "463076",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. कीटाप",
+          "school_name_en": "Govt. Upper Primary School Keetap",
+          "peeo_name": "PEEO KUMHARIYA",
+          "peeo_code": "221777"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL HATHIPURA (488794) (08210703908)",
+          "school_name": "रा.प्रा.वि. हाथीपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KUMAHARIYA",
           "village": "SURAJPURA",
           "dise_code": "8210703908",
           "shala_darpan_code": "488794",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. हाथीपुरा",
+          "school_name_en": "Govt. Primary School Hathipura",
+          "peeo_name": "PEEO KUMHARIYA",
+          "peeo_code": "221777"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL BAGRAI (506695) (08210704101)",
+          "school_name": "रा.प्रा.वि. बागरिया (कुम्हारिया)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KUMAHARIYA",
           "village": "BAGRAI (KUMHARIYA)",
           "dise_code": "8210704101",
           "shala_darpan_code": "506695",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. बागरिया (कुम्हारिया)",
+          "school_name_en": "Govt. Primary School Bagrai Kumhariya",
+          "peeo_name": "PEEO KUMHARIYA",
+          "peeo_code": "221777"
         }
       ],
       "school_count": 6,
@@ -1618,74 +2126,102 @@ const MASTER_CBEO_DATA = {
       "password": "221759",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA (221759)",
+          "school_name": "रा.उ.मा.वि. लामगरा",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "LAMGARA",
           "village": "LAMGARA",
           "dise_code": "08210701701",
           "shala_darpan_code": "221759",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. लामगरा",
+          "school_name_en": "Govt. Sr. Sec. School Lamgara",
+          "peeo_name": "PEEO LAMGARA",
+          "peeo_code": "221759"
         },
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL GANAHERA (221760) (08210700801)",
+          "school_name": "रा.उ.मा.वि. गनाहेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "LAMGARA",
           "village": "GANAHEDA",
           "dise_code": "8210700801",
           "shala_darpan_code": "221760",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+          "school_name_en": "Govt. Sr. Sec. School Ganahera",
+          "peeo_name": "PEEO LAMGARA",
+          "peeo_code": "221759"
         },
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL NIMEDA (221761) (08210701001)",
+          "school_name": "रा.उ.मा.वि. निमेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "LAMGARA",
           "village": "NIMEDA",
           "dise_code": "8210701001",
           "shala_darpan_code": "221761",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
+          "school_name_en": "Govt. Sr. Sec. School Nimeda",
+          "peeo_name": "PEEO LAMGARA",
+          "peeo_code": "221759"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL UDAIPUR KHEDA (410964) (08210701101)",
+          "school_name": "रा.उ.प्रा.वि. उदयपुर खेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "LAMGARA",
           "village": "UDAIPUR KHEDA",
           "dise_code": "8210701101",
           "shala_darpan_code": "410964",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. उदयपुर खेड़ा",
+          "school_name_en": "Govt. Upper Primary School Udaipur Kheda",
+          "peeo_name": "PEEO LAMGARA",
+          "peeo_code": "221759"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL BADLA KHEDA (485024) (08210700901)",
+          "school_name": "रा.उ.प्रा.वि. बड़ला खेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "LAMGARA",
           "village": "BADLA KHEDA",
           "dise_code": "8210700901",
           "shala_darpan_code": "485024",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. बड़ला खेड़ा",
+          "school_name_en": "Govt. Upper Primary School Badla Kheda",
+          "peeo_name": "PEEO LAMGARA",
+          "peeo_code": "221759"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL BHERU KHEDA (506579) (08210701201)",
+          "school_name": "रा.प्रा.वि. भेरू खेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "LAMGARA",
           "village": "BHERU KHEDA",
           "dise_code": "8210701201",
           "shala_darpan_code": "506579",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. भेरू खेड़ा",
+          "school_name_en": "Govt. Primary School Bheru Kheda",
+          "peeo_name": "PEEO LAMGARA",
+          "peeo_code": "221759"
         },
         {
-          "school_name": "GANESHGIRI BAAL VIDHYA PEETH SANSTHAN GANAHERA (P13193)",
+          "school_name": "गणेशगिरी बाल विद्या पीठ, गनाहेड़ा",
           "category": "Private (Primary)",
           "panchayat": "LAMGARA",
           "village": "GANAHEDA",
           "dise_code": "",
           "shala_darpan_code": "P13193",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "गणेशगिरी बाल विद्या पीठ, गनाहेड़ा",
+          "school_name_en": "Ganeshgiri Baal Vidhya Peeth Ganahera",
+          "peeo_name": "PEEO LAMGARA",
+          "peeo_code": "221759"
         }
       ],
       "school_count": 7,
@@ -1705,84 +2241,116 @@ const MASTER_CBEO_DATA = {
       "password": "221772",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)",
+          "school_name": "रा.उ.मा.वि. नागोला",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "NAGOLA",
           "village": "NAGOLA",
           "dise_code": "08210701801",
           "shala_darpan_code": "221772",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. नागोला",
+          "school_name_en": "Govt. Sr. Sec. School Nagola",
+          "peeo_name": "PEEO NAGOLA",
+          "peeo_code": "221772"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL DHORAMAND KHEDA (488780) (08210704403)",
+          "school_name": "रा.प्रा.वि. धोरामंड खेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "NAGOLA",
           "village": "BADLA URF KALA TALAB",
           "dise_code": "8210704403",
           "shala_darpan_code": "488780",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. धोरामंड खेड़ा",
+          "school_name_en": "Govt. Primary School Dhoramand Kheda",
+          "peeo_name": "PEEO NAGOLA",
+          "peeo_code": "221772"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL KHAROLA KA KHEDA (488788) (08210704401)",
+          "school_name": "रा.प्रा.वि. खरोला का खेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "NAGOLA",
           "village": "BADLA URF KALA TALAB",
           "dise_code": "8210704401",
           "shala_darpan_code": "488788",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. खरोला का खेड़ा",
+          "school_name_en": "Govt. Primary School Kharola Ka Kheda",
+          "peeo_name": "PEEO NAGOLA",
+          "peeo_code": "221772"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL SAPNIKHEDA (488790) (08210704501)",
+          "school_name": "रा.उ.प्रा.वि. सपनीखेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "NAGOLA",
           "village": "SAPNI KHEDA",
           "dise_code": "8210704501",
           "shala_darpan_code": "488790",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. सपनीखेड़ा",
+          "school_name_en": "Govt. Upper Primary School Sapnikheda",
+          "peeo_name": "PEEO NAGOLA",
+          "peeo_code": "221772"
         },
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL BADLA (488781) (08210704402)",
+          "school_name": "रा.उ.मा.वि. बडला (नागोला)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "NAGOLA",
           "village": "BADLA URF KALA TALAB",
           "dise_code": "8210704402",
           "shala_darpan_code": "488781",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.मा.वि. बडला (नागोला)",
+          "school_name_en": "Govt. Sr. Sec. School Badla (Nagola)",
+          "peeo_name": "PEEO NAGOLA",
+          "peeo_code": "221772"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL BALAPURA (506475) (08210704301)",
+          "school_name": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "NAGOLA",
           "village": "BALAPURA (NAGOLA)",
           "dise_code": "8210704301",
           "shala_darpan_code": "506475",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
+          "school_name_en": "Govt. Upper Primary School Balapura Nagola",
+          "peeo_name": "PEEO NAGOLA",
+          "peeo_code": "221772"
         },
         {
-          "school_name": "POOJA PUBLIC SCHOOL NAGOLA (P19677)",
+          "school_name": "पूजा पब्लिक स्कूल, नागोला",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "NAGOLA",
           "village": "NAGOOLA",
           "dise_code": "",
           "shala_darpan_code": "P19677",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "पूजा पब्लिक स्कूल, नागोला",
+          "school_name_en": "Pooja Public School Nagola",
+          "peeo_name": "PEEO NAGOLA",
+          "peeo_code": "221772"
         },
         {
-          "school_name": "HINA BAL VIDYA MANDIR UPPER PRIMARY SCHOOL NAGOLA (P16594)",
+          "school_name": "हिना बाल विद्या मंदिर उ.प्रा.वि., नागोला",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "NAGOLA",
           "village": "NAGOOLA",
           "dise_code": "",
           "shala_darpan_code": "P16594",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "हिना बाल विद्या मंदिर उ.प्रा.वि., नागोला",
+          "school_name_en": "Hina Bal Vidya Mandir UPS Nagola",
+          "peeo_name": "PEEO NAGOLA",
+          "peeo_code": "221772"
         }
       ],
       "school_count": 8,
@@ -1802,64 +2370,88 @@ const MASTER_CBEO_DATA = {
       "password": "221756",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)",
+          "school_name": "रा.उ.मा.वि. नांदसी",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "NANDSI",
           "village": "NANDSI",
           "dise_code": "08210701901",
           "shala_darpan_code": "221756",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. नांदसी",
+          "school_name_en": "Govt. Sr. Sec. School Nandsi",
+          "peeo_name": "PEEO NANDSI",
+          "peeo_code": "221756"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL KACHRIYA (401959) (08210702801)",
+          "school_name": "रा.उ.प्रा.वि. काचरिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "NANDSI",
           "village": "KACHRIYA",
           "dise_code": "8210702801",
           "shala_darpan_code": "401959",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. काचरिया",
+          "school_name_en": "Govt. Upper Primary School Kachriya",
+          "peeo_name": "PEEO NANDSI",
+          "peeo_code": "221756"
         },
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL KURTHAL (221757) (08210700501)",
+          "school_name": "रा.उ.मा.वि. कुरथल",
           "category": "Govt. Elementary / Sec",
           "panchayat": "NANDSI",
           "village": "KURTHAL",
           "dise_code": "8210700501",
           "shala_darpan_code": "221757",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.मा.वि. कुरथल",
+          "school_name_en": "Govt. Sr. Sec. School Kurthal",
+          "peeo_name": "PEEO NANDSI",
+          "peeo_code": "221756"
         },
         {
-          "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL NANDSI (410632) (08210700402)",
+          "school_name": "रा.बा.उ.मा.वि. नांदसी",
           "category": "Govt. Elementary / Sec",
           "panchayat": "NANDSI",
           "village": "NANDSI",
           "dise_code": "8210700402",
           "shala_darpan_code": "410632",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.बा.उ.मा.वि. नांदसी",
+          "school_name_en": "Govt. Girls Sr. Sec. School Nandsi",
+          "peeo_name": "PEEO NANDSI",
+          "peeo_code": "221756"
         },
         {
-          "school_name": "ANNPURNA PUBLIC SCH. (P16285)",
+          "school_name": "अन्नपूर्णा पब्लिक स्कूल, नांदसी",
           "category": "Private (Primary)",
           "panchayat": "NANDSI",
           "village": "NANDSI",
           "dise_code": "",
           "shala_darpan_code": "P16285",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "अन्नपूर्णा पब्लिक स्कूल, नांदसी",
+          "school_name_en": "Annpurna Public School Nandsi",
+          "peeo_name": "PEEO NANDSI",
+          "peeo_code": "221756"
         },
         {
-          "school_name": "MANSA PURNA P.S. KURTHAL (P18650)",
+          "school_name": "मनसा पूर्णा प्रा.वि. कुरथल",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "NANDSI",
           "village": "KURTHAL",
           "dise_code": "",
           "shala_darpan_code": "P18650",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "मनसा पूर्णा प्रा.वि. कुरथल",
+          "school_name_en": "Mansa Purna PS Kurthal",
+          "peeo_name": "PEEO NANDSI",
+          "peeo_code": "221756"
         }
       ],
       "school_count": 6,
@@ -1879,54 +2471,74 @@ const MASTER_CBEO_DATA = {
       "password": "221766",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA (221766)",
+          "school_name": "रा.उ.मा.वि. पाडलिया",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "PADALIYA",
           "village": "PADALIYA",
           "dise_code": "08210702001",
           "shala_darpan_code": "221766",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+          "school_name_en": "Govt. Sr. Sec. School Padliya",
+          "peeo_name": "PEEO PADALIYA",
+          "peeo_code": "221766"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL GORDHANPURA (410654) (08210703202)",
+          "school_name": "रा.उ.प्रा.वि. गोरधनपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "PADLIYA",
           "village": "PADLIYA",
           "dise_code": "8210703202",
           "shala_darpan_code": "410654",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. गोरधनपुरा",
+          "school_name_en": "Govt. Upper Primary School Gordhanpura",
+          "peeo_name": "PEEO PADALIYA",
+          "peeo_code": "221766"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL CHAVANDIYA (402141) (08210703501)",
+          "school_name": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "PADLIYA",
           "village": "CHAVANDIYA",
           "dise_code": "8210703501",
           "shala_darpan_code": "402141",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
+          "school_name_en": "Govt. Upper Primary School Chavandiya Padaliya",
+          "peeo_name": "PEEO PADALIYA",
+          "peeo_code": "221766"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL BILIYA (468182) (08210703301)",
+          "school_name": "रा.उ.प्रा.वि. बिलिया (पाडलिया)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "PADLIYA",
           "village": "BILIYA",
           "dise_code": "8210703301",
           "shala_darpan_code": "468182",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. बिलिया (पाडलिया)",
+          "school_name_en": "Govt. Upper Primary School Biliya Padaliya",
+          "peeo_name": "PEEO PADALIYA",
+          "peeo_code": "221766"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL MUNDIYA KHEDA (485054) (08210703401)",
+          "school_name": "रा.प्रा.वि. मूण्डिया खेड़ा (पाडलिया)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "PADLIYA",
           "village": "MUNDIYA KHEDA",
           "dise_code": "8210703401",
           "shala_darpan_code": "485054",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. मूण्डिया खेड़ा (पाडलिया)",
+          "school_name_en": "Govt. Primary School Mundiya Kheda Padaliya",
+          "peeo_name": "PEEO PADALIYA",
+          "peeo_code": "221766"
         }
       ],
       "school_count": 5,
@@ -1946,54 +2558,74 @@ const MASTER_CBEO_DATA = {
       "password": "221788",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL PADANGA (221788)",
+          "school_name": "रा.उ.मा.वि. पाडंगा",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "PADANGA",
           "village": "PADANGA",
           "dise_code": "08210702101",
           "shala_darpan_code": "221788",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+          "school_name_en": "Govt. Sr. Sec. School Padanga",
+          "peeo_name": "PEEO PADANGA",
+          "peeo_code": "221788"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL SAIMALA PADANGA (410721) (08210708802)",
+          "school_name": "रा.प्रा.वि. सायमाला पाडंगा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "PADANGA",
           "village": "PADANGA",
           "dise_code": "8210708802",
           "shala_darpan_code": "410721",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. सायमाला पाडंगा",
+          "school_name_en": "Govt. Primary School Saimala Padanga",
+          "peeo_name": "PEEO PADANGA",
+          "peeo_code": "221788"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL SAWAIPURA (488936) (08210708501)",
+          "school_name": "रा.प्रा.वि. सवाईपुरा (पाडंगा)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "PADANGA",
           "village": "SAWAIPURA",
           "dise_code": "8210708501",
           "shala_darpan_code": "488936",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. सवाईपुरा (पाडंगा)",
+          "school_name_en": "Govt. Primary School Sawaipura Padanga",
+          "peeo_name": "PEEO PADANGA",
+          "peeo_code": "221788"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL ARJUNPURA (488943) (08210708601)",
+          "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "PADANGA",
           "village": "ARJUNPURA",
           "dise_code": "8210708601",
           "shala_darpan_code": "488943",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. अर्जुनपुरा",
+          "school_name_en": "Govt. Upper Primary School Arjunpura",
+          "peeo_name": "PEEO PADANGA",
+          "peeo_code": "221788"
         },
         {
-          "school_name": "HEENA BAL VIDHYA MANDIR PANANGA (P64304)",
+          "school_name": "हिना बाल विद्या मंदिर, पाडंगा",
           "category": "Private (Primary)",
           "panchayat": "PADANGA",
           "village": "PADANGA",
           "dise_code": "",
           "shala_darpan_code": "P64304",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "हिना बाल विद्या मंदिर, पाडंगा",
+          "school_name_en": "Heena Bal Vidhya Mandir Pananga",
+          "peeo_name": "PEEO PADANGA",
+          "peeo_code": "221788"
         }
       ],
       "school_count": 5,
@@ -2013,44 +2645,60 @@ const MASTER_CBEO_DATA = {
       "password": "221785",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA (221785)",
+          "school_name": "रा.उ.मा.वि. राममालिया",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "RAMMALIA",
           "village": "RAMMALIA",
           "dise_code": "08210702201",
           "shala_darpan_code": "221785",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. राममालिया",
+          "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+          "peeo_name": "PEEO RAMMALIA",
+          "peeo_code": "221785"
         },
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL RAGHUNATHGADH (410677) (08210707001)",
+          "school_name": "रा.उ.मा.वि. रघुनाथगढ़",
           "category": "Govt. Elementary / Sec",
           "panchayat": "RAMMALIYA",
           "village": "RAGHUNATH GADH",
           "dise_code": "8210707001",
           "shala_darpan_code": "410677",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.मा.वि. रघुनाथगढ़",
+          "school_name_en": "Govt. Sr. Sec. School Raghunathgadh",
+          "peeo_name": "PEEO RAMMALIA",
+          "peeo_code": "221785"
         },
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL HEERAPURA (221784) (08210706701)",
+          "school_name": "रा.उ.मा.वि. हीरापुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "RAMMALIYA",
           "village": "HIRAPURA",
           "dise_code": "8210706701",
           "shala_darpan_code": "221784",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.मा.वि. हीरापुरा",
+          "school_name_en": "Govt. Sr. Sec. School Heerapura",
+          "peeo_name": "PEEO RAMMALIA",
+          "peeo_code": "221785"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL PILODA (410646) (08210707101)",
+          "school_name": "रा.प्रा.वि. पीलोदा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "RAMMALIYA",
           "village": "PILODA",
           "dise_code": "8210707101",
           "shala_darpan_code": "410646",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. पीलोदा",
+          "school_name_en": "Govt. Primary School Piloda",
+          "peeo_name": "PEEO RAMMALIA",
+          "peeo_code": "221785"
         }
       ],
       "school_count": 4,
@@ -2070,24 +2718,32 @@ const MASTER_CBEO_DATA = {
       "password": "221775",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT (221775)",
+          "school_name": "रा.उ.मा.वि. राताकोट",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "RATAKOT",
           "village": "RATAKOT",
           "dise_code": "08210702301",
           "shala_darpan_code": "221775",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. राताकोट",
+          "school_name_en": "Govt. Sr. Sec. School Ratakot",
+          "peeo_name": "PEEO RATAKOT",
+          "peeo_code": "221775"
         },
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL JHIPIYA (221776) (08210705201)",
+          "school_name": "रा.उ.मा.वि. झीपिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "RATAKOT",
           "village": "JHIPIYA",
           "dise_code": "8210705201",
           "shala_darpan_code": "221776",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.मा.वि. झीपिया",
+          "school_name_en": "Govt. Sr. Sec. School Jhipiya",
+          "peeo_name": "PEEO RATAKOT",
+          "peeo_code": "221775"
         }
       ],
       "school_count": 2,
@@ -2107,74 +2763,102 @@ const MASTER_CBEO_DATA = {
       "password": "221781",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL (221781)",
+          "school_name": "रा.उ.मा.वि. सिंगावल",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "SINGAWAL",
           "village": "SINGAWAL",
           "dise_code": "08210702401",
           "shala_darpan_code": "221781",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+          "school_name_en": "Govt. Sr. Sec. School Singawal",
+          "peeo_name": "PEEO SINGAWAL",
+          "peeo_code": "221781"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL MATAJI KA KHEDA (410747) (08210705603)",
+          "school_name": "रा.प्रा.वि. माताजी का खेड़ा (सिंगावल)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SINGAWAL",
           "village": "SINGAWAL",
           "dise_code": "8210705603",
           "shala_darpan_code": "410747",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. माताजी का खेड़ा (सिंगावल)",
+          "school_name_en": "Govt. Primary School Mataji Ka Kheda Singawal",
+          "peeo_name": "PEEO SINGAWAL",
+          "peeo_code": "221781"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL KHATANO KA KHEDA (410621) (08210705703)",
+          "school_name": "रा.उ.प्रा.वि. खटाणों का खेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SINGAWAL",
           "village": "KHATANO KA KHEDA",
           "dise_code": "8210705703",
           "shala_darpan_code": "410621",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. खटाणों का खेड़ा",
+          "school_name_en": "Govt. Upper Primary School Khatano Ka Kheda",
+          "peeo_name": "PEEO SINGAWAL",
+          "peeo_code": "221781"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL GURJAR MALI DHANI MATHANIYA (488682) (08210705702)",
+          "school_name": "रा.प्रा.वि. गुर्जर माली ढाणी मथानिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SINGAWAL",
           "village": "MATHANIYA",
           "dise_code": "8210705702",
           "shala_darpan_code": "488682",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. गुर्जर माली ढाणी मथानिया",
+          "school_name_en": "Govt. Primary School Gurjar Mali Dhani Mathaniya",
+          "peeo_name": "PEEO SINGAWAL",
+          "peeo_code": "221781"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL MATHANIYA (506678) (08210705701)",
+          "school_name": "रा.प्रा.वि. मथानिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SINGAWAL",
           "village": "MATHANIYA",
           "dise_code": "8210705701",
           "shala_darpan_code": "506678",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. मथानिया",
+          "school_name_en": "Govt. Primary School Mathaniya",
+          "peeo_name": "PEEO SINGAWAL",
+          "peeo_code": "221781"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL KUMHAR MOHALLA SINGAWAL (506686) (08210705605)",
+          "school_name": "रा.प्रा.वि. कुम्हार मोहल्ला सिंगावल",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SINGAWAL",
           "village": "SINGAWAL",
           "dise_code": "8210705605",
           "shala_darpan_code": "506686",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. कुम्हार मोहल्ला सिंगावल",
+          "school_name_en": "Govt. Primary School Kumhar Mohalla Singawal",
+          "peeo_name": "PEEO SINGAWAL",
+          "peeo_code": "221781"
         },
         {
-          "school_name": "GAUTAM PUBLIC SCHOOL SINGAWAL (P46806)",
+          "school_name": "गौतम पब्लिक स्कूल, सिंगावल",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "SINGAWAL",
           "village": "SINGAWAL",
           "dise_code": "",
           "shala_darpan_code": "P46806",
           "type": "Private",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "गौतम पब्लिक स्कूल, सिंगावल",
+          "school_name_en": "Gautam Public School Singawal",
+          "peeo_name": "PEEO SINGAWAL",
+          "peeo_code": "221781"
         }
       ],
       "school_count": 7,
@@ -2194,74 +2878,102 @@ const MASTER_CBEO_DATA = {
       "password": "221782",
       "schools": [
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL SOBRI (221782)",
+          "school_name": "रा.उ.मा.वि. सोबड़ी",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "SOBRI",
           "village": "SOBRI",
           "dise_code": "08210702501",
           "shala_darpan_code": "221782",
           "type": "Government",
-          "is_peeo_nodal": true
+          "is_peeo_nodal": true,
+          "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+          "school_name_en": "Govt. Sr. Sec. School Sobri",
+          "peeo_name": "PEEO SOBRI",
+          "peeo_code": "221782"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL TELADA (488877) (08210706201)",
+          "school_name": "रा.उ.प्रा.वि. तेलाड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SOBDI",
           "village": "TELADA",
           "dise_code": "8210706201",
           "shala_darpan_code": "488877",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. तेलाड़ा",
+          "school_name_en": "Govt. Upper Primary School Telada",
+          "peeo_name": "PEEO SOBRI",
+          "peeo_code": "221782"
         },
         {
-          "school_name": "GOVT. UPPER PRIMARY SCHOOL CHAVANDIYA (488886) (08210706101)",
+          "school_name": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SOBDI",
           "village": "CHAVANDIYA",
           "dise_code": "8210706101",
           "shala_darpan_code": "488886",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
+          "school_name_en": "Govt. Upper Primary School Chavandiya Sobri",
+          "peeo_name": "PEEO SOBRI",
+          "peeo_code": "221782"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL GUJARO KA JHOPDA GHANA (408415) (08210705902)",
+          "school_name": "रा.प्रा.वि. गुर्जरों का झोपड़ा घाणा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SOBDI",
           "village": "GHANA",
           "dise_code": "8210705902",
           "shala_darpan_code": "408415",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. गुर्जरों का झोपड़ा घाणा",
+          "school_name_en": "Govt. Primary School Gujaro Ka Jhopda Ghana",
+          "peeo_name": "PEEO SOBRI",
+          "peeo_code": "221782"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL KUMHARIYA KHEDA (410775) (08210705802)",
+          "school_name": "रा.प्रा.वि. कुम्हारिया खेड़ा (सोबड़ी)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SOBDI",
           "village": "KUMAHARIYA KHEDA",
           "dise_code": "8210705802",
           "shala_darpan_code": "410775",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. कुम्हारिया खेड़ा (सोबड़ी)",
+          "school_name_en": "Govt. Primary School Kumhariya Kheda Sobri",
+          "peeo_name": "PEEO SOBRI",
+          "peeo_code": "221782"
         },
         {
-          "school_name": "GOVT. PRIMARY SCHOOL PRATAPPURA (410678) (08210706001)",
+          "school_name": "रा.प्रा.वि. प्रतापपुरा (सोबड़ी)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SOBDI",
           "village": "PRATAPPURA (SOBDI)",
           "dise_code": "8210706001",
           "shala_darpan_code": "410678",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.प्रा.वि. प्रतापपुरा (सोबड़ी)",
+          "school_name_en": "Govt. Primary School Pratappura Sobri",
+          "peeo_name": "PEEO SOBRI",
+          "peeo_code": "221782"
         },
         {
-          "school_name": "GOVT. SENIOR SECONDARY SCHOOL GHANA (488897) (08210705901)",
+          "school_name": "रा.उ.मा.वि. घाणा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SOBDI",
           "village": "GHANA",
           "dise_code": "8210705901",
           "shala_darpan_code": "488897",
           "type": "Government",
-          "is_peeo_nodal": false
+          "is_peeo_nodal": false,
+          "school_name_hi": "रा.उ.मा.वि. घाणा",
+          "school_name_en": "Govt. Sr. Sec. School Ghana",
+          "peeo_name": "PEEO SOBRI",
+          "peeo_code": "221782"
         }
       ],
       "school_count": 7,
@@ -2292,7 +3004,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "PRIN_221784",
@@ -2317,7 +3031,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "PRIN_221772",
@@ -2342,7 +3058,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "PRIN_221761",
@@ -2367,7 +3085,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221759",
       "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "school_name_en": "Govt. Sr. Sec. School Lamgara",
+      "school_name_hi": "रा.उ.मा.वि. लामगरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "PRIN_221777",
@@ -2392,7 +3112,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221777",
       "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+      "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "PRIN_221767",
@@ -2417,7 +3139,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "PRIN_221773",
@@ -2442,7 +3166,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "PRIN_401778",
@@ -2467,7 +3193,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "401778",
       "school_code": "401778",
-      "school_name_en": "Govt. Sr. Sec. School Nemeda"
+      "school_name_en": "Govt. Sr. Sec. School Nemeda",
+      "school_name_hi": "रा.उ.मा.वि. नेमेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "PRIN_488947",
@@ -2492,7 +3220,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "PRIN_221754",
@@ -2517,7 +3247,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "PRIN_485033",
@@ -2542,7 +3274,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "485033",
       "school_code": "485033",
-      "school_name_en": "Govt. Sr. Sec. School Pipliya"
+      "school_name_en": "Govt. Sr. Sec. School Pipliya",
+      "school_name_hi": "रा.उ.मा.वि. पीपलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "PRIN_221769",
@@ -2567,7 +3301,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1001",
@@ -2592,7 +3328,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1002",
@@ -2617,7 +3355,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1003",
@@ -2642,7 +3382,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1004",
@@ -2667,7 +3409,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1005",
@@ -2692,7 +3436,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1006",
@@ -2717,7 +3463,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1007",
@@ -2742,7 +3490,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1008",
@@ -2767,7 +3517,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1009",
@@ -2792,7 +3544,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1010",
@@ -2817,7 +3571,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1011",
@@ -2842,7 +3598,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1012",
@@ -2867,7 +3625,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1013",
@@ -2892,7 +3652,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1014",
@@ -2917,7 +3679,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1015",
@@ -2942,7 +3706,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1016",
@@ -2967,7 +3733,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Basic Computer Instructor",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1017",
@@ -2992,7 +3760,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Assistant (UDC / L-8)",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1018",
@@ -3017,7 +3787,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1019",
@@ -3042,7 +3814,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Supporting Staff (Class-IV)",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1020",
@@ -3050,7 +3824,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "01.07.1976",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "school_name": "रा.उ.प्रा.वि. केरिया खुर्द",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ199701002010",
       "mobile": "9829199893",
@@ -3065,9 +3839,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Heeralal",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221764",
-      "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "shala_darpan_code": "468216",
+      "school_code": "468216",
+      "school_name_en": "Govt. Upper Primary School Keriya Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. केरिया खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1021",
@@ -3075,7 +3851,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "07.07.1981",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "school_name": "रा.उ.प्रा.वि. केरिया खुर्द",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ201201037147",
       "mobile": "7568008715",
@@ -3090,9 +3866,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Babaloo Lal Meena",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221764",
-      "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "shala_darpan_code": "468216",
+      "school_code": "468216",
+      "school_name_en": "Govt. Upper Primary School Keriya Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. केरिया खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1022",
@@ -3100,7 +3878,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "12.12.1984",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "school_name": "रा.उ.प्रा.वि. केरिया खुर्द",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ201201037891",
       "mobile": "9610080983",
@@ -3115,9 +3893,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Anjoo Dayama",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221764",
-      "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "shala_darpan_code": "468216",
+      "school_code": "468216",
+      "school_name_en": "Govt. Upper Primary School Keriya Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. केरिया खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1023",
@@ -3125,7 +3905,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "12.10.1979",
       "post": "प्रबोधक",
-      "school_name": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "school_name": "रा.उ.प्रा.वि. केरिया खुर्द",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ200801005823",
       "mobile": "9784985906",
@@ -3140,9 +3920,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Abhimanyu Sinh Rathauड़",
       "post_en": "Prabodhak",
-      "shala_darpan_code": "221764",
-      "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "shala_darpan_code": "468216",
+      "school_code": "468216",
+      "school_name_en": "Govt. Upper Primary School Keriya Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. केरिया खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1024",
@@ -3150,7 +3932,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "26.07.1995",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "school_name": "रा.उ.प्रा.वि. केरिया खुर्द",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ201901001976",
       "mobile": "8107385858",
@@ -3165,9 +3947,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ajay Kumar Pncholee",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221764",
-      "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "shala_darpan_code": "468216",
+      "school_code": "468216",
+      "school_name_en": "Govt. Upper Primary School Keriya Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. केरिया खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1025",
@@ -3175,7 +3959,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "17.10.1988",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "school_name": "रा.उ.प्रा.वि. केरिया खुर्द",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJBW201808029667",
       "mobile": "9610198214",
@@ -3190,9 +3974,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Kailash Mundotiya",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221764",
-      "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "shala_darpan_code": "468216",
+      "school_code": "468216",
+      "school_name_en": "Govt. Upper Primary School Keriya Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. केरिया खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1026",
@@ -3200,7 +3986,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "02.07.1989",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "school_name": "रा.उ.प्रा.वि. केरिया खुर्द",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJPA201929014775",
       "mobile": "9251160068",
@@ -3215,9 +4001,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shnkar Lal Jat",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221764",
-      "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "shala_darpan_code": "468216",
+      "school_code": "468216",
+      "school_name_en": "Govt. Upper Primary School Keriya Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. केरिया खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1027",
@@ -3225,7 +4013,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "04.07.2001",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "school_name": "रा.उ.प्रा.वि. केरिया खुर्द",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ202201014447",
       "mobile": "9521430229",
@@ -3240,9 +4028,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Bhagachnd Bairwa",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221764",
-      "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "shala_darpan_code": "468216",
+      "school_code": "468216",
+      "school_name_en": "Govt. Upper Primary School Keriya Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. केरिया खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1028",
@@ -3250,7 +4040,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "01.04.1997",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "school_name": "रा.उ.प्रा.वि. केरिया खुर्द",
       "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ202201014834",
       "mobile": "9649678869",
@@ -3265,9 +4055,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Dhanaraj Kumawat",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221764",
-      "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "shala_darpan_code": "468216",
+      "school_code": "468216",
+      "school_name_en": "Govt. Upper Primary School Keriya Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. केरिया खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1029",
@@ -3275,8 +4067,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1982-09-11",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.प्रा.वि. रघुनाथपुरा",
+      "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ201201043409",
       "mobile": "9950333800",
       "email": "mohanlaljajoria21@gmail.com",
@@ -3290,9 +4082,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mohan Lal Jajoriya",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "485031",
+      "school_code": "485031",
+      "school_name_en": "Govt. Upper Primary School Raghunathpura",
+      "school_name_hi": "रा.उ.प्रा.वि. रघुनाथपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1030",
@@ -3300,8 +4094,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "22-10-1977",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.प्रा.वि. रघुनाथपुरा",
+      "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ200601001296",
       "mobile": "9460551503",
       "email": "reenadayma77@gmail.com",
@@ -3315,9 +4109,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Reena Khateek",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "485031",
+      "school_code": "485031",
+      "school_name_en": "Govt. Upper Primary School Raghunathpura",
+      "school_name_hi": "रा.उ.प्रा.वि. रघुनाथपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1031",
@@ -3325,8 +4121,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1969-04-03",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.प्रा.वि. रघुनाथपुरा",
+      "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ200601001293",
       "mobile": "9636672755",
       "email": "premshing1969@gmail.com",
@@ -3340,9 +4136,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Prem Sinh",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "485031",
+      "school_code": "485031",
+      "school_name_en": "Govt. Upper Primary School Raghunathpura",
+      "school_name_hi": "रा.उ.प्रा.वि. रघुनाथपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1032",
@@ -3350,8 +4148,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1982-02-07",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.प्रा.वि. रघुनाथपुरा",
+      "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ201301036985",
       "mobile": "9660360660",
       "email": "babulalshastri6@gmail.com",
@@ -3365,9 +4163,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Baboo Lal Jat",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "485031",
+      "school_code": "485031",
+      "school_name_en": "Govt. Upper Primary School Raghunathpura",
+      "school_name_hi": "रा.उ.प्रा.वि. रघुनाथपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1033",
@@ -3375,8 +4175,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1994-08-05",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.प्रा.वि. रघुनाथपुरा",
+      "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ201801023696",
       "mobile": "9828976102",
       "email": "subhashchand08051994@gmail.com",
@@ -3390,9 +4190,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Subhash Chnd",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "485031",
+      "school_code": "485031",
+      "school_name_en": "Govt. Upper Primary School Raghunathpura",
+      "school_name_hi": "रा.उ.प्रा.वि. रघुनाथपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1034",
@@ -3400,8 +4202,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1998-08-12",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.प्रा.वि. रघुनाथपुरा",
+      "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ202201011720",
       "mobile": "8824684055",
       "email": "ratawal862@gmail.com",
@@ -3415,9 +4217,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Durgesh Kumar Meghavnshee",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "485031",
+      "school_code": "485031",
+      "school_name_en": "Govt. Upper Primary School Raghunathpura",
+      "school_name_hi": "रा.उ.प्रा.वि. रघुनाथपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1035",
@@ -3425,8 +4229,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "15-06-1996",
       "post": "विशेष शिक्षक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.प्रा.वि. रघुनाथपुरा",
+      "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ202201025568",
       "mobile": "9660255086",
       "email": "chiragsoni718@gmail.com",
@@ -3440,9 +4244,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Chndrashekhar Soni",
       "post_en": "Special Educator",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "485031",
+      "school_code": "485031",
+      "school_name_en": "Govt. Upper Primary School Raghunathpura",
+      "school_name_hi": "रा.उ.प्रा.वि. रघुनाथपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1036",
@@ -3450,8 +4256,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1996-08-06",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.प्रा.वि. रघुनाथपुरा",
+      "peeo_name": "PEEO BARGAON",
       "sso_id": "RJAJ202301046945",
       "mobile": "96673322069",
       "email": "ramsinghm684@gmail.com",
@@ -3465,9 +4271,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ram Sinh Meena",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "485031",
+      "school_code": "485031",
+      "school_name_en": "Govt. Upper Primary School Raghunathpura",
+      "school_name_hi": "रा.उ.प्रा.वि. रघुनाथपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1037",
@@ -3492,7 +4300,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Assistant",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1038",
@@ -3517,7 +4327,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Assistant",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1039",
@@ -3542,7 +4354,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Assistant",
       "shala_darpan_code": "221764",
       "school_code": "221764",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1040",
@@ -3567,7 +4381,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1041",
@@ -3592,7 +4408,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1042",
@@ -3617,7 +4435,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1043",
@@ -3642,7 +4462,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1044",
@@ -3667,7 +4489,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1045",
@@ -3692,7 +4516,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1046",
@@ -3717,7 +4543,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1047",
@@ -3742,7 +4570,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1048",
@@ -3767,7 +4597,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1049",
@@ -3792,7 +4624,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1050",
@@ -3817,7 +4651,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1051",
@@ -3842,7 +4678,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1052",
@@ -3867,7 +4705,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1053",
@@ -3892,7 +4732,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Basic Computer Instructor",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1054",
@@ -3917,7 +4759,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Assistant (UDC / L-8)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1055",
@@ -3942,7 +4786,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Assistant (UDC / L-8)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1056",
@@ -3967,7 +4813,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Supporting Staff (Class-IV)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1057",
@@ -3992,7 +4840,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Teacher",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1058",
@@ -4017,7 +4867,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Teacher",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1059",
@@ -4042,7 +4894,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "506830",
       "school_code": "506830",
-      "school_name_en": "Govt. Girls Sr. Sec. School Barli"
+      "school_name_en": "Govt. Girls Sr. Sec. School Barli",
+      "school_name_hi": "रा.बा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1060",
@@ -4067,7 +4921,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "506830",
       "school_code": "506830",
-      "school_name_en": "Govt. Girls Sr. Sec. School Barli"
+      "school_name_en": "Govt. Girls Sr. Sec. School Barli",
+      "school_name_hi": "रा.बा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1061",
@@ -4092,7 +4948,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "506830",
       "school_code": "506830",
-      "school_name_en": "Govt. Girls Sr. Sec. School Barli"
+      "school_name_en": "Govt. Girls Sr. Sec. School Barli",
+      "school_name_hi": "रा.बा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1062",
@@ -4117,7 +4975,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "506830",
       "school_code": "506830",
-      "school_name_en": "Govt. Girls Sr. Sec. School Barli"
+      "school_name_en": "Govt. Girls Sr. Sec. School Barli",
+      "school_name_hi": "रा.बा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1063",
@@ -4142,7 +5002,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "506830",
       "school_code": "506830",
-      "school_name_en": "Govt. Girls Sr. Sec. School Barli"
+      "school_name_en": "Govt. Girls Sr. Sec. School Barli",
+      "school_name_hi": "रा.बा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1064",
@@ -4167,7 +5029,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "506830",
       "school_code": "506830",
-      "school_name_en": "Govt. Girls Sr. Sec. School Barli"
+      "school_name_en": "Govt. Girls Sr. Sec. School Barli",
+      "school_name_hi": "रा.बा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1065",
@@ -4192,7 +5056,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "506830",
       "school_code": "506830",
-      "school_name_en": "Govt. Girls Sr. Sec. School Barli"
+      "school_name_en": "Govt. Girls Sr. Sec. School Barli",
+      "school_name_hi": "रा.बा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1066",
@@ -4217,7 +5083,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "506830",
       "school_code": "506830",
-      "school_name_en": "Govt. Girls Sr. Sec. School Barli"
+      "school_name_en": "Govt. Girls Sr. Sec. School Barli",
+      "school_name_hi": "रा.बा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1067",
@@ -4242,7 +5110,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "506830",
       "school_code": "506830",
-      "school_name_en": "Govt. Girls Sr. Sec. School Barli"
+      "school_name_en": "Govt. Girls Sr. Sec. School Barli",
+      "school_name_hi": "रा.बा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1068",
@@ -4267,7 +5137,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1069",
@@ -4292,7 +5164,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1070",
@@ -4317,7 +5191,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1071",
@@ -4342,7 +5218,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1072",
@@ -4367,7 +5245,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1073",
@@ -4392,7 +5272,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1074",
@@ -4417,7 +5299,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1075",
@@ -4442,7 +5326,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1076",
@@ -4467,7 +5353,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1077",
@@ -4492,7 +5380,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1078",
@@ -4517,7 +5407,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1079",
@@ -4542,7 +5434,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1080",
@@ -4567,7 +5461,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1081",
@@ -4592,7 +5488,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1082",
@@ -4617,7 +5515,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1083",
@@ -4642,7 +5542,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1084",
@@ -4667,7 +5569,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1085",
@@ -4692,7 +5596,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1086",
@@ -4717,7 +5623,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1087",
@@ -4742,7 +5650,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1088",
@@ -4767,7 +5677,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1089",
@@ -4792,7 +5704,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1090",
@@ -4817,7 +5731,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Lab Assistant",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1091",
@@ -4842,7 +5758,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1092",
@@ -4867,7 +5785,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Assistant (UDC / L-8)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1093",
@@ -4892,7 +5812,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1094",
@@ -4917,7 +5839,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Lab Assistant",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1095",
@@ -4942,7 +5866,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Basic Computer Instructor",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1096",
@@ -4967,7 +5893,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Additional Administrative Officer (L-11)",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1097",
@@ -4992,7 +5920,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Librarian",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1098",
@@ -5017,7 +5947,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Assistant",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1099",
@@ -5042,7 +5974,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Assistant",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1100",
@@ -5067,7 +6001,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Teacher",
       "shala_darpan_code": "221769",
       "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1101",
@@ -5092,7 +6028,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221771",
       "school_code": "221771",
-      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1102",
@@ -5117,7 +6055,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221771",
       "school_code": "221771",
-      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1103",
@@ -5142,7 +6082,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221771",
       "school_code": "221771",
-      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1104",
@@ -5167,7 +6109,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221771",
       "school_code": "221771",
-      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1105",
@@ -5192,7 +6136,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221771",
       "school_code": "221771",
-      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1106",
@@ -5217,7 +6163,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221771",
       "school_code": "221771",
-      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1107",
@@ -5242,7 +6190,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221771",
       "school_code": "221771",
-      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1108",
@@ -5267,7 +6217,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221771",
       "school_code": "221771",
-      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1109",
@@ -5292,7 +6244,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221771",
       "school_code": "221771",
-      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1110",
@@ -5317,7 +6271,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221771",
       "school_code": "221771",
-      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1111",
@@ -5342,7 +6298,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221771",
       "school_code": "221771",
-      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1112",
@@ -5367,7 +6325,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221771",
       "school_code": "221771",
-      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1113",
@@ -5392,7 +6352,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Supporting Staff (Class-IV)",
       "shala_darpan_code": "221771",
       "school_code": "221771",
-      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1114",
@@ -5417,7 +6379,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Basic Computer Instructor",
       "shala_darpan_code": "221771",
       "school_code": "221771",
-      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1115",
@@ -5442,7 +6406,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221771",
       "school_code": "221771",
-      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1116",
@@ -5467,7 +6433,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221771",
       "school_code": "221771",
-      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara"
+      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara",
+      "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1117",
@@ -5492,7 +6460,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1118",
@@ -5517,7 +6487,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1119",
@@ -5542,7 +6514,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1120",
@@ -5567,7 +6541,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1121",
@@ -5592,7 +6568,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1122",
@@ -5617,7 +6595,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1123",
@@ -5642,7 +6622,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1124",
@@ -5667,7 +6649,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1125",
@@ -5692,7 +6676,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1126",
@@ -5717,7 +6703,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1127",
@@ -5742,7 +6730,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1128",
@@ -5767,7 +6757,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Pre-Primary Teacher",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1129",
@@ -5792,7 +6784,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Librarian",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1130",
@@ -5817,7 +6811,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1131",
@@ -5842,7 +6838,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1132",
@@ -5867,7 +6865,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Supporting Staff (Class-IV)",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1133",
@@ -5892,7 +6892,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Basic Computer Instructor",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1134",
@@ -5917,7 +6919,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Pre-Primary Teacher",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1135",
@@ -5942,7 +6946,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1136",
@@ -5967,7 +6973,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Contractual Staff",
       "shala_darpan_code": "221770",
       "school_code": "221770",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1137",
@@ -5975,7 +6983,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1972-06-01",
       "post": "प्रबोधक",
-      "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
+      "school_name": "रा.प्रा.वि. रामेश्वरपुरा (बांदनवाड़ा)",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ200801005828",
       "mobile": "9602919442",
@@ -5990,9 +6998,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Suman Kachchhava",
       "post_en": "Prabodhak",
-      "shala_darpan_code": "221769",
-      "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "shala_darpan_code": "468188",
+      "school_code": "468188",
+      "school_name_en": "Govt. Primary School Rameshwarpura Bandanwara",
+      "school_name_hi": "रा.प्रा.वि. रामेश्वरपुरा (बांदनवाड़ा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1138",
@@ -6000,7 +7010,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1970-09-05",
       "post": "प्रबोधक",
-      "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
+      "school_name": "रा.प्रा.वि. रामेश्वरपुरा (बांदनवाड़ा)",
       "peeo_name": "PEEO BANDANWARA",
       "sso_id": "RJAJ200801025440",
       "mobile": "9460042672",
@@ -6015,9 +7025,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Peramalata Sharma",
       "post_en": "Prabodhak",
-      "shala_darpan_code": "221769",
-      "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "shala_darpan_code": "468188",
+      "school_code": "468188",
+      "school_name_en": "Govt. Primary School Rameshwarpura Bandanwara",
+      "school_name_hi": "रा.प्रा.वि. रामेश्वरपुरा (बांदनवाड़ा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1139",
@@ -6042,7 +7054,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1140",
@@ -6067,7 +7081,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1141",
@@ -6092,7 +7108,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1142",
@@ -6117,7 +7135,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1143",
@@ -6142,7 +7162,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1144",
@@ -6167,7 +7189,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1145",
@@ -6192,7 +7216,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1146",
@@ -6217,7 +7243,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1147",
@@ -6242,7 +7270,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1148",
@@ -6267,7 +7297,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1149",
@@ -6292,7 +7324,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1150",
@@ -6317,7 +7351,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1151",
@@ -6342,7 +7378,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1152",
@@ -6367,7 +7405,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1153",
@@ -6392,7 +7432,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1154",
@@ -6417,7 +7459,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1155",
@@ -6442,7 +7486,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1156",
@@ -6467,7 +7513,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1157",
@@ -6492,7 +7540,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1158",
@@ -6517,7 +7567,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1159",
@@ -6542,7 +7594,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1160",
@@ -6567,7 +7621,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1161",
@@ -6592,7 +7648,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1162",
@@ -6617,7 +7675,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1163",
@@ -6642,7 +7702,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Lab Assistant",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1164",
@@ -6667,7 +7729,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Lab Assistant",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1165",
@@ -6692,7 +7756,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Lab Assistant",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1166",
@@ -6717,7 +7783,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Basic Computer Instructor",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1167",
@@ -6742,7 +7810,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Librarian",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1168",
@@ -6767,7 +7837,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Additional Administrative Officer (L-11)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1169",
@@ -6792,7 +7864,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Assistant Administrative Officer (L-10)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1170",
@@ -6817,7 +7891,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1171",
@@ -6842,7 +7918,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Supporting Staff (Class-IV)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1172",
@@ -6867,7 +7945,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Assistant",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1173",
@@ -6892,7 +7972,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Assistant",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1174",
@@ -6917,7 +7999,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Assistant",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1175",
@@ -6925,8 +8009,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "21/05/1969",
       "post": "प्रबोधक",
-      "school_name": "रा.उ.मा.वि. नांदसी",
-      "peeo_name": "PEEO NANDSI",
+      "school_name": "रा.प्रा.वि. आंव (भिनाय)",
+      "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ2009010070966",
       "mobile": "9829592431",
       "email": "dev0168423@gmail.com",
@@ -6940,9 +8024,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Devendr Kumar Mishra",
       "post_en": "Prabodhak",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "488683",
+      "school_code": "488683",
+      "school_name_en": "Govt. Primary School Aav Bhinai",
+      "school_name_hi": "रा.प्रा.वि. आंव (भिनाय)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1176",
@@ -6950,8 +8036,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1989-06-08",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. नांदसी",
-      "peeo_name": "PEEO NANDSI",
+      "school_name": "रा.प्रा.वि. आंव (भिनाय)",
+      "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202201016167",
       "mobile": "7424819758",
       "email": "najneenparveen567@gmail.com",
@@ -6965,9 +8051,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shreematee Najaneen Paraveen",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "488683",
+      "school_code": "488683",
+      "school_name_en": "Govt. Primary School Aav Bhinai",
+      "school_name_hi": "रा.प्रा.वि. आंव (भिनाय)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1177",
@@ -6975,8 +8063,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1972-06-06",
       "post": "प्रबोधक",
-      "school_name": "रा.उ.मा.वि. कुम्हारिया",
-      "peeo_name": "PEEO KUMHARIYA",
+      "school_name": "रा.प्रा.वि. रेबारियों की ढाणी (भिनाय)",
+      "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ200801022989",
       "mobile": "9829329326",
       "email": "radheshyamjangid6672@gmail.com",
@@ -6990,9 +8078,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Radheshyam Jangid",
       "post_en": "Prabodhak",
-      "shala_darpan_code": "221777",
-      "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "shala_darpan_code": "493708",
+      "school_code": "493708",
+      "school_name_en": "Govt. Primary School Rebariyon Ki Dhani Bhinai",
+      "school_name_hi": "रा.प्रा.वि. रेबारियों की ढाणी (भिनाय)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1178",
@@ -7000,8 +8090,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "30/12/1986",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. कुम्हारिया",
-      "peeo_name": "PEEO KUMHARIYA",
+      "school_name": "रा.प्रा.वि. रेबारियों की ढाणी (भिनाय)",
+      "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201201036986",
       "mobile": "9509902555",
       "email": "kaminisanadhya00@gmail.com",
@@ -7015,9 +8105,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shreematee Kaminee Sanadhay",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221777",
-      "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "shala_darpan_code": "493708",
+      "school_code": "493708",
+      "school_name_en": "Govt. Primary School Rebariyon Ki Dhani Bhinai",
+      "school_name_hi": "रा.प्रा.वि. रेबारियों की ढाणी (भिनाय)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1179",
@@ -7025,7 +8117,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "24/04/1996",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.प्रा.वि. इन्दिरा कॉलोनी भिनाय",
+      "school_name": "रा.प्रा.वि. इंदिरा कॉलोनी भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202201011906",
       "mobile": "8504000948",
@@ -7042,7 +8134,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "519058",
       "school_code": "519058",
-      "school_name_en": "GOVT. PRIMARY SCHOOL INDIRA COLONY BHINAY (519058) (08210705531)"
+      "school_name_en": "Govt. Primary School Indira Colony Bhinai",
+      "school_name_hi": "रा.प्रा.वि. इंदिरा कॉलोनी भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1180",
@@ -7050,7 +8144,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "17/10/1998",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.प्रा.वि. इन्दिरा कॉलोनी भिनाय",
+      "school_name": "रा.प्रा.वि. इंदिरा कॉलोनी भिनाय",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ202301031248",
       "mobile": "9352036672",
@@ -7067,7 +8161,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "519058",
       "school_code": "519058",
-      "school_name_en": "GOVT. PRIMARY SCHOOL INDIRA COLONY BHINAY (519058) (08210705531)"
+      "school_name_en": "Govt. Primary School Indira Colony Bhinai",
+      "school_name_hi": "रा.प्रा.वि. इंदिरा कॉलोनी भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1181",
@@ -7075,7 +8171,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1987-01-07",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
+      "school_name": "रा.प्रा.वि. माताजी का खेड़ा (भिनाय)",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJNA201228025244",
       "mobile": "8290291038",
@@ -7090,9 +8186,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Chandamal Chendal",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "488896",
+      "school_code": "488896",
+      "school_name_en": "Govt. Primary School Mataji Ka Kheda Bhinai",
+      "school_name_hi": "रा.प्रा.वि. माताजी का खेड़ा (भिनाय)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1182",
@@ -7100,7 +8198,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "30/06/1990",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. भिनाय",
+      "school_name": "रा.प्रा.वि. माताजी का खेड़ा (भिनाय)",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201701027207",
       "mobile": "8107923565",
@@ -7115,9 +8213,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Aju Audichy",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "488896",
+      "school_code": "488896",
+      "school_name_en": "Govt. Primary School Mataji Ka Kheda Bhinai",
+      "school_name_hi": "रा.प्रा.वि. माताजी का खेड़ा (भिनाय)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1183",
@@ -7142,7 +8242,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221778",
       "school_code": "221778",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1184",
@@ -7167,7 +8269,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221778",
       "school_code": "221778",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1185",
@@ -7192,7 +8296,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221778",
       "school_code": "221778",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1186",
@@ -7217,7 +8323,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221778",
       "school_code": "221778",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1187",
@@ -7242,7 +8350,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221778",
       "school_code": "221778",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1188",
@@ -7267,7 +8377,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221778",
       "school_code": "221778",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1189",
@@ -7292,7 +8404,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221778",
       "school_code": "221778",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1190",
@@ -7317,7 +8431,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221778",
       "school_code": "221778",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1191",
@@ -7342,7 +8458,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221778",
       "school_code": "221778",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1192",
@@ -7367,7 +8485,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221778",
       "school_code": "221778",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1193",
@@ -7392,7 +8512,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221778",
       "school_code": "221778",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1194",
@@ -7417,7 +8539,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Librarian",
       "shala_darpan_code": "221778",
       "school_code": "221778",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1195",
@@ -7442,7 +8566,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Basic Computer Instructor",
       "shala_darpan_code": "221778",
       "school_code": "221778",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1196",
@@ -7467,7 +8593,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Basic Computer Instructor",
       "shala_darpan_code": "221778",
       "school_code": "221778",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1197",
@@ -7492,7 +8620,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Pre-Primary Teacher",
       "shala_darpan_code": "221778",
       "school_code": "221778",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1198",
@@ -7517,7 +8647,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Pre-Primary Teacher",
       "shala_darpan_code": "221778",
       "school_code": "221778",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1199",
@@ -7542,7 +8674,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Assistant (UDC / L-8)",
       "shala_darpan_code": "221778",
       "school_code": "221778",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1200",
@@ -7567,7 +8701,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221778",
       "school_code": "221778",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1201",
@@ -7592,7 +8728,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Supporting Staff (Class-IV)",
       "shala_darpan_code": "221778",
       "school_code": "221778",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1202",
@@ -7617,7 +8755,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1203",
@@ -7642,7 +8782,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1204",
@@ -7667,7 +8809,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1205",
@@ -7692,7 +8836,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1206",
@@ -7717,7 +8863,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1207",
@@ -7742,7 +8890,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1208",
@@ -7767,7 +8917,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1209",
@@ -7792,7 +8944,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1210",
@@ -7817,7 +8971,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1211",
@@ -7842,7 +8998,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1212",
@@ -7867,7 +9025,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1213",
@@ -7892,7 +9052,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1214",
@@ -7917,7 +9079,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1215",
@@ -7942,7 +9106,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1216",
@@ -7967,7 +9133,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1217",
@@ -7992,7 +9160,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1218",
@@ -8017,7 +9187,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1219",
@@ -8042,7 +9214,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1220",
@@ -8067,7 +9241,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1221",
@@ -8092,7 +9268,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1222",
@@ -8117,7 +9295,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221763",
       "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "school_name_en": "Govt. Sr. Sec. School Boobkiya",
+      "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1223",
@@ -8142,7 +9322,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221763",
       "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "school_name_en": "Govt. Sr. Sec. School Boobkiya",
+      "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1224",
@@ -8167,7 +9349,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221763",
       "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "school_name_en": "Govt. Sr. Sec. School Boobkiya",
+      "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1225",
@@ -8192,7 +9376,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221763",
       "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "school_name_en": "Govt. Sr. Sec. School Boobkiya",
+      "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1226",
@@ -8217,7 +9403,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221763",
       "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "school_name_en": "Govt. Sr. Sec. School Boobkiya",
+      "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1227",
@@ -8242,7 +9430,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221763",
       "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "school_name_en": "Govt. Sr. Sec. School Boobkiya",
+      "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1228",
@@ -8267,7 +9457,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221763",
       "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "school_name_en": "Govt. Sr. Sec. School Boobkiya",
+      "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1229",
@@ -8292,7 +9484,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221763",
       "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "school_name_en": "Govt. Sr. Sec. School Boobkiya",
+      "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1230",
@@ -8317,7 +9511,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221763",
       "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "school_name_en": "Govt. Sr. Sec. School Boobkiya",
+      "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1231",
@@ -8342,7 +9538,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Basic Computer Instructor",
       "shala_darpan_code": "221763",
       "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "school_name_en": "Govt. Sr. Sec. School Boobkiya",
+      "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1232",
@@ -8367,7 +9565,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Assistant Administrative Officer (L-10)",
       "shala_darpan_code": "221763",
       "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "school_name_en": "Govt. Sr. Sec. School Boobkiya",
+      "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1233",
@@ -8392,7 +9592,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Assistant",
       "shala_darpan_code": "221763",
       "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "school_name_en": "Govt. Sr. Sec. School Boobkiya",
+      "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1234",
@@ -8417,7 +9619,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Assistant",
       "shala_darpan_code": "221763",
       "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "school_name_en": "Govt. Sr. Sec. School Boobkiya",
+      "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1235",
@@ -8442,7 +9646,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Assistant",
       "shala_darpan_code": "221763",
       "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "school_name_en": "Govt. Sr. Sec. School Boobkiya",
+      "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1236",
@@ -8467,7 +9673,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1237",
@@ -8492,7 +9700,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1238",
@@ -8517,7 +9727,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1239",
@@ -8542,7 +9754,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1240",
@@ -8567,7 +9781,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1241",
@@ -8592,7 +9808,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1242",
@@ -8617,7 +9835,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1243",
@@ -8642,7 +9862,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1244",
@@ -8667,7 +9889,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1245",
@@ -8692,7 +9916,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1246",
@@ -8717,7 +9943,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1247",
@@ -8742,7 +9970,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1248",
@@ -8767,7 +9997,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1249",
@@ -8792,7 +10024,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1250",
@@ -8817,7 +10051,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Basic Computer Instructor",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1251",
@@ -8842,7 +10078,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Assistant Administrative Officer (L-10)",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1252",
@@ -8867,7 +10105,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1253",
@@ -8892,7 +10132,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Assistant",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1254",
@@ -8917,7 +10159,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Assistant",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1255",
@@ -8942,7 +10186,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Assistant",
       "shala_darpan_code": "221758",
       "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1256",
@@ -8967,7 +10213,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "494626",
       "school_code": "494626",
-      "school_name_en": "Govt. Girls Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Girls Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.बा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1257",
@@ -8992,7 +10240,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "494626",
       "school_code": "494626",
-      "school_name_en": "Govt. Girls Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Girls Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.बा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1258",
@@ -9017,7 +10267,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "494626",
       "school_code": "494626",
-      "school_name_en": "Govt. Girls Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Girls Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.बा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1259",
@@ -9042,7 +10294,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "494626",
       "school_code": "494626",
-      "school_name_en": "Govt. Girls Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Girls Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.बा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1260",
@@ -9067,7 +10321,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "494626",
       "school_code": "494626",
-      "school_name_en": "Govt. Girls Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Girls Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.बा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1261",
@@ -9092,7 +10348,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "494626",
       "school_code": "494626",
-      "school_name_en": "Govt. Girls Sr. Sec. School Chapaneri"
+      "school_name_en": "Govt. Girls Sr. Sec. School Chapaneri",
+      "school_name_hi": "रा.बा.उ.मा.वि. चापानेरी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1262",
@@ -9117,7 +10375,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221787",
       "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1263",
@@ -9142,7 +10402,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221787",
       "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1264",
@@ -9167,7 +10429,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221787",
       "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1265",
@@ -9192,7 +10456,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221787",
       "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1266",
@@ -9217,7 +10483,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221787",
       "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1267",
@@ -9242,7 +10510,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221787",
       "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1268",
@@ -9267,7 +10537,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221787",
       "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1269",
@@ -9292,7 +10564,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221787",
       "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1270",
@@ -9317,7 +10591,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221787",
       "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1271",
@@ -9342,7 +10618,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221787",
       "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1272",
@@ -9367,7 +10645,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221787",
       "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1273",
@@ -9392,7 +10672,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221787",
       "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1274",
@@ -9417,7 +10699,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221787",
       "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1275",
@@ -9442,7 +10726,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221787",
       "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1276",
@@ -9467,7 +10753,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Basic Computer Instructor",
       "shala_darpan_code": "221787",
       "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1277",
@@ -9492,7 +10780,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221787",
       "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1278",
@@ -9517,7 +10807,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Assistant",
       "shala_darpan_code": "221787",
       "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1279",
@@ -9542,7 +10834,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Assistant",
       "shala_darpan_code": "221787",
       "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1280",
@@ -9567,7 +10861,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Assistant",
       "shala_darpan_code": "221787",
       "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1281",
@@ -9575,7 +10871,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1973-09-03",
       "post": "प्रधानाचार्य",
-      "school_name": "रा.उ.मा.वि. छाछून्दरा",
+      "school_name": "रा.उ.मा.वि. सेदरिया",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJAJ199701010389",
       "mobile": "9829790044",
@@ -9590,9 +10886,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ritu Sharma",
       "post_en": "Principal (L-16)",
-      "shala_darpan_code": "221787",
-      "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "shala_darpan_code": "488946",
+      "school_code": "488946",
+      "school_name_en": "Govt. Sr. Sec. School Sedriya",
+      "school_name_hi": "रा.उ.मा.वि. सेदरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1282",
@@ -9600,7 +10898,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "17-11-1999",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. छाछून्दरा",
+      "school_name": "रा.उ.मा.वि. सेदरिया",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RAMKUMARI.MEENA1",
       "mobile": "9358724894",
@@ -9615,9 +10913,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ramakumaree Meena",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221787",
-      "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "shala_darpan_code": "488946",
+      "school_code": "488946",
+      "school_name_en": "Govt. Sr. Sec. School Sedriya",
+      "school_name_hi": "रा.उ.मा.वि. सेदरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1283",
@@ -9625,7 +10925,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "16-06-1993",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. छाछून्दरा",
+      "school_name": "रा.उ.मा.वि. सेदरिया",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "MUKESH.CHANDRA.GURJ1",
       "mobile": "9413457331",
@@ -9640,9 +10940,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mukesh Chandra Gurjar",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221787",
-      "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "shala_darpan_code": "488946",
+      "school_code": "488946",
+      "school_name_en": "Govt. Sr. Sec. School Sedriya",
+      "school_name_hi": "रा.उ.मा.वि. सेदरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1284",
@@ -9650,7 +10952,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "27-01-1997",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. छाछून्दरा",
+      "school_name": "रा.उ.मा.वि. सेदरिया",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "SOMESHWAR.BAKOLIYA1",
       "mobile": "7790838013",
@@ -9665,9 +10967,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Someshvar Bakoliya",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221787",
-      "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "shala_darpan_code": "488946",
+      "school_code": "488946",
+      "school_name_en": "Govt. Sr. Sec. School Sedriya",
+      "school_name_hi": "रा.उ.मा.वि. सेदरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1285",
@@ -9675,7 +10979,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1975-01-12",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. छाछून्दरा",
+      "school_name": "रा.उ.मा.वि. सेदरिया",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJAJ199701002013",
       "mobile": "9929947564",
@@ -9690,9 +10994,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Satyanarayan Khateek",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221787",
-      "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "shala_darpan_code": "488946",
+      "school_code": "488946",
+      "school_name_en": "Govt. Sr. Sec. School Sedriya",
+      "school_name_hi": "रा.उ.मा.वि. सेदरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1286",
@@ -9700,7 +11006,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1997-07-07",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. छाछून्दरा",
+      "school_name": "रा.उ.मा.वि. सेदरिया",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "SURENDRA.KUMAR.KHAR1",
       "mobile": "9829947871",
@@ -9715,9 +11021,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Surendra Kumar Kharol",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221787",
-      "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "shala_darpan_code": "488946",
+      "school_code": "488946",
+      "school_name_en": "Govt. Sr. Sec. School Sedriya",
+      "school_name_hi": "रा.उ.मा.वि. सेदरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1287",
@@ -9725,7 +11033,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "2301-1973",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. छाछून्दरा",
+      "school_name": "रा.उ.मा.वि. सेदरिया",
       "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJAJ201301032572",
       "mobile": "9413226051",
@@ -9740,9 +11048,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Prakash Chandra Vaishnav",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221787",
-      "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "shala_darpan_code": "488946",
+      "school_code": "488946",
+      "school_name_en": "Govt. Sr. Sec. School Sedriya",
+      "school_name_hi": "रा.उ.मा.वि. सेदरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1288",
@@ -9767,7 +11077,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1289",
@@ -9792,7 +11104,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221780",
       "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Sr. Sec. School Bhinai",
+      "school_name_hi": "रा.उ.मा.वि. भिनाय",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1290",
@@ -9817,7 +11131,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1291",
@@ -9842,7 +11158,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1292",
@@ -9867,7 +11185,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Prabodhak",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1293",
@@ -9892,7 +11212,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1294",
@@ -9917,7 +11239,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1295",
@@ -9942,7 +11266,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1296",
@@ -9967,7 +11293,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1297",
@@ -9992,7 +11320,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1298",
@@ -10017,7 +11347,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1299",
@@ -10042,7 +11374,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221755",
       "school_code": "221755",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "Govt. Sr. Sec. School Barli",
+      "school_name_hi": "रा.उ.मा.वि. बड़ली",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1300",
@@ -10050,8 +11384,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1968-12-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.प्रा.वि. जोरावरपुरा",
+      "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJRA200731005402",
       "mobile": "8107848825",
       "email": "jitendrasharma33779@gmail.com",
@@ -10065,9 +11399,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Jitendra Koomar Sharma",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "488945",
+      "school_code": "488945",
+      "school_name_en": "Govt. Upper Primary School Jorawarpura",
+      "school_name_hi": "रा.उ.प्रा.वि. जोरावरपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1301",
@@ -10075,8 +11411,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1985-07-19",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.प्रा.वि. जोरावरपुरा",
+      "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJAJ201301032569",
       "mobile": "9694943061",
       "email": "mrtcdhayal@gmail.com",
@@ -10090,9 +11426,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Tarachand Dhayal",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "488945",
+      "school_code": "488945",
+      "school_name_en": "Govt. Upper Primary School Jorawarpura",
+      "school_name_hi": "रा.उ.प्रा.वि. जोरावरपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1302",
@@ -10100,8 +11438,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1992-02-05",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.प्रा.वि. जोरावरपुरा",
+      "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJAJ201801057010",
       "mobile": "9694969531",
       "email": "pardeepraman8949@gmail.com",
@@ -10115,9 +11453,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Pradeep Sinh",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "488945",
+      "school_code": "488945",
+      "school_name_en": "Govt. Upper Primary School Jorawarpura",
+      "school_name_hi": "रा.उ.प्रा.वि. जोरावरपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1303",
@@ -10125,8 +11465,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "2.07.1977",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.प्रा.वि. जोरावरपुरा",
+      "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJAJ200501035591",
       "mobile": "9799229644",
       "email": "rohitregar255@gmail.com",
@@ -10140,9 +11480,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Indra Devee Regar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "488945",
+      "school_code": "488945",
+      "school_name_en": "Govt. Upper Primary School Jorawarpura",
+      "school_name_hi": "रा.उ.प्रा.वि. जोरावरपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1304",
@@ -10150,8 +11492,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1993-10-05",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.प्रा.वि. जोरावरपुरा",
+      "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJKK202360058754",
       "mobile": "9667376237",
       "email": "KC614144@GMAIL.COM",
@@ -10165,9 +11507,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Kailash Chandra",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "488945",
+      "school_code": "488945",
+      "school_name_en": "Govt. Upper Primary School Jorawarpura",
+      "school_name_hi": "रा.उ.प्रा.वि. जोरावरपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1305",
@@ -10175,8 +11519,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1990-04-05",
       "post": "शा. शिक्षक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.प्रा.वि. जोरावरपुरा",
+      "peeo_name": "PEEO CHHACHHUNDRA",
       "sso_id": "RJKK202360058735",
       "mobile": "8385828282",
       "email": "SHABBIRHUSAIN54@GMAIL.COM",
@@ -10190,9 +11534,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shabbeer Husain",
       "post_en": "शा. शिक्षक",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "488945",
+      "school_code": "488945",
+      "school_name_en": "Govt. Upper Primary School Jorawarpura",
+      "school_name_hi": "रा.उ.प्रा.वि. जोरावरपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1306",
@@ -10217,7 +11563,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1307",
@@ -10242,7 +11590,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1308",
@@ -10267,7 +11617,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Librarian Grade-II",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1309",
@@ -10292,7 +11644,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1310",
@@ -10317,7 +11671,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Assistant (UDC / L-8)",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1311",
@@ -10342,7 +11698,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1312",
@@ -10367,7 +11725,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1313",
@@ -10392,7 +11752,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1314",
@@ -10417,7 +11779,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1315",
@@ -10442,7 +11806,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1316",
@@ -10467,7 +11833,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior PTI (Grade-II)",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1317",
@@ -10492,7 +11860,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1318",
@@ -10517,7 +11887,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1319",
@@ -10542,7 +11914,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1320",
@@ -10567,7 +11941,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Teacher",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1321",
@@ -10592,7 +11968,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Teacher",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1322",
@@ -10617,7 +11995,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1323",
@@ -10642,7 +12022,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1324",
@@ -10667,7 +12049,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Basic Computer Instructor",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1325",
@@ -10692,7 +12076,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1326",
@@ -10717,7 +12103,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1327",
@@ -10742,7 +12130,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Lab Assistant",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1328",
@@ -10750,7 +12140,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1977-10-07",
       "post": "प्रबोधक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
+      "school_name": "रा.प्रा.वि. माताजी का खेड़ा (भिनाय)",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ2008010023085",
       "mobile": "9166986070",
@@ -10765,9 +12155,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ramaprasad Regar",
       "post_en": "Prabodhak",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "488896",
+      "school_code": "488896",
+      "school_name_en": "Govt. Primary School Mataji Ka Kheda Bhinai",
+      "school_name_hi": "रा.प्रा.वि. माताजी का खेड़ा (भिनाय)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1329",
@@ -10775,7 +12167,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "20-7-1972",
       "post": "प्रबोधक लेवल-1",
-      "school_name": "रा.उ.मा.वि. भिनाय",
+      "school_name": "रा.प्रा.वि. माताजी का खेड़ा (भिनाय)",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ200901006933",
       "mobile": "8571459512",
@@ -10790,9 +12182,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Rajesh Kumaree Telar",
       "post_en": "Prabodhak Level-1",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "488896",
+      "school_code": "488896",
+      "school_name_en": "Govt. Primary School Mataji Ka Kheda Bhinai",
+      "school_name_hi": "रा.प्रा.वि. माताजी का खेड़ा (भिनाय)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1330",
@@ -10800,7 +12194,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "28-2-1992",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. भिनाय",
+      "school_name": "रा.प्रा.वि. माताजी का खेड़ा (भिनाय)",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ201525013526",
       "mobile": "8769786943",
@@ -10815,9 +12209,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Abhilasha Sukhaval",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "488896",
+      "school_code": "488896",
+      "school_name_en": "Govt. Primary School Mataji Ka Kheda Bhinai",
+      "school_name_hi": "रा.प्रा.वि. माताजी का खेड़ा (भिनाय)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1331",
@@ -10825,7 +12221,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1999-07-08",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. भिनाय",
+      "school_name": "रा.प्रा.वि. माताजी का खेड़ा (भिनाय)",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "PAWAN.KUMARGURJAR.4",
       "mobile": "9785061785",
@@ -10840,9 +12236,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Pavan Kumar Gurjar",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "488896",
+      "school_code": "488896",
+      "school_name_en": "Govt. Primary School Mataji Ka Kheda Bhinai",
+      "school_name_hi": "रा.प्रा.वि. माताजी का खेड़ा (भिनाय)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1332",
@@ -10850,7 +12248,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1973-01-06",
       "post": "प्रबोधक लेवल-2",
-      "school_name": "रा.उ.मा.वि. भिनाय",
+      "school_name": "रा.प्रा.वि. माताजी का खेड़ा (भिनाय)",
       "peeo_name": "PEEO BHINAY",
       "sso_id": "RJAJ200801005822",
       "mobile": "9636459419",
@@ -10865,9 +12263,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Pushpa Devee Sharma",
       "post_en": "Prabodhak Level-2",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "488896",
+      "school_code": "488896",
+      "school_name_en": "Govt. Primary School Mataji Ka Kheda Bhinai",
+      "school_name_hi": "रा.प्रा.वि. माताजी का खेड़ा (भिनाय)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1333",
@@ -10892,7 +12292,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1334",
@@ -10917,7 +12319,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1335",
@@ -10942,7 +12346,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1336",
@@ -10967,7 +12373,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1337",
@@ -10992,7 +12400,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1338",
@@ -11017,7 +12427,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1339",
@@ -11042,7 +12454,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1340",
@@ -11067,7 +12481,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1341",
@@ -11092,7 +12508,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1342",
@@ -11117,7 +12535,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1343",
@@ -11142,7 +12562,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1344",
@@ -11167,7 +12589,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1345",
@@ -11192,7 +12616,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Basic Computer Instructor",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1346",
@@ -11217,7 +12643,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Pre-Primary Teacher",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1347",
@@ -11242,7 +12670,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Librarian",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1348",
@@ -11267,7 +12697,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Pre-Primary Teacher",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1349",
@@ -11292,7 +12724,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1350",
@@ -11317,7 +12751,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1351",
@@ -11342,7 +12778,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Supporting Staff (Class-IV)",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1352",
@@ -11367,7 +12805,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221753",
       "school_code": "221753",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+      "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1353",
@@ -11392,7 +12832,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "488941",
       "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "school_name_en": "Govt. Sr. Sec. School Devriya",
+      "school_name_hi": "रा.उ.मा.वि. देवरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1354",
@@ -11417,7 +12859,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Social Science)",
       "shala_darpan_code": "488941",
       "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "school_name_en": "Govt. Sr. Sec. School Devriya",
+      "school_name_hi": "रा.उ.मा.वि. देवरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1355",
@@ -11442,7 +12886,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "488941",
       "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "school_name_en": "Govt. Sr. Sec. School Devriya",
+      "school_name_hi": "रा.उ.मा.वि. देवरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1356",
@@ -11467,7 +12913,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "488941",
       "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "school_name_en": "Govt. Sr. Sec. School Devriya",
+      "school_name_hi": "रा.उ.मा.वि. देवरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1357",
@@ -11492,7 +12940,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "488941",
       "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "school_name_en": "Govt. Sr. Sec. School Devriya",
+      "school_name_hi": "रा.उ.मा.वि. देवरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1358",
@@ -11517,7 +12967,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "488941",
       "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "school_name_en": "Govt. Sr. Sec. School Devriya",
+      "school_name_hi": "रा.उ.मा.वि. देवरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1359",
@@ -11542,7 +12994,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1360",
@@ -11567,7 +13021,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1361",
@@ -11592,7 +13048,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1362",
@@ -11617,7 +13075,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221763",
       "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "school_name_en": "Govt. Sr. Sec. School Boobkiya",
+      "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1363",
@@ -11642,7 +13102,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221763",
       "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "school_name_en": "Govt. Sr. Sec. School Boobkiya",
+      "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1364",
@@ -11650,7 +13112,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1994-09-20",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. देवरिया",
+      "school_name": "रा.उ.मा.वि. रूपपुरा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201901013613",
       "mobile": "9784935705",
@@ -11665,9 +13127,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ram Sinh Choudhary",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "410704",
+      "school_code": "410704",
+      "school_name_en": "Govt. Sr. Sec. School Rooppura",
+      "school_name_hi": "रा.उ.मा.वि. रूपपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1365",
@@ -11675,7 +13139,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1983-08-07",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. देवरिया",
+      "school_name": "रा.उ.मा.वि. रूपपुरा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201901021651",
       "mobile": "7725988808",
@@ -11690,9 +13154,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Kumawat Pratishtha",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "410704",
+      "school_code": "410704",
+      "school_name_en": "Govt. Sr. Sec. School Rooppura",
+      "school_name_hi": "रा.उ.मा.वि. रूपपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1366",
@@ -11700,7 +13166,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1988-09-04",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. देवरिया",
+      "school_name": "रा.उ.मा.वि. रूपपुरा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201201036798",
       "mobile": "9785990385",
@@ -11715,9 +13181,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Vinita Telar",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "410704",
+      "school_code": "410704",
+      "school_name_en": "Govt. Sr. Sec. School Rooppura",
+      "school_name_hi": "रा.उ.मा.वि. रूपपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1367",
@@ -11725,7 +13193,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1966-04-05",
       "post": "प्रधानाचार्य",
-      "school_name": "रा.उ.मा.वि. देवरिया",
+      "school_name": "रा.उ.मा.वि. रूपपुरा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ199101003872",
       "mobile": "9413225666",
@@ -11740,9 +13208,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Kishan Gopal Parihar",
       "post_en": "Principal (L-16)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "410704",
+      "school_code": "410704",
+      "school_name_en": "Govt. Sr. Sec. School Rooppura",
+      "school_name_hi": "रा.उ.मा.वि. रूपपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1368",
@@ -11750,7 +13220,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1988-02-15",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. देवरिया",
+      "school_name": "रा.उ.मा.वि. रूपपुरा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201301033227",
       "mobile": "7737648815",
@@ -11765,9 +13235,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Renuka Sindhavee",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "410704",
+      "school_code": "410704",
+      "school_name_en": "Govt. Sr. Sec. School Rooppura",
+      "school_name_hi": "रा.उ.मा.वि. रूपपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1369",
@@ -11775,7 +13247,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1968-06-01",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. देवरिया",
+      "school_name": "रा.उ.मा.वि. रूपपुरा",
       "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ199901002861",
       "mobile": "9828097994",
@@ -11790,9 +13262,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mamata Basoor",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "410704",
+      "school_code": "410704",
+      "school_name_en": "Govt. Sr. Sec. School Rooppura",
+      "school_name_hi": "रा.उ.मा.वि. रूपपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1370",
@@ -11800,8 +13274,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1992-10-20",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. अमरगढ़",
+      "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJBW201808026423",
       "mobile": "9887845200",
       "email": "shimbhudayalgurjar201092@gmail.com",
@@ -11815,9 +13289,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shimbhoo Dayal Gurjar",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "488948",
+      "school_code": "488948",
+      "school_name_en": "Govt. Upper Primary School Amargarh",
+      "school_name_hi": "रा.उ.प्रा.वि. अमरगढ़",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1371",
@@ -11825,8 +13301,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1992-07-16",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. अमरगढ़",
+      "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ201801019908",
       "mobile": "8441806683",
       "email": "renukumari01220@gmail.com",
@@ -11840,9 +13316,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Renu",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "488948",
+      "school_code": "488948",
+      "school_name_en": "Govt. Upper Primary School Amargarh",
+      "school_name_hi": "रा.उ.प्रा.वि. अमरगढ़",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1372",
@@ -11850,8 +13328,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1996-10-16",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. अमरगढ़",
+      "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ201801054796",
       "mobile": "7733049778",
       "email": "jangirsunita318@gmail.com",
@@ -11865,9 +13343,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sunita",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "488948",
+      "school_code": "488948",
+      "school_name_en": "Govt. Upper Primary School Amargarh",
+      "school_name_hi": "रा.उ.प्रा.वि. अमरगढ़",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1373",
@@ -11875,8 +13355,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1988-07-13",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. अमरगढ़",
+      "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ201701014493",
       "mobile": "9929858575",
       "email": "anitamahar1988@gmail.com",
@@ -11890,9 +13370,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Anita Devee Meena",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "488948",
+      "school_code": "488948",
+      "school_name_en": "Govt. Upper Primary School Amargarh",
+      "school_name_hi": "रा.उ.प्रा.वि. अमरगढ़",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1374",
@@ -11900,8 +13382,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1992-07-14",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. अमरगढ़",
+      "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ202201014831",
       "mobile": "9784000891",
       "email": "Satyanarayanjat0580@gmail.com",
@@ -11915,9 +13397,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Satyanarayan Jat",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "488948",
+      "school_code": "488948",
+      "school_name_en": "Govt. Upper Primary School Amargarh",
+      "school_name_hi": "रा.उ.प्रा.वि. अमरगढ़",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1375",
@@ -11925,8 +13409,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1995-02-13",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. मोतीपुरा (धांतोल)",
+      "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201801054783",
       "mobile": "7296800199",
       "email": "7296800199r@gmail.com",
@@ -11940,9 +13424,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ronak Kumaree",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "488949",
+      "school_code": "488949",
+      "school_name_en": "Govt. Upper Primary School Motipura Dhantol",
+      "school_name_hi": "रा.उ.प्रा.वि. मोतीपुरा (धांतोल)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1376",
@@ -11950,8 +13436,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1990-07-25",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. मोतीपुरा (धांतोल)",
+      "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201901021645",
       "mobile": "8104353822",
       "email": "Sarita811990@gmail.com",
@@ -11965,9 +13451,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sarita Devee",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "488949",
+      "school_code": "488949",
+      "school_name_en": "Govt. Upper Primary School Motipura Dhantol",
+      "school_name_hi": "रा.उ.प्रा.वि. मोतीपुरा (धांतोल)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1377",
@@ -11975,8 +13463,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1992-07-19",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. मोतीपुरा (धांतोल)",
+      "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201901004341",
       "mobile": "8559910535",
       "email": "rakeshkumarchoudhary01992@gmail.com",
@@ -11990,9 +13478,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Rakesh Kumar Choudhary",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "488949",
+      "school_code": "488949",
+      "school_name_en": "Govt. Upper Primary School Motipura Dhantol",
+      "school_name_hi": "रा.उ.प्रा.वि. मोतीपुरा (धांतोल)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1378",
@@ -12000,8 +13490,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1991-01-12",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. मोतीपुरा (धांतोल)",
+      "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201701016134",
       "mobile": "9680525376",
       "email": "sheelasheelachaudhary700@gmail.com",
@@ -12015,9 +13505,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sheela Chaidharee",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "488949",
+      "school_code": "488949",
+      "school_name_en": "Govt. Upper Primary School Motipura Dhantol",
+      "school_name_hi": "रा.उ.प्रा.वि. मोतीपुरा (धांतोल)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1379",
@@ -12025,8 +13517,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1993-02-12",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. मोतीपुरा (धांतोल)",
+      "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201801024703",
       "mobile": "8955695113",
       "email": "SEEMAMEENA77774@GMAIL.COM",
@@ -12040,9 +13532,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Seema Meena",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "488949",
+      "school_code": "488949",
+      "school_name_en": "Govt. Upper Primary School Motipura Dhantol",
+      "school_name_hi": "रा.उ.प्रा.वि. मोतीपुरा (धांतोल)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1380",
@@ -12067,7 +13561,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221754",
       "school_code": "221754",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1381",
@@ -12092,7 +13588,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221783",
       "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "school_name_en": "Govt. Sr. Sec. School Dhantol",
+      "school_name_hi": "रा.उ.मा.वि. धांतोल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1382",
@@ -12117,7 +13615,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221783",
       "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "school_name_en": "Govt. Sr. Sec. School Dhantol",
+      "school_name_hi": "रा.उ.मा.वि. धांतोल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1383",
@@ -12142,7 +13642,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221783",
       "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "school_name_en": "Govt. Sr. Sec. School Dhantol",
+      "school_name_hi": "रा.उ.मा.वि. धांतोल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1384",
@@ -12167,7 +13669,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221783",
       "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "school_name_en": "Govt. Sr. Sec. School Dhantol",
+      "school_name_hi": "रा.उ.मा.वि. धांतोल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1385",
@@ -12192,7 +13696,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221783",
       "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "school_name_en": "Govt. Sr. Sec. School Dhantol",
+      "school_name_hi": "रा.उ.मा.वि. धांतोल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1386",
@@ -12217,7 +13723,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221783",
       "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "school_name_en": "Govt. Sr. Sec. School Dhantol",
+      "school_name_hi": "रा.उ.मा.वि. धांतोल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1387",
@@ -12242,7 +13750,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221783",
       "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "school_name_en": "Govt. Sr. Sec. School Dhantol",
+      "school_name_hi": "रा.उ.मा.वि. धांतोल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1388",
@@ -12267,7 +13777,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221783",
       "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "school_name_en": "Govt. Sr. Sec. School Dhantol",
+      "school_name_hi": "रा.उ.मा.वि. धांतोल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1389",
@@ -12292,7 +13804,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221783",
       "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "school_name_en": "Govt. Sr. Sec. School Dhantol",
+      "school_name_hi": "रा.उ.मा.वि. धांतोल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1390",
@@ -12317,7 +13831,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221783",
       "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "school_name_en": "Govt. Sr. Sec. School Dhantol",
+      "school_name_hi": "रा.उ.मा.वि. धांतोल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1391",
@@ -12342,7 +13858,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221783",
       "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "school_name_en": "Govt. Sr. Sec. School Dhantol",
+      "school_name_hi": "रा.उ.मा.वि. धांतोल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1392",
@@ -12367,7 +13885,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221783",
       "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "school_name_en": "Govt. Sr. Sec. School Dhantol",
+      "school_name_hi": "रा.उ.मा.वि. धांतोल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1393",
@@ -12392,7 +13912,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221783",
       "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "school_name_en": "Govt. Sr. Sec. School Dhantol",
+      "school_name_hi": "रा.उ.मा.वि. धांतोल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1394",
@@ -12417,7 +13939,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221783",
       "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "school_name_en": "Govt. Sr. Sec. School Dhantol",
+      "school_name_hi": "रा.उ.मा.वि. धांतोल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1395",
@@ -12425,8 +13949,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1990-09-11",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
+      "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ202001029533",
       "mobile": "9664097556",
       "email": "shaitanbairwa1990@gmail.com",
@@ -12440,9 +13964,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Shaitan Bairwa",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "488940",
+      "school_code": "488940",
+      "school_name_en": "Govt. Upper Primary School Udaigarh Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1396",
@@ -12450,8 +13976,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1982-07-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
+      "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201301029428",
       "mobile": "8003774404",
       "email": "chetanhinduniya00@gmail.com",
@@ -12465,9 +13991,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Chetan Hinduniya",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "488940",
+      "school_code": "488940",
+      "school_name_en": "Govt. Upper Primary School Udaigarh Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1397",
@@ -12475,8 +14003,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1999-10-03",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
+      "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJKK202460115512",
       "mobile": "7062647469",
       "email": "Shaktisingh03232@gmail.com",
@@ -12490,9 +14018,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Shakti Sinh Meena",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "488940",
+      "school_code": "488940",
+      "school_name_en": "Govt. Upper Primary School Udaigarh Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1398",
@@ -12500,8 +14030,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1992-05-03",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
+      "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201801024373",
       "mobile": "9549528998",
       "email": "kamalphutela25@gmail.com",
@@ -12515,9 +14045,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Kamal Kumar Phutela",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "488940",
+      "school_code": "488940",
+      "school_name_en": "Govt. Upper Primary School Udaigarh Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1399",
@@ -12525,8 +14057,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1991-07-15",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
+      "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ201801022985",
       "mobile": "7737944109",
       "email": "devendrakanojiya9@gmail.com",
@@ -12540,9 +14072,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sushree Megha Kanaujiya",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "488940",
+      "school_code": "488940",
+      "school_name_en": "Govt. Upper Primary School Udaigarh Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1400",
@@ -12550,8 +14084,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1998-02-06",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
+      "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJKK202360083857",
       "mobile": "9799624820",
       "email": "ROYALPUKHRAJ098@GMAIL.COM",
@@ -12565,9 +14099,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Pukharaj Bairwa",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "488940",
+      "school_code": "488940",
+      "school_name_en": "Govt. Upper Primary School Udaigarh Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1401",
@@ -12575,8 +14111,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "2001-05-11",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
+      "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ202301046403",
       "mobile": "7073751332",
       "email": "BHAWANABAIRWA615@GMAIL,COM",
@@ -12590,9 +14126,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Bhavana Beairava",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "488940",
+      "school_code": "488940",
+      "school_name_en": "Govt. Upper Primary School Udaigarh Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1402",
@@ -12600,8 +14138,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "15-08-1991",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
+      "peeo_name": "PEEO DHANTOL",
       "sso_id": "RJAJ202301046826",
       "mobile": "8949324574",
       "email": "vanitasai1991@GMAIL.COM",
@@ -12615,9 +14153,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Vanita",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "488940",
+      "school_code": "488940",
+      "school_name_en": "Govt. Upper Primary School Udaigarh Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. उदयगढ़ खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1403",
@@ -12625,8 +14165,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "30/7/1992",
       "post": "प्रधानाचार्य / संस्था प्रधान",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201701034663",
       "mobile": "9772766522",
       "email": "menakameena5@gmail.com",
@@ -12640,9 +14180,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shreematee Menaka Meena",
       "post_en": "Headmaster / Principal",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488942",
+      "school_code": "488942",
+      "school_name_en": "Govt. Upper Primary School Gurjarwada",
+      "school_name_hi": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1404",
@@ -12650,8 +14192,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "15-06-1990",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201801024381",
       "mobile": "9057848253",
       "email": "wermasangeeta90@gmail.com",
@@ -12665,9 +14207,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shreematee Sngeeta Kumaree",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488942",
+      "school_code": "488942",
+      "school_name_en": "Govt. Upper Primary School Gurjarwada",
+      "school_name_hi": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1405",
@@ -12675,8 +14219,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "17-08-1988",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201201036399",
       "mobile": "9887941433",
       "email": "azharu1988@gmail.com",
@@ -12690,9 +14234,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Ajaharudeen",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488942",
+      "school_code": "488942",
+      "school_name_en": "Govt. Upper Primary School Gurjarwada",
+      "school_name_hi": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1406",
@@ -12700,8 +14246,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1997-09-09",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201201036971",
       "mobile": "9785484993",
       "email": "omsirawata64@gmail.com",
@@ -12715,9 +14261,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Omaprakash",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488942",
+      "school_code": "488942",
+      "school_name_en": "Govt. Upper Primary School Gurjarwada",
+      "school_name_hi": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1407",
@@ -12725,8 +14273,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1988-01-05",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201201036965",
       "mobile": "9602884689",
       "email": "rm228659@gmail.com",
@@ -12740,9 +14288,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Rajesh Meena",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488942",
+      "school_code": "488942",
+      "school_name_en": "Govt. Upper Primary School Gurjarwada",
+      "school_name_hi": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1408",
@@ -12750,8 +14300,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1986-02-07",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201901033933",
       "mobile": "9783085819",
       "email": "shankerlalkhinchi976@gmail.com",
@@ -12765,9 +14315,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shnkaralal Khateek",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488942",
+      "school_code": "488942",
+      "school_name_en": "Govt. Upper Primary School Gurjarwada",
+      "school_name_hi": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1409",
@@ -12775,8 +14327,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1993-12-12",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ201901002873",
       "mobile": "8955051654",
       "email": "Choudharydharmraj65@gmail.com",
@@ -12790,9 +14342,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Dharmaraj Jat",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488942",
+      "school_code": "488942",
+      "school_name_en": "Govt. Upper Primary School Gurjarwada",
+      "school_name_hi": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1410",
@@ -12800,8 +14354,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1997-10-08",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJAJ202460110395",
       "mobile": "9571478807",
       "email": "kumarmaghwanshisunil@gmail.com",
@@ -12815,9 +14369,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sunil Kumar Meghavnshee",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488942",
+      "school_code": "488942",
+      "school_name_en": "Govt. Upper Primary School Gurjarwada",
+      "school_name_hi": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1411",
@@ -12825,8 +14381,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1995-11-08",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJJ0201925016201",
       "mobile": "8094747573",
       "email": "chetanchoudhary164@gmail.com",
@@ -12840,9 +14396,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Chetan Kumar Choudhary",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488942",
+      "school_code": "488942",
+      "school_name_en": "Govt. Upper Primary School Gurjarwada",
+      "school_name_hi": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1412",
@@ -12850,8 +14408,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "2002-05-10",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "peeo_name": "PEEO DEVPURA",
       "sso_id": "RJKK202460122254",
       "mobile": "9610359661",
       "email": "bairwasapna7733@gmail.com",
@@ -12865,9 +14423,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sapana Kumaree Bairwa",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488942",
+      "school_code": "488942",
+      "school_name_en": "Govt. Upper Primary School Gurjarwada",
+      "school_name_hi": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1413",
@@ -12892,7 +14452,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221777",
       "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+      "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1414",
@@ -12900,8 +14462,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "17/07/1996",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. राताकोट",
-      "peeo_name": "PEEO RATAKOT",
+      "school_name": "रा.उ.प्रा.वि. संस्कृत गणेशपुरा",
+      "peeo_name": "PEEO DHANTOL",
       "sso_id": "rjaj201801005299",
       "mobile": "9950039885",
       "email": "aloriyapriyanka0@gmail.com",
@@ -12915,9 +14477,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Chtpl।chhajnya। ।svtpl।",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221775",
-      "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "shala_darpan_code": "488950",
+      "school_code": "488950",
+      "school_name_en": "Govt. Upper Primary Sanskrit School Ganeshpura",
+      "school_name_hi": "रा.उ.प्रा.वि. संस्कृत गणेशपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1415",
@@ -12925,8 +14489,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "28/03/1998",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. राताकोट",
-      "peeo_name": "PEEO RATAKOT",
+      "school_name": "रा.उ.प्रा.वि. संस्कृत गणेशपुरा",
+      "peeo_name": "PEEO DHANTOL",
       "sso_id": "rjaj202301005490",
       "mobile": "6399149919",
       "email": "kanchansharma@gmail.com",
@@ -12940,9 +14504,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Andabeendeeentaun",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221775",
-      "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "shala_darpan_code": "488950",
+      "school_code": "488950",
+      "school_name_en": "Govt. Upper Primary Sanskrit School Ganeshpura",
+      "school_name_hi": "रा.उ.प्रा.वि. संस्कृत गणेशपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1416",
@@ -12967,7 +14533,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1417",
@@ -12992,7 +14560,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1418",
@@ -13017,7 +14587,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1419",
@@ -13042,7 +14614,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1420",
@@ -13067,7 +14641,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1421",
@@ -13092,7 +14668,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1422",
@@ -13117,7 +14695,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1423",
@@ -13142,7 +14722,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1424",
@@ -13167,7 +14749,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1425",
@@ -13192,7 +14776,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1426",
@@ -13217,7 +14803,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1427",
@@ -13242,7 +14830,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1428",
@@ -13267,7 +14857,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1429",
@@ -13292,7 +14884,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1430",
@@ -13317,7 +14911,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1431",
@@ -13342,7 +14938,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Basic Computer Instructor",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1432",
@@ -13367,7 +14965,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Assistant (UDC / L-8)",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1433",
@@ -13392,7 +14992,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1434",
@@ -13417,7 +15019,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Assistant",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1435",
@@ -13442,7 +15046,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Assistant",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1436",
@@ -13467,7 +15073,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Assistant",
       "shala_darpan_code": "221786",
       "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1437",
@@ -13492,7 +15100,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "488941",
       "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "school_name_en": "Govt. Sr. Sec. School Devriya",
+      "school_name_hi": "रा.उ.मा.वि. देवरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1438",
@@ -13517,7 +15127,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "488941",
       "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "school_name_en": "Govt. Sr. Sec. School Devriya",
+      "school_name_hi": "रा.उ.मा.वि. देवरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1439",
@@ -13542,7 +15154,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "488941",
       "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "school_name_en": "Govt. Sr. Sec. School Devriya",
+      "school_name_hi": "रा.उ.मा.वि. देवरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1440",
@@ -13567,7 +15181,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "488941",
       "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "school_name_en": "Govt. Sr. Sec. School Devriya",
+      "school_name_hi": "रा.उ.मा.वि. देवरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1441",
@@ -13592,7 +15208,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "488941",
       "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "school_name_en": "Govt. Sr. Sec. School Devriya",
+      "school_name_hi": "रा.उ.मा.वि. देवरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1442",
@@ -13617,7 +15235,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "488941",
       "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "school_name_en": "Govt. Sr. Sec. School Devriya",
+      "school_name_hi": "रा.उ.मा.वि. देवरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1443",
@@ -13642,7 +15262,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "488941",
       "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "school_name_en": "Govt. Sr. Sec. School Devriya",
+      "school_name_hi": "रा.उ.मा.वि. देवरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1444",
@@ -13667,7 +15289,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "488941",
       "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "school_name_en": "Govt. Sr. Sec. School Devriya",
+      "school_name_hi": "रा.उ.मा.वि. देवरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1445",
@@ -13692,7 +15316,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "488941",
       "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "school_name_en": "Govt. Sr. Sec. School Devriya",
+      "school_name_hi": "रा.उ.मा.वि. देवरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1446",
@@ -13717,7 +15343,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "488941",
       "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "school_name_en": "Govt. Sr. Sec. School Devriya",
+      "school_name_hi": "रा.उ.मा.वि. देवरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1447",
@@ -13742,7 +15370,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "488941",
       "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "school_name_en": "Govt. Sr. Sec. School Devriya",
+      "school_name_hi": "रा.उ.मा.वि. देवरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1448",
@@ -13750,8 +15380,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1976-01-07",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
+      "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJBW200708003593",
       "mobile": "9829839625",
       "email": "gopallal6734@gmail.com",
@@ -13765,9 +15395,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Gopal Mali",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "506475",
+      "school_code": "506475",
+      "school_name_en": "Govt. Upper Primary School Balapura Nagola",
+      "school_name_hi": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1449",
@@ -13775,8 +15407,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "24/06/1966",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
+      "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ201101009542",
       "mobile": "9672755379",
       "email": "manjukhatmara@gmail.com",
@@ -13790,9 +15422,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shreematee Manju",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "506475",
+      "school_code": "506475",
+      "school_name_en": "Govt. Upper Primary School Balapura Nagola",
+      "school_name_hi": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1450",
@@ -13800,8 +15434,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1997-07-07",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
+      "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ202301040283",
       "mobile": "6378819934",
       "email": "lkbairwa7797@gmail.com",
@@ -13815,9 +15449,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Lakshman Kumar Bairwa",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "506475",
+      "school_code": "506475",
+      "school_name_en": "Govt. Upper Primary School Balapura Nagola",
+      "school_name_hi": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1451",
@@ -13825,7 +15461,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1993-01-06",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.प्रा.वि. DHANI एकलसिंगा",
+      "school_name": "GOVT. PRIMARY SCHOOL DHANI EKALSINGHA (488931) (08210707301)",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ201701015951",
       "mobile": "9667253894",
@@ -13842,7 +15478,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "488931",
       "school_code": "488931",
-      "school_name_en": "GOVT. PRIMARY SCHOOL DHANI EKALSINGHA (488931) (08210707301)"
+      "school_name_en": "GOVT. PRIMARY SCHOOL DHANI EKALSINGHA",
+      "school_name_hi": "GOVT. PRIMARY SCHOOL DHANI EKALSINGHA (488931) (08210707301)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1452",
@@ -13850,7 +15488,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "25/05/2000",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.प्रा.वि. DHANI एकलसिंगा",
+      "school_name": "GOVT. PRIMARY SCHOOL DHANI EKALSINGHA (488931) (08210707301)",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ202301039198",
       "mobile": "9352502232",
@@ -13867,7 +15505,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "488931",
       "school_code": "488931",
-      "school_name_en": "GOVT. PRIMARY SCHOOL DHANI EKALSINGHA (488931) (08210707301)"
+      "school_name_en": "GOVT. PRIMARY SCHOOL DHANI EKALSINGHA",
+      "school_name_hi": "GOVT. PRIMARY SCHOOL DHANI EKALSINGHA (488931) (08210707301)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1453",
@@ -13875,7 +15515,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1976-05-06",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. एकलसिंघा",
+      "school_name": "रा.उ.मा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ200506011087",
       "mobile": "8078677804",
@@ -13890,9 +15530,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Deepak Kumar Sharma",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221786",
-      "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "shala_darpan_code": "488947",
+      "school_code": "488947",
+      "school_name_en": "Govt. Sr. Sec. School Hiyaliya",
+      "school_name_hi": "रा.उ.मा.वि. हियालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1454",
@@ -13900,7 +15542,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "26/03/1977",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. एकलसिंघा",
+      "school_name": "रा.उ.मा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ200801046209",
       "mobile": "9649144541",
@@ -13915,9 +15557,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Basnt Koomar Singhariya",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221786",
-      "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "shala_darpan_code": "488947",
+      "school_code": "488947",
+      "school_name_en": "Govt. Sr. Sec. School Hiyaliya",
+      "school_name_hi": "रा.उ.मा.वि. हियालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1455",
@@ -13925,7 +15569,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1972-07-08",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. एकलसिंघा",
+      "school_name": "रा.उ.मा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ201701004529",
       "mobile": "8890234419",
@@ -13940,9 +15584,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Ramasvaroop Meena",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221786",
-      "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "shala_darpan_code": "488947",
+      "school_code": "488947",
+      "school_name_en": "Govt. Sr. Sec. School Hiyaliya",
+      "school_name_hi": "रा.उ.मा.वि. हियालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1456",
@@ -13950,7 +15596,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1984-01-12",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. एकलसिंघा",
+      "school_name": "रा.उ.मा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJUD201137012957",
       "mobile": "7976180461",
@@ -13965,9 +15611,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Dilip Sinh Kaviya",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221786",
-      "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "shala_darpan_code": "488947",
+      "school_code": "488947",
+      "school_name_en": "Govt. Sr. Sec. School Hiyaliya",
+      "school_name_hi": "रा.उ.मा.वि. हियालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1457",
@@ -13975,7 +15623,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1992-02-03",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. एकलसिंघा",
+      "school_name": "रा.उ.मा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJCT201911004777",
       "mobile": "7737197642",
@@ -13990,9 +15638,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Billoo",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221786",
-      "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "shala_darpan_code": "488947",
+      "school_code": "488947",
+      "school_name_en": "Govt. Sr. Sec. School Hiyaliya",
+      "school_name_hi": "रा.उ.मा.वि. हियालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1458",
@@ -14000,7 +15650,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "18/12/1992",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. एकलसिंघा",
+      "school_name": "रा.उ.मा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJCT201911012831",
       "mobile": "9680309694",
@@ -14015,9 +15665,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Sunil Kumar Gautam",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221786",
-      "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "shala_darpan_code": "488947",
+      "school_code": "488947",
+      "school_name_en": "Govt. Sr. Sec. School Hiyaliya",
+      "school_name_hi": "रा.उ.मा.वि. हियालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1459",
@@ -14025,7 +15677,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1982-01-02",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. एकलसिंघा",
+      "school_name": "रा.उ.मा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ201901021050",
       "mobile": "9540386335",
@@ -14040,9 +15692,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Rajendra Kumar Sharma",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221786",
-      "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "shala_darpan_code": "488947",
+      "school_code": "488947",
+      "school_name_en": "Govt. Sr. Sec. School Hiyaliya",
+      "school_name_hi": "रा.उ.मा.वि. हियालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1460",
@@ -14050,7 +15704,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "19/02/1991",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. एकलसिंघा",
+      "school_name": "रा.उ.मा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ201901020503",
       "mobile": "9351202049",
@@ -14065,9 +15719,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shreematee Rekha Choudhary",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221786",
-      "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "shala_darpan_code": "488947",
+      "school_code": "488947",
+      "school_name_en": "Govt. Sr. Sec. School Hiyaliya",
+      "school_name_hi": "रा.उ.मा.वि. हियालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1461",
@@ -14075,7 +15731,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "15/08/2000",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. एकलसिंघा",
+      "school_name": "रा.उ.मा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ202301048247",
       "mobile": "8441000322",
@@ -14090,9 +15746,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Vijay Dookiya",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221786",
-      "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "shala_darpan_code": "488947",
+      "school_code": "488947",
+      "school_name_en": "Govt. Sr. Sec. School Hiyaliya",
+      "school_name_hi": "रा.उ.मा.वि. हियालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1462",
@@ -14100,7 +15758,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1973-01-07",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. एकलसिंघा",
+      "school_name": "रा.उ.मा.वि. हियालिया",
       "peeo_name": "PEEO EKALSEENGA",
       "sso_id": "RJAJ201301032567",
       "mobile": "9529229761",
@@ -14115,9 +15773,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Baboolal Jat",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221786",
-      "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "shala_darpan_code": "488947",
+      "school_code": "488947",
+      "school_name_en": "Govt. Sr. Sec. School Hiyaliya",
+      "school_name_hi": "रा.उ.मा.वि. हियालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1463",
@@ -14125,8 +15785,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1990-10-08",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. राताकोट",
-      "peeo_name": "PEEO RATAKOT",
+      "school_name": "रा.उ.प्रा.वि. जोधपुरा",
+      "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJAJ201801023246",
       "mobile": "9982002243",
       "email": "mangisaharan1990@gmail.com",
@@ -14140,9 +15800,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Mangee Ram",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221775",
-      "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "shala_darpan_code": "485032",
+      "school_code": "485032",
+      "school_name_en": "Govt. Upper Primary School Jodhpura",
+      "school_name_hi": "रा.उ.प्रा.वि. जोधपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1464",
@@ -14150,8 +15812,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1992-02-07",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. राताकोट",
-      "peeo_name": "PEEO RATAKOT",
+      "school_name": "रा.उ.प्रा.वि. जोधपुरा",
+      "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJAJ201801053596",
       "mobile": "9887782561",
       "email": "kdeepchani561@gmail.com",
@@ -14165,9 +15827,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Kuladeep Sinh",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221775",
-      "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "shala_darpan_code": "485032",
+      "school_code": "485032",
+      "school_name_en": "Govt. Upper Primary School Jodhpura",
+      "school_name_hi": "रा.उ.प्रा.वि. जोधपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1465",
@@ -14175,8 +15839,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "16/08/1990",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. राताकोट",
-      "peeo_name": "PEEO RATAKOT",
+      "school_name": "रा.उ.प्रा.वि. जोधपुरा",
+      "peeo_name": "PEEO BOOBKIYA",
       "sso_id": "RJAJ202301040670",
       "mobile": "6376217543",
       "email": "taravyas1991@gmail.com",
@@ -14190,9 +15854,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shreematee Tara Vyas",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221775",
-      "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "shala_darpan_code": "485032",
+      "school_code": "485032",
+      "school_name_en": "Govt. Upper Primary School Jodhpura",
+      "school_name_hi": "रा.उ.प्रा.वि. जोधपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1466",
@@ -14200,7 +15866,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1984-10-30",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "school_name": "रा.उ.प्रा.वि. गुढ़ाकलां",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ201801016371",
       "mobile": "9571713904",
@@ -14215,9 +15881,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Gopee Kishan Vyas",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "485029",
+      "school_code": "485029",
+      "school_name_en": "Govt. Upper Primary School Gudhakalan",
+      "school_name_hi": "रा.उ.प्रा.वि. गुढ़ाकलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1467",
@@ -14225,7 +15893,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1975-06-01",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "school_name": "रा.उ.प्रा.वि. गुढ़ाकलां",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJBW200808003876",
       "mobile": "9636224810",
@@ -14240,9 +15908,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Umarav Sih Baree",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "485029",
+      "school_code": "485029",
+      "school_name_en": "Govt. Upper Primary School Gudhakalan",
+      "school_name_hi": "रा.उ.प्रा.वि. गुढ़ाकलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1468",
@@ -14250,7 +15920,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1985-06-26",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "school_name": "रा.उ.प्रा.वि. गुढ़ाकलां",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJKK202460118094",
       "mobile": "9602222021",
@@ -14265,9 +15935,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Deepak Dhaka",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "485029",
+      "school_code": "485029",
+      "school_name_en": "Govt. Upper Primary School Gudhakalan",
+      "school_name_hi": "रा.उ.प्रा.वि. गुढ़ाकलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1469",
@@ -14275,7 +15947,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1982-04-19",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "school_name": "रा.उ.प्रा.वि. गुढ़ाकलां",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ201201037995",
       "mobile": "9462060810",
@@ -14290,9 +15962,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Gudadee Gurjar",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "485029",
+      "school_code": "485029",
+      "school_name_en": "Govt. Upper Primary School Gudhakalan",
+      "school_name_hi": "रा.उ.प्रा.वि. गुढ़ाकलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1470",
@@ -14300,7 +15974,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1993-07-02",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "school_name": "रा.उ.प्रा.वि. गुढ़ाकलां",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ202301047075",
       "mobile": "8740096118",
@@ -14315,9 +15989,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mahendra Kumar Meena",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "485029",
+      "school_code": "485029",
+      "school_name_en": "Govt. Upper Primary School Gudhakalan",
+      "school_name_hi": "रा.उ.प्रा.वि. गुढ़ाकलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1471",
@@ -14325,7 +16001,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1997-05-24",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "school_name": "रा.उ.प्रा.वि. गुढ़ाकलां",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ201901001191",
       "mobile": "9680700668",
@@ -14340,9 +16016,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mahesh Nath",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "485029",
+      "school_code": "485029",
+      "school_name_en": "Govt. Upper Primary School Gudhakalan",
+      "school_name_hi": "रा.उ.प्रा.वि. गुढ़ाकलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1472",
@@ -14350,7 +16028,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "2001-07-09",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "school_name": "रा.उ.प्रा.वि. गुढ़ाकलां",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ202301034460",
       "mobile": "7878289546",
@@ -14365,9 +16043,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Jyoti Aujha",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "485029",
+      "school_code": "485029",
+      "school_name_en": "Govt. Upper Primary School Gudhakalan",
+      "school_name_hi": "रा.उ.प्रा.वि. गुढ़ाकलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1473",
@@ -14375,7 +16055,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1997-08-08",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "school_name": "रा.उ.प्रा.वि. गुढ़ाकलां",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJCT201911000903",
       "mobile": "9983023808",
@@ -14390,9 +16070,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Jitendra Prajapati",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "485029",
+      "school_code": "485029",
+      "school_name_en": "Govt. Upper Primary School Gudhakalan",
+      "school_name_hi": "रा.उ.प्रा.वि. गुढ़ाकलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1474",
@@ -14400,7 +16082,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "2001-03-02",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "school_name": "रा.उ.प्रा.वि. गुढ़ाकलां",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ202301034425",
       "mobile": "6377814205",
@@ -14415,9 +16097,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Kalpana Dhobee",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "485029",
+      "school_code": "485029",
+      "school_name_en": "Govt. Upper Primary School Gudhakalan",
+      "school_name_hi": "रा.उ.प्रा.वि. गुढ़ाकलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1475",
@@ -14425,8 +16109,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "27/08/1987",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.प्रा.वि. इंद्रापुरा (गुढ़ा खुर्द)",
+      "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ201901001129",
       "mobile": "9828218751",
       "email": "jangirmohitkumar87@gmail.com",
@@ -14440,9 +16124,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mohit Kumar Jangid",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "410554",
+      "school_code": "410554",
+      "school_name_en": "Govt. Primary School Indrapura",
+      "school_name_hi": "रा.प्रा.वि. इंद्रापुरा (गुढ़ा खुर्द)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1476",
@@ -14450,8 +16136,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "15/08/2002",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.प्रा.वि. इंद्रापुरा (गुढ़ा खुर्द)",
+      "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ202301034261",
       "mobile": "9571940090",
       "email": "rajaramsahu276@gmail.com",
@@ -14465,9 +16151,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Rajaram Sahoo",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "410554",
+      "school_code": "410554",
+      "school_name_en": "Govt. Primary School Indrapura",
+      "school_name_hi": "रा.प्रा.वि. इंद्रापुरा (गुढ़ा खुर्द)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1477",
@@ -14475,8 +16163,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1989-10-08",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.प्रा.वि. देवपुरा (गुढ़ा खुर्द)",
+      "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ201701014507",
       "mobile": "9530285531",
       "email": "jaisinghnkt001@gmail.com",
@@ -14490,9 +16178,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Jayasinh Yadav",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "485018",
+      "school_code": "485018",
+      "school_name_en": "Govt. Primary School Devpura Gudha Khurd",
+      "school_name_hi": "रा.प्रा.वि. देवपुरा (गुढ़ा खुर्द)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1478",
@@ -14500,8 +16190,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1989-12-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.प्रा.वि. देवपुरा (गुढ़ा खुर्द)",
+      "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJUD201939007471",
       "mobile": "9252082387",
       "email": "mkkumhar11289@gmail.com",
@@ -14515,9 +16205,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mukesh Kumar Kumhar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "485018",
+      "school_code": "485018",
+      "school_name_en": "Govt. Primary School Devpura Gudha Khurd",
+      "school_name_hi": "रा.प्रा.वि. देवपुरा (गुढ़ा खुर्द)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1479",
@@ -14525,8 +16217,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1972-04-13",
       "post": "प्रबोधक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.प्रा.वि. अमरपुरा (गुढ़ा खुर्द)",
+      "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ200801023082",
       "mobile": "8905157257",
       "email": "lalbadri968@gmail.com",
@@ -14540,9 +16232,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Badree Lal Bairwa",
       "post_en": "Prabodhak",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "506583",
+      "school_code": "506583",
+      "school_name_en": "Govt. Primary School Amarpura",
+      "school_name_hi": "रा.प्रा.वि. अमरपुरा (गुढ़ा खुर्द)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1480",
@@ -14550,8 +16244,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1994-07-07",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.प्रा.वि. अमरपुरा (गुढ़ा खुर्द)",
+      "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJJW201922002398",
       "mobile": "9672309402",
       "email": "shyamlal0794@gmail.com",
@@ -14565,9 +16259,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shyam Lal Mali",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "506583",
+      "school_code": "506583",
+      "school_name_en": "Govt. Primary School Amarpura",
+      "school_name_hi": "रा.प्रा.वि. अमरपुरा (गुढ़ा खुर्द)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1481",
@@ -14575,8 +16271,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1998-11-11",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. करांटी",
-      "peeo_name": "PEEO KARATI",
+      "school_name": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
+      "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "DEENDAYAL.DAS",
       "mobile": "6375840143",
       "email": "ddswamijeg98@gmail.com",
@@ -14590,9 +16286,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Deenadayal Das",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "402646",
+      "school_code": "402646",
+      "school_name_en": "Govt. Upper Primary School Khedi Gudha Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1482",
@@ -14600,8 +16298,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1978-05-04",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. करांटी",
-      "peeo_name": "PEEO KARATI",
+      "school_name": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
+      "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ200801022807",
       "mobile": "9799979051",
       "email": "VijaySinghCharan243@gmail.com",
@@ -14615,9 +16313,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Vijay Sinh",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "402646",
+      "school_code": "402646",
+      "school_name_en": "Govt. Upper Primary School Khedi Gudha Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1483",
@@ -14625,8 +16325,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1979-05-07",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. करांटी",
-      "peeo_name": "PEEO KARATI",
+      "school_name": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
+      "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJCT201211037640",
       "mobile": "9636459179",
       "email": "M9636459179@gmail",
@@ -14640,9 +16340,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Manoj Kumar Dadhich",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "402646",
+      "school_code": "402646",
+      "school_name_en": "Govt. Upper Primary School Khedi Gudha Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1484",
@@ -14650,8 +16352,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1984-01-07",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. करांटी",
-      "peeo_name": "PEEO KARATI",
+      "school_name": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
+      "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ201201036395",
       "mobile": "8890317151",
       "email": "asha1jul@gmail.com",
@@ -14665,9 +16367,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Aasha",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "402646",
+      "school_code": "402646",
+      "school_name_en": "Govt. Upper Primary School Khedi Gudha Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1485",
@@ -14675,8 +16379,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1980-02-07",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. करांटी",
-      "peeo_name": "PEEO KARATI",
+      "school_name": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
+      "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ201801021481",
       "mobile": "9001555924",
       "email": "srmworldsm@gmail.com",
@@ -14690,9 +16394,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Seetaram Meena",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "402646",
+      "school_code": "402646",
+      "school_name_en": "Govt. Upper Primary School Khedi Gudha Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1486",
@@ -14700,8 +16406,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1995-01-06",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. करांटी",
-      "peeo_name": "PEEO KARATI",
+      "school_name": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
+      "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RAJ201801055705",
       "mobile": "7610810895",
       "email": "1pswamibkn@gmail.com",
@@ -14715,9 +16421,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Prahalad Das Bhanbhoo",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "402646",
+      "school_code": "402646",
+      "school_name_en": "Govt. Upper Primary School Khedi Gudha Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1487",
@@ -14725,8 +16433,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "15/02/1990",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. करांटी",
-      "peeo_name": "PEEO KARATI",
+      "school_name": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
+      "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ201701004554",
       "mobile": "9783436687",
       "email": "RihannaParveen3330@gmail.com",
@@ -14740,9 +16448,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Rihana Paraveen",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "402646",
+      "school_code": "402646",
+      "school_name_en": "Govt. Upper Primary School Khedi Gudha Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1488",
@@ -14750,8 +16460,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1991-05-12",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. करांटी",
-      "peeo_name": "PEEO KARATI",
+      "school_name": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
+      "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ202101001745",
       "mobile": "7737390253",
       "email": "sunitajangir0253@gmail.com",
@@ -14765,9 +16475,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Suneetadevee",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "402646",
+      "school_code": "402646",
+      "school_name_en": "Govt. Upper Primary School Khedi Gudha Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1489",
@@ -14775,8 +16487,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1967-01-06",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. राममालिया",
-      "peeo_name": "PEEO RAMMALIA",
+      "school_name": "रा.उ.प्रा.वि. पांडोलाई",
+      "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJAJ199101002282",
       "mobile": "9784208309",
       "email": "madanlalsukaria648@gmail.com",
@@ -14790,9 +16502,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Madan Lal Regar",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221785",
-      "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "shala_darpan_code": "402702",
+      "school_code": "402702",
+      "school_name_en": "Govt. Upper Primary School Pandolai",
+      "school_name_hi": "रा.उ.प्रा.वि. पांडोलाई",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1490",
@@ -14800,8 +16514,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1991-05-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. राममालिया",
-      "peeo_name": "PEEO RAMMALIA",
+      "school_name": "रा.उ.प्रा.वि. पांडोलाई",
+      "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJJW201822029253",
       "mobile": "6367962727",
       "email": "gurjard839@gmail.com",
@@ -14815,9 +16529,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Devaraj Gurjar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221785",
-      "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "shala_darpan_code": "402702",
+      "school_code": "402702",
+      "school_name_en": "Govt. Upper Primary School Pandolai",
+      "school_name_hi": "रा.उ.प्रा.वि. पांडोलाई",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1491",
@@ -14825,8 +16541,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1994-07-07",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. राममालिया",
-      "peeo_name": "PEEO RAMMALIA",
+      "school_name": "रा.उ.प्रा.वि. पांडोलाई",
+      "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJBW201808034977",
       "mobile": "7878007541",
       "email": "ssprajapat63@gmail.com",
@@ -14840,9 +16556,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sarveshvar Prajapat",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221785",
-      "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "shala_darpan_code": "402702",
+      "school_code": "402702",
+      "school_name_en": "Govt. Upper Primary School Pandolai",
+      "school_name_hi": "रा.उ.प्रा.वि. पांडोलाई",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1492",
@@ -14850,8 +16568,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "15/04/1996",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. राममालिया",
-      "peeo_name": "PEEO RAMMALIA",
+      "school_name": "रा.उ.प्रा.वि. पांडोलाई",
+      "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "BHAIRON.SINGH.15",
       "mobile": "6377040622",
       "email": "singhbhaironngr1504@gmail.com",
@@ -14865,9 +16583,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Bhairon Sinh",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221785",
-      "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "shala_darpan_code": "402702",
+      "school_code": "402702",
+      "school_name_en": "Govt. Upper Primary School Pandolai",
+      "school_name_hi": "रा.उ.प्रा.वि. पांडोलाई",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1493",
@@ -14875,8 +16595,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1993-04-03",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. राममालिया",
-      "peeo_name": "PEEO RAMMALIA",
+      "school_name": "रा.उ.प्रा.वि. पांडोलाई",
+      "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "MINAKSHISAINI1",
       "mobile": "9530374289",
       "email": "minakshisaini0403@gmail.com",
@@ -14890,9 +16610,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Meenakshee Saini",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221785",
-      "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "shala_darpan_code": "402702",
+      "school_code": "402702",
+      "school_name_en": "Govt. Upper Primary School Pandolai",
+      "school_name_hi": "रा.उ.प्रा.वि. पांडोलाई",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1494",
@@ -14917,7 +16639,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "485030",
       "school_code": "485030",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. बागरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1495",
@@ -14942,7 +16666,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "485030",
       "school_code": "485030",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. बागरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1496",
@@ -14967,7 +16693,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "485030",
       "school_code": "485030",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. बागरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1497",
@@ -14992,7 +16720,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "485030",
       "school_code": "485030",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. बागरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1498",
@@ -15017,7 +16747,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "485030",
       "school_code": "485030",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. बागरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1499",
@@ -15042,7 +16774,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "485030",
       "school_code": "485030",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. बागरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1500",
@@ -15067,7 +16801,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "485030",
       "school_code": "485030",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. बागरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1501",
@@ -15092,7 +16828,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Prabodhak",
       "shala_darpan_code": "485030",
       "school_code": "485030",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai"
+      "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai",
+      "school_name_hi": "पीएम श्री रा.उ.मा.वि. बागरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1502",
@@ -15100,7 +16838,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1983-01-07",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "school_name": "रा.प्रा.वि. पुरानी बागरिया",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJBW200708008213",
       "mobile": "9784206535",
@@ -15115,9 +16853,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ramakishan Gurjar",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "510079",
+      "school_code": "510079",
+      "school_name_en": "Govt. Primary School Purani Bagrai",
+      "school_name_hi": "रा.प्रा.वि. पुरानी बागरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1503",
@@ -15125,7 +16865,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1988-10-06",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "school_name": "रा.प्रा.वि. पुरानी बागरिया",
       "peeo_name": "PEEO GURHA KHURD",
       "sso_id": "RJJW201922011219",
       "mobile": "8104597912",
@@ -15140,9 +16880,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Rajesh Kumar Mali",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "510079",
+      "school_code": "510079",
+      "school_name_en": "Govt. Primary School Purani Bagrai",
+      "school_name_hi": "रा.प्रा.वि. पुरानी बागरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1504",
@@ -15167,7 +16909,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221762",
       "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd",
+      "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1505",
@@ -15192,7 +16936,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221762",
       "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd",
+      "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1506",
@@ -15217,7 +16963,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221762",
       "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd",
+      "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1507",
@@ -15242,7 +16990,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221762",
       "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd",
+      "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1508",
@@ -15267,7 +17017,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221762",
       "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd",
+      "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1509",
@@ -15292,7 +17044,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221762",
       "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd",
+      "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1510",
@@ -15317,7 +17071,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221762",
       "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd",
+      "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1511",
@@ -15342,7 +17098,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221762",
       "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd",
+      "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1512",
@@ -15367,7 +17125,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221762",
       "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd",
+      "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1513",
@@ -15392,7 +17152,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Supporting Staff (Class-IV)",
       "shala_darpan_code": "221762",
       "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd",
+      "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1514",
@@ -15417,7 +17179,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221762",
       "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd",
+      "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1515",
@@ -15442,7 +17206,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221762",
       "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd",
+      "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1516",
@@ -15467,7 +17233,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Assistant",
       "shala_darpan_code": "221762",
       "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd",
+      "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1517",
@@ -15492,7 +17260,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Assistant",
       "shala_darpan_code": "221762",
       "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd",
+      "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1518",
@@ -15517,7 +17287,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221765",
       "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "school_name_en": "Govt. Sr. Sec. School Kanai Kala",
+      "school_name_hi": "रा.उ.मा.वि. कनाई कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1519",
@@ -15542,7 +17314,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221765",
       "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "school_name_en": "Govt. Sr. Sec. School Kanai Kala",
+      "school_name_hi": "रा.उ.मा.वि. कनाई कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1520",
@@ -15567,7 +17341,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221765",
       "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "school_name_en": "Govt. Sr. Sec. School Kanai Kala",
+      "school_name_hi": "रा.उ.मा.वि. कनाई कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1521",
@@ -15592,7 +17368,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221765",
       "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "school_name_en": "Govt. Sr. Sec. School Kanai Kala",
+      "school_name_hi": "रा.उ.मा.वि. कनाई कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1522",
@@ -15617,7 +17395,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221765",
       "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "school_name_en": "Govt. Sr. Sec. School Kanai Kala",
+      "school_name_hi": "रा.उ.मा.वि. कनाई कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1523",
@@ -15642,7 +17422,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221765",
       "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "school_name_en": "Govt. Sr. Sec. School Kanai Kala",
+      "school_name_hi": "रा.उ.मा.वि. कनाई कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1524",
@@ -15667,7 +17449,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1525",
@@ -15692,7 +17476,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221765",
       "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "school_name_en": "Govt. Sr. Sec. School Kanai Kala",
+      "school_name_hi": "रा.उ.मा.वि. कनाई कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1526",
@@ -15717,7 +17503,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221765",
       "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "school_name_en": "Govt. Sr. Sec. School Kanai Kala",
+      "school_name_hi": "रा.उ.मा.वि. कनाई कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1527",
@@ -15725,7 +17513,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "25/10/1993",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. लामगरा",
+      "school_name": "रा.उ.मा.वि. निमेड़ा",
       "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJDH201814023276",
       "mobile": "9875078999",
@@ -15740,9 +17528,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Gaurav Kumar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221759",
-      "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "shala_darpan_code": "221761",
+      "school_code": "221761",
+      "school_name_en": "Govt. Sr. Sec. School Nimeda",
+      "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1528",
@@ -15750,7 +17540,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1997-03-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. लामगरा",
+      "school_name": "रा.उ.मा.वि. निमेड़ा",
       "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJRA201731018258",
       "mobile": "7073854548",
@@ -15765,9 +17555,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Preeti Saini",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221759",
-      "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "shala_darpan_code": "221761",
+      "school_code": "221761",
+      "school_name_en": "Govt. Sr. Sec. School Nimeda",
+      "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1529",
@@ -15792,7 +17584,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "401778",
       "school_code": "401778",
-      "school_name_en": "Govt. Sr. Sec. School Nemeda"
+      "school_name_en": "Govt. Sr. Sec. School Nemeda",
+      "school_name_hi": "रा.उ.मा.वि. नेमेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1530",
@@ -15817,7 +17611,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "401778",
       "school_code": "401778",
-      "school_name_en": "Govt. Sr. Sec. School Nemeda"
+      "school_name_en": "Govt. Sr. Sec. School Nemeda",
+      "school_name_hi": "रा.उ.मा.वि. नेमेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1531",
@@ -15842,7 +17638,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "401778",
       "school_code": "401778",
-      "school_name_en": "Govt. Sr. Sec. School Nemeda"
+      "school_name_en": "Govt. Sr. Sec. School Nemeda",
+      "school_name_hi": "रा.उ.मा.वि. नेमेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1532",
@@ -15850,7 +17648,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1972-08-02",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. कनाई कलां",
+      "school_name": "रा.उ.प्रा.वि. कनाई खुर्द",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "RJAJ199401009413",
       "mobile": "9983360604",
@@ -15865,9 +17663,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ramasvaroop Bairwa",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221765",
-      "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "shala_darpan_code": "485028",
+      "school_code": "485028",
+      "school_name_en": "Govt. Upper Primary School Kanai Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. कनाई खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1533",
@@ -15875,7 +17675,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1998-10-10",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. कनाई कलां",
+      "school_name": "रा.उ.प्रा.वि. कनाई खुर्द",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "RAKESH.MEENA75",
       "mobile": "7014855782",
@@ -15890,9 +17690,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Rakesh Meena",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221765",
-      "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "shala_darpan_code": "485028",
+      "school_code": "485028",
+      "school_name_en": "Govt. Upper Primary School Kanai Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. कनाई खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1534",
@@ -15917,7 +17719,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221765",
       "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "school_name_en": "Govt. Sr. Sec. School Kanai Kala",
+      "school_name_hi": "रा.उ.मा.वि. कनाई कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1535",
@@ -15925,7 +17729,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "10.04.1993",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. कनाई कलां",
+      "school_name": "रा.उ.प्रा.वि. कनाई खुर्द",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "rjra201731019296",
       "mobile": "8875031739",
@@ -15940,9 +17744,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sunita Kumaree Sahoo",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221765",
-      "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "shala_darpan_code": "485028",
+      "school_code": "485028",
+      "school_name_en": "Govt. Upper Primary School Kanai Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. कनाई खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1536",
@@ -15967,7 +17773,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1537",
@@ -15975,7 +17783,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "15/07/1983",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. कनाई कलां",
+      "school_name": "रा.उ.प्रा.वि. कनाई खुर्द",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "Rjaj201201037973",
       "mobile": "9571932057",
@@ -15990,9 +17798,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Gauree Shnkar Balaee",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221765",
-      "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "shala_darpan_code": "485028",
+      "school_code": "485028",
+      "school_name_en": "Govt. Upper Primary School Kanai Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. कनाई खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1538",
@@ -16000,7 +17810,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "20/08/1983",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. कनाई कलां",
+      "school_name": "रा.उ.प्रा.वि. कनाई खुर्द",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "RJRA201831037197",
       "mobile": "9664434019",
@@ -16015,9 +17825,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Narendra Kumar Verma",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221765",
-      "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "shala_darpan_code": "485028",
+      "school_code": "485028",
+      "school_name_en": "Govt. Upper Primary School Kanai Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. कनाई खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1539",
@@ -16042,7 +17854,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221765",
       "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "school_name_en": "Govt. Sr. Sec. School Kanai Kala",
+      "school_name_hi": "रा.उ.मा.वि. कनाई कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1540",
@@ -16050,7 +17864,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1994-11-06",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. कनाई कलां",
+      "school_name": "रा.उ.प्रा.वि. कनाई खुर्द",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "Rjbw201908011277",
       "mobile": "8104542153",
@@ -16065,9 +17879,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Megharaj Jat",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221765",
-      "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "shala_darpan_code": "485028",
+      "school_code": "485028",
+      "school_name_en": "Govt. Upper Primary School Kanai Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. कनाई खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1541",
@@ -16075,8 +17891,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1993-02-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. लामगरा",
-      "peeo_name": "PEEO LAMGARA",
+      "school_name": "रा.उ.प्रा.वि. लक्ष्मीपुरा कनाईकलां",
+      "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "RJAJ202301044184",
       "mobile": "9414681604",
       "email": "suddhijagarwal@gmail.com",
@@ -16090,9 +17906,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Suddhi Prakash Jagaraval",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221759",
-      "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "shala_darpan_code": "410623",
+      "school_code": "410623",
+      "school_name_en": "Govt. Upper Primary School Lakshmipura",
+      "school_name_hi": "रा.उ.प्रा.वि. लक्ष्मीपुरा कनाईकलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1542",
@@ -16100,8 +17918,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1990-03-06",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. लामगरा",
-      "peeo_name": "PEEO LAMGARA",
+      "school_name": "रा.उ.प्रा.वि. लक्ष्मीपुरा कनाईकलां",
+      "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "Rjct201911002418",
       "mobile": "9549288805",
       "email": "kalam03061990@gmail.com",
@@ -16115,9 +17933,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Abdul Kalam",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221759",
-      "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "shala_darpan_code": "410623",
+      "school_code": "410623",
+      "school_name_en": "Govt. Upper Primary School Lakshmipura",
+      "school_name_hi": "रा.उ.प्रा.वि. लक्ष्मीपुरा कनाईकलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1543",
@@ -16125,8 +17945,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "26-01-1997",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. लामगरा",
-      "peeo_name": "PEEO LAMGARA",
+      "school_name": "रा.उ.प्रा.वि. लक्ष्मीपुरा कनाईकलां",
+      "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "RJAJ201901016529",
       "mobile": "8503045396",
       "email": "1997MANISHANAROLIY@GMAIL.COM",
@@ -16140,9 +17960,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Maneesha Naroliya",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221759",
-      "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "shala_darpan_code": "410623",
+      "school_code": "410623",
+      "school_name_en": "Govt. Upper Primary School Lakshmipura",
+      "school_name_hi": "रा.उ.प्रा.वि. लक्ष्मीपुरा कनाईकलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1544",
@@ -16167,7 +17989,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221765",
       "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "school_name_en": "Govt. Sr. Sec. School Kanai Kala",
+      "school_name_hi": "रा.उ.मा.वि. कनाई कलां",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1545",
@@ -16175,7 +17999,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "26/02/1998",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. कनाई कलां",
+      "school_name": "रा.उ.प्रा.वि. कनाई खुर्द",
       "peeo_name": "PEEO KANAI KALAN",
       "sso_id": "RJAJ201901036216",
       "mobile": "8104032051",
@@ -16190,9 +18014,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Suresh Sahoo",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221765",
-      "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "shala_darpan_code": "485028",
+      "school_code": "485028",
+      "school_name_en": "Govt. Upper Primary School Kanai Khurd",
+      "school_name_hi": "रा.उ.प्रा.वि. कनाई खुर्द",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1546",
@@ -16217,7 +18043,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1547",
@@ -16242,7 +18070,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Lecturer (Political Science)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1548",
@@ -16267,7 +18097,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Lecturer (History)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1549",
@@ -16292,7 +18124,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Lecturer (Hindi)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1550",
@@ -16317,7 +18151,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1551",
@@ -16342,7 +18178,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1552",
@@ -16367,7 +18205,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1553",
@@ -16392,7 +18232,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1554",
@@ -16417,7 +18259,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1555",
@@ -16442,7 +18286,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1556",
@@ -16467,7 +18313,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1557",
@@ -16492,7 +18340,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1558",
@@ -16517,7 +18367,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1559",
@@ -16542,7 +18394,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1560",
@@ -16567,7 +18421,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1561",
@@ -16592,7 +18448,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1562",
@@ -16617,7 +18475,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1563",
@@ -16642,7 +18502,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1564",
@@ -16667,7 +18529,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Basic Computer Instructor",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1565",
@@ -16692,7 +18556,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1566",
@@ -16717,7 +18583,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Supporting Staff (Class-IV)",
       "shala_darpan_code": "221773",
       "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "Govt. Sr. Sec. School Karanti",
+      "school_name_hi": "रा.उ.मा.वि. करांटी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1567",
@@ -16725,8 +18593,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "23/06/1971",
       "post": "प्रधानाचार्य / संस्था प्रधान",
-      "school_name": "रा.उ.मा.वि. एकलसिंघा",
-      "peeo_name": "PEEO EKALSEENGA",
+      "school_name": "रा.उ.प्रा.वि. गोपालपुरा",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ199501009034",
       "mobile": "9079656355",
       "email": "sppareek1971@gmail.com",
@@ -16740,9 +18608,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shiv Prakash Purohit",
       "post_en": "Headmaster / Principal",
-      "shala_darpan_code": "221786",
-      "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "shala_darpan_code": "488792",
+      "school_code": "488792",
+      "school_name_en": "Govt. Upper Primary School Gopalpura",
+      "school_name_hi": "रा.उ.प्रा.वि. गोपालपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1568",
@@ -16750,8 +18620,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1973-01-07",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. एकलसिंघा",
-      "peeo_name": "PEEO EKALSEENGA",
+      "school_name": "रा.उ.प्रा.वि. गोपालपुरा",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ199401001160",
       "mobile": "9829663748",
       "email": "omprakashjoshi32@gmail.com",
@@ -16765,9 +18635,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Omaprakash Sharma",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221786",
-      "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "shala_darpan_code": "488792",
+      "school_code": "488792",
+      "school_name_en": "Govt. Upper Primary School Gopalpura",
+      "school_name_hi": "रा.उ.प्रा.वि. गोपालपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1569",
@@ -16775,8 +18647,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1985-05-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. एकलसिंघा",
-      "peeo_name": "PEEO EKALSEENGA",
+      "school_name": "रा.उ.प्रा.वि. गोपालपुरा",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201201037879",
       "mobile": "9784402076",
       "email": "santoshyadav38646@gmail.com",
@@ -16790,9 +18662,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Santosh Devee Yadav",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221786",
-      "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "shala_darpan_code": "488792",
+      "school_code": "488792",
+      "school_name_en": "Govt. Upper Primary School Gopalpura",
+      "school_name_hi": "रा.उ.प्रा.वि. गोपालपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1570",
@@ -16800,8 +18674,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "16/09/1983",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. एकलसिंघा",
-      "peeo_name": "PEEO EKALSEENGA",
+      "school_name": "रा.उ.प्रा.वि. गोपालपुरा",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201201037971",
       "mobile": "9785146198",
       "email": "ishwerchouhan30@gmail.com",
@@ -16815,9 +18689,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Eeshvar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221786",
-      "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "shala_darpan_code": "488792",
+      "school_code": "488792",
+      "school_name_en": "Govt. Upper Primary School Gopalpura",
+      "school_name_hi": "रा.उ.प्रा.वि. गोपालपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1571",
@@ -16825,8 +18701,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1994-02-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. एकलसिंघा",
-      "peeo_name": "PEEO EKALSEENGA",
+      "school_name": "रा.उ.प्रा.वि. गोपालपुरा",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201901021405",
       "mobile": "7733939491",
       "email": "jyotirajpoot1994@gmail.com",
@@ -16840,9 +18716,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Jyoti Rajput",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221786",
-      "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "shala_darpan_code": "488792",
+      "school_code": "488792",
+      "school_name_en": "Govt. Upper Primary School Gopalpura",
+      "school_name_hi": "रा.उ.प्रा.वि. गोपालपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1572",
@@ -16850,8 +18728,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "11/09/199",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. एकलसिंघा",
-      "peeo_name": "PEEO EKALSEENGA",
+      "school_name": "रा.उ.प्रा.वि. गोपालपुरा",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ202201012582",
       "mobile": "7792954434",
       "email": "rld9828036@gmail.com",
@@ -16865,9 +18743,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Kiran Danga",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221786",
-      "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "shala_darpan_code": "488792",
+      "school_code": "488792",
+      "school_name_en": "Govt. Upper Primary School Gopalpura",
+      "school_name_hi": "रा.उ.प्रा.वि. गोपालपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1573",
@@ -16875,8 +18755,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1997-05-10",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. एकलसिंघा",
-      "peeo_name": "PEEO EKALSEENGA",
+      "school_name": "रा.उ.प्रा.वि. गोपालपुरा",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ202301037101",
       "mobile": "8107302772",
       "email": "kamaljymanast0077@gmail.com",
@@ -16890,9 +18770,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Kamal Kishore Kumawat",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221786",
-      "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "shala_darpan_code": "488792",
+      "school_code": "488792",
+      "school_name_en": "Govt. Upper Primary School Gopalpura",
+      "school_name_hi": "रा.उ.प्रा.वि. गोपालपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1574",
@@ -16900,7 +18782,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1993-02-01",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.प्रा.वि. गोवलिया",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ202001033066",
       "mobile": "8890354649",
@@ -16915,9 +18797,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Jitendra Todavata",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "468185",
+      "school_code": "468185",
+      "school_name_en": "Govt. Upper Primary School Govliya",
+      "school_name_hi": "रा.उ.प्रा.वि. गोवलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1575",
@@ -16925,7 +18809,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1972-12-01",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.प्रा.वि. गोवलिया",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ199501001978",
       "mobile": "9214540786",
@@ -16940,9 +18824,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Abdul Haleem Kha",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "468185",
+      "school_code": "468185",
+      "school_name_en": "Govt. Upper Primary School Govliya",
+      "school_name_hi": "रा.उ.प्रा.वि. गोवलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1576",
@@ -16950,7 +18836,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "01-071974",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.प्रा.वि. गोवलिया",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ199701001791",
       "mobile": "8709143708",
@@ -16965,9 +18851,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Raguveer Gurjar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "468185",
+      "school_code": "468185",
+      "school_name_en": "Govt. Upper Primary School Govliya",
+      "school_name_hi": "रा.उ.प्रा.वि. गोवलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1577",
@@ -16975,7 +18863,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1980-07-01",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.प्रा.वि. गोवलिया",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201601027175",
       "mobile": "9251767722",
@@ -16990,9 +18878,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Rameshachand Vaishnav",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "468185",
+      "school_code": "468185",
+      "school_name_en": "Govt. Upper Primary School Govliya",
+      "school_name_hi": "रा.उ.प्रा.वि. गोवलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1578",
@@ -17000,7 +18890,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1998-08-12",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.प्रा.वि. गोवलिया",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201901017018",
       "mobile": "7340635364",
@@ -17015,9 +18905,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sarita Kumaree",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "468185",
+      "school_code": "468185",
+      "school_name_en": "Govt. Upper Primary School Govliya",
+      "school_name_hi": "रा.उ.प्रा.वि. गोवलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1579",
@@ -17025,7 +18917,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1990-12-25",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.प्रा.वि. गोवलिया",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJSR201734016356",
       "mobile": "7568119437",
@@ -17040,9 +18932,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Birama Meena",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "468185",
+      "school_code": "468185",
+      "school_name_en": "Govt. Upper Primary School Govliya",
+      "school_name_hi": "रा.उ.प्रा.वि. गोवलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1580",
@@ -17050,7 +18944,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1994-09-01",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.प्रा.वि. गोवलिया",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJKO201827026981",
       "mobile": "9116860052",
@@ -17065,9 +18959,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Svati Choudhary",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "468185",
+      "school_code": "468185",
+      "school_name_en": "Govt. Upper Primary School Govliya",
+      "school_name_hi": "रा.उ.प्रा.वि. गोवलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1581",
@@ -17075,7 +18971,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1986-07-13",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.प्रा.वि. गोवलिया",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ202101002765",
       "mobile": "9782631775",
@@ -17090,9 +18986,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Lalita Saini",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "468185",
+      "school_code": "468185",
+      "school_name_en": "Govt. Upper Primary School Govliya",
+      "school_name_hi": "रा.उ.प्रा.वि. गोवलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1582",
@@ -17100,7 +18998,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1995-07-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.प्रा.वि. गोवलिया",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RANG.LAL.GURJAR1",
       "mobile": "9829014609",
@@ -17115,9 +19013,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Rngalal Gurjar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "468185",
+      "school_code": "468185",
+      "school_name_en": "Govt. Upper Primary School Govliya",
+      "school_name_hi": "रा.उ.प्रा.वि. गोवलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1583",
@@ -17125,7 +19025,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1995-09-07",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.प्रा.वि. गोवलिया",
       "peeo_name": "PEEO KARATI",
       "sso_id": "GIRIRAJ.CHOUDHARY1",
       "mobile": "7597685500",
@@ -17140,9 +19040,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Giriraj Chaidharee",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "468185",
+      "school_code": "468185",
+      "school_name_en": "Govt. Upper Primary School Govliya",
+      "school_name_hi": "रा.उ.प्रा.वि. गोवलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1584",
@@ -17150,7 +19052,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1982-09-21",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.प्रा.वि. गोवलिया",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201801009430",
       "mobile": "6375323176",
@@ -17165,9 +19067,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Varun Goyal",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "468185",
+      "school_code": "468185",
+      "school_name_en": "Govt. Upper Primary School Govliya",
+      "school_name_hi": "रा.उ.प्रा.वि. गोवलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1585",
@@ -17175,8 +19079,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1974-01-07",
       "post": "प्रधानाचार्य / संस्था प्रधान",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
-      "peeo_name": "PEEO SOBRI",
+      "school_name": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ199701017342",
       "mobile": "9214963256",
       "email": "kailashchand21416@gamil.com",
@@ -17190,9 +19094,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Kailash Chandra Bhambhee",
       "post_en": "Headmaster / Principal",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488793",
+      "school_code": "488793",
+      "school_name_en": "Govt. Upper Primary School Pratappura Karanti",
+      "school_name_hi": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1586",
@@ -17200,8 +19106,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1980-01-07",
       "post": "प्रबोधक",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
-      "peeo_name": "PEEO SOBRI",
+      "school_name": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ200801022979",
       "mobile": "9784344547",
       "email": "rmp4547@gmail.com",
@@ -17215,9 +19121,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ram Prasad Bhambhee",
       "post_en": "Prabodhak",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488793",
+      "school_code": "488793",
+      "school_name_en": "Govt. Upper Primary School Pratappura Karanti",
+      "school_name_hi": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1587",
@@ -17225,8 +19133,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1982-07-07",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
-      "peeo_name": "PEEO SOBRI",
+      "school_name": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201301016793PR",
       "mobile": "9414602818",
       "email": "prjat2038@gmail.com",
@@ -17240,9 +19148,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Parasa Ram",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488793",
+      "school_code": "488793",
+      "school_name_en": "Govt. Upper Primary School Pratappura Karanti",
+      "school_name_hi": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1588",
@@ -17250,8 +19160,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "2000-05-02",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
-      "peeo_name": "PEEO SOBRI",
+      "school_name": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "SHIVCHARANJAT.1",
       "mobile": "9571978996",
       "email": "shivcharanjat95@gmail.com",
@@ -17265,9 +19175,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shivacharan Jat",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488793",
+      "school_code": "488793",
+      "school_name_en": "Govt. Upper Primary School Pratappura Karanti",
+      "school_name_hi": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1589",
@@ -17275,8 +19187,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1993-01-07",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
-      "peeo_name": "PEEO SOBRI",
+      "school_name": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "ABDUL.MOHSIN.KHAN1",
       "mobile": "9928278227",
       "email": "khanrocks272727@gmail'com",
@@ -17290,9 +19202,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Abdul Mohasin Khan",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488793",
+      "school_code": "488793",
+      "school_name_en": "Govt. Upper Primary School Pratappura Karanti",
+      "school_name_hi": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1590",
@@ -17300,8 +19214,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "24/10/1994",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
-      "peeo_name": "PEEO SOBRI",
+      "school_name": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "SUKHA.RAM7",
       "mobile": "9549620771",
       "email": "khicharsukharam@gmail.com",
@@ -17315,9 +19229,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sukharam",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488793",
+      "school_code": "488793",
+      "school_name_en": "Govt. Upper Primary School Pratappura Karanti",
+      "school_name_hi": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1591",
@@ -17325,8 +19241,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "13/02/2019",
       "post": "विशेष शिक्षक",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
-      "peeo_name": "PEEO SOBRI",
+      "school_name": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201901007962",
       "mobile": "8432320007",
       "email": "kasniamonika09@gmail.com",
@@ -17340,9 +19256,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Monika",
       "post_en": "Special Educator",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488793",
+      "school_code": "488793",
+      "school_name_en": "Govt. Upper Primary School Pratappura Karanti",
+      "school_name_hi": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1592",
@@ -17350,8 +19268,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "16/02/1998",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
-      "peeo_name": "PEEO SOBRI",
+      "school_name": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "MANISHA.JANGID3",
       "mobile": "7733826566",
       "email": "manishajangid3456@gmail.com",
@@ -17365,9 +19283,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Maneesha Jangiड़",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488793",
+      "school_code": "488793",
+      "school_name_en": "Govt. Upper Primary School Pratappura Karanti",
+      "school_name_hi": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1593",
@@ -17375,8 +19295,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1991-01-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
-      "peeo_name": "PEEO SOBRI",
+      "school_name": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "SUNITA673",
       "mobile": "9829959188",
       "email": "sunitapunit10@gmail.com",
@@ -17390,9 +19310,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sunita",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488793",
+      "school_code": "488793",
+      "school_name_en": "Govt. Upper Primary School Pratappura Karanti",
+      "school_name_hi": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1594",
@@ -17400,7 +19322,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1973-12-02",
       "post": "प्रधानाचार्य",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.मा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJBN199603012787",
       "mobile": "8107098772",
@@ -17415,9 +19337,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shreematee Sushama Pandey",
       "post_en": "Principal (L-16)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "221774",
+      "school_code": "221774",
+      "school_name_en": "Govt. Sr. Sec. School Khedi",
+      "school_name_hi": "रा.उ.मा.वि. खेड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1595",
@@ -17425,7 +19349,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1966-01-04",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.मा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201201013433",
       "mobile": "9602564649",
@@ -17440,9 +19364,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Sndeep Bagaranee",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "221774",
+      "school_code": "221774",
+      "school_name_en": "Govt. Sr. Sec. School Khedi",
+      "school_name_hi": "रा.उ.मा.वि. खेड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1596",
@@ -17450,7 +19376,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1982-07-31",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.मा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ199301007496",
       "mobile": "9414980056",
@@ -17465,9 +19391,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shreematee Karoona Vyas",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "221774",
+      "school_code": "221774",
+      "school_name_en": "Govt. Sr. Sec. School Khedi",
+      "school_name_hi": "रा.उ.मा.वि. खेड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1597",
@@ -17475,7 +19403,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1983-07-01",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.मा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJTO200836052632",
       "mobile": "9929865091",
@@ -17490,9 +19418,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Kailash Chnd Meena",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "221774",
+      "school_code": "221774",
+      "school_name_en": "Govt. Sr. Sec. School Khedi",
+      "school_name_hi": "रा.उ.मा.वि. खेड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1598",
@@ -17500,7 +19430,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1995-04-01",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.मा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJKK202460001763",
       "mobile": "9649652059",
@@ -17515,9 +19445,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Vinod Kumar Svamee",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "221774",
+      "school_code": "221774",
+      "school_name_en": "Govt. Sr. Sec. School Khedi",
+      "school_name_hi": "रा.उ.मा.वि. खेड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1599",
@@ -17525,7 +19457,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1980-07-01",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.मा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ200601005120",
       "mobile": "9680638463",
@@ -17540,9 +19472,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shreematee Rameshee Baee Meena",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "221774",
+      "school_code": "221774",
+      "school_name_en": "Govt. Sr. Sec. School Khedi",
+      "school_name_hi": "रा.उ.मा.वि. खेड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1600",
@@ -17550,7 +19484,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1970-07-11",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.मा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJBM200505019219",
       "mobile": "9610006073",
@@ -17565,9 +19499,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shreematee Sumanalata Beedavat",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "221774",
+      "school_code": "221774",
+      "school_name_en": "Govt. Sr. Sec. School Khedi",
+      "school_name_hi": "रा.उ.मा.वि. खेड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1601",
@@ -17575,7 +19511,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1972-06-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.मा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ199401006449",
       "mobile": "7737880781",
@@ -17590,9 +19526,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Shivaraj",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "221774",
+      "school_code": "221774",
+      "school_name_en": "Govt. Sr. Sec. School Khedi",
+      "school_name_hi": "रा.उ.मा.वि. खेड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1602",
@@ -17600,7 +19538,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1968-06-01",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.मा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ199101008893",
       "mobile": "9414550986",
@@ -17615,9 +19553,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Mngal Chnd Kheenchee",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "221774",
+      "school_code": "221774",
+      "school_name_en": "Govt. Sr. Sec. School Khedi",
+      "school_name_hi": "रा.उ.मा.वि. खेड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1603",
@@ -17625,7 +19565,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "2000-07-13",
       "post": "कनिष्ठ सहायक (LDC)",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.मा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ202301012066",
       "mobile": "9649597272",
@@ -17640,9 +19580,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Roshan Sharma",
       "post_en": "Junior Assistant (LDC / L-5)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "221774",
+      "school_code": "221774",
+      "school_name_en": "Govt. Sr. Sec. School Khedi",
+      "school_name_hi": "रा.उ.मा.वि. खेड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1604",
@@ -17650,7 +19592,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "2000-12-28",
       "post": "कनिष्ठ सहायक (LDC)",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.मा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "Jalaj.tak2000",
       "mobile": "7023081821",
@@ -17665,9 +19607,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Jalaj Tak",
       "post_en": "Junior Assistant (LDC / L-5)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "221774",
+      "school_code": "221774",
+      "school_name_en": "Govt. Sr. Sec. School Khedi",
+      "school_name_hi": "रा.उ.मा.वि. खेड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1605",
@@ -17675,7 +19619,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1967-05-07",
       "post": "सहायक कर्मचारी (चतुर्थ श्रेणी)",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.उ.मा.वि. खेड़ी",
       "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ199606001399",
       "mobile": "9782438884",
@@ -17690,9 +19634,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shreematee Jethee Devee",
       "post_en": "Supporting Staff (Class-IV)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "221774",
+      "school_code": "221774",
+      "school_name_en": "Govt. Sr. Sec. School Khedi",
+      "school_name_hi": "रा.उ.मा.वि. खेड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1606",
@@ -17700,8 +19646,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1990-12-20",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
-      "peeo_name": "PEEO SOBRI",
+      "school_name": "रा.उ.प्रा.वि. दौलतपुरा",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201801057608",
       "mobile": "9928832620",
       "email": "gudda2373@gmail.com",
@@ -17715,9 +19661,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Preeti Kumaree",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488944",
+      "school_code": "488944",
+      "school_name_en": "Govt. Upper Primary School Dolatpura",
+      "school_name_hi": "रा.उ.प्रा.वि. दौलतपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1607",
@@ -17725,8 +19673,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1971-03-27",
       "post": "प्रबोधक",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
-      "peeo_name": "PEEO SOBRI",
+      "school_name": "रा.उ.प्रा.वि. दौलतपुरा",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "RJBW201008001014",
       "mobile": "9829964771",
       "email": "debisinghshekhawat60225@gmail.com",
@@ -17740,9 +19688,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Debeesinh Shekhavat",
       "post_en": "Prabodhak",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488944",
+      "school_code": "488944",
+      "school_name_en": "Govt. Upper Primary School Dolatpura",
+      "school_name_hi": "रा.उ.प्रा.वि. दौलतपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1608",
@@ -17750,8 +19700,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1988-07-01",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
-      "peeo_name": "PEEO SOBRI",
+      "school_name": "रा.उ.प्रा.वि. दौलतपुरा",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201201050152",
       "mobile": "9079281930",
       "email": "manojbijarnia315@gmail.com",
@@ -17765,9 +19715,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Manoj Bijaraniya",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488944",
+      "school_code": "488944",
+      "school_name_en": "Govt. Upper Primary School Dolatpura",
+      "school_name_hi": "रा.उ.प्रा.वि. दौलतपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1609",
@@ -17775,8 +19727,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1973-05-29",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
-      "peeo_name": "PEEO SOBRI",
+      "school_name": "रा.उ.प्रा.वि. दौलतपुरा",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ200706002573",
       "mobile": "7737750495",
       "email": "seema1973solanki@gmail.com",
@@ -17790,9 +19742,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Seema Solnkee",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488944",
+      "school_code": "488944",
+      "school_name_en": "Govt. Upper Primary School Dolatpura",
+      "school_name_hi": "रा.उ.प्रा.वि. दौलतपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1610",
@@ -17800,8 +19754,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1993-10-21",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
-      "peeo_name": "PEEO SOBRI",
+      "school_name": "रा.उ.प्रा.वि. दौलतपुरा",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201701016141",
       "mobile": "9799476646",
       "email": "tamannamansuri3218@gmail.com",
@@ -17815,9 +19769,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Tamanna Mnsooree",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488944",
+      "school_code": "488944",
+      "school_name_en": "Govt. Upper Primary School Dolatpura",
+      "school_name_hi": "रा.उ.प्रा.वि. दौलतपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1611",
@@ -17825,8 +19781,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1992-03-18",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
-      "peeo_name": "PEEO SOBRI",
+      "school_name": "रा.उ.प्रा.वि. दौलतपुरा",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ201701016137",
       "mobile": "9414930188",
       "email": "ranjana894996@gmail.com",
@@ -17840,9 +19796,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Rnjana Meena",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488944",
+      "school_code": "488944",
+      "school_name_en": "Govt. Upper Primary School Dolatpura",
+      "school_name_hi": "रा.उ.प्रा.वि. दौलतपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1612",
@@ -17850,8 +19808,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "2001-12-15",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
-      "peeo_name": "PEEO SOBRI",
+      "school_name": "रा.उ.प्रा.वि. दौलतपुरा",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "SONU.KUMARI.CHOUDHA1",
       "mobile": "6367590380",
       "email": "sonukumarichoudhary01@gmail.com",
@@ -17865,9 +19823,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sonoo Kumaree Choudhary",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488944",
+      "school_code": "488944",
+      "school_name_en": "Govt. Upper Primary School Dolatpura",
+      "school_name_hi": "रा.उ.प्रा.वि. दौलतपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1613",
@@ -17875,8 +19835,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "2002-08-14",
       "post": "शा. शिक्षक",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
-      "peeo_name": "PEEO SOBRI",
+      "school_name": "रा.उ.प्रा.वि. दौलतपुरा",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "RJAJ202301039545",
       "mobile": "6377439791",
       "email": "bilalkhan16225@gmail.com",
@@ -17890,9 +19850,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mo. Bilal",
       "post_en": "शा. शिक्षक",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488944",
+      "school_code": "488944",
+      "school_name_en": "Govt. Upper Primary School Dolatpura",
+      "school_name_hi": "रा.उ.प्रा.वि. दौलतपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1614",
@@ -17900,8 +19862,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "02/07/1990",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. एकलसिंघा",
-      "peeo_name": "PEEO EKALSEENGA",
+      "school_name": "रा.प्रा.वि. गोरधनपुरा छाछून्दरा",
+      "peeo_name": "PEEO KARATI",
       "sso_id": "RJJO201925001863",
       "mobile": "9950617758",
       "email": "vinodimeena530@gmail.com",
@@ -17915,9 +19877,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Vinodee Meena",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221786",
-      "school_code": "221786",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "shala_darpan_code": "506514",
+      "school_code": "506514",
+      "school_name_en": "Govt. Primary School Gordhanpura",
+      "school_name_hi": "रा.प्रा.वि. गोरधनपुरा छाछून्दरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1615",
@@ -17925,7 +19889,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1999-03-09",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.प्रा.वि. खेड़ी तालाब",
       "peeo_name": "PEEO KARATI",
       "sso_id": "BANWARI.MALI1",
       "mobile": "9571953126",
@@ -17940,9 +19904,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Banavaree Mali",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "488787",
+      "school_code": "488787",
+      "school_name_en": "Govt. Primary School Khedi Talab",
+      "school_name_hi": "रा.प्रा.वि. खेड़ी तालाब",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1616",
@@ -17950,7 +19916,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1994-06-30",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.प्रा.वि. खेड़ा करांती",
       "peeo_name": "PEEO KARATI",
       "sso_id": "mukesh.kumar.meena24",
       "mobile": "9116599220",
@@ -17965,9 +19931,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mukesh Kumar Meena",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "519282",
+      "school_code": "519282",
+      "school_name_en": "Govt. Primary School Kheda Karanti",
+      "school_name_hi": "रा.प्रा.वि. खेड़ा करांती",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1617",
@@ -17975,7 +19943,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "2002-11-09",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.प्रा.वि. खेड़ा करांती",
       "peeo_name": "PEEO KARATI",
       "sso_id": "devendra.prajapat14",
       "mobile": "9929681065",
@@ -17990,9 +19958,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Devendr Prajapat",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "519282",
+      "school_code": "519282",
+      "school_name_en": "Govt. Primary School Kheda Karanti",
+      "school_name_hi": "रा.प्रा.वि. खेड़ा करांती",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1618",
@@ -18000,7 +19970,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1994-06-05",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.प्रा.वि. खेड़ी (करांती)",
       "peeo_name": "PEEO KARATI",
       "sso_id": "rajendar.kumar2",
       "mobile": "8696835835",
@@ -18015,9 +19985,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Rajendra Kumar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "515685",
+      "school_code": "515685",
+      "school_name_en": "Govt. Primary School Khedi",
+      "school_name_hi": "रा.प्रा.वि. खेड़ी (करांती)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1619",
@@ -18025,7 +19997,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "2002-08-31",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "रा.प्रा.वि. खेड़ी (करांती)",
       "peeo_name": "PEEO KARATI",
       "sso_id": "vaibhav.raj.mehra",
       "mobile": "8209227928",
@@ -18040,9 +20012,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Vaibhav Raj Mehara",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "515685",
+      "school_code": "515685",
+      "school_name_en": "Govt. Primary School Khedi",
+      "school_name_hi": "रा.प्रा.वि. खेड़ी (करांती)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1620",
@@ -18067,7 +20041,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "488791",
       "school_code": "488791",
-      "school_name_en": "Govt. Girls Sr. Sec. School Khedi"
+      "school_name_en": "Govt. Girls Sr. Sec. School Khedi",
+      "school_name_hi": "रा.बा.उ.मा.वि. खेड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1621",
@@ -18092,7 +20068,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "488791",
       "school_code": "488791",
-      "school_name_en": "Govt. Girls Sr. Sec. School Khedi"
+      "school_name_en": "Govt. Girls Sr. Sec. School Khedi",
+      "school_name_hi": "रा.बा.उ.मा.वि. खेड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1622",
@@ -18117,7 +20095,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "488791",
       "school_code": "488791",
-      "school_name_en": "Govt. Girls Sr. Sec. School Khedi"
+      "school_name_en": "Govt. Girls Sr. Sec. School Khedi",
+      "school_name_hi": "रा.बा.उ.मा.वि. खेड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1623",
@@ -18142,7 +20122,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "488791",
       "school_code": "488791",
-      "school_name_en": "Govt. Girls Sr. Sec. School Khedi"
+      "school_name_en": "Govt. Girls Sr. Sec. School Khedi",
+      "school_name_hi": "रा.बा.उ.मा.वि. खेड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1624",
@@ -18167,7 +20149,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1625",
@@ -18192,7 +20176,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1626",
@@ -18217,7 +20203,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1627",
@@ -18242,7 +20230,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1628",
@@ -18257,7 +20247,7 @@ const MASTER_CBEO_DATA = {
       "email": "ramgopaljat1968@gmail.com",
       "bank_name": "ठ।छज्ञ व्थ ठ।त्व्क्। ज्ञम्ज्ञत्प्",
       "bank_acc": "7590100008946",
-      "ifsc": "BARB0KEKRIX",
+      "ifsc": "BARB0AJMERX",
       "pan": "ABIPJ1297K",
       "aadhaar": "935461855266",
       "remarks": "छव्",
@@ -18267,7 +20257,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1629",
@@ -18292,7 +20284,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1630",
@@ -18307,7 +20301,7 @@ const MASTER_CBEO_DATA = {
       "email": "noratm73@gmail.com",
       "bank_name": "ठ।छज्ञ व्थ ठ।त्व्क्। ज्ञम्ज्ञत्प्",
       "bank_acc": "11820100007904",
-      "ifsc": "BARB0KEKRIX",
+      "ifsc": "BARB0AJMERX",
       "pan": "AVZPB6229L",
       "aadhaar": "993843391341",
       "remarks": "छव्",
@@ -18317,7 +20311,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1631",
@@ -18342,7 +20338,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1632",
@@ -18367,7 +20365,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1633",
@@ -18392,7 +20392,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1634",
@@ -18417,7 +20419,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "PTI Grade-III",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1635",
@@ -18442,7 +20446,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1636",
@@ -18467,7 +20473,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Supporting Staff (Class-IV)",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1637",
@@ -18475,8 +20483,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1987-07-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. पाडलिया",
-      "peeo_name": "PEEO PADALIYA",
+      "school_name": "रा.प्रा.वि. कादोलाई",
+      "peeo_name": "PEEO KEROT",
       "sso_id": "RJCT201911002519",
       "mobile": "9784375452",
       "email": "neelnmukul2009@gmail.com",
@@ -18490,9 +20498,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Balamukand Khatee",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221766",
-      "school_code": "221766",
-      "school_name_en": "Govt. Sr. Sec. School Padliya"
+      "shala_darpan_code": "468213",
+      "school_code": "468213",
+      "school_name_en": "Govt. Primary School Kadolai",
+      "school_name_hi": "रा.प्रा.वि. कादोलाई",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1638",
@@ -18500,8 +20510,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1996-01-17",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. पाडलिया",
-      "peeo_name": "PEEO PADALIYA",
+      "school_name": "रा.प्रा.वि. कादोलाई",
+      "peeo_name": "PEEO KEROT",
       "sso_id": "RJBW201908006747",
       "mobile": "9887786686",
       "email": "avinashsharma170196@gmail.com",
@@ -18515,9 +20525,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Avinash Sharma",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221766",
-      "school_code": "221766",
-      "school_name_en": "Govt. Sr. Sec. School Padliya"
+      "shala_darpan_code": "468213",
+      "school_code": "468213",
+      "school_name_en": "Govt. Primary School Kadolai",
+      "school_name_hi": "रा.प्रा.वि. कादोलाई",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1639",
@@ -18542,7 +20554,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Teacher",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1640",
@@ -18567,7 +20581,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Teacher",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1641",
@@ -18592,7 +20608,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Teacher",
       "shala_darpan_code": "221767",
       "school_code": "221767",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1642",
@@ -18600,8 +20618,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1986-01-23",
       "post": "प्रधानाचार्य",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. जेतपुरा",
+      "peeo_name": "PEEO KEROT",
       "sso_id": "RJUD201237015335",
       "mobile": "9414942132",
       "email": "juberahmednaqvi@gmail.com",
@@ -18615,9 +20633,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Juber Ahamad",
       "post_en": "Principal (L-16)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221768",
+      "school_code": "221768",
+      "school_name_en": "Govt. Sr. Sec. School Jetpura",
+      "school_name_hi": "रा.उ.मा.वि. जेतपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1643",
@@ -18625,8 +20645,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1971-06-01",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. जेतपुरा",
+      "peeo_name": "PEEO KEROT",
       "sso_id": "RJBW200508003774",
       "mobile": "9929136369",
       "email": "gangaramregar009@gmail.com",
@@ -18640,9 +20660,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Gngaram Regar",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221768",
+      "school_code": "221768",
+      "school_name_en": "Govt. Sr. Sec. School Jetpura",
+      "school_name_hi": "रा.उ.मा.वि. जेतपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1644",
@@ -18650,8 +20672,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1990-01-02",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. जेतपुरा",
+      "peeo_name": "PEEO KEROT",
       "sso_id": "RJAJ202001031234",
       "mobile": "9929758431",
       "email": "dineshveerarajput@gmail.com",
@@ -18665,9 +20687,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Dinesh Kumar Rajput",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221768",
+      "school_code": "221768",
+      "school_name_en": "Govt. Sr. Sec. School Jetpura",
+      "school_name_hi": "रा.उ.मा.वि. जेतपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1645",
@@ -18675,14 +20699,14 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1970-06-15",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. जेतपुरा",
+      "peeo_name": "PEEO KEROT",
       "sso_id": "RJAJ199401009093",
       "mobile": "9251602350",
       "email": "durgaprasadpaliwal992@gmail.com",
       "bank_name": "ठव्ठए ज्ञम्ज्ञत्प्",
       "bank_acc": "7590100007215",
-      "ifsc": "BARB0KEKRIX",
+      "ifsc": "BARB0AJMERX",
       "pan": "AGBPP7760K",
       "aadhaar": "816647759587",
       "remarks": "छ।",
@@ -18690,9 +20714,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Durga Prasad",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221768",
+      "school_code": "221768",
+      "school_name_en": "Govt. Sr. Sec. School Jetpura",
+      "school_name_hi": "रा.उ.मा.वि. जेतपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1646",
@@ -18700,14 +20726,14 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1966-07-07",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. जेतपुरा",
+      "peeo_name": "PEEO KEROT",
       "sso_id": "RJAJ199301003687",
       "mobile": "9784801861",
       "email": "nathulalswarnkar9@gmail.com",
       "bank_name": "ठव्ठए ज्ञम्ज्ञत्प्",
       "bank_acc": "7590100008273",
-      "ifsc": "BARB0KEKRIX",
+      "ifsc": "BARB0AJMERX",
       "pan": "AFVPS9279K",
       "aadhaar": "365401458890",
       "remarks": "छ।",
@@ -18715,9 +20741,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Nathoolal Svarnakar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221768",
+      "school_code": "221768",
+      "school_name_en": "Govt. Sr. Sec. School Jetpura",
+      "school_name_hi": "रा.उ.मा.वि. जेतपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1647",
@@ -18725,8 +20753,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1968-04-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. जेतपुरा",
+      "peeo_name": "PEEO KEROT",
       "sso_id": "RJAJ199101022468",
       "mobile": "9828001994",
       "email": "jagdishmalikadera@gmail.com",
@@ -18740,9 +20768,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Jagadeesh Mali",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221768",
+      "school_code": "221768",
+      "school_name_en": "Govt. Sr. Sec. School Jetpura",
+      "school_name_hi": "रा.उ.मा.वि. जेतपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1648",
@@ -18750,8 +20780,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "2000-08-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. जेतपुरा",
+      "peeo_name": "PEEO KEROT",
       "sso_id": "RJAJ202201011687",
       "mobile": "9829243359",
       "email": "lokeshjat933@gmail.com",
@@ -18765,9 +20795,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Lokesh Jat",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221768",
+      "school_code": "221768",
+      "school_name_en": "Govt. Sr. Sec. School Jetpura",
+      "school_name_hi": "रा.उ.मा.वि. जेतपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1649",
@@ -18775,8 +20807,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1980-07-01",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. जेतपुरा",
+      "peeo_name": "PEEO KEROT",
       "sso_id": "RJSR201334015002",
       "mobile": "9610101433",
       "email": "amarchand00000@gmail.com",
@@ -18790,9 +20822,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Amarachand Khateek",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221768",
+      "school_code": "221768",
+      "school_name_en": "Govt. Sr. Sec. School Jetpura",
+      "school_name_hi": "रा.उ.मा.वि. जेतपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1650",
@@ -18800,8 +20834,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1993-11-17",
       "post": "कनिष्ठ सहायक (LDC)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. जेतपुरा",
+      "peeo_name": "PEEO KEROT",
       "sso_id": "RJAJ202001022149",
       "mobile": "7014695521",
       "email": "chanchalchoudhary93@gmail.com",
@@ -18815,9 +20849,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Chnchal Choudhary",
       "post_en": "Junior Assistant (LDC / L-5)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221768",
+      "school_code": "221768",
+      "school_name_en": "Govt. Sr. Sec. School Jetpura",
+      "school_name_hi": "रा.उ.मा.वि. जेतपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1651",
@@ -18842,7 +20878,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221777",
       "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+      "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1652",
@@ -18867,7 +20905,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221777",
       "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+      "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1653",
@@ -18892,7 +20932,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221777",
       "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+      "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1654",
@@ -18917,7 +20959,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221777",
       "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+      "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1655",
@@ -18942,7 +20986,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221777",
       "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+      "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1656",
@@ -18967,7 +21013,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221777",
       "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+      "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1657",
@@ -18992,7 +21040,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221777",
       "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+      "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1658",
@@ -19017,7 +21067,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221777",
       "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+      "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1659",
@@ -19042,7 +21094,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221777",
       "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+      "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1660",
@@ -19067,7 +21121,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221777",
       "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+      "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1661",
@@ -19092,7 +21148,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221777",
       "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+      "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1662",
@@ -19117,7 +21175,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221777",
       "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+      "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1663",
@@ -19142,7 +21202,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Basic Computer Instructor",
       "shala_darpan_code": "221777",
       "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+      "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1664",
@@ -19167,7 +21229,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Assistant",
       "shala_darpan_code": "221777",
       "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+      "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1665",
@@ -19192,7 +21256,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Assistant",
       "shala_darpan_code": "221777",
       "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+      "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1666",
@@ -19217,7 +21283,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Assistant",
       "shala_darpan_code": "221777",
       "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+      "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1667",
@@ -19225,8 +21293,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "16/07/1988",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बूबकिया",
-      "peeo_name": "PEEO BOOBKIYA",
+      "school_name": "रा.प्रा.वि. राजपुरा मजरा",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "201118031011",
       "mobile": "8432498029",
       "email": "sunilkumarchoudhary1932@gmail.com",
@@ -19240,9 +21308,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sunil Kumar Choudhary",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221763",
-      "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "shala_darpan_code": "410622",
+      "school_code": "410622",
+      "school_name_en": "Govt. Primary School Rajpura Majra",
+      "school_name_hi": "रा.प्रा.वि. राजपुरा मजरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1668",
@@ -19250,8 +21320,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "31/08/1997",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बूबकिया",
-      "peeo_name": "PEEO BOOBKIYA",
+      "school_name": "रा.प्रा.वि. राजपुरा मजरा",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ201901007788",
       "mobile": "9602089382",
       "email": "anilkjoshi31897@gmail.com",
@@ -19265,9 +21335,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Anil Kumar Joshi",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221763",
-      "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "shala_darpan_code": "410622",
+      "school_code": "410622",
+      "school_name_en": "Govt. Primary School Rajpura Majra",
+      "school_name_hi": "रा.प्रा.वि. राजपुरा मजरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1669",
@@ -19275,8 +21347,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1980-01-18",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.प्रा.वि. बागरिया (कुम्हारिया)",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ2018010131681",
       "mobile": "9887951848",
       "email": "jayatolani22@gmail.com",
@@ -19290,9 +21362,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Jaya Tolanee",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "506695",
+      "school_code": "506695",
+      "school_name_en": "Govt. Primary School Bagrai Kumhariya",
+      "school_name_hi": "रा.प्रा.वि. बागरिया (कुम्हारिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1670",
@@ -19300,8 +21374,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1995-07-06",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.प्रा.वि. बागरिया (कुम्हारिया)",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJBW201908002720",
       "mobile": "9057193493",
       "email": "dharmyadav8947@gmail.com",
@@ -19315,9 +21389,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Dharmendr Yadav",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "506695",
+      "school_code": "506695",
+      "school_name_en": "Govt. Primary School Bagrai Kumhariya",
+      "school_name_hi": "रा.प्रा.वि. बागरिया (कुम्हारिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1671",
@@ -19325,8 +21401,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1999-06-05",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.प्रा.वि. बागरिया (कुम्हारिया)",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ202301041344",
       "mobile": "9509724432",
       "email": "sharmasakshi4432@gmail.com",
@@ -19340,9 +21416,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sakshee Sharma",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "506695",
+      "school_code": "506695",
+      "school_name_en": "Govt. Primary School Bagrai Kumhariya",
+      "school_name_hi": "रा.प्रा.वि. बागरिया (कुम्हारिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1672",
@@ -19350,8 +21428,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1975-10-07",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.प्रा.वि. हाथीपुरा",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJBW200508029082",
       "mobile": "9829981055",
       "email": "vijay.aryan.verma@gmail.com",
@@ -19365,9 +21443,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Vijay Kumar Verma",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488794",
+      "school_code": "488794",
+      "school_name_en": "Govt. Primary School Hathipura",
+      "school_name_hi": "रा.प्रा.वि. हाथीपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1673",
@@ -19375,8 +21455,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1998-11-14",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.प्रा.वि. हाथीपुरा",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ202301040572",
       "mobile": "8504851441",
       "email": "payalvaishnav141198@gmail.com",
@@ -19390,9 +21470,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Payal Vaishnav",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488794",
+      "school_code": "488794",
+      "school_name_en": "Govt. Primary School Hathipura",
+      "school_name_hi": "रा.प्रा.वि. हाथीपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1674",
@@ -19400,8 +21482,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1981-12-12",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बूबकिया",
-      "peeo_name": "PEEO BOOBKIYA",
+      "school_name": "रा.उ.प्रा.वि. कीटाप",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ200801013843",
       "mobile": "8949355898",
       "email": "kamleshlohiya32@gmail.com",
@@ -19415,9 +21497,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Kamalesh Lohiya",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221763",
-      "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "shala_darpan_code": "463076",
+      "school_code": "463076",
+      "school_name_en": "Govt. Upper Primary School Keetap",
+      "school_name_hi": "रा.उ.प्रा.वि. कीटाप",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1675",
@@ -19425,8 +21509,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "15/07/1990",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बूबकिया",
-      "peeo_name": "PEEO BOOBKIYA",
+      "school_name": "रा.उ.प्रा.वि. कीटाप",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ201801022395",
       "mobile": "9461540633",
       "email": "artimeena19@gmail.com",
@@ -19440,9 +21524,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Aaratee Meena",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221763",
-      "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "shala_darpan_code": "463076",
+      "school_code": "463076",
+      "school_name_en": "Govt. Upper Primary School Keetap",
+      "school_name_hi": "रा.उ.प्रा.वि. कीटाप",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1676",
@@ -19450,8 +21536,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "24/7/1982",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बूबकिया",
-      "peeo_name": "PEEO BOOBKIYA",
+      "school_name": "रा.उ.प्रा.वि. कीटाप",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ201801053806",
       "mobile": "7726874490",
       "email": "sks24071982@gmail.com",
@@ -19465,9 +21551,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Surendr Kumar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221763",
-      "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "shala_darpan_code": "463076",
+      "school_code": "463076",
+      "school_name_en": "Govt. Upper Primary School Keetap",
+      "school_name_hi": "रा.उ.प्रा.वि. कीटाप",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1677",
@@ -19475,8 +21563,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "20/7/1977",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बूबकिया",
-      "peeo_name": "PEEO BOOBKIYA",
+      "school_name": "रा.उ.प्रा.वि. कीटाप",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJSK200133003287",
       "mobile": "9982638989",
       "email": "laxmanraidas93@gmail.com",
@@ -19490,9 +21578,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Lakshman Raidas",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221763",
-      "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "shala_darpan_code": "463076",
+      "school_code": "463076",
+      "school_name_en": "Govt. Upper Primary School Keetap",
+      "school_name_hi": "रा.उ.प्रा.वि. कीटाप",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1678",
@@ -19500,8 +21590,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "15/12/2001",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बूबकिया",
-      "peeo_name": "PEEO BOOBKIYA",
+      "school_name": "रा.उ.प्रा.वि. कीटाप",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ202301041077",
       "mobile": "9602719043",
       "email": "dsbvaishnav@gmail.com",
@@ -19515,9 +21605,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Dasharath Vaishnav",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221763",
-      "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "shala_darpan_code": "463076",
+      "school_code": "463076",
+      "school_name_en": "Govt. Upper Primary School Keetap",
+      "school_name_hi": "रा.उ.प्रा.वि. कीटाप",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1679",
@@ -19525,8 +21617,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1969-10-08",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बूबकिया",
-      "peeo_name": "PEEO BOOBKIYA",
+      "school_name": "रा.उ.प्रा.वि. कीटाप",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ200901007951",
       "mobile": "9461513511",
       "email": "kalpna1969@gmail.com",
@@ -19540,9 +21632,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Kalpana Panwar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221763",
-      "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "shala_darpan_code": "463076",
+      "school_code": "463076",
+      "school_name_en": "Govt. Upper Primary School Keetap",
+      "school_name_hi": "रा.उ.प्रा.वि. कीटाप",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1680",
@@ -19550,8 +21644,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1995-05-07",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बूबकिया",
-      "peeo_name": "PEEO BOOBKIYA",
+      "school_name": "रा.उ.प्रा.वि. कीटाप",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ201801019916",
       "mobile": "8824524946",
       "email": "mamtajoshi124@gmail.com",
@@ -19565,9 +21659,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mamta Sharma",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221763",
-      "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "shala_darpan_code": "463076",
+      "school_code": "463076",
+      "school_name_en": "Govt. Upper Primary School Keetap",
+      "school_name_hi": "रा.उ.प्रा.वि. कीटाप",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1681",
@@ -19575,8 +21671,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1990-11-03",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बूबकिया",
-      "peeo_name": "PEEO BOOBKIYA",
+      "school_name": "रा.उ.प्रा.वि. कीटाप",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJBR201904023910",
       "mobile": "8696090350",
       "email": "deepaksharmaalwar2019@gamil.com",
@@ -19590,9 +21686,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Deepak",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221763",
-      "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "shala_darpan_code": "463076",
+      "school_code": "463076",
+      "school_name_en": "Govt. Upper Primary School Keetap",
+      "school_name_hi": "रा.उ.प्रा.वि. कीटाप",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1682",
@@ -19600,8 +21698,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1979-01-08",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बूबकिया",
-      "peeo_name": "PEEO BOOBKIYA",
+      "school_name": "रा.उ.प्रा.वि. कीटाप",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ200901006932",
       "mobile": "9829478707",
       "email": "parvatimaheshwari82@gmail.com",
@@ -19615,9 +21713,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Parvatee Maheshavaree",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221763",
-      "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "shala_darpan_code": "463076",
+      "school_code": "463076",
+      "school_name_en": "Govt. Upper Primary School Keetap",
+      "school_name_hi": "रा.उ.प्रा.वि. कीटाप",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1683",
@@ -19625,8 +21725,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1988-09-05",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
-      "peeo_name": "PEEO BANDANWARA",
+      "school_name": "रा.उ.प्रा.वि. सूरजपुरा",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ201501006433",
       "mobile": "9214732324",
       "email": "maheshkitap@gmail.com",
@@ -19640,9 +21740,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mahesh Kumar Pareek",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221769",
-      "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "shala_darpan_code": "410903",
+      "school_code": "410903",
+      "school_name_en": "Govt. Upper Primary School Surajpura",
+      "school_name_hi": "रा.उ.प्रा.वि. सूरजपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1684",
@@ -19650,8 +21752,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1978-01-06",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
-      "peeo_name": "PEEO BANDANWARA",
+      "school_name": "रा.उ.प्रा.वि. सूरजपुरा",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ200901007184",
       "mobile": "9571570606",
       "email": "sirarsnayak@gmail.com",
@@ -19665,9 +21767,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Seeta Nayak",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221769",
-      "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "shala_darpan_code": "410903",
+      "school_code": "410903",
+      "school_name_en": "Govt. Upper Primary School Surajpura",
+      "school_name_hi": "रा.उ.प्रा.वि. सूरजपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1685",
@@ -19675,8 +21779,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1989-01-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
-      "peeo_name": "PEEO BANDANWARA",
+      "school_name": "रा.उ.प्रा.वि. सूरजपुरा",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJBU201810026146",
       "mobile": "8107777765",
       "email": "lokeshannu18@gmail.com",
@@ -19690,9 +21794,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Lokesh Kumar Sharma",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221769",
-      "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "shala_darpan_code": "410903",
+      "school_code": "410903",
+      "school_name_en": "Govt. Upper Primary School Surajpura",
+      "school_name_hi": "रा.उ.प्रा.वि. सूरजपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1686",
@@ -19700,8 +21806,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "15-01-1993",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
-      "peeo_name": "PEEO BANDANWARA",
+      "school_name": "रा.उ.प्रा.वि. सूरजपुरा",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJNA201828037119",
       "mobile": "8290359387",
       "email": "mamtanayak6104@gmail.com",
@@ -19715,9 +21821,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mamta",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221769",
-      "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "shala_darpan_code": "410903",
+      "school_code": "410903",
+      "school_name_en": "Govt. Upper Primary School Surajpura",
+      "school_name_hi": "रा.उ.प्रा.वि. सूरजपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1687",
@@ -19725,8 +21833,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1994-01-07",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
-      "peeo_name": "PEEO BANDANWARA",
+      "school_name": "रा.उ.प्रा.वि. सूरजपुरा",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ201801056994",
       "mobile": "7891207247",
       "email": "singhramender7@gmail.com",
@@ -19740,9 +21848,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ramendr Sinh",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221769",
-      "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "shala_darpan_code": "410903",
+      "school_code": "410903",
+      "school_name_en": "Govt. Upper Primary School Surajpura",
+      "school_name_hi": "रा.उ.प्रा.वि. सूरजपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1688",
@@ -19750,8 +21860,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "29-10-1971",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
-      "peeo_name": "PEEO BANDANWARA",
+      "school_name": "रा.उ.प्रा.वि. सूरजपुरा",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "RJAJ199106001544",
       "mobile": "9929183463",
       "email": "vinodkumarbdw789@gmail.com",
@@ -19765,9 +21875,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Vinod Kumar Verma",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221769",
-      "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "shala_darpan_code": "410903",
+      "school_code": "410903",
+      "school_name_en": "Govt. Upper Primary School Surajpura",
+      "school_name_hi": "रा.उ.प्रा.वि. सूरजपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1689",
@@ -19775,8 +21887,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1994-04-06",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
-      "peeo_name": "PEEO BANDANWARA",
+      "school_name": "रा.उ.प्रा.वि. सूरजपुरा",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "ARJUN.KUMAR.JANGID1",
       "mobile": "7737190405",
       "email": "arjunjangid093@gmail.com",
@@ -19790,9 +21902,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Arjun Kumar Jangid",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221769",
-      "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "shala_darpan_code": "410903",
+      "school_code": "410903",
+      "school_name_en": "Govt. Upper Primary School Surajpura",
+      "school_name_hi": "रा.उ.प्रा.वि. सूरजपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1690",
@@ -19800,8 +21914,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1988-08-08",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
-      "peeo_name": "PEEO BANDANWARA",
+      "school_name": "रा.उ.प्रा.वि. सूरजपुरा",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "MEENU.SAINI3",
       "mobile": "8619710108",
       "email": "meenusainiksg@gmail.com",
@@ -19815,9 +21929,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Meenoo Saini",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221769",
-      "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "shala_darpan_code": "410903",
+      "school_code": "410903",
+      "school_name_en": "Govt. Upper Primary School Surajpura",
+      "school_name_hi": "रा.उ.प्रा.वि. सूरजपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1691",
@@ -19825,8 +21941,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "2000-10-08",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
-      "peeo_name": "PEEO BANDANWARA",
+      "school_name": "रा.उ.प्रा.वि. सूरजपुरा",
+      "peeo_name": "PEEO KUMHARIYA",
       "sso_id": "SUBHASH.CHAND.BIJAR1",
       "mobile": "8290077089",
       "email": "sagarsohanidevi@gmail.com",
@@ -19840,9 +21956,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Subhash Chnd Bijaraniya",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221769",
-      "school_code": "221769",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "shala_darpan_code": "410903",
+      "school_code": "410903",
+      "school_name_en": "Govt. Upper Primary School Surajpura",
+      "school_name_hi": "रा.उ.प्रा.वि. सूरजपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1692",
@@ -19867,7 +21985,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221759",
       "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "school_name_en": "Govt. Sr. Sec. School Lamgara",
+      "school_name_hi": "रा.उ.मा.वि. लामगरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1693",
@@ -19892,7 +22012,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221759",
       "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "school_name_en": "Govt. Sr. Sec. School Lamgara",
+      "school_name_hi": "रा.उ.मा.वि. लामगरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1694",
@@ -19917,7 +22039,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221759",
       "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "school_name_en": "Govt. Sr. Sec. School Lamgara",
+      "school_name_hi": "रा.उ.मा.वि. लामगरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1695",
@@ -19942,7 +22066,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221759",
       "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "school_name_en": "Govt. Sr. Sec. School Lamgara",
+      "school_name_hi": "रा.उ.मा.वि. लामगरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1696",
@@ -19967,7 +22093,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221759",
       "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "school_name_en": "Govt. Sr. Sec. School Lamgara",
+      "school_name_hi": "रा.उ.मा.वि. लामगरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1697",
@@ -19992,7 +22120,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221759",
       "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "school_name_en": "Govt. Sr. Sec. School Lamgara",
+      "school_name_hi": "रा.उ.मा.वि. लामगरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1698",
@@ -20017,7 +22147,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221759",
       "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "school_name_en": "Govt. Sr. Sec. School Lamgara",
+      "school_name_hi": "रा.उ.मा.वि. लामगरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1699",
@@ -20042,7 +22174,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221759",
       "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "school_name_en": "Govt. Sr. Sec. School Lamgara",
+      "school_name_hi": "रा.उ.मा.वि. लामगरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1700",
@@ -20067,7 +22201,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221759",
       "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "school_name_en": "Govt. Sr. Sec. School Lamgara",
+      "school_name_hi": "रा.उ.मा.वि. लामगरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1701",
@@ -20092,7 +22228,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221759",
       "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "school_name_en": "Govt. Sr. Sec. School Lamgara",
+      "school_name_hi": "रा.उ.मा.वि. लामगरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1702",
@@ -20117,7 +22255,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221759",
       "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "school_name_en": "Govt. Sr. Sec. School Lamgara",
+      "school_name_hi": "रा.उ.मा.वि. लामगरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1703",
@@ -20142,7 +22282,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221759",
       "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "school_name_en": "Govt. Sr. Sec. School Lamgara",
+      "school_name_hi": "रा.उ.मा.वि. लामगरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1704",
@@ -20167,7 +22309,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221759",
       "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "school_name_en": "Govt. Sr. Sec. School Lamgara",
+      "school_name_hi": "रा.उ.मा.वि. लामगरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1705",
@@ -20192,7 +22336,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Assistant",
       "shala_darpan_code": "221759",
       "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "school_name_en": "Govt. Sr. Sec. School Lamgara",
+      "school_name_hi": "रा.उ.मा.वि. लामगरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1706",
@@ -20217,7 +22363,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Teacher",
       "shala_darpan_code": "221759",
       "school_code": "221759",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "school_name_en": "Govt. Sr. Sec. School Lamgara",
+      "school_name_hi": "रा.उ.मा.वि. लामगरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1707",
@@ -20225,8 +22373,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "15-06-1967",
       "post": "प्रधानाचार्य",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. गनाहेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ199001008066",
       "mobile": "9461981723",
       "email": "GSSGANAHERABHINAI@GMAIL.COM",
@@ -20240,9 +22388,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Rashmi Malaveey",
       "post_en": "Principal (L-16)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221760",
+      "school_code": "221760",
+      "school_name_en": "Govt. Sr. Sec. School Ganahera",
+      "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1708",
@@ -20250,8 +22400,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "11-07-1975",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. गनाहेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ199606002616",
       "mobile": "9460357416",
       "email": "GSSGANAHERABHINAI@GMAIL.COM",
@@ -20265,9 +22415,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Alaka Kumaree Choudhary",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221760",
+      "school_code": "221760",
+      "school_name_en": "Govt. Sr. Sec. School Ganahera",
+      "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1709",
@@ -20275,8 +22427,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "08-12-1969",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. गनाहेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ199701002012",
       "mobile": "9929756060",
       "email": "GSSGANAHERABHINAI@GMAIL.COM",
@@ -20290,9 +22442,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ashok Kumar Jain",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221760",
+      "school_code": "221760",
+      "school_name_en": "Govt. Sr. Sec. School Ganahera",
+      "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1710",
@@ -20300,8 +22454,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "13-10-1989",
       "post": "व्याख्याता",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. गनाहेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJUD201739008828",
       "mobile": "9950785143",
       "email": "GSSGANAHERABHINAI@GMAIL.COM",
@@ -20315,9 +22469,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Dayannd Maroo",
       "post_en": "School Lecturer (L-12)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221760",
+      "school_code": "221760",
+      "school_name_en": "Govt. Sr. Sec. School Ganahera",
+      "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1711",
@@ -20325,8 +22481,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "25-10-1982",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. गनाहेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ201201037988",
       "mobile": "7737335704",
       "email": "GSSGANAHERABHINAI@GMAIL.COM",
@@ -20340,9 +22496,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Dinesh Kumar Vaishnav",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221760",
+      "school_code": "221760",
+      "school_name_en": "Govt. Sr. Sec. School Ganahera",
+      "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1712",
@@ -20350,8 +22508,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "01-06-1967",
       "post": "प्रधानाचार्य",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. गनाहेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ199301010548",
       "mobile": "9784504980",
       "email": "GSSGANAHERABHINAI@GMAIL.COM",
@@ -20365,9 +22523,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Harilal Regar",
       "post_en": "Principal (L-16)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221760",
+      "school_code": "221760",
+      "school_name_en": "Govt. Sr. Sec. School Ganahera",
+      "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1713",
@@ -20375,8 +22535,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "20-07-1982",
       "post": "व्याख्याता",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. गनाहेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ201201037993",
       "mobile": "9660137265",
       "email": "GSSGANAHERABHINAI@GMAIL.COM",
@@ -20390,9 +22550,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Hariram Balaee",
       "post_en": "School Lecturer (L-12)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221760",
+      "school_code": "221760",
+      "school_name_en": "Govt. Sr. Sec. School Ganahera",
+      "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1714",
@@ -20400,8 +22562,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "01-07-1970",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. गनाहेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ199501001772",
       "mobile": "9460091286",
       "email": "GSSGANAHERABHINAI@GMAIL.COM",
@@ -20415,9 +22577,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Jahid Husain Ansaree",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221760",
+      "school_code": "221760",
+      "school_name_en": "Govt. Sr. Sec. School Ganahera",
+      "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1715",
@@ -20425,8 +22589,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "01-05-1982",
       "post": "व्याख्याता",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. गनाहेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAL201302026943",
       "mobile": "9799859239",
       "email": "GSSGANAHERABHINAI@GMAIL.COM",
@@ -20440,9 +22604,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mahesh Kumar Bunakar",
       "post_en": "School Lecturer (L-12)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221760",
+      "school_code": "221760",
+      "school_name_en": "Govt. Sr. Sec. School Ganahera",
+      "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1716",
@@ -20450,8 +22616,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "01-09-1977",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. गनाहेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJBW200308004089",
       "mobile": "9929734317",
       "email": "GSSGANAHERABHINAI@GMAIL.COM",
@@ -20465,9 +22631,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Panchoolal Meghavnshee",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221760",
+      "school_code": "221760",
+      "school_name_en": "Govt. Sr. Sec. School Ganahera",
+      "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1717",
@@ -20475,8 +22643,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "23-08-1969",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. गनाहेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ199101001606",
       "mobile": "7073124915",
       "email": "GSSGANAHERABHINAI@GMAIL.COM",
@@ -20490,9 +22658,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Prem Devee Bairwa",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221760",
+      "school_code": "221760",
+      "school_name_en": "Govt. Sr. Sec. School Ganahera",
+      "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1718",
@@ -20500,8 +22670,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "05-06-1974",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. गनाहेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ199901001246",
       "mobile": "9001498640",
       "email": "GSSGANAHERABHINAI@GMAIL.COM",
@@ -20515,9 +22685,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ramakaran Regar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221760",
+      "school_code": "221760",
+      "school_name_en": "Govt. Sr. Sec. School Ganahera",
+      "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1719",
@@ -20525,8 +22697,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "21-09-1978",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. गनाहेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ201301001093",
       "mobile": "9950044078",
       "email": "GSSGANAHERABHINAI@GMAIL.COM",
@@ -20540,9 +22712,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ramadhan Kumhar",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221760",
+      "school_code": "221760",
+      "school_name_en": "Govt. Sr. Sec. School Ganahera",
+      "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1720",
@@ -20550,8 +22724,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "01-06-1973",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. गनाहेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ199801008369",
       "mobile": "9799983001",
       "email": "GSSGANAHERABHINAI@GMAIL.COM",
@@ -20565,9 +22739,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shyojee Ram Bairwa",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221760",
+      "school_code": "221760",
+      "school_name_en": "Govt. Sr. Sec. School Ganahera",
+      "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1721",
@@ -20575,8 +22751,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "23-02-1973",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. गनाहेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ199601021723",
       "mobile": "9251008500",
       "email": "GSSGANAHERABHINAI@GMAIL.COM",
@@ -20590,9 +22766,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Tarachnd Prajapat",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221760",
+      "school_code": "221760",
+      "school_name_en": "Govt. Sr. Sec. School Ganahera",
+      "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1722",
@@ -20600,8 +22778,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "04-09-1990",
       "post": "बेसिक कंप्यूटर अनुदेशक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. गनाहेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "VISHNU.JANGID15",
       "mobile": "8432091212",
       "email": "GSSGANAHERABHINAI@GMAIL.COM",
@@ -20615,9 +22793,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Vishnu Jangiड़",
       "post_en": "Basic Computer Instructor",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221760",
+      "school_code": "221760",
+      "school_name_en": "Govt. Sr. Sec. School Ganahera",
+      "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1723",
@@ -20625,8 +22805,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "16-01-1997",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. गनाहेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "VIVEK14",
       "mobile": "9785346555",
       "email": "GSSGANAHERABHINAI@GMAIL.COM",
@@ -20640,9 +22820,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Vivek",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221760",
+      "school_code": "221760",
+      "school_name_en": "Govt. Sr. Sec. School Ganahera",
+      "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1724",
@@ -20650,8 +22832,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1971-03-20",
       "post": "प्रधानाचार्य",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. निमेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ20031000716",
       "mobile": "9460790413",
       "email": "ss3510069@gmail.com",
@@ -20665,9 +22847,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shreematee Sunita Sharma",
       "post_en": "Principal (L-16)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221761",
+      "school_code": "221761",
+      "school_name_en": "Govt. Sr. Sec. School Nimeda",
+      "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1725",
@@ -20675,8 +22859,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1966-06-26",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. निमेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ198601008214",
       "mobile": "8107859990",
       "email": "lalpanchu825@gmail.com",
@@ -20690,9 +22874,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Panchu Lal Kheenchee",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221761",
+      "school_code": "221761",
+      "school_name_en": "Govt. Sr. Sec. School Nimeda",
+      "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1726",
@@ -20700,8 +22886,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1973-05-14",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. निमेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ200506001430",
       "mobile": "8078654534",
       "email": "puransingh9812220705@gmail.com",
@@ -20715,9 +22901,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Pooran Sinh",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221761",
+      "school_code": "221761",
+      "school_name_en": "Govt. Sr. Sec. School Nimeda",
+      "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1727",
@@ -20725,8 +22913,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1978-10-13",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. निमेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJNA201228022874",
       "mobile": "8290323331",
       "email": "meenag918@gmail.com",
@@ -20740,9 +22928,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Gopal Lal Meena",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221761",
+      "school_code": "221761",
+      "school_name_en": "Govt. Sr. Sec. School Nimeda",
+      "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1728",
@@ -20750,8 +22940,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1992-09-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. निमेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJBW201808025631",
       "mobile": "7568234433",
       "email": "navalkishorsaini84@gmail.com",
@@ -20765,9 +22955,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Naval Kishor Saini",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221761",
+      "school_code": "221761",
+      "school_name_en": "Govt. Sr. Sec. School Nimeda",
+      "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1729",
@@ -20775,8 +22967,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1977-09-02",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. निमेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJTO200536016495",
       "mobile": "9785571292",
       "email": "devendrachawla.0209@gmail.com",
@@ -20790,9 +22982,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Devendr Kumar Chavada",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221761",
+      "school_code": "221761",
+      "school_name_en": "Govt. Sr. Sec. School Nimeda",
+      "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1730",
@@ -20800,8 +22994,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1984-12-08",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. निमेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ200701001663",
       "mobile": "9887143804",
       "email": "shankermeghwanshi@gmail.com",
@@ -20815,9 +23009,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Shnkar Lal Bhanbee",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221761",
+      "school_code": "221761",
+      "school_name_en": "Govt. Sr. Sec. School Nimeda",
+      "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1731",
@@ -20825,8 +23021,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1979-10-04",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. निमेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ200301001370",
       "mobile": "9928808209",
       "email": "nakwalsdeepal@gmail.com",
@@ -20840,9 +23036,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Deepak Nakaval",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221761",
+      "school_code": "221761",
+      "school_name_en": "Govt. Sr. Sec. School Nimeda",
+      "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1732",
@@ -20850,8 +23048,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1979-07-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. निमेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJJL200721011233",
       "mobile": "9929676130",
       "email": "veenanarayan1979@gmail.com",
@@ -20865,9 +23063,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shreematee Veena",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221761",
+      "school_code": "221761",
+      "school_name_en": "Govt. Sr. Sec. School Nimeda",
+      "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1733",
@@ -20875,8 +23075,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1971-10-02",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. निमेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ199301010494",
       "mobile": "9660965658",
       "email": "manju.jhakal17@gmail.com",
@@ -20890,9 +23090,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shreematee Manju Devee",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221761",
+      "school_code": "221761",
+      "school_name_en": "Govt. Sr. Sec. School Nimeda",
+      "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1734",
@@ -20900,8 +23102,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1972-09-09",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. निमेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ201201046574",
       "mobile": "6375260217",
       "email": "rajendradeolia72@gmail.com",
@@ -20915,9 +23117,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Rajendra Kumar Sharma",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221761",
+      "school_code": "221761",
+      "school_name_en": "Govt. Sr. Sec. School Nimeda",
+      "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1735",
@@ -20925,8 +23129,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "22/10/1970",
       "post": "प्रबोधक",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. उदयपुर खेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ200801025471",
       "mobile": "9001018218",
       "email": "sunita221070@gmail.com",
@@ -20940,9 +23144,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sunita Jain",
       "post_en": "Prabodhak",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "410964",
+      "school_code": "410964",
+      "school_name_en": "Govt. Upper Primary School Udaipur Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. उदयपुर खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1736",
@@ -20950,8 +23156,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "13/11/1979",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. उदयपुर खेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ201201037666",
       "mobile": "8239559748",
       "email": "shivrajmeena110@gmail.com",
@@ -20965,9 +23171,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shivaraj Meena",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "410964",
+      "school_code": "410964",
+      "school_name_en": "Govt. Upper Primary School Udaipur Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. उदयपुर खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1737",
@@ -20975,8 +23183,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1991-02-10",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. उदयपुर खेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ201801022564",
       "mobile": "9571067186",
       "email": "yogisanwarnath9571@gmail.com",
@@ -20990,9 +23198,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sanvar Nath Yogee",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "410964",
+      "school_code": "410964",
+      "school_name_en": "Govt. Upper Primary School Udaipur Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. उदयपुर खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1738",
@@ -21000,8 +23210,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1993-10-12",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. उदयपुर खेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ201801053607",
       "mobile": "9667196471",
       "email": "brarsukhraj47@gmail.com",
@@ -21015,9 +23225,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sukharaj Sinh",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "410964",
+      "school_code": "410964",
+      "school_name_en": "Govt. Upper Primary School Udaipur Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. उदयपुर खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1739",
@@ -21025,8 +23237,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1984-11-12",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. उदयपुर खेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ201901002129",
       "mobile": "9772558980",
       "email": "skumarshiyag@gmail.com",
@@ -21040,9 +23252,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Surendra Kumar",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "410964",
+      "school_code": "410964",
+      "school_name_en": "Govt. Upper Primary School Udaipur Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. उदयपुर खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1740",
@@ -21050,8 +23264,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "21/04/1995",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. उदयपुर खेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ201901008183",
       "mobile": "6377261895",
       "email": "Choudharyseema353@gmail.com",
@@ -21065,9 +23279,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Seema Devee Deroo",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "410964",
+      "school_code": "410964",
+      "school_name_en": "Govt. Upper Primary School Udaipur Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. उदयपुर खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1741",
@@ -21075,8 +23291,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "24/11/1993",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. देवरिया",
-      "peeo_name": "PEEO DEVPURA",
+      "school_name": "रा.उ.प्रा.वि. उदयपुर खेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ201901034186",
       "mobile": "9251759256",
       "email": "gurjarranjeet689@gmail.com",
@@ -21090,9 +23306,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ranajeet Gurjar",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "488941",
-      "school_code": "488941",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "shala_darpan_code": "410964",
+      "school_code": "410964",
+      "school_name_en": "Govt. Upper Primary School Udaipur Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. उदयपुर खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1742",
@@ -21100,8 +23318,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "04.05.1992",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.प्रा.वि. बड़ला खेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJPA201929006942",
       "mobile": "9413333975",
       "email": "ashok.teerwal.7@gmail.com",
@@ -21115,9 +23333,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ashok Kumar Teeraval",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "485024",
+      "school_code": "485024",
+      "school_name_en": "Govt. Upper Primary School Badla Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. बड़ला खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1743",
@@ -21125,8 +23345,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "11.02.1986",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.प्रा.वि. बड़ला खेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "DINESH.KUMAR.BAIRWA20",
       "mobile": "9588033508",
       "email": "dineshkumarbairwa1121986@gmail.com",
@@ -21140,9 +23360,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Dinesh Kumar Bairwa",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "485024",
+      "school_code": "485024",
+      "school_name_en": "Govt. Upper Primary School Badla Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. बड़ला खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1744",
@@ -21150,8 +23372,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "16.09.1993",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.प्रा.वि. बड़ला खेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "201510013003",
       "mobile": "9667099781",
       "email": "gagandeepshing1115@gmail.com",
@@ -21165,9 +23387,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Gaganadeep Sinh Rathore",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "485024",
+      "school_code": "485024",
+      "school_name_en": "Govt. Upper Primary School Badla Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. बड़ला खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1745",
@@ -21175,8 +23399,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1989-04-07",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. छाछून्दरा",
-      "peeo_name": "PEEO CHHACHHUNDRA",
+      "school_name": "रा.प्रा.वि. भेरू खेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ201501004674",
       "mobile": "8003824561",
       "email": "satyanarayanbairwa789@gmail.com",
@@ -21190,9 +23414,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Satyanarayan Bairwa",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221787",
-      "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "shala_darpan_code": "506579",
+      "school_code": "506579",
+      "school_name_en": "Govt. Primary School Bheru Kheda",
+      "school_name_hi": "रा.प्रा.वि. भेरू खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1746",
@@ -21200,8 +23426,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "30/11/1998",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. छाछून्दरा",
-      "peeo_name": "PEEO CHHACHHUNDRA",
+      "school_name": "रा.प्रा.वि. भेरू खेड़ा",
+      "peeo_name": "PEEO LAMGARA",
       "sso_id": "RJAJ202201017656",
       "mobile": "8107964964",
       "email": "TC.AYUSHJAIN964964@GMAIL.COM",
@@ -21215,9 +23441,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Aayush Kumar Jain",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221787",
-      "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "shala_darpan_code": "506579",
+      "school_code": "506579",
+      "school_name_en": "Govt. Primary School Bheru Kheda",
+      "school_name_hi": "रा.प्रा.वि. भेरू खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1747",
@@ -21242,7 +23470,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1748",
@@ -21267,7 +23497,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1749",
@@ -21292,7 +23524,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1750",
@@ -21317,7 +23551,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1751",
@@ -21342,7 +23578,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1752",
@@ -21367,7 +23605,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1753",
@@ -21392,7 +23632,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1754",
@@ -21417,7 +23659,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1755",
@@ -21442,7 +23686,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1756",
@@ -21467,7 +23713,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1757",
@@ -21492,7 +23740,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1758",
@@ -21517,7 +23767,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1759",
@@ -21542,7 +23794,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1760",
@@ -21567,7 +23821,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1761",
@@ -21592,7 +23848,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Assistant (UDC / L-8)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1762",
@@ -21617,7 +23875,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1763",
@@ -21642,7 +23902,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1764",
@@ -21667,7 +23929,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1765",
@@ -21692,7 +23956,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1766",
@@ -21717,7 +23983,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1767",
@@ -21742,7 +24010,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1768",
@@ -21767,7 +24037,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Supporting Staff (Class-IV)",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1769",
@@ -21775,8 +24047,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1991-07-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. चापानेरी",
-      "peeo_name": "PEEO CHAPANERI",
+      "school_name": "रा.उ.प्रा.वि. सपनीखेड़ा",
+      "peeo_name": "PEEO NAGOLA",
       "sso_id": "BHAGCHAND.TAK1",
       "mobile": "9928803505",
       "email": "bhagchandtank010797@gmail.com",
@@ -21790,9 +24062,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Bhagchand Tank",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221758",
-      "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "shala_darpan_code": "488790",
+      "school_code": "488790",
+      "school_name_en": "Govt. Upper Primary School Sapnikheda",
+      "school_name_hi": "रा.उ.प्रा.वि. सपनीखेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1770",
@@ -21800,8 +24074,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1997-04-02",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. चापानेरी",
-      "peeo_name": "PEEO CHAPANERI",
+      "school_name": "रा.उ.प्रा.वि. सपनीखेड़ा",
+      "peeo_name": "PEEO NAGOLA",
       "sso_id": "MANOHAR.CHOUDHRY2",
       "mobile": "7742508109",
       "email": "manoharchandchoudhary9797@gmail.com",
@@ -21815,9 +24089,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Manohar Choudhary",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221758",
-      "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "shala_darpan_code": "488790",
+      "school_code": "488790",
+      "school_name_en": "Govt. Upper Primary School Sapnikheda",
+      "school_name_hi": "रा.उ.प्रा.वि. सपनीखेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1771",
@@ -21825,8 +24101,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1985-06-16",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. चापानेरी",
-      "peeo_name": "PEEO CHAPANERI",
+      "school_name": "रा.उ.प्रा.वि. सपनीखेड़ा",
+      "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ201301032681",
       "mobile": "9571393478",
       "email": "lalitameena913@gmail.com",
@@ -21840,9 +24116,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Lalita Kumaree Meena",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221758",
-      "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "shala_darpan_code": "488790",
+      "school_code": "488790",
+      "school_name_en": "Govt. Upper Primary School Sapnikheda",
+      "school_name_hi": "रा.उ.प्रा.वि. सपनीखेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1772",
@@ -21850,8 +24128,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1990-10-13",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. चापानेरी",
-      "peeo_name": "PEEO CHAPANERI",
+      "school_name": "रा.उ.प्रा.वि. सपनीखेड़ा",
+      "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ2018012029027",
       "mobile": "9785808211",
       "email": "balramyadav8211@gmail.com",
@@ -21865,9 +24143,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Balaram Yadav",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221758",
-      "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "shala_darpan_code": "488790",
+      "school_code": "488790",
+      "school_name_en": "Govt. Upper Primary School Sapnikheda",
+      "school_name_hi": "रा.उ.प्रा.वि. सपनीखेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1773",
@@ -21875,8 +24155,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1987-07-09",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. चापानेरी",
-      "peeo_name": "PEEO CHAPANERI",
+      "school_name": "रा.उ.प्रा.वि. सपनीखेड़ा",
+      "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJPG201930018490",
       "mobile": "7891349129",
       "email": "nshbhati1987@gmail.com",
@@ -21890,9 +24170,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Naresh Sih Bhatee",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221758",
-      "school_code": "221758",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "shala_darpan_code": "488790",
+      "school_code": "488790",
+      "school_name_en": "Govt. Upper Primary School Sapnikheda",
+      "school_name_hi": "रा.उ.प्रा.वि. सपनीखेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1774",
@@ -21900,8 +24182,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1993-12-29",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
+      "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ201801057549",
       "mobile": "9602145968",
       "email": "sevasartaj@gmail.com",
@@ -21915,9 +24197,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sevaram",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "506475",
+      "school_code": "506475",
+      "school_name_en": "Govt. Upper Primary School Balapura Nagola",
+      "school_name_hi": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1775",
@@ -21925,8 +24209,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1993-01-10",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
+      "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJBW201808035297",
       "mobile": "9680508258",
       "email": "harishyadav315@gmail.com",
@@ -21940,9 +24224,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Hari Narayan Yadav",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "506475",
+      "school_code": "506475",
+      "school_name_en": "Govt. Upper Primary School Balapura Nagola",
+      "school_name_hi": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1776",
@@ -21950,8 +24236,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1991-01-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
+      "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ201901017713",
       "mobile": "9602661700",
       "email": "rinkukumari6617@gmail.com",
@@ -21965,9 +24251,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Rinkoo Kumaree",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "506475",
+      "school_code": "506475",
+      "school_name_en": "Govt. Upper Primary School Balapura Nagola",
+      "school_name_hi": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1777",
@@ -21975,8 +24263,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1995-08-02",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
+      "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ201901017707",
       "mobile": "7734863273",
       "email": "pramilak12@gmail.com",
@@ -21990,9 +24278,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Pramila Pahadiya",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "506475",
+      "school_code": "506475",
+      "school_name_en": "Govt. Upper Primary School Balapura Nagola",
+      "school_name_hi": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1778",
@@ -22000,8 +24290,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "2000-07-05",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
+      "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ202301033954",
       "mobile": "8690383076",
       "email": "kaushalyabhambhi@gmail.com",
@@ -22015,9 +24305,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Kaushalya Bhanbhee",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "506475",
+      "school_code": "506475",
+      "school_name_en": "Govt. Upper Primary School Balapura Nagola",
+      "school_name_hi": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1779",
@@ -22025,8 +24317,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1984-07-05",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
+      "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ201201043985",
       "mobile": "9783835181",
       "email": "sunitabakoliya05@gmail.com",
@@ -22040,9 +24332,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sunita Bakoliya",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "506475",
+      "school_code": "506475",
+      "school_name_en": "Govt. Upper Primary School Balapura Nagola",
+      "school_name_hi": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1780",
@@ -22050,8 +24344,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1996-12-17",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. करांटी",
-      "peeo_name": "PEEO KARATI",
+      "school_name": "रा.प्रा.वि. खरोला का खेड़ा",
+      "peeo_name": "PEEO NAGOLA",
       "sso_id": "MAHAVEER.SUNGH.DEVR1",
       "mobile": "9982195997",
       "email": "devramahaveer1996@gmail.com",
@@ -22065,9 +24359,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mahaveer Sinh Devada",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "488788",
+      "school_code": "488788",
+      "school_name_en": "Govt. Primary School Kharola Ka Kheda",
+      "school_name_hi": "रा.प्रा.वि. खरोला का खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1781",
@@ -22075,8 +24371,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1995-11-26",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. करांटी",
-      "peeo_name": "PEEO KARATI",
+      "school_name": "रा.प्रा.वि. खरोला का खेड़ा",
+      "peeo_name": "PEEO NAGOLA",
       "sso_id": "SHAITAN.KUMAWAT2",
       "mobile": "9610707972",
       "email": "shaitankumawat287@gmail.com",
@@ -22090,9 +24386,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shaitan Kumawat",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "488788",
+      "school_code": "488788",
+      "school_name_en": "Govt. Primary School Kharola Ka Kheda",
+      "school_name_hi": "रा.प्रा.वि. खरोला का खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1782",
@@ -22100,8 +24398,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1992-04-02",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. करांटी",
-      "peeo_name": "PEEO KARATI",
+      "school_name": "रा.प्रा.वि. धोरामंड खेड़ा",
+      "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJBW201908010902",
       "mobile": "9413408056",
       "email": "ashishchoudhary2492@gmail.com",
@@ -22115,9 +24413,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Aasheesh Choudhary",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "488780",
+      "school_code": "488780",
+      "school_name_en": "Govt. Primary School Dhoramand Kheda",
+      "school_name_hi": "रा.प्रा.वि. धोरामंड खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1783",
@@ -22125,8 +24425,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1994-08-11",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. करांटी",
-      "peeo_name": "PEEO KARATI",
+      "school_name": "रा.प्रा.वि. धोरामंड खेड़ा",
+      "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJBW201908010902",
       "mobile": "9828616528",
       "email": "krishnabagdoliya1994@gmail.com",
@@ -22140,9 +24440,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Krishn Kant Chaiॅdharee",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221773",
-      "school_code": "221773",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "shala_darpan_code": "488780",
+      "school_code": "488780",
+      "school_name_en": "Govt. Primary School Dhoramand Kheda",
+      "school_name_hi": "रा.प्रा.वि. धोरामंड खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1784",
@@ -22167,7 +24469,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Assistant",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1785",
@@ -22192,7 +24496,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Teacher",
       "shala_darpan_code": "221772",
       "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "Govt. Sr. Sec. School Nagola",
+      "school_name_hi": "रा.उ.मा.वि. नागोला",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1786",
@@ -22200,7 +24506,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "02.06.1974",
       "post": "प्रधानाचार्य",
-      "school_name": "रा.उ.मा.वि. नागोला",
+      "school_name": "रा.उ.मा.वि. बडला (नागोला)",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ200501032035",
       "mobile": "9413682497",
@@ -22215,9 +24521,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ved Prakash",
       "post_en": "Principal (L-16)",
-      "shala_darpan_code": "221772",
-      "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "shala_darpan_code": "488781",
+      "school_code": "488781",
+      "school_name_en": "Govt. Sr. Sec. School Badla (Nagola)",
+      "school_name_hi": "रा.उ.मा.वि. बडला (नागोला)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1787",
@@ -22225,7 +24533,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "16.12.2000",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. नागोला",
+      "school_name": "रा.उ.मा.वि. बडला (नागोला)",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "HANUMANRAM75",
       "mobile": "9660242634",
@@ -22240,9 +24548,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Hanuman Ram",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221772",
-      "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "shala_darpan_code": "488781",
+      "school_code": "488781",
+      "school_name_en": "Govt. Sr. Sec. School Badla (Nagola)",
+      "school_name_hi": "रा.उ.मा.वि. बडला (नागोला)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1788",
@@ -22250,7 +24560,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "01.04.1986",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. नागोला",
+      "school_name": "रा.उ.मा.वि. बडला (नागोला)",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ201801024247",
       "mobile": "9784080563",
@@ -22265,9 +24575,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Badree Narayan Jat",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221772",
-      "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "shala_darpan_code": "488781",
+      "school_code": "488781",
+      "school_name_en": "Govt. Sr. Sec. School Badla (Nagola)",
+      "school_name_hi": "रा.उ.मा.वि. बडला (नागोला)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1789",
@@ -22275,7 +24587,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "05.01.1995",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. नागोला",
+      "school_name": "रा.उ.मा.वि. बडला (नागोला)",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "SOHAN.LAL70",
       "mobile": "9983350620",
@@ -22290,9 +24602,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sohan Lal",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221772",
-      "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "shala_darpan_code": "488781",
+      "school_code": "488781",
+      "school_name_en": "Govt. Sr. Sec. School Badla (Nagola)",
+      "school_name_hi": "रा.उ.मा.वि. बडला (नागोला)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1790",
@@ -22300,7 +24614,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "25.01.1996",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. नागोला",
+      "school_name": "रा.उ.मा.वि. बडला (नागोला)",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ20190103050",
       "mobile": "9549934932",
@@ -22315,9 +24629,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Kuladeep Sinh",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221772",
-      "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "shala_darpan_code": "488781",
+      "school_code": "488781",
+      "school_name_en": "Govt. Sr. Sec. School Badla (Nagola)",
+      "school_name_hi": "रा.उ.मा.वि. बडला (नागोला)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1791",
@@ -22325,7 +24641,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "01.06.1970",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. नागोला",
+      "school_name": "रा.उ.मा.वि. बडला (नागोला)",
       "peeo_name": "PEEO NAGOLA",
       "sso_id": "RJAJ199201002985",
       "mobile": "9571108340",
@@ -22340,9 +24656,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Omaprakash Sen",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221772",
-      "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "shala_darpan_code": "488781",
+      "school_code": "488781",
+      "school_name_en": "Govt. Sr. Sec. School Badla (Nagola)",
+      "school_name_hi": "रा.उ.मा.वि. बडला (नागोला)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1792",
@@ -22367,7 +24685,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221756",
       "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1793",
@@ -22392,7 +24712,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221756",
       "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1794",
@@ -22417,7 +24739,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221756",
       "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1795",
@@ -22442,7 +24766,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221756",
       "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1796",
@@ -22467,7 +24793,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221756",
       "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1797",
@@ -22492,7 +24820,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221756",
       "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1798",
@@ -22517,7 +24847,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221756",
       "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1799",
@@ -22542,7 +24874,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221756",
       "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1800",
@@ -22567,7 +24901,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221756",
       "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1801",
@@ -22592,7 +24928,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221756",
       "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1802",
@@ -22617,7 +24955,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221756",
       "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1803",
@@ -22642,7 +24982,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Assistant (UDC / L-8)",
       "shala_darpan_code": "221756",
       "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1804",
@@ -22667,7 +25009,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Teacher",
       "shala_darpan_code": "221756",
       "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1805",
@@ -22692,7 +25036,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Teacher",
       "shala_darpan_code": "221756",
       "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1806",
@@ -22717,7 +25063,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "410632",
       "school_code": "410632",
-      "school_name_en": "Govt. Girls Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Girls Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.बा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1807",
@@ -22742,7 +25090,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "410632",
       "school_code": "410632",
-      "school_name_en": "Govt. Girls Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Girls Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.बा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1808",
@@ -22767,7 +25117,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "410632",
       "school_code": "410632",
-      "school_name_en": "Govt. Girls Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Girls Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.बा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1809",
@@ -22792,7 +25144,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "410632",
       "school_code": "410632",
-      "school_name_en": "Govt. Girls Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Girls Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.बा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1810",
@@ -22817,7 +25171,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "410632",
       "school_code": "410632",
-      "school_name_en": "Govt. Girls Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Girls Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.बा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1811",
@@ -22842,7 +25198,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "410632",
       "school_code": "410632",
-      "school_name_en": "Govt. Girls Sr. Sec. School Nandsi"
+      "school_name_en": "Govt. Girls Sr. Sec. School Nandsi",
+      "school_name_hi": "रा.बा.उ.मा.वि. नांदसी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1812",
@@ -22850,7 +25208,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1976-02-26",
       "post": "प्रधानाचार्य / संस्था प्रधान",
-      "school_name": "रा.उ.मा.वि. नांदसी",
+      "school_name": "रा.उ.प्रा.वि. काचरिया",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ200801003653",
       "mobile": "8875123688",
@@ -22865,9 +25223,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Bhupendrasinh Rathauड़",
       "post_en": "Headmaster / Principal",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "401959",
+      "school_code": "401959",
+      "school_name_en": "Govt. Upper Primary School Kachriya",
+      "school_name_hi": "रा.उ.प्रा.वि. काचरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1813",
@@ -22875,7 +25235,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1982-09-30",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. नांदसी",
+      "school_name": "रा.उ.प्रा.वि. काचरिया",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ201201037990",
       "mobile": "9610798310",
@@ -22890,9 +25250,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sajjana",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "401959",
+      "school_code": "401959",
+      "school_name_en": "Govt. Upper Primary School Kachriya",
+      "school_name_hi": "रा.उ.प्रा.वि. काचरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1814",
@@ -22900,7 +25262,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1980-02-17",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. नांदसी",
+      "school_name": "रा.उ.प्रा.वि. काचरिया",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ201801035639",
       "mobile": "9885056213",
@@ -22915,9 +25277,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mahendra Parashar",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "401959",
+      "school_code": "401959",
+      "school_name_en": "Govt. Upper Primary School Kachriya",
+      "school_name_hi": "रा.उ.प्रा.वि. काचरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1815",
@@ -22925,7 +25289,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1991-07-05",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. नांदसी",
+      "school_name": "रा.उ.प्रा.वि. काचरिया",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ201901025015",
       "mobile": "8209928857",
@@ -22940,9 +25304,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mitu Kumaree",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "401959",
+      "school_code": "401959",
+      "school_name_en": "Govt. Upper Primary School Kachriya",
+      "school_name_hi": "रा.उ.प्रा.वि. काचरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1816",
@@ -22950,7 +25316,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1999-07-18",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. नांदसी",
+      "school_name": "रा.उ.प्रा.वि. काचरिया",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ202201020840",
       "mobile": "9664264896",
@@ -22965,9 +25331,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Deepika Choudhary",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "401959",
+      "school_code": "401959",
+      "school_name_en": "Govt. Upper Primary School Kachriya",
+      "school_name_hi": "रा.उ.प्रा.वि. काचरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1817",
@@ -22975,7 +25343,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1998-07-05",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. नांदसी",
+      "school_name": "रा.उ.प्रा.वि. काचरिया",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ202201021118",
       "mobile": "9587149926",
@@ -22990,9 +25358,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Rinkoo Jat",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "401959",
+      "school_code": "401959",
+      "school_name_en": "Govt. Upper Primary School Kachriya",
+      "school_name_hi": "रा.उ.प्रा.वि. काचरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1818",
@@ -23000,7 +25370,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1999-06-20",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. नांदसी",
+      "school_name": "रा.उ.प्रा.वि. काचरिया",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ202201020853",
       "mobile": "8764812304",
@@ -23015,9 +25385,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Chinta Kumaree Kevat",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "401959",
+      "school_code": "401959",
+      "school_name_en": "Govt. Upper Primary School Kachriya",
+      "school_name_hi": "रा.उ.प्रा.वि. काचरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1819",
@@ -23025,7 +25397,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1996-06-05",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. नांदसी",
+      "school_name": "रा.उ.प्रा.वि. काचरिया",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ202301037157",
       "mobile": "8949510844",
@@ -23040,9 +25412,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Babaloo Meghwal",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "401959",
+      "school_code": "401959",
+      "school_name_en": "Govt. Upper Primary School Kachriya",
+      "school_name_hi": "रा.उ.प्रा.वि. काचरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1820",
@@ -23050,14 +25424,14 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1997-09-08",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. नांदसी",
+      "school_name": "रा.उ.प्रा.वि. काचरिया",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ202301037718",
       "mobile": "7665485668",
       "email": "Dhanrajmali067@gmail.com",
       "bank_name": "ठव्ठ ज्ञम्ज्ञत्प्",
       "bank_acc": "759810013450",
-      "ifsc": "BARB0KEKRI",
+      "ifsc": "BARB0AJMER",
       "pan": "EVXPM0296Q",
       "aadhaar": "223837726139",
       "remarks": "नही",
@@ -23065,9 +25439,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Dhanaraj Saini",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "401959",
+      "school_code": "401959",
+      "school_name_en": "Govt. Upper Primary School Kachriya",
+      "school_name_hi": "रा.उ.प्रा.वि. काचरिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1821",
@@ -23075,7 +25451,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1967-05-05",
       "post": "प्रधानाचार्य",
-      "school_name": "रा.उ.मा.वि. नांदसी",
+      "school_name": "रा.उ.मा.वि. कुरथल",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJJP199318013655",
       "mobile": "9829157423",
@@ -23090,9 +25466,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Banna Lal Raigar",
       "post_en": "Principal (L-16)",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "221757",
+      "school_code": "221757",
+      "school_name_en": "Govt. Sr. Sec. School Kurthal",
+      "school_name_hi": "रा.उ.मा.वि. कुरथल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1822",
@@ -23100,7 +25478,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1980-12-05",
       "post": "प्रधानाचार्य",
-      "school_name": "रा.उ.मा.वि. नांदसी",
+      "school_name": "रा.उ.मा.वि. कुरथल",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJBI201209017931",
       "mobile": "9460566085",
@@ -23115,9 +25493,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sirajuddeen",
       "post_en": "Principal (L-16)",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "221757",
+      "school_code": "221757",
+      "school_name_en": "Govt. Sr. Sec. School Kurthal",
+      "school_name_hi": "रा.उ.मा.वि. कुरथल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1823",
@@ -23125,7 +25505,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1973-05-09",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. नांदसी",
+      "school_name": "रा.उ.मा.वि. कुरथल",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ199601001555",
       "mobile": "9828874347",
@@ -23140,9 +25520,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shantilal Jain",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "221757",
+      "school_code": "221757",
+      "school_name_en": "Govt. Sr. Sec. School Kurthal",
+      "school_name_hi": "रा.उ.मा.वि. कुरथल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1824",
@@ -23150,7 +25532,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "29/06/1987",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. नांदसी",
+      "school_name": "रा.उ.मा.वि. कुरथल",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ202001028365",
       "mobile": "8432229797",
@@ -23165,9 +25547,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Krishnakumar Shravadiya",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "221757",
+      "school_code": "221757",
+      "school_name_en": "Govt. Sr. Sec. School Kurthal",
+      "school_name_hi": "रा.उ.मा.वि. कुरथल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1825",
@@ -23175,7 +25559,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1988-01-10",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. नांदसी",
+      "school_name": "रा.उ.मा.वि. कुरथल",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJJP201817049759",
       "mobile": "9983637894",
@@ -23190,9 +25574,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Banavaree Lal Jat",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "221757",
+      "school_code": "221757",
+      "school_name_en": "Govt. Sr. Sec. School Kurthal",
+      "school_name_hi": "रा.उ.मा.वि. कुरथल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1826",
@@ -23200,7 +25586,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1975-01-07",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. नांदसी",
+      "school_name": "रा.उ.मा.वि. कुरथल",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ200506001426",
       "mobile": "9414780660",
@@ -23215,9 +25601,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Hari Sinh Meena",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "221757",
+      "school_code": "221757",
+      "school_name_en": "Govt. Sr. Sec. School Kurthal",
+      "school_name_hi": "रा.उ.मा.वि. कुरथल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1827",
@@ -23225,7 +25613,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "30/09/1967",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. नांदसी",
+      "school_name": "रा.उ.मा.वि. कुरथल",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ199501007100",
       "mobile": "7742670115",
@@ -23240,9 +25628,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Rajendra Prasad Sharma",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "221757",
+      "school_code": "221757",
+      "school_name_en": "Govt. Sr. Sec. School Kurthal",
+      "school_name_hi": "रा.उ.मा.वि. कुरथल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1828",
@@ -23250,7 +25640,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1971-02-10",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. नांदसी",
+      "school_name": "रा.उ.मा.वि. कुरथल",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ199601001942",
       "mobile": "9928986712",
@@ -23265,9 +25655,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Om Prakash Doriya",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "221757",
+      "school_code": "221757",
+      "school_name_en": "Govt. Sr. Sec. School Kurthal",
+      "school_name_hi": "रा.उ.मा.वि. कुरथल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1829",
@@ -23275,7 +25667,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "21/01/1975",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. नांदसी",
+      "school_name": "रा.उ.मा.वि. कुरथल",
       "peeo_name": "PEEO NANDSI",
       "sso_id": "RJAJ199806000893",
       "mobile": "8696157366",
@@ -23290,9 +25682,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Prithvee Raj Meena",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221756",
-      "school_code": "221756",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "shala_darpan_code": "221757",
+      "school_code": "221757",
+      "school_name_en": "Govt. Sr. Sec. School Kurthal",
+      "school_name_hi": "रा.उ.मा.वि. कुरथल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1830",
@@ -23317,7 +25711,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1831",
@@ -23342,7 +25738,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1832",
@@ -23367,7 +25765,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1833",
@@ -23392,7 +25792,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1834",
@@ -23417,7 +25819,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Basic Computer Instructor",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1835",
@@ -23442,7 +25846,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1836",
@@ -23467,7 +25873,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1837",
@@ -23492,7 +25900,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1838",
@@ -23517,7 +25927,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1839",
@@ -23542,7 +25954,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1840",
@@ -23567,7 +25981,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1841",
@@ -23592,7 +26008,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1842",
@@ -23617,7 +26035,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1843",
@@ -23642,7 +26062,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1844",
@@ -23667,7 +26089,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Assistant (UDC / L-8)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1845",
@@ -23692,7 +26116,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1846",
@@ -23717,7 +26143,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221788",
       "school_code": "221788",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "Govt. Sr. Sec. School Padanga",
+      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1847",
@@ -23725,8 +26153,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "2003-10-06",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
-      "peeo_name": "PEEO SOBRI",
+      "school_name": "रा.प्रा.वि. सायमाला पाडंगा",
+      "peeo_name": "PEEO PADANGA",
       "sso_id": "RINKU.JANGID2",
       "mobile": "9352202718",
       "email": "CHETANJANGID17871@GMAIL.COM",
@@ -23740,9 +26168,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Rinku Jangiड़",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "410721",
+      "school_code": "410721",
+      "school_name_en": "Govt. Primary School Saimala Padanga",
+      "school_name_hi": "रा.प्रा.वि. सायमाला पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1848",
@@ -23750,8 +26180,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1990-03-08",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
-      "peeo_name": "PEEO SOBRI",
+      "school_name": "रा.प्रा.वि. सायमाला पाडंगा",
+      "peeo_name": "PEEO PADANGA",
       "sso_id": "RJAJ201701016266",
       "mobile": "8107156540",
       "email": "MEENASUMITA1990@GMAIL.COM",
@@ -23765,9 +26195,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sumeeta Meena",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "410721",
+      "school_code": "410721",
+      "school_name_en": "Govt. Primary School Saimala Padanga",
+      "school_name_hi": "रा.प्रा.वि. सायमाला पाडंगा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1849",
@@ -23775,8 +26207,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. छाछून्दरा",
-      "peeo_name": "PEEO CHHACHHUNDRA",
+      "school_name": "रा.प्रा.वि. सवाईपुरा (पाडंगा)",
+      "peeo_name": "PEEO PADANGA",
       "sso_id": "RJAJ201301031663",
       "mobile": "9887322580",
       "email": "KANARAM988732@GMAIL.COM",
@@ -23790,9 +26222,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Kana Ram",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221787",
-      "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "shala_darpan_code": "488936",
+      "school_code": "488936",
+      "school_name_en": "Govt. Primary School Sawaipura Padanga",
+      "school_name_hi": "रा.प्रा.वि. सवाईपुरा (पाडंगा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1850",
@@ -23800,8 +26234,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. छाछून्दरा",
-      "peeo_name": "PEEO CHHACHHUNDRA",
+      "school_name": "रा.प्रा.वि. सवाईपुरा (पाडंगा)",
+      "peeo_name": "PEEO PADANGA",
       "sso_id": "RJAJ201701016168",
       "mobile": "7014834424",
       "email": "BHANUSHARMACHATURVEDI@GMAIL.COM",
@@ -23815,9 +26249,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Bhuvaneshvar Sharma",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221787",
-      "school_code": "221787",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "shala_darpan_code": "488936",
+      "school_code": "488936",
+      "school_name_en": "Govt. Primary School Sawaipura Padanga",
+      "school_name_hi": "रा.प्रा.वि. सवाईपुरा (पाडंगा)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1851",
@@ -23825,8 +26261,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "28/6/1968",
       "post": "प्रधानाचार्य / संस्था प्रधान",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
+      "peeo_name": "PEEO PADANGA",
       "sso_id": "RJBW199108005812",
       "mobile": "6378023938",
       "email": "PRATAP01011968@GMAIL.COM",
@@ -23840,9 +26276,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Pratap Sinh Rajput",
       "post_en": "Headmaster / Principal",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488943",
+      "school_code": "488943",
+      "school_name_en": "Govt. Upper Primary School Arjunpura",
+      "school_name_hi": "रा.उ.प्रा.वि. अर्जुनपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1852",
@@ -23850,8 +26288,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "24/7/1971",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
+      "peeo_name": "PEEO PADANGA",
       "sso_id": "RJJS201820035296",
       "mobile": "9001077090",
       "email": "LALBHANWAR642@GMAIL.COM",
@@ -23865,9 +26303,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Bhnvar Lal Regar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488943",
+      "school_code": "488943",
+      "school_name_en": "Govt. Upper Primary School Arjunpura",
+      "school_name_hi": "रा.उ.प्रा.वि. अर्जुनपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1853",
@@ -23875,8 +26315,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "25/12/1979",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
+      "peeo_name": "PEEO PADANGA",
       "sso_id": "RJAJ199201026588",
       "mobile": "9660508132",
       "email": "GURWANT79@GMAIL.COM",
@@ -23890,9 +26330,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Guravant Kaur",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488943",
+      "school_code": "488943",
+      "school_name_en": "Govt. Upper Primary School Arjunpura",
+      "school_name_hi": "रा.उ.प्रा.वि. अर्जुनपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1854",
@@ -23900,8 +26342,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "24/5/1993",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
+      "peeo_name": "PEEO PADANGA",
       "sso_id": "RJRA201831042537",
       "mobile": "9664105828",
       "email": "POOJAKAGOT2018@GMAIL.COM",
@@ -23915,9 +26357,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Pooja Meena",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488943",
+      "school_code": "488943",
+      "school_name_en": "Govt. Upper Primary School Arjunpura",
+      "school_name_hi": "रा.उ.प्रा.वि. अर्जुनपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1855",
@@ -23925,8 +26369,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1992-01-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
+      "peeo_name": "PEEO PADANGA",
       "sso_id": "RJAJ201901006724",
       "mobile": "9887295080",
       "email": "VIJAYLAXMISHARMA@GMAIL.COM",
@@ -23940,9 +26384,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Vijayalakshmee Sharma",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488943",
+      "school_code": "488943",
+      "school_name_en": "Govt. Upper Primary School Arjunpura",
+      "school_name_hi": "रा.उ.प्रा.वि. अर्जुनपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1856",
@@ -23950,8 +26396,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "16/7/1997",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
+      "peeo_name": "PEEO PADANGA",
       "sso_id": "RJAJ202201014836   VINOD.BHAMBI1",
       "mobile": "9694930126",
       "email": "VINODMARU58737@GMAIL.COM",
@@ -23965,9 +26411,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Vinod Bhanbee",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488943",
+      "school_code": "488943",
+      "school_name_en": "Govt. Upper Primary School Arjunpura",
+      "school_name_hi": "रा.उ.प्रा.वि. अर्जुनपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1857",
@@ -23975,8 +26423,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "14/7/1992",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
+      "peeo_name": "PEEO PADANGA",
       "sso_id": "RJAJ201901035929",
       "mobile": "9983111810",
       "email": "DURGALALGURJAR111@GMAIL.COM",
@@ -23990,9 +26438,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Durgalal Gurjar",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488943",
+      "school_code": "488943",
+      "school_name_en": "Govt. Upper Primary School Arjunpura",
+      "school_name_hi": "रा.उ.प्रा.वि. अर्जुनपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1858",
@@ -24000,8 +26450,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1993-01-02",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
+      "peeo_name": "PEEO PADANGA",
       "sso_id": "RJAJ202301046376    BIJENDRA.KUMAR3",
       "mobile": "7689937515",
       "email": "BIJENDRADHINWA@GMAIL.COM",
@@ -24015,9 +26465,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Bijendr Kumar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488943",
+      "school_code": "488943",
+      "school_name_en": "Govt. Upper Primary School Arjunpura",
+      "school_name_hi": "रा.उ.प्रा.वि. अर्जुनपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1859",
@@ -24025,8 +26477,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "31/1/1993",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "peeo_name": "PEEO GURHA KHURD",
+      "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
+      "peeo_name": "PEEO PADANGA",
       "sso_id": "RJKK202460001869   NAZMEEN1",
       "mobile": "6377779200",
       "email": "KHANNAZMEEN627@GMAIL.COM",
@@ -24040,9 +26492,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Najameen",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221762",
-      "school_code": "221762",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "shala_darpan_code": "488943",
+      "school_code": "488943",
+      "school_name_en": "Govt. Upper Primary School Arjunpura",
+      "school_name_hi": "रा.उ.प्रा.वि. अर्जुनपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1860",
@@ -24050,8 +26504,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "15/11/1967",
       "post": "प्रधानाचार्य",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ199101002087",
       "mobile": "9549364023",
       "email": "chirayupradhan20@gmail.com",
@@ -24065,9 +26519,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shreematee Lakshmee Popatanee",
       "post_en": "Principal (L-16)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1861",
@@ -24075,8 +26531,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "28/08/1992",
       "post": "व्याख्याता",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ202101002651",
       "mobile": "9414622956",
       "email": "meenuamit0311@gmail.com",
@@ -24090,9 +26546,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shreematee Meenoo Parihar",
       "post_en": "School Lecturer (L-12)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1862",
@@ -24100,8 +26558,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1968-03-09",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ199301021489",
       "mobile": "9166446266",
       "email": "bcjain68@gmail.com",
@@ -24115,9 +26573,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Bhagchand Jain",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1863",
@@ -24125,8 +26585,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1976-05-07",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ200501018304",
       "mobile": "9001245104",
       "email": "godhaakash416@gmail.com",
@@ -24140,9 +26600,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Om Prakash",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1864",
@@ -24150,8 +26612,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "15/08/1997",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJTO202336082468",
       "mobile": "8696202182",
       "email": "rakeshkumarsaini508@gmail.com",
@@ -24165,9 +26627,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Rakesh Kumar Saini",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1865",
@@ -24175,8 +26639,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "25/07/1999",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJKK202460109474",
       "mobile": "8005571647",
       "email": "mohitvaishanav04@gmail.com",
@@ -24190,9 +26654,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Mohit Kumar Vaishnav",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1866",
@@ -24200,8 +26666,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1982-01-07",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ201201017690",
       "mobile": "9252994550",
       "email": "jaluckyanu@gmail.com",
@@ -24215,9 +26681,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Dhanaraj Mochee",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1867",
@@ -24225,8 +26693,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1974-01-06",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ200506001155",
       "mobile": "9829502645",
       "email": "gopalram@3630gmail.com",
@@ -24240,9 +26708,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Gopal Ram",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1868",
@@ -24250,8 +26720,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "15/10/1996",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ202301038926",
       "mobile": "9079961827",
       "email": "vermakailash1996@gmail.com",
@@ -24265,9 +26735,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Kailash Chand",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1869",
@@ -24275,8 +26747,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "19/04/1966",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ198801002022",
       "mobile": "9784801088",
       "email": "navalkumarj045@gmail.com",
@@ -24290,9 +26762,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Naval Kumar Jain",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1870",
@@ -24300,8 +26774,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "15/09/1966",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ198701002111",
       "mobile": "9950496339",
       "email": "rajjakmohammed66@gmail.com",
@@ -24315,9 +26789,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Rajjak Mohammad",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1871",
@@ -24325,8 +26801,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1971-01-06",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ199701002301",
       "mobile": "9829828478",
       "email": "ramkunwarkumhar@1971Gmail.com",
@@ -24340,9 +26816,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Ramakuvanr Kumhar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1872",
@@ -24350,8 +26828,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1986-01-06",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ201201044902",
       "mobile": "9950170522",
       "email": "sureshjangidkhayra0522@gmail.com",
@@ -24365,9 +26843,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Suresh Chandra Jangid",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1873",
@@ -24375,8 +26855,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1995-05-07",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ201801047439",
       "mobile": "7891614396",
       "email": "daulatkhatik1995@gmail.com",
@@ -24390,9 +26870,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Dolat Kumar Khateek",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1874",
@@ -24400,8 +26882,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "25/02/2001",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ202301038828",
       "mobile": "9660985979",
       "email": "murlidharkumawat410@gmail.com",
@@ -24415,9 +26897,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Muraleedhar Kumawat",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1875",
@@ -24425,8 +26909,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "2001-09-11",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ202301038715",
       "mobile": "7357242114",
       "email": "maheshwarsingh0911@gmail.com",
@@ -24440,9 +26924,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Maheshvar Sinh Shaktavat",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1876",
@@ -24450,8 +26936,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "14/07/1988",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ201701002614",
       "mobile": "9829585686",
       "email": "pritamdidwaniya32@gmail.com",
@@ -24465,9 +26951,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Pushpendr Kumar Khateek",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1877",
@@ -24475,8 +26963,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "27/07/2001",
       "post": "कनिष्ठ सहायक (LDC)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ202001015496",
       "mobile": "9460510143",
       "email": "pankajmeghwanshi651@gmail.copm",
@@ -24490,9 +26978,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shree Pankaj Kumar Meghavnshee",
       "post_en": "Junior Assistant (LDC / L-5)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1878",
@@ -24500,8 +26990,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1966-06-06",
       "post": "विद्यालय सहायक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "-",
       "mobile": "9829169306",
       "email": "pcchhipa7@gmail.com",
@@ -24515,9 +27005,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Annaraj Pareek",
       "post_en": "School Assistant",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1879",
@@ -24525,8 +27017,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1984-05-02",
       "post": "पंचायत शिक्षक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ202201057841",
       "mobile": "8107731088",
       "email": "chinta050784@gmail.com",
@@ -24540,9 +27032,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shreematee Chinta Kumhar",
       "post_en": "Panchayat Teacher",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "221766",
+      "school_code": "221766",
+      "school_name_en": "Govt. Sr. Sec. School Padliya",
+      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1880",
@@ -24550,7 +27044,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "18/08/1996",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "school_name": "रा.उ.प्रा.वि. गोरधनपुरा",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ202301046314",
       "mobile": "9667249406",
@@ -24565,9 +27059,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Suresh Kumar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221766",
-      "school_code": "221766",
-      "school_name_en": "Govt. Sr. Sec. School Padliya"
+      "shala_darpan_code": "410654",
+      "school_code": "410654",
+      "school_name_en": "Govt. Upper Primary School Gordhanpura",
+      "school_name_hi": "रा.उ.प्रा.वि. गोरधनपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1881",
@@ -24575,7 +27071,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1998-03-04",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "school_name": "रा.उ.प्रा.वि. गोरधनपुरा",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ202301039008",
       "mobile": "8104437386",
@@ -24590,9 +27086,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Akshay Kumar Pateedar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221766",
-      "school_code": "221766",
-      "school_name_en": "Govt. Sr. Sec. School Padliya"
+      "shala_darpan_code": "410654",
+      "school_code": "410654",
+      "school_name_en": "Govt. Upper Primary School Gordhanpura",
+      "school_name_hi": "रा.उ.प्रा.वि. गोरधनपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1882",
@@ -24600,7 +27098,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1991-09-06",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "school_name": "रा.उ.प्रा.वि. गोरधनपुरा",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ201501006448",
       "mobile": "9784905823",
@@ -24615,9 +27113,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mastaram Meena",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221766",
-      "school_code": "221766",
-      "school_name_en": "Govt. Sr. Sec. School Padliya"
+      "shala_darpan_code": "410654",
+      "school_code": "410654",
+      "school_name_en": "Govt. Upper Primary School Gordhanpura",
+      "school_name_hi": "रा.उ.प्रा.वि. गोरधनपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1883",
@@ -24625,7 +27125,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1981-11-07",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "school_name": "रा.उ.प्रा.वि. गोरधनपुरा",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ201301029607",
       "mobile": "9001986838",
@@ -24640,9 +27140,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Abhay Sinh Panwar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221766",
-      "school_code": "221766",
-      "school_name_en": "Govt. Sr. Sec. School Padliya"
+      "shala_darpan_code": "410654",
+      "school_code": "410654",
+      "school_name_en": "Govt. Upper Primary School Gordhanpura",
+      "school_name_hi": "रा.उ.प्रा.वि. गोरधनपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1884",
@@ -24650,7 +27152,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1988-05-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "school_name": "रा.उ.प्रा.वि. गोरधनपुरा",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJJW201922010273",
       "mobile": "9667407079",
@@ -24665,9 +27167,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shnkar Lal Sharma",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221766",
-      "school_code": "221766",
-      "school_name_en": "Govt. Sr. Sec. School Padliya"
+      "shala_darpan_code": "410654",
+      "school_code": "410654",
+      "school_name_en": "Govt. Upper Primary School Gordhanpura",
+      "school_name_hi": "रा.उ.प्रा.वि. गोरधनपुरा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1885",
@@ -24675,8 +27179,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "15/02/1992",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ202001032892",
       "mobile": "8104801931",
       "email": "mlbairwa13@gmail.com",
@@ -24690,9 +27194,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Madan Lal Bairwa",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "402141",
+      "school_code": "402141",
+      "school_name_en": "Govt. Upper Primary School Chavandiya Padaliya",
+      "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1886",
@@ -24700,8 +27206,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "13/07/1983",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ201201037974",
       "mobile": "8529350930",
       "email": "rkmandrawalia8005@gmail.com",
@@ -24715,9 +27221,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Rakesh Kumar Mandaravaliya",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "402141",
+      "school_code": "402141",
+      "school_name_en": "Govt. Upper Primary School Chavandiya Padaliya",
+      "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1887",
@@ -24725,8 +27233,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1980-06-11",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ201201046555",
       "mobile": "9672356152",
       "email": "kedarvaishnav766@gmail.com",
@@ -24740,9 +27248,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sanjoo Vaishnav",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "402141",
+      "school_code": "402141",
+      "school_name_en": "Govt. Upper Primary School Chavandiya Padaliya",
+      "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1888",
@@ -24750,8 +27260,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "16/05/1976",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ200901006931",
       "mobile": "9571132301",
       "email": "kailashbaserk@gmail.com",
@@ -24765,9 +27275,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Kailash Chandra Baser",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "402141",
+      "school_code": "402141",
+      "school_name_en": "Govt. Upper Primary School Chavandiya Padaliya",
+      "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1889",
@@ -24775,8 +27287,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1988-01-08",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ201801024162",
       "mobile": "9772826003",
       "email": "kaluramsoyal12@gmail.com",
@@ -24790,9 +27302,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Kalooram Soyal",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "402141",
+      "school_code": "402141",
+      "school_name_en": "Govt. Upper Primary School Chavandiya Padaliya",
+      "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1890",
@@ -24800,8 +27314,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "29/06/1991",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ201801023750",
       "mobile": "9887791055",
       "email": "sudhir.singh.deval@gmail.com",
@@ -24815,9 +27329,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sudheer Kumar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "402141",
+      "school_code": "402141",
+      "school_name_en": "Govt. Upper Primary School Chavandiya Padaliya",
+      "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1891",
@@ -24825,8 +27341,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1993-07-06",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ201801024126",
       "mobile": "9785389333",
       "email": "sattum12345321@gmail.com",
@@ -24840,9 +27356,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Satyanarayan Meena",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "402141",
+      "school_code": "402141",
+      "school_name_en": "Govt. Upper Primary School Chavandiya Padaliya",
+      "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1892",
@@ -24850,8 +27368,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1998-10-10",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJKK202460110484",
       "mobile": "7891320733",
       "email": "gajanandkhichi1998@gmail.com",
@@ -24865,9 +27383,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Gajanand Kheechee",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "402141",
+      "school_code": "402141",
+      "school_name_en": "Govt. Upper Primary School Chavandiya Padaliya",
+      "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1893",
@@ -24875,8 +27395,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "22/08/1997",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
+      "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ201901005748",
       "mobile": "9602878902",
       "email": "nirmlamahawar695@gmail.com",
@@ -24890,9 +27410,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Nirmala Mahavar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "402141",
+      "school_code": "402141",
+      "school_name_en": "Govt. Upper Primary School Chavandiya Padaliya",
+      "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1894",
@@ -24900,7 +27422,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "18/08/1993",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "school_name": "रा.उ.प्रा.वि. बिलिया (पाडलिया)",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ201501006437",
       "mobile": "9667843278",
@@ -24915,9 +27437,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mukesh Kumar Mali",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221766",
-      "school_code": "221766",
-      "school_name_en": "Govt. Sr. Sec. School Padliya"
+      "shala_darpan_code": "468182",
+      "school_code": "468182",
+      "school_name_en": "Govt. Upper Primary School Biliya Padaliya",
+      "school_name_hi": "रा.उ.प्रा.वि. बिलिया (पाडलिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1895",
@@ -24925,7 +27449,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "21/07/1995",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "school_name": "रा.उ.प्रा.वि. बिलिया (पाडलिया)",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ202301040303",
       "mobile": "8440852559",
@@ -24940,9 +27464,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Pavan Kumar Raॅyal",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221766",
-      "school_code": "221766",
-      "school_name_en": "Govt. Sr. Sec. School Padliya"
+      "shala_darpan_code": "468182",
+      "school_code": "468182",
+      "school_name_en": "Govt. Upper Primary School Biliya Padaliya",
+      "school_name_hi": "रा.उ.प्रा.वि. बिलिया (पाडलिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1896",
@@ -24950,7 +27476,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "20/11/1998",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "school_name": "रा.उ.प्रा.वि. बिलिया (पाडलिया)",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ202301046213",
       "mobile": "8696055731",
@@ -24965,9 +27491,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Bhagchand Bairwa",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221766",
-      "school_code": "221766",
-      "school_name_en": "Govt. Sr. Sec. School Padliya"
+      "shala_darpan_code": "468182",
+      "school_code": "468182",
+      "school_name_en": "Govt. Upper Primary School Biliya Padaliya",
+      "school_name_hi": "रा.उ.प्रा.वि. बिलिया (पाडलिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1897",
@@ -24975,7 +27503,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1998-01-02",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "school_name": "रा.उ.प्रा.वि. बिलिया (पाडलिया)",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ202301040326",
       "mobile": "9887226584",
@@ -24990,9 +27518,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Vinod Meena",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221766",
-      "school_code": "221766",
-      "school_name_en": "Govt. Sr. Sec. School Padliya"
+      "shala_darpan_code": "468182",
+      "school_code": "468182",
+      "school_name_en": "Govt. Upper Primary School Biliya Padaliya",
+      "school_name_hi": "रा.उ.प्रा.वि. बिलिया (पाडलिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1898",
@@ -25000,7 +27530,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1987-12-05",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "school_name": "रा.उ.प्रा.वि. बिलिया (पाडलिया)",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ201801028127",
       "mobile": "8741069601",
@@ -25015,9 +27545,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Deepa",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221766",
-      "school_code": "221766",
-      "school_name_en": "Govt. Sr. Sec. School Padliya"
+      "shala_darpan_code": "468182",
+      "school_code": "468182",
+      "school_name_en": "Govt. Upper Primary School Biliya Padaliya",
+      "school_name_hi": "रा.उ.प्रा.वि. बिलिया (पाडलिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1899",
@@ -25025,7 +27557,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1998-11-07",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "school_name": "रा.उ.प्रा.वि. बिलिया (पाडलिया)",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJAJ202301040261",
       "mobile": "7850937846",
@@ -25040,9 +27572,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Anita Dadhich",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221766",
-      "school_code": "221766",
-      "school_name_en": "Govt. Sr. Sec. School Padliya"
+      "shala_darpan_code": "468182",
+      "school_code": "468182",
+      "school_name_en": "Govt. Upper Primary School Biliya Padaliya",
+      "school_name_hi": "रा.उ.प्रा.वि. बिलिया (पाडलिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1900",
@@ -25050,7 +27584,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1992-02-09",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "school_name": "रा.प्रा.वि. मूण्डिया खेड़ा (पाडलिया)",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJJO201925016692",
       "mobile": "9610546515",
@@ -25065,9 +27599,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Bajarng Lal Vaishnav",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221766",
-      "school_code": "221766",
-      "school_name_en": "Govt. Sr. Sec. School Padliya"
+      "shala_darpan_code": "485054",
+      "school_code": "485054",
+      "school_name_en": "Govt. Primary School Mundiya Kheda Padaliya",
+      "school_name_hi": "रा.प्रा.वि. मूण्डिया खेड़ा (पाडलिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1901",
@@ -25075,7 +27611,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1991-04-05",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "school_name": "रा.प्रा.वि. मूण्डिया खेड़ा (पाडलिया)",
       "peeo_name": "PEEO PADALIYA",
       "sso_id": "RJBI201909015872",
       "mobile": "8003571325",
@@ -25090,9 +27626,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Radheshyam Jat",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221766",
-      "school_code": "221766",
-      "school_name_en": "Govt. Sr. Sec. School Padliya"
+      "shala_darpan_code": "485054",
+      "school_code": "485054",
+      "school_name_en": "Govt. Primary School Mundiya Kheda Padaliya",
+      "school_name_hi": "रा.प्रा.वि. मूण्डिया खेड़ा (पाडलिया)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1902",
@@ -25117,7 +27655,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1903",
@@ -25142,7 +27682,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1904",
@@ -25167,7 +27709,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1905",
@@ -25192,7 +27736,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1906",
@@ -25217,7 +27763,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1907",
@@ -25242,7 +27790,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1908",
@@ -25267,7 +27817,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1909",
@@ -25292,7 +27844,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1910",
@@ -25317,7 +27871,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1911",
@@ -25342,7 +27898,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1912",
@@ -25367,7 +27925,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1913",
@@ -25392,7 +27952,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1914",
@@ -25417,7 +27979,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1915",
@@ -25442,7 +28006,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Assistant (UDC / L-8)",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1916",
@@ -25467,7 +28033,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Assistant",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1917",
@@ -25492,7 +28060,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Assistant",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1918",
@@ -25517,7 +28087,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Assistant",
       "shala_darpan_code": "221785",
       "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+      "school_name_hi": "रा.उ.मा.वि. राममालिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1919",
@@ -25525,7 +28097,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "01-10-1967",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. राममालिया",
+      "school_name": "रा.उ.मा.वि. रघुनाथगढ़",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "rjaj2012010338137",
       "mobile": "9950605149",
@@ -25540,9 +28112,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shrnhakapeee Beevanakeental",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221785",
-      "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "shala_darpan_code": "410677",
+      "school_code": "410677",
+      "school_name_en": "Govt. Sr. Sec. School Raghunathgadh",
+      "school_name_hi": "रा.उ.मा.वि. रघुनाथगढ़",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1920",
@@ -25550,7 +28124,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "05-07-1991",
       "post": "प्रधानाचार्य",
-      "school_name": "रा.उ.मा.वि. राममालिया",
+      "school_name": "रा.उ.मा.वि. रघुनाथगढ़",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJBN201303038392",
       "mobile": "8104466893",
@@ -25565,9 +28139,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Lalit Kishor Sharma",
       "post_en": "Principal (L-16)",
-      "shala_darpan_code": "221785",
-      "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "shala_darpan_code": "410677",
+      "school_code": "410677",
+      "school_name_en": "Govt. Sr. Sec. School Raghunathgadh",
+      "school_name_hi": "रा.उ.मा.वि. रघुनाथगढ़",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1921",
@@ -25575,7 +28151,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "15-06-1989",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. राममालिया",
+      "school_name": "रा.उ.मा.वि. रघुनाथगढ़",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJAJ201901020359",
       "mobile": "8441988250",
@@ -25590,9 +28166,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "T।chhashra।chha।ai।pchh",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221785",
-      "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "shala_darpan_code": "410677",
+      "school_code": "410677",
+      "school_name_en": "Govt. Sr. Sec. School Raghunathgadh",
+      "school_name_hi": "रा.उ.मा.वि. रघुनाथगढ़",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1922",
@@ -25600,7 +28178,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "19-04-1998",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. राममालिया",
+      "school_name": "रा.उ.मा.वि. रघुनाथगढ़",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJJO201925018340",
       "mobile": "8058697966",
@@ -25615,9 +28193,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ai।chhajvaibh Jnyanda।t ळntshra।t",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221785",
-      "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "shala_darpan_code": "410677",
+      "school_code": "410677",
+      "school_name_en": "Govt. Sr. Sec. School Raghunathgadh",
+      "school_name_hi": "रा.उ.मा.वि. रघुनाथगढ़",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1923",
@@ -25625,7 +28205,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "24-11-1992",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. राममालिया",
+      "school_name": "रा.उ.मा.वि. रघुनाथगढ़",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJAJ201901034220",
       "mobile": "8107181598",
@@ -25640,9 +28220,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Cht।kbh।chh Bbhvnkbh।tl",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221785",
-      "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "shala_darpan_code": "410677",
+      "school_code": "410677",
+      "school_name_en": "Govt. Sr. Sec. School Raghunathgadh",
+      "school_name_hi": "रा.उ.मा.वि. रघुनाथगढ़",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1924",
@@ -25650,7 +28232,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "07-08-1999",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. राममालिया",
+      "school_name": "रा.उ.मा.वि. रघुनाथगढ़",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "SHANTI.LAL.SADHU1",
       "mobile": "9079123989",
@@ -25665,9 +28247,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shanti Lal Sadhu",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221785",
-      "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "shala_darpan_code": "410677",
+      "school_code": "410677",
+      "school_name_en": "Govt. Sr. Sec. School Raghunathgadh",
+      "school_name_hi": "रा.उ.मा.वि. रघुनाथगढ़",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1925",
@@ -25675,7 +28259,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "15-10-1998",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. राममालिया",
+      "school_name": "रा.उ.मा.वि. रघुनाथगढ़",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "HEMRAJ.DAROGA1",
       "mobile": "7339841542",
@@ -25690,9 +28274,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Hemaraj Daroga",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221785",
-      "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "shala_darpan_code": "410677",
+      "school_code": "410677",
+      "school_name_en": "Govt. Sr. Sec. School Raghunathgadh",
+      "school_name_hi": "रा.उ.मा.वि. रघुनाथगढ़",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1926",
@@ -25700,7 +28286,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "19-12-1990",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. राममालिया",
+      "school_name": "रा.उ.मा.वि. रघुनाथगढ़",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "HUSAIN.MOHAMMAD.sipa",
       "mobile": "9785035563",
@@ -25715,9 +28301,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Bhnai।pchh Davbh।dada।kaipch।p",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221785",
-      "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "shala_darpan_code": "410677",
+      "school_code": "410677",
+      "school_name_en": "Govt. Sr. Sec. School Raghunathgadh",
+      "school_name_hi": "रा.उ.मा.वि. रघुनाथगढ़",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1927",
@@ -25725,7 +28313,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "09-10-1999",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. राममालिया",
+      "school_name": "रा.उ.मा.वि. रघुनाथगढ़",
       "peeo_name": "PEEO RAMMALIA",
       "sso_id": "ROHIT.Malakar1",
       "mobile": "7073390819",
@@ -25740,9 +28328,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Rohit Malakar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221785",
-      "school_code": "221785",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "shala_darpan_code": "410677",
+      "school_code": "410677",
+      "school_name_en": "Govt. Sr. Sec. School Raghunathgadh",
+      "school_name_hi": "रा.उ.मा.वि. रघुनाथगढ़",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1928",
@@ -25750,8 +28340,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1991-08-08",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. सिंगावल",
-      "peeo_name": "PEEO SINGAWAL",
+      "school_name": "रा.प्रा.वि. पीलोदा",
+      "peeo_name": "PEEO RAMMALIA",
       "sso_id": "RJAJ201501006449",
       "mobile": "9057481106",
       "email": "sy3243016@gmail.com",
@@ -25765,9 +28355,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ainchhapj। L।k।t",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221781",
-      "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "shala_darpan_code": "410646",
+      "school_code": "410646",
+      "school_name_en": "Govt. Primary School Piloda",
+      "school_name_hi": "रा.प्रा.वि. पीलोदा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1929",
@@ -25775,8 +28367,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1992-10-11",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. सिंगावल",
-      "peeo_name": "PEEO SINGAWAL",
+      "school_name": "रा.प्रा.वि. पीलोदा",
+      "peeo_name": "PEEO RAMMALIA",
       "sso_id": "ANIL.KUMAR.JANGID2",
       "mobile": "9414922890",
       "email": "akjangid83@gmail.com",
@@ -25790,9 +28382,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Anil Kumar Jangid",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221781",
-      "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "shala_darpan_code": "410646",
+      "school_code": "410646",
+      "school_name_en": "Govt. Primary School Piloda",
+      "school_name_hi": "रा.प्रा.वि. पीलोदा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1930",
@@ -25800,8 +28394,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1992-06-05",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. सिंगावल",
-      "peeo_name": "PEEO SINGAWAL",
+      "school_name": "रा.प्रा.वि. पीलोदा",
+      "peeo_name": "PEEO RAMMALIA",
       "sso_id": "KAVITA.KUMARI.MEEN18",
       "mobile": "8003047045",
       "email": "kavitameena83503@gmail.com",
@@ -25815,9 +28409,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Kavita Kumaree Meena",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221781",
-      "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "shala_darpan_code": "410646",
+      "school_code": "410646",
+      "school_name_en": "Govt. Primary School Piloda",
+      "school_name_hi": "रा.प्रा.वि. पीलोदा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1931",
@@ -25842,7 +28438,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1932",
@@ -25867,7 +28465,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1933",
@@ -25892,7 +28492,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1934",
@@ -25917,7 +28519,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1935",
@@ -25942,7 +28546,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1936",
@@ -25967,7 +28573,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1937",
@@ -25992,7 +28600,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1938",
@@ -26017,7 +28627,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2 (L-10)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1939",
@@ -26042,7 +28654,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1940",
@@ -26067,7 +28681,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1941",
@@ -26092,7 +28708,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1942",
@@ -26117,7 +28735,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1943",
@@ -26142,7 +28762,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1944",
@@ -26167,7 +28789,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1945",
@@ -26192,7 +28816,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1 (L-10)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1946",
@@ -26217,7 +28843,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1947",
@@ -26242,7 +28870,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Assistant (UDC / L-8)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1948",
@@ -26267,7 +28897,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1949",
@@ -26292,7 +28924,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Basic Computer Instructor",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1950",
@@ -26317,7 +28951,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Teacher",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1951",
@@ -26342,7 +28978,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Assistant",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1952",
@@ -26367,7 +29005,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Teacher",
       "shala_darpan_code": "221775",
       "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "Govt. Sr. Sec. School Ratakot",
+      "school_name_hi": "रा.उ.मा.वि. राताकोट",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1953",
@@ -26375,7 +29015,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1967-11-06",
       "post": "प्रधानाचार्य",
-      "school_name": "रा.उ.मा.वि. राताकोट",
+      "school_name": "रा.उ.मा.वि. झीपिया",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJJP199317012266",
       "mobile": "9460435001",
@@ -26390,9 +29030,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Yogeshvaree Sharma",
       "post_en": "Principal (L-16)",
-      "shala_darpan_code": "221775",
-      "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "shala_darpan_code": "221776",
+      "school_code": "221776",
+      "school_name_en": "Govt. Sr. Sec. School Jhipiya",
+      "school_name_hi": "रा.उ.मा.वि. झीपिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1954",
@@ -26400,7 +29042,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1970-07-05",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. राताकोट",
+      "school_name": "रा.उ.मा.वि. झीपिया",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJTO200536019182",
       "mobile": "9784854480",
@@ -26415,9 +29057,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Guru Charan",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221775",
-      "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "shala_darpan_code": "221776",
+      "school_code": "221776",
+      "school_name_en": "Govt. Sr. Sec. School Jhipiya",
+      "school_name_hi": "रा.उ.मा.वि. झीपिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1955",
@@ -26425,7 +29069,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1991-08-09",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. राताकोट",
+      "school_name": "रा.उ.मा.वि. झीपिया",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ201801020754",
       "mobile": "7727842888",
@@ -26440,9 +29084,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Aaratee Kheneeval",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221775",
-      "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "shala_darpan_code": "221776",
+      "school_code": "221776",
+      "school_name_en": "Govt. Sr. Sec. School Jhipiya",
+      "school_name_hi": "रा.उ.मा.वि. झीपिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1956",
@@ -26450,7 +29096,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1988-06-24",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. राताकोट",
+      "school_name": "रा.उ.मा.वि. झीपिया",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJKK202460002181",
       "mobile": "9799260935",
@@ -26465,9 +29111,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mahendra Kumar Sharma",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221775",
-      "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "shala_darpan_code": "221776",
+      "school_code": "221776",
+      "school_name_en": "Govt. Sr. Sec. School Jhipiya",
+      "school_name_hi": "रा.उ.मा.वि. झीपिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1957",
@@ -26475,7 +29123,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1968-02-03",
       "post": "प्रधानाचार्य",
-      "school_name": "रा.उ.मा.वि. राताकोट",
+      "school_name": "रा.उ.मा.वि. झीपिया",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ199101012921",
       "mobile": "9468751626",
@@ -26490,9 +29138,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Alaka Mathur",
       "post_en": "Principal (L-16)",
-      "shala_darpan_code": "221775",
-      "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "shala_darpan_code": "221776",
+      "school_code": "221776",
+      "school_name_en": "Govt. Sr. Sec. School Jhipiya",
+      "school_name_hi": "रा.उ.मा.वि. झीपिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1958",
@@ -26500,7 +29150,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1975-09-10",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. राताकोट",
+      "school_name": "रा.उ.मा.वि. झीपिया",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ200501032431",
       "mobile": "9414574155",
@@ -26515,9 +29165,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Himanshu Gurjar",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221775",
-      "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "shala_darpan_code": "221776",
+      "school_code": "221776",
+      "school_name_en": "Govt. Sr. Sec. School Jhipiya",
+      "school_name_hi": "रा.उ.मा.वि. झीपिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1959",
@@ -26525,7 +29177,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1968-07-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. राताकोट",
+      "school_name": "रा.उ.मा.वि. झीपिया",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ199506001123",
       "mobile": "9784362370",
@@ -26540,9 +29192,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Madhusudan Pooree Gosvamee",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221775",
-      "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "shala_darpan_code": "221776",
+      "school_code": "221776",
+      "school_name_en": "Govt. Sr. Sec. School Jhipiya",
+      "school_name_hi": "रा.उ.मा.वि. झीपिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1960",
@@ -26550,7 +29204,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1970-10-17",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. राताकोट",
+      "school_name": "रा.उ.मा.वि. झीपिया",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ199601002313",
       "mobile": "8769453569",
@@ -26565,9 +29219,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Avinas Prasad Vaishnav",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221775",
-      "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "shala_darpan_code": "221776",
+      "school_code": "221776",
+      "school_name_en": "Govt. Sr. Sec. School Jhipiya",
+      "school_name_hi": "रा.उ.मा.वि. झीपिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1961",
@@ -26575,7 +29231,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1975-09-22",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. राताकोट",
+      "school_name": "रा.उ.मा.वि. झीपिया",
       "peeo_name": "PEEO RATAKOT",
       "sso_id": "RJAJ201601013989",
       "mobile": "9828701879",
@@ -26590,9 +29246,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Dinesh Kumar Panwar",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221775",
-      "school_code": "221775",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "shala_darpan_code": "221776",
+      "school_code": "221776",
+      "school_name_en": "Govt. Sr. Sec. School Jhipiya",
+      "school_name_hi": "रा.उ.मा.वि. झीपिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1962",
@@ -26617,7 +29275,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1963",
@@ -26642,7 +29302,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1964",
@@ -26667,7 +29329,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1965",
@@ -26692,7 +29356,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1966",
@@ -26717,7 +29383,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1967",
@@ -26742,7 +29410,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1968",
@@ -26767,7 +29437,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1969",
@@ -26792,7 +29464,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1970",
@@ -26817,7 +29491,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1971",
@@ -26842,7 +29518,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1972",
@@ -26867,7 +29545,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1973",
@@ -26892,7 +29572,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1974",
@@ -26917,7 +29599,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1975",
@@ -26942,7 +29626,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1976",
@@ -26967,7 +29653,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1977",
@@ -26992,7 +29680,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1978",
@@ -27017,7 +29707,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1979",
@@ -27042,7 +29734,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1980",
@@ -27067,7 +29761,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1981",
@@ -27092,7 +29788,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1982",
@@ -27117,7 +29815,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1983",
@@ -27142,7 +29842,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Basic Computer Instructor",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1984",
@@ -27167,7 +29869,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Junior Assistant (LDC / L-5)",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1985",
@@ -27192,7 +29896,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Assistant",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1986",
@@ -27217,7 +29923,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Assistant",
       "shala_darpan_code": "221781",
       "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "Govt. Sr. Sec. School Singawal",
+      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1987",
@@ -27225,8 +29933,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1969-07-02",
       "post": "प्रबोधक",
-      "school_name": "रा.उ.मा.वि. बूबकिया",
-      "peeo_name": "PEEO BOOBKIYA",
+      "school_name": "रा.उ.प्रा.वि. खटाणों का खेड़ा",
+      "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJAJ200901007955",
       "mobile": "9928168738",
       "email": "mrk9928168738@gmail.com",
@@ -27240,9 +29948,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mohammad Rapheek",
       "post_en": "Prabodhak",
-      "shala_darpan_code": "221763",
-      "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "shala_darpan_code": "410621",
+      "school_code": "410621",
+      "school_name_en": "Govt. Upper Primary School Khatano Ka Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. खटाणों का खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1988",
@@ -27250,8 +29960,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1969-12-27",
       "post": "प्रबोधक",
-      "school_name": "रा.उ.मा.वि. बूबकिया",
-      "peeo_name": "PEEO BOOBKIYA",
+      "school_name": "रा.उ.प्रा.वि. खटाणों का खेड़ा",
+      "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJAJ200901007286",
       "mobile": "9413480713",
       "email": "madhusarwa71@gmail.com",
@@ -27265,9 +29975,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Madhu Sarva",
       "post_en": "Prabodhak",
-      "shala_darpan_code": "221763",
-      "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "shala_darpan_code": "410621",
+      "school_code": "410621",
+      "school_name_en": "Govt. Upper Primary School Khatano Ka Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. खटाणों का खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1989",
@@ -27275,8 +29987,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1989-09-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बूबकिया",
-      "peeo_name": "PEEO BOOBKIYA",
+      "school_name": "रा.उ.प्रा.वि. खटाणों का खेड़ा",
+      "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJAJ201901006665",
       "mobile": "7737549577",
       "email": "manju.ajmer89@gmail.com",
@@ -27290,9 +30002,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Manju Choudhary",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221763",
-      "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "shala_darpan_code": "410621",
+      "school_code": "410621",
+      "school_name_en": "Govt. Upper Primary School Khatano Ka Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. खटाणों का खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1990",
@@ -27300,8 +30014,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1995-06-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बूबकिया",
-      "peeo_name": "PEEO BOOBKIYA",
+      "school_name": "रा.उ.प्रा.वि. खटाणों का खेड़ा",
+      "peeo_name": "PEEO SINGAWAL",
       "sso_id": "varsha.bairwa2",
       "mobile": "9799605430",
       "email": "varshabairwa8528@gmail.com",
@@ -27315,9 +30029,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Varsha Bairwa",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221763",
-      "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "shala_darpan_code": "410621",
+      "school_code": "410621",
+      "school_name_en": "Govt. Upper Primary School Khatano Ka Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. खटाणों का खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1991",
@@ -27325,8 +30041,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1990-10-14",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बूबकिया",
-      "peeo_name": "PEEO BOOBKIYA",
+      "school_name": "रा.उ.प्रा.वि. खटाणों का खेड़ा",
+      "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJAJ201801019955",
       "mobile": "8854816525",
       "email": "mukeshbhardwaj522@gmail.com",
@@ -27340,9 +30056,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mukesh Kumar Sharman",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221763",
-      "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "shala_darpan_code": "410621",
+      "school_code": "410621",
+      "school_name_en": "Govt. Upper Primary School Khatano Ka Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. खटाणों का खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1992",
@@ -27350,8 +30068,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1995-11-09",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बूबकिया",
-      "peeo_name": "PEEO BOOBKIYA",
+      "school_name": "रा.उ.प्रा.वि. खटाणों का खेड़ा",
+      "peeo_name": "PEEO SINGAWAL",
       "sso_id": "jai.prakash.jangir1",
       "mobile": "9694334439",
       "email": "jaijangir18@gmail.com",
@@ -27365,9 +30083,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Jayaprakash Jangid",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221763",
-      "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "shala_darpan_code": "410621",
+      "school_code": "410621",
+      "school_name_en": "Govt. Upper Primary School Khatano Ka Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. खटाणों का खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1993",
@@ -27375,8 +30095,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1991-03-15",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. बूबकिया",
-      "peeo_name": "PEEO BOOBKIYA",
+      "school_name": "रा.उ.प्रा.वि. खटाणों का खेड़ा",
+      "peeo_name": "PEEO SINGAWAL",
       "sso_id": "bheru.lal.balai4",
       "mobile": "9667252897",
       "email": "blmeghwanshi97@gmail.com",
@@ -27390,9 +30110,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Bhairoolal Balaee",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221763",
-      "school_code": "221763",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "shala_darpan_code": "410621",
+      "school_code": "410621",
+      "school_name_en": "Govt. Upper Primary School Khatano Ka Kheda",
+      "school_name_hi": "रा.उ.प्रा.वि. खटाणों का खेड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1994",
@@ -27400,8 +30122,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1973-05-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. नागोला",
-      "peeo_name": "PEEO NAGOLA",
+      "school_name": "रा.प्रा.वि. मथानिया",
+      "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJAJ199501001476",
       "mobile": "9587868688",
       "email": "mumtajalk@gmail.com",
@@ -27415,9 +30137,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mumataj Alee Khan",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221772",
-      "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "shala_darpan_code": "506678",
+      "school_code": "506678",
+      "school_name_en": "Govt. Primary School Mathaniya",
+      "school_name_hi": "रा.प्रा.वि. मथानिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1995",
@@ -27425,8 +30149,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1997-04-02",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. नागोला",
-      "peeo_name": "PEEO NAGOLA",
+      "school_name": "रा.प्रा.वि. मथानिया",
+      "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJAJ201701026541",
       "mobile": "7976514829",
       "email": "meenakshimali0204@gmail.com",
@@ -27440,9 +30164,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Meenakshee Mali",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221772",
-      "school_code": "221772",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "shala_darpan_code": "506678",
+      "school_code": "506678",
+      "school_name_en": "Govt. Primary School Mathaniya",
+      "school_name_hi": "रा.प्रा.वि. मथानिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1996",
@@ -27450,8 +30176,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1990-10-18",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. कुम्हारिया",
-      "peeo_name": "PEEO KUMHARIYA",
+      "school_name": "रा.प्रा.वि. गुर्जर माली ढाणी मथानिया",
+      "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJAJ201701016150",
       "mobile": "8003426852",
       "email": "pinkyregar800@gmail.com",
@@ -27465,9 +30191,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Pinkee Regar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221777",
-      "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "shala_darpan_code": "488682",
+      "school_code": "488682",
+      "school_name_en": "Govt. Primary School Gurjar Mali Dhani Mathaniya",
+      "school_name_hi": "रा.प्रा.वि. गुर्जर माली ढाणी मथानिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1997",
@@ -27475,8 +30203,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1990-01-13",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. कुम्हारिया",
-      "peeo_name": "PEEO KUMHARIYA",
+      "school_name": "रा.प्रा.वि. गुर्जर माली ढाणी मथानिया",
+      "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJJL201721033714",
       "mobile": "9116396246",
       "email": "sisodiyapooja397@gmail.com",
@@ -27490,9 +30218,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Pooja Sisodiya",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221777",
-      "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "shala_darpan_code": "488682",
+      "school_code": "488682",
+      "school_name_en": "Govt. Primary School Gurjar Mali Dhani Mathaniya",
+      "school_name_hi": "रा.प्रा.वि. गुर्जर माली ढाणी मथानिया",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1998",
@@ -27500,8 +30230,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1977-06-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.प्रा.वि. माताजी का खेड़ा (सिंगावल)",
+      "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJBW200708003591",
       "mobile": "9829709525",
       "email": "raghuveerjangid56@gmail.com",
@@ -27515,9 +30245,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Raghuveer Jangid",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "410747",
+      "school_code": "410747",
+      "school_name_en": "Govt. Primary School Mataji Ka Kheda Singawal",
+      "school_name_hi": "रा.प्रा.वि. माताजी का खेड़ा (सिंगावल)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF1999",
@@ -27525,8 +30257,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1989-01-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.प्रा.वि. माताजी का खेड़ा (सिंगावल)",
+      "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJAJ201701016745",
       "mobile": "9414773346",
       "email": "geetakumari715@gmail.com",
@@ -27540,9 +30272,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Geeta Kumaree Meena",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "410747",
+      "school_code": "410747",
+      "school_name_en": "Govt. Primary School Mataji Ka Kheda Singawal",
+      "school_name_hi": "रा.प्रा.वि. माताजी का खेड़ा (सिंगावल)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2000",
@@ -27550,7 +30284,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1992-10-08",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. सिंगावल",
+      "school_name": "रा.प्रा.वि. कुम्हार मोहल्ला सिंगावल",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "RJAJ201701017331",
       "mobile": "8290855415",
@@ -27565,9 +30299,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Neetoo Meena",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221781",
-      "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "shala_darpan_code": "506686",
+      "school_code": "506686",
+      "school_name_en": "Govt. Primary School Kumhar Mohalla Singawal",
+      "school_name_hi": "रा.प्रा.वि. कुम्हार मोहल्ला सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2001",
@@ -27575,7 +30311,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1996-07-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. सिंगावल",
+      "school_name": "रा.प्रा.वि. कुम्हार मोहल्ला सिंगावल",
       "peeo_name": "PEEO SINGAWAL",
       "sso_id": "saroj..mali",
       "mobile": "7792944194",
@@ -27590,9 +30326,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Saroj Mali",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221781",
-      "school_code": "221781",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "shala_darpan_code": "506686",
+      "school_code": "506686",
+      "school_name_en": "Govt. Primary School Kumhar Mohalla Singawal",
+      "school_name_hi": "रा.प्रा.वि. कुम्हार मोहल्ला सिंगावल",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2002",
@@ -27600,8 +30338,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1971-02-15",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. कनाई कलां",
-      "peeo_name": "PEEO KANAI KALAN",
+      "school_name": "रा.उ.प्रा.वि. तेलाड़ा",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "NARESHPAREEK7",
       "mobile": "9828433020",
       "email": "nrshpareek@gmail.com",
@@ -27615,9 +30353,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Naresh Pareek",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221765",
-      "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "shala_darpan_code": "488877",
+      "school_code": "488877",
+      "school_name_en": "Govt. Upper Primary School Telada",
+      "school_name_hi": "रा.उ.प्रा.वि. तेलाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2003",
@@ -27625,8 +30365,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1984-10-20",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. कनाई कलां",
-      "peeo_name": "PEEO KANAI KALAN",
+      "school_name": "रा.उ.प्रा.वि. तेलाड़ा",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "RJBW200808025939",
       "mobile": "9660514535",
       "email": "mainakayat84@gmail.com",
@@ -27640,9 +30380,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Maina Kayat",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221765",
-      "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "shala_darpan_code": "488877",
+      "school_code": "488877",
+      "school_name_en": "Govt. Upper Primary School Telada",
+      "school_name_hi": "रा.उ.प्रा.वि. तेलाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2004",
@@ -27650,8 +30392,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1989-03-29",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. कनाई कलां",
-      "peeo_name": "PEEO KANAI KALAN",
+      "school_name": "रा.उ.प्रा.वि. तेलाड़ा",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ201201036789",
       "mobile": "9571744755",
       "email": "ddewrarudra@gmail.com",
@@ -27665,9 +30407,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ummed Sinh Devaड़a",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221765",
-      "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "shala_darpan_code": "488877",
+      "school_code": "488877",
+      "school_name_en": "Govt. Upper Primary School Telada",
+      "school_name_hi": "रा.उ.प्रा.वि. तेलाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2005",
@@ -27675,8 +30419,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1994-10-14",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. कनाई कलां",
-      "peeo_name": "PEEO KANAI KALAN",
+      "school_name": "रा.उ.प्रा.वि. तेलाड़ा",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ201801024260",
       "mobile": "9166343799",
       "email": "dayaramsk@gmail.com",
@@ -27690,9 +30434,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Dayaram",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221765",
-      "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "shala_darpan_code": "488877",
+      "school_code": "488877",
+      "school_name_en": "Govt. Upper Primary School Telada",
+      "school_name_hi": "रा.उ.प्रा.वि. तेलाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2006",
@@ -27700,8 +30446,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1990-07-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. कनाई कलां",
-      "peeo_name": "PEEO KANAI KALAN",
+      "school_name": "रा.उ.प्रा.वि. तेलाड़ा",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ201801053593",
       "mobile": "9413060066",
       "email": "svnandiwal@gmail.com",
@@ -27715,9 +30461,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Surendra Kumar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221765",
-      "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "shala_darpan_code": "488877",
+      "school_code": "488877",
+      "school_name_en": "Govt. Upper Primary School Telada",
+      "school_name_hi": "रा.उ.प्रा.वि. तेलाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2007",
@@ -27725,8 +30473,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1997-10-20",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. कनाई कलां",
-      "peeo_name": "PEEO KANAI KALAN",
+      "school_name": "रा.उ.प्रा.वि. तेलाड़ा",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "MONAJANGID1",
       "mobile": "8000363160",
       "email": "monajangid486@gmail.com",
@@ -27740,9 +30488,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mona Jangiड़",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221765",
-      "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "shala_darpan_code": "488877",
+      "school_code": "488877",
+      "school_name_en": "Govt. Upper Primary School Telada",
+      "school_name_hi": "रा.उ.प्रा.वि. तेलाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2008",
@@ -27750,8 +30500,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1996-05-05",
       "post": "अध्यापक लेवल-1",
-      "school_name": "रा.उ.मा.वि. कनाई कलां",
-      "peeo_name": "PEEO KANAI KALAN",
+      "school_name": "रा.उ.प्रा.वि. तेलाड़ा",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "RJCT201911014020",
       "mobile": "9351174212",
       "email": "karishmajat075@gmail.com",
@@ -27765,9 +30515,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Karishma Baira",
       "post_en": "Teacher Level-1 (L-10)",
-      "shala_darpan_code": "221765",
-      "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "shala_darpan_code": "488877",
+      "school_code": "488877",
+      "school_name_en": "Govt. Upper Primary School Telada",
+      "school_name_hi": "रा.उ.प्रा.वि. तेलाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2009",
@@ -27775,8 +30527,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1986-10-25",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. कनाई कलां",
-      "peeo_name": "PEEO KANAI KALAN",
+      "school_name": "रा.उ.प्रा.वि. तेलाड़ा",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ202001000568",
       "mobile": "9610834792",
       "email": "bharatbhushanpanwar86@gmail.com",
@@ -27790,9 +30542,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Bharat Bhooshan Panwar",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221765",
-      "school_code": "221765",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "shala_darpan_code": "488877",
+      "school_code": "488877",
+      "school_name_en": "Govt. Upper Primary School Telada",
+      "school_name_hi": "रा.उ.प्रा.वि. तेलाड़ा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2010",
@@ -27800,7 +30554,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "20/07/1976",
       "post": "प्रधानाचार्य",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
+      "school_name": "रा.उ.मा.वि. घाणा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJJP200318004724",
       "mobile": "9928994663",
@@ -27815,9 +30569,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Aindapjt। Jnyanda।tp Chbhnsaॅ।tp",
       "post_en": "Principal (L-16)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488897",
+      "school_code": "488897",
+      "school_name_en": "Govt. Sr. Sec. School Ghana",
+      "school_name_hi": "रा.उ.मा.वि. घाणा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2011",
@@ -27825,7 +30581,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1990-09-09",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
+      "school_name": "रा.उ.मा.वि. घाणा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJKK202460107009",
       "mobile": "9664328929",
@@ -27840,9 +30596,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Vinod Pooree",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488897",
+      "school_code": "488897",
+      "school_name_en": "Govt. Sr. Sec. School Ghana",
+      "school_name_hi": "रा.उ.मा.वि. घाणा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2012",
@@ -27850,7 +30608,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1982-02-02",
       "post": "वरिष्ठ अध्यापक",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
+      "school_name": "रा.उ.मा.वि. घाणा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAL202402116439",
       "mobile": "9460660031",
@@ -27865,9 +30623,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Satyendr Sinh",
       "post_en": "Senior Teacher (Gr-II / L-11)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488897",
+      "school_code": "488897",
+      "school_name_en": "Govt. Sr. Sec. School Ghana",
+      "school_name_hi": "रा.उ.मा.वि. घाणा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2013",
@@ -27875,7 +30635,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1990-02-05",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
+      "school_name": "रा.उ.मा.वि. घाणा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ20180124218",
       "mobile": "9929477912",
@@ -27890,9 +30650,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Shyam Sinh Shekhavat",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488897",
+      "school_code": "488897",
+      "school_name_en": "Govt. Sr. Sec. School Ghana",
+      "school_name_hi": "रा.उ.मा.वि. घाणा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2014",
@@ -27900,7 +30662,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1971-01-06",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
+      "school_name": "रा.उ.मा.वि. घाणा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ199301001847",
       "mobile": "9929753094",
@@ -27915,9 +30677,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Mahaveer Prasad Jangid",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488897",
+      "school_code": "488897",
+      "school_name_en": "Govt. Sr. Sec. School Ghana",
+      "school_name_hi": "रा.उ.मा.वि. घाणा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2015",
@@ -27925,7 +30689,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "17/07/1999",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
+      "school_name": "रा.उ.मा.वि. घाणा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ202301047946",
       "mobile": "8619914962",
@@ -27940,9 +30704,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Prashant Malhotra",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488897",
+      "school_code": "488897",
+      "school_name_en": "Govt. Sr. Sec. School Ghana",
+      "school_name_hi": "रा.उ.मा.वि. घाणा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2016",
@@ -27950,7 +30716,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1979-01-06",
       "post": "शारीरिक शिक्षक (PTI)",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
+      "school_name": "रा.उ.मा.वि. घाणा",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ199501021707",
       "mobile": "9950228247",
@@ -27965,9 +30731,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "।aibhta।chhap Jnyanda।t Ch।jbh।jny",
       "post_en": "Physical Education Teacher (PTI)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "488897",
+      "school_code": "488897",
+      "school_name_en": "Govt. Sr. Sec. School Ghana",
+      "school_name_hi": "रा.उ.मा.वि. घाणा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2017",
@@ -27975,8 +30743,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1982-02-17",
       "post": "प्रधानाचार्य / संस्था प्रधान",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ202001031830",
       "mobile": "9829758908",
       "email": "mahesh.meena908@gmail.com",
@@ -27990,9 +30758,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Da।bhmaibh Jnyanda।t Dammchha।",
       "post_en": "Headmaster",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "488886",
+      "school_code": "488886",
+      "school_name_en": "Govt. Upper Primary School Chavandiya Sobri",
+      "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2018",
@@ -28000,8 +30770,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1987-08-25",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "RJSK201733039480",
       "mobile": "7891861695",
       "email": "neerajguhala@gmail.com",
@@ -28015,9 +30785,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Chhammt।shraibh।tda।",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "488886",
+      "school_code": "488886",
+      "school_name_en": "Govt. Upper Primary School Chavandiya Sobri",
+      "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2019",
@@ -28025,8 +30797,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1973-08-03",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ200401004040",
       "mobile": "9460357332",
       "email": "anwerhusain71@gmail.com",
@@ -28040,9 +30812,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Anavar Husen Ansaree",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "488886",
+      "school_code": "488886",
+      "school_name_en": "Govt. Upper Primary School Chavandiya Sobri",
+      "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2020",
@@ -28050,8 +30824,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1988-01-19",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ 201201036388",
       "mobile": "6378861731",
       "email": "wk95321@gmail.com",
@@ -28065,9 +30839,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Aibh।bh।chha।",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "488886",
+      "school_code": "488886",
+      "school_name_en": "Govt. Upper Primary School Chavandiya Sobri",
+      "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2021",
@@ -28075,8 +30851,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1968-01-30",
       "post": "प्रबोधक",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ200801022981",
       "mobile": "9602457086",
       "email": "cbsingh7086@gmail.com",
@@ -28090,9 +30866,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Chndrabhan Sinh Rathod",
       "post_en": "Prabodhak",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "488886",
+      "school_code": "488886",
+      "school_name_en": "Govt. Upper Primary School Chavandiya Sobri",
+      "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2022",
@@ -28100,8 +30878,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1989-12-10",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ201801028966",
       "mobile": "7878963339",
       "email": "ssumandhenwal@gmail.com",
@@ -28115,9 +30893,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Ainda।chh Kmchhaॅ।s",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "488886",
+      "school_code": "488886",
+      "school_name_en": "Govt. Upper Primary School Chavandiya Sobri",
+      "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2023",
@@ -28125,8 +30905,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "2000-02-03",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ2022010117",
       "mobile": "9828772624",
       "email": "vishnugurjar312@gmail.com",
@@ -28140,9 +30920,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Tapaibhchhan ळntshra।t",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "488886",
+      "school_code": "488886",
+      "school_name_en": "Govt. Upper Primary School Chavandiya Sobri",
+      "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2024",
@@ -28150,8 +30932,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1980-01-09",
       "post": "अध्यापक लेवल-2",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ201201038029",
       "mobile": "8890498482",
       "email": "prasharma9225@gmail.com",
@@ -28165,9 +30947,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Cht।tammchh Jnyanda।taibh।tda।",
       "post_en": "Teacher Level-2 (L-10)",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "488886",
+      "school_code": "488886",
+      "school_name_en": "Govt. Upper Primary School Chavandiya Sobri",
+      "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2025",
@@ -28175,8 +30959,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1973-04-12",
       "post": "चणेणेीपोीां",
-      "school_name": "रा.उ.मा.वि. धांतोल",
-      "peeo_name": "PEEO DHANTOL",
+      "school_name": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "RJSR200834050183",
       "mobile": "9649153076",
       "email": "meenasurendra2525@gmail.com",
@@ -28190,9 +30974,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Aintmchhakt।aipchhaळbh T।jbhvtm",
       "post_en": "चणेणेीपोीां",
-      "shala_darpan_code": "221783",
-      "school_code": "221783",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "shala_darpan_code": "488886",
+      "school_code": "488886",
+      "school_name_en": "Govt. Upper Primary School Chavandiya Sobri",
+      "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2026",
@@ -28217,7 +31003,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221782",
       "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "school_name_en": "Govt. Sr. Sec. School Sobri",
+      "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2027",
@@ -28242,7 +31030,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Principal (L-16)",
       "shala_darpan_code": "221782",
       "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "school_name_en": "Govt. Sr. Sec. School Sobri",
+      "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2028",
@@ -28267,7 +31057,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221782",
       "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "school_name_en": "Govt. Sr. Sec. School Sobri",
+      "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2029",
@@ -28292,7 +31084,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221782",
       "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "school_name_en": "Govt. Sr. Sec. School Sobri",
+      "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2030",
@@ -28317,7 +31111,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Lecturer (L-12)",
       "shala_darpan_code": "221782",
       "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "school_name_en": "Govt. Sr. Sec. School Sobri",
+      "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2031",
@@ -28342,7 +31138,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Senior Teacher (Gr-II / L-11)",
       "shala_darpan_code": "221782",
       "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "school_name_en": "Govt. Sr. Sec. School Sobri",
+      "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2032",
@@ -28367,7 +31165,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221782",
       "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "school_name_en": "Govt. Sr. Sec. School Sobri",
+      "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2033",
@@ -28392,7 +31192,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221782",
       "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "school_name_en": "Govt. Sr. Sec. School Sobri",
+      "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2034",
@@ -28417,7 +31219,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221782",
       "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "school_name_en": "Govt. Sr. Sec. School Sobri",
+      "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2035",
@@ -28442,7 +31246,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221782",
       "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "school_name_en": "Govt. Sr. Sec. School Sobri",
+      "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2036",
@@ -28467,7 +31273,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221782",
       "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "school_name_en": "Govt. Sr. Sec. School Sobri",
+      "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2037",
@@ -28492,7 +31300,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221782",
       "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "school_name_en": "Govt. Sr. Sec. School Sobri",
+      "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2038",
@@ -28517,7 +31327,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221782",
       "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "school_name_en": "Govt. Sr. Sec. School Sobri",
+      "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2039",
@@ -28542,7 +31354,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher (Grade-III / L-10)",
       "shala_darpan_code": "221782",
       "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "school_name_en": "Govt. Sr. Sec. School Sobri",
+      "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2040",
@@ -28567,7 +31381,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Physical Education Teacher (PTI)",
       "shala_darpan_code": "221782",
       "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "school_name_en": "Govt. Sr. Sec. School Sobri",
+      "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2041",
@@ -28592,7 +31408,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Assistant",
       "shala_darpan_code": "221782",
       "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "school_name_en": "Govt. Sr. Sec. School Sobri",
+      "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2042",
@@ -28617,7 +31435,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "School Assistant",
       "shala_darpan_code": "221782",
       "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "school_name_en": "Govt. Sr. Sec. School Sobri",
+      "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2043",
@@ -28642,7 +31462,9 @@ const MASTER_CBEO_DATA = {
       "post_en": "Panchayat Assistant",
       "shala_darpan_code": "221782",
       "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "school_name_en": "Govt. Sr. Sec. School Sobri",
+      "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2044",
@@ -28650,8 +31472,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1990-05-08",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. कुम्हारिया",
-      "peeo_name": "PEEO KUMHARIYA",
+      "school_name": "रा.प्रा.वि. कुम्हारिया खेड़ा (सोबड़ी)",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ201901001844",
       "mobile": "9950470077",
       "email": "kamleshjat7791@gmail.com",
@@ -28665,9 +31487,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Kamalesh Jat",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221777",
-      "school_code": "221777",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "shala_darpan_code": "410775",
+      "school_code": "410775",
+      "school_name_en": "Govt. Primary School Kumhariya Kheda Sobri",
+      "school_name_hi": "रा.प्रा.वि. कुम्हारिया खेड़ा (सोबड़ी)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2045",
@@ -28675,7 +31499,7 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "1986-06-01",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
+      "school_name": "रा.प्रा.वि. प्रतापपुरा (सोबड़ी)",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ201501006466",
       "mobile": "9001755517",
@@ -28690,9 +31514,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Anil Kumar",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "410678",
+      "school_code": "410678",
+      "school_name_en": "Govt. Primary School Pratappura Sobri",
+      "school_name_hi": "रा.प्रा.वि. प्रतापपुरा (सोबड़ी)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2046",
@@ -28700,7 +31526,7 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1976-06-01",
       "post": "प्रबोधक",
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
+      "school_name": "रा.प्रा.वि. प्रतापपुरा (सोबड़ी)",
       "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ200801025481",
       "mobile": "9680771546",
@@ -28715,9 +31541,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Kamala Devee Bhanbee",
       "post_en": "Prabodhak",
-      "shala_darpan_code": "221782",
-      "school_code": "221782",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "shala_darpan_code": "410678",
+      "school_code": "410678",
+      "school_name_en": "Govt. Primary School Pratappura Sobri",
+      "school_name_hi": "रा.प्रा.वि. प्रतापपुरा (सोबड़ी)",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2047",
@@ -28725,8 +31553,8 @@ const MASTER_CBEO_DATA = {
       "gender": "पुरुष",
       "dob": "15/07/1994",
       "post": "अध्यापक (तृतीय श्रेणी)",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.प्रा.वि. गुर्जरों का झोपड़ा घाणा",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ201901002117",
       "mobile": "8094138785",
       "email": "gajraj794@gmail.com",
@@ -28740,9 +31568,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Gajaraj Bairwa",
       "post_en": "Teacher (Grade-III / L-10)",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "408415",
+      "school_code": "408415",
+      "school_name_en": "Govt. Primary School Gujaro Ka Jhopda Ghana",
+      "school_name_hi": "रा.प्रा.वि. गुर्जरों का झोपड़ा घाणा",
+      "unmapped_school": false
     },
     {
       "staff_id": "STF2048",
@@ -28750,8 +31580,8 @@ const MASTER_CBEO_DATA = {
       "gender": "महिला",
       "dob": "1969-02-07",
       "post": "प्रबोधक",
-      "school_name": "रा.उ.मा.वि. भिनाय",
-      "peeo_name": "PEEO BHINAY",
+      "school_name": "रा.प्रा.वि. गुर्जरों का झोपड़ा घाणा",
+      "peeo_name": "PEEO SOBRI",
       "sso_id": "RJAJ200801044271",
       "mobile": "9928622106",
       "email": "sheelamishra2769@gmail.com",
@@ -28765,9 +31595,11 @@ const MASTER_CBEO_DATA = {
       "status": "Active",
       "name_en": "Sheela Sharma",
       "post_en": "Prabodhak",
-      "shala_darpan_code": "221780",
-      "school_code": "221780",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "shala_darpan_code": "408415",
+      "school_code": "408415",
+      "school_name_en": "Govt. Primary School Gujaro Ka Jhopda Ghana",
+      "school_name_hi": "रा.प्रा.वि. गुर्जरों का झोपड़ा घाणा",
+      "unmapped_school": false
     }
   ],
   "total_staff_count": 1060,
@@ -34585,294 +37417,3 @@ const MASTER_CBEO_DATA = {
     }
   }
 };
-if (typeof module !== "undefined") module.exports = MASTER_CBEO_DATA;
-
-
-const STANDARD_SCHOOL_NAMES = {
-  "221764": {
-    "hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
-    "en": "Govt. Sr. Sec. School Badgaon - Surkhand",
-    "peeo": "PEEO BARGAON"
-  },
-  "506830": {
-    "hi": "रा.बा.उ.मा.वि. बड़ली",
-    "en": "Govt. Girls Sr. Sec. School Barli",
-    "peeo": "PEEO BARLI"
-  },
-  "221755": {
-    "hi": "रा.उ.मा.वि. बड़ली",
-    "en": "Govt. Sr. Sec. School Barli",
-    "peeo": "PEEO BARLI"
-  },
-  "221769": {
-    "hi": "रा.उ.मा.वि. बांदनवाड़ा",
-    "en": "Govt. Sr. Sec. School Bandanwara",
-    "peeo": "PEEO BANDANWARA"
-  },
-  "221771": {
-    "hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
-    "en": "Govt. Sr. Sec. School Railway Colony Bandanwara",
-    "peeo": "PEEO BANDANWARA"
-  },
-  "221770": {
-    "hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
-    "en": "Mahatma Gandhi Govt. School Bandanwara",
-    "peeo": "PEEO BANDANWARA"
-  },
-  "221780": {
-    "hi": "रा.उ.मा.वि. भिनाय",
-    "en": "Govt. Sr. Sec. School Bhinai",
-    "peeo": "PEEO BHINAY"
-  },
-  "221778": {
-    "hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
-    "en": "Mahatma Gandhi Govt. School Bhinai",
-    "peeo": "PEEO BHINAY"
-  },
-  "221763": {
-    "hi": "रा.उ.मा.वि. बूबकिया",
-    "en": "Govt. Sr. Sec. School Boobkiya",
-    "peeo": "PEEO BOOBKIYA"
-  },
-  "485033": {
-    "hi": "रा.उ.मा.वि. पीपलिया",
-    "en": "Govt. Sr. Sec. School Pipliya",
-    "peeo": "PEEO BOOBKIYA"
-  },
-  "221787": {
-    "hi": "रा.उ.मा.वि. छाछून्दरा",
-    "en": "Govt. Sr. Sec. School Chhachhundra",
-    "peeo": "PEEO CHHACHHUNDRA"
-  },
-  "488946": {
-    "hi": "रा.उ.मा.वि. सेदरिया",
-    "en": "Govt. Sr. Sec. School Sedriya",
-    "peeo": "PEEO CHHACHHUNDRA"
-  },
-  "494626": {
-    "hi": "रा.बा.उ.मा.वि. चापानेरी",
-    "en": "Govt. Girls Sr. Sec. School Chapaneri",
-    "peeo": "PEEO CHAPANERI"
-  },
-  "221758": {
-    "hi": "रा.उ.मा.वि. चापानेरी",
-    "en": "Govt. Sr. Sec. School Chapaneri",
-    "peeo": "PEEO CHAPANERI"
-  },
-  "221753": {
-    "hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
-    "en": "Mahatma Gandhi Govt. School Deoliya Kalan",
-    "peeo": "PEEO DEOLIYA KALAN"
-  },
-  "221754": {
-    "hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
-    "en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
-    "peeo": "PEEO DEOLIYA KALAN"
-  },
-  "488941": {
-    "hi": "रा.उ.मा.वि. देवरिया",
-    "en": "Govt. Sr. Sec. School Devriya",
-    "peeo": "PEEO DEVPURA"
-  },
-  "410704": {
-    "hi": "रा.उ.मा.वि. रूपपुरा",
-    "en": "Govt. Sr. Sec. School Rooppura",
-    "peeo": "PEEO DEVPURA"
-  },
-  "221783": {
-    "hi": "रा.उ.मा.वि. धांतोल",
-    "en": "Govt. Sr. Sec. School Dhantol",
-    "peeo": "PEEO DHANTOL"
-  },
-  "221786": {
-    "hi": "रा.उ.मा.वि. एकलसिंघा",
-    "en": "Govt. Sr. Sec. School Ekalsingha",
-    "peeo": "PEEO EKALSEENGA"
-  },
-  "488947": {
-    "hi": "रा.उ.मा.वि. हियालिया",
-    "en": "Govt. Sr. Sec. School Hiyaliya",
-    "peeo": "PEEO EKALSEENGA"
-  },
-  "221762": {
-    "hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
-    "en": "Govt. Sr. Sec. School Gudha Khurd",
-    "peeo": "PEEO GURHA KHURD"
-  },
-  "485030": {
-    "hi": "पीएम श्री रा.उ.मा.वि. बागरिया",
-    "en": "PM SHRI Govt. Sr. Sec. School Bagrai",
-    "peeo": "PEEO GURHA KHURD"
-  },
-  "221765": {
-    "hi": "रा.उ.मा.वि. कनाई कलां",
-    "en": "Govt. Sr. Sec. School Kanai Kala",
-    "peeo": "PEEO KANAI KALAN"
-  },
-  "401778": {
-    "hi": "रा.उ.मा.वि. नेमेड़ा",
-    "en": "Govt. Sr. Sec. School Nemeda",
-    "peeo": "PEEO KANAI KALAN"
-  },
-  "221773": {
-    "hi": "रा.उ.मा.वि. करांटी",
-    "en": "Govt. Sr. Sec. School Karanti",
-    "peeo": "PEEO KARATI"
-  },
-  "221774": {
-    "hi": "रा.उ.मा.वि. खेड़ी",
-    "en": "Govt. Sr. Sec. School Khedi",
-    "peeo": "PEEO KARATI"
-  },
-  "488791": {
-    "hi": "रा.बा.उ.मा.वि. खेड़ी",
-    "en": "Govt. Girls Sr. Sec. School Khedi",
-    "peeo": "PEEO KARATI"
-  },
-  "221768": {
-    "hi": "रा.उ.मा.वि. जेतपुरा",
-    "en": "Govt. Sr. Sec. School Jetpura",
-    "peeo": "PEEO KEROT"
-  },
-  "221767": {
-    "hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
-    "en": "Govt. Sr. Sec. School Kairot (Jetpura)",
-    "peeo": "PEEO KEROT"
-  },
-  "221777": {
-    "hi": "रा.उ.मा.वि. कुम्हारिया",
-    "en": "Govt. Sr. Sec. School Kumhariya",
-    "peeo": "PEEO KUMHARIYA"
-  },
-  "221760": {
-    "hi": "रा.उ.मा.वि. गनाहेड़ा",
-    "en": "Govt. Sr. Sec. School Ganahera",
-    "peeo": "PEEO LAMGARA"
-  },
-  "221759": {
-    "hi": "रा.उ.मा.वि. लामगरा",
-    "en": "Govt. Sr. Sec. School Lamgara",
-    "peeo": "PEEO LAMGARA"
-  },
-  "221761": {
-    "hi": "रा.उ.मा.वि. निमेड़ा",
-    "en": "Govt. Sr. Sec. School Nimeda",
-    "peeo": "PEEO LAMGARA"
-  },
-  "488781": {
-    "hi": "रा.उ.मा.वि. बडला (नागोला)",
-    "en": "Govt. Sr. Sec. School Badla (Nagola)",
-    "peeo": "PEEO NAGOLA"
-  },
-  "221772": {
-    "hi": "रा.उ.मा.वि. नागोला",
-    "en": "Govt. Sr. Sec. School Nagola",
-    "peeo": "PEEO NAGOLA"
-  },
-  "410632": {
-    "hi": "रा.बा.उ.मा.वि. नांदसी",
-    "en": "Govt. Girls Sr. Sec. School Nandsi",
-    "peeo": "PEEO NANDSI"
-  },
-  "221757": {
-    "hi": "रा.उ.मा.वि. कुरथल",
-    "en": "Govt. Sr. Sec. School Kurthal",
-    "peeo": "PEEO NANDSI"
-  },
-  "221756": {
-    "hi": "रा.उ.मा.वि. नांदसी",
-    "en": "Govt. Sr. Sec. School Nandsi",
-    "peeo": "PEEO NANDSI"
-  },
-  "221788": {
-    "hi": "रा.उ.मा.वि. पाडंगा",
-    "en": "Govt. Sr. Sec. School Padanga",
-    "peeo": "PEEO PADANGA"
-  },
-  "221766": {
-    "hi": "रा.उ.मा.वि. पाडलिया",
-    "en": "Govt. Sr. Sec. School Padliya",
-    "peeo": "PEEO PADALIYA"
-  },
-  "221784": {
-    "hi": "रा.उ.मा.वि. हीरापुरा",
-    "en": "Govt. Sr. Sec. School Heerapura",
-    "peeo": "PEEO RAMMALIA"
-  },
-  "410677": {
-    "hi": "रा.उ.मा.वि. रघुनाथगढ़",
-    "en": "Govt. Sr. Sec. School Raghunathgadh",
-    "peeo": "PEEO RAMMALIA"
-  },
-  "221785": {
-    "hi": "रा.उ.मा.वि. राममालिया",
-    "en": "Govt. Sr. Sec. School Rammaliya",
-    "peeo": "PEEO RAMMALIA"
-  },
-  "221776": {
-    "hi": "रा.उ.मा.वि. झीपिया",
-    "en": "Govt. Sr. Sec. School Jhipiya",
-    "peeo": "PEEO RATAKOT"
-  },
-  "221775": {
-    "hi": "रा.उ.मा.वि. राताकोट",
-    "en": "Govt. Sr. Sec. School Ratakot",
-    "peeo": "PEEO RATAKOT"
-  },
-  "221781": {
-    "hi": "रा.उ.मा.वि. सिंगावल",
-    "en": "Govt. Sr. Sec. School Singawal",
-    "peeo": "PEEO SINGAWAL"
-  },
-  "488897": {
-    "hi": "रा.उ.मा.वि. घाणा",
-    "en": "Govt. Sr. Sec. School Ghana",
-    "peeo": "PEEO SOBRI"
-  },
-  "221782": {
-    "hi": "रा.उ.मा.वि. सोबड़ी",
-    "en": "Govt. Sr. Sec. School Sobri",
-    "peeo": "PEEO SOBRI"
-  },
-  "P55700": {
-    "hi": "टैगोर ग्लोबल स्कूल, एकलसिंघा",
-    "en": "Tagore Global School (Ekalsingha)",
-    "peeo": "PEEO EKALSEENGA"
-  },
-  "P16099": {
-    "hi": "गुरुकुल केसरी पब्लिक माध्यमिक विद्यालय, बांदनवाड़ा",
-    "en": "Gurukul Kesari Public Secondary School Bandanwara",
-    "peeo": "PEEO BANDANWARA"
-  },
-  "P48759": {
-    "hi": "कुचामन शिक्षण संस्थान, बांदनवाड़ा",
-    "en": "Kuchaman Shikshan Sansthan Bandanwara",
-    "peeo": "PEEO BANDANWARA"
-  },
-  "P16964": {
-    "hi": "सम्राट इंटरनेशनल स्कूल, बांदनवाड़ा",
-    "en": "Samrat International School Bandanwara",
-    "peeo": "PEEO BANDANWARA"
-  },
-  "P19054": {
-    "hi": "सिद्धार्थ इंटरनेशनल स्कूल, बांदनवाड़ा",
-    "en": "Siddharth International School Bandanwara",
-    "peeo": "PEEO BANDANWARA"
-  },
-  "P19678": {
-    "hi": "सन राइज कॉन्वेंट स्कूल, भिनाय",
-    "en": "Sun Rise Convent School Bhinai",
-    "peeo": "PEEO BHINAY"
-  },
-  "P16865": {
-    "hi": "सुमेर उच्च माध्यमिक विद्यालय, भिनाय",
-    "en": "Sumer Senior Secondary School Bhinai",
-    "peeo": "PEEO BHINAY"
-  },
-  "P16968": {
-    "hi": "द्रोणाचार्य माध्यमिक विद्यालय, भिनाय",
-    "en": "Drona Charya Secondary School Bhinai",
-    "peeo": "PEEO BHINAY"
-  }
-};
-if (typeof window !== 'undefined') window.STANDARD_SCHOOL_NAMES = STANDARD_SCHOOL_NAMES;
