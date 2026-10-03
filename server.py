@@ -818,7 +818,11 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                     'cbeo_can_edit': True,
                     'peeo_can_edit_staff': True,
                     'peeo_can_edit_head': True,
-                    'schools_can_edit_staff': False
+                    'schools_can_edit_staff': False,
+                    'peeo_can_edit_school_mgmt': True,
+                    'schools_can_edit_school_mgmt': False,
+                    'saman_pariksha_lock_schools': True,
+                    'demands_lock_schools': False
                 }
                 if os.path.exists('staff_edit_permissions.json'):
                     with open('staff_edit_permissions.json', 'r', encoding='utf-8') as f:

@@ -1,6 +1,6 @@
 {
   "visibility": {
-    "saman-pariksha": { "cbeo": true, "peeo": true, "sec_srsec": true, "all_govt": false, "all_schools": false },
+    "saman-pariksha": { "cbeo": true, "peeo": true, "sec_srsec": false, "all_govt": false, "all_schools": false },
     "dashboard": { "cbeo": true, "peeo": true, "sec_srsec": false, "all_govt": false, "all_schools": false },
     "directory": { "cbeo": true, "peeo": true, "sec_srsec": false, "all_govt": false, "all_schools": false },
     "staff": { "cbeo": true, "peeo": true, "sec_srsec": false, "all_govt": false, "all_schools": false },

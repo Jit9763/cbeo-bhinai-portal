@@ -172,12 +172,15 @@ function initMasterData() {
     }
   ];
 
-  // Versioned cache check to guarantee fresh master data with 57 schools and all 3 active submissions
-  const DATA_VERSION = 'v19_2026_10_02_cleaned_unicode_staff_5level_access';
+  // Versioned cache check to guarantee fresh master data with 57 schools and all 57 active submissions
+  const DATA_VERSION = 'v20_2026_10_03_all_57_saman_pariksha_sync';
   if (localStorage.getItem('cbeo_data_version') !== DATA_VERSION) {
     localStorage.removeItem('cbeo_peeos_data');
     localStorage.removeItem('cbeo_staff_data');
     localStorage.removeItem('cbeo_schools56_data');
+    localStorage.removeItem('cbeo_saman_pariksha_submissions');
+    localStorage.removeItem('cbeo_tab_visibility_5level');
+    localStorage.removeItem('cbeo_staff_edit_permissions');
     // NOTE: Form drafts (cbeo_form_draft_*) are deliberately preserved so user never loses unfinished data!
     localStorage.setItem('cbeo_data_version', DATA_VERSION);
     try {
@@ -343,12 +346,6 @@ function initMasterData() {
     STATE.samanParikshaSubmissions = defaultSPSubs;
   }
 
-  // Explicitly ensure test Badanwada submission is purged
-  if (STATE.samanParikshaSubmissions && STATE.samanParikshaSubmissions['221769']) {
-    delete STATE.samanParikshaSubmissions['221769'];
-    localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(STATE.samanParikshaSubmissions));
-  }
-
   // Live Sync from Google Sheet via doGet(?action=getAll)
   const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
     || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
@@ -469,10 +466,30 @@ function initMasterData() {
     if (storedStaffPerms) {
       STATE.staffEditPermissions = JSON.parse(storedStaffPerms);
     } else {
-      STATE.staffEditPermissions = { master_lock: false, cbeo_can_edit: true, peeo_can_edit_staff: true, peeo_can_edit_head: true, schools_can_edit_staff: false };
+      STATE.staffEditPermissions = {
+        master_lock: false,
+        cbeo_can_edit: true,
+        peeo_can_edit_staff: true,
+        peeo_can_edit_head: true,
+        schools_can_edit_staff: false,
+        peeo_can_edit_school_mgmt: true,
+        schools_can_edit_school_mgmt: false,
+        saman_pariksha_lock_schools: true,
+        demands_lock_schools: false
+      };
     }
   } catch (e) {
-    STATE.staffEditPermissions = { master_lock: false, cbeo_can_edit: true, peeo_can_edit_staff: true, peeo_can_edit_head: true, schools_can_edit_staff: false };
+    STATE.staffEditPermissions = {
+      master_lock: false,
+      cbeo_can_edit: true,
+      peeo_can_edit_staff: true,
+      peeo_can_edit_head: true,
+      schools_can_edit_staff: false,
+      peeo_can_edit_school_mgmt: true,
+      schools_can_edit_school_mgmt: false,
+      saman_pariksha_lock_schools: true,
+      demands_lock_schools: false
+    };
   }
 
   fetch('/api/get_staff_edit_permissions')
@@ -998,9 +1015,15 @@ function performLogin() {
     closeModal('modal-login');
     showToast(toastMsg, 'success');
     renderApp();
-    switchTab('saman-pariksha');
-    if (openForm && userObj.role === 'school') {
-      openSamanParikshaForm(userObj.shala_darpan_code);
+    if (isTabVisibleForCurrentUser('saman-pariksha')) {
+      switchTab('saman-pariksha');
+      if (openForm && userObj.role === 'school') {
+        openSamanParikshaForm(userObj.shala_darpan_code);
+      }
+    } else {
+      const fallbackTabs = ['demands', 'dashboard', 'directory', 'staff', 'school-management'];
+      const target = fallbackTabs.find(t => isTabVisibleForCurrentUser(t)) || 'demands';
+      switchTab(target);
     }
     // Prominent security popup if logged in with default password
     if (userObj.role !== 'admin' && (p === u || p === userObj.shala_darpan_code)) {
@@ -1144,6 +1167,10 @@ function performLogin() {
 }
 
 function switchTab(viewId, param = null) {
+  if (STATE.currentUser && typeof isTabVisibleForCurrentUser === 'function' && !isTabVisibleForCurrentUser(viewId) && viewId !== 'admin-control') {
+    return;
+  }
+
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   const activeBtn = (viewId === 'dynamic-demand' && (param || STATE.activeDemandPortalId))
     ? (document.getElementById(`nav-tab-demand-${param || STATE.activeDemandPortalId}`) || document.getElementById('nav-tab-dynamic-demand'))
@@ -1167,7 +1194,7 @@ function switchTab(viewId, param = null) {
 }
 
 const DEFAULT_TAB_VISIBILITY_5LEVEL = {
-  'saman-pariksha': { cbeo: true, peeo: true, sec_srsec: true, all_govt: false, all_schools: false },
+  'saman-pariksha': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false },
   'dashboard': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false },
   'directory': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false },
   'staff': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false },
@@ -1253,6 +1280,19 @@ function applyTabVisibility() {
   // Admin tab is visible for both Jitendra and CBEO
   if (tabAdmin) tabAdmin.style.display = (isJitendra || isCBEO) ? 'inline-flex' : 'none';
   if (quickBanner) quickBanner.style.display = isTabVisibleForCurrentUser('directory') ? 'flex' : 'none';
+
+  const noticeBanner = document.querySelector('.portal-notice-banner');
+  if (noticeBanner) {
+    noticeBanner.style.display = isTabVisibleForCurrentUser('saman-pariksha') ? 'flex' : 'none';
+  }
+
+  // If currently active view is not permitted for the user, auto-switch to a visible view
+  const activeView = document.querySelector('.content-view.active');
+  if (activeView && activeView.id === 'view-saman-pariksha' && !isTabVisibleForCurrentUser('saman-pariksha')) {
+    const fallbackTabs = ['demands', 'dashboard', 'directory', 'staff', 'school-management'];
+    const target = fallbackTabs.find(t => isTabVisibleForCurrentUser(t)) || 'demands';
+    switchTab(target);
+  }
 
   // Inside Admin Tab: Jitendra sees Cloud VM Controller, 5-Level Control Matrix & Staff Permissions
   const vmCard = document.getElementById('jitendra-cloud-vm-control-card');
@@ -1526,6 +1566,7 @@ function renderApp() {
     renderDynamicDemandPortalView(STATE.activeDemandPortalId);
   }
   renderAdminMatrix();
+  updateVMWidgetStats();
 }
 
 // Faculty and Subject configuration for Classes 11 & 12
@@ -2099,6 +2140,32 @@ function openSamanParikshaForm(schoolCode) {
     standaloneBtn.href = `saman_form.html?code=${school.shala_darpan_code}`;
   }
   showModal('modal-saman-pariksha-form');
+
+  const isLocked = isSamanParikshaLockedForCurrentUser();
+  const lockBanner = document.getElementById('gform-lock-alert-banner');
+  if (lockBanner) lockBanner.style.display = isLocked ? 'block' : 'none';
+
+  const topSaveBtn = document.getElementById('btn-gform-topbar-save');
+  const footSaveBtn = document.getElementById('btn-gform-footer-save');
+  const footPrintBtn = document.getElementById('btn-gform-footer-print');
+  const viewOnlyPdfBtn = document.getElementById('btn-gform-viewonly-pdf');
+
+  if (topSaveBtn) topSaveBtn.style.display = isLocked ? 'none' : 'inline-flex';
+  if (footSaveBtn) footSaveBtn.style.display = isLocked ? 'none' : 'inline-flex';
+  if (footPrintBtn) footPrintBtn.style.display = isLocked ? 'none' : 'inline-flex';
+  if (viewOnlyPdfBtn) viewOnlyPdfBtn.style.display = isLocked ? 'inline-flex' : 'none';
+
+  const gformInputs = formElem ? formElem.querySelectorAll('input:not([type="hidden"]), select, textarea') : [];
+  gformInputs.forEach(inp => {
+    if (isLocked) {
+      inp.setAttribute('readonly', 'true');
+      if (inp.type === 'checkbox' || inp.type === 'radio') inp.setAttribute('disabled', 'true');
+    } else {
+      inp.removeAttribute('readonly');
+      if (inp.type === 'checkbox' || inp.type === 'radio') inp.removeAttribute('disabled');
+    }
+  });
+
   setTimeout(() => {
     setupGFormSignaturePad();
     clearGFormSignature();
@@ -2290,6 +2357,16 @@ function submitSamanParikshaForm(andPrint = false) {
   const schoolCode = document.getElementById('gform-school-code-hidden').value;
   const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
   if (!school) return;
+
+  if (isSamanParikshaLockedForCurrentUser()) {
+    if (andPrint) {
+      closeModal('modal-saman-pariksha-form');
+      openExamPdfPreview(schoolCode);
+      return;
+    }
+    showToast('🔒 समान परीक्षा प्रपत्र संपादन CBEO कार्यालय द्वारा लॉक है (View-Only Mode)।', 'warning');
+    return;
+  }
 
   const examCode = document.getElementById('gform-exam-code').value.trim().toUpperCase();
   const principalName = document.getElementById('gform-principal-name').value.trim();
@@ -5759,20 +5836,38 @@ function renderStaffEditPermissionsMatrix() {
   const chkPeeoStaff = document.getElementById('perm-peeo-edit-staff');
   const chkPeeoHead = document.getElementById('perm-peeo-edit-head');
   const chkSchool = document.getElementById('perm-school-edit');
+  const chkPeeoSchool = document.getElementById('perm-peeo-edit-school');
+  const chkSchoolSchool = document.getElementById('perm-school-edit-school');
+  const chkLockSP = document.getElementById('perm-lock-saman-pariksha');
+  const chkLockDemands = document.getElementById('perm-lock-demands');
 
   if (chkCbeo) chkCbeo.checked = perms.cbeo_can_edit !== false;
   if (chkPeeoStaff) chkPeeoStaff.checked = perms.peeo_can_edit_staff !== false;
   if (chkPeeoHead) chkPeeoHead.checked = perms.peeo_can_edit_head !== false;
   if (chkSchool) chkSchool.checked = !!perms.schools_can_edit_staff;
+  if (chkPeeoSchool) chkPeeoSchool.checked = perms.peeo_can_edit_school_mgmt !== false;
+  if (chkSchoolSchool) chkSchoolSchool.checked = !!perms.schools_can_edit_school_mgmt;
+  if (chkLockSP) chkLockSP.checked = perms.saman_pariksha_lock_schools !== false;
+  if (chkLockDemands) chkLockDemands.checked = !!perms.demands_lock_schools;
 }
 
 function toggleStaffMasterLock() {
   if (!STATE.staffEditPermissions) {
-    STATE.staffEditPermissions = { master_lock: false, cbeo_can_edit: true, peeo_can_edit_staff: true, peeo_can_edit_head: true, schools_can_edit_staff: false };
+    STATE.staffEditPermissions = {
+      master_lock: false,
+      cbeo_can_edit: true,
+      peeo_can_edit_staff: true,
+      peeo_can_edit_head: true,
+      schools_can_edit_staff: false,
+      peeo_can_edit_school_mgmt: true,
+      schools_can_edit_school_mgmt: false,
+      saman_pariksha_lock_schools: true,
+      demands_lock_schools: false
+    };
   }
   STATE.staffEditPermissions.master_lock = !STATE.staffEditPermissions.master_lock;
   saveStaffEditPermissionsMatrix();
-  showToast(STATE.staffEditPermissions.master_lock ? '🔒 समस्त कार्मिक डेटा संपादन लॉक कर दिया गया!' : '🔓 कार्मिक डेटा संपादन अनलॉक कर दिया गया!', 'info');
+  showToast(STATE.staffEditPermissions.master_lock ? '🔒 समस्त कार्मिक व स्कूल संपादन लॉक कर दिया गया!' : '🔓 संपादन अनलॉक कर दिया गया!', 'info');
 }
 
 function saveStaffEditPermissionsMatrix() {
@@ -5781,7 +5876,11 @@ function saveStaffEditPermissionsMatrix() {
     cbeo_can_edit: !!document.getElementById('perm-cbeo-edit')?.checked,
     peeo_can_edit_staff: !!document.getElementById('perm-peeo-edit-staff')?.checked,
     peeo_can_edit_head: !!document.getElementById('perm-peeo-edit-head')?.checked,
-    schools_can_edit_staff: !!document.getElementById('perm-school-edit')?.checked
+    schools_can_edit_staff: !!document.getElementById('perm-school-edit')?.checked,
+    peeo_can_edit_school_mgmt: !!document.getElementById('perm-peeo-edit-school')?.checked,
+    schools_can_edit_school_mgmt: !!document.getElementById('perm-school-edit-school')?.checked,
+    saman_pariksha_lock_schools: !!document.getElementById('perm-lock-saman-pariksha')?.checked,
+    demands_lock_schools: !!document.getElementById('perm-lock-demands')?.checked
   };
 
   STATE.staffEditPermissions = perms;
@@ -5795,7 +5894,8 @@ function saveStaffEditPermissionsMatrix() {
 
   renderStaffEditPermissionsMatrix();
   if (typeof filterStaffTable === 'function') filterStaffTable();
-  showToast('कार्मिक संपादन अनुमतियाँ सफलतापूर्वक सुरक्षित की गईं!', 'success');
+  if (typeof filterSchoolManagementTable === 'function') filterSchoolManagementTable();
+  showToast('कार्मिक, विद्यालय प्रबंधन व प्रपत्र लॉक अनुमतियाँ सुरक्षित की गईं!', 'success');
 }
 
 function canCurrentUserEditStaff(targetStaff) {
@@ -5845,6 +5945,85 @@ function canCurrentUserEditSchoolHead(schoolOrStaff) {
     if (!perms.peeo_can_edit_head) return false;
     const pName = typeof schoolOrStaff === 'string' ? schoolOrStaff : (schoolOrStaff?.peeo_name || '');
     return !pName || pName === STATE.currentUser.peeo_name;
+  }
+
+  return false;
+}
+
+function canCurrentUserEditSchoolDetails(school) {
+  if (!STATE.currentUser) return false;
+  const isJitendra = STATE.currentUser.shala_darpan_code === 'admin_jitendra' || 
+                     STATE.currentUser.admin_id === 'ADMIN02' || 
+                     STATE.currentUser.username === 'jitendra_admin';
+  if (isJitendra) return true; // Super Admin Jitendra always has master control
+
+  const perms = STATE.staffEditPermissions || {};
+  if (perms.master_lock) return false;
+
+  const isCBEO = STATE.currentUser.shala_darpan_code === '8140' || 
+                 STATE.currentUser.admin_id === 'ADMIN01' || 
+                 (STATE.currentUser.role === 'admin' && !isJitendra);
+  if (isCBEO) return perms.cbeo_can_edit !== false;
+
+  const schCode = typeof school === 'string' ? school : (school?.shala_darpan_code || school?.dise_code || '');
+  const schPeeo = typeof school === 'object' ? (school?.peeo_name || '') : '';
+  const schPeeoCode = typeof school === 'object' ? (school?.peeo_code || '') : '';
+
+  if (STATE.currentUser.role === 'peeo') {
+    if (!perms.peeo_can_edit_school_mgmt) return false;
+    const matchesPeeo = (schPeeo && (schPeeo === STATE.currentUser.peeo_name || schPeeo.toLowerCase() === STATE.currentUser.peeo_name?.toLowerCase())) ||
+                        (schPeeoCode && schPeeoCode === STATE.currentUser.shala_darpan_code) ||
+                        (!schPeeo && !schPeeoCode);
+    return matchesPeeo;
+  }
+
+  if (STATE.currentUser.role === 'school') {
+    if (!perms.schools_can_edit_school_mgmt) return false;
+    return schCode === STATE.currentUser.shala_darpan_code;
+  }
+
+  return false;
+}
+
+function isSamanParikshaLockedForCurrentUser() {
+  if (!STATE.currentUser) return false;
+  const isJitendra = STATE.currentUser.shala_darpan_code === 'admin_jitendra' || 
+                     STATE.currentUser.admin_id === 'ADMIN02' || 
+                     STATE.currentUser.username === 'jitendra_admin';
+  if (isJitendra) return false; // Super Admin Jitendra can always edit
+
+  const isCBEO = STATE.currentUser.shala_darpan_code === '8140' || 
+                 STATE.currentUser.admin_id === 'ADMIN01' || 
+                 (STATE.currentUser.role === 'admin' && !isJitendra);
+  if (isCBEO) return false;
+
+  const perms = STATE.staffEditPermissions || {};
+  if (perms.master_lock) return true;
+
+  if (STATE.currentUser.role === 'school') {
+    return perms.saman_pariksha_lock_schools !== false; // Locked by default for schools
+  }
+
+  return false;
+}
+
+function isDemandsLockedForCurrentUser() {
+  if (!STATE.currentUser) return false;
+  const isJitendra = STATE.currentUser.shala_darpan_code === 'admin_jitendra' || 
+                     STATE.currentUser.admin_id === 'ADMIN02' || 
+                     STATE.currentUser.username === 'jitendra_admin';
+  if (isJitendra) return false;
+
+  const isCBEO = STATE.currentUser.shala_darpan_code === '8140' || 
+                 STATE.currentUser.admin_id === 'ADMIN01' || 
+                 (STATE.currentUser.role === 'admin' && !isJitendra);
+  if (isCBEO) return false;
+
+  const perms = STATE.staffEditPermissions || {};
+  if (perms.master_lock) return true;
+
+  if (STATE.currentUser.role === 'school') {
+    return !!perms.demands_lock_schools;
   }
 
   return false;
@@ -7732,9 +7911,27 @@ function openFillDemandForSchoolModal(demandId, schoolCode) {
 
   container.innerHTML = fieldsHtml;
 
+  const isLocked = isDemandsLockedForCurrentUser();
+  if (isLocked) {
+    const alertBox = document.createElement('div');
+    alertBox.style.cssText = 'background:#fffbeb; border:2px solid #f59e0b; border-radius:8px; padding:0.75rem 1rem; margin-bottom:1rem; color:#92400e; font-weight:700';
+    alertBox.innerHTML = '<i class="fas fa-lock"></i> 🔒 यह मांग प्रपत्र संपादन हेतु लॉक है (View-Only Mode)। आप केवल डेटा अवलोकन कर सकते हैं।';
+    container.insertBefore(alertBox, container.firstChild);
+
+    container.querySelectorAll('input, select, textarea').forEach(inp => {
+      inp.setAttribute('readonly', 'true');
+      if (inp.type === 'checkbox' || inp.type === 'radio') inp.setAttribute('disabled', 'true');
+    });
+  }
+
   const saveBtn = document.getElementById('btn-save-demand');
   if (saveBtn) {
-    saveBtn.setAttribute('onclick', 'submitDynamicDemandSchoolForm()');
+    if (isLocked) {
+      saveBtn.style.display = 'none';
+    } else {
+      saveBtn.style.display = 'inline-flex';
+      saveBtn.setAttribute('onclick', 'submitDynamicDemandSchoolForm()');
+    }
   }
 
   showModal('modal-fill-demand');
@@ -7743,6 +7940,11 @@ function openFillDemandForSchoolModal(demandId, schoolCode) {
 
 // 7. Submit School Dynamic Demand Form & Sync to Google Sheets JSON
 async function submitDynamicDemandSchoolForm() {
+  if (isDemandsLockedForCurrentUser()) {
+    showToast('🔒 यह मांग प्रपत्र संपादन हेतु CBEO कार्यालय द्वारा लॉक है (View-Only Mode)।', 'warning');
+    return;
+  }
+
   const demand = STATE.currentDemandToFill;
   const schoolCode = STATE.currentDemandSchoolCode;
   if (!demand || !schoolCode) {
@@ -8584,6 +8786,7 @@ function renderAdminControlView() {
 
   // Render CBEO Executive Dashboard (visible to both Jitendra and CBEO)
   renderCBEOExecutiveDemands();
+  updateVMWidgetStats();
 
   // Render Cloud VM Controller, 5-Level Control Matrix & Staff Permissions (for Jitendra Super Admin)
   if (isJitendra) {
@@ -10283,7 +10486,7 @@ function filterSchoolManagementTable() {
       </td>
       <td style="text-align:center">
         <label class="login-perm-switch" title="${s.login_allowed ? 'लॉगिन अनुमत (Active)' : 'लॉगिन अवरुद्ध (Blocked)'}">
-          <input type="checkbox" ${s.login_allowed ? 'checked' : ''} onchange="toggleSchoolLoginAllowed('${s.shala_darpan_code}')">
+          <input type="checkbox" ${s.login_allowed ? 'checked' : ''} ${canCurrentUserEditSchoolDetails(s) ? `onchange="toggleSchoolLoginAllowed('${s.shala_darpan_code}')"` : 'disabled'}>
           <span class="login-perm-slider"></span>
         </label>
         <div style="font-size:0.7rem; font-weight:700; color:${s.login_allowed ? '#16a34a' : '#dc2626'}; margin-top:2px">
@@ -10295,23 +10498,31 @@ function filterSchoolManagementTable() {
           <span class="badge-tag" style="background:${isCustomPwd ? '#e0f2fe' : '#f1f5f9'}; color:${isCustomPwd ? '#0369a1' : '#475569'}; font-size:0.72rem; font-weight:700">
             ${isCustomPwd ? '🔑 कस्टम' : 'डिफ़ॉल्ट SD'}
           </span>
-          <button class="sch-action-btn pwd" onclick="openAdminResetPasswordModal('${s.shala_darpan_code}')" title="पासवर्ड रीसेट / देखें">
-            <i class="fas fa-key"></i>
-          </button>
+          ${canCurrentUserEditSchoolDetails(s) ? `
+            <button class="sch-action-btn pwd" onclick="openAdminResetPasswordModal('${s.shala_darpan_code}')" title="पासवर्ड रीसेट / देखें">
+              <i class="fas fa-key"></i>
+            </button>
+          ` : ''}
         </div>
       </td>
       <td style="text-align:center">
-        <div class="sch-action-btn-group">
-          <button class="sch-action-btn edit" onclick="openEditSchoolDetailsModal('${s.shala_darpan_code}')" title="स्कूल विवरण संपादन">
-            <i class="fas fa-edit"></i>
-          </button>
-          <button class="sch-action-btn transfer" onclick="openTransferSchoolModal('${s.shala_darpan_code}')" title="अन्य PEEO में ट्रांसफर करें">
-            <i class="fas fa-exchange-alt"></i>
-          </button>
-          <button class="sch-action-btn del" onclick="deleteSchool('${s.shala_darpan_code}')" title="हटाएं / निष्क्रिय करें">
-            <i class="fas fa-trash"></i>
-          </button>
-        </div>
+        ${canCurrentUserEditSchoolDetails(s) ? `
+          <div class="sch-action-btn-group">
+            <button class="sch-action-btn edit" onclick="openEditSchoolDetailsModal('${s.shala_darpan_code}')" title="स्कूल विवरण संपादन">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="sch-action-btn transfer" onclick="openTransferSchoolModal('${s.shala_darpan_code}')" title="अन्य PEEO में ट्रांसफर करें">
+              <i class="fas fa-exchange-alt"></i>
+            </button>
+            <button class="sch-action-btn del" onclick="deleteSchool('${s.shala_darpan_code}')" title="हटाएं / निष्क्रिय करें">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        ` : `
+          <span class="badge" style="background:#f1f5f9; color:#64748b; font-size:0.75rem; padding:4px 8px; border-radius:4px; font-weight:700">
+            <i class="fas fa-eye"></i> केवल दर्शन (Locked)
+          </span>
+        `}
       </td>
     `;
     tbody.appendChild(tr);
@@ -10324,6 +10535,11 @@ function openEditSchoolDetailsModal(code) {
   const sch = allSchools.find(s => s.shala_darpan_code === code);
   if (!sch) {
     showToast('विद्यालय डेटा नहीं मिला!', 'error');
+    return;
+  }
+
+  if (!canCurrentUserEditSchoolDetails(sch)) {
+    showToast('आपको इस विद्यालय का विवरण संपादित करने की अनुमति नहीं है।', 'warning');
     return;
   }
 
@@ -11139,7 +11355,29 @@ function updateVMWidgetStats() {
   const audit = getSamanParikshaVMAuditData();
   const el = document.getElementById('vm-widget-sp-pending');
   if (el) {
-    el.innerHTML = `${audit.pendingCount} स्कूल लंबित (${audit.submittedCount} पूर्ण)`;
+    if (audit.pendingCount === 0) {
+      el.style.color = '#4ade80';
+      el.innerHTML = `✓ 0 स्कूल लंबित (${audit.submittedCount}/${audit.total} पूर्ण - 100%)`;
+    } else {
+      el.style.color = '#f87171';
+      el.innerHTML = `${audit.pendingCount} स्कूल लंबित (${audit.submittedCount} पूर्ण)`;
+    }
+  }
+
+  const btnWa = document.getElementById('btn-vm-whatsapp-reminder');
+  if (btnWa) {
+    if (audit.pendingCount === 0) {
+      btnWa.innerHTML = `<i class="fab fa-whatsapp"></i> 📢 सभी ${audit.total} स्कूल पूर्ण (0 लंबित)`;
+      btnWa.style.opacity = '0.85';
+    } else {
+      btnWa.innerHTML = `<i class="fab fa-whatsapp"></i> 📢 ${audit.pendingCount} लंबित स्कूलों को WhatsApp रिमाइंडर`;
+      btnWa.style.opacity = '1';
+    }
+  }
+
+  const footerSp = document.getElementById('vm-footer-sp-stats');
+  if (footerSp) {
+    footerSp.innerHTML = `<strong>समान परीक्षा:</strong> ${audit.total} कुल (${audit.pendingCount} लंबित, ${audit.submittedCount} पूर्ण - ${audit.percentage}%)`;
   }
 }
 
@@ -11264,6 +11502,10 @@ function openVMReportModal() {
 
 function sendVMPendingWhatsAppReminder() {
   const audit = getSamanParikshaVMAuditData();
+  if (audit.pendingCount === 0) {
+    showToast('🎉 सभी 57 विद्यालयों के समान परीक्षा प्रपत्र 100% पूर्ण हैं! कोई स्कूल लंबित नहीं है।', 'success');
+    return;
+  }
   const sortedPeeos = Object.entries(audit.peeoPendingMap).sort((a, b) => b[1] - a[1]);
   const peeoHighlights = sortedPeeos.slice(0, 10).map(([p, c]) => `▫️ *${p}:* ${c} स्कूल लंबित`).join('\n');
 

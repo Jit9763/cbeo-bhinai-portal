@@ -1143,7 +1143,7 @@
 
             <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:0.75rem 1rem">
               <div style="font-size:0.75rem; color:#94a3b8; font-weight:700; text-transform:uppercase">📋 समान परीक्षा 2026 स्थिति</div>
-              <div style="font-size:1rem; font-weight:800; color:#f87171; margin-top:2px" id="vm-widget-sp-pending">4 स्कूल लंबित (53 पूर्ण)</div>
+              <div style="font-size:1rem; font-weight:800; color:#4ade80; margin-top:2px" id="vm-widget-sp-pending">✓ 0 स्कूल लंबित (57 पूर्ण - 100%)</div>
               <div style="font-size:0.72rem; color:#cbd5e1; margin-top:2px">कुल 57 माध्यमिक/उच्च माध्यमिक</div>
             </div>
 
@@ -1164,8 +1164,8 @@
               <button class="btn btn-sm" onclick="openVMReportModal()" style="background:#3b82f6; color:#ffffff; font-weight:700; border:none">
                 <i class="fas fa-file-invoice"></i> 📑 विस्तृत VM लंबित रिपोर्ट देखें
               </button>
-              <button class="btn btn-whatsapp btn-sm" onclick="sendVMPendingWhatsAppReminder()" style="font-weight:700">
-                <i class="fab fa-whatsapp"></i> 📢 4 लंबित स्कूलों को WhatsApp रिमाइंडर
+              <button class="btn btn-whatsapp btn-sm" id="btn-vm-whatsapp-reminder" onclick="sendVMPendingWhatsAppReminder()" style="font-weight:700">
+                <i class="fab fa-whatsapp"></i> 📢 सभी 57 स्कूल पूर्ण (0 लंबित)
               </button>
               <button class="btn btn-sm" onclick="downloadVMReportMarkdown()" style="background:#475569; color:#ffffff; font-weight:700; border:none" title="पूरी रिपोर्ट Markdown फाइल डाउनलोड करें">
                 <i class="fas fa-download"></i> रिपोर्ट .MD
@@ -1372,7 +1372,7 @@
               <span>|</span>
               <span><strong>स्थिति:</strong> <span id="vm-last-run-status" style="color:#34d399; font-weight:700">✓ SUCCESS</span></span>
               <span>|</span>
-              <span><strong>समान परीक्षा:</strong> 57 कुल (4 डिफ़ॉल्टर, 53 पूर्ण)</span>
+              <span id="vm-footer-sp-stats"><strong>समान परीक्षा:</strong> 57 कुल (0 लंबित, 57 पूर्ण - 100%)</span>
               <span>|</span>
               <span><strong>MDM प्रपत्र-2:</strong> 25 PEEO मॉनिटरिंग सक्रिय</span>
             </div>
@@ -1552,6 +1552,34 @@
                 4. स्कूल लॉगिन पर अपने कार्मिक एडिट कर सकते हैं
               </label>
               <p style="font-size:0.78rem; color:#64748b; margin:0.35rem 0 0 1.8rem">विद्यालय स्तर पर केवल अपने विद्यालय के शिक्षकों का विवरण अपडेट करने की अनुमति</p>
+            </div>
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1rem">
+              <label style="display:flex; align-items:center; gap:0.75rem; font-weight:700; color:#1e293b; cursor:pointer">
+                <input type="checkbox" id="perm-peeo-edit-school" style="width:18px; height:18px">
+                5. 🏛️ PEEO अधीनस्थ स्कूलों के विवरण एडिट कर सकते हैं
+              </label>
+              <p style="font-size:0.78rem; color:#64748b; margin:0.35rem 0 0 1.8rem">स्कूल प्रबंधन टैब में PEEO द्वारा अपने अधीनस्थ विद्यालयों के विवरण, संस्था प्रधान व मोबाइल संपादित करने की अनुमति</p>
+            </div>
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:1rem">
+              <label style="display:flex; align-items:center; gap:0.75rem; font-weight:700; color:#1e293b; cursor:pointer">
+                <input type="checkbox" id="perm-school-edit-school" style="width:18px; height:18px">
+                6. 🏫 स्कूल अपने स्वयं के विवरण एडिट कर सकते हैं
+              </label>
+              <p style="font-size:0.78rem; color:#64748b; margin:0.35rem 0 0 1.8rem">विद्यालय लॉगिन पर अपने विद्यालय का सामान्य विवरण, संस्था प्रधान व ईमेल संपादित करने की अनुमति</p>
+            </div>
+            <div style="background:#fef3c7; border:1.5px solid #f59e0b; border-radius:8px; padding:1rem">
+              <label style="display:flex; align-items:center; gap:0.75rem; font-weight:800; color:#92400e; cursor:pointer">
+                <input type="checkbox" id="perm-lock-saman-pariksha" style="width:18px; height:18px">
+                7. 🔒 समान परीक्षा 2026: स्कूलों हेतु संपादन लॉक (View-Only Mode)
+              </label>
+              <p style="font-size:0.78rem; color:#b45309; margin:0.35rem 0 0 1.8rem">स्कूल केवल अपना डेटा व अधिकृत A4 PDF देख व प्रिंट कर सकेंगे, किन्तु किसी भी डेटा में संपादन/सबमिट नहीं कर सकेंगे</p>
+            </div>
+            <div style="background:#fef3c7; border:1.5px solid #f59e0b; border-radius:8px; padding:1rem">
+              <label style="display:flex; align-items:center; gap:0.75rem; font-weight:800; color:#92400e; cursor:pointer">
+                <input type="checkbox" id="perm-lock-demands" style="width:18px; height:18px">
+                8. 🔒 अन्य सभी सूचना मांग: स्कूलों हेतु संपादन लॉक (View-Only Mode)
+              </label>
+              <p style="font-size:0.78rem; color:#b45309; margin:0.35rem 0 0 1.8rem">समस्त विद्यालयों हेतु अन्य मांग प्रपत्रों में डेटा प्रविष्टि/संपादन बंद रहेगा, केवल अवलोकन की अनुमति रहेगी</p>
             </div>
           </div>
         </div>
@@ -2949,10 +2977,10 @@
           <a id="gform-open-standalone-btn" href="saman_form.html" target="_blank" class="btn btn-outline-light btn-sm" style="color:#1b365d; border-color:#cbd5e1; font-weight:700" title="अलग पेज/टैब में खोलें">
             <i class="fas fa-external-link-alt"></i> अलग पेज
           </a>
-          <button class="btn btn-success btn-sm" onclick="submitSamanParikshaForm(true)" style="font-weight:700">
+          <button class="btn btn-success btn-sm" id="btn-gform-topbar-print" onclick="submitSamanParikshaForm(true)" style="font-weight:700">
             <i class="fas fa-print"></i> PDF प्रिंट
           </button>
-          <button class="btn btn-primary btn-sm" onclick="submitSamanParikshaForm(false)" style="font-weight:700">
+          <button class="btn btn-primary btn-sm" id="btn-gform-topbar-save" onclick="submitSamanParikshaForm(false)" style="font-weight:700">
             <i class="fas fa-save"></i> सुरक्षित करें
           </button>
         </div>
@@ -2970,6 +2998,19 @@
             <p>
               कक्षा 9, 10, 11 एवं 12 के प्रश्न-पत्र मुद्रण हेतु विषयवार वास्तविक विद्यार्थी नामांकन प्रविष्टि प्रपत्र। कृपया शाला दर्पण / प्रवेश पंजिका अनुसार सही संख्या दर्ज करें। <em>(अनावश्यक विषयों में संख्या 0 रहने दें)</em>।
             </p>
+          </div>
+
+          <!-- Lock / View-Only Mode Banner -->
+          <div id="gform-lock-alert-banner" style="display:none; background:#fffbeb; border:2px solid #f59e0b; border-radius:10px; padding:1rem 1.25rem; margin-bottom:1.25rem; box-shadow:0 2px 4px rgba(245,158,11,0.15)">
+            <div style="display:flex; align-items:center; gap:0.85rem">
+              <i class="fas fa-lock fa-2x" style="color:#d97706"></i>
+              <div>
+                <div style="font-weight:800; color:#92400e; font-size:1rem">🔒 प्रपत्र संपादन लॉक है (View-Only Mode)</div>
+                <div style="color:#b45309; font-size:0.85rem; margin-top:2px">
+                  CBEO कार्यालय द्वारा समान परीक्षा प्रपत्र का संपादन लॉक किया गया है। आप अपना भरा हुआ विवरण देख सकते हैं तथा ऊपर या नीचे दिए गए बटन से <strong>अधिकृत A4 PDF डाउनलोड / प्रिंट</strong> कर सकते हैं। डेटा में बदलाव अनुमत नहीं है।
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- Hidden tracking input -->
@@ -3395,11 +3436,14 @@
         <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-saman-pariksha-form')">
           रद्द करें (Cancel)
         </button>
-        <div style="display:flex; gap:0.75rem">
-          <button class="btn btn-primary" onclick="submitSamanParikshaForm(false)">
+        <div style="display:flex; gap:0.75rem; align-items:center">
+          <button class="btn btn-success" id="btn-gform-viewonly-pdf" style="display:none; font-weight:700" onclick="openExamPdfPreview(document.getElementById('gform-school-code-hidden').value)">
+            <i class="fas fa-file-pdf"></i> 📄 अधिकृत A4 PDF देखें व प्रिंट करें
+          </button>
+          <button class="btn btn-primary" id="btn-gform-footer-save" onclick="submitSamanParikshaForm(false)">
             <i class="fas fa-save"></i> सुरक्षित करें (Submit Form)
           </button>
-          <button class="btn btn-success" onclick="submitSamanParikshaForm(true)">
+          <button class="btn btn-success" id="btn-gform-footer-print" onclick="submitSamanParikshaForm(true)">
             <i class="fas fa-print"></i> सबमिट व अधिकृत PDF प्रिंट करें
           </button>
         </div>
