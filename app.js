@@ -801,8 +801,8 @@ function openLoginModal(isMandatory = false) {
       }
     }
   } else {
-    // Default selection: PEEO Deoliya Kalan (221754)
-    if (select) select.value = '221754';
+    // Default selection: '-- PEEO चुनें (Select PEEO) --'
+    if (select) select.value = '';
   }
 
   onQuickSelectUser();
@@ -818,6 +818,22 @@ function onQuickSelectUser() {
   const subSelect = document.getElementById('login-school-sub-select');
 
   if (!usernameInput || !passwordInput) return;
+
+  // 0. Default state when no PEEO is selected
+  if (!val) {
+    if (subWrap) {
+      subWrap.style.display = 'none';
+      if (subSelect) subSelect.innerHTML = '';
+    }
+    usernameInput.value = '';
+    passwordInput.value = '';
+    if (hintBox) {
+      hintBox.innerHTML = '<i class="fas fa-lightbulb text-primary"></i> <span><strong>संकेत:</strong> कृपया ऊपर ड्रॉपडाउन से <strong>PEEO</strong> चुनें, अथवा सीधे अपना <strong>शाला दर्पण / PSP कोड</strong> व पासवर्ड दर्ज करें।</span>';
+      hintBox.style.background = '#f8fafc';
+      hintBox.style.color = '#334155';
+    }
+    return;
+  }
 
   if (val === 'jitendra_admin') {
     if (subWrap) subWrap.style.display = 'none';
