@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261001_57">
+  <link rel="stylesheet" href="styles.css?v=20261003_v6">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
@@ -70,7 +70,7 @@
   <!-- Sticky Main Navigation -->
   <nav class="main-nav-bar">
     <div class="nav-container">
-      <button class="nav-tab active" id="nav-tab-saman-pariksha" onclick="switchTab('saman-pariksha')">
+      <button class="nav-tab" id="nav-tab-saman-pariksha" onclick="switchTab('saman-pariksha')">
         <i class="fas fa-file-signature"></i> 📋 समान परीक्षा 2026-27 (57 स्कूल)
         <span class="tab-badge badge-danger" id="nav-sp-badge">57</span>
       </button>
@@ -131,7 +131,7 @@
     </div>
 
     <!-- 0. SAMAN PARIKSHA (DISTRICT UNIFORM EXAM) 2026-27 MAIN VIEW -->
-    <section id="view-saman-pariksha" class="content-view active">
+    <section id="view-saman-pariksha" class="content-view">
       <!-- Hero Banner -->
       <div class="sp-hero-banner">
         <div class="sp-hero-title">
@@ -1567,20 +1567,51 @@
               </label>
               <p style="font-size:0.78rem; color:#64748b; margin:0.35rem 0 0 1.8rem">विद्यालय लॉगिन पर अपने विद्यालय का सामान्य विवरण, संस्था प्रधान व ईमेल संपादित करने की अनुमति</p>
             </div>
-            <div style="background:#fef3c7; border:1.5px solid #f59e0b; border-radius:8px; padding:1rem">
-              <label style="display:flex; align-items:center; gap:0.75rem; font-weight:800; color:#92400e; cursor:pointer">
-                <input type="checkbox" id="perm-lock-saman-pariksha" style="width:18px; height:18px">
-                7. 🔒 समान परीक्षा 2026: स्कूलों हेतु संपादन लॉक (View-Only Mode)
+            <div style="background:#eff6ff; border:1.5px solid #3b82f6; border-radius:8px; padding:1rem">
+              <label style="display:flex; align-items:center; gap:0.75rem; font-weight:800; color:#1d4ed8; cursor:pointer">
+                <input type="checkbox" id="perm-peeo-edit-saman-pariksha" style="width:18px; height:18px">
+                7. 📋 25 PEEO: समान परीक्षा प्रपत्र संपादन अनुमति
               </label>
-              <p style="font-size:0.78rem; color:#b45309; margin:0.35rem 0 0 1.8rem">स्कूल केवल अपना डेटा व अधिकृत A4 PDF देख व प्रिंट कर सकेंगे, किन्तु किसी भी डेटा में संपादन/सबमिट नहीं कर सकेंगे</p>
+              <p style="font-size:0.78rem; color:#2563eb; margin:0.35rem 0 0 1.8rem">टिक होने पर 25 PEEO अपने अधीनस्थ 57 स्कूलों का समान परीक्षा डेटा भर/संपादित कर सकते हैं। अनचेक करने पर केवल अवलोकन (View-Only Mode) रहेगा।</p>
+            </div>
+            <div style="background:#eff6ff; border:1.5px solid #3b82f6; border-radius:8px; padding:1rem">
+              <label style="display:flex; align-items:center; gap:0.75rem; font-weight:800; color:#1d4ed8; cursor:pointer">
+                <input type="checkbox" id="perm-school-edit-saman-pariksha" style="width:18px; height:18px">
+                8. 🏫 57 स्कूल: समान परीक्षा प्रपत्र संपादन अनुमति
+              </label>
+              <p style="font-size:0.78rem; color:#2563eb; margin:0.35rem 0 0 1.8rem">टिक होने पर स्कूल स्वयं अपना समान परीक्षा प्रपत्र भर/संपादित कर सकते हैं। अनचेक करने पर केवल अवलोकन (View-Only Mode) रहेगा।</p>
             </div>
             <div style="background:#fef3c7; border:1.5px solid #f59e0b; border-radius:8px; padding:1rem">
               <label style="display:flex; align-items:center; gap:0.75rem; font-weight:800; color:#92400e; cursor:pointer">
-                <input type="checkbox" id="perm-lock-demands" style="width:18px; height:18px">
-                8. 🔒 अन्य सभी सूचना मांग: स्कूलों हेतु संपादन लॉक (View-Only Mode)
+                <input type="checkbox" id="perm-peeo-edit-demands" style="width:18px; height:18px">
+                9. 📄 25 PEEO: अन्य सूचना मांग संपादन अनुमति
               </label>
-              <p style="font-size:0.78rem; color:#b45309; margin:0.35rem 0 0 1.8rem">समस्त विद्यालयों हेतु अन्य मांग प्रपत्रों में डेटा प्रविष्टि/संपादन बंद रहेगा, केवल अवलोकन की अनुमति रहेगी</p>
+              <p style="font-size:0.78rem; color:#b45309; margin:0.35rem 0 0 1.8rem">टिक होने पर PEEO अन्य सक्रिय मांग प्रपत्र भर सकते हैं। अनचेक करने पर केवल अवलोकन (View-Only) रहेगा।</p>
             </div>
+            <div style="background:#fef3c7; border:1.5px solid #f59e0b; border-radius:8px; padding:1rem">
+              <label style="display:flex; align-items:center; gap:0.75rem; font-weight:800; color:#92400e; cursor:pointer">
+                <input type="checkbox" id="perm-school-edit-demands" style="width:18px; height:18px">
+                10. 🏫 स्कूल: अन्य सूचना मांग संपादन अनुमति
+              </label>
+              <p style="font-size:0.78rem; color:#b45309; margin:0.35rem 0 0 1.8rem">टिक होने पर विद्यालय अन्य सक्रिय मांग प्रपत्र भर सकते हैं। अनचेक करने पर केवल अवलोकन (View-Only) रहेगा।</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- D. JITENDRA SUPER ADMIN ARCHIVE & RESTORE MANAGER -->
+        <div id="jitendra-archive-manager-card" style="background:#ffffff; border:2px solid #8b5cf6; border-radius:12px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1)">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; border-bottom:1.5px solid #ddd6fe; padding-bottom:0.75rem">
+            <div>
+              <h3 style="font-size:1.15rem; color:#6d28d9; margin:0; display:flex; align-items:center; gap:0.5rem">
+                <i class="fas fa-boxes-packing" style="color:#8b5cf6"></i> 📦 प्रपत्र आर्काइव (अभिलेख) एवं रिस्टोर नियंत्रण
+              </h3>
+              <p style="font-size:0.83rem; color:#475569; margin:3px 0 0 0">
+                समान परीक्षा अथवा किसी भी सूचना मांग को पूर्ण होने पर आर्काइव में डालें या आवश्यकतानुसार पुनः मुख्य मेनू में रिस्टोर करें (Google Sheet Cloud Sync)।
+              </p>
+            </div>
+          </div>
+          <div id="admin-archive-manager-list" style="display:flex; flex-direction:column; gap:0.75rem">
+            <!-- Populated by JS renderArchiveManagerUI() -->
           </div>
         </div>
 
@@ -3853,7 +3884,7 @@
 
   <!-- External & Application Logic -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <script src="master_cbeo_data.js?v=20261003_v5"></script>
-  <script src="app.js?v=20261003_v5"></script>
+  <script src="master_cbeo_data.js?v=20261003_v6"></script>
+  <script src="app.js?v=20261003_v6"></script>
 </body>
 </html>

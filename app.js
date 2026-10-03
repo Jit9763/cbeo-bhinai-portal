@@ -36,7 +36,9 @@ let STATE = {
   activeDemandPortalId: null,
   currentDemandToFill: null,
   currentDemandSchoolCode: null,
-  currentSignatureData: null
+  currentSignatureData: null,
+  portalSettings: {},
+  samanParikshaArchived: false
 };
 
 // Canvas Signature State
@@ -614,30 +616,83 @@ function setupAutoLogin() {
   }
 
   // Mobile App Style Persistent Session:
-  // If user is already logged in, keep login modal closed and apply their portal view
+  // If user is already logged in, check idle expiration (4 days) and restore their view
   if (!STATE.currentUser) {
     setTimeout(() => {
       openLoginModal(true); // isMandatory = true
     }, 150);
   } else {
+    // 4-day session expiry check
+    const maxIdleMs = 4 * 24 * 60 * 60 * 1000; // 4 days inactivity
+    const lastActive = STATE.currentUser.last_active_timestamp || STATE.currentUser.login_timestamp || 0;
+    if (lastActive && (Date.now() - lastActive > maxIdleMs)) {
+      console.warn('Session expired due to 4+ days of inactivity');
+      localStorage.removeItem('cbeo_logged_user');
+      STATE.currentUser = null;
+      setTimeout(() => {
+        openLoginModal(true);
+        showToast('सुरक्षा कारणों से 4 दिन से अधिक निष्क्रिय रहने पर सत्र समाप्त हो गया है। कृपया पुनः लॉगिन करें।', 'warning');
+      }, 300);
+      return;
+    }
+
+    touchUserSession();
     closeModal('modal-login');
+
+    // Restore user's last active tab, or switch to default permitted tab
+    const savedTab = localStorage.getItem('cbeo_active_tab');
+    if (savedTab && isTabVisibleForCurrentUser(savedTab)) {
+      switchTab(savedTab);
+    } else if (isTabVisibleForCurrentUser('saman-pariksha') && !STATE.samanParikshaArchived) {
+      switchTab('saman-pariksha');
+    } else {
+      const fallbackTabs = ['demands', 'dashboard', 'directory', 'staff', 'school-management', 'archive'];
+      const target = fallbackTabs.find(t => isTabVisibleForCurrentUser(t)) || 'demands';
+      switchTab(target);
+    }
+
     // Handle URL query parameters (e.g. ?show_pdf=221754 or ?form=221754)
     const urlParams = new URLSearchParams(window.location.search);
     const showPdfCode = urlParams.get('show_pdf');
     const openFormCode = urlParams.get('form');
     if (showPdfCode) {
       setTimeout(() => {
-        switchTab('saman-pariksha');
-        openExamPdfPreview(showPdfCode);
+        if (isTabVisibleForCurrentUser('saman-pariksha')) {
+          switchTab('saman-pariksha');
+          openExamPdfPreview(showPdfCode);
+        }
       }, 300);
     } else if (openFormCode) {
       setTimeout(() => {
-        switchTab('saman-pariksha');
-        openSamanParikshaForm(openFormCode);
+        if (isTabVisibleForCurrentUser('saman-pariksha')) {
+          switchTab('saman-pariksha');
+          openSamanParikshaForm(openFormCode);
+        }
       }, 300);
     }
   }
 }
+
+function touchUserSession() {
+  if (STATE.currentUser) {
+    STATE.currentUser.last_active_timestamp = Date.now();
+    try {
+      localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
+    } catch(e) {}
+  }
+}
+
+// Activity listener for session keep-alive (debounced to 1 min)
+let sessionTouchThrottle = 0;
+['click', 'keydown', 'touchstart'].forEach(evt => {
+  window.addEventListener(evt, () => {
+    const now = Date.now();
+    if (now - sessionTouchThrottle > 60000) {
+      sessionTouchThrottle = now;
+      touchUserSession();
+    }
+  }, { passive: true });
+});
 
 function logoutUser() {
   localStorage.removeItem('cbeo_logged_user');
@@ -1004,6 +1059,8 @@ function performLogin() {
   const remember = document.getElementById('login-remember-me')?.checked ?? true;
 
   function onLoginSuccess(userObj, toastMsg, openForm = false) {
+    userObj.login_timestamp = Date.now();
+    userObj.last_active_timestamp = Date.now();
     STATE.currentUser = userObj;
     localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
     if (remember) {
@@ -1015,13 +1072,17 @@ function performLogin() {
     closeModal('modal-login');
     showToast(toastMsg, 'success');
     renderApp();
-    if (isTabVisibleForCurrentUser('saman-pariksha')) {
+
+    const savedTab = localStorage.getItem('cbeo_active_tab');
+    if (savedTab && isTabVisibleForCurrentUser(savedTab)) {
+      switchTab(savedTab);
+    } else if (isTabVisibleForCurrentUser('saman-pariksha') && !STATE.samanParikshaArchived) {
       switchTab('saman-pariksha');
       if (openForm && userObj.role === 'school') {
         openSamanParikshaForm(userObj.shala_darpan_code);
       }
     } else {
-      const fallbackTabs = ['demands', 'dashboard', 'directory', 'staff', 'school-management'];
+      const fallbackTabs = ['demands', 'dashboard', 'directory', 'staff', 'school-management', 'archive'];
       const target = fallbackTabs.find(t => isTabVisibleForCurrentUser(t)) || 'demands';
       switchTab(target);
     }
@@ -1167,9 +1228,13 @@ function performLogin() {
 }
 
 function switchTab(viewId, param = null) {
-  if (STATE.currentUser && typeof isTabVisibleForCurrentUser === 'function' && !isTabVisibleForCurrentUser(viewId) && viewId !== 'admin-control') {
+  if (STATE.currentUser && typeof isTabVisibleForCurrentUser === 'function' && !isTabVisibleForCurrentUser(viewId)) {
     return;
   }
+
+  try {
+    localStorage.setItem('cbeo_active_tab', viewId);
+  } catch (e) {}
 
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   const activeBtn = (viewId === 'dynamic-demand' && (param || STATE.activeDemandPortalId))
@@ -1200,7 +1265,8 @@ const DEFAULT_TAB_VISIBILITY_5LEVEL = {
   'staff': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false },
   'school-management': { cbeo: true, peeo: false, sec_srsec: false, all_govt: false, all_schools: false },
   'demands': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false },
-  'archive': { cbeo: true, peeo: false, sec_srsec: false, all_govt: false, all_schools: false }
+  'archive': { cbeo: true, peeo: false, sec_srsec: false, all_govt: false, all_schools: false },
+  'admin-control': { cbeo: true, peeo: false, sec_srsec: false, all_govt: false, all_schools: false }
 };
 
 function isTabVisibleForCurrentUser(tabId) {
@@ -1211,13 +1277,24 @@ function isTabVisibleForCurrentUser(tabId) {
                      STATE.currentUser.username === 'jitendra_admin';
   if (isJitendra) return true; // Super Admin always sees everything
 
-  const vis = STATE.tabVisibility5Level || DEFAULT_TAB_VISIBILITY_5LEVEL;
-  const tabConf = vis[tabId] || { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false };
-
-  // 1. CBEO Admin (ADMIN01 / SD 8140 / Pramila Raslot)
   const isCBEO = STATE.currentUser.shala_darpan_code === '8140' || 
                  STATE.currentUser.admin_id === 'ADMIN01' || 
                  (STATE.currentUser.role === 'admin' && !isJitendra);
+
+  // CRITICAL: Admin Control Room is NEVER accessible to PEEO or School
+  if (tabId === 'admin-control') {
+    return isJitendra || isCBEO;
+  }
+
+  // If Saman Pariksha is archived, hide from main nav tab for non-superadmins
+  if (tabId === 'saman-pariksha' && STATE.samanParikshaArchived && !isJitendra) {
+    return false;
+  }
+
+  const vis = STATE.tabVisibility5Level || DEFAULT_TAB_VISIBILITY_5LEVEL;
+  const tabConf = vis[tabId] || { cbeo: true, peeo: false, sec_srsec: false, all_govt: false, all_schools: false };
+
+  // 1. CBEO Admin (ADMIN01 / SD 8140 / Pramila Raslot)
   if (isCBEO) {
     return !!tabConf.cbeo;
   }
@@ -1277,7 +1354,7 @@ function applyTabVisibility() {
   if (tabReports) tabReports.style.display = isTabVisibleForCurrentUser('demands') ? 'inline-flex' : 'none';
   if (tabArchive) tabArchive.style.display = isTabVisibleForCurrentUser('archive') ? 'inline-flex' : 'none';
   
-  // Admin tab is visible for both Jitendra and CBEO
+  // Admin tab is visible ONLY for Jitendra or CBEO
   if (tabAdmin) tabAdmin.style.display = (isJitendra || isCBEO) ? 'inline-flex' : 'none';
   if (quickBanner) quickBanner.style.display = isTabVisibleForCurrentUser('directory') ? 'flex' : 'none';
 
@@ -1286,15 +1363,11 @@ function applyTabVisibility() {
     noticeBanner.style.display = isTabVisibleForCurrentUser('saman-pariksha') ? 'flex' : 'none';
   }
 
-  // If currently active view is not permitted for the user, auto-switch to a visible view
-  const activeView = document.querySelector('.content-view.active');
-  if (activeView && activeView.id === 'view-saman-pariksha' && !isTabVisibleForCurrentUser('saman-pariksha')) {
-    const fallbackTabs = ['demands', 'dashboard', 'directory', 'staff', 'school-management'];
-    const target = fallbackTabs.find(t => isTabVisibleForCurrentUser(t)) || 'demands';
-    switchTab(target);
-  }
+  // Cloud VM 24x7 Automation Hub is STRICTLY for Jitendra Super Admin
+  const vmHub = document.getElementById('cbeo-github-vm-hub');
+  if (vmHub) vmHub.style.display = isJitendra ? 'block' : 'none';
 
-  // Inside Admin Tab: Jitendra sees Cloud VM Controller, 5-Level Control Matrix & Staff Permissions
+  // Inside Admin Tab: Jitendra sees Cloud VM Controller, 5-Level Control Matrix, Staff Permissions & Archive Manager
   const vmCard = document.getElementById('jitendra-cloud-vm-control-card');
   if (vmCard) vmCard.style.display = isJitendra ? 'block' : 'none';
 
@@ -1304,8 +1377,22 @@ function applyTabVisibility() {
   const staffPermsCard = document.getElementById('jitendra-staff-permissions-card');
   if (staffPermsCard) staffPermsCard.style.display = isJitendra ? 'block' : 'none';
 
+  const archiveManagerCard = document.getElementById('jitendra-archive-manager-card');
+  if (archiveManagerCard) archiveManagerCard.style.display = isJitendra ? 'block' : 'none';
+
   const cbeoExecutiveCard = document.getElementById('cbeo-executive-overview');
   if (cbeoExecutiveCard) cbeoExecutiveCard.style.display = (isJitendra || isCBEO) ? 'block' : 'none';
+
+  // If currently active view is not permitted for the user, auto-switch to a permitted visible view
+  const activeView = document.querySelector('.content-view.active');
+  if (activeView) {
+    const curTabId = activeView.id.replace('view-', '');
+    if (!isTabVisibleForCurrentUser(curTabId)) {
+      const fallbackTabs = ['demands', 'dashboard', 'directory', 'staff', 'school-management', 'archive'];
+      const target = fallbackTabs.find(t => isTabVisibleForCurrentUser(t)) || 'demands';
+      switchTab(target);
+    }
+  }
 }
 
 function render5LevelTabVisibilityMatrix() {
@@ -1314,7 +1401,7 @@ function render5LevelTabVisibilityMatrix() {
   tbody.innerHTML = '';
 
   const tabs = [
-    { id: 'saman-pariksha', name: '📋 समान परीक्षा 2026-27 (57 स्कूल)', desc: 'मुख्य परीक्षा प्रपत्र व स्थिति (Default: CBEO + PEEO + 57 Sec)' },
+    { id: 'saman-pariksha', name: '📋 समान परीक्षा 2026-27 (57 स्कूल)', desc: 'मुख्य परीक्षा प्रपत्र व स्थिति (5-स्तरीय अनुमति)' },
     { id: 'dashboard', name: '📊 मुख्य डैशबोर्ड', desc: 'ब्लॉक सांख्यिकी व प्रगति' },
     { id: 'directory', name: '📞 ब्लॉक संपर्क डायरेक्टरी', desc: '3-स्तरीय 25 PEEO व कार्मिक फोन डायरेक्टरी' },
     { id: 'staff', name: '👥 कार्मिक प्रबंधन (1,060+ स्टाफ)', desc: 'स्थापना सूची व संस्था प्रधान मार्किंग' },
@@ -1369,6 +1456,29 @@ function save5LevelTabVisibilityMatrix() {
   STATE.tabVisibility5Level = newVis;
   localStorage.setItem('cbeo_tab_visibility_5level', JSON.stringify(newVis));
 
+  // Sync to Google Sheet live so settings persist across all devices & refreshes!
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
+  if (gasUrl) {
+    try {
+      fetch(gasUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'updatePassword',
+          user_id: '__TAB_VISIBILITY_5LEVEL__',
+          role: 'System_Config',
+          name: '5-Level Tab Visibility Matrix',
+          new_password: JSON.stringify(newVis)
+        })
+      }).catch(err => console.warn('Save tab visibility sync err:', err));
+    } catch(e) {}
+  }
+
+  // Also notify local server if present
   fetch('/api/save_tab_visibility_5level', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -1376,7 +1486,7 @@ function save5LevelTabVisibilityMatrix() {
   }).catch(() => {});
 
   applyTabVisibility();
-  showToast('5-स्तरीय टैब अनुमतियां सफलतापूर्वक सुरक्षित की गईं!', 'success');
+  showToast('5-स्तरीय टैब अनुमतियां Google Cloud Sheet में सुरक्षित हो गईं!', 'success');
 }
 
 function saveTabAccessConfig() {
@@ -1509,21 +1619,80 @@ function syncAuthFromGoogleSheet(callback) {
 
   if (!gasUrl) return;
 
-  fetch(`${gasUrl}?action=getAuth`)
+  fetch(`${gasUrl}?action=getAuth&_nocache=${Date.now()}`)
     .then(r => r.json())
     .then(data => {
       if (data && data.success && data.users) {
         STATE.sheetAuthPasswords = data.users;
         localStorage.setItem('cbeo_sheet_auth_cache', JSON.stringify(data.users));
 
-        // Sync Global School Login Policy across all devices from Google Sheet
+        const getPayload = (item) => {
+          if (!item) return null;
+          if (typeof item === 'object' && item.password) return item.password;
+          if (typeof item === 'string') return item;
+          return null;
+        };
+
+        // 1. Sync Global School Login Policy across all devices from Google Sheet
         if (data.users['__GLOBAL_LOGIN_POLICY__']) {
-          const cloudPolicy = data.users['__GLOBAL_LOGIN_POLICY__'].password;
+          const cloudPolicy = getPayload(data.users['__GLOBAL_LOGIN_POLICY__']);
           if (cloudPolicy && ['all', 'sec_srsec', 'peeo_nodal', 'custom'].includes(cloudPolicy)) {
             STATE.schoolLoginPolicy = cloudPolicy;
             localStorage.setItem('cbeo_school_login_policy', cloudPolicy);
-            updateSchoolManagementPolicyUI();
+            if (typeof updateSchoolManagementPolicyUI === 'function') updateSchoolManagementPolicyUI();
           }
+        }
+
+        // 2. Sync 5-Level Tab Visibility Matrix from Google Sheet
+        if (data.users['__TAB_VISIBILITY_5LEVEL__']) {
+          try {
+            const rawVis = getPayload(data.users['__TAB_VISIBILITY_5LEVEL__']);
+            const cloudVis = rawVis ? JSON.parse(rawVis) : null;
+            if (cloudVis && typeof cloudVis === 'object') {
+              STATE.tabVisibility5Level = cloudVis;
+              localStorage.setItem('cbeo_tab_visibility_5level', JSON.stringify(cloudVis));
+              applyTabVisibility();
+              render5LevelTabVisibilityMatrix();
+            }
+          } catch(e) { console.warn('Parse cloudVis err:', e); }
+        }
+
+        // 3. Sync Staff & Form Edit Permissions from Google Sheet
+        if (data.users['__STAFF_EDIT_PERMISSIONS__']) {
+          try {
+            const rawPerms = getPayload(data.users['__STAFF_EDIT_PERMISSIONS__']);
+            const cloudPerms = rawPerms ? JSON.parse(rawPerms) : null;
+            if (cloudPerms && typeof cloudPerms === 'object') {
+              STATE.staffEditPermissions = cloudPerms;
+              localStorage.setItem('cbeo_staff_edit_permissions', JSON.stringify(cloudPerms));
+              renderStaffEditPermissionsMatrix();
+              if (typeof filterStaffTable === 'function') filterStaffTable();
+              if (typeof filterSchoolManagementTable === 'function') filterSchoolManagementTable();
+            }
+          } catch(e) { console.warn('Parse cloudPerms err:', e); }
+        }
+
+        // 4. Sync Portal Global Settings (Archive status, etc.) from Google Sheet
+        if (data.users['__PORTAL_SETTINGS__']) {
+          try {
+            const rawSettings = getPayload(data.users['__PORTAL_SETTINGS__']);
+            const ps = rawSettings ? JSON.parse(rawSettings) : null;
+            if (ps && typeof ps === 'object') {
+              STATE.portalSettings = ps;
+              STATE.samanParikshaArchived = !!ps.saman_pariksha_archived;
+              localStorage.setItem('cbeo_portal_settings', JSON.stringify(ps));
+              
+              if (Array.isArray(ps.archived_demand_ids) && Array.isArray(STATE.demands)) {
+                STATE.demands.forEach(d => {
+                  if (ps.archived_demand_ids.includes(d.id)) d.archived = true;
+                });
+              }
+              applyTabVisibility();
+              if (typeof renderArchiveManagerUI === 'function') renderArchiveManagerUI();
+              if (typeof renderDemandsView === 'function') renderDemandsView();
+              if (typeof renderArchiveView === 'function') renderArchiveView();
+            }
+          } catch(e) { console.warn('Parse portalSettings err:', e); }
         }
 
         // If the login modal is currently active, re-check credentials with synced Google Sheet passwords
@@ -1798,11 +1967,11 @@ function renderSamanParikshaPeeoView() {
         </div>
       </div>
       <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem">
-        <button class="btn ${isSubmitted ? 'btn-primary' : 'btn-primary'} btn-sm" onclick="openSamanParikshaForm('${school.shala_darpan_code}')" style="flex:1; font-weight:700">
-          <i class="fas ${isSubmitted ? 'fa-edit' : 'fa-file-signature'}"></i> ${isSubmitted ? '✏️ प्रपत्र में संशोधन (Edit)' : '📝 Google Form प्रपत्र भरें'}
+        <button class="btn btn-primary btn-sm" onclick="openSamanParikshaForm('${school.shala_darpan_code}')" style="flex:1; font-weight:700">
+          <i class="fas ${isSamanParikshaLockedForCurrentUser() ? 'fa-eye' : (isSubmitted ? 'fa-edit' : 'fa-file-signature')}"></i> ${isSamanParikshaLockedForCurrentUser() ? '👁️ प्रपत्र अवलोकन (View Data)' : (isSubmitted ? '✏️ प्रपत्र में संशोधन (Edit)' : '📝 Google Form प्रपत्र भरें')}
         </button>
         <a href="saman_form.html?code=${school.shala_darpan_code}" target="_blank" class="btn btn-outline-primary btn-sm" style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:700" title="नए पेज में खोलें (अलग टैब)">
-          <i class="fas fa-external-link-alt"></i> ${isSubmitted ? 'अलग पेज में एडिट' : 'अलग पेज'}
+          <i class="fas fa-external-link-alt"></i> ${isSamanParikshaLockedForCurrentUser() ? 'अलग पेज (अवलोकन)' : (isSubmitted ? 'अलग पेज में एडिट' : 'अलग पेज')}
         </a>
         ${isSubmitted ? `
           <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${school.shala_darpan_code}')" title="आधिकारिक प्रमाणित PDF देखें / प्रिंट करें" style="font-weight:700">
@@ -2287,6 +2456,7 @@ function toggleNilClass(cls) {
 // Real-time LocalStorage Draft Auto-Save Engine (Distraction & Call Resilient)
 let gformAutoSaveTimer = null;
 function autoSaveGFormDraft() {
+  if (isSamanParikshaLockedForCurrentUser()) return;
   clearTimeout(gformAutoSaveTimer);
   gformAutoSaveTimer = setTimeout(() => {
     const schoolCode = document.getElementById('gform-school-code-hidden')?.value;
@@ -5818,7 +5988,13 @@ function renderStaffEditPermissionsMatrix() {
     cbeo_can_edit: true,
     peeo_can_edit_staff: true,
     peeo_can_edit_head: true,
-    schools_can_edit_staff: false
+    schools_can_edit_staff: false,
+    peeo_can_edit_school_mgmt: true,
+    schools_can_edit_school_mgmt: false,
+    peeo_can_edit_saman_pariksha: true,
+    schools_can_edit_saman_pariksha: false,
+    peeo_can_edit_demands: true,
+    schools_can_edit_demands: false
   };
 
   const lockBtn = document.getElementById('btn-toggle-staff-master-lock');
@@ -5838,8 +6014,14 @@ function renderStaffEditPermissionsMatrix() {
   const chkSchool = document.getElementById('perm-school-edit');
   const chkPeeoSchool = document.getElementById('perm-peeo-edit-school');
   const chkSchoolSchool = document.getElementById('perm-school-edit-school');
-  const chkLockSP = document.getElementById('perm-lock-saman-pariksha');
-  const chkLockDemands = document.getElementById('perm-lock-demands');
+
+  // Saman Pariksha Edit controls
+  const chkPeeoSP = document.getElementById('perm-peeo-edit-saman-pariksha');
+  const chkSchoolSP = document.getElementById('perm-school-edit-saman-pariksha');
+
+  // Demands Edit controls
+  const chkPeeoDemands = document.getElementById('perm-peeo-edit-demands');
+  const chkSchoolDemands = document.getElementById('perm-school-edit-demands');
 
   if (chkCbeo) chkCbeo.checked = perms.cbeo_can_edit !== false;
   if (chkPeeoStaff) chkPeeoStaff.checked = perms.peeo_can_edit_staff !== false;
@@ -5847,8 +6029,12 @@ function renderStaffEditPermissionsMatrix() {
   if (chkSchool) chkSchool.checked = !!perms.schools_can_edit_staff;
   if (chkPeeoSchool) chkPeeoSchool.checked = perms.peeo_can_edit_school_mgmt !== false;
   if (chkSchoolSchool) chkSchoolSchool.checked = !!perms.schools_can_edit_school_mgmt;
-  if (chkLockSP) chkLockSP.checked = perms.saman_pariksha_lock_schools !== false;
-  if (chkLockDemands) chkLockDemands.checked = !!perms.demands_lock_schools;
+
+  if (chkPeeoSP) chkPeeoSP.checked = perms.peeo_can_edit_saman_pariksha !== false && !perms.saman_pariksha_lock_peeo;
+  if (chkSchoolSP) chkSchoolSP.checked = !!perms.schools_can_edit_saman_pariksha && !perms.saman_pariksha_lock_schools;
+
+  if (chkPeeoDemands) chkPeeoDemands.checked = perms.peeo_can_edit_demands !== false && !perms.demands_lock_peeo;
+  if (chkSchoolDemands) chkSchoolDemands.checked = !!perms.schools_can_edit_demands && !perms.demands_lock_schools;
 }
 
 function toggleStaffMasterLock() {
@@ -5861,8 +6047,10 @@ function toggleStaffMasterLock() {
       schools_can_edit_staff: false,
       peeo_can_edit_school_mgmt: true,
       schools_can_edit_school_mgmt: false,
-      saman_pariksha_lock_schools: true,
-      demands_lock_schools: false
+      peeo_can_edit_saman_pariksha: true,
+      schools_can_edit_saman_pariksha: false,
+      peeo_can_edit_demands: true,
+      schools_can_edit_demands: false
     };
   }
   STATE.staffEditPermissions.master_lock = !STATE.staffEditPermissions.master_lock;
@@ -5871,6 +6059,11 @@ function toggleStaffMasterLock() {
 }
 
 function saveStaffEditPermissionsMatrix() {
+  const peeoCanEditSP = !!document.getElementById('perm-peeo-edit-saman-pariksha')?.checked;
+  const schoolCanEditSP = !!document.getElementById('perm-school-edit-saman-pariksha')?.checked;
+  const peeoCanEditDemands = !!document.getElementById('perm-peeo-edit-demands')?.checked;
+  const schoolCanEditDemands = !!document.getElementById('perm-school-edit-demands')?.checked;
+
   const perms = {
     master_lock: STATE.staffEditPermissions?.master_lock || false,
     cbeo_can_edit: !!document.getElementById('perm-cbeo-edit')?.checked,
@@ -5879,12 +6072,40 @@ function saveStaffEditPermissionsMatrix() {
     schools_can_edit_staff: !!document.getElementById('perm-school-edit')?.checked,
     peeo_can_edit_school_mgmt: !!document.getElementById('perm-peeo-edit-school')?.checked,
     schools_can_edit_school_mgmt: !!document.getElementById('perm-school-edit-school')?.checked,
-    saman_pariksha_lock_schools: !!document.getElementById('perm-lock-saman-pariksha')?.checked,
-    demands_lock_schools: !!document.getElementById('perm-lock-demands')?.checked
+    peeo_can_edit_saman_pariksha: peeoCanEditSP,
+    saman_pariksha_lock_peeo: !peeoCanEditSP,
+    schools_can_edit_saman_pariksha: schoolCanEditSP,
+    saman_pariksha_lock_schools: !schoolCanEditSP,
+    peeo_can_edit_demands: peeoCanEditDemands,
+    demands_lock_peeo: !peeoCanEditDemands,
+    schools_can_edit_demands: schoolCanEditDemands,
+    demands_lock_schools: !schoolCanEditDemands
   };
 
   STATE.staffEditPermissions = perms;
   localStorage.setItem('cbeo_staff_edit_permissions', JSON.stringify(perms));
+
+  // Sync to Google Sheet live so settings persist across all devices & refreshes!
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
+  if (gasUrl) {
+    try {
+      fetch(gasUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'updatePassword',
+          user_id: '__STAFF_EDIT_PERMISSIONS__',
+          role: 'System_Config',
+          name: 'Staff and Form Edit Permissions',
+          new_password: JSON.stringify(perms)
+        })
+      }).catch(err => console.warn('Save staff permissions sync err:', err));
+    } catch(e) {}
+  }
 
   fetch('/api/save_staff_edit_permissions', {
     method: 'POST',
@@ -5895,7 +6116,7 @@ function saveStaffEditPermissionsMatrix() {
   renderStaffEditPermissionsMatrix();
   if (typeof filterStaffTable === 'function') filterStaffTable();
   if (typeof filterSchoolManagementTable === 'function') filterSchoolManagementTable();
-  showToast('कार्मिक, विद्यालय प्रबंधन व प्रपत्र लॉक अनुमतियाँ सुरक्षित की गईं!', 'success');
+  showToast('कार्मिक, विद्यालय प्रबंधन व समान परीक्षा अनुमतियाँ Google Sheet में सुरक्षित की गईं!', 'success');
 }
 
 function canCurrentUserEditStaff(targetStaff) {
@@ -6000,8 +6221,14 @@ function isSamanParikshaLockedForCurrentUser() {
   const perms = STATE.staffEditPermissions || {};
   if (perms.master_lock) return true;
 
+  if (STATE.currentUser.role === 'peeo') {
+    // If PEEO edit permission is false or lock flag is true, return true (View-Only Mode)
+    return perms.peeo_can_edit_saman_pariksha === false || perms.saman_pariksha_lock_peeo === true;
+  }
+
   if (STATE.currentUser.role === 'school') {
-    return perms.saman_pariksha_lock_schools !== false; // Locked by default for schools
+    // If school edit permission is false or lock flag is true, return true (View-Only Mode)
+    return perms.schools_can_edit_saman_pariksha !== true || perms.saman_pariksha_lock_schools === true;
   }
 
   return false;
@@ -6022,11 +6249,125 @@ function isDemandsLockedForCurrentUser() {
   const perms = STATE.staffEditPermissions || {};
   if (perms.master_lock) return true;
 
+  if (STATE.currentUser.role === 'peeo') {
+    return perms.peeo_can_edit_demands === false || perms.demands_lock_peeo === true;
+  }
+
   if (STATE.currentUser.role === 'school') {
-    return !!perms.demands_lock_schools;
+    return perms.schools_can_edit_demands !== true || perms.demands_lock_schools === true;
   }
 
   return false;
+}
+
+/* ========================================================
+   ARCHIVE & RESTORE MANAGEMENT (JITENDRA SUPER ADMIN)
+   ======================================================== */
+function renderArchiveManagerUI() {
+  const container = document.getElementById('admin-archive-manager-list');
+  if (!container) return;
+  container.innerHTML = '';
+
+  const isSPArchived = !!STATE.samanParikshaArchived;
+
+  // 1. Saman Pariksha Row
+  const spRow = document.createElement('div');
+  spRow.style.cssText = 'display:flex; justify-content:space-between; align-items:center; background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:0.75rem 1rem; margin-bottom:0.75rem';
+  spRow.innerHTML = `
+    <div>
+      <strong style="color:#1b365d; font-size:0.95rem">📋 समान परीक्षा 2026-27 (57 स्कूल)</strong>
+      <div style="font-size:0.78rem; color:#64748b; margin-top:2px">
+        स्थिति: ${isSPArchived ? '<span class="badge" style="background:#fee2e2; color:#b91c1c; padding:2px 8px; border-radius:6px; font-weight:700">🗄️ आर्काइव में (Archived)</span>' : '<span class="badge" style="background:#dcfce7; color:#15803d; padding:2px 8px; border-radius:6px; font-weight:700">● सक्रिय (Active Main Tab)</span>'}
+      </div>
+    </div>
+    <div>
+      <button class="btn btn-sm ${isSPArchived ? 'btn-success' : 'btn-outline-warning'}" onclick="toggleSamanParikshaArchive()" style="font-weight:700">
+        ${isSPArchived ? '<i class="fas fa-undo"></i> 🔄 रिस्टोर करें (Restore to Main Menu)' : '<i class="fas fa-archive"></i> 🗄️ आर्काइव में भेजें (Move to Archive)'}
+      </button>
+    </div>
+  `;
+  container.appendChild(spRow);
+
+  // 2. Dynamic Demands Rows
+  if (Array.isArray(STATE.demands) && STATE.demands.length > 0) {
+    STATE.demands.forEach(d => {
+      if (d.id === 'saman_pariksha_2026_27') return;
+      const isArch = !!d.archived;
+      const dRow = document.createElement('div');
+      dRow.style.cssText = 'display:flex; justify-content:space-between; align-items:center; background:#ffffff; border:1px solid #e2e8f0; border-radius:8px; padding:0.75rem 1rem; margin-bottom:0.5rem';
+      dRow.innerHTML = `
+        <div>
+          <strong style="color:#1e293b; font-size:0.9rem">${d.title || d.name}</strong>
+          <div style="font-size:0.75rem; color:#64748b; margin-top:2px">
+            प्रारूप: ${d.target_audience || 'सभी'} | स्थिति: ${isArch ? '<span style="color:#b91c1c; font-weight:700">🗄️ आर्काइव</span>' : '<span style="color:#15803d; font-weight:700">● सक्रिय</span>'}
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-sm ${isArch ? 'btn-success' : 'btn-outline-secondary'}" onclick="toggleDemandArchive('${d.id}')" style="font-weight:700">
+            ${isArch ? '<i class="fas fa-undo"></i> रिस्टोर करें' : '<i class="fas fa-archive"></i> आर्काइव करें'}
+          </button>
+        </div>
+      `;
+      container.appendChild(dRow);
+    });
+  }
+}
+
+function toggleSamanParikshaArchive() {
+  STATE.samanParikshaArchived = !STATE.samanParikshaArchived;
+  if (!STATE.portalSettings) STATE.portalSettings = {};
+  STATE.portalSettings.saman_pariksha_archived = STATE.samanParikshaArchived;
+  savePortalSettingsToCloud();
+  applyTabVisibility();
+  renderArchiveManagerUI();
+  renderArchiveView();
+  showToast(STATE.samanParikshaArchived ? 'समान परीक्षा को आर्काइव (अभिलेख) में स्थानांतरित कर दिया गया!' : 'समान परीक्षा को मुख्य मेनू में सफलतापूर्वक रिस्टोर कर दिया गया!', 'info');
+}
+
+function toggleDemandArchive(demandId) {
+  const d = (STATE.demands || []).find(x => x.id === demandId);
+  if (!d) return;
+  d.archived = !d.archived;
+  if (!STATE.portalSettings) STATE.portalSettings = {};
+  if (!Array.isArray(STATE.portalSettings.archived_demand_ids)) STATE.portalSettings.archived_demand_ids = [];
+  
+  if (d.archived) {
+    if (!STATE.portalSettings.archived_demand_ids.includes(demandId)) {
+      STATE.portalSettings.archived_demand_ids.push(demandId);
+    }
+  } else {
+    STATE.portalSettings.archived_demand_ids = STATE.portalSettings.archived_demand_ids.filter(id => id !== demandId);
+  }
+
+  savePortalSettingsToCloud();
+  renderArchiveManagerUI();
+  renderDemandsView();
+  renderArchiveView();
+  showToast(d.archived ? `'${d.title}' को आर्काइव में डाल दिया गया!` : `'${d.title}' को पुनः सक्रिय कर दिया गया!`, 'info');
+}
+
+function savePortalSettingsToCloud() {
+  localStorage.setItem('cbeo_portal_settings', JSON.stringify(STATE.portalSettings || {}));
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
+  if (gasUrl) {
+    try {
+      fetch(gasUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'updatePassword',
+          user_id: '__PORTAL_SETTINGS__',
+          role: 'System_Config',
+          name: 'Portal Global Settings and Archive Matrix',
+          new_password: JSON.stringify(STATE.portalSettings || {})
+        })
+      }).catch(err => console.warn('Save portal settings sync err:', err));
+    } catch(e) {}
+  }
 }
 
 function openEditSchoolHeadModal(schoolCode, schoolName, peeoName, curHead, curMobile, curDesig) {
@@ -6566,7 +6907,24 @@ function renderDemandsView() {
 }
 
 function renderArchiveView() {
-  const archived = getArchivedDemands();
+  let archived = getArchivedDemands();
+  if (STATE.samanParikshaArchived) {
+    if (!archived.some(d => d.id === 'saman_pariksha_2026_27')) {
+      archived = [
+        {
+          id: 'saman_pariksha_2026_27',
+          title: 'समान परीक्षा 2026-27 (57 विद्यालय)',
+          description: 'कक्षा 9 से 12 प्रश्न-पत्र मांग एवं विद्यार्थी नामांकन प्रपत्र (अभिलेख में सुरक्षित)',
+          category: 'Exam',
+          target_audience: 'Secondary / Sr Secondary Schools',
+          archived: true,
+          end_date: 'सम्पन्न'
+        },
+        ...archived
+      ];
+    }
+  }
+
   const container = document.getElementById('archive-cards-container');
   if (container) container.innerHTML = '';
 
@@ -6701,6 +7059,11 @@ function createDemandCardElement(demand, isArchive = false) {
         ${isAdminUser ? `
           <button class="btn btn-success btn-sm" onclick="exportSamanParikshaMasterCSV()" title="72-कॉलम विस्तृत एक्सेल डाउनलोड">
             <i class="fas fa-file-excel"></i> 📊 72-कॉलम एक्सेल
+          </button>
+        ` : ''}
+        ${isArchive && isJitendra ? `
+          <button class="btn btn-success btn-sm" onclick="toggleSamanParikshaArchive()" style="font-weight:700; color:#ffffff; background:#16a34a; border-color:#15803d">
+            <i class="fas fa-undo"></i> 🔄 पुनः सक्रिय करें (Restore to Main Menu)
           </button>
         ` : ''}
       ` : `

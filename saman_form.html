@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>जिला समान परीक्षा 2026-27 | अधिकृत प्रपत्र (Google Form Mode)</title>
+  <title>जिला समान परीक्षा (अजमेर) 2026-27 | अधिकृत प्रपत्र (CBEO भिनाय)</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <script src="master_cbeo_data.js?v=20261001_57"></script>
+  <script src="master_cbeo_data.js?v=20261003_v6"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -200,6 +200,12 @@
       background: #f3f4f6;
       color: #4b5563;
       cursor: not-allowed;
+    }
+    .view-only-input {
+      background: #f8fafc !important;
+      color: #334155 !important;
+      border-color: #cbd5e1 !important;
+      cursor: not-allowed !important;
     }
 
     /* Subject Grid */
@@ -554,7 +560,7 @@
       <span id="standalone-draft-status" style="font-size:0.75rem; color:#86efac; font-weight:700; display:inline-flex; align-items:center; gap:0.3rem">
         <i class="fas fa-save text-success"></i> <span>ड्राफ्ट सुरक्षित</span>
       </span>
-      <button class="btn-top-save" onclick="saveForm(false)">
+      <button class="btn-top-save" id="btn-top-save" onclick="saveForm(false)">
         <i class="fas fa-save"></i> सबमिट
       </button>
     </div>
@@ -563,9 +569,20 @@
   <!-- Form Body -->
   <main class="form-wrapper">
 
+    <!-- Form Locked Banner (View-Only Mode) -->
+    <div id="form-locked-banner" style="display:none; background:#fef2f2; border:1.5px solid #f87171; border-radius:10px; padding:1rem 1.25rem; margin-bottom:1rem; color:#991b1b; box-shadow:0 2px 6px rgba(239,68,68,0.12)">
+      <div style="display:flex; align-items:center; gap:0.6rem; font-weight:900; font-size:1.05rem; margin-bottom:0.35rem">
+        <i class="fas fa-lock" style="font-size:1.2rem; color:#dc2626"></i>
+        <span>अवलोकन मोड (View-Only Mode) — संपादन लॉक है</span>
+      </div>
+      <div style="font-size:0.88rem; color:#b91c1c; line-height:1.5">
+        मुख्य ब्लॉक शिक्षा अधिकारी (CBEO भिनाय, अजमेर) / एडमिन द्वारा प्रपत्र में संशोधन (Edit) की अनुमति बंद की गई है। आप पूर्व में सबमिट डेटा देख सकते हैं तथा अधिकृत A4 PDF निकाल सकते हैं।
+      </div>
+    </div>
+
     <!-- Header Banner Card -->
     <div class="gform-header-card">
-      <div class="gform-header-title">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</div>
+      <div class="gform-header-title">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)</div>
       <div class="gform-header-sub">DISTRICT UNIFORM EXAMINATION 2026-27 (QUESTION PAPER INDENT)</div>
       <div class="gform-header-desc">
         समान परीक्षा सत्र 2026-27 हेतु कक्षा 9 से 12 तक के विद्यार्थियों का विषयवार नामांकन एवं प्रश्न-पत्र मांग प्रपत्र।
@@ -589,11 +606,11 @@
           <i class="fas fa-check-circle" style="color:#10b981; font-size:1.25rem"></i>
           <span>प्रपत्र पूर्व में सबमिट किया जा चुका है (Saved Data Table)</span>
         </div>
-        <span style="background:#d1fae5; color:#047857; font-weight:800; font-size:0.8rem; padding:3px 10px; border-radius:20px">
+        <span id="f-submitted-status-tag" style="background:#d1fae5; color:#047857; font-weight:800; font-size:0.8rem; padding:3px 10px; border-radius:20px">
           संशोधन मोड (Edit Allowed)
         </span>
       </div>
-      <div style="font-size:0.85rem; color:#047857; margin-bottom:0.75rem">
+      <div id="f-submitted-status-desc" style="font-size:0.85rem; color:#047857; margin-bottom:0.75rem">
         इस विद्यालय का डेटा सफलतापूर्वक सुरक्षित है। आप नीचे दिए गए प्रपत्र में कोई भी संख्या बदलकर पुनः सबमिट (Update) कर सकते हैं।
       </div>
       <div id="f-submitted-table-container"></div>
@@ -972,12 +989,17 @@
       <a href="index.html" class="btn btn-outline">
         <i class="fas fa-arrow-left"></i> वापस पोर्टल
       </a>
-      <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+      <div id="bottom-submit-group" style="display:flex; gap:0.5rem; flex-wrap:wrap">
         <button class="btn btn-primary" onclick="saveForm(false)">
           <i class="fas fa-save"></i> प्रपत्र सबमिट करें
         </button>
         <button class="btn btn-success" onclick="saveForm(true)">
           <i class="fas fa-print"></i> सबमिट व PDF देखें
+        </button>
+      </div>
+      <div id="bottom-view-only-group" style="display:none; gap:0.5rem; flex-wrap:wrap">
+        <button class="btn btn-success" onclick="if(currentSchool) window.location.href='index.html?show_pdf=' + currentSchool.shala_darpan_code">
+          <i class="fas fa-print"></i> A4 अधिकृत PDF देखें व प्रिंट करें
         </button>
       </div>
     </div>
@@ -1074,6 +1096,98 @@
       }
     }
 
+    // Check edit permission for current user
+    function checkSamanFormEditPermission() {
+      let user = null;
+      try {
+        user = JSON.parse(localStorage.getItem('cbeo_user') || 'null');
+      } catch(e) {}
+
+      let perms = {};
+      try {
+        perms = JSON.parse(localStorage.getItem('cbeo_staff_edit_permissions') || '{}');
+      } catch(e) {}
+
+      if (user && (user.username === 'admin_jitendra' || user.role === 'superadmin' || user.role === 'cbeo')) {
+        return true;
+      }
+      if (user && user.role === 'peeo') {
+        return perms.peeo_can_edit_saman_pariksha !== false;
+      }
+      if (user && user.role === 'school') {
+        return perms.schools_can_edit_saman_pariksha !== false;
+      }
+      if (perms.schools_can_edit_saman_pariksha === false) {
+        return false;
+      }
+      return true;
+    }
+
+    function applyViewOnlyMode(isLocked) {
+      const banner = document.getElementById('form-locked-banner');
+      if (banner) banner.style.display = isLocked ? 'block' : 'none';
+
+      const topSaveBtn = document.getElementById('btn-top-save');
+      if (topSaveBtn) topSaveBtn.style.display = isLocked ? 'none' : 'inline-flex';
+
+      const draftIndicator = document.getElementById('standalone-draft-status');
+      if (draftIndicator && isLocked) {
+        draftIndicator.innerHTML = '<span style="color:#f87171"><i class="fas fa-lock"></i> केवल अवलोकन</span>';
+      }
+
+      const bottomSubmitGrp = document.getElementById('bottom-submit-group');
+      if (bottomSubmitGrp) bottomSubmitGrp.style.display = isLocked ? 'none' : 'flex';
+
+      const bottomViewGrp = document.getElementById('bottom-view-only-group');
+      if (bottomViewGrp) bottomViewGrp.style.display = isLocked ? 'flex' : 'none';
+
+      const subStatusTag = document.getElementById('f-submitted-status-tag');
+      const subStatusDesc = document.getElementById('f-submitted-status-desc');
+      if (subStatusTag) {
+        if (isLocked) {
+          subStatusTag.textContent = '🔒 केवल अवलोकन (View-Only / Locked)';
+          subStatusTag.style.background = '#fee2e2';
+          subStatusTag.style.color = '#991b1b';
+        } else {
+          subStatusTag.textContent = 'संशोधन मोड (Edit Allowed)';
+          subStatusTag.style.background = '#d1fae5';
+          subStatusTag.style.color = '#047857';
+        }
+      }
+      if (subStatusDesc) {
+        if (isLocked) {
+          subStatusDesc.textContent = 'इस विद्यालय का प्रपत्र सबमिट है। मुख्य ब्लॉक शिक्षा अधिकारी द्वारा संशोधन बंद होने के कारण यह केवल अवलोकन मोड में है।';
+        } else {
+          subStatusDesc.textContent = 'इस विद्यालय का डेटा सफलतापूर्वक सुरक्षित है। आप नीचे दिए गए प्रपत्र में कोई भी संख्या बदलकर पुनः सबमिट (Update) कर सकते हैं।';
+        }
+      }
+
+      // Toggle form inputs
+      const formInputs = document.querySelectorAll(
+        '#f-exam-code, #f-principal-name, #f-principal-mobile, #f-incharge-name, #f-incharge-mobile, ' +
+        '#f-c9-total, #f-c9-sanskrit, #f-c9-urdu, #f-c10-total, #f-c10-sanskrit, #f-c10-urdu, ' +
+        '#f-c11-total, #f-c11-comp-hindi, #f-c11-comp-english, ' +
+        '#f-c12-total, #f-c12-comp-hindi, #f-c12-comp-english, ' +
+        '.subject-card input, .faculty-pill-btn input, #f-certify-check'
+      );
+      formInputs.forEach(inp => {
+        inp.disabled = isLocked;
+        if (isLocked) inp.classList.add('view-only-input');
+        else inp.classList.remove('view-only-input');
+      });
+
+      document.querySelectorAll('.btn-nil-toggle').forEach(btn => {
+        btn.disabled = isLocked;
+        btn.style.pointerEvents = isLocked ? 'none' : 'auto';
+        btn.style.opacity = isLocked ? '0.5' : '1';
+      });
+
+      if (standaloneCanvas) {
+        standaloneCanvas.style.pointerEvents = isLocked ? 'none' : 'auto';
+        standaloneCanvas.style.opacity = isLocked ? '0.6' : '1';
+      }
+    }
+
     function initPage() {
       if (localStorage.getItem('cbeo_sp_clean_production_v3') !== 'true') {
         localStorage.removeItem('cbeo_saman_pariksha_submissions');
@@ -1088,6 +1202,20 @@
       }
 
       schoolsList = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.schools_56) || (window.MASTER_CBEO_DATA && window.MASTER_CBEO_DATA.schools_56) || [];
+
+      // If school login, restrict to own school
+      let loggedUser = null;
+      try {
+        loggedUser = JSON.parse(localStorage.getItem('cbeo_user') || 'null');
+      } catch(e) {}
+      if (loggedUser && loggedUser.role === 'school' && loggedUser.school_code) {
+        const mySch = schoolsList.filter(s => String(s.shala_darpan_code) === String(loggedUser.school_code));
+        if (mySch.length > 0) schoolsList = mySch;
+      } else if (loggedUser && loggedUser.role === 'peeo' && loggedUser.peeo_name) {
+        const peeoSchools = schoolsList.filter(s => s.peeo_name === loggedUser.peeo_name || String(s.shala_darpan_code) === String(loggedUser.school_code));
+        if (peeoSchools.length > 0) schoolsList = peeoSchools;
+      }
+
       const select = document.getElementById('school-select');
       if (select) {
         select.innerHTML = '';
@@ -1097,6 +1225,9 @@
           opt.textContent = `[${s.type.substring(0,3)}] ${s.shala_darpan_code} - ${s.school_name}`;
           select.appendChild(opt);
         });
+        if (loggedUser && loggedUser.role === 'school') {
+          select.disabled = true;
+        }
       }
 
       // Check URL query
@@ -1107,6 +1238,26 @@
         select.value = targetCode;
       }
       loadSchool(targetCode || (select && select.value));
+
+      // Sync cloud permissions from Google Sheet
+      const webhookUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+        || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+        || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+      if (webhookUrl) {
+        fetch(`${webhookUrl}?action=getAuth&_nocache=${Date.now()}`)
+          .then(r => r.json())
+          .then(data => {
+            if (data && data.success && data.users && data.users['__STAFF_EDIT_PERMISSIONS__']) {
+              try {
+                const raw = data.users['__STAFF_EDIT_PERMISSIONS__'];
+                const pwd = (raw && typeof raw === 'object' && raw.password) ? raw.password : raw;
+                const perms = JSON.parse(pwd);
+                localStorage.setItem('cbeo_staff_edit_permissions', JSON.stringify(perms));
+                applyViewOnlyMode(!checkSamanFormEditPermission());
+              } catch(e) {}
+            }
+          }).catch(() => {});
+      }
 
       // Try syncing latest data from backend API
       fetch('/api/get_saman_pariksha')
@@ -1303,6 +1454,10 @@
       document.getElementById('f-stamp-block').textContent = `ग्रा.पं. ${currentSchool.peeo_name.replace('PEEO ', '')}, ब्लॉक-भिनाय (अजमेर)`;
 
       calculateTotals();
+
+      // Apply View-Only mode if locked
+      const isLocked = !checkSamanFormEditPermission();
+      applyViewOnlyMode(isLocked);
     }
 
     function calculateTotals() {
@@ -1401,6 +1556,11 @@
 
     function saveForm(andRedirectToPortal = false) {
       if (!currentSchool) return;
+
+      if (!checkSamanFormEditPermission()) {
+        showToast('🔒 प्रपत्र केवल अवलोकन मोड में है (संशोधन बंद है)');
+        return;
+      }
 
       const examCode = document.getElementById('f-exam-code').value.trim();
       const principalName = document.getElementById('f-principal-name').value.trim();
@@ -1638,6 +1798,7 @@
     // Auto-Save Draft on Form Input (Phone calls/distraction resilient)
     let autoSaveTimer = null;
     function triggerAutoSave() {
+      if (!checkSamanFormEditPermission()) return;
       clearTimeout(autoSaveTimer);
       autoSaveTimer = setTimeout(() => {
         if (!currentSchool) return;
