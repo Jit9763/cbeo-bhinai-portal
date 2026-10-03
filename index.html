@@ -1363,6 +1363,70 @@
               </div>
             </div>
 
+            <!-- 5. Automated Reports Dispatch Selection -->
+            <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:10px; padding:1.1rem">
+              <div style="font-size:0.84rem; font-weight:800; color:#0f172a; margin-bottom:0.75rem; display:flex; justify-content:space-between; align-items:center">
+                <span><i class="fas fa-file-export text-primary"></i> 5. स्वचालित रिपोर्ट प्रेषण चयन (Select Reports)</span>
+                <span style="font-size:0.72rem; color:#2563eb; font-weight:700">Email + Telegram</span>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:0.5rem; font-size:0.8rem">
+                <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; background:#ffffff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0">
+                  <input type="checkbox" id="vm-rep-saman" checked style="width:16px; height:16px">
+                  <span><strong>समान परीक्षा प्रगति सारांश:</strong> कुल लक्ष्य, प्राप्त % व लंबित संख्या</span>
+                </label>
+                <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; background:#ffffff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0">
+                  <input type="checkbox" id="vm-rep-pending" checked style="width:16px; height:16px">
+                  <span><strong>लंबित डिफ़ॉल्टर सूची:</strong> अशासकीय/राजकीय लंबित विद्यालय व संस्था प्रधान दूरभाष</span>
+                </label>
+                <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; background:#ffffff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0">
+                  <input type="checkbox" id="vm-rep-demands" checked style="width:16px; height:16px">
+                  <span><strong>सक्रिय मांग प्रपत्र:</strong> Universal Demands अनुपालन सारांश</span>
+                </label>
+                <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; background:#ffffff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0">
+                  <input type="checkbox" id="vm-rep-peeo" checked style="width:16px; height:16px">
+                  <span><strong>PEEO क्लस्टर प्रगति:</strong> 25 नोडल पंचायतवार स्थिति</span>
+                </label>
+              </div>
+              <div style="font-size:0.72rem; color:#64748b; margin-top:6px">
+                (अनचेक की गई रिपोर्ट ईमेल व टेलीग्राम पर नहीं भेजी जाएगी)
+              </div>
+            </div>
+
+            <!-- 6. Google Gemini AI Persona & Tone Directive Shaper -->
+            <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:10px; padding:1.1rem">
+              <div style="font-size:0.84rem; font-weight:800; color:#0f172a; margin-bottom:0.75rem; display:flex; justify-content:space-between; align-items:center">
+                <span><i class="fas fa-brain text-purple"></i> 6. Gemini AI भाषा एवं टोन शेपर (AI Tone)</span>
+                <span id="gemini-tone-badge" style="font-size:0.72rem; font-weight:700; color:#7c3aed; background:#f3e8ff; padding:2px 8px; border-radius:4px">समय-सीमा चेतावनी</span>
+              </div>
+              
+              <div style="margin-bottom:0.5rem">
+                <label style="font-size:0.75rem; font-weight:700; color:#475569; display:block; margin-bottom:4px">प्रेषण भाषा व निर्देश शैली (Tone Selector):</label>
+                <select id="vm-gemini-tone-select" class="form-control" style="font-size:0.82rem; padding:0.45rem" onchange="updateGeminiTonePreview()">
+                  <option value="warning" selected>🚨 सख्त समय-सीमा चेतावनी (Urgent Notice & Defaulter Warning)</option>
+                  <option value="formal">🏛️ विभागीय औपचारिक (Official CBEO Administrative Hindi)</option>
+                  <option value="brief">📱 संक्षिप्त 2-लाइन बुलेटिन (Crisp 2-Line Executive Digest)</option>
+                  <option value="motivational">🌟 समीक्षात्मक व प्रोत्साहक (Review & Appreciation Milestone)</option>
+                </select>
+              </div>
+
+              <!-- AI Tone Preview Box -->
+              <div style="background:#ffffff; border:1px solid #e2e8f0; border-left:4px solid #7c3aed; border-radius:6px; padding:0.5rem 0.65rem; margin-bottom:0.6rem">
+                <div style="font-size:0.7rem; font-weight:700; color:#6b21a8; margin-bottom:2px">🤖 AI द्वारा तैयार होने वाली भाषा शैली (Preview):</div>
+                <div id="vm-gemini-tone-preview" style="font-size:0.75rem; color:#334155; line-height:1.45; font-style:italic">
+                  "कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय द्वारा निर्देश: समान परीक्षा 2026-27 के लंबित विद्यालय आज ही पोर्टल पर प्रविष्टि शत-प्रतिशत पूर्ण करें। अन्यथा अनुशासनात्मक कार्रवाई प्रस्तावित की जाएगी।"
+                </div>
+              </div>
+
+              <div style="display:flex; gap:0.4rem; justify-content:flex-end">
+                <button type="button" onclick="triggerManualVMDispatch()" class="btn btn-warning btn-sm" style="font-size:0.75rem; font-weight:700; padding:4px 10px">
+                  <i class="fas fa-paper-plane"></i> 🚀 अभी प्रेषित करें
+                </button>
+                <button type="button" onclick="saveVMDispatchConfig()" class="btn btn-primary btn-sm" style="font-size:0.75rem; font-weight:700; padding:4px 10px">
+                  <i class="fas fa-save"></i> 💾 सेटिंग्स सहेजें
+                </button>
+              </div>
+            </div>
+
           </div>
 
           <!-- Live Status Diagnostics Bar -->

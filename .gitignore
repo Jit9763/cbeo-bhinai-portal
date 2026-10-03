@@ -11,3 +11,6 @@ cbeo_notification_config.json
 scripts/check_vm_run.py
 ai_query_cache.json
 cbeo_local_secrets.json
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite

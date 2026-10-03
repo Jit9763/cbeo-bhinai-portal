@@ -11965,6 +11965,7 @@ async function loadAndRenderVMControlCard() {
   // Populate Consolidated Demands Selector in Hub 1
   populateAdminHubDemands();
   loadGeminiKeyStatus();
+  loadVMDispatchConfig();
 }
 
 function setVMMasterPower(isOn, notify = true) {
@@ -12149,6 +12150,158 @@ async function triggerCloudVMManualNow() {
       btn.disabled = false;
       btn.innerHTML = origHtml;
     }
+  }
+}
+
+// =========================================================================
+// VM DISPATCH SELECTION & GEMINI AI TONE DIRECTIVE HANDLERS
+// =========================================================================
+
+function updateGeminiTonePreview() {
+  const toneSelect = document.getElementById('vm-gemini-tone-select');
+  const previewBox = document.getElementById('vm-gemini-tone-preview');
+  const badge = document.getElementById('gemini-tone-badge');
+  if (!toneSelect || !previewBox) return;
+
+  const tone = toneSelect.value;
+  const previews = {
+    warning: {
+      badge: 'समय-सीमा चेतावनी',
+      color: '#dc2626',
+      bg: '#fee2e2',
+      text: '"कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय द्वारा सख्त निर्देश: समान परीक्षा सत्र 2026-27 के लंबित विद्यालय आज ही पोर्टल पर प्रविष्टि शत-प्रतिशत पूर्ण करें। अन्यथा अनुशासनात्मक कार्रवाई प्रस्तावित की जाएगी।"'
+    },
+    formal: {
+      badge: 'विभागीय औपचारिक',
+      color: '#1e40af',
+      bg: '#dbeafe',
+      text: '"कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर) के निर्देशानुसार: ब्लॉक के सभी लक्षित विद्यालय समान परीक्षा 2026-27 के विषयवार प्रपत्र की जांच कर आज ही अधिकृत प्रविष्टि व प्रमाणन सुनिश्चित करें।"'
+    },
+    brief: {
+      badge: '2-लाइन बुलेटिन',
+      color: '#059669',
+      bg: '#d1fae5',
+      text: '"• समान परीक्षा 2026-27: भिनाय ब्लॉक में प्रगति 85%+ संकलित।\n• लंबित विद्यालय: आज शाम 5 बजे तक अंतिम रूप से पोर्टल पर डेटा लॉक करें।"'
+    },
+    motivational: {
+      badge: 'प्रोत्साहक व समीक्षा',
+      color: '#7c3aed',
+      bg: '#f3e8ff',
+      text: '"समान परीक्षा 2026-27 में अधिकांश विद्यालयों द्वारा समयबद्ध प्रविष्टि सराहनीय है। शेष विद्यालय भी आज ही प्रपत्र जमा कर ब्लॉक भिनाय को जिले में प्रथम स्थान पर लाने में सहयोग करें।"'
+    }
+  };
+
+  const current = previews[tone] || previews.warning;
+  previewBox.innerText = current.text;
+  if (badge) {
+    badge.textContent = current.badge;
+    badge.style.color = current.color;
+    badge.style.background = current.bg;
+  }
+}
+
+function loadVMDispatchConfig() {
+  let cfg = null;
+  try {
+    cfg = JSON.parse(localStorage.getItem('cbeo_vm_dispatch_config') || 'null');
+    if (!cfg && STATE.portalSettings && STATE.portalSettings.vm_dispatch_config) {
+      cfg = STATE.portalSettings.vm_dispatch_config;
+    }
+  } catch(e) {}
+
+  if (!cfg) {
+    cfg = {
+      report_saman_summary: true,
+      report_pending_schools: true,
+      report_active_demands: true,
+      report_peeo_summary: true,
+      gemini_tone: 'warning'
+    };
+  }
+
+  const sChk = document.getElementById('vm-rep-saman');
+  const pChk = document.getElementById('vm-rep-pending');
+  const dChk = document.getElementById('vm-rep-demands');
+  const peeoChk = document.getElementById('vm-rep-peeo');
+  const tSel = document.getElementById('vm-gemini-tone-select');
+
+  if (sChk) sChk.checked = cfg.report_saman_summary !== false;
+  if (pChk) pChk.checked = cfg.report_pending_schools !== false;
+  if (dChk) dChk.checked = cfg.report_active_demands !== false;
+  if (peeoChk) peeoChk.checked = cfg.report_peeo_summary !== false;
+  if (tSel && cfg.gemini_tone) {
+    tSel.value = cfg.gemini_tone;
+    updateGeminiTonePreview();
+  }
+}
+
+async function saveVMDispatchConfig() {
+  const sChk = document.getElementById('vm-rep-saman');
+  const pChk = document.getElementById('vm-rep-pending');
+  const dChk = document.getElementById('vm-rep-demands');
+  const peeoChk = document.getElementById('vm-rep-peeo');
+  const tSel = document.getElementById('vm-gemini-tone-select');
+
+  const dispatchConfig = {
+    report_saman_summary: sChk ? sChk.checked : true,
+    report_pending_schools: pChk ? pChk.checked : true,
+    report_active_demands: dChk ? dChk.checked : true,
+    report_peeo_summary: peeoChk ? peeoChk.checked : true,
+    gemini_tone: tSel ? tSel.value : 'warning',
+    updated_at: new Date().toISOString()
+  };
+
+  localStorage.setItem('cbeo_vm_dispatch_config', JSON.stringify(dispatchConfig));
+
+  // Sync with portal settings
+  if (!STATE.portalSettings) STATE.portalSettings = {};
+  STATE.portalSettings.vm_dispatch_config = dispatchConfig;
+  savePortalSettingsToCloud();
+
+  // Also sync to Node / Python server if reachable
+  fetch('/api/save_portal_settings', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ settings: STATE.portalSettings })
+  }).catch(() => {});
+
+  showToast('✓ रिपोर्ट प्रेषण चयन एवं AI भाषा टोन सेटिंग्स सफलतापूर्वक सुरक्षित हो गईं!', 'success');
+}
+
+async function triggerManualVMDispatch() {
+  showToast('🚀 रिपोर्ट प्रेषण आरंभ: Telegram बॉट व Gmail SMTP कनेक्ट किया जा रहा है...', 'info');
+  
+  // 1. Try local / VM backend
+  try {
+    const res = await fetch('/api/trigger_vm_report', { method: 'POST' });
+    const data = await res.json();
+    if (data && data.success) {
+      showToast('✓ VM रिपोर्ट टेलीग्राम व ईमेल पर सफलतापूर्वक प्रेषित कर दी गई!', 'success');
+      return;
+    }
+  } catch(e) {}
+
+  // 2. Fallback to Google Apps Script Web App email trigger if configured
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
+  try {
+    fetch(gasUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'triggerDispatchAlert',
+        config: JSON.parse(localStorage.getItem('cbeo_vm_dispatch_config') || '{}')
+      })
+    }).then(() => {
+      showToast('✓ क्लाउड रिपोर्ट अलर्ट प्रेषित कर दिया गया!', 'success');
+    }).catch(err => {
+      showToast('क्लाउड ट्रिगर नोट: GitHub Actions शेड्यूल से रिपोर्ट नियत समय पर प्रेषित होगी।', 'info');
+    });
+  } catch(err) {
+    showToast('क्लाउड ट्रिगर नोट: GitHub Actions शेड्यूल से रिपोर्ट नियत समय पर प्रेषित होगी।', 'info');
   }
 }
 

@@ -94,6 +94,19 @@ def main():
                     live_subs = live_json['submissions']
                     saman_subs.update(live_subs)
                     print(f"[CBEO-VM] ✓ Live Google Drive Sync SUCCESS: Fetched {len(live_subs)} submissions directly from Sheet!")
+            
+            # Fetch live VM dispatch settings from Google Sheet
+            auth_resp = requests.get(f"{gas_backend_url}?action=getAuth&_nocache={int(datetime.datetime.now().timestamp())}", timeout=15)
+            if auth_resp.status_code == 200:
+                auth_json = auth_resp.json()
+                users = auth_json.get('users', {})
+                if '__PORTAL_SETTINGS__' in users:
+                    raw_ps = users['__PORTAL_SETTINGS__']
+                    pwd = raw_ps.get('password') if isinstance(raw_ps, dict) else raw_ps
+                    ps = json.loads(pwd) if isinstance(pwd, str) else pwd
+                    if isinstance(ps, dict) and 'vm_dispatch_config' in ps:
+                        vm_settings['dispatch_config'] = ps['vm_dispatch_config']
+                        print("[CBEO-VM] ✓ Live VM Dispatch Config synced from Google Sheet:", ps['vm_dispatch_config'])
                     # Persist to local json files on runner
                     try:
                         with open(saman_subs_path, 'w', encoding='utf-8') as sf:
@@ -277,20 +290,36 @@ def main():
         except Exception as e:
             print("Note reading cbeo_notification_config.json:", e)
 
-    # 5B. Google Gemini AI Executive Analysis
+    # 5B. Google Gemini AI Executive Analysis with Dynamic Tone
+    dispatch_cfg = vm_settings.get('dispatch_config', {})
+    gemini_tone = dispatch_cfg.get('gemini_tone', 'warning')
+    report_saman = dispatch_cfg.get('report_saman_summary', True)
+    report_pending = dispatch_cfg.get('report_pending_schools', True)
+    report_demands = dispatch_cfg.get('report_active_demands', True)
+    report_peeo = dispatch_cfg.get('report_peeo_summary', True)
+
+    tone_directives = {
+        'formal': "विभागीय औपचारिक भाषा (Official CBEO Administrative Hindi): मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय के औपचारिक परिपत्र शैली में प्रशासनिक व गरिमामयी भाषा का प्रयोग करें।",
+        'warning': "सख्त समय-सीमा चेतावनी (Urgent Compliance & Warning Notice): लंबित विद्यालयों के संस्था प्रधानों को अंतिम चेतावनी देते हुए स्पष्ट व कड़े शब्दों में अनुशासनात्मक कार्रवाई का उल्लेख करें।",
+        'brief': "संक्षिप्त बुलेटिन (Crisp 2-Line Executive Digest): केवल 2 अत्यंत संक्षिप्त व सटीक बुलेट वाक्यों में स्थिति व स्पष्ट निर्देश लिखें।",
+        'motivational': "प्रोत्साहन व समीक्षात्मक (Appreciation & Milestone Target): अब तक की सराहनीय प्रगति का उल्लेख करते हुए शत-प्रतिशत लक्ष्य शीघ्र पूरा करने का संदेश दें।"
+    }
+    tone_str = tone_directives.get(gemini_tone, tone_directives['warning'])
+
     raw_gemini_keys = (os.environ.get('GEMINI_API_KEY') or local_cfg.get('GEMINI_API_KEY') or vm_settings.get('gemini_api_key') or '').strip()
     gemini_ai_brief = ""
     if raw_gemini_keys and requests:
         gemini_pool = [k.strip() for k in re.split(r'[,;\n]+', raw_gemini_keys) if k.strip()]
         for g_idx, gemini_key in enumerate(gemini_pool):
             try:
-                print(f"[CBEO-VM] Generating AI Executive Analysis via Gemini Key #{g_idx+1}...")
+                print(f"[CBEO-VM] Generating AI Executive Analysis via Gemini Key #{g_idx+1} [Tone: {gemini_tone}]...")
                 g_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key={gemini_key}"
                 g_prompt = (
                     f"You are Chief AI Officer for CBEO Bhinai, District AJMER (अजमेर), Rajasthan. "
-                    f"Rule: District is strictly AJMER (अजमेर); never Kekri. "
-                    f"Status: {sp_sub_count}/{total_sp_schools} schools submitted Saman Pariksha forms, {sp_pend_count} pending. "
-                    f"Write a crisp, authoritative 2-line Hindi executive directive for the CBEO bulletin urging urgent compliance before 05 October 2026."
+                    f"MANDATORY PERMANENT RULE: District is strictly AJMER (अजमेर); never use Kekri. "
+                    f"Tone Directive: {tone_str}. "
+                    f"Data: {sp_sub_count}/{total_sp_schools} schools submitted Saman Pariksha forms, {sp_pend_count} pending. "
+                    f"Write a 2-3 line Hindi directive for official bulletin/Telegram."
                 )
                 g_payload = {"contents": [{"parts": [{"text": g_prompt}]}]}
                 g_resp = requests.post(g_url, json=g_payload, timeout=8)
@@ -313,19 +342,22 @@ def main():
                 "🤖 <b>स्वचालित अनुपालन, विसंगति व रेड-अलर्ट बुलेटिन</b>",
                 f"⏰ <b>दिनांक:</b> {time_str} IST",
                 "📍 <b>जिला:</b> अजमेर (AJMER) | <b>ब्लॉक:</b> भिनाय (BHINAI)",
-                "━━━━━━━━━━━━━━━━━━━━━━",
-                "📋 <b>1. जिला समान परीक्षा (सत्र 2026-27):</b>",
-                f"• कुल लक्षित विद्यालय: <b>{total_sp_schools}</b>",
-                f"• प्रपत्र प्राप्त: <b>{sp_sub_count} ({sp_percent}%)</b>",
-                f"• कुल लंबित: <b>{sp_pend_count} विद्यालय ({round(100 - sp_percent, 1)}%)</b>",
-                ""
+                "━━━━━━━━━━━━━━━━━━━━━━"
             ]
+
+            if report_saman:
+                tg_html_lines.extend([
+                    "📋 <b>1. जिला समान परीक्षा (सत्र 2026-27):</b>",
+                    f"• कुल लक्षित विद्यालय: <b>{total_sp_schools}</b>",
+                    f"• प्रपत्र प्राप्त: <b>{sp_sub_count} ({sp_percent}%)</b>",
+                    f"• कुल लंबित: <b>{sp_pend_count} विद्यालय ({round(100 - sp_percent, 1)}%)</b>",
+                    ""
+                ])
 
             if gemini_ai_brief:
                 tg_html_lines.append(f"🤖 <b>AI कार्यकारी विश्लेषण (Google Gemini):</b>\n<i>{gemini_ai_brief}</i>\n")
 
-
-            if sp_pend_count > 0:
+            if report_pending and sp_pend_count > 0:
                 tg_html_lines.append("🚨 <b>2. रेड-अलर्ट डिफ़ॉल्टर सूची (Overdue Escalation):</b>")
                 tg_html_lines.append("<i>(अंतिम स्मरण: आज ही पोर्टल पर प्रविष्टि दर्ज कराएं)</i>")
                 for s_i, ps in enumerate(sp_pending_schools):
@@ -336,15 +368,15 @@ def main():
                         f"   └ {ps['principal']}{mob_str}"
                     )
                 tg_html_lines.append("")
-            else:
+            elif report_pending and sp_pend_count == 0:
                 tg_html_lines.append("✅ <b>समान परीक्षा के सभी 57 विद्यालयों के प्रपत्र शत-प्रतिशत प्राप्त हो चुके हैं।</b>\n")
 
-            # MDM Anomaly
-            tg_html_lines.append("🍲 <b>3. MDM प्रपत्र-2 एवं विसंगति स्थिति:</b>")
-            tg_html_lines.append(f"• कुल 25 PEEO निरीक्षण प्रपत्र मॉनिटरिंग सक्रिय।")
-            tg_html_lines.append("")
+            # MDM Anomaly Scanner
+            if vm_settings.get('mdm_anomaly_scanner', True):
+                tg_html_lines.append("🍲 <b>3. MDM प्रपत्र-2 एवं विसंगति स्थिति:</b>")
+                tg_html_lines.append(f"• कुल 25 PEEO निरीक्षण प्रपत्र मॉनिटरिंग सक्रिय।\n")
 
-            if active_demands:
+            if report_demands and active_demands:
                 tg_html_lines.append("📊 <b>4. सक्रिय सूचना मांगें:</b>")
                 for d in active_demands:
                     tg_html_lines.append(f"• <b>{d.get('title', 'मांग')}</b> (अंतिम तिथि: {d.get('dueDate', 'यथाशीघ्र')})")

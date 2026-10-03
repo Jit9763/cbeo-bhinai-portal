@@ -15,6 +15,14 @@
   "admin_phone": "9928254317",
   "gemini_api_key": "",
   "ai_model": "gemini-1.5-flash",
+  "dispatch_config": {
+    "report_saman_summary": true,
+    "report_pending_schools": true,
+    "report_active_demands": true,
+    "report_peeo_summary": true,
+    "gemini_tone": "warning",
+    "target_email": "censusbhinai@gmail.com"
+  },
   "updated_by": "admin_jitendra",
-  "updated_at": "03-10-2026 02:22 AM IST"
+  "updated_at": "04-10-2026 12:00 AM IST"
 }
