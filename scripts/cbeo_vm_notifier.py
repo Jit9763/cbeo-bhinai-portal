@@ -8,6 +8,7 @@ MANDATORY RULE: जिला सदैव अजमेर (AJMER) रहेग�
 
 import os
 import sys
+import re
 import json
 import datetime
 import smtplib
@@ -371,6 +372,15 @@ def main():
         </tr>
         """
 
+    gemini_ai_brief_html = ""
+    if gemini_ai_brief:
+        gemini_ai_brief_html = f"""<div style="background:#eff6ff; border-left:4px solid #2563eb; padding:12px 16px; border-radius:6px; margin-bottom:16px;"><strong style="color:#1e40af; font-size:13px;">🤖 Google Gemini AI कार्यकारी विश्लेषण (Executive Briefing):</strong><p style="margin:4px 0 0 0; color:#1e293b; font-size:13px; line-height:1.45; font-style:italic;">{gemini_ai_brief}</p></div>"""
+
+    if sp_pend_count > 0:
+        escalation_section_html = f"""<div style="background:#fef2f2; border:1.5px solid #fecaca; border-radius:8px; padding:12px 16px; margin:20px 0 12px 0;"><h4 style="margin:0 0 6px 0; color:#991b1b; font-size:14px;">🚨 2. सख्त समय-सीमा अनुपालन व रेड-अलर्ट सिस्टम (Overdue Escalation):</h4><p style="margin:0 0 10px 0; font-size:12px; color:#7f1d1d;">समय-सीमा पश्चात भी अप्राप्त विद्यालयों के संस्था प्रधानों को अंतिम चेतावनी प्रेषित की गई है।</p><div style="overflow-x:auto;"><table style="width:100%; border-collapse:collapse; font-size:12px;"><thead style="background:#0f172a; color:#ffffff;"><tr><th style="padding:8px 10px;">क्र.</th><th style="padding:8px 10px;">शा.दा. कोड</th><th style="padding:8px 10px;">विद्यालय</th><th style="padding:8px 10px;">PEEO</th><th style="padding:8px 10px;">संस्था प्रधान</th><th style="padding:8px 10px;">मोबाइल</th></tr></thead><tbody>{pending_rows_html}</tbody></table></div></div>"""
+    else:
+        escalation_section_html = """<div style="background:#ecfdf5; color:#065f46; padding:14px; border-radius:8px; font-weight:bold; text-align:center;">✓ समान परीक्षा 2026-27 के सभी विद्यालयों के प्रपत्र शत-प्रतिशत संकलित हो चुके हैं। कोई डिफ़ॉल्टर शेष नहीं है।</div>"""
+
     html_email = f"""
     <!DOCTYPE html>
     <html>
@@ -386,7 +396,7 @@ def main():
             </div>
 
             <div style="padding:24px 28px;">
-                {f"""<div style="background:#eff6ff; border-left:4px solid #2563eb; padding:12px 16px; border-radius:6px; margin-bottom:16px;"><strong style="color:#1e40af; font-size:13px;">🤖 Google Gemini AI कार्यकारी विश्लेषण (Executive Briefing):</strong><p style="margin:4px 0 0 0; color:#1e293b; font-size:13px; line-height:1.45; font-style:italic;">{gemini_ai_brief}</p></div>""" if gemini_ai_brief else ""}
+                {gemini_ai_brief_html}
                 <h3 style="margin:0 0 16px 0; color:#0f172a; border-left:4px solid #2563eb; padding-left:10px; font-size:16px;">
                     📋 1. जिला समान परीक्षा (सत्र 2026-27) - प्रगति सारांश
                 </h3>
@@ -408,7 +418,7 @@ def main():
                     </div>
                 </div>
 
-                {'<div style="background:#fef2f2; border:1.5px solid #fecaca; border-radius:8px; padding:12px 16px; margin:20px 0 12px 0;"><h4 style="margin:0 0 6px 0; color:#991b1b; font-size:14px;">🚨 2. सख्त समय-सीमा अनुपालन व रेड-अलर्ट सिस्टम (Overdue Escalation):</h4><p style="margin:0 0 10px 0; font-size:12px; color:#7f1d1d;">समय-सीमा पश्चात भी अप्राप्त विद्यालयों के संस्था प्रधानों को अंतिम चेतावनी प्रेषित की गई है।</p><div style="overflow-x:auto;"><table style="width:100%; border-collapse:collapse; font-size:12px;"><thead style="background:#0f172a; color:#ffffff;"><tr><th style="padding:8px 10px;">क्र.</th><th style="padding:8px 10px;">शा.दा. कोड</th><th style="padding:8px 10px;">विद्यालय</th><th style="padding:8px 10px;">PEEO</th><th style="padding:8px 10px;">संस्था प्रधान</th><th style="padding:8px 10px;">मोबाइल</th></tr></thead><tbody>' + pending_rows_html + '</tbody></table></div></div>' if sp_pend_count > 0 else '<div style="background:#ecfdf5; color:#065f46; padding:14px; border-radius:8px; font-weight:bold; text-align:center;">✓ समान परीक्षा 2026-27 के सभी विद्यालयों के प्रपत्र शत-प्रतिशत संकलित हो चुके हैं। कोई डिफ़ॉल्टर शेष नहीं है।</div>'}
+                {escalation_section_html}
 
                 <div style="background:#f8fafc; border:1.5px solid #e2e8f0; border-radius:8px; padding:14px 16px; margin-top:20px;">
                     <h4 style="margin:0 0 6px 0; color:#0f172a; font-size:14px;">🍲 3. ब्लॉक MDM निरीक्षण प्रपत्र-2 एवं दैनिक विसंगति मॉनिटर:</h4>
