@@ -1002,11 +1002,11 @@ function performLogin() {
     if (openForm && userObj.role === 'school') {
       openSamanParikshaForm(userObj.shala_darpan_code);
     }
-    // Prominent security reminder if logged in with default password
+    // Prominent security popup if logged in with default password
     if (userObj.role !== 'admin' && (p === u || p === userObj.shala_darpan_code)) {
       setTimeout(() => {
-        showToast('⚠️ ध्यान दें: आप डिफ़ॉल्ट पासवर्ड से लॉगिन हैं। संस्था की सुरक्षा हेतु कृपया ऊपर "पासवर्ड बदलें" पर क्लिक करके नया पासवर्ड बनाएं!', 'warning');
-      }, 1200);
+        showModal('modal-default-pwd-alert');
+      }, 500);
     }
   }
 

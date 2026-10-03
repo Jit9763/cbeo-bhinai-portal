@@ -3664,6 +3664,47 @@
     </div>
   </div>
 
+  <!-- SECURITY ALERT: DEFAULT PASSWORD WARNING POPUP AFTER LOGIN -->
+  <div id="modal-default-pwd-alert" class="modal-overlay" style="z-index:10050">
+    <div class="modal-card" style="max-width:480px; border-top:5px solid #ea580c; border-radius:12px; overflow:hidden">
+      <div class="modal-header" style="background:#fffbeb; border-bottom:1px solid #fed7aa; padding:1rem 1.25rem">
+        <h3 style="color:#9a3412; font-size:1.1rem; display:flex; align-items:center; gap:8px; margin:0">
+          <i class="fas fa-shield-alt" style="color:#ea580c; font-size:1.25rem"></i> 
+          <span>सुरक्षा चेतावनी: डिफ़ॉल्ट पासवर्ड बदलें</span>
+        </h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-default-pwd-alert')">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:1.25rem">
+        <div style="text-align:center; margin-bottom:1rem">
+          <div style="width:60px; height:60px; background:#ffedd5; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:#ea580c; font-size:1.8rem; margin-bottom:0.75rem">
+            <i class="fas fa-key"></i>
+          </div>
+          <h4 style="margin:0 0 6px 0; color:#1e293b; font-size:1.05rem">
+            आप <span style="color:#ea580c; font-weight:800">डिफ़ॉल्ट पासवर्ड</span> से लॉगिन हैं!
+          </h4>
+          <p style="margin:0; color:#64748b; font-size:0.85rem; line-height:1.5">
+            वर्तमान में आपकी संस्था का पासवर्ड शाला दर्पण कोड ही सेट है। किसी भी अनाधिकृत प्रविष्टि से बचने हेतु तुरंत नया गोपनीय पासवर्ड सेट करें।
+          </p>
+        </div>
+
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:0.85rem; font-size:0.82rem; color:#475569; line-height:1.5">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px; font-weight:700; color:#0f172a">
+            <i class="fas fa-info-circle text-primary"></i> पासवर्ड बदलने के बाद क्या होगा?
+          </div>
+          नया पासवर्ड सेट होते ही सुरक्षा कारणों से पोर्टल लॉगआउट हो जाएगा, जिसके बाद आप अपने <strong>नए पासवर्ड</strong> से पुनः सुरक्षित लॉगिन कर सकेंगे।
+        </div>
+      </div>
+      <div class="modal-footer" style="display:flex; justify-content:space-between; gap:10px; padding:0.85rem 1.25rem; background:#f8fafc; border-top:1px solid #e2e8f0">
+        <button class="btn btn-outline-light" style="color:#64748b; border-color:#cbd5e1; font-weight:600" onclick="closeModal('modal-default-pwd-alert')">
+          बाद में बदलेंगे (Later)
+        </button>
+        <button class="btn btn-warning" onclick="closeModal('modal-default-pwd-alert'); openChangePasswordModal();" style="background:#ea580c; border-color:#ea580c; color:#ffffff; font-weight:700; display:flex; align-items:center; gap:6px">
+          <i class="fas fa-key"></i> अभी पासवर्ड बदलें (Change Now)
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- 11. CHANGE PASSWORD MODAL (SINGLE INPUT TEXTBOX) -->
   <div id="modal-change-password" class="modal-overlay">
     <div class="modal-card" style="max-width:460px">
