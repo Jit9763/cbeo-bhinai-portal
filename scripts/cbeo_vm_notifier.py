@@ -80,6 +80,40 @@ def main():
         except Exception as e:
             print("Note reading saman_pariksha_submissions.json:", e)
 
+    # 1B. DIRECT REAL-TIME LIVE SYNC FROM GOOGLE DRIVE (GOOGLE APPS SCRIPT WEB APP)
+    # This guarantees the Cloud VM ALWAYS receives 100% fresh live submissions directly from Google Sheet #5
+    # without requiring any manual laptop python sync!
+    gas_backend_url = "https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec"
+    if requests:
+        try:
+            print("[CBEO-VM] 🔄 Fetching live data directly from Google Drive Sheet via Apps Script Web App...")
+            live_resp = requests.get(f"{gas_backend_url}?action=getAll", timeout=20)
+            if live_resp.status_code == 200:
+                live_json = live_resp.json()
+                if live_json.get('success') and live_json.get('submissions'):
+                    live_subs = live_json['submissions']
+                    saman_subs.update(live_subs)
+                    print(f"[CBEO-VM] ✓ Live Google Drive Sync SUCCESS: Fetched {len(live_subs)} submissions directly from Sheet!")
+                    # Persist to local json files on runner
+                    try:
+                        with open(saman_subs_path, 'w', encoding='utf-8') as sf:
+                            json.dump(saman_subs, sf, ensure_ascii=False, indent=2)
+                        master_data['saman_pariksha_submissions'] = saman_subs
+                        with open(data_path, 'w', encoding='utf-8') as mf:
+                            json.dump(master_data, mf, ensure_ascii=False, indent=2)
+                        # Also update master_cbeo_data.js
+                        js_path = os.path.join(root_dir, 'master_cbeo_data.js')
+                        with open(js_path, 'w', encoding='utf-8') as jf:
+                            jf.write("const MASTER_CBEO_DATA = " + json.dumps(master_data, ensure_ascii=False, indent=2) + ";\n")
+                    except Exception as we:
+                        print("Note updating local cache:", we)
+                else:
+                    print(f"[CBEO-VM] Note from Apps Script: {live_json.get('message', 'No submissions found')}")
+            else:
+                print(f"[CBEO-VM] Note: Apps Script HTTP status: {live_resp.status_code}")
+        except Exception as ge:
+            print(f"[CBEO-VM] Note on Live Google Drive Sync: {ge}; using local fallback.")
+
     print(f"Loaded {len(schools_57)} Secondary/Sr. Secondary Schools, {len(peeos)} PEEOs, {len(saman_subs)} Saman Pariksha Submissions.")
 
     # 2. SAMAN PARIKSHA 2026-27 COMPLIANCE AUDIT

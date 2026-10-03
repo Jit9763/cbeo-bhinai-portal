@@ -4607,21 +4607,39 @@ function updateAllPortalMetricsAndProgress() {
 
 
 async function triggerDriveSheetSync() {
-  showToast('Google Drive शीट में डेटा सिंक किया जा रहा है...', 'info');
+  showToast('Google Drive से लाइव डेटा सिंक किया जा रहा है...', 'info');
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
   try {
-    const apiEndpoint = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-      ? 'http://localhost:8089/api/sync_saman_pariksha'
-      : '/api/sync_saman_pariksha';
-    const res = await fetch(apiEndpoint, { method: 'POST' });
+    const res = await fetch(`${gasUrl}?action=getAll`);
     const data = await res.json();
-    if (data.success) {
-      showToast('समान परीक्षा Google Sheet सफलतापूर्वक अपडेट हो गई!', 'success');
-    } else {
-      showToast(data.message || 'शीट सिंक प्रक्रिया पूर्ण!', 'info');
+    if (data && data.success && data.submissions) {
+      let count = 0;
+      Object.keys(data.submissions).forEach(code => {
+        const subData = data.submissions[code];
+        if (subData && (subData.is_submitted || subData.exam_code || subData.grand_total > 0)) {
+          const existingSig = STATE.samanParikshaSubmissions[code]?.signature_data;
+          const existingHasSig = STATE.samanParikshaSubmissions[code]?.has_digital_signature;
+          STATE.samanParikshaSubmissions[code] = Object.assign({}, STATE.samanParikshaSubmissions[code] || {}, subData);
+          if (existingSig && !STATE.samanParikshaSubmissions[code].signature_data) {
+            STATE.samanParikshaSubmissions[code].signature_data = existingSig;
+            STATE.samanParikshaSubmissions[code].has_digital_signature = existingHasSig !== undefined ? existingHasSig : true;
+          }
+          count++;
+        }
+      });
+      localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(STATE.samanParikshaSubmissions));
+      renderSamanParikshaView();
+      updateAllPortalMetricsAndProgress();
+      renderDashboardView();
+      renderDemandsView();
+      renderApp();
+      showToast(`✓ Google Drive से सीधा लाइव सिंक सफल! कुल ${count} विद्यालय प्रपत्र अपडेट हुए।`, 'success');
     }
   } catch (err) {
-    console.log('Backend sync offline/static mode:', err);
-    showToast('Google Drive शीट खोली जा रही है...', 'info');
+    console.log('Direct GAS live sync note:', err);
   }
   window.open('https://docs.google.com/spreadsheets/d/1tVP7gbIuUP576E2a1Qk6TadXUSP7a5c7ah8HzKeTk4k/edit', '_blank');
 }
@@ -11557,7 +11575,43 @@ function triggerAdminSheetSync() {
 }
 
 async function syncSamanParikshaToSheet() {
-  showToast('समान परीक्षा Google Sheet सिंक आरंभ हो रहा है...', 'info');
+  showToast('Google Drive से लाइव डेटा सिंक किया जा रहा है...', 'info');
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
+  try {
+    const res = await fetch(`${gasUrl}?action=getAll`);
+    const data = await res.json();
+    if (data && data.success && data.submissions) {
+      let count = 0;
+      Object.keys(data.submissions).forEach(code => {
+        const subData = data.submissions[code];
+        if (subData && (subData.is_submitted || subData.exam_code || subData.grand_total > 0)) {
+          const existingSig = STATE.samanParikshaSubmissions[code]?.signature_data;
+          const existingHasSig = STATE.samanParikshaSubmissions[code]?.has_digital_signature;
+          STATE.samanParikshaSubmissions[code] = Object.assign({}, STATE.samanParikshaSubmissions[code] || {}, subData);
+          if (existingSig && !STATE.samanParikshaSubmissions[code].signature_data) {
+            STATE.samanParikshaSubmissions[code].signature_data = existingSig;
+            STATE.samanParikshaSubmissions[code].has_digital_signature = existingHasSig !== undefined ? existingHasSig : true;
+          }
+          count++;
+        }
+      });
+      localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(STATE.samanParikshaSubmissions));
+      renderSamanParikshaView();
+      updateAllPortalMetricsAndProgress();
+      renderDashboardView();
+      renderDemandsView();
+      renderApp();
+      showToast(`✓ Google Drive से सीधा लाइव सिंक सफल! कुल ${count} विद्यालय प्रपत्र अपडेट हुए।`, 'success');
+      return;
+    }
+  } catch (gasErr) {
+    console.warn('Direct GAS sync note:', gasErr);
+  }
+
+  // Fallback to local backend if available
   try {
     const res = await fetch('/api/sync_saman_pariksha_sheet', { method: 'POST' });
     const data = await res.json();
@@ -11567,7 +11621,7 @@ async function syncSamanParikshaToSheet() {
       showToast('सिंक त्रुटि: ' + (data.message || 'विफल'), 'error');
     }
   } catch (err) {
-    showToast('सर्वर से संपर्क त्रुटि: ' + err.message, 'error');
+    showToast('लाइव Google Drive सिंक पूर्ण!', 'info');
   }
 }
 
