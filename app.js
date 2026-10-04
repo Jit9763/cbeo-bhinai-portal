@@ -12336,6 +12336,29 @@ function updateVMWidgetStats() {
   if (footerSp) {
     footerSp.innerHTML = `<strong>समान परीक्षा:</strong> ${audit.total} कुल (${audit.pendingCount} लंबित, ${audit.submittedCount} पूर्ण - ${audit.percentage}%)`;
   }
+
+  // Real-time synchronization of 24x7 Automation Hub Banner schedule times
+  try {
+    const slots = (CURRENT_VM_SETTINGS && Array.isArray(CURRENT_VM_SETTINGS.slots) && CURRENT_VM_SETTINGS.slots.length > 0)
+      ? CURRENT_VM_SETTINGS.slots
+      : (STATE.portalSettings && STATE.portalSettings.vm_settings && STATE.portalSettings.vm_settings.slots)
+      || ["12:07 PM", "02:07 PM", "04:07 PM", "08:07 PM"];
+
+    const bannerTimesEl = document.getElementById('vm-banner-schedule-times');
+    if (bannerTimesEl) {
+      bannerTimesEl.textContent = slots.join(' • ');
+    }
+
+    const bannerSubEl = document.getElementById('vm-banner-schedule-sub');
+    if (bannerSubEl) {
+      bannerSubEl.textContent = `दैनिक ${slots.length} बार स्वतः निष्पादन`;
+    }
+
+    const bannerDescEl = document.getElementById('vm-banner-schedule-desc');
+    if (bannerDescEl) {
+      bannerDescEl.textContent = `क्लाउड VM दैनिक ${slots.length} बार (${slots.join(', ')}) स्वतः निष्पादित होकर समान परीक्षा व समस्त सूचना मांगों की लंबित रिपोर्ट तैयार करती है।`;
+    }
+  } catch(e) {}
 }
 
 function openVMReportModal() {
@@ -12713,6 +12736,7 @@ function renderVMScheduleChips() {
     `;
     container.appendChild(chip);
   });
+  updateVMWidgetStats();
 }
 
 function addCustomVMSlot() {
@@ -12735,6 +12759,7 @@ function addPresetVMSlot(slotStr) {
   }
   CURRENT_VM_SETTINGS.slots.push(slotStr);
   renderVMScheduleChips();
+  updateVMWidgetStats();
   showToast(`नया समय स्लॉट '${slotStr}' जोड़ा गया! सेव करना न भूलें।`, 'success');
 }
 
@@ -12742,6 +12767,7 @@ function removeVMSlot(slotStr) {
   if (!CURRENT_VM_SETTINGS.slots) return;
   CURRENT_VM_SETTINGS.slots = CURRENT_VM_SETTINGS.slots.filter(s => s !== slotStr);
   renderVMScheduleChips();
+  updateVMWidgetStats();
   showToast(`समय स्लॉट '${slotStr}' हटाया गया!`, 'info');
 }
 
@@ -12752,7 +12778,7 @@ async function saveCloudVMSettings() {
     email_alerts: CURRENT_VM_SETTINGS.email_alerts !== false,
     overdue_escalation: CURRENT_VM_SETTINGS.overdue_escalation !== false,
     mdm_anomaly_scanner: CURRENT_VM_SETTINGS.mdm_anomaly_scanner !== false,
-    slots: CURRENT_VM_SETTINGS.slots || ["12:00 PM", "02:00 PM", "04:00 PM", "08:00 PM"],
+    slots: CURRENT_VM_SETTINGS.slots || ["12:07 PM", "02:07 PM", "04:07 PM", "08:07 PM"],
     updated_by: STATE.currentUser ? STATE.currentUser.username : 'admin_jitendra',
     updated_at: new Date().toLocaleString('hi-IN') + ' IST'
   };
