@@ -40,6 +40,7 @@ let STATE = {
   portalSettings: {},
   samanParikshaArchived: false
 };
+window.STATE = STATE;
 
 // Canvas Signature State
 let canvas, ctx;
@@ -49,6 +50,7 @@ let hasSignature = false;
 // Initialize on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
   initMasterData();
+  if (typeof checkAndPurgeDeepBackupDemands === 'function') checkAndPurgeDeepBackupDemands();
   setupSignaturePad();
   setupAutoLogin();
   renderApp();
@@ -152,7 +154,38 @@ function getDemandSubmissionRecord(demandId, schoolCode) {
       }
     };
   }
-  return (STATE.demandSubmissions && STATE.demandSubmissions[demandId] && STATE.demandSubmissions[demandId][schoolCode]) || {};
+
+  // Ensure test submissions cache is initialized
+  if (!STATE.demandTestSubmissions) {
+    try {
+      STATE.demandTestSubmissions = JSON.parse(localStorage.getItem('cbeo_demand_test_submissions') || '{}');
+    } catch(e) {
+      STATE.demandTestSubmissions = {};
+    }
+  }
+
+  // 1. Live submissions
+  const liveSub = (STATE.demandSubmissions && STATE.demandSubmissions[demandId] && STATE.demandSubmissions[demandId][schoolCode]);
+  if (liveSub && (liveSub.is_submitted || (liveSub.data && Object.keys(liveSub.data).length > 0))) {
+    return liveSub;
+  }
+
+  // 2. Test sandbox submissions (Studio or Test Mode)
+  const testSub = (STATE.demandTestSubmissions && STATE.demandTestSubmissions[demandId] && STATE.demandTestSubmissions[demandId][schoolCode]);
+  if (testSub) {
+    const dataObj = (testSub.data && typeof testSub.data === 'object') ? testSub.data : testSub;
+    return {
+      is_submitted: true,
+      is_test_mode: true,
+      verified: true,
+      submitted_by: testSub.submitted_by || 'परीक्षण संस्था प्रधान',
+      submitter_mobile: testSub.submitter_mobile || '',
+      submitted_at: testSub.timestamp || new Date().toLocaleString('hi-IN'),
+      data: dataObj
+    };
+  }
+
+  return liveSub || {};
 }
 
 /* ========================================================
@@ -1291,6 +1324,7 @@ function switchTab(viewId, param = null) {
   else if (viewId === 'staff') renderStaffView();
   else if (viewId === 'school-management') renderSchoolManagementView();
   else if (viewId === 'demands') renderDemandsView();
+  else if (viewId === 'database-hub') renderMasterDatabaseHubView();
   else if (viewId === 'archive') renderArchiveView();
   else if (viewId === 'admin-control') renderAdminControlView();
   else renderDashboardView();
@@ -1298,6 +1332,7 @@ function switchTab(viewId, param = null) {
 
 const DEFAULT_TAB_VISIBILITY_5LEVEL = {
   'saman-pariksha': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false },
+  'database-hub': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false },
   'dashboard': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false },
   'directory': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false },
   'staff': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false },
@@ -1444,8 +1479,9 @@ function render5LevelTabVisibilityMatrix() {
   if (!tbody) return;
   tbody.innerHTML = '';
 
-  const tabs = [
+  const coreTabs = [
     { id: 'saman-pariksha', name: '📋 समान परीक्षा 2026-27 (57 स्कूल)', desc: 'मुख्य परीक्षा प्रपत्र व स्थिति (5-स्तरीय अनुमति)' },
+    { id: 'database-hub', name: '🗄️ मास्टर डेटाबेस व सूचना निष्कर्षण', desc: 'केंद्रीकृत डेटाबेस व कस्टम रिपोर्ट निष्कर्षण हब' },
     { id: 'dashboard', name: '📊 मुख्य डैशबोर्ड', desc: 'ब्लॉक सांख्यिकी व प्रगति' },
     { id: 'directory', name: '📞 ब्लॉक संपर्क डायरेक्टरी', desc: '3-स्तरीय 25 PEEO व कार्मिक फोन डायरेक्टरी' },
     { id: 'staff', name: '👥 कार्मिक प्रबंधन (1,060+ स्टाफ)', desc: 'स्थापना सूची व संस्था प्रधान मार्किंग' },
@@ -1456,7 +1492,8 @@ function render5LevelTabVisibilityMatrix() {
 
   const vis = STATE.tabVisibility5Level || DEFAULT_TAB_VISIBILITY_5LEVEL;
 
-  tabs.forEach(t => {
+  // 1. Core Tabs
+  coreTabs.forEach(t => {
     const tr = document.createElement('tr');
     const c = vis[t.id] || { cbeo: true, peeo: false, sec_srsec: false, all_govt: false, all_schools: false };
     tr.innerHTML = `
@@ -1482,12 +1519,60 @@ function render5LevelTabVisibilityMatrix() {
     `;
     tbody.appendChild(tr);
   });
+
+  // 2. Dynamic Information Demands Rows with 5-Level Checkboxes!
+  const activeDemands = (STATE.demands || []).filter(d => !d.archived);
+  if (activeDemands.length > 0) {
+    const headerTr = document.createElement('tr');
+    headerTr.style.background = '#e0f2fe';
+    headerTr.innerHTML = `
+      <th colspan="6" style="padding:7px 10px; font-weight:800; color:#0369a1; border-top:2px solid #0284c7">
+        <i class="fas fa-file-invoice"></i> 📄 सक्रिय एवं नवीन सूचना मांगें (Dynamic Information Demands - 5-स्तरीय दृश्यता / पब्लिश):
+      </th>
+    `;
+    tbody.appendChild(headerTr);
+
+    activeDemands.forEach(d => {
+      const tr = document.createElement('tr');
+      const dKey = `demand_${d.id}`;
+      const c = vis[dKey] || d.targetAudience || { cbeo: true, peeo: true, sec_srsec: true, all_govt: false, all_schools: false };
+      const statusBadge = d.isTestMode
+        ? '<span class="badge" style="background:#fef3c7; color:#92400e; font-size:0.68rem; font-weight:800; padding:1px 6px">🧪 टेस्ट मोड</span>'
+        : (d.published !== false ? '<span class="badge" style="background:#dcfce7; color:#166534; font-size:0.68rem; font-weight:800; padding:1px 6px">🚀 लाइव</span>' : '<span class="badge" style="background:#fee2e2; color:#991b1b; font-size:0.68rem; font-weight:800; padding:1px 6px">अप्रकाशित</span>');
+
+      tr.innerHTML = `
+        <td>
+          <div style="display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap">
+            <strong>${d.title}</strong>
+            ${statusBadge}
+          </div>
+          <span style="font-size:0.73rem; color:#64748b">अंतिम तिथि: ${d.dueDate || 'यथाशीघ्र'} • कॉलम: ${(d.columns || []).length} • ID: ${d.id}</span>
+        </td>
+        <td style="text-align:center">
+          <input type="checkbox" id="vis_${dKey}_cbeo" ${c.cbeo ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
+        </td>
+        <td style="text-align:center">
+          <input type="checkbox" id="vis_${dKey}_peeo" ${c.peeo ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
+        </td>
+        <td style="text-align:center">
+          <input type="checkbox" id="vis_${dKey}_sec_srsec" ${c.sec_srsec ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
+        </td>
+        <td style="text-align:center">
+          <input type="checkbox" id="vis_${dKey}_all_govt" ${c.all_govt ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
+        </td>
+        <td style="text-align:center">
+          <input type="checkbox" id="vis_${dKey}_all_schools" ${c.all_schools ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
 }
 
 function save5LevelTabVisibilityMatrix() {
-  const tabs = ['saman-pariksha', 'dashboard', 'directory', 'staff', 'school-management', 'demands', 'archive'];
+  const coreTabs = ['saman-pariksha', 'database-hub', 'dashboard', 'directory', 'staff', 'school-management', 'demands', 'archive'];
   const newVis = {};
-  tabs.forEach(t => {
+  coreTabs.forEach(t => {
     newVis[t] = {
       cbeo: !!document.getElementById(`vis_${t}_cbeo`)?.checked,
       peeo: !!document.getElementById(`vis_${t}_peeo`)?.checked,
@@ -1497,6 +1582,21 @@ function save5LevelTabVisibilityMatrix() {
     };
   });
 
+  // Save each demand's 5-level visibility and sync directly with demand.targetAudience
+  (STATE.demands || []).forEach(d => {
+    const dKey = `demand_${d.id}`;
+    const dVis = {
+      cbeo: !!document.getElementById(`vis_${dKey}_cbeo`)?.checked,
+      peeo: !!document.getElementById(`vis_${dKey}_peeo`)?.checked,
+      sec_srsec: !!document.getElementById(`vis_${dKey}_sec_srsec`)?.checked,
+      all_govt: !!document.getElementById(`vis_${dKey}_all_govt`)?.checked,
+      all_schools: !!document.getElementById(`vis_${dKey}_all_schools`)?.checked
+    };
+    newVis[dKey] = dVis;
+    d.targetAudience = dVis;
+  });
+
+  saveDemandsToStorage();
   STATE.tabVisibility5Level = newVis;
   localStorage.setItem('cbeo_tab_visibility_5level', JSON.stringify(newVis));
 
@@ -1558,7 +1658,7 @@ function canCurrentUserEditModule(moduleKey) {
                  (STATE.currentUser.role === 'admin' && !isJitendraLoggedIn());
 
   const perms = STATE.editPermissions5Level || DEFAULT_EDIT_PERMISSIONS_5LEVEL;
-  const modPerm = perms[moduleKey] || { cbeo: true, peeo: false, sec_srsec: false, all_govt: false, all_schools: false };
+  const modPerm = perms[moduleKey] || (String(moduleKey).startsWith('demand_') ? (perms['demands'] || { cbeo: true, peeo: true, sec_srsec: true, all_govt: true, all_schools: true }) : { cbeo: true, peeo: false, sec_srsec: false, all_govt: false, all_schools: false });
 
   // 1. CBEO Admin
   if (isCBEO) return !!modPerm.cbeo;
@@ -1591,12 +1691,14 @@ function render5LevelEditPermissionsMatrix() {
     { id: 'staff', name: '👥 कार्मिक प्रबंधन (Staff Management)', desc: 'कार्मिक जोड़ना, विवरण संपादन, विद्यालय स्थानान्तरण व हटाना' },
     { id: 'school_head', name: '👑 संस्था प्रधान मार्किंग (Principal Designation)', desc: 'संस्था प्रधान घोषित करना, दूरभाष व विवरण अद्यतन' },
     { id: 'saman_pariksha', name: '📋 समान परीक्षा 2026-27 (Saman Pariksha Data)', desc: 'परीक्षा प्रपत्र डाटा प्रविष्टि, छात्र संख्या व सबमिशन संपादन' },
-    { id: 'demands', name: '📄 आवश्यकता व मांग पत्र (Demands & Requests)', desc: 'सूचना मांग पत्र प्रविष्टि व संपादन' },
+    { id: 'database_hub', name: '🗄️ मास्टर डेटाबेस निष्कर्षण (Query / Extract Rights)', desc: 'कस्टम डेटाबेस क्वेरी व आधिकारिक PDF/Excel निकालने का अधिकार' },
+    { id: 'demands', name: '📄 आवश्यकता व मांग पत्र (Demands General)', desc: 'समस्त सामान्य मांग प्रपत्र प्रविष्टि व संपादन' },
     { id: 'directory', name: '📞 ब्लॉक संपर्क डायरेक्टरी (Directory Edit)', desc: 'विद्यालय संपर्क व फोन विवरण अद्यतन' }
   ];
 
   const perms = STATE.editPermissions5Level || DEFAULT_EDIT_PERMISSIONS_5LEVEL;
 
+  // 1. Core Modules
   modules.forEach(m => {
     const tr = document.createElement('tr');
     const c = perms[m.id] || { cbeo: true, peeo: false, sec_srsec: false, all_govt: false, all_schools: false };
@@ -1623,18 +1725,72 @@ function render5LevelEditPermissionsMatrix() {
     `;
     tbody.appendChild(tr);
   });
+
+  // 2. Dynamic Demands Data Edit Permissions Rows!
+  const activeDemands = (STATE.demands || []).filter(d => !d.archived);
+  if (activeDemands.length > 0) {
+    const headerTr = document.createElement('tr');
+    headerTr.style.background = '#f0fdf4';
+    headerTr.innerHTML = `
+      <th colspan="6" style="padding:7px 10px; font-weight:800; color:#166534; border-top:2px solid #16a34a">
+        <i class="fas fa-edit"></i> 📝 विशिष्ट सूचना प्रपत्र डेटा प्रविष्टि एवं संपादन अधिकार (Individual Demand Data Entry Perms):
+      </th>
+    `;
+    tbody.appendChild(headerTr);
+
+    activeDemands.forEach(d => {
+      const tr = document.createElement('tr');
+      const dKey = `demand_${d.id}`;
+      const c = perms[dKey] || { cbeo: true, peeo: true, sec_srsec: true, all_govt: true, all_schools: true };
+
+      tr.innerHTML = `
+        <td>
+          <strong>${d.title}</strong><br>
+          <span style="font-size:0.73rem; color:#64748b">इस मांग प्रपत्र में डेटा भरने / एडिट करने की अनुमति</span>
+        </td>
+        <td style="text-align:center">
+          <input type="checkbox" id="edit_${dKey}_cbeo" ${c.cbeo ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
+        </td>
+        <td style="text-align:center">
+          <input type="checkbox" id="edit_${dKey}_peeo" ${c.peeo ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
+        </td>
+        <td style="text-align:center">
+          <input type="checkbox" id="edit_${dKey}_sec_srsec" ${c.sec_srsec ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
+        </td>
+        <td style="text-align:center">
+          <input type="checkbox" id="edit_${dKey}_all_govt" ${c.all_govt ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
+        </td>
+        <td style="text-align:center">
+          <input type="checkbox" id="edit_${dKey}_all_schools" ${c.all_schools ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
 }
 
 function save5LevelEditPermissionsMatrix() {
-  const modules = ['staff', 'school_head', 'saman_pariksha', 'demands', 'directory'];
+  const coreModules = ['staff', 'school_head', 'saman_pariksha', 'database_hub', 'demands', 'directory'];
   const newPerms = {};
-  modules.forEach(m => {
+  coreModules.forEach(m => {
     newPerms[m] = {
       cbeo: !!document.getElementById(`edit_${m}_cbeo`)?.checked,
       peeo: !!document.getElementById(`edit_${m}_peeo`)?.checked,
       sec_srsec: !!document.getElementById(`edit_${m}_sec_srsec`)?.checked,
       all_govt: !!document.getElementById(`edit_${m}_all_govt`)?.checked,
       all_schools: !!document.getElementById(`edit_${m}_all_schools`)?.checked
+    };
+  });
+
+  // Save each demand's individual edit permissions
+  (STATE.demands || []).forEach(d => {
+    const dKey = `demand_${d.id}`;
+    newPerms[dKey] = {
+      cbeo: !!document.getElementById(`edit_${dKey}_cbeo`)?.checked,
+      peeo: !!document.getElementById(`edit_${dKey}_peeo`)?.checked,
+      sec_srsec: !!document.getElementById(`edit_${dKey}_sec_srsec`)?.checked,
+      all_govt: !!document.getElementById(`edit_${dKey}_all_govt`)?.checked,
+      all_schools: !!document.getElementById(`edit_${dKey}_all_schools`)?.checked
     };
   });
 
@@ -7693,17 +7849,26 @@ function createDemandCardElement(demand, isArchive = false) {
             <button class="btn btn-success btn-sm" onclick="restoreArchivedDemand('${demand.id}')" style="font-weight:700; color:#ffffff; background:#16a34a; border-color:#15803d" title="इस मांग को सभी लॉगिन पर पुनः लाइव करें">
               <i class="fas fa-undo"></i> 🔄 पुनः सक्रिय करें (Restore)
             </button>
+            <button class="btn btn-outline-danger btn-sm" onclick="promptDeepBackupDeleteDemand('${demand.id}')" title="मांग प्रपत्र को 7-दिवसीय गहन बैकअप में भेजें (Deep Backup)" style="font-weight:700">
+              <i class="fas fa-trash-alt"></i> 🗑️ हटाएं (Deep Backup)
+            </button>
           ` : `
             <button class="btn btn-outline-primary btn-sm" onclick="openEditDemandModal('${demand.id}')" title="कॉलम जोड़ें या हटाएं" style="font-weight:700">
               <i class="fas fa-edit"></i> ✏️ प्रपत्र संपादित करें
             </button>
-            <button class="btn btn-outline-danger btn-sm" onclick="archiveDemandAndBackup('${demand.id}')" title="मांग आर्काइव कर बैकअप शीट में भेजें" style="font-weight:700">
+            <button class="btn btn-outline-warning btn-sm" onclick="archiveDemandAndBackup('${demand.id}')" title="मांग आर्काइव कर बैकअप शीट में भेजें" style="font-weight:700">
               <i class="fas fa-box-archive"></i> 📦 आर्काइव करें
+            </button>
+            <button class="btn btn-outline-danger btn-sm" onclick="promptDeepBackupDeleteDemand('${demand.id}')" title="मांग प्रपत्र को 7-दिवसीय गहन बैकअप में भेजें (Deep Backup)" style="font-weight:700">
+              <i class="fas fa-trash-alt"></i> 🗑️ हटाएं (Deep Backup)
             </button>
           `}
         ` : (isArchive && isAdminUser ? `
           <button class="btn btn-success btn-sm" onclick="restoreArchivedDemand('${demand.id}')" style="font-weight:700; color:#ffffff; background:#16a34a; border-color:#15803d">
             <i class="fas fa-undo"></i> 🔄 पुनः सक्रिय करें (Restore)
+          </button>
+          <button class="btn btn-outline-danger btn-sm" onclick="promptDeepBackupDeleteDemand('${demand.id}')" title="मांग प्रपत्र को 7-दिवसीय गहन बैकअप में भेजें (Deep Backup)" style="font-weight:700">
+            <i class="fas fa-trash-alt"></i> 🗑️ हटाएं (Deep Backup)
           </button>
         ` : '')}
       `}
@@ -9749,7 +9914,9 @@ function renderAdminControlView() {
   if (isJitendra) {
     loadAndRenderVMControlCard();
     render5LevelTabVisibilityMatrix();
+    if (typeof render5LevelEditPermissionsMatrix === 'function') render5LevelEditPermissionsMatrix();
     renderStaffEditPermissionsMatrix();
+    if (typeof renderDeepBackupList === 'function') renderDeepBackupList();
   }
 
   const publishList = document.getElementById('admin-demands-publish-list');
@@ -14053,3 +14220,1048 @@ function generateShikshaSetuAIResponse(rawQuery) {
     </div>
   `;
 }
+
+
+/* ========================================================
+   14. DEEP BACKUP & 7-DAY TRASH BIN RECOVERY (JITENDRA ADMIN)
+   ======================================================== */
+let PENDING_ADMIN_ACTION = null;
+
+function promptDeepBackupDeleteDemand(demandId) {
+  const demand = (STATE.demands || []).find(d => d.id === demandId);
+  if (!demand) {
+    showToast('मांग प्रपत्र नहीं मिला!', 'warning');
+    return;
+  }
+
+  PENDING_ADMIN_ACTION = {
+    type: 'DELETE_DEMAND_TO_DEEP_BACKUP',
+    demandId: demandId,
+    title: demand.title
+  };
+
+  const msgEl = document.getElementById('confirm-pwd-message');
+  if (msgEl) {
+    msgEl.innerHTML = `🚨 क्या आप सूचना मांग <strong>'${demand.title}'</strong> को हटाना चाहते हैं?<br><br>यह मांग तुरंत <strong>7-दिवसीय गहन बैकअप (Deep Backup)</strong> में सुरक्षित स्थानांतरित हो जाएगी। 7 दिनों तक आप इसे कभी भी रीस्टोर कर सकेंगे।<br><br>पुष्टि हेतु <strong>जितेन्द्र व्यवस्थापक पासवर्ड</strong> दर्ज करें:`;
+  }
+  const inputEl = document.getElementById('confirm-admin-pwd-input');
+  if (inputEl) inputEl.value = '';
+  showModal('modal-confirm-admin-password');
+}
+
+function promptPermanentPurgeDeepBackupDemand(backupId) {
+  PENDING_ADMIN_ACTION = {
+    type: 'PURGE_DEEP_BACKUP_NOW',
+    backupId: backupId
+  };
+
+  const msgEl = document.getElementById('confirm-pwd-message');
+  if (msgEl) {
+    msgEl.innerHTML = `⚠️ <strong style="color:#b91c1c">स्थायी नष्ट चेतावनी:</strong> क्या आप इस बैकअप प्रपत्र को 7 दिन की प्रतीक्षा किए बिना <strong>तत्काल स्थायी रूप से डिलीट</strong> करना चाहते हैं?<br><br>पुष्टि हेतु <strong>जितेन्द्र व्यवस्थापक पासवर्ड</strong> दर्ज करें:`;
+  }
+  const inputEl = document.getElementById('confirm-admin-pwd-input');
+  if (inputEl) inputEl.value = '';
+  showModal('modal-confirm-admin-password');
+}
+
+function verifyAdminSuperPassword(pwd) {
+  if (!pwd) return false;
+  const p = pwd.trim();
+  // Valid admin passwords
+  if (p === 'ADMIN02' || p === 'admin_jitendra' || p === 'cbeo_bhinai' || p === '8140') return true;
+  // Check stored password for ADMIN02
+  const stored = localStorage.getItem('cbeo_pwd_ADMIN02') || localStorage.getItem('cbeo_pwd_admin_jitendra');
+  if (stored && stored === p) return true;
+  return false;
+}
+
+function executeAdminConfirmedAction() {
+  const inputEl = document.getElementById('confirm-admin-pwd-input');
+  const pwd = inputEl ? inputEl.value : '';
+
+  if (!verifyAdminSuperPassword(pwd)) {
+    showToast('अमान्य पासवर्ड! केवल अधिकृत व्यवस्थापक ही यह क्रिया निष्पादित कर सकते हैं।', 'error');
+    return;
+  }
+
+  closeModal('modal-confirm-admin-password');
+
+  if (!PENDING_ADMIN_ACTION) return;
+
+  if (PENDING_ADMIN_ACTION.type === 'DELETE_DEMAND_TO_DEEP_BACKUP') {
+    const demandId = PENDING_ADMIN_ACTION.demandId;
+    const demand = (STATE.demands || []).find(d => d.id === demandId);
+    if (!demand) return;
+
+    if (!STATE.deepBackupDemands) {
+      try {
+        STATE.deepBackupDemands = JSON.parse(localStorage.getItem('cbeo_deep_backup_demands') || '[]');
+      } catch(e) {
+        STATE.deepBackupDemands = [];
+      }
+    }
+
+    const backupItem = {
+      id: demand.id,
+      title: demand.title,
+      demand: JSON.parse(JSON.stringify(demand)),
+      submissions: STATE.demandSubmissions[demand.id] ? JSON.parse(JSON.stringify(STATE.demandSubmissions[demand.id])) : {},
+      testSubmissions: (STATE.demandTestSubmissions && STATE.demandTestSubmissions[demand.id]) ? JSON.parse(JSON.stringify(STATE.demandTestSubmissions[demand.id])) : {},
+      deleted_at: Date.now(),
+      purge_deadline: Date.now() + (7 * 24 * 60 * 60 * 1000), // exactly 7 days
+      deleted_by: STATE.currentUser?.name || 'जितेन्द्र कुमार (Admin)'
+    };
+
+    STATE.deepBackupDemands.unshift(backupItem);
+    localStorage.setItem('cbeo_deep_backup_demands', JSON.stringify(STATE.deepBackupDemands));
+
+    // Remove from active demands
+    STATE.demands = STATE.demands.filter(d => d.id !== demandId);
+    saveDemandsToStorage();
+
+    // Cloud sync to Google Sheet under __DEEP_BACKUP_DEMANDS__
+    const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+      || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url);
+    if (gasUrl) {
+      fetch(gasUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'updatePassword',
+          user_id: '__DEEP_BACKUP_DEMANDS__',
+          role: 'System_Config',
+          name: '7-Day Deep Backup Demands',
+          new_password: JSON.stringify(STATE.deepBackupDemands)
+        })
+      }).catch(() => {});
+    }
+
+    showToast(`मांग '${demand.title}' को 7-दिवसीय गहन बैकअप में सुरक्षित स्थानांतरित किया गया!`, 'success');
+    renderApp();
+    renderDeepBackupList();
+  } else if (PENDING_ADMIN_ACTION.type === 'PURGE_DEEP_BACKUP_NOW') {
+    const backupId = PENDING_ADMIN_ACTION.backupId;
+    if (!STATE.deepBackupDemands) return;
+    STATE.deepBackupDemands = STATE.deepBackupDemands.filter(b => b.id !== backupId);
+    localStorage.setItem('cbeo_deep_backup_demands', JSON.stringify(STATE.deepBackupDemands));
+    showToast('प्रपत्र स्थायी रूप से नष्ट कर दिया गया।', 'info');
+    renderDeepBackupList();
+  }
+
+  PENDING_ADMIN_ACTION = null;
+}
+
+function checkAndPurgeDeepBackupDemands() {
+  if (!STATE.deepBackupDemands) {
+    try {
+      STATE.deepBackupDemands = JSON.parse(localStorage.getItem('cbeo_deep_backup_demands') || '[]');
+    } catch(e) {
+      STATE.deepBackupDemands = [];
+    }
+  }
+
+  const now = Date.now();
+  const initCount = STATE.deepBackupDemands.length;
+  STATE.deepBackupDemands = STATE.deepBackupDemands.filter(item => {
+    return item.purge_deadline && item.purge_deadline > now;
+  });
+
+  if (STATE.deepBackupDemands.length !== initCount) {
+    localStorage.setItem('cbeo_deep_backup_demands', JSON.stringify(STATE.deepBackupDemands));
+  }
+
+  const badge = document.getElementById('deep-backup-count-badge');
+  if (badge) badge.textContent = STATE.deepBackupDemands.length;
+}
+
+function openDeepBackupDemandsModal() {
+  renderDeepBackupList();
+  showModal('modal-deep-backup-demands');
+}
+
+function renderDeepBackupList() {
+  checkAndPurgeDeepBackupDemands();
+  const listEl = document.getElementById('deep-backup-items-container');
+  const previewEl = document.getElementById('admin-deep-backup-preview-list');
+  const badge = document.getElementById('deep-backup-count-badge');
+
+  const items = STATE.deepBackupDemands || [];
+  if (badge) badge.textContent = items.length;
+
+  if (items.length === 0) {
+    const emptyHtml = `<div style="text-align:center; padding:1.5rem; color:#64748b; font-size:0.85rem">
+      <i class="fas fa-trash-alt fa-2x text-muted" style="margin-bottom:0.5rem; display:block"></i>
+      गहन बैकअप (Trash) खाली है। कोई भी हटाया गया प्रपत्र यहाँ लंबित नहीं है।
+    </div>`;
+    if (listEl) listEl.innerHTML = emptyHtml;
+    if (previewEl) previewEl.innerHTML = emptyHtml;
+    return;
+  }
+
+  const now = Date.now();
+  let html = '';
+  items.forEach(item => {
+    const msLeft = Math.max(0, item.purge_deadline - now);
+    const daysLeft = Math.floor(msLeft / (1000 * 60 * 60 * 24));
+    const hoursLeft = Math.floor((msLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const subsCount = Object.keys(item.submissions || {}).length;
+
+    html += `
+      <div style="background:#ffffff; border:1.5px solid #fecaca; border-radius:8px; padding:0.85rem; margin-bottom:0.6rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.6rem">
+        <div>
+          <div style="font-weight:800; font-size:0.92rem; color:#991b1b; display:flex; align-items:center; gap:0.4rem">
+            <i class="fas fa-file-invoice"></i> ${item.title}
+            <span class="badge" style="background:#fee2e2; color:#b91c1c; font-size:0.7rem; padding:2px 8px">
+              ⏳ ${daysLeft} दिन ${hoursLeft} घंटे शेष
+            </span>
+          </div>
+          <div style="font-size:0.75rem; color:#64748b; margin-top:2px">
+            हटाने की दिनांक: ${new Date(item.deleted_at).toLocaleString('hi-IN')} • सुरक्षित सबमिशन: ${subsCount} विद्यालय • व्यवस्थापक: ${item.deleted_by || 'Admin'}
+          </div>
+        </div>
+        <div style="display:flex; gap:0.4rem">
+          <button type="button" class="btn btn-success btn-sm" onclick="restoreDeepBackupDemand('${item.id}')" style="font-weight:700">
+            <i class="fas fa-undo"></i> 🔄 रीस्टोर करें
+          </button>
+          <button type="button" class="btn btn-outline-danger btn-sm" onclick="promptPermanentPurgeDeepBackupDemand('${item.id}')" style="font-weight:700">
+            <i class="fas fa-times-circle"></i> स्थायी हटाएं
+          </button>
+        </div>
+      </div>
+    `;
+  });
+
+  if (listEl) listEl.innerHTML = html;
+  if (previewEl) previewEl.innerHTML = html;
+}
+
+function restoreDeepBackupDemand(backupId) {
+  if (!STATE.deepBackupDemands) return;
+  const backupItem = STATE.deepBackupDemands.find(b => b.id === backupId);
+  if (!backupItem) return;
+
+  // Restore demand object
+  STATE.demands.unshift(backupItem.demand);
+  saveDemandsToStorage();
+
+  // Restore submissions
+  if (backupItem.submissions) {
+    if (!STATE.demandSubmissions) STATE.demandSubmissions = {};
+    STATE.demandSubmissions[backupId] = backupItem.submissions;
+    localStorage.setItem('cbeo_demand_submissions', JSON.stringify(STATE.demandSubmissions));
+  }
+
+  // Restore test submissions
+  if (backupItem.testSubmissions) {
+    if (!STATE.demandTestSubmissions) STATE.demandTestSubmissions = {};
+    STATE.demandTestSubmissions[backupId] = backupItem.testSubmissions;
+    localStorage.setItem('cbeo_demand_test_submissions', JSON.stringify(STATE.demandTestSubmissions));
+  }
+
+  // Remove from deep backup
+  STATE.deepBackupDemands = STATE.deepBackupDemands.filter(b => b.id !== backupId);
+  localStorage.setItem('cbeo_deep_backup_demands', JSON.stringify(STATE.deepBackupDemands));
+
+  showToast(`मांग '${backupItem.title}' सफलता पूर्वक मुख्य पोर्टल में रीस्टोर हो गई!`, 'success');
+  renderApp();
+  renderDeepBackupList();
+}
+
+/* ========================================================
+   15. SAMAN PARIKSHA DYNAMIC COLUMNS & SESSION ARCHIVING
+   ======================================================== */
+function openSamanColumnsManagerModal() {
+  if (!STATE.samanParikshaCustomColumns) {
+    try {
+      STATE.samanParikshaCustomColumns = JSON.parse(localStorage.getItem('cbeo_saman_pariksha_custom_columns') || '[]');
+    } catch(e) {
+      STATE.samanParikshaCustomColumns = [];
+    }
+  }
+  renderSamanCustomColumnsList();
+  showModal('modal-saman-columns-manager');
+}
+
+function renderSamanCustomColumnsList() {
+  const container = document.getElementById('saman-custom-columns-list');
+  if (!container) return;
+
+  const cols = STATE.samanParikshaCustomColumns || [];
+  if (cols.length === 0) {
+    container.innerHTML = `<div style="text-align:center; padding:1rem; color:#64748b; font-size:0.82rem">
+      वर्तमान में केवल मूल मानक कॉलम (कक्षा 9-12 नामांकित छात्र व विषय) सक्रिय हैं। ऊपर से नया कॉलम जोड़ सकते हैं।
+    </div>`;
+    return;
+  }
+
+  let html = '';
+  cols.forEach((col, idx) => {
+    html += `
+      <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; padding:0.45rem 0.75rem; display:flex; justify-content:space-between; align-items:center">
+        <div>
+          <strong style="color:#0f172a; font-size:0.86rem">${idx + 1}. ${col.name}</strong>
+          <span style="font-size:0.75rem; color:#64748b; margin-left:6px">(${col.type === 'number' ? 'संख्यात्मक' : 'विवरणात्मक'})</span>
+        </div>
+        <button type="button" class="btn btn-outline-danger btn-sm" onclick="removeSamanCustomColumn(${idx})" style="padding:2px 8px; font-size:0.75rem" title="कॉलम हटाएं">
+          <i class="fas fa-trash-alt"></i> हटाएं
+        </button>
+      </div>
+    `;
+  });
+  container.innerHTML = html;
+}
+
+function addNewSamanCustomColumn() {
+  const nameEl = document.getElementById('saman-new-col-name');
+  const typeEl = document.getElementById('saman-new-col-type');
+  const name = nameEl ? nameEl.value.trim() : '';
+  const type = typeEl ? typeEl.value : 'number';
+
+  if (!name) {
+    showToast('कृपया कॉलम का नाम दर्ज करें!', 'warning');
+    return;
+  }
+
+  if (!STATE.samanParikshaCustomColumns) STATE.samanParikshaCustomColumns = [];
+  STATE.samanParikshaCustomColumns.push({ name: name, type: type });
+  localStorage.setItem('cbeo_saman_pariksha_custom_columns', JSON.stringify(STATE.samanParikshaCustomColumns));
+
+  nameEl.value = '';
+  renderSamanCustomColumnsList();
+  showToast(`नया कॉलम '${name}' समान परीक्षा में सफलतापूर्वक जोड़ा गया!`, 'success');
+}
+
+function removeSamanCustomColumn(index) {
+  if (!STATE.samanParikshaCustomColumns) return;
+  const removed = STATE.samanParikshaCustomColumns.splice(index, 1);
+  localStorage.setItem('cbeo_saman_pariksha_custom_columns', JSON.stringify(STATE.samanParikshaCustomColumns));
+  renderSamanCustomColumnsList();
+  showToast(`कॉलम '${removed[0]?.name}' हटा दिया गया।`, 'info');
+}
+
+function openSamanNewSessionModal() {
+  const pwdEl = document.getElementById('saman-archive-admin-pwd');
+  if (pwdEl) pwdEl.value = '';
+  showModal('modal-saman-new-session');
+}
+
+function submitSamanParikshaNewSession() {
+  const titleEl = document.getElementById('saman-new-session-title');
+  const descEl = document.getElementById('saman-new-session-desc');
+  const pwdEl = document.getElementById('saman-archive-admin-pwd');
+
+  const title = titleEl ? titleEl.value.trim() : '';
+  const desc = descEl ? descEl.value.trim() : '';
+  const pwd = pwdEl ? pwdEl.value.trim() : '';
+
+  if (!title) {
+    showToast('कृपया नवीन सत्र का नाम दर्ज करें!', 'warning');
+    return;
+  }
+
+  if (!verifyAdminSuperPassword(pwd)) {
+    showToast('अमान्य व्यवस्थापक पासवर्ड! केवल अधिकृत जितेन्द्र सुपर एडमिन ही नया सत्र आरंभ कर सकते हैं।', 'error');
+    return;
+  }
+
+  // 1. Snapshot current Saman Pariksha data to Master Database Archives (PERMANENT, NEVER DELETED)
+  const archiveKey = `SAMAN_PARIKSHA_${Date.now()}`;
+  if (!STATE.masterDatabaseArchives) {
+    try {
+      STATE.masterDatabaseArchives = JSON.parse(localStorage.getItem('cbeo_master_database_archives') || '{}');
+    } catch(e) {
+      STATE.masterDatabaseArchives = {};
+    }
+  }
+
+  STATE.masterDatabaseArchives[archiveKey] = {
+    archive_id: archiveKey,
+    title: `समान परीक्षा सत्र 2026-27 (पूर्व सत्र अभिलेख)`,
+    new_session_name: title,
+    description: desc || 'मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय (अजमेर) - सुरक्षित मास्टर अभिलेख',
+    archived_at: new Date().toISOString(),
+    submissions: JSON.parse(JSON.stringify(STATE.samanParikshaSubmissions || {})),
+    custom_columns: JSON.parse(JSON.stringify(STATE.samanParikshaCustomColumns || [])),
+    archived_by: STATE.currentUser?.name || 'जितेन्द्र कुमार'
+  };
+
+  localStorage.setItem('cbeo_master_database_archives', JSON.stringify(STATE.masterDatabaseArchives));
+
+  // 2. Reset active submissions for the brand new session
+  STATE.samanParikshaSubmissions = {};
+  localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify({}));
+
+  closeModal('modal-saman-new-session');
+  showToast(`🎉 पूर्व सत्र सुरक्षित मास्टर डेटाबेस में संग्रहीत हो गया तथा नवीन सत्र '${title}' प्रारंभ हो गया!`, 'success');
+  renderApp();
+  renderSamanParikshaView();
+}
+
+/* ========================================================
+   16. MASTER DATABASE & CUSTOM INFORMATION EXTRACTION HUB
+   ======================================================== */
+const STANDARD_COLUMN_REGISTRY = [
+  { key: 'shala_darpan_code', label: 'शाला दर्पण / PSP कोड', defaultOrder: 1, synonyms: ['sd code', 'psp', 'code', 'कोड', 'शाला दर्पण'] },
+  { key: 'school_name', label: 'विद्यालय का नाम', defaultOrder: 2, synonyms: ['school name', 'स्कूल', 'विद्यालय', 'संस्था'] },
+  { key: 'peeo_name', label: 'PEEO परिक्षेत्र', defaultOrder: 3, synonyms: ['peeo', 'नोडल', 'परिक्षेत्र', 'क्लस्टर'] },
+  { key: 'principal_name', label: 'संस्था प्रधान नाम', defaultOrder: 4, synonyms: ['principal', 'headmaster', 'प्रधानाचार्य', 'प्रस्तुतकर्ता'] },
+  { key: 'principal_mobile', label: 'मोबाइल नंबर', defaultOrder: 5, synonyms: ['mobile', 'phone', 'दूरभाष', 'सम्पर्क'] },
+  { key: 'category', label: 'विद्यालय श्रेणी / स्तर', defaultOrder: null, synonyms: ['category', 'स्तर', 'type', 'श्रेणी'] },
+  { key: 'dise_code', label: 'U-DISE कोड', defaultOrder: null, synonyms: ['udise', 'dise', 'डाइस'] },
+  { key: 'school_email', label: 'आधिकारिक ईमेल', defaultOrder: null, synonyms: ['email', 'मेल', 'mail'] },
+  { key: 'exam_code', label: 'समान परीक्षा कोड', defaultOrder: null, synonyms: ['exam code', 'परीक्षा कोड', 'अनुक्रमांक'] },
+  { key: 'c9_total', label: 'कक्षा 9 कुल नामांकन', defaultOrder: null, synonyms: ['class 9', '9वीं', 'कक्षा 9'] },
+  { key: 'c10_total', label: 'कक्षा 10 कुल नामांकन', defaultOrder: null, synonyms: ['class 10', '10वीं', 'कक्षा 10'] },
+  { key: 'c11_total', label: 'कक्षा 11 कुल नामांकन', defaultOrder: null, synonyms: ['class 11', '11वीं', 'कक्षा 11'] },
+  { key: 'c12_total', label: 'कक्षा 12 कुल नामांकन', defaultOrder: null, synonyms: ['class 12', '12वीं', 'कक्षा 12'] },
+  { key: 'grand_total', label: 'महायोग नामांकित छात्र संख्या', defaultOrder: null, synonyms: ['grand total', 'कुल छात्र', 'महायोग', 'नामांकन', 'total'] }
+];
+
+let STATE_DB_HUB = {
+  activeScope: 'all_schools',
+  selectedPeeo: 'ALL',
+  filterGovt: true,
+  filterPvt: true,
+  filterSaman57: false,
+  aggregationMode: 'school_wise', // 'school_wise' | 'peeo_consolidated' | 'cbeo_block_consolidated'
+  selectedSchoolCodes: new Set(),
+  selectedColumns: [
+    { key: 'shala_darpan_code', label: 'शाला दर्पण / PSP कोड', order: 1 },
+    { key: 'school_name', label: 'विद्यालय का नाम', order: 2 },
+    { key: 'peeo_name', label: 'PEEO परिक्षेत्र', order: 3 },
+    { key: 'principal_name', label: 'संस्था प्रधान नाम', order: 4 },
+    { key: 'principal_mobile', label: 'मोबाइल नंबर', order: 5 }
+  ],
+  customHeader: {
+    dept: 'राजस्थान सरकार | स्कूल शिक्षा विभाग',
+    office: 'कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)',
+    sub: 'समग्र शिक्षा अभियान | ब्लॉक-भिनाय, जिला-अजमेर (राजस्थान)',
+    title: 'मास्टर डेटाबेस: अधिकृत विद्यालयवार एवं समेकित सूचना प्रपत्र',
+    sigLeft: 'प्रभारी अधिकारी / कनिष्ठ सहायक',
+    sigRight: 'मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)'
+  }
+};
+
+function renderMasterDatabaseHubView() {
+  populateDbPeeoDropdown();
+  populateCustomDbSchoolsChecklist();
+  renderDbColumnsHierarchyTable();
+  updateDbPreviewTable();
+}
+
+function populateDbPeeoDropdown() {
+  const sel = document.getElementById('db-select-peeo');
+  if (!sel) return;
+  sel.innerHTML = '<option value="ALL">-- समस्त 25 PEEO क्लस्टर --</option>';
+
+  const peeoList = STATE.peeos || [];
+  peeoList.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p.peeo_name;
+    opt.textContent = `${p.peeo_name} (${p.schools_count || p.schools?.length || 0} स्कूल)`;
+    sel.appendChild(opt);
+  });
+}
+
+function onDbScopeChange(scope) {
+  STATE_DB_HUB.activeScope = scope;
+  const customBox = document.getElementById('db-custom-scope-box');
+  if (customBox) {
+    customBox.style.display = (scope === 'custom') ? 'block' : 'none';
+  }
+  updateDbPreviewTable();
+}
+
+function onDbPeeoSelectChange() {
+  const sel = document.getElementById('db-select-peeo');
+  STATE_DB_HUB.selectedPeeo = sel ? sel.value : 'ALL';
+  filterCustomDbSchoolsList();
+}
+
+function filterCustomDbSchoolsList() {
+  const govtCheck = document.getElementById('db-filter-peeo-govt');
+  const pvtCheck = document.getElementById('db-filter-peeo-pvt');
+  const spCheck = document.getElementById('db-filter-peeo-sp');
+
+  STATE_DB_HUB.filterGovt = govtCheck ? govtCheck.checked : true;
+  STATE_DB_HUB.filterPvt = pvtCheck ? pvtCheck.checked : true;
+  STATE_DB_HUB.filterSaman57 = spCheck ? spCheck.checked : false;
+
+  populateCustomDbSchoolsChecklist();
+  updateDbPreviewTable();
+}
+
+function populateCustomDbSchoolsChecklist() {
+  const container = document.getElementById('db-custom-schools-checklist');
+  if (!container) return;
+
+  const searchInput = document.getElementById('db-school-search-input');
+  const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+
+  const allSchools = getAllMasterSchools();
+  const peeoFilter = STATE_DB_HUB.selectedPeeo;
+
+  const filtered = allSchools.filter(s => {
+    if (peeoFilter !== 'ALL' && s.peeo_name !== peeoFilter) return false;
+    const isPvt = s.type === 'Private' || String(s.shala_darpan_code).startsWith('P');
+    if (isPvt && !STATE_DB_HUB.filterPvt) return false;
+    if (!isPvt && !STATE_DB_HUB.filterGovt) return false;
+    if (STATE_DB_HUB.filterSaman57) {
+      const inSp = (STATE.schools56 || []).some(x => x.shala_darpan_code === s.shala_darpan_code);
+      if (!inSp) return false;
+    }
+    if (query) {
+      const mName = (s.school_name || '').toLowerCase().includes(query);
+      const mCode = String(s.shala_darpan_code || '').includes(query);
+      const mPeeo = (s.peeo_name || '').toLowerCase().includes(query);
+      if (!mName && !mCode && !mPeeo) return false;
+    }
+    return true;
+  });
+
+  if (filtered.length === 0) {
+    container.innerHTML = '<div style="color:#64748b; padding:4px">कोई विद्यालय नहीं मिला।</div>';
+    return;
+  }
+
+  let html = '';
+  filtered.forEach(s => {
+    const isChecked = STATE_DB_HUB.selectedSchoolCodes.has(s.shala_darpan_code) || STATE_DB_HUB.selectedSchoolCodes.size === 0;
+    html += `
+      <label style="display:flex; align-items:center; gap:6px; margin-bottom:3px; cursor:pointer">
+        <input type="checkbox" value="${s.shala_darpan_code}" ${isChecked ? 'checked' : ''} onchange="onCustomSchoolCheckboxToggle('${s.shala_darpan_code}', this.checked)" style="width:14px; height:14px">
+        <span><strong>${s.school_name}</strong> (${s.shala_darpan_code}) - <span style="color:#64748b">${s.peeo_name}</span></span>
+      </label>
+    `;
+  });
+  container.innerHTML = html;
+}
+
+function onCustomSchoolCheckboxToggle(code, isChecked) {
+  if (isChecked) {
+    STATE_DB_HUB.selectedSchoolCodes.add(code);
+  } else {
+    STATE_DB_HUB.selectedSchoolCodes.delete(code);
+  }
+  updateDbPreviewTable();
+}
+
+function toggleAllCustomDbSchools(checkAll) {
+  const allSchools = getAllMasterSchools();
+  if (checkAll) {
+    allSchools.forEach(s => STATE_DB_HUB.selectedSchoolCodes.add(s.shala_darpan_code));
+  } else {
+    STATE_DB_HUB.selectedSchoolCodes.clear();
+  }
+  populateCustomDbSchoolsChecklist();
+  updateDbPreviewTable();
+}
+
+function onDbAiColumnSearch(query) {
+  if (!query) return;
+  const q = query.toLowerCase().trim();
+  const matched = STANDARD_COLUMN_REGISTRY.find(col => {
+    if (col.label.toLowerCase().includes(q)) return true;
+    if (col.key.toLowerCase().includes(q)) return true;
+    return col.synonyms.some(s => s.toLowerCase().includes(q) || q.includes(s.toLowerCase()));
+  });
+
+  if (matched) {
+    const isAlready = STATE_DB_HUB.selectedColumns.some(c => c.key === matched.key);
+    if (!isAlready) {
+      const nextOrder = STATE_DB_HUB.selectedColumns.length + 1;
+      STATE_DB_HUB.selectedColumns.push({ key: matched.key, label: matched.label, order: nextOrder });
+      renderDbColumnsHierarchyTable();
+      updateDbPreviewTable();
+      showToast(`🤖 AI मैपर: मानक कॉलम '${matched.label}' स्वतः जोड़ा गया!`, 'info');
+    }
+  }
+}
+
+function renderDbColumnsHierarchyTable() {
+  const tbody = document.getElementById('db-columns-selector-tbody');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+
+  const totalCols = STATE_DB_HUB.selectedColumns.length;
+  const badge = document.getElementById('db-col-count-badge');
+  if (badge) badge.textContent = `${totalCols} कॉलम चयनित`;
+
+  STANDARD_COLUMN_REGISTRY.forEach(reg => {
+    const selCol = STATE_DB_HUB.selectedColumns.find(c => c.key === reg.key);
+    const isChecked = !!selCol;
+    const curOrder = selCol ? selCol.order : null;
+
+    let orderSelectHtml = `<span style="color:#94a3b8">-</span>`;
+    if (isChecked) {
+      let optionsHtml = '';
+      for (let i = 1; i <= totalCols; i++) {
+        optionsHtml += `<option value="${i}" ${i === curOrder ? 'selected' : ''}>${i}</option>`;
+      }
+      orderSelectHtml = `
+        <select onchange="onDbColumnOrderChange('${reg.key}', this.value)" style="padding:2px 6px; font-size:0.78rem; font-weight:700; border-radius:4px; border:1.5px solid #3b82f6; background:#eff6ff; color:#1d4ed8">
+          ${optionsHtml}
+        </select>
+      `;
+    }
+
+    const tr = document.createElement('tr');
+    tr.style.background = isChecked ? '#ffffff' : '#f8fafc';
+    tr.style.borderBottom = '1px solid #e2e8f0';
+    tr.innerHTML = `
+      <td style="padding:5px; text-align:center">
+        <input type="checkbox" id="db_col_chk_${reg.key}" ${isChecked ? 'checked' : ''} onchange="onDbColumnCheckboxToggle('${reg.key}', this.checked)" style="width:16px; height:16px; cursor:pointer">
+      </td>
+      <td style="padding:5px 8px; font-weight:${isChecked ? '700' : 'normal'}; color:${isChecked ? '#0f172a' : '#64748b'}">
+        ${reg.label}
+      </td>
+      <td style="padding:5px; text-align:center">
+        ${orderSelectHtml}
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function onDbColumnCheckboxToggle(colKey, isChecked) {
+  const reg = STANDARD_COLUMN_REGISTRY.find(r => r.key === colKey);
+  if (!reg) return;
+
+  if (isChecked) {
+    const nextOrder = STATE_DB_HUB.selectedColumns.length + 1;
+    STATE_DB_HUB.selectedColumns.push({ key: reg.key, label: reg.label, order: nextOrder });
+  } else {
+    STATE_DB_HUB.selectedColumns = STATE_DB_HUB.selectedColumns.filter(c => c.key !== colKey);
+    // Re-normalize orders 1 to N
+    STATE_DB_HUB.selectedColumns.sort((a, b) => a.order - b.order);
+    STATE_DB_HUB.selectedColumns.forEach((c, idx) => {
+      c.order = idx + 1;
+    });
+  }
+
+  renderDbColumnsHierarchyTable();
+  updateDbPreviewTable();
+}
+
+function onDbColumnOrderChange(colKey, newOrder) {
+  newOrder = parseInt(newOrder, 10);
+  const targetCol = STATE_DB_HUB.selectedColumns.find(c => c.key === colKey);
+  if (!targetCol) return;
+
+  const oldOrder = targetCol.order;
+  if (oldOrder === newOrder) return;
+
+  // Collision-free swap: swap orders with the column that currently holds newOrder
+  const existingCol = STATE_DB_HUB.selectedColumns.find(c => c.order === newOrder && c.key !== colKey);
+  if (existingCol) {
+    existingCol.order = oldOrder;
+  }
+
+  targetCol.order = newOrder;
+
+  // Re-sort strictly by order
+  STATE_DB_HUB.selectedColumns.sort((a, b) => a.order - b.order);
+  STATE_DB_HUB.selectedColumns.forEach((c, idx) => {
+    c.order = idx + 1;
+  });
+
+  renderDbColumnsHierarchyTable();
+  updateDbPreviewTable();
+}
+
+function resetDbColumnsToDefault() {
+  STATE_DB_HUB.selectedColumns = [
+    { key: 'shala_darpan_code', label: 'शाला दर्पण / PSP कोड', order: 1 },
+    { key: 'school_name', label: 'विद्यालय का नाम', order: 2 },
+    { key: 'peeo_name', label: 'PEEO परिक्षेत्र', order: 3 },
+    { key: 'principal_name', label: 'संस्था प्रधान नाम', order: 4 },
+    { key: 'principal_mobile', label: 'मोबाइल नंबर', order: 5 }
+  ];
+  renderDbColumnsHierarchyTable();
+  updateDbPreviewTable();
+  showToast('मानक कॉलम प्राथमिक क्रम पर रीसेट कर दिए गए!', 'info');
+}
+
+function getDbFilteredRecords() {
+  const allSchools = getAllMasterSchools();
+  const scope = STATE_DB_HUB.activeScope;
+
+  let baseList = [];
+  if (scope === 'all_schools') {
+    baseList = allSchools;
+  } else if (scope === 'all_govt') {
+    baseList = allSchools.filter(s => s.type === 'Government' || !String(s.shala_darpan_code).startsWith('P'));
+  } else if (scope === 'sec_srsec') {
+    baseList = allSchools.filter(s => {
+      const is56 = (STATE.schools56 || []).some(x => x.shala_darpan_code === s.shala_darpan_code);
+      const isSecCat = s.category && (s.category.includes('Secondary') || s.category.includes('माध्यमिक'));
+      return is56 || isSecCat;
+    });
+  } else if (scope === 'saman_57') {
+    baseList = (STATE.schools56 && STATE.schools56.length > 0) ? STATE.schools56 : allSchools.filter(s => s.category?.includes('Secondary'));
+  } else if (scope === 'peeo_nodal') {
+    const nodalCodes = new Set((STATE.peeos || []).map(p => p.peeo_code || p.shala_darpan_code));
+    baseList = allSchools.filter(s => nodalCodes.has(s.shala_darpan_code) || s.is_peeo_nodal);
+  } else if (scope === 'custom') {
+    const peeoFilter = STATE_DB_HUB.selectedPeeo;
+    baseList = allSchools.filter(s => {
+      if (peeoFilter !== 'ALL' && s.peeo_name !== peeoFilter) return false;
+      const isPvt = s.type === 'Private' || String(s.shala_darpan_code).startsWith('P');
+      if (isPvt && !STATE_DB_HUB.filterPvt) return false;
+      if (!isPvt && !STATE_DB_HUB.filterGovt) return false;
+      if (STATE_DB_HUB.filterSaman57) {
+        const inSp = (STATE.schools56 || []).some(x => x.shala_darpan_code === s.shala_darpan_code);
+        if (!inSp) return false;
+      }
+      if (STATE_DB_HUB.selectedSchoolCodes.size > 0 && !STATE_DB_HUB.selectedSchoolCodes.has(s.shala_darpan_code)) {
+        return false;
+      }
+      return true;
+    });
+  }
+
+  // Enrich with Saman Pariksha Enrolment & Master Attributes
+  const enriched = baseList.map(s => {
+    const sp = (STATE.samanParikshaSubmissions && STATE.samanParikshaSubmissions[s.shala_darpan_code]) || {};
+    return {
+      shala_darpan_code: s.shala_darpan_code || '---',
+      school_name: s.school_name || 'विद्यालय',
+      peeo_name: s.peeo_name || 'CBEO Bhinai',
+      category: s.category || s.type || 'Government',
+      dise_code: s.dise_code || '---',
+      principal_name: sp.principal_name || s.principal_name || 'संस्था प्रधान',
+      principal_mobile: sp.principal_mobile || s.principal_mobile || '---',
+      school_email: s.school_email || s.email || '---',
+      exam_code: sp.exam_code || s.exam_code || '---',
+      c9_total: parseInt(sp.c9_total ?? 0, 10),
+      c10_total: parseInt(sp.c10_total ?? 0, 10),
+      c11_total: parseInt(sp.c11_total ?? 0, 10),
+      c12_total: parseInt(sp.c12_total ?? 0, 10),
+      grand_total: parseInt(sp.grand_total ?? 0, 10)
+    };
+  });
+
+  // Handle Aggregation Modes (समेकित)
+  const aggMode = document.querySelector('input[name="db-aggregation-mode"]:checked')?.value || 'school_wise';
+  STATE_DB_HUB.aggregationMode = aggMode;
+
+  if (aggMode === 'peeo_consolidated') {
+    const peeoMap = {};
+    enriched.forEach(rec => {
+      const pName = rec.peeo_name || 'अन्य';
+      if (!peeoMap[pName]) {
+        peeoMap[pName] = {
+          shala_darpan_code: 'समेकित (PEEO)',
+          school_name: `${pName} परिक्षेत्र क्लस्टर`,
+          peeo_name: pName,
+          category: 'PEEO क्लस्टर',
+          dise_code: 'समेकित',
+          principal_name: rec.principal_name,
+          principal_mobile: rec.principal_mobile,
+          school_email: rec.school_email,
+          exam_code: 'समेकित',
+          c9_total: 0,
+          c10_total: 0,
+          c11_total: 0,
+          c12_total: 0,
+          grand_total: 0,
+          school_count: 0
+        };
+      }
+      peeoMap[pName].c9_total += rec.c9_total;
+      peeoMap[pName].c10_total += rec.c10_total;
+      peeoMap[pName].c11_total += rec.c11_total;
+      peeoMap[pName].c12_total += rec.c12_total;
+      peeoMap[pName].grand_total += rec.grand_total;
+      peeoMap[pName].school_count++;
+    });
+    return Object.values(peeoMap);
+  } else if (aggMode === 'cbeo_block_consolidated') {
+    const grandRow = {
+      shala_darpan_code: '8140',
+      school_name: 'कार्यालय CBEO भिनाय (समस्त ब्लॉक समेकित महायोग)',
+      peeo_name: 'समस्त 25 PEEO परिक्षेत्र',
+      category: 'ब्लॉक समेकित',
+      dise_code: '082103',
+      principal_name: 'मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय',
+      principal_mobile: '9414000000',
+      school_email: 'cbeobhinai@gmail.com',
+      exam_code: 'AJM04',
+      c9_total: 0,
+      c10_total: 0,
+      c11_total: 0,
+      c12_total: 0,
+      grand_total: 0,
+      school_count: enriched.length
+    };
+    enriched.forEach(rec => {
+      grandRow.c9_total += rec.c9_total;
+      grandRow.c10_total += rec.c10_total;
+      grandRow.c11_total += rec.c11_total;
+      grandRow.c12_total += rec.c12_total;
+      grandRow.grand_total += rec.grand_total;
+    });
+    return [grandRow];
+  }
+
+  return enriched;
+}
+
+function updateDbPreviewTable() {
+  const records = getDbFilteredRecords();
+  const sortedCols = [...STATE_DB_HUB.selectedColumns].sort((a, b) => a.order - b.order);
+
+  const scopeBadge = document.getElementById('db-scope-count-badge');
+  if (scopeBadge) scopeBadge.textContent = `${records.length} रिकॉर्ड निष्कर्षित`;
+
+  const metaDesc = document.getElementById('db-preview-meta-desc');
+  if (metaDesc) {
+    const modeText = STATE_DB_HUB.aggregationMode === 'peeo_consolidated' ? 'PEEO समेकित' : (STATE_DB_HUB.aggregationMode === 'cbeo_block_consolidated' ? 'ब्लॉक समेकित' : 'विद्यालयवार');
+    metaDesc.textContent = `सत्र 2026-27 | ब्लॉक-भिनाय, जिला-अजमेर | मोड: ${modeText} | कुल पंक्तियां: ${records.length}`;
+  }
+
+  renderCustomDbPrintableTable(records, sortedCols);
+}
+
+function renderCustomDbPrintableTable(records, sortedCols) {
+  const container = document.getElementById('printable-custom-db-content');
+  if (!container) return;
+
+  if (!records) records = getDbFilteredRecords();
+  if (!sortedCols) sortedCols = (STATE_DB_HUB.columns || []).filter(c => c.selected).sort((a, b) => a.order - b.order);
+
+  const h = STATE_DB_HUB.customHeader;
+
+  // Thead
+  let theadHtml = `<th style="padding:5px 4px; border:1.5px solid #000; background:#f1f5f9; color:#000; font-weight:800; text-align:center; width:38px">क्र.सं.</th>`;
+  sortedCols.forEach(col => {
+    theadHtml += `
+      <th style="padding:5px 6px; border:1.5px solid #000; background:#f1f5f9; color:#000; font-weight:800; text-align:center; font-size:0.78rem">
+        ${col.label}
+      </th>
+    `;
+  });
+
+  // Tbody & Totals
+  let tbodyHtml = '';
+  const numTotals = {};
+  sortedCols.forEach(col => {
+    if (['c9_total', 'c10_total', 'c11_total', 'c12_total', 'grand_total'].includes(col.key)) {
+      numTotals[col.key] = 0;
+    }
+  });
+
+  records.forEach((row, idx) => {
+    let rowCols = `<td style="padding:4px 3px; border:1px solid #000; text-align:center; font-weight:700">${idx + 1}</td>`;
+    sortedCols.forEach(col => {
+      const val = row[col.key] !== undefined ? row[col.key] : '-';
+      const isNum = typeof val === 'number';
+      if (isNum && numTotals[col.key] !== undefined) {
+        numTotals[col.key] += val;
+      }
+      rowCols += `
+        <td style="padding:4px 6px; border:1px solid #000; text-align:${isNum ? 'center' : 'left'}; font-weight:${col.key === 'school_name' ? '800' : 'normal'}">
+          ${val}
+        </td>
+      `;
+    });
+    tbodyHtml += `<tr style="border-bottom:1px solid #000">${rowCols}</tr>`;
+  });
+
+  // Totals Row
+  let totalsRowHtml = '';
+  if (Object.keys(numTotals).length > 0 && records.length > 1) {
+    let tCells = `<td colspan="2" style="padding:5px 6px; border:1.5px solid #000; background:#f8fafc; font-weight:900; text-align:center">कुल योग (Grand Total)</td>`;
+    sortedCols.slice(1).forEach(col => {
+      if (numTotals[col.key] !== undefined) {
+        tCells += `<td style="padding:5px 6px; border:1.5px solid #000; background:#f8fafc; font-weight:900; text-align:center">${numTotals[col.key]}</td>`;
+      } else {
+        tCells += `<td style="padding:5px 6px; border:1.5px solid #000; background:#f8fafc; text-align:center">-</td>`;
+      }
+    });
+    totalsRowHtml = `<tfoot><tr style="border-top:2px solid #000">${tCells}</tr></tfoot>`;
+  }
+
+  const printHtml = `
+    <!-- Top Official Government Header -->
+    <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:4px; margin-bottom:6px">
+      <div style="font-size:0.84rem; font-weight:700; letter-spacing:0.04em; color:#111">
+        ${h.dept}
+      </div>
+      <h2 style="margin:2px 0; font-size:1.18rem; font-weight:900; color:#000; letter-spacing:0.02em">
+        ${h.office}
+      </h2>
+      <div style="font-size:0.76rem; color:#333; margin-top:1px">
+        ${h.sub}
+      </div>
+      <div style="margin-top:4px; display:inline-block; border:1.5px solid #000; background:#f1f5f9; padding:2px 16px; border-radius:4px; font-size:0.9rem; font-weight:900; color:#000">
+        ${h.title} (सत्र 2026-27)
+      </div>
+    </div>
+
+    <!-- Metadata Grid -->
+    <table style="width:100%; border-collapse:collapse; margin-bottom:6px; font-size:0.76rem; border:1.5px solid #000">
+      <tr style="background:#f8fafc">
+        <td style="padding:2.5px 6px; border:1px solid #000; width:15%"><strong>निष्कर्षण दायरा:</strong></td>
+        <td style="padding:2.5px 6px; border:1px solid #000; font-weight:700; width:35%">${getDbScopeTitle(STATE_DB_HUB.activeScope)}</td>
+        <td style="padding:2.5px 6px; border:1px solid #000; width:18%"><strong>कुल रिकॉर्ड संख्या:</strong></td>
+        <td style="padding:2.5px 6px; border:1px solid #000; font-weight:800; width:32%">${records.length} पंक्तियां</td>
+      </tr>
+      <tr>
+        <td style="padding:2.5px 6px; border:1px solid #000; background:#f8fafc"><strong>प्रस्तुतकर्ता / पद:</strong></td>
+        <td style="padding:2.5px 6px; border:1px solid #000">${STATE.currentUser?.name || 'कार्यालय व्यवस्थापक'} (${STATE.currentUser?.role?.toUpperCase() || 'ADMIN'})</td>
+        <td style="padding:2.5px 6px; border:1px solid #000; background:#f8fafc"><strong>दिनांक व समय:</strong></td>
+        <td style="padding:2.5px 6px; border:1px solid #000; font-weight:700">${new Date().toLocaleString('hi-IN')}</td>
+      </tr>
+    </table>
+
+    <!-- Laser Horizontal Grid -->
+    <table class="exam-excel-table" style="width:100%; border-collapse:collapse; border:2px solid #000; font-size:0.78rem; margin-bottom:8px">
+      <thead>
+        <tr style="border-bottom:2px solid #000">
+          ${theadHtml}
+        </tr>
+      </thead>
+      <tbody>
+        ${tbodyHtml}
+      </tbody>
+      ${totalsRowHtml}
+    </table>
+
+    <!-- Official Declaration Notice -->
+    <div style="margin-top:4px; margin-bottom:6px; padding:3px 6px; background:#ffffff; border:1px solid #000; border-left:4px solid #000; border-radius:3px; font-size:0.70rem; line-height:1.25; color:#000">
+      <strong>प्रमाणीकरण एवं अधिकृत घोषणा:</strong> प्रमाणित किया जाता है कि उपर्युक्त विवरण कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर) के केंद्रीय एकीकृत डेटाबेस एवं शाला दर्पण भौतिक अभिलेखों के आधार पर संकलित किया गया है। समस्त प्रविष्टियां आधिकारिक रूप से मान्य एवं प्रमाणित हैं।
+    </div>
+
+    <!-- Official Signature Block -->
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 35px; margin-top:14px; margin-bottom:2px; font-size:0.8rem">
+      <div style="text-align:center">
+        <div style="border-top:1.5px solid #000; width:160px; padding-top:4px; font-weight:800">
+          ${h.sigLeft}
+        </div>
+      </div>
+      <div style="text-align:center">
+        <div style="border-top:1.5px solid #000; width:220px; padding-top:4px; font-weight:800">
+          ${h.sigRight}
+        </div>
+      </div>
+    </div>
+  `;
+
+  container.innerHTML = printHtml;
+}
+
+function getDbScopeTitle(scope) {
+  if (scope === 'all_schools') return 'समस्त 178 विद्यालय (राजकीय व निजी)';
+  if (scope === 'all_govt') return 'समस्त 132 राजकीय विद्यालय';
+  if (scope === 'sec_srsec') return 'माध्यमिक व उच्च माध्यमिक विद्यालय';
+  if (scope === 'saman_57') return 'समान परीक्षा 57 विद्यालय';
+  if (scope === 'peeo_nodal') return '25 PEEO नोडल विद्यालय मुख्यालय';
+  if (scope === 'custom') return 'कस्टमाइज़्ड चयन (PEEO व विद्यालयवार)';
+  return 'समस्त विद्यालय';
+}
+
+function openCustomDbHeaderModal() {
+  const h = STATE_DB_HUB.customHeader;
+  document.getElementById('custom-header-dept').value = h.dept;
+  document.getElementById('custom-header-office').value = h.office;
+  document.getElementById('custom-header-sub').value = h.sub;
+  document.getElementById('custom-header-title').value = h.title;
+  document.getElementById('custom-header-sig-left').value = h.sigLeft;
+  document.getElementById('custom-header-sig-right').value = h.sigRight;
+  showModal('modal-custom-db-header-edit');
+}
+
+function saveCustomDbHeaderSettings() {
+  STATE_DB_HUB.customHeader = {
+    dept: document.getElementById('custom-header-dept').value.trim() || 'राजस्थान सरकार | स्कूल शिक्षा विभाग',
+    office: document.getElementById('custom-header-office').value.trim() || 'कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)',
+    sub: document.getElementById('custom-header-sub').value.trim() || 'समग्र शिक्षा अभियान | ब्लॉक-भिनाय, जिला-अजमेर (राजस्थान)',
+    title: document.getElementById('custom-header-title').value.trim() || 'मास्टर डेटाबेस: अधिकृत विद्यालयवार एवं समेकित सूचना प्रपत्र',
+    sigLeft: document.getElementById('custom-header-sig-left').value.trim() || 'प्रभारी अधिकारी / कनिष्ठ सहायक',
+    sigRight: document.getElementById('custom-header-sig-right').value.trim() || 'मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)'
+  };
+  localStorage.setItem('cbeo_custom_db_header', JSON.stringify(STATE_DB_HUB.customHeader));
+  closeModal('modal-custom-db-header-edit');
+  updateDbPreviewTable();
+  showToast('अधिकृत रिपोर्ट हेडर सेटिंग्स सुरक्षित हो गईं!', 'success');
+}
+
+function resetCustomDbHeaderDefaults() {
+  STATE_DB_HUB.customHeader = {
+    dept: 'राजस्थान सरकार | स्कूल शिक्षा विभाग',
+    office: 'कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)',
+    sub: 'समग्र शिक्षा अभियान | ब्लॉक-भिनाय, जिला-अजमेर (राजस्थान)',
+    title: 'मास्टर डेटाबेस: अधिकृत विद्यालयवार एवं समेकित सूचना प्रपत्र',
+    sigLeft: 'प्रभारी अधिकारी / कनिष्ठ सहायक',
+    sigRight: 'मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)'
+  };
+  openCustomDbHeaderModal();
+  showToast('डिफ़ॉल्ट हेडर रीसेट कर दिया गया!', 'info');
+}
+
+async function downloadCustomDatabasePDF() {
+  showToast('आधिकारिक Landscape PDF तैयार किया जा रहा है...', 'info');
+  const filename = `CBEO_Bhinai_Master_Database_${new Date().toISOString().split('T')[0]}.pdf`;
+  try {
+    const blob = await exportDocumentToPdfBlob('printable-custom-db-content', filename);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('अधिकृत A4 Landscape PDF सफलतापूर्वक डाउनलोड हो गया!', 'success');
+  } catch(e) {
+    console.warn('PDF blob generation fallback to clean print:', e);
+    printCleanA4Landscape('printable-custom-db-content', 'CBEO Bhinai Master Report');
+  }
+}
+
+function exportCustomDatabaseExcel() {
+  const records = getDbFilteredRecords();
+  const sortedCols = [...STATE_DB_HUB.selectedColumns].sort((a, b) => a.order - b.order);
+
+  let csv = 'क्र.सं.,' + sortedCols.map(c => `"${c.label.replace(/"/g, '""')}"`).join(',') + '\n';
+
+  records.forEach((row, idx) => {
+    let rowVals = [idx + 1];
+    sortedCols.forEach(col => {
+      const val = row[col.key] !== undefined ? String(row[col.key]) : '';
+      rowVals.push(`"${val.replace(/"/g, '""')}"`);
+    });
+    csv += rowVals.join(',') + '\n';
+  });
+
+  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `CBEO_Bhinai_Master_Database_Export_${new Date().toISOString().split('T')[0]}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('Excel CSV सफलतापूर्वक डाउनलोड हो गया!', 'success');
+}
+
+function shareCustomDatabaseWhatsApp() {
+  const records = getDbFilteredRecords();
+  const h = STATE_DB_HUB.customHeader;
+  const msg = `*🏛️ ${h.office}*
+*📋 ${h.title} (सत्र 2026-27)*
+
+📌 *दायरा:* ${getDbScopeTitle(STATE_DB_HUB.activeScope)}
+📌 *कुल रिकॉर्ड संख्या:* ${records.length} पंक्तियां
+📌 *सत्यापन दिनांक:* ${new Date().toLocaleString('hi-IN')}
+
+📄 *अधिकृत A4 Landscape PDF एवं एक्सेल शीट पोर्टल से सीधे डाउनलोड हेतु उपलब्ध है।*
+🌐 *सत्यापन पोर्टल:* https://jit9763.github.io/cbeo-bhinai-portal/`;
+
+  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+}
+

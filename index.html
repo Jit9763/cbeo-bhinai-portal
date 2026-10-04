@@ -89,6 +89,9 @@
       <button class="nav-tab" id="nav-tab-reports" onclick="switchTab('demands')">
         <i class="fas fa-file-invoice"></i> अन्य सूचना मांग
       </button>
+      <button class="nav-tab" id="nav-tab-database-hub" onclick="switchTab('database-hub')">
+        <i class="fas fa-database"></i> 🗄️ मास्टर डेटाबेस व सूचना निष्कर्षण
+      </button>
       <button class="nav-tab" id="nav-tab-archive" onclick="switchTab('archive')">
         <i class="fas fa-archive"></i> पूर्ण आर्काइव
       </button>
@@ -193,6 +196,12 @@
           </button>
           <button class="sub-nav-btn" id="btn-subnav-calldir" onclick="switchSamanSubView('calldir')">
             <i class="fas fa-phone-alt"></i> 📞 समान परीक्षा त्वरित संपर्क डायरेक्टरी (57 विद्यालय)
+          </button>
+          <button class="sub-nav-btn" id="btn-subnav-columns" onclick="openSamanColumnsManagerModal()" style="font-weight:700">
+            <i class="fas fa-columns text-primary"></i> ⚙️ कॉलम प्रबंधन (कॉलम जोड़ें/हटाएं)
+          </button>
+          <button class="sub-nav-btn" id="btn-subnav-new-session" onclick="openSamanNewSessionModal()" style="color:#059669; font-weight:700">
+            <i class="fas fa-plus-circle"></i> 🔄 नया सत्र/फॉर्म बनाएं (Archive Old)
           </button>
         </div>
 
@@ -1091,6 +1100,233 @@
       </div>
     </section>
 
+    <!-- 6B. MASTER DATABASE & CUSTOM INFORMATION EXTRACTION HUB -->
+    <section id="view-database-hub" class="content-view">
+      <div class="section-box">
+        <!-- Hub Header -->
+        <div class="section-header" style="border-bottom:2px solid #0284c7; padding-bottom:1rem; margin-bottom:1.25rem">
+          <div>
+            <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap">
+              <h2 style="color:#0369a1; font-size:1.35rem; margin:0; display:flex; align-items:center; gap:0.5rem">
+                <i class="fas fa-database text-primary"></i> 🗄️ मास्टर डेटाबेस प्रबंधन एवं कस्टम सूचना निष्कर्षण हब (CBEO Bhinai Master Database Hub)
+              </h2>
+              <span class="badge-tag" style="background:#e0f2fe; color:#0369a1; font-weight:800; font-size:0.78rem">
+                जिला: अजमेर (AJMER) • ब्लॉक: भिनाय
+              </span>
+              <span class="badge-tag" style="background:#ecfdf5; color:#065f46; font-weight:800; font-size:0.78rem">
+                ● 178 विद्यालय • 25 PEEO क्लस्टर • समान परीक्षा 57 • 1,060+ कार्मिक
+              </span>
+            </div>
+            <p style="color:#475569; margin:4px 0 0 0; font-size:0.86rem">
+              समस्त विद्यालयों, समान परीक्षा, कार्मिक व सूचना मांग प्रपत्रों का केंद्रीकृत मास्टर रिपॉजिटरी। AI सिमिलर कॉलम पहचान, 5-स्तरीय निष्कर्षण अनुमति, 6-स्तरीय लक्षित चयन, समेकित (Consolidated) गणना एवं क्रमबद्ध A4 Landscape PDF व Excel निर्यात।
+            </p>
+          </div>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+            <button class="btn btn-outline-primary btn-sm" onclick="openCustomDbHeaderModal()" style="font-weight:700">
+              <i class="fas fa-pen-nib"></i> ✏️ अधिकृत हेडर विवरण बदलें
+            </button>
+            <button class="btn btn-primary btn-sm" onclick="renderMasterDatabaseHubView()" style="font-weight:700">
+              <i class="fas fa-sync-alt"></i> 🔄 डेटा रीफ्रेश करें
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 1 & 2 DUAL CONTROL GRID -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(360px, 1fr)); gap:1.25rem; margin-bottom:1.5rem">
+
+          <!-- PANEL 1: 6-LEVEL EXTRACTION SCOPE SELECTOR -->
+          <div style="background:#ffffff; border:2px solid #bae6fd; border-radius:12px; padding:1.2rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.05)">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1.5px solid #e0f2fe; padding-bottom:0.6rem; margin-bottom:0.85rem">
+              <h3 style="margin:0; font-size:1.05rem; color:#0369a1; display:flex; align-items:center; gap:0.4rem">
+                <i class="fas fa-filter text-primary"></i> 1. सूचना निष्कर्षण दायरा चयन (6-Level Scope)
+              </h3>
+              <span id="db-scope-count-badge" class="badge-tag" style="background:#0284c7; color:#fff; font-weight:800; font-size:0.72rem">178 विद्यालय चयनित</span>
+            </div>
+
+            <!-- Radio Scope Buttons -->
+            <div style="display:flex; flex-direction:column; gap:0.45rem; margin-bottom:0.9rem">
+              <label style="display:flex; align-items:center; gap:0.6rem; background:#f8fafc; padding:0.45rem 0.75rem; border-radius:6px; border:1px solid #cbd5e1; cursor:pointer">
+                <input type="radio" name="db-extract-scope" value="all_schools" checked onchange="onDbScopeChange('all_schools')" style="width:16px; height:16px">
+                <span style="font-size:0.84rem; font-weight:700; color:#1e293b">🏛️ 1. समस्त 178 विद्यालय (132 राजकीय + 46 निजी/अन्य)</span>
+              </label>
+
+              <label style="display:flex; align-items:center; gap:0.6rem; background:#f8fafc; padding:0.45rem 0.75rem; border-radius:6px; border:1px solid #cbd5e1; cursor:pointer">
+                <input type="radio" name="db-extract-scope" value="all_govt" onchange="onDbScopeChange('all_govt')" style="width:16px; height:16px">
+                <span style="font-size:0.84rem; font-weight:700; color:#1e293b">🏛️ 2. समस्त 132 राजकीय विद्यालय (Govt Elementary + Sec)</span>
+              </label>
+
+              <label style="display:flex; align-items:center; gap:0.6rem; background:#f8fafc; padding:0.45rem 0.75rem; border-radius:6px; border:1px solid #cbd5e1; cursor:pointer">
+                <input type="radio" name="db-extract-scope" value="sec_srsec" onchange="onDbScopeChange('sec_srsec')" style="width:16px; height:16px">
+                <span style="font-size:0.84rem; font-weight:700; color:#1e293b">🎓 3. माध्यमिक / उच्च माध्यमिक विद्यालय (Sec & Sr.Sec)</span>
+              </label>
+
+              <label style="display:flex; align-items:center; gap:0.6rem; background:#f8fafc; padding:0.45rem 0.75rem; border-radius:6px; border:1px solid #cbd5e1; cursor:pointer">
+                <input type="radio" name="db-extract-scope" value="saman_57" onchange="onDbScopeChange('saman_57')" style="width:16px; height:16px">
+                <span style="font-size:0.84rem; font-weight:700; color:#1e293b">📋 4. समान परीक्षा 57 विद्यालय (49 राजकीय + 8 निजी)</span>
+              </label>
+
+              <label style="display:flex; align-items:center; gap:0.6rem; background:#f8fafc; padding:0.45rem 0.75rem; border-radius:6px; border:1px solid #cbd5e1; cursor:pointer">
+                <input type="radio" name="db-extract-scope" value="peeo_nodal" onchange="onDbScopeChange('peeo_nodal')" style="width:16px; height:16px">
+                <span style="font-size:0.84rem; font-weight:700; color:#1e293b">🏢 5. केवल 25 PEEO नोडल विद्यालय (Nodal Headquarter Schools)</span>
+              </label>
+
+              <label style="display:flex; align-items:center; gap:0.6rem; background:#eff6ff; padding:0.5rem 0.75rem; border-radius:6px; border:1.5px solid #3b82f6; cursor:pointer">
+                <input type="radio" name="db-extract-scope" value="custom" onchange="onDbScopeChange('custom')" style="width:16px; height:16px">
+                <span style="font-size:0.86rem; font-weight:800; color:#1d4ed8">🎯 6. कस्टमाइज़्ड चयन (विद्यालय / PEEO क्लस्टर / समेकित)</span>
+              </label>
+            </div>
+
+            <!-- Custom Cascading & Aggregation Controls (Shown when Level 6 is active) -->
+            <div id="db-custom-scope-box" style="display:none; background:#f0f9ff; border:1.5px solid #93c5fd; border-radius:8px; padding:0.85rem">
+              <div style="font-size:0.82rem; font-weight:800; color:#1e40af; margin-bottom:0.5rem">
+                <i class="fas fa-layer-group"></i> कस्टमाइज़्ड PEEO व विद्यालय चयन एवं समेकन:
+              </div>
+
+              <!-- PEEO Dropdown -->
+              <div style="margin-bottom:0.6rem">
+                <label style="font-size:0.76rem; font-weight:700; color:#334155; display:block; margin-bottom:2px">PEEO क्लस्टर चुनें:</label>
+                <select id="db-select-peeo" class="form-control" style="font-size:0.82rem; padding:0.35rem" onchange="onDbPeeoSelectChange()">
+                  <option value="ALL">-- समस्त 25 PEEO क्लस्टर --</option>
+                </select>
+              </div>
+
+              <!-- PEEO Category Checkboxes -->
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.4rem; margin-bottom:0.6rem; font-size:0.78rem">
+                <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer">
+                  <input type="checkbox" id="db-filter-peeo-govt" checked onchange="filterCustomDbSchoolsList()">
+                  <span>राजकीय विद्यालय</span>
+                </label>
+                <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer">
+                  <input type="checkbox" id="db-filter-peeo-pvt" checked onchange="filterCustomDbSchoolsList()">
+                  <span>निजी विद्यालय</span>
+                </label>
+                <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer; grid-column:span 2">
+                  <input type="checkbox" id="db-filter-peeo-sp" onchange="filterCustomDbSchoolsList()">
+                  <span>केवल समान परीक्षा 57 वाले विद्यालय</span>
+                </label>
+              </div>
+
+              <!-- Aggregation Toggle (समेकित vs पृथक) -->
+              <div style="background:#ffffff; border:1px solid #bfdbfe; border-radius:6px; padding:0.6rem; margin-bottom:0.6rem">
+                <div style="font-size:0.78rem; font-weight:800; color:#1e3a8a; margin-bottom:4px">
+                  <i class="fas fa-calculator text-primary"></i> समेकित गणना विधि (Aggregation Mode):
+                </div>
+                <div style="display:flex; flex-direction:column; gap:0.35rem; font-size:0.78rem">
+                  <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer">
+                    <input type="radio" name="db-aggregation-mode" value="school_wise" checked onchange="updateDbPreviewTable()">
+                    <span><strong>विद्यालयवार सूची:</strong> प्रत्येक विद्यालय की पृथक पंक्ति (Row)</span>
+                  </label>
+                  <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer">
+                    <input type="radio" name="db-aggregation-mode" value="peeo_consolidated" onchange="updateDbPreviewTable()">
+                    <span><strong>PEEO परिक्षेत्र समेकित:</strong> संबंधित PEEO के सभी स्कूलों का कुल जोड़ (1 Row per PEEO)</span>
+                  </label>
+                  <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer">
+                    <input type="radio" name="db-aggregation-mode" value="cbeo_block_consolidated" onchange="updateDbPreviewTable()">
+                    <span><strong>समस्त CBEO ब्लॉक समेकित:</strong> सम्पूर्ण भिनाय ब्लॉक का महायोग (Single Consolidated Summary)</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Individual School Checkbox Selector -->
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:3px">
+                  <label style="font-size:0.75rem; font-weight:700; color:#334155">विशिष्ट विद्यालय चयन (चेक करें):</label>
+                  <button type="button" class="btn btn-outline-secondary btn-sm" onclick="toggleAllCustomDbSchools(true)" style="font-size:0.68rem; padding:1px 6px">सभी चेक</button>
+                  <button type="button" class="btn btn-outline-secondary btn-sm" onclick="toggleAllCustomDbSchools(false)" style="font-size:0.68rem; padding:1px 6px">सभी हटाएं</button>
+                </div>
+                <input type="text" id="db-school-search-input" placeholder="विद्यालय का नाम या कोड खोजें..." style="width:100%; padding:4px 8px; font-size:0.78rem; border-radius:4px; border:1px solid #cbd5e1; margin-bottom:4px" oninput="filterCustomDbSchoolsList()">
+                <div id="db-custom-schools-checklist" style="max-height:160px; overflow-y:auto; background:#ffffff; border:1px solid #cbd5e1; border-radius:4px; padding:4px 6px; font-size:0.76rem">
+                  <!-- Populated dynamically -->
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- PANEL 2: STANDARD COLUMNS SELECTION & PRIORITY ORDERING WITH COLLISION RESOLUTION -->
+          <div style="background:#ffffff; border:2px solid #93c5fd; border-radius:12px; padding:1.2rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.05)">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1.5px solid #e0f2fe; padding-bottom:0.6rem; margin-bottom:0.85rem">
+              <h3 style="margin:0; font-size:1.05rem; color:#1e40af; display:flex; align-items:center; gap:0.4rem">
+                <i class="fas fa-list-ol text-primary"></i> 2. डेटा कॉलम चयन एवं प्राथमिकता क्रम (Column Hierarchy)
+              </h3>
+              <span id="db-col-count-badge" class="badge-tag" style="background:#2563eb; color:#fff; font-weight:800; font-size:0.72rem">5 कॉलम चयनित</span>
+            </div>
+
+            <!-- AI Synonym Column Search -->
+            <div style="margin-bottom:0.75rem; position:relative">
+              <div style="display:flex; gap:0.35rem">
+                <div style="position:relative; flex:1">
+                  <input type="text" id="db-ai-column-search" placeholder="🔍 AI कॉलम खोज (उदा. phone, psp, छात्र, नामांकन, email, center)..." class="form-control" style="font-size:0.82rem; padding:0.4rem 0.6rem" oninput="onDbAiColumnSearch(this.value)">
+                </div>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="resetDbColumnsToDefault()" style="font-size:0.74rem; font-weight:700; white-space:nowrap">
+                  डिफ़ॉल्ट कॉलम
+                </button>
+              </div>
+              <div style="font-size:0.71rem; color:#64748b; margin-top:3px">
+                💡 <em>स्मार्ट AI मैपर:</em> समानार्थी शब्दों को पहचानकर उपयुक्त मानक कॉलम स्वतः जोड़ता है।
+              </div>
+            </div>
+
+            <!-- Column Hierarchy Selection Table -->
+            <div style="max-height:310px; overflow-y:auto; border:1px solid #cbd5e1; border-radius:6px; background:#f8fafc">
+              <table style="width:100%; border-collapse:collapse; font-size:0.8rem">
+                <thead style="position:sticky; top:0; background:#e2e8f0; z-index:2">
+                  <tr>
+                    <th style="padding:6px; text-align:center; width:36px">शामिल</th>
+                    <th style="padding:6px; text-align:left">मानक कॉलम शीर्षक (Standard Header)</th>
+                    <th style="padding:6px; text-align:center; width:95px">क्रम / No.</th>
+                  </tr>
+                </thead>
+                <tbody id="db-columns-selector-tbody">
+                  <!-- Populated dynamically with collision-free dropdowns -->
+                </tbody>
+              </table>
+            </div>
+
+            <div style="margin-top:0.6rem; font-size:0.73rem; color:#475569; background:#eff6ff; padding:5px 8px; border-radius:4px; border:1px solid #bfdbfe">
+              📌 <strong>क्र.सं. (S.No.)</strong> सदैव प्रथम कॉलम रहेगा। चुने गए कॉलम को 1, 2, 3... नंबर दें। एक नंबर चुनने पर वह अन्य से स्वतः विस्थापित (Collision-free Swap) हो जाएगा।
+            </div>
+          </div>
+
+        </div>
+
+        <!-- LIVE EXTRACTED REPORT PREVIEW & ACTION CONTROLS -->
+        <div style="background:#ffffff; border:2px solid #0284c7; border-radius:12px; padding:1.25rem; box-shadow:0 8px 16px -2px rgba(0,0,0,0.1)">
+          <!-- Toolbar -->
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; border-bottom:2px solid #e2e8f0; padding-bottom:0.75rem; margin-bottom:1rem">
+            <div>
+              <h3 id="db-preview-report-title" style="margin:0; font-size:1.15rem; color:#0369a1; display:flex; align-items:center; gap:0.5rem">
+                <i class="fas fa-table text-primary"></i> अधिकृत सूचना तालिका पूर्वावलोकन (Official Landscape Preview)
+              </h3>
+              <p id="db-preview-meta-desc" style="font-size:0.8rem; color:#64748b; margin:2px 0 0 0">
+                सत्र 2026-27 | ब्लॉक-भिनाय, जिला-अजमेर | कुल रिकॉर्ड: 178
+              </p>
+            </div>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+              <button class="btn btn-outline-primary btn-sm" onclick="openCustomDbHeaderModal()" style="font-weight:700">
+                <i class="fas fa-edit"></i> ✏️ हेडर संपादित करें
+              </button>
+              <button class="btn btn-danger btn-sm" onclick="downloadCustomDatabasePDF()" style="font-weight:700; box-shadow:0 2px 6px rgba(220,38,38,0.25)">
+                <i class="fas fa-file-pdf"></i> 📥 अधिकृत A4 Landscape PDF
+              </button>
+              <button class="btn btn-success btn-sm" onclick="exportCustomDatabaseExcel()" style="font-weight:700">
+                <i class="fas fa-file-excel"></i> 📊 Excel (CSV)
+              </button>
+              <button class="btn btn-whatsapp btn-sm" onclick="shareCustomDatabaseWhatsApp()" style="font-weight:700">
+                <i class="fab fa-whatsapp"></i> 📢 WhatsApp शेयर
+              </button>
+            </div>
+          </div>
+
+          <!-- Printable Container for Direct PDF Export -->
+          <div id="printable-custom-db-content" style="background:#ffffff; padding:8px; overflow-x:auto">
+            <!-- Rendered dynamically by renderCustomDbPrintableTable() -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <!-- 6. 7-DAY ARCHIVE VIEW -->
     <section id="view-archive" class="content-view">
       <div class="section-box">
@@ -1716,33 +1952,13 @@
               </label>
               <p style="font-size:0.78rem; color:#64748b; margin:0.35rem 0 0 1.8rem">विद्यालय लॉगिन पर अपने विद्यालय का सामान्य विवरण, संस्था प्रधान व ईमेल संपादित करने की अनुमति</p>
             </div>
-            <div style="background:#eff6ff; border:1.5px solid #3b82f6; border-radius:8px; padding:1rem">
-              <label style="display:flex; align-items:center; gap:0.75rem; font-weight:800; color:#1d4ed8; cursor:pointer">
-                <input type="checkbox" id="perm-peeo-edit-saman-pariksha" style="width:18px; height:18px">
-                7. 📋 25 PEEO: समान परीक्षा प्रपत्र संपादन अनुमति
-              </label>
-              <p style="font-size:0.78rem; color:#2563eb; margin:0.35rem 0 0 1.8rem">टिक होने पर 25 PEEO अपने अधीनस्थ 57 स्कूलों का समान परीक्षा डेटा भर/संपादित कर सकते हैं। अनचेक करने पर केवल अवलोकन (View-Only Mode) रहेगा।</p>
-            </div>
-            <div style="background:#eff6ff; border:1.5px solid #3b82f6; border-radius:8px; padding:1rem">
-              <label style="display:flex; align-items:center; gap:0.75rem; font-weight:800; color:#1d4ed8; cursor:pointer">
-                <input type="checkbox" id="perm-school-edit-saman-pariksha" style="width:18px; height:18px">
-                8. 🏫 57 स्कूल: समान परीक्षा प्रपत्र संपादन अनुमति
-              </label>
-              <p style="font-size:0.78rem; color:#2563eb; margin:0.35rem 0 0 1.8rem">टिक होने पर स्कूल स्वयं अपना समान परीक्षा प्रपत्र भर/संपादित कर सकते हैं। अनचेक करने पर केवल अवलोकन (View-Only Mode) रहेगा।</p>
-            </div>
-            <div style="background:#fef3c7; border:1.5px solid #f59e0b; border-radius:8px; padding:1rem">
-              <label style="display:flex; align-items:center; gap:0.75rem; font-weight:800; color:#92400e; cursor:pointer">
-                <input type="checkbox" id="perm-peeo-edit-demands" style="width:18px; height:18px">
-                9. 📄 25 PEEO: अन्य सूचना मांग संपादन अनुमति
-              </label>
-              <p style="font-size:0.78rem; color:#b45309; margin:0.35rem 0 0 1.8rem">टिक होने पर PEEO अन्य सक्रिय मांग प्रपत्र भर सकते हैं। अनचेक करने पर केवल अवलोकन (View-Only) रहेगा।</p>
-            </div>
-            <div style="background:#fef3c7; border:1.5px solid #f59e0b; border-radius:8px; padding:1rem">
-              <label style="display:flex; align-items:center; gap:0.75rem; font-weight:800; color:#92400e; cursor:pointer">
-                <input type="checkbox" id="perm-school-edit-demands" style="width:18px; height:18px">
-                10. 🏫 स्कूल: अन्य सूचना मांग संपादन अनुमति
-              </label>
-              <p style="font-size:0.78rem; color:#b45309; margin:0.35rem 0 0 1.8rem">टिक होने पर विद्यालय अन्य सक्रिय मांग प्रपत्र भर सकते हैं। अनचेक करने पर केवल अवलोकन (View-Only) रहेगा।</p>
+            <div style="background:#eff6ff; border:1.5px solid #3b82f6; border-radius:8px; padding:1rem; grid-column:1 / -1">
+              <div style="font-weight:800; color:#1d4ed8; font-size:0.88rem; margin-bottom:4px">
+                <i class="fas fa-check-double text-success"></i> 📋 समान परीक्षा एवं सूचना मांग प्रपत्र संपादन नियंत्रण:
+              </div>
+              <p style="font-size:0.8rem; color:#2563eb; margin:0">
+                समान परीक्षा एवं समस्त नवीन/सक्रिय मांग प्रपत्रों के 5-स्तरीय संपादन (CBEO, PEEO, Sec/SrSec, Govt, All Schools) अधिकार सीधे ऊपर <strong>"B2. 5-स्तरीय डेटा संपादन अनुमति मैट्रिक्स"</strong> में एकीकृत हैं। वहाँ प्रत्येक मांग का पृथक चेकबॉक्स उपलब्ध है।
+              </p>
             </div>
           </div>
         </div>
@@ -1764,16 +1980,23 @@
           </div>
         </div>
 
-        <!-- Demand Publish / Unpublish Control Box -->
-        <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:1.25rem; margin-bottom:1.5rem">
-          <h3 style="font-size:1.05rem; color:#1b365d; margin-bottom:0.5rem">
-            <i class="fas fa-toggle-on text-secondary"></i> सूचना प्रपत्र प्रकाशन नियंत्रण (Publish / Unpublish Checkbox):
-          </h3>
-          <p style="font-size:0.82rem; color:var(--neutral-600); margin-bottom:1rem">
-            जिस सूचना को PEEO को दिखाना हो उस पर टिक करें। अनचेक करते ही वह सूचना तुरंत PEEO स्तर से हट जाएगी।
-          </p>
-          <div id="admin-demands-publish-list" style="display:flex; flex-direction:column; gap:0.75rem">
-            <!-- Populated by JS -->
+        <!-- E. JITENDRA SUPER ADMIN 7-DAY DEEP BACKUP & TRASH RECOVERY -->
+        <div id="jitendra-deep-backup-card" style="background:#ffffff; border:2px solid #ef4444; border-radius:12px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:0 4px 6px -1px rgba(239,68,68,0.1)">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; border-bottom:1.5px solid #fecaca; padding-bottom:0.75rem">
+            <div>
+              <h3 style="font-size:1.15rem; color:#b91c1c; margin:0; display:flex; align-items:center; gap:0.5rem">
+                <i class="fas fa-trash-restore" style="color:#ef4444"></i> 🗑️ 7-दिवसीय गहन बैकअप एवं ट्रैश रिकवरी (Deep Backup & Trash)
+              </h3>
+              <p style="font-size:0.83rem; color:#475569; margin:3px 0 0 0">
+                हटाए गए मांग प्रपत्र सीधे नष्ट नहीं होते। वे 7 दिनों तक यहाँ सुरक्षित रहते हैं। 7 दिन बाद स्वतः स्थायी नष्ट हो जाते हैं या व्यवस्थापक पासवर्ड से कभी भी रीस्टोर किए जा सकते हैं।
+              </p>
+            </div>
+            <button class="btn btn-outline-danger btn-sm" onclick="openDeepBackupDemandsModal()" style="font-weight:700">
+              <i class="fas fa-trash-alt"></i> 🗃️ ट्रैश बिन खोलें (<span id="deep-backup-count-badge">0</span>)
+            </button>
+          </div>
+          <div id="admin-deep-backup-preview-list" style="display:flex; flex-direction:column; gap:0.6rem">
+            <!-- Populated dynamically by renderDeepBackupList() -->
           </div>
         </div>
 
@@ -4159,6 +4382,219 @@
         </button>
       </div>
 
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 1: 7-DAY DEEP BACKUP & TRASH RECOVERY
+       ======================================================== -->
+  <div id="modal-deep-backup-demands" class="modal-overlay">
+    <div class="modal-card" style="max-width:760px; width:95%; border-top:5px solid #dc2626">
+      <div class="modal-header">
+        <div>
+          <h3 style="margin:0; font-size:1.15rem; color:#b91c1c; display:flex; align-items:center; gap:0.5rem">
+            <i class="fas fa-trash-restore"></i> 🗑️ 7-दिवसीय गहन बैकअप एवं ट्रैश रिकवरी (Deep Backup & Trash)
+          </h3>
+          <div style="font-size:0.78rem; color:#64748b; margin-top:2px">
+            हटाए गए मांग प्रपत्र व उनके डेटा 7 दिनों तक यहाँ सुरक्षित रहते हैं। 7 दिन बाद स्वतः स्थायी नष्ट हो जाते हैं।
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('modal-deep-backup-demands')">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:1.25rem">
+        <div id="deep-backup-items-container">
+          <!-- Populated dynamically by renderDeepBackupList() -->
+        </div>
+      </div>
+      <div class="modal-footer" style="display:flex; justify-content:space-between; align-items:center">
+        <div style="font-size:0.75rem; color:#dc2626; font-weight:700">
+          <i class="fas fa-shield-alt"></i> किसी भी प्रपत्र को समय से पहले नष्ट करने हेतु एडमिन पासवर्ड अनिवार्य है।
+        </div>
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-deep-backup-demands')">बंद करें</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 2: SAMAN PARIKSHA DYNAMIC COLUMNS MANAGER
+       ======================================================== -->
+  <div id="modal-saman-columns-manager" class="modal-overlay">
+    <div class="modal-card" style="max-width:700px; width:95%; border-top:5px solid #2563eb">
+      <div class="modal-header">
+        <div>
+          <h3 style="margin:0; font-size:1.15rem; color:#1e40af; display:flex; align-items:center; gap:0.5rem">
+            <i class="fas fa-columns"></i> ⚙️ समान परीक्षा कॉलम प्रबंधन (Dynamic Columns Manager)
+          </h3>
+          <div style="font-size:0.78rem; color:#64748b; margin-top:2px">
+            समान परीक्षा प्रपत्र में आवश्यकतानुसार नए विषय/शुल्क/सूचना कॉलम जोड़ें अथवा हटाएं।
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('modal-saman-columns-manager')">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:1.25rem">
+        <!-- Add New Column Row -->
+        <div style="background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:8px; padding:0.85rem; margin-bottom:1.25rem">
+          <div style="font-size:0.82rem; font-weight:800; color:#1e40af; margin-bottom:0.5rem">
+            <i class="fas fa-plus-circle"></i> नया कॉलम जोड़ें:
+          </div>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+            <input type="text" id="saman-new-col-name" placeholder="कॉलम का नाम (उदा. परीक्षा शुल्क स्थिति, वोकेशनल छात्र)..." style="flex:2; min-width:200px; padding:0.45rem 0.65rem; font-size:0.84rem; border:1px solid #cbd5e1; border-radius:6px">
+            <select id="saman-new-col-type" class="form-control" style="flex:1; min-width:120px; font-size:0.84rem; padding:0.45rem">
+              <option value="number">संख्या (Number)</option>
+              <option value="text">टेक्स्ट (Text)</option>
+            </select>
+            <button type="button" class="btn btn-primary btn-sm" onclick="addNewSamanCustomColumn()" style="font-weight:700">
+              <i class="fas fa-plus"></i> कॉलम जोड़ें
+            </button>
+          </div>
+        </div>
+
+        <!-- Active Custom Columns List -->
+        <div style="font-size:0.84rem; font-weight:800; color:#1e293b; margin-bottom:0.5rem">
+          📋 सक्रिय कस्टम कॉलम सूची:
+        </div>
+        <div id="saman-custom-columns-list" style="display:flex; flex-direction:column; gap:0.5rem; max-height:260px; overflow-y:auto">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+      <div class="modal-footer" style="display:flex; justify-content:flex-end">
+        <button class="btn btn-primary" onclick="closeModal('modal-saman-columns-manager')" style="font-weight:700">
+          <i class="fas fa-check"></i> पूर्ण व सुरक्षित करें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 3: SAMAN PARIKSHA NEW SESSION ARCHIVE & RESET
+       ======================================================== -->
+  <div id="modal-saman-new-session" class="modal-overlay">
+    <div class="modal-card" style="max-width:620px; width:95%; border-top:5px solid #059669">
+      <div class="modal-header">
+        <div>
+          <h3 style="margin:0; font-size:1.15rem; color:#065f46; display:flex; align-items:center; gap:0.5rem">
+            <i class="fas fa-archive"></i> 🔄 नया सत्र / फॉर्म प्रारंभ करें (Archive & Reset)
+          </h3>
+          <div style="font-size:0.78rem; color:#64748b; margin-top:2px">
+            वर्तमान सत्र का डेटा सुरक्षित मास्टर डेटाबेस में हमेशा के लिए सुरक्षित रहेगा (कदापि डिलीट नहीं होगा)।
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('modal-saman-new-session')">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:1.25rem">
+        <div style="background:#ecfdf5; border-left:4px solid #10b981; padding:0.75rem 1rem; border-radius:6px; margin-bottom:1.25rem; font-size:0.84rem; color:#065f46; line-height:1.5">
+          <i class="fas fa-info-circle"></i> <strong>मास्टर डेटाबेस गारंटी:</strong> वर्तमान सत्र 2026-27 के सभी 57 स्कूलों का भरा हुआ डेटा 'मास्टर डेटाबेस' में स्थायी रूप से संचित हो जाएगा। इसके उपरांत नया सत्र नए सिरे से डेटा भरने हेतु तैयार हो जाएगा।
+        </div>
+
+        <div class="form-group" style="margin-bottom:1rem">
+          <label style="font-weight:700; color:#1e293b; margin-bottom:0.35rem; display:block">
+            नवीन सत्र / प्रपत्र का नाम <span style="color:red">*</span>:
+          </label>
+          <input type="text" id="saman-new-session-title" placeholder="उदा. समान परीक्षा सत्र 2027-28 अथवा अर्द्धवार्षिक 2026-27" class="form-control" style="font-size:0.88rem; padding:0.6rem">
+        </div>
+
+        <div class="form-group" style="margin-bottom:1rem">
+          <label style="font-weight:700; color:#1e293b; margin-bottom:0.35rem; display:block">
+            विवरण / प्रशासनिक निर्देश:
+          </label>
+          <textarea id="saman-new-session-desc" rows="2" placeholder="नवीन सत्र हेतु सामान्य निर्देश..." class="form-control" style="font-size:0.84rem; padding:0.5rem"></textarea>
+        </div>
+
+        <div class="form-group" style="margin-bottom:0.5rem">
+          <label style="font-weight:700; color:#1e293b; margin-bottom:0.35rem; display:block">
+            <i class="fas fa-lock text-danger"></i> अधिकृत व्यवस्थापक पासवर्ड (ADMIN02):
+          </label>
+          <input type="password" id="saman-archive-admin-pwd" placeholder="जितेन्द्र व्यवस्थापक पासवर्ड दर्ज करें" class="form-control" style="font-size:0.88rem; padding:0.6rem">
+        </div>
+      </div>
+      <div class="modal-footer" style="display:flex; justify-content:space-between; align-items:center">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-saman-new-session')">रद्द करें</button>
+        <button class="btn btn-success" onclick="submitSamanParikshaNewSession()" style="font-weight:700">
+          <i class="fas fa-save"></i> सुरक्षित करें व नया सत्र प्रारंभ करें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 4: CUSTOM DATABASE OFFICIAL PDF HEADER EDITOR
+       ======================================================== -->
+  <div id="modal-custom-db-header-edit" class="modal-overlay">
+    <div class="modal-card" style="max-width:650px; width:95%; border-top:5px solid #f59e0b">
+      <div class="modal-header">
+        <div>
+          <h3 style="margin:0; font-size:1.15rem; color:#92400e; display:flex; align-items:center; gap:0.5rem">
+            <i class="fas fa-pen-nib text-warning"></i> ✏️ अधिकृत PDF एवं Excel हेडर संपादक
+          </h3>
+          <div style="font-size:0.78rem; color:#64748b; margin-top:2px">
+            जितेन्द्र व्यवस्थापक नियंत्रण: आधिकारिक रिपोर्ट हेतु शीर्ष पंक्तियां व हस्ताक्षरकर्ता विवरण अनुकूलित करें।
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('modal-custom-db-header-edit')">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:1.25rem">
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label style="font-weight:700; font-size:0.82rem; color:#1e293b; display:block; margin-bottom:3px">विभाग एवं शासन स्तर:</label>
+          <input type="text" id="custom-header-dept" value="राजस्थान सरकार | स्कूल शिक्षा विभाग" class="form-control" style="font-size:0.85rem; padding:0.45rem">
+        </div>
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label style="font-weight:700; font-size:0.82rem; color:#1e293b; display:block; margin-bottom:3px">कार्यालय का आधिकारिक नाम:</label>
+          <input type="text" id="custom-header-office" value="कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)" class="form-control" style="font-size:0.85rem; padding:0.45rem">
+          <span style="font-size:0.72rem; color:#059669; font-weight:700">✓ स्थाई नियम: जिला सदैव 'अजमेर (AJMER)' ही रहेगा।</span>
+        </div>
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label style="font-weight:700; font-size:0.82rem; color:#1e293b; display:block; margin-bottom:3px">योजना / अभियान उपशीर्षक:</label>
+          <input type="text" id="custom-header-sub" value="समग्र शिक्षा अभियान | ब्लॉक-भिनाय, जिला-अजमेर (राजस्थान)" class="form-control" style="font-size:0.85rem; padding:0.45rem">
+        </div>
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label style="font-weight:700; font-size:0.82rem; color:#1e293b; display:block; margin-bottom:3px">रिपोर्ट का मुख्य शीर्षक:</label>
+          <input type="text" id="custom-header-title" value="मास्टर डेटाबेस: अधिकृत विद्यालयवार एवं समेकित सूचना प्रपत्र" class="form-control" style="font-size:0.85rem; padding:0.45rem">
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-bottom:0.85rem">
+          <div>
+            <label style="font-weight:700; font-size:0.82rem; color:#1e293b; display:block; margin-bottom:3px">बायाँ हस्ताक्षर पद:</label>
+            <input type="text" id="custom-header-sig-left" value="प्रभारी अधिकारी / कनिष्ठ सहायक" class="form-control" style="font-size:0.85rem; padding:0.45rem">
+          </div>
+          <div>
+            <label style="font-weight:700; font-size:0.82rem; color:#1e293b; display:block; margin-bottom:3px">दायाँ हस्ताक्षर पद:</label>
+            <input type="text" id="custom-header-sig-right" value="मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)" class="form-control" style="font-size:0.85rem; padding:0.45rem">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="display:flex; justify-content:space-between; align-items:center">
+        <button class="btn btn-outline-secondary btn-sm" onclick="resetCustomDbHeaderDefaults()">डिफ़ॉल्ट हेडर रीसेट करें</button>
+        <button class="btn btn-primary" onclick="saveCustomDbHeaderSettings()" style="font-weight:700">
+          <i class="fas fa-save"></i> हेडर सुरक्षित करें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 5: CONFIRM ADMIN PASSWORD FOR DEEP ACTIONS
+       ======================================================== -->
+  <div id="modal-confirm-admin-password" class="modal-overlay">
+    <div class="modal-card" style="max-width:440px; width:95%; border-top:5px solid #dc2626">
+      <div class="modal-header">
+        <h3 style="margin:0; font-size:1.1rem; color:#b91c1c; display:flex; align-items:center; gap:0.5rem">
+          <i class="fas fa-shield-alt"></i> अधिकृत सुरक्षा प्रमाणीकरण
+        </h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-confirm-admin-password')">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:1.25rem">
+        <p id="confirm-pwd-message" style="font-size:0.85rem; color:#334155; margin-bottom:1rem">
+          इस प्रपत्र को हटाने हेतु जितेन्द्र व्यवस्थापक पासवर्ड दर्ज करें:
+        </p>
+        <div style="position:relative; margin-bottom:0.75rem">
+          <input type="password" id="confirm-admin-pwd-input" placeholder="व्यवस्थापक पासवर्ड दर्ज करें" class="form-control" style="font-size:0.95rem; padding:0.6rem" onkeydown="if(event.key==='Enter') executeAdminConfirmedAction()">
+        </div>
+      </div>
+      <div class="modal-footer" style="display:flex; justify-content:space-between">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-confirm-admin-password')">रद्द करें</button>
+        <button class="btn btn-danger" onclick="executeAdminConfirmedAction()" style="font-weight:700">
+          <i class="fas fa-check"></i> प्रमाणित करें व आगे बढ़ें
+        </button>
+      </div>
     </div>
   </div>
 
