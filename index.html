@@ -1423,9 +1423,13 @@
                   <input type="checkbox" id="vm-rep-peeo" checked style="width:16px; height:16px">
                   <span><strong>PEEO क्लस्टर प्रगति:</strong> 25 नोडल पंचायतवार स्थिति</span>
                 </label>
+                <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; background:#eff6ff; padding:7px 10px; border-radius:6px; border:1.5px solid #bfdbfe; font-weight:700; margin-top:2px">
+                  <input type="checkbox" id="vm-rep-include-completed" style="width:16px; height:16px">
+                  <span style="color:#1e40af"><i class="fas fa-check-double text-success"></i> 🎯 100% पूर्ण हो चुकी सूचनाएं संदेश में शामिल करें</span>
+                </label>
               </div>
               <div style="font-size:0.72rem; color:#64748b; margin-top:6px">
-                (अनचेक की गई रिपोर्ट ईमेल व टेलीग्राम पर नहीं भेजी जाएगी)
+                (अनचेक रखने पर 100% पूर्ण हो चुके कार्य संदेश से स्वतः हट जाएंगे, केवल लंबित व चालू कार्य ही अलर्ट में दिखेंगे)
               </div>
             </div>
 
@@ -1452,6 +1456,15 @@
                 <div id="vm-gemini-tone-preview" style="font-size:0.75rem; color:#334155; line-height:1.45; font-style:italic">
                   "कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय द्वारा निर्देश: समान परीक्षा 2026-27 के लंबित विद्यालय आज ही पोर्टल पर प्रविष्टि शत-प्रतिशत पूर्ण करें। अन्यथा अनुशासनात्मक कार्रवाई प्रस्तावित की जाएगी।"
                 </div>
+              </div>
+
+              <!-- 6B. Custom Executive Alert Message Box -->
+              <div style="margin-bottom:0.75rem">
+                <label style="font-size:0.75rem; font-weight:700; color:#1e3a8a; display:flex; justify-content:space-between; align-items:center; margin-bottom:4px">
+                  <span><i class="fas fa-bullhorn text-warning"></i> 📢 कस्टम प्रशासनिक निर्देश / विशेष संदेश (Custom Alert Note):</span>
+                  <span style="font-size:0.7rem; color:#64748b; font-weight:normal">(वैकल्पिक - Telegram/Email में सबसे ऊपर दिखेगा)</span>
+                </label>
+                <textarea id="vm-custom-message-input" rows="2" placeholder="यहाँ कोई विशेष प्रशासनिक निर्देश या अंतिम चेतावनी लिखें (उदा. सभी संस्था प्रधान कल दोपहर 2 बजे तक प्रपत्र-2 अवश्य जमा कराएं)..." style="width:100%; padding:0.45rem 0.6rem; font-size:0.8rem; border-radius:6px; border:1.5px solid #cbd5e1; resize:vertical; background:#ffffff"></textarea>
               </div>
 
               <div style="display:flex; gap:0.4rem; justify-content:flex-end">

@@ -13073,10 +13073,17 @@ function loadVMDispatchConfig() {
   const peeoChk = document.getElementById('vm-rep-peeo');
   const tSel = document.getElementById('vm-gemini-tone-select');
 
+  const incChk = document.getElementById('vm-rep-include-completed');
+  const custMsgInput = document.getElementById('vm-custom-message-input');
+
   if (sChk) sChk.checked = cfg.report_saman_summary !== false;
   if (pChk) pChk.checked = cfg.report_pending_schools !== false;
   if (dChk) dChk.checked = cfg.report_active_demands !== false;
   if (peeoChk) peeoChk.checked = cfg.report_peeo_summary !== false;
+  if (incChk) incChk.checked = cfg.include_completed_tasks === true;
+  if (custMsgInput && cfg.custom_message !== undefined) {
+    custMsgInput.value = cfg.custom_message;
+  }
   if (tSel && cfg.gemini_tone) {
     tSel.value = cfg.gemini_tone;
     updateGeminiTonePreview();
@@ -13088,6 +13095,8 @@ async function saveVMDispatchConfig() {
   const pChk = document.getElementById('vm-rep-pending');
   const dChk = document.getElementById('vm-rep-demands');
   const peeoChk = document.getElementById('vm-rep-peeo');
+  const incChk = document.getElementById('vm-rep-include-completed');
+  const custMsgInput = document.getElementById('vm-custom-message-input');
   const tSel = document.getElementById('vm-gemini-tone-select');
 
   const dispatchConfig = {
@@ -13095,6 +13104,8 @@ async function saveVMDispatchConfig() {
     report_pending_schools: pChk ? pChk.checked : true,
     report_active_demands: dChk ? dChk.checked : true,
     report_peeo_summary: peeoChk ? peeoChk.checked : true,
+    include_completed_tasks: incChk ? incChk.checked : false,
+    custom_message: custMsgInput ? custMsgInput.value.trim() : '',
     gemini_tone: tSel ? tSel.value : 'warning',
     updated_at: new Date().toISOString()
   };

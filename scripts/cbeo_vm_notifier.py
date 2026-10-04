@@ -303,6 +303,8 @@ def main():
     report_pending = dispatch_cfg.get('report_pending_schools', True)
     report_demands = dispatch_cfg.get('report_active_demands', True)
     report_peeo = dispatch_cfg.get('report_peeo_summary', True)
+    include_completed = dispatch_cfg.get('include_completed_tasks', False)
+    custom_message = (dispatch_cfg.get('custom_message') or '').strip()
 
     tone_directives = {
         'formal': "विभागीय औपचारिक भाषा (Official CBEO Administrative Hindi): मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय के औपचारिक परिपत्र शैली में प्रशासनिक व गरिमामयी भाषा का प्रयोग करें।",
@@ -351,31 +353,38 @@ def main():
                 "━━━━━━━━━━━━━━━━━━━━━━"
             ]
 
+            # 📢 Custom Administrative Directive (if set by Jitendra Super Admin on website)
+            if custom_message:
+                tg_html_lines.append(f"📢 <b>विशेष प्रशासनिक निर्देश (जितेन्द्र व्यवस्थापक):</b>\n<blockquote>{custom_message}</blockquote>\n")
+
+            # 1. Saman Pariksha Summary: if 100% complete and include_completed is False, skip this section!
             if report_saman:
-                tg_html_lines.extend([
-                    "📋 <b>1. जिला समान परीक्षा (सत्र 2026-27):</b>",
-                    f"• कुल लक्षित विद्यालय: <b>{total_sp_schools}</b>",
-                    f"• प्रपत्र प्राप्त: <b>{sp_sub_count} ({sp_percent}%)</b>",
-                    f"• कुल लंबित: <b>{sp_pend_count} विद्यालय ({round(100 - sp_percent, 1)}%)</b>",
-                    ""
-                ])
+                if sp_pend_count > 0 or include_completed:
+                    tg_html_lines.extend([
+                        "📋 <b>1. जिला समान परीक्षा (सत्र 2026-27):</b>",
+                        f"• कुल लक्षित विद्यालय: <b>{total_sp_schools}</b>",
+                        f"• प्रपत्र प्राप्त: <b>{sp_sub_count} ({sp_percent}%)</b>",
+                        f"• कुल लंबित: <b>{sp_pend_count} विद्यालय ({round(100 - sp_percent, 1)}%)</b>",
+                        ""
+                    ])
 
             if gemini_ai_brief:
                 tg_html_lines.append(f"🤖 <b>AI कार्यकारी विश्लेषण (Google Gemini):</b>\n<i>{gemini_ai_brief}</i>\n")
 
-            if report_pending and sp_pend_count > 0:
-                tg_html_lines.append("🚨 <b>2. रेड-अलर्ट डिफ़ॉल्टर सूची (Overdue Escalation):</b>")
-                tg_html_lines.append("<i>(अंतिम स्मरण: आज ही पोर्टल पर प्रविष्टि दर्ज कराएं)</i>")
-                for s_i, ps in enumerate(sp_pending_schools):
-                    mob_str = f' | 📞 <a href="tel:{ps["mobile"]}">{ps["mobile"]}</a>' if ps["mobile"] else ''
-                    tg_html_lines.append(
-                        f"<b>{s_i + 1}. {ps['name']}</b>\n"
-                        f"   ├ कोड: <code>{ps['code']}</code> | {ps['peeo']}\n"
-                        f"   └ {ps['principal']}{mob_str}"
-                    )
-                tg_html_lines.append("")
-            elif report_pending and sp_pend_count == 0:
-                tg_html_lines.append("✅ <b>समान परीक्षा के सभी 57 विद्यालयों के प्रपत्र शत-प्रतिशत प्राप्त हो चुके हैं।</b>\n")
+            if report_pending:
+                if sp_pend_count > 0:
+                    tg_html_lines.append("🚨 <b>2. रेड-अलर्ट डिफ़ॉल्टर सूची (Overdue Escalation):</b>")
+                    tg_html_lines.append("<i>(अंतिम स्मरण: आज ही पोर्टल पर प्रविष्टि दर्ज कराएं)</i>")
+                    for s_i, ps in enumerate(sp_pending_schools):
+                        mob_str = f' | 📞 <a href="tel:{ps["mobile"]}">{ps["mobile"]}</a>' if ps["mobile"] else ''
+                        tg_html_lines.append(
+                            f"<b>{s_i + 1}. {ps['name']}</b>\n"
+                            f"   ├ कोड: <code>{ps['code']}</code> | {ps['peeo']}\n"
+                            f"   └ {ps['principal']}{mob_str}"
+                        )
+                    tg_html_lines.append("")
+                elif include_completed:
+                    tg_html_lines.append("✅ <b>समान परीक्षा के सभी 57 विद्यालयों के प्रपत्र शत-प्रतिशत प्राप्त हो चुके हैं।</b>\n")
 
             # MDM Anomaly Scanner
             if vm_settings.get('mdm_anomaly_scanner', True):
@@ -444,14 +453,20 @@ def main():
         </tr>
         """
 
+    custom_message_html = ""
+    if custom_message:
+        custom_message_html = f"""<div style="background:#fffbeb; border:1.5px solid #fde68a; border-left:4px solid #f59e0b; padding:14px 18px; border-radius:8px; margin-bottom:18px;"><strong style="color:#b45309; font-size:14px;">📢 विशेष प्रशासनिक निर्देश (जितेन्द्र व्यवस्थापक):</strong><p style="margin:6px 0 0 0; color:#1e293b; font-size:13px; font-weight:600; line-height:1.5;">{custom_message}</p></div>"""
+
     gemini_ai_brief_html = ""
     if gemini_ai_brief:
         gemini_ai_brief_html = f"""<div style="background:#eff6ff; border-left:4px solid #2563eb; padding:12px 16px; border-radius:6px; margin-bottom:16px;"><strong style="color:#1e40af; font-size:13px;">🤖 Google Gemini AI कार्यकारी विश्लेषण (Executive Briefing):</strong><p style="margin:4px 0 0 0; color:#1e293b; font-size:13px; line-height:1.45; font-style:italic;">{gemini_ai_brief}</p></div>"""
 
     if sp_pend_count > 0:
         escalation_section_html = f"""<div style="background:#fef2f2; border:1.5px solid #fecaca; border-radius:8px; padding:12px 16px; margin:20px 0 12px 0;"><h4 style="margin:0 0 6px 0; color:#991b1b; font-size:14px;">🚨 2. सख्त समय-सीमा अनुपालन व रेड-अलर्ट सिस्टम (Overdue Escalation):</h4><p style="margin:0 0 10px 0; font-size:12px; color:#7f1d1d;">समय-सीमा पश्चात भी अप्राप्त विद्यालयों के संस्था प्रधानों को अंतिम चेतावनी प्रेषित की गई है।</p><div style="overflow-x:auto;"><table style="width:100%; border-collapse:collapse; font-size:12px;"><thead style="background:#0f172a; color:#ffffff;"><tr><th style="padding:8px 10px;">क्र.</th><th style="padding:8px 10px;">शा.दा. कोड</th><th style="padding:8px 10px;">विद्यालय</th><th style="padding:8px 10px;">PEEO</th><th style="padding:8px 10px;">संस्था प्रधान</th><th style="padding:8px 10px;">मोबाइल</th></tr></thead><tbody>{pending_rows_html}</tbody></table></div></div>"""
-    else:
+    elif include_completed:
         escalation_section_html = """<div style="background:#ecfdf5; color:#065f46; padding:14px; border-radius:8px; font-weight:bold; text-align:center;">✓ समान परीक्षा 2026-27 के सभी विद्यालयों के प्रपत्र शत-प्रतिशत संकलित हो चुके हैं। कोई डिफ़ॉल्टर शेष नहीं है।</div>"""
+    else:
+        escalation_section_html = ""
 
     html_email = f"""
     <!DOCTYPE html>
@@ -468,6 +483,7 @@ def main():
             </div>
 
             <div style="padding:24px 28px;">
+                {custom_message_html}
                 {gemini_ai_brief_html}
                 <h3 style="margin:0 0 16px 0; color:#0f172a; border-left:4px solid #2563eb; padding-left:10px; font-size:16px;">
                     📋 1. जिला समान परीक्षा (सत्र 2026-27) - प्रगति सारांश
