@@ -52,6 +52,8 @@ def main():
         except Exception as e:
             print("Note reading cbeo_vm_settings.json:", e)
 
+    local_custom_message = vm_settings.get('dispatch_config', {}).get('custom_message', '').strip()
+
     # 1B. DIRECT REAL-TIME LIVE SYNC FROM GOOGLE DRIVE (GOOGLE APPS SCRIPT WEB APP)
     # Cloud VM fetches fresh submissions & live Jitendra Admin settings directly from Google Sheet #5
     gas_backend_url = "https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec"
@@ -73,8 +75,17 @@ def main():
                             vm_settings.update(ps['vm_settings'])
                             print("[CBEO-VM] ✓ Live VM Settings synced from Jitendra Admin Portal:", ps['vm_settings'])
                         if 'vm_dispatch_config' in ps and isinstance(ps['vm_dispatch_config'], dict):
-                            vm_settings['dispatch_config'] = ps['vm_dispatch_config']
-                            print("[CBEO-VM] ✓ Live VM Dispatch Config synced from Google Sheet:", ps['vm_dispatch_config'])
+                            cloud_disp = ps['vm_dispatch_config']
+                            if not (cloud_disp.get('custom_message') or '').strip() and local_custom_message:
+                                cloud_disp['custom_message'] = local_custom_message
+                            if 'dispatch_config' not in vm_settings:
+                                vm_settings['dispatch_config'] = {}
+                            vm_settings['dispatch_config'].update(cloud_disp)
+                            print("[CBEO-VM] ✓ Live VM Dispatch Config merged (Custom Msg preserved):", vm_settings['dispatch_config'].get('custom_message'))
+                        elif local_custom_message:
+                            if 'dispatch_config' not in vm_settings:
+                                vm_settings['dispatch_config'] = {}
+                            vm_settings['dispatch_config']['custom_message'] = local_custom_message
                         if 'gemini_api_key' in ps and ps['gemini_api_key']:
                             vm_settings['gemini_api_key'] = ps['gemini_api_key']
         except Exception as ge:
@@ -304,7 +315,7 @@ def main():
     report_demands = dispatch_cfg.get('report_active_demands', True)
     report_peeo = dispatch_cfg.get('report_peeo_summary', True)
     include_completed = dispatch_cfg.get('include_completed_tasks', False)
-    custom_message = (dispatch_cfg.get('custom_message') or '').strip()
+    custom_message = (dispatch_cfg.get('custom_message') or local_custom_message or '').strip()
 
     tone_directives = {
         'formal': "विभागीय औपचारिक भाषा (Official CBEO Administrative Hindi): मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय के औपचारिक परिपत्र शैली में प्रशासनिक व गरिमामयी भाषा का प्रयोग करें।",
@@ -435,9 +446,19 @@ def main():
 
     # 7. Email Notification Engine (SMTP via Gmail OR Google Apps Script Native MailApp)
     DEFAULT_REPORT_EMAIL = "censusbhinai@gmail.com"
+    local_cfg = {}
+    cfg_file = os.path.join(root_dir, 'cbeo_notification_config.json')
+    if os.path.exists(cfg_file):
+        try:
+            with open(cfg_file, 'r', encoding='utf-8') as f:
+                local_cfg = json.load(f)
+        except Exception as e:
+            print("Note reading cbeo_notification_config.json:", e)
+
     email_user = (os.environ.get('EMAIL_USER') or local_cfg.get('EMAIL_USER') or '').strip()
-    email_pass = (os.environ.get('EMAIL_PASS') or local_cfg.get('EMAIL_PASS') or '').strip()
+    email_pass = (os.environ.get('EMAIL_PASS') or local_cfg.get('EMAIL_PASS') or '').replace(' ', '')
     email_to = (os.environ.get('EMAIL_TO') or local_cfg.get('EMAIL_TO') or DEFAULT_REPORT_EMAIL).strip()
+    backup_gas_url = "https://script.google.com/macros/s/AKfycbzmauNuu8DUjgsK-TBdiv45efshvaf6x3Z6bJrhyC2LOmF-yg9ErGq3XWEKZ8Umw8Ao/exec"
 
     # Pre-build HTML and Text Email
     pending_rows_html = ""
@@ -453,20 +474,81 @@ def main():
         </tr>
         """
 
+    # 1. Custom Message HTML with prominent administrative styling
     custom_message_html = ""
     if custom_message:
-        custom_message_html = f"""<div style="background:#fffbeb; border:1.5px solid #fde68a; border-left:4px solid #f59e0b; padding:14px 18px; border-radius:8px; margin-bottom:18px;"><strong style="color:#b45309; font-size:14px;">📢 विशेष प्रशासनिक निर्देश (जितेन्द्र व्यवस्थापक):</strong><p style="margin:6px 0 0 0; color:#1e293b; font-size:13px; font-weight:600; line-height:1.5;">{custom_message}</p></div>"""
+        formatted_cust_msg = "<br>".join([line.strip() for line in custom_message.split("\n") if line.strip()])
+        custom_message_html = f"""
+        <div style="background:#fffbeb; border:2px solid #f59e0b; border-left:6px solid #d97706; padding:16px 20px; border-radius:10px; margin-bottom:20px; box-shadow:0 4px 6px -1px rgba(245,158,11,0.15);">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+                <span style="font-size:18px;">📢</span>
+                <strong style="color:#b45309; font-size:15px; letter-spacing:0.3px;">विशेष प्रशासनिक निर्देश (जितेन्द्र व्यवस्थापक):</strong>
+            </div>
+            <div style="color:#1e293b; font-size:14px; font-weight:600; line-height:1.6; padding-left:4px;">
+                {formatted_cust_msg}
+            </div>
+        </div>
+        """
 
     gemini_ai_brief_html = ""
     if gemini_ai_brief:
         gemini_ai_brief_html = f"""<div style="background:#eff6ff; border-left:4px solid #2563eb; padding:12px 16px; border-radius:6px; margin-bottom:16px;"><strong style="color:#1e40af; font-size:13px;">🤖 Google Gemini AI कार्यकारी विश्लेषण (Executive Briefing):</strong><p style="margin:4px 0 0 0; color:#1e293b; font-size:13px; line-height:1.45; font-style:italic;">{gemini_ai_brief}</p></div>"""
 
-    if sp_pend_count > 0:
-        escalation_section_html = f"""<div style="background:#fef2f2; border:1.5px solid #fecaca; border-radius:8px; padding:12px 16px; margin:20px 0 12px 0;"><h4 style="margin:0 0 6px 0; color:#991b1b; font-size:14px;">🚨 2. सख्त समय-सीमा अनुपालन व रेड-अलर्ट सिस्टम (Overdue Escalation):</h4><p style="margin:0 0 10px 0; font-size:12px; color:#7f1d1d;">समय-सीमा पश्चात भी अप्राप्त विद्यालयों के संस्था प्रधानों को अंतिम चेतावनी प्रेषित की गई है।</p><div style="overflow-x:auto;"><table style="width:100%; border-collapse:collapse; font-size:12px;"><thead style="background:#0f172a; color:#ffffff;"><tr><th style="padding:8px 10px;">क्र.</th><th style="padding:8px 10px;">शा.दा. कोड</th><th style="padding:8px 10px;">विद्यालय</th><th style="padding:8px 10px;">PEEO</th><th style="padding:8px 10px;">संस्था प्रधान</th><th style="padding:8px 10px;">मोबाइल</th></tr></thead><tbody>{pending_rows_html}</tbody></table></div></div>"""
-    elif include_completed:
-        escalation_section_html = """<div style="background:#ecfdf5; color:#065f46; padding:14px; border-radius:8px; font-weight:bold; text-align:center;">✓ समान परीक्षा 2026-27 के सभी विद्यालयों के प्रपत्र शत-प्रतिशत संकलित हो चुके हैं। कोई डिफ़ॉल्टर शेष नहीं है।</div>"""
-    else:
-        escalation_section_html = ""
+    # 2. Saman Pariksha Summary (honors report_saman & include_completed)
+    saman_section_html = ""
+    if report_saman and (sp_pend_count > 0 or include_completed):
+        saman_section_html = f"""
+        <h3 style="margin:0 0 16px 0; color:#0f172a; border-left:4px solid #2563eb; padding-left:10px; font-size:16px;">
+            📋 1. जिला समान परीक्षा (सत्र 2026-27) - प्रगति सारांश
+        </h3>
+        <div style="display:flex; gap:12px; margin-bottom:20px;">
+            <div style="flex:1; background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:12px; text-align:center;">
+                <div style="font-size:11px; color:#1d4ed8; font-weight:700; text-transform:uppercase;">कुल विद्यालय</div>
+                <div style="font-size:24px; font-weight:800; color:#1e3a8a; margin-top:4px;">{total_sp_schools}</div>
+            </div>
+            <div style="flex:1; background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:12px; text-align:center;">
+                <div style="font-size:11px; color:#047857; font-weight:700; text-transform:uppercase;">प्रपत्र प्राप्त</div>
+                <div style="font-size:24px; font-weight:800; color:#065f46; margin-top:4px;">{sp_sub_count}</div>
+                <div style="font-size:11px; color:#059669; font-weight:600;">({sp_percent}%)</div>
+            </div>
+            <div style="flex:1; background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:12px; text-align:center;">
+                <div style="font-size:11px; color:#b91c1c; font-weight:700; text-transform:uppercase;">लंबित विद्यालय</div>
+                <div style="font-size:24px; font-weight:800; color:#991b1b; margin-top:4px;">{sp_pend_count}</div>
+                <div style="font-size:11px; color:#dc2626; font-weight:600;">({round(100 - sp_percent, 1)}%)</div>
+            </div>
+        </div>
+        """
+
+    # 3. Escalation / Defaulter Notice (honors report_pending)
+    escalation_section_html = ""
+    if report_pending:
+        if sp_pend_count > 0:
+            escalation_section_html = f"""<div style="background:#fef2f2; border:1.5px solid #fecaca; border-radius:8px; padding:12px 16px; margin:20px 0 12px 0;"><h4 style="margin:0 0 6px 0; color:#991b1b; font-size:14px;">🚨 2. सख्त समय-सीमा अनुपालन व रेड-अलर्ट सिस्टम (Overdue Escalation):</h4><p style="margin:0 0 10px 0; font-size:12px; color:#7f1d1d;">समय-सीमा पश्चात भी अप्राप्त विद्यालयों के संस्था प्रधानों को अंतिम चेतावनी प्रेषित की गई है।</p><div style="overflow-x:auto;"><table style="width:100%; border-collapse:collapse; font-size:12px;"><thead style="background:#0f172a; color:#ffffff;"><tr><th style="padding:8px 10px;">क्र.</th><th style="padding:8px 10px;">शा.दा. कोड</th><th style="padding:8px 10px;">विद्यालय</th><th style="padding:8px 10px;">PEEO</th><th style="padding:8px 10px;">संस्था प्रधान</th><th style="padding:8px 10px;">मोबाइल</th></tr></thead><tbody>{pending_rows_html}</tbody></table></div></div>"""
+        elif include_completed:
+            escalation_section_html = """<div style="background:#ecfdf5; color:#065f46; border:1.5px solid #a7f3d0; padding:14px; border-radius:8px; font-weight:bold; text-align:center; margin:16px 0;">✓ समान परीक्षा 2026-27 के सभी 57 विद्यालयों के प्रपत्र शत-प्रतिशत संकलित हो चुके हैं। कोई डिफ़ॉल्टर शेष नहीं है।</div>"""
+
+    # 4. Active Demands HTML
+    active_demands_html = ""
+    if report_demands and active_demands:
+        demand_items = "".join([f"<li style='margin-bottom:6px;'><b>{d.get('title', 'मांग')}</b> (अंतिम तिथि: <span style='color:#dc2626; font-weight:bold;'>{d.get('dueDate', 'यथाशीघ्र')}</span>)</li>" for d in active_demands])
+        active_demands_html = f"""
+        <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:8px; padding:14px 18px; margin-top:16px;">
+            <h4 style="margin:0 0 8px 0; color:#1e40af; font-size:14px;">📊 4. सक्रिय सूचना मांगें (Active Information Demands):</h4>
+            <ul style="margin:0; padding-left:20px; font-size:13px; color:#334155;">
+                {demand_items}
+            </ul>
+        </div>
+        """
+
+    # 5. PEEO Summary HTML
+    peeo_section_html = ""
+    if report_peeo:
+        peeo_section_html = """
+        <div style="background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:8px; padding:12px 16px; margin-top:16px;">
+            <h4 style="margin:0 0 4px 0; color:#166534; font-size:13px;">🏢 PEEO क्लस्टर अनुपालन सारांश:</h4>
+            <p style="margin:0; font-size:12px; color:#15803d;">ब्लॉक भिनाय (अजमेर) के समस्त 25 PEEO परिक्षेत्रों में क्लस्टर-स्तरीय मॉनिटरिंग व संकलन निरंतर जारी है।</p>
+        </div>
+        """
 
     html_email = f"""
     <!DOCTYPE html>
@@ -485,33 +567,17 @@ def main():
             <div style="padding:24px 28px;">
                 {custom_message_html}
                 {gemini_ai_brief_html}
-                <h3 style="margin:0 0 16px 0; color:#0f172a; border-left:4px solid #2563eb; padding-left:10px; font-size:16px;">
-                    📋 1. जिला समान परीक्षा (सत्र 2026-27) - प्रगति सारांश
-                </h3>
-
-                <div style="display:flex; gap:12px; margin-bottom:20px;">
-                    <div style="flex:1; background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:12px; text-align:center;">
-                        <div style="font-size:11px; color:#1d4ed8; font-weight:700; text-transform:uppercase;">कुल विद्यालय</div>
-                        <div style="font-size:24px; font-weight:800; color:#1e3a8a; margin-top:4px;">{total_sp_schools}</div>
-                    </div>
-                    <div style="flex:1; background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:12px; text-align:center;">
-                        <div style="font-size:11px; color:#047857; font-weight:700; text-transform:uppercase;">प्रपत्र प्राप्त</div>
-                        <div style="font-size:24px; font-weight:800; color:#065f46; margin-top:4px;">{sp_sub_count}</div>
-                        <div style="font-size:11px; color:#059669; font-weight:600;">({sp_percent}%)</div>
-                    </div>
-                    <div style="flex:1; background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:12px; text-align:center;">
-                        <div style="font-size:11px; color:#b91c1c; font-weight:700; text-transform:uppercase;">लंबित विद्यालय</div>
-                        <div style="font-size:24px; font-weight:800; color:#991b1b; margin-top:4px;">{sp_pend_count}</div>
-                        <div style="font-size:11px; color:#dc2626; font-weight:600;">({round(100 - sp_percent, 1)}%)</div>
-                    </div>
-                </div>
-
+                {saman_section_html}
                 {escalation_section_html}
 
-                <div style="background:#f8fafc; border:1.5px solid #e2e8f0; border-radius:8px; padding:14px 16px; margin-top:20px;">
+                <!-- MDM Status -->
+                <div style="background:#f8fafc; border:1.5px solid #e2e8f0; border-radius:8px; padding:14px 16px; margin-top:16px;">
                     <h4 style="margin:0 0 6px 0; color:#0f172a; font-size:14px;">🍲 3. ब्लॉक MDM निरीक्षण प्रपत्र-2 एवं दैनिक विसंगति मॉनिटर:</h4>
                     <p style="margin:0; font-size:12px; color:#475569;">ब्लॉक भिनाय (अजमेर) के समस्त 25 PEEO परिक्षेत्रों में मिड-डे-मील निरीक्षण प्रपत्र-2 एवं शाला दर्पण उपस्थिति सत्यापन सक्रिय है।</p>
                 </div>
+
+                {active_demands_html}
+                {peeo_section_html}
 
                 <div style="margin-top:28px; text-align:center;">
                     <a href="https://jit9763.github.io/cbeo-bhinai-portal/" style="display:inline-block; background:#1e3a8a; color:#ffffff; font-weight:bold; font-size:14px; padding:12px 28px; border-radius:8px; text-decoration:none; box-shadow:0 4px 12px rgba(30,58,138,0.25);">
@@ -529,6 +595,47 @@ def main():
     </html>
     """
 
+    # Plain text email body
+    report_content_lines = [
+        "कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)",
+        f"दैनिक अनुपालन रिपोर्ट • {time_str} IST",
+        "जिला: अजमेर (AJMER) | ब्लॉक: भिनाय",
+        "------------------------------------------------"
+    ]
+    if custom_message:
+        report_content_lines.extend([
+            "",
+            "📢 विशेष प्रशासनिक निर्देश (जितेन्द्र व्यवस्थापक):",
+            f"{custom_message}",
+            "------------------------------------------------"
+        ])
+    if report_saman and (sp_pend_count > 0 or include_completed):
+        report_content_lines.append(f"1. समान परीक्षा 2026-27: कुल {total_sp_schools} | प्राप्त: {sp_sub_count} ({sp_percent}%) | लंबित: {sp_pend_count}")
+    if report_pending and sp_pend_count > 0:
+        report_content_lines.append("\n2. लंबित डिफ़ॉल्टर विद्यालय:")
+        for idx, ps in enumerate(sp_pending_schools):
+            report_content_lines.append(f"  {idx+1}. {ps['name']} ({ps['code']}) - {ps['principal']} ({ps['mobile']})")
+    if gemini_ai_brief:
+        report_content_lines.extend(["", f"AI विश्लेषण: {gemini_ai_brief}"])
+    if report_demands and active_demands:
+        report_content_lines.append("\nसक्रिय मांगें:")
+        for d in active_demands:
+            report_content_lines.append(f"  • {d.get('title')} (अंतिम तिथि: {d.get('dueDate')})")
+    report_content_lines.extend([
+        "",
+        "आधिकारिक पोर्टल: https://jit9763.github.io/cbeo-bhinai-portal/"
+    ])
+    report_content = "\n".join(report_content_lines)
+
+    # Email Subject: Prominently include Custom Message if provided
+    if custom_message:
+        short_cust = custom_message.replace('\n', ' ').strip()
+        if len(short_cust) > 40:
+            short_cust = short_cust[:37] + '...'
+        email_subject = f"📢 [निर्देश: {short_cust}] | CBEO भिनाय दैनिक अनुपालन रिपोर्ट ({time_str} IST)"
+    else:
+        email_subject = f"🏛️ CBEO भिनाय दैनिक अनुपालन रिपोर्ट ({time_str} IST) - समान परीक्षा {sp_pend_count} लंबित"
+
     email_sent_successfully = False
 
     # Attempt 1: Direct SMTP via Gmail if credentials provided and email enabled
@@ -539,7 +646,7 @@ def main():
             msg = MIMEMultipart('alternative')
             msg['From'] = f"CBEO भिनाय (अजमेर) <{email_user}>"
             msg['To'] = ", ".join(recipients)
-            msg['Subject'] = f"🏛️ CBEO भिनाय दैनिक अनुपालन रिपोर्ट ({time_str} IST) - समान परीक्षा {sp_pend_count} लंबित"
+            msg['Subject'] = email_subject
             msg.attach(MIMEText(report_content, 'plain', 'utf-8'))
             msg.attach(MIMEText(html_email, 'html', 'utf-8'))
 
@@ -559,7 +666,7 @@ def main():
             payload = {
                 "action": "send_email",
                 "email_to": email_to,
-                "subject": f"🏛️ CBEO भिनाय दैनिक अनुपालन रिपोर्ट ({time_str} IST) - समान परीक्षा {sp_pend_count} लंबित",
+                "subject": email_subject,
                 "html_body": html_email,
                 "body": report_content
             }
@@ -576,12 +683,6 @@ def main():
                 print(f"GAS Email dispatch failed: {err_msg}")
         except Exception as e:
             print("Google Apps Script email dispatch note:", e)
-
-    if not email_sent_successfully and not email_to:
-        print("Note: Email address (EMAIL_TO) not provided; skipping email notification.")
-
-    # 8. Ping Master Backup Apps Script to record audit log
-    backup_gas_url = "https://script.google.com/macros/s/AKfycbzmauNuu8DUjgsK-TBdiv45efshvaf6x3Z6bJrhyC2LOmF-yg9ErGq3XWEKZ8Umw8Ao/exec"
     if requests:
         try:
             print("Syncing VM run audit log to Google Drive Master Backup sheet...")

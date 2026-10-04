@@ -21,6 +21,8 @@
     "report_pending_schools": true,
     "report_active_demands": true,
     "report_peeo_summary": true,
+    "include_completed_tasks": false,
+    "custom_message": "⚠️ ध्यान दें: सभी संस्था प्रधान कल दोपहर 2:00 बजे तक वांछित प्रपत्र अनिवार्यतः लॉक करें। (जितेन्द्र व्यवस्थापक - अजमेर)",
     "gemini_tone": "warning",
     "target_email": "censusbhinai@gmail.com"
   },

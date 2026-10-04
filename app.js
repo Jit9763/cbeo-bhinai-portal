@@ -13325,6 +13325,118 @@ async function triggerManualVMDispatch() {
   await triggerCloudVMManualNow();
 }
 
+async function sendTestEmailNow() {
+  await saveVMDispatchConfig();
+  const btn = event?.target?.closest('button');
+  const origHtml = btn ? btn.innerHTML : '<i class="fas fa-envelope"></i> 📧 ईमेल टेस्ट देखें';
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> प्रेषित हो रहा है...';
+  }
+
+  const custMsgInput = document.getElementById('vm-custom-message-input');
+  const customMessage = custMsgInput ? custMsgInput.value.trim() : '';
+  const sChk = document.getElementById('vm-rep-saman');
+  const pChk = document.getElementById('vm-rep-pending');
+  const incChk = document.getElementById('vm-rep-include-completed');
+
+  const reportSaman = sChk ? sChk.checked : true;
+  const reportPending = pChk ? pChk.checked : true;
+  const includeCompleted = incChk ? incChk.checked : false;
+
+  const totalSchools = 57;
+  const subCount = Object.keys(STATE.samanParikshaSubmissions || {}).length;
+  const pendCount = Math.max(0, totalSchools - subCount);
+  const timeStr = new Date().toLocaleString('hi-IN', { timeZone: 'Asia/Kolkata' }) + ' IST';
+
+  let subject = customMessage
+    ? `📢 [निर्देश: ${customMessage.replace(/\n/g, ' ').substring(0, 40)}] | CBEO भिनाय टेस्ट अनुपालन रिपोर्ट (${timeStr})`
+    : `🏛️ CBEO भिनाय दैनिक अनुपालन रिपोर्ट (${timeStr}) - समान परीक्षा ${pendCount} लंबित`;
+
+  let customHtml = '';
+  if (customMessage) {
+    const formatted = customMessage.split('\n').map(l => l.trim()).filter(Boolean).join('<br>');
+    customHtml = `
+      <div style="background:#fffbeb; border:2px solid #f59e0b; border-left:6px solid #d97706; padding:16px 20px; border-radius:10px; margin-bottom:20px;">
+        <strong style="color:#b45309; font-size:15px;">📢 विशेष प्रशासनिक निर्देश (जितेन्द्र व्यवस्थापक):</strong>
+        <p style="margin:8px 0 0 0; color:#1e293b; font-size:14px; font-weight:600; line-height:1.6;">${formatted}</p>
+      </div>
+    `;
+  }
+
+  let samanHtml = '';
+  if (reportSaman && (pendCount > 0 || includeCompleted)) {
+    samanHtml = `
+      <h3 style="margin:0 0 16px 0; color:#0f172a; border-left:4px solid #2563eb; padding-left:10px; font-size:16px;">
+        📋 1. जिला समान परीक्षा (सत्र 2026-27) - प्रगति सारांश
+      </h3>
+      <div style="display:flex; gap:12px; margin-bottom:20px;">
+        <div style="flex:1; background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:12px; text-align:center;">
+          <div style="font-size:11px; color:#1d4ed8; font-weight:700;">कुल विद्यालय</div>
+          <div style="font-size:24px; font-weight:800; color:#1e3a8a;">${totalSchools}</div>
+        </div>
+        <div style="flex:1; background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:12px; text-align:center;">
+          <div style="font-size:11px; color:#047857; font-weight:700;">प्रपत्र प्राप्त</div>
+          <div style="font-size:24px; font-weight:800; color:#065f46;">${subCount}</div>
+        </div>
+        <div style="flex:1; background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:12px; text-align:center;">
+          <div style="font-size:11px; color:#b91c1c; font-weight:700;">लंबित</div>
+          <div style="font-size:24px; font-weight:800; color:#991b1b;">${pendCount}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  const htmlBody = `
+    <!DOCTYPE html><html><body style="font-family:sans-serif; background:#f1f5f9; padding:20px; color:#1e293b;">
+      <div style="max-width:700px; margin:0 auto; background:#ffffff; border-radius:12px; overflow:hidden; border:1px solid #e2e8f0; box-shadow:0 8px 20px rgba(0,0,0,0.06);">
+        <div style="background:linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color:#fff; padding:22px; text-align:center; border-bottom:4px solid #f59e0b;">
+          <h2 style="margin:0; font-size:19px;">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</h2>
+          <div style="font-size:13px; color:#93c5fd; margin-top:4px;">जिला: अजमेर (AJMER) | ब्लॉक: भिनाय (BHINAI)</div>
+          <div style="display:inline-block; margin-top:8px; background:rgba(255,255,255,0.15); padding:3px 12px; border-radius:16px; font-size:11px; color:#fde047;">
+            📧 प्रशासनिक टेस्ट ईमेल अनुपालन रिपोर्ट • ${timeStr}
+          </div>
+        </div>
+        <div style="padding:22px;">
+          ${customHtml}
+          ${samanHtml}
+          <div style="margin-top:24px; text-align:center;">
+            <a href="https://jit9763.github.io/cbeo-bhinai-portal/" style="display:inline-block; background:#1e3a8a; color:#fff; font-weight:bold; font-size:13px; padding:10px 24px; border-radius:6px; text-decoration:none;">
+              🌐 CBEO भिनाय आधिकारिक पोर्टल खोलें
+            </a>
+          </div>
+        </div>
+        <div style="background:#f8fafc; padding:14px; border-top:1px solid #e2e8f0; font-size:11px; color:#64748b; text-align:center;">
+          कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), ब्लॉक भिनाय, जिला अजमेर (राजस्थान)
+        </div>
+      </div>
+    </body></html>
+  `;
+
+  try {
+    const gasUrl = "https://script.google.com/macros/s/AKfycbzmauNuu8DUjgsK-TBdiv45efshvaf6x3Z6bJrhyC2LOmF-yg9ErGq3XWEKZ8Umw8Ao/exec";
+    await fetch(gasUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        action: 'send_email',
+        email_to: 'censusbhinai@gmail.com',
+        subject: subject,
+        html_body: htmlBody,
+        body: customMessage || 'CBEO Bhinai Compliance Report'
+      })
+    });
+    showToast('🎉 टेस्ट ईमेल censusbhinai@gmail.com पर सफलतापूर्वक भेज दिया गया है!', 'success');
+  } catch(e) {
+    showToast('ईमेल प्रेषण स्थिति: ' + e.message, 'info');
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = origHtml;
+    }
+  }
+}
+
 /* =========================================================================
    CONSOLIDATED ADMIN HUBS HELPERS (लाए गए बिखरे हुए कंट्रोल्स)
    ========================================================================= */
