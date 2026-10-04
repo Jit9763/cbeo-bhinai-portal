@@ -12512,25 +12512,42 @@ let CURRENT_VM_SETTINGS = {
   email_alerts: true,
   overdue_escalation: true,
   mdm_anomaly_scanner: true,
-  slots: ["12:00 PM", "02:00 PM", "04:00 PM", "08:00 PM"]
+  slots: ["12:07 PM", "02:07 PM", "04:07 PM", "08:07 PM"]
 };
 
 async function loadAndRenderVMControlCard() {
   const card = document.getElementById('jitendra-cloud-vm-control-card');
   if (!card) return;
 
-  // 1. First, load from localStorage / STATE.portalSettings for instant cloud/client UI render
+  // 1. Fetch published cbeo_vm_settings.json from GitHub Pages with nocache
   try {
-    const localVm = JSON.parse(localStorage.getItem('cbeo_vm_settings') || 'null');
-    if (localVm) {
-      CURRENT_VM_SETTINGS = Object.assign({}, CURRENT_VM_SETTINGS, localVm);
-    } else if (STATE.portalSettings && STATE.portalSettings.vm_settings) {
-      CURRENT_VM_SETTINGS = Object.assign({}, CURRENT_VM_SETTINGS, STATE.portalSettings.vm_settings);
+    const remoteRes = await fetch('cbeo_vm_settings.json?_nocache=' + Date.now());
+    if (remoteRes.ok) {
+      const remoteSettings = await remoteRes.json();
+      if (remoteSettings && remoteSettings.slots) {
+        CURRENT_VM_SETTINGS = Object.assign({}, CURRENT_VM_SETTINGS, remoteSettings);
+      }
     }
   } catch(e) {}
 
-  if (!Array.isArray(CURRENT_VM_SETTINGS.slots)) {
-    CURRENT_VM_SETTINGS.slots = ["12:00 PM", "02:00 PM", "04:00 PM", "08:00 PM"];
+  // 2. Overlay live Google Sheet settings (STATE.portalSettings)
+  try {
+    if (STATE.portalSettings && STATE.portalSettings.vm_settings) {
+      CURRENT_VM_SETTINGS = Object.assign({}, CURRENT_VM_SETTINGS, STATE.portalSettings.vm_settings);
+    } else {
+      const localVm = JSON.parse(localStorage.getItem('cbeo_vm_settings') || 'null');
+      if (localVm) {
+        // Invalidate stale 12:00 PM slots cache
+        if (localVm.slots && localVm.slots.includes('12:00 PM') && !localVm.slots.includes('12:07 PM')) {
+          delete localVm.slots;
+        }
+        CURRENT_VM_SETTINGS = Object.assign({}, CURRENT_VM_SETTINGS, localVm);
+      }
+    }
+  } catch(e) {}
+
+  if (!Array.isArray(CURRENT_VM_SETTINGS.slots) || CURRENT_VM_SETTINGS.slots.length === 0) {
+    CURRENT_VM_SETTINGS.slots = ["12:07 PM", "02:07 PM", "04:07 PM", "08:07 PM"];
   }
 
   // Update Power switch UI
