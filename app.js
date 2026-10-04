@@ -12558,7 +12558,38 @@ async function loadAndRenderVMControlCard() {
     toneSelectEl.oninput = updateGeminiTonePreview;
   }
 
-  // 2. Ping local/VM server in background if running (won't error if purely on GitHub Pages)
+  // 2. Fetch live VM execution status directly from GitHub Actions Cloud API (100% Cloud, No Local Server needed)
+  try {
+    const ghRes = await fetch('https://api.github.com/repos/Jit9763/cbeo-bhinai-portal/actions/workflows/373355255/runs?per_page=1');
+    if (ghRes.ok) {
+      const ghData = await ghRes.json();
+      const latestRun = (ghData.workflow_runs && ghData.workflow_runs[0]);
+      if (latestRun) {
+        const lastTimeEl = document.getElementById('vm-last-run-time');
+        const lastStatusEl = document.getElementById('vm-last-run-status');
+        if (lastTimeEl && latestRun.created_at) {
+          const d = new Date(latestRun.created_at);
+          lastTimeEl.textContent = d.toLocaleString('hi-IN', { timeZone: 'Asia/Kolkata' }) + ' IST';
+        }
+        if (lastStatusEl) {
+          if (latestRun.status === 'in_progress') {
+            lastStatusEl.textContent = '⚙️ RUNNING';
+            lastStatusEl.style.color = '#f59e0b';
+          } else if (latestRun.conclusion === 'success') {
+            lastStatusEl.textContent = '✓ SUCCESS';
+            lastStatusEl.style.color = '#34d399';
+          } else {
+            lastStatusEl.textContent = '⚠️ ' + (latestRun.conclusion || latestRun.status).toUpperCase();
+            lastStatusEl.style.color = '#f87171';
+          }
+        }
+      }
+    }
+  } catch (err) {
+    console.warn('GitHub Cloud VM status fetch note:', err);
+  }
+
+  // Optional local server status fallback if on local dev
   try {
     const res = await fetch('/api/get_vm_status');
     if (res.ok) {
@@ -12570,18 +12601,8 @@ async function loadAndRenderVMControlCard() {
         updateChannelToggleBtn('toggle-vm-email', CURRENT_VM_SETTINGS.email_alerts !== false);
         renderVMScheduleChips();
       }
-      const lastTimeEl = document.getElementById('vm-last-run-time');
-      const lastStatusEl = document.getElementById('vm-last-run-status');
-      if (lastTimeEl && CURRENT_VM_SETTINGS.last_run_time) {
-        lastTimeEl.textContent = CURRENT_VM_SETTINGS.last_run_time;
-      }
-      if (lastStatusEl && CURRENT_VM_SETTINGS.last_run_status) {
-        lastStatusEl.textContent = '✓ ' + CURRENT_VM_SETTINGS.last_run_status.toUpperCase();
-      }
     }
-  } catch (err) {
-    // Pure cloud mode (GitHub Pages) - perfectly normal!
-  }
+  } catch (err) {}
 }
 
 function setVMMasterPower(isOn, notify = true) {
@@ -12784,37 +12805,183 @@ async function testTelegramDirect() {
   }
 }
 
+function getCloudVMDispatchToken() {
+  if (STATE.portalSettings && STATE.portalSettings.github_token) {
+    return STATE.portalSettings.github_token;
+  }
+  const stored = localStorage.getItem('cbeo_gh_token');
+  if (stored) return stored;
+  return '';
+}
+
 async function triggerCloudVMManualNow() {
   const btn = document.getElementById('btn-trigger-cloud-vm');
-  const origHtml = btn ? btn.innerHTML : '';
+  const origHtml = btn ? btn.innerHTML : '<i class="fas fa-bolt"></i> 🚀 क्लाउड VM अभी चलाएं';
   if (btn) {
     btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> क्लाउड VM आरंभ हो रहा है...';
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 🚀 Cloud VM आरंभ हो रहा है...';
   }
 
-  try {
-    const res = await fetch('/api/trigger_vm', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'manual_trigger' })
-    });
-    const data = await res.json();
-    if (data && data.success) {
-      showToast(data.message || '🚀 क्लाउड VM सफलतापूर्वक ट्रिगर कर दिया गया!', 'success');
-      setTimeout(() => {
-        loadAndRenderVMControlCard();
-      }, 5000);
+  showToast('🚀 GitHub Actions Cloud VM को सीधे क्लाउड से ट्रिगर किया जा रहा है...', 'info');
+
+  let GITHUB_TOKEN = getCloudVMDispatchToken();
+  if (!GITHUB_TOKEN) {
+    try {
+      const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+        || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url)
+        || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+      const aRes = await fetch(gasUrl + '?action=getAuth&_nocache=' + Date.now());
+      if (aRes.ok) {
+        const aData = await aRes.json();
+        const raw = aData.users && aData.users.__PORTAL_SETTINGS__;
+        const pwd = raw && (typeof raw === 'object' ? raw.password : raw);
+        const ps = (typeof pwd === 'string' ? JSON.parse(pwd) : pwd) || {};
+        if (ps.github_token) {
+          GITHUB_TOKEN = ps.github_token;
+          if (!STATE.portalSettings) STATE.portalSettings = {};
+          STATE.portalSettings.github_token = ps.github_token;
+          localStorage.setItem('cbeo_gh_token', ps.github_token);
+        }
+      }
+    } catch(e) {}
+  }
+
+  if (!GITHUB_TOKEN) {
+    const inputToken = prompt("GitHub Actions Runner Token दर्ज करें:");
+    if (inputToken) {
+      GITHUB_TOKEN = inputToken.trim();
+      localStorage.setItem('cbeo_gh_token', GITHUB_TOKEN);
+      if (!STATE.portalSettings) STATE.portalSettings = {};
+      STATE.portalSettings.github_token = GITHUB_TOKEN;
+      savePortalSettingsToCloud();
     } else {
-      showToast('नोट: GitHub Actions Cloud VM शेड्यूल से स्वचालित रूप से चलेगा।', 'info');
+      if (btn) { btn.disabled = false; btn.innerHTML = origHtml; }
+      return;
+    }
+  }
+
+  const REPO = 'Jit9763/cbeo-bhinai-portal';
+
+  try {
+    // 1. Direct GitHub Actions Workflow Dispatch REST API call from browser
+    const resp = await fetch(`https://api.github.com/repos/${REPO}/actions/workflows/cbeo_vm_automation.yml/dispatches`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `token ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ref: 'main' })
+    });
+
+    if (resp.status === 204 || resp.ok) {
+      showToast('✅ GitHub Cloud VM सफलतापूर्वक शुरू हो गया! 1 मिनट में रिपोर्ट व अलर्ट प्रेषित हो जाएंगे।', 'success');
+      
+      const badge = document.getElementById('vm-live-master-badge');
+      if (badge) {
+        badge.textContent = '⚙️ VM निष्पादन जारी... (In Progress)';
+        badge.style.background = '#fef3c7';
+        badge.style.color = '#92400e';
+        badge.style.borderColor = '#fde68a';
+      }
+
+      // Live status polling directly from GitHub Actions API
+      pollGitHubVMStatus(GITHUB_TOKEN, REPO);
+      return;
+    } else {
+      const errJson = await resp.json().catch(() => ({}));
+      console.warn('GitHub Dispatch warning:', resp.status, errJson);
+      
+      // Fallback: ping local if running in dev environment
+      try {
+        const localRes = await fetch('/api/trigger_vm', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'manual_trigger' })
+        });
+        const localData = await localRes.json();
+        if (localData && localData.success) {
+          showToast('✓ VM ट्रिगर सफल!', 'success');
+          return;
+        }
+      } catch(le) {}
+
+      showToast('GitHub Cloud VM रिस्पांस: ' + (errJson.message || resp.statusText), 'warning');
     }
   } catch (err) {
-    showToast('नोट: GitHub Actions Cloud VM शेड्यूल से स्वचालित रूप से चलेगा।', 'info');
+    console.error('Trigger Cloud VM error:', err);
+    showToast('क्लाउड VM ट्रिगर नेटवर्क त्रुटि: ' + err.message, 'danger');
   } finally {
     if (btn) {
       btn.disabled = false;
       btn.innerHTML = origHtml;
     }
   }
+}
+
+function pollGitHubVMStatus(token, repo) {
+  let attempts = 0;
+  const maxAttempts = 20; // 20 * 4s = 80s
+  const interval = setInterval(async () => {
+    attempts++;
+    try {
+      const res = await fetch(`https://api.github.com/repos/${repo}/actions/workflows/373355255/runs?per_page=1`, {
+        headers: {
+          'Authorization': `token ${token}`,
+          'Accept': 'application/vnd.github.v3+json'
+        }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const latest = (data.workflow_runs && data.workflow_runs[0]);
+        if (latest) {
+          const status = latest.status;
+          const conclusion = latest.conclusion;
+
+          const lastTimeEl = document.getElementById('vm-last-run-time');
+          const lastStatusEl = document.getElementById('vm-last-run-status');
+          const badge = document.getElementById('vm-live-master-badge');
+
+          if (status === 'completed') {
+            clearInterval(interval);
+            if (conclusion === 'success') {
+              showToast('🎉 GitHub Actions Cloud VM निष्पादन 100% सफल! Telegram व Email प्रेषित हो गए।', 'success');
+              if (lastTimeEl) lastTimeEl.textContent = new Date().toLocaleString('hi-IN', { timeZone: 'Asia/Kolkata' }) + ' IST';
+              if (lastStatusEl) {
+                lastStatusEl.textContent = '✓ SUCCESS';
+                lastStatusEl.style.color = '#34d399';
+              }
+              if (badge) {
+                badge.textContent = '● VM सक्रिय (Active)';
+                badge.style.background = '#ecfdf5';
+                badge.style.color = '#065f46';
+                badge.style.borderColor = '#a7f3d0';
+              }
+            } else {
+              showToast(`⚠️ Cloud VM निष्पादन समाप्त: ${conclusion}`, 'warning');
+              if (badge) {
+                badge.textContent = '⚠️ ' + conclusion.toUpperCase();
+              }
+            }
+          } else {
+            if (badge) {
+              badge.textContent = `⚙️ VM प्रगति पर... (${attempts * 4}s)`;
+            }
+          }
+        }
+      }
+    } catch(e) {}
+
+    if (attempts >= maxAttempts) {
+      clearInterval(interval);
+      const badge = document.getElementById('vm-live-master-badge');
+      if (badge) {
+        badge.textContent = '● VM सक्रिय (Active)';
+        badge.style.background = '#ecfdf5';
+        badge.style.color = '#065f46';
+      }
+    }
+  }, 4000);
 }
 
 // =========================================================================
@@ -12933,40 +13100,8 @@ async function saveVMDispatchConfig() {
 }
 
 async function triggerManualVMDispatch() {
-  showToast('🚀 रिपोर्ट प्रेषण आरंभ: Telegram बॉट व Gmail SMTP कनेक्ट किया जा रहा है...', 'info');
-  
-  // 1. Try local / VM backend
-  try {
-    const res = await fetch('/api/trigger_vm_report', { method: 'POST' });
-    const data = await res.json();
-    if (data && data.success) {
-      showToast('✓ VM रिपोर्ट टेलीग्राम व ईमेल पर सफलतापूर्वक प्रेषित कर दी गई!', 'success');
-      return;
-    }
-  } catch(e) {}
-
-  // 2. Fallback to Google Apps Script Web App email trigger if configured
-  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
-    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
-    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
-
-  try {
-    fetch(gasUrl, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        action: 'triggerDispatchAlert',
-        config: JSON.parse(localStorage.getItem('cbeo_vm_dispatch_config') || '{}')
-      })
-    }).then(() => {
-      showToast('✓ क्लाउड रिपोर्ट अलर्ट प्रेषित कर दिया गया!', 'success');
-    }).catch(err => {
-      showToast('क्लाउड ट्रिगर नोट: GitHub Actions शेड्यूल से रिपोर्ट नियत समय पर प्रेषित होगी।', 'info');
-    });
-  } catch(err) {
-    showToast('क्लाउड ट्रिगर नोट: GitHub Actions शेड्यूल से रिपोर्ट नियत समय पर प्रेषित होगी।', 'info');
-  }
+  await saveVMDispatchConfig();
+  await triggerCloudVMManualNow();
 }
 
 /* =========================================================================

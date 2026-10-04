@@ -52,12 +52,40 @@ def main():
         except Exception as e:
             print("Note reading cbeo_vm_settings.json:", e)
 
-    # Check if VM is disabled by Jitendra Admin
+    # 1B. DIRECT REAL-TIME LIVE SYNC FROM GOOGLE DRIVE (GOOGLE APPS SCRIPT WEB APP)
+    # Cloud VM fetches fresh submissions & live Jitendra Admin settings directly from Google Sheet #5
+    gas_backend_url = "https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec"
+    if requests:
+        try:
+            print("[CBEO-VM] 🔄 Fetching live settings & submissions from Google Drive Sheet...")
+            # 1. Fetch live VM dispatch & portal settings
+            auth_resp = requests.get(f"{gas_backend_url}?action=getAuth&_nocache={int(datetime.datetime.now().timestamp())}", timeout=15)
+            if auth_resp.status_code == 200:
+                auth_json = auth_resp.json()
+                users = auth_json.get('users', {})
+                if '__PORTAL_SETTINGS__' in users:
+                    raw_ps = users['__PORTAL_SETTINGS__']
+                    pwd = raw_ps.get('password') if isinstance(raw_ps, dict) else raw_ps
+                    ps = json.loads(pwd) if isinstance(pwd, str) else pwd
+                    if isinstance(ps, dict):
+                        # Merge live VM settings from Jitendra Super Admin web portal
+                        if 'vm_settings' in ps and isinstance(ps['vm_settings'], dict):
+                            vm_settings.update(ps['vm_settings'])
+                            print("[CBEO-VM] ✓ Live VM Settings synced from Jitendra Admin Portal:", ps['vm_settings'])
+                        if 'vm_dispatch_config' in ps and isinstance(ps['vm_dispatch_config'], dict):
+                            vm_settings['dispatch_config'] = ps['vm_dispatch_config']
+                            print("[CBEO-VM] ✓ Live VM Dispatch Config synced from Google Sheet:", ps['vm_dispatch_config'])
+                        if 'gemini_api_key' in ps and ps['gemini_api_key']:
+                            vm_settings['gemini_api_key'] = ps['gemini_api_key']
+        except Exception as ge:
+            print(f"[CBEO-VM] Note on Live Settings Sync: {ge}")
+
+    # Check if VM is disabled by Jitendra Admin in Website Portal Settings
     action_type = os.environ.get('ACTION_TYPE', 'all').lower()
     is_manual = action_type in ['manual', 'force'] or len(sys.argv) > 1 and sys.argv[1] == '--force'
 
     if not vm_settings.get('vm_enabled', True) and not is_manual:
-        print("[CBEO-VM] 🛑 VM Automation is currently turned OFF by Jitendra Admin in Portal Settings. Exiting safely.")
+        print("[CBEO-VM] 🛑 VM Automation is currently turned OFF by Jitendra Admin in Website Portal Settings. Exiting safely.")
         return
 
     if not os.path.exists(data_path):
@@ -71,7 +99,7 @@ def main():
     demands = master_data.get('demands', [])
     peeos = master_data.get('peeos', [])
     
-    # Load Saman Pariksha submissions (Merge from both files)
+    # Load Saman Pariksha submissions
     saman_subs = dict(master_data.get('saman_pariksha_submissions', {}))
     if os.path.exists(saman_subs_path):
         try:
@@ -80,13 +108,9 @@ def main():
         except Exception as e:
             print("Note reading saman_pariksha_submissions.json:", e)
 
-    # 1B. DIRECT REAL-TIME LIVE SYNC FROM GOOGLE DRIVE (GOOGLE APPS SCRIPT WEB APP)
-    # This guarantees the Cloud VM ALWAYS receives 100% fresh live submissions directly from Google Sheet #5
-    # without requiring any manual laptop python sync!
-    gas_backend_url = "https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec"
+    # Fetch fresh submissions from Google Sheet
     if requests:
         try:
-            print("[CBEO-VM] 🔄 Fetching live data directly from Google Drive Sheet via Apps Script Web App...")
             live_resp = requests.get(f"{gas_backend_url}?action=getAll", timeout=20)
             if live_resp.status_code == 200:
                 live_json = live_resp.json()
@@ -94,19 +118,6 @@ def main():
                     live_subs = live_json['submissions']
                     saman_subs.update(live_subs)
                     print(f"[CBEO-VM] ✓ Live Google Drive Sync SUCCESS: Fetched {len(live_subs)} submissions directly from Sheet!")
-            
-            # Fetch live VM dispatch settings from Google Sheet
-            auth_resp = requests.get(f"{gas_backend_url}?action=getAuth&_nocache={int(datetime.datetime.now().timestamp())}", timeout=15)
-            if auth_resp.status_code == 200:
-                auth_json = auth_resp.json()
-                users = auth_json.get('users', {})
-                if '__PORTAL_SETTINGS__' in users:
-                    raw_ps = users['__PORTAL_SETTINGS__']
-                    pwd = raw_ps.get('password') if isinstance(raw_ps, dict) else raw_ps
-                    ps = json.loads(pwd) if isinstance(pwd, str) else pwd
-                    if isinstance(ps, dict) and 'vm_dispatch_config' in ps:
-                        vm_settings['dispatch_config'] = ps['vm_dispatch_config']
-                        print("[CBEO-VM] ✓ Live VM Dispatch Config synced from Google Sheet:", ps['vm_dispatch_config'])
                     # Persist to local json files on runner
                     try:
                         with open(saman_subs_path, 'w', encoding='utf-8') as sf:
@@ -114,18 +125,13 @@ def main():
                         master_data['saman_pariksha_submissions'] = saman_subs
                         with open(data_path, 'w', encoding='utf-8') as mf:
                             json.dump(master_data, mf, ensure_ascii=False, indent=2)
-                        # Also update master_cbeo_data.js
                         js_path = os.path.join(root_dir, 'master_cbeo_data.js')
                         with open(js_path, 'w', encoding='utf-8') as jf:
                             jf.write("const MASTER_CBEO_DATA = " + json.dumps(master_data, ensure_ascii=False, indent=2) + ";\n")
                     except Exception as we:
                         print("Note updating local cache:", we)
-                else:
-                    print(f"[CBEO-VM] Note from Apps Script: {live_json.get('message', 'No submissions found')}")
-            else:
-                print(f"[CBEO-VM] Note: Apps Script HTTP status: {live_resp.status_code}")
-        except Exception as ge:
-            print(f"[CBEO-VM] Note on Live Google Drive Sync: {ge}; using local fallback.")
+        except Exception as e:
+            print(f"[CBEO-VM] Note on Google Sheet Submissions sync: {e}")
 
     print(f"Loaded {len(schools_57)} Secondary/Sr. Secondary Schools, {len(peeos)} PEEOs, {len(saman_subs)} Saman Pariksha Submissions.")
 
