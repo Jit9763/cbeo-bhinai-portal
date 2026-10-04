@@ -5,13 +5,14 @@
   "overdue_escalation": true,
   "mdm_anomaly_scanner": true,
   "slots": [
-    "12:00 PM",
-    "02:00 PM",
-    "04:00 PM",
-    "08:00 PM"
+    "12:07 PM",
+    "02:07 PM",
+    "04:07 PM",
+    "08:07 PM"
   ],
-  "last_run_time": "03-10-2026 02:01 AM IST",
-  "last_run_id": "local_test_pass",
+  "last_run_time": "04-10-2026 05:07 PM IST",
+  "last_run_id": "37199343002",
+  "last_run_status": "success",
   "admin_phone": "9928254317",
   "gemini_api_key": "",
   "ai_model": "gemini-1.5-flash",
