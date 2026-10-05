@@ -10,13 +10,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261005_v22">
+  <link rel="stylesheet" href="styles.css?v=20261005_v23">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script>
     // Automated Hard Refresh & Client-Side Cache Purge on New Version
     (function() {
-      var CLIENT_VERSION = 'v22_2026_10_05_bilingual_mismatch';
+      var CLIENT_VERSION = 'v23_2026_10_05_syllabus_zero_enrolment';
       var lastVer = localStorage.getItem('cbeo_client_app_version');
       if (lastVer !== CLIENT_VERSION) {
         localStorage.setItem('cbeo_client_app_version', CLIENT_VERSION);
@@ -3936,7 +3936,7 @@
             <div>
               <h4 id="syl-school-name" style="margin:0; color:#1e3a8a; font-size:1.05rem; font-weight:800">रा.उ.मा.वि. बांदनवाड़ा</h4>
               <div style="font-size:0.82rem; color:#64748b; margin-top:2px">
-                शाला दर्पण कोड: <strong id="syl-school-code" style="color:#0f172a">221769</strong> | PEEO: <strong id="syl-peeo-name" style="color:#0f172a">PEEO BANDANWARA</strong> | श्रेणी: <span id="syl-school-category" class="badge" style="background:#e0f2fe; color:#0369a1">Govt. Sr. Sec.</span>
+                परीक्षा कोड: <strong id="syl-exam-code" style="color:#1e3a8a; background:#e0f2fe; padding:2px 8px; border-radius:4px; font-weight:800">AJM04G221769</strong> | शाला दर्पण कोड: <strong id="syl-school-code" style="color:#0f172a">221769</strong> | PEEO: <strong id="syl-peeo-name" style="color:#0f172a">PEEO BANDANWARA</strong> | श्रेणी: <span id="syl-school-category" class="badge" style="background:#e0f2fe; color:#0369a1">Govt. Sr. Sec.</span>
               </div>
             </div>
             <div id="syl-form-status-badge">
@@ -3951,11 +3951,20 @@
 
         <!-- SECTION A: CLASS 9 (7 SUBJECTS) -->
         <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:10px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:0 1px 3px rgba(0,0,0,0.03)">
-          <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.85rem; border-bottom:1.5px solid #e0e7ff; padding-bottom:0.5rem">
-            <span class="badge" style="background:#4338ca; color:#ffffff; font-size:0.85rem; font-weight:800; padding:4px 10px">कक्षा 9वीं</span>
-            <strong style="font-size:0.95rem; color:#1e1b4b">पाठ्यक्रम पूर्णता प्रतिशत (5 अनिवार्य + 2 तृतीय भाषा विषय = कुल 7 कॉलम)</strong>
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.85rem; border-bottom:1.5px solid #e0e7ff; padding-bottom:0.5rem">
+            <div style="display:flex; align-items:center; gap:0.5rem">
+              <span class="badge" style="background:#4338ca; color:#ffffff; font-size:0.85rem; font-weight:800; padding:4px 10px">कक्षा 9वीं</span>
+              <strong style="font-size:0.95rem; color:#1e1b4b">पाठ्यक्रम पूर्णता प्रतिशत (5 अनिवार्य + 2 तृतीय भाषा विषय = कुल 7 कॉलम)</strong>
+            </div>
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; font-size:0.82rem; font-weight:700; color:#b91c1c; background:#fef2f2; border:1px solid #fecaca; padding:4px 10px; border-radius:6px; margin:0">
+              <input type="checkbox" id="syl_c9_zero_enrolment" onchange="toggleSyllabusClassZero('c9', this.checked)" style="width:16px; height:16px">
+              <span>शून्य नामांकन (लागू नहीं)</span>
+            </label>
           </div>
-          <div class="form-grid" style="grid-template-columns:repeat(auto-fit, minmax(115px, 1fr)); gap:0.6rem">
+          <div id="syl_c9_zero_banner" style="display:none; background:#f8fafc; border:1.5px dashed #64748b; border-radius:8px; padding:12px; text-align:center; color:#0f172a; font-weight:800; font-size:0.92rem; margin-bottom:0.5rem">
+            🚫 कक्षा 9वीं में शून्य नामांकन दर्ज है (कक्षा संचालित नहीं / लागू नहीं)
+          </div>
+          <div id="syl_c9_inputs_container" class="form-grid" style="grid-template-columns:repeat(auto-fit, minmax(115px, 1fr)); gap:0.6rem">
             <div class="form-group" style="margin:0">
               <label style="font-size:0.78rem; font-weight:700; color:#1e293b">1. हिन्दी (%)</label>
               <input type="number" id="syl_c9_hindi" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
@@ -3989,11 +3998,20 @@
 
         <!-- SECTION B: CLASS 10 (7 SUBJECTS) -->
         <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:10px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:0 1px 3px rgba(0,0,0,0.03)">
-          <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.85rem; border-bottom:1.5px solid #e0e7ff; padding-bottom:0.5rem">
-            <span class="badge" style="background:#0284c7; color:#ffffff; font-size:0.85rem; font-weight:800; padding:4px 10px">कक्षा 10वीं</span>
-            <strong style="font-size:0.95rem; color:#0c4a6e">पाठ्यक्रम पूर्णता प्रतिशत (5 अनिवार्य + 2 तृतीय भाषा विषय = कुल 7 कॉलम)</strong>
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.85rem; border-bottom:1.5px solid #e0e7ff; padding-bottom:0.5rem">
+            <div style="display:flex; align-items:center; gap:0.5rem">
+              <span class="badge" style="background:#0284c7; color:#ffffff; font-size:0.85rem; font-weight:800; padding:4px 10px">कक्षा 10वीं</span>
+              <strong style="font-size:0.95rem; color:#0c4a6e">पाठ्यक्रम पूर्णता प्रतिशत (5 अनिवार्य + 2 तृतीय भाषा विषय = कुल 7 कॉलम)</strong>
+            </div>
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; font-size:0.82rem; font-weight:700; color:#b91c1c; background:#fef2f2; border:1px solid #fecaca; padding:4px 10px; border-radius:6px; margin:0">
+              <input type="checkbox" id="syl_c10_zero_enrolment" onchange="toggleSyllabusClassZero('c10', this.checked)" style="width:16px; height:16px">
+              <span>शून्य नामांकन (लागू नहीं)</span>
+            </label>
           </div>
-          <div class="form-grid" style="grid-template-columns:repeat(auto-fit, minmax(115px, 1fr)); gap:0.6rem">
+          <div id="syl_c10_zero_banner" style="display:none; background:#f8fafc; border:1.5px dashed #64748b; border-radius:8px; padding:12px; text-align:center; color:#0f172a; font-weight:800; font-size:0.92rem; margin-bottom:0.5rem">
+            🚫 कक्षा 10वीं में शून्य नामांकन दर्ज है (कक्षा संचालित नहीं / लागू नहीं)
+          </div>
+          <div id="syl_c10_inputs_container" class="form-grid" style="grid-template-columns:repeat(auto-fit, minmax(115px, 1fr)); gap:0.6rem">
             <div class="form-group" style="margin:0">
               <label style="font-size:0.78rem; font-weight:700; color:#1e293b">1. हिन्दी (%)</label>
               <input type="number" id="syl_c10_hindi" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
@@ -4027,61 +4045,83 @@
 
         <!-- SECTION C: CLASS 11 (COMPULSORY + ELECTIVES) -->
         <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:10px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:0 1px 3px rgba(0,0,0,0.03)">
-          <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.85rem; border-bottom:1.5px solid #e0e7ff; padding-bottom:0.5rem">
-            <span class="badge" style="background:#059669; color:#ffffff; font-size:0.85rem; font-weight:800; padding:4px 10px">कक्षा 11वीं</span>
-            <strong style="font-size:0.95rem; color:#064e3b">पाठ्यक्रम पूर्णता प्रतिशत (अनिवार्य विषय + विद्यालय में संचालित ऐच्छिक विषय)</strong>
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.85rem; border-bottom:1.5px solid #e0e7ff; padding-bottom:0.5rem">
+            <div style="display:flex; align-items:center; gap:0.5rem">
+              <span class="badge" style="background:#059669; color:#ffffff; font-size:0.85rem; font-weight:800; padding:4px 10px">कक्षा 11वीं</span>
+              <strong style="font-size:0.95rem; color:#064e3b">पाठ्यक्रम पूर्णता प्रतिशत (अनिवार्य विषय + विद्यालय में संचालित ऐच्छिक विषय)</strong>
+            </div>
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; font-size:0.82rem; font-weight:700; color:#b91c1c; background:#fef2f2; border:1px solid #fecaca; padding:4px 10px; border-radius:6px; margin:0">
+              <input type="checkbox" id="syl_c11_zero_enrolment" onchange="toggleSyllabusClassZero('c11', this.checked)" style="width:16px; height:16px">
+              <span>शून्य नामांकन (लागू नहीं)</span>
+            </label>
           </div>
-          <div class="form-grid" style="grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:0.6rem; margin-bottom:0.85rem">
-            <div class="form-group" style="margin:0">
-              <label style="font-size:0.78rem; font-weight:700">अनिवार्य हिन्दी (%)</label>
-              <input type="number" id="syl_c11_comp_hindi" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
-            </div>
-            <div class="form-group" style="margin:0">
-              <label style="font-size:0.78rem; font-weight:700">अनिवार्य अंग्रेजी (%)</label>
-              <input type="number" id="syl_c11_comp_english" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
-            </div>
+          <div id="syl_c11_zero_banner" style="display:none; background:#f8fafc; border:1.5px dashed #64748b; border-radius:8px; padding:12px; text-align:center; color:#0f172a; font-weight:800; font-size:0.92rem; margin-bottom:0.5rem">
+            🚫 कक्षा 11वीं में शून्य नामांकन दर्ज है (कक्षा संचालित नहीं / लागू नहीं)
           </div>
-          <!-- Elective Subjects Row -->
-          <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:0.75rem">
-            <div style="font-size:0.8rem; font-weight:700; color:#334155; margin-bottom:0.5rem">
-              ऐच्छिक विषय (कला / विज्ञान / वाणिज्य) एवं पाठ्यक्रम पूर्णता %:
+          <div id="syl_c11_inputs_container">
+            <div class="form-grid" style="grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:0.6rem; margin-bottom:0.85rem">
+              <div class="form-group" style="margin:0">
+                <label style="font-size:0.78rem; font-weight:700">अनिवार्य हिन्दी (%)</label>
+                <input type="number" id="syl_c11_comp_hindi" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
+              </div>
+              <div class="form-group" style="margin:0">
+                <label style="font-size:0.78rem; font-weight:700">अनिवार्य अंग्रेजी (%)</label>
+                <input type="number" id="syl_c11_comp_english" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
+              </div>
             </div>
-            <div id="syl-c11-electives-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:0.5rem">
-              <!-- Dynamically populated / inputs -->
+            <!-- Elective Subjects Row -->
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:0.75rem">
+              <div style="font-size:0.8rem; font-weight:700; color:#334155; margin-bottom:0.5rem">
+                ऐच्छिक विषय (कला / विज्ञान / वाणिज्य) एवं पाठ्यक्रम पूर्णता %:
+              </div>
+              <div id="syl-c11-electives-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:0.5rem">
+                <!-- Dynamically populated / inputs -->
+              </div>
+              <button type="button" class="btn btn-outline-primary btn-sm" onclick="addSyllabusElectiveRow('c11')" style="margin-top:0.5rem; font-size:0.75rem; font-weight:700">
+                <i class="fas fa-plus"></i> + ऐच्छिक विषय जोड़ें (11वीं)
+              </button>
             </div>
-            <button type="button" class="btn btn-outline-primary btn-sm" onclick="addSyllabusElectiveRow('c11')" style="margin-top:0.5rem; font-size:0.75rem; font-weight:700">
-              <i class="fas fa-plus"></i> + ऐच्छिक विषय जोड़ें (11वीं)
-            </button>
           </div>
         </div>
 
         <!-- SECTION D: CLASS 12 (COMPULSORY + ELECTIVES) -->
         <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:10px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:0 1px 3px rgba(0,0,0,0.03)">
-          <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.85rem; border-bottom:1.5px solid #e0e7ff; padding-bottom:0.5rem">
-            <span class="badge" style="background:#d97706; color:#ffffff; font-size:0.85rem; font-weight:800; padding:4px 10px">कक्षा 12वीं</span>
-            <strong style="font-size:0.95rem; color:#78350f">पाठ्यक्रम पूर्णता प्रतिशत (अनिवार्य विषय + विद्यालय में संचालित ऐच्छिक विषय)</strong>
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.85rem; border-bottom:1.5px solid #e0e7ff; padding-bottom:0.5rem">
+            <div style="display:flex; align-items:center; gap:0.5rem">
+              <span class="badge" style="background:#d97706; color:#ffffff; font-size:0.85rem; font-weight:800; padding:4px 10px">कक्षा 12वीं</span>
+              <strong style="font-size:0.95rem; color:#78350f">पाठ्यक्रम पूर्णता प्रतिशत (अनिवार्य विषय + विद्यालय में संचालित ऐच्छिक विषय)</strong>
+            </div>
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; font-size:0.82rem; font-weight:700; color:#b91c1c; background:#fef2f2; border:1px solid #fecaca; padding:4px 10px; border-radius:6px; margin:0">
+              <input type="checkbox" id="syl_c12_zero_enrolment" onchange="toggleSyllabusClassZero('c12', this.checked)" style="width:16px; height:16px">
+              <span>शून्य नामांकन (लागू नहीं)</span>
+            </label>
           </div>
-          <div class="form-grid" style="grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:0.6rem; margin-bottom:0.85rem">
-            <div class="form-group" style="margin:0">
-              <label style="font-size:0.78rem; font-weight:700">अनिवार्य हिन्दी (%)</label>
-              <input type="number" id="syl_c12_comp_hindi" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
-            </div>
-            <div class="form-group" style="margin:0">
-              <label style="font-size:0.78rem; font-weight:700">अनिवार्य अंग्रेजी (%)</label>
-              <input type="number" id="syl_c12_comp_english" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
-            </div>
+          <div id="syl_c12_zero_banner" style="display:none; background:#f8fafc; border:1.5px dashed #64748b; border-radius:8px; padding:12px; text-align:center; color:#0f172a; font-weight:800; font-size:0.92rem; margin-bottom:0.5rem">
+            🚫 कक्षा 12वीं में शून्य नामांकन दर्ज है (कक्षा संचालित नहीं / लागू नहीं)
           </div>
-          <!-- Elective Subjects Row -->
-          <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:0.75rem">
-            <div style="font-size:0.8rem; font-weight:700; color:#334155; margin-bottom:0.5rem">
-              ऐच्छिक विषय (कला / विज्ञान / वाणिज्य) एवं पाठ्यक्रम पूर्णता %:
+          <div id="syl_c12_inputs_container">
+            <div class="form-grid" style="grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:0.6rem; margin-bottom:0.85rem">
+              <div class="form-group" style="margin:0">
+                <label style="font-size:0.78rem; font-weight:700">अनिवार्य हिन्दी (%)</label>
+                <input type="number" id="syl_c12_comp_hindi" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
+              </div>
+              <div class="form-group" style="margin:0">
+                <label style="font-size:0.78rem; font-weight:700">अनिवार्य अंग्रेजी (%)</label>
+                <input type="number" id="syl_c12_comp_english" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
+              </div>
             </div>
-            <div id="syl-c12-electives-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:0.5rem">
-              <!-- Dynamically populated / inputs -->
+            <!-- Elective Subjects Row -->
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:0.75rem">
+              <div style="font-size:0.8rem; font-weight:700; color:#334155; margin-bottom:0.5rem">
+                ऐच्छिक विषय (कला / विज्ञान / वाणिज्य) एवं पाठ्यक्रम पूर्णता %:
+              </div>
+              <div id="syl-c12-electives-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:0.5rem">
+                <!-- Dynamically populated / inputs -->
+              </div>
+              <button type="button" class="btn btn-outline-primary btn-sm" onclick="addSyllabusElectiveRow('c12')" style="margin-top:0.5rem; font-size:0.75rem; font-weight:700">
+                <i class="fas fa-plus"></i> + ऐच्छिक विषय जोड़ें (12वीं)
+              </button>
             </div>
-            <button type="button" class="btn btn-outline-primary btn-sm" onclick="addSyllabusElectiveRow('c12')" style="margin-top:0.5rem; font-size:0.75rem; font-weight:700">
-              <i class="fas fa-plus"></i> + ऐच्छिक विषय जोड़ें (12वीं)
-            </button>
           </div>
         </div>
 

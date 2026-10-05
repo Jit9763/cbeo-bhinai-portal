@@ -39,8 +39,8 @@ let STATE = {
   currentSignatureData: null,
   portalSettings: {},
   samanParikshaArchived: false,
-  samanParikshaActiveForm: 'indent', // 'indent' (Question Paper Indent) or 'syllabus' (Syllabus Completion %)
-  samanParikshaSchoolTypeFilter: 'both', // 'both' (57), 'govt_only' (49), or 'pvt_only' (8)
+  samanParikshaActiveForm: 'syllabus', // 'indent' (Question Paper Indent) or 'syllabus' (Syllabus Completion %)
+  samanParikshaSchoolTypeFilter: 'govt_only', // 'both' (57), 'govt_only' (49), or 'pvt_only' (8)
   samanSyllabusSubmissions: {}
 };
 window.STATE = STATE;
@@ -2335,19 +2335,19 @@ function calculateSchoolSyllabusAverage(sub) {
   if (!sub) return 0;
   let totalPct = 0;
   let count = 0;
-  if (sub.c9) {
+  if (sub.c9 && !sub.c9.zero_enrolment) {
     ['hindi', 'english', 'maths', 'science', 'sst', 'sanskrit', 'urdu'].forEach(k => {
       const v = parseFloat(sub.c9[k]);
       if (!isNaN(v) && v > 0) { totalPct += v; count++; }
     });
   }
-  if (sub.c10) {
+  if (sub.c10 && !sub.c10.zero_enrolment) {
     ['hindi', 'english', 'maths', 'science', 'sst', 'sanskrit', 'urdu'].forEach(k => {
       const v = parseFloat(sub.c10[k]);
       if (!isNaN(v) && v > 0) { totalPct += v; count++; }
     });
   }
-  if (sub.c11) {
+  if (sub.c11 && !sub.c11.zero_enrolment) {
     if (sub.c11.comp_hindi) { totalPct += parseFloat(sub.c11.comp_hindi); count++; }
     if (sub.c11.comp_english) { totalPct += parseFloat(sub.c11.comp_english); count++; }
     if (Array.isArray(sub.c11.electives)) {
@@ -2357,7 +2357,7 @@ function calculateSchoolSyllabusAverage(sub) {
       });
     }
   }
-  if (sub.c12) {
+  if (sub.c12 && !sub.c12.zero_enrolment) {
     if (sub.c12.comp_hindi) { totalPct += parseFloat(sub.c12.comp_hindi); count++; }
     if (sub.c12.comp_english) { totalPct += parseFloat(sub.c12.comp_english); count++; }
     if (Array.isArray(sub.c12.electives)) {
@@ -3060,6 +3060,7 @@ function filterSamanParikshaTable() {
 
 function switchSamanActiveForm(formType) {
   STATE.samanParikshaActiveForm = formType;
+  localStorage.setItem('cbeo_saman_active_form', formType);
   const scopeDropdown = document.getElementById('sp-school-type-filter');
 
   if (formType === 'syllabus') {
@@ -3538,10 +3539,35 @@ function openSamanSyllabusForm(schoolCode) {
     return;
   }
 
+function toggleSyllabusClassZero(classKey, isZero) {
+  const banner = document.getElementById(`syl_${classKey}_zero_banner`);
+  const inputsContainer = document.getElementById(`syl_${classKey}_inputs_container`);
+  if (banner) banner.style.display = isZero ? 'block' : 'none';
+  if (inputsContainer) {
+    inputsContainer.style.opacity = isZero ? '0.35' : '1';
+    inputsContainer.style.pointerEvents = isZero ? 'none' : 'auto';
+    inputsContainer.querySelectorAll('input, select, button').forEach(el => {
+      if (isZero) el.setAttribute('disabled', 'true');
+      else el.removeAttribute('disabled');
+    });
+  }
+}
+
+function openSamanSyllabusForm(schoolCode) {
+  const school = (STATE.schools56 || []).find(s => s.shala_darpan_code === schoolCode) ||
+    getAllMasterSchools().find(s => s.shala_darpan_code === schoolCode);
+  if (!school) {
+    showToast('विद्यालय का विवरण नहीं मिला!', 'error');
+    return;
+  }
+
   const elName = document.getElementById('syl-school-name');
   if (elName) elName.textContent = school.school_name;
   const elCode = document.getElementById('syl-school-code');
   if (elCode) elCode.textContent = school.shala_darpan_code;
+  const elExamCode = document.getElementById('syl-exam-code');
+  const examCode = 'AJM04G' + school.shala_darpan_code;
+  if (elExamCode) elExamCode.textContent = examCode;
   const elPeeo = document.getElementById('syl-peeo-name');
   if (elPeeo) elPeeo.textContent = school.peeo_name || '---';
   const elCat = document.getElementById('syl-school-category');
@@ -3569,8 +3595,36 @@ function openSamanSyllabusForm(schoolCode) {
     }
   }
 
-  // Populate Class 9 (7 subjects)
+  // Zero enrollment toggles
   const c9 = data.c9 || {};
+  const chkC9Zero = document.getElementById('syl_c9_zero_enrolment');
+  if (chkC9Zero) {
+    chkC9Zero.checked = !!c9.zero_enrolment;
+    toggleSyllabusClassZero('c9', !!c9.zero_enrolment);
+  }
+
+  const c10 = data.c10 || {};
+  const chkC10Zero = document.getElementById('syl_c10_zero_enrolment');
+  if (chkC10Zero) {
+    chkC10Zero.checked = !!c10.zero_enrolment;
+    toggleSyllabusClassZero('c10', !!c10.zero_enrolment);
+  }
+
+  const c11 = data.c11 || {};
+  const chkC11Zero = document.getElementById('syl_c11_zero_enrolment');
+  if (chkC11Zero) {
+    chkC11Zero.checked = !!c11.zero_enrolment;
+    toggleSyllabusClassZero('c11', !!c11.zero_enrolment);
+  }
+
+  const c12 = data.c12 || {};
+  const chkC12Zero = document.getElementById('syl_c12_zero_enrolment');
+  if (chkC12Zero) {
+    chkC12Zero.checked = !!c12.zero_enrolment;
+    toggleSyllabusClassZero('c12', !!c12.zero_enrolment);
+  }
+
+  // Populate Class 9 (7 subjects)
   if (document.getElementById('syl_c9_hindi')) document.getElementById('syl_c9_hindi').value = c9.hindi !== undefined ? c9.hindi : '';
   if (document.getElementById('syl_c9_english')) document.getElementById('syl_c9_english').value = c9.english !== undefined ? c9.english : '';
   if (document.getElementById('syl_c9_maths')) document.getElementById('syl_c9_maths').value = c9.maths !== undefined ? c9.maths : '';
@@ -3580,7 +3634,6 @@ function openSamanSyllabusForm(schoolCode) {
   if (document.getElementById('syl_c9_urdu')) document.getElementById('syl_c9_urdu').value = c9.urdu !== undefined ? c9.urdu : '';
 
   // Populate Class 10 (7 subjects)
-  const c10 = data.c10 || {};
   if (document.getElementById('syl_c10_hindi')) document.getElementById('syl_c10_hindi').value = c10.hindi !== undefined ? c10.hindi : '';
   if (document.getElementById('syl_c10_english')) document.getElementById('syl_c10_english').value = c10.english !== undefined ? c10.english : '';
   if (document.getElementById('syl_c10_maths')) document.getElementById('syl_c10_maths').value = c10.maths !== undefined ? c10.maths : '';
@@ -3590,7 +3643,6 @@ function openSamanSyllabusForm(schoolCode) {
   if (document.getElementById('syl_c10_urdu')) document.getElementById('syl_c10_urdu').value = c10.urdu !== undefined ? c10.urdu : '';
 
   // Populate Class 11 (compulsory + electives)
-  const c11 = data.c11 || {};
   if (document.getElementById('syl_c11_comp_hindi')) document.getElementById('syl_c11_comp_hindi').value = c11.comp_hindi !== undefined ? c11.comp_hindi : '';
   if (document.getElementById('syl_c11_comp_english')) document.getElementById('syl_c11_comp_english').value = c11.comp_english !== undefined ? c11.comp_english : '';
   const c11Cont = document.getElementById('syl-c11-electives-container');
@@ -3605,7 +3657,6 @@ function openSamanSyllabusForm(schoolCode) {
   }
 
   // Populate Class 12 (compulsory + electives)
-  const c12 = data.c12 || {};
   if (document.getElementById('syl_c12_comp_hindi')) document.getElementById('syl_c12_comp_hindi').value = c12.comp_hindi !== undefined ? c12.comp_hindi : '';
   if (document.getElementById('syl_c12_comp_english')) document.getElementById('syl_c12_comp_english').value = c12.comp_english !== undefined ? c12.comp_english : '';
   const c12Cont = document.getElementById('syl-c12-electives-container');
@@ -3633,8 +3684,14 @@ function openSamanSyllabusForm(schoolCode) {
   allInputs.forEach(inp => {
     if (inp.id === 'syl-hidden-school-code') return;
     if (canEdit) {
-      inp.removeAttribute('disabled');
-      inp.removeAttribute('readonly');
+      // Don't enable if parent container is zero enrollment disabled
+      const isZeroBox = inp.id.includes('zero_enrolment');
+      if (!isZeroBox && inp.closest('[id$="_inputs_container"]') && inp.closest('[id$="_inputs_container"]').style.pointerEvents === 'none') {
+        inp.setAttribute('disabled', 'true');
+      } else {
+        inp.removeAttribute('disabled');
+        inp.removeAttribute('readonly');
+      }
     } else {
       if (inp.tagName === 'BUTTON') inp.style.display = 'none';
       else {
@@ -3669,40 +3726,50 @@ function collectSyllabusFormData() {
     return list;
   };
 
+  const c9Zero = !!document.getElementById('syl_c9_zero_enrolment')?.checked;
+  const c10Zero = !!document.getElementById('syl_c10_zero_enrolment')?.checked;
+  const c11Zero = !!document.getElementById('syl_c11_zero_enrolment')?.checked;
+  const c12Zero = !!document.getElementById('syl_c12_zero_enrolment')?.checked;
+
   const c9 = {
-    hindi: parseFloat(document.getElementById('syl_c9_hindi')?.value) || 0,
-    english: parseFloat(document.getElementById('syl_c9_english')?.value) || 0,
-    maths: parseFloat(document.getElementById('syl_c9_maths')?.value) || 0,
-    science: parseFloat(document.getElementById('syl_c9_science')?.value) || 0,
-    sst: parseFloat(document.getElementById('syl_c9_sst')?.value) || 0,
-    sanskrit: parseFloat(document.getElementById('syl_c9_sanskrit')?.value) || 0,
-    urdu: parseFloat(document.getElementById('syl_c9_urdu')?.value) || 0
+    zero_enrolment: c9Zero,
+    hindi: c9Zero ? 0 : (parseFloat(document.getElementById('syl_c9_hindi')?.value) || 0),
+    english: c9Zero ? 0 : (parseFloat(document.getElementById('syl_c9_english')?.value) || 0),
+    maths: c9Zero ? 0 : (parseFloat(document.getElementById('syl_c9_maths')?.value) || 0),
+    science: c9Zero ? 0 : (parseFloat(document.getElementById('syl_c9_science')?.value) || 0),
+    sst: c9Zero ? 0 : (parseFloat(document.getElementById('syl_c9_sst')?.value) || 0),
+    sanskrit: c9Zero ? 0 : (parseFloat(document.getElementById('syl_c9_sanskrit')?.value) || 0),
+    urdu: c9Zero ? 0 : (parseFloat(document.getElementById('syl_c9_urdu')?.value) || 0)
   };
 
   const c10 = {
-    hindi: parseFloat(document.getElementById('syl_c10_hindi')?.value) || 0,
-    english: parseFloat(document.getElementById('syl_c10_english')?.value) || 0,
-    maths: parseFloat(document.getElementById('syl_c10_maths')?.value) || 0,
-    science: parseFloat(document.getElementById('syl_c10_science')?.value) || 0,
-    sst: parseFloat(document.getElementById('syl_c10_sst')?.value) || 0,
-    sanskrit: parseFloat(document.getElementById('syl_c10_sanskrit')?.value) || 0,
-    urdu: parseFloat(document.getElementById('syl_c10_urdu')?.value) || 0
+    zero_enrolment: c10Zero,
+    hindi: c10Zero ? 0 : (parseFloat(document.getElementById('syl_c10_hindi')?.value) || 0),
+    english: c10Zero ? 0 : (parseFloat(document.getElementById('syl_c10_english')?.value) || 0),
+    maths: c10Zero ? 0 : (parseFloat(document.getElementById('syl_c10_maths')?.value) || 0),
+    science: c10Zero ? 0 : (parseFloat(document.getElementById('syl_c10_science')?.value) || 0),
+    sst: c10Zero ? 0 : (parseFloat(document.getElementById('syl_c10_sst')?.value) || 0),
+    sanskrit: c10Zero ? 0 : (parseFloat(document.getElementById('syl_c10_sanskrit')?.value) || 0),
+    urdu: c10Zero ? 0 : (parseFloat(document.getElementById('syl_c10_urdu')?.value) || 0)
   };
 
   const c11 = {
-    comp_hindi: parseFloat(document.getElementById('syl_c11_comp_hindi')?.value) || 0,
-    comp_english: parseFloat(document.getElementById('syl_c11_comp_english')?.value) || 0,
-    electives: getElectives('c11')
+    zero_enrolment: c11Zero,
+    comp_hindi: c11Zero ? 0 : (parseFloat(document.getElementById('syl_c11_comp_hindi')?.value) || 0),
+    comp_english: c11Zero ? 0 : (parseFloat(document.getElementById('syl_c11_comp_english')?.value) || 0),
+    electives: c11Zero ? [] : getElectives('c11')
   };
 
   const c12 = {
-    comp_hindi: parseFloat(document.getElementById('syl_c12_comp_hindi')?.value) || 0,
-    comp_english: parseFloat(document.getElementById('syl_c12_comp_english')?.value) || 0,
-    electives: getElectives('c12')
+    zero_enrolment: c12Zero,
+    comp_hindi: c12Zero ? 0 : (parseFloat(document.getElementById('syl_c12_comp_hindi')?.value) || 0),
+    comp_english: c12Zero ? 0 : (parseFloat(document.getElementById('syl_c12_comp_english')?.value) || 0),
+    electives: c12Zero ? [] : getElectives('c12')
   };
 
   return {
     school_code: schoolCode,
+    exam_code: 'AJM04G' + schoolCode,
     school_name: school?.school_name || '',
     peeo_name: school?.peeo_name || '',
     category: school?.category || '',
@@ -3787,13 +3854,19 @@ function printSyllabusPdf(schoolCode = null) {
     return;
   }
 
+  const examCode = data.exam_code || ('AJM04G' + school.shala_darpan_code);
   const c9 = data.c9 || {};
   const c10 = data.c10 || {};
   const c11 = data.c11 || {};
   const c12 = data.c12 || {};
 
-  const electives11Html = (c11.electives || []).map(e => `<span>${e.name}: <strong>${e.pct}%</strong></span>`).join(' &bull; ') || '---';
-  const electives12Html = (c12.electives || []).map(e => `<span>${e.name}: <strong>${e.pct}%</strong></span>`).join(' &bull; ') || '---';
+  const electives11Html = c11.zero_enrolment
+    ? `<span style="font-weight:900; color:#0f172a">लागू नहीं (शून्य नामांकन)</span>`
+    : ((c11.electives || []).map(e => `<span>${e.name}: <strong style="color:#0f172a; font-weight:800">${e.pct}%</strong></span>`).join(' &bull; ') || '---');
+
+  const electives12Html = c12.zero_enrolment
+    ? `<span style="font-weight:900; color:#0f172a">लागू नहीं (शून्य नामांकन)</span>`
+    : ((c12.electives || []).map(e => `<span>${e.name}: <strong style="color:#0f172a; font-weight:800">${e.pct}%</strong></span>`).join(' &bull; ') || '---');
 
   const avgPct = calculateSchoolSyllabusAverage(data);
 
@@ -3803,123 +3876,201 @@ function printSyllabusPdf(schoolCode = null) {
   <head>
     <meta charset="UTF-8">
     <title>पाठ्यक्रम पूर्णता प्रतिशत - ${school.school_name}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-      @page { size: A4 portrait; margin: 15mm; }
-      body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; color: #1e293b; margin: 0; padding: 15px; font-size: 13px; line-height: 1.4; }
-      .header-box { text-align: center; border-bottom: 2px solid #1e3a8a; padding-bottom: 10px; margin-bottom: 15px; }
-      .header-box h2 { margin: 0; color: #1e3a8a; font-size: 18px; font-weight: 800; }
-      .header-box h3 { margin: 4px 0; color: #0284c7; font-size: 14px; }
-      .header-box p { margin: 2px 0; font-size: 12px; color: #475569; font-weight: 600; }
+      @page { size: A4 portrait; margin: 12mm; }
+      * { box-sizing: border-box; }
+      body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; color: #1e293b; margin: 0; padding: 15px; font-size: 13px; line-height: 1.4; background:#f8fafc; }
+      
+      /* Print Toolbar (Hidden during print) */
+      .action-toolbar {
+        position: sticky; top: 0; z-index: 999; background: #ffffff; border: 1.5px solid #cbd5e1;
+        border-radius: 8px; padding: 10px 16px; margin-bottom: 20px; display: flex;
+        justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      }
+      .action-btn {
+        padding: 8px 16px; border-radius: 6px; font-weight: bold; cursor: pointer; border: none;
+        display: inline-flex; align-items: center; gap: 6px; font-size: 13px; text-decoration: none;
+      }
+      .btn-print { background: #1e3a8a; color: #ffffff; }
+      .btn-share { background: #25d366; color: #ffffff; }
+      .btn-close { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+
+      @media print {
+        .action-toolbar { display: none !important; }
+        body { background: #ffffff; padding: 0; }
+      }
+
+      .report-container { max-width: 800px; margin: 0 auto; background: #ffffff; border: 2px solid #1e3a8a; border-radius: 8px; padding: 20px; }
+      .header-box { text-align: center; border-bottom: 2.5px solid #1e3a8a; padding-bottom: 12px; margin-bottom: 15px; }
+      .header-box h2 { margin: 0; color: #1e3a8a; font-size: 19px; font-weight: 900; letter-spacing: 0.3px; }
+      .header-box h3 { margin: 5px 0; color: #0284c7; font-size: 15px; font-weight: 800; }
+      .header-box p { margin: 3px 0; font-size: 12px; color: #334155; font-weight: 700; }
       .meta-table, .data-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
       .meta-table td { padding: 6px 10px; border: 1px solid #cbd5e1; font-size: 12px; }
       .meta-table td strong { color: #0f172a; }
-      .data-table th, .data-table td { border: 1px solid #94a3b8; padding: 7px 8px; text-align: center; font-size: 12px; }
-      .data-table th { background: #f1f5f9; color: #1e293b; font-weight: 700; }
-      .section-title { background: #e0f2fe; color: #0369a1; padding: 6px 10px; font-weight: 800; font-size: 13px; margin: 12px 0 6px 0; border-left: 4px solid #0284c7; }
-      .footer-box { margin-top: 30px; display: flex; justify-content: space-between; align-items: flex-end; }
-      .stamp-box { border: 1.5px dashed #0284c7; padding: 10px 15px; border-radius: 6px; text-align: center; font-size: 11px; color: #1e40af; width: 220px; }
-      .sign-box { text-align: right; width: 240px; }
+      .data-table th, .data-table td { border: 1.5px solid #94a3b8; padding: 7px 8px; text-align: center; font-size: 12px; }
+      .data-table th { background: #e0f2fe; color: #0c4a6e; font-weight: 800; }
+      .section-title { background: #f1f5f9; color: #1e3a8a; padding: 6px 12px; font-weight: 800; font-size: 13px; margin: 14px 0 6px 0; border-left: 4px solid #1e3a8a; }
+      .footer-box { margin-top: 35px; display: flex; justify-content: space-between; align-items: flex-end; }
+      .stamp-box { border: 1.5px dashed #0284c7; padding: 10px 15px; border-radius: 6px; text-align: center; font-size: 11px; color: #1e40af; width: 230px; font-weight: 600; }
+      .sign-box { text-align: right; width: 260px; font-size: 12px; }
+      .not-applicable-cell { font-weight: 900; color: #0f172a; font-size: 12.5px; text-align: center; background: #f8fafc; }
     </style>
   </head>
   <body>
-    <div class="header-box">
-      <h2>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)</h2>
-      <h3>जिला समान परीक्षा 2026-27 | पाठ्यक्रम पूर्णता प्रतिशत रिपोर्ट (कक्षा 9 से 12)</h3>
-      <p>जिला: <strong>अजमेर (AJMER)</strong> &bull; ब्लॉक: <strong>भिनाय (BHINAI)</strong> &bull; प्रपत्र श्रेणी: <strong>49 राजकीय माध्यमिक व उच्च माध्यमिक विद्यालय</strong></p>
-    </div>
-
-    <table class="meta-table">
-      <tr>
-        <td><strong>विद्यालय:</strong> ${school.school_name}</td>
-        <td><strong>शाला दर्पण कोड:</strong> ${school.shala_darpan_code}</td>
-      </tr>
-      <tr>
-        <td><strong>PEEO परिक्षेत्र:</strong> ${school.peeo_name || '---'}</td>
-        <td><strong>औसत पाठ्यक्रम पूर्णता:</strong> <span style="font-size:14px; font-weight:800; color:#15803d">${avgPct}%</span></td>
-      </tr>
-      <tr>
-        <td><strong>संस्था प्रधान:</strong> ${data.principal_name || school.principal_name || '---'}</td>
-        <td><strong>मोबाइल नंबर:</strong> ${data.principal_mobile || school.principal_mobile || '---'}</td>
-      </tr>
-    </table>
-
-    <div class="section-title">1. कक्षा 9वीं एवं 10वीं पाठ्यक्रम पूर्णता प्रतिशत (5 अनिवार्य + 2 तृतीय भाषा विषय = 7 कॉलम)</div>
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>कक्षा</th>
-          <th>1. हिन्दी</th>
-          <th>2. अंग्रेजी</th>
-          <th>3. गणित</th>
-          <th>4. विज्ञान</th>
-          <th>5. सा.विज्ञान</th>
-          <th>6. संस्कृत (III)</th>
-          <th>7. उर्दू (III)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>कक्षा 9वीं</strong></td>
-          <td><strong>${c9.hindi || 0}%</strong></td>
-          <td><strong>${c9.english || 0}%</strong></td>
-          <td><strong>${c9.maths || 0}%</strong></td>
-          <td><strong>${c9.science || 0}%</strong></td>
-          <td><strong>${c9.sst || 0}%</strong></td>
-          <td><strong>${c9.sanskrit || 0}%</strong></td>
-          <td><strong>${c9.urdu || 0}%</strong></td>
-        </tr>
-        <tr>
-          <td><strong>कक्षा 10वीं</strong></td>
-          <td><strong>${c10.hindi || 0}%</strong></td>
-          <td><strong>${c10.english || 0}%</strong></td>
-          <td><strong>${c10.maths || 0}%</strong></td>
-          <td><strong>${c10.science || 0}%</strong></td>
-          <td><strong>${c10.sst || 0}%</strong></td>
-          <td><strong>${c10.sanskrit || 0}%</strong></td>
-          <td><strong>${c10.urdu || 0}%</strong></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="section-title">2. कक्षा 11वीं एवं 12वीं पाठ्यक्रम पूर्णता प्रतिशत (अनिवार्य व ऐच्छिक विषय)</div>
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>कक्षा</th>
-          <th>अनिवार्य हिन्दी</th>
-          <th>अनिवार्य अंग्रेजी</th>
-          <th style="text-align:left; width:55%">विद्यालय में संचालित ऐच्छिक विषय एवं पूर्णता %</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>कक्षा 11वीं</strong></td>
-          <td><strong>${c11.comp_hindi || 0}%</strong></td>
-          <td><strong>${c11.comp_english || 0}%</strong></td>
-          <td style="text-align:left">${electives11Html}</td>
-        </tr>
-        <tr>
-          <td><strong>कक्षा 12वीं</strong></td>
-          <td><strong>${c12.comp_hindi || 0}%</strong></td>
-          <td><strong>${c12.comp_english || 0}%</strong></td>
-          <td style="text-align:left">${electives12Html}</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="footer-box">
-      <div class="stamp-box">
-        <strong>आधिकारिक संस्थागत डिजिटल मोहर</strong><br>
-        ${school.school_name}<br>
-        ब्लॉक-भिनाय (जिला: अजमेर)
+    <!-- Top Action Bar -->
+    <div class="action-toolbar">
+      <div style="font-weight:700; color:#1e3a8a">
+        <i class="fas fa-file-invoice"></i> अधिकृत रिपोर्ट पूर्वावलोकन (Preview)
       </div>
-      <div class="sign-box">
-        <p style="margin-bottom:30px">प्रमाणित एवं सत्यापित</p>
-        <p><strong>${data.principal_name || school.principal_name || 'संस्था प्रधान'}</strong><br>
-        मो. ${data.principal_mobile || school.principal_mobile || ''}<br>
-        दिनांक: ${data.submitted_at ? new Date(data.submitted_at).toLocaleDateString('hi-IN') : new Date().toLocaleDateString('hi-IN')}</p>
+      <div style="display:flex; gap:8px">
+        <button class="action-btn btn-print" onclick="window.print()">
+          <i class="fas fa-print"></i> प्रिंट / PDF सेव करें
+        </button>
+        <button class="action-btn btn-share" onclick="shareOnWhatsApp()">
+          <i class="fab fa-whatsapp"></i> व्हाट्सएप शेयर
+        </button>
+        <button class="action-btn btn-close" onclick="window.close()">
+          <i class="fas fa-times"></i> बंद करें
+        </button>
       </div>
     </div>
+
+    <div class="report-container">
+      <div class="header-box">
+        <h2>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)</h2>
+        <h3>जिला समान परीक्षा 2026-27 | पाठ्यक्रम पूर्णता प्रतिशत विवरण प्रपत्र (कक्षा 9 से 12)</h3>
+        <p>जिला: <strong>अजमेर (AJMER)</strong> &bull; ब्लॉक: <strong>भिनाय (BHINAI)</strong> &bull; अधिकृत रिपोर्ट: <strong>49 राजकीय माध्यमिक व उच्च माध्यमिक विद्यालय</strong></p>
+      </div>
+
+      <table class="meta-table">
+        <tr>
+          <td><strong>विद्यालय:</strong> ${school.school_name}</td>
+          <td><strong>परीक्षा कोड:</strong> <strong style="color:#1e3a8a">${examCode}</strong> &bull; <strong>शा.दा. कोड:</strong> ${school.shala_darpan_code}</td>
+        </tr>
+        <tr>
+          <td><strong>PEEO परिक्षेत्र:</strong> ${school.peeo_name || '---'}</td>
+          <td><strong>औसत पाठ्यक्रम पूर्णता:</strong> <span style="font-size:14px; font-weight:900; color:#15803d">${avgPct}%</span></td>
+        </tr>
+        <tr>
+          <td><strong>संस्था प्रधान:</strong> ${data.principal_name || school.principal_name || '---'}</td>
+          <td><strong>मोबाइल नंबर:</strong> ${data.principal_mobile || school.principal_mobile || '---'}</td>
+        </tr>
+      </table>
+
+      <div class="section-title">1. कक्षा 9वीं एवं 10वीं पाठ्यक्रम पूर्णता प्रतिशत (5 अनिवार्य + 2 तृतीय भाषा विषय = 7 कॉलम)</div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>कक्षा</th>
+            <th>1. हिन्दी</th>
+            <th>2. अंग्रेजी</th>
+            <th>3. गणित</th>
+            <th>4. विज्ञान</th>
+            <th>5. सा.विज्ञान</th>
+            <th>6. संस्कृत (III)</th>
+            <th>7. उर्दू (III)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:#0f172a; font-weight:800">कक्षा 9वीं</strong></td>
+            ${c9.zero_enrolment
+              ? `<td colspan="7" class="not-applicable-cell">लागू नहीं (शून्य नामांकन)</td>`
+              : `
+                <td><strong style="color:#0f172a; font-weight:800">${c9.hindi || 0}%</strong></td>
+                <td><strong style="color:#0f172a; font-weight:800">${c9.english || 0}%</strong></td>
+                <td><strong style="color:#0f172a; font-weight:800">${c9.maths || 0}%</strong></td>
+                <td><strong style="color:#0f172a; font-weight:800">${c9.science || 0}%</strong></td>
+                <td><strong style="color:#0f172a; font-weight:800">${c9.sst || 0}%</strong></td>
+                <td><strong style="color:#0f172a; font-weight:800">${c9.sanskrit || 0}%</strong></td>
+                <td><strong style="color:#0f172a; font-weight:800">${c9.urdu || 0}%</strong></td>
+              `
+            }
+          </tr>
+          <tr>
+            <td><strong style="color:#0f172a; font-weight:800">कक्षा 10वीं</strong></td>
+            ${c10.zero_enrolment
+              ? `<td colspan="7" class="not-applicable-cell">लागू नहीं (शून्य नामांकन)</td>`
+              : `
+                <td><strong style="color:#0f172a; font-weight:800">${c10.hindi || 0}%</strong></td>
+                <td><strong style="color:#0f172a; font-weight:800">${c10.english || 0}%</strong></td>
+                <td><strong style="color:#0f172a; font-weight:800">${c10.maths || 0}%</strong></td>
+                <td><strong style="color:#0f172a; font-weight:800">${c10.science || 0}%</strong></td>
+                <td><strong style="color:#0f172a; font-weight:800">${c10.sst || 0}%</strong></td>
+                <td><strong style="color:#0f172a; font-weight:800">${c10.sanskrit || 0}%</strong></td>
+                <td><strong style="color:#0f172a; font-weight:800">${c10.urdu || 0}%</strong></td>
+              `
+            }
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="section-title">2. कक्षा 11वीं एवं 12वीं पाठ्यक्रम पूर्णता प्रतिशत (अनिवार्य व ऐच्छिक विषय)</div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>कक्षा</th>
+            <th>अनिवार्य हिन्दी</th>
+            <th>अनिवार्य अंग्रेजी</th>
+            <th style="text-align:left; width:55%">विद्यालय में संचालित ऐच्छिक विषय एवं पूर्णता %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:#0f172a; font-weight:800">कक्षा 11वीं</strong></td>
+            ${c11.zero_enrolment
+              ? `<td colspan="3" class="not-applicable-cell">लागू नहीं (शून्य नामांकन)</td>`
+              : `
+                <td><strong style="color:#0f172a; font-weight:800">${c11.comp_hindi || 0}%</strong></td>
+                <td><strong style="color:#0f172a; font-weight:800">${c11.comp_english || 0}%</strong></td>
+                <td style="text-align:left">${electives11Html}</td>
+              `
+            }
+          </tr>
+          <tr>
+            <td><strong style="color:#0f172a; font-weight:800">कक्षा 12वीं</strong></td>
+            ${c12.zero_enrolment
+              ? `<td colspan="3" class="not-applicable-cell">लागू नहीं (शून्य नामांकन)</td>`
+              : `
+                <td><strong style="color:#0f172a; font-weight:800">${c12.comp_hindi || 0}%</strong></td>
+                <td><strong style="color:#0f172a; font-weight:800">${c12.comp_english || 0}%</strong></td>
+                <td style="text-align:left">${electives12Html}</td>
+              `
+            }
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="footer-box">
+        <div class="stamp-box">
+          <strong>आधिकारिक संस्थागत डिजिटल मोहर</strong><br>
+          ${school.school_name}<br>
+          परीक्षा कोड: ${examCode}<br>
+          ब्लॉक-भिनाय (जिला: अजमेर)
+        </div>
+        <div class="sign-box">
+          <p style="margin-bottom:25px; font-weight:bold">प्रमाणित एवं सत्यापित</p>
+          <p><strong>${data.principal_name || school.principal_name || 'संस्था प्रधान'}</strong><br>
+          मो. ${data.principal_mobile || school.principal_mobile || ''}<br>
+          दिनांक: ${data.submitted_at ? new Date(data.submitted_at).toLocaleDateString('hi-IN') : new Date().toLocaleDateString('hi-IN')}</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function shareOnWhatsApp() {
+        var text = "📋 *समान परीक्षा 2026-27: पाठ्यक्रम पूर्णता प्रतिशत विवरण*\\n" +
+          "🏫 विद्यालय: ${school.school_name}\\n" +
+          "🔢 परीक्षा कोड: ${examCode} (शा.दा.: ${school.shala_darpan_code})\\n" +
+          "📊 औसत पूर्णता: ${avgPct}%\\n" +
+          "🏛️ कार्यालय CBEO भिनाय (अजमेर)\\n" +
+          "🌐 पोर्टल: https://jit9763.github.io/cbeo-bhinai-portal/";
+        var url = "https://api.whatsapp.com/send?text=" + encodeURIComponent(text);
+        window.open(url, "_blank");
+      }
+    </script>
   </body>
   </html>
   `;
@@ -3928,9 +4079,6 @@ function printSyllabusPdf(schoolCode = null) {
   if (printWin) {
     printWin.document.write(printHtml);
     printWin.document.close();
-    setTimeout(() => {
-      printWin.print();
-    }, 400);
   }
 }
 
@@ -6552,7 +6700,151 @@ const SAMAN_EXCEL_OPTIONAL_KEYS = [
   { key: "agri_chem", label: "कृषि रसायन (Agri Chemistry)" }
 ];
 
+function exportSamanSyllabusMasterCSV() {
+  const govSchools = (STATE.schools56 || []).filter(s => s.type === 'Government');
+  const header = [
+    "क्र.सं. (S.No)",
+    "विद्यालय का नाम (School Name)",
+    "श्रेणी (Category)",
+    "शाला दर्पण कोड (Shala Darpan Code)",
+    "परीक्षा कोड (Exam Code)",
+    "संबंधित PEEO नोडल पंचायत",
+    "संस्था प्रधान का नाम",
+    "संस्था प्रधान मोबाइल",
+    
+    // Class 9
+    "9वीं स्थिति (Status)",
+    "9वीं हिन्दी (%)",
+    "9वीं अंग्रेजी (%)",
+    "9वीं गणित (%)",
+    "9वीं विज्ञान (%)",
+    "9वीं सा.विज्ञान (%)",
+    "9वीं संस्कृत (%)",
+    "9वीं उर्दू (%)",
+    
+    // Class 10
+    "10वीं स्थिति (Status)",
+    "10वीं हिन्दी (%)",
+    "10वीं अंग्रेजी (%)",
+    "10वीं गणित (%)",
+    "10वीं विज्ञान (%)",
+    "10वीं सा.विज्ञान (%)",
+    "10वीं संस्कृत (%)",
+    "10वीं उर्दू (%)",
+    
+    // Class 11
+    "11वीं स्थिति (Status)",
+    "11वीं अनिवार्य हिन्दी (%)",
+    "11वीं अनिवार्य अंग्रेजी (%)",
+    "11वीं ऐच्छिक विषय एवं पूर्णता %",
+    
+    // Class 12
+    "12वीं स्थिति (Status)",
+    "12वीं अनिवार्य हिन्दी (%)",
+    "12वीं अनिवार्य अंग्रेजी (%)",
+    "12वीं ऐच्छिक विषय एवं पूर्णता %",
+    
+    // Summary
+    "औसत पाठ्यक्रम पूर्णता (% Average)",
+    "प्रपत्र स्थिति (Submission Status)",
+    "सत्यापनकर्ता / संस्था प्रधान",
+    "सबमिशन दिनांक (Timestamp)"
+  ];
+
+  const rows = [header];
+
+  govSchools.forEach((s, idx) => {
+    const code = s.shala_darpan_code;
+    const sub = (STATE.samanSyllabusSubmissions && STATE.samanSyllabusSubmissions[code]) || {};
+    const isSub = !!sub.is_submitted;
+    const examCode = sub.exam_code || ('AJM04G' + code);
+    const avgPct = calculateSchoolSyllabusAverage(sub);
+
+    const c9 = sub.c9 || {};
+    const c10 = sub.c10 || {};
+    const c11 = sub.c11 || {};
+    const c12 = sub.c12 || {};
+
+    const elec11Str = c11.zero_enrolment
+      ? 'लागू नहीं (शून्य नामांकन)'
+      : ((c11.electives || []).map(e => `${e.name}:${e.pct}%`).join('; ') || '---');
+
+    const elec12Str = c12.zero_enrolment
+      ? 'लागू नहीं (शून्य नामांकन)'
+      : ((c12.electives || []).map(e => `${e.name}:${e.pct}%`).join('; ') || '---');
+
+    const row = [
+      idx + 1,
+      `"${(s.school_name || '').replace(/"/g, '""')}"`,
+      `"${(s.category || '').replace(/"/g, '""')}"`,
+      code,
+      `"${examCode}"`,
+      `"${(s.peeo_name || '').replace(/"/g, '""')}"`,
+      `"${(sub.principal_name || s.principal_name || '').replace(/"/g, '""')}"`,
+      `"${(sub.principal_mobile || s.principal_mobile || '').replace(/"/g, '""')}"`,
+
+      // Class 9
+      c9.zero_enrolment ? '"लागू नहीं (शून्य नामांकन)"' : '"नियमित संचालित"',
+      c9.zero_enrolment ? '"लागू नहीं"' : (c9.hindi || 0),
+      c9.zero_enrolment ? '"लागू नहीं"' : (c9.english || 0),
+      c9.zero_enrolment ? '"लागू नहीं"' : (c9.maths || 0),
+      c9.zero_enrolment ? '"लागू नहीं"' : (c9.science || 0),
+      c9.zero_enrolment ? '"लागू नहीं"' : (c9.sst || 0),
+      c9.zero_enrolment ? '"लागू नहीं"' : (c9.sanskrit || 0),
+      c9.zero_enrolment ? '"लागू नहीं"' : (c9.urdu || 0),
+
+      // Class 10
+      c10.zero_enrolment ? '"लागू नहीं (शून्य नामांकन)"' : '"नियमित संचालित"',
+      c10.zero_enrolment ? '"लागू नहीं"' : (c10.hindi || 0),
+      c10.zero_enrolment ? '"लागू नहीं"' : (c10.english || 0),
+      c10.zero_enrolment ? '"लागू नहीं"' : (c10.maths || 0),
+      c10.zero_enrolment ? '"लागू नहीं"' : (c10.science || 0),
+      c10.zero_enrolment ? '"लागू नहीं"' : (c10.sst || 0),
+      c10.zero_enrolment ? '"लागू नहीं"' : (c10.sanskrit || 0),
+      c10.zero_enrolment ? '"लागू नहीं"' : (c10.urdu || 0),
+
+      // Class 11
+      c11.zero_enrolment ? '"लागू नहीं (शून्य नामांकन)"' : '"नियमित संचालित"',
+      c11.zero_enrolment ? '"लागू नहीं"' : (c11.comp_hindi || 0),
+      c11.zero_enrolment ? '"लागू नहीं"' : (c11.comp_english || 0),
+      `"${elec11Str.replace(/"/g, '""')}"`,
+
+      // Class 12
+      c12.zero_enrolment ? '"लागू नहीं (शून्य नामांकन)"' : '"नियमित संचालित"',
+      c12.zero_enrolment ? '"लागू नहीं"' : (c12.comp_hindi || 0),
+      c12.zero_enrolment ? '"लागू नहीं"' : (c12.comp_english || 0),
+      `"${elec12Str.replace(/"/g, '""')}"`,
+
+      // Summary
+      isSub ? avgPct : 0,
+      isSub ? '"पूर्ण (Submitted)"' : '"लम्बित (Pending)"',
+      `"${(sub.submitted_by || sub.principal_name || '').replace(/"/g, '""')}"`,
+      `"${(sub.submitted_at || '').replace(/"/g, '""')}"`
+    ];
+
+    rows.push(row);
+  });
+
+  const csvContent = "\uFEFF" + rows.map(r => r.join(",")).join("\n");
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const filename = `CBEO_Bhinai_Saman_Pariksha_Syllabus_Completion_49_Schools_${new Date().toISOString().slice(0, 10)}.csv`;
+
+  const link = document.createElement("a");
+  const url = URL.createObjectURL(blob);
+  link.setAttribute("href", url);
+  link.setAttribute("download", filename);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  showToast('समान परीक्षा पाठ्यक्रम पूर्णता % (49 स्कूल) एक्सेल (CSV) सफलतापूर्वक डाउनलोड हो गई!', 'success');
+}
+
 function exportSamanParikshaMasterCSV() {
+  if (STATE.samanParikshaActiveForm === 'syllabus') {
+    exportSamanSyllabusMasterCSV();
+    return;
+  }
   const header = [
     "क्र.सं. (S.No)",
     "विद्यालय का नाम (School Name)",
