@@ -2680,7 +2680,6 @@ function renderSamanParikshaView() {
 
   const sylQuickBtns = document.getElementById('sp-syl-quick-btns');
   const sylDispatchBar = document.getElementById('sp-syllabus-admin-dispatch-bar');
-  const isSyl = STATE.samanParikshaActiveForm === 'syllabus';
   if (sylQuickBtns) sylQuickBtns.style.display = isSyl ? 'inline-flex' : 'none';
   if (sylDispatchBar) sylDispatchBar.style.display = isSyl ? 'flex' : 'none';
 
