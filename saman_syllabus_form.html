@@ -1022,12 +1022,15 @@
       if (!container) return;
 
       const rows = Array.from(container.querySelectorAll('.elective-row'));
-      const selectedKeys = rows.map(r => r.querySelector('.elec-select')?.value).filter(Boolean);
+      const selectedKeys = rows.map(r => {
+        const sel = r.querySelector('.elec-select');
+        return (sel && sel.value) ? sel.value : (r.dataset.selectedKey || '');
+      }).filter(Boolean);
 
       rows.forEach(row => {
         const select = row.querySelector('.elec-select');
         if (!select) return;
-        const currentVal = select.value;
+        const currentVal = select.value || row.dataset.selectedKey || '';
 
         let html = '<option value="">-- ऐच्छिक विषय चुनें --</option>';
         Object.values(FACULTIES_CONFIG).forEach(fac => {
@@ -1043,11 +1046,18 @@
         });
 
         select.innerHTML = html;
-        if (currentVal) select.value = currentVal;
+        if (currentVal) {
+          select.value = currentVal;
+          row.dataset.selectedKey = currentVal;
+        }
       });
     }
 
     function onElectiveDropdownChange(classKey, selectElem) {
+      const row = selectElem.closest('.elective-row');
+      if (row) {
+        row.dataset.selectedKey = selectElem.value;
+      }
       updateElectiveDropdownOptions(classKey);
       calculateOverallAverage();
     }
@@ -1072,7 +1082,11 @@
       }
 
       // Pick first unused elective if none provided
-      const existingKeys = Array.from(container.querySelectorAll('.elec-select')).map(s => s.value).filter(Boolean);
+      const existingKeys = Array.from(container.querySelectorAll('.elective-row')).map(r => {
+        const sel = r.querySelector('.elec-select');
+        return (sel && sel.value) ? sel.value : (r.dataset.selectedKey || '');
+      }).filter(Boolean);
+
       if (!resolvedKey) {
         const firstUnused = ALL_ELECTIVES_LIST.find(e => !existingKeys.includes(e.key));
         if (firstUnused) resolvedKey = firstUnused.key;
@@ -1085,6 +1099,7 @@
       const row = document.createElement('div');
       row.className = 'elective-row';
       row.dataset.class = classKey;
+      row.dataset.selectedKey = resolvedKey || '';
       row.innerHTML = `
         <select class="form-input elec-select" onchange="onElectiveDropdownChange('${classKey}', this)">
         </select>
@@ -1096,14 +1111,8 @@
       `;
       container.appendChild(row);
 
-      const select = row.querySelector('.elec-select');
-      if (select && resolvedKey) {
-        select.value = resolvedKey;
-      }
-
       if (!skipUpdate) {
         updateElectiveDropdownOptions(classKey);
-        if (select && resolvedKey) select.value = resolvedKey;
         calculateOverallAverage();
       }
     }
@@ -1117,7 +1126,11 @@
       if (!facConfig) return;
 
       if (isChecked) {
-        const existingKeys = Array.from(container.querySelectorAll('.elec-select')).map(s => s.value).filter(Boolean);
+        const existingKeys = Array.from(container.querySelectorAll('.elective-row')).map(r => {
+          const sel = r.querySelector('.elec-select');
+          return (sel && sel.value) ? sel.value : (r.dataset.selectedKey || '');
+        }).filter(Boolean);
+
         (facConfig.defaultSubjects || []).forEach(subKey => {
           if (!existingKeys.includes(subKey)) {
             addElectiveRow(classKey, subKey, 0, true);
@@ -1129,8 +1142,8 @@
         const facSubKeys = facConfig.subjects.map(s => s.key);
         const rows = Array.from(container.querySelectorAll('.elective-row'));
         rows.forEach(r => {
-          const sel = r.querySelector('.elec-select');
-          if (sel && facSubKeys.includes(sel.value)) {
+          const key = r.querySelector('.elec-select')?.value || r.dataset.selectedKey;
+          if (key && facSubKeys.includes(key)) {
             r.remove();
           }
         });
