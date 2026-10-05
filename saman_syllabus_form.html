@@ -1187,13 +1187,18 @@
         samanSub = MASTER_CBEO_DATA.saman_pariksha_submissions[currentSchool.shala_darpan_code];
       }
 
-      // Authorities
-      document.getElementById('f-principal-name').value = data.principal_name || currentSchool.principal_name || '';
-      document.getElementById('f-principal-mobile').value = data.principal_mobile || currentSchool.principal_mobile || '';
-      document.getElementById('f-incharge-name').value = data.incharge_name || currentSchool.incharge_name || '';
-      document.getElementById('f-incharge-mobile').value = data.incharge_mobile || currentSchool.incharge_mobile || '';
-      document.getElementById('f-sub-verifier-name').value = data.submitted_by || data.principal_name || currentSchool.principal_name || '';
-      document.getElementById('f-sub-verifier-mobile').value = data.principal_mobile || currentSchool.principal_mobile || '';
+      // Authorities: Prioritize syllabus saved/draft -> Saman Pariksha master submission -> school profile
+      const pName = data.principal_name || (samanSub && samanSub.principal_name) || currentSchool.principal_name || '';
+      const pMobile = data.principal_mobile || (samanSub && samanSub.principal_mobile) || currentSchool.principal_mobile || '';
+      const iName = data.incharge_name || (samanSub && samanSub.incharge_name) || currentSchool.incharge_name || '';
+      const iMobile = data.incharge_mobile || (samanSub && samanSub.incharge_mobile) || currentSchool.incharge_mobile || '';
+
+      document.getElementById('f-principal-name').value = pName;
+      document.getElementById('f-principal-mobile').value = pMobile;
+      document.getElementById('f-incharge-name').value = iName;
+      document.getElementById('f-incharge-mobile').value = iMobile;
+      document.getElementById('f-sub-verifier-name').value = data.submitted_by || pName;
+      document.getElementById('f-sub-verifier-mobile').value = pMobile;
 
       // Class 9
       const c9 = data.c9 || {};
@@ -1632,7 +1637,10 @@
             </tr>
             <tr>
               <td><strong>संस्था प्रधान:</strong> ${data.principal_name || currentSchool.principal_name || '---'} (मो. ${data.principal_mobile || '---'})</td>
-              <td><strong>औसत पाठ्यक्रम पूर्णता (%):</strong> <span style="font-size:15px; font-weight:900; color:#15803d">${data.average_pct || 0}%</span></td>
+              <td><strong>परीक्षा प्रभारी:</strong> ${data.incharge_name || '---'} ${data.incharge_mobile ? `(मो. ${data.incharge_mobile})` : ''}</td>
+            </tr>
+            <tr>
+              <td colspan="2" style="background:#f0fdf4"><strong>औसत पाठ्यक्रम पूर्णता दर (%):</strong> <span style="font-size:16px; font-weight:900; color:#15803d">${data.average_pct || 0}%</span></td>
             </tr>
           </table>
 
