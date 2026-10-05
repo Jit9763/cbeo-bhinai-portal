@@ -14614,8 +14614,9 @@ function openDemandBroadcastCenter(demandId) {
     deadlineEl.value = demand.dueDate || '15 अक्टूबर 2026';
   }
 
-  // Generate initial customizable message
-  const initialMsg = generateDemandTelegramMessage(demandId);
+  // Generate initial customizable message in clean human-readable WhatsApp format (no ugly HTML tags)
+  let initialMsg = generateDemandTelegramMessage(demandId);
+  initialMsg = initialMsg.replace(/<b>(.*?)<\/b>/gi, '*$1*').replace(/<i>(.*?)<\/i>/gi, '_$1_');
   if (editorEl) {
     editorEl.value = initialMsg;
     updateBroadcastCharCount();
@@ -14635,7 +14636,8 @@ function updateBroadcastCharCount() {
 
 function resetBroadcastMessageToTemplate() {
   if (!CURRENT_BROADCAST_CENTER_DEMAND) return;
-  const initialMsg = generateDemandTelegramMessage(CURRENT_BROADCAST_CENTER_DEMAND.id);
+  let initialMsg = generateDemandTelegramMessage(CURRENT_BROADCAST_CENTER_DEMAND.id);
+  initialMsg = initialMsg.replace(/<b>(.*?)<\/b>/gi, '*$1*').replace(/<i>(.*?)<\/i>/gi, '_$1_');
   const editorEl = document.getElementById('broadcast-message-editor');
   if (editorEl) {
     editorEl.value = initialMsg;
@@ -14649,6 +14651,7 @@ function onBroadcastDeadlineChange(newDeadline) {
   CURRENT_BROADCAST_CENTER_DEMAND.dueDate = newDeadline;
   const editorEl = document.getElementById('broadcast-message-editor');
   if (editorEl && newDeadline) {
+    editorEl.value = editorEl.value.replace(/📅 \*अंतिम तिथि:\* \*.*?\*/, `📅 *अंतिम तिथि:* *${newDeadline}*`);
     editorEl.value = editorEl.value.replace(/📅 <b>अंतिम तिथि:<\/b> <b>.*?<\/b>/, `📅 <b>अंतिम तिथि:</b> <b>${newDeadline}</b>`);
     updateBroadcastCharCount();
   }
@@ -14669,6 +14672,9 @@ async function sendBroadcastCustomTelegram() {
   let isSuccess = false;
   let messageId = null;
 
+  // Convert *bold* to <b>bold</b> for HTML parse_mode Telegram dispatch
+  const htmlText = customText.replace(/\*(.*?)\*/g, '<b>$1</b>').replace(/_(.*?)_/g, '<i>$1</i>');
+
   // 1. Try local API
   try {
     const res = await fetch('/api/send_demand_telegram', {
@@ -14676,7 +14682,7 @@ async function sendBroadcastCustomTelegram() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         demand_id: CURRENT_BROADCAST_CENTER_DEMAND?.id || 'DEMAND_SAMAN_SYLLABUS_2026',
-        text: customText,
+        text: htmlText,
         parse_mode: 'HTML',
         chat_id: tgChatId
       })
@@ -14700,7 +14706,7 @@ async function sendBroadcastCustomTelegram() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           chat_id: tgChatId,
-          text: customText,
+          text: htmlText,
           parse_mode: 'HTML',
           disable_web_page_preview: false
         })
@@ -14720,7 +14726,7 @@ async function sendBroadcastCustomTelegram() {
     alert(`✅ Telegram आदेश प्रेषण सफल!\n\nजितेन्द्र जी (चैट ID: 579780800) को आपका कस्टमाइज़्ड आदेश प्राप्त हो चुका है।${messageId ? `\n(Message ID: ${messageId})` : ''}`);
   } else {
     showToast('Telegram प्रेषण नेटवर्क व्यस्त! संदेश क्लिपबोर्ड में कॉपी हो गया है।', 'warning');
-    if (navigator.clipboard) navigator.clipboard.writeText(customText.replace(/<[^>]+>/g, ''));
+    if (navigator.clipboard) navigator.clipboard.writeText(customText);
   }
 }
 
@@ -14729,17 +14735,12 @@ function shareBroadcastCustomWhatsApp() {
   const customText = editorEl ? editorEl.value.trim() : '';
   if (!customText) return;
 
-  const cleanText = customText
-    .replace(/<b>(.*?)<\/b>/gi, '*$1*')
-    .replace(/<i>(.*?)<\/i>/gi, '_$1_')
-    .replace(/<[^>]+>/g, '');
-
   if (navigator.clipboard) {
-    navigator.clipboard.writeText(cleanText);
+    navigator.clipboard.writeText(customText);
     showToast('कस्टमाइज़्ड संदेश क्लिपबोर्ड में कॉपी हो गया है!', 'success');
   }
 
-  const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(cleanText)}`;
+  const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(customText)}`;
   window.open(waUrl, '_blank');
 }
 
