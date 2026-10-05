@@ -2678,6 +2678,12 @@ function renderSamanParikshaView() {
     }
   }
 
+  const sylDispatchBar = document.getElementById('sp-syllabus-admin-dispatch-bar');
+  const isJitendra = !STATE.currentUser || STATE.currentUser.role === 'admin' || (STATE.currentUser.name && STATE.currentUser.name.includes('जितेन्द्र'));
+  if (sylDispatchBar) {
+    sylDispatchBar.style.display = (STATE.samanParikshaActiveForm === 'syllabus' && isJitendra) ? 'flex' : 'none';
+  }
+
   if (STATE.currentUser.role === 'admin') {
     if (peeoContainer) peeoContainer.style.display = 'none';
     if (adminContainer) adminContainer.style.display = 'block';
@@ -3303,14 +3309,18 @@ function switchSamanActiveForm(formType) {
   STATE.samanParikshaActiveForm = formType;
   localStorage.setItem('cbeo_saman_active_form', formType);
   const scopeDropdown = document.getElementById('sp-school-type-filter');
+  const sylDispatchBar = document.getElementById('sp-syllabus-admin-dispatch-bar');
+  const isJitendra = !STATE.currentUser || STATE.currentUser.role === 'admin' || (STATE.currentUser.name && STATE.currentUser.name.includes('जितेन्द्र'));
 
   if (formType === 'syllabus') {
     // When switching to syllabus completion % demand, automatically filter to 49 Govt schools
     // because private schools are excluded as per user instructions
     STATE.samanParikshaSchoolTypeFilter = 'govt_only';
     if (scopeDropdown) scopeDropdown.value = 'govt_only';
+    if (sylDispatchBar && isJitendra) sylDispatchBar.style.display = 'flex';
     showToast('नवीन पाठ्यक्रम पूर्णता % मांग (49 राजकीय विद्यालय) सक्रिय हो गई!', 'info');
   } else {
+    if (sylDispatchBar) sylDispatchBar.style.display = 'none';
     showToast('मूल प्रश्न-पत्र मांग (57 विद्यालय) सक्रिय हो गई!', 'info');
   }
 
@@ -9973,6 +9983,14 @@ function createDemandCardElement(demand, isArchive = false) {
         <button class="btn btn-success btn-sm" onclick="exportDynamicDemandExcel('${demand.id}')" title="इस मांग का एक्सेल डाउनलोड" style="font-weight:700">
           <i class="fas fa-file-excel"></i> 📊 एक्सेल डाउनलोड
         </button>
+        ${isAdminUser ? `
+          <button class="btn btn-warning btn-sm text-dark" onclick="openBroadcastDemandEmailModal('${demand.id}')" title="सभी लक्षित विद्यालयों को ईमेल सूचना भेजें" style="font-weight:700; background:#f59e0b; border-color:#d97706">
+            <i class="fas fa-envelope"></i> 📧 ईमेल
+          </button>
+          <button class="btn btn-info btn-sm text-white" onclick="broadcastDemandTelegram('${demand.id}')" title="आधिकारिक सूचना Telegram पर भेजें" style="font-weight:700; background:#0284c7; border-color:#0369a1">
+            <i class="fab fa-telegram-plane"></i> 📱 Telegram
+          </button>
+        ` : ''}
         ${isPeeoUser ? `
           <button class="btn btn-outline-primary btn-sm" onclick="openDynamicDemandPeeoPdf('${demand.id}', '${STATE.currentUser.peeo_name}')" style="font-weight:700">
             <i class="fas fa-file-invoice"></i> 📑 PEEO समेकित A4
@@ -10755,6 +10773,12 @@ function renderDynamicDemandPortalView(demandId) {
           <i class="fas fa-file-pdf"></i> 🚨 लम्बित स्कूल/PEEO PDF
         </button>
         ${isAdminUser ? `
+          <button class="btn btn-warning btn-sm" onclick="openBroadcastDemandEmailModal('${demand.id}')" style="background:#f59e0b; color:#0f172a; font-weight:800; border:none" title="लक्षित विद्यालयों को ईमेल सूचना एवं भरने के निर्देश भेजें">
+            <i class="fas fa-envelope"></i> 📧 सभी स्कूलों को ईमेल करें
+          </button>
+          <button class="btn btn-info btn-sm" onclick="broadcastDemandTelegram('${demand.id}')" style="background:#0284c7; color:#ffffff; font-weight:800; border:none" title="आधिकारिक सूचना Telegram पर भेजें">
+            <i class="fab fa-telegram-plane"></i> 📱 Telegram पर भेजें
+          </button>
           <button class="btn btn-primary btn-sm" onclick="openDynamicDemandPeeoSelector('${demand.id}')" style="font-weight:700">
             <i class="fas fa-list-ul"></i> PEEO समेकित रिपोर्ट
           </button>
@@ -12995,9 +13019,15 @@ function renderCBEOExecutiveDemands() {
         </div>
       </td>
       <td style="text-align:center">
-        <div style="display:flex; gap:0.4rem; justify-content:center">
+        <div style="display:flex; gap:0.4rem; justify-content:center; flex-wrap:wrap">
           <button class="btn btn-danger btn-sm" onclick="generateDemandPendingListPDF('${d.id}')" title="लम्बित विद्यालय एवं PEEO सूची PDF जनरेट करें" style="font-size:0.75rem; padding:4px 8px; font-weight:700">
             <i class="fas fa-file-pdf"></i> लम्बित PDF
+          </button>
+          <button class="btn btn-sm" onclick="openBroadcastDemandEmailModal('${d.id}')" title="लक्षित विद्यालयों को ईमेल सूचना भेजें" style="font-size:0.75rem; padding:4px 8px; font-weight:700; background:#f59e0b; color:#0f172a; border:none; border-radius:4px">
+            <i class="fas fa-envelope"></i> ईमेल
+          </button>
+          <button class="btn btn-sm" onclick="broadcastDemandTelegram('${d.id}')" title="आधिकारिक सूचना Telegram पर भेजें" style="font-size:0.75rem; padding:4px 8px; font-weight:700; background:#0284c7; color:#ffffff; border:none; border-radius:4px">
+            <i class="fab fa-telegram-plane"></i> Telegram
           </button>
           <button class="btn btn-whatsapp btn-sm" onclick="openShareDemandPendingModal('${d.id}')" title="WhatsApp पर लम्बित सूची शेयर करें" style="font-size:0.75rem; padding:4px 8px">
             <i class="fab fa-whatsapp"></i> शेयर
@@ -14371,7 +14401,198 @@ async function executeDemandEmailBroadcast() {
 }
 
 /* ========================================================
-   11B. MASTER SCHOOL & PEEO MANAGEMENT CONTROLS
+   11B. UNIVERSAL DEMAND TELEGRAM & WHATSAPP BROADCAST SYSTEM
+   ======================================================== */
+
+let CURRENT_DEMAND_TELEGRAM_TEXT = '';
+
+function generateDemandTelegramMessage(demandId) {
+  const demand = (STATE.demands || []).find(d => d.id === demandId) || {
+    id: demandId,
+    title: 'समान परीक्षा: सत्र 2026-27 पाठ्यक्रम पूर्णता प्रतिशत मांग (49 राजकीय विद्यालय)',
+    dueDate: '2026-10-15',
+    priority: 'अति आवश्यक (Urgent)',
+    schoolScope: 'govt_sec'
+  };
+
+  const isSyllabus = demand.id === 'DEMAND_SAMAN_SYLLABUS_2026' || (demand.title && demand.title.includes('पाठ्यक्रम'));
+
+  let audienceText = '';
+  if (isSyllabus || demand.schoolScope === 'govt_sec') {
+    audienceText = 'समस्त संबंधित संस्था प्रधान एवं परीक्षा प्रभारी,\nराजकीय माध्यमिक एवं उच्च माध्यमिक विद्यालय (49 विद्यालय), ब्लॉक-भिनाय (जिला: अजमेर)';
+  } else if (demand.schoolScope === 'pvt_sec') {
+    audienceText = 'समस्त संबंधित संस्था प्रधान एवं परीक्षा प्रभारी,\nनिजी माध्यमिक एवं उच्च माध्यमिक विद्यालय (8 विद्यालय), ब्लॉक-भिनाय (जिला: अजमेर)';
+  } else if (demand.schoolScope === 'both_sec' || demand.schoolScope === 'sec_srsec') {
+    audienceText = 'समस्त संबंधित संस्था प्रधान एवं परीक्षा प्रभारी,\nमाध्यमिक एवं उच्च माध्यमिक विद्यालय (49 राजकीय + 8 निजी), ब्लॉक-भिनाय (जिला: अजमेर)';
+  } else if (demand.collectionLevel === 'peeo') {
+    audienceText = 'समस्त 25 पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO / UCEEO),\nब्लॉक-भिनाय (जिला: अजमेर)';
+  } else {
+    audienceText = 'समस्त संबंधित संस्था प्रधान / PEEO,\nब्लॉक-भिनाय (जिला: अजमेर)';
+  }
+
+  let featuresSnippet = '';
+  if (isSyllabus) {
+    featuresSnippet = `━━━━━━━━━━━━━━━━━━
+✨ <b>प्रपत्र की मुख्य विशेषताएं एवं सरलता:</b>
+1️⃣ <b>संस्था प्रधान व परीक्षा प्रभारी विवरण:</b> समान परीक्षा मास्टर रिकॉर्ड से नाम व मोबाइल स्वतः प्री-फिल्ड हैं।
+2️⃣ <b>संकाय व ऐच्छिक विषय स्वतः चयनित:</b> आपके विद्यालय में संचालित संकाय (Arts, Science, Commerce, Agri) व चालू ऐच्छिक विषय रिकॉर्ड अनुसार स्वतः प्रदर्शित होंगे।
+3️⃣ <b>विषय संशोधन व अतिरिक्त विषय:</b> विद्यालय सुविधानुसार ड्रॉपडाउन से विषय बदल सकता है अथवा <b>'+ ऐच्छिक विषय जोड़ें'</b> बटन से नए विषय जोड़ सकता है। (एक बार चुना गया विषय अन्य ड्रॉपडाउन में रिपीट नहीं होगा)।
+4️⃣ <b>स्वतः औसत गणना (Auto Average):</b> आपके द्वारा दर्ज प्रतिशत के आधार पर विद्यालय का कुल औसत प्रतिशत स्वतः परिकलित होगा।
+5️⃣ <b>डिजिटल प्रमाणीकरण व A4 PDF:</b> सबमिट करने के बाद आधिकारिक संस्थागत डिजिटल मोहर सहित A4 साइज की PDF रिपोर्ट तुरंत प्रिंट/डाउनलोड कर सकते हैं।
+━━━━━━━━━━━━━━━━━━\n\n`;
+  } else if (demand.columns && demand.columns.length > 0) {
+    const colNames = demand.columns.slice(0, 8).map(c => typeof c === 'string' ? c : c.name).join(', ');
+    featuresSnippet = `📋 <b>मांगे गए प्रमुख कॉलम/बिंदु:</b> ${colNames}${demand.columns.length > 8 ? ' आदि।' : '।'}\n\n`;
+  }
+
+  const msg = 
+`🏛️ <b>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)</b>
+📢 <b>अति-आवश्यक सूचना / आधिकारिक आदेश</b>
+
+<b>विषय:</b> ${demand.title}
+
+${audienceText}
+
+उपरोक्त विषयान्तर्गत लेख है कि कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर) द्वारा <b>${demand.title}</b> का अधिकृत ऑनलाइन प्रपत्र <b>CBEO भिनाय पोर्टल</b> पर लाइव कर दिया गया है।
+
+${featuresSnippet}📅 <b>अंतिम तिथि:</b> <b>${demand.dueDate || 'यथाशीघ्र'}</b>
+⚡ <b>प्राथमिकता:</b> <b>${demand.priority || 'अति आवश्यक (Urgent)'}</b>
+
+⚠️ <b>अति-आवश्यक निर्देश:</b>
+समस्त संबंधित संस्था प्रधान/प्रभारी अपने विद्यालय के शाला दर्पण कोड से पोर्टल पर लॉगिन कर निर्धारित समय सीमा में प्रविष्टि पूर्ण कर प्रमाणित सबमिट करना सुनिश्चित करें।
+
+🌐 <b>CBEO भिनाय आधिकारिक पोर्टल लॉगिन लिंक:</b>
+https://jit9763.github.io/cbeo-bhinai-portal/
+
+- <b>मुख्य ब्लॉक शिक्षा अधिकारी (CBEO)</b>
+कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय (अजमेर)`;
+
+  return msg;
+}
+
+async function broadcastDemandTelegram(demandId) {
+  const msg = generateDemandTelegramMessage(demandId);
+  CURRENT_DEMAND_TELEGRAM_TEXT = msg;
+
+  showToast('Telegram पर आधिकारिक संदेश भेजा जा रहा है...', 'info');
+
+  const tgToken = '8815110844:AAFsMJHFepKpk83Wtm-JGqn8REV8XUQLgGY';
+  const tgChatId = '579780800';
+  let isSuccess = false;
+  let messageId = null;
+
+  // 1. Try local backend endpoint first
+  try {
+    const res = await fetch('/api/send_demand_telegram', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        demand_id: demandId,
+        text: msg,
+        parse_mode: 'HTML',
+        chat_id: tgChatId
+      })
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.success) {
+        isSuccess = true;
+        messageId = data.message_id;
+      }
+    }
+  } catch (err) {
+    console.warn('Local API telegram dispatch fallback:', err);
+  }
+
+  // 2. Direct browser fetch to Telegram Bot API fallback (works on GitHub Pages / client)
+  if (!isSuccess) {
+    try {
+      const tgRes = await fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: tgChatId,
+          text: msg,
+          parse_mode: 'HTML',
+          disable_web_page_preview: false
+        })
+      });
+      const tgData = await tgRes.json();
+      if (tgData && tgData.ok) {
+        isSuccess = true;
+        messageId = tgData.result?.message_id;
+      }
+    } catch (apiErr) {
+      console.warn('Direct Telegram API failed (network/CORS):', apiErr);
+    }
+  }
+
+  // Populate Preview Modal
+  const previewEl = document.getElementById('demand-telegram-preview-text');
+  if (previewEl) {
+    previewEl.textContent = msg.replace(/<[^>]+>/g, '');
+  }
+
+  const statusBanner = document.getElementById('tg-dispatch-status-banner');
+  if (statusBanner) {
+    if (isSuccess) {
+      statusBanner.style.background = '#ecfdf5';
+      statusBanner.style.borderColor = '#86efac';
+      statusBanner.innerHTML = `
+        <i class="fas fa-check-circle fa-2x" style="color:#16a34a"></i>
+        <div>
+          <div style="font-weight:800; color:#166534; font-size:0.95rem">
+            ✅ Telegram संदेश जितेन्द्र जी (579780800) को सफलतापूर्वक भेज दिया गया! ${messageId ? `(Msg ID: ${messageId})` : ''}
+          </div>
+          <div style="font-size:0.8rem; color:#14532d; margin-top:2px">
+            नीचे दिया गया संदेश आप WhatsApp स्कूल / PEEO ग्रुप्स में भेजने हेतु एक क्लिक में कॉपी कर सकते हैं।
+          </div>
+        </div>
+      `;
+      showToast('✅ Telegram पर संदेश सफलतापूर्वक भेज दिया गया!', 'success');
+    } else {
+      statusBanner.style.background = '#fef2f2';
+      statusBanner.style.borderColor = '#fca5a5';
+      statusBanner.innerHTML = `
+        <i class="fas fa-info-circle fa-2x" style="color:#dc2626"></i>
+        <div>
+          <div style="font-weight:800; color:#991b1b; font-size:0.95rem">
+            Telegram संदेश तैयार है! नीचे से तुरंत कॉपी कर WhatsApp / Telegram पर भेज सकते हैं।
+          </div>
+          <div style="font-size:0.8rem; color:#7f1d1d; margin-top:2px">
+            (सीधा बॉट कनेक्शन ISP प्रतिबंध के कारण सीमित होने पर भी संदेश पूर्णतः सुरक्षित है)
+          </div>
+        </div>
+      `;
+      showToast('सूचना संदेश तैयार! WhatsApp / Telegram कॉपी विंडो खुली।', 'info');
+    }
+  }
+
+  showModal('modal-demand-telegram-preview');
+}
+
+function copyDemandTelegramPreviewToClipboard() {
+  const rawText = CURRENT_DEMAND_TELEGRAM_TEXT.replace(/<[^>]+>/g, '');
+  navigator.clipboard.writeText(rawText).then(() => {
+    showToast('📋 आधिकारिक संदेश क्लिपबोर्ड पर कॉपी हो गया! अब WhatsApp में पेस्ट करें।', 'success');
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = rawText;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('📋 संदेश कॉपी हो गया!', 'success');
+  });
+}
+
+function shareDemandTelegramOnWhatsApp() {
+  const rawText = CURRENT_DEMAND_TELEGRAM_TEXT.replace(/<[^>]+>/g, '');
+  openWhatsAppDirectText(rawText);
+}
+
+/* ========================================================
+   11C. MASTER SCHOOL & PEEO MANAGEMENT CONTROLS
    ======================================================== */
 
 // Retrieve all 178 Master Schools unified across all 25 PEEOs with detail overrides

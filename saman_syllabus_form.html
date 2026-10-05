@@ -370,6 +370,45 @@
 </head>
 <body>
 
+  <!-- 🔒 Authentication Required Overlay (Strict Portal Login Security) -->
+  <div id="auth-required-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(15,23,42,0.95); backdrop-filter:blur(6px); z-index:999999; align-items:center; justify-content:center; padding:1.5rem">
+    <div style="background:#ffffff; border-radius:18px; max-width:540px; width:100%; padding:2.2rem; text-align:center; box-shadow:0 25px 50px -12px rgba(0,0,0,0.6); border:2.5px solid #0284c7">
+      <div style="width:76px; height:76px; background:#e0f2fe; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; margin-bottom:1.25rem">
+        <i class="fas fa-user-lock fa-2x" style="color:#0284c7"></i>
+      </div>
+      <h2 style="color:#0f172a; margin:0 0 0.5rem 0; font-size:1.45rem; font-weight:900">पोर्टल लॉगिन आवश्यक है</h2>
+      <div style="font-size:0.85rem; font-weight:800; color:#0369a1; margin-bottom:0.75rem">
+        🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)
+      </div>
+      <p style="color:#475569; font-size:0.92rem; line-height:1.6; margin-bottom:1.5rem">
+        मान्यवर संस्था प्रधान / परीक्षा प्रभारी,<br>
+        समान परीक्षा सत्र 2026-27 के <strong>पाठ्यक्रम पूर्णता प्रतिशत प्रपत्र</strong> में प्रविष्टि अथवा संशोधन हेतु CBEO भिनाय के आधिकारिक पोर्टल पर अपने विद्यालय के शाला दर्पण कोड से लॉगिन करना अनिवार्य है।
+      </p>
+      <div style="display:flex; flex-direction:column; gap:0.75rem">
+        <a href="index.html#login" class="btn btn-primary" style="padding:0.85rem 1.5rem; font-size:1rem; font-weight:800; text-decoration:none; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; background:#0284c7; color:#ffffff; box-shadow:0 4px 12px rgba(2,132,199,0.35)">
+          <i class="fas fa-sign-in-alt"></i> 🔐 CBEO भिनाय मुख्य पोर्टल पर लॉगिन करें
+        </a>
+        <a href="index.html" style="color:#64748b; font-size:0.85rem; text-decoration:none; font-weight:700">← मुख्य पोर्टल होमपेज</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🚫 Not Eligible School Overlay (For Private / Non-Govt Schools) -->
+  <div id="not-eligible-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(15,23,42,0.95); backdrop-filter:blur(6px); z-index:999999; align-items:center; justify-content:center; padding:1.5rem">
+    <div style="background:#ffffff; border-radius:18px; max-width:540px; width:100%; padding:2.2rem; text-align:center; box-shadow:0 25px 50px -12px rgba(0,0,0,0.6); border:2.5px solid #dc2626">
+      <div style="width:76px; height:76px; background:#fee2e2; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; margin-bottom:1.25rem">
+        <i class="fas fa-ban fa-2x" style="color:#dc2626"></i>
+      </div>
+      <h2 style="color:#0f172a; margin:0 0 0.5rem 0; font-size:1.4rem; font-weight:900">प्रपत्र आपके विद्यालय हेतु लागू नहीं है</h2>
+      <p style="color:#475569; font-size:0.92rem; line-height:1.6; margin-bottom:1.5rem">
+        यह पाठ्यक्रम पूर्णता प्रतिशत मांग प्रपत्र केवल ब्लॉक भिनाय के <strong>49 राजकीय माध्यमिक एवं उच्च माध्यमिक विद्यालयों</strong> हेतु है। (8 निजी स्कूल पूर्णतया बाहर हैं)।
+      </p>
+      <a href="index.html#saman-pariksha" class="btn btn-primary" style="padding:0.75rem 1.5rem; font-size:0.95rem; font-weight:800; text-decoration:none; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; background:#1e293b; color:#ffffff">
+        <i class="fas fa-arrow-left"></i> मुख्य पोर्टल पर वापस जाएं
+      </a>
+    </div>
+  </div>
+
   <!-- Top Sticky Navigation -->
   <div class="top-nav">
     <a href="index.html#saman-pariksha" class="back-btn">
@@ -934,6 +973,15 @@
         loggedUser = JSON.parse(localStorage.getItem('cbeo_user') || 'null');
       } catch(e) {}
 
+      // 🚨 CRITICAL AUTHENTICATION CHECK:
+      // If nobody is logged in, show Auth Required overlay immediately and return!
+      // Do NOT load Bandanwara or any school's data!
+      if (!loggedUser) {
+        const authOverlay = document.getElementById('auth-required-overlay');
+        if (authOverlay) authOverlay.style.display = 'flex';
+        return;
+      }
+
       const isJitendra = loggedUser && (
         String(loggedUser.username || '').toLowerCase().includes('jitendra') ||
         String(loggedUser.shala_darpan_code || '').toLowerCase().includes('jitendra') ||
@@ -951,33 +999,63 @@
       }
 
       const select = document.getElementById('school-select');
-      if (select) {
-        select.innerHTML = '';
-        schoolsList.forEach(s => {
-          const opt = document.createElement('option');
-          opt.value = s.shala_darpan_code;
-          const names = getOfficialSchoolNames(s);
-          opt.textContent = `${names.en}`;
-          select.appendChild(opt);
-        });
-        if (!isJitendra) {
+      const params = new URLSearchParams(window.location.search);
+      const urlCode = params.get('code') || params.get('school');
+      let targetCode = null;
+
+      if (loggedUser.role === 'school') {
+        // School Login: strictly their own school
+        targetCode = String(loggedUser.school_code || loggedUser.shala_darpan_code || '');
+        const mySchool = schoolsList.find(s => String(s.shala_darpan_code) === targetCode);
+        if (!mySchool) {
+          // School is not in 49 Govt secondary/sr.sec schools (e.g. private or primary school)
+          const notEligible = document.getElementById('not-eligible-overlay');
+          if (notEligible) notEligible.style.display = 'flex';
+          return;
+        }
+        if (select) {
+          select.innerHTML = `<option value="${mySchool.shala_darpan_code}">${getOfficialSchoolNames(mySchool).en}</option>`;
+          select.value = mySchool.shala_darpan_code;
           select.disabled = true;
         }
+        loadSchool(targetCode);
+      } else if (loggedUser.role === 'peeo') {
+        // PEEO Login: only schools within this PEEO jurisdiction
+        const peeoSchools = schoolsList.filter(s => s.peeo_name === loggedUser.peeo_name || String(s.shala_darpan_code) === String(loggedUser.school_code));
+        if (select) {
+          select.innerHTML = '<option value="">-- अधीनस्थ राजकीय विद्यालय चुनें --</option>';
+          peeoSchools.forEach(s => {
+            const opt = document.createElement('option');
+            opt.value = s.shala_darpan_code;
+            opt.textContent = `${getOfficialSchoolNames(s).en}`;
+            select.appendChild(opt);
+          });
+        }
+        targetCode = urlCode && peeoSchools.some(s => String(s.shala_darpan_code) === String(urlCode)) ? urlCode : (peeoSchools[0] && peeoSchools[0].shala_darpan_code);
+        if (targetCode && select) select.value = targetCode;
+        if (targetCode) loadSchool(targetCode);
+      } else if (isJitendra) {
+        // Super Admin (Jitendra): Can select any of 49 Govt schools
+        if (select) {
+          select.innerHTML = '<option value="">-- कृपया विद्यालय का चयन करें (49 राजकीय विद्यालय) --</option>';
+          schoolsList.forEach(s => {
+            const opt = document.createElement('option');
+            opt.value = s.shala_darpan_code;
+            opt.textContent = `${getOfficialSchoolNames(s).en}`;
+            select.appendChild(opt);
+          });
+          select.disabled = false;
+        }
+        if (urlCode && schoolsList.some(s => String(s.shala_darpan_code) === String(urlCode))) {
+          targetCode = urlCode;
+          if (select) select.value = targetCode;
+          loadSchool(targetCode);
+        } else {
+          // If no specific code requested in URL, do not auto-load dummy data!
+          document.getElementById('f-school-name').value = '';
+          document.getElementById('f-school-name').placeholder = '-- कृपया ऊपर ड्रॉपडाउन से विद्यालय चुनें --';
+        }
       }
-
-      // If school user is logged in and not admin, lock strictly to their own school code
-      let targetCode = null;
-      if (loggedUser && loggedUser.role === 'school' && loggedUser.school_code && !isJitendra) {
-        targetCode = String(loggedUser.school_code);
-      } else {
-        const params = new URLSearchParams(window.location.search);
-        targetCode = params.get('code') || params.get('school') || (schoolsList[0] && schoolsList[0].shala_darpan_code);
-      }
-
-      if (targetCode && select) {
-        select.value = targetCode;
-      }
-      loadSchool(targetCode || (select && select.value));
 
       // Fetch latest syllabus submissions from backend API
       fetch('/api/get_saman_syllabus?_v=' + Date.now())
@@ -1153,11 +1231,12 @@
     }
 
     function loadSchool(code) {
+      if (!code) return;
       if (!schoolsList || schoolsList.length === 0) {
         let all = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.schools_56) || [];
         schoolsList = all.filter(s => s.type === 'Government');
       }
-      currentSchool = schoolsList.find(s => String(s.shala_darpan_code) === String(code)) || schoolsList[0];
+      currentSchool = schoolsList.find(s => String(s.shala_darpan_code) === String(code));
       if (!currentSchool) return;
 
       const officialNames = getOfficialSchoolNames(currentSchool);

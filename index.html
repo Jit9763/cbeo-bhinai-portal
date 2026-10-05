@@ -218,6 +218,35 @@
           <button type="button" id="btn-sp-mismatch-admin" class="btn btn-sm" onclick="openSamanCustomEditModal()" style="font-weight:700; font-size:0.8rem; display:inline-flex; align-items:center; gap:0.35rem; background:#fff1f2; color:#be123c; border:1.5px solid #fca5a5">
             <i class="fas fa-exclamation-triangle sp-mismatch-blinking-text"></i> मिसमैच कस्टम एडिट व लॉगिन अलर्ट (8 स्कूल)
           </button>
+          <button type="button" class="btn btn-sm" onclick="openBroadcastDemandEmailModal('DEMAND_SAMAN_SYLLABUS_2026')" style="background:#f59e0b; color:#0f172a; font-weight:700; font-size:0.8rem; display:inline-flex; align-items:center; gap:0.35rem; border:none; padding:4px 10px; border-radius:6px" title="समस्त 49 राजकीय विद्यालयों को ईमेल भेजें">
+            <i class="fas fa-envelope"></i> 📧 ईमेल भेजें
+          </button>
+          <button type="button" class="btn btn-sm" onclick="broadcastDemandTelegram('DEMAND_SAMAN_SYLLABUS_2026')" style="background:#0284c7; color:#ffffff; font-weight:700; font-size:0.8rem; display:inline-flex; align-items:center; gap:0.35rem; border:none; padding:4px 10px; border-radius:6px" title="आधिकारिक संदेश Telegram पर भेजें">
+            <i class="fab fa-telegram-plane"></i> 📱 Telegram
+          </button>
+        </div>
+      </div>
+
+      <!-- Syllabus Demand Admin Dispatch Quick Bar (Visible when Syllabus Demand is Active) -->
+      <div id="sp-syllabus-admin-dispatch-bar" style="display:none; background:linear-gradient(135deg, #eff6ff, #f0fdf4); border:1.5px solid #93c5fd; border-radius:10px; padding:0.75rem 1rem; margin-top:0.75rem; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.75rem">
+        <div style="display:flex; align-items:center; gap:0.6rem">
+          <span style="font-size:1.25rem">📢</span>
+          <div>
+            <div style="font-weight:800; color:#1e3a8a; font-size:0.92rem">
+              समान परीक्षा पाठ्यक्रम पूर्णता % मांग (49 राजकीय विद्यालय) - सूचना प्रसारण केंद्र
+            </div>
+            <div style="font-size:0.78rem; color:#475569">
+              समस्त 49 राजकीय विद्यालयों को ईमेल अथवा जितेन्द्र जी के Telegram पर अधिकृत सूचना भेजें:
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+          <button type="button" class="btn btn-sm" onclick="openBroadcastDemandEmailModal('DEMAND_SAMAN_SYLLABUS_2026')" style="background:#f59e0b; color:#0f172a; font-weight:800; padding:6px 14px; border-radius:6px; border:none; display:inline-flex; align-items:center; gap:0.4rem; box-shadow:0 2px 6px rgba(245,158,11,0.25); cursor:pointer">
+            <i class="fas fa-envelope"></i> 📧 सभी 49 स्कूलों को ईमेल भेजें
+          </button>
+          <button type="button" class="btn btn-sm" onclick="broadcastDemandTelegram('DEMAND_SAMAN_SYLLABUS_2026')" style="background:#0284c7; color:#ffffff; font-weight:800; padding:6px 14px; border-radius:6px; border:none; display:inline-flex; align-items:center; gap:0.4rem; box-shadow:0 2px 6px rgba(2,132,199,0.25); cursor:pointer">
+            <i class="fab fa-telegram-plane"></i> 📱 Telegram पर भेजें
+          </button>
         </div>
       </div>
 
@@ -3196,8 +3225,60 @@
         </button>
       </div>
     </div>
-  </div>
+  <!-- 7D. DEMAND TELEGRAM DISPATCH & WHATSAPP PREVIEW MODAL -->
+  <div id="modal-demand-telegram-preview" class="modal-overlay">
+    <div class="modal-card" style="max-width:720px">
+      <div class="modal-header" style="background:linear-gradient(135deg, #0284c7, #0369a1); color:#ffffff; padding:1rem 1.25rem">
+        <div>
+          <h3 style="margin:0; font-size:1.15rem; font-weight:800; color:#ffffff; display:flex; align-items:center; gap:0.5rem">
+            <i class="fab fa-telegram-plane"></i> 📱 आधिकारिक Telegram सूचना प्रेषण एवं WhatsApp कॉपी हब
+          </h3>
+          <span style="font-size:0.8rem; color:#e0f2fe; margin-top:2px; display:block">
+            कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)
+          </span>
+        </div>
+        <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-demand-telegram-preview')">&times;</button>
+      </div>
 
+      <div class="modal-body" style="padding:1.25rem">
+        <div id="tg-dispatch-status-banner" style="background:#ecfdf5; border:1.5px solid #86efac; border-radius:8px; padding:0.85rem 1rem; margin-bottom:1rem; display:flex; align-items:center; gap:0.75rem">
+          <i class="fas fa-check-circle fa-2x text-success"></i>
+          <div>
+            <div style="font-weight:800; color:#166534; font-size:0.95rem">
+              Telegram संदेश जितेन्द्र जी (579780800) को सफलतापूर्वक भेज दिया गया है!
+            </div>
+            <div style="font-size:0.8rem; color:#14532d; margin-top:2px">
+              नीचे दिया गया संदेश आप WhatsApp स्कूल / PEEO ग्रुप्स में अग्रेषित (Forward) करने हेतु कॉपी कर सकते हैं।
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem">
+            <label style="font-size:0.85rem; font-weight:800; color:#0f766e; margin:0">
+              <i class="fab fa-whatsapp text-success"></i> प्रेषित संदेश (WhatsApp / Telegram कॉपी-पेस्ट रेडी):
+            </label>
+            <button type="button" class="btn btn-outline-success btn-sm" onclick="copyDemandTelegramPreviewToClipboard()" style="font-size:0.78rem; font-weight:700; padding:3px 10px">
+              <i class="fas fa-copy"></i> 📋 संदेश कॉपी करें
+            </button>
+          </div>
+          <pre id="demand-telegram-preview-text" style="background:#0f172a; color:#f8fafc; padding:1rem; border-radius:8px; font-size:0.82rem; font-family:monospace; white-space:pre-wrap; max-height:280px; overflow-y:auto; border:1.5px solid #334155; margin:0; line-height:1.5"></pre>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="background:#f8fafc; border-top:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center">
+        <button class="btn btn-outline-light" style="color:#64748b; border-color:#cbd5e1" onclick="closeModal('modal-demand-telegram-preview')">बंद करें</button>
+        <div style="display:flex; gap:0.5rem">
+          <button class="btn btn-success" onclick="shareDemandTelegramOnWhatsApp()" style="font-weight:800; background:#25D366; border-color:#25D366; color:#ffffff">
+            <i class="fab fa-whatsapp"></i> WhatsApp पर शेयर करें
+          </button>
+          <button class="btn btn-primary" onclick="copyDemandTelegramPreviewToClipboard()" style="font-weight:800">
+            <i class="fas fa-copy"></i> 📋 कॉपी करें
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- 8. ADD NEW SCHOOL MODAL (GOVT / PRIVATE) -->
   <div id="modal-add-school" class="modal-overlay">

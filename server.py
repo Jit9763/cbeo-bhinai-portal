@@ -428,6 +428,57 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                 self.send_json_response({'success': False, 'message': str(e)}, status=500)
             return
 
+        elif parsed_url.path == '/api/save_saman_mismatch_settings':
+            try:
+                settings = req_data.get('settings', req_data)
+                with open('saman_mismatch_settings.json', 'w', encoding='utf-8') as f:
+                    json.dump(settings, f, ensure_ascii=False, indent=2)
+                self.send_json_response({'success': True, 'message': 'समान परीक्षा मिसमैच व कस्टम एडिट सेटिंग्स सुरक्षित हो गईं!'})
+            except Exception as e:
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
+
+        elif parsed_url.path == '/api/send_mismatch_alert':
+            try:
+                import sys
+                script_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'scripts')
+                if script_dir not in sys.path:
+                    sys.path.insert(0, script_dir)
+                from send_mismatch_alert_service import process_mismatch_dispatch
+                res = process_mismatch_dispatch(req_data)
+                self.send_json_response(res)
+            except Exception as e:
+                self.send_json_response({'success': False, 'error': str(e)}, status=500)
+        elif parsed_url.path == '/api/send_demand_telegram':
+            try:
+                import json, requests
+                cfg_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cbeo_telegram_config.json')
+                tg_cfg = {}
+                if os.path.exists(cfg_path):
+                    with open(cfg_path, 'r', encoding='utf-8') as f:
+                        tg_cfg = json.load(f)
+                bot_token = tg_cfg.get('bot_token', '8815110844:AAFsMJHFepKpk83Wtm-JGqn8REV8XUQLgGY')
+                chat_id = req_data.get('chat_id') or tg_cfg.get('authorized_chat_id', '579780800')
+                text = req_data.get('text', '')
+                parse_mode = req_data.get('parse_mode', 'HTML')
+
+                tg_url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+                res = requests.post(tg_url, json={
+                    'chat_id': chat_id,
+                    'text': text,
+                    'parse_mode': parse_mode,
+                    'disable_web_page_preview': False
+                }, timeout=15)
+                tg_data = res.json()
+                self.send_json_response({
+                    'success': tg_data.get('ok', False),
+                    'result': tg_data.get('result', {}),
+                    'message_id': tg_data.get('result', {}).get('message_id')
+                })
+            except Exception as e:
+                self.send_json_response({'success': False, 'error': str(e)}, status=500)
+            return
+
         elif parsed_url.path == '/api/ai_match_columns':
             try:
                 columns = req_data.get('columns', [])
@@ -828,6 +879,17 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                     with open('staff_edit_permissions.json', 'r', encoding='utf-8') as f:
                         perms = json.load(f)
                 self.send_json_response({'success': True, 'permissions': perms})
+            except Exception as e:
+                self.send_json_response({'success': False, 'message': str(e)}, status=500)
+            return
+
+        elif parsed_url.path == '/api/get_saman_mismatch_settings':
+            try:
+                settings = {}
+                if os.path.exists('saman_mismatch_settings.json'):
+                    with open('saman_mismatch_settings.json', 'r', encoding='utf-8') as f:
+                        settings = json.load(f)
+                self.send_json_response({'success': True, 'settings': settings})
             except Exception as e:
                 self.send_json_response({'success': False, 'message': str(e)}, status=500)
             return

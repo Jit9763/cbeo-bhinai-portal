@@ -393,6 +393,81 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (pathname === '/api/broadcast_demand_email' && req.method === 'POST') {
+    readBody((data, err) => {
+      if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
+      const scriptPath = path.join(ROOT_DIR, 'broadcast_email_service.py');
+      const child = spawn('python', [scriptPath], { stdio: ['pipe', 'pipe', 'pipe'] });
+      let stdoutData = '';
+      let stderrData = '';
+      child.stdout.on('data', chunk => { stdoutData += chunk.toString('utf8'); });
+      child.stderr.on('data', chunk => { stderrData += chunk.toString('utf8'); });
+      child.on('close', code => {
+        try {
+          const result = JSON.parse(stdoutData.trim());
+          sendJSON(res, 200, result);
+        } catch (e) {
+          sendJSON(res, 200, {
+            success: code === 0,
+            stdout: stdoutData,
+            stderr: stderrData,
+            error: code !== 0 ? stderrData : 'Response parse error'
+          });
+        }
+      });
+      child.stdin.write(JSON.stringify(data));
+      child.stdin.end();
+    });
+    return;
+  }
+
+  if (pathname === '/api/send_demand_telegram' && req.method === 'POST') {
+    readBody((data, err) => {
+      if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
+      let cfg = {};
+      try {
+        cfg = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'cbeo_telegram_config.json'), 'utf8'));
+      } catch (e) {}
+      const token = cfg.bot_token || '8815110844:AAFsMJHFepKpk83Wtm-JGqn8REV8XUQLgGY';
+      const chatId = data.chat_id || cfg.authorized_chat_id || '579780800';
+      const postData = JSON.stringify({
+        chat_id: chatId,
+        text: data.text || '',
+        parse_mode: data.parse_mode || 'HTML',
+        disable_web_page_preview: false
+      });
+
+      const https = require('https');
+      const reqTg = https.request({
+        hostname: 'api.telegram.org',
+        port: 443,
+        path: `/bot${token}/sendMessage`,
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Content-Length': Buffer.byteLength(postData)
+        }
+      }, (resTg) => {
+        let respData = '';
+        resTg.on('data', d => { respData += d; });
+        resTg.on('end', () => {
+          try {
+            const parsed = JSON.parse(respData);
+            sendJSON(res, 200, { success: parsed.ok, message_id: parsed.result && parsed.result.message_id, result: parsed.result });
+          } catch(e) {
+            sendJSON(res, 200, { success: false, raw: respData });
+          }
+        });
+      });
+      reqTg.on('error', (e) => {
+        sendJSON(res, 500, { success: false, error: e.message });
+      });
+      reqTg.write(postData);
+      reqTg.end();
+    });
+    return;
+  }
+
   if (pathname === '/api/get_demands') {
     const demands = DB.getSetting('__CBEO_DEMANDS__') || [];
     sendJSON(res, 200, { success: true, demands: demands });
@@ -434,6 +509,10 @@ const server = http.createServer((req, res) => {
   if (pathname === '/api/save_saman_syllabus' && req.method === 'POST') {
     readBody((data, err) => {
       if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
+      if (data.clear) {
+        DB.setSetting('__SAMAN_SYLLABUS_SUBMISSIONS__', {});
+        return sendJSON(res, 200, { success: true, message: 'समान परीक्षा पाठ्यक्रम पूर्णता डेटा रिक्त (Clean) कर दिया गया!' });
+      }
       const subs = DB.getSetting('__SAMAN_SYLLABUS_SUBMISSIONS__') || {};
       const schoolCode = data.school_code || data.shala_darpan_code;
       if (schoolCode) {
