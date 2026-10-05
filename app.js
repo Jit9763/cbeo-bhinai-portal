@@ -15828,7 +15828,10 @@ function downloadCSV(csvContent, filename) {
    ======================================================== */
 function showModal(id) {
   const modal = document.getElementById(id);
-  if (modal) modal.classList.add('active');
+  if (modal) {
+    modal.classList.add('active');
+    modal.style.display = 'flex';
+  }
 }
 
 function closeModal(id) {
@@ -15840,6 +15843,7 @@ function closeModal(id) {
   if (modal) {
     modal.classList.remove('active');
     modal.classList.remove('mandatory-gate');
+    modal.style.display = 'none';
   }
   if (id === 'modal-default-pwd-alert' || id === 'modal-change-password') {
     if (typeof onDefaultPwdAlertDismissed === 'function') {
