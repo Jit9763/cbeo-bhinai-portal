@@ -621,8 +621,8 @@
         समान परीक्षा सत्र 2026-27 हेतु कक्षा 9 से 12 तक के विद्यार्थियों का विषयवार नामांकन एवं प्रश्न-पत्र मांग प्रपत्र।
         कृपया विद्यालय की आधिकारिक प्रवेश पंजिका / शाला दर्पण पोर्टल से मिलान कर सही संख्या दर्ज करें।
       </div>
-      <div style="margin-top:0.75rem; display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap">
-        <label style="font-weight:700; font-size:0.85rem; color:#1e40af">विद्यालय चुनें (Switch School):</label>
+      <div id="switch-school-container" style="display:none; margin-top:0.75rem; align-items:center; gap:0.5rem; flex-wrap:wrap">
+        <label style="font-weight:700; font-size:0.85rem; color:#1e40af">विद्यालय चुनें (Switch School - केवल एडमिन):</label>
         <select id="school-select" class="form-input" style="max-width:380px; min-height:38px; padding:4px 8px; font-weight:700" onchange="onSchoolDropdownChange()">
           <!-- Populated from master data -->
         </select>
@@ -1404,14 +1404,30 @@
           opt.textContent = `${names.en} (${s.type === 'Government' ? 'राजकीय' : 'निजी'})`;
           select.appendChild(opt);
         });
+
+        const isJitendra = loggedUser && (
+          String(loggedUser.username).toLowerCase().includes('jitendra') ||
+          String(loggedUser.shala_darpan_code).toLowerCase().includes('jitendra') ||
+          String(loggedUser.role).toLowerCase().includes('admin')
+        );
+        const switchBox = document.getElementById('switch-school-container');
+        if (switchBox) {
+          switchBox.style.display = isJitendra ? 'flex' : 'none';
+        }
+
         if (loggedUser && loggedUser.role === 'school') {
           select.disabled = true;
         }
       }
 
-      // Check URL query
-      const params = new URLSearchParams(window.location.search);
-      const targetCode = params.get('code') || params.get('school') || (schoolsList[0] && schoolsList[0].shala_darpan_code);
+      // Check URL query or logged in school code
+      let targetCode = null;
+      if (loggedUser && loggedUser.role === 'school' && loggedUser.school_code && !isJitendra) {
+        targetCode = String(loggedUser.school_code);
+      } else {
+        const params = new URLSearchParams(window.location.search);
+        targetCode = params.get('code') || params.get('school') || (schoolsList[0] && schoolsList[0].shala_darpan_code);
+      }
 
       if (targetCode && select) {
         select.value = targetCode;

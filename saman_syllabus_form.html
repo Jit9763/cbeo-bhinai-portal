@@ -253,22 +253,67 @@
       display: flex;
       gap: 0.5rem;
       align-items: center;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.65rem;
       background: #f8fafc;
-      padding: 0.5rem 0.75rem;
-      border-radius: 6px;
-      border: 1px solid #e2e8f0;
+      padding: 0.6rem 0.85rem;
+      border-radius: 8px;
+      border: 1.5px solid #cbd5e1;
+      transition: all 0.2s;
     }
-    .elective-row input.elec-name { flex: 2; }
-    .elective-row input.elec-pct { flex: 1; max-width: 100px; text-align: center; font-weight: 800; }
+    .elective-row:hover {
+      border-color: #93c5fd;
+      background: #ffffff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+    .elective-row select.elec-select {
+      flex: 2;
+      min-width: 150px;
+      background: #ffffff;
+      color: #0f172a;
+      font-weight: 700;
+      border: 1.5px solid #94a3b8;
+      border-radius: 6px;
+      padding: 0.5rem 0.65rem;
+      font-size: 0.92rem;
+      font-family: inherit;
+    }
+    .elective-row select.elec-select:focus {
+      outline: none;
+      border-color: #0284c7;
+      box-shadow: 0 0 0 3px rgba(2,132,199,0.15);
+    }
+    .elective-row .elec-pct-box {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      max-width: 130px;
+    }
+    .elective-row input.elec-pct {
+      width: 100%;
+      text-align: center;
+      font-weight: 900;
+      font-size: 1.05rem;
+      color: #0284c7;
+      padding: 0.45rem 0.5rem;
+      border: 1.5px solid #94a3b8;
+      border-radius: 6px;
+    }
     .btn-remove-elec {
       background: #fee2e2;
       color: #dc2626;
-      border: none;
-      padding: 0.4rem 0.6rem;
-      border-radius: 4px;
+      border: 1px solid #fca5a5;
+      padding: 0.45rem 0.7rem;
+      border-radius: 6px;
       cursor: pointer;
-      font-weight: 800;
+      font-weight: 900;
+      font-size: 1.15rem;
+      line-height: 1;
+      transition: all 0.15s;
+    }
+    .btn-remove-elec:hover {
+      background: #dc2626;
+      color: #ffffff;
     }
 
     /* Sticky Bottom Actions */
@@ -351,8 +396,8 @@
         समान परीक्षा सत्र 2026-27: समस्त 49 राजकीय माध्यमिक एवं उच्च माध्यमिक विद्यालयों हेतु कक्षा 9 से 12 तक के विद्यार्थियों के विषयवार पाठ्यक्रम पूर्णता प्रतिशत की आधिकारिक प्रविष्टि प्रपत्र।
         कृपया विद्यालय की वास्तविक कक्षा-शिक्षण प्रगति एवं अध्यापक दैनन्दिनी के आधार पर शुद्ध प्रतिशत दर्ज करें।
       </div>
-      <div style="margin-top:0.85rem; display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap">
-        <label style="font-weight:800; font-size:0.88rem; color:#1e40af">विद्यालय चयन (Switch School):</label>
+      <div id="switch-school-container" style="display:none; margin-top:0.85rem; align-items:center; gap:0.6rem; flex-wrap:wrap">
+        <label style="font-weight:800; font-size:0.88rem; color:#1e40af">विद्यालय चयन (Switch School - केवल एडमिन):</label>
         <select id="school-select" class="form-input" style="max-width:480px; min-height:40px; padding:4px 8px; font-weight:800" onchange="onSchoolDropdownChange()">
           <!-- Populated from master data -->
         </select>
@@ -595,11 +640,36 @@
           </div>
         </div>
 
+        <!-- Faculty Selection Checkboxes -->
+        <div style="background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:8px; padding:0.85rem 1rem; margin-bottom:1rem">
+          <div style="font-weight:800; color:#1e40af; font-size:0.92rem; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.4rem">
+            <i class="fas fa-layer-group"></i> विद्यालय में संचालित संकाय चुनें (Select Faculties):
+          </div>
+          <div style="display:flex; gap:1.25rem; flex-wrap:wrap; font-size:0.92rem; font-weight:800; color:#1e293b">
+            <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer">
+              <input type="checkbox" id="syl_c11_fac_arts" value="arts" onchange="onFacultyCheckboxToggled('c11', 'arts', this.checked)">
+              <span>🎨 कला (Arts)</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer">
+              <input type="checkbox" id="syl_c11_fac_science" value="science" onchange="onFacultyCheckboxToggled('c11', 'science', this.checked)">
+              <span>🔬 विज्ञान (Science)</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer">
+              <input type="checkbox" id="syl_c11_fac_commerce" value="commerce" onchange="onFacultyCheckboxToggled('c11', 'commerce', this.checked)">
+              <span>💼 वाणिज्य (Commerce)</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer">
+              <input type="checkbox" id="syl_c11_fac_agri" value="agri" onchange="onFacultyCheckboxToggled('c11', 'agri', this.checked)">
+              <span>🌾 कृषि (Agriculture)</span>
+            </label>
+          </div>
+        </div>
+
         <!-- Elective Subjects -->
         <div>
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem">
             <span style="font-weight:800; color:#1e3a8a; font-size:0.9rem">विद्यालय में संचालित ऐच्छिक विषय (Electives):</span>
-            <button type="button" class="btn btn-sm" onclick="addElectiveRow('c11')" style="background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:800; padding:4px 10px; border-radius:6px; cursor:pointer">
+            <button type="button" class="btn btn-sm" onclick="addElectiveRow('c11')" style="background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:800; padding:5px 12px; border-radius:6px; cursor:pointer">
               <i class="fas fa-plus-circle"></i> + ऐच्छिक विषय जोड़ें
             </button>
           </div>
@@ -644,11 +714,36 @@
           </div>
         </div>
 
+        <!-- Faculty Selection Checkboxes -->
+        <div style="background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:8px; padding:0.85rem 1rem; margin-bottom:1rem">
+          <div style="font-weight:800; color:#1e40af; font-size:0.92rem; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.4rem">
+            <i class="fas fa-layer-group"></i> विद्यालय में संचालित संकाय चुनें (Select Faculties):
+          </div>
+          <div style="display:flex; gap:1.25rem; flex-wrap:wrap; font-size:0.92rem; font-weight:800; color:#1e293b">
+            <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer">
+              <input type="checkbox" id="syl_c12_fac_arts" value="arts" onchange="onFacultyCheckboxToggled('c12', 'arts', this.checked)">
+              <span>🎨 कला (Arts)</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer">
+              <input type="checkbox" id="syl_c12_fac_science" value="science" onchange="onFacultyCheckboxToggled('c12', 'science', this.checked)">
+              <span>🔬 विज्ञान (Science)</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer">
+              <input type="checkbox" id="syl_c12_fac_commerce" value="commerce" onchange="onFacultyCheckboxToggled('c12', 'commerce', this.checked)">
+              <span>💼 वाणिज्य (Commerce)</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer">
+              <input type="checkbox" id="syl_c12_fac_agri" value="agri" onchange="onFacultyCheckboxToggled('c12', 'agri', this.checked)">
+              <span>🌾 कृषि (Agriculture)</span>
+            </label>
+          </div>
+        </div>
+
         <!-- Elective Subjects -->
         <div>
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem">
             <span style="font-weight:800; color:#1e3a8a; font-size:0.9rem">विद्यालय में संचालित ऐच्छिक विषय (Electives):</span>
-            <button type="button" class="btn btn-sm" onclick="addElectiveRow('c12')" style="background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:800; padding:4px 10px; border-radius:6px; cursor:pointer">
+            <button type="button" class="btn btn-sm" onclick="addElectiveRow('c12')" style="background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:800; padding:5px 12px; border-radius:6px; cursor:pointer">
               <i class="fas fa-plus-circle"></i> + ऐच्छिक विषय जोड़ें
             </button>
           </div>
@@ -715,12 +810,80 @@
     let currentSchool = null;
     let schoolsList = [];
 
-    const COMMON_ELECTIVES = [
-      'इतिहास (History)', 'राजनीति विज्ञान (Pol Science)', 'भूगोल (Geography)', 'हिन्दी साहित्य (Hindi Lit)',
-      'अर्थशास्त्र (Economics)', 'संस्कृत साहित्य (Sanskrit Lit)', 'गृह विज्ञान (Home Science)', 'चित्रकला (Drawing)',
-      'भौतिक विज्ञान (Physics)', 'रसायन विज्ञान (Chemistry)', 'जीव विज्ञान (Biology)', 'गणित (Maths)',
-      'लेखाशास्त्र (Accountancy)', 'व्यवसाय अध्ययन (Business Studies)', 'कृषि विज्ञान (Agri Science)', 'कृषि जीव विज्ञान (Agri Biology)', 'कृषि रसायन (Agri Chemistry)'
-    ];
+    const FACULTIES_CONFIG = {
+      arts: {
+        key: 'arts',
+        name: 'कला संकाय (Arts)',
+        defaultSubjects: ['pol_sci', 'history', 'geography'],
+        subjects: [
+          { key: 'pol_sci', label: 'राजनीति विज्ञान (Political Science)' },
+          { key: 'history', label: 'इतिहास (History)' },
+          { key: 'geography', label: 'भूगोल (Geography)' },
+          { key: 'hindi_lit', label: 'हिंदी साहित्य (Hindi Literature)' },
+          { key: 'eng_lit', label: 'अंग्रेजी साहित्य (English Literature)' },
+          { key: 'sanskrit_lit', label: 'संस्कृत साहित्य (Sanskrit Lit)' },
+          { key: 'urdu_lit', label: 'उर्दू साहित्य (Urdu Lit)' },
+          { key: 'economics', label: 'अर्थशास्त्र (Economics)' },
+          { key: 'sociology', label: 'समाजशास्त्र (Sociology)' },
+          { key: 'home_sci', label: 'गृह विज्ञान (Home Science)' },
+          { key: 'drawing', label: 'चित्रकला (Drawing / Painting)' }
+        ]
+      },
+      science: {
+        key: 'science',
+        name: 'विज्ञान संकाय (Science)',
+        defaultSubjects: ['physics', 'chemistry', 'biology'],
+        subjects: [
+          { key: 'physics', label: 'भौतिक विज्ञान (Physics)' },
+          { key: 'chemistry', label: 'रसायन विज्ञान (Chemistry)' },
+          { key: 'biology', label: 'जीव विज्ञान (Biology)' },
+          { key: 'maths', label: 'गणित (Mathematics)' },
+          { key: 'comp_sci', label: 'कम्प्यूटर विज्ञान (Computer Science)' }
+        ]
+      },
+      commerce: {
+        key: 'commerce',
+        name: 'वाणिज्य संकाय (Commerce)',
+        defaultSubjects: ['accountancy', 'business_studies', 'economics_comm'],
+        subjects: [
+          { key: 'accountancy', label: 'लेखाशास्त्र (Accountancy)' },
+          { key: 'business_studies', label: 'व्यवसाय अध्ययन (Business Studies)' },
+          { key: 'economics_comm', label: 'अर्थशास्त्र (Economics - Commerce)' }
+        ]
+      },
+      agri: {
+        key: 'agri',
+        name: 'कृषि संकाय (Agriculture)',
+        defaultSubjects: ['agri_sci', 'agri_bio', 'agri_chem'],
+        subjects: [
+          { key: 'agri_sci', label: 'कृषि विज्ञान (Agriculture Science)' },
+          { key: 'agri_bio', label: 'कृषि जीव विज्ञान (Agri Biology)' },
+          { key: 'agri_chem', label: 'कृषि रसायन (Agri Chemistry)' }
+        ]
+      }
+    };
+
+    const ALL_ELECTIVES_LIST = [];
+    Object.values(FACULTIES_CONFIG).forEach(f => {
+      f.subjects.forEach(s => {
+        ALL_ELECTIVES_LIST.push({
+          key: s.key,
+          label: s.label,
+          facultyKey: f.key,
+          facultyName: f.name
+        });
+      });
+    });
+
+    function getElectiveByVal(val) {
+      if (!val) return null;
+      val = String(val).trim().toLowerCase();
+      return ALL_ELECTIVES_LIST.find(e => 
+        e.key.toLowerCase() === val || 
+        e.label.toLowerCase() === val || 
+        e.label.toLowerCase().includes(val)
+      ) || null;
+    }
 
     function showToast(msg) {
       const el = document.getElementById('toast-msg');
@@ -771,6 +934,22 @@
         loggedUser = JSON.parse(localStorage.getItem('cbeo_user') || 'null');
       } catch(e) {}
 
+      const isJitendra = loggedUser && (
+        String(loggedUser.username || '').toLowerCase().includes('jitendra') ||
+        String(loggedUser.shala_darpan_code || '').toLowerCase().includes('jitendra') ||
+        String(loggedUser.role || '').toLowerCase().includes('admin')
+      );
+
+      // Hide switch-school-container permanently for school logins; only super admin Jitendra can switch
+      const switchBox = document.getElementById('switch-school-container');
+      if (switchBox) {
+        if (isJitendra) {
+          switchBox.style.setProperty('display', 'flex', 'important');
+        } else {
+          switchBox.style.setProperty('display', 'none', 'important');
+        }
+      }
+
       const select = document.getElementById('school-select');
       if (select) {
         select.innerHTML = '';
@@ -781,13 +960,19 @@
           opt.textContent = `${names.en}`;
           select.appendChild(opt);
         });
-        if (loggedUser && loggedUser.role === 'school') {
+        if (!isJitendra) {
           select.disabled = true;
         }
       }
 
-      const params = new URLSearchParams(window.location.search);
-      const targetCode = params.get('code') || params.get('school') || (schoolsList[0] && schoolsList[0].shala_darpan_code);
+      // If school user is logged in and not admin, lock strictly to their own school code
+      let targetCode = null;
+      if (loggedUser && loggedUser.role === 'school' && loggedUser.school_code && !isJitendra) {
+        targetCode = String(loggedUser.school_code);
+      } else {
+        const params = new URLSearchParams(window.location.search);
+        targetCode = params.get('code') || params.get('school') || (schoolsList[0] && schoolsList[0].shala_darpan_code);
+      }
 
       if (targetCode && select) {
         select.value = targetCode;
@@ -830,19 +1015,128 @@
       calculateOverallAverage();
     }
 
-    function addElectiveRow(classKey, name = '', pct = 0) {
+    /* Dropdown Uniqueness Rule:
+       Previously selected subjects in other rows of the same class are omitted from other dropdowns */
+    function updateElectiveDropdownOptions(classKey) {
       const container = document.getElementById(`syl_${classKey}_electives_container`);
       if (!container) return;
 
+      const rows = Array.from(container.querySelectorAll('.elective-row'));
+      const selectedKeys = rows.map(r => r.querySelector('.elec-select')?.value).filter(Boolean);
+
+      rows.forEach(row => {
+        const select = row.querySelector('.elec-select');
+        if (!select) return;
+        const currentVal = select.value;
+
+        let html = '<option value="">-- ऐच्छिक विषय चुनें --</option>';
+        Object.values(FACULTIES_CONFIG).forEach(fac => {
+          const available = fac.subjects.filter(s => s.key === currentVal || !selectedKeys.includes(s.key));
+          if (available.length > 0) {
+            html += `<optgroup label="${fac.name}">`;
+            available.forEach(s => {
+              const sel = (s.key === currentVal) ? 'selected' : '';
+              html += `<option value="${s.key}" ${sel}>${s.label}</option>`;
+            });
+            html += `</optgroup>`;
+          }
+        });
+
+        select.innerHTML = html;
+        if (currentVal) select.value = currentVal;
+      });
+    }
+
+    function onElectiveDropdownChange(classKey, selectElem) {
+      updateElectiveDropdownOptions(classKey);
+      calculateOverallAverage();
+    }
+
+    function removeElectiveRow(classKey, btnElem) {
+      const row = btnElem.closest('.elective-row');
+      if (row) {
+        row.remove();
+        updateElectiveDropdownOptions(classKey);
+        calculateOverallAverage();
+      }
+    }
+
+    function addElectiveRow(classKey, subjectKeyOrName = '', pct = 0, skipUpdate = false) {
+      const container = document.getElementById(`syl_${classKey}_electives_container`);
+      if (!container) return;
+
+      let resolvedKey = '';
+      if (subjectKeyOrName) {
+        const matched = getElectiveByVal(subjectKeyOrName);
+        if (matched) resolvedKey = matched.key;
+      }
+
+      // Pick first unused elective if none provided
+      const existingKeys = Array.from(container.querySelectorAll('.elec-select')).map(s => s.value).filter(Boolean);
+      if (!resolvedKey) {
+        const firstUnused = ALL_ELECTIVES_LIST.find(e => !existingKeys.includes(e.key));
+        if (firstUnused) resolvedKey = firstUnused.key;
+      }
+
+      if (resolvedKey && existingKeys.includes(resolvedKey)) {
+        return; // prevent duplicate
+      }
+
       const row = document.createElement('div');
       row.className = 'elective-row';
+      row.dataset.class = classKey;
       row.innerHTML = `
-        <input type="text" class="form-input elec-name" placeholder="विषय का नाम (उदा. इतिहास)" list="electives-list" value="${name}">
-        <input type="number" min="0" max="100" class="form-input elec-pct" placeholder="%" value="${pct}" oninput="calculateOverallAverage()">
-        <button type="button" class="btn-remove-elec" onclick="this.closest('.elective-row').remove(); calculateOverallAverage();">&times;</button>
+        <select class="form-input elec-select" onchange="onElectiveDropdownChange('${classKey}', this)">
+        </select>
+        <div class="elec-pct-box">
+          <input type="number" min="0" max="100" class="form-input elec-pct" placeholder="पूर्णता %" value="${pct}" oninput="calculateOverallAverage()">
+          <span style="font-weight:800; color:#64748b; font-size:0.95rem">%</span>
+        </div>
+        <button type="button" class="btn-remove-elec" onclick="removeElectiveRow('${classKey}', this)" title="हटाएं">&times;</button>
       `;
       container.appendChild(row);
-      calculateOverallAverage();
+
+      const select = row.querySelector('.elec-select');
+      if (select && resolvedKey) {
+        select.value = resolvedKey;
+      }
+
+      if (!skipUpdate) {
+        updateElectiveDropdownOptions(classKey);
+        if (select && resolvedKey) select.value = resolvedKey;
+        calculateOverallAverage();
+      }
+    }
+
+    /* Checking a faculty automatically adds default 3 subjects; unchecking removes them */
+    function onFacultyCheckboxToggled(classKey, facKey, isChecked) {
+      const container = document.getElementById(`syl_${classKey}_electives_container`);
+      if (!container) return;
+
+      const facConfig = FACULTIES_CONFIG[facKey];
+      if (!facConfig) return;
+
+      if (isChecked) {
+        const existingKeys = Array.from(container.querySelectorAll('.elec-select')).map(s => s.value).filter(Boolean);
+        (facConfig.defaultSubjects || []).forEach(subKey => {
+          if (!existingKeys.includes(subKey)) {
+            addElectiveRow(classKey, subKey, 0, true);
+          }
+        });
+        updateElectiveDropdownOptions(classKey);
+        calculateOverallAverage();
+      } else {
+        const facSubKeys = facConfig.subjects.map(s => s.key);
+        const rows = Array.from(container.querySelectorAll('.elective-row'));
+        rows.forEach(r => {
+          const sel = r.querySelector('.elec-select');
+          if (sel && facSubKeys.includes(sel.value)) {
+            r.remove();
+          }
+        });
+        updateElectiveDropdownOptions(classKey);
+        calculateOverallAverage();
+      }
     }
 
     function loadSchool(code) {
@@ -864,11 +1158,21 @@
       document.getElementById('f-school-cat').value = `${currentSchool.category} (राजकीय)`;
       document.getElementById('f-exam-code').value = fixedExamCode;
 
-      // Check submission data
+      // Check submission and draft data
       const allSubs = JSON.parse(localStorage.getItem('cbeo_saman_syllabus_submissions') || '{}');
       const sub = allSubs[currentSchool.shala_darpan_code] || {};
       const draft = JSON.parse(localStorage.getItem(`cbeo_syl_draft_${currentSchool.shala_darpan_code}`) || 'null');
       const data = draft ? { ...sub, ...draft } : sub;
+
+      // Query Saman Pariksha master data for intelligent default auto-population
+      let samanSub = null;
+      try {
+        const localSaman = JSON.parse(localStorage.getItem('cbeo_saman_pariksha_submissions') || '{}');
+        samanSub = localSaman[currentSchool.shala_darpan_code];
+      } catch(e) {}
+      if (!samanSub && typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.saman_pariksha_submissions) {
+        samanSub = MASTER_CBEO_DATA.saman_pariksha_submissions[currentSchool.shala_darpan_code];
+      }
 
       // Authorities
       document.getElementById('f-principal-name').value = data.principal_name || currentSchool.principal_name || '';
@@ -911,31 +1215,127 @@
       // Class 11
       const c11 = data.c11 || {};
       const chk11 = document.getElementById('syl_c11_zero_enrolment');
+      const c11Container = document.getElementById('syl_c11_electives_container');
+      if (c11Container) c11Container.innerHTML = '';
+
+      let c11IsZero = false;
+      if (c11.zero_enrolment !== undefined) {
+        c11IsZero = !!c11.zero_enrolment;
+      } else if (samanSub && Number(samanSub.c11_total || 0) === 0 && (!samanSub.c11_faculties || samanSub.c11_faculties.length === 0)) {
+        c11IsZero = true;
+      }
       if (chk11) {
-        chk11.checked = !!c11.zero_enrolment;
-        toggleZeroEnrolment('c11', !!c11.zero_enrolment);
+        chk11.checked = c11IsZero;
+        toggleZeroEnrolment('c11', c11IsZero);
       }
       document.getElementById('syl_c11_comp_hindi').value = c11.comp_hindi ?? 0;
       document.getElementById('syl_c11_comp_english').value = c11.comp_english ?? 0;
-      const c11Container = document.getElementById('syl_c11_electives_container');
-      if (c11Container) {
-        c11Container.innerHTML = '';
-        (c11.electives || []).forEach(e => addElectiveRow('c11', e.name, e.pct));
+
+      // Class 11 Smart Auto-Population: Faculties & Elective Subjects
+      if (!c11IsZero && c11Container) {
+        if (c11.electives && c11.electives.length > 0) {
+          // 1. Saved electives exist
+          const savedFacs = c11.faculties || [];
+          ['arts', 'science', 'commerce', 'agri'].forEach(f => {
+            const chk = document.getElementById(`syl_c11_fac_${f}`);
+            if (chk) chk.checked = savedFacs.includes(f);
+          });
+          c11.electives.forEach(e => addElectiveRow('c11', e.key || e.name, e.pct, true));
+          updateElectiveDropdownOptions('c11');
+        } else if (samanSub) {
+          // 2. Auto-load from Saman Pariksha submissions
+          const activeFacs = samanSub.c11_faculties || ['arts'];
+          ['arts', 'science', 'commerce', 'agri'].forEach(f => {
+            const chk = document.getElementById(`syl_c11_fac_${f}`);
+            if (chk) chk.checked = activeFacs.includes(f);
+          });
+
+          const activeElectives11 = Object.entries(samanSub.c11_optional || {})
+            .filter(([k, count]) => Number(count) > 0)
+            .map(([k]) => k);
+
+          if (activeElectives11.length > 0) {
+            activeElectives11.forEach(subKey => addElectiveRow('c11', subKey, 0, true));
+          } else {
+            activeFacs.forEach(fac => {
+              (FACULTIES_CONFIG[fac]?.defaultSubjects || []).forEach(defKey => {
+                addElectiveRow('c11', defKey, 0, true);
+              });
+            });
+          }
+          updateElectiveDropdownOptions('c11');
+        } else {
+          // 3. Fallback: Arts with 3 default subjects
+          const artsChk = document.getElementById('syl_c11_fac_arts');
+          if (artsChk) artsChk.checked = true;
+          FACULTIES_CONFIG.arts.defaultSubjects.forEach(defKey => {
+            addElectiveRow('c11', defKey, 0, true);
+          });
+          updateElectiveDropdownOptions('c11');
+        }
       }
 
       // Class 12
       const c12 = data.c12 || {};
       const chk12 = document.getElementById('syl_c12_zero_enrolment');
+      const c12Container = document.getElementById('syl_c12_electives_container');
+      if (c12Container) c12Container.innerHTML = '';
+
+      let c12IsZero = false;
+      if (c12.zero_enrolment !== undefined) {
+        c12IsZero = !!c12.zero_enrolment;
+      } else if (samanSub && Number(samanSub.c12_total || 0) === 0 && (!samanSub.c12_faculties || samanSub.c12_faculties.length === 0)) {
+        c12IsZero = true;
+      }
       if (chk12) {
-        chk12.checked = !!c12.zero_enrolment;
-        toggleZeroEnrolment('c12', !!c12.zero_enrolment);
+        chk12.checked = c12IsZero;
+        toggleZeroEnrolment('c12', c12IsZero);
       }
       document.getElementById('syl_c12_comp_hindi').value = c12.comp_hindi ?? 0;
       document.getElementById('syl_c12_comp_english').value = c12.comp_english ?? 0;
-      const c12Container = document.getElementById('syl_c12_electives_container');
-      if (c12Container) {
-        c12Container.innerHTML = '';
-        (c12.electives || []).forEach(e => addElectiveRow('c12', e.name, e.pct));
+
+      // Class 12 Smart Auto-Population: Faculties & Elective Subjects
+      if (!c12IsZero && c12Container) {
+        if (c12.electives && c12.electives.length > 0) {
+          // 1. Saved electives exist
+          const savedFacs12 = c12.faculties || [];
+          ['arts', 'science', 'commerce', 'agri'].forEach(f => {
+            const chk = document.getElementById(`syl_c12_fac_${f}`);
+            if (chk) chk.checked = savedFacs12.includes(f);
+          });
+          c12.electives.forEach(e => addElectiveRow('c12', e.key || e.name, e.pct, true));
+          updateElectiveDropdownOptions('c12');
+        } else if (samanSub) {
+          // 2. Auto-load from Saman Pariksha submissions
+          const activeFacs12 = samanSub.c12_faculties || ['arts'];
+          ['arts', 'science', 'commerce', 'agri'].forEach(f => {
+            const chk = document.getElementById(`syl_c12_fac_${f}`);
+            if (chk) chk.checked = activeFacs12.includes(f);
+          });
+
+          const activeElectives12 = Object.entries(samanSub.c12_optional || {})
+            .filter(([k, count]) => Number(count) > 0)
+            .map(([k]) => k);
+
+          if (activeElectives12.length > 0) {
+            activeElectives12.forEach(subKey => addElectiveRow('c12', subKey, 0, true));
+          } else {
+            activeFacs12.forEach(fac => {
+              (FACULTIES_CONFIG[fac]?.defaultSubjects || []).forEach(defKey => {
+                addElectiveRow('c12', defKey, 0, true);
+              });
+            });
+          }
+          updateElectiveDropdownOptions('c12');
+        } else {
+          // 3. Fallback: Arts with 3 default subjects
+          const artsChk = document.getElementById('syl_c12_fac_arts');
+          if (artsChk) artsChk.checked = true;
+          FACULTIES_CONFIG.arts.defaultSubjects.forEach(defKey => {
+            addElectiveRow('c12', defKey, 0, true);
+          });
+          updateElectiveDropdownOptions('c12');
+        }
       }
 
       // Submission status banner & buttons
@@ -1019,18 +1419,38 @@
     function collectFormData() {
       const code = currentSchool.shala_darpan_code;
 
+      const c11Faculties = [];
+      ['arts', 'science', 'commerce', 'agri'].forEach(f => {
+        if (document.getElementById(`syl_c11_fac_${f}`)?.checked) c11Faculties.push(f);
+      });
+
       const c11Elec = [];
       document.querySelectorAll('#syl_c11_electives_container .elective-row').forEach(row => {
-        const name = row.querySelector('.elec-name')?.value.trim();
+        const sel = row.querySelector('.elec-select');
+        const key = sel?.value;
         const pct = parseFloat(row.querySelector('.elec-pct')?.value) || 0;
-        if (name) c11Elec.push({ name, pct });
+        if (key) {
+          const item = ALL_ELECTIVES_LIST.find(e => e.key === key);
+          const name = item ? item.label : (sel.options[sel.selectedIndex]?.text || key);
+          c11Elec.push({ key, name, pct });
+        }
+      });
+
+      const c12Faculties = [];
+      ['arts', 'science', 'commerce', 'agri'].forEach(f => {
+        if (document.getElementById(`syl_c12_fac_${f}`)?.checked) c12Faculties.push(f);
       });
 
       const c12Elec = [];
       document.querySelectorAll('#syl_c12_electives_container .elective-row').forEach(row => {
-        const name = row.querySelector('.elec-name')?.value.trim();
+        const sel = row.querySelector('.elec-select');
+        const key = sel?.value;
         const pct = parseFloat(row.querySelector('.elec-pct')?.value) || 0;
-        if (name) c12Elec.push({ name, pct });
+        if (key) {
+          const item = ALL_ELECTIVES_LIST.find(e => e.key === key);
+          const name = item ? item.label : (sel.options[sel.selectedIndex]?.text || key);
+          c12Elec.push({ key, name, pct });
+        }
       });
 
       return {
@@ -1066,12 +1486,14 @@
           zero_enrolment: !!document.getElementById('syl_c11_zero_enrolment')?.checked,
           comp_hindi: parseFloat(document.getElementById('syl_c11_comp_hindi')?.value) || 0,
           comp_english: parseFloat(document.getElementById('syl_c11_comp_english')?.value) || 0,
+          faculties: c11Faculties,
           electives: c11Elec
         },
         c12: {
           zero_enrolment: !!document.getElementById('syl_c12_zero_enrolment')?.checked,
           comp_hindi: parseFloat(document.getElementById('syl_c12_comp_hindi')?.value) || 0,
           comp_english: parseFloat(document.getElementById('syl_c12_comp_english')?.value) || 0,
+          faculties: c12Faculties,
           electives: c12Elec
         },
         average_pct: calculateOverallAverage(),
