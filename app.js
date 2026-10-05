@@ -205,6 +205,151 @@ function getDemandSubmissionRecord(demandId, schoolCode) {
   return liveSub || {};
 }
 
+const DEFAULT_SAMAN_MISMATCH_SETTINGS = {
+  alert_active: true,
+  alert_title: '🚨 अति-आवश्यक: समान परीक्षा मांग - नामांकन मिसमैच एवं माध्यम संशोधन सूचना',
+  alert_message: 'मान्यवर संस्था प्रधान, आपके विद्यालय द्वारा समान परीक्षा 2026-27 के मांग प्रपत्र में भरा गया कुल नामांकन शाला दर्पण के वास्तविक नामांकन से भिन्न (मिसमैच) पाया गया है अथवा MGGS अंग्रेजी/हिंदी माध्यमवार पृथक मांग अद्यतन अपेक्षित है।\n\nकार्यालय CBEO भिनाय (अजमेर) द्वारा आपके विद्यालय के लिए मांग प्रपत्र में संशोधन (Custom Edit) की विशेष सुविधा खोल दी गई है। कृपया तुरंत मांग पत्रक में सुधार कर पुनः सबमिट करें।',
+  custom_edit_schools: [
+    '221780',
+    '221778',
+    '221770',
+    '221753',
+    '221758',
+    '221761',
+    '221772',
+    '221756'
+  ],
+  mismatch_details: {
+    '221780': {
+      school_name: 'GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)',
+      peeo_name: 'BHINAI',
+      portal_total: 411,
+      sd_total: 401,
+      diff: 10,
+      portal_c9_10: 232,
+      portal_c11_12: 179,
+      sd_c9_10: 223,
+      sd_c11_12: 178,
+      diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 10 ज्यादा है (मांग: 411, शाला दर्पण: 401)',
+      reason: 'कक्षा 9-10 में पेपर मांग शाला दर्पण नामांकन से 9 ज्यादा (232 बनाम 223) तथा कक्षा 11-12 में 1 ज्यादा (179 बनाम 178) दर्ज है। कृपया शाला दर्पण अनुसार शुद्ध करें।',
+      flagged_fields: ['कक्षा 9-10 पेपर मांग', 'कक्षा 11-12 पेपर मांग', 'कुल महायोग']
+    },
+    '221778': {
+      school_name: 'MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778)',
+      peeo_name: 'BHINAI',
+      portal_total: 87,
+      sd_total: 86,
+      diff: 1,
+      portal_c9_10: 44,
+      portal_c11_12: 43,
+      sd_c9_10: 44,
+      sd_c11_12: 42,
+      diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 1 ज्यादा है (मांग: 87, शाला दर्पण: 86)',
+      mismatch_type: 'medium_and_enrollment',
+      reason: 'कक्षा 11-12 में पेपर मांग 1 ज्यादा है (मांग: 43, शाला दर्पण: 42)। साथ ही MGGS विद्यालय होने से कक्षा 9 व 10 में हिंदी व अंग्रेजी माध्यमवार पृथक मांग तथा कक्षा 11 व 12 में भी ऐच्छिक विषयों के माध्यम (Medium) की स्थिति स्पष्ट करते हुए प्रपत्र सबमिट करें।',
+      flagged_fields: ['शिक्षण माध्यम (अंग्रेजी / दोनों माध्यम)', 'कक्षा 9 अंग्रेजी माध्यम मांग', 'कक्षा 10 अंग्रेजी माध्यम मांग', 'कक्षा 11-12 नामांकन एवं ऐच्छिक विषय माध्यम', 'कुल महायोग']
+    },
+    '221770': {
+      school_name: 'MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770)',
+      peeo_name: 'BANDANWARA',
+      portal_total: 41,
+      sd_total: 41,
+      diff: 0,
+      portal_c9_10: 41,
+      portal_c11_12: 0,
+      sd_c9_10: 41,
+      sd_c11_12: 0,
+      diff_text: 'MGGS माध्यमवार पृथक मांग अद्यतन आवश्यक',
+      mismatch_type: 'medium_clarification',
+      reason: 'महात्मा गांधी अंग्रेजी माध्यम विद्यालय होने के कारण कक्षा 9 व 10 में माध्यमवार (हिंदी/अंग्रेजी) पृथक मांग तथा कक्षा 11 व 12 में भी ऐच्छिक विषयों के माध्यम (Medium) की स्थिति स्पष्ट करते हुए प्रपत्र को अद्यतन कर पुनः सबमिट करें।',
+      flagged_fields: ['शिक्षण माध्यम चयन', 'कक्षा 9 माध्यमवार मांग (हिंदी/अंग्रेजी)', 'कक्षा 10 माध्यमवार मांग (हिंदी/अंग्रेजी)', 'कक्षा 11-12 विषय माध्यम विवरण']
+    },
+    '221753': {
+      school_name: 'MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753)',
+      peeo_name: 'DEOLIYA KALAN',
+      portal_total: 110,
+      sd_total: 110,
+      diff: 0,
+      portal_c9_10: 70,
+      portal_c11_12: 40,
+      sd_c9_10: 70,
+      sd_c11_12: 40,
+      diff_text: 'MGGS माध्यमवार पृथक मांग अद्यतन आवश्यक',
+      mismatch_type: 'medium_clarification',
+      reason: 'महात्मा गांधी अंग्रेजी माध्यम विद्यालय होने के कारण कक्षा 9 व 10 में माध्यमवार (हिंदी/अंग्रेजी) पृथक मांग तथा कक्षा 11 व 12 में भी ऐच्छिक विषयों के माध्यम (Medium) की स्थिति स्पष्ट करते हुए प्रपत्र को अद्यतन कर पुनः सबमिट करें।',
+      flagged_fields: ['शिक्षण माध्यम चयन', 'कक्षा 9 माध्यमवार मांग (हिंदी/अंग्रेजी)', 'कक्षा 10 माध्यमवार मांग (हिंदी/अंग्रेजी)', 'कक्षा 11-12 विषय माध्यम विवरण']
+    },
+    '221758': {
+      school_name: 'GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)',
+      peeo_name: 'CHAPANERI',
+      portal_total: 175,
+      sd_total: 174,
+      diff: 1,
+      portal_c9_10: 116,
+      portal_c11_12: 59,
+      sd_c9_10: 115,
+      sd_c11_12: 59,
+      diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 1 ज्यादा है (मांग: 175, शाला दर्पण: 174)',
+      reason: 'कक्षा 9-10 में पेपर मांग शाला दर्पण नामांकन से 1 ज्यादा (मांग: 116, शाला दर्पण: 115) दर्ज है।',
+      flagged_fields: ['कक्षा 9-10 पेपर मांग (116 बनाम 115)', 'कुल महायोग']
+    },
+    '221761': {
+      school_name: 'GOVT. SENIOR SECONDARY SCHOOL NIMEDA (221761)',
+      peeo_name: 'NIMEDA',
+      portal_total: 94,
+      sd_total: 92,
+      diff: 2,
+      portal_c9_10: 55,
+      portal_c11_12: 39,
+      sd_c9_10: 55,
+      sd_c11_12: 37,
+      diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 2 ज्यादा है (मांग: 94, शाला दर्पण: 92)',
+      reason: 'कक्षा 11-12 में पेपर मांग शाला दर्पण नामांकन से 2 ज्यादा (मांग: 39, शाला दर्पण: 37) दर्ज है।',
+      flagged_fields: ['कक्षा 11-12 पेपर मांग (39 बनाम 37)', 'कुल महायोग']
+    },
+    '221772': {
+      school_name: 'GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)',
+      peeo_name: 'NAGOLA',
+      portal_total: 223,
+      sd_total: 222,
+      diff: 1,
+      portal_c9_10: 133,
+      portal_c11_12: 90,
+      sd_c9_10: 132,
+      sd_c11_12: 90,
+      diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 1 ज्यादा है (मांग: 223, शाला दर्पण: 222)',
+      reason: 'कक्षा 9-10 में पेपर मांग शाला दर्पण नामांकन से 1 ज्यादा (मांग: 133, शाला दर्पण: 132) दर्ज है।',
+      flagged_fields: ['कक्षा 9-10 पेपर मांग (133 बनाम 132)', 'कुल महायोग']
+    },
+    '221756': {
+      school_name: 'GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)',
+      peeo_name: 'NANDSI',
+      portal_total: 98,
+      sd_total: 92,
+      diff: 6,
+      portal_c9_10: 59,
+      portal_c11_12: 39,
+      sd_c9_10: 55,
+      sd_c11_12: 37,
+      diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 6 ज्यादा है (मांग: 98, शाला दर्पण: 92)',
+      reason: 'कक्षा 9-10 में 4 ज्यादा (मांग: 59, शाला दर्पण: 55) तथा कक्षा 11-12 में 2 ज्यादा (मांग: 39, शाला दर्पण: 37) दर्ज है।',
+      flagged_fields: ['कक्षा 9-10 पेपर मांग (59 बनाम 55)', 'कक्षा 11-12 पेपर मांग (39 बनाम 37)', 'कुल महायोग']
+    }
+  }
+};
+
+function getSamanMismatchConfig() {
+  if (!STATE.samanMismatchSettings) {
+    try {
+      const sto = localStorage.getItem('cbeo_saman_mismatch_settings');
+      STATE.samanMismatchSettings = sto ? JSON.parse(sto) : JSON.parse(JSON.stringify(DEFAULT_SAMAN_MISMATCH_SETTINGS));
+    } catch(e) {
+      STATE.samanMismatchSettings = JSON.parse(JSON.stringify(DEFAULT_SAMAN_MISMATCH_SETTINGS));
+    }
+  }
+  return STATE.samanMismatchSettings;
+}
+
 /* ========================================================
    1. DATA INITIALIZATION & LOCALSTORAGE SYNC
    ======================================================== */
@@ -640,18 +785,40 @@ function initMasterData() {
   // 10B. Saman Pariksha Enrolment Mismatch & Custom Edit Settings
   try {
     const stoMismatch = localStorage.getItem('cbeo_saman_mismatch_settings');
-    STATE.samanMismatchSettings = stoMismatch ? JSON.parse(stoMismatch) : null;
-  } catch(e) {}
+    STATE.samanMismatchSettings = stoMismatch ? JSON.parse(stoMismatch) : JSON.parse(JSON.stringify(DEFAULT_SAMAN_MISMATCH_SETTINGS));
+  } catch(e) {
+    STATE.samanMismatchSettings = JSON.parse(JSON.stringify(DEFAULT_SAMAN_MISMATCH_SETTINGS));
+  }
+
+  const loadMismatchJson = (url) => {
+    return fetch(url)
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        const settings = data?.settings || (data?.custom_edit_schools ? data : null);
+        if (settings) {
+          STATE.samanMismatchSettings = settings;
+          try { localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(settings)); } catch(e) {}
+          if (typeof renderSamanParikshaView === 'function') renderSamanParikshaView();
+        }
+      })
+      .catch(() => {});
+  };
 
   fetch('/api/get_saman_mismatch_settings')
-    .then(r => r.json())
+    .then(r => {
+      if (r.ok) return r.json();
+      throw new Error('API not available, fallback to static JSON');
+    })
     .then(data => {
       if (data && data.success && data.settings) {
         STATE.samanMismatchSettings = data.settings;
-        localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(data.settings));
+        try { localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(data.settings)); } catch(e) {}
+        if (typeof renderSamanParikshaView === 'function') renderSamanParikshaView();
       }
     })
-    .catch(() => {});
+    .catch(() => {
+      loadMismatchJson('saman_mismatch_settings.json?v=' + (window.CLIENT_VERSION || Date.now()));
+    });
 
   // 11. 5-Level Tab Visibility Matrix
   try {
@@ -1764,8 +1931,10 @@ function canCurrentUserEditModule(moduleKey, targetSchoolCode = null) {
 
   if (moduleKey === 'saman_pariksha') {
     const schCode = targetSchoolCode || STATE.currentUser?.shala_darpan_code;
-    const cfg = STATE.samanMismatchSettings;
-    const customAllowed = (cfg && cfg.custom_edit_schools) || [];
+    const cfg = STATE.samanMismatchSettings || (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : (typeof DEFAULT_SAMAN_MISMATCH_SETTINGS !== 'undefined' ? DEFAULT_SAMAN_MISMATCH_SETTINGS : null));
+    const customAllowed = (cfg && cfg.custom_edit_schools) || [
+      '221780', '221778', '221770', '221753', '221758', '221761', '221772', '221756'
+    ];
     if (schCode && customAllowed.some(c => String(c).trim() === String(schCode).trim())) {
       return true; // Granted Custom Edit Exception!
     }
@@ -2414,6 +2583,12 @@ function renderSamanParikshaView() {
     scopeFilter.value = STATE.samanParikshaSchoolTypeFilter;
   }
 
+  // Admin In-Tab Header Controls (विद्यालय प्रकार, नई मांग, 6-स्तरीय प्रपत्र नियंत्रण - Strictly for Jitendra Super Admin)
+  const adminHeaderControls = document.getElementById('sp-admin-header-controls');
+  if (adminHeaderControls) {
+    adminHeaderControls.style.display = (typeof isJitendraLoggedIn === 'function' && isJitendraLoggedIn()) ? 'flex' : 'none';
+  }
+
   if (!STATE.currentUser) {
     if (peeoContainer) peeoContainer.style.display = 'none';
     if (adminContainer) adminContainer.style.display = 'none';
@@ -2424,13 +2599,13 @@ function renderSamanParikshaView() {
   const schoolMismatchBanner = document.getElementById('sp-school-mismatch-banner');
 
   if (btnMismatchAdmin) {
-    btnMismatchAdmin.style.display = (STATE.currentUser && STATE.currentUser.role === 'admin') ? 'inline-flex' : 'none';
+    btnMismatchAdmin.style.display = (typeof isJitendraLoggedIn === 'function' && isJitendraLoggedIn()) ? 'inline-flex' : 'none';
   }
 
   if (schoolMismatchBanner) {
     if (STATE.currentUser && STATE.currentUser.role !== 'admin') {
       const uCode = String(STATE.currentUser.shala_darpan_code).trim();
-      const cfg = STATE.samanMismatchSettings;
+      const cfg = getSamanMismatchConfig();
       const details = (cfg && cfg.mismatch_details) || DEFAULT_SAMAN_MISMATCH_SETTINGS.mismatch_details;
       const customSchools = (cfg && cfg.custom_edit_schools) || [];
 
@@ -2543,12 +2718,18 @@ function renderSamanParikshaPeeoView() {
       if (isSub) submittedCount++;
 
       const avgPct = isSub ? calculateSchoolSyllabusAverage(sylSub) : 0;
-      const card = document.createElement('div');
-      card.className = `sp-school-card ${isSub ? 'submitted' : 'pending'}`;
+      let statusBadge = '';
+      let cardStatusClass = 'pending';
+      if (!isSub) {
+        cardStatusClass = 'pending';
+        statusBadge = `<span class="sp-status-badge danger" style="background:#dc2626; color:#ffffff; border:1px solid #b91c1c; font-weight:800"><i class="fas fa-exclamation-triangle"></i> ⚠️ प्रविष्टि शेष (अपूर्ण)</span>`;
+      } else {
+        cardStatusClass = 'editable-open';
+        statusBadge = `<span class="sp-status-badge warning" style="background:#d97706; color:#ffffff; border:1.5px solid #b45309; font-weight:800; box-shadow:0 2px 6px rgba(217,119,6,0.35)"><i class="fas fa-edit"></i> ✏️ सबमिट (संशोधन खुला - ${avgPct}% औसत)</span>`;
+      }
 
-      const statusBadge = isSub
-        ? `<span class="sp-status-badge success"><i class="fas fa-check-circle"></i> ✓ पाठ्यक्रम पूर्णता सबमिट (${avgPct}% औसत)</span>`
-        : `<span class="sp-status-badge danger"><i class="fas fa-exclamation-triangle"></i> ⚠️ पाठ्यक्रम पूर्णता % प्रविष्टि शेष</span>`;
+      const card = document.createElement('div');
+      card.className = `sp-school-card ${cardStatusClass}`;
 
       let submittedDetailsHtml = '';
       if (isSub) {
@@ -2632,12 +2813,27 @@ function renderSamanParikshaPeeoView() {
       const isSubmitted = isSamanParikshaSubmitted(sub);
       if (isSubmitted) submittedCount++;
 
-      const card = document.createElement('div');
-      card.className = `sp-school-card ${isSubmitted ? 'submitted' : 'pending'}`;
+      const isSchoolLocked = isSamanParikshaLockedForCurrentUser(school.shala_darpan_code);
 
-      const statusBadge = isSubmitted
-        ? `<span class="sp-status-badge success"><i class="fas fa-check-circle"></i> ✓ डेटा सबमिट पूर्ण (${sub.grand_total} पेपर)</span>`
-        : `<span class="sp-status-badge danger"><i class="fas fa-exclamation-triangle"></i> ⚠️ प्रपत्र भरना शेष (अपूर्ण)</span>`;
+      // User Rule:
+      // 1. जब भरा नहीं हो -> RED (danger)
+      // 2. एडिट करने को ओपन हो -> YELLOW (warning)
+      // 3. एडिट लॉक हो गया हो और पूरा भर गया हो -> GREEN (success)
+      let statusBadge = '';
+      let cardStatusClass = 'pending';
+      if (!isSubmitted) {
+        cardStatusClass = 'pending';
+        statusBadge = `<span class="sp-status-badge danger" style="background:#dc2626; color:#ffffff; border:1px solid #b91c1c; font-weight:800"><i class="fas fa-exclamation-triangle"></i> ⚠️ प्रपत्र भरना शेष (अपूर्ण)</span>`;
+      } else if (!isSchoolLocked) {
+        cardStatusClass = 'editable-open';
+        statusBadge = `<span class="sp-status-badge warning" style="background:#d97706; color:#ffffff; border:1.5px solid #b45309; font-weight:800; box-shadow:0 2px 6px rgba(217,119,6,0.35)"><i class="fas fa-edit"></i> ✏️ संशोधन हेतु खुला (${sub.grand_total} पेपर - Edit Open)</span>`;
+      } else {
+        cardStatusClass = 'submitted';
+        statusBadge = `<span class="sp-status-badge success" style="background:#16a34a; color:#ffffff; border:1px solid #15803d; font-weight:800; box-shadow:0 2px 6px rgba(22,163,74,0.3)"><i class="fas fa-check-circle"></i> ✓ डेटा सबमिट पूर्ण एवं लॉक (${sub.grand_total} पेपर)</span>`;
+      }
+
+      const card = document.createElement('div');
+      card.className = `sp-school-card ${cardStatusClass}`;
 
       let submittedDetailsHtml = '';
       if (isSubmitted) {
@@ -2706,10 +2902,10 @@ function renderSamanParikshaPeeoView() {
         </div>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem">
           <button class="btn btn-primary btn-sm" onclick="openSamanParikshaForm('${school.shala_darpan_code}')" style="flex:1; font-weight:700">
-            <i class="fas ${isSamanParikshaLockedForCurrentUser() ? 'fa-eye' : (isSubmitted ? 'fa-edit' : 'fa-file-signature')}"></i> ${isSamanParikshaLockedForCurrentUser() ? '👁️ प्रपत्र अवलोकन (View Data)' : (isSubmitted ? '✏️ प्रपत्र में संशोधन (Edit)' : '📝 Google Form प्रपत्र भरें')}
+            <i class="fas ${isSchoolLocked ? 'fa-eye' : (isSubmitted ? 'fa-edit' : 'fa-file-signature')}"></i> ${isSchoolLocked ? '👁️ प्रपत्र अवलोकन (View Data)' : (isSubmitted ? '✏️ प्रपत्र में संशोधन (Edit)' : '📝 Google Form प्रपत्र भरें')}
           </button>
           <a href="saman_form.html?code=${school.shala_darpan_code}" target="_blank" class="btn btn-outline-primary btn-sm" style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:700" title="नए पेज में खोलें (अलग टैब)">
-            <i class="fas fa-external-link-alt"></i> ${isSamanParikshaLockedForCurrentUser() ? 'अलग पेज (अवलोकन)' : (isSubmitted ? 'अलग पेज में एडिट' : 'अलग पेज')}
+            <i class="fas fa-external-link-alt"></i> ${isSchoolLocked ? 'अलग पेज (अवलोकन)' : (isSubmitted ? 'अलग पेज में एडिट' : 'अलग पेज')}
           </a>
           ${isSubmitted ? `
             <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${school.shala_darpan_code}')" title="आधिकारिक प्रमाणित PDF देखें / प्रिंट करें" style="font-weight:700">
@@ -3187,40 +3383,6 @@ function onSamanModalRadioFormChange(val) {
    SAMAN PARIKSHA CUSTOM EDIT & MISMATCH LOGIN ALERT SYSTEM
    ======================================================== */
 
-const DEFAULT_SAMAN_MISMATCH_SETTINGS = {
-  alert_active: true,
-  alert_title: '🚨 अति-आवश्यक: समान परीक्षा मांग - नामांकन मिसमैच सूचना',
-  alert_message: 'मान्यवर संस्था प्रधान, आपके विद्यालय द्वारा समान परीक्षा 2026-27 के मांग प्रपत्र में भरा गया कुल नामांकन शाला दर्पण के वास्तविक नामांकन से भिन्न (मिसमैच) पाया गया है।\n\nकार्यालय CBEO भिनाय द्वारा आपके विद्यालय के लिए मांग प्रपत्र में संशोधन (Custom Edit) की विशेष सुविधा खोल दी गई है। कृपया तुरंत मांग पत्रक में सुधार कर पुनः सबमिट करें।',
-  custom_edit_schools: [
-    '221780',
-    '221778',
-    '221758',
-    '221761',
-    '221772',
-    '221756'
-  ],
-  mismatch_details: {
-    '221780': { school_name: 'GOVT. SENIOR SECONDARY SCHOOL BHINAI', portal_total: 411, sd_total: 401, diff: 10, portal_c9_10: 232, portal_c11_12: 179, sd_c9_10: 223, sd_c11_12: 178 },
-    '221778': { school_name: 'MAHATMA GANDHI GOVT. SCHOOL BHINAI', portal_total: 87, sd_total: 86, diff: 1, portal_c9_10: 44, portal_c11_12: 43, sd_c9_10: 44, sd_c11_12: 42 },
-    '221758': { school_name: 'GOVT. SENIOR SECONDARY SCHOOL CHAPANERI', portal_total: 175, sd_total: 174, diff: 1, portal_c9_10: 116, portal_c11_12: 59, sd_c9_10: 115, sd_c11_12: 59 },
-    '221761': { school_name: 'GOVT. SENIOR SECONDARY SCHOOL NIMEDA', portal_total: 94, sd_total: 92, diff: 2, portal_c9_10: 55, portal_c11_12: 39, sd_c9_10: 55, sd_c11_12: 37 },
-    '221772': { school_name: 'GOVT. SENIOR SECONDARY SCHOOL NAGOLA', portal_total: 223, sd_total: 222, diff: 1, portal_c9_10: 133, portal_c11_12: 90, sd_c9_10: 132, sd_c11_12: 90 },
-    '221756': { school_name: 'GOVT. SENIOR SECONDARY SCHOOL NANDSI', portal_total: 98, sd_total: 92, diff: 6, portal_c9_10: 59, portal_c11_12: 39, sd_c9_10: 55, sd_c11_12: 37 }
-  }
-};
-
-function getSamanMismatchConfig() {
-  if (!STATE.samanMismatchSettings) {
-    try {
-      const sto = localStorage.getItem('cbeo_saman_mismatch_settings');
-      STATE.samanMismatchSettings = sto ? JSON.parse(sto) : JSON.parse(JSON.stringify(DEFAULT_SAMAN_MISMATCH_SETTINGS));
-    } catch(e) {
-      STATE.samanMismatchSettings = JSON.parse(JSON.stringify(DEFAULT_SAMAN_MISMATCH_SETTINGS));
-    }
-  }
-  return STATE.samanMismatchSettings;
-}
-
 function openSamanCustomEditModal() {
   const cfg = getSamanMismatchConfig();
   
@@ -3530,14 +3692,6 @@ function addSyllabusElectiveRow(classKey, defaultName = '', defaultPct = '') {
   `;
   container.appendChild(row);
 }
-
-function openSamanSyllabusForm(schoolCode) {
-  const school = (STATE.schools56 || []).find(s => s.shala_darpan_code === schoolCode) ||
-    getAllMasterSchools().find(s => s.shala_darpan_code === schoolCode);
-  if (!school) {
-    showToast('विद्यालय का विवरण नहीं मिला!', 'error');
-    return;
-  }
 
 function toggleSyllabusClassZero(classKey, isZero) {
   const banner = document.getElementById(`syl_${classKey}_zero_banner`);
@@ -4287,8 +4441,10 @@ function openSamanParikshaForm(schoolCode) {
   showModal('modal-saman-pariksha-form');
 
   const isLocked = isSamanParikshaLockedForCurrentUser(schoolCode);
-  const cfgMismatch = STATE.samanMismatchSettings;
-  const customAllowed = (cfgMismatch && cfgMismatch.custom_edit_schools) || [];
+  const cfgMismatch = getSamanMismatchConfig();
+  const customAllowed = (cfgMismatch && cfgMismatch.custom_edit_schools) || [
+    '221780', '221778', '221770', '221753', '221758', '221761', '221772', '221756'
+  ];
   const isCustomUnlocked = customAllowed.some(c => String(c).trim() === String(schoolCode).trim());
 
   const lockBanner = document.getElementById('gform-lock-alert-banner');
@@ -4518,10 +4674,10 @@ function toggleNilClass(cls) {
 // Real-time LocalStorage Draft Auto-Save Engine (Distraction & Call Resilient)
 let gformAutoSaveTimer = null;
 function autoSaveGFormDraft() {
-  if (isSamanParikshaLockedForCurrentUser()) return;
+  const schoolCode = document.getElementById('gform-school-code-hidden')?.value;
+  if (schoolCode && isSamanParikshaLockedForCurrentUser(schoolCode)) return;
   clearTimeout(gformAutoSaveTimer);
   gformAutoSaveTimer = setTimeout(() => {
-    const schoolCode = document.getElementById('gform-school-code-hidden')?.value;
     if (!schoolCode) return;
 
     const timeStr = new Date().toLocaleTimeString('hi-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -4595,7 +4751,7 @@ function submitSamanParikshaForm(andPrint = false) {
   const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
   if (!school) return;
 
-  if (isSamanParikshaLockedForCurrentUser()) {
+  if (isSamanParikshaLockedForCurrentUser(schoolCode)) {
     if (andPrint) {
       closeModal('modal-saman-pariksha-form');
       openExamPdfPreview(schoolCode);
@@ -7707,9 +7863,20 @@ function onStaffPeeoFilterChange() {
 
 function isJitendraLoggedIn() {
   if (!STATE.currentUser) return false;
-  return STATE.currentUser.shala_darpan_code === 'admin_jitendra' ||
-         STATE.currentUser.username === 'jitendra_admin' ||
-         STATE.currentUser.role === 'Super Admin';
+  const u = String(STATE.currentUser.username || '').toLowerCase();
+  const sc = String(STATE.currentUser.shala_darpan_code || '').toLowerCase();
+  const aid = String(STATE.currentUser.admin_id || '').toUpperCase();
+  const role = String(STATE.currentUser.role || '').toLowerCase();
+  const name = String(STATE.currentUser.name || '').toLowerCase();
+
+  return sc === 'admin_jitendra' ||
+         u === 'admin_jitendra' ||
+         u === 'jitendra_admin' ||
+         u === 'jitendra' ||
+         aid === 'ADMIN02' ||
+         role === 'super admin' ||
+         name.includes('जितेन्द्र') ||
+         name.includes('jitendra');
 }
 
 function applyStaffInstructionsConfig() {
@@ -8857,8 +9024,10 @@ function isSamanParikshaLockedForCurrentUser(targetSchoolCode = null) {
   const schCode = targetSchoolCode || STATE.currentUser.shala_darpan_code;
 
   // Custom Edit Exception: If school is granted Custom Edit permission by Admin
-  const mismatchSettings = STATE.samanMismatchSettings;
-  const customAllowed = (mismatchSettings && mismatchSettings.custom_edit_schools) || [];
+  const mismatchSettings = STATE.samanMismatchSettings || (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : (typeof DEFAULT_SAMAN_MISMATCH_SETTINGS !== 'undefined' ? DEFAULT_SAMAN_MISMATCH_SETTINGS : null));
+  const customAllowed = (mismatchSettings && mismatchSettings.custom_edit_schools) || [
+    '221780', '221778', '221770', '221753', '221758', '221761', '221772', '221756'
+  ];
   if (schCode && customAllowed.some(c => String(c).trim() === String(schCode).trim())) {
     return false; // Specifically Unlocked for this school!
   }
@@ -9656,26 +9825,47 @@ function createDemandCardElement(demand, isArchive = false) {
     percent = totalDenominator > 0 ? Math.round((submittedCount / totalDenominator) * 100) : 0;
   }
 
-  if (STATE.currentUser?.role === 'peeo' || STATE.currentUser?.role === 'school') {
-    if (isCurrentSubmitted) {
-      card.classList.add('submitted');
-    } else {
-      card.classList.add('pending');
-    }
-  }
-
   const isPeeoUser = STATE.currentUser?.role === 'peeo';
   const isSchoolUser = STATE.currentUser?.role === 'school';
   const isAdminUser = STATE.currentUser?.role === 'admin';
 
-  const badgeText = (isPeeoUser || isSchoolUser)
-    ? (isCurrentSubmitted ? '<i class="fas fa-check-circle"></i> पूर्ण (Submitted)' : '<i class="fas fa-exclamation-circle"></i> बाकी (Pending)')
-    : `<i class="fas fa-tasks"></i> ${submittedCount}/${totalDenominator} ${isSamanDemand ? 'स्कूल' : 'PEEO'} पूर्ण`;
+  let badgeColorClass = 'red';
+  let badgeText = '';
+
+  if (isPeeoUser || isSchoolUser) {
+    const targetCode = STATE.currentUser?.shala_darpan_code;
+    let isDemandLocked = false;
+    if (isSamanDemand) {
+      isDemandLocked = isSamanParikshaLockedForCurrentUser(targetCode);
+    } else {
+      isDemandLocked = isDemandsLockedForCurrentUser();
+    }
+
+    if (!isCurrentSubmitted) {
+      // 1. जब भरा नहीं हो -> RED
+      badgeColorClass = 'red';
+      badgeText = '<i class="fas fa-exclamation-circle"></i> ⚠️ बाकी (Pending)';
+      card.classList.add('pending');
+    } else if (!isDemandLocked) {
+      // 2. भरा हुआ है लेकिन एडिट खुला है -> YELLOW
+      badgeColorClass = 'yellow';
+      badgeText = '<i class="fas fa-edit"></i> ✏️ संशोधन हेतु खुला (Edit Open)';
+      card.classList.add('editable-open');
+    } else {
+      // 3. पूरा भर गया हो और एडिट लॉक हो गया हो -> GREEN
+      badgeColorClass = 'green';
+      badgeText = '<i class="fas fa-check-circle"></i> ✓ पूर्ण (सत्यापित व लॉक)';
+      card.classList.add('submitted');
+    }
+  } else {
+    badgeColorClass = submittedCount > 0 ? 'green' : 'red';
+    badgeText = `<i class="fas fa-tasks"></i> ${submittedCount}/${totalDenominator} ${isSamanDemand ? 'स्कूल' : 'PEEO'} पूर्ण`;
+  }
 
   card.innerHTML = `
     <div>
       <div class="demand-card-header">
-        <span class="status-badge ${isCurrentSubmitted ? 'green' : (submittedCount > 0 ? 'green' : 'red')}">
+        <span class="status-badge ${badgeColorClass}">
           ${badgeText}
         </span>
         <div style="display:flex; align-items:center; gap:0.5rem">

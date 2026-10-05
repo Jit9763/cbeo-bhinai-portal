@@ -602,6 +602,17 @@
       </div>
     </div>
 
+    <!-- Form Custom Edit Unlocked Banner (Mismatch Special Edit Exception) -->
+    <div id="form-custom-unlocked-banner" style="display:none; background:#ecfdf5; border:1.5px solid #10b981; border-radius:10px; padding:1rem 1.25rem; margin-bottom:1rem; color:#065f46; box-shadow:0 2px 6px rgba(16,185,129,0.12)">
+      <div style="display:flex; align-items:center; gap:0.6rem; font-weight:900; font-size:1.05rem; margin-bottom:0.35rem">
+        <i class="fas fa-unlock-alt" style="font-size:1.2rem; color:#059669"></i>
+        <span>विशेष संपादन अनुमति (Custom Edit Unlocked) — प्रपत्र संशोधन खुला है</span>
+      </div>
+      <div id="form-custom-unlocked-desc" style="font-size:0.88rem; color:#047857; line-height:1.5">
+        CBEO कार्यालय भिनाय (अजमेर) द्वारा आपके विद्यालय के लिए नामांकन मिसमैच अथवा माध्यम सुधार हेतु विशेष संपादन अनुमति प्रदान की गई है। कृपया संख्या संशोधित कर प्रपत्र सबमिट करें।
+      </div>
+    </div>
+
     <!-- Header Banner Card -->
     <div class="gform-header-card">
       <div class="gform-header-title">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)</div>
@@ -1160,8 +1171,42 @@
       }
     }
 
-    // Check edit permission for current user
-    function checkSamanFormEditPermission() {
+    const DEFAULT_SAMAN_MISMATCH_SETTINGS = {
+      alert_active: true,
+      alert_title: '🚨 अति-आवश्यक: समान परीक्षा मांग - नामांकन मिसमैच एवं माध्यम संशोधन सूचना',
+      custom_edit_schools: [
+        '221780', '221778', '221770', '221753', '221758', '221761', '221772', '221756'
+      ],
+      mismatch_details: {
+        '221780': { school_name: 'GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)', diff: 10, reason: 'पेपर मांग शाला दर्पण नामांकन से 10 अधिक है।' },
+        '221778': { school_name: 'MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778)', diff: 1, reason: 'कक्षा 11-12 मांग 1 अधिक तथा माध्यमवार स्पष्टीकरण अपेक्षित।' },
+        '221770': { school_name: 'MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770)', diff: 0, reason: 'MGGS माध्यमवार पृथक मांग अद्यतन आवश्यक।' },
+        '221753': { school_name: 'MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753)', diff: 0, reason: 'MGGS माध्यमवार पृथक मांग अद्यतन आवश्यक।' },
+        '221758': { school_name: 'GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)', diff: 1, reason: 'कक्षा 9-10 मांग 1 अधिक है।' },
+        '221761': { school_name: 'GOVT. SENIOR SECONDARY SCHOOL NIMEDA (221761)', diff: 2, reason: 'कक्षा 11-12 मांग 2 अधिक है।' },
+        '221772': { school_name: 'GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)', diff: 1, reason: 'कक्षा 9-10 मांग 1 अधिक है।' },
+        '221756': { school_name: 'GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)', diff: 6, reason: 'कक्षा 9-10 में 4 तथा 11-12 में 2 अधिक (कुल 6 अधिक) है।' }
+      }
+    };
+
+    // Check edit permission for current user / school
+    function checkSamanFormEditPermission(schoolCode = null) {
+      const code = String(schoolCode || (currentSchool ? currentSchool.shala_darpan_code : '')).trim();
+
+      // Check mismatch custom edit whitelist
+      let cfg = null;
+      try {
+        cfg = JSON.parse(localStorage.getItem('cbeo_saman_mismatch_settings') || 'null');
+      } catch(e) {}
+      if (!cfg) cfg = DEFAULT_SAMAN_MISMATCH_SETTINGS;
+
+      const customAllowed = (cfg && cfg.custom_edit_schools) || [
+        "221780", "221778", "221770", "221753", "221758", "221761", "221772", "221756"
+      ];
+      if (code && customAllowed.some(c => String(c).trim() === code)) {
+        return true; // Mismatch school has edit specifically unlocked!
+      }
+
       let user = null;
       try {
         user = JSON.parse(localStorage.getItem('cbeo_user') || 'null');
@@ -1172,7 +1217,16 @@
         perms = JSON.parse(localStorage.getItem('cbeo_staff_edit_permissions') || '{}');
       } catch(e) {}
 
-      if (user && (user.username === 'admin_jitendra' || user.role === 'superadmin' || user.role === 'cbeo')) {
+      if (user && (
+        user.username === 'admin_jitendra' || 
+        user.username === 'jitendra_admin' || 
+        user.username === 'jitendra' || 
+        user.admin_id === 'ADMIN02' || 
+        user.role === 'superadmin' || 
+        user.role === 'Super Admin' || 
+        user.role === 'cbeo' ||
+        (user.name && user.name.includes('जितेन्द्र'))
+      )) {
         return true;
       }
       if (user && user.role === 'peeo') {
@@ -1189,7 +1243,32 @@
 
     function applyViewOnlyMode(isLocked) {
       const banner = document.getElementById('form-locked-banner');
+      const customUnlockedBanner = document.getElementById('form-custom-unlocked-banner');
+
+      const code = String(currentSchool ? currentSchool.shala_darpan_code : '').trim();
+      let cfg = null;
+      try {
+        cfg = JSON.parse(localStorage.getItem('cbeo_saman_mismatch_settings') || 'null');
+      } catch(e) {}
+      if (!cfg) cfg = DEFAULT_SAMAN_MISMATCH_SETTINGS;
+      const customAllowed = (cfg && cfg.custom_edit_schools) || [
+        "221780", "221778", "221770", "221753", "221758", "221761", "221772", "221756"
+      ];
+      const isCustomUnlocked = code && customAllowed.some(c => String(c).trim() === code);
+
       if (banner) banner.style.display = isLocked ? 'block' : 'none';
+      if (customUnlockedBanner) {
+        if (!isLocked && isCustomUnlocked) {
+          customUnlockedBanner.style.display = 'block';
+          const mismatchInfo = cfg?.mismatch_details?.[code];
+          const descEl = document.getElementById('form-custom-unlocked-desc');
+          if (descEl && mismatchInfo) {
+            descEl.innerHTML = `<strong>${mismatchInfo.school_name || currentSchool.school_name}:</strong> ${mismatchInfo.reason || 'समान परीक्षा मांग प्रपत्र में शाला दर्पण अनुसार डेटा संशोधन खुला है।'}`;
+          }
+        } else {
+          customUnlockedBanner.style.display = 'none';
+        }
+      }
 
       const topSaveBtn = document.getElementById('btn-top-save');
       if (topSaveBtn) topSaveBtn.style.display = isLocked ? 'none' : 'inline-flex';
@@ -1205,24 +1284,40 @@
       const bottomViewGrp = document.getElementById('bottom-view-only-group');
       if (bottomViewGrp) bottomViewGrp.style.display = isLocked ? 'flex' : 'none';
 
+      // Check whether this school has existing submission
+      const allSubs = JSON.parse(localStorage.getItem('cbeo_saman_pariksha_submissions') || '{}');
+      const hasExistingSub = !!(allSubs[code] && (allSubs[code].is_submitted || allSubs[code].grand_total > 0));
+
       const subStatusTag = document.getElementById('f-submitted-status-tag');
       const subStatusDesc = document.getElementById('f-submitted-status-desc');
       if (subStatusTag) {
-        if (isLocked) {
-          subStatusTag.textContent = '🔒 केवल अवलोकन (View-Only / Locked)';
+        if (!hasExistingSub) {
+          // 1. जब भरा नहीं हो -> RED
+          subStatusTag.textContent = '⚠️ प्रपत्र भरना शेष (Pending)';
           subStatusTag.style.background = '#fee2e2';
           subStatusTag.style.color = '#991b1b';
+          subStatusTag.style.border = '1.5px solid #f87171';
+        } else if (!isLocked) {
+          // 2. एडिट करने को ओपन हो -> YELLOW
+          subStatusTag.textContent = '✏️ संशोधन हेतु खुला (Edit Open)';
+          subStatusTag.style.background = '#fef3c7';
+          subStatusTag.style.color = '#b45309';
+          subStatusTag.style.border = '1.5px solid #f59e0b';
         } else {
-          subStatusTag.textContent = 'संशोधन मोड (Edit Allowed)';
-          subStatusTag.style.background = '#d1fae5';
-          subStatusTag.style.color = '#047857';
+          // 3. पूरा भर गया हो और एडिट लॉक हो गया हो -> GREEN
+          subStatusTag.textContent = '✓ पूर्ण (सबमिट एवं लॉक)';
+          subStatusTag.style.background = '#dcfce7';
+          subStatusTag.style.color = '#15803d';
+          subStatusTag.style.border = '1.5px solid #86efac';
         }
       }
       if (subStatusDesc) {
-        if (isLocked) {
-          subStatusDesc.textContent = 'इस विद्यालय का प्रपत्र सबमिट है। मुख्य ब्लॉक शिक्षा अधिकारी द्वारा संशोधन बंद होने के कारण यह केवल अवलोकन मोड में है।';
+        if (!hasExistingSub) {
+          subStatusDesc.textContent = 'इस विद्यालय का प्रपत्र वर्तमान में लम्बित है। कृपया नीचे दिए गए प्रपत्र में संख्या भरकर सबमिट करें।';
+        } else if (!isLocked) {
+          subStatusDesc.textContent = 'इस विद्यालय का प्रपत्र संशोधन हेतु खुला है। आप आंकड़े संशोधित कर पुनः सबमिट (Update) कर सकते हैं।';
         } else {
-          subStatusDesc.textContent = 'इस विद्यालय का डेटा सफलतापूर्वक सुरक्षित है। आप नीचे दिए गए प्रपत्र में कोई भी संख्या बदलकर पुनः सबमिट (Update) कर सकते हैं।';
+          subStatusDesc.textContent = 'इस विद्यालय का प्रपत्र सबमिट व सत्यापित है। मुख्य ब्लॉक शिक्षा अधिकारी द्वारा संशोधन बंद होने के कारण यह केवल अवलोकन मोड में है।';
         }
       }
 
@@ -1322,6 +1417,17 @@
             }
           }).catch(() => {});
       }
+
+      // Sync mismatch settings from repository static JSON
+      fetch('saman_mismatch_settings.json?v=' + Date.now())
+        .then(r => r.json())
+        .then(settings => {
+          if (settings && settings.custom_edit_schools) {
+            localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(settings));
+            applyViewOnlyMode(!checkSamanFormEditPermission());
+          }
+        })
+        .catch(() => {});
 
       // Try syncing latest data from backend API
       fetch('/api/get_saman_pariksha')

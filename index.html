@@ -16,7 +16,7 @@
   <script>
     // Automated Hard Refresh & Client-Side Cache Purge on New Version
     (function() {
-      var CLIENT_VERSION = 'v23_2026_10_05_syllabus_zero_enrolment';
+      var CLIENT_VERSION = 'v24_2026_10_05_badge_colors_mismatch_unlock';
       var lastVer = localStorage.getItem('cbeo_client_app_version');
       if (lastVer !== CLIENT_VERSION) {
         localStorage.setItem('cbeo_client_app_version', CLIENT_VERSION);
@@ -199,8 +199,8 @@
           </span>
         </div>
 
-        <!-- School Scope Filter & In-Tab Management Buttons -->
-        <div style="display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap">
+        <!-- School Scope Filter & In-Tab Management Buttons (Admin/Jitendra Only) -->
+        <div id="sp-admin-header-controls" style="display:none; align-items:center; gap:0.6rem; flex-wrap:wrap">
           <div style="display:flex; align-items:center; gap:0.4rem">
             <label style="font-weight:700; font-size:0.82rem; color:#475569; margin:0">विद्यालय प्रकार:</label>
             <select id="sp-school-type-filter" class="filter-select" onchange="onSamanSchoolTypeFilterChange(this.value)" style="font-weight:700; font-size:0.82rem; padding:4px 8px; border-radius:6px; border:1.5px solid #94a3b8">
@@ -216,7 +216,7 @@
             <i class="fas fa-sliders-h"></i> 6-स्तरीय प्रपत्र नियंत्रण
           </button>
           <button type="button" id="btn-sp-mismatch-admin" class="btn btn-sm" onclick="openSamanCustomEditModal()" style="font-weight:700; font-size:0.8rem; display:inline-flex; align-items:center; gap:0.35rem; background:#fff1f2; color:#be123c; border:1.5px solid #fca5a5">
-            <i class="fas fa-exclamation-triangle sp-mismatch-blinking-text"></i> मिसमैच कस्टम एडिट व लॉगिन अलर्ट (6 स्कूल)
+            <i class="fas fa-exclamation-triangle sp-mismatch-blinking-text"></i> मिसमैच कस्टम एडिट व लॉगिन अलर्ट (8 स्कूल)
           </button>
         </div>
       </div>
