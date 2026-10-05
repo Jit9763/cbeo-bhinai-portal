@@ -649,41 +649,51 @@
       <div id="f-submitted-table-container"></div>
     </div>
 
-    <!-- Card 1: School Identity -->
-    <div class="gform-card">
-      <div class="card-title">
-        <i class="fas fa-school text-primary" style="color:#2563eb"></i> 1. School Identity & Exam Code (विद्यालय विवरण)
+    <!-- Card 1: School Identity (Permanently Locked / Pre-filled from Master Database) -->
+    <div class="gform-card" style="border-left: 5px solid #1e3a8a;">
+      <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem">
+        <span><i class="fas fa-school text-primary" style="color:#2563eb"></i> 1. School Identity & Exam Code (विद्यालय विवरण - अपरिवर्तनीय)</span>
+        <span style="font-size:0.75rem; background:#eff6ff; color:#1e40af; border:1px solid #bfdbfe; padding:2px 8px; border-radius:4px; font-weight:700">
+          <i class="fas fa-lock"></i> मास्टर डेटाबेस से स्वतः निर्धारित (Locked)
+        </span>
       </div>
-      <div class="card-desc">विद्यालय पहचान एवं शाला दर्पण विवरण (मास्टर डेटाबेस से प्री-फिल्ड):</div>
+      <div class="card-desc">विद्यालय पहचान एवं शाला दर्पण अधिकृत मास्टर रिकॉर्ड (यह विवरण अपरिवर्तनीय है):</div>
 
       <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">School Name (विद्यालय का नाम):</label>
-          <input type="text" id="f-school-name" class="form-input" readonly>
+        <div class="form-group full-width">
+          <label class="form-label">Official School Name (विद्यालय का आधिकारिक नाम - English):</label>
+          <input type="text" id="f-school-name" class="form-input" readonly style="background:#f8fafc; cursor:not-allowed; border:1.5px solid #cbd5e1; font-weight:800; color:#1e293b">
         </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label class="form-label">विद्यालय का नाम (हिंदी अनुवाद):</label>
+          <input type="text" id="f-school-name-hi" class="form-input" readonly style="background:#f8fafc; cursor:not-allowed; border:1.5px solid #cbd5e1; font-weight:800; color:#1e293b">
+        </div>
+      </div>
+
+      <div class="form-row">
         <div class="form-group">
           <label class="form-label">Shala Darpan / PSP Code (शाला दर्पण कोड):</label>
-          <input type="text" id="f-sd-code" class="form-input" readonly>
+          <input type="text" id="f-sd-code" class="form-input" readonly style="background:#f8fafc; cursor:not-allowed; border:1.5px solid #cbd5e1; font-weight:800; color:#1e293b">
         </div>
-      </div>
-
-      <div class="form-row">
         <div class="form-group">
           <label class="form-label">PEEO Nodal Panchayat (संबंधित PEEO):</label>
-          <input type="text" id="f-peeo-name" class="form-input" readonly>
-        </div>
-        <div class="form-group">
-          <label class="form-label">School Category (श्रेणी व प्रकार):</label>
-          <input type="text" id="f-school-cat" class="form-input" readonly>
+          <input type="text" id="f-peeo-name" class="form-input" readonly style="background:#f8fafc; cursor:not-allowed; border:1.5px solid #cbd5e1; font-weight:700; color:#1e293b">
         </div>
       </div>
 
       <div class="form-row" style="margin-bottom:0">
-        <div class="form-group full-width">
+        <div class="form-group">
+          <label class="form-label">School Category & Type (श्रेणी व प्रकार):</label>
+          <input type="text" id="f-school-cat" class="form-input" readonly style="background:#f8fafc; cursor:not-allowed; border:1.5px solid #cbd5e1; font-weight:700; color:#1e293b">
+        </div>
+        <div class="form-group">
           <label class="form-label" style="color:#1e40af">
-            <strong>School Examination Code (परीक्षा केंद्र / स्कूल कोड) <span style="color:red">*</span>:</strong>
+            <strong>School Examination Code (परीक्षा कोड - AJM04G):</strong>
           </label>
-          <input type="text" id="f-exam-code" class="form-input" placeholder="e.g. 5201, 1402 (जिला समान परीक्षा बोर्ड द्वारा जारी कोड)" style="border:2px solid #2563eb; font-weight:800">
+          <input type="text" id="f-exam-code" class="form-input" readonly style="background:#eff6ff; cursor:not-allowed; border:2px solid #3b82f6; font-weight:900; color:#1d4ed8; letter-spacing:0.5px">
         </div>
       </div>
     </div>
@@ -1321,18 +1331,27 @@
         }
       }
 
-      // Toggle form inputs
+      // Toggle form inputs (NOTE: Section 1 school details & exam code are PERMANENTLY LOCKED)
       const formInputs = document.querySelectorAll(
-        '#f-exam-code, #f-principal-name, #f-principal-mobile, #f-incharge-name, #f-incharge-mobile, ' +
-        '#f-c9-total, #f-c9-sanskrit, #f-c9-urdu, #f-c10-total, #f-c10-sanskrit, #f-c10-urdu, ' +
-        '#f-c11-total, #f-c11-comp-hindi, #f-c11-comp-english, ' +
-        '#f-c12-total, #f-c12-comp-hindi, #f-c12-comp-english, ' +
+        '#f-principal-name, #f-principal-mobile, #f-incharge-name, #f-incharge-mobile, ' +
+        '#f-c9-hindi, #f-c9-english, #f-c9-sanskrit, #f-c9-urdu, ' +
+        '#f-c10-hindi, #f-c10-english, #f-c10-sanskrit, #f-c10-urdu, ' +
+        '#f-c11-comp-hindi, #f-c11-comp-english, ' +
+        '#f-c12-comp-hindi, #f-c12-comp-english, ' +
         '.subject-card input, .faculty-pill-btn input, #f-certify-check'
       );
       formInputs.forEach(inp => {
         inp.disabled = isLocked;
         if (isLocked) inp.classList.add('view-only-input');
         else inp.classList.remove('view-only-input');
+      });
+
+      // Section 1 inputs remain strictly readonly always
+      const sec1Inputs = document.querySelectorAll('#f-school-name, #f-school-name-hi, #f-sd-code, #f-peeo-name, #f-school-cat, #f-exam-code');
+      sec1Inputs.forEach(inp => {
+        inp.readOnly = true;
+        inp.disabled = false;
+        inp.classList.add('view-only-input');
       });
 
       document.querySelectorAll('.btn-nil-toggle').forEach(btn => {
@@ -1381,7 +1400,8 @@
         schoolsList.forEach(s => {
           const opt = document.createElement('option');
           opt.value = s.shala_darpan_code;
-          opt.textContent = `[${s.type.substring(0,3)}] ${s.shala_darpan_code} - ${s.school_name}`;
+          const names = getOfficialSchoolNames(s);
+          opt.textContent = `${names.en} (${s.type === 'Government' ? 'राजकीय' : 'निजी'})`;
           select.appendChild(opt);
         });
         if (loggedUser && loggedUser.role === 'school') {
@@ -1511,6 +1531,37 @@
       `;
     }
 
+    function getOfficialSchoolNames(school) {
+      if (!school) return { en: '', hi: '' };
+      const code = String(school.shala_darpan_code || school.code || '').trim();
+      let en = (school.school_name_en || school.school_name || '').trim();
+      let hi = (school.school_name_hi || school.school_name || '').trim();
+
+      en = en.replace(/\bRA\.\s*U\.\s*MA\.\s*VI\.\b/gi, 'Govt. Sr. Sec. School')
+             .replace(/\bRA\.\s*MA\.\s*VI\.\b/gi, 'Govt. Sec. School')
+             .replace(/GSSS/gi, 'Govt. Sr. Sec. School')
+             .replace(/Govt\.\s*Sr\.\s*Sec\.\s*School/gi, 'GOVT. SENIOR SECONDARY SCHOOL')
+             .replace(/Govt\.\s*Sec\.\s*School/gi, 'GOVT. SECONDARY SCHOOL')
+             .replace(/Mahatma Gandhi Govt\. School/gi, 'MAHATMA GANDHI GOVT. SCHOOL')
+             .replace(/MGGS/gi, 'MAHATMA GANDHI GOVT. SCHOOL')
+             .replace(/\s*\(\s*\d+\s*\)\s*$/, '')
+             .trim().toUpperCase();
+
+      hi = hi.replace(/रा\.बा\.उ\.मा\.वि\./g, 'राजकीय बालिका उच्च माध्यमिक विद्यालय')
+             .replace(/रा\.उ\.मा\.वि\./g, 'राजकीय उच्च माध्यमिक विद्यालय')
+             .replace(/रा\.बा\.मा\.वि\./g, 'राजकीय बालिका माध्यमिक विद्यालय')
+             .replace(/रा\.मा\.वि\./g, 'राजकीय माध्यमिक विद्यालय')
+             .replace(/महात्मा गांधी रा\.वि\./g, 'महात्मा गांधी राजकीय विद्यालय')
+             .replace(/\s*\(\s*\d+\s*\)\s*$/, '')
+             .trim();
+
+      const codeSuffix = code ? ` (${code})` : '';
+      return {
+        en: `${en}${codeSuffix}`,
+        hi: `${hi}${codeSuffix}`
+      };
+    }
+
     function loadSchool(code) {
       if (!schoolsList || schoolsList.length === 0) {
         schoolsList = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.schools_56) || (window.MASTER_CBEO_DATA && window.MASTER_CBEO_DATA.schools_56) || [];
@@ -1551,12 +1602,18 @@
 
       renderSubmittedPreviewTable(sub);
 
+      const officialNames = getOfficialSchoolNames(currentSchool);
+      const fixedExamCode = (currentSchool.type === 'Private' ? 'AJM04P' : 'AJM04G') + currentSchool.shala_darpan_code;
+
       document.getElementById('f-school-code').value = currentSchool.shala_darpan_code;
-      document.getElementById('f-school-name').value = currentSchool.school_name;
+      document.getElementById('f-school-name').value = officialNames.en;
+      if (document.getElementById('f-school-name-hi')) {
+        document.getElementById('f-school-name-hi').value = officialNames.hi;
+      }
       document.getElementById('f-sd-code').value = currentSchool.shala_darpan_code;
-      document.getElementById('f-peeo-name').value = currentSchool.peeo_name;
-      document.getElementById('f-school-cat').value = `${currentSchool.category} (${currentSchool.type})`;
-      document.getElementById('f-exam-code').value = sub.exam_code || currentSchool.exam_code || '';
+      document.getElementById('f-peeo-name').value = currentSchool.peeo_name || '---';
+      document.getElementById('f-school-cat').value = `${currentSchool.category} (${currentSchool.type === 'Government' ? 'राजकीय' : 'निजी'})`;
+      document.getElementById('f-exam-code').value = fixedExamCode;
 
       document.getElementById('f-principal-name').value = sub.principal_name || currentSchool.principal_name || '';
       document.getElementById('f-principal-mobile').value = sub.principal_mobile || currentSchool.principal_mobile || '';

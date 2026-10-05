@@ -350,6 +350,37 @@ function getSamanMismatchConfig() {
   return STATE.samanMismatchSettings;
 }
 
+function getOfficialSchoolNames(school) {
+  if (!school) return { en: '', hi: '' };
+  const code = String(school.shala_darpan_code || school.code || '').trim();
+  let en = (school.school_name_en || school.school_name || '').trim();
+  let hi = (school.school_name_hi || school.school_name || '').trim();
+
+  en = en.replace(/\bRA\.\s*U\.\s*MA\.\s*VI\.\b/gi, 'Govt. Sr. Sec. School')
+         .replace(/\bRA\.\s*MA\.\s*VI\.\b/gi, 'Govt. Sec. School')
+         .replace(/GSSS/gi, 'Govt. Sr. Sec. School')
+         .replace(/Govt\.\s*Sr\.\s*Sec\.\s*School/gi, 'GOVT. SENIOR SECONDARY SCHOOL')
+         .replace(/Govt\.\s*Sec\.\s*School/gi, 'GOVT. SECONDARY SCHOOL')
+         .replace(/Mahatma Gandhi Govt\. School/gi, 'MAHATMA GANDHI GOVT. SCHOOL')
+         .replace(/MGGS/gi, 'MAHATMA GANDHI GOVT. SCHOOL')
+         .replace(/\s*\(\s*\d+\s*\)\s*$/, '')
+         .trim().toUpperCase();
+
+  hi = hi.replace(/रा\.बा\.उ\.मा\.वि\./g, 'राजकीय बालिका उच्च माध्यमिक विद्यालय')
+         .replace(/रा\.उ\.मा\.वि\./g, 'राजकीय उच्च माध्यमिक विद्यालय')
+         .replace(/रा\.बा\.मा\.वि\./g, 'राजकीय बालिका माध्यमिक विद्यालय')
+         .replace(/रा\.मा\.वि\./g, 'राजकीय माध्यमिक विद्यालय')
+         .replace(/महात्मा गांधी रा\.वि\./g, 'महात्मा गांधी राजकीय विद्यालय')
+         .replace(/\s*\(\s*\d+\s*\)\s*$/, '')
+         .trim();
+
+  const codeSuffix = code ? ` (${code})` : '';
+  return {
+    en: `${en}${codeSuffix}`,
+    hi: `${hi}${codeSuffix}`
+  };
+}
+
 /* ========================================================
    1. DATA INITIALIZATION & LOCALSTORAGE SYNC
    ======================================================== */
@@ -2779,10 +2810,14 @@ function renderSamanParikshaPeeoView() {
         `;
       }
 
+      const officialNames = getOfficialSchoolNames(school);
       card.innerHTML = `
         <div>
           <div class="sp-card-header">
-            <div class="sp-school-name">#${index + 1}. ${school.school_name}</div>
+            <div>
+              <div class="sp-school-name">#${index + 1}. ${officialNames.en}</div>
+              <div style="font-size:0.8rem; color:#475569; font-weight:700; margin-top:2px">${officialNames.hi}</div>
+            </div>
             ${statusBadge}
           </div>
           <div class="sp-school-meta">
@@ -2792,13 +2827,17 @@ function renderSamanParikshaPeeoView() {
             </div>
             <div><strong>श्रेणी:</strong> ${school.category || 'Secondary/Sr.Sec'}</div>
             <div><strong>PEEO परिक्षेत्र:</strong> ${school.peeo_name || '---'}</div>
+            <div><strong>परीक्षा कोड:</strong> <strong style="color:#0284c7">AJM04G${school.shala_darpan_code}</strong></div>
             ${submittedDetailsHtml}
           </div>
         </div>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem">
-          <button class="btn btn-primary btn-sm" onclick="openSamanSyllabusForm('${school.shala_darpan_code}')" style="flex:1; font-weight:700">
-            <i class="fas fa-edit"></i> ${isSub ? '✏️ पूर्णता % प्रपत्र में संशोधन' : '📝 पाठ्यक्रम पूर्णता % प्रपत्र भरें'}
-          </button>
+          <a href="saman_syllabus_form.html?code=${school.shala_darpan_code}" class="btn btn-primary btn-sm" style="flex:1; font-weight:800; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:0.35rem; padding:0.45rem 0.75rem">
+            <i class="fas fa-file-signature"></i> ${isSub ? '✏️ पूर्णता % प्रपत्र में संशोधन' : '📝 पाठ्यक्रम पूर्णता % प्रपत्र भरें'}
+          </a>
+          <a href="saman_syllabus_form.html?code=${school.shala_darpan_code}" target="_blank" class="btn btn-outline-primary btn-sm" style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:700" title="अलग टैब में खोलें">
+            <i class="fas fa-external-link-alt"></i> अलग पेज
+          </a>
           ${isSub ? `
             <button class="btn btn-success btn-sm" onclick="printSyllabusPdf('${school.shala_darpan_code}')" title="आधिकारिक प्रमाणित PDF देखें / प्रिंट करें" style="font-weight:700">
               <i class="fas fa-print"></i> PDF प्रिंट
@@ -2884,10 +2923,16 @@ function renderSamanParikshaPeeoView() {
         `;
       }
 
+      const officialNames = getOfficialSchoolNames(school);
+      const fixedExamCode = (school.type === 'Private' ? 'AJM04P' : 'AJM04G') + school.shala_darpan_code;
+
       card.innerHTML = `
         <div>
           <div class="sp-card-header">
-            <div class="sp-school-name">#${index + 1}. ${school.school_name}</div>
+            <div>
+              <div class="sp-school-name">#${index + 1}. ${officialNames.en}</div>
+              <div style="font-size:0.8rem; color:#475569; font-weight:700; margin-top:2px">${officialNames.hi}</div>
+            </div>
             ${statusBadge}
           </div>
           <div class="sp-school-meta">
@@ -2896,16 +2941,16 @@ function renderSamanParikshaPeeoView() {
               ${catBadge}
             </div>
             <div><strong>श्रेणी:</strong> ${school.category}</div>
-            <div><strong>परीक्षा कोड:</strong> ${sub?.exam_code ? `<span style="color:#2563eb; font-weight:800">${sub.exam_code}</span>` : '<span style="color:#94a3b8">दर्ज नहीं</span>'}</div>
+            <div><strong>परीक्षा कोड:</strong> <strong style="color:#0284c7">${fixedExamCode}</strong></div>
             ${submittedDetailsHtml}
           </div>
         </div>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem">
-          <button class="btn btn-primary btn-sm" onclick="openSamanParikshaForm('${school.shala_darpan_code}')" style="flex:1; font-weight:700">
-            <i class="fas ${isSchoolLocked ? 'fa-eye' : (isSubmitted ? 'fa-edit' : 'fa-file-signature')}"></i> ${isSchoolLocked ? '👁️ प्रपत्र अवलोकन (View Data)' : (isSubmitted ? '✏️ प्रपत्र में संशोधन (Edit)' : '📝 Google Form प्रपत्र भरें')}
-          </button>
+          <a href="saman_form.html?code=${school.shala_darpan_code}" class="btn btn-primary btn-sm" style="flex:1; font-weight:800; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:0.35rem; padding:0.45rem 0.75rem">
+            <i class="fas ${isSchoolLocked ? 'fa-eye' : (isSubmitted ? 'fa-edit' : 'fa-file-signature')}"></i> ${isSchoolLocked ? '👁️ प्रपत्र अवलोकन' : (isSubmitted ? '✏️ प्रपत्र में संशोधन' : '📝 Google Form प्रपत्र भरें')}
+          </a>
           <a href="saman_form.html?code=${school.shala_darpan_code}" target="_blank" class="btn btn-outline-primary btn-sm" style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:700" title="नए पेज में खोलें (अलग टैब)">
-            <i class="fas fa-external-link-alt"></i> ${isSchoolLocked ? 'अलग पेज (अवलोकन)' : (isSubmitted ? 'अलग पेज में एडिट' : 'अलग पेज')}
+            <i class="fas fa-external-link-alt"></i> अलग पेज
           </a>
           ${isSubmitted ? `
             <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${school.shala_darpan_code}')" title="आधिकारिक प्रमाणित PDF देखें / प्रिंट करें" style="font-weight:700">
@@ -3708,10 +3753,8 @@ function toggleSyllabusClassZero(classKey, isZero) {
 }
 
 function openSamanSyllabusForm(schoolCode) {
-  const school = (STATE.schools56 || []).find(s => s.shala_darpan_code === schoolCode) ||
-    getAllMasterSchools().find(s => s.shala_darpan_code === schoolCode);
-  if (!school) {
-    showToast('विद्यालय का विवरण नहीं मिला!', 'error');
+  if (schoolCode) {
+    window.location.href = `saman_syllabus_form.html?code=${schoolCode}`;
     return;
   }
 
@@ -4265,21 +4308,24 @@ function openSamanParikshaForm(schoolCode) {
     showToast('💡 पूर्व में सुरक्षित ड्राफ्ट स्वतः लोड कर लिया गया है।', 'info');
   }
 
+  const officialNames = getOfficialSchoolNames(school);
   document.getElementById('gform-school-code-hidden').value = school.shala_darpan_code;
-  document.getElementById('gform-school-name').value = school.school_name;
+  document.getElementById('gform-school-name').value = `${officialNames.en} [${officialNames.hi}]`;
   document.getElementById('gform-school-code').value = school.shala_darpan_code;
-  document.getElementById('gform-peeo-name').value = school.peeo_name;
-  document.getElementById('gform-school-cat').value = `${school.category} (${school.type})`;
+  document.getElementById('gform-peeo-name').value = school.peeo_name || '---';
+  document.getElementById('gform-school-cat').value = `${school.category} (${school.type === 'Government' ? 'राजकीय' : 'निजी'})`;
   
   // Calculate suggested examination code: Govt -> AJM04G + Shala Darpan code, Private -> AJM04P0 + 5-digit numeric PSP code
   const isPvt = school.type === 'Private' || (school.category && school.category.includes('Private')) || String(school.shala_darpan_code).startsWith('P');
   const cleanPsp = String(school.shala_darpan_code).replace(/\D/g, '').padStart(5, '0');
   const suggestedExamCode = isPvt ? `AJM04P0${cleanPsp}` : `AJM04G${school.shala_darpan_code}`;
 
-  const currentExamCode = activeData.exam_code || school.exam_code || '';
   const examInput = document.getElementById('gform-exam-code');
   if (examInput) {
-    examInput.value = currentExamCode || suggestedExamCode;
+    examInput.value = suggestedExamCode;
+    examInput.readOnly = true;
+    examInput.style.background = '#eff6ff';
+    examInput.style.cursor = 'not-allowed';
   }
 
   // Highlight active category suggestion card
@@ -4483,8 +4529,14 @@ function openSamanParikshaForm(schoolCode) {
   if (footPrintBtn) footPrintBtn.style.display = isLocked ? 'none' : 'inline-flex';
   if (viewOnlyPdfBtn) viewOnlyPdfBtn.style.display = isLocked ? 'inline-flex' : 'none';
 
+  const lockedIdentityIds = ['gform-school-name', 'gform-school-code', 'gform-peeo-name', 'gform-school-cat', 'gform-exam-code'];
   const gformInputs = formElem ? formElem.querySelectorAll('input:not([type="hidden"]), select, textarea') : [];
   gformInputs.forEach(inp => {
+    if (lockedIdentityIds.includes(inp.id)) {
+      inp.setAttribute('readonly', 'true');
+      inp.classList.add('view-only-input');
+      return; // NEVER UNLOCK SECTION 1!
+    }
     if (isLocked) {
       inp.setAttribute('readonly', 'true');
       if (inp.type === 'checkbox' || inp.type === 'radio') inp.setAttribute('disabled', 'true');
