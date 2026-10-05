@@ -2678,11 +2678,11 @@ function renderSamanParikshaView() {
     }
   }
 
+  const sylQuickBtns = document.getElementById('sp-syl-quick-btns');
   const sylDispatchBar = document.getElementById('sp-syllabus-admin-dispatch-bar');
-  const isJitendra = !STATE.currentUser || STATE.currentUser.role === 'admin' || (STATE.currentUser.name && STATE.currentUser.name.includes('जितेन्द्र'));
-  if (sylDispatchBar) {
-    sylDispatchBar.style.display = (STATE.samanParikshaActiveForm === 'syllabus' && isJitendra) ? 'flex' : 'none';
-  }
+  const isSyl = STATE.samanParikshaActiveForm === 'syllabus';
+  if (sylQuickBtns) sylQuickBtns.style.display = isSyl ? 'inline-flex' : 'none';
+  if (sylDispatchBar) sylDispatchBar.style.display = isSyl ? 'flex' : 'none';
 
   if (STATE.currentUser.role === 'admin') {
     if (peeoContainer) peeoContainer.style.display = 'none';
@@ -3309,17 +3309,19 @@ function switchSamanActiveForm(formType) {
   STATE.samanParikshaActiveForm = formType;
   localStorage.setItem('cbeo_saman_active_form', formType);
   const scopeDropdown = document.getElementById('sp-school-type-filter');
+  const sylQuickBtns = document.getElementById('sp-syl-quick-btns');
   const sylDispatchBar = document.getElementById('sp-syllabus-admin-dispatch-bar');
-  const isJitendra = !STATE.currentUser || STATE.currentUser.role === 'admin' || (STATE.currentUser.name && STATE.currentUser.name.includes('जितेन्द्र'));
 
   if (formType === 'syllabus') {
     // When switching to syllabus completion % demand, automatically filter to 49 Govt schools
     // because private schools are excluded as per user instructions
     STATE.samanParikshaSchoolTypeFilter = 'govt_only';
     if (scopeDropdown) scopeDropdown.value = 'govt_only';
-    if (sylDispatchBar && isJitendra) sylDispatchBar.style.display = 'flex';
+    if (sylQuickBtns) sylQuickBtns.style.display = 'inline-flex';
+    if (sylDispatchBar) sylDispatchBar.style.display = 'flex';
     showToast('नवीन पाठ्यक्रम पूर्णता % मांग (49 राजकीय विद्यालय) सक्रिय हो गई!', 'info');
   } else {
+    if (sylQuickBtns) sylQuickBtns.style.display = 'none';
     if (sylDispatchBar) sylDispatchBar.style.display = 'none';
     showToast('मूल प्रश्न-पत्र मांग (57 विद्यालय) सक्रिय हो गई!', 'info');
   }
@@ -9983,7 +9985,7 @@ function createDemandCardElement(demand, isArchive = false) {
         <button class="btn btn-success btn-sm" onclick="exportDynamicDemandExcel('${demand.id}')" title="इस मांग का एक्सेल डाउनलोड" style="font-weight:700">
           <i class="fas fa-file-excel"></i> 📊 एक्सेल डाउनलोड
         </button>
-        ${isAdminUser ? `
+        ${(isAdminUser || isPeeoUser) ? `
           <button class="btn btn-warning btn-sm text-dark" onclick="openBroadcastDemandEmailModal('${demand.id}')" title="सभी लक्षित विद्यालयों को ईमेल सूचना भेजें" style="font-weight:700; background:#f59e0b; border-color:#d97706">
             <i class="fas fa-envelope"></i> 📧 ईमेल
           </button>
@@ -10772,7 +10774,7 @@ function renderDynamicDemandPortalView(demandId) {
         <button class="btn btn-danger btn-sm" onclick="openPendingReportPdf('demand', '${demand.id}')" style="background:#dc2626; border-color:#dc2626; font-weight:700" title="लम्बित स्कूल एवं PEEO सूची PDF">
           <i class="fas fa-file-pdf"></i> 🚨 लम्बित स्कूल/PEEO PDF
         </button>
-        ${isAdminUser ? `
+        ${(isAdminUser || isPeeoUser) ? `
           <button class="btn btn-warning btn-sm" onclick="openBroadcastDemandEmailModal('${demand.id}')" style="background:#f59e0b; color:#0f172a; font-weight:800; border:none" title="लक्षित विद्यालयों को ईमेल सूचना एवं भरने के निर्देश भेजें">
             <i class="fas fa-envelope"></i> 📧 सभी स्कूलों को ईमेल करें
           </button>
