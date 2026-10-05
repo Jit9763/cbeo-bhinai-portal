@@ -197,14 +197,6 @@
           <span id="sp-active-form-badge" class="badge" style="background:#e0f2fe; color:#0369a1; font-weight:700; font-size:0.75rem; padding:4px 8px">
             सक्रिय: मूल प्रश्न-पत्र मांग
           </span>
-          <div id="sp-syl-quick-btns" style="display:none; align-items:center; gap:0.5rem">
-            <button type="button" class="btn btn-sm" onclick="openBroadcastDemandEmailModal('DEMAND_SAMAN_SYLLABUS_2026')" style="background:#f59e0b; color:#0f172a; font-weight:800; font-size:0.8rem; padding:6px 12px; border-radius:6px; border:none; display:inline-flex; align-items:center; gap:0.35rem; box-shadow:0 2px 4px rgba(245,158,11,0.25); cursor:pointer">
-              <i class="fas fa-envelope"></i> 📧 सभी 49 स्कूलों को ईमेल भेजें
-            </button>
-            <button type="button" class="btn btn-sm" onclick="broadcastDemandTelegram('DEMAND_SAMAN_SYLLABUS_2026')" style="background:#0284c7; color:#ffffff; font-weight:800; font-size:0.8rem; padding:6px 12px; border-radius:6px; border:none; display:inline-flex; align-items:center; gap:0.35rem; box-shadow:0 2px 4px rgba(2,132,199,0.25); cursor:pointer">
-              <i class="fab fa-telegram-plane"></i> 📱 Telegram पर भेजें
-            </button>
-          </div>
         </div>
 
         <!-- School Scope Filter & In-Tab Management Buttons (Admin/Jitendra Only) -->
@@ -226,12 +218,6 @@
           <button type="button" id="btn-sp-mismatch-admin" class="btn btn-sm" onclick="openSamanCustomEditModal()" style="font-weight:700; font-size:0.8rem; display:inline-flex; align-items:center; gap:0.35rem; background:#fff1f2; color:#be123c; border:1.5px solid #fca5a5">
             <i class="fas fa-exclamation-triangle sp-mismatch-blinking-text"></i> मिसमैच कस्टम एडिट व लॉगिन अलर्ट (8 स्कूल)
           </button>
-          <button type="button" class="btn btn-sm" onclick="openBroadcastDemandEmailModal('DEMAND_SAMAN_SYLLABUS_2026')" style="background:#f59e0b; color:#0f172a; font-weight:700; font-size:0.8rem; display:inline-flex; align-items:center; gap:0.35rem; border:none; padding:4px 10px; border-radius:6px" title="समस्त 49 राजकीय विद्यालयों को ईमेल भेजें">
-            <i class="fas fa-envelope"></i> 📧 ईमेल भेजें
-          </button>
-          <button type="button" class="btn btn-sm" onclick="broadcastDemandTelegram('DEMAND_SAMAN_SYLLABUS_2026')" style="background:#0284c7; color:#ffffff; font-weight:700; font-size:0.8rem; display:inline-flex; align-items:center; gap:0.35rem; border:none; padding:4px 10px; border-radius:6px" title="आधिकारिक संदेश Telegram पर भेजें">
-            <i class="fab fa-telegram-plane"></i> 📱 Telegram
-          </button>
         </div>
       </div>
 
@@ -241,19 +227,16 @@
           <span style="font-size:1.25rem">📢</span>
           <div>
             <div style="font-weight:800; color:#1e3a8a; font-size:0.92rem">
-              समान परीक्षा पाठ्यक्रम पूर्णता % मांग (49 राजकीय विद्यालय) - सूचना प्रसारण केंद्र
+              समान परीक्षा पाठ्यक्रम पूर्णता % मांग (49 राजकीय विद्यालय) - आधिकारिक प्रसारण केंद्र
             </div>
             <div style="font-size:0.78rem; color:#475569">
-              समस्त 49 राजकीय विद्यालयों को ईमेल अथवा जितेन्द्र जी के Telegram पर अधिकृत सूचना भेजें:
+              संदेश कस्टमाइज़ करें, सभी 49 स्कूलों को ईमेल भेजें अथवा जितेन्द्र जी के Telegram / WhatsApp पर प्रेषित करें:
             </div>
           </div>
         </div>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
-          <button type="button" class="btn btn-sm" onclick="openBroadcastDemandEmailModal('DEMAND_SAMAN_SYLLABUS_2026')" style="background:#f59e0b; color:#0f172a; font-weight:800; padding:6px 14px; border-radius:6px; border:none; display:inline-flex; align-items:center; gap:0.4rem; box-shadow:0 2px 6px rgba(245,158,11,0.25); cursor:pointer">
-            <i class="fas fa-envelope"></i> 📧 सभी 49 स्कूलों को ईमेल भेजें
-          </button>
-          <button type="button" class="btn btn-sm" onclick="broadcastDemandTelegram('DEMAND_SAMAN_SYLLABUS_2026')" style="background:#0284c7; color:#ffffff; font-weight:800; padding:6px 14px; border-radius:6px; border:none; display:inline-flex; align-items:center; gap:0.4rem; box-shadow:0 2px 6px rgba(2,132,199,0.25); cursor:pointer">
-            <i class="fab fa-telegram-plane"></i> 📱 Telegram पर भेजें
+          <button type="button" class="btn btn-primary btn-sm" onclick="openDemandBroadcastCenter('DEMAND_SAMAN_SYLLABUS_2026')" style="background:#0284c7; color:#ffffff; font-weight:800; padding:7px 16px; border-radius:8px; border:none; display:inline-flex; align-items:center; gap:0.4rem; box-shadow:0 2px 6px rgba(2,132,199,0.3); cursor:pointer">
+            <i class="fas fa-bullhorn"></i> 📢 सूचना संदेश कस्टमाइज़ एवं प्रसारण केंद्र
           </button>
         </div>
       </div>
@@ -5531,6 +5514,81 @@
         <button class="btn btn-danger" onclick="executeAdminConfirmedAction()" style="font-weight:700">
           <i class="fas fa-check"></i> प्रमाणित करें व आगे बढ़ें
         </button>
+      </div>
+    </div>
+  <!-- ========================================================
+       MODAL: DEMAND BROADCAST & MESSAGE CUSTOMIZATION CENTER
+       ======================================================== -->
+  <div id="modal-demand-broadcast-center" class="modal-overlay" style="display:none">
+    <div class="modal-card" style="max-width:780px; width:95%; border-top:5px solid #0284c7; max-height:92vh; display:flex; flex-direction:column">
+      <div class="modal-header" style="background:#f8fafc; border-bottom:1.5px solid #e2e8f0; padding:1rem 1.25rem">
+        <h3 style="margin:0; font-size:1.15rem; color:#0f172a; display:flex; align-items:center; gap:0.5rem">
+          <i class="fas fa-bullhorn text-primary"></i> 📢 आधिकारिक सूचना प्रसारण केंद्र - संदेश कस्टमाइज़ेशन
+        </h3>
+        <button class="modal-close-btn" onclick="closeModal('modal-demand-broadcast-center')">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:1.25rem; overflow-y:auto; flex:1">
+        <!-- Demand Context Box -->
+        <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:0.75rem 1rem; margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem">
+          <div>
+            <div style="font-size:0.75rem; color:#1e40af; font-weight:700">सक्रिय सूचना मांग:</div>
+            <div id="broadcast-demand-title" style="font-size:0.95rem; font-weight:800; color:#0f172a">समान परीक्षा पाठ्यक्रम पूर्णता % मांग</div>
+            <div id="broadcast-demand-target" style="font-size:0.78rem; color:#475569">लक्षित विद्यालय: 49 राजकीय माध्यमिक एवं उच्च माध्यमिक विद्यालय</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.4rem">
+            <label style="font-size:0.8rem; font-weight:700; color:#334155; margin:0">अंतिम तिथि:</label>
+            <input type="text" id="broadcast-custom-deadline" value="15 अक्टूबर 2026" class="form-control form-control-sm" style="width:140px; font-weight:700; font-size:0.82rem" oninput="onBroadcastDeadlineChange(this.value)">
+          </div>
+        </div>
+
+        <!-- Customizable Message Editor -->
+        <div style="margin-bottom:1rem">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.4rem">
+            <label style="font-weight:700; font-size:0.85rem; color:#1e293b; margin:0">
+              <i class="fas fa-edit text-info"></i> संदेश संपादन (कस्टमाइज़ करें - यहाँ टाइप अथवा बदलाव कर सकते हैं):
+            </label>
+            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="resetBroadcastMessageToTemplate()" style="font-size:0.75rem; padding:3px 10px; font-weight:700">
+              <i class="fas fa-undo"></i> 🔄 मूल प्रारूप रीसेट
+            </button>
+          </div>
+          <textarea id="broadcast-message-editor" class="form-control" rows="12" style="font-family:Consolas, 'Courier New', monospace; font-size:0.88rem; line-height:1.55; border:1.5px solid #94a3b8; border-radius:8px; padding:0.75rem; width:100%; box-sizing:border-box" placeholder="यहाँ संदेश टाइप या एडिट करें..."></textarea>
+          <div style="font-size:0.75rem; color:#64748b; margin-top:0.35rem; display:flex; justify-content:space-between; align-items:center">
+            <span>💡 <i>आप संदेश में कोई भी निर्देश, तारीख या अतिरिक्त नोट सीधे एडिट कर सकते हैं।</i></span>
+            <span id="broadcast-char-count" style="font-weight:700; color:#0284c7"></span>
+          </div>
+        </div>
+
+        <!-- 3 Distinct Action Channels Description -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:0.75rem; margin-bottom:0.5rem">
+          <div style="border:1.5px solid #fef08a; background:#fefce8; border-radius:8px; padding:0.6rem">
+            <div style="font-weight:800; font-size:0.82rem; color:#854d0e"><i class="fas fa-envelope"></i> 1. ईमेल प्रसारण</div>
+            <div style="font-size:0.72rem; color:#713f12; margin-top:2px">लक्षित विद्यालयों की आधिकारिक ईमेल पर यह संपादित संदेश तुरंत भेजेगा।</div>
+          </div>
+          <div style="border:1.5px solid #bae6fd; background:#f0f9ff; border-radius:8px; padding:0.6rem">
+            <div style="font-weight:800; font-size:0.82rem; color:#0369a1"><i class="fab fa-telegram-plane"></i> 2. Telegram आदेश</div>
+            <div style="font-size:0.72rem; color:#075985; margin-top:2px">जितेन्द्र जी के Telegram बॉट (579780800) पर यह संपादित संदेश भेजेगा।</div>
+          </div>
+          <div style="border:1.5px solid #bbf7d0; background:#f0fdf4; border-radius:8px; padding:0.6rem">
+            <div style="font-weight:800; font-size:0.82rem; color:#15803d"><i class="fab fa-whatsapp"></i> 3. WhatsApp शेयर</div>
+            <div style="font-size:0.72rem; color:#166534; margin-top:2px">संपादित संदेश को क्लिपबोर्ड में कॉपी करेगा और WhatsApp विंडो खोलेगा।</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="background:#f8fafc; border-top:1.5px solid #e2e8f0; padding:0.85rem 1.25rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.6rem">
+        <button class="btn btn-outline-secondary btn-sm" onclick="closeModal('modal-demand-broadcast-center')">
+          रद्द करें / बंद करें
+        </button>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+          <button class="btn btn-warning btn-sm" onclick="sendBroadcastCustomEmail()" style="background:#f59e0b; border-color:#d97706; color:#0f172a; font-weight:800; padding:6px 12px; display:inline-flex; align-items:center; gap:0.35rem">
+            <i class="fas fa-envelope"></i> 📧 सभी 49 स्कूलों को ईमेल भेजें
+          </button>
+          <button class="btn btn-info btn-sm" onclick="sendBroadcastCustomTelegram()" style="background:#0284c7; border-color:#0369a1; color:#fff; font-weight:800; padding:6px 12px; display:inline-flex; align-items:center; gap:0.35rem">
+            <i class="fab fa-telegram-plane"></i> 📱 Telegram पर भेजें
+          </button>
+          <button class="btn btn-success btn-sm" onclick="shareBroadcastCustomWhatsApp()" style="background:#22c55e; border-color:#16a34a; font-weight:800; padding:6px 12px; display:inline-flex; align-items:center; gap:0.35rem">
+            <i class="fab fa-whatsapp"></i> 💬 WhatsApp शेयर / कॉपी
+          </button>
+        </div>
       </div>
     </div>
   </div>

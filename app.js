@@ -9985,11 +9985,8 @@ function createDemandCardElement(demand, isArchive = false) {
           <i class="fas fa-file-excel"></i> 📊 एक्सेल डाउनलोड
         </button>
         ${(isAdminUser || isPeeoUser) ? `
-          <button class="btn btn-warning btn-sm text-dark" onclick="openBroadcastDemandEmailModal('${demand.id}')" title="सभी लक्षित विद्यालयों को ईमेल सूचना भेजें" style="font-weight:700; background:#f59e0b; border-color:#d97706">
-            <i class="fas fa-envelope"></i> 📧 ईमेल
-          </button>
-          <button class="btn btn-info btn-sm text-white" onclick="broadcastDemandTelegram('${demand.id}')" title="आधिकारिक सूचना Telegram पर भेजें" style="font-weight:700; background:#0284c7; border-color:#0369a1">
-            <i class="fab fa-telegram-plane"></i> 📱 Telegram
+          <button class="btn btn-primary btn-sm" onclick="openDemandBroadcastCenter('${demand.id}')" title="संदेश कस्टमाइज़ करें एवं ईमेल/Telegram/WhatsApp पर भेजें" style="font-weight:700; background:#0284c7; border-color:#0369a1">
+            <i class="fas fa-bullhorn"></i> 📢 सूचना प्रसारण व संदेश कस्टमाइज़
           </button>
         ` : ''}
         ${isPeeoUser ? `
@@ -10774,11 +10771,8 @@ function renderDynamicDemandPortalView(demandId) {
           <i class="fas fa-file-pdf"></i> 🚨 लम्बित स्कूल/PEEO PDF
         </button>
         ${(isAdminUser || isPeeoUser) ? `
-          <button class="btn btn-warning btn-sm" onclick="openBroadcastDemandEmailModal('${demand.id}')" style="background:#f59e0b; color:#0f172a; font-weight:800; border:none" title="लक्षित विद्यालयों को ईमेल सूचना एवं भरने के निर्देश भेजें">
-            <i class="fas fa-envelope"></i> 📧 सभी स्कूलों को ईमेल करें
-          </button>
-          <button class="btn btn-info btn-sm" onclick="broadcastDemandTelegram('${demand.id}')" style="background:#0284c7; color:#ffffff; font-weight:800; border:none" title="आधिकारिक सूचना Telegram पर भेजें">
-            <i class="fab fa-telegram-plane"></i> 📱 Telegram पर भेजें
+          <button class="btn btn-primary btn-sm" onclick="openDemandBroadcastCenter('${demand.id}')" style="background:#0284c7; color:#ffffff; font-weight:800; border:none" title="संदेश कस्टमाइज़ करें एवं ईमेल/Telegram/WhatsApp पर भेजें">
+            <i class="fas fa-bullhorn"></i> 📢 सूचना प्रसारण व संदेश कस्टमाइज़
           </button>
           <button class="btn btn-primary btn-sm" onclick="openDynamicDemandPeeoSelector('${demand.id}')" style="font-weight:700">
             <i class="fas fa-list-ul"></i> PEEO समेकित रिपोर्ट
@@ -13024,11 +13018,8 @@ function renderCBEOExecutiveDemands() {
           <button class="btn btn-danger btn-sm" onclick="generateDemandPendingListPDF('${d.id}')" title="लम्बित विद्यालय एवं PEEO सूची PDF जनरेट करें" style="font-size:0.75rem; padding:4px 8px; font-weight:700">
             <i class="fas fa-file-pdf"></i> लम्बित PDF
           </button>
-          <button class="btn btn-sm" onclick="openBroadcastDemandEmailModal('${d.id}')" title="लक्षित विद्यालयों को ईमेल सूचना भेजें" style="font-size:0.75rem; padding:4px 8px; font-weight:700; background:#f59e0b; color:#0f172a; border:none; border-radius:4px">
-            <i class="fas fa-envelope"></i> ईमेल
-          </button>
-          <button class="btn btn-sm" onclick="broadcastDemandTelegram('${d.id}')" title="आधिकारिक सूचना Telegram पर भेजें" style="font-size:0.75rem; padding:4px 8px; font-weight:700; background:#0284c7; color:#ffffff; border:none; border-radius:4px">
-            <i class="fab fa-telegram-plane"></i> Telegram
+          <button class="btn btn-sm" onclick="openDemandBroadcastCenter('${d.id}')" title="संदेश कस्टमाइज़ करें एवं ईमेल/Telegram/WhatsApp पर भेजें" style="font-size:0.75rem; padding:4px 8px; font-weight:700; background:#0284c7; color:#ffffff; border:none; border-radius:4px">
+            <i class="fas fa-bullhorn"></i> प्रसारण
           </button>
           <button class="btn btn-whatsapp btn-sm" onclick="openShareDemandPendingModal('${d.id}')" title="WhatsApp पर लम्बित सूची शेयर करें" style="font-size:0.75rem; padding:4px 8px">
             <i class="fab fa-whatsapp"></i> शेयर
@@ -14591,6 +14582,172 @@ function shareDemandTelegramOnWhatsApp() {
   const rawText = CURRENT_DEMAND_TELEGRAM_TEXT.replace(/<[^>]+>/g, '');
   openWhatsAppDirectText(rawText);
 }
+
+/* ========================================================
+   11C. DEMAND BROADCAST & MESSAGE CUSTOMIZATION CENTER
+   ======================================================== */
+
+let CURRENT_BROADCAST_CENTER_DEMAND = null;
+
+function openDemandBroadcastCenter(demandId) {
+  const demand = (STATE.demands || []).find(d => d.id === demandId) || {
+    id: demandId,
+    title: 'समान परीक्षा 2026-27: पाठ्यक्रम पूर्णता प्रतिशत मांग (49 राजकीय विद्यालय)',
+    dueDate: '15 अक्टूबर 2026',
+    schoolScope: 'govt_sec'
+  };
+
+  CURRENT_BROADCAST_CENTER_DEMAND = demand;
+
+  const titleEl = document.getElementById('broadcast-demand-title');
+  const targetEl = document.getElementById('broadcast-demand-target');
+  const deadlineEl = document.getElementById('broadcast-custom-deadline');
+  const editorEl = document.getElementById('broadcast-message-editor');
+
+  if (titleEl) titleEl.textContent = demand.title;
+  if (targetEl) {
+    targetEl.textContent = (demand.schoolScope === 'govt_sec' || demand.id.includes('SYLLABUS')) 
+      ? 'लक्षित विद्यालय: 49 राजकीय माध्यमिक एवं उच्च माध्यमिक विद्यालय (8 निजी विद्यालय पूर्णतः बाहर)'
+      : 'लक्षित विद्यालय: समस्त संबंधित विद्यालय / PEEO';
+  }
+  if (deadlineEl) {
+    deadlineEl.value = demand.dueDate || '15 अक्टूबर 2026';
+  }
+
+  // Generate initial customizable message
+  const initialMsg = generateDemandTelegramMessage(demandId);
+  if (editorEl) {
+    editorEl.value = initialMsg;
+    updateBroadcastCharCount();
+    editorEl.oninput = updateBroadcastCharCount;
+  }
+
+  showModal('modal-demand-broadcast-center');
+}
+
+function updateBroadcastCharCount() {
+  const editorEl = document.getElementById('broadcast-message-editor');
+  const countEl = document.getElementById('broadcast-char-count');
+  if (editorEl && countEl) {
+    countEl.textContent = `कुल अक्षर: ${editorEl.value.length}`;
+  }
+}
+
+function resetBroadcastMessageToTemplate() {
+  if (!CURRENT_BROADCAST_CENTER_DEMAND) return;
+  const initialMsg = generateDemandTelegramMessage(CURRENT_BROADCAST_CENTER_DEMAND.id);
+  const editorEl = document.getElementById('broadcast-message-editor');
+  if (editorEl) {
+    editorEl.value = initialMsg;
+    updateBroadcastCharCount();
+  }
+  showToast('मूल संदेश प्रारूप पुनः सेट कर दिया गया है!', 'info');
+}
+
+function onBroadcastDeadlineChange(newDeadline) {
+  if (!CURRENT_BROADCAST_CENTER_DEMAND) return;
+  CURRENT_BROADCAST_CENTER_DEMAND.dueDate = newDeadline;
+  const editorEl = document.getElementById('broadcast-message-editor');
+  if (editorEl && newDeadline) {
+    editorEl.value = editorEl.value.replace(/📅 <b>अंतिम तिथि:<\/b> <b>.*?<\/b>/, `📅 <b>अंतिम तिथि:</b> <b>${newDeadline}</b>`);
+    updateBroadcastCharCount();
+  }
+}
+
+async function sendBroadcastCustomTelegram() {
+  const editorEl = document.getElementById('broadcast-message-editor');
+  const customText = editorEl ? editorEl.value.trim() : '';
+  if (!customText) {
+    alert('कृपया प्रेषित करने हेतु संदेश टाइप करें!');
+    return;
+  }
+
+  showToast('Telegram पर कस्टमाइज़्ड आधिकारिक आदेश भेजा जा रहा है...', 'info');
+
+  const tgToken = '8815110844:AAFsMJHFepKpk83Wtm-JGqn8REV8XUQLgGY';
+  const tgChatId = '579780800';
+  let isSuccess = false;
+  let messageId = null;
+
+  // 1. Try local API
+  try {
+    const res = await fetch('/api/send_demand_telegram', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        demand_id: CURRENT_BROADCAST_CENTER_DEMAND?.id || 'DEMAND_SAMAN_SYLLABUS_2026',
+        text: customText,
+        parse_mode: 'HTML',
+        chat_id: tgChatId
+      })
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.success) {
+        isSuccess = true;
+        messageId = data.message_id;
+      }
+    }
+  } catch (err) {
+    console.warn('Local API telegram dispatch error:', err);
+  }
+
+  // 2. Direct browser fetch
+  if (!isSuccess) {
+    try {
+      const tgRes = await fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: tgChatId,
+          text: customText,
+          parse_mode: 'HTML',
+          disable_web_page_preview: false
+        })
+      });
+      const tgData = await tgRes.json();
+      if (tgData && tgData.ok) {
+        isSuccess = true;
+        messageId = tgData.result?.message_id;
+      }
+    } catch (apiErr) {
+      console.warn('Direct telegram API dispatch error:', apiErr);
+    }
+  }
+
+  if (isSuccess) {
+    showToast(`✅ कस्टमाइज़्ड आदेश Telegram पर भेज दिया गया! ${messageId ? `(Msg ID: ${messageId})` : ''}`, 'success');
+    alert(`✅ Telegram आदेश प्रेषण सफल!\n\nजितेन्द्र जी (चैट ID: 579780800) को आपका कस्टमाइज़्ड आदेश प्राप्त हो चुका है।${messageId ? `\n(Message ID: ${messageId})` : ''}`);
+  } else {
+    showToast('Telegram प्रेषण नेटवर्क व्यस्त! संदेश क्लिपबोर्ड में कॉपी हो गया है।', 'warning');
+    if (navigator.clipboard) navigator.clipboard.writeText(customText.replace(/<[^>]+>/g, ''));
+  }
+}
+
+function shareBroadcastCustomWhatsApp() {
+  const editorEl = document.getElementById('broadcast-message-editor');
+  const customText = editorEl ? editorEl.value.trim() : '';
+  if (!customText) return;
+
+  const cleanText = customText
+    .replace(/<b>(.*?)<\/b>/gi, '*$1*')
+    .replace(/<i>(.*?)<\/i>/gi, '_$1_')
+    .replace(/<[^>]+>/g, '');
+
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(cleanText);
+    showToast('कस्टमाइज़्ड संदेश क्लिपबोर्ड में कॉपी हो गया है!', 'success');
+  }
+
+  const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(cleanText)}`;
+  window.open(waUrl, '_blank');
+}
+
+function sendBroadcastCustomEmail() {
+  if (!CURRENT_BROADCAST_CENTER_DEMAND) return;
+  openBroadcastDemandEmailModal(CURRENT_BROADCAST_CENTER_DEMAND.id);
+}
+
 
 /* ========================================================
    11C. MASTER SCHOOL & PEEO MANAGEMENT CONTROLS
