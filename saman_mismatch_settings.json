@@ -1,0 +1,83 @@
+{
+  "alert_active": true,
+  "alert_title": "🚨 अति-आवश्यक: समान परीक्षा मांग - नामांकन मिसमैच सूचना",
+  "alert_message": "मान्यवर संस्था प्रधान, आपके विद्यालय द्वारा समान परीक्षा 2026-27 के मांग प्रपत्र में भरा गया कुल नामांकन शाला दर्पण के वास्तविक नामांकन से भिन्न (मिसमैच) पाया गया है।\n\nकार्यालय CBEO भिनाय द्वारा आपके विद्यालय के लिए मांग प्रपत्र में संशोधन (Custom Edit) की विशेष सुविधा खोल दी गई है। कृपया तुरंत मांग पत्रक में सुधार कर पुनः सबमिट करें।",
+  "custom_edit_schools": [
+    "221780",
+    "221778",
+    "221758",
+    "221761",
+    "221772",
+    "221756"
+  ],
+  "mismatch_details": {
+    "221780": {
+      "school_name": "GOVT. SENIOR SECONDARY SCHOOL BHINAI",
+      "portal_total": 411,
+      "sd_total": 401,
+      "diff": 10,
+      "portal_c9_10": 232,
+      "portal_c11_12": 179,
+      "sd_c9_10": 223,
+      "sd_c11_12": 178
+    },
+    "221778": {
+      "school_name": "MAHATMA GANDHI GOVT. SCHOOL BHINAI",
+      "portal_total": 87,
+      "sd_total": 86,
+      "diff": 1,
+      "portal_c9_10": 44,
+      "portal_c11_12": 43,
+      "sd_c9_10": 44,
+      "sd_c11_12": 42,
+      "mismatch_type": "medium_and_enrollment",
+      "reason": "MGGS विद्यालय होने के कारण कक्षा 9 एवं 10 में अंग्रेजी एवं हिंदी माध्यमवार पृथक-पृथक नामांकन भरना अनिवार्य है। पूर्व प्रपत्र में केवल सामान्य नामांकन दर्ज है।",
+      "flagged_fields": [
+        "शिक्षण माध्यम (अंग्रेजी / दोनों माध्यम)",
+        "कक्षा 9 अंग्रेजी माध्यम नामांकन",
+        "कक्षा 10 अंग्रेजी माध्यम नामांकन",
+        "महायोग"
+      ]
+    },
+    "221758": {
+      "school_name": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI",
+      "portal_total": 175,
+      "sd_total": 174,
+      "diff": 1,
+      "portal_c9_10": 116,
+      "portal_c11_12": 59,
+      "sd_c9_10": 115,
+      "sd_c11_12": 59
+    },
+    "221761": {
+      "school_name": "GOVT. SENIOR SECONDARY SCHOOL NIMEDA",
+      "portal_total": 94,
+      "sd_total": 92,
+      "diff": 2,
+      "portal_c9_10": 55,
+      "portal_c11_12": 39,
+      "sd_c9_10": 55,
+      "sd_c11_12": 37
+    },
+    "221772": {
+      "school_name": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA",
+      "portal_total": 223,
+      "sd_total": 222,
+      "diff": 1,
+      "portal_c9_10": 133,
+      "portal_c11_12": 90,
+      "sd_c9_10": 132,
+      "sd_c11_12": 90
+    },
+    "221756": {
+      "school_name": "GOVT. SENIOR SECONDARY SCHOOL NANDSI",
+      "portal_total": 98,
+      "sd_total": 92,
+      "diff": 6,
+      "portal_c9_10": 59,
+      "portal_c11_12": 39,
+      "sd_c9_10": 55,
+      "sd_c11_12": 37
+    }
+  }
+}

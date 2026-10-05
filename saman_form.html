@@ -4,9 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>जिला समान परीक्षा (अजमेर) 2026-27 | अधिकृत प्रपत्र (CBEO भिनाय)</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <script src="master_cbeo_data.js?v=20261003_v6"></script>
+  <script src="master_cbeo_data.js?v=20261005_v22"></script>
+  <script>
+    (function() {
+      var CLIENT_VERSION = 'v22_2026_10_05_bilingual_mismatch';
+      var lastVer = localStorage.getItem('cbeo_client_app_version');
+      if (lastVer !== CLIENT_VERSION) {
+        localStorage.setItem('cbeo_client_app_version', CLIENT_VERSION);
+        if ('caches' in window) {
+          caches.keys().then(function(keys) {
+            keys.forEach(function(k) { caches.delete(k); });
+          });
+        }
+        if (lastVer) {
+          var url = new URL(window.location.href);
+          url.searchParams.set('_v', Date.now());
+          window.location.replace(url.toString());
+        }
+      }
+    })();
+  </script>
   <style>
     * {
       box-sizing: border-box;
@@ -685,12 +707,38 @@
       </div>
     </div>
 
-    <!-- Card 3: Class 9 & Class 10 Enrollment & 3rd Language -->
+    <!-- Card 3: Class 9 & Class 10 Enrollment & Medium Combination -->
     <div class="gform-card">
       <div class="card-title">
-        <i class="fas fa-users" style="color:#2563eb"></i> 3. Class 9 & Class 10 Enrollment & 3rd Language (कक्षा 9 एवं 10 कुल नामांकन व तृतीय भाषा)
+        <i class="fas fa-users" style="color:#2563eb"></i> 3. Class 9 & Class 10 Enrollment & Medium Combination (कक्षा 9 एवं 10 माध्यमवार नामांकन)
       </div>
-      <div class="card-desc">कक्षा 9 व 10 के विद्यार्थियों का कुल नामांकन तथा तृतीय भाषा (संस्कृत एवं उर्दू) के परीक्षार्थियों की संख्या दर्ज करें:</div>
+      <div class="card-desc">विद्यालय शिक्षण माध्यम का चयन करें। कक्षा 9 व 10 में हिंदी एवं अंग्रेजी माध्यमवार नामांकन भरें (कुल योग स्वतः होगा) तथा तृतीय भाषा (संस्कृत एवं उर्दू) दर्ज करें:</div>
+
+      <!-- School Medium Selection (माध्यम चयन) -->
+      <div style="background:#eff6ff; border:1.5px solid #93c5fd; border-radius:8px; padding:0.9rem 1.1rem; margin-bottom:1.1rem">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.6rem">
+          <div style="font-weight:800; color:#1e40af; font-size:0.95rem; display:flex; align-items:center; gap:0.4rem">
+            <i class="fas fa-language"></i> विद्यालय शिक्षण माध्यम (School Medium):
+          </div>
+          <div id="f-mggs-badge" style="display:none; background:#dbeafe; color:#1e40af; font-weight:700; font-size:0.8rem; padding:3px 10px; border-radius:15px; border:1px solid #93c5fd">
+            <i class="fas fa-school"></i> MGGS (महात्मा गांधी अंग्रेजी माध्यम विद्यालय)
+          </div>
+        </div>
+        <div style="display:flex; gap:1.25rem; flex-wrap:wrap; font-size:0.92rem; font-weight:700; color:#1e293b">
+          <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer">
+            <input type="radio" name="f-school-medium" id="f-med-hindi" value="hindi" checked onchange="onSchoolMediumChangedStandalone()">
+            <span>हिंदी माध्यम (Hindi Medium - सामान्य)</span>
+          </label>
+          <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer">
+            <input type="radio" name="f-school-medium" id="f-med-english" value="english" onchange="onSchoolMediumChangedStandalone()">
+            <span>अंग्रेजी माध्यम (English Medium - MGGS)</span>
+          </label>
+          <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer">
+            <input type="radio" name="f-school-medium" id="f-med-both" value="both" onchange="onSchoolMediumChangedStandalone()">
+            <span>दोनों माध्यम (हिंदी + अंग्रेजी द्विभाषी / Bilingual)</span>
+          </label>
+        </div>
+      </div>
 
       <!-- Class 9 -->
       <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:1rem; margin-bottom:1rem">
@@ -700,17 +748,25 @@
           </div>
           <button type="button" class="btn-nil-toggle" onclick="toggleNilClass('c9')"><i class="fas fa-ban"></i> 🚫 कक्षा 9 शून्य / NIL</button>
         </div>
-        <div class="form-row" style="margin-bottom:0">
+        <div class="form-row" style="margin-bottom:0; display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:0.75rem">
           <div class="form-group">
-            <label class="form-label">9वीं कुल विद्यार्थी (Total Enrollment) <span style="color:red">*</span>:</label>
-            <input type="number" id="f-c9-total" min="0" value="0" class="form-input" style="font-size:1.15rem; font-weight:800; color:#1e40af" oninput="calculateTotals()">
+            <label class="form-label">9वीं हिंदी माध्यम:</label>
+            <input type="number" id="f-c9-hindi" min="0" value="0" class="form-input" style="font-weight:700; color:#1e293b" oninput="calculateTotals()">
           </div>
           <div class="form-group">
-            <label class="form-label">तृतीय भाषा: संस्कृत (Sanskrit):</label>
+            <label class="form-label">9वीं अंग्रेजी माध्यम:</label>
+            <input type="number" id="f-c9-english" min="0" value="0" class="form-input" style="font-weight:700; color:#2563eb" oninput="calculateTotals()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">9वीं कुल (ऑटो योग) <span style="color:red">*</span>:</label>
+            <input type="number" id="f-c9-total" min="0" value="0" class="form-input" style="font-size:1.15rem; font-weight:800; color:#1e40af; background:#f1f5f9" readonly oninput="calculateTotals()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">तृतीय भाषा: संस्कृत:</label>
             <input type="number" id="f-c9-sanskrit" min="0" value="0" class="form-input" style="font-weight:700" oninput="calculateTotals()">
           </div>
           <div class="form-group">
-            <label class="form-label">तृतीय भाषा: उर्दू (Urdu):</label>
+            <label class="form-label">तृतीय भाषा: उर्दू:</label>
             <input type="number" id="f-c9-urdu" min="0" value="0" class="form-input" style="font-weight:700" oninput="calculateTotals()">
           </div>
         </div>
@@ -724,17 +780,25 @@
           </div>
           <button type="button" class="btn-nil-toggle" onclick="toggleNilClass('c10')"><i class="fas fa-ban"></i> 🚫 कक्षा 10 शून्य / NIL</button>
         </div>
-        <div class="form-row" style="margin-bottom:0">
+        <div class="form-row" style="margin-bottom:0; display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:0.75rem">
           <div class="form-group">
-            <label class="form-label">10वीं कुल विद्यार्थी (Total Enrollment) <span style="color:red">*</span>:</label>
-            <input type="number" id="f-c10-total" min="0" value="0" class="form-input" style="font-size:1.15rem; font-weight:800; color:#1e40af" oninput="calculateTotals()">
+            <label class="form-label">10वीं हिंदी माध्यम:</label>
+            <input type="number" id="f-c10-hindi" min="0" value="0" class="form-input" style="font-weight:700; color:#1e293b" oninput="calculateTotals()">
           </div>
           <div class="form-group">
-            <label class="form-label">तृतीय भाषा: संस्कृत (Sanskrit):</label>
+            <label class="form-label">10वीं अंग्रेजी माध्यम:</label>
+            <input type="number" id="f-c10-english" min="0" value="0" class="form-input" style="font-weight:700; color:#2563eb" oninput="calculateTotals()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">10वीं कुल (ऑटो योग) <span style="color:red">*</span>:</label>
+            <input type="number" id="f-c10-total" min="0" value="0" class="form-input" style="font-size:1.15rem; font-weight:800; color:#1e40af; background:#f1f5f9" readonly oninput="calculateTotals()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">तृतीय भाषा: संस्कृत:</label>
             <input type="number" id="f-c10-sanskrit" min="0" value="0" class="form-input" style="font-weight:700" oninput="calculateTotals()">
           </div>
           <div class="form-group">
-            <label class="form-label">तृतीय भाषा: उर्दू (Urdu):</label>
+            <label class="form-label">तृतीय भाषा: उर्दू:</label>
             <input type="number" id="f-c10-urdu" min="0" value="0" class="form-input" style="font-weight:700" oninput="calculateTotals()">
           </div>
         </div>
@@ -1393,11 +1457,53 @@
       document.getElementById('f-incharge-name').value = sub.incharge_name || currentSchool.incharge_name || '';
       document.getElementById('f-incharge-mobile').value = sub.incharge_mobile || currentSchool.incharge_mobile || '';
 
-      document.getElementById('f-c9-total').value = sub.c9_total ?? 0;
+      // School Medium Setup & MGGS Recognition
+      const isMggs = (currentSchool.shala_darpan_code === '221778' || (currentSchool.school_name || '').includes('महात्मा गांधी') || (currentSchool.school_name || '').includes('MGGS'));
+      const schoolMedium = sub.school_medium || (isMggs ? 'both' : 'hindi');
+
+      const medHindi = document.getElementById('f-med-hindi');
+      const medEng = document.getElementById('f-med-english');
+      const medBoth = document.getElementById('f-med-both');
+      if (schoolMedium === 'english' && medEng) medEng.checked = true;
+      else if (schoolMedium === 'both' && medBoth) medBoth.checked = true;
+      else if (medHindi) medHindi.checked = true;
+
+      const mggsBadge = document.getElementById('f-mggs-badge');
+      if (mggsBadge) mggsBadge.style.display = isMggs ? 'inline-flex' : 'none';
+
+      let c9Hindi = sub.c9_hindi;
+      let c9English = sub.c9_english;
+      if (c9Hindi === undefined && c9English === undefined) {
+        if (schoolMedium === 'english') {
+          c9English = sub.c9_total || 0;
+          c9Hindi = 0;
+        } else {
+          c9Hindi = sub.c9_total || 0;
+          c9English = 0;
+        }
+      }
+      if (document.getElementById('f-c9-hindi')) document.getElementById('f-c9-hindi').value = c9Hindi ?? 0;
+      if (document.getElementById('f-c9-english')) document.getElementById('f-c9-english').value = c9English ?? 0;
+      if (document.getElementById('f-c9-total')) document.getElementById('f-c9-total').value = (c9Hindi || 0) + (c9English || 0);
+
       if (document.getElementById('f-c9-sanskrit')) document.getElementById('f-c9-sanskrit').value = sub.c9_sanskrit ?? 0;
       if (document.getElementById('f-c9-urdu')) document.getElementById('f-c9-urdu').value = sub.c9_urdu ?? 0;
 
-      document.getElementById('f-c10-total').value = sub.c10_total ?? 0;
+      let c10Hindi = sub.c10_hindi;
+      let c10English = sub.c10_english;
+      if (c10Hindi === undefined && c10English === undefined) {
+        if (schoolMedium === 'english') {
+          c10English = sub.c10_total || 0;
+          c10Hindi = 0;
+        } else {
+          c10Hindi = sub.c10_total || 0;
+          c10English = 0;
+        }
+      }
+      if (document.getElementById('f-c10-hindi')) document.getElementById('f-c10-hindi').value = c10Hindi ?? 0;
+      if (document.getElementById('f-c10-english')) document.getElementById('f-c10-english').value = c10English ?? 0;
+      if (document.getElementById('f-c10-total')) document.getElementById('f-c10-total').value = (c10Hindi || 0) + (c10English || 0);
+
       if (document.getElementById('f-c10-sanskrit')) document.getElementById('f-c10-sanskrit').value = sub.c10_sanskrit ?? 0;
       if (document.getElementById('f-c10-urdu')) document.getElementById('f-c10-urdu').value = sub.c10_urdu ?? 0;
 
@@ -1460,9 +1566,60 @@
       applyViewOnlyMode(isLocked);
     }
 
+    function onSchoolMediumChangedStandalone() {
+      const med = document.querySelector('input[name="f-school-medium"]:checked')?.value || 'hindi';
+      const c9H = document.getElementById('f-c9-hindi');
+      const c9E = document.getElementById('f-c9-english');
+      const c10H = document.getElementById('f-c10-hindi');
+      const c10E = document.getElementById('f-c10-english');
+
+      if (med === 'hindi') {
+        if (c9E && parseInt(c9E.value) > 0 && (!c9H || parseInt(c9H.value) === 0)) {
+          c9H.value = c9E.value;
+          c9E.value = 0;
+        }
+        if (c10E && parseInt(c10E.value) > 0 && (!c10H || parseInt(c10H.value) === 0)) {
+          c10H.value = c10E.value;
+          c10E.value = 0;
+        }
+      } else if (med === 'english') {
+        if (c9H && parseInt(c9H.value) > 0 && (!c9E || parseInt(c9E.value) === 0)) {
+          c9E.value = c9H.value;
+          c9H.value = 0;
+        }
+        if (c10H && parseInt(c10H.value) > 0 && (!c10E || parseInt(c10E.value) === 0)) {
+          c10E.value = c10H.value;
+          c10E.value = 0;
+        }
+      }
+      calculateTotals();
+    }
+    window.onSchoolMediumChangedStandalone = onSchoolMediumChangedStandalone;
+
     function calculateTotals() {
-      const c9 = parseInt(document.getElementById('f-c9-total')?.value) || 0;
-      const c10 = parseInt(document.getElementById('f-c10-total')?.value) || 0;
+      const c9Hindi = parseInt(document.getElementById('f-c9-hindi')?.value) || 0;
+      const c9English = parseInt(document.getElementById('f-c9-english')?.value) || 0;
+      let c9 = c9Hindi + c9English;
+      const c9TotalEl = document.getElementById('f-c9-total');
+      if (c9TotalEl) {
+        if (c9 === 0 && parseInt(c9TotalEl.value) > 0 && c9Hindi === 0 && c9English === 0) {
+          c9 = parseInt(c9TotalEl.value) || 0;
+        } else {
+          c9TotalEl.value = c9;
+        }
+      }
+
+      const c10Hindi = parseInt(document.getElementById('f-c10-hindi')?.value) || 0;
+      const c10English = parseInt(document.getElementById('f-c10-english')?.value) || 0;
+      let c10 = c10Hindi + c10English;
+      const c10TotalEl = document.getElementById('f-c10-total');
+      if (c10TotalEl) {
+        if (c10 === 0 && parseInt(c10TotalEl.value) > 0 && c10Hindi === 0 && c10English === 0) {
+          c10 = parseInt(c10TotalEl.value) || 0;
+        } else {
+          c10TotalEl.value = c10;
+        }
+      }
 
       const c11Hindi = parseInt(document.getElementById('f-c11-comp-hindi')?.value) || 0;
       const c11English = parseInt(document.getElementById('f-c11-comp-english')?.value) || 0;
@@ -1498,17 +1655,25 @@
     function toggleNilClass(cls) {
       if (cls === 'c9') {
         const el = document.getElementById('f-c9-total');
+        const h = document.getElementById('f-c9-hindi');
+        const e = document.getElementById('f-c9-english');
         const sk = document.getElementById('f-c9-sanskrit');
         const ur = document.getElementById('f-c9-urdu');
         if (el) el.value = 0;
+        if (h) h.value = 0;
+        if (e) e.value = 0;
         if (sk) sk.value = 0;
         if (ur) ur.value = 0;
         showToast('कक्षा 9 को शून्य / संचालित नहीं (NIL) सेट किया गया');
       } else if (cls === 'c10') {
         const el = document.getElementById('f-c10-total');
+        const h = document.getElementById('f-c10-hindi');
+        const e = document.getElementById('f-c10-english');
         const sk = document.getElementById('f-c10-sanskrit');
         const ur = document.getElementById('f-c10-urdu');
         if (el) el.value = 0;
+        if (h) h.value = 0;
+        if (e) e.value = 0;
         if (sk) sk.value = 0;
         if (ur) ur.value = 0;
         showToast('कक्षा 10 को शून्य / संचालित नहीं (NIL) सेट किया गया');
@@ -1584,11 +1749,16 @@
         return;
       }
 
-      const c9 = parseInt(document.getElementById('f-c9-total').value) || 0;
+      const schoolMedium = document.querySelector('input[name="f-school-medium"]:checked')?.value || 'hindi';
+      const c9Hindi = parseInt(document.getElementById('f-c9-hindi')?.value) || 0;
+      const c9English = parseInt(document.getElementById('f-c9-english')?.value) || 0;
+      const c9 = parseInt(document.getElementById('f-c9-total').value) || (c9Hindi + c9English);
       const c9Sanskrit = parseInt(document.getElementById('f-c9-sanskrit')?.value) || 0;
       const c9Urdu = parseInt(document.getElementById('f-c9-urdu')?.value) || 0;
 
-      const c10 = parseInt(document.getElementById('f-c10-total').value) || 0;
+      const c10Hindi = parseInt(document.getElementById('f-c10-hindi')?.value) || 0;
+      const c10English = parseInt(document.getElementById('f-c10-english')?.value) || 0;
+      const c10 = parseInt(document.getElementById('f-c10-total').value) || (c10Hindi + c10English);
       const c10Sanskrit = parseInt(document.getElementById('f-c10-sanskrit')?.value) || 0;
       const c10Urdu = parseInt(document.getElementById('f-c10-urdu')?.value) || 0;
 
@@ -1629,13 +1799,18 @@
         peeo_name: currentSchool.peeo_name,
         peeo_code: currentSchool.peeo_code,
         exam_code: examCode,
+        school_medium: schoolMedium,
         principal_name: principalName,
         principal_mobile: principalMobile,
         incharge_name: inchargeName,
         incharge_mobile: inchargeMobile,
+        c9_hindi: c9Hindi,
+        c9_english: c9English,
         c9_total: c9,
         c9_sanskrit: c9Sanskrit,
         c9_urdu: c9Urdu,
+        c10_hindi: c10Hindi,
+        c10_english: c10English,
         c10_total: c10,
         c10_sanskrit: c10Sanskrit,
         c10_urdu: c10Urdu,
@@ -1832,13 +2007,18 @@
         const draftObj = {
           school_code: code,
           exam_code: document.getElementById('f-exam-code')?.value || '',
+          school_medium: document.querySelector('input[name="f-school-medium"]:checked')?.value || 'hindi',
           principal_name: document.getElementById('f-principal-name')?.value || '',
           principal_mobile: document.getElementById('f-principal-mobile')?.value || '',
           incharge_name: document.getElementById('f-incharge-name')?.value || '',
           incharge_mobile: document.getElementById('f-incharge-mobile')?.value || '',
+          c9_hindi: parseInt(document.getElementById('f-c9-hindi')?.value) || 0,
+          c9_english: parseInt(document.getElementById('f-c9-english')?.value) || 0,
           c9_total: parseInt(document.getElementById('f-c9-total')?.value) || 0,
           c9_sanskrit: parseInt(document.getElementById('f-c9-sanskrit')?.value) || 0,
           c9_urdu: parseInt(document.getElementById('f-c9-urdu')?.value) || 0,
+          c10_hindi: parseInt(document.getElementById('f-c10-hindi')?.value) || 0,
+          c10_english: parseInt(document.getElementById('f-c10-english')?.value) || 0,
           c10_total: parseInt(document.getElementById('f-c10-total')?.value) || 0,
           c10_sanskrit: parseInt(document.getElementById('f-c10-sanskrit')?.value) || 0,
           c10_urdu: parseInt(document.getElementById('f-c10-urdu')?.value) || 0,

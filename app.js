@@ -38,7 +38,10 @@ let STATE = {
   currentDemandSchoolCode: null,
   currentSignatureData: null,
   portalSettings: {},
-  samanParikshaArchived: false
+  samanParikshaArchived: false,
+  samanParikshaActiveForm: 'indent', // 'indent' (Question Paper Indent) or 'syllabus' (Syllabus Completion %)
+  samanParikshaSchoolTypeFilter: 'both', // 'both' (57), 'govt_only' (49), or 'pvt_only' (8)
+  samanSyllabusSubmissions: {}
 };
 window.STATE = STATE;
 
@@ -46,6 +49,20 @@ window.STATE = STATE;
 let canvas, ctx;
 let isDrawing = false;
 let hasSignature = false;
+
+// Force 100% hard refresh and purge all caches
+function forcePortalHardRefresh() {
+  localStorage.setItem('cbeo_client_app_version', 'force_refresh_' + Date.now());
+  if ('caches' in window) {
+    caches.keys().then(function(keys) {
+      keys.forEach(function(k) { caches.delete(k); });
+    });
+  }
+  var url = new URL(window.location.href);
+  url.searchParams.set('_force_cache_bust', Date.now());
+  window.location.replace(url.toString());
+}
+window.forcePortalHardRefresh = forcePortalHardRefresh;
 
 // Initialize on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
@@ -225,7 +242,7 @@ function initMasterData() {
   ];
 
   // Versioned cache check to guarantee fresh master data with 57 schools and all 57 active submissions
-  const DATA_VERSION = 'v21_2026_10_04_standard_school_and_cloud_sync';
+  const DATA_VERSION = 'v22_2026_10_05_bilingual_mismatch';
   if (localStorage.getItem('cbeo_data_version') !== DATA_VERSION) {
     localStorage.removeItem('cbeo_peeos_data');
     localStorage.removeItem('cbeo_staff_data');
@@ -325,14 +342,61 @@ function initMasterData() {
     STATE.demands = (MASTER_CBEO_DATA && MASTER_CBEO_DATA.demands) || [];
   }
 
-  // Filter out any duplicate Saman Pariksha entry to prevent duplicate tab confusion (permanently handled by dedicated tab)
+  // Filter out only legacy duplicate IDs to avoid top navbar duplicate tabs
   STATE.demands = (STATE.demands || []).filter(d => 
     d && !d.archived && 
     d.id !== 'saman_pariksha_2026_27' && 
-    d.id !== 'DEMAND_SAMAN_PARIKSHA_2026' && 
-    !d.id.toLowerCase().includes('saman_pariksha') &&
-    !(d.title && d.title.includes('समान परीक्षा'))
+    d.id !== 'DEMAND_SAMAN_PARIKSHA_2026'
   );
+
+  // Seed official Saman Pariksha Syllabus Completion % demand for 49 Govt schools
+  if (!STATE.demands.some(d => d.id === 'DEMAND_SAMAN_SYLLABUS_2026')) {
+    STATE.demands.unshift({
+      id: 'DEMAND_SAMAN_SYLLABUS_2026',
+      title: 'समान परीक्षा: सत्र 2026-27 पाठ्यक्रम पूर्णता प्रतिशत मांग (49 राजकीय विद्यालय)',
+      collectionLevel: 'school',
+      schoolScope: 'govt_sec',
+      placement: 'tab_existing',
+      parentTab: 'saman-pariksha',
+      targetAudience: {
+        cbeo: true,
+        peeo: true,
+        govt_sec_srsec: true,
+        pvt_sec_srsec: false, // 8 Private schools strictly excluded!
+        sec_srsec: true,
+        all_govt: false,
+        all_schools: false
+      },
+      description: 'समान परीक्षा 2026-27 के अंतर्गत ब्लॉक के 49 राजकीय माध्यमिक एवं उच्च माध्यमिक विद्यालयों में कक्षा 9 से 12 तक के विषयवार पाठ्यक्रम पूर्णता प्रतिशत की आधिकारिक मांग। (8 निजी स्कूल पूर्णतया बाहर)',
+      dueDate: '2026-10-15',
+      priority: 'अति आवश्यक (Urgent)',
+      published: true,
+      isTestMode: false,
+      createdAt: '2026-10-05',
+      columns: [
+        { name: 'कक्षा 9 हिन्दी %', type: 'number', prefillSource: 'none', placeholder: '%' },
+        { name: 'कक्षा 9 अंग्रेजी %', type: 'number', prefillSource: 'none', placeholder: '%' },
+        { name: 'कक्षा 9 गणित %', type: 'number', prefillSource: 'none', placeholder: '%' },
+        { name: 'कक्षा 9 विज्ञान %', type: 'number', prefillSource: 'none', placeholder: '%' },
+        { name: 'कक्षा 9 सा.विज्ञान %', type: 'number', prefillSource: 'none', placeholder: '%' },
+        { name: 'तृतीय भाषा संस्कृत %', type: 'number', prefillSource: 'none', placeholder: '%' },
+        { name: 'तृतीय भाषा उर्दू %', type: 'number', prefillSource: 'none', placeholder: '%' },
+        { name: 'कक्षा 10 हिन्दी %', type: 'number', prefillSource: 'none', placeholder: '%' },
+        { name: 'कक्षा 10 अंग्रेजी %', type: 'number', prefillSource: 'none', placeholder: '%' },
+        { name: 'कक्षा 10 गणित %', type: 'number', prefillSource: 'none', placeholder: '%' },
+        { name: 'कक्षा 10 विज्ञान %', type: 'number', prefillSource: 'none', placeholder: '%' },
+        { name: 'कक्षा 10 सा.विज्ञान %', type: 'number', prefillSource: 'none', placeholder: '%' },
+        { name: '10वीं संस्कृत %', type: 'number', prefillSource: 'none', placeholder: '%' },
+        { name: '10वीं उर्दू %', type: 'number', prefillSource: 'none', placeholder: '%' },
+        { name: 'कक्षा 11 अनिवार्य हिन्दी %', type: 'number', prefillSource: 'none', placeholder: '%' },
+        { name: 'कक्षा 11 अनिवार्य अंग्रेजी %', type: 'number', prefillSource: 'none', placeholder: '%' },
+        { name: '11वीं ऐच्छिक विषय %', type: 'text', prefillSource: 'none', placeholder: 'विषय व %' },
+        { name: 'कक्षा 12 अनिवार्य हिन्दी %', type: 'number', prefillSource: 'none', placeholder: '%' },
+        { name: 'कक्षा 12 अनिवार्य अंग्रेजी %', type: 'number', prefillSource: 'none', placeholder: '%' },
+        { name: '12वीं ऐच्छिक विषय %', type: 'text', prefillSource: 'none', placeholder: 'विषय व %' }
+      ]
+    });
+  }
   saveDemandsToStorage();
 
   // 4B. Dynamic Demand Submissions from localStorage
@@ -476,6 +540,24 @@ function initMasterData() {
           renderDemandsView();
         }
       }).catch(() => {});
+
+    // Sync Saman Pariksha Syllabus % submissions
+    try {
+      const storedSylSubs = localStorage.getItem('cbeo_saman_syllabus_submissions');
+      if (storedSylSubs) STATE.samanSyllabusSubmissions = JSON.parse(storedSylSubs);
+    } catch(e) {}
+
+    fetch('http://localhost:8089/api/get_saman_syllabus')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.success && data.submissions) {
+          STATE.samanSyllabusSubmissions = Object.assign({}, STATE.samanSyllabusSubmissions, data.submissions);
+          localStorage.setItem('cbeo_saman_syllabus_submissions', JSON.stringify(STATE.samanSyllabusSubmissions));
+          if (STATE.samanParikshaActiveForm === 'syllabus') {
+            renderSamanParikshaView();
+          }
+        }
+      }).catch(() => {});
   }
 
   // 8. Admin Tab Access Configuration
@@ -551,6 +633,22 @@ function initMasterData() {
         STATE.staffEditPermissions = data.permissions;
         localStorage.setItem('cbeo_staff_edit_permissions', JSON.stringify(data.permissions));
         if (typeof renderStaffEditPermissionsMatrix === 'function') renderStaffEditPermissionsMatrix();
+      }
+    })
+    .catch(() => {});
+
+  // 10B. Saman Pariksha Enrolment Mismatch & Custom Edit Settings
+  try {
+    const stoMismatch = localStorage.getItem('cbeo_saman_mismatch_settings');
+    STATE.samanMismatchSettings = stoMismatch ? JSON.parse(stoMismatch) : null;
+  } catch(e) {}
+
+  fetch('/api/get_saman_mismatch_settings')
+    .then(r => r.json())
+    .then(data => {
+      if (data && data.success && data.settings) {
+        STATE.samanMismatchSettings = data.settings;
+        localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(data.settings));
       }
     })
     .catch(() => {});
@@ -1162,6 +1260,10 @@ function performLogin() {
       setTimeout(() => {
         showModal('modal-default-pwd-alert');
       }, 500);
+    } else if (userObj.role !== 'admin') {
+      setTimeout(() => {
+        checkAndShowAllMismatchAlerts(userObj);
+      }, 600);
     }
   }
 
@@ -1330,17 +1432,18 @@ function switchTab(viewId, param = null) {
   else renderDashboardView();
 }
 
-const DEFAULT_TAB_VISIBILITY_5LEVEL = {
-  'saman-pariksha': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false },
-  'database-hub': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false },
-  'dashboard': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false },
-  'directory': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false },
-  'staff': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false },
-  'school-management': { cbeo: true, peeo: false, sec_srsec: false, all_govt: false, all_schools: false },
-  'demands': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false },
-  'archive': { cbeo: true, peeo: false, sec_srsec: false, all_govt: false, all_schools: false },
-  'admin-control': { cbeo: true, peeo: false, sec_srsec: false, all_govt: false, all_schools: false }
+const DEFAULT_TAB_VISIBILITY_6LEVEL = {
+  'saman-pariksha': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: false, all_schools: false },
+  'database-hub': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'dashboard': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'directory': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'staff': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'school-management': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'demands': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'archive': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'admin-control': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false }
 };
+const DEFAULT_TAB_VISIBILITY_5LEVEL = DEFAULT_TAB_VISIBILITY_6LEVEL;
 
 function isTabVisibleForCurrentUser(tabId) {
   if (!STATE.currentUser) return false;
@@ -1364,8 +1467,8 @@ function isTabVisibleForCurrentUser(tabId) {
     return false;
   }
 
-  const vis = STATE.tabVisibility5Level || DEFAULT_TAB_VISIBILITY_5LEVEL;
-  const tabConf = vis[tabId] || { cbeo: true, peeo: false, sec_srsec: false, all_govt: false, all_schools: false };
+  const vis = STATE.tabVisibility6Level || STATE.tabVisibility5Level || DEFAULT_TAB_VISIBILITY_6LEVEL;
+  const tabConf = vis[tabId] || { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false };
 
   // 1. CBEO Admin (ADMIN01 / SD 8140 / Pramila Raslot)
   if (isCBEO) {
@@ -1377,19 +1480,25 @@ function isTabVisibleForCurrentUser(tabId) {
     return !!tabConf.peeo;
   }
 
-  // 3, 4, 5. School Logins
+  // 3, 4, 5, 6. School Logins (Strict separation of 49 Govt vs 8 Private)
   if (STATE.currentUser.role === 'school') {
     const isPvt = STATE.currentUser.type === 'Private' || String(STATE.currentUser.shala_darpan_code).startsWith('P');
     if (isPvt) {
+      // 8 Private Secondary / Sr.Secondary schools
+      const isPvtSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code && s.type === 'Private');
+      if (isPvtSec) {
+        return !!(tabConf.pvt_sec_srsec || tabConf.sec_srsec || tabConf.all_schools);
+      }
       return !!tabConf.all_schools;
     }
-    // Check if Secondary or Sr Secondary (57 schools)
-    const isSecSrSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code) ||
+
+    // 49 Government Secondary / Sr.Secondary schools
+    const isGovtSecSrSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code && s.type !== 'Private') ||
       (STATE.currentUser.category && (STATE.currentUser.category.includes('Secondary') || STATE.currentUser.category.includes('माध्यमिक')));
-    if (isSecSrSec) {
-      return !!(tabConf.sec_srsec || tabConf.all_govt || tabConf.all_schools);
+    if (isGovtSecSrSec) {
+      return !!(tabConf.govt_sec_srsec || tabConf.sec_srsec || tabConf.all_govt || tabConf.all_schools);
     }
-    // Government Elementary / Primary
+    // Government Elementary / Primary (Class 1-8)
     return !!(tabConf.all_govt || tabConf.all_schools);
   }
 
@@ -1474,13 +1583,13 @@ function applyTabVisibility() {
   }
 }
 
-function render5LevelTabVisibilityMatrix() {
+function render6LevelTabVisibilityMatrix() {
   const tbody = document.getElementById('tbody-5level-visibility-matrix');
   if (!tbody) return;
   tbody.innerHTML = '';
 
   const coreTabs = [
-    { id: 'saman-pariksha', name: '📋 समान परीक्षा 2026-27 (57 स्कूल)', desc: 'मुख्य परीक्षा प्रपत्र व स्थिति (5-स्तरीय अनुमति)' },
+    { id: 'saman-pariksha', name: '📋 समान परीक्षा 2026-27 (57 स्कूल)', desc: 'मुख्य परीक्षा प्रपत्र व स्थिति (6-स्तरीय अनुमति)' },
     { id: 'database-hub', name: '🗄️ मास्टर डेटाबेस व सूचना निष्कर्षण', desc: 'केंद्रीकृत डेटाबेस व कस्टम रिपोर्ट निष्कर्षण हब' },
     { id: 'dashboard', name: '📊 मुख्य डैशबोर्ड', desc: 'ब्लॉक सांख्यिकी व प्रगति' },
     { id: 'directory', name: '📞 ब्लॉक संपर्क डायरेक्टरी', desc: '3-स्तरीय 25 PEEO व कार्मिक फोन डायरेक्टरी' },
@@ -1490,12 +1599,15 @@ function render5LevelTabVisibilityMatrix() {
     { id: 'archive', name: '🗄️ पूर्ण आर्काइव', desc: 'पूर्ण व 7-दिवसीय आर्काइव प्रपत्र' }
   ];
 
-  const vis = STATE.tabVisibility5Level || DEFAULT_TAB_VISIBILITY_5LEVEL;
+  const vis = STATE.tabVisibility6Level || STATE.tabVisibility5Level || DEFAULT_TAB_VISIBILITY_6LEVEL;
 
   // 1. Core Tabs
   coreTabs.forEach(t => {
     const tr = document.createElement('tr');
-    const c = vis[t.id] || { cbeo: true, peeo: false, sec_srsec: false, all_govt: false, all_schools: false };
+    const c = vis[t.id] || { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false };
+    const govtSecChecked = (c.govt_sec_srsec !== undefined ? c.govt_sec_srsec : c.sec_srsec);
+    const pvtSecChecked = (c.pvt_sec_srsec !== undefined ? c.pvt_sec_srsec : c.sec_srsec);
+
     tr.innerHTML = `
       <td>
         <strong>${t.name}</strong><br>
@@ -1508,7 +1620,10 @@ function render5LevelTabVisibilityMatrix() {
         <input type="checkbox" id="vis_${t.id}_peeo" ${c.peeo ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
       </td>
       <td style="text-align:center">
-        <input type="checkbox" id="vis_${t.id}_sec_srsec" ${c.sec_srsec ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
+        <input type="checkbox" id="vis_${t.id}_govt_sec" ${govtSecChecked ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer" title="49 राजकीय Sec/Sr.Sec">
+      </td>
+      <td style="text-align:center">
+        <input type="checkbox" id="vis_${t.id}_pvt_sec" ${pvtSecChecked ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer" title="8 निजी Sec/Sr.Sec">
       </td>
       <td style="text-align:center">
         <input type="checkbox" id="vis_${t.id}_all_govt" ${c.all_govt ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
@@ -1520,14 +1635,14 @@ function render5LevelTabVisibilityMatrix() {
     tbody.appendChild(tr);
   });
 
-  // 2. Dynamic Information Demands Rows with 5-Level Checkboxes!
+  // 2. Dynamic Information Demands Rows with 6-Level Checkboxes!
   const activeDemands = (STATE.demands || []).filter(d => !d.archived);
   if (activeDemands.length > 0) {
     const headerTr = document.createElement('tr');
     headerTr.style.background = '#e0f2fe';
     headerTr.innerHTML = `
-      <th colspan="6" style="padding:7px 10px; font-weight:800; color:#0369a1; border-top:2px solid #0284c7">
-        <i class="fas fa-file-invoice"></i> 📄 सक्रिय एवं नवीन सूचना मांगें (Dynamic Information Demands - 5-स्तरीय दृश्यता / पब्लिश):
+      <th colspan="7" style="padding:7px 10px; font-weight:800; color:#0369a1; border-top:2px solid #0284c7">
+        <i class="fas fa-file-invoice"></i> 📄 सक्रिय एवं नवीन सूचना मांगें (Dynamic Information Demands - 6-स्तरीय दृश्यता / पब्लिश):
       </th>
     `;
     tbody.appendChild(headerTr);
@@ -1535,10 +1650,13 @@ function render5LevelTabVisibilityMatrix() {
     activeDemands.forEach(d => {
       const tr = document.createElement('tr');
       const dKey = `demand_${d.id}`;
-      const c = vis[dKey] || d.targetAudience || { cbeo: true, peeo: true, sec_srsec: true, all_govt: false, all_schools: false };
+      const c = vis[dKey] || d.targetAudience || { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: false, all_govt: false, all_schools: false };
       const statusBadge = d.isTestMode
         ? '<span class="badge" style="background:#fef3c7; color:#92400e; font-size:0.68rem; font-weight:800; padding:1px 6px">🧪 टेस्ट मोड</span>'
         : (d.published !== false ? '<span class="badge" style="background:#dcfce7; color:#166534; font-size:0.68rem; font-weight:800; padding:1px 6px">🚀 लाइव</span>' : '<span class="badge" style="background:#fee2e2; color:#991b1b; font-size:0.68rem; font-weight:800; padding:1px 6px">अप्रकाशित</span>');
+
+      const govtSecChecked = (c.govt_sec_srsec !== undefined ? c.govt_sec_srsec : c.sec_srsec);
+      const pvtSecChecked = (c.pvt_sec_srsec !== undefined ? c.pvt_sec_srsec : (c.sec_srsec && d.schoolScope !== 'govt_sec'));
 
       tr.innerHTML = `
         <td>
@@ -1546,7 +1664,7 @@ function render5LevelTabVisibilityMatrix() {
             <strong>${d.title}</strong>
             ${statusBadge}
           </div>
-          <span style="font-size:0.73rem; color:#64748b">अंतिम तिथि: ${d.dueDate || 'यथाशीघ्र'} • कॉलम: ${(d.columns || []).length} • ID: ${d.id}</span>
+          <span style="font-size:0.73rem; color:#64748b">स्थान: ${d.placement === 'tab_new' ? '🌐 नया टैब' : `📂 टैब (${d.parentTab || 'समान परीक्षा'})`} • अंतिम तिथि: ${d.dueDate || 'यथाशीघ्र'} • ID: ${d.id}</span>
         </td>
         <td style="text-align:center">
           <input type="checkbox" id="vis_${dKey}_cbeo" ${c.cbeo ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
@@ -1555,7 +1673,10 @@ function render5LevelTabVisibilityMatrix() {
           <input type="checkbox" id="vis_${dKey}_peeo" ${c.peeo ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
         </td>
         <td style="text-align:center">
-          <input type="checkbox" id="vis_${dKey}_sec_srsec" ${c.sec_srsec ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
+          <input type="checkbox" id="vis_${dKey}_govt_sec" ${govtSecChecked ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
+        </td>
+        <td style="text-align:center">
+          <input type="checkbox" id="vis_${dKey}_pvt_sec" ${pvtSecChecked ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
         </td>
         <td style="text-align:center">
           <input type="checkbox" id="vis_${dKey}_all_govt" ${c.all_govt ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
@@ -1568,27 +1689,32 @@ function render5LevelTabVisibilityMatrix() {
     });
   }
 }
+const render5LevelTabVisibilityMatrix = render6LevelTabVisibilityMatrix;
 
-function save5LevelTabVisibilityMatrix() {
+function save6LevelTabVisibilityMatrix() {
   const coreTabs = ['saman-pariksha', 'database-hub', 'dashboard', 'directory', 'staff', 'school-management', 'demands', 'archive'];
   const newVis = {};
   coreTabs.forEach(t => {
     newVis[t] = {
       cbeo: !!document.getElementById(`vis_${t}_cbeo`)?.checked,
       peeo: !!document.getElementById(`vis_${t}_peeo`)?.checked,
-      sec_srsec: !!document.getElementById(`vis_${t}_sec_srsec`)?.checked,
+      govt_sec_srsec: !!document.getElementById(`vis_${t}_govt_sec`)?.checked,
+      pvt_sec_srsec: !!document.getElementById(`vis_${t}_pvt_sec`)?.checked,
+      sec_srsec: !!(document.getElementById(`vis_${t}_govt_sec`)?.checked || document.getElementById(`vis_${t}_pvt_sec`)?.checked),
       all_govt: !!document.getElementById(`vis_${t}_all_govt`)?.checked,
       all_schools: !!document.getElementById(`vis_${t}_all_schools`)?.checked
     };
   });
 
-  // Save each demand's 5-level visibility and sync directly with demand.targetAudience
+  // Save each demand's 6-level visibility and sync directly with demand.targetAudience
   (STATE.demands || []).forEach(d => {
     const dKey = `demand_${d.id}`;
     const dVis = {
       cbeo: !!document.getElementById(`vis_${dKey}_cbeo`)?.checked,
       peeo: !!document.getElementById(`vis_${dKey}_peeo`)?.checked,
-      sec_srsec: !!document.getElementById(`vis_${dKey}_sec_srsec`)?.checked,
+      govt_sec_srsec: !!document.getElementById(`vis_${dKey}_govt_sec`)?.checked,
+      pvt_sec_srsec: !!document.getElementById(`vis_${dKey}_pvt_sec`)?.checked,
+      sec_srsec: !!(document.getElementById(`vis_${dKey}_govt_sec`)?.checked || document.getElementById(`vis_${dKey}_pvt_sec`)?.checked),
       all_govt: !!document.getElementById(`vis_${dKey}_all_govt`)?.checked,
       all_schools: !!document.getElementById(`vis_${dKey}_all_schools`)?.checked
     };
@@ -1597,68 +1723,60 @@ function save5LevelTabVisibilityMatrix() {
   });
 
   saveDemandsToStorage();
+  STATE.tabVisibility6Level = newVis;
   STATE.tabVisibility5Level = newVis;
+  localStorage.setItem('cbeo_tab_visibility_6level', JSON.stringify(newVis));
   localStorage.setItem('cbeo_tab_visibility_5level', JSON.stringify(newVis));
 
-  // Sync to Google Sheet live so settings persist across all devices & refreshes!
-  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
-    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
-    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
-
-  if (gasUrl) {
-    try {
-      fetch(gasUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'updatePassword',
-          user_id: '__TAB_VISIBILITY_5LEVEL__',
-          role: 'System_Config',
-          name: '5-Level Tab Visibility Matrix',
-          new_password: JSON.stringify(newVis)
-        })
-      }).catch(err => console.warn('Save tab visibility sync err:', err));
-    } catch(e) {}
-  }
-
-  // Also notify local server if present
-  fetch('/api/save_tab_visibility_5level', {
+  // Sync to server & cloud
+  fetch('/api/save_tab_visibility_6level', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(newVis)
   }).catch(() => {});
 
   applyTabVisibility();
-  showToast('5-स्तरीय टैब अनुमतियां Google Cloud Sheet में सुरक्षित हो गईं!', 'success');
+  showToast('6-स्तरीय टैब दृश्यता अनुमतियां सुरक्षित हो गईं!', 'success');
 }
+const save5LevelTabVisibilityMatrix = save6LevelTabVisibilityMatrix;
 
 /* ========================================================
-   5-LEVEL DATA EDIT PERMISSION MATRIX (Edit vs View-Only)
+   6-LEVEL DATA EDIT PERMISSION MATRIX (Edit vs View-Only)
    Level 1: CBEO Admin
    Level 2: 25 PEEO Incharges
-   Level 3: 57 Sec / Sr.Sec Schools (49 Govt + 8 Pvt)
-   Level 4: All Govt Schools (132 Elementary + Sec)
-   Level 5: All Schools (including 8 Private)
+   Level 3: 49 Govt Sec / Sr.Sec Schools (Exclusive Govt)
+   Level 4: 8 Pvt Sec / Sr.Sec Schools (Exclusive Private)
+   Level 5: All Govt Schools (132 Elementary + Sec)
+   Level 6: All Schools (including 8 Private - 178)
    ======================================================== */
-const DEFAULT_EDIT_PERMISSIONS_5LEVEL = {
-  'staff': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false },
-  'school_head': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false },
-  'saman_pariksha': { cbeo: true, peeo: true, sec_srsec: true, all_govt: false, all_schools: false },
-  'demands': { cbeo: true, peeo: true, sec_srsec: true, all_govt: true, all_schools: true },
-  'directory': { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false }
+const DEFAULT_EDIT_PERMISSIONS_6LEVEL = {
+  'staff': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'school_head': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'saman_pariksha': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: false, all_schools: false },
+  'demands': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: true, all_schools: true },
+  'directory': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false }
 };
+const DEFAULT_EDIT_PERMISSIONS_5LEVEL = DEFAULT_EDIT_PERMISSIONS_6LEVEL;
 
-function canCurrentUserEditModule(moduleKey) {
+function canCurrentUserEditModule(moduleKey, targetSchoolCode = null) {
   if (!STATE.currentUser) return false;
   if (isJitendraLoggedIn()) return true; // Jitendra Super Admin is always unrestricted
+
+  if (moduleKey === 'saman_pariksha') {
+    const schCode = targetSchoolCode || STATE.currentUser?.shala_darpan_code;
+    const cfg = STATE.samanMismatchSettings;
+    const customAllowed = (cfg && cfg.custom_edit_schools) || [];
+    if (schCode && customAllowed.some(c => String(c).trim() === String(schCode).trim())) {
+      return true; // Granted Custom Edit Exception!
+    }
+  }
 
   const isCBEO = STATE.currentUser.shala_darpan_code === '8140' || 
                  STATE.currentUser.admin_id === 'ADMIN01' || 
                  (STATE.currentUser.role === 'admin' && !isJitendraLoggedIn());
 
-  const perms = STATE.editPermissions5Level || DEFAULT_EDIT_PERMISSIONS_5LEVEL;
-  const modPerm = perms[moduleKey] || (String(moduleKey).startsWith('demand_') ? (perms['demands'] || { cbeo: true, peeo: true, sec_srsec: true, all_govt: true, all_schools: true }) : { cbeo: true, peeo: false, sec_srsec: false, all_govt: false, all_schools: false });
+  const perms = STATE.editPermissions6Level || STATE.editPermissions5Level || DEFAULT_EDIT_PERMISSIONS_6LEVEL;
+  const modPerm = perms[moduleKey] || (String(moduleKey).startsWith('demand_') ? (perms['demands'] || { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: true, all_schools: true }) : { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false });
 
   // 1. CBEO Admin
   if (isCBEO) return !!modPerm.cbeo;
@@ -1666,15 +1784,21 @@ function canCurrentUserEditModule(moduleKey) {
   // 2. 25 PEEO Incharges
   if (STATE.currentUser.role === 'peeo') return !!modPerm.peeo;
 
-  // 3, 4, 5. School Logins
+  // 3, 4, 5, 6. School Logins
   if (STATE.currentUser.role === 'school') {
     const isPvt = STATE.currentUser.type === 'Private' || String(STATE.currentUser.shala_darpan_code).startsWith('P');
-    if (isPvt) return !!modPerm.all_schools;
+    if (isPvt) {
+      const isPvtSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code && s.type === 'Private');
+      if (isPvtSec) {
+        return !!(modPerm.pvt_sec_srsec || modPerm.sec_srsec || modPerm.all_schools);
+      }
+      return !!modPerm.all_schools;
+    }
 
-    const isSecSrSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code) ||
+    const isGovtSecSrSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code && s.type !== 'Private') ||
       (STATE.currentUser.category && (STATE.currentUser.category.includes('Secondary') || STATE.currentUser.category.includes('माध्यमिक')));
-    if (isSecSrSec) {
-      return !!(modPerm.sec_srsec || modPerm.all_govt || modPerm.all_schools);
+    if (isGovtSecSrSec) {
+      return !!(modPerm.govt_sec_srsec || modPerm.sec_srsec || modPerm.all_govt || modPerm.all_schools);
     }
     return !!(modPerm.all_govt || modPerm.all_schools);
   }
@@ -1682,7 +1806,7 @@ function canCurrentUserEditModule(moduleKey) {
   return false;
 }
 
-function render5LevelEditPermissionsMatrix() {
+function render6LevelEditPermissionsMatrix() {
   const tbody = document.getElementById('tbody-5level-edit-matrix');
   if (!tbody) return;
   tbody.innerHTML = '';
@@ -1696,12 +1820,15 @@ function render5LevelEditPermissionsMatrix() {
     { id: 'directory', name: '📞 ब्लॉक संपर्क डायरेक्टरी (Directory Edit)', desc: 'विद्यालय संपर्क व फोन विवरण अद्यतन' }
   ];
 
-  const perms = STATE.editPermissions5Level || DEFAULT_EDIT_PERMISSIONS_5LEVEL;
+  const perms = STATE.editPermissions6Level || STATE.editPermissions5Level || DEFAULT_EDIT_PERMISSIONS_6LEVEL;
 
   // 1. Core Modules
   modules.forEach(m => {
     const tr = document.createElement('tr');
-    const c = perms[m.id] || { cbeo: true, peeo: false, sec_srsec: false, all_govt: false, all_schools: false };
+    const c = perms[m.id] || { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false };
+    const govtSecChecked = (c.govt_sec_srsec !== undefined ? c.govt_sec_srsec : c.sec_srsec);
+    const pvtSecChecked = (c.pvt_sec_srsec !== undefined ? c.pvt_sec_srsec : c.sec_srsec);
+
     tr.innerHTML = `
       <td>
         <strong>${m.name}</strong><br>
@@ -1714,7 +1841,10 @@ function render5LevelEditPermissionsMatrix() {
         <input type="checkbox" id="edit_${m.id}_peeo" ${c.peeo ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
       </td>
       <td style="text-align:center">
-        <input type="checkbox" id="edit_${m.id}_sec_srsec" ${c.sec_srsec ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
+        <input type="checkbox" id="edit_${m.id}_govt_sec" ${govtSecChecked ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
+      </td>
+      <td style="text-align:center">
+        <input type="checkbox" id="edit_${m.id}_pvt_sec" ${pvtSecChecked ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
       </td>
       <td style="text-align:center">
         <input type="checkbox" id="edit_${m.id}_all_govt" ${c.all_govt ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
@@ -1732,7 +1862,7 @@ function render5LevelEditPermissionsMatrix() {
     const headerTr = document.createElement('tr');
     headerTr.style.background = '#f0fdf4';
     headerTr.innerHTML = `
-      <th colspan="6" style="padding:7px 10px; font-weight:800; color:#166534; border-top:2px solid #16a34a">
+      <th colspan="7" style="padding:7px 10px; font-weight:800; color:#166534; border-top:2px solid #16a34a">
         <i class="fas fa-edit"></i> 📝 विशिष्ट सूचना प्रपत्र डेटा प्रविष्टि एवं संपादन अधिकार (Individual Demand Data Entry Perms):
       </th>
     `;
@@ -1741,12 +1871,14 @@ function render5LevelEditPermissionsMatrix() {
     activeDemands.forEach(d => {
       const tr = document.createElement('tr');
       const dKey = `demand_${d.id}`;
-      const c = perms[dKey] || { cbeo: true, peeo: true, sec_srsec: true, all_govt: true, all_schools: true };
+      const c = perms[dKey] || { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: true, all_schools: true };
+      const govtSecChecked = (c.govt_sec_srsec !== undefined ? c.govt_sec_srsec : c.sec_srsec);
+      const pvtSecChecked = (c.pvt_sec_srsec !== undefined ? c.pvt_sec_srsec : c.sec_srsec);
 
       tr.innerHTML = `
         <td>
           <strong>${d.title}</strong><br>
-          <span style="font-size:0.73rem; color:#64748b">इस मांग प्रपत्र में डेटा भरने / एडिट करने की अनुमति</span>
+          <span style="font-size:0.73rem; color:#64748b">स्थान: ${d.placement === 'tab_new' ? '🌐 नया टैब' : `📂 टैब (${d.parentTab || 'समान परीक्षा'})`} • ID: ${d.id}</span>
         </td>
         <td style="text-align:center">
           <input type="checkbox" id="edit_${dKey}_cbeo" ${c.cbeo ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
@@ -1755,7 +1887,10 @@ function render5LevelEditPermissionsMatrix() {
           <input type="checkbox" id="edit_${dKey}_peeo" ${c.peeo ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
         </td>
         <td style="text-align:center">
-          <input type="checkbox" id="edit_${dKey}_sec_srsec" ${c.sec_srsec ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
+          <input type="checkbox" id="edit_${dKey}_govt_sec" ${govtSecChecked ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
+        </td>
+        <td style="text-align:center">
+          <input type="checkbox" id="edit_${dKey}_pvt_sec" ${pvtSecChecked ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
         </td>
         <td style="text-align:center">
           <input type="checkbox" id="edit_${dKey}_all_govt" ${c.all_govt ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer">
@@ -1768,15 +1903,18 @@ function render5LevelEditPermissionsMatrix() {
     });
   }
 }
+const render5LevelEditPermissionsMatrix = render6LevelEditPermissionsMatrix;
 
-function save5LevelEditPermissionsMatrix() {
+function save6LevelEditPermissionsMatrix() {
   const coreModules = ['staff', 'school_head', 'saman_pariksha', 'database_hub', 'demands', 'directory'];
   const newPerms = {};
   coreModules.forEach(m => {
     newPerms[m] = {
       cbeo: !!document.getElementById(`edit_${m}_cbeo`)?.checked,
       peeo: !!document.getElementById(`edit_${m}_peeo`)?.checked,
-      sec_srsec: !!document.getElementById(`edit_${m}_sec_srsec`)?.checked,
+      govt_sec_srsec: !!document.getElementById(`edit_${m}_govt_sec`)?.checked,
+      pvt_sec_srsec: !!document.getElementById(`edit_${m}_pvt_sec`)?.checked,
+      sec_srsec: !!(document.getElementById(`edit_${m}_govt_sec`)?.checked || document.getElementById(`edit_${m}_pvt_sec`)?.checked),
       all_govt: !!document.getElementById(`edit_${m}_all_govt`)?.checked,
       all_schools: !!document.getElementById(`edit_${m}_all_schools`)?.checked
     };
@@ -1788,14 +1926,30 @@ function save5LevelEditPermissionsMatrix() {
     newPerms[dKey] = {
       cbeo: !!document.getElementById(`edit_${dKey}_cbeo`)?.checked,
       peeo: !!document.getElementById(`edit_${dKey}_peeo`)?.checked,
-      sec_srsec: !!document.getElementById(`edit_${dKey}_sec_srsec`)?.checked,
+      govt_sec_srsec: !!document.getElementById(`edit_${dKey}_govt_sec`)?.checked,
+      pvt_sec_srsec: !!document.getElementById(`edit_${dKey}_pvt_sec`)?.checked,
+      sec_srsec: !!(document.getElementById(`edit_${dKey}_govt_sec`)?.checked || document.getElementById(`edit_${dKey}_pvt_sec`)?.checked),
       all_govt: !!document.getElementById(`edit_${dKey}_all_govt`)?.checked,
       all_schools: !!document.getElementById(`edit_${dKey}_all_schools`)?.checked
     };
   });
 
+  STATE.editPermissions6Level = newPerms;
   STATE.editPermissions5Level = newPerms;
+  localStorage.setItem('cbeo_edit_permissions_6level', JSON.stringify(newPerms));
   localStorage.setItem('cbeo_edit_permissions_5level', JSON.stringify(newPerms));
+
+  fetch('/api/save_edit_permissions_6level', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(newPerms)
+  }).catch(() => {});
+
+  fetch('/api/save_edit_permissions_5level', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(newPerms)
+  }).catch(() => {});
 
   // Sync to Google Sheet live under __EDIT_PERMISSIONS_5LEVEL__
   const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
@@ -1812,23 +1966,18 @@ function save5LevelEditPermissionsMatrix() {
           action: 'updatePassword',
           user_id: '__EDIT_PERMISSIONS_5LEVEL__',
           role: 'System_Config',
-          name: '5-Level Data Edit Permission Matrix',
+          name: '6-Level Data Edit Permission Matrix',
           new_password: JSON.stringify(newPerms)
         })
       }).catch(err => console.warn('Save edit permissions sync err:', err));
     } catch(e) {}
   }
 
-  fetch('/api/save_edit_permissions_5level', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(newPerms)
-  }).catch(() => {});
-
   if (typeof renderStaffView === 'function') renderStaffView();
   if (typeof filterStaffTable === 'function') filterStaffTable();
-  showToast('5-स्तरीय संपादन अनुमतियां Google Cloud Sheet में सुरक्षित हो गईं!', 'success');
+  showToast('6-स्तरीय संपादन अनुमतियां सुरक्षित हो गईं!', 'success');
 }
+const save5LevelEditPermissionsMatrix = save6LevelEditPermissionsMatrix;
 
 function saveTabAccessConfig() {
   save5LevelTabVisibilityMatrix();
@@ -2171,14 +2320,156 @@ function formatOptionalSubjectsSummary(optObj) {
   return entries.join(', ');
 }
 
+function getSamanFilteredSchools() {
+  const allSec = STATE.schools56 || [];
+  const filter = STATE.samanParikshaSchoolTypeFilter || (STATE.samanParikshaActiveForm === 'syllabus' ? 'govt_only' : 'both');
+  if (filter === 'govt_only') {
+    return allSec.filter(s => s.type === 'Government');
+  } else if (filter === 'pvt_only') {
+    return allSec.filter(s => s.type === 'Private');
+  }
+  return allSec;
+}
+
+function calculateSchoolSyllabusAverage(sub) {
+  if (!sub) return 0;
+  let totalPct = 0;
+  let count = 0;
+  if (sub.c9) {
+    ['hindi', 'english', 'maths', 'science', 'sst', 'sanskrit', 'urdu'].forEach(k => {
+      const v = parseFloat(sub.c9[k]);
+      if (!isNaN(v) && v > 0) { totalPct += v; count++; }
+    });
+  }
+  if (sub.c10) {
+    ['hindi', 'english', 'maths', 'science', 'sst', 'sanskrit', 'urdu'].forEach(k => {
+      const v = parseFloat(sub.c10[k]);
+      if (!isNaN(v) && v > 0) { totalPct += v; count++; }
+    });
+  }
+  if (sub.c11) {
+    if (sub.c11.comp_hindi) { totalPct += parseFloat(sub.c11.comp_hindi); count++; }
+    if (sub.c11.comp_english) { totalPct += parseFloat(sub.c11.comp_english); count++; }
+    if (Array.isArray(sub.c11.electives)) {
+      sub.c11.electives.forEach(e => {
+        const v = parseFloat(e.pct);
+        if (!isNaN(v) && v > 0) { totalPct += v; count++; }
+      });
+    }
+  }
+  if (sub.c12) {
+    if (sub.c12.comp_hindi) { totalPct += parseFloat(sub.c12.comp_hindi); count++; }
+    if (sub.c12.comp_english) { totalPct += parseFloat(sub.c12.comp_english); count++; }
+    if (Array.isArray(sub.c12.electives)) {
+      sub.c12.electives.forEach(e => {
+        const v = parseFloat(e.pct);
+        if (!isNaN(v) && v > 0) { totalPct += v; count++; }
+      });
+    }
+  }
+  return count > 0 ? Math.round(totalPct / count) : 0;
+}
+
 function renderSamanParikshaView() {
   const peeoContainer = document.getElementById('sp-peeo-container');
   const adminContainer = document.getElementById('sp-admin-container');
+
+  // Sync toolbar active button styles & active form badge
+  const btnIndent = document.getElementById('sp-toggle-btn-indent');
+  const btnSyl = document.getElementById('sp-toggle-btn-syllabus');
+  const badgeActive = document.getElementById('sp-active-form-badge');
+  const scopeFilter = document.getElementById('sp-school-type-filter');
+
+  const isSyl = STATE.samanParikshaActiveForm === 'syllabus';
+  if (btnIndent) {
+    if (isSyl) {
+      btnIndent.classList.remove('active');
+      btnIndent.style.background = '#f8fafc';
+      btnIndent.style.color = '#0369a1';
+    } else {
+      btnIndent.classList.add('active');
+      btnIndent.style.background = '#0284c7';
+      btnIndent.style.color = '#ffffff';
+    }
+  }
+  if (btnSyl) {
+    if (isSyl) {
+      btnSyl.classList.add('active');
+      btnSyl.style.background = '#0284c7';
+      btnSyl.style.color = '#ffffff';
+    } else {
+      btnSyl.classList.remove('active');
+      btnSyl.style.background = '#f8fafc';
+      btnSyl.style.color = '#0369a1';
+    }
+  }
+  if (badgeActive) {
+    badgeActive.textContent = isSyl 
+      ? 'सक्रिय: नवीन पाठ्यक्रम पूर्णता % मांग (49 राजकीय विद्यालय)' 
+      : 'सक्रिय: मूल प्रश्न-पत्र मांग (57 विद्यालय)';
+    badgeActive.style.background = isSyl ? '#dcfce7' : '#e0f2fe';
+    badgeActive.style.color = isSyl ? '#15803d' : '#0369a1';
+  }
+  if (scopeFilter && STATE.samanParikshaSchoolTypeFilter) {
+    scopeFilter.value = STATE.samanParikshaSchoolTypeFilter;
+  }
 
   if (!STATE.currentUser) {
     if (peeoContainer) peeoContainer.style.display = 'none';
     if (adminContainer) adminContainer.style.display = 'none';
     return;
+  }
+
+  const btnMismatchAdmin = document.getElementById('btn-sp-mismatch-admin');
+  const schoolMismatchBanner = document.getElementById('sp-school-mismatch-banner');
+
+  if (btnMismatchAdmin) {
+    btnMismatchAdmin.style.display = (STATE.currentUser && STATE.currentUser.role === 'admin') ? 'inline-flex' : 'none';
+  }
+
+  if (schoolMismatchBanner) {
+    if (STATE.currentUser && STATE.currentUser.role !== 'admin') {
+      const uCode = String(STATE.currentUser.shala_darpan_code).trim();
+      const cfg = STATE.samanMismatchSettings;
+      const details = (cfg && cfg.mismatch_details) || DEFAULT_SAMAN_MISMATCH_SETTINGS.mismatch_details;
+      const customSchools = (cfg && cfg.custom_edit_schools) || [];
+
+      let mCode = null;
+      if (details[uCode] || customSchools.includes(uCode)) {
+        mCode = uCode;
+      } else if (STATE.currentUser.role === 'peeo' && STATE.currentUser.schools) {
+        const m = STATE.currentUser.schools.find(s => {
+          const sc = String(s.shala_darpan_code || s.dise_code).trim();
+          return details[sc] || customSchools.includes(sc);
+        });
+        if (m) mCode = String(m.shala_darpan_code || m.dise_code).trim();
+      }
+
+      if (mCode) {
+        const mInfo = details[mCode];
+        const schObj = (STATE.schools56 || []).find(s => String(s.shala_darpan_code).trim() === mCode);
+        const sName = mInfo?.school_name || schObj?.school_name || mCode;
+        const diffVal = mInfo ? mInfo.diff : 0;
+        const diffText = diffVal ? (diffVal > 0 ? `+${diffVal} छात्र` : `${diffVal} छात्र`) : 'मिसमैच';
+        schoolMismatchBanner.style.display = 'flex';
+        schoolMismatchBanner.innerHTML = `
+          <div style="display:flex; align-items:center; gap:0.75rem; flex:1">
+            <span class="sp-mismatch-blinking-badge"><i class="fas fa-bell"></i> अति-आवश्यक</span>
+            <div style="font-size:0.86rem; color:#991b1b; line-height:1.4">
+              <strong>नामांकन मिसमैच संशोधन सूचना (${sName}):</strong> समान परीक्षा मांग प्रपत्र में कुल नामांकन शाला दर्पण डेटा से 
+              <strong style="color:#b91c1c; font-size:0.95rem">${diffText}</strong> मिसमैच पाया गया है। कार्यालय द्वारा <strong>संशोधन (Custom Edit)</strong> खुला है।
+            </div>
+          </div>
+          <button class="btn btn-sm btn-danger" onclick="openSamanParikshaForm('${mCode}')" style="font-weight:800; background:#dc2626; border-color:#dc2626; display:inline-flex; align-items:center; gap:0.4rem; box-shadow:0 3px 8px rgba(220,38,38,0.25)">
+            <i class="fas fa-edit"></i> प्रपत्र अभी सुधारें
+          </button>
+        `;
+      } else {
+        schoolMismatchBanner.style.display = 'none';
+      }
+    } else {
+      schoolMismatchBanner.style.display = 'none';
+    }
   }
 
   if (STATE.currentUser.role === 'admin') {
@@ -2201,7 +2492,6 @@ function renderSamanParikshaPeeoView() {
 
   grid.innerHTML = '';
 
-  // समेकित मांग रिपोर्ट व लम्बित स्कूल PDF बटन केवल PEEO लॉगिन पर उपलब्ध रहेगा
   const isPeeo = STATE.currentUser && STATE.currentUser.role === 'peeo';
   if (btnConsolidated) {
     btnConsolidated.style.display = isPeeo ? 'inline-flex' : 'none';
@@ -2211,117 +2501,225 @@ function renderSamanParikshaPeeoView() {
     btnPending.style.display = isPeeo ? 'inline-flex' : 'none';
   }
 
+  const isSyl = STATE.samanParikshaActiveForm === 'syllabus';
+
   let targetSchools = [];
   if (STATE.currentUser.role === 'school') {
-    targetSchools = STATE.schools56.filter(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code);
-    if (heading) heading.textContent = `${STATE.currentUser.school_name} (परीक्षा प्रपत्र)`;
+    targetSchools = (STATE.schools56 || []).filter(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code);
+    if (heading) heading.textContent = `${STATE.currentUser.school_name} (${isSyl ? 'पाठ्यक्रम पूर्णता % प्रपत्र' : 'परीक्षा प्रपत्र'})`;
   } else {
     // PEEO login
-    targetSchools = STATE.schools56.filter(s => 
+    targetSchools = (STATE.schools56 || []).filter(s => 
       (STATE.currentUser.peeo_name && s.peeo_name && s.peeo_name.toLowerCase().includes(STATE.currentUser.peeo_name.toLowerCase())) ||
       s.peeo_code === STATE.currentUser.shala_darpan_code ||
       STATE.currentUser.schools?.some(sch => sch.shala_darpan_code === s.shala_darpan_code)
     );
-    if (heading) heading.textContent = `${STATE.currentUser.peeo_name || 'PEEO'} परिक्षेत्र (${targetSchools.length} माध्यमिक व उच्च माध्यमिक विद्यालय)`;
+    if (heading) {
+      heading.textContent = isSyl
+        ? `${STATE.currentUser.peeo_name || 'PEEO'} परिक्षेत्र (पाठ्यक्रम पूर्णता % मांग - 49 राजकीय विद्यालय)`
+        : `${STATE.currentUser.peeo_name || 'PEEO'} परिक्षेत्र (${targetSchools.length} माध्यमिक व उच्च माध्यमिक विद्यालय)`;
+    }
+  }
+
+  // Filter based on selected school type scope (defaults to govt_only when in syllabus mode)
+  const scopeFilter = STATE.samanParikshaSchoolTypeFilter || (isSyl ? 'govt_only' : 'both');
+  if (scopeFilter === 'govt_only') {
+    targetSchools = targetSchools.filter(s => s.type === 'Government');
+  } else if (scopeFilter === 'pvt_only') {
+    targetSchools = targetSchools.filter(s => s.type === 'Private');
   }
 
   let submittedCount = 0;
   targetSchools.forEach((school, index) => {
-    const sub = STATE.samanParikshaSubmissions[school.shala_darpan_code];
-    const isSubmitted = isSamanParikshaSubmitted(sub);
-    if (isSubmitted) submittedCount++;
-
-    const card = document.createElement('div');
-    card.className = `sp-school-card ${isSubmitted ? 'submitted' : 'pending'}`;
-
-    const catBadge = school.type === 'Government' 
+    const isGovt = school.type === 'Government';
+    const catBadge = isGovt 
       ? '<span style="background:#e0f2fe; color:#0369a1; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700">🏛️ राजकीय</span>'
-      : '<span style="background:#e0f2fe; color:#0369a1; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700">🏢 निजी</span>';
+      : '<span style="background:#fef3c7; color:#92400e; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700">🏢 निजी</span>';
 
-    const statusBadge = isSubmitted
-      ? `<span class="sp-status-badge success"><i class="fas fa-check-circle"></i> ✓ डेटा सबमिट पूर्ण (${sub.grand_total} पेपर)</span>`
-      : `<span class="sp-status-badge danger"><i class="fas fa-exclamation-triangle"></i> ⚠️ प्रपत्र भरना शेष (अपूर्ण)</span>`;
+    if (isSyl) {
+      // ---------------- SYLLABUS COMPLETION VIEW ----------------
+      const sylSub = STATE.samanSyllabusSubmissions ? STATE.samanSyllabusSubmissions[school.shala_darpan_code] : null;
+      const isSub = !!(sylSub && sylSub.is_submitted);
+      if (isSub) submittedCount++;
 
-    let submittedDetailsHtml = '';
-    if (isSubmitted) {
-      const c11Sub = formatOptionalSubjectsSummary(sub.c11_optional);
-      const c12Sub = formatOptionalSubjectsSummary(sub.c12_optional);
-      submittedDetailsHtml = `
-        <div style="margin: 0.75rem 0;">
-          <div style="font-weight:700; color:#166534; font-size:0.82rem; margin-bottom:4px; display:flex; align-items:center; gap:0.4rem">
-            <i class="fas fa-check-circle text-success"></i> <strong>समान परीक्षा 2026-27 | भरा गया आधिकारिक डेटा विवरण:</strong>
+      const avgPct = isSub ? calculateSchoolSyllabusAverage(sylSub) : 0;
+      const card = document.createElement('div');
+      card.className = `sp-school-card ${isSub ? 'submitted' : 'pending'}`;
+
+      const statusBadge = isSub
+        ? `<span class="sp-status-badge success"><i class="fas fa-check-circle"></i> ✓ पाठ्यक्रम पूर्णता सबमिट (${avgPct}% औसत)</span>`
+        : `<span class="sp-status-badge danger"><i class="fas fa-exclamation-triangle"></i> ⚠️ पाठ्यक्रम पूर्णता % प्रविष्टि शेष</span>`;
+
+      let submittedDetailsHtml = '';
+      if (isSub) {
+        const c9 = sylSub.c9 || {};
+        const c10 = sylSub.c10 || {};
+        const c11 = sylSub.c11 || {};
+        const c12 = sylSub.c12 || {};
+        const el11Text = (c11.electives || []).map(e => `${e.name}: ${e.pct}%`).join(', ') || '---';
+        const el12Text = (c12.electives || []).map(e => `${e.name}: ${e.pct}%`).join(', ') || '---';
+
+        submittedDetailsHtml = `
+          <div style="margin: 0.75rem 0;">
+            <div style="font-weight:700; color:#166534; font-size:0.82rem; margin-bottom:4px; display:flex; align-items:center; gap:0.4rem">
+              <i class="fas fa-percentage text-success"></i> <strong>सत्यापित पाठ्यक्रम पूर्णता प्रतिशत (कक्षा 9 से 12):</strong>
+            </div>
+            <table class="sp-submitted-table">
+              <thead>
+                <tr>
+                  <th style="width:18%">कक्षा</th>
+                  <th>अनिवार्य एवं तृतीय भाषा / ऐच्छिक विषय पूर्णता % विवरण</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>9वीं</strong></td>
+                  <td>हिन्दी(${c9.hindi || 0}%), अंग्रेजी(${c9.english || 0}%), गणित(${c9.maths || 0}%), विज्ञान(${c9.science || 0}%), सा.वि.(${c9.sst || 0}%), संस्कृत(${c9.sanskrit || 0}%), उर्दू(${c9.urdu || 0}%)</td>
+                </tr>
+                <tr>
+                  <td><strong>10वीं</strong></td>
+                  <td>हिन्दी(${c10.hindi || 0}%), अंग्रेजी(${c10.english || 0}%), गणित(${c10.maths || 0}%), विज्ञान(${c10.science || 0}%), सा.वि.(${c10.sst || 0}%), संस्कृत(${c10.sanskrit || 0}%), उर्दू(${c10.urdu || 0}%)</td>
+                </tr>
+                <tr>
+                  <td><strong>11वीं</strong></td>
+                  <td>अनिवार्य हिन्दी(${c11.comp_hindi || 0}%), अंग्रेजी(${c11.comp_english || 0}%) | ऐच्छिक: ${el11Text}</td>
+                </tr>
+                <tr>
+                  <td><strong>12वीं</strong></td>
+                  <td>अनिवार्य हिन्दी(${c12.comp_hindi || 0}%), अंग्रेजी(${c12.comp_english || 0}%) | ऐच्छिक: ${el12Text}</td>
+                </tr>
+                <tr style="background:#f0fdf4; font-weight:800; color:#166534">
+                  <td>औसत पूर्णता</td>
+                  <td><strong style="color:#15803d; font-size:0.95rem">${avgPct}%</strong> | संस्था प्रधान: ${sylSub.principal_name || '---'} (मो. ${sylSub.principal_mobile || '---'})</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <table class="sp-submitted-table">
-            <thead>
-              <tr>
-                <th style="width:20%">कक्षा</th>
-                <th style="width:25%">कुल विद्यार्थी</th>
-                <th>तृतीय भाषा / अनिवार्य व ऐच्छिक विषय</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>9वीं</strong></td>
-                <td style="font-weight:800; color:#1e40af">${sub.c9_total}</td>
-                <td>संस्कृत: <strong>${sub.c9_sanskrit || 0}</strong> | उर्दू: <strong>${sub.c9_urdu || 0}</strong></td>
-              </tr>
-              <tr>
-                <td><strong>10वीं</strong></td>
-                <td style="font-weight:800; color:#1e40af">${sub.c10_total}</td>
-                <td>संस्कृत: <strong>${sub.c10_sanskrit || 0}</strong> | उर्दू: <strong>${sub.c10_urdu || 0}</strong></td>
-              </tr>
-              <tr>
-                <td><strong>11वीं</strong></td>
-                <td style="font-weight:800; color:#1e40af">${sub.c11_total}</td>
-                <td>हिंदी(${sub.c11_comp_hindi}), अंग्रेजी(${sub.c11_comp_english})${c11Sub ? `<br><span style="color:#0369a1">${c11Sub}</span>` : ''}</td>
-              </tr>
-              <tr>
-                <td><strong>12वीं</strong></td>
-                <td style="font-weight:800; color:#1e40af">${sub.c12_total}</td>
-                <td>हिंदी(${sub.c12_comp_hindi}), अंग्रेजी(${sub.c12_comp_english})${c12Sub ? `<br><span style="color:#0369a1">${c12Sub}</span>` : ''}</td>
-              </tr>
-              <tr style="background:#f0fdf4; font-weight:800; color:#166534">
-                <td>महायोग</td>
-                <td style="font-size:0.95rem; color:#15803d">${sub.grand_total}</td>
-                <td>प्रमाणित संस्था प्रधान: ${sub.principal_name || '---'} (मो. ${sub.principal_mobile || '---'})</td>
-              </tr>
-            </tbody>
-          </table>
+        `;
+      }
+
+      card.innerHTML = `
+        <div>
+          <div class="sp-card-header">
+            <div class="sp-school-name">#${index + 1}. ${school.school_name}</div>
+            ${statusBadge}
+          </div>
+          <div class="sp-school-meta">
+            <div style="display:flex; justify-content:space-between; align-items:center">
+              <span><strong>शा.दा./PSP कोड:</strong> ${school.shala_darpan_code}</span>
+              ${catBadge}
+            </div>
+            <div><strong>श्रेणी:</strong> ${school.category || 'Secondary/Sr.Sec'}</div>
+            <div><strong>PEEO परिक्षेत्र:</strong> ${school.peeo_name || '---'}</div>
+            ${submittedDetailsHtml}
+          </div>
+        </div>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem">
+          <button class="btn btn-primary btn-sm" onclick="openSamanSyllabusForm('${school.shala_darpan_code}')" style="flex:1; font-weight:700">
+            <i class="fas fa-edit"></i> ${isSub ? '✏️ पूर्णता % प्रपत्र में संशोधन' : '📝 पाठ्यक्रम पूर्णता % प्रपत्र भरें'}
+          </button>
+          ${isSub ? `
+            <button class="btn btn-success btn-sm" onclick="printSyllabusPdf('${school.shala_darpan_code}')" title="आधिकारिक प्रमाणित PDF देखें / प्रिंट करें" style="font-weight:700">
+              <i class="fas fa-print"></i> PDF प्रिंट
+            </button>
+          ` : ''}
         </div>
       `;
-    }
+      grid.appendChild(card);
+    } else {
+      // ---------------- ORIGINAL QUESTION PAPER INDENT VIEW ----------------
+      const sub = STATE.samanParikshaSubmissions[school.shala_darpan_code];
+      const isSubmitted = isSamanParikshaSubmitted(sub);
+      if (isSubmitted) submittedCount++;
 
-    card.innerHTML = `
-      <div>
-        <div class="sp-card-header">
-          <div class="sp-school-name">#${index + 1}. ${school.school_name}</div>
-          ${statusBadge}
-        </div>
-        <div class="sp-school-meta">
-          <div style="display:flex; justify-content:space-between; align-items:center">
-            <span><strong>शा.दा./PSP कोड:</strong> ${school.shala_darpan_code}</span>
-            ${catBadge}
+      const card = document.createElement('div');
+      card.className = `sp-school-card ${isSubmitted ? 'submitted' : 'pending'}`;
+
+      const statusBadge = isSubmitted
+        ? `<span class="sp-status-badge success"><i class="fas fa-check-circle"></i> ✓ डेटा सबमिट पूर्ण (${sub.grand_total} पेपर)</span>`
+        : `<span class="sp-status-badge danger"><i class="fas fa-exclamation-triangle"></i> ⚠️ प्रपत्र भरना शेष (अपूर्ण)</span>`;
+
+      let submittedDetailsHtml = '';
+      if (isSubmitted) {
+        const c11Sub = formatOptionalSubjectsSummary(sub.c11_optional);
+        const c12Sub = formatOptionalSubjectsSummary(sub.c12_optional);
+        submittedDetailsHtml = `
+          <div style="margin: 0.75rem 0;">
+            <div style="font-weight:700; color:#166534; font-size:0.82rem; margin-bottom:4px; display:flex; align-items:center; gap:0.4rem">
+              <i class="fas fa-check-circle text-success"></i> <strong>समान परीक्षा 2026-27 | भरा गया आधिकारिक डेटा विवरण:</strong>
+            </div>
+            <table class="sp-submitted-table">
+              <thead>
+                <tr>
+                  <th style="width:20%">कक्षा</th>
+                  <th style="width:25%">कुल विद्यार्थी</th>
+                  <th>तृतीय भाषा / अनिवार्य व ऐच्छिक विषय</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>9वीं</strong></td>
+                  <td style="font-weight:800; color:#1e40af">${sub.c9_total}</td>
+                  <td>संस्कृत: <strong>${sub.c9_sanskrit || 0}</strong> | उर्दू: <strong>${sub.c9_urdu || 0}</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>10वीं</strong></td>
+                  <td style="font-weight:800; color:#1e40af">${sub.c10_total}</td>
+                  <td>संस्कृत: <strong>${sub.c10_sanskrit || 0}</strong> | उर्दू: <strong>${sub.c10_urdu || 0}</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>11वीं</strong></td>
+                  <td style="font-weight:800; color:#1e40af">${sub.c11_total}</td>
+                  <td>हिंदी(${sub.c11_comp_hindi}), अंग्रेजी(${sub.c11_comp_english})${c11Sub ? `<br><span style="color:#0369a1">${c11Sub}</span>` : ''}</td>
+                </tr>
+                <tr>
+                  <td><strong>12वीं</strong></td>
+                  <td style="font-weight:800; color:#1e40af">${sub.c12_total}</td>
+                  <td>हिंदी(${sub.c12_comp_hindi}), अंग्रेजी(${sub.c12_comp_english})${c12Sub ? `<br><span style="color:#0369a1">${c12Sub}</span>` : ''}</td>
+                </tr>
+                <tr style="background:#f0fdf4; font-weight:800; color:#166534">
+                  <td>महायोग</td>
+                  <td style="font-size:0.95rem; color:#15803d">${sub.grand_total}</td>
+                  <td>प्रमाणित संस्था प्रधान: ${sub.principal_name || '---'} (मो. ${sub.principal_mobile || '---'})</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <div><strong>श्रेणी:</strong> ${school.category}</div>
-          <div><strong>परीक्षा कोड:</strong> ${sub?.exam_code ? `<span style="color:#2563eb; font-weight:800">${sub.exam_code}</span>` : '<span style="color:#94a3b8">दर्ज नहीं</span>'}</div>
-          ${submittedDetailsHtml}
+        `;
+      }
+
+      card.innerHTML = `
+        <div>
+          <div class="sp-card-header">
+            <div class="sp-school-name">#${index + 1}. ${school.school_name}</div>
+            ${statusBadge}
+          </div>
+          <div class="sp-school-meta">
+            <div style="display:flex; justify-content:space-between; align-items:center">
+              <span><strong>शा.दा./PSP कोड:</strong> ${school.shala_darpan_code}</span>
+              ${catBadge}
+            </div>
+            <div><strong>श्रेणी:</strong> ${school.category}</div>
+            <div><strong>परीक्षा कोड:</strong> ${sub?.exam_code ? `<span style="color:#2563eb; font-weight:800">${sub.exam_code}</span>` : '<span style="color:#94a3b8">दर्ज नहीं</span>'}</div>
+            ${submittedDetailsHtml}
+          </div>
         </div>
-      </div>
-      <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem">
-        <button class="btn btn-primary btn-sm" onclick="openSamanParikshaForm('${school.shala_darpan_code}')" style="flex:1; font-weight:700">
-          <i class="fas ${isSamanParikshaLockedForCurrentUser() ? 'fa-eye' : (isSubmitted ? 'fa-edit' : 'fa-file-signature')}"></i> ${isSamanParikshaLockedForCurrentUser() ? '👁️ प्रपत्र अवलोकन (View Data)' : (isSubmitted ? '✏️ प्रपत्र में संशोधन (Edit)' : '📝 Google Form प्रपत्र भरें')}
-        </button>
-        <a href="saman_form.html?code=${school.shala_darpan_code}" target="_blank" class="btn btn-outline-primary btn-sm" style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:700" title="नए पेज में खोलें (अलग टैब)">
-          <i class="fas fa-external-link-alt"></i> ${isSamanParikshaLockedForCurrentUser() ? 'अलग पेज (अवलोकन)' : (isSubmitted ? 'अलग पेज में एडिट' : 'अलग पेज')}
-        </a>
-        ${isSubmitted ? `
-          <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${school.shala_darpan_code}')" title="आधिकारिक प्रमाणित PDF देखें / प्रिंट करें" style="font-weight:700">
-            <i class="fas fa-print"></i> PDF प्रिंट
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem">
+          <button class="btn btn-primary btn-sm" onclick="openSamanParikshaForm('${school.shala_darpan_code}')" style="flex:1; font-weight:700">
+            <i class="fas ${isSamanParikshaLockedForCurrentUser() ? 'fa-eye' : (isSubmitted ? 'fa-edit' : 'fa-file-signature')}"></i> ${isSamanParikshaLockedForCurrentUser() ? '👁️ प्रपत्र अवलोकन (View Data)' : (isSubmitted ? '✏️ प्रपत्र में संशोधन (Edit)' : '📝 Google Form प्रपत्र भरें')}
           </button>
-        ` : ''}
-      </div>
-    `;
-    grid.appendChild(card);
+          <a href="saman_form.html?code=${school.shala_darpan_code}" target="_blank" class="btn btn-outline-primary btn-sm" style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:700" title="नए पेज में खोलें (अलग टैब)">
+            <i class="fas fa-external-link-alt"></i> ${isSamanParikshaLockedForCurrentUser() ? 'अलग पेज (अवलोकन)' : (isSubmitted ? 'अलग पेज में एडिट' : 'अलग पेज')}
+          </a>
+          ${isSubmitted ? `
+            <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${school.shala_darpan_code}')" title="आधिकारिक प्रमाणित PDF देखें / प्रिंट करें" style="font-weight:700">
+              <i class="fas fa-print"></i> PDF प्रिंट
+            </button>
+          ` : ''}
+        </div>
+      `;
+      grid.appendChild(card);
+    }
   });
 
   if (progressBadge) {
@@ -2340,25 +2738,45 @@ function renderSamanParikshaPeeoView() {
   }
 }
 
-
 function renderSamanParikshaAdminView() {
-  const totalSchools = STATE.schools56.length;
+  const isSyl = STATE.samanParikshaActiveForm === 'syllabus';
+  let targetSchools = STATE.schools56 || [];
+
+  const scopeFilter = STATE.samanParikshaSchoolTypeFilter || (isSyl ? 'govt_only' : 'both');
+  if (scopeFilter === 'govt_only') {
+    targetSchools = targetSchools.filter(s => s.type === 'Government');
+  } else if (scopeFilter === 'pvt_only') {
+    targetSchools = targetSchools.filter(s => s.type === 'Private');
+  }
+
+  const totalSchools = targetSchools.length;
   let submittedCount = 0;
   let totalPapers = 0;
+  let totalPctSum = 0;
   let govCount = 0;
   let pvtCount = 0;
 
-  STATE.schools56.forEach(s => {
+  targetSchools.forEach(s => {
     if (s.type === 'Government') govCount++;
     else if (s.type === 'Private') pvtCount++;
-    const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
-    if (isSamanParikshaSubmitted(sub)) {
-      submittedCount++;
-      totalPapers += (parseInt(sub.grand_total) || 0);
+
+    if (isSyl) {
+      const sylSub = STATE.samanSyllabusSubmissions ? STATE.samanSyllabusSubmissions[s.shala_darpan_code] : null;
+      if (sylSub && sylSub.is_submitted) {
+        submittedCount++;
+        totalPctSum += calculateSchoolSyllabusAverage(sylSub);
+      }
+    } else {
+      const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
+      if (isSamanParikshaSubmitted(sub)) {
+        submittedCount++;
+        totalPapers += (parseInt(sub.grand_total) || 0);
+      }
     }
   });
 
   const pendingCount = totalSchools - submittedCount;
+  const avgSyllabusPct = submittedCount > 0 ? Math.round(totalPctSum / submittedCount) : 0;
 
   const targetEl = document.getElementById('sp-admin-target-count');
   if (targetEl) targetEl.textContent = totalSchools;
@@ -2374,12 +2792,24 @@ function renderSamanParikshaAdminView() {
 
   document.getElementById('sp-admin-submitted-count').textContent = submittedCount;
   document.getElementById('sp-admin-pending-count').textContent = pendingCount;
-  document.getElementById('sp-admin-total-papers').textContent = totalPapers.toLocaleString('en-IN');
+  
+  const papersEl = document.getElementById('sp-admin-total-papers');
+  if (papersEl) {
+    if (isSyl) {
+      papersEl.textContent = `${avgSyllabusPct}%`;
+      const pLabel = papersEl.nextElementSibling;
+      if (pLabel) pLabel.textContent = 'औसत पाठ्यक्रम पूर्णता (9-12)';
+    } else {
+      papersEl.textContent = totalPapers.toLocaleString('en-IN');
+      const pLabel = papersEl.nextElementSibling;
+      if (pLabel) pLabel.textContent = 'कुल मांग प्रश्न-पत्र (9-12)';
+    }
+  }
 
   // Populate PEEO filter in admin view if empty
   const peeoSelect = document.getElementById('sp-peeo-filter');
   if (peeoSelect && peeoSelect.options.length <= 1) {
-    STATE.peeos.forEach(p => {
+    (STATE.peeos || []).forEach(p => {
       const opt = document.createElement('option');
       opt.value = p.peeo_name;
       opt.textContent = `${p.peeo_name} (${p.shala_darpan_code})`;
@@ -2391,6 +2821,7 @@ function renderSamanParikshaAdminView() {
 }
 
 function filterSamanParikshaTable() {
+  const isSyl = STATE.samanParikshaActiveForm === 'syllabus';
   const search = document.getElementById('sp-search-input')?.value.toLowerCase() || '';
   const catFilter = document.getElementById('sp-category-filter')?.value || 'all';
   const statusFilter = document.getElementById('sp-status-filter')?.value || 'all';
@@ -2400,9 +2831,62 @@ function filterSamanParikshaTable() {
   if (!tbody) return;
   tbody.innerHTML = '';
 
-  let filtered = STATE.schools56.filter(s => {
-    const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
-    const isSubmitted = isSamanParikshaSubmitted(sub);
+  // Synchronize table header according to form mode
+  const theadTr = tbody.closest('table')?.querySelector('thead tr');
+  if (theadTr) {
+    if (isSyl) {
+      theadTr.innerHTML = `
+        <th>क्र.</th>
+        <th>विद्यालय का नाम व कोड</th>
+        <th>प्रकार</th>
+        <th>संबंधित PEEO</th>
+        <th>संस्था प्रधान</th>
+        <th>संपर्क</th>
+        <th style="text-align:center">9वीं (7 विषय)</th>
+        <th style="text-align:center">10वीं (7 विषय)</th>
+        <th style="text-align:center">11वीं पूर्णता %</th>
+        <th style="text-align:center">12वीं पूर्णता %</th>
+        <th style="text-align:center">औसत %</th>
+        <th>स्थिति</th>
+        <th>कार्यवाही</th>
+      `;
+    } else {
+      theadTr.innerHTML = `
+        <th>क्र.</th>
+        <th>विद्यालय का नाम व शाला दर्पण कोड</th>
+        <th>प्रकार</th>
+        <th>संबंधित PEEO</th>
+        <th>स्कूल परीक्षा कोड</th>
+        <th>संस्था प्रधान</th>
+        <th>परीक्षा प्रभारी</th>
+        <th style="text-align:right">9वीं</th>
+        <th style="text-align:right">10वीं</th>
+        <th style="text-align:right">11वीं</th>
+        <th style="text-align:right">12वीं</th>
+        <th style="text-align:right">कुल योग</th>
+        <th>स्थिति</th>
+        <th>कार्यवाही (Action)</th>
+      `;
+    }
+  }
+
+  let baseSchools = STATE.schools56 || [];
+  const scopeFilter = STATE.samanParikshaSchoolTypeFilter || (isSyl ? 'govt_only' : 'both');
+  if (scopeFilter === 'govt_only') {
+    baseSchools = baseSchools.filter(s => s.type === 'Government');
+  } else if (scopeFilter === 'pvt_only') {
+    baseSchools = baseSchools.filter(s => s.type === 'Private');
+  }
+
+  let filtered = baseSchools.filter(s => {
+    let isSubmitted = false;
+    if (isSyl) {
+      const sylSub = STATE.samanSyllabusSubmissions ? STATE.samanSyllabusSubmissions[s.shala_darpan_code] : null;
+      isSubmitted = !!(sylSub && sylSub.is_submitted);
+    } else {
+      const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
+      isSubmitted = isSamanParikshaSubmitted(sub);
+    }
 
     if (catFilter !== 'all' && s.type !== catFilter) return false;
     if (statusFilter === 'submitted' && !isSubmitted) return false;
@@ -2410,14 +2894,15 @@ function filterSamanParikshaTable() {
     if (peeoFilter !== 'all' && !s.peeo_name.toLowerCase().includes(peeoFilter.toLowerCase())) return false;
 
     if (search) {
-      const text = `${s.school_name} ${s.shala_darpan_code} ${s.peeo_name} ${sub?.exam_code || s.exam_code || ''} ${sub?.principal_name || s.principal_name || ''}`.toLowerCase();
+      const text = `${s.school_name} ${s.shala_darpan_code} ${s.peeo_name} ${s.principal_name || ''}`.toLowerCase();
       if (!text.includes(search)) return false;
     }
 
     return true;
   });
 
-  document.getElementById('sp-table-count').textContent = `${filtered.length} विद्यालय`;
+  const tableCountEl = document.getElementById('sp-table-count');
+  if (tableCountEl) tableCountEl.textContent = `${filtered.length} विद्यालय`;
 
   if (filtered.length === 0) {
     tbody.innerHTML = '<tr><td colspan="14" style="text-align:center; padding:2rem; color:#64748b">कोई विद्यालय मैच नहीं हुआ।</td></tr>';
@@ -2425,61 +2910,385 @@ function filterSamanParikshaTable() {
   }
 
   filtered.forEach((s, idx) => {
-    const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
-    const isSub = isSamanParikshaSubmitted(sub);
+    const tr = document.createElement('tr');
+    const isGovt = s.type === 'Government';
+    const typeBadge = isGovt 
+      ? '<span style="background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:4px; font-size:0.75rem; font-weight:700">राजकीय</span>'
+      : '<span style="background:#fef3c7; color:#92400e; padding:2px 6px; border-radius:4px; font-size:0.75rem; font-weight:700">निजी</span>';
 
-    const hasSig = !!(sub?.signature_data || sub?.has_digital_signature);
+    if (isSyl) {
+      // Syllabus Completion Row
+      const sylSub = STATE.samanSyllabusSubmissions ? STATE.samanSyllabusSubmissions[s.shala_darpan_code] : null;
+      const isSub = !!(sylSub && sylSub.is_submitted);
+      const avgPct = isSub ? calculateSchoolSyllabusAverage(sylSub) : 0;
+      const c9 = sylSub?.c9 || {};
+      const c10 = sylSub?.c10 || {};
+      const c11 = sylSub?.c11 || {};
+      const c12 = sylSub?.c12 || {};
+
+      tr.innerHTML = `
+        <td>${idx + 1}</td>
+        <td>
+          <strong>${s.school_name}</strong>
+          <div style="font-size:0.75rem; color:#64748b">कोड: ${s.shala_darpan_code}</div>
+        </td>
+        <td>${typeBadge}</td>
+        <td>
+          <a href="javascript:void(0)" onclick="openPeeoConsolidatedPdfPreview('${s.peeo_name}')" style="font-weight:700; color:#1e3a8a; text-decoration:none">
+            ${s.peeo_name}
+          </a>
+        </td>
+        <td>${sylSub?.principal_name || s.principal_name || '---'}</td>
+        <td style="font-size:0.75rem; color:#64748b">${sylSub?.principal_mobile || s.principal_mobile || '---'}</td>
+        <td style="text-align:center; font-size:0.8rem">
+          ${isSub ? `हि: ${c9.hindi || 0}% | अं: ${c9.english || 0}%<br><span style="color:#0369a1; font-weight:700">सं: ${c9.sanskrit || 0}% | उ: ${c9.urdu || 0}%</span>` : '---'}
+        </td>
+        <td style="text-align:center; font-size:0.8rem">
+          ${isSub ? `हि: ${c10.hindi || 0}% | अं: ${c10.english || 0}%<br><span style="color:#0369a1; font-weight:700">सं: ${c10.sanskrit || 0}% | उ: ${c10.urdu || 0}%</span>` : '---'}
+        </td>
+        <td style="text-align:center; font-size:0.8rem">
+          ${isSub ? `हि: ${c11.comp_hindi || 0}%, अं: ${c11.comp_english || 0}%<br><span style="color:#047857">${(c11.electives || []).length} ऐच्छिक</span>` : '---'}
+        </td>
+        <td style="text-align:center; font-size:0.8rem">
+          ${isSub ? `हि: ${c12.comp_hindi || 0}%, अं: ${c12.comp_english || 0}%<br><span style="color:#047857">${(c12.electives || []).length} ऐच्छिक</span>` : '---'}
+        </td>
+        <td style="text-align:center; font-weight:800; color:#15803d; font-size:0.95rem">
+          ${isSub ? `${avgPct}%` : '---'}
+        </td>
+        <td>
+          ${isSub 
+            ? `<span class="status-badge" style="background:#dcfce7; color:#15803d">सबमिट पूर्ण</span>`
+            : '<span class="status-badge" style="background:#fee2e2; color:#b91c1c">लम्बित</span>'}
+        </td>
+        <td>
+          <div style="display:flex; gap:0.35rem; align-items:center">
+            <button class="btn btn-outline-primary btn-sm" onclick="openSamanSyllabusForm('${s.shala_darpan_code}')" title="पाठ्यक्रम पूर्णता प्रपत्र भरें / संपादित करें">
+              <i class="fas fa-edit"></i> प्रपत्र
+            </button>
+            ${isSub ? `
+              <button class="btn btn-success btn-sm" onclick="printSyllabusPdf('${s.shala_darpan_code}')" title="अधिकृत प्रमाणित PDF प्रिंट करें">
+                <i class="fas fa-print"></i> PDF
+              </button>
+            ` : ''}
+          </div>
+        </td>
+      `;
+    } else {
+      // Question Paper Indent Row
+      const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
+      const isSub = isSamanParikshaSubmitted(sub);
+      const isMismatch = isDemandSchoolMismatch('saman_pariksha_2026_27', s.shala_darpan_code);
+      const hasSig = !!(sub?.signature_data || sub?.has_digital_signature);
+
+      if (isMismatch) {
+        tr.style.background = '#fef2f2';
+        tr.style.borderLeft = '4px solid #ef4444';
+      } else if (isSub) {
+        tr.style.background = '#f0fdf4';
+        tr.style.borderLeft = '4px solid #16a34a';
+      }
+
+      tr.innerHTML = `
+        <td>${s.s_no || (idx + 1)}</td>
+        <td>
+          <strong>${s.school_name}</strong>
+          <div style="font-size:0.75rem; color:#64748b">कोड: ${s.shala_darpan_code}</div>
+        </td>
+        <td>${typeBadge}</td>
+        <td>
+          <a href="javascript:void(0)" onclick="openPeeoConsolidatedPdfPreview('${s.peeo_name}')" style="font-weight:700; color:#1e3a8a; text-decoration:none; display:inline-flex; align-items:center; gap:0.25rem" title="${s.peeo_name} की समेकित रिपोर्ट देखें व प्रिंट करें">
+            ${s.peeo_name} <i class="fas fa-file-invoice text-primary" style="font-size:0.8rem"></i>
+          </a>
+        </td>
+        <td style="font-weight:700; color:#2563eb">${sub?.exam_code || s.exam_code || '---'}</td>
+        <td>
+          <div>${sub?.principal_name || s.principal_name || '---'}</div>
+          <div style="font-size:0.75rem; color:#64748b">${sub?.principal_mobile || s.principal_mobile || ''}</div>
+        </td>
+        <td>
+          <div>${sub?.incharge_name || s.incharge_name || '---'}</div>
+          <div style="font-size:0.75rem; color:#64748b">${sub?.incharge_mobile || s.incharge_mobile || ''}</div>
+        </td>
+        <td style="text-align:right; font-weight:600">${isSub ? (sub.c9_total ?? 0) : '---'}</td>
+        <td style="text-align:right; font-weight:600">${isSub ? (sub.c10_total ?? 0) : '---'}</td>
+        <td style="text-align:right; font-weight:600">${isSub ? (sub.c11_total ?? 0) : '---'}</td>
+        <td style="text-align:right; font-weight:600">${isSub ? (sub.c12_total ?? 0) : '---'}</td>
+        <td style="text-align:right; font-weight:800; color:#15803d">${isSub ? (sub.grand_total ?? 0) : '---'}</td>
+        <td>
+          ${isMismatch
+            ? `<span class="status-badge" style="background:#fee2e2; color:#991b1b; font-weight:800; border:1px solid #f87171"><i class="fas fa-exclamation-triangle"></i> 🚨 मिसमैच (अनलॉक)</span>`
+            : (isSub 
+              ? `<span class="status-badge" style="background:#dcfce7; color:#15803d; font-weight:700; border:1px solid #86efac" title="${hasSig ? 'डिजिटल हस्ताक्षर सहित सबमिट' : 'सबमिट पूर्ण'}">✓ मान्य ${hasSig ? '🖋️' : ''}</span>`
+              : '<span class="status-badge" style="background:#fee2e2; color:#b91c1c">लम्बित</span>')}
+          ${((STATE.samanMismatchSettings && STATE.samanMismatchSettings.custom_edit_schools) || []).some(c => String(c).trim() === String(s.shala_darpan_code).trim())
+            ? `<div style="margin-top:3px"><span class="sp-custom-edit-active-tag" title="कस्टम एडिट खुला"><i class="fas fa-unlock-alt"></i> कस्टम एडिट</span></div>`
+            : ''}
+          ${STATE.samanMismatchSettings && STATE.samanMismatchSettings.mismatch_details && STATE.samanMismatchSettings.mismatch_details[s.shala_darpan_code]
+            ? `<div style="margin-top:2px"><span style="font-size:0.7rem; font-weight:800; color:#dc2626; background:#fee2e2; padding:1px 5px; border-radius:4px" title="शाला दर्पण से मिसमैच">मिसमैच (${STATE.samanMismatchSettings.mismatch_details[s.shala_darpan_code].diff > 0 ? '+' : ''}${STATE.samanMismatchSettings.mismatch_details[s.shala_darpan_code].diff})</span></div>`
+            : ''}
+        </td>
+        <td>
+          <div style="display:flex; gap:0.35rem; align-items:center">
+            <button class="btn btn-warning btn-sm" onclick="openDemandMismatchInspector('saman_pariksha_2026_27', '${s.shala_darpan_code}')" title="मिसमैच फील्ड निरीक्षण, चेकमार्क व ईमेल+टेलीग्राम अलर्ट" style="background:#f59e0b; color:#fff; border:none; font-weight:700">
+              <i class="fas fa-flag"></i>
+            </button>
+            <button class="btn btn-outline-light btn-sm" onclick="openSamanParikshaForm('${s.shala_darpan_code}')" title="प्रपत्र भरें / संपादित करें">
+              <i class="fas fa-edit"></i>
+            </button>
+            <a href="saman_form.html?code=${s.shala_darpan_code}" target="_blank" class="btn btn-outline-light btn-sm" title="नए पेज में खोलें (अलग टैब)">
+              <i class="fas fa-external-link-alt"></i>
+            </a>
+            <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${s.shala_darpan_code}')" title="अधिकृत A4 PDF देखें व प्रिंट करें">
+              <i class="fas fa-print"></i>
+            </button>
+            ${!isSub ? `
+              <button class="btn btn-whatsapp btn-sm" onclick="sendSamanParikshaReminder('${s.shala_darpan_code}')" title="WhatsApp पर तुरंत रिमाइंडर भेजें">
+                <i class="fab fa-whatsapp"></i>
+              </button>
+            ` : ''}
+          </div>
+        </td>
+      `;
+    }
+    tbody.appendChild(tr);
+  });
+}
+
+/* ========================================================
+   SAMAN PARIKSHA DUAL-MODE CONTROLS & SYLLABUS COMPLETION % ENGINE
+   ======================================================== */
+
+function switchSamanActiveForm(formType) {
+  STATE.samanParikshaActiveForm = formType;
+  const scopeDropdown = document.getElementById('sp-school-type-filter');
+
+  if (formType === 'syllabus') {
+    // When switching to syllabus completion % demand, automatically filter to 49 Govt schools
+    // because private schools are excluded as per user instructions
+    STATE.samanParikshaSchoolTypeFilter = 'govt_only';
+    if (scopeDropdown) scopeDropdown.value = 'govt_only';
+    showToast('नवीन पाठ्यक्रम पूर्णता % मांग (49 राजकीय विद्यालय) सक्रिय हो गई!', 'info');
+  } else {
+    showToast('मूल प्रश्न-पत्र मांग (57 विद्यालय) सक्रिय हो गई!', 'info');
+  }
+
+  renderSamanParikshaView();
+}
+
+function onSamanSchoolTypeFilterChange(val) {
+  STATE.samanParikshaSchoolTypeFilter = val;
+  renderSamanParikshaView();
+}
+
+function openSaman6LevelControlModal() {
+  const tabVis = (STATE.tabVisibility6Level && STATE.tabVisibility6Level['saman-pariksha']) ||
+    (DEFAULT_TAB_VISIBILITY_6LEVEL && DEFAULT_TAB_VISIBILITY_6LEVEL['saman-pariksha']) ||
+    { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: false, all_schools: false };
+
+  const editPerm = (STATE.editPermissions6Level && STATE.editPermissions6Level['saman_pariksha']) ||
+    (DEFAULT_EDIT_PERMISSIONS_6LEVEL && DEFAULT_EDIT_PERMISSIONS_6LEVEL['saman_pariksha']) ||
+    { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: false, all_schools: false };
+
+  // Set View Checkboxes
+  if (document.getElementById('sp-ctl-vis-cbeo')) document.getElementById('sp-ctl-vis-cbeo').checked = !!tabVis.cbeo;
+  if (document.getElementById('sp-ctl-vis-peeo')) document.getElementById('sp-ctl-vis-peeo').checked = !!tabVis.peeo;
+  if (document.getElementById('sp-ctl-vis-govt-sec')) document.getElementById('sp-ctl-vis-govt-sec').checked = !!tabVis.govt_sec_srsec;
+  if (document.getElementById('sp-ctl-vis-pvt-sec')) document.getElementById('sp-ctl-vis-pvt-sec').checked = !!tabVis.pvt_sec_srsec;
+  if (document.getElementById('sp-ctl-vis-all-govt')) document.getElementById('sp-ctl-vis-all-govt').checked = !!tabVis.all_govt;
+  if (document.getElementById('sp-ctl-vis-all-schools')) document.getElementById('sp-ctl-vis-all-schools').checked = !!tabVis.all_schools;
+
+  // Set Edit Checkboxes
+  if (document.getElementById('sp-ctl-edit-cbeo')) document.getElementById('sp-ctl-edit-cbeo').checked = !!editPerm.cbeo;
+  if (document.getElementById('sp-ctl-edit-peeo')) document.getElementById('sp-ctl-edit-peeo').checked = !!editPerm.peeo;
+  if (document.getElementById('sp-ctl-edit-govt-sec')) document.getElementById('sp-ctl-edit-govt-sec').checked = !!editPerm.govt_sec_srsec;
+  if (document.getElementById('sp-ctl-edit-pvt-sec')) document.getElementById('sp-ctl-edit-pvt-sec').checked = !!editPerm.pvt_sec_srsec;
+  if (document.getElementById('sp-ctl-edit-all-govt')) document.getElementById('sp-ctl-edit-all-govt').checked = !!editPerm.all_govt;
+  if (document.getElementById('sp-ctl-edit-all-schools')) document.getElementById('sp-ctl-edit-all-schools').checked = !!editPerm.all_schools;
+
+  // Set Active Form Radio
+  const radIndent = document.getElementById('sp-rad-form-indent');
+  const radSyl = document.getElementById('sp-rad-form-syllabus');
+  if (STATE.samanParikshaActiveForm === 'syllabus') {
+    if (radSyl) radSyl.checked = true;
+  } else {
+    if (radIndent) radIndent.checked = true;
+  }
+
+  showModal('modal-saman-6level-controls');
+}
+
+function saveSaman6LevelControls() {
+  if (!STATE.tabVisibility6Level) STATE.tabVisibility6Level = JSON.parse(JSON.stringify(DEFAULT_TAB_VISIBILITY_6LEVEL));
+  if (!STATE.editPermissions6Level) STATE.editPermissions6Level = JSON.parse(JSON.stringify(DEFAULT_EDIT_PERMISSIONS_6LEVEL));
+
+  const visCbeo = !!document.getElementById('sp-ctl-vis-cbeo')?.checked;
+  const visPeeo = !!document.getElementById('sp-ctl-vis-peeo')?.checked;
+  const visGovtSec = !!document.getElementById('sp-ctl-vis-govt-sec')?.checked;
+  const visPvtSec = !!document.getElementById('sp-ctl-vis-pvt-sec')?.checked;
+  const visAllGovt = !!document.getElementById('sp-ctl-vis-all-govt')?.checked;
+  const visAll = !!document.getElementById('sp-ctl-vis-all-schools')?.checked;
+
+  STATE.tabVisibility6Level['saman-pariksha'] = {
+    cbeo: visCbeo,
+    peeo: visPeeo,
+    govt_sec_srsec: visGovtSec,
+    pvt_sec_srsec: visPvtSec,
+    sec_srsec: visGovtSec || visPvtSec,
+    all_govt: visAllGovt,
+    all_schools: visAll
+  };
+
+  const editCbeo = !!document.getElementById('sp-ctl-edit-cbeo')?.checked;
+  const editPeeo = !!document.getElementById('sp-ctl-edit-peeo')?.checked;
+  const editGovtSec = !!document.getElementById('sp-ctl-edit-govt-sec')?.checked;
+  const editPvtSec = !!document.getElementById('sp-ctl-edit-pvt-sec')?.checked;
+  const editAllGovt = !!document.getElementById('sp-ctl-edit-all-govt')?.checked;
+  const editAll = !!document.getElementById('sp-ctl-edit-all-schools')?.checked;
+
+  STATE.editPermissions6Level['saman_pariksha'] = {
+    cbeo: editCbeo,
+    peeo: editPeeo,
+    govt_sec_srsec: editGovtSec,
+    pvt_sec_srsec: editPvtSec,
+    sec_srsec: editGovtSec || editPvtSec,
+    all_govt: editAllGovt,
+    all_schools: editAll
+  };
+
+  localStorage.setItem('cbeo_tab_visibility_6level', JSON.stringify(STATE.tabVisibility6Level));
+  localStorage.setItem('cbeo_edit_permissions_6level', JSON.stringify(STATE.editPermissions6Level));
+
+  fetch('/api/save_tab_visibility_6level', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(STATE.tabVisibility6Level)
+  }).catch(() => {});
+
+  fetch('/api/save_edit_permissions_6level', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(STATE.editPermissions6Level)
+  }).catch(() => {});
+
+  const isSylSelected = !!document.getElementById('sp-rad-form-syllabus')?.checked;
+  switchSamanActiveForm(isSylSelected ? 'syllabus' : 'indent');
+
+  closeModal('modal-saman-6level-controls');
+  showToast('समान परीक्षा 6-स्तरीय प्रपत्र व दृश्यता नियंत्रण सुरक्षित!', 'success');
+  renderApp();
+}
+
+function onSamanModalRadioFormChange(val) {
+  // Radio change helper
+}
+
+/* ========================================================
+   SAMAN PARIKSHA CUSTOM EDIT & MISMATCH LOGIN ALERT SYSTEM
+   ======================================================== */
+
+const DEFAULT_SAMAN_MISMATCH_SETTINGS = {
+  alert_active: true,
+  alert_title: '🚨 अति-आवश्यक: समान परीक्षा मांग - नामांकन मिसमैच सूचना',
+  alert_message: 'मान्यवर संस्था प्रधान, आपके विद्यालय द्वारा समान परीक्षा 2026-27 के मांग प्रपत्र में भरा गया कुल नामांकन शाला दर्पण के वास्तविक नामांकन से भिन्न (मिसमैच) पाया गया है।\n\nकार्यालय CBEO भिनाय द्वारा आपके विद्यालय के लिए मांग प्रपत्र में संशोधन (Custom Edit) की विशेष सुविधा खोल दी गई है। कृपया तुरंत मांग पत्रक में सुधार कर पुनः सबमिट करें।',
+  custom_edit_schools: [
+    '221780',
+    '221778',
+    '221758',
+    '221761',
+    '221772',
+    '221756'
+  ],
+  mismatch_details: {
+    '221780': { school_name: 'GOVT. SENIOR SECONDARY SCHOOL BHINAI', portal_total: 411, sd_total: 401, diff: 10, portal_c9_10: 232, portal_c11_12: 179, sd_c9_10: 223, sd_c11_12: 178 },
+    '221778': { school_name: 'MAHATMA GANDHI GOVT. SCHOOL BHINAI', portal_total: 87, sd_total: 86, diff: 1, portal_c9_10: 44, portal_c11_12: 43, sd_c9_10: 44, sd_c11_12: 42 },
+    '221758': { school_name: 'GOVT. SENIOR SECONDARY SCHOOL CHAPANERI', portal_total: 175, sd_total: 174, diff: 1, portal_c9_10: 116, portal_c11_12: 59, sd_c9_10: 115, sd_c11_12: 59 },
+    '221761': { school_name: 'GOVT. SENIOR SECONDARY SCHOOL NIMEDA', portal_total: 94, sd_total: 92, diff: 2, portal_c9_10: 55, portal_c11_12: 39, sd_c9_10: 55, sd_c11_12: 37 },
+    '221772': { school_name: 'GOVT. SENIOR SECONDARY SCHOOL NAGOLA', portal_total: 223, sd_total: 222, diff: 1, portal_c9_10: 133, portal_c11_12: 90, sd_c9_10: 132, sd_c11_12: 90 },
+    '221756': { school_name: 'GOVT. SENIOR SECONDARY SCHOOL NANDSI', portal_total: 98, sd_total: 92, diff: 6, portal_c9_10: 59, portal_c11_12: 39, sd_c9_10: 55, sd_c11_12: 37 }
+  }
+};
+
+function getSamanMismatchConfig() {
+  if (!STATE.samanMismatchSettings) {
+    try {
+      const sto = localStorage.getItem('cbeo_saman_mismatch_settings');
+      STATE.samanMismatchSettings = sto ? JSON.parse(sto) : JSON.parse(JSON.stringify(DEFAULT_SAMAN_MISMATCH_SETTINGS));
+    } catch(e) {
+      STATE.samanMismatchSettings = JSON.parse(JSON.stringify(DEFAULT_SAMAN_MISMATCH_SETTINGS));
+    }
+  }
+  return STATE.samanMismatchSettings;
+}
+
+function openSamanCustomEditModal() {
+  const cfg = getSamanMismatchConfig();
+  
+  const chkActive = document.getElementById('sp-cfg-alert-active');
+  const txtTitle = document.getElementById('sp-cfg-alert-title');
+  const txtMsg = document.getElementById('sp-cfg-alert-message');
+
+  if (chkActive) chkActive.checked = cfg.alert_active !== false;
+  if (txtTitle) txtTitle.value = cfg.alert_title || DEFAULT_SAMAN_MISMATCH_SETTINGS.alert_title;
+  if (txtMsg) txtMsg.value = cfg.alert_message || DEFAULT_SAMAN_MISMATCH_SETTINGS.alert_message;
+
+  renderSamanMismatchTable();
+  showModal('modal-saman-custom-edit');
+}
+
+function renderSamanMismatchTable() {
+  const tbody = document.getElementById('sp-mismatch-schools-tbody');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+
+  const cfg = getSamanMismatchConfig();
+  const details = cfg.mismatch_details || DEFAULT_SAMAN_MISMATCH_SETTINGS.mismatch_details;
+  const customSchools = cfg.custom_edit_schools || [];
+
+  const allCodes = Array.from(new Set([...Object.keys(details), ...customSchools]));
+
+  allCodes.forEach(code => {
+    const item = details[code] || {};
+    const sch = (STATE.schools56 || []).find(s => String(s.shala_darpan_code).trim() === String(code).trim());
+    const schoolName = item.school_name || sch?.school_name || `विद्यालय (कोड: ${code})`;
+    const portalTot = item.portal_total ?? '--';
+    const sdTot = item.sd_total ?? '--';
+    const diff = item.diff !== undefined ? (item.diff > 0 ? `+${item.diff}` : item.diff) : '--';
+    const isAllowed = customSchools.some(c => String(c).trim() === String(code).trim());
 
     const tr = document.createElement('tr');
+    tr.style.background = isAllowed ? '#f0fdf4' : '#ffffff';
+    tr.style.borderBottom = '1px solid #e2e8f0';
+
     tr.innerHTML = `
-      <td>${s.s_no}</td>
-      <td>
-        <strong>${s.school_name}</strong>
-        <div style="font-size:0.75rem; color:#64748b">कोड: ${s.shala_darpan_code}</div>
+      <td style="padding:8px 10px; font-weight:800; font-family:monospace; color:#1e3a8a">${code}</td>
+      <td style="padding:8px 10px">
+        <strong>${schoolName}</strong>
+        ${item.portal_c9_10 !== undefined ? `<div style="font-size:0.72rem; color:#64748b">कक्षा 9-10: ${item.portal_c9_10} (SD: ${item.sd_c9_10}) | 11-12: ${item.portal_c11_12} (SD: ${item.sd_c11_12})</div>` : ''}
       </td>
-      <td>
-        ${s.type === 'Government' 
-          ? '<span style="background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:4px; font-size:0.75rem; font-weight:700">राजकीय</span>'
-          : '<span style="background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:4px; font-size:0.75rem; font-weight:700">निजी</span>'}
+      <td style="padding:8px 10px; text-align:center; font-weight:700; color:#b91c1c">${portalTot}</td>
+      <td style="padding:8px 10px; text-align:center; font-weight:700; color:#15803d">${sdTot}</td>
+      <td style="padding:8px 10px; text-align:center">
+        <span style="font-weight:900; color:#dc2626; background:#fee2e2; padding:2px 8px; border-radius:6px; font-size:0.85rem">
+          ${diff}
+        </span>
       </td>
-      <td>
-        <a href="javascript:void(0)" onclick="openPeeoConsolidatedPdfPreview('${s.peeo_name}')" style="font-weight:700; color:#1e3a8a; text-decoration:none; display:inline-flex; align-items:center; gap:0.25rem" title="${s.peeo_name} की समेकित रिपोर्ट देखें व प्रिंट करें">
-          ${s.peeo_name} <i class="fas fa-file-invoice text-primary" style="font-size:0.8rem"></i>
-        </a>
+      <td style="padding:8px 10px; text-align:center">
+        <label class="login-perm-switch" style="vertical-align:middle" title="कस्टम संपादन अनुमति ऑन/ऑफ करें">
+          <input type="checkbox" id="chk-cust-edit-${code}" ${isAllowed ? 'checked' : ''} onchange="toggleSchoolCustomEdit('${code}', this.checked)">
+          <span class="login-perm-slider"></span>
+        </label>
+        <span style="font-size:0.75rem; font-weight:700; margin-left:6px; color:${isAllowed ? '#15803d' : '#94a3b8'}">
+          ${isAllowed ? 'खुला' : 'बंद'}
+        </span>
       </td>
-      <td style="font-weight:700; color:#2563eb">${sub?.exam_code || s.exam_code || '---'}</td>
-      <td>
-        <div>${sub?.principal_name || s.principal_name || '---'}</div>
-        <div style="font-size:0.75rem; color:#64748b">${sub?.principal_mobile || s.principal_mobile || ''}</div>
-      </td>
-      <td>
-        <div>${sub?.incharge_name || s.incharge_name || '---'}</div>
-        <div style="font-size:0.75rem; color:#64748b">${sub?.incharge_mobile || s.incharge_mobile || ''}</div>
-      </td>
-      <td style="text-align:right; font-weight:600">${isSub ? (sub.c9_total ?? 0) : '---'}</td>
-      <td style="text-align:right; font-weight:600">${isSub ? (sub.c10_total ?? 0) : '---'}</td>
-      <td style="text-align:right; font-weight:600">${isSub ? (sub.c11_total ?? 0) : '---'}</td>
-      <td style="text-align:right; font-weight:600">${isSub ? (sub.c12_total ?? 0) : '---'}</td>
-      <td style="text-align:right; font-weight:800; color:#15803d">${isSub ? (sub.grand_total ?? 0) : '---'}</td>
-      <td>
-        ${isSub 
-          ? `<span class="status-badge" style="background:#dcfce7; color:#15803d" title="${hasSig ? 'डिजिटल हस्ताक्षर सहित सबमिट' : 'सबमिट पूर्ण'}">सबमिट ${hasSig ? '🖋️' : ''}</span>`
-          : '<span class="status-badge" style="background:#e0f2fe; color:#0369a1">लम्बित</span>'}
-      </td>
-      <td>
-        <div style="display:flex; gap:0.35rem; align-items:center">
-          <button class="btn btn-outline-light btn-sm" onclick="openSamanParikshaForm('${s.shala_darpan_code}')" title="प्रपत्र भरें / संपादित करें">
+      <td style="padding:8px 10px; text-align:center">
+        <div style="display:inline-flex; gap:4px">
+          <button type="button" class="btn btn-sm btn-outline-primary" onclick="openSamanParikshaForm('${code}')" title="इस विद्यालय का प्रपत्र खोलें">
             <i class="fas fa-edit"></i>
           </button>
-          <a href="saman_form.html?code=${s.shala_darpan_code}" target="_blank" class="btn btn-outline-light btn-sm" title="नए पेज में खोलें (अलग टैब)">
-            <i class="fas fa-external-link-alt"></i>
-          </a>
-          <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${s.shala_darpan_code}')" title="अधिकृत A4 PDF देखें व प्रिंट करें">
-            <i class="fas fa-print"></i>
-          </button>
-          ${!isSub ? `
-            <button class="btn btn-whatsapp btn-sm" onclick="sendSamanParikshaReminder('${s.shala_darpan_code}')" title="WhatsApp पर तुरंत रिमाइंडर भेजें">
-              <i class="fab fa-whatsapp"></i>
+          ${!details[code] ? `
+            <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeSchoolFromCustomEditList('${code}')" title="सूची से हटाएं">
+              <i class="fas fa-trash"></i>
             </button>
           ` : ''}
         </div>
@@ -2487,6 +3296,642 @@ function filterSamanParikshaTable() {
     `;
     tbody.appendChild(tr);
   });
+}
+
+function toggleSchoolCustomEdit(schoolCode, isChecked) {
+  const cfg = getSamanMismatchConfig();
+  if (!cfg.custom_edit_schools) cfg.custom_edit_schools = [];
+  const sCode = String(schoolCode).trim();
+
+  if (isChecked) {
+    if (!cfg.custom_edit_schools.includes(sCode)) cfg.custom_edit_schools.push(sCode);
+  } else {
+    cfg.custom_edit_schools = cfg.custom_edit_schools.filter(c => String(c).trim() !== sCode);
+  }
+
+  renderSamanMismatchTable();
+}
+
+function toggleAllMismatchCustomEdit(enableAll) {
+  const cfg = getSamanMismatchConfig();
+  const details = cfg.mismatch_details || DEFAULT_SAMAN_MISMATCH_SETTINGS.mismatch_details;
+  const mismatchCodes = Object.keys(details);
+
+  if (enableAll) {
+    cfg.custom_edit_schools = Array.from(new Set([...(cfg.custom_edit_schools || []), ...mismatchCodes]));
+    showToast('सभी 6 मिसमैच विद्यालयों को कस्टम एडिट अनुमति प्रदान की गई!', 'success');
+  } else {
+    cfg.custom_edit_schools = (cfg.custom_edit_schools || []).filter(c => !mismatchCodes.includes(c));
+    showToast('सभी मिसमैच विद्यालयों की कस्टम एडिट अनुमति बंद की गई!', 'info');
+  }
+
+  renderSamanMismatchTable();
+}
+
+function addSchoolToCustomEditList() {
+  const inp = document.getElementById('sp-add-custom-school-code');
+  const code = inp ? inp.value.trim() : '';
+  if (!code) {
+    showToast('कृपया वैध शाला दर्पण कोड दर्ज करें!', 'warning');
+    return;
+  }
+
+  const sch = (STATE.schools56 || []).find(s => String(s.shala_darpan_code).trim() === code);
+  if (!sch) {
+    showToast(`कोड '${code}' वाला विद्यालय मास्टर सूची में नहीं मिला, फिर भी अनुमति सूची में जोड़ा गया।`, 'info');
+  }
+
+  const cfg = getSamanMismatchConfig();
+  if (!cfg.custom_edit_schools) cfg.custom_edit_schools = [];
+  if (!cfg.custom_edit_schools.includes(code)) {
+    cfg.custom_edit_schools.push(code);
+  }
+
+  if (inp) inp.value = '';
+  renderSamanMismatchTable();
+  showToast(`विद्यालय '${code}' कस्टम संपादन सूची में जोड़ दिया गया!`, 'success');
+}
+
+function removeSchoolFromCustomEditList(schoolCode) {
+  const cfg = getSamanMismatchConfig();
+  cfg.custom_edit_schools = (cfg.custom_edit_schools || []).filter(c => String(c).trim() !== String(schoolCode).trim());
+  renderSamanMismatchTable();
+  showToast(`विद्यालय '${schoolCode}' सूची से हटा दिया गया!`, 'info');
+}
+
+function saveSamanMismatchSettings() {
+  const cfg = getSamanMismatchConfig();
+  const chkActive = document.getElementById('sp-cfg-alert-active');
+  const txtTitle = document.getElementById('sp-cfg-alert-title');
+  const txtMsg = document.getElementById('sp-cfg-alert-message');
+
+  if (chkActive) cfg.alert_active = !!chkActive.checked;
+  if (txtTitle) cfg.alert_title = txtTitle.value.trim() || DEFAULT_SAMAN_MISMATCH_SETTINGS.alert_title;
+  if (txtMsg) cfg.alert_message = txtMsg.value.trim() || DEFAULT_SAMAN_MISMATCH_SETTINGS.alert_message;
+
+  STATE.samanMismatchSettings = cfg;
+  localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(cfg));
+
+  fetch('/api/save_saman_mismatch_settings', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ settings: cfg })
+  }).catch(err => console.warn('Save mismatch settings local err:', err));
+
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
+  if (gasUrl) {
+    try {
+      fetch(gasUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'updatePassword',
+          user_id: '__SAMAN_MISMATCH_SETTINGS__',
+          role: 'System_Config',
+          name: 'Saman Pariksha Mismatch Custom Edit & Alert Settings',
+          new_password: JSON.stringify(cfg)
+        })
+      }).catch(err => console.warn('Save mismatch sheet sync err:', err));
+    } catch(e) {}
+  }
+
+  closeModal('modal-saman-custom-edit');
+  showToast('समान परीक्षा मिसमैच व कस्टम एडिट सेटिंग्स सुरक्षित हो गईं!', 'success');
+  renderSamanParikshaView();
+}
+
+function checkAndShowSamanMismatchAlert(userObj) {
+  if (!userObj || userObj.role === 'admin') return;
+  const cfg = getSamanMismatchConfig();
+  if (!cfg || cfg.alert_active === false) return;
+
+  const uCode = String(userObj.shala_darpan_code).trim();
+  const details = cfg.mismatch_details || DEFAULT_SAMAN_MISMATCH_SETTINGS.mismatch_details;
+  const customSchools = cfg.custom_edit_schools || [];
+
+  // Check if this school or PEEO has mismatch
+  let targetCode = null;
+  if (details[uCode] || customSchools.includes(uCode)) {
+    targetCode = uCode;
+  } else if (userObj.role === 'peeo' && userObj.schools) {
+    const match = userObj.schools.find(s => {
+      const sCode = String(s.shala_darpan_code || s.dise_code).trim();
+      return details[sCode] || customSchools.includes(sCode);
+    });
+    if (match) targetCode = String(match.shala_darpan_code || match.dise_code).trim();
+  }
+
+  if (!targetCode) return;
+
+  const mismatchInfo = details[targetCode] || null;
+  const portalTotal = mismatchInfo ? mismatchInfo.portal_total : 0;
+  const sdTotal = mismatchInfo ? mismatchInfo.sd_total : 0;
+  const diffVal = mismatchInfo ? mismatchInfo.diff : 0;
+
+  const schObj = (STATE.schools56 || []).find(s => String(s.shala_darpan_code).trim() === targetCode);
+  const schoolName = mismatchInfo?.school_name || schObj?.school_name || userObj.school_name || userObj.peeo_name || targetCode;
+
+  window._currentMismatchAlertSchoolCode = targetCode;
+
+  const titleElem = document.getElementById('sp-alert-modal-title');
+  const nameElem = document.getElementById('sp-alert-school-name');
+  const codeElem = document.getElementById('sp-alert-school-code');
+  const pTotElem = document.getElementById('sp-alert-portal-total');
+  const sdTotElem = document.getElementById('sp-alert-sd-total');
+  const diffElem = document.getElementById('sp-alert-diff-total');
+  const msgElem = document.getElementById('sp-alert-modal-message');
+
+  if (titleElem) titleElem.innerHTML = `<i class="fas fa-exclamation-triangle sp-mismatch-blinking-text"></i> ${cfg.alert_title || DEFAULT_SAMAN_MISMATCH_SETTINGS.alert_title}`;
+  if (nameElem) nameElem.textContent = schoolName;
+  if (codeElem) codeElem.textContent = targetCode;
+  if (pTotElem) pTotElem.textContent = portalTotal || '--';
+  if (sdTotElem) sdTotElem.textContent = sdTotal || '--';
+  if (diffElem) diffElem.textContent = diffVal ? (diffVal > 0 ? `+${diffVal}` : `${diffVal}`) : 'मिसमैच';
+
+  let msgText = cfg.alert_message || DEFAULT_SAMAN_MISMATCH_SETTINGS.alert_message;
+  msgText = msgText
+    .replace(/{school_name}/g, schoolName)
+    .replace(/{school_code}/g, targetCode)
+    .replace(/{portal_total}/g, portalTotal)
+    .replace(/{sd_total}/g, sdTotal)
+    .replace(/{diff}/g, diffVal > 0 ? `+${diffVal}` : diffVal);
+
+  if (msgElem) msgElem.textContent = msgText;
+
+  showModal('modal-saman-mismatch-login-alert');
+}
+
+function proceedToEditFromMismatchAlert() {
+  closeModal('modal-saman-mismatch-login-alert');
+  const codeToOpen = window._currentMismatchAlertSchoolCode || STATE.currentUser?.shala_darpan_code;
+  const demandId = window._currentMismatchAlertDemandId;
+  if (!codeToOpen) return;
+
+  if (demandId && demandId !== 'saman_pariksha_2026_27' && !String(demandId).toLowerCase().includes('saman_pariksha')) {
+    switchTab('dynamic-demand', demandId);
+    setTimeout(() => {
+      openFillDemandForSchoolModal(demandId, codeToOpen);
+    }, 250);
+  } else {
+    switchTab('saman-pariksha');
+    setTimeout(() => {
+      openSamanParikshaForm(codeToOpen);
+    }, 200);
+  }
+}
+window.proceedToEditFromMismatchAlert = proceedToEditFromMismatchAlert;
+
+window.onDefaultPwdAlertDismissed = function() {
+  if (STATE.currentUser && STATE.currentUser.role !== 'admin') {
+    setTimeout(() => {
+      checkAndShowAllMismatchAlerts(STATE.currentUser);
+    }, 300);
+  }
+};
+
+const STANDARD_ELECTIVE_SUBJECTS = [
+  'राजनीति विज्ञान', 'इतिहास', 'भूगोल', 'हिन्दी साहित्य', 'अंग्रेजी साहित्य', 
+  'संस्कृत साहित्य', 'उर्दू साहित्य', 'भौतिक विज्ञान', 'रसायन विज्ञान', 
+  'जीव विज्ञान', 'गणित', 'लेखाशास्त्र', 'व्यवसाय अध्ययन', 'अर्थशास्त्र', 
+  'गृह विज्ञान', 'चित्रकला', 'कम्प्यूटर विज्ञान'
+];
+
+function addSyllabusElectiveRow(classKey, defaultName = '', defaultPct = '') {
+  const container = document.getElementById(`syl-${classKey}-electives-container`);
+  if (!container) return;
+
+  const row = document.createElement('div');
+  row.className = 'syl-elective-row';
+  row.style.cssText = 'display:flex; align-items:center; gap:0.4rem; background:#ffffff; padding:6px 10px; border-radius:6px; border:1px solid #cbd5e1';
+
+  let optionsHtml = `<option value="">-- विषय चुनें --</option>`;
+  STANDARD_ELECTIVE_SUBJECTS.forEach(s => {
+    const sel = (s === defaultName) ? 'selected' : '';
+    optionsHtml += `<option value="${s}" ${sel}>${s}</option>`;
+  });
+  if (defaultName && !STANDARD_ELECTIVE_SUBJECTS.includes(defaultName)) {
+    optionsHtml += `<option value="${defaultName}" selected>${defaultName}</option>`;
+  }
+
+  row.innerHTML = `
+    <select class="form-control syl-elec-name" style="flex:2; font-size:0.8rem; font-weight:700; padding:4px 6px">
+      ${optionsHtml}
+    </select>
+    <div style="display:flex; align-items:center; gap:2px; flex:1">
+      <input type="number" min="0" max="100" class="form-control syl-elec-pct" value="${defaultPct !== undefined ? defaultPct : ''}" placeholder="%" style="font-size:0.8rem; font-weight:700; text-align:center; padding:4px">
+      <span style="font-size:0.75rem; font-weight:700">%</span>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-danger" onclick="this.closest('.syl-elective-row').remove()" style="padding:2px 6px; font-size:0.75rem" title="हटाएं">&times;</button>
+  `;
+  container.appendChild(row);
+}
+
+function openSamanSyllabusForm(schoolCode) {
+  const school = (STATE.schools56 || []).find(s => s.shala_darpan_code === schoolCode) ||
+    getAllMasterSchools().find(s => s.shala_darpan_code === schoolCode);
+  if (!school) {
+    showToast('विद्यालय का विवरण नहीं मिला!', 'error');
+    return;
+  }
+
+  const elName = document.getElementById('syl-school-name');
+  if (elName) elName.textContent = school.school_name;
+  const elCode = document.getElementById('syl-school-code');
+  if (elCode) elCode.textContent = school.shala_darpan_code;
+  const elPeeo = document.getElementById('syl-peeo-name');
+  if (elPeeo) elPeeo.textContent = school.peeo_name || '---';
+  const elCat = document.getElementById('syl-school-category');
+  if (elCat) elCat.textContent = `${school.category || 'Sec/Sr.Sec'} (${school.type === 'Government' ? 'राजकीय' : 'निजी'})`;
+  const elHiddenCode = document.getElementById('syl-hidden-school-code');
+  if (elHiddenCode) elHiddenCode.value = school.shala_darpan_code;
+
+  const sub = (STATE.samanSyllabusSubmissions && STATE.samanSyllabusSubmissions[schoolCode]) || {};
+  let draft = null;
+  try {
+    const raw = localStorage.getItem(`cbeo_syl_draft_${schoolCode}`);
+    if (raw) draft = JSON.parse(raw);
+  } catch(e) {}
+  const data = draft ? { ...sub, ...draft } : sub;
+
+  const statusBadge = document.getElementById('syl-form-status-badge');
+  const printBtn = document.getElementById('btn-print-syl-pdf');
+  if (statusBadge) {
+    if (data.is_submitted) {
+      statusBadge.innerHTML = `<span class="badge" style="background:#dcfce7; color:#15803d; font-size:0.8rem; font-weight:800; padding:6px 12px">✓ प्रमाणित सबमिट पूर्ण (${data.submitted_at ? new Date(data.submitted_at).toLocaleDateString('hi-IN') : ''})</span>`;
+      if (printBtn) printBtn.style.display = 'inline-flex';
+    } else {
+      statusBadge.innerHTML = `<span class="badge" style="background:#fef3c7; color:#92400e; font-size:0.8rem; font-weight:800; padding:6px 12px">⏳ प्रविष्टि लम्बित (Pending)</span>`;
+      if (printBtn) printBtn.style.display = 'none';
+    }
+  }
+
+  // Populate Class 9 (7 subjects)
+  const c9 = data.c9 || {};
+  if (document.getElementById('syl_c9_hindi')) document.getElementById('syl_c9_hindi').value = c9.hindi !== undefined ? c9.hindi : '';
+  if (document.getElementById('syl_c9_english')) document.getElementById('syl_c9_english').value = c9.english !== undefined ? c9.english : '';
+  if (document.getElementById('syl_c9_maths')) document.getElementById('syl_c9_maths').value = c9.maths !== undefined ? c9.maths : '';
+  if (document.getElementById('syl_c9_science')) document.getElementById('syl_c9_science').value = c9.science !== undefined ? c9.science : '';
+  if (document.getElementById('syl_c9_sst')) document.getElementById('syl_c9_sst').value = c9.sst !== undefined ? c9.sst : '';
+  if (document.getElementById('syl_c9_sanskrit')) document.getElementById('syl_c9_sanskrit').value = c9.sanskrit !== undefined ? c9.sanskrit : '';
+  if (document.getElementById('syl_c9_urdu')) document.getElementById('syl_c9_urdu').value = c9.urdu !== undefined ? c9.urdu : '';
+
+  // Populate Class 10 (7 subjects)
+  const c10 = data.c10 || {};
+  if (document.getElementById('syl_c10_hindi')) document.getElementById('syl_c10_hindi').value = c10.hindi !== undefined ? c10.hindi : '';
+  if (document.getElementById('syl_c10_english')) document.getElementById('syl_c10_english').value = c10.english !== undefined ? c10.english : '';
+  if (document.getElementById('syl_c10_maths')) document.getElementById('syl_c10_maths').value = c10.maths !== undefined ? c10.maths : '';
+  if (document.getElementById('syl_c10_science')) document.getElementById('syl_c10_science').value = c10.science !== undefined ? c10.science : '';
+  if (document.getElementById('syl_c10_sst')) document.getElementById('syl_c10_sst').value = c10.sst !== undefined ? c10.sst : '';
+  if (document.getElementById('syl_c10_sanskrit')) document.getElementById('syl_c10_sanskrit').value = c10.sanskrit !== undefined ? c10.sanskrit : '';
+  if (document.getElementById('syl_c10_urdu')) document.getElementById('syl_c10_urdu').value = c10.urdu !== undefined ? c10.urdu : '';
+
+  // Populate Class 11 (compulsory + electives)
+  const c11 = data.c11 || {};
+  if (document.getElementById('syl_c11_comp_hindi')) document.getElementById('syl_c11_comp_hindi').value = c11.comp_hindi !== undefined ? c11.comp_hindi : '';
+  if (document.getElementById('syl_c11_comp_english')) document.getElementById('syl_c11_comp_english').value = c11.comp_english !== undefined ? c11.comp_english : '';
+  const c11Cont = document.getElementById('syl-c11-electives-container');
+  if (c11Cont) {
+    c11Cont.innerHTML = '';
+    const electives11 = Array.isArray(c11.electives) && c11.electives.length > 0 ? c11.electives : [
+      { name: 'राजनीति विज्ञान', pct: '' },
+      { name: 'इतिहास', pct: '' },
+      { name: 'भूगोल', pct: '' }
+    ];
+    electives11.forEach(el => addSyllabusElectiveRow('c11', el.name, el.pct));
+  }
+
+  // Populate Class 12 (compulsory + electives)
+  const c12 = data.c12 || {};
+  if (document.getElementById('syl_c12_comp_hindi')) document.getElementById('syl_c12_comp_hindi').value = c12.comp_hindi !== undefined ? c12.comp_hindi : '';
+  if (document.getElementById('syl_c12_comp_english')) document.getElementById('syl_c12_comp_english').value = c12.comp_english !== undefined ? c12.comp_english : '';
+  const c12Cont = document.getElementById('syl-c12-electives-container');
+  if (c12Cont) {
+    c12Cont.innerHTML = '';
+    const electives12 = Array.isArray(c12.electives) && c12.electives.length > 0 ? c12.electives : [
+      { name: 'राजनीति विज्ञान', pct: '' },
+      { name: 'इतिहास', pct: '' },
+      { name: 'भूगोल', pct: '' }
+    ];
+    electives12.forEach(el => addSyllabusElectiveRow('c12', el.name, el.pct));
+  }
+
+  // Principal info
+  const pName = document.getElementById('syl_principal_name');
+  if (pName) pName.value = data.principal_name || school.principal_name || '';
+  const pMob = document.getElementById('syl_principal_mobile');
+  if (pMob) pMob.value = data.principal_mobile || school.principal_mobile || '';
+  const certCheck = document.getElementById('syl_certification_check');
+  if (certCheck) certCheck.checked = true;
+
+  const canEdit = canCurrentUserEditModule('saman_pariksha');
+  const modalEl = document.getElementById('modal-saman-syllabus-form');
+  const allInputs = modalEl ? modalEl.querySelectorAll('input, select, button.btn-outline-danger') : [];
+  allInputs.forEach(inp => {
+    if (inp.id === 'syl-hidden-school-code') return;
+    if (canEdit) {
+      inp.removeAttribute('disabled');
+      inp.removeAttribute('readonly');
+    } else {
+      if (inp.tagName === 'BUTTON') inp.style.display = 'none';
+      else {
+        inp.setAttribute('readonly', 'true');
+        if (inp.type === 'checkbox') inp.setAttribute('disabled', 'true');
+      }
+    }
+  });
+
+  showModal('modal-saman-syllabus-form');
+}
+
+function collectSyllabusFormData() {
+  const schoolCode = document.getElementById('syl-hidden-school-code')?.value;
+  if (!schoolCode) return null;
+
+  const school = (STATE.schools56 || []).find(s => s.shala_darpan_code === schoolCode) ||
+    getAllMasterSchools().find(s => s.shala_darpan_code === schoolCode);
+
+  const getElectives = (classKey) => {
+    const list = [];
+    const container = document.getElementById(`syl-${classKey}-electives-container`);
+    if (container) {
+      container.querySelectorAll('.syl-elective-row').forEach(r => {
+        const name = r.querySelector('.syl-elec-name')?.value;
+        const pct = r.querySelector('.syl-elec-pct')?.value;
+        if (name) {
+          list.push({ name, pct: pct !== '' ? parseFloat(pct) : 0 });
+        }
+      });
+    }
+    return list;
+  };
+
+  const c9 = {
+    hindi: parseFloat(document.getElementById('syl_c9_hindi')?.value) || 0,
+    english: parseFloat(document.getElementById('syl_c9_english')?.value) || 0,
+    maths: parseFloat(document.getElementById('syl_c9_maths')?.value) || 0,
+    science: parseFloat(document.getElementById('syl_c9_science')?.value) || 0,
+    sst: parseFloat(document.getElementById('syl_c9_sst')?.value) || 0,
+    sanskrit: parseFloat(document.getElementById('syl_c9_sanskrit')?.value) || 0,
+    urdu: parseFloat(document.getElementById('syl_c9_urdu')?.value) || 0
+  };
+
+  const c10 = {
+    hindi: parseFloat(document.getElementById('syl_c10_hindi')?.value) || 0,
+    english: parseFloat(document.getElementById('syl_c10_english')?.value) || 0,
+    maths: parseFloat(document.getElementById('syl_c10_maths')?.value) || 0,
+    science: parseFloat(document.getElementById('syl_c10_science')?.value) || 0,
+    sst: parseFloat(document.getElementById('syl_c10_sst')?.value) || 0,
+    sanskrit: parseFloat(document.getElementById('syl_c10_sanskrit')?.value) || 0,
+    urdu: parseFloat(document.getElementById('syl_c10_urdu')?.value) || 0
+  };
+
+  const c11 = {
+    comp_hindi: parseFloat(document.getElementById('syl_c11_comp_hindi')?.value) || 0,
+    comp_english: parseFloat(document.getElementById('syl_c11_comp_english')?.value) || 0,
+    electives: getElectives('c11')
+  };
+
+  const c12 = {
+    comp_hindi: parseFloat(document.getElementById('syl_c12_comp_hindi')?.value) || 0,
+    comp_english: parseFloat(document.getElementById('syl_c12_comp_english')?.value) || 0,
+    electives: getElectives('c12')
+  };
+
+  return {
+    school_code: schoolCode,
+    school_name: school?.school_name || '',
+    peeo_name: school?.peeo_name || '',
+    category: school?.category || '',
+    type: school?.type || '',
+    c9,
+    c10,
+    c11,
+    c12,
+    principal_name: document.getElementById('syl_principal_name')?.value || '',
+    principal_mobile: document.getElementById('syl_principal_mobile')?.value || '',
+    updated_at: new Date().toISOString()
+  };
+}
+
+function saveSyllabusDraft() {
+  const data = collectSyllabusFormData();
+  if (!data) return;
+  data.is_submitted = false;
+  localStorage.setItem(`cbeo_syl_draft_${data.school_code}`, JSON.stringify(data));
+  showToast('पाठ्यक्रम पूर्णता प्रपत्र ड्राफ्ट सुरक्षित हो गया!', 'info');
+}
+
+function submitSyllabusForm() {
+  if (!canCurrentUserEditModule('saman_pariksha')) {
+    showToast('आपको इस प्रपत्र में संपादन या सबमिट करने का अधिकार नहीं है!', 'error');
+    return;
+  }
+
+  const cert = document.getElementById('syl_certification_check')?.checked;
+  if (!cert) {
+    showToast('कृपया संस्था प्रधान घोषणा और प्रमाणीकरण पर टिक करें!', 'warning');
+    return;
+  }
+
+  const pName = document.getElementById('syl_principal_name')?.value.trim();
+  const pMob = document.getElementById('syl_principal_mobile')?.value.trim();
+  if (!pName || !pMob) {
+    showToast('कृपया संस्था प्रधान का नाम एवं मोबाइल नंबर अनिवार्य रूप से दर्ज करें!', 'warning');
+    return;
+  }
+
+  const data = collectSyllabusFormData();
+  if (!data) return;
+
+  data.is_submitted = true;
+  data.submitted_at = new Date().toISOString();
+  data.submitted_by = STATE.currentUser?.name || pName;
+
+  if (!STATE.samanSyllabusSubmissions) STATE.samanSyllabusSubmissions = {};
+  STATE.samanSyllabusSubmissions[data.school_code] = data;
+
+  localStorage.setItem('cbeo_saman_syllabus_submissions', JSON.stringify(STATE.samanSyllabusSubmissions));
+  localStorage.removeItem(`cbeo_syl_draft_${data.school_code}`);
+
+  fetch('/api/save_saman_syllabus', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ school_code: data.school_code, data: data })
+  }).catch(() => {});
+
+  recordAuditLog({
+    user: STATE.currentUser?.name || pName,
+    action: 'समान परीक्षा पाठ्यक्रम पूर्णता सबमिट',
+    target: data.school_name,
+    details: `कक्षा 9-12 पाठ्यक्रम पूर्णता % विवरण सफलता पूर्वक सत्यापित एवं सबमिट किया गया।`,
+    note: `कोड: ${data.school_code}`
+  });
+
+  showToast(`'${data.school_name}' का पाठ्यक्रम पूर्णता विवरण सफलतापूर्वक सबमिट हो गया!`, 'success');
+  closeModal('modal-saman-syllabus-form');
+  renderSamanParikshaView();
+}
+
+function printSyllabusPdf(schoolCode = null) {
+  const code = schoolCode || document.getElementById('syl-hidden-school-code')?.value;
+  const school = (STATE.schools56 || []).find(s => s.shala_darpan_code === code) ||
+    getAllMasterSchools().find(s => s.shala_darpan_code === code);
+  const data = (STATE.samanSyllabusSubmissions && STATE.samanSyllabusSubmissions[code]) || collectSyllabusFormData();
+
+  if (!school || !data) {
+    showToast('डेटा उपलब्ध नहीं है!', 'error');
+    return;
+  }
+
+  const c9 = data.c9 || {};
+  const c10 = data.c10 || {};
+  const c11 = data.c11 || {};
+  const c12 = data.c12 || {};
+
+  const electives11Html = (c11.electives || []).map(e => `<span>${e.name}: <strong>${e.pct}%</strong></span>`).join(' &bull; ') || '---';
+  const electives12Html = (c12.electives || []).map(e => `<span>${e.name}: <strong>${e.pct}%</strong></span>`).join(' &bull; ') || '---';
+
+  const avgPct = calculateSchoolSyllabusAverage(data);
+
+  const printHtml = `
+  <!DOCTYPE html>
+  <html lang="hi">
+  <head>
+    <meta charset="UTF-8">
+    <title>पाठ्यक्रम पूर्णता प्रतिशत - ${school.school_name}</title>
+    <style>
+      @page { size: A4 portrait; margin: 15mm; }
+      body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; color: #1e293b; margin: 0; padding: 15px; font-size: 13px; line-height: 1.4; }
+      .header-box { text-align: center; border-bottom: 2px solid #1e3a8a; padding-bottom: 10px; margin-bottom: 15px; }
+      .header-box h2 { margin: 0; color: #1e3a8a; font-size: 18px; font-weight: 800; }
+      .header-box h3 { margin: 4px 0; color: #0284c7; font-size: 14px; }
+      .header-box p { margin: 2px 0; font-size: 12px; color: #475569; font-weight: 600; }
+      .meta-table, .data-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
+      .meta-table td { padding: 6px 10px; border: 1px solid #cbd5e1; font-size: 12px; }
+      .meta-table td strong { color: #0f172a; }
+      .data-table th, .data-table td { border: 1px solid #94a3b8; padding: 7px 8px; text-align: center; font-size: 12px; }
+      .data-table th { background: #f1f5f9; color: #1e293b; font-weight: 700; }
+      .section-title { background: #e0f2fe; color: #0369a1; padding: 6px 10px; font-weight: 800; font-size: 13px; margin: 12px 0 6px 0; border-left: 4px solid #0284c7; }
+      .footer-box { margin-top: 30px; display: flex; justify-content: space-between; align-items: flex-end; }
+      .stamp-box { border: 1.5px dashed #0284c7; padding: 10px 15px; border-radius: 6px; text-align: center; font-size: 11px; color: #1e40af; width: 220px; }
+      .sign-box { text-align: right; width: 240px; }
+    </style>
+  </head>
+  <body>
+    <div class="header-box">
+      <h2>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)</h2>
+      <h3>जिला समान परीक्षा 2026-27 | पाठ्यक्रम पूर्णता प्रतिशत रिपोर्ट (कक्षा 9 से 12)</h3>
+      <p>जिला: <strong>अजमेर (AJMER)</strong> &bull; ब्लॉक: <strong>भिनाय (BHINAI)</strong> &bull; प्रपत्र श्रेणी: <strong>49 राजकीय माध्यमिक व उच्च माध्यमिक विद्यालय</strong></p>
+    </div>
+
+    <table class="meta-table">
+      <tr>
+        <td><strong>विद्यालय:</strong> ${school.school_name}</td>
+        <td><strong>शाला दर्पण कोड:</strong> ${school.shala_darpan_code}</td>
+      </tr>
+      <tr>
+        <td><strong>PEEO परिक्षेत्र:</strong> ${school.peeo_name || '---'}</td>
+        <td><strong>औसत पाठ्यक्रम पूर्णता:</strong> <span style="font-size:14px; font-weight:800; color:#15803d">${avgPct}%</span></td>
+      </tr>
+      <tr>
+        <td><strong>संस्था प्रधान:</strong> ${data.principal_name || school.principal_name || '---'}</td>
+        <td><strong>मोबाइल नंबर:</strong> ${data.principal_mobile || school.principal_mobile || '---'}</td>
+      </tr>
+    </table>
+
+    <div class="section-title">1. कक्षा 9वीं एवं 10वीं पाठ्यक्रम पूर्णता प्रतिशत (5 अनिवार्य + 2 तृतीय भाषा विषय = 7 कॉलम)</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>कक्षा</th>
+          <th>1. हिन्दी</th>
+          <th>2. अंग्रेजी</th>
+          <th>3. गणित</th>
+          <th>4. विज्ञान</th>
+          <th>5. सा.विज्ञान</th>
+          <th>6. संस्कृत (III)</th>
+          <th>7. उर्दू (III)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>कक्षा 9वीं</strong></td>
+          <td><strong>${c9.hindi || 0}%</strong></td>
+          <td><strong>${c9.english || 0}%</strong></td>
+          <td><strong>${c9.maths || 0}%</strong></td>
+          <td><strong>${c9.science || 0}%</strong></td>
+          <td><strong>${c9.sst || 0}%</strong></td>
+          <td><strong>${c9.sanskrit || 0}%</strong></td>
+          <td><strong>${c9.urdu || 0}%</strong></td>
+        </tr>
+        <tr>
+          <td><strong>कक्षा 10वीं</strong></td>
+          <td><strong>${c10.hindi || 0}%</strong></td>
+          <td><strong>${c10.english || 0}%</strong></td>
+          <td><strong>${c10.maths || 0}%</strong></td>
+          <td><strong>${c10.science || 0}%</strong></td>
+          <td><strong>${c10.sst || 0}%</strong></td>
+          <td><strong>${c10.sanskrit || 0}%</strong></td>
+          <td><strong>${c10.urdu || 0}%</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">2. कक्षा 11वीं एवं 12वीं पाठ्यक्रम पूर्णता प्रतिशत (अनिवार्य व ऐच्छिक विषय)</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>कक्षा</th>
+          <th>अनिवार्य हिन्दी</th>
+          <th>अनिवार्य अंग्रेजी</th>
+          <th style="text-align:left; width:55%">विद्यालय में संचालित ऐच्छिक विषय एवं पूर्णता %</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>कक्षा 11वीं</strong></td>
+          <td><strong>${c11.comp_hindi || 0}%</strong></td>
+          <td><strong>${c11.comp_english || 0}%</strong></td>
+          <td style="text-align:left">${electives11Html}</td>
+        </tr>
+        <tr>
+          <td><strong>कक्षा 12वीं</strong></td>
+          <td><strong>${c12.comp_hindi || 0}%</strong></td>
+          <td><strong>${c12.comp_english || 0}%</strong></td>
+          <td style="text-align:left">${electives12Html}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="footer-box">
+      <div class="stamp-box">
+        <strong>आधिकारिक संस्थागत डिजिटल मोहर</strong><br>
+        ${school.school_name}<br>
+        ब्लॉक-भिनाय (जिला: अजमेर)
+      </div>
+      <div class="sign-box">
+        <p style="margin-bottom:30px">प्रमाणित एवं सत्यापित</p>
+        <p><strong>${data.principal_name || school.principal_name || 'संस्था प्रधान'}</strong><br>
+        मो. ${data.principal_mobile || school.principal_mobile || ''}<br>
+        दिनांक: ${data.submitted_at ? new Date(data.submitted_at).toLocaleDateString('hi-IN') : new Date().toLocaleDateString('hi-IN')}</p>
+      </div>
+    </div>
+  </body>
+  </html>
+  `;
+
+  const printWin = window.open('', '_blank');
+  if (printWin) {
+    printWin.document.write(printHtml);
+    printWin.document.close();
+    setTimeout(() => {
+      printWin.print();
+    }, 400);
+  }
 }
 
 function openSamanParikshaForm(schoolCode) {
@@ -2576,11 +4021,53 @@ function openSamanParikshaForm(schoolCode) {
   document.getElementById('gform-incharge-name').value = activeData.incharge_name || school.incharge_name || '';
   document.getElementById('gform-incharge-mobile').value = activeData.incharge_mobile || school.incharge_mobile || '';
 
-  document.getElementById('gform-c9-total').value = activeData.c9_total ?? 0;
+  // School Medium Setup & Bilingual Detection
+  const isMggs = (schoolCode === '221778' || (school.school_name || '').includes('महात्मा गांधी') || (school.school_name || '').includes('MGGS'));
+  const schoolMedium = activeData.school_medium || (isMggs ? 'both' : 'hindi');
+
+  const medHindi = document.getElementById('gform-med-hindi');
+  const medEng = document.getElementById('gform-med-english');
+  const medBoth = document.getElementById('gform-med-both');
+  if (schoolMedium === 'english' && medEng) medEng.checked = true;
+  else if (schoolMedium === 'both' && medBoth) medBoth.checked = true;
+  else if (medHindi) medHindi.checked = true;
+
+  const mggsBadge = document.getElementById('gform-mggs-badge');
+  if (mggsBadge) mggsBadge.style.display = isMggs ? 'inline-flex' : 'none';
+
+  let c9Hindi = activeData.c9_hindi;
+  let c9English = activeData.c9_english;
+  if (c9Hindi === undefined && c9English === undefined) {
+    if (schoolMedium === 'english') {
+      c9English = activeData.c9_total || 0;
+      c9Hindi = 0;
+    } else {
+      c9Hindi = activeData.c9_total || 0;
+      c9English = 0;
+    }
+  }
+  if (document.getElementById('gform-c9-hindi')) document.getElementById('gform-c9-hindi').value = c9Hindi ?? 0;
+  if (document.getElementById('gform-c9-english')) document.getElementById('gform-c9-english').value = c9English ?? 0;
+  if (document.getElementById('gform-c9-total')) document.getElementById('gform-c9-total').value = (c9Hindi || 0) + (c9English || 0);
+
   if (document.getElementById('gform-c9-sanskrit')) document.getElementById('gform-c9-sanskrit').value = activeData.c9_sanskrit ?? 0;
   if (document.getElementById('gform-c9-urdu')) document.getElementById('gform-c9-urdu').value = activeData.c9_urdu ?? 0;
 
-  document.getElementById('gform-c10-total').value = activeData.c10_total ?? 0;
+  let c10Hindi = activeData.c10_hindi;
+  let c10English = activeData.c10_english;
+  if (c10Hindi === undefined && c10English === undefined) {
+    if (schoolMedium === 'english') {
+      c10English = activeData.c10_total || 0;
+      c10Hindi = 0;
+    } else {
+      c10Hindi = activeData.c10_total || 0;
+      c10English = 0;
+    }
+  }
+  if (document.getElementById('gform-c10-hindi')) document.getElementById('gform-c10-hindi').value = c10Hindi ?? 0;
+  if (document.getElementById('gform-c10-english')) document.getElementById('gform-c10-english').value = c10English ?? 0;
+  if (document.getElementById('gform-c10-total')) document.getElementById('gform-c10-total').value = (c10Hindi || 0) + (c10English || 0);
+
   if (document.getElementById('gform-c10-sanskrit')) document.getElementById('gform-c10-sanskrit').value = activeData.c10_sanskrit ?? 0;
   if (document.getElementById('gform-c10-urdu')) document.getElementById('gform-c10-urdu').value = activeData.c10_urdu ?? 0;
 
@@ -2651,9 +4138,36 @@ function openSamanParikshaForm(schoolCode) {
   }
   showModal('modal-saman-pariksha-form');
 
-  const isLocked = isSamanParikshaLockedForCurrentUser();
+  const isLocked = isSamanParikshaLockedForCurrentUser(schoolCode);
+  const cfgMismatch = STATE.samanMismatchSettings;
+  const customAllowed = (cfgMismatch && cfgMismatch.custom_edit_schools) || [];
+  const isCustomUnlocked = customAllowed.some(c => String(c).trim() === String(schoolCode).trim());
+
   const lockBanner = document.getElementById('gform-lock-alert-banner');
-  if (lockBanner) lockBanner.style.display = isLocked ? 'block' : 'none';
+  if (lockBanner) {
+    if (isCustomUnlocked) {
+      lockBanner.style.display = 'block';
+      lockBanner.style.background = '#ecfdf5';
+      lockBanner.style.border = '1.5px solid #10b981';
+      lockBanner.style.color = '#065f46';
+      lockBanner.innerHTML = `
+        <div style="display:flex; align-items:center; gap:0.5rem">
+          <i class="fas fa-unlock-alt" style="color:#059669; font-size:1.15rem"></i>
+          <div>
+            <strong>विशेष संपादन मोड (Custom Edit Unlocked):</strong> CBEO कार्यालय द्वारा इस विद्यालय को नामांकन सुधार हेतु विशेष संपादन अनुमति प्रदान की गई है। कृपया आंकड़े सही कर प्रपत्र सबमिट करें।
+          </div>
+        </div>
+      `;
+    } else {
+      lockBanner.style.display = isLocked ? 'block' : 'none';
+      lockBanner.style.background = '#fef2f2';
+      lockBanner.style.border = '1px solid #fecaca';
+      lockBanner.style.color = '#991b1b';
+      lockBanner.innerHTML = `
+        <i class="fas fa-lock"></i> <strong>केवल अवलोकन मोड (View-Only):</strong> समान परीक्षा मांग प्रपत्र में सीधे संपादन की समय-सीमा अथवा अधिकार वर्तमान में CBEO स्तर से लॉक हैं।
+      `;
+    }
+  }
 
   const topSaveBtn = document.getElementById('btn-gform-topbar-save');
   const footSaveBtn = document.getElementById('btn-gform-footer-save');
@@ -2692,9 +4206,60 @@ function openSamanParikshaForm(schoolCode) {
   }, 120);
 }
 
+function onSchoolMediumChanged() {
+  const med = document.querySelector('input[name="gform-school-medium"]:checked')?.value || 'hindi';
+  const c9H = document.getElementById('gform-c9-hindi');
+  const c9E = document.getElementById('gform-c9-english');
+  const c10H = document.getElementById('gform-c10-hindi');
+  const c10E = document.getElementById('gform-c10-english');
+
+  if (med === 'hindi') {
+    if (c9E && parseInt(c9E.value) > 0 && (!c9H || parseInt(c9H.value) === 0)) {
+      c9H.value = c9E.value;
+      c9E.value = 0;
+    }
+    if (c10E && parseInt(c10E.value) > 0 && (!c10H || parseInt(c10H.value) === 0)) {
+      c10H.value = c10E.value;
+      c10E.value = 0;
+    }
+  } else if (med === 'english') {
+    if (c9H && parseInt(c9H.value) > 0 && (!c9E || parseInt(c9E.value) === 0)) {
+      c9E.value = c9H.value;
+      c9H.value = 0;
+    }
+    if (c10H && parseInt(c10H.value) > 0 && (!c10E || parseInt(c10E.value) === 0)) {
+      c10E.value = c10H.value;
+      c10H.value = 0;
+    }
+  }
+  calculateGFormTotals();
+}
+window.onSchoolMediumChanged = onSchoolMediumChanged;
+
 function calculateGFormTotals() {
-  const c9 = parseInt(document.getElementById('gform-c9-total')?.value) || 0;
-  const c10 = parseInt(document.getElementById('gform-c10-total')?.value) || 0;
+  const c9Hindi = parseInt(document.getElementById('gform-c9-hindi')?.value) || 0;
+  const c9English = parseInt(document.getElementById('gform-c9-english')?.value) || 0;
+  let c9 = c9Hindi + c9English;
+  const c9TotalEl = document.getElementById('gform-c9-total');
+  if (c9TotalEl) {
+    if (c9 === 0 && parseInt(c9TotalEl.value) > 0 && c9Hindi === 0 && c9English === 0) {
+      c9 = parseInt(c9TotalEl.value) || 0;
+    } else {
+      c9TotalEl.value = c9;
+    }
+  }
+
+  const c10Hindi = parseInt(document.getElementById('gform-c10-hindi')?.value) || 0;
+  const c10English = parseInt(document.getElementById('gform-c10-english')?.value) || 0;
+  let c10 = c10Hindi + c10English;
+  const c10TotalEl = document.getElementById('gform-c10-total');
+  if (c10TotalEl) {
+    if (c10 === 0 && parseInt(c10TotalEl.value) > 0 && c10Hindi === 0 && c10English === 0) {
+      c10 = parseInt(c10TotalEl.value) || 0;
+    } else {
+      c10TotalEl.value = c10;
+    }
+  }
 
   const c11Hindi = parseInt(document.getElementById('gform-c11-comp-hindi')?.value) || 0;
   const c11English = parseInt(document.getElementById('gform-c11-comp-english')?.value) || 0;
@@ -2734,17 +4299,25 @@ function calculateGFormTotals() {
 function toggleNilClass(cls) {
   if (cls === 'c9') {
     const el = document.getElementById('gform-c9-total');
+    const h = document.getElementById('gform-c9-hindi');
+    const e = document.getElementById('gform-c9-english');
     const sk = document.getElementById('gform-c9-sanskrit');
     const ur = document.getElementById('gform-c9-urdu');
     if (el) el.value = 0;
+    if (h) h.value = 0;
+    if (e) e.value = 0;
     if (sk) sk.value = 0;
     if (ur) ur.value = 0;
     showToast('कक्षा 9 को शून्य / संचालित नहीं (NIL) सेट किया गया', 'info');
   } else if (cls === 'c10') {
     const el = document.getElementById('gform-c10-total');
+    const h = document.getElementById('gform-c10-hindi');
+    const e = document.getElementById('gform-c10-english');
     const sk = document.getElementById('gform-c10-sanskrit');
     const ur = document.getElementById('gform-c10-urdu');
     if (el) el.value = 0;
+    if (h) h.value = 0;
+    if (e) e.value = 0;
     if (sk) sk.value = 0;
     if (ur) ur.value = 0;
     showToast('कक्षा 10 को शून्य / संचालित नहीं (NIL) सेट किया गया', 'info');
@@ -2832,13 +4405,18 @@ function autoSaveGFormDraft() {
     const draftData = {
       school_code: schoolCode,
       exam_code: document.getElementById('gform-exam-code')?.value || '',
+      school_medium: document.querySelector('input[name="gform-school-medium"]:checked')?.value || 'hindi',
       principal_name: document.getElementById('gform-principal-name')?.value || '',
       principal_mobile: document.getElementById('gform-principal-mobile')?.value || '',
       incharge_name: document.getElementById('gform-incharge-name')?.value || '',
       incharge_mobile: document.getElementById('gform-incharge-mobile')?.value || '',
+      c9_hindi: parseInt(document.getElementById('gform-c9-hindi')?.value) || 0,
+      c9_english: parseInt(document.getElementById('gform-c9-english')?.value) || 0,
       c9_total: parseInt(document.getElementById('gform-c9-total')?.value) || 0,
       c9_sanskrit: parseInt(document.getElementById('gform-c9-sanskrit')?.value) || 0,
       c9_urdu: parseInt(document.getElementById('gform-c9-urdu')?.value) || 0,
+      c10_hindi: parseInt(document.getElementById('gform-c10-hindi')?.value) || 0,
+      c10_english: parseInt(document.getElementById('gform-c10-english')?.value) || 0,
       c10_total: parseInt(document.getElementById('gform-c10-total')?.value) || 0,
       c10_sanskrit: parseInt(document.getElementById('gform-c10-sanskrit')?.value) || 0,
       c10_urdu: parseInt(document.getElementById('gform-c10-urdu')?.value) || 0,
@@ -2903,11 +4481,16 @@ function submitSamanParikshaForm(andPrint = false) {
     return;
   }
 
-  const c9 = parseInt(document.getElementById('gform-c9-total')?.value) || 0;
+  const schoolMedium = document.querySelector('input[name="gform-school-medium"]:checked')?.value || 'hindi';
+  const c9Hindi = parseInt(document.getElementById('gform-c9-hindi')?.value) || 0;
+  const c9English = parseInt(document.getElementById('gform-c9-english')?.value) || 0;
+  const c9 = parseInt(document.getElementById('gform-c9-total')?.value) || (c9Hindi + c9English);
   const c9Sanskrit = parseInt(document.getElementById('gform-c9-sanskrit')?.value) || 0;
   const c9Urdu = parseInt(document.getElementById('gform-c9-urdu')?.value) || 0;
 
-  const c10 = parseInt(document.getElementById('gform-c10-total')?.value) || 0;
+  const c10Hindi = parseInt(document.getElementById('gform-c10-hindi')?.value) || 0;
+  const c10English = parseInt(document.getElementById('gform-c10-english')?.value) || 0;
+  const c10 = parseInt(document.getElementById('gform-c10-total')?.value) || (c10Hindi + c10English);
   const c10Sanskrit = parseInt(document.getElementById('gform-c10-sanskrit')?.value) || 0;
   const c10Urdu = parseInt(document.getElementById('gform-c10-urdu')?.value) || 0;
 
@@ -2953,13 +4536,18 @@ function submitSamanParikshaForm(andPrint = false) {
     peeo_name: school.peeo_name,
     peeo_code: school.peeo_code,
     exam_code: examCode,
+    school_medium: schoolMedium,
     principal_name: principalName,
     principal_mobile: principalMobile,
     incharge_name: inchargeName,
     incharge_mobile: inchargeMobile,
+    c9_hindi: c9Hindi,
+    c9_english: c9English,
     c9_total: c9,
     c9_sanskrit: c9Sanskrit,
     c9_urdu: c9Urdu,
+    c10_hindi: c10Hindi,
+    c10_english: c10English,
     c10_total: c10,
     c10_sanskrit: c10Sanskrit,
     c10_urdu: c10Urdu,
@@ -4976,13 +6564,18 @@ function exportSamanParikshaMasterCSV() {
     "संस्था प्रधान मोबाइल",
     "परीक्षा प्रभारी (In-charge Name)",
     "परीक्षा प्रभारी मोबाइल",
+    "शिक्षण माध्यम (School Medium)",
     
     // Class 9
+    "9वीं हिंदी माध्यम (Class 9 Hindi)",
+    "9वीं अंग्रेजी माध्यम (Class 9 English)",
     "9वीं कुल नामांकन (Class 9 Total)",
     "9वीं संस्कृत (Sanskrit 3rd Lang)",
     "9वीं उर्दू (Urdu 3rd Lang)",
     
     // Class 10
+    "10वीं हिंदी माध्यम (Class 10 Hindi)",
+    "10वीं अंग्रेजी माध्यम (Class 10 English)",
     "10वीं कुल नामांकन (Class 10 Total)",
     "10वीं संस्कृत (Sanskrit 3rd Lang)",
     "10वीं उर्दू (Urdu 3rd Lang)",
@@ -5033,6 +6626,8 @@ function exportSamanParikshaMasterCSV() {
     const c11Opt = isSub ? (sub.c11_optional || {}) : {};
     const c12Opt = isSub ? (sub.c12_optional || {}) : {};
 
+    const medLabel = sub.school_medium === 'english' ? 'अंग्रेजी माध्यम' : (sub.school_medium === 'both' ? 'द्विभाषी (हिंदी+अंग्रेजी)' : 'हिंदी माध्यम');
+
     const row = [
       s.s_no,
       `"${(s.school_name || '').replace(/"/g, '""')}"`,
@@ -5044,13 +6639,18 @@ function exportSamanParikshaMasterCSV() {
       `"${(sub.principal_mobile || s.principal_mobile || '').replace(/"/g, '""')}"`,
       `"${(sub.incharge_name || s.incharge_name || '').replace(/"/g, '""')}"`,
       `"${(sub.incharge_mobile || s.incharge_mobile || '').replace(/"/g, '""')}"`,
+      `"${medLabel}"`,
       
       // Class 9
+      isSub ? (sub.c9_hindi !== undefined ? sub.c9_hindi : (sub.school_medium === 'english' ? 0 : (sub.c9_total || 0))) : 0,
+      isSub ? (sub.c9_english !== undefined ? sub.c9_english : (sub.school_medium === 'english' ? (sub.c9_total || 0) : 0)) : 0,
       isSub ? (sub.c9_total || 0) : 0,
       isSub ? (sub.c9_sanskrit || 0) : 0,
       isSub ? (sub.c9_urdu || 0) : 0,
       
       // Class 10
+      isSub ? (sub.c10_hindi !== undefined ? sub.c10_hindi : (sub.school_medium === 'english' ? 0 : (sub.c10_total || 0))) : 0,
+      isSub ? (sub.c10_english !== undefined ? sub.c10_english : (sub.school_medium === 'english' ? (sub.c10_total || 0) : 0)) : 0,
       isSub ? (sub.c10_total || 0) : 0,
       isSub ? (sub.c10_sanskrit || 0) : 0,
       isSub ? (sub.c10_urdu || 0) : 0,
@@ -6958,12 +8558,21 @@ function canCurrentUserEditSchoolDetails(school) {
   return false;
 }
 
-function isSamanParikshaLockedForCurrentUser() {
+function isSamanParikshaLockedForCurrentUser(targetSchoolCode = null) {
   if (!STATE.currentUser) return false;
   if (isJitendraLoggedIn()) return false; // Super Admin Jitendra can always edit
 
-  // 1. Check 5-Level Edit Permission Matrix
-  if (!canCurrentUserEditModule('saman_pariksha')) return true;
+  const schCode = targetSchoolCode || STATE.currentUser.shala_darpan_code;
+
+  // Custom Edit Exception: If school is granted Custom Edit permission by Admin
+  const mismatchSettings = STATE.samanMismatchSettings;
+  const customAllowed = (mismatchSettings && mismatchSettings.custom_edit_schools) || [];
+  if (schCode && customAllowed.some(c => String(c).trim() === String(schCode).trim())) {
+    return false; // Specifically Unlocked for this school!
+  }
+
+  // 1. Check 6-Level Edit Permission Matrix
+  if (!canCurrentUserEditModule('saman_pariksha', targetSchoolCode)) return true;
 
   const isCBEO = STATE.currentUser.shala_darpan_code === '8140' || 
                  STATE.currentUser.admin_id === 'ADMIN01' || 
@@ -7560,7 +9169,7 @@ function isDemandVisibleForCurrentUser(demand) {
   if (demand.isTestMode) return false;
   if (demand.published === false) return false;
 
-  const aud = demand.targetAudience || { cbeo: true, peeo: true, sec_srsec: false, all_govt: false, all_schools: false };
+  const aud = demand.targetAudience || { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: false, all_govt: false, all_schools: false };
 
   // 1. CBEO Admin
   const isCBEO = STATE.currentUser.shala_darpan_code === '8140' || 
@@ -7575,23 +9184,25 @@ function isDemandVisibleForCurrentUser(demand) {
     return !!aud.peeo;
   }
 
-  // 3, 4, 5. School Level: STRICT CHECK - ONLY visible if Jitendra checked the box!
+  // 3, 4, 5, 6. School Level: STRICT CHECK - ONLY visible if checked in 6-level matrix!
   if (STATE.currentUser.role === 'school') {
     const isPvt = STATE.currentUser.type === 'Private' || String(STATE.currentUser.shala_darpan_code).startsWith('P');
     if (isPvt) {
-      // Private schools ONLY see if Level 5 (all_schools) is explicitly checked!
+      const isPvtSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code && s.type === 'Private');
+      if (isPvtSec) {
+        return !!(aud.pvt_sec_srsec || aud.sec_srsec || aud.all_schools);
+      }
       return !!aud.all_schools;
     }
 
-    const isSecSrSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code) ||
+    const isGovtSecSrSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code && s.type !== 'Private') ||
       (STATE.currentUser.category && (STATE.currentUser.category.includes('Secondary') || STATE.currentUser.category.includes('माध्यमिक')));
 
-    if (isSecSrSec) {
-      // 57 Sec/Sr.Sec schools see ONLY if Level 3 OR Level 4 OR Level 5 is checked!
-      return !!(aud.sec_srsec || aud.all_govt || aud.all_schools);
+    if (isGovtSecSrSec) {
+      return !!(aud.govt_sec_srsec || aud.sec_srsec || aud.all_govt || aud.all_schools);
     }
 
-    // Other Govt schools (Primary / Upper Primary) ONLY see if Level 4 OR Level 5 is checked!
+    // Other Govt schools (Primary / Upper Primary)
     return !!(aud.all_govt || aud.all_schools);
   }
 
@@ -8434,10 +10045,30 @@ function quickShareWhatsApp(demandId, peeoId) {
 }
 
 function sendWhatsAppMessage(mobile, defaultText) {
-  const cleanMob = mobile.replace(/[^0-9]/g, '');
-  const url = `https://api.whatsapp.com/send?phone=91${cleanMob}&text=${encodeURIComponent(defaultText)}`;
+  const text = defaultText || '';
+  if (!mobile) {
+    if (text) {
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    }
+    return;
+  }
+  let cleanMob = String(mobile || '').replace(/\D/g, '');
+  if (cleanMob.length === 12 && cleanMob.startsWith('91')) {
+    // already 12 digits with 91
+  } else if (cleanMob.length === 10) {
+    cleanMob = '91' + cleanMob;
+  } else if (cleanMob.length > 10 && !cleanMob.startsWith('91')) {
+    cleanMob = '91' + cleanMob.slice(-10);
+  }
+  const url = `https://wa.me/${cleanMob}?text=${encodeURIComponent(text)}`;
   window.open(url, '_blank');
 }
+window.sendWhatsAppMessage = sendWhatsAppMessage;
+
+function sendDualWhatsAppMessage(mobile, defaultText) {
+  sendWhatsAppMessage(mobile, defaultText);
+}
+window.sendDualWhatsAppMessage = sendDualWhatsAppMessage;
 
 /* ========================================================
    11. DYNAMIC INFORMATION DEMAND SYSTEM & ADMIN CONTROL ROOM
@@ -8448,32 +10079,40 @@ function sendWhatsAppMessage(mobile, defaultText) {
 // 1. Helper to retrieve target schools for any demand
 function getTargetSchoolsForDemand(demand) {
   if (!demand) return STATE.schools56 || [];
-  if (demand.id === 'saman_pariksha_2026_27' || (demand.title && demand.title.includes('समान परीक्षा'))) {
-    return STATE.schools56 || [];
-  }
-
   const scope = demand.schoolScope || 'all';
   const allSchools = getAllMasterSchools();
+  const secSchools = STATE.schools56 || [];
 
-  if (scope === 'govt') {
-    return allSchools.filter(s => s.type !== 'Private');
+  if (scope === 'govt_sec' || scope === 'govt_secondary' || scope === 'govt_sec_srsec') {
+    return secSchools.filter(s => s.type !== 'Private'); // 49 Govt schools
+  } else if (scope === 'pvt_sec' || scope === 'private_secondary' || scope === 'pvt_sec_srsec') {
+    return secSchools.filter(s => s.type === 'Private'); // 8 Pvt schools
+  } else if (scope === 'both_sec' || scope === 'secondary_sr_sec' || scope === 'sec_srsec') {
+    return secSchools; // 57 schools
+  } else if (scope === 'govt' || scope === 'all_govt') {
+    return allSchools.filter(s => s.type !== 'Private'); // 132 Govt
   } else if (scope === 'private') {
     return allSchools.filter(s => s.type === 'Private');
-  } else if (scope === 'secondary_sr_sec' || scope === 'sec_srsec') {
-    return STATE.schools56 || allSchools;
   }
+
+  if (demand.id === 'saman_pariksha_2026_27' || (demand.title && demand.title.includes('समान परीक्षा'))) {
+    return secSchools;
+  }
+
   return allSchools;
 }
 
-// 2. Dynamic Navigation Tabs Generator (Adds tab for every published demand automatically)
+// 2. Dynamic Navigation Tabs Generator (Adds tab for standalone dynamic demands)
 function renderDynamicNavTabs() {
   const container = document.querySelector('.main-nav-bar .nav-container');
   if (!container) return;
 
   container.querySelectorAll('.nav-tab-dynamic-demand').forEach(t => t.remove());
 
+  // Only demands explicitly marked for new dynamic tab (placement === 'tab_new')
   const activeDemands = (STATE.demands || []).filter(d => 
     !d.archived && 
+    d.placement === 'tab_new' && 
     d.id !== 'saman_pariksha_2026_27' && 
     d.id !== 'DEMAND_SAMAN_PARIKSHA_2026' && 
     !d.id.toLowerCase().includes('saman_pariksha') &&
@@ -8483,7 +10122,7 @@ function renderDynamicNavTabs() {
 
   const visibleDemands = activeDemands.filter(d => {
     if (d.published === false && (!user || user.role !== 'admin')) return false;
-    return true;
+    return isDemandVisibleForCurrentUser(d);
   });
 
   const refTab = document.getElementById('nav-tab-saman-pariksha');
@@ -8689,29 +10328,60 @@ function renderDynamicDemandPortalView(demandId) {
             <tbody>
               ${peeoSchools.map((s, idx) => {
                 const isSub = isDynamicDemandSubmitted(demand.id, s.shala_darpan_code);
+                const isMismatch = isDemandSchoolMismatch(demand.id, s.shala_darpan_code);
                 const sub = getDemandSubmissionRecord(demand.id, s.shala_darpan_code);
+
+                let rowStyle = '';
+                let statusBadge = `<span class="status-badge red">बाकी (Pending)</span>`;
+                let actionBtns = '';
+
+                if (isMismatch) {
+                  rowStyle = 'style="background:#fef2f2; border-left:5px solid #ef4444"';
+                  statusBadge = `<span class="status-badge" style="background:#fee2e2; color:#991b1b; font-weight:800; border:1px solid #f87171"><i class="fas fa-exclamation-triangle"></i> 🚨 मिसमैच (अनलॉक)</span>`;
+                  actionBtns = `
+                    <button class="btn btn-danger btn-sm" onclick="openFillDemandForSchoolModal('${demand.id}', '${s.shala_darpan_code}')" style="font-weight:700; background:#dc2626; border-color:#dc2626">
+                      <i class="fas fa-edit"></i> ✏️ प्रपत्र सुधारें
+                    </button>
+                    ${isSub ? `
+                      <button class="btn btn-success btn-sm" onclick="openUniversalDemandPdfPreview('${demand.id}', '${s.shala_darpan_code}')">
+                        <i class="fas fa-print"></i> A4 PDF
+                      </button>
+                    ` : ''}
+                  `;
+                } else if (isSub) {
+                  rowStyle = 'style="background:#f0fdf4; border-left:4px solid #16a34a"';
+                  statusBadge = `<span class="status-badge" style="background:#dcfce7; color:#166534; font-weight:700; border:1px solid #86efac"><i class="fas fa-check-circle"></i> ✓ मान्य (लॉक)</span>`;
+                  actionBtns = `
+                    <button class="btn btn-outline-secondary btn-sm" disabled style="opacity:0.65; cursor:not-allowed" title="प्रपत्र अधिकृत रूप से सत्यापित व लॉक है (केवल मिसमैच पर अनलॉक होगा)">
+                      <i class="fas fa-lock"></i> प्रपत्र लॉक
+                    </button>
+                    <button class="btn btn-success btn-sm" onclick="openUniversalDemandPdfPreview('${demand.id}', '${s.shala_darpan_code}')">
+                      <i class="fas fa-print"></i> A4 PDF
+                    </button>
+                  `;
+                } else {
+                  statusBadge = `<span class="status-badge red">बाकी</span>`;
+                  actionBtns = `
+                    <button class="btn btn-primary btn-sm" onclick="openFillDemandForSchoolModal('${demand.id}', '${s.shala_darpan_code}')">
+                      <i class="fas fa-pen-nib"></i> प्रपत्र भरें
+                    </button>
+                    <button class="btn btn-whatsapp btn-sm" onclick="sendDynamicDemandSchoolReminder('${demand.id}', '${s.shala_darpan_code}')">
+                      <i class="fab fa-whatsapp"></i> रिमाइंडर
+                    </button>
+                  `;
+                }
+
                 return `
-                  <tr>
+                  <tr ${rowStyle}>
                     <td><strong>${idx + 1}</strong></td>
                     <td><code>${s.shala_darpan_code}</code></td>
                     <td><strong>${s.school_name}</strong> ${s.is_peeo_nodal ? '<span class="status-badge" style="background:#dbeafe; color:#1e40af; font-size:0.7rem">नोडल HQ</span>' : ''}</td>
                     <td><span class="status-badge" style="background:${s.type === 'Private' ? '#f1f5f9' : '#e0f2fe'}; color:${s.type === 'Private' ? '#334155' : '#0369a1'}">${s.type === 'Private' ? 'निजी' : 'राजकीय'}</span></td>
-                    <td><span class="status-badge ${isSub ? 'green' : 'red'}">${isSub ? '✓ पूर्ण' : 'बाकी'}</span></td>
+                    <td>${statusBadge}</td>
                     <td>${sub.submitted_by ? `${sub.submitted_by} <br><span style="font-size:0.72rem; color:#64748b">${sub.submitter_mobile || ''}</span>` : '---'}</td>
                     <td>
                       <div style="display:flex; gap:0.4rem; flex-wrap:wrap">
-                        <button class="btn ${isSub ? 'btn-outline-primary' : 'btn-primary'} btn-sm" onclick="openFillDemandForSchoolModal('${demand.id}', '${s.shala_darpan_code}')">
-                          <i class="fas ${isSub ? 'fa-edit' : 'fa-pen-nib'}"></i> ${isSub ? 'संशोधन' : 'प्रपत्र भरें'}
-                        </button>
-                        ${isSub ? `
-                          <button class="btn btn-success btn-sm" onclick="openUniversalDemandPdfPreview('${demand.id}', '${s.shala_darpan_code}')">
-                            <i class="fas fa-print"></i> A4 PDF
-                          </button>
-                        ` : `
-                          <button class="btn btn-whatsapp btn-sm" onclick="sendDynamicDemandSchoolReminder('${demand.id}', '${s.shala_darpan_code}')">
-                            <i class="fab fa-whatsapp"></i> रिमाइंडर
-                          </button>
-                        `}
+                        ${actionBtns}
                       </div>
                     </td>
                   </tr>
@@ -8798,10 +10468,25 @@ function renderDynamicDemandPortalView(demandId) {
           </div>
         </div>
 
+        <!-- Batch Action Toolbar -->
+        <div id="dynamic-demand-batch-bar" style="display:none; background:#fef2f2; border:1.5px solid #fecaca; border-radius:8px; padding:0.65rem 1rem; margin-bottom:1rem; align-items:center; justify-content:space-between">
+          <div style="font-weight:700; color:#991b1b; font-size:0.9rem">
+            <i class="fas fa-check-circle text-danger"></i> चयनित: <span id="dynamic-demand-selected-count" style="font-weight:900; text-decoration:underline">0</span> विद्यालय
+          </div>
+          <div style="display:flex; gap:0.5rem">
+            <button class="btn btn-danger btn-sm" onclick="openBatchDemandMismatchModal('${demand.id}')" style="font-weight:800; background:#dc2626">
+              <i class="fas fa-tasks"></i> 🚨 चयनित स्कूलों को सामूहिक मिसमैच मार्क करें (Email + Telegram)
+            </button>
+          </div>
+        </div>
+
         <div class="table-responsive">
           <table class="data-table" id="dynamic-demand-schools-table">
             <thead>
               <tr>
+                <th style="width:36px; text-align:center">
+                  <input type="checkbox" id="dynamic-demand-select-all" onchange="toggleSelectAllDemandSchools(this, '${demand.id}')" title="सभी चुनें">
+                </th>
                 <th style="width:40px">क्र.सं.</th>
                 <th>शा.दा. कोड</th>
                 <th>विद्यालय का नाम</th>
@@ -8809,7 +10494,7 @@ function renderDynamicDemandPortalView(demandId) {
                 <th>संबंधित PEEO</th>
                 <th>प्रपत्र स्थिति</th>
                 <th>प्रस्तुतकर्ता / मोबाइल</th>
-                <th style="text-align:center">अधिकृत कार्यवाही</th>
+                <th style="text-align:center">अधिकृत कार्यवाही एवं मिसमैच अलर्ट</th>
               </tr>
             </thead>
             <tbody id="dynamic-demand-schools-tbody">
@@ -8860,16 +10545,66 @@ function filterDynamicDemandTable(demandId) {
   });
 
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:2rem; color:#64748b">कोई विद्यालय रिकॉर्ड नहीं मिला</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding:2rem; color:#64748b">कोई विद्यालय रिकॉर्ड नहीं मिला</td></tr>`;
     return;
   }
 
   tbody.innerHTML = filtered.map((s, idx) => {
     const isSub = isDynamicDemandSubmitted(demand.id, s.shala_darpan_code);
+    const isMismatch = isDemandSchoolMismatch(demand.id, s.shala_darpan_code);
     const sub = getDemandSubmissionRecord(demand.id, s.shala_darpan_code);
 
+    let rowStyle = '';
+    let statusBadge = '';
+    let actionsHtml = '';
+
+    if (isMismatch) {
+      rowStyle = 'style="background:#fef2f2; border-left:5px solid #ef4444"';
+      statusBadge = `<span class="status-badge" style="background:#fee2e2; color:#991b1b; font-weight:800; border:1px solid #f87171"><i class="fas fa-exclamation-triangle"></i> 🚨 मिसमैच (अनलॉक)</span>`;
+      actionsHtml = `
+        <button class="btn btn-danger btn-sm" onclick="openDemandMismatchInspector('${demand.id}', '${s.shala_darpan_code}')" title="मिसमैच फील्ड देखें / संशोधन अलर्ट भेजें" style="font-weight:700; background:#dc2626; border-color:#dc2626">
+          <i class="fas fa-flag"></i> 🚨 मिसमैच
+        </button>
+        <button class="btn btn-outline-primary btn-sm" onclick="openFillDemandForSchoolModal('${demand.id}', '${s.shala_darpan_code}')" title="प्रपत्र संपादित करें">
+          <i class="fas fa-edit"></i> संपादित
+        </button>
+        ${isSub ? `
+          <button class="btn btn-success btn-sm" onclick="openUniversalDemandPdfPreview('${demand.id}', '${s.shala_darpan_code}')" title="अधिकृत A4 PDF देखें">
+            <i class="fas fa-print"></i> PDF
+          </button>
+        ` : ''}
+      `;
+    } else if (isSub) {
+      rowStyle = 'style="background:#f0fdf4; border-left:4px solid #16a34a"';
+      statusBadge = `<span class="status-badge" style="background:#dcfce7; color:#166534; font-weight:700; border:1px solid #86efac"><i class="fas fa-check-circle"></i> ✓ मान्य (लॉक)</span>`;
+      actionsHtml = `
+        <button class="btn btn-warning btn-sm" onclick="openDemandMismatchInspector('${demand.id}', '${s.shala_darpan_code}')" title="विसंगति / मिसमैच मार्क करें एवं अलर्ट भेजें" style="font-weight:700; background:#f59e0b; color:#ffffff; border:none">
+          <i class="fas fa-flag"></i> 🚨 मिसमैच मार्क
+        </button>
+        <button class="btn btn-outline-primary btn-sm" onclick="openFillDemandForSchoolModal('${demand.id}', '${s.shala_darpan_code}')" title="प्रपत्र विवरण देखें">
+          <i class="fas fa-eye"></i> देखें
+        </button>
+        <button class="btn btn-success btn-sm" onclick="openUniversalDemandPdfPreview('${demand.id}', '${s.shala_darpan_code}')" title="अधिकृत A4 PDF देखें व प्रिंट करें">
+          <i class="fas fa-print"></i> PDF
+        </button>
+      `;
+    } else {
+      statusBadge = `<span class="status-badge red"><i class="fas fa-times-circle"></i> बाकी (Pending)</span>`;
+      actionsHtml = `
+        <button class="btn btn-primary btn-sm" onclick="openFillDemandForSchoolModal('${demand.id}', '${s.shala_darpan_code}')" title="प्रपत्र भरें">
+          <i class="fas fa-pen-nib"></i> भरें
+        </button>
+        <button class="btn btn-whatsapp btn-sm" onclick="sendDynamicDemandSchoolReminder('${demand.id}', '${s.shala_darpan_code}')" title="1-क्लिक WhatsApp रिमाइंडर">
+          <i class="fab fa-whatsapp"></i> रिमाइंडर
+        </button>
+      `;
+    }
+
     return `
-      <tr>
+      <tr ${rowStyle}>
+        <td style="text-align:center">
+          <input type="checkbox" class="demand-school-chk" value="${s.shala_darpan_code}" onchange="updateDemandBatchSelection('${demand.id}')">
+        </td>
         <td><strong>${idx + 1}</strong></td>
         <td><code>${s.shala_darpan_code}</code></td>
         <td>
@@ -8882,11 +10617,7 @@ function filterDynamicDemandTable(demandId) {
           </span>
         </td>
         <td>${s.peeo_name}</td>
-        <td>
-          <span class="status-badge ${isSub ? 'green' : 'red'}">
-            <i class="fas ${isSub ? 'fa-check-circle' : 'fa-times-circle'}"></i> ${isSub ? '✓ पूर्ण (Submitted)' : 'बाकी (Pending)'}
-          </span>
-        </td>
+        <td>${statusBadge}</td>
         <td>
           ${sub.submitted_by ? `
             <strong>${sub.submitted_by}</strong><br>
@@ -8896,19 +10627,8 @@ function filterDynamicDemandTable(demandId) {
           ` : '<span style="color:#94a3b8">-</span>'}
         </td>
         <td style="text-align:center">
-          <div style="display:flex; justify-content:center; gap:0.4rem; flex-wrap:wrap">
-            <button class="btn ${isSub ? 'btn-outline-primary' : 'btn-primary'} btn-sm" onclick="openFillDemandForSchoolModal('${demand.id}', '${s.shala_darpan_code}')" title="${isSub ? 'प्रपत्र संशोधित करें' : 'प्रपत्र भरें'}">
-              <i class="fas ${isSub ? 'fa-edit' : 'fa-pen-nib'}"></i> ${isSub ? 'संशोधन' : 'भरें'}
-            </button>
-            ${isSub ? `
-              <button class="btn btn-success btn-sm" onclick="openUniversalDemandPdfPreview('${demand.id}', '${s.shala_darpan_code}')" title="अधिकृत A4 PDF देखें व प्रिंट करें">
-                <i class="fas fa-print"></i> PDF देखें
-              </button>
-            ` : `
-              <button class="btn btn-whatsapp btn-sm" onclick="sendDynamicDemandSchoolReminder('${demand.id}', '${s.shala_darpan_code}')" title="1-क्लिक WhatsApp रिमाइंडर">
-                <i class="fab fa-whatsapp"></i> रिमाइंडर
-              </button>
-            `}
+          <div style="display:flex; justify-content:center; gap:0.35rem; flex-wrap:wrap">
+            ${actionsHtml}
           </div>
         </td>
       </tr>
@@ -8956,6 +10676,9 @@ function openFillDemandForSchoolModal(demandId, schoolCode) {
   const container = document.getElementById('dynamic-form-fields-container');
   container.innerHTML = '';
 
+  const isMismatch = isDemandSchoolMismatch(demandId, schoolCode);
+  const flaggedFields = existingSub.mismatch_fields || [];
+
   let fieldsHtml = `
     <!-- Google Form Style Top Header Card -->
     <div class="gform-header-card" style="background:#ffffff; border:1px solid #dadce0; border-top:10px solid #1a73e8; border-radius:8px; padding:1.25rem 1.5rem; margin-bottom:1.25rem; box-shadow:0 1px 3px rgba(60,64,67,0.08)">
@@ -8982,10 +10705,34 @@ function openFillDemandForSchoolModal(demandId, schoolCode) {
     </div>
   `;
 
+  if (isMismatch) {
+    fieldsHtml += `
+      <div class="gform-header-card" style="background:#fef2f2; border:2px solid #ef4444; border-radius:8px; padding:1.25rem 1.5rem; margin-bottom:1.25rem; box-shadow:0 2px 6px rgba(239,68,68,0.15)">
+        <div style="display:flex; align-items:center; gap:0.5rem; color:#b91c1c; font-weight:800; font-size:1.1rem">
+          <i class="fas fa-exclamation-triangle"></i> 🚨 प्रपत्र डेटा मिसमैच - सुधार हेतु अनलॉक
+        </div>
+        <p style="font-size:0.88rem; color:#991b1b; margin:0.4rem 0 0.6rem 0; line-height:1.5">
+          कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर) द्वारा आपके विद्यालय के इस प्रपत्र में शाला दर्पण से डेटा मिसमैच चिह्नित किया गया है। लाल बॉक्स वाले फील्ड को विशेष रूप से सत्यापित कर सही दर्ज करें:
+        </p>
+        ${flaggedFields.length > 0 ? `
+          <div style="display:flex; gap:0.4rem; flex-wrap:wrap; margin-bottom:0.6rem">
+            ${flaggedFields.map(f => `<span style="background:#fee2e2; color:#b91c1c; font-weight:800; font-size:0.82rem; padding:3px 10px; border-radius:20px; border:1.5px solid #f87171">❌ ${f}</span>`).join('')}
+          </div>
+        ` : ''}
+        ${existingSub.mismatch_remarks ? `
+          <div style="background:#ffffff; border-left:4px solid #ef4444; padding:0.5rem 0.85rem; border-radius:4px; font-size:0.85rem; color:#7f1d1d">
+            <strong>कार्यालय निर्देश / टिप्पणी:</strong> ${existingSub.mismatch_remarks}
+          </div>
+        ` : ''}
+      </div>
+    `;
+  }
+
   // Each dynamic column rendered as an individual Google Form Question Card (Exact Saman Pariksha Standard)
   (demand.columns || []).forEach((col, idx) => {
     let existingVal = (existingData[col.name] !== undefined) ? existingData[col.name] : '';
     let isPrefilledFromDB = false;
+    const isColFlagged = isMismatch && flaggedFields.includes(col.name);
 
     // If no existing saved submission, prefill from master DB if prefillSource was configured
     if (existingVal === '' && col.prefillSource && col.prefillSource !== 'none') {
@@ -8996,16 +10743,23 @@ function openFillDemandForSchoolModal(demandId, schoolCode) {
       }
     }
 
+    const cardBorderLeft = isColFlagged ? '6px solid #ef4444' : (isPrefilledFromDB ? '4px solid #16a34a' : '4px solid #1a73e8');
+    const cardBg = isColFlagged ? '#fff5f5' : '#ffffff';
+    const cardBorder = isColFlagged ? '1.5px solid #fca5a5' : '1px solid #dadce0';
+
     fieldsHtml += `
-      <div class="gform-card" style="background:#ffffff; border:1px solid #dadce0; border-left:4px solid ${isPrefilledFromDB ? '#16a34a' : '#1a73e8'}; border-radius:8px; padding:1.25rem 1.5rem; margin-bottom:1rem; box-shadow:0 1px 3px rgba(60,64,67,0.08); transition:all 0.2s">
+      <div class="gform-card" style="background:${cardBg}; border:${cardBorder}; border-left:${cardBorderLeft}; border-radius:8px; padding:1.25rem 1.5rem; margin-bottom:1rem; box-shadow:0 1px 3px rgba(60,64,67,0.08); transition:all 0.2s">
         <label style="font-weight:700; color:#202124; font-size:0.98rem; margin-bottom:0.35rem; display:flex; justify-content:space-between; align-items:center">
           <span>${idx + 1}. ${col.name} <span style="color:#d93025">*</span></span>
-          ${isPrefilledFromDB ? '<span style="font-size:0.72rem; font-weight:800; color:#15803d; background:#dcfce7; padding:2px 8px; border-radius:4px"><i class="fas fa-check-circle"></i> ✓ अधिकृत DB रिकॉर्ड</span>' : ''}
+          <div style="display:flex; gap:0.4rem; align-items:center">
+            ${isColFlagged ? '<span style="font-size:0.75rem; font-weight:800; color:#dc2626; background:#fee2e2; padding:2px 8px; border-radius:4px; border:1px solid #f87171"><i class="fas fa-exclamation-circle"></i> ❌ मिसमैच फील्ड</span>' : ''}
+            ${isPrefilledFromDB ? '<span style="font-size:0.72rem; font-weight:800; color:#15803d; background:#dcfce7; padding:2px 8px; border-radius:4px"><i class="fas fa-check-circle"></i> ✓ अधिकृत DB रिकॉर्ड</span>' : ''}
+          </div>
         </label>
-        <div style="font-size:0.8rem; color:#5f6368; margin-bottom:0.6rem">
-          ${isPrefilledFromDB ? 'यह विवरण मास्टर डेटाबेस से स्वतः प्राप्त हुआ है।' : 'कृपया इस कॉलम हेतु सही मान अथवा छात्र संख्या दर्ज करें'}
+        <div style="font-size:0.8rem; color:${isColFlagged ? '#b91c1c' : '#5f6368'}; margin-bottom:0.6rem">
+          ${isColFlagged ? '⚠️ कार्यालय द्वारा इस कॉलम में विसंगति पाई गई है। कृपया शाला दर्पण अनुसार सही डेटा दर्ज करें।' : (isPrefilledFromDB ? 'यह विवरण मास्टर डेटाबेस से स्वतः प्राप्त हुआ है।' : 'कृपया इस कॉलम हेतु सही मान अथवा छात्र संख्या दर्ज करें')}
         </div>
-        <input type="${col.type === 'number' ? 'number' : (col.type === 'date' ? 'date' : 'text')}" id="demand_input_col_${idx}" value="${existingVal}" placeholder="${col.placeholder || col.name + ' दर्ज करें'}" style="width:100%; padding:0.75rem 1rem; border:1.5px solid ${isPrefilledFromDB ? '#86efac' : '#dadce0'}; border-radius:6px; font-size:0.95rem; outline:none; transition:all 0.2s; background:${isPrefilledFromDB ? '#f0fdf4' : '#f8fafc'}" onfocus="this.style.borderColor='#1a73e8'; this.style.background='#fff'; this.style.boxShadow='0 0 0 2px rgba(26,115,232,0.2)'" onblur="this.style.borderColor='${isPrefilledFromDB ? '#86efac' : '#dadce0'}'; this.style.boxShadow='none'">
+        <input type="${col.type === 'number' ? 'number' : (col.type === 'date' ? 'date' : 'text')}" id="demand_input_col_${idx}" value="${existingVal}" placeholder="${col.placeholder || col.name + ' दर्ज करें'}" style="width:100%; padding:0.75rem 1rem; border:${isColFlagged ? '2px solid #ef4444' : (isPrefilledFromDB ? '1.5px solid #86efac' : '1.5px solid #dadce0')}; border-radius:6px; font-size:0.95rem; outline:none; transition:all 0.2s; background:${isColFlagged ? '#ffffff' : (isPrefilledFromDB ? '#f0fdf4' : '#f8fafc')}" onfocus="this.style.borderColor='#1a73e8'; this.style.background='#fff'; this.style.boxShadow='0 0 0 2px rgba(26,115,232,0.2)'" onblur="this.style.borderColor='${isColFlagged ? '#ef4444' : (isPrefilledFromDB ? '#86efac' : '#dadce0')}'; this.style.boxShadow='none'">
       </div>
     `;
   });
@@ -9016,7 +10770,7 @@ function openFillDemandForSchoolModal(demandId, schoolCode) {
       <div style="font-weight:700; color:#202124; font-size:1rem; margin-bottom:0.85rem">
         <i class="fas fa-user-check text-primary"></i> प्रस्तुतकर्ता अधिकारी विवरण
       </div>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1rem">
+      <div style="grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); display:grid; gap:1rem">
         <div>
           <label style="font-weight:600; color:#374151; font-size:0.85rem; margin-bottom:0.3rem; display:block">
             संस्था प्रधान / प्रभारी का नाम <span style="color:#d93025">*</span>:
@@ -9035,7 +10789,7 @@ function openFillDemandForSchoolModal(demandId, schoolCode) {
 
   container.innerHTML = fieldsHtml;
 
-  const isLocked = isDemandsLockedForCurrentUser();
+  const isLocked = isDemandLockedForSchool(demand.id, schoolCode);
   if (isLocked) {
     const alertBox = document.createElement('div');
     alertBox.style.cssText = 'background:#fffbeb; border:2px solid #f59e0b; border-radius:8px; padding:0.75rem 1rem; margin-bottom:1rem; color:#92400e; font-weight:700';
@@ -9064,15 +10818,15 @@ function openFillDemandForSchoolModal(demandId, schoolCode) {
 
 // 7. Submit School Dynamic Demand Form & Sync to Google Sheets JSON
 async function submitDynamicDemandSchoolForm() {
-  if (isDemandsLockedForCurrentUser()) {
-    showToast('🔒 यह मांग प्रपत्र संपादन हेतु CBEO कार्यालय द्वारा लॉक है (View-Only Mode)।', 'warning');
-    return;
-  }
-
   const demand = STATE.currentDemandToFill;
   const schoolCode = STATE.currentDemandSchoolCode;
   if (!demand || !schoolCode) {
     showToast('मांग अथवा विद्यालय कोड अमान्य है!', 'error');
+    return;
+  }
+
+  if (isDemandLockedForSchool(demand.id, schoolCode)) {
+    showToast('🔒 यह मांग प्रपत्र संपादन हेतु CBEO कार्यालय द्वारा लॉक है (View-Only Mode)।', 'warning');
     return;
   }
 
@@ -9111,6 +10865,9 @@ async function submitDynamicDemandSchoolForm() {
   const submissionObj = {
     is_submitted: true,
     status: 'पूर्ण (Submitted)',
+    is_mismatch: false,
+    mismatch_cleared_at: new Date().toLocaleString('hi-IN'),
+    custom_unlocked: false,
     demand_id: demand.id,
     demand_title: demand.title,
     school_code: schoolCode,
@@ -9130,6 +10887,12 @@ async function submitDynamicDemandSchoolForm() {
   STATE.demandSubmissions[demand.id][schoolCode] = submissionObj;
 
   localStorage.setItem('cbeo_demand_submissions', JSON.stringify(STATE.demandSubmissions));
+
+  // If this demand had mismatch_schools list, clear this school from it
+  if (demand.mismatch_schools) {
+    demand.mismatch_schools = demand.mismatch_schools.filter(c => String(c).trim() !== String(schoolCode).trim());
+    localStorage.setItem('cbeo_demands', JSON.stringify(STATE.demands));
+  }
 
   // Post to Google Apps Script Webhook (action=saveDemandSubmission, stores Data_JSON in PEEO sheet)
   const gasUrl = localStorage.getItem('cbeo_google_apps_script_url')
@@ -9741,6 +11504,642 @@ async function shareUniversalDemandPdfWhatsApp() {
   }
 }
 
+/* ========================================================
+   13B. UNIVERSAL DEMAND MISMATCH & FIELD-LEVEL INSPECTOR
+   Field-level Checkmarks, Red/Green Status Highlighting,
+   Email & Telegram Notification Dispatch (WhatsApp-ready)
+   MANDATORY RULE: जिला सदैव अजमेर (AJMER) रहेगा।
+   ======================================================== */
+
+function isDemandSchoolMismatch(demandId, schoolCode) {
+  if (!demandId || !schoolCode) return false;
+  const sCode = String(schoolCode).trim();
+  const dId = String(demandId).toLowerCase();
+
+  // 1. Saman Pariksha
+  if (dId === 'saman_pariksha_2026_27' || dId === 'demand_saman_pariksha_2026' || dId.includes('saman_pariksha')) {
+    const spCfg = STATE.samanMismatchSettings || (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : null);
+    if (spCfg) {
+      if (spCfg.custom_edit_schools && spCfg.custom_edit_schools.some(c => String(c).trim() === sCode)) return true;
+      if (spCfg.mismatch_details && spCfg.mismatch_details[sCode]) return true;
+    }
+    const spSub = STATE.samanParikshaSubmissions && STATE.samanParikshaSubmissions[sCode];
+    if (spSub && (spSub.status === 'mismatch' || spSub.is_mismatch === true)) return true;
+    return false;
+  }
+
+  // 2. Dynamic Demands
+  const sub = (STATE.demandSubmissions && STATE.demandSubmissions[demandId] && STATE.demandSubmissions[demandId][sCode]) || null;
+  if (sub) {
+    if (sub.is_mismatch === true || sub.status === 'mismatch') return true;
+    if (sub.custom_unlocked === true) return true;
+  }
+
+  const demand = (STATE.demands || []).find(d => d.id === demandId);
+  if (demand && demand.mismatch_schools && demand.mismatch_schools.some(c => String(c).trim() === sCode)) {
+    return true;
+  }
+
+  return false;
+}
+window.isDemandSchoolMismatch = isDemandSchoolMismatch;
+
+function getDemandSchoolMismatchDetails(demandId, schoolCode) {
+  const sCode = String(schoolCode).trim();
+  const dId = String(demandId).toLowerCase();
+  
+  if (dId === 'saman_pariksha_2026_27' || dId === 'demand_saman_pariksha_2026' || dId.includes('saman_pariksha')) {
+    const spCfg = STATE.samanMismatchSettings || (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : null);
+    const mInfo = spCfg?.mismatch_details?.[sCode] || null;
+    return {
+      isMismatch: isDemandSchoolMismatch(demandId, sCode),
+      flaggedFields: mInfo ? ['कक्षा 9 से 12 कुल नामांकन'] : [],
+      remarks: mInfo ? `शाला दर्पण नामांकन से अंतर: ${mInfo.diff > 0 ? '+' : ''}${mInfo.diff}` : (spCfg?.alert_message || ''),
+      diff: mInfo?.diff || 0
+    };
+  }
+
+  const sub = (STATE.demandSubmissions && STATE.demandSubmissions[demandId] && STATE.demandSubmissions[demandId][sCode]) || {};
+  return {
+    isMismatch: isDemandSchoolMismatch(demandId, sCode),
+    flaggedFields: sub.mismatch_fields || [],
+    remarks: sub.mismatch_remarks || '',
+    unlocked: sub.custom_unlocked || false
+  };
+}
+window.getDemandSchoolMismatchDetails = getDemandSchoolMismatchDetails;
+
+function isDemandLockedForSchool(demandId, targetSchoolCode = null) {
+  if (!STATE.currentUser) return false;
+  if (isJitendraLoggedIn()) return false;
+
+  const schCode = targetSchoolCode || STATE.currentUser.shala_darpan_code;
+  if (isDemandSchoolMismatch(demandId, schCode)) {
+    return false; // Mismatch specifically unlocks this school for editing!
+  }
+
+  // If already submitted and NOT marked mismatch, lock editing for school/peeo
+  if (isDynamicDemandSubmitted(demandId, schCode)) {
+    return true;
+  }
+
+  return isDemandsLockedForCurrentUser();
+}
+window.isDemandLockedForSchool = isDemandLockedForSchool;
+
+let currentMismatchInspectorTarget = null;
+
+function openDemandMismatchInspector(demandId, schoolCode) {
+  const sCode = String(schoolCode).trim();
+  let demand = (STATE.demands || []).find(d => d.id === demandId);
+  const isSaman = (demandId === 'saman_pariksha_2026_27' || String(demandId).toLowerCase().includes('saman_pariksha'));
+
+  if (!demand && isSaman) {
+    demand = {
+      id: 'saman_pariksha_2026_27',
+      title: 'जिला समान परीक्षा 2026-27 (कक्षा 9 से 12 नामांकन व प्रश्न पत्र मांग)',
+      description: 'समान परीक्षा प्रश्न-पत्र मांग एवं नामांकन प्रपत्र'
+    };
+  }
+
+  if (!demand) {
+    showToast('मांग प्रपत्र नहीं मिला!', 'error');
+    return;
+  }
+
+  const school = (STATE.schools56 || []).find(s => String(s.shala_darpan_code).trim() === sCode) ||
+                 getAllMasterSchools().find(s => String(s.shala_darpan_code).trim() === sCode) || {
+                   school_name: 'विद्यालय',
+                   shala_darpan_code: sCode,
+                   peeo_name: 'CBEO Bhinai'
+                 };
+
+  const sub = isSaman 
+    ? (STATE.samanParikshaSubmissions && STATE.samanParikshaSubmissions[sCode]) || {}
+    : getDemandSubmissionRecord(demandId, sCode);
+
+  currentMismatchInspectorTarget = {
+    demandId: demand.id,
+    demandTitle: demand.title,
+    schoolCode: sCode,
+    schoolName: school.school_name,
+    peeoName: school.peeo_name,
+    sub: sub
+  };
+
+  // 1. Populate Header / Banner
+  const titleEl = document.getElementById('mismatch-modal-title');
+  if (titleEl) {
+    titleEl.innerHTML = `<i class="fas fa-exclamation-triangle"></i> प्रपत्र डेटा मिसमैच निरीक्षण: ${school.school_name}`;
+  }
+
+  const bannerEl = document.getElementById('mismatch-school-banner');
+  if (bannerEl) {
+    bannerEl.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem">
+        <div>
+          <strong style="color:#991b1b; font-size:1.05rem"><i class="fas fa-university"></i> ${school.school_name}</strong>
+          <div style="font-size:0.82rem; color:#475569; margin-top:2px">
+            शा.दा. कोड: <code>${sCode}</code> | संबंधित PEEO: <strong>${school.peeo_name}</strong> | वर्ग: <strong>${school.type === 'Private' ? 'निजी' : 'राजकीय'}</strong>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <span class="status-badge" style="background:#fee2e2; color:#b91c1c; font-weight:800; border:1px solid #f87171">
+            प्रपत्र: ${demand.title}
+          </span>
+          <div style="font-size:0.75rem; color:#64748b; margin-top:3px">
+            प्रस्तुतकर्ता: ${sub.submitted_by || sub.principal_name || 'संस्था प्रधान'} (${sub.submitter_mobile || sub.principal_mobile || '-'})
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // 2. Build Field List with Checkboxes beside EVERY box
+  const fieldsContainer = document.getElementById('mismatch-fields-list');
+  if (!fieldsContainer) return;
+  fieldsContainer.innerHTML = '';
+
+  const prevFlagged = (sub.mismatch_fields || []);
+  let fieldItems = [];
+
+  if (isSaman) {
+    const spCfg = STATE.samanMismatchSettings || (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : null);
+    const mInfo = spCfg?.mismatch_details?.[sCode] || null;
+
+    fieldItems = [
+      { name: '9वीं कुल नामांकन', val: sub.c9_total !== undefined ? sub.c9_total : (mInfo?.portal_c9_10 || '--') },
+      { name: '9वीं संस्कृत तृतीय भाषा', val: sub.c9_sanskrit || 0 },
+      { name: '9वीं उर्दू तृतीय भाषा', val: sub.c9_urdu || 0 },
+      { name: '10वीं कुल नामांकन', val: sub.c10_total !== undefined ? sub.c10_total : '--' },
+      { name: '10वीं संस्कृत तृतीय भाषा', val: sub.c10_sanskrit || 0 },
+      { name: '10वीं उर्दू तृतीय भाषा', val: sub.c10_urdu || 0 },
+      { name: '11वीं कुल विद्यार्थी', val: sub.c11_total !== undefined ? sub.c11_total : '--' },
+      { name: '11वीं अनिवार्य व ऐच्छिक विषय', val: sub.c11_comp_hindi ? `हिंदी(${sub.c11_comp_hindi}), अंग्रेजी(${sub.c11_comp_english})` : '--' },
+      { name: '12वीं कुल विद्यार्थी', val: sub.c12_total !== undefined ? sub.c12_total : '--' },
+      { name: '12वीं अनिवार्य व ऐच्छिक विषय', val: sub.c12_comp_hindi ? `हिंदी(${sub.c12_comp_hindi}), अंग्रेजी(${sub.c12_comp_english})` : '--' },
+      { name: 'कक्षा 9 से 12 महायोग (Grand Total)', val: sub.grand_total !== undefined ? sub.grand_total : (mInfo?.portal_total || '--') }
+    ];
+  } else {
+    (demand.columns || []).forEach(col => {
+      const v = (sub.data && sub.data[col.name] !== undefined) ? sub.data[col.name] : (sub[col.name] !== undefined ? sub[col.name] : '');
+      fieldItems.push({ name: col.name, val: v });
+    });
+  }
+
+  fieldItems.forEach(item => {
+    const isChecked = prevFlagged.includes(item.name);
+    const row = document.createElement('div');
+    row.className = 'mismatch-field-card';
+    row.style.cssText = `display:flex; align-items:center; justify-content:space-between; background:${isChecked ? '#fff5f5' : '#ffffff'}; border:1.5px solid ${isChecked ? '#ef4444' : '#e2e8f0'}; border-radius:6px; padding:0.55rem 0.85rem; transition:all 0.2s`;
+
+    row.innerHTML = `
+      <div style="flex:1; padding-right:1rem">
+        <div style="font-weight:700; color:#1e293b; font-size:0.88rem">${item.name}</div>
+        <div style="font-size:0.8rem; color:#475569; margin-top:2px">
+          स्कूल द्वारा दर्ज प्रविष्टि: <strong style="color:#0f766e; font-size:0.85rem">${item.val !== '' && item.val !== undefined ? item.val : '(रिक्त / शून्य)'}</strong>
+        </div>
+      </div>
+      <label style="display:flex; align-items:center; gap:0.45rem; cursor:pointer; font-size:0.84rem; font-weight:800; color:${isChecked ? '#dc2626' : '#64748b'}; margin:0; user-select:none">
+        <input type="checkbox" class="mismatch-field-checkbox" value="${item.name}" ${isChecked ? 'checked' : ''} onchange="onMismatchFieldToggled(this)" style="width:17px; height:17px; accent-color:#dc2626; cursor:pointer">
+        <span>❌ इस बॉक्स में मिसमैच है</span>
+      </label>
+    `;
+    fieldsContainer.appendChild(row);
+  });
+
+  // 3. Set Remarks
+  const remEl = document.getElementById('mismatch-custom-remarks');
+  if (remEl) {
+    remEl.value = sub.mismatch_remarks || `शाला दर्पण पोर्टल पर 01-10-2026 के अधिकृत नामांकन अनुसार इस प्रपत्र में अंतर पाया गया है। कृपया सही प्रविष्टि करें।`;
+  }
+
+  renderMismatchPreview();
+  showModal('modal-mismatch-inspector');
+}
+window.openDemandMismatchInspector = openDemandMismatchInspector;
+
+function onMismatchFieldToggled(chk) {
+  const card = chk.closest('.mismatch-field-card');
+  if (card) {
+    if (chk.checked) {
+      card.style.background = '#fff5f5';
+      card.style.borderColor = '#ef4444';
+      const lbl = chk.closest('label');
+      if (lbl) lbl.style.color = '#dc2626';
+    } else {
+      card.style.background = '#ffffff';
+      card.style.borderColor = '#e2e8f0';
+      const lbl = chk.closest('label');
+      if (lbl) lbl.style.color = '#64748b';
+    }
+  }
+  renderMismatchPreview();
+}
+window.onMismatchFieldToggled = onMismatchFieldToggled;
+
+function renderMismatchPreview() {
+  if (!currentMismatchInspectorTarget) return;
+  const target = currentMismatchInspectorTarget;
+
+  const checkedBoxes = Array.from(document.querySelectorAll('#mismatch-fields-list .mismatch-field-checkbox:checked'));
+  const flagged = checkedBoxes.map(c => c.value);
+
+  const counterEl = document.getElementById('mismatch-checked-counter');
+  if (counterEl) {
+    counterEl.textContent = `${flagged.length} फील्ड चयनित`;
+  }
+
+  const remarks = (document.getElementById('mismatch-custom-remarks')?.value || '').trim();
+
+  let flaggedBullets = '';
+  if (flagged.length > 0) {
+    flaggedBullets = flagged.map(f => `• ❌ *${f}* (शाला दर्पण से अंतर)`).join('\n');
+  } else {
+    flaggedBullets = `• ❌ *समस्त प्रपत्र डेटा में विसंगति / मिसमैच*`;
+  }
+
+  const previewText = `🚨 *कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)*
+📋 *अधिकृत सूचना: प्रपत्र डेटा मिसमैच व संशोधन नोटिस*
+
+📌 *सूचना मांग:* ${target.demandTitle}
+🏫 *विद्यालय का नाम:* ${target.schoolName}
+🔢 *शाला दर्पण कोड:* ${target.schoolCode}
+🏛️ *संबंधित PEEO:* ${target.peeoName}
+
+⚠️ *मिसमैच / विसंगति वाले बॉक्स:*
+${flaggedBullets}
+
+📝 *कार्यालय निर्देश / टिप्पणी:*
+${remarks || 'शाला दर्पण पोर्टल के अधिकृत नामांकन से मिलान न होने के कारण प्रपत्र अनलॉक किया गया है।'}
+
+🔓 *कार्यवाही:* आपके विद्यालय का प्रपत्र CBEO पोर्टल पर संशोधन (Edit) हेतु अनलॉक कर दिया गया है। कृपया आज ही पोर्टल पर लॉगिन कर सही प्रविष्टि कर पुनः सबमिट करें।
+
+🌐 *पोर्टल लॉगिन लिंक:* https://jit9763.github.io/cbeo-bhinai-portal/`;
+
+  const previewEl = document.getElementById('mismatch-message-preview');
+  if (previewEl) previewEl.textContent = previewText;
+}
+window.renderMismatchPreview = renderMismatchPreview;
+
+function copyMismatchPreviewToClipboard() {
+  const txt = document.getElementById('mismatch-message-preview')?.textContent || '';
+  if (!txt) return;
+  navigator.clipboard.writeText(txt).then(() => {
+    showToast('संदेश क्लिपबोर्ड में कॉपी हो गया! अब WhatsApp पर पेस्ट कर सकते हैं।', 'success');
+  }).catch(() => {
+    showToast('कॉपी करने में असमर्थ', 'error');
+  });
+}
+window.copyMismatchPreviewToClipboard = copyMismatchPreviewToClipboard;
+
+async function dispatchSingleMismatchAlert() {
+  if (!currentMismatchInspectorTarget) return;
+  const target = currentMismatchInspectorTarget;
+  const btn = document.getElementById('btn-submit-mismatch-alert');
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> मिसमैच दर्ज एवं अलर्ट भेजा जा रहा है...`;
+  }
+
+  const checkedBoxes = Array.from(document.querySelectorAll('#mismatch-fields-list .mismatch-field-checkbox:checked'));
+  const flagged = checkedBoxes.map(c => c.value);
+  const remarks = (document.getElementById('mismatch-custom-remarks')?.value || '').trim();
+  const sendEmail = !!document.getElementById('mismatch-send-email-chk')?.checked;
+  const sendTelegram = !!document.getElementById('mismatch-send-telegram-chk')?.checked;
+
+  // 1. Find school email
+  const schoolObj = (STATE.schools56 || []).find(s => String(s.shala_darpan_code).trim() === target.schoolCode) ||
+                    getAllMasterSchools().find(s => String(s.shala_darpan_code).trim() === target.schoolCode) || {};
+  const staffHead = (STATE.staff || []).find(s => String(s.sso_id).trim() === target.schoolCode && s.is_sanstha_pradhan);
+  const schoolEmail = schoolObj.email || staffHead?.email || 'censusbhinai@gmail.com';
+
+  // 2. Mark submission in local state
+  const isSaman = (target.demandId === 'saman_pariksha_2026_27' || String(target.demandId).toLowerCase().includes('saman_pariksha'));
+  if (isSaman) {
+    const spCfg = (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : (STATE.samanMismatchSettings || {}));
+    if (!spCfg.custom_edit_schools) spCfg.custom_edit_schools = [];
+    if (!spCfg.custom_edit_schools.includes(target.schoolCode)) {
+      spCfg.custom_edit_schools.push(target.schoolCode);
+    }
+    STATE.samanMismatchSettings = spCfg;
+    localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(spCfg));
+
+    if (STATE.samanParikshaSubmissions && STATE.samanParikshaSubmissions[target.schoolCode]) {
+      STATE.samanParikshaSubmissions[target.schoolCode].status = 'mismatch';
+      STATE.samanParikshaSubmissions[target.schoolCode].is_mismatch = true;
+      STATE.samanParikshaSubmissions[target.schoolCode].mismatch_fields = flagged;
+      STATE.samanParikshaSubmissions[target.schoolCode].mismatch_remarks = remarks;
+      localStorage.setItem('cbeo_saman_submissions', JSON.stringify(STATE.samanParikshaSubmissions));
+    }
+
+    fetch('/api/save_saman_mismatch_settings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ settings: spCfg })
+    }).catch(() => {});
+  } else {
+    if (!STATE.demandSubmissions) STATE.demandSubmissions = {};
+    if (!STATE.demandSubmissions[target.demandId]) STATE.demandSubmissions[target.demandId] = {};
+    const curSub = STATE.demandSubmissions[target.demandId][target.schoolCode] || {};
+    curSub.status = 'mismatch';
+    curSub.is_mismatch = true;
+    curSub.mismatch_fields = flagged;
+    curSub.mismatch_remarks = remarks;
+    curSub.custom_unlocked = true;
+    curSub.mismatch_flagged_at = new Date().toLocaleString('hi-IN');
+    STATE.demandSubmissions[target.demandId][target.schoolCode] = curSub;
+    localStorage.setItem('cbeo_demand_submissions', JSON.stringify(STATE.demandSubmissions));
+
+    // Also track in demand.mismatch_schools
+    const dem = (STATE.demands || []).find(d => d.id === target.demandId);
+    if (dem) {
+      if (!dem.mismatch_schools) dem.mismatch_schools = [];
+      if (!dem.mismatch_schools.includes(target.schoolCode)) dem.mismatch_schools.push(target.schoolCode);
+      localStorage.setItem('cbeo_demands', JSON.stringify(STATE.demands));
+    }
+  }
+
+  // 3. Dispatch to API
+  const payload = {
+    mode: 'single',
+    demand_id: target.demandId,
+    demand_title: target.demandTitle,
+    school_code: target.schoolCode,
+    school_name: target.schoolName,
+    peeo_name: target.peeoName,
+    school_email: sendEmail ? schoolEmail : '',
+    flagged_fields: flagged,
+    remarks: remarks,
+    send_telegram: sendTelegram
+  };
+
+  try {
+    const res = await fetch('/api/send_mismatch_alert', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const result = await res.json();
+    console.log('Mismatch Alert Dispatch Result:', result);
+    showToast(`विद्यालय '${target.schoolName}' को मिसमैच दर्ज, प्रपत्र अनलॉक एवं अलर्ट सफलतापूर्वक प्रेषित!`, 'success');
+  } catch (e) {
+    console.warn('Dispatch network notice:', e);
+    showToast(`विद्यालय '${target.schoolName}' का प्रपत्र मिसमैच के तहत अनलॉक कर दिया गया!`, 'info');
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = `<i class="fas fa-paper-plane"></i> 🚨 मिसमैच मार्क करें, प्रपत्र अनलॉक करें एवं अलर्ट भेजें`;
+    }
+    closeModal('modal-mismatch-inspector');
+    if (isSaman) {
+      renderSamanParikshaView();
+    } else {
+      renderDynamicDemandPortalView(target.demandId);
+    }
+  }
+}
+window.dispatchSingleMismatchAlert = dispatchSingleMismatchAlert;
+
+function toggleSelectAllDemandSchools(headerCheckbox, demandId) {
+  const isChecked = headerCheckbox.checked;
+  const checkboxes = document.querySelectorAll('#dynamic-demand-schools-tbody .demand-school-chk');
+  checkboxes.forEach(chk => {
+    chk.checked = isChecked;
+  });
+  updateDemandBatchSelection(demandId);
+}
+window.toggleSelectAllDemandSchools = toggleSelectAllDemandSchools;
+
+function updateDemandBatchSelection(demandId) {
+  const selectedBoxes = Array.from(document.querySelectorAll('#dynamic-demand-schools-tbody .demand-school-chk:checked'));
+  const count = selectedBoxes.length;
+  const bar = document.getElementById('dynamic-demand-batch-bar');
+  const countEl = document.getElementById('dynamic-demand-selected-count');
+
+  if (bar) {
+    bar.style.display = count > 0 ? 'flex' : 'none';
+  }
+  if (countEl) {
+    countEl.textContent = count;
+  }
+}
+window.updateDemandBatchSelection = updateDemandBatchSelection;
+
+let activeBatchDemandId = null;
+
+function openBatchDemandMismatchModal(demandId) {
+  activeBatchDemandId = demandId;
+  const demand = (STATE.demands || []).find(d => d.id === demandId);
+  if (!demand) return;
+
+  const selectedBoxes = Array.from(document.querySelectorAll('#dynamic-demand-schools-tbody .demand-school-chk:checked'));
+  const schoolCodes = selectedBoxes.map(b => b.value);
+
+  if (schoolCodes.length === 0) {
+    showToast('कृपया कम से कम एक विद्यालय चुनें!', 'warning');
+    return;
+  }
+
+  const countEl = document.getElementById('batch-modal-school-count');
+  if (countEl) countEl.textContent = schoolCodes.length;
+
+  const chipsContainer = document.getElementById('batch-selected-schools-chips');
+  if (chipsContainer) {
+    chipsContainer.innerHTML = '';
+    schoolCodes.forEach(code => {
+      const sch = (STATE.schools56 || []).find(s => s.shala_darpan_code === code) ||
+                  getAllMasterSchools().find(s => s.shala_darpan_code === code) || { school_name: code };
+      const chip = document.createElement('span');
+      chip.style.cssText = 'background:#fee2e2; color:#991b1b; border:1px solid #fca5a5; font-size:0.75rem; font-weight:700; padding:2px 8px; border-radius:12px; display:inline-flex; align-items:center; gap:4px';
+      chip.innerHTML = `<i class="fas fa-school"></i> ${sch.school_name} (<code>${code}</code>)`;
+      chipsContainer.appendChild(chip);
+    });
+  }
+
+  renderBatchMismatchPreview();
+  showModal('modal-batch-mismatch');
+}
+window.openBatchDemandMismatchModal = openBatchDemandMismatchModal;
+
+function renderBatchMismatchPreview() {
+  const demandId = activeBatchDemandId;
+  const demand = (STATE.demands || []).find(d => d.id === demandId) || { title: 'मांग प्रपत्र' };
+  const selectedBoxes = Array.from(document.querySelectorAll('#dynamic-demand-schools-tbody .demand-school-chk:checked'));
+  const schoolCodes = selectedBoxes.map(b => b.value);
+  const commonRemarks = (document.getElementById('batch-mismatch-remarks')?.value || '').trim();
+
+  let schoolsListStr = '';
+  schoolCodes.forEach((code, idx) => {
+    const sch = (STATE.schools56 || []).find(s => s.shala_darpan_code === code) ||
+                getAllMasterSchools().find(s => s.shala_darpan_code === code) || { school_name: code, peeo_name: 'CBEO' };
+    schoolsListStr += `${idx + 1}. *${sch.school_name}* (कोड: ${code}) - PEEO ${sch.peeo_name || ''}\n`;
+  });
+
+  const preview = `🚨 *समेकित मिसमैच सूचना: प्रपत्र डेटा सुधार नोटिस*
+🏛️ *कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)*
+
+📋 *मांग प्रपत्र:* ${demand.title}
+📅 *दिनांक:* ${new Date().toLocaleDateString('hi-IN')}
+👥 *कुल चिह्नित विद्यालय:* ${schoolCodes.length} स्कूल
+
+निम्न विद्यालयों के प्रपत्र में शाला दर्पण अनुसार डेटा मिसमैच / विसंगति पाई गई है एवं उनके लिए पोर्टल पर संपादन (Edit) खोल दिया गया है:
+
+${schoolsListStr}
+📝 *कार्यालय निर्देश:*
+${commonRemarks}
+
+🌐 *पोर्टल लिंक:* https://jit9763.github.io/cbeo-bhinai-portal/`;
+
+  const prevEl = document.getElementById('batch-mismatch-preview');
+  if (prevEl) prevEl.textContent = preview;
+}
+window.renderBatchMismatchPreview = renderBatchMismatchPreview;
+
+function copyBatchMismatchPreviewToClipboard() {
+  const txt = document.getElementById('batch-mismatch-preview')?.textContent || '';
+  if (!txt) return;
+  navigator.clipboard.writeText(txt).then(() => {
+    showToast('समेकित संदेश कॉपी हो गया! WhatsApp ग्रुप्स में तुरंत भेजें।', 'success');
+  });
+}
+window.copyBatchMismatchPreviewToClipboard = copyBatchMismatchPreviewToClipboard;
+
+async function dispatchBatchMismatchAlert() {
+  const demandId = activeBatchDemandId;
+  const demand = (STATE.demands || []).find(d => d.id === demandId);
+  if (!demand) return;
+
+  const btn = document.getElementById('btn-submit-batch-mismatch');
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> सभी स्कूलों को मिसमैच भेजा जा रहा है...`;
+  }
+
+  const selectedBoxes = Array.from(document.querySelectorAll('#dynamic-demand-schools-tbody .demand-school-chk:checked'));
+  const schoolCodes = selectedBoxes.map(b => b.value);
+  const commonRemarks = (document.getElementById('batch-mismatch-remarks')?.value || '').trim();
+  const sendEmail = !!document.getElementById('batch-send-email-chk')?.checked;
+  const sendTelegram = !!document.getElementById('batch-send-telegram-chk')?.checked;
+
+  const schoolItems = [];
+  schoolCodes.forEach(code => {
+    const sch = (STATE.schools56 || []).find(s => s.shala_darpan_code === code) ||
+                getAllMasterSchools().find(s => s.shala_darpan_code === code) || {};
+    const staffHead = (STATE.staff || []).find(s => String(s.sso_id).trim() === code && s.is_sanstha_pradhan);
+    const email = sch.email || staffHead?.email || 'censusbhinai@gmail.com';
+
+    // Mark in STATE.demandSubmissions
+    if (!STATE.demandSubmissions) STATE.demandSubmissions = {};
+    if (!STATE.demandSubmissions[demand.id]) STATE.demandSubmissions[demand.id] = {};
+    const curSub = STATE.demandSubmissions[demand.id][code] || {};
+    curSub.status = 'mismatch';
+    curSub.is_mismatch = true;
+    curSub.mismatch_remarks = commonRemarks;
+    curSub.custom_unlocked = true;
+    curSub.mismatch_flagged_at = new Date().toLocaleString('hi-IN');
+    STATE.demandSubmissions[demand.id][code] = curSub;
+
+    schoolItems.push({
+      school_code: code,
+      school_name: sch.school_name || code,
+      peeo_name: sch.peeo_name || 'CBEO',
+      email: sendEmail ? email : '',
+      flagged_fields: ['समस्त प्रपत्र डेटा'],
+      remarks: commonRemarks
+    });
+  });
+
+  localStorage.setItem('cbeo_demand_submissions', JSON.stringify(STATE.demandSubmissions));
+
+  // Also update demand.mismatch_schools
+  if (!demand.mismatch_schools) demand.mismatch_schools = [];
+  demand.mismatch_schools = Array.from(new Set([...demand.mismatch_schools, ...schoolCodes]));
+  localStorage.setItem('cbeo_demands', JSON.stringify(STATE.demands));
+
+  const payload = {
+    mode: 'batch',
+    demand_id: demand.id,
+    demand_title: demand.title,
+    schools: schoolItems,
+    common_remarks: commonRemarks,
+    send_telegram: sendTelegram
+  };
+
+  try {
+    const res = await fetch('/api/send_mismatch_alert', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const result = await res.json();
+    console.log('Batch Mismatch Dispatch Result:', result);
+    showToast(`${schoolCodes.length} विद्यालयों को मिसमैच मार्क किया गया एवं समेकित अलर्ट प्रेषित!`, 'success');
+  } catch(e) {
+    console.warn('Batch dispatch network notice:', e);
+    showToast(`${schoolCodes.length} विद्यालयों को मिसमैच के तहत अनलॉक कर दिया गया!`, 'info');
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = `<i class="fas fa-paper-plane"></i> 🚨 सभी स्कूलों को मिसमैच मार्क करें एवं अलर्ट भेजें`;
+    }
+    closeModal('modal-batch-mismatch');
+    renderDynamicDemandPortalView(demand.id);
+  }
+}
+window.dispatchBatchMismatchAlert = dispatchBatchMismatchAlert;
+
+function checkAndShowAllMismatchAlerts(userObj) {
+  if (!userObj || userObj.role === 'admin') return;
+  const uCode = String(userObj.shala_darpan_code).trim();
+
+  // 1. First check Saman Pariksha
+  const spCfg = (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : (STATE.samanMismatchSettings || {}));
+  const isSamanAlertActive = spCfg && spCfg.alert_active !== false;
+  const isSamanMismatch = isDemandSchoolMismatch('saman_pariksha_2026_27', uCode);
+
+  if (isSamanAlertActive && isSamanMismatch) {
+    checkAndShowSamanMismatchAlert(userObj);
+    return;
+  }
+
+  // 2. Then check all active Dynamic Demands
+  const activeDemands = (STATE.demands || []).filter(d => !d.archived);
+  for (const dem of activeDemands) {
+    if (isDemandSchoolMismatch(dem.id, uCode)) {
+      const sub = (STATE.demandSubmissions && STATE.demandSubmissions[dem.id] && STATE.demandSubmissions[dem.id][uCode]) || {};
+      const flagged = sub.mismatch_fields || ['प्रपत्र डेटा'];
+      const remarks = sub.mismatch_remarks || 'शाला दर्पण पोर्टल से डेटा मिलान न होने के कारण प्रपत्र अनलॉक किया गया है।';
+
+      const titleElem = document.getElementById('sp-alert-modal-title');
+      const nameElem = document.getElementById('sp-alert-school-name');
+      const codeElem = document.getElementById('sp-alert-school-code');
+      const pTotElem = document.getElementById('sp-alert-portal-total');
+      const sdTotElem = document.getElementById('sp-alert-sd-total');
+      const diffElem = document.getElementById('sp-alert-diff-total');
+      const msgElem = document.getElementById('sp-alert-modal-message');
+
+      if (titleElem) titleElem.innerHTML = `<i class="fas fa-exclamation-triangle sp-mismatch-blinking-text"></i> 🚨 डेटा मिसमैच नोटिस: ${dem.title}`;
+      if (nameElem) nameElem.textContent = userObj.school_name || uCode;
+      if (codeElem) codeElem.textContent = uCode;
+      if (pTotElem) pTotElem.textContent = flagged.join(', ');
+      if (sdTotElem) sdTotElem.textContent = 'संशोधन खुला';
+      if (diffElem) diffElem.textContent = 'अनलॉक';
+
+      if (msgElem) {
+        msgElem.innerHTML = `<strong>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)</strong> द्वारा आपके विद्यालय के मांग प्रपत्र <strong>'${dem.title}'</strong> में डेटा मिसमैच पाया गया है।<br><br>⚠️ <strong>मिसमैच फील्ड:</strong> ${flagged.join(', ')}<br>📝 <strong>निर्देश:</strong> ${remarks}<br><br>उक्त त्रुटि सुधार हेतु आपका प्रपत्र अनलॉक कर दिया गया है, कृपया तुरंत सुधार कर सबमिट करें।`;
+      }
+
+      window._currentMismatchAlertSchoolCode = uCode;
+      window._currentMismatchAlertDemandId = dem.id;
+
+      showModal('modal-saman-mismatch-login-alert');
+      return;
+    }
+  }
+}
+window.checkAndShowAllMismatchAlerts = checkAndShowAllMismatchAlerts;
+
 // 14. 25 PEEO Compliance & Form Status Matrix (Saman Pariksha + All Dynamic Demands)
 function renderAdminMatrix() {
   const theadTr = document.getElementById('admin-matrix-thead-tr');
@@ -10313,20 +12712,123 @@ function toggleDemandPublish(demandId) {
   renderAdminControlView();
 }
 
-function openCreateDemandModal() {
+function openCreateDemandModal(defaultParentTab = null) {
   document.getElementById('new-demand-title').value = '';
   document.getElementById('new-demand-date').value = '';
+  
+  const placementSelect = document.getElementById('new-demand-placement');
+  const parentTabSelect = document.getElementById('new-demand-parent-tab');
+  const parentGroup = document.getElementById('group-demand-parent-tab');
+
+  if (defaultParentTab) {
+    if (placementSelect) placementSelect.value = 'tab_existing';
+    if (parentTabSelect) parentTabSelect.value = defaultParentTab;
+    if (parentGroup) parentGroup.style.display = 'block';
+  } else {
+    if (placementSelect) placementSelect.value = 'tab_existing';
+    if (parentGroup) parentGroup.style.display = 'block';
+  }
+
   const levelSelect = document.getElementById('new-demand-collection-level');
   if (levelSelect) {
-    levelSelect.value = 'peeo';
+    levelSelect.value = (defaultParentTab === 'saman-pariksha') ? 'school' : 'peeo';
     onDemandCollectionLevelChange();
   }
+
   const scopeSelect = document.getElementById('new-demand-school-scope');
-  if (scopeSelect) scopeSelect.value = 'all';
-  document.getElementById('new-demand-cols').value = 'कुल खेल मैदान क्षेत्रफल (बीघा), वर्तमान चारदीवारी स्थिति, विकसित खेल संसाधन, आवश्यक अनुदान (लाखों में), विशेष विवरण';
-  document.getElementById('new-demand-desc').value = '';
-  document.getElementById('new-demand-publish').checked = true;
+  if (scopeSelect) {
+    scopeSelect.value = (defaultParentTab === 'saman-pariksha') ? 'govt_sec' : 'all';
+    onDemandSchoolScopeChange();
+  }
+
+  if (defaultParentTab === 'saman-pariksha') {
+    quickFillSamanSyllabusPrompt();
+  } else {
+    document.getElementById('new-demand-cols').value = 'कुल खेल मैदान क्षेत्रफल (बीघा), वर्तमान चारदीवारी स्थिति, विकसित खेल संसाधन, आवश्यक अनुदान (लाखों में), विशेष विवरण';
+    document.getElementById('new-demand-desc').value = '';
+    document.getElementById('new-demand-publish').checked = true;
+  }
+
   showModal('modal-create-demand');
+}
+
+function onDemandPlacementChange() {
+  const placement = document.getElementById('new-demand-placement')?.value;
+  const parentGroup = document.getElementById('group-demand-parent-tab');
+  if (parentGroup) {
+    parentGroup.style.display = (placement === 'tab_existing') ? 'block' : 'none';
+  }
+}
+
+function onDemandSchoolScopeChange() {
+  const scope = document.getElementById('new-demand-school-scope')?.value;
+  const hint = document.getElementById('new-demand-scope-hint');
+  const audGovtSec = document.getElementById('demand-aud-govt-sec');
+  const audPvtSec = document.getElementById('demand-aud-pvt-sec');
+  const audGovt = document.getElementById('demand-aud-govt');
+  const audAll = document.getElementById('demand-aud-all');
+
+  if (hint) {
+    if (scope === 'govt_sec') {
+      hint.innerHTML = '🏛️ <strong>केवल 49 राजकीय Sec/Sr.Sec:</strong> 8 निजी स्कूल इस प्रपत्र से पूर्णतः बाहर रहेंगे।';
+      hint.style.color = '#15803d';
+      if (audGovtSec) audGovtSec.checked = true;
+      if (audPvtSec) audPvtSec.checked = false;
+    } else if (scope === 'pvt_sec') {
+      hint.innerHTML = '🏢 <strong>केवल 8 निजी Sec/Sr.Sec:</strong> केवल निजी माध्यमिक/उच्च माध्यमिक विद्यालय।';
+      hint.style.color = '#d97706';
+      if (audGovtSec) audGovtSec.checked = false;
+      if (audPvtSec) audPvtSec.checked = true;
+    } else if (scope === 'both_sec') {
+      hint.innerHTML = '🏫 <strong>समस्त 57 Sec/Sr.Sec:</strong> 49 राजकीय + 8 निजी माध्यमिक व उच्च माध्यमिक विद्यालय।';
+      hint.style.color = '#2563eb';
+      if (audGovtSec) audGovtSec.checked = true;
+      if (audPvtSec) audPvtSec.checked = true;
+    } else if (scope === 'all_govt') {
+      hint.innerHTML = '🏛️ <strong>समस्त राजकीय विद्यालय:</strong> 132 राजकीय विद्यालय (प्राथमिक/उच्च प्राथमिक/माध्यमिक)।';
+      hint.style.color = '#0284c7';
+      if (audGovt) audGovt.checked = true;
+    } else {
+      hint.innerHTML = '🌐 <strong>समस्त 178 विद्यालय:</strong> ब्लॉक के सभी राजकीय व निजी विद्यालय।';
+      hint.style.color = '#475569';
+      if (audAll) audAll.checked = true;
+    }
+  }
+}
+
+function quickFillSamanSyllabusPrompt() {
+  const titleEl = document.getElementById('new-demand-title');
+  if (titleEl) titleEl.value = 'समान परीक्षा: सत्र 2026-27 पाठ्यक्रम पूर्णता प्रतिशत मांग (49 राजकीय विद्यालय)';
+  const descEl = document.getElementById('new-demand-desc');
+  if (descEl) descEl.value = 'समान परीक्षा 2026-27 के अंतर्गत ब्लॉक के 49 राजकीय माध्यमिक एवं उच्च माध्यमिक विद्यालयों में कक्षा 9 से 12 तक के विषयवार पाठ्यक्रम पूर्णता प्रतिशत की आधिकारिक मांग। (8 निजी स्कूल पूर्णतया बाहर)';
+  const placementEl = document.getElementById('new-demand-placement');
+  if (placementEl) {
+    placementEl.value = 'tab_existing';
+    onDemandPlacementChange();
+  }
+  const parentTabEl = document.getElementById('new-demand-parent-tab');
+  if (parentTabEl) parentTabEl.value = 'saman-pariksha';
+  const levelEl = document.getElementById('new-demand-collection-level');
+  if (levelEl) {
+    levelEl.value = 'school';
+    onDemandCollectionLevelChange();
+  }
+  const scopeEl = document.getElementById('new-demand-school-scope');
+  if (scopeEl) {
+    scopeEl.value = 'govt_sec';
+    onDemandSchoolScopeChange();
+  }
+  const colsEl = document.getElementById('new-demand-cols');
+  if (colsEl) {
+    colsEl.value = 'कक्षा 9 हिन्दी %, कक्षा 9 अंग्रेजी %, कक्षा 9 गणित %, कक्षा 9 विज्ञान %, कक्षा 9 सा.विज्ञान %, तृतीय भाषा संस्कृत %, तृतीय भाषा उर्दू %, कक्षा 10 हिन्दी %, कक्षा 10 अंग्रेजी %, कक्षा 10 गणित %, कक्षा 10 विज्ञान %, कक्षा 10 सा.विज्ञान %, 10वीं संस्कृत %, 10वीं उर्दू %, कक्षा 11 अनिवार्य हिन्दी %, कक्षा 11 अनिवार्य अंग्रेजी %, 11वीं ऐच्छिक विषय %, कक्षा 12 अनिवार्य हिन्दी %, कक्षा 12 अनिवार्य अंग्रेजी %, 12वीं ऐच्छिक विषय %';
+  }
+  if (document.getElementById('demand-aud-cbeo')) document.getElementById('demand-aud-cbeo').checked = true;
+  if (document.getElementById('demand-aud-peeo')) document.getElementById('demand-aud-peeo').checked = true;
+  if (document.getElementById('demand-aud-govt-sec')) document.getElementById('demand-aud-govt-sec').checked = true;
+  if (document.getElementById('demand-aud-pvt-sec')) document.getElementById('demand-aud-pvt-sec').checked = false; // Excluded!
+  if (document.getElementById('demand-aud-govt')) document.getElementById('demand-aud-govt').checked = false;
+  if (document.getElementById('demand-aud-all')) document.getElementById('demand-aud-all').checked = false;
+  showToast('समान परीक्षा पाठ्यक्रम पूर्णता मांग टेम्पलेट लागू हो गया!', 'info');
 }
 
 function onDemandCollectionLevelChange() {
@@ -11004,19 +13506,27 @@ function saveNewDemand() {
 
   const audCbeo = document.getElementById('demand-aud-cbeo') ? document.getElementById('demand-aud-cbeo').checked : true;
   const audPeeo = document.getElementById('demand-aud-peeo') ? document.getElementById('demand-aud-peeo').checked : true;
-  const audSec = document.getElementById('demand-aud-sec') ? document.getElementById('demand-aud-sec').checked : true;
+  const audGovtSec = document.getElementById('demand-aud-govt-sec') ? document.getElementById('demand-aud-govt-sec').checked : true;
+  const audPvtSec = document.getElementById('demand-aud-pvt-sec') ? document.getElementById('demand-aud-pvt-sec').checked : false;
   const audGovt = document.getElementById('demand-aud-govt') ? document.getElementById('demand-aud-govt').checked : false;
   const audAll = document.getElementById('demand-aud-all') ? document.getElementById('demand-aud-all').checked : false;
+
+  const placement = document.getElementById('new-demand-placement')?.value || 'tab_existing';
+  const parentTab = document.getElementById('new-demand-parent-tab')?.value || 'saman-pariksha';
 
   const newDemand = {
     id: `DEMAND_${Date.now()}`,
     title: title,
     collectionLevel: level,
     schoolScope: scope,
+    placement: placement,
+    parentTab: (placement === 'tab_existing') ? parentTab : null,
     targetAudience: {
       cbeo: audCbeo,
       peeo: audPeeo,
-      sec_srsec: audSec,
+      govt_sec_srsec: audGovtSec,
+      pvt_sec_srsec: audPvtSec,
+      sec_srsec: audGovtSec || audPvtSec,
       all_govt: audGovt,
       all_schools: audAll
     },
@@ -12417,6 +14927,13 @@ function closeModal(id) {
   if (modal) {
     modal.classList.remove('active');
     modal.classList.remove('mandatory-gate');
+  }
+  if (id === 'modal-default-pwd-alert' || id === 'modal-change-password') {
+    if (typeof onDefaultPwdAlertDismissed === 'function') {
+      setTimeout(() => {
+        onDefaultPwdAlertDismissed();
+      }, 250);
+    }
   }
 }
 

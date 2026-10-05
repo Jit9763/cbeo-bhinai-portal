@@ -4,12 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय | आधिकारिक सूचना, डायरेक्टरी एवं PEEO पोर्टल</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261003_v6">
+  <link rel="stylesheet" href="styles.css?v=20261005_v22">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    // Automated Hard Refresh & Client-Side Cache Purge on New Version
+    (function() {
+      var CLIENT_VERSION = 'v22_2026_10_05_bilingual_mismatch';
+      var lastVer = localStorage.getItem('cbeo_client_app_version');
+      if (lastVer !== CLIENT_VERSION) {
+        localStorage.setItem('cbeo_client_app_version', CLIENT_VERSION);
+        if ('caches' in window) {
+          caches.keys().then(function(keys) {
+            keys.forEach(function(k) { caches.delete(k); });
+          });
+        }
+        if (lastVer) {
+          console.log('[CBEO] New Version detected: ' + CLIENT_VERSION + '. Forcing hard reload...');
+          var url = new URL(window.location.href);
+          url.searchParams.set('_v', Date.now());
+          window.location.replace(url.toString());
+        }
+      }
+    })();
+  </script>
 </head>
 <body>
 
@@ -52,6 +76,11 @@
             <span class="user-subtext" id="user-display-subtext">सम्पूर्ण ब्लॉक नियंत्रण (25 PEEO)</span>
           </div>
         </div>
+
+        <!-- Hard Refresh Button -->
+        <button id="btn-force-hard-refresh" class="btn btn-sm" onclick="forcePortalHardRefresh()" title="कैश पूरी तरह साफ करें व नवीनतम पोर्टल लोड करें" style="font-weight:700; background:#f59e0b; color:#fff; border:none">
+          <i class="fas fa-sync-alt"></i> हार्ड रीफ्रेश
+        </button>
 
         <!-- Switch User, Change Password & Logout -->
         <button id="btn-change-password" class="btn btn-primary btn-sm" onclick="openChangePasswordModal()" title="पासवर्ड बदलें" style="font-weight:600">
@@ -153,6 +182,53 @@
             <i class="fab fa-google-drive"></i> Google Sheet में देखें
           </a>
         </div>
+      </div>
+
+      <!-- Saman Pariksha Dual-Form & 6-Level Category Filter Bar -->
+      <div class="sp-controls-toolbar" style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:12px; padding:0.85rem 1.15rem; margin-bottom:1.5rem; box-shadow:0 2px 6px rgba(0,0,0,0.04); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.85rem">
+        <!-- Form Switcher (Original Indent vs New Syllabus Completion) -->
+        <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap">
+          <span style="font-weight:800; font-size:0.88rem; color:#0f172a; display:flex; align-items:center; gap:0.4rem">
+            <i class="fas fa-layer-group text-primary"></i> सक्रिय प्रपत्र मांग:
+          </span>
+          <div class="btn-group" style="display:inline-flex; border:1.5px solid #0284c7; border-radius:8px; overflow:hidden">
+            <button type="button" class="btn btn-sm sp-form-toggle-btn active" id="sp-toggle-btn-indent" onclick="switchSamanActiveForm('indent')" style="font-weight:700; padding:6px 14px; background:#0284c7; color:#fff; border:none; cursor:pointer">
+              <i class="fas fa-file-invoice"></i> 1. प्रश्न-पत्र मांग (57 स्कूल)
+            </button>
+            <button type="button" class="btn btn-sm sp-form-toggle-btn" id="sp-toggle-btn-syllabus" onclick="switchSamanActiveForm('syllabus')" style="font-weight:700; padding:6px 14px; background:#f8fafc; color:#0369a1; border:none; cursor:pointer">
+              <i class="fas fa-chart-pie"></i> 2. नवीन पाठ्यक्रम पूर्णता % मांग (49 राजकीय स्कूल)
+            </button>
+          </div>
+          <span id="sp-active-form-badge" class="badge" style="background:#e0f2fe; color:#0369a1; font-weight:700; font-size:0.75rem; padding:4px 8px">
+            सक्रिय: मूल प्रश्न-पत्र मांग
+          </span>
+        </div>
+
+        <!-- School Scope Filter & In-Tab Management Buttons -->
+        <div style="display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap">
+          <div style="display:flex; align-items:center; gap:0.4rem">
+            <label style="font-weight:700; font-size:0.82rem; color:#475569; margin:0">विद्यालय प्रकार:</label>
+            <select id="sp-school-type-filter" class="filter-select" onchange="onSamanSchoolTypeFilterChange(this.value)" style="font-weight:700; font-size:0.82rem; padding:4px 8px; border-radius:6px; border:1.5px solid #94a3b8">
+              <option value="both" selected>🏫 समस्त 57 विद्यालय (राजकीय 49 + निजी 8)</option>
+              <option value="govt_only">🏛️ केवल 49 राजकीय विद्यालय (Govt Only)</option>
+              <option value="pvt_only">🏢 केवल 8 निजी विद्यालय (Private Only)</option>
+            </select>
+          </div>
+          <button type="button" class="btn btn-sm btn-outline-primary" onclick="openCreateDemandModal('saman-pariksha')" style="font-weight:700; font-size:0.8rem; display:inline-flex; align-items:center; gap:0.35rem">
+            <i class="fas fa-plus-circle"></i> नई मांग जोड़ें
+          </button>
+          <button type="button" class="btn btn-sm btn-outline-secondary" onclick="openSaman6LevelControlModal()" style="font-weight:700; font-size:0.8rem; display:inline-flex; align-items:center; gap:0.35rem">
+            <i class="fas fa-sliders-h"></i> 6-स्तरीय प्रपत्र नियंत्रण
+          </button>
+          <button type="button" id="btn-sp-mismatch-admin" class="btn btn-sm" onclick="openSamanCustomEditModal()" style="font-weight:700; font-size:0.8rem; display:inline-flex; align-items:center; gap:0.35rem; background:#fff1f2; color:#be123c; border:1.5px solid #fca5a5">
+            <i class="fas fa-exclamation-triangle sp-mismatch-blinking-text"></i> मिसमैच कस्टम एडिट व लॉगिन अलर्ट (6 स्कूल)
+          </button>
+        </div>
+      </div>
+
+      <!-- School Mismatch Sticky Blinking Alert Banner (Shown if logged in school has mismatch) -->
+      <div id="sp-school-mismatch-banner" class="sp-mismatch-banner" style="display:none">
+        <!-- Rendered dynamically -->
       </div>
 
       <!-- PEEO & School View Container -->
@@ -1832,8 +1908,8 @@
                 तय करें कि कौन सा टैब किस भूमिका/स्तर पर दिखेगा। प्रत्येक टैब के लिए 5 स्तर उपलब्ध हैं: CBEO, PEEO, Sec/Sr.Sec, Govt, All Schools।
               </p>
             </div>
-            <button class="btn btn-primary btn-sm" onclick="save5LevelTabVisibilityMatrix()" style="font-weight:700">
-              <i class="fas fa-save"></i> 💾 5-स्तरीय अनुमतियां सुरक्षित करें
+            <button class="btn btn-primary btn-sm" onclick="save6LevelTabVisibilityMatrix()" style="font-weight:700">
+              <i class="fas fa-save"></i> 💾 6-स्तरीय अनुमतियां सुरक्षित करें
             </button>
           </div>
 
@@ -1844,30 +1920,31 @@
                   <th>पोर्टल टैब (Tab Name)</th>
                   <th style="text-align:center">1. CBEO Admin (प्रमिला रासलोत)</th>
                   <th style="text-align:center">2. 25 PEEO प्रभारी</th>
-                  <th style="text-align:center">3. 57 Sec / Sr.Sec स्कूल</th>
-                  <th style="text-align:center">4. समस्त राजकीय (Govt 132)</th>
-                  <th style="text-align:center">5. समस्त स्कूल (निजी सहित 178)</th>
+                  <th style="text-align:center">3. 49 राजकीय Sec/Sr.Sec (केवल सरकारी)</th>
+                  <th style="text-align:center">4. 8 निजी Sec/Sr.Sec (केवल प्राइवेट)</th>
+                  <th style="text-align:center">5. समस्त राजकीय (Govt 132)</th>
+                  <th style="text-align:center">6. समस्त स्कूल (निजी सहित 178)</th>
                 </tr>
               </thead>
               <tbody id="tbody-5level-visibility-matrix">
-                <!-- Rendered dynamically by render5LevelTabVisibilityMatrix() -->
+                <!-- Rendered dynamically by render6LevelTabVisibilityMatrix() -->
               </tbody>
             </table>
           </div>
         </div>
 
-        <!-- B2. JITENDRA SUPER ADMIN 5-LEVEL DATA EDIT PERMISSION MATRIX -->
+        <!-- B2. JITENDRA SUPER ADMIN 6-LEVEL DATA EDIT PERMISSION MATRIX -->
         <div id="jitendra-edit-control-matrix-card" style="background:#ffffff; border:2px solid #0284c7; border-radius:12px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1)">
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; border-bottom:1.5px solid #bae6fd; padding-bottom:0.75rem">
             <div>
               <h3 style="font-size:1.15rem; color:#0369a1; margin:0; display:flex; align-items:center; gap:0.5rem">
-                <i class="fas fa-edit" style="color:#0284c7"></i> 📝 जितेन्द्र व्यवस्थापक: 5-स्तरीय डेटा संपादन अनुमति मैट्रिक्स (Data Edit Permissions vs View-Only)
+                <i class="fas fa-edit" style="color:#0284c7"></i> 📝 जितेन्द्र व्यवस्थापक: 6-स्तरीय डेटा संपादन अनुमति मैट्रिक्स (Data Edit Permissions vs View-Only)
               </h3>
               <p style="font-size:0.83rem; color:#475569; margin:3px 0 0 0">
                 नियंत्रित करें कि कौन सा स्तर डेटा संपादित कर सकता है अथवा केवल अवलोकन (View-Only) मोड में रहेगा। चेकबॉक्स अनचेक करने पर वह स्तर केवल अवलोकन कर सकेगा।
               </p>
             </div>
-            <button class="btn btn-primary btn-sm" onclick="save5LevelEditPermissionsMatrix()" style="font-weight:700; background:#0284c7; border-color:#0369a1">
+            <button class="btn btn-primary btn-sm" onclick="save6LevelEditPermissionsMatrix()" style="font-weight:700; background:#0284c7; border-color:#0369a1">
               <i class="fas fa-save"></i> 💾 संपादन अनुमतियां सुरक्षित करें
             </button>
           </div>
@@ -1879,13 +1956,14 @@
                   <th>मॉड्यूल / प्रपत्र (Module Name)</th>
                   <th style="text-align:center">1. CBEO Admin (प्रमिला रासलोत)</th>
                   <th style="text-align:center">2. 25 PEEO प्रभारी</th>
-                  <th style="text-align:center">3. 57 Sec / Sr.Sec</th>
-                  <th style="text-align:center">4. समस्त राजकीय (Govt 132)</th>
-                  <th style="text-align:center">5. समस्त स्कूल (निजी सहित 178)</th>
+                  <th style="text-align:center">3. 49 राजकीय Sec/Sr.Sec (केवल सरकारी)</th>
+                  <th style="text-align:center">4. 8 निजी Sec/Sr.Sec (केवल प्राइवेट)</th>
+                  <th style="text-align:center">5. समस्त राजकीय (Govt 132)</th>
+                  <th style="text-align:center">6. समस्त स्कूल (निजी सहित 178)</th>
                 </tr>
               </thead>
               <tbody id="tbody-5level-edit-matrix">
-                <!-- Rendered dynamically by render5LevelEditPermissionsMatrix() -->
+                <!-- Rendered dynamically by render6LevelEditPermissionsMatrix() -->
               </tbody>
             </table>
           </div>
@@ -2240,6 +2318,149 @@
     </div>
   </div>
 
+  <!-- 2B. MISMATCH INSPECTION & FIELD-LEVEL DISCREPANCY SELECTOR MODAL -->
+  <div id="modal-mismatch-inspector" class="modal-overlay">
+    <div class="modal-card" style="max-width:860px">
+      <div class="modal-header" style="background:linear-gradient(135deg, #b91c1c, #991b1b); color:#ffffff; padding:1rem 1.25rem">
+        <div>
+          <h3 id="mismatch-modal-title" style="margin:0; font-size:1.15rem; font-weight:800; color:#ffffff; display:flex; align-items:center; gap:0.5rem">
+            <i class="fas fa-exclamation-triangle"></i> प्रपत्र डेटा मिसमैच निरीक्षण व अलर्ट प्रेषण
+          </h3>
+          <span id="mismatch-modal-subtitle" style="font-size:0.82rem; color:#fee2e2; margin-top:2px; display:block">
+            कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)
+          </span>
+        </div>
+        <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-mismatch-inspector')">&times;</button>
+      </div>
+
+      <div class="modal-body" style="padding:1.25rem; max-height:75vh; overflow-y:auto">
+        <!-- School Metadata Banner -->
+        <div id="mismatch-school-banner" style="background:#fef2f2; border:1.5px solid #fecaca; border-radius:8px; padding:0.85rem 1rem; margin-bottom:1rem">
+          <!-- Filled dynamically -->
+        </div>
+
+        <!-- Field Selection Instruction -->
+        <div style="background:#eff6ff; border-left:4px solid #3b82f6; padding:0.6rem 0.9rem; border-radius:6px; margin-bottom:1rem; font-size:0.83rem; color:#1e40af">
+          <strong><i class="fas fa-check-square"></i> निर्देश:</strong> जिस-जिस कॉलम/बॉक्स में शाला दर्पण से डेटा मिसमैच है, उसके सामने दिए गए <strong>चेकमार्क (☑️)</strong> पर क्लिक करें। चयनित कॉलम अपने आप नोटिस व टेलीग्राम संदेश में शामिल हो जाएंगे।
+        </div>
+
+        <!-- Dynamic Fields Container with Checkboxes -->
+        <div style="margin-bottom:1rem">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem">
+            <label style="font-size:0.9rem; font-weight:800; color:#1e293b; margin:0">
+              <i class="fas fa-list-check text-danger"></i> प्रपत्र के समस्त फील्ड (मिसमैच वाले बॉक्स पर टिक करें):
+            </label>
+            <span id="mismatch-checked-counter" style="font-size:0.78rem; font-weight:700; color:#dc2626; background:#fee2e2; padding:2px 8px; border-radius:12px">0 फील्ड चयनित</span>
+          </div>
+          <div id="mismatch-fields-list" style="display:flex; flex-direction:column; gap:0.5rem; max-height:260px; overflow-y:auto; padding:0.35rem; border:1.5px solid #cbd5e1; border-radius:8px; background:#f8fafc">
+            <!-- Populated dynamically with checkboxes -->
+          </div>
+        </div>
+
+        <!-- Office Remarks -->
+        <div style="margin-bottom:1rem">
+          <label for="mismatch-custom-remarks" style="font-size:0.88rem; font-weight:700; color:#1e293b; margin-bottom:0.3rem; display:block">
+            <i class="fas fa-comment-dots text-primary"></i> कार्यालय निर्देश / विसंगति टिप्पणी (Remarks):
+          </label>
+          <textarea id="mismatch-custom-remarks" class="form-control" rows="2" style="width:100%; border:1.5px solid #cbd5e1; border-radius:6px; padding:0.5rem; font-size:0.85rem" placeholder="उदा. शाला दर्पण पोर्टल के 01-10-2026 के नामांकन से प्रविष्टि मेल नहीं खाती। कृपया सही प्रविष्टि करें。" oninput="renderMismatchPreview()"></textarea>
+        </div>
+
+        <!-- Dispatch Options -->
+        <div style="background:#f8fafc; border:1.5px solid #e2e8f0; border-radius:8px; padding:0.85rem; margin-bottom:1rem; display:flex; flex-wrap:wrap; gap:1.25rem; align-items:center">
+          <label style="display:flex; align-items:center; gap:0.5rem; font-weight:700; color:#1e293b; cursor:pointer; font-size:0.85rem">
+            <input type="checkbox" id="mismatch-send-email-chk" checked style="width:17px; height:17px; accent-color:#0284c7">
+            <span>📧 विद्यालय को अधिकृत ईमेल भेजें</span>
+          </label>
+          <label style="display:flex; align-items:center; gap:0.5rem; font-weight:700; color:#1e293b; cursor:pointer; font-size:0.85rem">
+            <input type="checkbox" id="mismatch-send-telegram-chk" checked style="width:17px; height:17px; accent-color:#2563eb">
+            <span>📱 जितेन्द्र जी को Telegram अलर्ट (WhatsApp कॉपी-पेस्ट रेडी)</span>
+          </label>
+        </div>
+
+        <!-- Live WhatsApp Ready Preview -->
+        <div>
+          <label style="font-size:0.85rem; font-weight:800; color:#0f766e; margin-bottom:0.3rem; display:flex; justify-content:space-between; align-items:center">
+            <span><i class="fab fa-whatsapp text-success"></i> WhatsApp / Telegram संदेश का लाइव पूर्वावलोकन (Preview):</span>
+            <button type="button" class="btn btn-outline-success btn-sm" onclick="copyMismatchPreviewToClipboard()" style="font-size:0.75rem; padding:2px 8px">
+              <i class="fas fa-copy"></i> कॉपी करें
+            </button>
+          </label>
+          <pre id="mismatch-message-preview" style="background:#0f172a; color:#f8fafc; padding:0.85rem; border-radius:8px; font-size:0.78rem; font-family:monospace; white-space:pre-wrap; max-height:160px; overflow-y:auto; border:1px solid #334155; margin:0"></pre>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="background:#f8fafc; border-top:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center">
+        <button class="btn btn-outline-light" style="color:#64748b; border-color:#cbd5e1" onclick="closeModal('modal-mismatch-inspector')">रद्द करें</button>
+        <button class="btn btn-danger" id="btn-submit-mismatch-alert" onclick="dispatchSingleMismatchAlert()" style="font-weight:800; background:#dc2626; border-color:#dc2626; padding:0.55rem 1.25rem">
+          <i class="fas fa-paper-plane"></i> 🚨 मिसमैच मार्क करें, प्रपत्र अनलॉक करें एवं अलर्ट भेजें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2C. BATCH MISMATCH MODAL -->
+  <div id="modal-batch-mismatch" class="modal-overlay">
+    <div class="modal-card" style="max-width:860px">
+      <div class="modal-header" style="background:linear-gradient(135deg, #b91c1c, #991b1b); color:#ffffff; padding:1rem 1.25rem">
+        <div>
+          <h3 style="margin:0; font-size:1.15rem; font-weight:800; color:#ffffff; display:flex; align-items:center; gap:0.5rem">
+            <i class="fas fa-tasks"></i> सामूहिक मिसमैच अलर्ट प्रेषण (Batch Mismatch Dispatch)
+          </h3>
+          <span style="font-size:0.82rem; color:#fee2e2; margin-top:2px; display:block">
+            कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)
+          </span>
+        </div>
+        <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-batch-mismatch')">&times;</button>
+      </div>
+
+      <div class="modal-body" style="padding:1.25rem; max-height:75vh; overflow-y:auto">
+        <div style="background:#fef2f2; border:1.5px solid #fecaca; border-radius:8px; padding:0.85rem 1rem; margin-bottom:1rem">
+          <div style="font-weight:800; color:#991b1b; font-size:0.95rem">
+            <i class="fas fa-exclamation-circle"></i> कुल <span id="batch-modal-school-count" style="text-decoration:underline">0</span> विद्यालय चयनित किए गए हैं
+          </div>
+          <div id="batch-selected-schools-chips" style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.5rem; max-height:100px; overflow-y:auto">
+            <!-- Chips -->
+          </div>
+        </div>
+
+        <div style="margin-bottom:1rem">
+          <label for="batch-mismatch-remarks" style="font-size:0.88rem; font-weight:700; color:#1e293b; margin-bottom:0.3rem; display:block">
+            <i class="fas fa-comment-dots text-primary"></i> सामूहिक निर्देश / विसंगति टिप्पणी (सभी चयनित स्कूलों के लिए):
+          </label>
+          <textarea id="batch-mismatch-remarks" class="form-control" rows="3" style="width:100%; border:1.5px solid #cbd5e1; border-radius:6px; padding:0.5rem; font-size:0.85rem" oninput="renderBatchMismatchPreview()">शाला दर्पण पोर्टल पर उपलब्ध अधिकृत नामांकन से प्रविष्टि मेल नहीं खाने के कारण प्रपत्र अनलॉक किया गया है। कृपया आज ही सही प्रविष्टि कर पुनः सबमिट करें।</textarea>
+        </div>
+
+        <div style="background:#f8fafc; border:1.5px solid #e2e8f0; border-radius:8px; padding:0.85rem; margin-bottom:1rem; display:flex; flex-wrap:wrap; gap:1.25rem; align-items:center">
+          <label style="display:flex; align-items:center; gap:0.5rem; font-weight:700; color:#1e293b; cursor:pointer; font-size:0.85rem">
+            <input type="checkbox" id="batch-send-email-chk" checked style="width:17px; height:17px; accent-color:#0284c7">
+            <span>📧 समस्त चयनित विद्यालयों को व्यक्तिगत ईमेल भेजें</span>
+          </label>
+          <label style="display:flex; align-items:center; gap:0.5rem; font-weight:700; color:#1e293b; cursor:pointer; font-size:0.85rem">
+            <input type="checkbox" id="batch-send-telegram-chk" checked style="width:17px; height:17px; accent-color:#2563eb">
+            <span>📱 जितेन्द्र जी को समेकित Telegram संदेश (WhatsApp पर अग्रेषित करने हेतु)</span>
+          </label>
+        </div>
+
+        <div>
+          <label style="font-size:0.85rem; font-weight:800; color:#0f766e; margin-bottom:0.3rem; display:flex; justify-content:space-between; align-items:center">
+            <span><i class="fab fa-whatsapp text-success"></i> समेकित WhatsApp / Telegram संदेश पूर्वावलोकन:</span>
+            <button type="button" class="btn btn-outline-success btn-sm" onclick="copyBatchMismatchPreviewToClipboard()" style="font-size:0.75rem; padding:2px 8px">
+              <i class="fas fa-copy"></i> कॉपी करें
+            </button>
+          </label>
+          <pre id="batch-mismatch-preview" style="background:#0f172a; color:#f8fafc; padding:0.85rem; border-radius:8px; font-size:0.78rem; font-family:monospace; white-space:pre-wrap; max-height:180px; overflow-y:auto; border:1px solid #334155; margin:0"></pre>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="background:#f8fafc; border-top:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center">
+        <button class="btn btn-outline-light" style="color:#64748b; border-color:#cbd5e1" onclick="closeModal('modal-batch-mismatch')">रद्द करें</button>
+        <button class="btn btn-danger" id="btn-submit-batch-mismatch" onclick="dispatchBatchMismatchAlert()" style="font-weight:800; background:#dc2626; border-color:#dc2626; padding:0.55rem 1.25rem">
+          <i class="fas fa-paper-plane"></i> 🚨 सभी स्कूलों को मिसमैच मार्क करें एवं अलर्ट भेजें
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- 3. VERIFIED PDF PREVIEW & WHATSAPP SHARE MODAL -->
   <div id="modal-preview-pdf" class="modal-overlay">
     <div class="modal-card" style="max-width:920px">
@@ -2526,12 +2747,13 @@
             <span class="badge" style="background:#ffffff; color:#4f46e5; border:1px solid #c7d2fe; font-size:0.72rem; cursor:pointer; padding:3px 8px" onclick="quickFillAIPrompt('ICT लैब कंप्यूटर क्रियाशीलता व इंटरनेट कनेक्टिविटी स्थिति')">💡 ICT कंप्यूटर लैब</span>
             <span class="badge" style="background:#ffffff; color:#4f46e5; border:1px solid #c7d2fe; font-size:0.72rem; cursor:pointer; padding:3px 8px" onclick="quickFillAIPrompt('शाला खेल मैदान चारदीवारी व खेलकूद संसाधन विकास')">💡 खेलकूद मैदान विकास</span>
             <span class="badge" style="background:#ffffff; color:#4f46e5; border:1px solid #c7d2fe; font-size:0.72rem; cursor:pointer; padding:3px 8px" onclick="quickFillAIPrompt('ग्रीष्मकालीन पेयजल व्यवस्था एवं विद्युत कनेक्शन सत्यापन')">💡 पेयजल व विद्युत</span>
+            <span class="badge" style="background:#e0f2fe; color:#0369a1; border:1.5px solid #38bdf8; font-size:0.72rem; cursor:pointer; padding:3px 8px; font-weight:700" onclick="quickFillSamanSyllabusPrompt()">📊 समान परीक्षा पाठ्यक्रम पूर्णता % (49 स्कूल)</span>
           </div>
         </div>
 
         <div class="form-group" style="margin-bottom:0.85rem">
           <label>सूचना का नाम / शीर्षक (Title):</label>
-          <input type="text" id="new-demand-title" placeholder="उदा. शाला खेलकूद मैदान विकास सूचना 2026">
+          <input type="text" id="new-demand-title" placeholder="उदा. समान परीक्षा 2026-27 पाठ्यक्रम पूर्णता प्रतिशत रिपोर्ट">
         </div>
         <div class="form-grid" style="margin-bottom:0.85rem">
           <div class="form-group">
@@ -2547,21 +2769,55 @@
             </select>
           </div>
         </div>
+
+        <!-- Tab Placement Control: Existing Tab vs New Dynamic Tab -->
+        <div class="form-grid" style="margin-bottom:0.85rem; background:#f0fdf4; border:1.5px solid #86efac; border-radius:8px; padding:0.6rem 0.85rem">
+          <div class="form-group" style="margin:0">
+            <label style="color:#166534"><strong>📂 प्रपत्र का स्थान / टैब व्यवस्था (Placement):</strong></label>
+            <select id="new-demand-placement" class="filter-select" onchange="onDemandPlacementChange()" style="font-weight:700; color:#14532d; border-color:#86efac">
+              <option value="tab_existing">📁 किसी मौजूदा टैब में समाहित करें (Inside Existing Tab)</option>
+              <option value="tab_new">🌐 नया स्वतंत्र टैब बनाएं (Create New Dynamic Nav Tab)</option>
+            </select>
+          </div>
+          <div class="form-group" id="group-demand-parent-tab" style="margin:0">
+            <label style="color:#166534"><strong>🎯 गंतव्य टैब (Target Tab):</strong></label>
+            <select id="new-demand-parent-tab" class="filter-select" style="font-weight:700; color:#14532d; border-color:#86efac">
+              <option value="saman-pariksha">📋 समान परीक्षा 2026-27 (Saman Pariksha)</option>
+              <option value="demands">📄 अन्य सूचना मांग (General Demands)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- School Scope / Category Filter (49 Govt vs 8 Pvt vs 57 Both) -->
+        <div class="form-group" style="margin-bottom:0.85rem">
+          <label><strong>🏫 विद्यालय श्रेणी / दायरा (School Scope / Category):</strong></label>
+          <select id="new-demand-school-scope" class="filter-select" onchange="onDemandSchoolScopeChange()" style="width:100%; border:2px solid #2563eb; font-weight:700; color:#1e40af">
+            <option value="govt_sec">🏛️ केवल 49 राजकीय Sec/Sr.Sec विद्यालय (Govt Only - 8 निजी बाहर)</option>
+            <option value="both_sec">🏫 समस्त 57 Sec/Sr.Sec विद्यालय (49 राजकीय + 8 निजी)</option>
+            <option value="pvt_sec">🏢 केवल 8 निजी Sec/Sr.Sec विद्यालय (Private Only - सरकारी बाहर)</option>
+            <option value="all_govt">🏛️ समस्त राजकीय विद्यालय (132 Govt Schools)</option>
+            <option value="all">🌐 समस्त 178 विद्यालय (निजी सहित)</option>
+          </select>
+          <div id="new-demand-scope-hint" style="font-size:0.75rem; color:#2563eb; margin-top:3px; font-weight:600">
+            ✓ केवल 49 राजकीय माध्यमिक/उच्च माध्यमिक विद्यालय लक्षित होंगे (8 निजी विद्यालय बाहर रहेंगे)।
+          </div>
+        </div>
+
         <!-- Collection Level (PEEO vs School Level) -->
         <div class="form-group" style="margin-bottom:0.85rem">
           <label><strong>सूचना संकलन स्तर (Information Collection Level):</strong></label>
           <select id="new-demand-collection-level" class="filter-select" style="width:100%; border:2px solid #059669; font-weight:700; color:#065f46" onchange="onDemandCollectionLevelChange()">
-            <option value="peeo">🏛️ PEEO स्तर (केवल 25 PEEO लॉगिन कर अपने अधीनस्थ स्कूलों की संकलित रिपोर्ट भरेंगे)</option>
             <option value="school">🏫 विद्यालय स्तर (सीधे प्रत्येक विद्यालय अपने शाला दर्पण/PSP कोड से लॉगिन कर अपनी सूचना भरेगा)</option>
+            <option value="peeo">🏛️ PEEO स्तर (केवल 25 PEEO लॉगिन कर अपने अधीनस्थ स्कूलों की संकलित रिपोर्ट भरेंगे)</option>
           </select>
           <div id="new-demand-collection-hint" style="font-size:0.75rem; color:#047857; margin-top:3px">
-            ✓ <strong>PEEO स्तर:</strong> 25 PEEO लॉगिन करेंगे और अपने अधीन विद्यालयों का प्रपत्र भरेंगे।
+            ✓ <strong>विद्यालय स्तर:</strong> प्रत्येक लक्षित स्कूल अपनी सूचना स्वयं भरेगा।
           </div>
         </div>
 
         <div class="form-group" style="margin-bottom:0.85rem">
-          <label><strong>🎯 5-स्तरीय लक्षित उपयोगकर्ता / दर्शक (Target Audience - 5 Levels):</strong></label>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:0.5rem; background:#f8fafc; padding:0.85rem; border-radius:8px; border:1px solid #cbd5e1">
+          <label><strong>🎯 6-स्तरीय लक्षित उपयोगकर्ता / दर्शक (Target Audience - 6 Levels):</strong></label>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.5rem; background:#f8fafc; padding:0.85rem; border-radius:8px; border:1px solid #cbd5e1">
             <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; font-weight:600; cursor:pointer">
               <input type="checkbox" id="demand-aud-cbeo" checked style="width:16px; height:16px"> 1. CBEO Admin
             </label>
@@ -2569,13 +2825,16 @@
               <input type="checkbox" id="demand-aud-peeo" checked style="width:16px; height:16px"> 2. 25 PEEO प्रभारी
             </label>
             <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; font-weight:600; cursor:pointer">
-              <input type="checkbox" id="demand-aud-sec" checked style="width:16px; height:16px"> 3. 57 Sec/Sr.Sec स्कूल
+              <input type="checkbox" id="demand-aud-govt-sec" checked style="width:16px; height:16px"> 3. 49 राजकीय Sec/Sr.Sec
             </label>
             <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; font-weight:600; cursor:pointer">
-              <input type="checkbox" id="demand-aud-govt" style="width:16px; height:16px"> 4. समस्त राजकीय स्कूल (132)
+              <input type="checkbox" id="demand-aud-pvt-sec" style="width:16px; height:16px"> 4. 8 निजी Sec/Sr.Sec
             </label>
             <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; font-weight:600; cursor:pointer">
-              <input type="checkbox" id="demand-aud-all" style="width:16px; height:16px"> 5. समस्त स्कूल (निजी सहित - 178)
+              <input type="checkbox" id="demand-aud-govt" style="width:16px; height:16px"> 5. समस्त राजकीय स्कूल (132)
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" id="demand-aud-all" style="width:16px; height:16px"> 6. समस्त स्कूल (निजी सहित - 178)
             </label>
           </div>
           <span style="font-size:0.75rem; color:var(--neutral-500); margin-top:4px; display:block">
@@ -3366,6 +3625,515 @@
     </div>
   </div>
 
+  <!-- 8F. SAMAN PARIKSHA IN-TAB 6-LEVEL CONTROLS MODAL -->
+  <div id="modal-saman-6level-controls" class="modal-overlay">
+    <div class="modal-card" style="max-width:680px">
+      <div class="modal-header" style="background:linear-gradient(135deg, #1e3a8a, #0369a1); color:#ffffff">
+        <h3 style="color:#ffffff"><i class="fas fa-sliders-h"></i> समान परीक्षा 6-स्तरीय प्रपत्र एवं दृश्यता नियंत्रण</h3>
+        <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-saman-6level-controls')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:10px 14px; margin-bottom:0.75rem; font-size:0.83rem; color:#1e40af">
+          <strong><i class="fas fa-shield-alt"></i> केंद्रीय नियंत्रण:</strong> यह विंडो समान परीक्षा टैब एवं इसके अंतर्गत संचालित प्रपत्रों के लिए 6-स्तरीय दृश्यता (View) और संपादन (Edit) अधिकारों को सीधे नियंत्रित करती है।
+        </div>
+
+        <div style="background:#fff1f2; border:1px solid #fecaca; border-radius:8px; padding:8px 12px; margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem">
+          <div style="font-size:0.82rem; color:#991b1b">
+            <strong><i class="fas fa-exclamation-triangle text-danger"></i> विशेष मिसमैच कस्टम एडिट:</strong> जिन 6 स्कूलों का नामांकन मिसमैच है, उनके कस्टम एडिट व लॉगिन संदेश को प्रबंधित करें।
+          </div>
+          <button type="button" class="btn btn-sm btn-danger" onclick="closeModal('modal-saman-6level-controls'); openSamanCustomEditModal();" style="font-weight:700; font-size:0.78rem">
+            कस्टम एडिट व अलर्ट &rarr;
+          </button>
+        </div>
+
+        <div style="margin-bottom:1.25rem">
+          <label style="font-weight:700; color:#0f172a; display:block; margin-bottom:0.5rem">
+            <i class="fas fa-eye text-primary"></i> 1. समान परीक्षा टैब दृश्यता (6-Level Visibility Matrix):
+          </label>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.5rem; background:#f8fafc; padding:0.85rem; border-radius:8px; border:1px solid #cbd5e1">
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.82rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" id="sp-ctl-vis-cbeo" checked style="width:16px; height:16px"> 1. CBEO Admin
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.82rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" id="sp-ctl-vis-peeo" checked style="width:16px; height:16px"> 2. 25 PEEO प्रभारी
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.82rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" id="sp-ctl-vis-govt-sec" checked style="width:16px; height:16px"> 3. 49 राजकीय Sec/Sr.Sec
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.82rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" id="sp-ctl-vis-pvt-sec" checked style="width:16px; height:16px"> 4. 8 निजी Sec/Sr.Sec
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.82rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" id="sp-ctl-vis-all-govt" style="width:16px; height:16px"> 5. समस्त राजकीय (132)
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.82rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" id="sp-ctl-vis-all-schools" style="width:16px; height:16px"> 6. समस्त स्कूल (178)
+            </label>
+          </div>
+          <span style="font-size:0.75rem; color:#64748b; margin-top:3px; display:block">
+            (यदि '8 निजी Sec/Sr.Sec' अनचेक करेंगे तो 8 निजी स्कूलों को यह टैब दिखना पूर्णतया बंद हो जाएगा)
+          </span>
+        </div>
+
+        <div style="margin-bottom:1.25rem">
+          <label style="font-weight:700; color:#0f172a; display:block; margin-bottom:0.5rem">
+            <i class="fas fa-edit text-success"></i> 2. डेटा प्रविष्टि व संपादन अधिकार (6-Level Edit Permissions):
+          </label>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.5rem; background:#f8fafc; padding:0.85rem; border-radius:8px; border:1px solid #cbd5e1">
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.82rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" id="sp-ctl-edit-cbeo" checked style="width:16px; height:16px"> 1. CBEO Admin
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.82rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" id="sp-ctl-edit-peeo" checked style="width:16px; height:16px"> 2. 25 PEEO प्रभारी
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.82rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" id="sp-ctl-edit-govt-sec" checked style="width:16px; height:16px"> 3. 49 राजकीय Sec/Sr.Sec
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.82rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" id="sp-ctl-edit-pvt-sec" checked style="width:16px; height:16px"> 4. 8 निजी Sec/Sr.Sec
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.82rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" id="sp-ctl-edit-all-govt" style="width:16px; height:16px"> 5. समस्त राजकीय (132)
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.82rem; font-weight:600; cursor:pointer">
+              <input type="checkbox" id="sp-ctl-edit-all-schools" style="width:16px; height:16px"> 6. समस्त स्कूल (178)
+            </label>
+          </div>
+          <span style="font-size:0.75rem; color:#64748b; margin-top:3px; display:block">
+            (अनचेक स्तर केवल अवलोकन कर सकेंगे, फॉर्म में बदलाव नहीं कर पाएंगे)
+          </span>
+        </div>
+
+        <div style="background:#fef3c7; border:1px solid #fde68a; border-radius:8px; padding:10px 14px">
+          <label style="font-weight:700; color:#92400e; display:block; margin-bottom:0.25rem">
+            <i class="fas fa-toggle-on"></i> 3. सक्रिय प्रपत्र मांग चयन (Active Form Toggle):
+          </label>
+          <div style="display:flex; gap:1rem; flex-wrap:wrap">
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.82rem; font-weight:700; cursor:pointer; color:#78350f">
+              <input type="radio" name="sp-modal-active-form-radio" id="sp-rad-form-indent" value="indent" checked onchange="onSamanModalRadioFormChange(this.value)"> प्रपत्र 1: मूल प्रश्न-पत्र मांग (57 विद्यालय)
+            </label>
+            <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.82rem; font-weight:700; cursor:pointer; color:#78350f">
+              <input type="radio" name="sp-modal-active-form-radio" id="sp-rad-form-syllabus" value="syllabus" onchange="onSamanModalRadioFormChange(this.value)"> प्रपत्र 2: पाठ्यक्रम पूर्णता % मांग (49 राजकीय)
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-saman-6level-controls')">बंद करें</button>
+        <button class="btn btn-primary" onclick="saveSaman6LevelControls()" style="font-weight:700">
+          <i class="fas fa-save"></i> अनुमतियां सुरक्षित करें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8F2. SAMAN PARIKSHA ADMIN CUSTOM EDIT & LOGIN ALERT MANAGEMENT MODAL -->
+  <div id="modal-saman-custom-edit" class="modal-overlay">
+    <div class="modal-card" style="max-width:860px">
+      <div class="modal-header" style="background:linear-gradient(135deg, #1e3a8a, #0369a1); color:#ffffff; padding:1.15rem 1.5rem">
+        <div>
+          <h3 style="color:#ffffff; margin:0; font-size:1.2rem; display:flex; align-items:center; gap:0.5rem">
+            <i class="fas fa-user-edit"></i> समान परीक्षा: कस्टम संपादन अनुमति व लॉगिन अलर्ट प्रबंधन
+          </h3>
+          <div style="font-size:0.8rem; opacity:0.9; margin-top:2px">
+            कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)
+          </div>
+        </div>
+        <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-saman-custom-edit')">&times;</button>
+      </div>
+
+      <div class="modal-body" style="padding:1.25rem 1.5rem">
+        <!-- Info Banner -->
+        <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:10px 14px; margin-bottom:1.25rem; font-size:0.83rem; color:#1e40af; line-height:1.5">
+          <strong><i class="fas fa-info-circle"></i> कार्यप्रणाली:</strong> जिन विद्यालयों का नामांकन शाला दर्पण डेटा से मिसमैच है, उन्हें आप यहाँ से व्यक्तिगत <strong>कस्टम संपादन (Custom Edit)</strong> अनुमति दे सकते हैं। साथ ही उनके लॉगिन करते ही पासवर्ड चेंज पॉपअप के बाद एक विशेष <strong>ब्लिंकिंग अलर्ट संदेश</strong> प्रदर्शित होगा।
+        </div>
+
+        <!-- Section 1: Global Alert Toggle & Message Customization -->
+        <div style="background:#f8fafc; border:1.5px solid #e2e8f0; border-radius:10px; padding:1rem 1.25rem; margin-bottom:1.25rem">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem">
+            <label style="font-weight:800; color:#0f172a; font-size:0.92rem; display:flex; align-items:center; gap:0.4rem; margin:0">
+              <i class="fas fa-bullhorn text-primary"></i> 1. लॉगिन अलर्ट संदेश अनुकूलन (Login Alert Customization)
+            </label>
+            <div style="display:flex; align-items:center; gap:0.5rem; font-size:0.85rem; font-weight:700">
+              <span>लॉगिन अलर्ट सक्रिय रखें:</span>
+              <label class="login-perm-switch">
+                <input type="checkbox" id="sp-cfg-alert-active" checked>
+                <span class="login-perm-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom:0.75rem">
+            <label style="font-weight:700; font-size:0.82rem; color:#334155; margin-bottom:0.35rem; display:block">
+              अलर्ट शीर्षक (Popup Title):
+            </label>
+            <input type="text" id="sp-cfg-alert-title" class="form-control" style="font-weight:700" placeholder="🚨 अति-आवश्यक: समान परीक्षा मांग - नामांकन मिसमैच सूचना">
+          </div>
+
+          <div class="form-group" style="margin-bottom:0.5rem">
+            <label style="font-weight:700; font-size:0.82rem; color:#334155; margin-bottom:0.35rem; display:block">
+              अलर्ट संदेश टेक्स्ट (Custom Alert Message Body):
+            </label>
+            <textarea id="sp-cfg-alert-message" class="form-control" rows="3" style="font-size:0.84rem; line-height:1.5" placeholder="मान्यवर संस्था प्रधान, आपके विद्यालय द्वारा समान परीक्षा मांग में भरा गया कुल नामांकन शाला दर्पण के वास्तविक नामांकन से मिसमैच पाया गया है..."></textarea>
+            <div style="font-size:0.75rem; color:#64748b; margin-top:4px">
+              उपलब्ध चर (Placeholders): <code>{school_name}</code>, <code>{school_code}</code>, <code>{diff}</code>, <code>{portal_total}</code>, <code>{sd_total}</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Mismatched Schools Management Table -->
+        <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:10px; padding:1rem 1.25rem; margin-bottom:1.25rem">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem">
+            <div>
+              <div style="font-weight:800; color:#0f172a; font-size:0.92rem; display:flex; align-items:center; gap:0.4rem">
+                <i class="fas fa-tasks text-danger"></i> 2. मिसमैच वाले विद्यालय एवं संपादन अनुमति (6 स्कूल)
+              </div>
+              <div style="font-size:0.78rem; color:#64748b; margin-top:2px">
+                प्रत्येक विद्यालय के सामने दिए टॉगल से तुरंत कस्टम एडिट अनुमति ऑन/ऑफ करें
+              </div>
+            </div>
+            <div style="display:flex; gap:0.4rem">
+              <button type="button" class="btn btn-sm btn-outline-success" onclick="toggleAllMismatchCustomEdit(true)" style="font-weight:700; font-size:0.78rem">
+                <i class="fas fa-check-double"></i> सभी 6 को अनुमति दें
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleAllMismatchCustomEdit(false)" style="font-weight:700; font-size:0.78rem">
+                <i class="fas fa-ban"></i> सभी बंद करें
+              </button>
+            </div>
+          </div>
+
+          <div style="overflow-x:auto">
+            <table class="table" style="width:100%; font-size:0.83rem; margin:0">
+              <thead style="background:#f8fafc">
+                <tr>
+                  <th style="padding:8px 10px">शा.दा. कोड</th>
+                  <th style="padding:8px 10px">विद्यालय का नाम</th>
+                  <th style="padding:8px 10px; text-align:center">पोर्टल मांग (9-12)</th>
+                  <th style="padding:8px 10px; text-align:center">शाला दर्पण वास्तविक</th>
+                  <th style="padding:8px 10px; text-align:center">अंतर (Diff)</th>
+                  <th style="padding:8px 10px; text-align:center">कस्टम एडिट अनुमति</th>
+                  <th style="padding:8px 10px; text-align:center">क्रिया</th>
+                </tr>
+              </thead>
+              <tbody id="sp-mismatch-schools-tbody">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Section 3: Add other school to custom edit -->
+        <div style="background:#fffbeb; border:1px dashed #fde68a; border-radius:8px; padding:0.85rem 1rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.75rem">
+          <div style="display:flex; align-items:center; gap:0.5rem">
+            <i class="fas fa-plus-circle" style="color:#d97706; font-size:1.1rem"></i>
+            <span style="font-size:0.83rem; font-weight:700; color:#92400e">किसी अन्य विद्यालय को भी कस्टम एडिट अनुमति में जोड़ें:</span>
+          </div>
+          <div style="display:flex; gap:0.4rem; align-items:center">
+            <input type="text" id="sp-add-custom-school-code" placeholder="शाला दर्पण कोड (उदा. 221755)" style="padding:4px 8px; border-radius:6px; border:1px solid #cbd5e1; font-size:0.82rem; width:180px">
+            <button type="button" class="btn btn-sm btn-primary" onclick="addSchoolToCustomEditList()" style="font-weight:700; font-size:0.8rem">
+              + जोड़ें
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="display:flex; justify-content:space-between; align-items:center">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-saman-custom-edit')">बंद करें</button>
+        <button class="btn btn-primary" onclick="saveSamanMismatchSettings()" style="font-weight:700; background:#0284c7; border-color:#0369a1">
+          <i class="fas fa-save"></i> सेटिंग्स व अनुमतियां सुरक्षित करें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8F3. SAMAN PARIKSHA ENROLMENT MISMATCH CUSTOM BLINKING LOGIN ALERT MODAL -->
+  <div id="modal-saman-mismatch-login-alert" class="modal-overlay" style="z-index:10060">
+    <div class="modal-card sp-mismatch-alert-card" style="max-width:540px; border-radius:14px; overflow:hidden">
+      <!-- Blinking Header -->
+      <div class="modal-header" style="background:linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color:#ffffff; padding:1.15rem 1.25rem">
+        <div>
+          <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:4px">
+            <span class="sp-mismatch-blinking-badge">
+              <i class="fas fa-bell"></i> अति-आवश्यक सूचना
+            </span>
+            <span style="font-size:0.75rem; background:rgba(255,255,255,0.2); padding:2px 8px; border-radius:12px">
+              समान परीक्षा 2026-27
+            </span>
+          </div>
+          <h3 id="sp-alert-modal-title" style="color:#ffffff; margin:0; font-size:1.15rem; font-weight:800; display:flex; align-items:center; gap:0.4rem">
+            <i class="fas fa-exclamation-triangle sp-mismatch-blinking-text"></i> नामांकन डेटा मिसमैच संशोधन
+          </h3>
+        </div>
+        <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-saman-mismatch-login-alert')">&times;</button>
+      </div>
+
+      <div class="modal-body" style="padding:1.25rem 1.5rem">
+        <!-- School Card -->
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:0.75rem 1rem; margin-bottom:1rem">
+          <div style="font-weight:800; color:#1e293b; font-size:0.95rem" id="sp-alert-school-name">विद्यालय का नाम</div>
+          <div style="font-size:0.8rem; color:#64748b; margin-top:2px">
+            शाला दर्पण कोड: <strong id="sp-alert-school-code" style="color:#0f172a">------</strong> | 
+            ब्लॉक: <strong>भिनाय (अजमेर)</strong>
+          </div>
+        </div>
+
+        <!-- Mismatch Comparison Stats Grid -->
+        <div class="sp-mismatch-stat-grid" style="margin-bottom:1rem">
+          <div class="sp-mismatch-stat-item portal">
+            <div style="font-size:0.75rem; font-weight:700; opacity:0.85">समान परीक्षा प्रपत्र में दर्ज</div>
+            <div id="sp-alert-portal-total" style="font-size:1.4rem; font-weight:900; line-height:1.2">0</div>
+            <div style="font-size:0.7rem">कुल छात्र (कक्षा 9-12)</div>
+          </div>
+          <div class="sp-mismatch-stat-item sd">
+            <div style="font-size:0.75rem; font-weight:700; opacity:0.85">शाला दर्पण वास्तविक</div>
+            <div id="sp-alert-sd-total" style="font-size:1.4rem; font-weight:900; line-height:1.2">0</div>
+            <div style="font-size:0.7rem">कुल नामांकन (9-12)</div>
+          </div>
+          <div class="sp-mismatch-stat-item diff">
+            <div style="font-size:0.75rem; font-weight:700; opacity:0.85">नामांकन में अंतर</div>
+            <div id="sp-alert-diff-total" style="font-size:1.4rem; font-weight:900; color:#dc2626; line-height:1.2">+0</div>
+            <div style="font-size:0.7rem; font-weight:700; color:#dc2626">मिसमैच (Mismatch)</div>
+          </div>
+        </div>
+
+        <!-- Custom Alert Message Body (Admin Customizable) -->
+        <div id="sp-alert-modal-message" style="background:#fffbeb; border-left:4px solid #f59e0b; border-radius:6px; padding:0.85rem 1rem; font-size:0.85rem; color:#78350f; line-height:1.6; white-space:pre-line">
+          आपके विद्यालय द्वारा समान परीक्षा मांग प्रपत्र में भरा गया कुल नामांकन शाला दर्पण के वास्तविक नामांकन से मिसमैच पाया गया है।
+        </div>
+
+        <div style="margin-top:0.85rem; background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:0.6rem 0.85rem; font-size:0.8rem; color:#065f46; display:flex; align-items:center; gap:0.5rem">
+          <i class="fas fa-check-circle" style="color:#059669; font-size:1rem"></i>
+          <span><strong>विशेष संपादन सुविधा सक्रिय:</strong> आपके विद्यालय के लिए मांग प्रपत्र में संपादन (Edit) की सुविधा खोल दी गई है।</span>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="display:flex; justify-content:space-between; align-items:center; gap:10px; padding:0.85rem 1.25rem; background:#f8fafc; border-top:1px solid #e2e8f0">
+        <button class="btn btn-outline-light" style="color:#64748b; border-color:#cbd5e1; font-weight:600" onclick="closeModal('modal-saman-mismatch-login-alert')">
+          बाद में करेंगे (Later)
+        </button>
+        <button class="btn btn-primary" onclick="proceedToEditFromMismatchAlert()" style="background:#dc2626; border-color:#dc2626; font-weight:800; display:inline-flex; align-items:center; gap:0.5rem; box-shadow:0 4px 12px rgba(220,38,38,0.3)">
+          <i class="fas fa-edit"></i> मांग प्रपत्र अभी संशोधित करें (Edit Form)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8G. SAMAN PARIKSHA SYLLABUS COMPLETION % FORM MODAL (49 GOVT SCHOOLS) -->
+  <div id="modal-saman-syllabus-form" class="modal-overlay">
+    <div class="modal-card" style="max-width:920px">
+      <!-- Modal Header -->
+      <div class="modal-header" style="background:linear-gradient(135deg, #1e3a8a 0%, #0284c7 100%); color:#ffffff; padding:1.25rem 1.5rem">
+        <div>
+          <h3 style="color:#ffffff; margin:0; font-size:1.25rem; display:flex; align-items:center; gap:0.5rem">
+            <i class="fas fa-percentage"></i> जिला समान परीक्षा 2026-27 | पाठ्यक्रम पूर्णता प्रतिशत विवरण प्रपत्र
+          </h3>
+          <div style="font-size:0.82rem; opacity:0.95; margin-top:3px">
+            कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर) • 49 राजकीय माध्यमिक एवं उच्च माध्यमिक विद्यालय
+          </div>
+        </div>
+        <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-saman-syllabus-form')">&times;</button>
+      </div>
+
+      <div class="modal-body" style="padding:1.5rem">
+        <!-- School Metadata Card -->
+        <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:10px; padding:1rem 1.25rem; margin-bottom:1.5rem">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem">
+            <div>
+              <h4 id="syl-school-name" style="margin:0; color:#1e3a8a; font-size:1.05rem; font-weight:800">रा.उ.मा.वि. बांदनवाड़ा</h4>
+              <div style="font-size:0.82rem; color:#64748b; margin-top:2px">
+                शाला दर्पण कोड: <strong id="syl-school-code" style="color:#0f172a">221769</strong> | PEEO: <strong id="syl-peeo-name" style="color:#0f172a">PEEO BANDANWARA</strong> | श्रेणी: <span id="syl-school-category" class="badge" style="background:#e0f2fe; color:#0369a1">Govt. Sr. Sec.</span>
+              </div>
+            </div>
+            <div id="syl-form-status-badge">
+              <span class="badge" style="background:#fef3c7; color:#92400e; font-size:0.8rem; font-weight:800; padding:6px 12px">
+                ⏳ प्रविष्टि लम्बित (Pending)
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <input type="hidden" id="syl-hidden-school-code" value="">
+
+        <!-- SECTION A: CLASS 9 (7 SUBJECTS) -->
+        <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:10px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:0 1px 3px rgba(0,0,0,0.03)">
+          <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.85rem; border-bottom:1.5px solid #e0e7ff; padding-bottom:0.5rem">
+            <span class="badge" style="background:#4338ca; color:#ffffff; font-size:0.85rem; font-weight:800; padding:4px 10px">कक्षा 9वीं</span>
+            <strong style="font-size:0.95rem; color:#1e1b4b">पाठ्यक्रम पूर्णता प्रतिशत (5 अनिवार्य + 2 तृतीय भाषा विषय = कुल 7 कॉलम)</strong>
+          </div>
+          <div class="form-grid" style="grid-template-columns:repeat(auto-fit, minmax(115px, 1fr)); gap:0.6rem">
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.78rem; font-weight:700; color:#1e293b">1. हिन्दी (%)</label>
+              <input type="number" id="syl_c9_hindi" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.78rem; font-weight:700; color:#1e293b">2. अंग्रेजी (%)</label>
+              <input type="number" id="syl_c9_english" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.78rem; font-weight:700; color:#1e293b">3. गणित (%)</label>
+              <input type="number" id="syl_c9_maths" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.78rem; font-weight:700; color:#1e293b">4. विज्ञान (%)</label>
+              <input type="number" id="syl_c9_science" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.78rem; font-weight:700; color:#1e293b">5. सा.विज्ञान (%)</label>
+              <input type="number" id="syl_c9_sst" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.78rem; font-weight:700; color:#0369a1">6. संस्कृत (III) %</label>
+              <input type="number" id="syl_c9_sanskrit" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center; background:#f0f9ff; border-color:#7dd3fc" class="syl-input">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.78rem; font-weight:700; color:#047857">7. उर्दू (III) %</label>
+              <input type="number" id="syl_c9_urdu" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center; background:#f0fdf4; border-color:#86efac" class="syl-input">
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION B: CLASS 10 (7 SUBJECTS) -->
+        <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:10px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:0 1px 3px rgba(0,0,0,0.03)">
+          <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.85rem; border-bottom:1.5px solid #e0e7ff; padding-bottom:0.5rem">
+            <span class="badge" style="background:#0284c7; color:#ffffff; font-size:0.85rem; font-weight:800; padding:4px 10px">कक्षा 10वीं</span>
+            <strong style="font-size:0.95rem; color:#0c4a6e">पाठ्यक्रम पूर्णता प्रतिशत (5 अनिवार्य + 2 तृतीय भाषा विषय = कुल 7 कॉलम)</strong>
+          </div>
+          <div class="form-grid" style="grid-template-columns:repeat(auto-fit, minmax(115px, 1fr)); gap:0.6rem">
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.78rem; font-weight:700; color:#1e293b">1. हिन्दी (%)</label>
+              <input type="number" id="syl_c10_hindi" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.78rem; font-weight:700; color:#1e293b">2. अंग्रेजी (%)</label>
+              <input type="number" id="syl_c10_english" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.78rem; font-weight:700; color:#1e293b">3. गणित (%)</label>
+              <input type="number" id="syl_c10_maths" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.78rem; font-weight:700; color:#1e293b">4. विज्ञान (%)</label>
+              <input type="number" id="syl_c10_science" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.78rem; font-weight:700; color:#1e293b">5. सा.विज्ञान (%)</label>
+              <input type="number" id="syl_c10_sst" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.78rem; font-weight:700; color:#0369a1">6. संस्कृत (III) %</label>
+              <input type="number" id="syl_c10_sanskrit" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center; background:#f0f9ff; border-color:#7dd3fc" class="syl-input">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.78rem; font-weight:700; color:#047857">7. उर्दू (III) %</label>
+              <input type="number" id="syl_c10_urdu" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center; background:#f0fdf4; border-color:#86efac" class="syl-input">
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION C: CLASS 11 (COMPULSORY + ELECTIVES) -->
+        <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:10px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:0 1px 3px rgba(0,0,0,0.03)">
+          <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.85rem; border-bottom:1.5px solid #e0e7ff; padding-bottom:0.5rem">
+            <span class="badge" style="background:#059669; color:#ffffff; font-size:0.85rem; font-weight:800; padding:4px 10px">कक्षा 11वीं</span>
+            <strong style="font-size:0.95rem; color:#064e3b">पाठ्यक्रम पूर्णता प्रतिशत (अनिवार्य विषय + विद्यालय में संचालित ऐच्छिक विषय)</strong>
+          </div>
+          <div class="form-grid" style="grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:0.6rem; margin-bottom:0.85rem">
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.78rem; font-weight:700">अनिवार्य हिन्दी (%)</label>
+              <input type="number" id="syl_c11_comp_hindi" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.78rem; font-weight:700">अनिवार्य अंग्रेजी (%)</label>
+              <input type="number" id="syl_c11_comp_english" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
+            </div>
+          </div>
+          <!-- Elective Subjects Row -->
+          <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:0.75rem">
+            <div style="font-size:0.8rem; font-weight:700; color:#334155; margin-bottom:0.5rem">
+              ऐच्छिक विषय (कला / विज्ञान / वाणिज्य) एवं पाठ्यक्रम पूर्णता %:
+            </div>
+            <div id="syl-c11-electives-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:0.5rem">
+              <!-- Dynamically populated / inputs -->
+            </div>
+            <button type="button" class="btn btn-outline-primary btn-sm" onclick="addSyllabusElectiveRow('c11')" style="margin-top:0.5rem; font-size:0.75rem; font-weight:700">
+              <i class="fas fa-plus"></i> + ऐच्छिक विषय जोड़ें (11वीं)
+            </button>
+          </div>
+        </div>
+
+        <!-- SECTION D: CLASS 12 (COMPULSORY + ELECTIVES) -->
+        <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:10px; padding:1.25rem; margin-bottom:1.5rem; box-shadow:0 1px 3px rgba(0,0,0,0.03)">
+          <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.85rem; border-bottom:1.5px solid #e0e7ff; padding-bottom:0.5rem">
+            <span class="badge" style="background:#d97706; color:#ffffff; font-size:0.85rem; font-weight:800; padding:4px 10px">कक्षा 12वीं</span>
+            <strong style="font-size:0.95rem; color:#78350f">पाठ्यक्रम पूर्णता प्रतिशत (अनिवार्य विषय + विद्यालय में संचालित ऐच्छिक विषय)</strong>
+          </div>
+          <div class="form-grid" style="grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:0.6rem; margin-bottom:0.85rem">
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.78rem; font-weight:700">अनिवार्य हिन्दी (%)</label>
+              <input type="number" id="syl_c12_comp_hindi" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.78rem; font-weight:700">अनिवार्य अंग्रेजी (%)</label>
+              <input type="number" id="syl_c12_comp_english" min="0" max="100" placeholder="%" style="font-weight:700; text-align:center" class="syl-input">
+            </div>
+          </div>
+          <!-- Elective Subjects Row -->
+          <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:0.75rem">
+            <div style="font-size:0.8rem; font-weight:700; color:#334155; margin-bottom:0.5rem">
+              ऐच्छिक विषय (कला / विज्ञान / वाणिज्य) एवं पाठ्यक्रम पूर्णता %:
+            </div>
+            <div id="syl-c12-electives-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:0.5rem">
+              <!-- Dynamically populated / inputs -->
+            </div>
+            <button type="button" class="btn btn-outline-primary btn-sm" onclick="addSyllabusElectiveRow('c12')" style="margin-top:0.5rem; font-size:0.75rem; font-weight:700">
+              <i class="fas fa-plus"></i> + ऐच्छिक विषय जोड़ें (12वीं)
+            </button>
+          </div>
+        </div>
+
+        <!-- SECTION E: PRINCIPAL VERIFICATION & DIGITAL STAMP -->
+        <div style="background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:10px; padding:1.25rem; margin-bottom:1rem">
+          <h4 style="color:#1e40af; margin:0 0 0.75rem 0; font-size:0.95rem; display:flex; align-items:center; gap:0.4rem">
+            <i class="fas fa-stamp text-primary"></i> संस्था प्रधान प्रमाणीकरण एवं घोषणा
+          </h4>
+          <div class="form-grid" style="grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:0.85rem; margin-bottom:0.75rem">
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.8rem; font-weight:700">संस्था प्रधान का नाम:</label>
+              <input type="text" id="syl_principal_name" placeholder="संस्था प्रधान का नाम दर्ज करें" style="font-weight:700">
+            </div>
+            <div class="form-group" style="margin:0">
+              <label style="font-size:0.8rem; font-weight:700">संस्था प्रधान मोबाइल नंबर:</label>
+              <input type="tel" id="syl_principal_mobile" maxlength="10" placeholder="10 अंकों का मोबाइल नंबर" style="font-weight:700">
+            </div>
+          </div>
+          <label style="display:flex; align-items:flex-start; gap:0.6rem; cursor:pointer; margin:0; font-size:0.82rem; color:#1e3a8a">
+            <input type="checkbox" id="syl_certification_check" checked style="width:18px; height:18px; margin-top:2px">
+            <span>
+              <strong>प्रमाणित किया जाता है</strong> कि हमारे विद्यालय में कक्षा 9 से 12 तक के विषयवार पाठ्यक्रम पूर्णता का उपर्युक्त विवरण पूर्णतः सत्य एवं सटीक है।
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer" style="background:#f8fafc; border-top:1px solid #e2e8f0; padding:1rem 1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem">
+        <button type="button" class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-saman-syllabus-form')">
+          बंद करें (Close)
+        </button>
+        <div style="display:flex; gap:0.6rem; flex-wrap:wrap">
+          <button type="button" class="btn btn-outline-primary" onclick="saveSyllabusDraft()" style="font-weight:700">
+            <i class="fas fa-save"></i> ड्राफ्ट सहेजें
+          </button>
+          <button type="button" class="btn btn-success" id="btn-print-syl-pdf" onclick="printSyllabusPdf()" style="font-weight:700; display:none">
+            <i class="fas fa-print"></i> PDF प्रिंट
+          </button>
+          <button type="button" class="btn btn-primary" onclick="submitSyllabusForm()" style="font-weight:700">
+            <i class="fas fa-paper-plane"></i> आधिकारिक सबमिट करें
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- 9. GOOGLE FORM STYLE SAMAN PARIKSHA DEDICATED FULL PAGE (MOBILE FRIENDLY) -->
   <div id="modal-saman-pariksha-form" class="modal-overlay">
     <div class="modal-card">
@@ -3540,13 +4308,39 @@
             </div>
           </div>
 
-          <!-- Card 3: Class 9 & Class 10 Enrollment & 3rd Language -->
+          <!-- Card 3: Class 9 & Class 10 Enrollment & Medium Combination -->
           <div class="gform-card">
             <div class="gform-card-title">
-              <i class="fas fa-users text-primary"></i> 3. Class 9 & Class 10 Enrollment & 3rd Language (कक्षा 9 एवं 10 कुल नामांकन व तृतीय भाषा)
+              <i class="fas fa-users text-primary"></i> 3. Class 9 & Class 10 Enrollment & Medium Combination (कक्षा 9 एवं 10 माध्यमवार नामांकन)
             </div>
             <div class="gform-card-desc">
-              कक्षा 9 व 10 के विद्यार्थियों का कुल नामांकन तथा तृतीय भाषा (संस्कृत एवं उर्दू) के परीक्षार्थियों की संख्या दर्ज करें।
+              विद्यालय शिक्षण माध्यम का चयन करें। कक्षा 9 व 10 में हिंदी एवं अंग्रेजी माध्यमवार नामांकन भरें (कुल योग स्वतः होगा) तथा तृतीय भाषा (संस्कृत एवं उर्दू) दर्ज करें।
+            </div>
+
+            <!-- School Medium Selection (माध्यम चयन) -->
+            <div style="background:#eff6ff; border:1.5px solid #93c5fd; border-radius:8px; padding:0.9rem 1.1rem; margin-bottom:1.1rem">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.6rem">
+                <div style="font-weight:800; color:#1e40af; font-size:0.95rem; display:flex; align-items:center; gap:0.4rem">
+                  <i class="fas fa-language"></i> विद्यालय शिक्षण माध्यम (School Medium):
+                </div>
+                <div id="gform-mggs-badge" style="display:none; background:#dbeafe; color:#1e40af; font-weight:700; font-size:0.8rem; padding:3px 10px; border-radius:15px; border:1px solid #93c5fd">
+                  <i class="fas fa-school"></i> MGGS (महात्मा गांधी अंग्रेजी माध्यम विद्यालय)
+                </div>
+              </div>
+              <div style="display:flex; gap:1.25rem; flex-wrap:wrap; font-size:0.92rem; font-weight:700; color:#1e293b">
+                <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer">
+                  <input type="radio" name="gform-school-medium" id="gform-med-hindi" value="hindi" checked onchange="onSchoolMediumChanged()">
+                  <span>हिंदी माध्यम (Hindi Medium - सामान्य)</span>
+                </label>
+                <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer">
+                  <input type="radio" name="gform-school-medium" id="gform-med-english" value="english" onchange="onSchoolMediumChanged()">
+                  <span>अंग्रेजी माध्यम (English Medium - MGGS)</span>
+                </label>
+                <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer">
+                  <input type="radio" name="gform-school-medium" id="gform-med-both" value="both" onchange="onSchoolMediumChanged()">
+                  <span>दोनों माध्यम (हिंदी + अंग्रेजी द्विभाषी / Bilingual)</span>
+                </label>
+              </div>
             </div>
 
             <!-- Class 9 -->
@@ -3557,17 +4351,25 @@
                 </div>
                 <button type="button" class="btn-nil-toggle" onclick="toggleNilClass('c9')"><i class="fas fa-ban"></i> 🚫 कक्षा 9 शून्य / NIL</button>
               </div>
-              <div class="gform-row" style="margin-bottom:0">
+              <div class="gform-row" style="margin-bottom:0; display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:0.75rem">
                 <div class="gform-field">
-                  <label>9वीं कुल विद्यार्थी (Total Enrollment) <span style="color:red">*</span>:</label>
-                  <input type="number" id="gform-c9-total" min="0" value="0" class="gform-input" style="font-weight:800; font-size:1.1rem; color:#1e40af" oninput="calculateGFormTotals()">
+                  <label>9वीं हिंदी माध्यम:</label>
+                  <input type="number" id="gform-c9-hindi" min="0" value="0" class="gform-input" style="font-weight:700; color:#1e293b" oninput="calculateGFormTotals()">
                 </div>
                 <div class="gform-field">
-                  <label>तृतीय भाषा: संस्कृत (Sanskrit):</label>
+                  <label>9वीं अंग्रेजी माध्यम:</label>
+                  <input type="number" id="gform-c9-english" min="0" value="0" class="gform-input" style="font-weight:700; color:#2563eb" oninput="calculateGFormTotals()">
+                </div>
+                <div class="gform-field">
+                  <label>9वीं कुल विद्यार्थी (ऑटो): <span style="color:red">*</span></label>
+                  <input type="number" id="gform-c9-total" min="0" value="0" class="gform-input" style="font-weight:800; font-size:1.1rem; color:#1e40af; background:#f1f5f9" readonly oninput="calculateGFormTotals()">
+                </div>
+                <div class="gform-field">
+                  <label>तृतीय भाषा: संस्कृत:</label>
                   <input type="number" id="gform-c9-sanskrit" min="0" value="0" class="gform-input" style="font-weight:700" oninput="calculateGFormTotals()">
                 </div>
                 <div class="gform-field">
-                  <label>तृतीय भाषा: उर्दू (Urdu):</label>
+                  <label>तृतीय भाषा: उर्दू:</label>
                   <input type="number" id="gform-c9-urdu" min="0" value="0" class="gform-input" style="font-weight:700" oninput="calculateGFormTotals()">
                 </div>
               </div>
@@ -3581,17 +4383,25 @@
                 </div>
                 <button type="button" class="btn-nil-toggle" onclick="toggleNilClass('c10')"><i class="fas fa-ban"></i> 🚫 कक्षा 10 शून्य / NIL</button>
               </div>
-              <div class="gform-row" style="margin-bottom:0">
+              <div class="gform-row" style="margin-bottom:0; display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:0.75rem">
                 <div class="gform-field">
-                  <label>10वीं कुल विद्यार्थी (Total Enrollment) <span style="color:red">*</span>:</label>
-                  <input type="number" id="gform-c10-total" min="0" value="0" class="gform-input" style="font-weight:800; font-size:1.1rem; color:#1e40af" oninput="calculateGFormTotals()">
+                  <label>10वीं हिंदी माध्यम:</label>
+                  <input type="number" id="gform-c10-hindi" min="0" value="0" class="gform-input" style="font-weight:700; color:#1e293b" oninput="calculateGFormTotals()">
                 </div>
                 <div class="gform-field">
-                  <label>तृतीय भाषा: संस्कृत (Sanskrit):</label>
+                  <label>10वीं अंग्रेजी माध्यम:</label>
+                  <input type="number" id="gform-c10-english" min="0" value="0" class="gform-input" style="font-weight:700; color:#2563eb" oninput="calculateGFormTotals()">
+                </div>
+                <div class="gform-field">
+                  <label>10वीं कुल विद्यार्थी (ऑटो): <span style="color:red">*</span></label>
+                  <input type="number" id="gform-c10-total" min="0" value="0" class="gform-input" style="font-weight:800; font-size:1.1rem; color:#1e40af; background:#f1f5f9" readonly oninput="calculateGFormTotals()">
+                </div>
+                <div class="gform-field">
+                  <label>तृतीय भाषा: संस्कृत:</label>
                   <input type="number" id="gform-c10-sanskrit" min="0" value="0" class="gform-input" style="font-weight:700" oninput="calculateGFormTotals()">
                 </div>
                 <div class="gform-field">
-                  <label>तृतीय भाषा: उर्दू (Urdu):</label>
+                  <label>तृतीय भाषा: उर्दू:</label>
                   <input type="number" id="gform-c10-urdu" min="0" value="0" class="gform-input" style="font-weight:700" oninput="calculateGFormTotals()">
                 </div>
               </div>
@@ -4259,7 +5069,7 @@
           <i class="fas fa-shield-alt" style="color:#ea580c; font-size:1.25rem"></i> 
           <span>सुरक्षा चेतावनी: डिफ़ॉल्ट पासवर्ड बदलें</span>
         </h3>
-        <button class="modal-close-btn" onclick="closeModal('modal-default-pwd-alert')">&times;</button>
+        <button class="modal-close-btn" onclick="closeModal('modal-default-pwd-alert'); onDefaultPwdAlertDismissed();">&times;</button>
       </div>
       <div class="modal-body" style="padding:1.25rem">
         <div style="text-align:center; margin-bottom:1rem">
@@ -4282,7 +5092,7 @@
         </div>
       </div>
       <div class="modal-footer" style="display:flex; justify-content:space-between; gap:10px; padding:0.85rem 1.25rem; background:#f8fafc; border-top:1px solid #e2e8f0">
-        <button class="btn btn-outline-light" style="color:#64748b; border-color:#cbd5e1; font-weight:600" onclick="closeModal('modal-default-pwd-alert')">
+        <button class="btn btn-outline-light" style="color:#64748b; border-color:#cbd5e1; font-weight:600" onclick="closeModal('modal-default-pwd-alert'); onDefaultPwdAlertDismissed();">
           बाद में बदलेंगे (Later)
         </button>
         <button class="btn btn-warning" onclick="closeModal('modal-default-pwd-alert'); openChangePasswordModal();" style="background:#ea580c; border-color:#ea580c; color:#ffffff; font-weight:700; display:flex; align-items:center; gap:6px">
@@ -4297,7 +5107,7 @@
     <div class="modal-card" style="max-width:460px">
       <div class="modal-header">
         <h3><i class="fas fa-key text-primary"></i> लॉगिन पासवर्ड बदलें (Change Password)</h3>
-        <button class="modal-close-btn" onclick="closeModal('modal-change-password')">&times;</button>
+        <button class="modal-close-btn" onclick="closeModal('modal-change-password'); onDefaultPwdAlertDismissed();">&times;</button>
       </div>
       <div class="modal-body">
         <div style="background:#eff6ff; border-left:4px solid #2563eb; padding:0.75rem 1rem; border-radius:6px; margin-bottom:1.25rem; font-size:0.84rem; color:#1e40af; line-height:1.5">
@@ -4320,7 +5130,7 @@
         </div>
       </div>
       <div class="modal-footer" style="display:flex; justify-content:space-between; align-items:center">
-        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-change-password')">रद्द करें</button>
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-change-password'); onDefaultPwdAlertDismissed();">रद्द करें</button>
         <button class="btn btn-primary" onclick="submitChangePassword()" style="font-weight:700">
           <i class="fas fa-save"></i> सुरक्षित करें व लॉगआउट करें
         </button>
@@ -4609,7 +5419,7 @@
 
   <!-- External & Application Logic -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <script src="master_cbeo_data.js?v=20261004_v21"></script>
-  <script src="app.js?v=20261004_v21"></script>
+  <script src="master_cbeo_data.js?v=20261005_v22"></script>
+  <script src="app.js?v=20261005_v22"></script>
 </body>
 </html>

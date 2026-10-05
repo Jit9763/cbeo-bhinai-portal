@@ -57,13 +57,18 @@ def sync_submissions():
         "संस्था प्रधान मोबाइल",
         "परीक्षा प्रभारी (In-charge Name)",
         "परीक्षा प्रभारी मोबाइल",
+        "शिक्षण माध्यम (School Medium)",
         
         # Class 9
+        "9वीं हिंदी माध्यम (Class 9 Hindi)",
+        "9वीं अंग्रेजी माध्यम (Class 9 English)",
         "9वीं कुल नामांकन (Class 9 Total)",
         "9वीं संस्कृत (Sanskrit 3rd Lang)",
         "9वीं उर्दू (Urdu 3rd Lang)",
         
         # Class 10
+        "10वीं हिंदी माध्यम (Class 10 Hindi)",
+        "10वीं अंग्रेजी माध्यम (Class 10 English)",
         "10वीं कुल नामांकन (Class 10 Total)",
         "10वीं संस्कृत (Sanskrit 3rd Lang)",
         "10वीं उर्दू (Urdu 3rd Lang)",
@@ -111,6 +116,14 @@ def sync_submissions():
         c11_opt = sub.get('c11_optional', {})
         c12_opt = sub.get('c12_optional', {})
 
+        med = sub.get('school_medium', 'hindi')
+        med_label = 'अंग्रेजी माध्यम' if med == 'english' else ('द्विभाषी (हिंदी+अंग्रेजी)' if med == 'both' else 'हिंदी माध्यम')
+
+        c9_h = sub.get('c9_hindi', 0 if med == 'english' else sub.get('c9_total', 0))
+        c9_e = sub.get('c9_english', sub.get('c9_total', 0) if med == 'english' else 0)
+        c10_h = sub.get('c10_hindi', 0 if med == 'english' else sub.get('c10_total', 0))
+        c10_e = sub.get('c10_english', sub.get('c10_total', 0) if med == 'english' else 0)
+
         row = [
             s['s_no'],
             s['school_name'],
@@ -122,13 +135,18 @@ def sync_submissions():
             sub.get('principal_mobile', s.get('principal_mobile', '')),
             sub.get('incharge_name', s.get('incharge_name', '')),
             sub.get('incharge_mobile', s.get('incharge_mobile', '')),
+            med_label,
             
             # Class 9
+            c9_h,
+            c9_e,
             sub.get('c9_total', 0),
             sub.get('c9_sanskrit', 0),
             sub.get('c9_urdu', 0),
             
             # Class 10
+            c10_h,
+            c10_e,
             sub.get('c10_total', 0),
             sub.get('c10_sanskrit', 0),
             sub.get('c10_urdu', 0),
