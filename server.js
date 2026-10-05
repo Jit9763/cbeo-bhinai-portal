@@ -14,7 +14,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const url = require('url');
-const { exec } = require('child_process');
+const { exec, spawn } = require('child_process');
 
 const PORT = process.env.PORT || 8089;
 const ROOT_DIR = __dirname;
@@ -101,17 +101,35 @@ const DB = {
       try {
         const stmt = db.prepare('SELECT value FROM settings WHERE key = ?');
         const row = stmt.get(key);
-        return row ? JSON.parse(row.value) : null;
+        if (row && row.value) return JSON.parse(row.value);
       } catch (err) {
         console.warn('DB getSetting error:', err);
       }
     }
     // Fallback: check json files
+    if (key === '__TAB_VISIBILITY_6LEVEL__' && fs.existsSync(path.join(ROOT_DIR, 'tab_visibility_6level.json'))) {
+      try { return JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'tab_visibility_6level.json'), 'utf8')); } catch(e) {}
+    }
+    if (key === '__EDIT_PERMISSIONS_6LEVEL__' && fs.existsSync(path.join(ROOT_DIR, 'edit_permissions_6level.json'))) {
+      try { return JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'edit_permissions_6level.json'), 'utf8')); } catch(e) {}
+    }
+    if (key === '__CBEO_DEMANDS__' && fs.existsSync(path.join(ROOT_DIR, 'cbeo_demands.json'))) {
+      try { return JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'cbeo_demands.json'), 'utf8')); } catch(e) {}
+    }
+    if (key === '__CBEO_DEMAND_SUBMISSIONS__' && fs.existsSync(path.join(ROOT_DIR, 'cbeo_demand_submissions.json'))) {
+      try { return JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'cbeo_demand_submissions.json'), 'utf8')); } catch(e) {}
+    }
+    if (key === '__SAMAN_SYLLABUS_SUBMISSIONS__' && fs.existsSync(path.join(ROOT_DIR, 'saman_syllabus_submissions.json'))) {
+      try { return JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'saman_syllabus_submissions.json'), 'utf8')); } catch(e) {}
+    }
     if (key === '__TAB_VISIBILITY_5LEVEL__' && fs.existsSync(path.join(ROOT_DIR, 'tab_visibility_5level.json'))) {
       try { return JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'tab_visibility_5level.json'), 'utf8')); } catch(e) {}
     }
     if (key === '__STAFF_EDIT_PERMISSIONS__' && fs.existsSync(path.join(ROOT_DIR, 'staff_edit_permissions.json'))) {
       try { return JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'staff_edit_permissions.json'), 'utf8')); } catch(e) {}
+    }
+    if (key === '__SAMAN_MISMATCH_SETTINGS__' && fs.existsSync(path.join(ROOT_DIR, 'saman_mismatch_settings.json'))) {
+      try { return JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'saman_mismatch_settings.json'), 'utf8')); } catch(e) {}
     }
     if (key === '__PORTAL_SETTINGS__' && fs.existsSync(path.join(ROOT_DIR, 'cbeo_vm_settings.json'))) {
       try { return JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'cbeo_vm_settings.json'), 'utf8')); } catch(e) {}
@@ -132,8 +150,14 @@ const DB = {
     }
     // Also sync to corresponding json file for compatibility
     try {
+      if (key === '__TAB_VISIBILITY_6LEVEL__') fs.writeFileSync(path.join(ROOT_DIR, 'tab_visibility_6level.json'), jsonStr, 'utf8');
+      if (key === '__EDIT_PERMISSIONS_6LEVEL__') fs.writeFileSync(path.join(ROOT_DIR, 'edit_permissions_6level.json'), jsonStr, 'utf8');
+      if (key === '__CBEO_DEMANDS__') fs.writeFileSync(path.join(ROOT_DIR, 'cbeo_demands.json'), jsonStr, 'utf8');
+      if (key === '__CBEO_DEMAND_SUBMISSIONS__') fs.writeFileSync(path.join(ROOT_DIR, 'cbeo_demand_submissions.json'), jsonStr, 'utf8');
+      if (key === '__SAMAN_SYLLABUS_SUBMISSIONS__') fs.writeFileSync(path.join(ROOT_DIR, 'saman_syllabus_submissions.json'), jsonStr, 'utf8');
       if (key === '__TAB_VISIBILITY_5LEVEL__') fs.writeFileSync(path.join(ROOT_DIR, 'tab_visibility_5level.json'), jsonStr, 'utf8');
       if (key === '__STAFF_EDIT_PERMISSIONS__') fs.writeFileSync(path.join(ROOT_DIR, 'staff_edit_permissions.json'), jsonStr, 'utf8');
+      if (key === '__SAMAN_MISMATCH_SETTINGS__') fs.writeFileSync(path.join(ROOT_DIR, 'saman_mismatch_settings.json'), jsonStr, 'utf8');
       if (key === '__PORTAL_SETTINGS__') {
         const existing = fs.existsSync(path.join(ROOT_DIR, 'cbeo_vm_settings.json')) ? JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'cbeo_vm_settings.json'), 'utf8')) : {};
         Object.assign(existing, val);
@@ -276,8 +300,155 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (pathname === '/api/get_tab_visibility_6level') {
+    let vis = DB.getSetting('__TAB_VISIBILITY_6LEVEL__');
+    if (!vis) vis = DB.getSetting('__TAB_VISIBILITY_5LEVEL__');
+    sendJSON(res, 200, { success: true, visibility: vis });
+    return;
+  }
+
+  if (pathname === '/api/save_tab_visibility_6level' && req.method === 'POST') {
+    readBody((data, err) => {
+      if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
+      const vis = data.visibility || data;
+      DB.setSetting('__TAB_VISIBILITY_6LEVEL__', vis);
+      DB.setSetting('__TAB_VISIBILITY_5LEVEL__', vis); // backward compat
+      forwardToGoogleSheet({
+        action: 'updatePassword',
+        user_id: '__TAB_VISIBILITY_6LEVEL__',
+        new_password: JSON.stringify(vis)
+      });
+      sendJSON(res, 200, { success: true, message: '6-स्तरीय दृश्यता अनुमतियां SQLite व क्लाउड में सुरक्षित हो गईं!' });
+    });
+    return;
+  }
+
+  if (pathname === '/api/get_edit_permissions_6level') {
+    const perms = DB.getSetting('__EDIT_PERMISSIONS_6LEVEL__') || DB.getSetting('__STAFF_EDIT_PERMISSIONS__');
+    sendJSON(res, 200, { success: true, permissions: perms });
+    return;
+  }
+
+  if (pathname === '/api/save_edit_permissions_6level' && req.method === 'POST') {
+    readBody((data, err) => {
+      if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
+      const perms = data.permissions || data;
+      DB.setSetting('__EDIT_PERMISSIONS_6LEVEL__', perms);
+      forwardToGoogleSheet({
+        action: 'updatePassword',
+        user_id: '__EDIT_PERMISSIONS_6LEVEL__',
+        new_password: JSON.stringify(perms)
+      });
+      sendJSON(res, 200, { success: true, message: '6-स्तरीय संपादन अनुमतियां सुरक्षित हो गईं!' });
+    });
+    return;
+  }
+
+  if (pathname === '/api/get_saman_mismatch_settings') {
+    const settings = DB.getSetting('__SAMAN_MISMATCH_SETTINGS__');
+    sendJSON(res, 200, { success: true, settings: settings });
+    return;
+  }
+
+  if (pathname === '/api/save_saman_mismatch_settings' && req.method === 'POST') {
+    readBody((data, err) => {
+      if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
+      const settings = data.settings || data;
+      DB.setSetting('__SAMAN_MISMATCH_SETTINGS__', settings);
+      forwardToGoogleSheet({
+        action: 'updatePassword',
+        user_id: '__SAMAN_MISMATCH_SETTINGS__',
+        new_password: JSON.stringify(settings)
+      });
+      sendJSON(res, 200, { success: true, message: 'समान परीक्षा मिसमैच व कस्टम एडिट सेटिंग्स सुरक्षित हो गईं!' });
+    });
+    return;
+  }
+
+  if (pathname === '/api/send_mismatch_alert' && req.method === 'POST') {
+    readBody((data, err) => {
+      if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
+      const scriptPath = path.join(ROOT_DIR, 'scripts', 'send_mismatch_alert_service.py');
+      const child = spawn('python', [scriptPath], { stdio: ['pipe', 'pipe', 'pipe'] });
+      let stdoutData = '';
+      let stderrData = '';
+      child.stdout.on('data', chunk => { stdoutData += chunk.toString('utf8'); });
+      child.stderr.on('data', chunk => { stderrData += chunk.toString('utf8'); });
+      child.on('close', code => {
+        try {
+          const result = JSON.parse(stdoutData.trim());
+          sendJSON(res, 200, result);
+        } catch (e) {
+          sendJSON(res, 200, {
+            success: code === 0,
+            stdout: stdoutData,
+            stderr: stderrData,
+            error: code !== 0 ? stderrData : 'Response parse error'
+          });
+        }
+      });
+      child.stdin.write(JSON.stringify(data));
+      child.stdin.end();
+    });
+    return;
+  }
+
+  if (pathname === '/api/get_demands') {
+    const demands = DB.getSetting('__CBEO_DEMANDS__') || [];
+    sendJSON(res, 200, { success: true, demands: demands });
+    return;
+  }
+
+  if (pathname === '/api/save_demands' && req.method === 'POST') {
+    readBody((data, err) => {
+      if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
+      const demands = data.demands || data;
+      DB.setSetting('__CBEO_DEMANDS__', demands);
+      sendJSON(res, 200, { success: true, message: 'मांग प्रपत्र सुरक्षित हो गए!' });
+    });
+    return;
+  }
+
+  if (pathname === '/api/get_demand_submissions') {
+    const subs = DB.getSetting('__CBEO_DEMAND_SUBMISSIONS__') || {};
+    sendJSON(res, 200, { success: true, submissions: subs });
+    return;
+  }
+
+  if (pathname === '/api/save_demand_submissions' && req.method === 'POST') {
+    readBody((data, err) => {
+      if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
+      const subs = data.submissions || data;
+      DB.setSetting('__CBEO_DEMAND_SUBMISSIONS__', subs);
+      sendJSON(res, 200, { success: true, message: 'मांग सबमिशन सुरक्षित हो गए!' });
+    });
+    return;
+  }
+
+  if (pathname === '/api/get_saman_syllabus') {
+    const subs = DB.getSetting('__SAMAN_SYLLABUS_SUBMISSIONS__') || {};
+    sendJSON(res, 200, { success: true, submissions: subs });
+    return;
+  }
+
+  if (pathname === '/api/save_saman_syllabus' && req.method === 'POST') {
+    readBody((data, err) => {
+      if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
+      const subs = DB.getSetting('__SAMAN_SYLLABUS_SUBMISSIONS__') || {};
+      const schoolCode = data.school_code || data.shala_darpan_code;
+      if (schoolCode) {
+        subs[schoolCode] = data.data || data;
+      } else if (data.submissions) {
+        Object.assign(subs, data.submissions);
+      }
+      DB.setSetting('__SAMAN_SYLLABUS_SUBMISSIONS__', subs);
+      sendJSON(res, 200, { success: true, message: 'समान परीक्षा पाठ्यक्रम पूर्णता डेटा सुरक्षित हो गया!' });
+    });
+    return;
+  }
+
   if (pathname === '/api/get_tab_visibility_5level') {
-    const vis = DB.getSetting('__TAB_VISIBILITY_5LEVEL__');
+    const vis = DB.getSetting('__TAB_VISIBILITY_6LEVEL__') || DB.getSetting('__TAB_VISIBILITY_5LEVEL__');
     sendJSON(res, 200, { success: true, visibility: vis });
     return;
   }
@@ -391,7 +562,7 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, {
       'Content-Type': contentType,
       'Access-Control-Allow-Origin': '*',
-      'Cache-Control': ext === '.html' ? 'no-cache' : 'public, max-age=3600'
+      'Cache-Control': 'no-cache, no-store, must-revalidate'
     });
 
     const stream = fs.createReadStream(filePath);

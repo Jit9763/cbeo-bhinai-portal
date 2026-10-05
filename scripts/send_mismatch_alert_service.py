@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-CBEO Bhinai Portal - Universal Mismatch Notification Service
+CBEO Bhinai Portal - Universal Mismatch & Medium Notice Notification Service
 Dispatches:
-1. School Email (via Gmail SMTP) detailing flagged mismatch fields and edit unlock notice.
-2. Telegram Alert to Jitendra (579780800) formatted specifically to copy-paste directly to WhatsApp!
+1. School Email (via Gmail SMTP) sent directly to School Official Mail + Principal Mail + SD Incharge + Censusbhinai.
+2. Telegram Consolidated & Single Alert to Jitendra (579780800) formatted specifically to copy-paste directly to WhatsApp!
 
 MANDATORY RULES:
 - जिला सदैव अजमेर (AJMER) रहेगा। केकड़ी (KEKRI) कदापि प्रयोग न करें।
@@ -16,6 +16,7 @@ import sys
 import json
 import smtplib
 import datetime
+import re
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
@@ -23,6 +24,11 @@ try:
     import requests
 except ImportError:
     requests = None
+
+try:
+    import openpyxl
+except ImportError:
+    openpyxl = None
 
 
 def get_notification_config():
@@ -36,6 +42,111 @@ def get_notification_config():
         except Exception as e:
             print("Error loading config:", e)
     return cfg
+
+
+def load_school_email_directory():
+    """
+    Extracts complete official school emails, principal emails, and SD incharge emails
+    from 'school principal bhinai.xlsx'.
+    """
+    root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    xlsx_file = os.path.join(root_dir, 'school principal bhinai.xlsx')
+
+    # Hardcoded fallback mappings for known senior sec and MGGS schools
+    directory = {
+        '221778': {
+            'official': 'ggirlshrsecbhinai@gmail.com',
+            'principal': 'hmggsskhataoli@gmail.com',
+            'sd_incharge': 'manisha.akodiya95@gmail.com',
+            'name': 'MAHATMA GANDHI GOVT. SCHOOL BHINAI'
+        },
+        '221770': {
+            'official': 'ggssbandanwara@gmail.com',
+            'principal': 'jaysinghkhatik56@gmail.com',
+            'sd_incharge': 'monikaoberai82@gmail.com',
+            'name': 'MAHATMA GANDHI GOVT. SCHOOL BANDANWARA'
+        },
+        '221753': {
+            'official': 'deoliakalan105@gmail.com',
+            'principal': 'rakeshbirawat1973@gmail.com',
+            'sd_incharge': 'kanwadiaanil091@gmail.com',
+            'name': 'MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN'
+        },
+        '221780': {
+            'official': 'principalbhinai123@gmail.com',
+            'principal': 'dhabaiajay79ka@gmail.com',
+            'sd_incharge': 'vinodvansica8887@gmail.com',
+            'name': 'GOVT. SENIOR SECONDARY SCHOOL BHINAI'
+        },
+        '221758': {
+            'official': 'gssschampaneri@gmail.com',
+            'principal': 'sharmalr1968@gmail.com',
+            'sd_incharge': 'rajkumarbairwa261096@gmail.com',
+            'name': 'GOVT. SENIOR SECONDARY SCHOOL CHAPANERI'
+        },
+        '221761': {
+            'official': 'gssnimeda15815@gmail.com',
+            'principal': 'ss3510069@gmail.com',
+            'sd_incharge': 'nakwalsdeepal@gmail.com',
+            'name': 'GOVT. SENIOR SECONDARY SCHOOL NIMEDA'
+        },
+        '221772': {
+            'official': 'gsssnagola79@gmail.com',
+            'principal': 'raovinod.22@gmail.com',
+            'sd_incharge': 'sumanmeena8153@gmail.com',
+            'name': 'GOVT. SENIOR SECONDARY SCHOOL NAGOLA'
+        },
+        '221756': {
+            'official': 'pgsssnandsi@gmail.com',
+            'principal': 'manojaadhi1981@gmail.com',
+            'sd_incharge': 'sura.panwar@gmail.com',
+            'name': 'GOVT. SENIOR SECONDARY SCHOOL NANDSI'
+        }
+    }
+
+    if openpyxl and os.path.exists(xlsx_file):
+        try:
+            wb = openpyxl.load_workbook(xlsx_file, data_only=True)
+            if 'Sheet1' in wb.sheetnames:
+                ws1 = wb['Sheet1']
+                for r in range(60, ws1.max_row + 1):
+                    sch_name = str(ws1.cell(r, 6).value or '')
+                    m = re.search(r'\((\d{6})\)', sch_name)
+                    if m:
+                        c = m.group(1)
+                        p_em = str(ws1.cell(r, 12).value or '').strip()
+                        sd_em = str(ws1.cell(r, 15).value or '').strip()
+                        if c not in directory:
+                            directory[c] = {'official': '', 'principal': '', 'sd_incharge': '', 'name': sch_name}
+                        if p_em and '@' in p_em:
+                            directory[c]['principal'] = p_em
+                        if sd_em and '@' in sd_em:
+                            directory[c]['sd_incharge'] = sd_em
+        except Exception as e:
+            print("Error parsing Excel directory:", e)
+
+    return directory
+
+
+def resolve_school_emails(school_code):
+    dir_map = load_school_email_directory()
+    rec = dir_map.get(str(school_code), {})
+    
+    official = rec.get('official') or ''
+    principal = rec.get('principal') or ''
+    sd_inc = rec.get('sd_incharge') or ''
+    
+    # Priority for primary To:
+    primary = official if (official and '@' in official) else principal
+    
+    # Cc list
+    cc_list = []
+    for em in [principal, sd_inc, 'censusbhinai@gmail.com']:
+        em_clean = em.strip()
+        if em_clean and '@' in em_clean and em_clean.lower() != primary.lower() and em_clean.lower() not in [x.lower() for x in cc_list]:
+            cc_list.append(em_clean)
+            
+    return primary, cc_list
 
 
 def send_telegram_msg(msg_text):
@@ -60,7 +171,7 @@ def send_telegram_msg(msg_text):
         }
         for attempt in range(2):
             try:
-                r = requests.post(url, json=payload, timeout=10)
+                r = requests.post(url, json=payload, timeout=12)
                 if r.status_code == 200 and r.json().get('ok'):
                     return True, "Telegram sent successfully"
                 else:
@@ -70,7 +181,7 @@ def send_telegram_msg(msg_text):
     return False, last_err
 
 
-def send_school_email(to_email, school_name, school_code, demand_title, flagged_fields, remarks):
+def send_school_email(to_email, cc_emails, school_name, school_code, demand_title, flagged_fields, remarks, diff_text=""):
     cfg = get_notification_config()
     user = os.environ.get('EMAIL_USER') or cfg.get('EMAIL_USER') or 'censusbhinai@gmail.com'
     pwd = (os.environ.get('EMAIL_PASS') or cfg.get('EMAIL_PASS') or 'xesu vgxh qftc yewm').replace(' ', '')
@@ -78,9 +189,15 @@ def send_school_email(to_email, school_name, school_code, demand_title, flagged_
     if not to_email or '@' not in to_email:
         return False, "Invalid school email address"
 
-    subject = f"🚨 अति-आवश्यक: डेटा मिसमैच सुधार नोटिस - {school_name} ({school_code}) | CBEO भिनाय (अजमेर)"
+    subject = f"🚨 अति-आवश्यक: समान परीक्षा मांग संशोधन नोटिस - {school_name} ({school_code}) | CBEO भिनाय (अजमेर)"
 
-    fields_html = "".join([f"<li style='color:#b91c1c; font-weight:700; margin-bottom:4px'>{f}</li>" for f in flagged_fields]) if flagged_fields else "<li>समस्त प्रपत्र आंकड़े पुनः जांचें</li>"
+    fields_html = "".join([f"<li style='color:#b91c1c; font-weight:700; margin-bottom:5px'>{f}</li>" for f in flagged_fields]) if flagged_fields else "<li>मांग प्रपत्र के समस्त आंकड़े पुनः जांचें</li>"
+
+    diff_banner_html = f"""
+    <div style="background:#fee2e2; border:2px dashed #dc2626; border-radius:8px; padding:12px 16px; margin:14px 0; color:#991b1b; font-size:15px; font-weight:bold;">
+      ⚠️ मुख्य विसंगति: {diff_text}
+    </div>
+    """ if diff_text else ""
 
     html_content = f"""
     <!DOCTYPE html>
@@ -94,7 +211,7 @@ def send_school_email(to_email, school_name, school_code, demand_title, flagged_
           <h2 style="margin:0; font-size:20px; letter-spacing:0.5px;">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO)</h2>
           <div style="font-size:14px; opacity:0.95; margin-top:4px;">पंचायत समिति परिसर, भिनाय, <b>जिला: अजमेर (राजस्थान)</b></div>
           <div style="display:inline-block; margin-top:12px; background:rgba(255,255,255,0.25); padding:4px 14px; border-radius:20px; font-size:12px; font-weight:bold; letter-spacing:0.3px;">
-            🚨 प्रपत्र डेटा मिसमैच सुधार नोटिस (संशोधन खुला)
+            🚨 प्रपत्र संशोधन एवं मिलान सुधार नोटिस (पोर्टल खुला)
           </div>
         </div>
 
@@ -107,24 +224,26 @@ def send_school_email(to_email, school_name, school_code, demand_title, flagged_
           
           <div style="background:#fef2f2; border-left:4px solid #ef4444; border-radius:6px; padding:12px 16px; margin:16px 0; color:#991b1b; font-size:14px; line-height:1.6;">
             <b>सूचना मांग:</b> {demand_title}<br>
-            आपके द्वारा प्रेषित प्रपत्र का कार्यालय स्तर पर परीक्षण किए जाने पर कतिपय फील्ड्स में <b>डेटा मिसमैच / विसंगति</b> पाई गई है।
+            आपके द्वारा प्रेषित प्रपत्र का कार्यालय स्तर पर परीक्षण किए जाने पर शाला दर्पण नामांकन से भिन्नता पाई गई है।
           </div>
+
+          {diff_banner_html}
 
           <div style="background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:14px 18px; margin:16px 0;">
             <div style="font-weight:bold; color:#92400e; font-size:14px; margin-bottom:8px;">
-              ⚠️ चिह्नित त्रुटिपूर्ण / मिसमैच फील्ड्स:
+              ⚠️ चिह्नित त्रुटिपूर्ण / संशोधन योग्य फील्ड्स:
             </div>
             <ul style="margin:0; padding-left:20px; color:#78350f; font-size:13.5px;">
               {fields_html}
             </ul>
           </div>
 
-          {f'''<div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px 16px; margin:16px 0; font-size:13.5px; color:#334155;">
-            <b>कार्यालय टिप्पणी / निर्देश:</b><br>{remarks}
+          {f'''<div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:12px 16px; margin:16px 0; font-size:13.5px; color:#334155; line-height:1.6;">
+            <b>कार्यालय निर्देश / स्पष्टीकरण:</b><br>{remarks}
           </div>''' if remarks else ''}
 
-          <div style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:14px 18px; margin:20px 0; color:#065f46; font-size:14px;">
-            <b>🔓 विशेष संपादन सुविधा:</b> आपके विद्यालय के लिए पोर्टल पर इस प्रपत्र में संपादन (Edit) की सुविधा खोल दी गई है। कृपया तुरंत पोर्टल पर लॉगिन कर आंकड़े सही करें और प्रपत्र पुनः सबमिट करें।
+          <div style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:14px 18px; margin:20px 0; color:#065f46; font-size:14px; line-height:1.6;">
+            <b>🔓 विशेष संपादन सुविधा:</b> आपके विद्यालय के लिए पोर्टल पर इस प्रपत्र में संपादन (Custom Edit) की सुविधा खोल दी गई है। कृपया तुरंत पोर्टल पर लॉगिन कर आंकड़े सही करें और प्रपत्र पुनः सबमिट करें।
           </div>
 
           <div style="text-align:center; margin-top:25px; margin-bottom:10px;">
@@ -136,8 +255,8 @@ def send_school_email(to_email, school_name, school_code, demand_title, flagged_
 
         <!-- Footer -->
         <div style="background:#f8fafc; border-top:1px solid #e2e8f0; padding:14px 24px; text-align:center; font-size:12px; color:#64748b;">
-          यह संदेश CBEO भिनाय (अजमेर) आधिकारिक पोर्टल से स्वतः जनरेट किया गया है।<br>
-          तकनीकी सहायता: 9928254317 | कार्यालय CBEO भिनाय (अजमेर)
+          यह संदेश CBEO भिनाय (अजमेर) आधिकारिक पोर्टल से अधिकृत रूप से भेजा गया है।<br>
+          तकनीकी सहायता: 9928254317 | कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)
         </div>
       </div>
     </body>
@@ -148,23 +267,27 @@ def send_school_email(to_email, school_name, school_code, demand_title, flagged_
     msg['Subject'] = subject
     msg['From'] = f"CBEO Bhinai (Ajmer) <{user}>"
     msg['To'] = to_email
+    if cc_emails:
+        msg['Cc'] = ", ".join(cc_emails)
     msg.attach(MIMEText(html_content, 'html', 'utf-8'))
+
+    all_recipients = [to_email] + cc_emails
 
     try:
         server = smtplib.SMTP('smtp.gmail.com', 587, timeout=15)
         server.starttls()
         server.login(user, pwd)
-        server.sendmail(user, [to_email], msg.as_string())
+        server.sendmail(user, all_recipients, msg.as_string())
         server.quit()
-        return True, "Email sent successfully"
+        return True, f"Email sent to {to_email} (Cc: {len(cc_emails)})"
     except Exception as e:
         return False, str(e)
 
 
 def process_mismatch_dispatch(data):
-    mode = data.get('mode', 'single') # 'single' or 'batch'
-    demand_id = data.get('demand_id', '')
-    demand_title = data.get('demand_title', 'सूचना मांग')
+    mode = data.get('mode', 'batch') # 'single' or 'batch'
+    demand_id = data.get('demand_id', 'saman_pariksha_2026')
+    demand_title = data.get('demand_title', 'जिला समान परीक्षा 2026-27 प्रश्न पत्र मांग पत्रक')
     now_str = datetime.datetime.now().strftime('%d.%m.%Y, %I:%M %p')
 
     results = {
@@ -177,26 +300,31 @@ def process_mismatch_dispatch(data):
     }
 
     if mode == 'single':
-        school_code = data.get('school_code', '')
+        school_code = str(data.get('school_code', ''))
         school_name = data.get('school_name', '')
         peeo_name = data.get('peeo_name', '')
-        school_email = data.get('school_email', '')
+        diff_text = data.get('diff_text', '')
         flagged_fields = data.get('flagged_fields', [])
         remarks = data.get('remarks', '').strip()
 
-        # 1. Send Email to school if email provided
-        if school_email:
-            ok, emsg = send_school_email(school_email, school_name, school_code, demand_title, flagged_fields, remarks)
+        # Resolve emails
+        to_email, cc_emails = resolve_school_emails(school_code)
+        if data.get('school_email'):
+            to_email = data['school_email']
+
+        if to_email:
+            ok, emsg = send_school_email(to_email, cc_emails, school_name, school_code, demand_title, flagged_fields, remarks, diff_text)
             if ok:
                 results['emails_sent'] += 1
             else:
                 results['emails_failed'] += 1
-                results['errors'].append(f"Email error: {emsg}")
+                results['errors'].append(f"Email {school_code} error: {emsg}")
 
-        # 2. Build Telegram message (Copy-Paste ready for WhatsApp!)
+        # Telegram message
         fields_text = "\n".join([f"  ❌ {f}" for f in flagged_fields]) if flagged_fields else "  ❌ प्रपत्र डेटा मिसमैच"
-        
-        tg_html = f"""🚨 <b>अति-आवश्यक सूचना: प्रपत्र डेटा मिसमैच सुधार नोटिस</b>
+        diff_str = f"⚠️ <b>त्रुटि विवरण:</b> {diff_text}\n" if diff_text else ""
+
+        tg_html = f"""🚨 <b>अति-आवश्यक सूचना: प्रपत्र डेटा संशोधन नोटिस</b>
 🏛️ <b>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)</b>
 
 📋 <b>मांग प्रपत्र:</b> {demand_title}
@@ -205,13 +333,14 @@ def process_mismatch_dispatch(data):
 📌 <b>PEEO परिक्षेत्र:</b> {peeo_name}
 🕒 <b>दिनांक/समय:</b> {now_str}
 
-⚠️ <b>चिह्नित मिसमैच / त्रुटि फील्ड्स:</b>
+{diff_str}
+⚠️ <b>चिह्नित मिसमैच / संशोधन फील्ड्स:</b>
 {fields_text}
 
-📝 <b>कार्यालय टिप्पणी / निर्देश:</b>
+📝 <b>कार्यालय निर्देश:</b>
 {remarks if remarks else 'कृपया शाला दर्पण के वास्तविक आंकड़ों अनुसार डेटा सत्यापित कर सुधारें।'}
 
-🔓 <b>कार्रवाई:</b> इस विद्यालय के लिए पोर्टल पर संपादन (Edit) सुविधा खोल दी गई है। तुरंत लॉगिन कर संशोधन करें।
+🔓 <b>कार्रवाई:</b> इस विद्यालय के लिए पोर्टल पर संपादन (Custom Edit) खोल दिया गया है। तुरंत सुधार कर सबमिट करें।
 
 🌐 <b>पोर्टल लिंक:</b> https://jit9763.github.io/cbeo-bhinai-portal/"""
 
@@ -222,47 +351,60 @@ def process_mismatch_dispatch(data):
             results['errors'].append(f"Telegram error: {tg_err}")
 
     elif mode == 'batch':
-        schools = data.get('schools', []) # List of school objects
+        schools = data.get('schools', [])
         common_remarks = data.get('common_remarks', '').strip()
 
         school_summary_lines = []
-        for s in schools:
-            s_code = s.get('school_code', '')
+        for idx, s in enumerate(schools, 1):
+            s_code = str(s.get('school_code', ''))
             s_name = s.get('school_name', '')
-            s_email = s.get('email', '')
+            s_peeo = s.get('peeo_name', '')
+            s_diff_text = s.get('diff_text', '')
             s_fields = s.get('flagged_fields', [])
             s_rem = s.get('remarks', '') or common_remarks
-            s_peeo = s.get('peeo_name', '')
 
-            # Email dispatch
-            if s_email:
-                ok, emsg = send_school_email(s_email, s_name, s_code, demand_title, s_fields, s_rem)
+            to_email, cc_emails = resolve_school_emails(s_code)
+            if s.get('email'):
+                to_email = s['email']
+
+            # Send Email directly to School
+            if to_email:
+                ok, emsg = send_school_email(to_email, cc_emails, s_name, s_code, demand_title, s_fields, s_rem, s_diff_text)
                 if ok:
                     results['emails_sent'] += 1
                 else:
                     results['emails_failed'] += 1
-                    results['errors'].append(f"Email {s_code}: {emsg}")
+                    results['errors'].append(f"Email {s_code} error: {emsg}")
 
-            f_str = ", ".join(s_fields) if s_fields else "डेटा मिसमैच"
-            school_summary_lines.append(f"• <b>{s_name}</b> ({s_code}) - <i>PEEO {s_peeo}</i>\n  ⚠️ <i>त्रुटि: {f_str}</i>")
+            # Specific wording in Telegram per user rule
+            # E.g. "पेपर मांग शाला दर्पण में नामांकन से एक ज्यादा है (मांग: 87, शाला दर्पण: 86)"
+            item_text = f"{idx}. <b>{s_name}</b> ({s_code})\n"
+            item_text += f"   📌 <i>PEEO: {s_peeo}</i>\n"
+            if s_diff_text:
+                item_text += f"   ⚠️ <b>विसंगति:</b> {s_diff_text}\n"
+            if s_rem:
+                item_text += f"   📝 <i>सुधार: {s_rem}</i>"
 
-        # Consolidated Telegram Message (Ready to forward to PEEO WhatsApp groups!)
+            school_summary_lines.append(item_text)
+
         schools_block = "\n\n".join(school_summary_lines)
-        tg_html = f"""🚨 <b>समेकित मिसमैच सूचना: प्रपत्र डेटा सुधार नोटिस</b>
+
+        tg_html = f"""🚨 <b>समेकित मिसमैच एवं संशोधन सूचना: समान परीक्षा 2026-27</b>
 🏛️ <b>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)</b>
 
 📋 <b>मांग प्रपत्र:</b> {demand_title}
 📅 <b>दिनांक:</b> {now_str}
-👥 <b>कुल चिह्नित विद्यालय:</b> {len(schools)} स्कूल
+👥 <b>कुल चिह्नित विद्यालय:</b> {len(schools)} स्कूल (संशोधन खुला)
 
-निम्न विद्यालयों के प्रपत्र में शाला दर्पण अनुसार डेटा मिसमैच / विसंगति पाई गई है एवं उनके लिए पोर्टल पर संपादन (Edit) खोल दिया गया है:
+निम्न विद्यालयों के प्रपत्र में शाला दर्पण अनुसार डेटा अंतर / MGGS माध्यम संशोधन अपेक्षित है, जिसके लिए पोर्टल पर संपादन (Custom Edit) खोल दिया गया है:
 
 {schools_block}
 
-📝 <b>कार्यालय निर्देश:</b>
-{common_remarks if common_remarks else 'संबंधित संस्था प्रधान / PEEO कृपया आज ही पोर्टल पर लॉगिन कर मांग पत्रक में सुधार कर पुनः सबमिट करें।'}
+📢 <b>विशेष निर्देश (MGGS एवं सीनियर सेकेंडरी स्कूल):</b>
+1. <b>महात्मा गांधी (MGGS) विद्यालय:</b> कक्षा 9 व 10 में हिंदी एवं अंग्रेजी माध्यमवार पृथक-पृथक मांग तथा कक्षा 11 व 12 में भी ऐच्छिक विषयों के प्रश्न पत्र माध्यम (हिंदी/अंग्रेजी) की स्थिति स्पष्ट करते हुए प्रपत्र सबमिट करें।
+2. <b>नामांकन अंतर वाले विद्यालय:</b> शाला दर्पण पर वास्तविक नामांकन अनुसार पेपर मांग शुद्ध करें ताकि अनावश्यक पेपर छपाई या कमी की स्थिति न रहे।
 
-🌐 <b>पोर्टल लिंक:</b> https://jit9763.github.io/cbeo-bhinai-portal/"""
+🌐 <b>पोर्टल लिंक (संशोधन हेतु):</b> https://jit9763.github.io/cbeo-bhinai-portal/"""
 
         ok_tg, tg_err = send_telegram_msg(tg_html)
         results['telegram_sent'] = ok_tg
@@ -273,26 +415,55 @@ def process_mismatch_dispatch(data):
     return results
 
 
+def run_full_mismatch_dispatch():
+    root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    settings_file = os.path.join(root_dir, 'saman_mismatch_settings.json')
+    
+    with open(settings_file, 'r', encoding='utf-8') as f:
+        settings = json.load(f)
+
+    custom_schools = settings.get('custom_edit_schools', [])
+    m_details = settings.get('mismatch_details', {})
+
+    schools_payload = []
+    for scode in custom_schools:
+        d = m_details.get(scode, {})
+        schools_payload.append({
+            'school_code': scode,
+            'school_name': d.get('school_name', f"School {scode}"),
+            'peeo_name': d.get('peeo_name', 'BHINAI'),
+            'diff_text': d.get('diff_text', ''),
+            'flagged_fields': d.get('flagged_fields', []),
+            'remarks': d.get('reason', '')
+        })
+
+    payload = {
+        'mode': 'batch',
+        'demand_id': 'saman_pariksha_2026',
+        'demand_title': 'जिला समान परीक्षा 2026-27 प्रश्न पत्र मांग पत्रक',
+        'common_remarks': 'कृपया शाला दर्पण के वास्तविक आंकड़ों एवं MGGS माध्यम अनुसार डेटा सत्यापित कर आज ही पोर्टल पर पुनः सबमिट करें।',
+        'schools': schools_payload
+    }
+
+    res = process_mismatch_dispatch(payload)
+    return res
+
+
 if __name__ == '__main__':
     if hasattr(sys.stdin, 'reconfigure'):
         sys.stdin.reconfigure(encoding='utf-8')
     if hasattr(sys.stdout, 'reconfigure'):
         sys.stdout.reconfigure(encoding='utf-8')
 
-    # CLI / Pipe execution support
-    if len(sys.argv) > 1:
-        req_file = sys.argv[1]
-        with open(req_file, 'r', encoding='utf-8') as f:
+    if len(sys.argv) > 1 and sys.argv[1] == '--all':
+        res = run_full_mismatch_dispatch()
+        print(json.dumps(res, ensure_ascii=False, indent=2))
+    elif len(sys.argv) > 1 and os.path.exists(sys.argv[1]):
+        with open(sys.argv[1], 'r', encoding='utf-8') as f:
             data = json.load(f)
         res = process_mismatch_dispatch(data)
-        print(json.dumps(res, ensure_ascii=False))
+        print(json.dumps(res, ensure_ascii=False, indent=2))
     else:
-        # Read from stdin
-        raw = sys.stdin.read()
-        if raw.strip():
-            data = json.loads(raw)
-            res = process_mismatch_dispatch(data)
-            print(json.dumps(res, ensure_ascii=False))
-        else:
-            print(json.dumps({'success': False, 'error': 'No input data'}))
-
+        # Default run full dispatch
+        res = run_full_mismatch_dispatch()
+        print(json.dumps(res, ensure_ascii=False, indent=2))
