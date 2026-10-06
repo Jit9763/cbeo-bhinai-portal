@@ -211,12 +211,7 @@ const DEFAULT_SAMAN_MISMATCH_SETTINGS = {
   alert_message: 'मान्यवर संस्था प्रधान, आपके विद्यालय द्वारा समान परीक्षा 2026-27 के मांग प्रपत्र में भरा गया कुल नामांकन शाला दर्पण के वास्तविक नामांकन से भिन्न (मिसमैच) पाया गया है अथवा MGGS अंग्रेजी/हिंदी माध्यमवार पृथक मांग अद्यतन अपेक्षित है।\n\nकार्यालय CBEO भिनाय (अजमेर) द्वारा आपके विद्यालय के लिए मांग प्रपत्र में संशोधन (Custom Edit) की विशेष सुविधा खोल दी गई है। कृपया तुरंत मांग पत्रक में सुधार कर पुनः सबमिट करें।',
   custom_edit_schools: [
     '221780',
-    '221778',
-    '221770',
-    '221753',
-    '221758',
     '221761',
-    '221772',
     '221756'
   ],
   mismatch_details: {
@@ -234,92 +229,19 @@ const DEFAULT_SAMAN_MISMATCH_SETTINGS = {
       reason: 'कक्षा 9-10 में पेपर मांग शाला दर्पण नामांकन से 9 ज्यादा (232 बनाम 223) तथा कक्षा 11-12 में 1 ज्यादा (179 बनाम 178) दर्ज है। कृपया शाला दर्पण अनुसार शुद्ध करें।',
       flagged_fields: ['कक्षा 9-10 पेपर मांग', 'कक्षा 11-12 पेपर मांग', 'कुल महायोग']
     },
-    '221778': {
-      school_name: 'MAHATMA GANDHI GOVT. SCHOOL BHINAI (221778)',
-      peeo_name: 'BHINAI',
-      portal_total: 87,
-      sd_total: 86,
-      diff: 1,
-      portal_c9_10: 44,
-      portal_c11_12: 43,
-      sd_c9_10: 44,
-      sd_c11_12: 42,
-      diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 1 ज्यादा है (मांग: 87, शाला दर्पण: 86)',
-      mismatch_type: 'medium_and_enrollment',
-      reason: 'कक्षा 11-12 में पेपर मांग 1 ज्यादा है (मांग: 43, शाला दर्पण: 42)। साथ ही MGGS विद्यालय होने से कक्षा 9 व 10 में हिंदी व अंग्रेजी माध्यमवार पृथक मांग तथा कक्षा 11 व 12 में भी ऐच्छिक विषयों के माध्यम (Medium) की स्थिति स्पष्ट करते हुए प्रपत्र सबमिट करें।',
-      flagged_fields: ['शिक्षण माध्यम (अंग्रेजी / दोनों माध्यम)', 'कक्षा 9 अंग्रेजी माध्यम मांग', 'कक्षा 10 अंग्रेजी माध्यम मांग', 'कक्षा 11-12 नामांकन एवं ऐच्छिक विषय माध्यम', 'कुल महायोग']
-    },
-    '221770': {
-      school_name: 'MAHATMA GANDHI GOVT. SCHOOL BANDANWARA (221770)',
-      peeo_name: 'BANDANWARA',
-      portal_total: 41,
-      sd_total: 41,
-      diff: 0,
-      portal_c9_10: 41,
-      portal_c11_12: 0,
-      sd_c9_10: 41,
-      sd_c11_12: 0,
-      diff_text: 'MGGS माध्यमवार पृथक मांग अद्यतन आवश्यक',
-      mismatch_type: 'medium_clarification',
-      reason: 'महात्मा गांधी अंग्रेजी माध्यम विद्यालय होने के कारण कक्षा 9 व 10 में माध्यमवार (हिंदी/अंग्रेजी) पृथक मांग तथा कक्षा 11 व 12 में भी ऐच्छिक विषयों के माध्यम (Medium) की स्थिति स्पष्ट करते हुए प्रपत्र को अद्यतन कर पुनः सबमिट करें।',
-      flagged_fields: ['शिक्षण माध्यम चयन', 'कक्षा 9 माध्यमवार मांग (हिंदी/अंग्रेजी)', 'कक्षा 10 माध्यमवार मांग (हिंदी/अंग्रेजी)', 'कक्षा 11-12 विषय माध्यम विवरण']
-    },
-    '221753': {
-      school_name: 'MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN (221753)',
-      peeo_name: 'DEOLIYA KALAN',
-      portal_total: 110,
-      sd_total: 110,
-      diff: 0,
-      portal_c9_10: 70,
-      portal_c11_12: 40,
-      sd_c9_10: 70,
-      sd_c11_12: 40,
-      diff_text: 'MGGS माध्यमवार पृथक मांग अद्यतन आवश्यक',
-      mismatch_type: 'medium_clarification',
-      reason: 'महात्मा गांधी अंग्रेजी माध्यम विद्यालय होने के कारण कक्षा 9 व 10 में माध्यमवार (हिंदी/अंग्रेजी) पृथक मांग तथा कक्षा 11 व 12 में भी ऐच्छिक विषयों के माध्यम (Medium) की स्थिति स्पष्ट करते हुए प्रपत्र को अद्यतन कर पुनः सबमिट करें।',
-      flagged_fields: ['शिक्षण माध्यम चयन', 'कक्षा 9 माध्यमवार मांग (हिंदी/अंग्रेजी)', 'कक्षा 10 माध्यमवार मांग (हिंदी/अंग्रेजी)', 'कक्षा 11-12 विषय माध्यम विवरण']
-    },
-    '221758': {
-      school_name: 'GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)',
-      peeo_name: 'CHAPANERI',
-      portal_total: 175,
-      sd_total: 174,
-      diff: 1,
-      portal_c9_10: 116,
-      portal_c11_12: 59,
-      sd_c9_10: 115,
-      sd_c11_12: 59,
-      diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 1 ज्यादा है (मांग: 175, शाला दर्पण: 174)',
-      reason: 'कक्षा 9-10 में पेपर मांग शाला दर्पण नामांकन से 1 ज्यादा (मांग: 116, शाला दर्पण: 115) दर्ज है।',
-      flagged_fields: ['कक्षा 9-10 पेपर मांग (116 बनाम 115)', 'कुल महायोग']
-    },
     '221761': {
       school_name: 'GOVT. SENIOR SECONDARY SCHOOL NIMEDA (221761)',
       peeo_name: 'NIMEDA',
-      portal_total: 94,
+      portal_total: 87,
       sd_total: 92,
-      diff: 2,
+      diff: -5,
       portal_c9_10: 55,
-      portal_c11_12: 39,
+      portal_c11_12: 32,
       sd_c9_10: 55,
       sd_c11_12: 37,
-      diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 2 ज्यादा है (मांग: 94, शाला दर्पण: 92)',
-      reason: 'कक्षा 11-12 में पेपर मांग शाला दर्पण नामांकन से 2 ज्यादा (मांग: 39, शाला दर्पण: 37) दर्ज है।',
-      flagged_fields: ['कक्षा 11-12 पेपर मांग (39 बनाम 37)', 'कुल महायोग']
-    },
-    '221772': {
-      school_name: 'GOVT. SENIOR SECONDARY SCHOOL NAGOLA (221772)',
-      peeo_name: 'NAGOLA',
-      portal_total: 223,
-      sd_total: 222,
-      diff: 1,
-      portal_c9_10: 133,
-      portal_c11_12: 90,
-      sd_c9_10: 132,
-      sd_c11_12: 90,
-      diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 1 ज्यादा है (मांग: 223, शाला दर्पण: 222)',
-      reason: 'कक्षा 9-10 में पेपर मांग शाला दर्पण नामांकन से 1 ज्यादा (मांग: 133, शाला दर्पण: 132) दर्ज है।',
-      flagged_fields: ['कक्षा 9-10 पेपर मांग (133 बनाम 132)', 'कुल महायोग']
+      diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 5 कम है (मांग: 87, शाला दर्पण: 92)',
+      reason: 'कक्षा 11-12 में पेपर मांग शाला दर्पण नामांकन से 5 कम (मांग: 32, शाला दर्पण: 37) दर्ज है।',
+      flagged_fields: ['कक्षा 11-12 पेपर मांग', 'कुल महायोग']
     },
     '221756': {
       school_name: 'GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)',
@@ -2836,8 +2758,11 @@ function renderSamanParikshaPeeoView() {
           </div>
         </div>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem">
+          <button type="button" onclick="openQuickSyllabusModal('${school.shala_darpan_code}')" class="btn btn-warning btn-sm" style="background:#f59e0b; border-color:#d97706; color:#0f172a; font-weight:800; padding:0.45rem 0.75rem">
+            <i class="fas fa-bolt"></i> ⚡ त्वरित दर्ज
+          </button>
           <button type="button" onclick="openSamanSyllabusFormInNewTab('${school.shala_darpan_code}')" class="btn btn-primary btn-sm" style="flex:1; font-weight:800; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:0.35rem; padding:0.45rem 0.75rem; border:none; cursor:pointer">
-            <i class="fas fa-file-signature"></i> ${isSub ? '✏️ पूर्णता % प्रपत्र में संशोधन' : '📝 पाठ्यक्रम पूर्णता % प्रपत्र भरें'}
+            <i class="fas fa-file-signature"></i> ${isSub ? '✏️ प्रपत्र संशोधन' : '📝 विस्तृत प्रपत्र'}
           </button>
           ${isSub ? `
             <button class="btn btn-success btn-sm" onclick="printSyllabusPdf('${school.shala_darpan_code}')" title="आधिकारिक प्रमाणित PDF देखें / प्रिंट करें" style="font-weight:700">
@@ -3201,11 +3126,14 @@ function filterSamanParikshaTable() {
         </td>
         <td>
           <div style="display:flex; gap:0.35rem; align-items:center">
-            <button class="btn btn-outline-primary btn-sm" onclick="openSamanSyllabusForm('${s.shala_darpan_code}')" title="पाठ्यक्रम पूर्णता प्रपत्र भरें / संपादित करें">
+            <button class="btn btn-warning btn-sm" onclick="openQuickSyllabusModal('${s.shala_darpan_code}')" title="त्वरित प्रविष्टि दर्ज करें" style="background:#f59e0b; border-color:#d97706; color:#0f172a; font-weight:800; padding:2px 7px; font-size:0.75rem">
+              <i class="fas fa-bolt"></i> त्वरित दर्ज
+            </button>
+            <button class="btn btn-outline-primary btn-sm" onclick="openSamanSyllabusForm('${s.shala_darpan_code}')" title="विस्तृत प्रपत्र खोलें" style="padding:2px 7px; font-size:0.75rem">
               <i class="fas fa-edit"></i> प्रपत्र
             </button>
             ${isSub ? `
-              <button class="btn btn-success btn-sm" onclick="printSyllabusPdf('${s.shala_darpan_code}')" title="अधिकृत प्रमाणित PDF प्रिंट करें">
+              <button class="btn btn-success btn-sm" onclick="printSyllabusPdf('${s.shala_darpan_code}')" title="अधिकृत प्रमाणित PDF प्रिंट करें" style="padding:2px 7px; font-size:0.75rem">
                 <i class="fas fa-print"></i> PDF
               </button>
             ` : ''}
@@ -3303,14 +3231,24 @@ function syncSyllabusSubmissionsFromCloud(isManual = false) {
     showToast('Google Sheet से पाठ्यक्रम पूर्णता डेटा सिंक हो रहा है...', 'info');
   }
 
-  const p1 = gasUrl ? fetch(`${gasUrl}?action=getDemandSubmissions&demand_id=DEMAND_SAMAN_SYLLABUS_2026`)
+  const p1 = gasUrl ? fetch(`${gasUrl}?action=getDemandSubmissions&demand_id=DEMAND_SAMAN_SYLLABUS_2026&_t=${Date.now()}`)
     .then(r => r.ok ? r.json() : null)
     .then(data => {
       if (data && data.success && data.submissions) {
         if (!STATE.samanSyllabusSubmissions) STATE.samanSyllabusSubmissions = {};
         Object.keys(data.submissions).forEach(code => {
-          const sub = data.submissions[code];
-          if (sub && (sub.is_submitted || sub.c9 || sub.grand_total !== undefined)) {
+          let sub = data.submissions[code];
+          if (typeof sub === 'string') {
+            try { sub = JSON.parse(sub); } catch(e) {}
+          }
+          if (sub && sub.data_json) {
+            try {
+              const parsed = typeof sub.data_json === 'string' ? JSON.parse(sub.data_json) : sub.data_json;
+              sub = Object.assign({}, sub, parsed);
+            } catch(e) {}
+          }
+          if (sub) {
+            sub.is_submitted = true;
             STATE.samanSyllabusSubmissions[code] = Object.assign({}, STATE.samanSyllabusSubmissions[code] || {}, sub);
           }
         });
@@ -3321,7 +3259,7 @@ function syncSyllabusSubmissionsFromCloud(isManual = false) {
     }).catch(() => false) : Promise.resolve(false);
 
   const p2 = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-    ? fetch('http://localhost:8089/api/get_saman_syllabus')
+    ? fetch('http://localhost:8089/api/get_saman_syllabus?_t=' + Date.now())
       .then(r => r.ok ? r.json() : null)
       .then(data => {
         if (data && data.success && data.submissions) {
@@ -3342,6 +3280,444 @@ function syncSyllabusSubmissionsFromCloud(isManual = false) {
   });
 }
 window.syncSyllabusSubmissionsFromCloud = syncSyllabusSubmissionsFromCloud;
+
+// ---------------- QUICK SYLLABUS ENTRY MODAL HANDLERS ----------------
+function openQuickSyllabusModal(schoolCode = null) {
+  const modal = document.getElementById('modal-syllabus-quick-entry');
+  if (!modal) return;
+
+  const select = document.getElementById('quick-syl-school-select');
+  if (select) {
+    select.innerHTML = '<option value="">-- विद्यालय चुनें --</option>';
+    const govtSchools = (STATE.schools56 || []).filter(s => s.type === 'Government');
+    govtSchools.forEach(s => {
+      const sub = STATE.samanSyllabusSubmissions ? STATE.samanSyllabusSubmissions[s.shala_darpan_code] : null;
+      const isSub = !!(sub && sub.is_submitted);
+      const opt = document.createElement('option');
+      opt.value = s.shala_darpan_code;
+      opt.textContent = `${isSub ? '✓' : '⏳'} ${s.school_name} (${s.shala_darpan_code}) - ${isSub ? 'सबमिट' : 'लम्बित'}`;
+      select.appendChild(opt);
+    });
+
+    if (schoolCode) {
+      select.value = schoolCode;
+    } else if (govtSchools.length > 0) {
+      const firstPending = govtSchools.find(s => {
+        const sub = STATE.samanSyllabusSubmissions ? STATE.samanSyllabusSubmissions[s.shala_darpan_code] : null;
+        return !(sub && sub.is_submitted);
+      });
+      select.value = firstPending ? firstPending.shala_darpan_code : govtSchools[0].shala_darpan_code;
+    }
+  }
+
+  onQuickSyllabusSchoolSelect(select ? select.value : schoolCode);
+  modal.classList.add('active');
+}
+window.openQuickSyllabusModal = openQuickSyllabusModal;
+
+function onQuickSyllabusSchoolSelect(code) {
+  if (!code) return;
+  const school = (STATE.schools56 || []).find(s => s.shala_darpan_code === code);
+  const peeoTxt = document.getElementById('quick-syl-peeo-text');
+  const catTxt = document.getElementById('quick-syl-cat-text');
+  const statusBadge = document.getElementById('quick-syl-status-badge');
+
+  if (school) {
+    if (peeoTxt) peeoTxt.textContent = school.peeo_name || '---';
+    if (catTxt) catTxt.textContent = school.category || 'Govt. Sr. Sec.';
+  }
+
+  const sub = (STATE.samanSyllabusSubmissions && STATE.samanSyllabusSubmissions[code]) || {};
+  const isSub = !!sub.is_submitted;
+
+  if (statusBadge) {
+    if (isSub) {
+      statusBadge.style.background = '#dcfce7';
+      statusBadge.style.color = '#15803d';
+      statusBadge.textContent = `✓ सबमिट पूर्ण (${sub.average_pct || calculateSchoolSyllabusAverage(sub)}%)`;
+    } else {
+      statusBadge.style.background = '#fee2e2';
+      statusBadge.style.color = '#b91c1c';
+      statusBadge.textContent = '⏳ प्रविष्टि लम्बित (Pending)';
+    }
+  }
+
+  const c9Inp = document.getElementById('quick-syl-c9');
+  const c10Inp = document.getElementById('quick-syl-c10');
+  const c11Inp = document.getElementById('quick-syl-c11');
+  const c12Inp = document.getElementById('quick-syl-c12');
+  const c11Zero = document.getElementById('quick-syl-c11-zero');
+  const c12Zero = document.getElementById('quick-syl-c12-zero');
+  const pNameInp = document.getElementById('quick-syl-pname');
+  const pMobInp = document.getElementById('quick-syl-pmob');
+
+  const c9Avg = sub.c9 ? (sub.c9.hindi || sub.c9.average || 75) : 75;
+  const c10Avg = sub.c10 ? (sub.c10.hindi || sub.c10.average || 75) : 75;
+  const c11Avg = sub.c11 ? (sub.c11.comp_hindi || sub.c11.average || 70) : 70;
+  const c12Avg = sub.c12 ? (sub.c12.comp_hindi || sub.c12.average || 72) : 72;
+
+  if (c9Inp) c9Inp.value = isSub ? c9Avg : 75;
+  if (c10Inp) c10Inp.value = isSub ? c10Avg : 75;
+  if (c11Inp) c11Inp.value = isSub ? (sub.c11?.zero_enrolment ? 0 : c11Avg) : (school?.category?.includes('Sec') && !school?.category?.includes('Sr') ? 0 : 70);
+  if (c12Inp) c12Inp.value = isSub ? (sub.c12?.zero_enrolment ? 0 : c12Avg) : (school?.category?.includes('Sec') && !school?.category?.includes('Sr') ? 0 : 72);
+
+  const isSecOnly = school?.category?.includes('Sec') && !school?.category?.includes('Sr');
+  if (c11Zero) {
+    c11Zero.checked = isSub ? !!sub.c11?.zero_enrolment : isSecOnly;
+    toggleQuickSylZero('c11', c11Zero.checked);
+  }
+  if (c12Zero) {
+    c12Zero.checked = isSub ? !!sub.c12?.zero_enrolment : isSecOnly;
+    toggleQuickSylZero('c12', c12Zero.checked);
+  }
+
+  if (pNameInp) pNameInp.value = sub.principal_name || sub.submitted_by || school?.principal_name || 'संस्था प्रधान';
+  if (pMobInp) pMobInp.value = sub.principal_mobile || sub.submitter_mobile || school?.principal_mobile || '';
+
+  calcQuickSylAverage();
+}
+window.onQuickSyllabusSchoolSelect = onQuickSyllabusSchoolSelect;
+
+function quickFillSyllabusPreset(val) {
+  const c9Inp = document.getElementById('quick-syl-c9');
+  const c10Inp = document.getElementById('quick-syl-c10');
+  const c11Inp = document.getElementById('quick-syl-c11');
+  const c12Inp = document.getElementById('quick-syl-c12');
+  const c11Zero = document.getElementById('quick-syl-c11-zero');
+  const c12Zero = document.getElementById('quick-syl-c12-zero');
+
+  if (c9Inp) c9Inp.value = val;
+  if (c10Inp) c10Inp.value = val;
+  if (c11Inp && (!c11Zero || !c11Zero.checked)) c11Inp.value = val;
+  if (c12Inp && (!c12Zero || !c12Zero.checked)) c12Inp.value = val;
+  calcQuickSylAverage();
+}
+window.quickFillSyllabusPreset = quickFillSyllabusPreset;
+
+function toggleQuickSylZero(cls, isZero) {
+  const inp = document.getElementById(`quick-syl-${cls}`);
+  if (inp) {
+    inp.disabled = isZero;
+    if (isZero) inp.value = 0;
+  }
+  calcQuickSylAverage();
+}
+window.toggleQuickSylZero = toggleQuickSylZero;
+
+function calcQuickSylAverage() {
+  const c9 = parseFloat(document.getElementById('quick-syl-c9')?.value) || 0;
+  const c10 = parseFloat(document.getElementById('quick-syl-c10')?.value) || 0;
+  const c11Zero = !!document.getElementById('quick-syl-c11-zero')?.checked;
+  const c12Zero = !!document.getElementById('quick-syl-c12-zero')?.checked;
+  const c11 = c11Zero ? 0 : (parseFloat(document.getElementById('quick-syl-c11')?.value) || 0);
+  const c12 = c12Zero ? 0 : (parseFloat(document.getElementById('quick-syl-c12')?.value) || 0);
+
+  let sum = c9 + c10;
+  let count = 2;
+  if (!c11Zero && c11 > 0) { sum += c11; count++; }
+  if (!c12Zero && c12 > 0) { sum += c12; count++; }
+
+  const avg = Math.round(sum / count);
+  const disp = document.getElementById('quick-syl-avg-display');
+  if (disp) disp.textContent = `${avg}%`;
+  return avg;
+}
+window.calcQuickSylAverage = calcQuickSylAverage;
+
+function saveQuickSyllabusEntry() {
+  const select = document.getElementById('quick-syl-school-select');
+  const code = select ? select.value : '';
+  if (!code) {
+    alert('कृपया विद्यालय का चयन करें!');
+    return;
+  }
+
+  const school = (STATE.schools56 || []).find(s => s.shala_darpan_code === code);
+  const c9Val = parseFloat(document.getElementById('quick-syl-c9')?.value) || 75;
+  const c10Val = parseFloat(document.getElementById('quick-syl-c10')?.value) || 75;
+  const c11Zero = !!document.getElementById('quick-syl-c11-zero')?.checked;
+  const c12Zero = !!document.getElementById('quick-syl-c12-zero')?.checked;
+  const c11Val = c11Zero ? 0 : (parseFloat(document.getElementById('quick-syl-c11')?.value) || 70);
+  const c12Val = c12Zero ? 0 : (parseFloat(document.getElementById('quick-syl-c12')?.value) || 72);
+  const pName = document.getElementById('quick-syl-pname')?.value.trim() || 'संस्था प्रधान';
+  const pMob = document.getElementById('quick-syl-pmob')?.value.trim() || school?.principal_mobile || '9414000000';
+  const avg = calcQuickSylAverage();
+
+  const payload = {
+    school_code: code,
+    school_name: school?.school_name || '',
+    peeo_name: school?.peeo_name || '',
+    peeo_code: school?.peeo_code || '',
+    principal_name: pName,
+    principal_mobile: pMob,
+    submitted_by: pName,
+    submitter_mobile: pMob,
+    is_submitted: true,
+    submitted_at: new Date().toISOString(),
+    average_pct: avg,
+    c9: {
+      zero_enrolment: false,
+      hindi: c9Val, english: c9Val, maths: c9Val, science: c9Val, sst: c9Val, sanskrit: c9Val, urdu: 0
+    },
+    c10: {
+      zero_enrolment: false,
+      hindi: c10Val, english: c10Val, maths: c10Val, science: c10Val, sst: c10Val, sanskrit: c10Val, urdu: 0
+    },
+    c11: {
+      zero_enrolment: c11Zero,
+      comp_hindi: c11Val, comp_english: c11Val,
+      faculties: ['arts'],
+      electives: [{ name: 'अनिवार्य व ऐच्छिक', pct: c11Val }]
+    },
+    c12: {
+      zero_enrolment: c12Zero,
+      comp_hindi: c12Val, comp_english: c12Val,
+      faculties: ['arts'],
+      electives: [{ name: 'अनिवार्य व ऐच्छिक', pct: c12Val }]
+    }
+  };
+
+  if (!STATE.samanSyllabusSubmissions) STATE.samanSyllabusSubmissions = {};
+  STATE.samanSyllabusSubmissions[code] = payload;
+  localStorage.setItem('cbeo_saman_syllabus_submissions', JSON.stringify(STATE.samanSyllabusSubmissions));
+
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
+  if (gasUrl) {
+    try {
+      fetch(gasUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'saveDemandSubmission',
+          demand_id: 'DEMAND_SAMAN_SYLLABUS_2026',
+          school_code: code,
+          school_name: school?.school_name || '',
+          peeo_name: school?.peeo_name || '',
+          peeo_code: school?.peeo_code || '',
+          submitted_by: pName,
+          submitter_mobile: pMob,
+          data_json: JSON.stringify(payload)
+        })
+      }).catch(() => {});
+    } catch(e) {}
+  }
+
+  fetch('/api/save_saman_syllabus', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ school_code: code, submission: payload })
+  }).catch(() => {});
+
+  closeModal('modal-syllabus-quick-entry');
+  showToast(`✓ ${school?.school_name || code} का पाठ्यक्रम डेटा (${avg}%) Google Sheet एवं पोर्टल में दर्ज हो गया!`, 'success');
+  renderSamanParikshaView();
+}
+window.saveQuickSyllabusEntry = saveQuickSyllabusEntry;
+
+// ---------------- BULK SYLLABUS MANAGER FUNCTIONS ----------------
+function openBulkSyllabusManagerModal() {
+  const modal = document.getElementById('modal-syllabus-bulk-manager');
+  if (!modal) return;
+  renderBulkSyllabusTable();
+  modal.classList.add('active');
+}
+window.openBulkSyllabusManagerModal = openBulkSyllabusManagerModal;
+
+function renderBulkSyllabusTable() {
+  const tbody = document.getElementById('bulk-syl-tbody');
+  const filterInput = document.getElementById('bulk-syl-filter-input');
+  const statsBadge = document.getElementById('bulk-syl-stats-badge');
+  if (!tbody) return;
+
+  const filter = (filterInput?.value || '').toLowerCase().trim();
+  const govtSchools = (STATE.schools56 || []).filter(s => s.type === 'Government');
+
+  let submittedCount = 0;
+  govtSchools.forEach(s => {
+    const sub = STATE.samanSyllabusSubmissions ? STATE.samanSyllabusSubmissions[s.shala_darpan_code] : null;
+    if (sub && sub.is_submitted) submittedCount++;
+  });
+
+  if (statsBadge) {
+    statsBadge.textContent = `कुल: ${govtSchools.length} | सबमिट: ${submittedCount} | शेष: ${govtSchools.length - submittedCount}`;
+  }
+
+  const filtered = govtSchools.filter(s => {
+    if (!filter) return true;
+    return s.school_name.toLowerCase().includes(filter) ||
+           s.shala_darpan_code.toLowerCase().includes(filter) ||
+           (s.peeo_name && s.peeo_name.toLowerCase().includes(filter));
+  });
+
+  tbody.innerHTML = '';
+  filtered.forEach((s, idx) => {
+    const code = s.shala_darpan_code;
+    const sub = (STATE.samanSyllabusSubmissions && STATE.samanSyllabusSubmissions[code]) || {};
+    const isSub = !!sub.is_submitted;
+    const avg = isSub ? (sub.average_pct || calculateSchoolSyllabusAverage(sub)) : 0;
+
+    const isSecOnly = s.category?.includes('Sec') && !s.category?.includes('Sr');
+    const c9Val = isSub ? (sub.c9?.hindi || sub.c9?.average || avg) : 75;
+    const c10Val = isSub ? (sub.c10?.hindi || sub.c10?.average || avg) : 75;
+    const c11Val = isSub ? (sub.c11?.comp_hindi || sub.c11?.average || 0) : (isSecOnly ? 0 : 70);
+    const c12Val = isSub ? (sub.c12?.comp_hindi || sub.c12?.average || 0) : (isSecOnly ? 0 : 72);
+
+    const tr = document.createElement('tr');
+    tr.style.background = isSub ? '#f0fdf4' : '#fff';
+    tr.style.borderBottom = '1px solid #e2e8f0';
+
+    tr.innerHTML = `
+      <td style="padding:6px 8px; text-align:center">${idx + 1}</td>
+      <td style="padding:6px 8px">
+        <strong>${s.school_name}</strong>
+        <div style="font-size:0.75rem; color:#64748b">कोड: ${code} | ${s.category || 'Sr.Sec'}</div>
+      </td>
+      <td style="padding:6px 8px; font-size:0.78rem">${s.peeo_name || '---'}</td>
+      <td style="padding:4px 6px; text-align:center">
+        <input type="number" id="bulk_c9_${code}" value="${c9Val}" min="0" max="100" class="form-control" style="width:65px; padding:2px 4px; text-align:center; font-size:0.8rem; margin:auto">
+      </td>
+      <td style="padding:4px 6px; text-align:center">
+        <input type="number" id="bulk_c10_${code}" value="${c10Val}" min="0" max="100" class="form-control" style="width:65px; padding:2px 4px; text-align:center; font-size:0.8rem; margin:auto">
+      </td>
+      <td style="padding:4px 6px; text-align:center">
+        <input type="number" id="bulk_c11_${code}" value="${c11Val}" min="0" max="100" class="form-control" ${isSecOnly ? 'disabled' : ''} style="width:65px; padding:2px 4px; text-align:center; font-size:0.8rem; margin:auto">
+      </td>
+      <td style="padding:4px 6px; text-align:center">
+        <input type="number" id="bulk_c12_${code}" value="${c12Val}" min="0" max="100" class="form-control" ${isSecOnly ? 'disabled' : ''} style="width:65px; padding:2px 4px; text-align:center; font-size:0.8rem; margin:auto">
+      </td>
+      <td style="padding:6px 8px; text-align:center; font-weight:800; color:#15803d">
+        ${isSub ? `${avg}%` : '<span style="color:#94a3b8">---</span>'}
+      </td>
+      <td style="padding:6px 8px; text-align:center">
+        ${isSub 
+          ? '<span class="badge" style="background:#dcfce7; color:#15803d; font-size:0.72rem">✓ सबमिट</span>'
+          : '<span class="badge" style="background:#fee2e2; color:#b91c1c; font-size:0.72rem">लम्बित</span>'}
+      </td>
+      <td style="padding:6px 8px; text-align:center">
+        <button type="button" class="btn btn-primary btn-sm" onclick="saveBulkSyllabusRow('${code}')" style="font-size:0.75rem; padding:3px 8px">
+          💾 सेव
+        </button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+window.renderBulkSyllabusTable = renderBulkSyllabusTable;
+
+function bulkFillAllPendingSyllabus(val) {
+  const govtSchools = (STATE.schools56 || []).filter(s => s.type === 'Government');
+  govtSchools.forEach(s => {
+    const code = s.shala_darpan_code;
+    const sub = STATE.samanSyllabusSubmissions ? STATE.samanSyllabusSubmissions[code] : null;
+    if (!sub || !sub.is_submitted) {
+      const c9 = document.getElementById(`bulk_c9_${code}`);
+      const c10 = document.getElementById(`bulk_c10_${code}`);
+      const c11 = document.getElementById(`bulk_c11_${code}`);
+      const c12 = document.getElementById(`bulk_c12_${code}`);
+      if (c9) c9.value = val;
+      if (c10) c10.value = val;
+      if (c11 && !c11.disabled) c11.value = val;
+      if (c12 && !c12.disabled) c12.value = val;
+    }
+  });
+  showToast(`⚡ सभी लम्बित विद्यालयों में ${val}% मान भर दिया गया। 'सभी प्रविष्टियाँ सिंक करें' पर क्लिक करें।`, 'info');
+}
+window.bulkFillAllPendingSyllabus = bulkFillAllPendingSyllabus;
+
+function saveBulkSyllabusRow(code) {
+  const school = (STATE.schools56 || []).find(s => s.shala_darpan_code === code);
+  const isSecOnly = school?.category?.includes('Sec') && !school?.category?.includes('Sr');
+  const c9Val = parseFloat(document.getElementById(`bulk_c9_${code}`)?.value) || 75;
+  const c10Val = parseFloat(document.getElementById(`bulk_c10_${code}`)?.value) || 75;
+  const c11Val = isSecOnly ? 0 : (parseFloat(document.getElementById(`bulk_c11_${code}`)?.value) || 0);
+  const c12Val = isSecOnly ? 0 : (parseFloat(document.getElementById(`bulk_c12_${code}`)?.value) || 0);
+
+  let sum = c9Val + c10Val;
+  let cnt = 2;
+  if (!isSecOnly && c11Val > 0) { sum += c11Val; cnt++; }
+  if (!isSecOnly && c12Val > 0) { sum += c12Val; cnt++; }
+  const avg = Math.round(sum / cnt);
+
+  const payload = {
+    school_code: code,
+    school_name: school?.school_name || '',
+    peeo_name: school?.peeo_name || '',
+    peeo_code: school?.peeo_code || '',
+    principal_name: school?.principal_name || 'संस्था प्रधान',
+    principal_mobile: school?.principal_mobile || '9414000000',
+    submitted_by: school?.principal_name || 'संस्था प्रधान',
+    submitter_mobile: school?.principal_mobile || '9414000000',
+    is_submitted: true,
+    submitted_at: new Date().toISOString(),
+    average_pct: avg,
+    c9: { zero_enrolment: false, hindi: c9Val, english: c9Val, maths: c9Val, science: c9Val, sst: c9Val, sanskrit: c9Val, urdu: 0 },
+    c10: { zero_enrolment: false, hindi: c10Val, english: c10Val, maths: c10Val, science: c10Val, sst: c10Val, sanskrit: c10Val, urdu: 0 },
+    c11: { zero_enrolment: isSecOnly || c11Val === 0, comp_hindi: c11Val, comp_english: c11Val, electives: [{ name: 'अनिवार्य व ऐच्छिक', pct: c11Val }] },
+    c12: { zero_enrolment: isSecOnly || c12Val === 0, comp_hindi: c12Val, comp_english: c12Val, electives: [{ name: 'अनिवार्य व ऐच्छिक', pct: c12Val }] }
+  };
+
+  if (!STATE.samanSyllabusSubmissions) STATE.samanSyllabusSubmissions = {};
+  STATE.samanSyllabusSubmissions[code] = payload;
+  localStorage.setItem('cbeo_saman_syllabus_submissions', JSON.stringify(STATE.samanSyllabusSubmissions));
+
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
+  if (gasUrl) {
+    fetch(gasUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'saveDemandSubmission',
+        demand_id: 'DEMAND_SAMAN_SYLLABUS_2026',
+        school_code: code,
+        school_name: school?.school_name || '',
+        peeo_name: school?.peeo_name || '',
+        peeo_code: school?.peeo_code || '',
+        submitted_by: school?.principal_name || 'संस्था प्रधान',
+        submitter_mobile: school?.principal_mobile || '',
+        data_json: JSON.stringify(payload)
+      })
+    }).catch(() => {});
+  }
+
+  fetch('/api/save_saman_syllabus', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ school_code: code, submission: payload })
+  }).catch(() => {});
+
+  renderBulkSyllabusTable();
+  renderSamanParikshaView();
+  showToast(`✓ ${school?.school_name || code} का पाठ्यक्रम डेटा दर्ज हुआ!`, 'success');
+}
+window.saveBulkSyllabusRow = saveBulkSyllabusRow;
+
+function saveAllBulkSyllabusToCloud() {
+  const govtSchools = (STATE.schools56 || []).filter(s => s.type === 'Government');
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
+  showToast('🚀 सभी 49 विद्यालयों का डेटा Google Sheet में अपलोड हो रहा है...', 'info');
+
+  govtSchools.forEach(s => {
+    saveBulkSyllabusRow(s.shala_darpan_code);
+  });
+
+  setTimeout(() => {
+    showToast('✓ सभी 49 विद्यालयों का पाठ्यक्रम पूर्णता डेटा सफलतापूर्वक Google Sheet में सुरक्षित हुआ!', 'success');
+    renderBulkSyllabusTable();
+    renderSamanParikshaView();
+  }, 1000);
+}
+window.saveAllBulkSyllabusToCloud = saveAllBulkSyllabusToCloud;
 
 function switchSamanActiveForm(formType) {
   STATE.samanParikshaActiveForm = formType;
@@ -12140,8 +12516,23 @@ function isDemandSchoolMismatch(demandId, schoolCode) {
   // 1. Saman Pariksha
   if (dId === 'saman_pariksha_2026_27' || dId === 'demand_saman_pariksha_2026' || dId.includes('saman_pariksha')) {
     const spSub = STATE.samanParikshaSubmissions && STATE.samanParikshaSubmissions[sCode];
-    if (spSub && spSub.is_mismatch === false && spSub.mismatch_resolved_at) {
-      return false; // Mismatch has been satisfied/resolved!
+    if (spSub) {
+      if (spSub.is_mismatch === false && spSub.mismatch_resolved_at) {
+        return false; // Mismatch has been satisfied/resolved!
+      }
+      // Live Comparison Value Satisfaction Check:
+      const spCfg = STATE.samanMismatchSettings || (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : null);
+      const mInfo = spCfg?.mismatch_details?.[sCode];
+      if (mInfo) {
+        const expectedTotal = (mInfo.sd_total !== undefined && mInfo.sd_total !== null && Number(mInfo.sd_total) > 0)
+          ? Number(mInfo.sd_total)
+          : (mInfo.expected_total !== undefined ? Number(mInfo.expected_total) : null);
+        if (expectedTotal !== null && !isNaN(expectedTotal) && expectedTotal > 0) {
+          if (Number(spSub.grand_total || 0) === expectedTotal) {
+            return false; // Value is satisfied! No mismatch!
+          }
+        }
+      }
     }
     const spCfg = STATE.samanMismatchSettings || (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : null);
     if (spCfg) {

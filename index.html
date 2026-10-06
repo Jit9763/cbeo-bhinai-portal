@@ -242,8 +242,17 @@
           </div>
         </div>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
-          <button type="button" class="btn btn-primary btn-sm" onclick="openDemandBroadcastCenter('DEMAND_SAMAN_SYLLABUS_2026')" style="background:#0284c7; color:#ffffff; font-weight:800; padding:7px 16px; border-radius:8px; border:none; display:inline-flex; align-items:center; gap:0.4rem; box-shadow:0 2px 6px rgba(2,132,199,0.3); cursor:pointer">
-            <i class="fas fa-bullhorn"></i> 📢 सूचना संदेश कस्टमाइज़ एवं प्रसारण केंद्र
+          <button type="button" class="btn btn-primary btn-sm" onclick="openDemandBroadcastCenter('DEMAND_SAMAN_SYLLABUS_2026')" style="background:#0284c7; color:#ffffff; font-weight:800; padding:7px 14px; border-radius:8px; border:none; display:inline-flex; align-items:center; gap:0.4rem; box-shadow:0 2px 6px rgba(2,132,199,0.3); cursor:pointer">
+            <i class="fas fa-bullhorn"></i> 📢 प्रसारण केंद्र
+          </button>
+          <button type="button" class="btn btn-warning btn-sm" onclick="openQuickSyllabusModal()" style="background:#f59e0b; color:#0f172a; font-weight:800; padding:7px 14px; border-radius:8px; border:none; display:inline-flex; align-items:center; gap:0.4rem; box-shadow:0 2px 6px rgba(245,158,11,0.3); cursor:pointer">
+            <i class="fas fa-bolt"></i> ⚡ त्वरित प्रविष्टि दर्ज
+          </button>
+          <button type="button" class="btn btn-success btn-sm" onclick="openBulkSyllabusManagerModal()" style="background:#16a34a; color:#ffffff; font-weight:800; padding:7px 14px; border-radius:8px; border:none; display:inline-flex; align-items:center; gap:0.4rem; box-shadow:0 2px 6px rgba(22,163,74,0.3); cursor:pointer">
+            <i class="fas fa-tasks"></i> 📋 49 स्कूल बल्क प्रबंधक
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="syncSyllabusSubmissionsFromCloud(true)" style="background:#475569; color:#ffffff; font-weight:800; padding:7px 12px; border-radius:8px; border:none; display:inline-flex; align-items:center; gap:0.4rem; cursor:pointer" title="Google Sheet से डेटा रीफ्रेश करें">
+            <i class="fas fa-sync-alt"></i> 🔄 Sheet सिंक
           </button>
         </div>
       </div>
@@ -4255,6 +4264,172 @@
     </div>
   </div>
 
+  <!-- 8G2. QUICK SYLLABUS ENTRY MODAL -->
+  <div id="modal-syllabus-quick-entry" class="modal-overlay">
+    <div class="modal-card" style="max-width:680px">
+      <div class="modal-header" style="background:linear-gradient(135deg, #0284c7 0%, #1e3a8a 100%); color:#ffffff; padding:1rem 1.25rem">
+        <div>
+          <h3 style="color:#ffffff; margin:0; font-size:1.15rem; display:flex; align-items:center; gap:0.5rem">
+            <i class="fas fa-bolt"></i> त्वरित पाठ्यक्रम पूर्णता % प्रविष्टि (Quick Entry)
+          </h3>
+          <div style="font-size:0.78rem; opacity:0.95; margin-top:2px">
+            कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर) • 49 राजकीय विद्यालय
+          </div>
+        </div>
+        <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-syllabus-quick-entry')">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:1.25rem">
+        <!-- School Selection -->
+        <div class="form-group" style="margin-bottom:1rem">
+          <label style="font-weight:700; color:#1e3a8a; font-size:0.88rem; margin-bottom:4px; display:block">
+            1. विद्यालय का चयन करें (49 राजकीय विद्यालय):
+          </label>
+          <select id="quick-syl-school-select" class="form-control" style="font-weight:700; border:2px solid #0284c7" onchange="onQuickSyllabusSchoolSelect(this.value)">
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+
+        <!-- School Info Banner -->
+        <div id="quick-syl-info-banner" style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:8px; padding:0.6rem 0.85rem; margin-bottom:1rem; font-size:0.82rem; display:flex; justify-content:space-between; align-items:center">
+          <div>
+            <strong>PEEO:</strong> <span id="quick-syl-peeo-text">---</span> | 
+            <strong>श्रेणी:</strong> <span id="quick-syl-cat-text">---</span>
+          </div>
+          <span id="quick-syl-status-badge" class="badge" style="background:#fee2e2; color:#b91c1c; font-weight:800">लम्बित</span>
+        </div>
+
+        <!-- Fast Fill Preset Bar -->
+        <div style="background:#f8fafc; border:1px dashed #cbd5e1; border-radius:8px; padding:0.5rem 0.75rem; margin-bottom:1rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem">
+          <span style="font-size:0.8rem; font-weight:700; color:#475569"><i class="fas fa-magic"></i> एक क्लिक ऑटो-फिल:</span>
+          <div style="display:flex; gap:0.4rem">
+            <button type="button" class="btn btn-outline-primary btn-sm" onclick="quickFillSyllabusPreset(70)" style="font-size:0.75rem; padding:3px 8px">70% सेट करें</button>
+            <button type="button" class="btn btn-outline-primary btn-sm" onclick="quickFillSyllabusPreset(75)" style="font-size:0.75rem; padding:3px 8px">75% सेट करें</button>
+            <button type="button" class="btn btn-outline-primary btn-sm" onclick="quickFillSyllabusPreset(80)" style="font-size:0.75rem; padding:3px 8px">80% सेट करें</button>
+            <button type="button" class="btn btn-outline-primary btn-sm" onclick="quickFillSyllabusPreset(85)" style="font-size:0.75rem; padding:3px 8px">85% सेट करें</button>
+          </div>
+        </div>
+
+        <!-- Class-wise Percentage Grid -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:0.75rem; margin-bottom:1rem">
+          <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:8px; padding:0.6rem; text-align:center">
+            <label style="font-weight:800; font-size:0.85rem; color:#1e3a8a; display:block; margin-bottom:4px">कक्षा 9 (%)</label>
+            <input type="number" id="quick-syl-c9" class="form-control" min="0" max="100" placeholder="0-100" style="text-align:center; font-weight:800; font-size:1.1rem" oninput="calcQuickSylAverage()">
+          </div>
+          <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:8px; padding:0.6rem; text-align:center">
+            <label style="font-weight:800; font-size:0.85rem; color:#1e3a8a; display:block; margin-bottom:4px">कक्षा 10 (%)</label>
+            <input type="number" id="quick-syl-c10" class="form-control" min="0" max="100" placeholder="0-100" style="text-align:center; font-weight:800; font-size:1.1rem" oninput="calcQuickSylAverage()">
+          </div>
+          <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:8px; padding:0.6rem; text-align:center">
+            <label style="font-weight:800; font-size:0.85rem; color:#1e3a8a; display:block; margin-bottom:4px">कक्षा 11 (%)</label>
+            <input type="number" id="quick-syl-c11" class="form-control" min="0" max="100" placeholder="0-100" style="text-align:center; font-weight:800; font-size:1.1rem" oninput="calcQuickSylAverage()">
+            <label style="font-size:0.7rem; color:#64748b; margin-top:3px; display:block">
+              <input type="checkbox" id="quick-syl-c11-zero" onchange="toggleQuickSylZero('c11', this.checked)"> शून्य नामांकन
+            </label>
+          </div>
+          <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:8px; padding:0.6rem; text-align:center">
+            <label style="font-weight:800; font-size:0.85rem; color:#1e3a8a; display:block; margin-bottom:4px">कक्षा 12 (%)</label>
+            <input type="number" id="quick-syl-c12" class="form-control" min="0" max="100" placeholder="0-100" style="text-align:center; font-weight:800; font-size:1.1rem" oninput="calcQuickSylAverage()">
+            <label style="font-size:0.7rem; color:#64748b; margin-top:3px; display:block">
+              <input type="checkbox" id="quick-syl-c12-zero" onchange="toggleQuickSylZero('c12', this.checked)"> शून्य नामांकन
+            </label>
+          </div>
+        </div>
+
+        <!-- Calculated Overall Average -->
+        <div style="background:#f0fdf4; border:1.5px solid #86efac; border-radius:8px; padding:0.6rem 1rem; margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center">
+          <span style="font-weight:800; color:#166534; font-size:0.9rem">कुल औसत पाठ्यक्रम पूर्णता:</span>
+          <span id="quick-syl-avg-display" style="font-weight:900; color:#15803d; font-size:1.35rem">0%</span>
+        </div>
+
+        <!-- Submitter Details -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem">
+          <div>
+            <label style="font-size:0.8rem; font-weight:700; color:#475569">संस्था प्रधान नाम:</label>
+            <input type="text" id="quick-syl-pname" class="form-control" placeholder="उदा. संस्था प्रधान">
+          </div>
+          <div>
+            <label style="font-size:0.8rem; font-weight:700; color:#475569">मोबाइल नंबर:</label>
+            <input type="tel" id="quick-syl-pmob" class="form-control" maxlength="10" placeholder="10 अंकों का मोबाइल">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="padding:0.75rem 1.25rem; background:#f8fafc; border-top:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center">
+        <button type="button" class="btn btn-outline-secondary" onclick="closeModal('modal-syllabus-quick-entry')">रद्द करें</button>
+        <button type="button" class="btn btn-success" onclick="saveQuickSyllabusEntry()" style="background:#16a34a; border-color:#15803d; font-weight:800; padding:8px 18px">
+          <i class="fas fa-cloud-upload-alt"></i> 💾 Google Sheet व पोर्टल में सबमिट करें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8G3. BULK SYLLABUS MANAGER FOR ALL 49 GOVT SCHOOLS -->
+  <div id="modal-syllabus-bulk-manager" class="modal-overlay">
+    <div class="modal-card" style="max-width:1050px; width:95vw">
+      <div class="modal-header" style="background:linear-gradient(135deg, #16a34a 0%, #1e3a8a 100%); color:#ffffff; padding:1rem 1.25rem">
+        <div>
+          <h3 style="color:#ffffff; margin:0; font-size:1.15rem; display:flex; align-items:center; gap:0.5rem">
+            <i class="fas fa-tasks"></i> समान परीक्षा पाठ्यक्रम पूर्णता % - 49 राजकीय विद्यालय बल्क प्रबंधक
+          </h3>
+          <div style="font-size:0.78rem; opacity:0.95; margin-top:2px">
+            कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर) • त्वरित अवलोकन, प्रविष्टि एवं Google Sheet बल्क सिंक
+          </div>
+        </div>
+        <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-syllabus-bulk-manager')">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:1rem">
+        <!-- Top Toolbar -->
+        <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:0.6rem 0.85rem; margin-bottom:0.85rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem">
+          <div style="display:flex; align-items:center; gap:0.6rem">
+            <span id="bulk-syl-stats-badge" style="font-weight:800; font-size:0.85rem; color:#1e3a8a">
+              कुल: 49 | सबमिट: 0 | शेष: 49
+            </span>
+            <input type="text" id="bulk-syl-filter-input" placeholder="🔍 विद्यालय / PEEO / कोड खोजें..." class="form-control" style="font-size:0.8rem; padding:4px 8px; width:200px" oninput="renderBulkSyllabusTable()">
+          </div>
+          <div style="display:flex; gap:0.4rem; flex-wrap:wrap">
+            <button type="button" class="btn btn-outline-primary btn-sm" onclick="bulkFillAllPendingSyllabus(75)" style="font-weight:700">
+              ⚡ सभी लम्बित में 75% भरें
+            </button>
+            <button type="button" class="btn btn-outline-primary btn-sm" onclick="bulkFillAllPendingSyllabus(80)" style="font-weight:700">
+              ⚡ सभी लम्बित में 80% भरें
+            </button>
+            <button type="button" class="btn btn-success btn-sm" onclick="saveAllBulkSyllabusToCloud()" style="background:#16a34a; border-color:#15803d; font-weight:800; box-shadow:0 2px 6px rgba(22,163,74,0.3)">
+              <i class="fas fa-cloud-upload-alt"></i> 🚀 सभी प्रविष्टियाँ Google Sheet में सिंक करें
+            </button>
+          </div>
+        </div>
+
+        <!-- Table Container -->
+        <div style="max-height:60vh; overflow-y:auto; border:1px solid #cbd5e1; border-radius:6px">
+          <table style="width:100%; border-collapse:collapse; font-size:0.82rem; text-align:left">
+            <thead style="position:sticky; top:0; background:#1e3a8a; color:#ffffff; z-index:2">
+              <tr>
+                <th style="padding:6px 8px; width:40px; text-align:center">क्र.</th>
+                <th style="padding:6px 8px">विद्यालय का नाम व कोड</th>
+                <th style="padding:6px 8px">PEEO</th>
+                <th style="padding:6px 8px; text-align:center; width:80px">कक्षा 9</th>
+                <th style="padding:6px 8px; text-align:center; width:80px">कक्षा 10</th>
+                <th style="padding:6px 8px; text-align:center; width:80px">कक्षा 11</th>
+                <th style="padding:6px 8px; text-align:center; width:80px">कक्षा 12</th>
+                <th style="padding:6px 8px; text-align:center; width:75px">औसत %</th>
+                <th style="padding:6px 8px; text-align:center; width:85px">स्थिति</th>
+                <th style="padding:6px 8px; text-align:center; width:85px">कार्य</th>
+              </tr>
+            </thead>
+            <tbody id="bulk-syl-tbody">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer" style="padding:0.75rem 1.25rem; background:#f8fafc; border-top:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center">
+        <button type="button" class="btn btn-outline-secondary" onclick="closeModal('modal-syllabus-bulk-manager')">बंद करें</button>
+        <button type="button" class="btn btn-success" onclick="saveAllBulkSyllabusToCloud()" style="background:#16a34a; border-color:#15803d; font-weight:800; padding:8px 18px">
+          <i class="fas fa-cloud-upload-alt"></i> 🚀 सभी 49 विद्यालयों का डेटा Google Sheet में सेव करें
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- 9. GOOGLE FORM STYLE SAMAN PARIKSHA DEDICATED FULL PAGE (MOBILE FRIENDLY) -->
   <div id="modal-saman-pariksha-form" class="modal-overlay">
     <div class="modal-card">
@@ -5617,7 +5792,7 @@
 
   <!-- External & Application Logic -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <script src="master_cbeo_data.js?v=20261006_v29"></script>
-  <script src="app.js?v=20261006_v29"></script>
+  <script src="master_cbeo_data.js?v=20261007_v30"></script>
+  <script src="app.js?v=20261007_v30"></script>
 </body>
 </html>

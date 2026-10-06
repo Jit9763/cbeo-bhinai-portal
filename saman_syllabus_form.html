@@ -1306,6 +1306,38 @@
         .finally(() => {
           syncFromCloud();
         });
+
+      // Auto-flush any local submissions directly to Google Sheet cloud
+      const autoFlushLocalToCloud = () => {
+        try {
+          const curSubs = JSON.parse(localStorage.getItem('cbeo_saman_syllabus_submissions') || '{}');
+          const keys = Object.keys(curSubs);
+          if (keys.length > 0 && gasUrl) {
+            keys.forEach(k => {
+              const sub = curSubs[k];
+              if (sub && (sub.is_submitted || sub.c9 || sub.average_pct !== undefined)) {
+                fetch(gasUrl, {
+                  method: 'POST',
+                  mode: 'no-cors',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    action: 'saveDemandSubmission',
+                    demand_id: 'DEMAND_SAMAN_SYLLABUS_2026',
+                    school_code: k,
+                    school_name: sub.school_name || '',
+                    peeo_name: sub.peeo_name || '',
+                    peeo_code: sub.peeo_code || '',
+                    submitted_by: sub.principal_name || sub.submitted_by || 'संस्था प्रधान',
+                    submitter_mobile: sub.principal_mobile || sub.submitter_mobile || '',
+                    data_json: JSON.stringify(sub)
+                  })
+                }).catch(() => {});
+              }
+            });
+          }
+        } catch(e) {}
+      };
+      autoFlushLocalToCloud();
     }
 
     function onSchoolDropdownChange() {
