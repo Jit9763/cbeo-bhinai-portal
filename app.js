@@ -434,6 +434,7 @@ function initMasterData() {
         lu.peeo_name = 'PEEO EKALSEENGA';
         lu.peeo_code = '221786';
         localStorage.setItem('cbeo_logged_user', JSON.stringify(lu));
+        localStorage.setItem('cbeo_user', JSON.stringify(lu));
       }
     } catch(e) {}
   }
@@ -942,7 +943,7 @@ function saveSchools56ToStorage() {
    2. AUTHENTICATION & SESSION MANAGEMENT
    ======================================================== */
 function setupAutoLogin() {
-  const savedUser = localStorage.getItem('cbeo_logged_user');
+  const savedUser = localStorage.getItem('cbeo_logged_user') || localStorage.getItem('cbeo_user');
   if (savedUser) {
     try {
       STATE.currentUser = JSON.parse(savedUser);
@@ -955,6 +956,7 @@ function setupAutoLogin() {
           STATE.currentUser.peeo_name = peeo.peeo_name;
           STATE.currentUser.schools = peeo.schools;
           localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
+          localStorage.setItem('cbeo_user', JSON.stringify(STATE.currentUser));
         }
       } else if (STATE.currentUser && STATE.currentUser.role === 'school') {
         const sch = STATE.schools56.find(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code);
@@ -966,6 +968,7 @@ function setupAutoLogin() {
           STATE.currentUser.peeo_name = sch.peeo_name;
           STATE.currentUser.peeo_code = sch.peeo_code;
           localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
+          localStorage.setItem('cbeo_user', JSON.stringify(STATE.currentUser));
         }
       }
     } catch (e) {
@@ -995,6 +998,7 @@ function setupAutoLogin() {
     if (lastActive && (Date.now() - lastActive > maxIdleMs)) {
       console.warn('Session expired due to 4+ days of inactivity');
       localStorage.removeItem('cbeo_logged_user');
+      localStorage.removeItem('cbeo_user');
       STATE.currentUser = null;
       setTimeout(() => {
         openLoginModal(true);
@@ -1045,6 +1049,7 @@ function touchUserSession() {
     STATE.currentUser.last_active_timestamp = Date.now();
     try {
       localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
+      localStorage.setItem('cbeo_user', JSON.stringify(STATE.currentUser));
     } catch(e) {}
   }
 }
@@ -1063,6 +1068,7 @@ let sessionTouchThrottle = 0;
 
 function logoutUser() {
   localStorage.removeItem('cbeo_logged_user');
+  localStorage.removeItem('cbeo_user');
   STATE.currentUser = null;
   document.querySelectorAll('.modal-overlay').forEach(m => {
     m.classList.remove('active');
@@ -1430,6 +1436,7 @@ function performLogin() {
     userObj.last_active_timestamp = Date.now();
     STATE.currentUser = userObj;
     localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
+    localStorage.setItem('cbeo_user', JSON.stringify(STATE.currentUser));
     if (remember) {
       localStorage.setItem('cbeo_remember_me', 'true');
       localStorage.setItem('cbeo_saved_username', u);
@@ -1445,9 +1452,6 @@ function performLogin() {
       switchTab(savedTab);
     } else if (isTabVisibleForCurrentUser('saman-pariksha') && !STATE.samanParikshaArchived) {
       switchTab('saman-pariksha');
-      if (openForm && userObj.role === 'school') {
-        openSamanParikshaForm(userObj.shala_darpan_code);
-      }
     } else {
       const fallbackTabs = ['demands', 'dashboard', 'directory', 'staff', 'school-management', 'archive'];
       const target = fallbackTabs.find(t => isTabVisibleForCurrentUser(t)) || 'demands';

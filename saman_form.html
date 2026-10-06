@@ -1219,7 +1219,7 @@
 
       let user = null;
       try {
-        user = JSON.parse(localStorage.getItem('cbeo_user') || 'null');
+        user = JSON.parse(localStorage.getItem('cbeo_logged_user') || localStorage.getItem('cbeo_user') || 'null');
       } catch(e) {}
 
       let perms = {};
@@ -1384,13 +1384,15 @@
       // If school login, restrict to own school
       let loggedUser = null;
       try {
-        loggedUser = JSON.parse(localStorage.getItem('cbeo_user') || 'null');
+        loggedUser = JSON.parse(localStorage.getItem('cbeo_logged_user') || localStorage.getItem('cbeo_user') || 'null');
       } catch(e) {}
-      if (loggedUser && loggedUser.role === 'school' && loggedUser.school_code) {
-        const mySch = schoolsList.filter(s => String(s.shala_darpan_code) === String(loggedUser.school_code));
+      if (loggedUser && loggedUser.role === 'school') {
+        const myCode = String(loggedUser.school_code || loggedUser.shala_darpan_code || '').trim();
+        const mySch = schoolsList.filter(s => String(s.shala_darpan_code).trim() === myCode);
         if (mySch.length > 0) schoolsList = mySch;
       } else if (loggedUser && loggedUser.role === 'peeo' && loggedUser.peeo_name) {
-        const peeoSchools = schoolsList.filter(s => s.peeo_name === loggedUser.peeo_name || String(s.shala_darpan_code) === String(loggedUser.school_code));
+        const pCode = String(loggedUser.school_code || loggedUser.shala_darpan_code || '').trim();
+        const peeoSchools = schoolsList.filter(s => s.peeo_name === loggedUser.peeo_name || String(s.shala_darpan_code).trim() === pCode);
         if (peeoSchools.length > 0) schoolsList = peeoSchools;
       }
 
