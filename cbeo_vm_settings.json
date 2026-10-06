@@ -3,7 +3,8 @@
   "telegram_alerts": true,
   "email_alerts": true,
   "overdue_escalation": true,
-  "mdm_anomaly_scanner": true,
+  "mdm_anomaly_scanner": false,
+  "active_focus_report": "49_syllabus",
   "slots": [
     "12:07 PM",
     "02:07 PM",
@@ -17,15 +18,18 @@
   "gemini_api_key": "",
   "ai_model": "gemini-1.5-flash",
   "dispatch_config": {
-    "report_saman_summary": true,
+    "active_focus_report": "49_syllabus",
+    "report_saman_syllabus": true,
+    "report_saman_summary": false,
     "report_pending_schools": true,
     "report_active_demands": true,
     "report_peeo_summary": true,
+    "report_mdm": false,
     "include_completed_tasks": false,
-    "custom_message": "⚠️ ध्यान दें: सभी संस्था प्रधान कल दोपहर 2:00 बजे तक वांछित प्रपत्र अनिवार्यतः लॉक करें। (जितेन्द्र व्यवस्थापक - अजमेर)",
+    "custom_message": "⚠️ अति-आवश्यक: समान परीक्षा 2026-27 पाठ्यक्रम पूर्णता % प्रपत्र (49 राजकीय विद्यालय) आज ही अनिवार्य रूप से सबमिट करें। (जितेन्द्र व्यवस्थापक - अजमेर)",
     "gemini_tone": "warning",
     "target_email": "censusbhinai@gmail.com"
   },
   "updated_by": "admin_jitendra",
-  "updated_at": "04-10-2026 12:00 AM IST"
+  "updated_at": "07-10-2026 01:25 AM IST"
 }

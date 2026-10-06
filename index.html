@@ -1666,8 +1666,8 @@
                 <!-- MDM Scanner Toggle -->
                 <div style="display:flex; justify-content:space-between; align-items:center; background:#ffffff; padding:0.45rem 0.65rem; border-radius:6px; border:1px solid #cbd5e1">
                   <span style="font-size:0.8rem; font-weight:600; color:#1e293b"><i class="fas fa-utensils text-info"></i> MDM निरीक्षण प्रपत्र-2 विसंगति स्कैनर</span>
-                  <button type="button" id="toggle-vm-mdm" onclick="toggleAlertChannel('mdm')" class="btn btn-sm" style="font-size:0.72rem; font-weight:700; padding:2px 10px; background:#059669; color:#fff; border:none">
-                    चालू (ON)
+                  <button type="button" id="toggle-vm-mdm" onclick="toggleAlertChannel('mdm')" class="btn btn-sm" style="font-size:0.72rem; font-weight:700; padding:2px 10px; background:#dc2626; color:#fff; border:none">
+                    बंद (OFF)
                   </button>
                 </div>
                 <!-- Telegram Test & Master VM Save Actions -->
@@ -1748,6 +1748,21 @@
               <div style="font-size:0.84rem; font-weight:800; color:#0f172a; margin-bottom:0.75rem; display:flex; justify-content:space-between; align-items:center">
                 <span><i class="fas fa-file-export text-primary"></i> 5. स्वचालित रिपोर्ट प्रेषण चयन (Select Reports)</span>
                 <span style="font-size:0.72rem; color:#2563eb; font-weight:700">Email + Telegram</span>
+              </div>
+
+              <!-- Central Active Focus Report Selector -->
+              <div style="background:#eff6ff; border:1.5px solid #3b82f6; border-radius:8px; padding:8px 10px; margin-bottom:10px">
+                <label style="font-size:0.78rem; font-weight:800; color:#1e40af; display:block; margin-bottom:4px">
+                  🎯 मुख्य फोकस रिपोर्ट (Active Focus Report):
+                </label>
+                <select id="vm-active-focus-report" class="form-control" style="font-size:0.82rem; font-weight:700; color:#0f172a; padding:0.45rem; border:1.5px solid #2563eb; background:#ffffff" onchange="onVMActiveFocusReportChange()">
+                  <option value="49_syllabus" selected>🎯 समान परीक्षा पाठ्यक्रम पूर्णता % (49 राजकीय विद्यालय) [सक्रिय]</option>
+                  <option value="57_indent">📋 समान परीक्षा प्रश्न-पत्र मांग (57 विद्यालय - 49 राजकीय + 8 निजी)</option>
+                  <option value="dual_all">📊 दोनों संयुक्त रिपोर्ट (पाठ्यक्रम + प्रश्न-पत्र मांग)</option>
+                </select>
+                <div style="font-size:0.71rem; color:#1d4ed8; margin-top:4px; font-weight:600">
+                  ⚡ वर्तमान में VM केवल 49 राजकीय विद्यालयों की पाठ्यक्रम पूर्णता % रिपोर्ट भेजेगा। MDM पूर्णतः हटा दिया गया है।
+                </div>
               </div>
               <div style="display:flex; flex-direction:column; gap:0.5rem; font-size:0.8rem">
                 <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; background:#ffffff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0">

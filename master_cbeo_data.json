@@ -37301,5 +37301,40 @@
       "submitted_by": "PEEO BHINAY",
       "timestamp": "Fri Oct 02 2026 09:53:29 GMT+0530 (India Standard Time)"
     }
+  },
+  "saman_syllabus_submissions": {
+    "221769": {
+      "c9": {
+        "hindi": 75,
+        "english": 70,
+        "maths": 68,
+        "science": 72,
+        "sst": 74,
+        "sanskrit": 80,
+        "urdu": 0
+      },
+      "c10": {
+        "hindi": 78,
+        "english": 72,
+        "maths": 70,
+        "science": 75,
+        "sst": 76,
+        "sanskrit": 82,
+        "urdu": 0
+      },
+      "c11": {
+        "comp_hindi": 0,
+        "comp_english": 0,
+        "electives": []
+      },
+      "c12": {
+        "comp_hindi": 0,
+        "comp_english": 0,
+        "electives": []
+      },
+      "principal_name": "भंवर लाल जाट",
+      "principal_mobile": "9587293842",
+      "is_submitted": true
+    }
   }
 }

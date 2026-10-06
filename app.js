@@ -16781,7 +16781,8 @@ let CURRENT_VM_SETTINGS = {
   telegram_alerts: true,
   email_alerts: true,
   overdue_escalation: true,
-  mdm_anomaly_scanner: true,
+  mdm_anomaly_scanner: false,
+  active_focus_report: '49_syllabus',
   slots: ["12:07 PM", "02:07 PM", "04:07 PM", "08:07 PM"]
 };
 
@@ -17332,14 +17333,18 @@ function loadVMDispatchConfig() {
 
   if (!cfg) {
     cfg = {
-      report_saman_summary: true,
+      active_focus_report: '49_syllabus',
+      report_saman_syllabus: true,
+      report_saman_summary: false,
       report_pending_schools: true,
       report_active_demands: true,
       report_peeo_summary: true,
+      report_mdm: false,
       gemini_tone: 'warning'
     };
   }
 
+  const focusSel = document.getElementById('vm-active-focus-report');
   const sChk = document.getElementById('vm-rep-saman');
   const pChk = document.getElementById('vm-rep-pending');
   const dChk = document.getElementById('vm-rep-demands');
@@ -17349,6 +17354,9 @@ function loadVMDispatchConfig() {
   const incChk = document.getElementById('vm-rep-include-completed');
   const custMsgInput = document.getElementById('vm-custom-message-input');
 
+  if (focusSel) {
+    focusSel.value = cfg.active_focus_report || CURRENT_VM_SETTINGS.active_focus_report || '49_syllabus';
+  }
   if (sChk) sChk.checked = cfg.report_saman_summary !== false;
   if (pChk) pChk.checked = cfg.report_pending_schools !== false;
   if (dChk) dChk.checked = cfg.report_active_demands !== false;
@@ -17363,7 +17371,22 @@ function loadVMDispatchConfig() {
   }
 }
 
+function onVMActiveFocusReportChange() {
+  const focusSel = document.getElementById('vm-active-focus-report');
+  const val = focusSel ? focusSel.value : '49_syllabus';
+  CURRENT_VM_SETTINGS.active_focus_report = val;
+  if (val === '49_syllabus') {
+    showToast('🎯 सक्रिय फोकस: 49 राजकीय विद्यालय पाठ्यक्रम पूर्णता % (MDM बंद)', 'info');
+  } else if (val === '57_indent') {
+    showToast('📋 सक्रिय फोकस: 57 विद्यालय समान परीक्षा प्रश्न-पत्र मांग', 'info');
+  } else {
+    showToast('📊 सक्रिय फोकस: संयुक्त रिपोर्ट (पाठ्यक्रम + मांग)', 'info');
+  }
+}
+window.onVMActiveFocusReportChange = onVMActiveFocusReportChange;
+
 async function saveVMDispatchConfig() {
+  const focusSel = document.getElementById('vm-active-focus-report');
   const sChk = document.getElementById('vm-rep-saman');
   const pChk = document.getElementById('vm-rep-pending');
   const dChk = document.getElementById('vm-rep-demands');
@@ -17372,11 +17395,18 @@ async function saveVMDispatchConfig() {
   const custMsgInput = document.getElementById('vm-custom-message-input');
   const tSel = document.getElementById('vm-gemini-tone-select');
 
+  const activeFocus = focusSel ? focusSel.value : (CURRENT_VM_SETTINGS.active_focus_report || '49_syllabus');
+  CURRENT_VM_SETTINGS.active_focus_report = activeFocus;
+  CURRENT_VM_SETTINGS.mdm_anomaly_scanner = false;
+
   const dispatchConfig = {
-    report_saman_summary: sChk ? sChk.checked : true,
+    active_focus_report: activeFocus,
+    report_saman_syllabus: (activeFocus === '49_syllabus' || activeFocus === 'dual_all'),
+    report_saman_summary: (activeFocus === '57_indent' || activeFocus === 'dual_all'),
     report_pending_schools: pChk ? pChk.checked : true,
     report_active_demands: dChk ? dChk.checked : true,
     report_peeo_summary: peeoChk ? peeoChk.checked : true,
+    report_mdm: false,
     include_completed_tasks: incChk ? incChk.checked : false,
     custom_message: custMsgInput ? custMsgInput.value.trim() : '',
     gemini_tone: tSel ? tSel.value : 'warning',
@@ -17388,6 +17418,9 @@ async function saveVMDispatchConfig() {
   // Sync with portal settings
   if (!STATE.portalSettings) STATE.portalSettings = {};
   STATE.portalSettings.vm_dispatch_config = dispatchConfig;
+  if (!STATE.portalSettings.vm_settings) STATE.portalSettings.vm_settings = {};
+  STATE.portalSettings.vm_settings.active_focus_report = activeFocus;
+  STATE.portalSettings.vm_settings.mdm_anomaly_scanner = false;
   savePortalSettingsToCloud();
 
   // Also sync to Node / Python server if reachable
@@ -17397,7 +17430,7 @@ async function saveVMDispatchConfig() {
     body: JSON.stringify({ settings: STATE.portalSettings })
   }).catch(() => {});
 
-  showToast('✓ रिपोर्ट प्रेषण चयन एवं AI भाषा टोन सेटिंग्स सफलतापूर्वक सुरक्षित हो गईं!', 'success');
+  showToast(`✓ VM रिपोर्ट नियंत्रण सुरक्षित: '${activeFocus === '49_syllabus' ? '49 राजकीय विद्यालय पाठ्यक्रम पूर्णता' : activeFocus}' सक्रिय!`, 'success');
 }
 
 async function triggerManualVMDispatch() {
@@ -17416,39 +17449,123 @@ async function sendTestEmailNow() {
 
   const custMsgInput = document.getElementById('vm-custom-message-input');
   const customMessage = custMsgInput ? custMsgInput.value.trim() : '';
-  const sChk = document.getElementById('vm-rep-saman');
-  const pChk = document.getElementById('vm-rep-pending');
-  const incChk = document.getElementById('vm-rep-include-completed');
+  const focusSel = document.getElementById('vm-active-focus-report');
+  const activeFocus = focusSel ? focusSel.value : '49_syllabus';
 
-  const reportSaman = sChk ? sChk.checked : true;
-  const reportPending = pChk ? pChk.checked : true;
-  const includeCompleted = incChk ? incChk.checked : false;
-
-  const totalSchools = 57;
-  const subCount = Object.keys(STATE.samanParikshaSubmissions || {}).length;
-  const pendCount = Math.max(0, totalSchools - subCount);
   const timeStr = new Date().toLocaleString('hi-IN', { timeZone: 'Asia/Kolkata' }) + ' IST';
 
-  let subject = customMessage
-    ? `📢 [निर्देश: ${customMessage.replace(/\n/g, ' ').substring(0, 40)}] | CBEO भिनाय टेस्ट अनुपालन रिपोर्ट (${timeStr})`
-    : `🏛️ CBEO भिनाय दैनिक अनुपालन रिपोर्ट (${timeStr}) - समान परीक्षा ${pendCount} लंबित`;
+  let subject = '';
+  let contentHtml = '';
 
   let customHtml = '';
   if (customMessage) {
     const formatted = customMessage.split('\n').map(l => l.trim()).filter(Boolean).join('<br>');
     customHtml = `
       <div style="background:#fffbeb; border:2px solid #f59e0b; border-left:6px solid #d97706; padding:16px 20px; border-radius:10px; margin-bottom:20px;">
-        <strong style="color:#b45309; font-size:15px;">📢 विशेष प्रशासनिक निर्देश (जितेन्द्र व्यवस्थापक):</strong>
+        <strong style="color:#b45309; font-size:15px;">📢 विशेष प्रशासनिक निर्देश (जितेन्द्र व्यवस्थापक - अजमेर):</strong>
         <p style="margin:8px 0 0 0; color:#1e293b; font-size:14px; font-weight:600; line-height:1.6;">${formatted}</p>
       </div>
     `;
   }
 
-  let samanHtml = '';
-  if (reportSaman && (pendCount > 0 || includeCompleted)) {
-    samanHtml = `
+  if (activeFocus === '49_syllabus') {
+    const govtSchools = (STATE.schools56 || []).filter(s => s.type === 'Government');
+    const totalGovt = govtSchools.length || 49;
+    const sylSubs = STATE.samanSyllabusSubmissions || {};
+    let subCount = 0;
+    let pctSum = 0;
+    let pendingSchools = [];
+
+    govtSchools.forEach(s => {
+      const sub = sylSubs[s.shala_darpan_code];
+      const isSub = !!(sub && sub.is_submitted);
+      if (isSub) {
+        subCount++;
+        pctSum += calculateSchoolSyllabusAverage(sub);
+      } else {
+        pendingSchools.push(s);
+      }
+    });
+
+    const pendCount = Math.max(0, totalGovt - subCount);
+    const avgPct = subCount > 0 ? Math.round(pctSum / subCount) : 0;
+    const completionPct = totalGovt > 0 ? Math.round((subCount / totalGovt) * 100) : 0;
+
+    subject = customMessage
+      ? `📢 [निर्देश: ${customMessage.replace(/\n/g, ' ').substring(0, 40)}] | CBEO भिनाय टेस्ट अनुपालन रिपोर्ट (${timeStr})`
+      : `🏛️ CBEO भिनाय दैनिक अनुपालन रिपोर्ट (${timeStr}) - समान परीक्षा पाठ्यक्रम पूर्णता ${pendCount} लंबित`;
+
+    let rowsHtml = '';
+    pendingSchools.slice(0, 15).forEach((ps, idx) => {
+      rowsHtml += `
+        <tr style="border-bottom:1px solid #e2e8f0; background:${idx % 2 === 0 ? '#ffffff' : '#f8fafc'};">
+          <td style="padding:7px 10px; text-align:center; font-weight:bold;">${idx + 1}</td>
+          <td style="padding:7px 10px; font-family:monospace; font-weight:bold;">${ps.shala_darpan_code}</td>
+          <td style="padding:7px 10px; font-weight:600;">${ps.school_name}</td>
+          <td style="padding:7px 10px;">${ps.peeo_name || '---'}</td>
+          <td style="padding:7px 10px;">${ps.principal_name || 'संस्था प्रधान'}</td>
+          <td style="padding:7px 10px; text-align:center;"><a href="tel:${ps.principal_mobile || ps.mobile || ''}" style="color:#2563eb; text-decoration:none;">${ps.principal_mobile || ps.mobile || '---'}</a></td>
+          <td style="padding:7px 10px; text-align:center;"><span style="background:#fee2e2; color:#b91c1c; padding:2px 8px; border-radius:4px; font-weight:bold;">लंबित</span></td>
+        </tr>
+      `;
+    });
+
+    contentHtml = `
       <h3 style="margin:0 0 16px 0; color:#0f172a; border-left:4px solid #2563eb; padding-left:10px; font-size:16px;">
-        📋 1. जिला समान परीक्षा (सत्र 2026-27) - प्रगति सारांश
+        🎯 1. समान परीक्षा 2026-27: पाठ्यक्रम पूर्णता % प्रगति सारांश (49 राजकीय विद्यालय)
+      </h3>
+      <div style="display:flex; gap:12px; margin-bottom:20px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:120px; background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:12px; text-align:center;">
+          <div style="font-size:11px; color:#1d4ed8; font-weight:700;">कुल राजकीय विद्यालय</div>
+          <div style="font-size:24px; font-weight:800; color:#1e3a8a;">${totalGovt}</div>
+        </div>
+        <div style="flex:1; min-width:120px; background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:12px; text-align:center;">
+          <div style="font-size:11px; color:#047857; font-weight:700;">प्रपत्र प्राप्त</div>
+          <div style="font-size:24px; font-weight:800; color:#065f46;">${subCount} (${completionPct}%)</div>
+        </div>
+        <div style="flex:1; min-width:120px; background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:12px; text-align:center;">
+          <div style="font-size:11px; color:#b91c1c; font-weight:700;">लंबित विद्यालय</div>
+          <div style="font-size:24px; font-weight:800; color:#991b1b;">${pendCount}</div>
+        </div>
+        <div style="flex:1; min-width:120px; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:12px; text-align:center;">
+          <div style="font-size:11px; color:#15803d; font-weight:700;">ब्लॉक औसत %</div>
+          <div style="font-size:24px; font-weight:800; color:#166534;">${avgPct}%</div>
+        </div>
+      </div>
+
+      ${pendCount > 0 ? `
+        <h4 style="margin:16px 0 8px 0; color:#b91c1c; font-size:14px;">🚨 2. रेड-अलर्ट डिफ़ॉल्टर सूची (49 राजकीय विद्यालय):</h4>
+        <div style="overflow-x:auto;">
+          <table style="width:100%; border-collapse:collapse; border:1px solid #e2e8f0; font-size:12px;">
+            <thead>
+              <tr style="background:#f1f5f9; color:#475569; border-bottom:2px solid #cbd5e1; text-align:left;">
+                <th style="padding:7px 10px; text-align:center;">क्र.</th>
+                <th style="padding:7px 10px;">कोड</th>
+                <th style="padding:7px 10px;">विद्यालय</th>
+                <th style="padding:7px 10px;">PEEO</th>
+                <th style="padding:7px 10px;">संस्था प्रधान</th>
+                <th style="padding:7px 10px; text-align:center;">मोबाइल</th>
+                <th style="padding:7px 10px; text-align:center;">स्थिति</th>
+              </tr>
+            </thead>
+            <tbody>${rowsHtml}</tbody>
+          </table>
+        </div>
+      ` : '<div style="color:#166534; font-weight:bold;">✓ सभी 49 राजकीय विद्यालयों के पाठ्यक्रम पूर्णता प्रपत्र शत-प्रतिशत प्राप्त हो चुके हैं।</div>'}
+    `;
+  } else {
+    // 57 Indent Fallback
+    const totalSchools = 57;
+    const subCount = Object.keys(STATE.samanParikshaSubmissions || {}).length;
+    const pendCount = Math.max(0, totalSchools - subCount);
+
+    subject = customMessage
+      ? `📢 [निर्देश: ${customMessage.replace(/\n/g, ' ').substring(0, 40)}] | CBEO भिनाय टेस्ट अनुपालन रिपोर्ट (${timeStr})`
+      : `🏛️ CBEO भिनाय दैनिक अनुपालन रिपोर्ट (${timeStr}) - समान परीक्षा ${pendCount} लंबित`;
+
+    contentHtml = `
+      <h3 style="margin:0 0 16px 0; color:#0f172a; border-left:4px solid #2563eb; padding-left:10px; font-size:16px;">
+        📋 1. जिला समान परीक्षा (सत्र 2026-27) - प्रगति सारांश (57 विद्यालय)
       </h3>
       <div style="display:flex; gap:12px; margin-bottom:20px;">
         <div style="flex:1; background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:12px; text-align:center;">
@@ -17469,7 +17586,7 @@ async function sendTestEmailNow() {
 
   const htmlBody = `
     <!DOCTYPE html><html><body style="font-family:sans-serif; background:#f1f5f9; padding:20px; color:#1e293b;">
-      <div style="max-width:700px; margin:0 auto; background:#ffffff; border-radius:12px; overflow:hidden; border:1px solid #e2e8f0; box-shadow:0 8px 20px rgba(0,0,0,0.06);">
+      <div style="max-width:720px; margin:0 auto; background:#ffffff; border-radius:12px; overflow:hidden; border:1px solid #e2e8f0; box-shadow:0 8px 20px rgba(0,0,0,0.06);">
         <div style="background:linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color:#fff; padding:22px; text-align:center; border-bottom:4px solid #f59e0b;">
           <h2 style="margin:0; font-size:19px;">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</h2>
           <div style="font-size:13px; color:#93c5fd; margin-top:4px;">जिला: अजमेर (AJMER) | ब्लॉक: भिनाय (BHINAI)</div>
@@ -17479,7 +17596,7 @@ async function sendTestEmailNow() {
         </div>
         <div style="padding:22px;">
           ${customHtml}
-          ${samanHtml}
+          ${contentHtml}
           <div style="margin-top:24px; text-align:center;">
             <a href="https://jit9763.github.io/cbeo-bhinai-portal/" style="display:inline-block; background:#1e3a8a; color:#fff; font-weight:bold; font-size:13px; padding:10px 24px; border-radius:6px; text-decoration:none;">
               🌐 CBEO भिनाय आधिकारिक पोर्टल खोलें
@@ -17503,7 +17620,7 @@ async function sendTestEmailNow() {
         email_to: 'censusbhinai@gmail.com',
         subject: subject,
         html_body: htmlBody,
-        body: customMessage || 'CBEO Bhinai Compliance Report'
+        body: customMessage || 'CBEO Bhinai 49 Govt Schools Syllabus Compliance Report'
       })
     });
     showToast('🎉 टेस्ट ईमेल censusbhinai@gmail.com पर सफलतापूर्वक भेज दिया गया है!', 'success');

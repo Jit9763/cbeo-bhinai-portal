@@ -1,28 +1,166 @@
 {
-  "generated_at": "04-10-2026 08:47 PM",
+  "generated_at": "07-10-2026 01:29 AM",
   "vm_status": "ONLINE_ACTIVE",
   "district": "AJMER (अजमेर)",
   "block": "BHINAI (भिनाय)",
-  "saman_pariksha": {
+  "active_focus_report": "49_syllabus",
+  "saman_syllabus_49": {
+    "total_govt_schools": 49,
+    "submitted_count": 1,
+    "pending_count": 48,
+    "completion_percentage": 2.0,
+    "block_average_syllabus_pct": 74,
+    "peeo_pending_map": {
+      "PEEO BARGAON": 1,
+      "PEEO BARLI": 2,
+      "PEEO BANDANWARA": 2,
+      "PEEO BHINAY": 2,
+      "PEEO BOOBKIYA": 2,
+      "PEEO CHHACHHUNDRA": 2,
+      "PEEO CHAPANERI": 2,
+      "PEEO DEOLIYA KALAN": 2,
+      "PEEO DEVPURA": 2,
+      "PEEO DHANTOL": 1,
+      "PEEO EKALSEENGA": 2,
+      "PEEO GURHA KHURD": 2,
+      "PEEO KANAI KALAN": 2,
+      "PEEO KARATI": 3,
+      "PEEO KEROT": 2,
+      "PEEO KUMHARIYA": 1,
+      "PEEO LAMGARA": 3,
+      "PEEO NAGOLA": 2,
+      "PEEO NANDSI": 3,
+      "PEEO PADANGA": 1,
+      "PEEO PADALIYA": 1,
+      "PEEO RAMMALIA": 3,
+      "PEEO RATAKOT": 2,
+      "PEEO SINGAWAL": 1,
+      "PEEO SOBRI": 2
+    },
+    "pending_schools": [
+      {
+        "code": "221764",
+        "name": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+        "peeo": "PEEO BARGAON",
+        "principal": "CHANDRA PRAKASH LADDHA",
+        "mobile": "9001450275"
+      },
+      {
+        "code": "506830",
+        "name": "रा.बा.उ.मा.वि. बड़ली",
+        "peeo": "PEEO BARLI",
+        "principal": "PUKHRAJ KHATI",
+        "mobile": "9667157047"
+      },
+      {
+        "code": "221755",
+        "name": "रा.उ.मा.वि. बड़ली",
+        "peeo": "PEEO BARLI",
+        "principal": "SHAILENDRA KUMAR PANDYA",
+        "mobile": "9950985201"
+      },
+      {
+        "code": "221771",
+        "name": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+        "peeo": "PEEO BANDANWARA",
+        "principal": "DEVENDRA KUMAR SANKHLA",
+        "mobile": "8949599466"
+      },
+      {
+        "code": "221770",
+        "name": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+        "peeo": "PEEO BANDANWARA",
+        "principal": "JAY SINGH KHATIK",
+        "mobile": "9649149083"
+      },
+      {
+        "code": "221780",
+        "name": "रा.उ.मा.वि. भिनाय",
+        "peeo": "PEEO BHINAY",
+        "principal": "AJAY KUMAR DHABAI",
+        "mobile": "9549240545"
+      },
+      {
+        "code": "221778",
+        "name": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+        "peeo": "PEEO BHINAY",
+        "principal": "sanjeeda parveen",
+        "mobile": "9468855086"
+      },
+      {
+        "code": "221763",
+        "name": "रा.उ.मा.वि. बूबकिया",
+        "peeo": "PEEO BOOBKIYA",
+        "principal": "RAM CHANDRA GUJAR",
+        "mobile": "9252068645"
+      },
+      {
+        "code": "485033",
+        "name": "रा.उ.मा.वि. पीपलिया",
+        "peeo": "PEEO BOOBKIYA",
+        "principal": "प्रभारी संस्था प्रधान (रा.उ.मा.वि. पीपलिया)",
+        "mobile": "9784793783"
+      },
+      {
+        "code": "221787",
+        "name": "रा.उ.मा.वि. छाछून्दरा",
+        "peeo": "PEEO CHHACHHUNDRA",
+        "principal": "SITARAM DHOBI",
+        "mobile": "9413781124"
+      },
+      {
+        "code": "488946",
+        "name": "रा.उ.मा.वि. सेदरिया",
+        "peeo": "PEEO CHHACHHUNDRA",
+        "principal": "RITU SHARMA",
+        "mobile": "9829790044"
+      },
+      {
+        "code": "494626",
+        "name": "रा.बा.उ.मा.वि. चापानेरी",
+        "peeo": "PEEO CHAPANERI",
+        "principal": "HARI SHANKAR CHOPDAR",
+        "mobile": "9602676785"
+      },
+      {
+        "code": "221758",
+        "name": "रा.उ.मा.वि. चापानेरी",
+        "peeo": "PEEO CHAPANERI",
+        "principal": "LADURAM SHARMA",
+        "mobile": "9462507510"
+      },
+      {
+        "code": "221753",
+        "name": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+        "peeo": "PEEO DEOLIYA KALAN",
+        "principal": "RAKESH KUMAR BIRAWAT",
+        "mobile": "9829835751"
+      },
+      {
+        "code": "221754",
+        "name": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+        "peeo": "PEEO DEOLIYA KALAN",
+        "principal": "PURNIMA",
+        "mobile": "9414343109"
+      }
+    ]
+  },
+  "saman_pariksha_57": {
     "total_schools": 57,
     "submitted_count": 57,
     "pending_count": 0,
-    "completion_percentage": 100.0,
-    "peeo_pending_map": {},
-    "pending_schools": []
+    "completion_percentage": 100.0
   },
   "overdue_escalation": {
-    "is_active": false,
-    "defaulter_count": 0,
-    "urgency": "NORMAL",
-    "message": "✓ शत-प्रतिशत अनुपालन पूर्ण।"
+    "is_active": true,
+    "defaulter_count": 48,
+    "urgency": "HIGH",
+    "message": "🚨 48 विद्यालय समय-सीमा पश्चात भी लंबित हैं।"
   },
   "mdm_anomaly_scanner": {
-    "total_peeos": 25,
-    "prapatra2_sheet_linked": true,
-    "status": "MONITORING_ACTIVE",
+    "enabled": false,
+    "status": "DISABLED_BY_ADMIN",
     "district": "AJMER"
   },
-  "active_demands_count": 0,
   "portal_url": "https://jit9763.github.io/cbeo-bhinai-portal/"
 }
