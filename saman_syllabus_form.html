@@ -3,10 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>समान परीक्षा 2026-27: पाठ्यक्रम पूर्णता प्रतिशत प्रपत्र | CBEO भिनाय (अजमेर)</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700;800;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <script src="master_cbeo_data.js"></script>
+  <script>
+    // Immediate Auto-Sync and Cache Buster Engine
+    (function() {
+      try {
+        var lu = localStorage.getItem('cbeo_logged_user');
+        var cu = localStorage.getItem('cbeo_user');
+        if (lu && !cu) localStorage.setItem('cbeo_user', lu);
+        if (cu && !lu) localStorage.setItem('cbeo_logged_user', cu);
+      } catch(e) {}
+
+      var SYL_BUILD = 'v29_2026_10_06_instant_auto_bust';
+      var lastSylBuild = localStorage.getItem('cbeo_syl_form_build');
+      if (lastSylBuild !== SYL_BUILD) {
+        localStorage.setItem('cbeo_syl_form_build', SYL_BUILD);
+        if ('caches' in window) {
+          caches.keys().then(function(keys) {
+            keys.forEach(function(k) { caches.delete(k); });
+          });
+        }
+        var url = new URL(window.location.href);
+        if (lastSylBuild && (!url.searchParams.has('_b') || url.searchParams.get('_b') !== SYL_BUILD)) {
+          url.searchParams.set('_b', SYL_BUILD);
+          window.location.replace(url.toString());
+        }
+      }
+    })();
+  </script>
+  <script src="master_cbeo_data.js?v=20261006_v29"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -1127,6 +1157,16 @@
       if (!loggedUser) {
         const authOverlay = document.getElementById('auth-required-overlay');
         if (authOverlay) authOverlay.style.display = 'flex';
+        try {
+          const urlParams = new URLSearchParams(window.location.search);
+          const codeParam = urlParams.get('code');
+          if (codeParam) {
+            const uInput = document.getElementById('overlay-login-username');
+            if (uInput && !uInput.value) {
+              uInput.value = codeParam;
+            }
+          }
+        } catch(e) {}
         return;
       } else {
         const authOverlay = document.getElementById('auth-required-overlay');

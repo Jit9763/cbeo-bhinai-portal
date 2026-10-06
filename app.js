@@ -2841,12 +2841,12 @@ function renderSamanParikshaPeeoView() {
           </div>
         </div>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem">
-          <a href="saman_syllabus_form.html?code=${school.shala_darpan_code}" class="btn btn-primary btn-sm" style="flex:1; font-weight:800; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:0.35rem; padding:0.45rem 0.75rem">
+          <button type="button" onclick="openSamanSyllabusForm('${school.shala_darpan_code}')" class="btn btn-primary btn-sm" style="flex:1; font-weight:800; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:0.35rem; padding:0.45rem 0.75rem; border:none; cursor:pointer">
             <i class="fas fa-file-signature"></i> ${isSub ? '✏️ पूर्णता % प्रपत्र में संशोधन' : '📝 पाठ्यक्रम पूर्णता % प्रपत्र भरें'}
-          </a>
-          <a href="saman_syllabus_form.html?code=${school.shala_darpan_code}" target="_blank" class="btn btn-outline-primary btn-sm" style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:700" title="अलग टैब में खोलें">
+          </button>
+          <button type="button" onclick="openSamanSyllabusFormInNewTab('${school.shala_darpan_code}')" class="btn btn-outline-primary btn-sm" style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:700; cursor:pointer" title="अलग टैब में खोलें">
             <i class="fas fa-external-link-alt"></i> अलग पेज
-          </a>
+          </button>
           ${isSub ? `
             <button class="btn btn-success btn-sm" onclick="printSyllabusPdf('${school.shala_darpan_code}')" title="आधिकारिक प्रमाणित PDF देखें / प्रिंट करें" style="font-weight:700">
               <i class="fas fa-print"></i> PDF प्रिंट
@@ -2955,10 +2955,10 @@ function renderSamanParikshaPeeoView() {
           </div>
         </div>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem">
-          <a href="saman_form.html?code=${school.shala_darpan_code}" class="btn btn-primary btn-sm" style="flex:1; font-weight:800; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:0.35rem; padding:0.45rem 0.75rem">
+          <a href="saman_form.html?code=${school.shala_darpan_code}&_v=${Date.now()}" class="btn btn-primary btn-sm" style="flex:1; font-weight:800; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:0.35rem; padding:0.45rem 0.75rem">
             <i class="fas ${isSchoolLocked ? 'fa-eye' : (isSubmitted ? 'fa-edit' : 'fa-file-signature')}"></i> ${isSchoolLocked ? '👁️ प्रपत्र अवलोकन' : (isSubmitted ? '✏️ प्रपत्र में संशोधन' : '📝 Google Form प्रपत्र भरें')}
           </a>
-          <a href="saman_form.html?code=${school.shala_darpan_code}" target="_blank" class="btn btn-outline-primary btn-sm" style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:700" title="नए पेज में खोलें (अलग टैब)">
+          <a href="saman_form.html?code=${school.shala_darpan_code}&_v=${Date.now()}" target="_blank" class="btn btn-outline-primary btn-sm" style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:700" title="नए पेज में खोलें (अलग टैब)">
             <i class="fas fa-external-link-alt"></i> अलग पेज
           </a>
           ${isSubmitted ? `
@@ -3285,7 +3285,7 @@ function filterSamanParikshaTable() {
             <button class="btn btn-outline-light btn-sm" onclick="openSamanParikshaForm('${s.shala_darpan_code}')" title="प्रपत्र भरें / संपादित करें">
               <i class="fas fa-edit"></i>
             </button>
-            <a href="saman_form.html?code=${s.shala_darpan_code}" target="_blank" class="btn btn-outline-light btn-sm" title="नए पेज में खोलें (अलग टैब)">
+            <a href="saman_form.html?code=${s.shala_darpan_code}&_v=${Date.now()}" target="_blank" class="btn btn-outline-light btn-sm" title="नए पेज में खोलें (अलग टैब)">
               <i class="fas fa-external-link-alt"></i>
             </a>
             <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${s.shala_darpan_code}')" title="अधिकृत A4 PDF देखें व प्रिंट करें">
@@ -3768,8 +3768,16 @@ function toggleSyllabusClassZero(classKey, isZero) {
 }
 
 function openSamanSyllabusForm(schoolCode) {
-  if (schoolCode) {
-    window.location.href = `saman_syllabus_form.html?code=${schoolCode}`;
+  try {
+    const lu = localStorage.getItem('cbeo_logged_user');
+    const cu = localStorage.getItem('cbeo_user');
+    if (lu && !cu) localStorage.setItem('cbeo_user', lu);
+    if (cu && !lu) localStorage.setItem('cbeo_logged_user', cu);
+  } catch(e) {}
+
+  const code = schoolCode || (STATE.currentUser?.shala_darpan_code || '');
+  if (code) {
+    window.location.href = `saman_syllabus_form.html?code=${code}&_t=${Date.now()}`;
     return;
   }
 
@@ -3914,6 +3922,18 @@ function openSamanSyllabusForm(schoolCode) {
   });
 
   showModal('modal-saman-syllabus-form');
+}
+
+function openSamanSyllabusFormInNewTab(schoolCode) {
+  try {
+    const lu = localStorage.getItem('cbeo_logged_user');
+    const cu = localStorage.getItem('cbeo_user');
+    if (lu && !cu) localStorage.setItem('cbeo_user', lu);
+    if (cu && !lu) localStorage.setItem('cbeo_logged_user', cu);
+  } catch(e) {}
+
+  const code = schoolCode || (STATE.currentUser?.shala_darpan_code || '');
+  window.open(`saman_syllabus_form.html?code=${code}&_t=${Date.now()}`, '_blank');
 }
 
 function collectSyllabusFormData() {
@@ -4497,7 +4517,7 @@ function openSamanParikshaForm(schoolCode) {
   }
   const standaloneBtn = document.getElementById('gform-open-standalone-btn');
   if (standaloneBtn) {
-    standaloneBtn.href = `saman_form.html?code=${school.shala_darpan_code}`;
+    standaloneBtn.href = `saman_form.html?code=${school.shala_darpan_code}&_v=${Date.now()}`;
   }
   showModal('modal-saman-pariksha-form');
 

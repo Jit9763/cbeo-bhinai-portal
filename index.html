@@ -14,9 +14,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script>
-    // Automated Hard Refresh & Client-Side Cache Purge on New Version
+    // Immediate Session Synchronization & Automated Client-Side Cache Purge on New Version
     (function() {
-      var CLIENT_VERSION = 'v27_2026_10_06_syllabus_session_sync';
+      try {
+        var lu = localStorage.getItem('cbeo_logged_user');
+        var cu = localStorage.getItem('cbeo_user');
+        if (lu && !cu) localStorage.setItem('cbeo_user', lu);
+        if (cu && !lu) localStorage.setItem('cbeo_logged_user', cu);
+      } catch(e) {}
+
+      var CLIENT_VERSION = 'v29_2026_10_06_instant_auto_bust';
       var lastVer = localStorage.getItem('cbeo_client_app_version');
       if (lastVer !== CLIENT_VERSION) {
         localStorage.setItem('cbeo_client_app_version', CLIENT_VERSION);
@@ -25,10 +32,10 @@
             keys.forEach(function(k) { caches.delete(k); });
           });
         }
-        if (lastVer) {
-          console.log('[CBEO] New Version detected: ' + CLIENT_VERSION + '. Forcing hard reload...');
-          var url = new URL(window.location.href);
+        var url = new URL(window.location.href);
+        if (lastVer && (!url.searchParams.has('_v') || url.searchParams.get('_b') !== CLIENT_VERSION)) {
           url.searchParams.set('_v', Date.now());
+          url.searchParams.set('_b', CLIENT_VERSION);
           window.location.replace(url.toString());
         }
       }
@@ -5605,7 +5612,7 @@
 
   <!-- External & Application Logic -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <script src="master_cbeo_data.js?v=20261006_v27"></script>
-  <script src="app.js?v=20261006_v27"></script>
+  <script src="master_cbeo_data.js?v=20261006_v29"></script>
+  <script src="app.js?v=20261006_v29"></script>
 </body>
 </html>
