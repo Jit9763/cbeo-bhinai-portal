@@ -724,17 +724,9 @@ function initMasterData() {
       if (storedSylSubs) STATE.samanSyllabusSubmissions = JSON.parse(storedSylSubs);
     } catch(e) {}
 
-    fetch('http://localhost:8089/api/get_saman_syllabus')
-      .then(res => res.json())
-      .then(data => {
-        if (data && data.success && data.submissions) {
-          STATE.samanSyllabusSubmissions = Object.assign({}, STATE.samanSyllabusSubmissions, data.submissions);
-          localStorage.setItem('cbeo_saman_syllabus_submissions', JSON.stringify(STATE.samanSyllabusSubmissions));
-          if (STATE.samanParikshaActiveForm === 'syllabus') {
-            renderSamanParikshaView();
-          }
-        }
-      }).catch(() => {});
+    if (typeof syncSyllabusSubmissionsFromCloud === 'function') {
+      syncSyllabusSubmissionsFromCloud();
+    }
   }
 
   // 8. Admin Tab Access Configuration
@@ -823,11 +815,14 @@ function initMasterData() {
   }
 
   const loadMismatchJson = (url) => {
+    if (localStorage.getItem('cbeo_saman_mismatch_settings')) {
+      return Promise.resolve();
+    }
     return fetch(url)
       .then(r => r.ok ? r.json() : null)
       .then(data => {
         const settings = data?.settings || (data?.custom_edit_schools ? data : null);
-        if (settings) {
+        if (settings && !localStorage.getItem('cbeo_saman_mismatch_settings')) {
           STATE.samanMismatchSettings = settings;
           try { localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(settings)); } catch(e) {}
           if (typeof renderSamanParikshaView === 'function') renderSamanParikshaView();
@@ -2841,11 +2836,8 @@ function renderSamanParikshaPeeoView() {
           </div>
         </div>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem">
-          <button type="button" onclick="openSamanSyllabusForm('${school.shala_darpan_code}')" class="btn btn-primary btn-sm" style="flex:1; font-weight:800; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:0.35rem; padding:0.45rem 0.75rem; border:none; cursor:pointer">
+          <button type="button" onclick="openSamanSyllabusFormInNewTab('${school.shala_darpan_code}')" class="btn btn-primary btn-sm" style="flex:1; font-weight:800; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:0.35rem; padding:0.45rem 0.75rem; border:none; cursor:pointer">
             <i class="fas fa-file-signature"></i> ${isSub ? '✏️ पूर्णता % प्रपत्र में संशोधन' : '📝 पाठ्यक्रम पूर्णता % प्रपत्र भरें'}
-          </button>
-          <button type="button" onclick="openSamanSyllabusFormInNewTab('${school.shala_darpan_code}')" class="btn btn-outline-primary btn-sm" style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:700; cursor:pointer" title="अलग टैब में खोलें">
-            <i class="fas fa-external-link-alt"></i> अलग पेज
           </button>
           ${isSub ? `
             <button class="btn btn-success btn-sm" onclick="printSyllabusPdf('${school.shala_darpan_code}')" title="आधिकारिक प्रमाणित PDF देखें / प्रिंट करें" style="font-weight:700">
@@ -2955,11 +2947,8 @@ function renderSamanParikshaPeeoView() {
           </div>
         </div>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem">
-          <a href="saman_form.html?code=${school.shala_darpan_code}&_v=${Date.now()}" class="btn btn-primary btn-sm" style="flex:1; font-weight:800; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:0.35rem; padding:0.45rem 0.75rem">
+          <a href="saman_form.html?code=${school.shala_darpan_code}&_v=${Date.now()}" target="_blank" class="btn btn-primary btn-sm" style="flex:1; font-weight:800; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:0.35rem; padding:0.45rem 0.75rem">
             <i class="fas ${isSchoolLocked ? 'fa-eye' : (isSubmitted ? 'fa-edit' : 'fa-file-signature')}"></i> ${isSchoolLocked ? '👁️ प्रपत्र अवलोकन' : (isSubmitted ? '✏️ प्रपत्र में संशोधन' : '📝 Google Form प्रपत्र भरें')}
-          </a>
-          <a href="saman_form.html?code=${school.shala_darpan_code}&_v=${Date.now()}" target="_blank" class="btn btn-outline-primary btn-sm" style="display:inline-flex; align-items:center; gap:0.35rem; font-weight:700" title="नए पेज में खोलें (अलग टैब)">
-            <i class="fas fa-external-link-alt"></i> अलग पेज
           </a>
           ${isSubmitted ? `
             <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${school.shala_darpan_code}')" title="आधिकारिक प्रमाणित PDF देखें / प्रिंट करें" style="font-weight:700">
@@ -3282,11 +3271,8 @@ function filterSamanParikshaTable() {
             <button class="btn btn-warning btn-sm" onclick="openDemandMismatchInspector('saman_pariksha_2026_27', '${s.shala_darpan_code}')" title="मिसमैच फील्ड निरीक्षण, चेकमार्क व ईमेल+टेलीग्राम अलर्ट" style="background:#f59e0b; color:#fff; border:none; font-weight:700">
               <i class="fas fa-flag"></i>
             </button>
-            <button class="btn btn-outline-light btn-sm" onclick="openSamanParikshaForm('${s.shala_darpan_code}')" title="प्रपत्र भरें / संपादित करें">
+            <a href="saman_form.html?code=${s.shala_darpan_code}&_v=${Date.now()}" target="_blank" class="btn btn-outline-light btn-sm" title="प्रपत्र भरें / संपादित करें">
               <i class="fas fa-edit"></i>
-            </button>
-            <a href="saman_form.html?code=${s.shala_darpan_code}&_v=${Date.now()}" target="_blank" class="btn btn-outline-light btn-sm" title="नए पेज में खोलें (अलग टैब)">
-              <i class="fas fa-external-link-alt"></i>
             </a>
             <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${s.shala_darpan_code}')" title="अधिकृत A4 PDF देखें व प्रिंट करें">
               <i class="fas fa-print"></i>
@@ -3308,6 +3294,55 @@ function filterSamanParikshaTable() {
    SAMAN PARIKSHA DUAL-MODE CONTROLS & SYLLABUS COMPLETION % ENGINE
    ======================================================== */
 
+function syncSyllabusSubmissionsFromCloud(isManual = false) {
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
+  if (isManual) {
+    showToast('Google Sheet से पाठ्यक्रम पूर्णता डेटा सिंक हो रहा है...', 'info');
+  }
+
+  const p1 = gasUrl ? fetch(`${gasUrl}?action=getDemandSubmissions&demand_id=DEMAND_SAMAN_SYLLABUS_2026`)
+    .then(r => r.ok ? r.json() : null)
+    .then(data => {
+      if (data && data.success && data.submissions) {
+        if (!STATE.samanSyllabusSubmissions) STATE.samanSyllabusSubmissions = {};
+        Object.keys(data.submissions).forEach(code => {
+          const sub = data.submissions[code];
+          if (sub && (sub.is_submitted || sub.c9 || sub.grand_total !== undefined)) {
+            STATE.samanSyllabusSubmissions[code] = Object.assign({}, STATE.samanSyllabusSubmissions[code] || {}, sub);
+          }
+        });
+        localStorage.setItem('cbeo_saman_syllabus_submissions', JSON.stringify(STATE.samanSyllabusSubmissions));
+        return true;
+      }
+      return false;
+    }).catch(() => false) : Promise.resolve(false);
+
+  const p2 = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    ? fetch('http://localhost:8089/api/get_saman_syllabus')
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (data && data.success && data.submissions) {
+          if (!STATE.samanSyllabusSubmissions) STATE.samanSyllabusSubmissions = {};
+          Object.assign(STATE.samanSyllabusSubmissions, data.submissions);
+          localStorage.setItem('cbeo_saman_syllabus_submissions', JSON.stringify(STATE.samanSyllabusSubmissions));
+        }
+      }).catch(() => {})
+    : Promise.resolve();
+
+  return Promise.all([p1, p2]).then(() => {
+    if (STATE.samanParikshaActiveForm === 'syllabus') {
+      renderSamanParikshaView();
+    }
+    if (isManual) {
+      showToast('✓ Google Sheet से पाठ्यक्रम पूर्णता डेटा सफलतापूर्वक सिंक हुआ!', 'success');
+    }
+  });
+}
+window.syncSyllabusSubmissionsFromCloud = syncSyllabusSubmissionsFromCloud;
+
 function switchSamanActiveForm(formType) {
   STATE.samanParikshaActiveForm = formType;
   localStorage.setItem('cbeo_saman_active_form', formType);
@@ -3322,6 +3357,7 @@ function switchSamanActiveForm(formType) {
     if (scopeDropdown) scopeDropdown.value = 'govt_only';
     if (sylQuickBtns) sylQuickBtns.style.display = 'inline-flex';
     if (sylDispatchBar) sylDispatchBar.style.display = 'flex';
+    syncSyllabusSubmissionsFromCloud();
     showToast('नवीन पाठ्यक्रम पूर्णता % मांग (49 राजकीय विद्यालय) सक्रिय हो गई!', 'info');
   } else {
     if (sylQuickBtns) sylQuickBtns.style.display = 'none';
@@ -4958,6 +4994,14 @@ function submitSamanParikshaForm(andPrint = false) {
     submitted_by: STATE.currentUser?.name || STATE.currentUser?.peeo_name || 'School In-charge',
     timestamp: new Date().toLocaleString('en-IN')
   };
+
+  // Check and Auto-Resolve Mismatch
+  const mismatchCheck = checkAndAutoResolveSamanMismatch(schoolCode, submission);
+  if (!mismatchCheck.resolved && mismatchCheck.error) {
+    showToast(`⚠️ ${mismatchCheck.error}`, 'warning');
+  } else if (mismatchCheck.resolved && mismatchCheck.wasMismatch) {
+    showToast('✓ मिसमैच शर्त पूर्ण! प्रपत्र से मिसमैच हट गया एवं प्रपत्र मान्य हो गया।', 'success');
+  }
 
   STATE.samanParikshaSubmissions[schoolCode] = submission;
   localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(STATE.samanParikshaSubmissions));
@@ -12095,18 +12139,24 @@ function isDemandSchoolMismatch(demandId, schoolCode) {
 
   // 1. Saman Pariksha
   if (dId === 'saman_pariksha_2026_27' || dId === 'demand_saman_pariksha_2026' || dId.includes('saman_pariksha')) {
+    const spSub = STATE.samanParikshaSubmissions && STATE.samanParikshaSubmissions[sCode];
+    if (spSub && spSub.is_mismatch === false && spSub.mismatch_resolved_at) {
+      return false; // Mismatch has been satisfied/resolved!
+    }
     const spCfg = STATE.samanMismatchSettings || (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : null);
     if (spCfg) {
       if (spCfg.custom_edit_schools && spCfg.custom_edit_schools.some(c => String(c).trim() === sCode)) return true;
       if (spCfg.mismatch_details && spCfg.mismatch_details[sCode]) return true;
     }
-    const spSub = STATE.samanParikshaSubmissions && STATE.samanParikshaSubmissions[sCode];
     if (spSub && (spSub.status === 'mismatch' || spSub.is_mismatch === true)) return true;
     return false;
   }
 
   // 2. Dynamic Demands
   const sub = (STATE.demandSubmissions && STATE.demandSubmissions[demandId] && STATE.demandSubmissions[demandId][sCode]) || null;
+  if (sub && sub.is_mismatch === false && sub.mismatch_resolved_at) {
+    return false;
+  }
   if (sub) {
     if (sub.is_mismatch === true || sub.status === 'mismatch') return true;
     if (sub.custom_unlocked === true) return true;
@@ -12292,6 +12342,11 @@ function openDemandMismatchInspector(demandId, schoolCode) {
   }
 
   renderMismatchPreview();
+  const btnClearMismatch = document.getElementById('btn-clear-mismatch-flag');
+  if (btnClearMismatch) {
+    const isCurrentlyMismatch = isDemandSchoolMismatch(demandId, sCode);
+    btnClearMismatch.style.display = isCurrentlyMismatch ? 'inline-flex' : 'none';
+  }
   showModal('modal-mismatch-inspector');
 }
 window.openDemandMismatchInspector = openDemandMismatchInspector;
@@ -12477,6 +12532,181 @@ async function dispatchSingleMismatchAlert() {
   }
 }
 window.dispatchSingleMismatchAlert = dispatchSingleMismatchAlert;
+
+async function clearCurrentMismatchFlag() {
+  if (!currentMismatchInspectorTarget) return;
+  const target = currentMismatchInspectorTarget;
+  const sCode = String(target.schoolCode).trim();
+  const dId = target.demandId;
+  const isSaman = (dId === 'saman_pariksha_2026_27' || String(dId).toLowerCase().includes('saman_pariksha'));
+
+  if (isSaman) {
+    const spCfg = (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : (STATE.samanMismatchSettings || {}));
+    if (spCfg.custom_edit_schools) {
+      spCfg.custom_edit_schools = spCfg.custom_edit_schools.filter(c => String(c).trim() !== sCode);
+    }
+    if (spCfg.mismatch_details && spCfg.mismatch_details[sCode]) {
+      delete spCfg.mismatch_details[sCode];
+    }
+    STATE.samanMismatchSettings = spCfg;
+    localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(spCfg));
+
+    if (STATE.samanParikshaSubmissions && STATE.samanParikshaSubmissions[sCode]) {
+      STATE.samanParikshaSubmissions[sCode].status = 'submitted';
+      STATE.samanParikshaSubmissions[sCode].is_mismatch = false;
+      STATE.samanParikshaSubmissions[sCode].mismatch_fields = [];
+      STATE.samanParikshaSubmissions[sCode].mismatch_remarks = '';
+      STATE.samanParikshaSubmissions[sCode].mismatch_resolved_at = new Date().toISOString();
+      localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(STATE.samanParikshaSubmissions));
+    }
+
+    try {
+      fetch('/api/save_saman_mismatch_settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ settings: spCfg })
+      }).catch(() => {});
+    } catch(e) {}
+
+    const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+      || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+      || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+    if (gasUrl) {
+      try {
+        fetch(gasUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'updatePassword',
+            user_id: '__SAMAN_MISMATCH_SETTINGS__',
+            role: 'System_Config',
+            name: 'Saman Pariksha Mismatch Settings',
+            new_password: JSON.stringify(spCfg)
+          })
+        }).catch(() => {});
+      } catch(e) {}
+    }
+  } else {
+    if (STATE.demandSubmissions && STATE.demandSubmissions[dId] && STATE.demandSubmissions[dId][sCode]) {
+      const sub = STATE.demandSubmissions[dId][sCode];
+      sub.status = 'submitted';
+      sub.is_mismatch = false;
+      sub.custom_unlocked = false;
+      sub.mismatch_fields = [];
+      sub.mismatch_remarks = '';
+      sub.mismatch_resolved_at = new Date().toISOString();
+      localStorage.setItem('cbeo_demand_submissions', JSON.stringify(STATE.demandSubmissions));
+    }
+    const dem = (STATE.demands || []).find(d => d.id === dId);
+    if (dem && dem.mismatch_schools) {
+      dem.mismatch_schools = dem.mismatch_schools.filter(c => String(c).trim() !== sCode);
+      localStorage.setItem('cbeo_demands', JSON.stringify(STATE.demands));
+    }
+  }
+
+  showToast(`विद्यालय '${target.schoolName}' का मिसमैच फ्लैग सफलतापूर्वक हटा दिया गया!`, 'success');
+  closeModal('modal-mismatch-inspector');
+  if (isSaman) {
+    renderSamanParikshaView();
+  } else {
+    renderDynamicDemandPortalView(target.demandId);
+  }
+}
+window.clearCurrentMismatchFlag = clearCurrentMismatchFlag;
+
+function checkAndAutoResolveSamanMismatch(schoolCode, submission) {
+  const sCode = String(schoolCode).trim();
+  let spCfg = (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : (STATE.samanMismatchSettings || null));
+  if (!spCfg) {
+    try {
+      spCfg = JSON.parse(localStorage.getItem('cbeo_saman_mismatch_settings') || 'null');
+    } catch(e) {}
+  }
+  if (!spCfg) spCfg = JSON.parse(JSON.stringify(DEFAULT_SAMAN_MISMATCH_SETTINGS));
+
+  const hasMismatchDetail = spCfg.mismatch_details && spCfg.mismatch_details[sCode];
+  const isCustomUnlocked = spCfg.custom_edit_schools && spCfg.custom_edit_schools.some(c => String(c).trim() === sCode);
+
+  if (hasMismatchDetail || isCustomUnlocked) {
+    const mInfo = spCfg.mismatch_details ? spCfg.mismatch_details[sCode] : null;
+    let shouldResolve = false;
+
+    const expectedTotal = mInfo ? (mInfo.sd_total !== undefined && mInfo.sd_total !== null && Number(mInfo.sd_total) > 0 ? Number(mInfo.sd_total) : (mInfo.expected_total !== undefined ? Number(mInfo.expected_total) : null)) : null;
+
+    if (expectedTotal !== null && !isNaN(expectedTotal) && expectedTotal > 0) {
+      const grandTotal = Number(submission.grand_total || 0);
+      if (grandTotal === expectedTotal) {
+        shouldResolve = true;
+      } else {
+        shouldResolve = false;
+      }
+    } else {
+      // User rule: "ager koi value nhi di h to dobara save kerte hi mismatch hat jana chaiye"
+      shouldResolve = true;
+    }
+
+    if (shouldResolve) {
+      submission.is_mismatch = false;
+      submission.status = 'submitted';
+      submission.mismatch_resolved_at = new Date().toISOString();
+      submission.mismatch_fields = [];
+      submission.mismatch_remarks = '';
+
+      if (spCfg.custom_edit_schools) {
+        spCfg.custom_edit_schools = spCfg.custom_edit_schools.filter(c => String(c).trim() !== sCode);
+      }
+      if (spCfg.mismatch_details && spCfg.mismatch_details[sCode]) {
+        delete spCfg.mismatch_details[sCode];
+      }
+
+      STATE.samanMismatchSettings = spCfg;
+      localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(spCfg));
+
+      try {
+        fetch('/api/save_saman_mismatch_settings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ settings: spCfg })
+        }).catch(() => {});
+      } catch(e) {}
+
+      const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+        || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+        || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+      if (gasUrl) {
+        try {
+          fetch(gasUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'updatePassword',
+              user_id: '__SAMAN_MISMATCH_SETTINGS__',
+              role: 'System_Config',
+              name: 'Saman Pariksha Mismatch Settings',
+              new_password: JSON.stringify(spCfg)
+            })
+          }).catch(() => {});
+        } catch(e) {}
+      }
+
+      const schoolMismatchBanner = document.getElementById('sp-school-mismatch-banner');
+      if (schoolMismatchBanner) schoolMismatchBanner.style.display = 'none';
+
+      return { resolved: true, wasMismatch: true, error: null };
+    } else {
+      submission.is_mismatch = true;
+      submission.status = 'mismatch';
+      return { resolved: false, wasMismatch: true, error: `शाला दर्पण अपेक्षित नामांकन (${expectedTotal}) एवं दर्ज नामांकन (${submission.grand_total}) में अभी भी अंतर है!` };
+    }
+  }
+
+  submission.is_mismatch = false;
+  return { resolved: true, wasMismatch: false, error: null };
+}
+window.checkAndAutoResolveSamanMismatch = checkAndAutoResolveSamanMismatch;
+
 
 function toggleSelectAllDemandSchools(headerCheckbox, demandId) {
   const isChecked = headerCheckbox.checked;

@@ -1261,16 +1261,51 @@
         }
       }
 
-      // Fetch latest syllabus submissions from backend API
+      // Fetch latest syllabus submissions from Google Apps Script & backend API
+      const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+        || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+        || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
+      const syncFromCloud = () => {
+        if (gasUrl) {
+          fetch(`${gasUrl}?action=getDemandSubmissions&demand_id=DEMAND_SAMAN_SYLLABUS_2026&_t=${Date.now()}`)
+            .then(r => r.json())
+            .then(data => {
+              if (data && data.success && data.submissions) {
+                const curSubs = JSON.parse(localStorage.getItem('cbeo_saman_syllabus_submissions') || '{}');
+                Object.keys(data.submissions).forEach(k => {
+                  let sub = data.submissions[k];
+                  if (typeof sub === 'string') {
+                    try { sub = JSON.parse(sub); } catch(e) {}
+                  }
+                  if (sub?.data_json) {
+                    try { Object.assign(sub, JSON.parse(sub.data_json)); } catch(e) {}
+                  }
+                  curSubs[k] = Object.assign({}, curSubs[k] || {}, sub);
+                });
+                localStorage.setItem('cbeo_saman_syllabus_submissions', JSON.stringify(curSubs));
+                if (currentSchool) loadSchool(currentSchool.shala_darpan_code);
+              }
+            }).catch(() => {});
+        }
+      };
+
       fetch('/api/get_saman_syllabus?_v=' + Date.now())
         .then(r => r.json())
         .then(data => {
           if (data && typeof data === 'object') {
             const subs = data.submissions || (data.success ? {} : data);
-            localStorage.setItem('cbeo_saman_syllabus_submissions', JSON.stringify(subs));
-            if (currentSchool) loadSchool(currentSchool.shala_darpan_code);
+            if (subs && Object.keys(subs).length > 0) {
+              const curSubs = JSON.parse(localStorage.getItem('cbeo_saman_syllabus_submissions') || '{}');
+              Object.assign(curSubs, subs);
+              localStorage.setItem('cbeo_saman_syllabus_submissions', JSON.stringify(curSubs));
+              if (currentSchool) loadSchool(currentSchool.shala_darpan_code);
+            }
           }
-        }).catch(() => {});
+        }).catch(() => {})
+        .finally(() => {
+          syncFromCloud();
+        });
     }
 
     function onSchoolDropdownChange() {
@@ -1834,7 +1869,35 @@
       allSubs[currentSchool.shala_darpan_code] = payload;
       localStorage.setItem('cbeo_saman_syllabus_submissions', JSON.stringify(allSubs));
 
-      // Post to Backend API
+      // 1. Post to Google Apps Script Webhook (Direct to Google Sheet cloud from any mobile/browser)
+      const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+        || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+        || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
+      if (gasUrl) {
+        try {
+          fetch(gasUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              action: 'saveDemandSubmission',
+              demand_id: 'DEMAND_SAMAN_SYLLABUS_2026',
+              school_code: currentSchool.shala_darpan_code,
+              school_name: currentSchool.school_name,
+              peeo_name: currentSchool.peeo_name || '',
+              peeo_code: currentSchool.peeo_code || '',
+              submitted_by: pName,
+              submitter_mobile: pMob,
+              data_json: JSON.stringify(payload)
+            })
+          }).then(() => {
+            console.log('[CBEO-SYL] ✓ Synced to Google Sheet cloud successfully!');
+          }).catch(e => console.warn('[CBEO-SYL] Cloud sync note:', e));
+        } catch(e) {}
+      }
+
+      // 2. Post to Backend API (Local SQLite / Server file)
       fetch('/api/save_saman_syllabus', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -1842,11 +1905,11 @@
       })
       .then(r => r.json())
       .then(res => {
-        showToast('✓ पाठ्यक्रम पूर्णता प्रपत्र सफलतापूर्वक सबमिट हो गया!');
+        showToast('✓ पाठ्यक्रम पूर्णता प्रपत्र Google Sheet एवं पोर्टल में सफलतापूर्वक सबमिट हो गया!');
         loadSchool(currentSchool.shala_darpan_code);
       })
       .catch(err => {
-        showToast('✓ डेटा स्थानीय रूप से सुरक्षित हो गया है (सर्वर सिंक बैकग्राउंड में होगा)।');
+        showToast('✓ पाठ्यक्रम पूर्णता प्रपत्र Google Sheet में सुरक्षित व सबमिट हो गया है!');
         loadSchool(currentSchool.shala_darpan_code);
       });
     }

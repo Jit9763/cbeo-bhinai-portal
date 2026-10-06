@@ -589,6 +589,28 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (pathname === '/api/get_saman_mismatch_settings') {
+    const settings = DB.getSetting('__SAMAN_MISMATCH_SETTINGS__');
+    sendJSON(res, 200, { success: true, settings: settings });
+    return;
+  }
+
+  if (pathname === '/api/save_saman_mismatch_settings' && req.method === 'POST') {
+    readBody((data, err) => {
+      if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
+      const settings = data.settings || data;
+      DB.setSetting('__SAMAN_MISMATCH_SETTINGS__', settings);
+      forwardToGoogleSheet({
+        action: 'updatePassword',
+        user_id: '__SAMAN_MISMATCH_SETTINGS__',
+        new_password: JSON.stringify(settings)
+      });
+      sendJSON(res, 200, { success: true, message: 'समान परीक्षा मिसमैच सेटिंग्स सुरक्षित हो गई!' });
+    });
+    return;
+  }
+
+
   if (pathname === '/api/get_saman_pariksha') {
     const subs = DB.getAllSubmissions();
     sendJSON(res, 200, { success: true, submissions: subs });

@@ -1462,16 +1462,18 @@
           }).catch(() => {});
       }
 
-      // Sync mismatch settings from repository static JSON
-      fetch('saman_mismatch_settings.json?v=' + Date.now())
-        .then(r => r.json())
-        .then(settings => {
-          if (settings && settings.custom_edit_schools) {
-            localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(settings));
-            applyViewOnlyMode(!checkSamanFormEditPermission());
-          }
-        })
-        .catch(() => {});
+      // Sync mismatch settings from repository static JSON only if not already saved locally
+      if (!localStorage.getItem('cbeo_saman_mismatch_settings')) {
+        fetch('saman_mismatch_settings.json?v=' + Date.now())
+          .then(r => r.json())
+          .then(settings => {
+            if (settings && settings.custom_edit_schools && !localStorage.getItem('cbeo_saman_mismatch_settings')) {
+              localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(settings));
+              applyViewOnlyMode(!checkSamanFormEditPermission());
+            }
+          })
+          .catch(() => {});
+      }
 
       // Try syncing latest data from backend API
       fetch('/api/get_saman_pariksha')
@@ -1906,6 +1908,99 @@
     }
 
 
+    function checkAndAutoResolveSamanMismatch(schoolCode, submission) {
+      const sCode = String(schoolCode).trim();
+      let spCfg = null;
+      try {
+        spCfg = JSON.parse(localStorage.getItem('cbeo_saman_mismatch_settings') || 'null');
+      } catch(e) {}
+      if (!spCfg) spCfg = JSON.parse(JSON.stringify(DEFAULT_SAMAN_MISMATCH_SETTINGS));
+
+      const hasMismatchDetail = spCfg.mismatch_details && spCfg.mismatch_details[sCode];
+      const isCustomUnlocked = spCfg.custom_edit_schools && spCfg.custom_edit_schools.some(c => String(c).trim() === sCode);
+
+      if (hasMismatchDetail || isCustomUnlocked) {
+        const mInfo = spCfg.mismatch_details ? spCfg.mismatch_details[sCode] : null;
+        let shouldResolve = false;
+
+        // Check if specific comparison value was provided
+        const expectedTotal = mInfo ? (mInfo.sd_total !== undefined && mInfo.sd_total !== null && Number(mInfo.sd_total) > 0 ? Number(mInfo.sd_total) : (mInfo.expected_total !== undefined ? Number(mInfo.expected_total) : null)) : null;
+
+        if (expectedTotal !== null && !isNaN(expectedTotal) && expectedTotal > 0) {
+          const grandTotal = Number(submission.grand_total || 0);
+          if (grandTotal === expectedTotal) {
+            shouldResolve = true; // Value condition satisfied!
+          } else {
+            shouldResolve = false;
+          }
+        } else {
+          // If no specific comparison value was provided, resaving immediately removes mismatch!
+          shouldResolve = true;
+        }
+
+        if (shouldResolve) {
+          submission.is_mismatch = false;
+          submission.status = 'submitted';
+          submission.mismatch_resolved_at = new Date().toISOString();
+          submission.mismatch_fields = [];
+          submission.mismatch_remarks = '';
+
+          // Remove from custom_edit_schools and mismatch_details
+          if (spCfg.custom_edit_schools) {
+            spCfg.custom_edit_schools = spCfg.custom_edit_schools.filter(c => String(c).trim() !== sCode);
+          }
+          if (spCfg.mismatch_details && spCfg.mismatch_details[sCode]) {
+            delete spCfg.mismatch_details[sCode];
+          }
+
+          localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(spCfg));
+
+          // Sync to backend API
+          try {
+            fetch('/api/save_saman_mismatch_settings', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ settings: spCfg })
+            }).catch(() => {});
+          } catch(e) {}
+
+          // Sync to Google Apps Script cloud config
+          const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+            || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+            || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+          if (gasUrl) {
+            try {
+              fetch(gasUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  action: 'updatePassword',
+                  user_id: '__SAMAN_MISMATCH_SETTINGS__',
+                  role: 'System_Config',
+                  name: 'Saman Pariksha Mismatch Settings',
+                  new_password: JSON.stringify(spCfg)
+                })
+              }).catch(() => {});
+            } catch(e) {}
+          }
+
+          // Instantly hide mismatch banner and alert in DOM
+          const banner = document.getElementById('form-custom-unlocked-banner');
+          if (banner) banner.style.display = 'none';
+
+          return { resolved: true, wasMismatch: true, error: null };
+        } else {
+          submission.is_mismatch = true;
+          submission.status = 'mismatch';
+          return { resolved: false, wasMismatch: true, error: `अपेक्षित नामांकन (${expectedTotal}) एवं दर्ज कुल नामांकन (${submission.grand_total}) में अभी भी अंतर है!` };
+        }
+      }
+
+      submission.is_mismatch = false;
+      return { resolved: true, wasMismatch: false, error: null };
+    }
+
     function saveForm(andRedirectToPortal = false) {
       if (!currentSchool) return;
 
@@ -2017,6 +2112,14 @@
         submitted_by: principalName || 'School Authority',
         timestamp: new Date().toLocaleString('en-IN')
       };
+
+      // Check and Auto-Resolve Mismatch
+      const mismatchCheck = checkAndAutoResolveSamanMismatch(currentSchool.shala_darpan_code, submission);
+      if (!mismatchCheck.resolved && mismatchCheck.error) {
+        showToast(`⚠️ ${mismatchCheck.error}`, 'warning');
+      } else if (mismatchCheck.resolved && mismatchCheck.wasMismatch) {
+        showToast('✓ मिसमैच शर्त पूर्ण! प्रपत्र से मिसमैच हट गया एवं प्रपत्र मान्य हो गया।', 'success');
+      }
 
       const allSubs = JSON.parse(localStorage.getItem('cbeo_saman_pariksha_submissions') || '{}');
       allSubs[currentSchool.shala_darpan_code] = submission;
