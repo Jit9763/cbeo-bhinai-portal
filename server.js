@@ -895,7 +895,21 @@ const server = http.createServer((req, res) => {
 
   // Safe Server-Side GitHub Backup & Push API
   if (pathname === '/api/git_backup_push' && req.method === 'POST') {
-    const backupCmd = 'git add master_cbeo_data.json master_cbeo_data.js saman_pariksha_submissions.json saman_syllabus_submissions.json tab_visibility_6level.json edit_permissions_6level.json portal_settings.json cbeo_vm_settings.json';
+    const candidateFiles = [
+      'master_cbeo_data.json',
+      'master_cbeo_data.js',
+      'saman_pariksha_submissions.json',
+      'saman_syllabus_submissions.json',
+      'tab_visibility_6level.json',
+      'edit_permissions_6level.json',
+      'school enrolment.xlsx',
+      'js'
+    ];
+    const existingFiles = candidateFiles.filter(f => fs.existsSync(path.join(ROOT_DIR, f)));
+    if (existingFiles.length === 0) {
+      return sendJSON(res, 200, { success: true, message: 'कोई डेटा फाइल सुरक्षित करने योग्य नहीं मिली।' });
+    }
+    const backupCmd = `git add ${existingFiles.map(f => `"${f}"`).join(' ')}`;
     exec(backupCmd, { cwd: ROOT_DIR }, (addErr) => {
       if (addErr) {
         return sendJSON(res, 500, { success: false, error: 'Git Add Error: ' + addErr.message });
