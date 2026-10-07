@@ -3206,6 +3206,9 @@ function renderSamanParikshaPeeoView() {
             <i class="fas ${isSchoolLocked ? 'fa-eye' : (isSubmitted ? 'fa-edit' : 'fa-file-signature')}"></i> ${isSchoolLocked ? '👁️ प्रपत्र अवलोकन' : (isSubmitted ? '✏️ प्रपत्र में संशोधन' : '📝 Google Form प्रपत्र भरें')}
           </a>
           ${isSubmitted ? `
+            <button class="btn btn-warning btn-sm" onclick="downloadExamPdfDirectFromTable('${school.shala_darpan_code}')" title="सीधे PDF फाइल डाउनलोड करें" style="font-weight:700; color:#0f172a; background:#f59e0b; border:none">
+              <i class="fas fa-download"></i> PDF डाउनलोड
+            </button>
             <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${school.shala_darpan_code}')" title="आधिकारिक प्रमाणित PDF देखें / प्रिंट करें" style="font-weight:700">
               <i class="fas fa-print"></i> PDF प्रिंट
             </button>
@@ -3546,6 +3549,9 @@ function filterSamanParikshaTable() {
             </a>
             <button class="btn btn-sm ${hasActiveMismatchOrCustom ? 'btn-danger' : 'btn-outline-secondary'}" onclick="toggleSamanMismatchAlertDirect('${s.shala_darpan_code}')" title="${hasActiveMismatchOrCustom ? '🚨 मिसमैच अलर्ट / कस्टम एडिट बंद करें (Click to Turn OFF)' : '🔔 मिसमैच अलर्ट / कस्टम एडिट चालू करें (Click to Turn ON)'}" style="${hasActiveMismatchOrCustom ? 'background:#ef4444; color:#fff; border:none; font-weight:bold;' : 'border:1px solid #cbd5e1; color:#64748b;'} padding:2px 7px; font-size:0.75rem" type="button">
               <i class="fas ${hasActiveMismatchOrCustom ? 'fa-bell-slash' : 'fa-bell'}"></i> ${hasActiveMismatchOrCustom ? '<span style="font-size:0.7rem">अलर्ट बंद</span>' : ''}
+            </button>
+            <button class="btn btn-warning btn-sm" onclick="downloadExamPdfDirectFromTable('${s.shala_darpan_code}')" title="सीधे अधिकृत PDF डाउनलोड करें" style="background:#f59e0b; color:#fff; border:none; font-weight:700">
+              <i class="fas fa-download"></i>
             </button>
             <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${s.shala_darpan_code}')" title="अधिकृत A4 PDF देखें व प्रिंट करें">
               <i class="fas fa-print"></i>
@@ -6721,6 +6727,14 @@ async function downloadExamPDFDirect() {
     printOfficialExamDocument();
   }
 }
+
+async function downloadExamPdfDirectFromTable(schoolCode) {
+  openExamPdfPreview(schoolCode);
+  setTimeout(async () => {
+    await downloadExamPDFDirect();
+  }, 250);
+}
+window.downloadExamPdfDirectFromTable = downloadExamPdfDirectFromTable;
 
 function shareExamWhatsAppText() {
   const schoolCode = STATE.activeExamPreviewCode;

@@ -23,7 +23,7 @@
         if (cu && !lu) localStorage.setItem('cbeo_logged_user', cu);
       } catch(e) {}
 
-      var CLIENT_VERSION = 'v32_2026_10_07_peeo_lock_and_auto_reset';
+      var CLIENT_VERSION = 'v34_2026_10_07_pdf_download_and_dual_whatsapp';
       var lastVer = localStorage.getItem('cbeo_client_app_version');
       if (lastVer !== CLIENT_VERSION) {
         localStorage.setItem('cbeo_client_app_version', CLIENT_VERSION);
@@ -5033,18 +5033,18 @@
         <h3 style="color:#ffffff; font-size:1.15rem; display:flex; align-items:center; gap:0.5rem">
           <i class="fas fa-file-pdf text-danger"></i> समान परीक्षा 2026-27 | अधिकृत प्रपत्र (Printable Official PDF)
         </h3>
-        <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
-          <button class="btn btn-danger btn-sm" onclick="downloadExamPDFDirect()" title="सीधे PDF फाइल डाउनलोड करें" style="font-weight:700">
-            <i class="fas fa-download"></i> PDF डाउनलोड
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center">
+          <button class="btn btn-warning btn-sm" onclick="downloadExamPDFDirect()" title="सीधे PDF फाइल डाउनलोड करें" style="font-weight:800; color:#0f172a; background:#f59e0b; border:none; box-shadow:0 1px 4px rgba(0,0,0,0.2)">
+            <i class="fas fa-download"></i> 📥 PDF डाउनलोड
           </button>
-          <button class="btn btn-whatsapp btn-sm" onclick="shareExamWhatsAppText()" title="विवरण टेक्स्ट तुरंत WhatsApp पर शेयर करें" style="background:#128C7E; color:#ffffff; font-weight:700">
-            <i class="fab fa-whatsapp"></i> WhatsApp (Text)
+          <button class="btn btn-whatsapp btn-sm" onclick="shareExamWhatsAppPDF()" title="आधिकारिक PDF फाइल WhatsApp पर शेयर करें" style="background:#25D366; color:#ffffff; font-weight:800; border:none; box-shadow:0 1px 4px rgba(0,0,0,0.2)">
+            <i class="fas fa-file-pdf"></i> 📲 WhatsApp (PDF)
           </button>
-          <button class="btn btn-whatsapp btn-sm" onclick="shareExamWhatsAppPDF()" title="आधिकारिक PDF फाइल WhatsApp पर शेयर करें" style="background:#25D366; color:#ffffff; font-weight:700">
-            <i class="fas fa-file-pdf"></i> WhatsApp (PDF)
+          <button class="btn btn-whatsapp btn-sm" onclick="shareExamWhatsAppText()" title="विवरण टेक्स्ट तुरंत WhatsApp पर शेयर करें" style="background:#128C7E; color:#ffffff; font-weight:800; border:none; box-shadow:0 1px 4px rgba(0,0,0,0.2)">
+            <i class="fab fa-whatsapp"></i> 💬 WhatsApp (Text)
           </button>
-          <button class="btn btn-success btn-sm" onclick="printOfficialExamDocument()" title="ब्राउज़र प्रिंट / सेव एज PDF">
-            <i class="fas fa-print"></i> प्रिंट / PDF सेव
+          <button class="btn btn-success btn-sm" onclick="printOfficialExamDocument()" title="ब्राउज़र प्रिंट / सेव एज PDF" style="font-weight:800; border:none; box-shadow:0 1px 4px rgba(0,0,0,0.2)">
+            <i class="fas fa-print"></i> 🖨️ प्रिंट / सेव
           </button>
           <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-exam-pdf-preview')">&times;</button>
         </div>
@@ -5072,18 +5072,18 @@
         <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-exam-pdf-preview')">
           बंद करें (Close)
         </button>
-        <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
-          <button class="btn btn-danger" onclick="downloadExamPDFDirect()" style="font-weight:700">
-            <i class="fas fa-file-download"></i> सीधे PDF डाउनलोड करें
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center">
+          <button class="btn btn-warning" onclick="downloadExamPDFDirect()" style="font-weight:800; color:#0f172a; background:#f59e0b; border:none; padding:0.5rem 1rem">
+            <i class="fas fa-file-download"></i> 📥 सीधे PDF डाउनलोड करें
           </button>
-          <button class="btn btn-whatsapp" onclick="shareExamWhatsAppText()" style="background:#128C7E; color:#ffffff; font-weight:700">
-            <i class="fab fa-whatsapp"></i> WhatsApp शेयर (Text)
+          <button class="btn btn-whatsapp" onclick="shareExamWhatsAppPDF()" style="background:#25D366; color:#ffffff; font-weight:800; border:none; padding:0.5rem 1rem">
+            <i class="fas fa-file-pdf"></i> 📲 WhatsApp (PDF शेयर)
           </button>
-          <button class="btn btn-whatsapp" onclick="shareExamWhatsAppPDF()" style="background:#25D366; color:#ffffff; font-weight:700">
-            <i class="fas fa-file-pdf"></i> WhatsApp शेयर (PDF फाइल)
+          <button class="btn btn-whatsapp" onclick="shareExamWhatsAppText()" style="background:#128C7E; color:#ffffff; font-weight:800; border:none; padding:0.5rem 1rem">
+            <i class="fab fa-whatsapp"></i> 💬 WhatsApp (टेक्स्ट शेयर)
           </button>
-          <button class="btn btn-primary" onclick="printOfficialExamDocument()">
-            <i class="fas fa-print"></i> A4 साइज प्रिंट करें (Print)
+          <button class="btn btn-primary" onclick="printOfficialExamDocument()" style="font-weight:800; padding:0.5rem 1rem">
+            <i class="fas fa-print"></i> 🖨️ A4 साइज प्रिंट करें (Print)
           </button>
         </div>
       </div>
@@ -5858,7 +5858,7 @@
 
   <!-- External & Application Logic -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <script src="master_cbeo_data.js?v=20261007_v32"></script>
-  <script src="app.js?v=20261007_v32"></script>
+  <script src="master_cbeo_data.js?v=20261007_v34"></script>
+  <script src="app.js?v=20261007_v34"></script>
 </body>
 </html>
