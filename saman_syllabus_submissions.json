@@ -1,4 +1,97 @@
 {
+  "221753": {
+    "school_code": "221753",
+    "exam_code": "AJM04G221753",
+    "principal_name": "RAKESH KUMAR BIRAWAT",
+    "principal_mobile": "9829835751",
+    "incharge_name": "Basanti olaniya",
+    "incharge_mobile": "7727945324",
+    "submitted_by": "RAKESH KUMAR BIRAWAT",
+    "c9": {
+      "zero_enrolment": false,
+      "hindi": 93,
+      "english": 80,
+      "maths": 72,
+      "science": 83,
+      "sst": 81,
+      "sanskrit": 94,
+      "urdu": 0
+    },
+    "c10": {
+      "zero_enrolment": false,
+      "hindi": 100,
+      "english": 80,
+      "maths": 94,
+      "science": 94,
+      "sst": 96,
+      "sanskrit": 100,
+      "urdu": 0
+    },
+    "c11": {
+      "zero_enrolment": false,
+      "comp_hindi": 84,
+      "comp_english": 88,
+      "faculties": [
+        "science"
+      ],
+      "electives": [
+        {
+          "key": "physics",
+          "name": "भौतिक विज्ञान (Physics)",
+          "pct": 88
+        },
+        {
+          "key": "chemistry",
+          "name": "रसायन विज्ञान (Chemistry)",
+          "pct": 72
+        },
+        {
+          "key": "biology",
+          "name": "जीव विज्ञान (Biology)",
+          "pct": 73
+        },
+        {
+          "key": "maths",
+          "name": "गणित (Mathematics)",
+          "pct": 72
+        }
+      ]
+    },
+    "c12": {
+      "zero_enrolment": false,
+      "comp_hindi": 100,
+      "comp_english": 84,
+      "faculties": [
+        "science"
+      ],
+      "electives": [
+        {
+          "key": "physics",
+          "name": "भौतिक विज्ञान (Physics)",
+          "pct": 84
+        },
+        {
+          "key": "chemistry",
+          "name": "रसायन विज्ञान (Chemistry)",
+          "pct": 92
+        },
+        {
+          "key": "biology",
+          "name": "जीव विज्ञान (Biology)",
+          "pct": 77
+        },
+        {
+          "key": "maths",
+          "name": "गणित (Mathematics)",
+          "pct": 94
+        }
+      ]
+    },
+    "average_pct": 86.5,
+    "updated_at": "2026-10-07T04:07:38.013Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T04:07:38.013Z"
+  },
   "221754": {
     "school_code": "221754",
     "exam_code": "AJM04G221754",
@@ -19,12 +112,12 @@
     },
     "c10": {
       "zero_enrolment": false,
-      "hindi": 90,
-      "english": 85,
-      "maths": 80,
-      "science": 80,
-      "sst": 80,
-      "sanskrit": 90,
+      "hindi": 100,
+      "english": 100,
+      "maths": 100,
+      "science": 100,
+      "sst": 100,
+      "sanskrit": 100,
       "urdu": 0
     },
     "c11": {
@@ -75,11 +168,197 @@
     },
     "c12": {
       "zero_enrolment": false,
-      "comp_hindi": 90,
-      "comp_english": 85,
+      "comp_hindi": 100,
+      "comp_english": 100,
       "faculties": [
         "arts",
         "science"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 100
+        },
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 100
+        },
+        {
+          "key": "geography",
+          "name": "भूगोल (Geography)",
+          "pct": 100
+        },
+        {
+          "key": "economics",
+          "name": "अर्थशास्त्र (Economics)",
+          "pct": 100
+        },
+        {
+          "key": "physics",
+          "name": "भौतिक विज्ञान (Physics)",
+          "pct": 100
+        },
+        {
+          "key": "chemistry",
+          "name": "रसायन विज्ञान (Chemistry)",
+          "pct": 100
+        },
+        {
+          "key": "biology",
+          "name": "जीव विज्ञान (Biology)",
+          "pct": 100
+        }
+      ]
+    },
+    "average_pct": 91.5,
+    "updated_at": "2026-10-07T05:24:39.127Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T05:24:39.127Z"
+  },
+  "221755": {
+    "school_code": "221755",
+    "exam_code": "AJM04G221755",
+    "principal_name": "SHAILENDRA KUMAR PANDYA",
+    "principal_mobile": "9950985201",
+    "incharge_name": "KUSUM PAREEK",
+    "incharge_mobile": "9414312452",
+    "submitted_by": "SHAILENDRA KUMAR PANDYA",
+    "c9": {
+      "zero_enrolment": false,
+      "hindi": 75,
+      "english": 75,
+      "maths": 75,
+      "science": 80,
+      "sst": 75,
+      "sanskrit": 75,
+      "urdu": 0
+    },
+    "c10": {
+      "zero_enrolment": false,
+      "hindi": 90,
+      "english": 85,
+      "maths": 85,
+      "science": 95,
+      "sst": 85,
+      "sanskrit": 90,
+      "urdu": 0
+    },
+    "c11": {
+      "zero_enrolment": false,
+      "comp_hindi": 75,
+      "comp_english": 70,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 85
+        },
+        {
+          "key": "geography",
+          "name": "भूगोल (Geography)",
+          "pct": 85
+        },
+        {
+          "key": "economics",
+          "name": "अर्थशास्त्र (Economics)",
+          "pct": 85
+        }
+      ]
+    },
+    "c12": {
+      "zero_enrolment": false,
+      "comp_hindi": 90,
+      "comp_english": 90,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 90
+        },
+        {
+          "key": "geography",
+          "name": "भूगोल (Geography)",
+          "pct": 90
+        },
+        {
+          "key": "economics",
+          "name": "अर्थशास्त्र (Economics)",
+          "pct": 90
+        }
+      ]
+    },
+    "average_pct": 83.4,
+    "updated_at": "2026-10-07T03:36:44.249Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T03:36:44.254Z"
+  },
+  "221756": {
+    "school_code": "221756",
+    "exam_code": "AJM04G221756",
+    "principal_name": "OM PRAKASH VERMA",
+    "principal_mobile": "9001637473",
+    "incharge_name": "SHANKAR LAL SAINI",
+    "incharge_mobile": "8233686098",
+    "submitted_by": "OM PRAKASH VERMA",
+    "c9": {
+      "zero_enrolment": false,
+      "hindi": 80,
+      "english": 80,
+      "maths": 70,
+      "science": 75,
+      "sst": 85,
+      "sanskrit": 90,
+      "urdu": 0
+    },
+    "c10": {
+      "zero_enrolment": false,
+      "hindi": 85,
+      "english": 90,
+      "maths": 80,
+      "science": 90,
+      "sst": 80,
+      "sanskrit": 95,
+      "urdu": 0
+    },
+    "c11": {
+      "zero_enrolment": false,
+      "comp_hindi": 80,
+      "comp_english": 80,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 75
+        },
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 84
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 80
+        }
+      ]
+    },
+    "c12": {
+      "zero_enrolment": false,
+      "comp_hindi": 85,
+      "comp_english": 90,
+      "faculties": [
+        "arts"
       ],
       "electives": [
         {
@@ -93,36 +372,16 @@
           "pct": 90
         },
         {
-          "key": "geography",
-          "name": "भूगोल (Geography)",
-          "pct": 85
-        },
-        {
-          "key": "economics",
-          "name": "अर्थशास्त्र (Economics)",
-          "pct": 80
-        },
-        {
-          "key": "physics",
-          "name": "भौतिक विज्ञान (Physics)",
-          "pct": 100
-        },
-        {
-          "key": "chemistry",
-          "name": "रसायन विज्ञान (Chemistry)",
-          "pct": 85
-        },
-        {
-          "key": "biology",
-          "name": "जीव विज्ञान (Biology)",
-          "pct": 85
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 90
         }
       ]
     },
-    "average_pct": 84.5,
-    "updated_at": "2026-10-07T02:57:47.699Z",
+    "average_pct": 83.6,
+    "updated_at": "2026-10-07T05:34:11.515Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T02:57:47.699Z"
+    "submitted_at": "2026-10-07T05:34:11.515Z"
   },
   "221757": {
     "school_code": "221757",
@@ -351,8 +610,160 @@
       ]
     }
   },
-  "221769": {
+  "221761": {
+    "school_code": "221761",
+    "exam_code": "AJM04G221761",
+    "principal_name": "SUNITA SHARMA",
+    "principal_mobile": "9462905104",
+    "incharge_name": "Puran Singh",
+    "incharge_mobile": "8078654534",
+    "submitted_by": "SUNITA SHARMA",
     "c9": {
+      "zero_enrolment": false,
+      "hindi": 85,
+      "english": 80,
+      "maths": 85,
+      "science": 75,
+      "sst": 80,
+      "sanskrit": 85,
+      "urdu": 0
+    },
+    "c10": {
+      "zero_enrolment": false,
+      "hindi": 96,
+      "english": 90,
+      "maths": 93,
+      "science": 90,
+      "sst": 95,
+      "sanskrit": 85,
+      "urdu": 0
+    },
+    "c11": {
+      "zero_enrolment": false,
+      "comp_hindi": 85,
+      "comp_english": 80,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 85
+        },
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 84
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 75
+        }
+      ]
+    },
+    "c12": {
+      "zero_enrolment": false,
+      "comp_hindi": 94,
+      "comp_english": 90,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 92
+        },
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 90
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 87
+        }
+      ]
+    },
+    "average_pct": 86.4,
+    "updated_at": "2026-10-07T04:32:57.903Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T04:32:57.903Z"
+  },
+  "221767": {
+    "school_code": "221767",
+    "school_name": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+    "peeo_name": "PEEO KEROT",
+    "peeo_code": "221767",
+    "principal_name": "SOHANLAL SARAN",
+    "principal_mobile": "9929526324",
+    "submitted_by": "SOHANLAL SARAN",
+    "submitter_mobile": "9929526324",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T04:20:37.196Z",
+    "average_pct": 84,
+    "c9": {
+      "zero_enrolment": false,
+      "hindi": 75,
+      "english": 75,
+      "maths": 75,
+      "science": 75,
+      "sst": 75,
+      "sanskrit": 75,
+      "urdu": 0
+    },
+    "c10": {
+      "zero_enrolment": false,
+      "hindi": 95,
+      "english": 95,
+      "maths": 95,
+      "science": 95,
+      "sst": 95,
+      "sanskrit": 95,
+      "urdu": 0
+    },
+    "c11": {
+      "zero_enrolment": false,
+      "comp_hindi": 70,
+      "comp_english": 70,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "name": "अनिवार्य व ऐच्छिक",
+          "pct": 70
+        }
+      ]
+    },
+    "c12": {
+      "zero_enrolment": false,
+      "comp_hindi": 95,
+      "comp_english": 95,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "name": "अनिवार्य व ऐच्छिक",
+          "pct": 95
+        }
+      ]
+    }
+  },
+  "221769": {
+    "school_code": "221769",
+    "exam_code": "AJM04G221769",
+    "principal_name": "भंवर लाल जाट",
+    "principal_mobile": "9587293842",
+    "incharge_name": "VINITA NAMA",
+    "incharge_mobile": "7891806611",
+    "submitted_by": "भंवर लाल जाट",
+    "c9": {
+      "zero_enrolment": false,
       "hindi": 75,
       "english": 70,
       "maths": 68,
@@ -362,27 +773,216 @@
       "urdu": 0
     },
     "c10": {
-      "hindi": 78,
-      "english": 72,
-      "maths": 70,
-      "science": 75,
-      "sst": 76,
-      "sanskrit": 82,
+      "zero_enrolment": false,
+      "hindi": 98,
+      "english": 95,
+      "maths": 96,
+      "science": 97,
+      "sst": 100,
+      "sanskrit": 100,
       "urdu": 0
     },
     "c11": {
-      "comp_hindi": 0,
-      "comp_english": 0,
-      "electives": []
+      "zero_enrolment": false,
+      "comp_hindi": 80,
+      "comp_english": 75,
+      "faculties": [
+        "arts",
+        "science",
+        "agri"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 79
+        },
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 70
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 75
+        },
+        {
+          "key": "physics",
+          "name": "भौतिक विज्ञान (Physics)",
+          "pct": 81
+        },
+        {
+          "key": "chemistry",
+          "name": "रसायन विज्ञान (Chemistry)",
+          "pct": 82
+        },
+        {
+          "key": "maths",
+          "name": "गणित (Mathematics)",
+          "pct": 85
+        },
+        {
+          "key": "agri_sci",
+          "name": "कृषि विज्ञान (Agriculture Science)",
+          "pct": 81
+        },
+        {
+          "key": "agri_bio",
+          "name": "कृषि जीव विज्ञान (Agri Biology)",
+          "pct": 83
+        },
+        {
+          "key": "agri_chem",
+          "name": "कृषि रसायन (Agri Chemistry)",
+          "pct": 84
+        }
+      ]
     },
     "c12": {
-      "comp_hindi": 0,
-      "comp_english": 0,
-      "electives": []
+      "zero_enrolment": false,
+      "comp_hindi": 98,
+      "comp_english": 95,
+      "faculties": [
+        "arts",
+        "science",
+        "agri"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 100
+        },
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 90
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 99
+        },
+        {
+          "key": "physics",
+          "name": "भौतिक विज्ञान (Physics)",
+          "pct": 95
+        },
+        {
+          "key": "chemistry",
+          "name": "रसायन विज्ञान (Chemistry)",
+          "pct": 100
+        },
+        {
+          "key": "maths",
+          "name": "गणित (Mathematics)",
+          "pct": 100
+        },
+        {
+          "key": "agri_sci",
+          "name": "कृषि विज्ञान (Agriculture Science)",
+          "pct": 100
+        },
+        {
+          "key": "agri_bio",
+          "name": "कृषि जीव विज्ञान (Agri Biology)",
+          "pct": 100
+        },
+        {
+          "key": "agri_chem",
+          "name": "कृषि रसायन (Agri Chemistry)",
+          "pct": 100
+        }
+      ]
     },
-    "principal_name": "भंवर लाल जाट",
-    "principal_mobile": "9587293842",
-    "is_submitted": true
+    "average_pct": 87.6,
+    "updated_at": "2026-10-07T04:22:01.240Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T04:22:01.241Z"
+  },
+  "221771": {
+    "school_code": "221771",
+    "exam_code": "AJM04G221771",
+    "principal_name": "DEVENDRA KUMAR SANKHLA",
+    "principal_mobile": "8949599466",
+    "incharge_name": "MAMTA",
+    "incharge_mobile": "8742094807",
+    "submitted_by": "DEVENDRA KUMAR SANKHLA",
+    "c9": {
+      "zero_enrolment": false,
+      "hindi": 90,
+      "english": 85,
+      "maths": 85,
+      "science": 85,
+      "sst": 88,
+      "sanskrit": 90,
+      "urdu": 0
+    },
+    "c10": {
+      "zero_enrolment": false,
+      "hindi": 95,
+      "english": 95,
+      "maths": 90,
+      "science": 90,
+      "sst": 95,
+      "sanskrit": 95,
+      "urdu": 0
+    },
+    "c11": {
+      "zero_enrolment": false,
+      "comp_hindi": 90,
+      "comp_english": 85,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 85
+        },
+        {
+          "key": "geography",
+          "name": "भूगोल (Geography)",
+          "pct": 85
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 85
+        }
+      ]
+    },
+    "c12": {
+      "zero_enrolment": false,
+      "comp_hindi": 95,
+      "comp_english": 95,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 95
+        },
+        {
+          "key": "geography",
+          "name": "भूगोल (Geography)",
+          "pct": 95
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 95
+        }
+      ]
+    },
+    "average_pct": 90.4,
+    "updated_at": "2026-10-07T16:14:12.272Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T16:14:12.272Z"
   },
   "221774": {
     "school_code": "221774",
@@ -467,6 +1067,563 @@
     "is_submitted": true,
     "submitted_at": "2026-10-07T02:24:14.965Z"
   },
+  "221775": {
+    "school_code": "221775",
+    "exam_code": "AJM04G221775",
+    "principal_name": "KUNJ BIHARI SHARMA",
+    "principal_mobile": "9887753471",
+    "incharge_name": "BALMUKUND JOSHI",
+    "incharge_mobile": "9414283130",
+    "submitted_by": "KUNJ BIHARI SHARMA",
+    "c9": {
+      "zero_enrolment": false,
+      "hindi": 75,
+      "english": 75,
+      "maths": 70,
+      "science": 67,
+      "sst": 68,
+      "sanskrit": 90,
+      "urdu": 0
+    },
+    "c10": {
+      "zero_enrolment": false,
+      "hindi": 95,
+      "english": 80,
+      "maths": 70,
+      "science": 80,
+      "sst": 85,
+      "sanskrit": 95,
+      "urdu": 0
+    },
+    "c11": {
+      "zero_enrolment": false,
+      "comp_hindi": 80,
+      "comp_english": 70,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 83
+        },
+        {
+          "key": "geography",
+          "name": "भूगोल (Geography)",
+          "pct": 85
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 75
+        }
+      ]
+    },
+    "c12": {
+      "zero_enrolment": false,
+      "comp_hindi": 90,
+      "comp_english": 85,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 88
+        },
+        {
+          "key": "geography",
+          "name": "भूगोल (Geography)",
+          "pct": 92
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 90
+        }
+      ]
+    },
+    "average_pct": 81.3,
+    "updated_at": "2026-10-07T03:16:22.776Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T03:16:22.776Z"
+  },
+  "221776": {
+    "school_code": "221776",
+    "exam_code": "AJM04G221776",
+    "principal_name": "अलका माथुर (प्रभारी संस्था प्रधान)",
+    "principal_mobile": "9468751626",
+    "incharge_name": "Himanshu Gurjar",
+    "incharge_mobile": "7976582960",
+    "submitted_by": "अलका माथुर (प्रभारी संस्था प्रधान)",
+    "c9": {
+      "zero_enrolment": false,
+      "hindi": 84,
+      "english": 80,
+      "maths": 75,
+      "science": 80,
+      "sst": 85,
+      "sanskrit": 82,
+      "urdu": 0
+    },
+    "c10": {
+      "zero_enrolment": true,
+      "hindi": 0,
+      "english": 0,
+      "maths": 0,
+      "science": 0,
+      "sst": 0,
+      "sanskrit": 0,
+      "urdu": 0
+    },
+    "c11": {
+      "zero_enrolment": true,
+      "comp_hindi": 0,
+      "comp_english": 0,
+      "faculties": [],
+      "electives": []
+    },
+    "c12": {
+      "zero_enrolment": true,
+      "comp_hindi": 0,
+      "comp_english": 0,
+      "faculties": [],
+      "electives": []
+    },
+    "average_pct": 81,
+    "updated_at": "2026-10-07T05:33:20.515Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T05:33:20.515Z"
+  },
+  "221777": {
+    "school_code": "221777",
+    "exam_code": "AJM04G221777",
+    "principal_name": "JYOTI PRAKASH SHARMA",
+    "principal_mobile": "9460690289",
+    "incharge_name": "Sheela chouhan",
+    "incharge_mobile": "8619153192",
+    "submitted_by": "JYOTI PRAKASH SHARMA",
+    "c9": {
+      "zero_enrolment": false,
+      "hindi": 75,
+      "english": 70,
+      "maths": 68,
+      "science": 75,
+      "sst": 75,
+      "sanskrit": 75,
+      "urdu": 0
+    },
+    "c10": {
+      "zero_enrolment": false,
+      "hindi": 90,
+      "english": 80,
+      "maths": 85,
+      "science": 85,
+      "sst": 90,
+      "sanskrit": 90,
+      "urdu": 0
+    },
+    "c11": {
+      "zero_enrolment": false,
+      "comp_hindi": 90,
+      "comp_english": 70,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 75
+        },
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 75
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 80
+        }
+      ]
+    },
+    "c12": {
+      "zero_enrolment": false,
+      "comp_hindi": 95,
+      "comp_english": 80,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 95
+        },
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 90
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 90
+        }
+      ]
+    },
+    "average_pct": 81.7,
+    "updated_at": "2026-10-07T04:02:21.979Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T04:02:21.979Z"
+  },
+  "221778": {
+    "school_code": "221778",
+    "exam_code": "AJM04G221778",
+    "principal_name": "sanjeeda parveen",
+    "principal_mobile": "9468855086",
+    "incharge_name": "महेश कुमार डाबी",
+    "incharge_mobile": "7737343733",
+    "submitted_by": "sanjeeda parveen",
+    "c9": {
+      "zero_enrolment": false,
+      "hindi": 90,
+      "english": 75,
+      "maths": 90,
+      "science": 90,
+      "sst": 75,
+      "sanskrit": 90,
+      "urdu": 0
+    },
+    "c10": {
+      "zero_enrolment": false,
+      "hindi": 90,
+      "english": 90,
+      "maths": 90,
+      "science": 85,
+      "sst": 90,
+      "sanskrit": 90,
+      "urdu": 0
+    },
+    "c11": {
+      "zero_enrolment": false,
+      "comp_hindi": 90,
+      "comp_english": 80,
+      "faculties": [
+        "arts",
+        "science"
+      ],
+      "electives": [
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 80
+        },
+        {
+          "key": "drawing",
+          "name": "चित्रकला (Drawing / Painting)",
+          "pct": 75
+        },
+        {
+          "key": "physics",
+          "name": "भौतिक विज्ञान (Physics)",
+          "pct": 80
+        },
+        {
+          "key": "chemistry",
+          "name": "रसायन विज्ञान (Chemistry)",
+          "pct": 80
+        },
+        {
+          "key": "biology",
+          "name": "जीव विज्ञान (Biology)",
+          "pct": 80
+        },
+        {
+          "key": "maths",
+          "name": "गणित (Mathematics)",
+          "pct": 80
+        },
+        {
+          "key": "comp_sci",
+          "name": "कम्प्यूटर विज्ञान (Computer Science)",
+          "pct": 75
+        }
+      ]
+    },
+    "c12": {
+      "zero_enrolment": false,
+      "comp_hindi": 90,
+      "comp_english": 90,
+      "faculties": [
+        "arts",
+        "science"
+      ],
+      "electives": [
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 90
+        },
+        {
+          "key": "drawing",
+          "name": "चित्रकला (Drawing / Painting)",
+          "pct": 90
+        },
+        {
+          "key": "physics",
+          "name": "भौतिक विज्ञान (Physics)",
+          "pct": 90
+        },
+        {
+          "key": "chemistry",
+          "name": "रसायन विज्ञान (Chemistry)",
+          "pct": 90
+        },
+        {
+          "key": "biology",
+          "name": "जीव विज्ञान (Biology)",
+          "pct": 90
+        },
+        {
+          "key": "maths",
+          "name": "गणित (Mathematics)",
+          "pct": 85
+        },
+        {
+          "key": "comp_sci",
+          "name": "कम्प्यूटर विज्ञान (Computer Science)",
+          "pct": 90
+        }
+      ]
+    },
+    "average_pct": 85.7,
+    "updated_at": "2026-10-07T04:08:27.079Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T04:08:27.079Z"
+  },
+  "221780": {
+    "school_code": "221780",
+    "exam_code": "AJM04G221780",
+    "principal_name": "AJAY KUMAR DHABAI",
+    "principal_mobile": "9549240545",
+    "incharge_name": "Chandrawati Tejwani",
+    "incharge_mobile": "9413694262",
+    "submitted_by": "AJAY KUMAR DHABAI",
+    "c9": {
+      "zero_enrolment": false,
+      "hindi": 80,
+      "english": 100,
+      "maths": 90,
+      "science": 85,
+      "sst": 100,
+      "sanskrit": 90,
+      "urdu": 100
+    },
+    "c10": {
+      "zero_enrolment": false,
+      "hindi": 100,
+      "english": 100,
+      "maths": 100,
+      "science": 100,
+      "sst": 100,
+      "sanskrit": 100,
+      "urdu": 100
+    },
+    "c11": {
+      "zero_enrolment": false,
+      "comp_hindi": 85,
+      "comp_english": 95,
+      "faculties": [
+        "arts",
+        "science",
+        "commerce",
+        "agri"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 95
+        },
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 90
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 90
+        },
+        {
+          "key": "sanskrit_lit",
+          "name": "संस्कृत साहित्य (Sanskrit Lit)",
+          "pct": 90
+        },
+        {
+          "key": "urdu_lit",
+          "name": "उर्दू साहित्य (Urdu Lit)",
+          "pct": 100
+        },
+        {
+          "key": "drawing",
+          "name": "चित्रकला (Drawing / Painting)",
+          "pct": 90
+        },
+        {
+          "key": "physics",
+          "name": "भौतिक विज्ञान (Physics)",
+          "pct": 80
+        },
+        {
+          "key": "chemistry",
+          "name": "रसायन विज्ञान (Chemistry)",
+          "pct": 90
+        },
+        {
+          "key": "biology",
+          "name": "जीव विज्ञान (Biology)",
+          "pct": 80
+        },
+        {
+          "key": "maths",
+          "name": "गणित (Mathematics)",
+          "pct": 70
+        },
+        {
+          "key": "comp_sci",
+          "name": "कम्प्यूटर विज्ञान (Computer Science)",
+          "pct": 70
+        },
+        {
+          "key": "accountancy",
+          "name": "लेखाशास्त्र (Accountancy)",
+          "pct": 70
+        },
+        {
+          "key": "business_studies",
+          "name": "व्यवसाय अध्ययन (Business Studies)",
+          "pct": 70
+        },
+        {
+          "key": "agri_sci",
+          "name": "कृषि विज्ञान (Agriculture Science)",
+          "pct": 80
+        },
+        {
+          "key": "agri_bio",
+          "name": "कृषि जीव विज्ञान (Agri Biology)",
+          "pct": 74
+        },
+        {
+          "key": "agri_chem",
+          "name": "कृषि रसायन (Agri Chemistry)",
+          "pct": 80
+        }
+      ]
+    },
+    "c12": {
+      "zero_enrolment": false,
+      "comp_hindi": 90,
+      "comp_english": 100,
+      "faculties": [
+        "arts",
+        "science",
+        "commerce",
+        "agri"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 95
+        },
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 100
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 95
+        },
+        {
+          "key": "sanskrit_lit",
+          "name": "संस्कृत साहित्य (Sanskrit Lit)",
+          "pct": 95
+        },
+        {
+          "key": "urdu_lit",
+          "name": "उर्दू साहित्य (Urdu Lit)",
+          "pct": 100
+        },
+        {
+          "key": "drawing",
+          "name": "चित्रकला (Drawing / Painting)",
+          "pct": 100
+        },
+        {
+          "key": "physics",
+          "name": "भौतिक विज्ञान (Physics)",
+          "pct": 95
+        },
+        {
+          "key": "chemistry",
+          "name": "रसायन विज्ञान (Chemistry)",
+          "pct": 85
+        },
+        {
+          "key": "biology",
+          "name": "जीव विज्ञान (Biology)",
+          "pct": 100
+        },
+        {
+          "key": "maths",
+          "name": "गणित (Mathematics)",
+          "pct": 95
+        },
+        {
+          "key": "accountancy",
+          "name": "लेखाशास्त्र (Accountancy)",
+          "pct": 70
+        },
+        {
+          "key": "business_studies",
+          "name": "व्यवसाय अध्ययन (Business Studies)",
+          "pct": 85
+        },
+        {
+          "key": "economics_comm",
+          "name": "अर्थशास्त्र (Economics - Commerce)",
+          "pct": 85
+        },
+        {
+          "key": "agri_sci",
+          "name": "कृषि विज्ञान (Agriculture Science)",
+          "pct": 100
+        },
+        {
+          "key": "agri_bio",
+          "name": "कृषि जीव विज्ञान (Agri Biology)",
+          "pct": 100
+        },
+        {
+          "key": "agri_chem",
+          "name": "कृषि रसायन (Agri Chemistry)",
+          "pct": 95
+        }
+      ]
+    },
+    "average_pct": 90.6,
+    "updated_at": "2026-10-07T03:25:20.968Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T03:25:20.969Z"
+  },
   "221781": {
     "school_code": "221781",
     "school_name": "रा.उ.मा.वि. सिंगावल",
@@ -527,6 +1684,159 @@
         }
       ]
     }
+  },
+  "401778": {
+    "school_code": "401778",
+    "exam_code": "AJM04G401778",
+    "principal_name": "प्रभारी प्रधानाचार्य  Gourav Kumar (रा.उ.मा.वि. निमेड़ा)",
+    "principal_mobile": "9461249418",
+    "incharge_name": "Dinesh sad",
+    "incharge_mobile": "9928956796",
+    "submitted_by": "प्रभारी प्रधानाचार्य  Gourav Kumar (रा.उ.मा.वि. निमेड़ा)",
+    "c9": {
+      "zero_enrolment": false,
+      "hindi": 70,
+      "english": 75,
+      "maths": 60,
+      "science": 60,
+      "sst": 80,
+      "sanskrit": 70,
+      "urdu": 0
+    },
+    "c10": {
+      "zero_enrolment": false,
+      "hindi": 80,
+      "english": 80,
+      "maths": 90,
+      "science": 80,
+      "sst": 87,
+      "sanskrit": 50,
+      "urdu": 0
+    },
+    "c11": {
+      "zero_enrolment": false,
+      "comp_hindi": 75,
+      "comp_english": 60,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 60
+        },
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 92
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 78
+        },
+        {
+          "key": "geography",
+          "name": "भूगोल (Geography)",
+          "pct": 0
+        }
+      ]
+    },
+    "c12": {
+      "zero_enrolment": false,
+      "comp_hindi": 70,
+      "comp_english": 70,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 60
+        },
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 95
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 95
+        }
+      ]
+    },
+    "average_pct": 71.2,
+    "updated_at": "2026-10-07T04:13:10.794Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T04:13:10.794Z"
+  },
+  "485030": {
+    "school_code": "485030",
+    "exam_code": "AJM04G485030",
+    "principal_name": "श्री भूपेंद्र सिंह चारण (वरिष्ठ अध्यापक / संस्था प्रधान)",
+    "principal_mobile": "9929527319",
+    "incharge_name": "DASHRATH BAIRWA",
+    "incharge_mobile": "9116982528",
+    "submitted_by": "श्री भूपेंद्र सिंह चारण (वरिष्ठ अध्यापक / संस्था प्रधान)",
+    "c9": {
+      "zero_enrolment": false,
+      "hindi": 75,
+      "english": 78,
+      "maths": 75,
+      "science": 75,
+      "sst": 80,
+      "sanskrit": 75,
+      "urdu": 0
+    },
+    "c10": {
+      "zero_enrolment": false,
+      "hindi": 80,
+      "english": 80,
+      "maths": 75,
+      "science": 80,
+      "sst": 80,
+      "sanskrit": 80,
+      "urdu": 0
+    },
+    "c11": {
+      "zero_enrolment": false,
+      "comp_hindi": 75,
+      "comp_english": 80,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 75
+        },
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 75
+        },
+        {
+          "key": "geography",
+          "name": "भूगोल (Geography)",
+          "pct": 70
+        }
+      ]
+    },
+    "c12": {
+      "zero_enrolment": true,
+      "comp_hindi": 0,
+      "comp_english": 0,
+      "faculties": [],
+      "electives": []
+    },
+    "average_pct": 76.9,
+    "updated_at": "2026-10-07T04:30:21.157Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T04:30:21.157Z"
   },
   "488941": {
     "school_code": "488941",
@@ -610,5 +1920,232 @@
     "updated_at": "2026-10-07T01:53:32.360Z",
     "is_submitted": true,
     "submitted_at": "2026-10-07T01:53:32.360Z"
+  },
+  "488946": {
+    "school_code": "488946",
+    "exam_code": "AJM04G488946",
+    "principal_name": "RITU SHARMA",
+    "principal_mobile": "9829790044",
+    "incharge_name": "Mukesh Chandra Gurjar",
+    "incharge_mobile": "9413457331",
+    "submitted_by": "RITU SHARMA",
+    "c9": {
+      "zero_enrolment": false,
+      "hindi": 95,
+      "english": 90,
+      "maths": 75,
+      "science": 75,
+      "sst": 80,
+      "sanskrit": 90,
+      "urdu": 0
+    },
+    "c10": {
+      "zero_enrolment": false,
+      "hindi": 95,
+      "english": 90,
+      "maths": 75,
+      "science": 75,
+      "sst": 95,
+      "sanskrit": 90,
+      "urdu": 0
+    },
+    "c11": {
+      "zero_enrolment": false,
+      "comp_hindi": 95,
+      "comp_english": 90,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 80
+        },
+        {
+          "key": "geography",
+          "name": "भूगोल (Geography)",
+          "pct": 90
+        },
+        {
+          "key": "sanskrit_lit",
+          "name": "संस्कृत साहित्य (Sanskrit Lit)",
+          "pct": 90
+        }
+      ]
+    },
+    "c12": {
+      "zero_enrolment": false,
+      "comp_hindi": 95,
+      "comp_english": 90,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 95
+        },
+        {
+          "key": "geography",
+          "name": "भूगोल (Geography)",
+          "pct": 95
+        },
+        {
+          "key": "sanskrit_lit",
+          "name": "संस्कृत साहित्य (Sanskrit Lit)",
+          "pct": 90
+        }
+      ]
+    },
+    "average_pct": 88,
+    "updated_at": "2026-10-07T03:39:33.537Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T03:39:33.541Z"
+  },
+  "494626": {
+    "school_code": "494626",
+    "exam_code": "AJM04G494626",
+    "principal_name": "HARI SHANKAR CHOPDAR",
+    "principal_mobile": "9602676785",
+    "incharge_name": "Ramji lal",
+    "incharge_mobile": "9460381436",
+    "submitted_by": "HARI SHANKAR CHOPDAR",
+    "c9": {
+      "zero_enrolment": false,
+      "hindi": 84,
+      "english": 85,
+      "maths": 100,
+      "science": 88,
+      "sst": 90,
+      "sanskrit": 89,
+      "urdu": 0
+    },
+    "c10": {
+      "zero_enrolment": false,
+      "hindi": 92,
+      "english": 95,
+      "maths": 100,
+      "science": 100,
+      "sst": 95,
+      "sanskrit": 95,
+      "urdu": 0
+    },
+    "c11": {
+      "zero_enrolment": false,
+      "comp_hindi": 85,
+      "comp_english": 82,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "geography",
+          "name": "भूगोल (Geography)",
+          "pct": 90
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 85
+        },
+        {
+          "key": "home_sci",
+          "name": "गृह विज्ञान (Home Science)",
+          "pct": 90
+        }
+      ]
+    },
+    "c12": {
+      "zero_enrolment": false,
+      "comp_hindi": 95,
+      "comp_english": 90,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "geography",
+          "name": "भूगोल (Geography)",
+          "pct": 92
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 95
+        },
+        {
+          "key": "home_sci",
+          "name": "गृह विज्ञान (Home Science)",
+          "pct": 95
+        }
+      ]
+    },
+    "average_pct": 91.5,
+    "updated_at": "2026-10-07T04:31:27.011Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T04:31:27.011Z"
+  },
+  "506830": {
+    "school_code": "506830",
+    "school_name": "रा.बा.उ.मा.वि. बड़ली",
+    "peeo_name": "PEEO BARLI",
+    "peeo_code": "221755",
+    "principal_name": "PUKHRAJ KHATI",
+    "principal_mobile": "9667157047",
+    "submitted_by": "PUKHRAJ KHATI",
+    "submitter_mobile": "9667157047",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T05:03:47.418Z",
+    "average_pct": 83,
+    "c9": {
+      "zero_enrolment": false,
+      "hindi": 70,
+      "english": 70,
+      "maths": 70,
+      "science": 70,
+      "sst": 70,
+      "sanskrit": 70,
+      "urdu": 0
+    },
+    "c10": {
+      "zero_enrolment": false,
+      "hindi": 90,
+      "english": 90,
+      "maths": 90,
+      "science": 90,
+      "sst": 90,
+      "sanskrit": 90,
+      "urdu": 0
+    },
+    "c11": {
+      "zero_enrolment": false,
+      "comp_hindi": 70,
+      "comp_english": 70,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "name": "अनिवार्य व ऐच्छिक",
+          "pct": 70
+        }
+      ]
+    },
+    "c12": {
+      "zero_enrolment": false,
+      "comp_hindi": 100,
+      "comp_english": 100,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "name": "अनिवार्य व ऐच्छिक",
+          "pct": 100
+        }
+      ]
+    }
   }
 }

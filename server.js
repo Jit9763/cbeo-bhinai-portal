@@ -45,6 +45,11 @@ try {
       data TEXT NOT NULL,
       updated_at TEXT NOT NULL
     );
+    CREATE TABLE IF NOT EXISTS saman_syllabus_submissions (
+      school_code TEXT PRIMARY KEY,
+      data TEXT NOT NULL,
+      updated_at TEXT NOT NULL
+    );
     CREATE TABLE IF NOT EXISTS auth_users (
       user_id TEXT PRIMARY KEY,
       password TEXT NOT NULL,
@@ -62,10 +67,20 @@ try {
 
   // Auto-seed default settings into SQLite if empty
   try {
+    const tabFile6 = path.join(ROOT_DIR, 'tab_visibility_6level.json');
+    if (fs.existsSync(tabFile6)) {
+      const data = fs.readFileSync(tabFile6, 'utf8');
+      db.prepare('INSERT OR IGNORE INTO settings (key, value, updated_at) VALUES (?, ?, ?)').run('__TAB_VISIBILITY_6LEVEL__', data, new Date().toISOString());
+    }
     const tabFile = path.join(ROOT_DIR, 'tab_visibility_5level.json');
     if (fs.existsSync(tabFile)) {
       const data = fs.readFileSync(tabFile, 'utf8');
       db.prepare('INSERT OR IGNORE INTO settings (key, value, updated_at) VALUES (?, ?, ?)').run('__TAB_VISIBILITY_5LEVEL__', data, new Date().toISOString());
+    }
+    const permsFile6 = path.join(ROOT_DIR, 'edit_permissions_6level.json');
+    if (fs.existsSync(permsFile6)) {
+      const data = fs.readFileSync(permsFile6, 'utf8');
+      db.prepare('INSERT OR IGNORE INTO settings (key, value, updated_at) VALUES (?, ?, ?)').run('__EDIT_PERMISSIONS_6LEVEL__', data, new Date().toISOString());
     }
     const permsFile = path.join(ROOT_DIR, 'staff_edit_permissions.json');
     if (fs.existsSync(permsFile)) {
@@ -77,12 +92,25 @@ try {
       const data = fs.readFileSync(vmFile, 'utf8');
       db.prepare('INSERT OR IGNORE INTO settings (key, value, updated_at) VALUES (?, ?, ?)').run('__PORTAL_SETTINGS__', data, new Date().toISOString());
     }
+    const mismatchFile = path.join(ROOT_DIR, 'saman_mismatch_settings.json');
+    if (fs.existsSync(mismatchFile)) {
+      const data = fs.readFileSync(mismatchFile, 'utf8');
+      db.prepare('INSERT OR IGNORE INTO settings (key, value, updated_at) VALUES (?, ?, ?)').run('__SAMAN_MISMATCH_SETTINGS__', data, new Date().toISOString());
+    }
     const subsFile = path.join(ROOT_DIR, 'saman_pariksha_submissions.json');
     if (fs.existsSync(subsFile)) {
       const subs = JSON.parse(fs.readFileSync(subsFile, 'utf8'));
       const insStmt = db.prepare('INSERT OR IGNORE INTO saman_submissions (school_code, data, updated_at) VALUES (?, ?, ?)');
       Object.entries(subs).forEach(([code, payload]) => {
         insStmt.run(String(code), JSON.stringify(payload), new Date().toISOString());
+      });
+    }
+    const sylFile = path.join(ROOT_DIR, 'saman_syllabus_submissions.json');
+    if (fs.existsSync(sylFile)) {
+      const sylSubs = JSON.parse(fs.readFileSync(sylFile, 'utf8'));
+      const insSylStmt = db.prepare('INSERT OR IGNORE INTO saman_syllabus_submissions (school_code, data, updated_at) VALUES (?, ?, ?)');
+      Object.entries(sylSubs).forEach(([code, payload]) => {
+        insSylStmt.run(String(code), JSON.stringify(payload), new Date().toISOString());
       });
     }
     console.log('[CBEO-NODE] ✓ Initial SQLite database seeded from master records.');
@@ -210,20 +238,129 @@ const DB = {
       cur[String(schoolCode)] = data;
       fs.writeFileSync(subFile, JSON.stringify(cur, null, 2), 'utf8');
     } catch(e) {}
+  },
+
+  getAllSyllabusSubmissions() {
+    const result = {};
+    if (sqliteAvailable && db) {
+      try {
+        const rows = db.prepare('SELECT school_code, data FROM saman_syllabus_submissions').all();
+        rows.forEach(r => {
+          try { result[r.school_code] = JSON.parse(r.data); } catch(e) {}
+        });
+      } catch (err) {
+        console.warn('DB getAllSyllabusSubmissions error:', err);
+      }
+    }
+    // Merge from JSON file
+    const sylFile = path.join(ROOT_DIR, 'saman_syllabus_submissions.json');
+    if (fs.existsSync(sylFile)) {
+      try {
+        const fileSubs = JSON.parse(fs.readFileSync(sylFile, 'utf8'));
+        Object.assign(result, fileSubs);
+      } catch(e) {}
+    }
+    return result;
+  },
+
+  saveSyllabusSubmission(schoolCode, data) {
+    const jsonStr = JSON.stringify(data);
+    const now = new Date().toISOString();
+    if (sqliteAvailable && db) {
+      try {
+        const stmt = db.prepare('INSERT INTO saman_syllabus_submissions (school_code, data, updated_at) VALUES (?, ?, ?) ON CONFLICT(school_code) DO UPDATE SET data = excluded.data, updated_at = excluded.updated_at');
+        stmt.run(String(schoolCode), jsonStr, now);
+      } catch (err) {
+        console.warn('DB saveSyllabusSubmission error:', err);
+      }
+    }
+    // Update local JSON file
+    const sylFile = path.join(ROOT_DIR, 'saman_syllabus_submissions.json');
+    try {
+      let cur = {};
+      if (fs.existsSync(sylFile)) {
+        cur = JSON.parse(fs.readFileSync(sylFile, 'utf8'));
+      }
+      cur[String(schoolCode)] = data;
+      fs.writeFileSync(sylFile, JSON.stringify(cur, null, 2), 'utf8');
+
+      // Also sync to master_cbeo_data.json
+      const masterFile = path.join(ROOT_DIR, 'master_cbeo_data.json');
+      if (fs.existsSync(masterFile)) {
+        const mData = JSON.parse(fs.readFileSync(masterFile, 'utf8'));
+        mData.saman_syllabus_submissions = cur;
+        fs.writeFileSync(masterFile, JSON.stringify(mData, null, 2), 'utf8');
+        fs.writeFileSync(path.join(ROOT_DIR, 'master_cbeo_data.js'), 'const MASTER_CBEO_DATA = ' + JSON.stringify(mData, null, 2) + ';\n', 'utf8');
+      }
+    } catch(e) {}
   }
 };
 
 // Asynchronously forward to Google Apps Script Web App without blocking local response
 function forwardToGoogleSheet(payload) {
   if (!GAS_URL) return;
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 8000);
   fetch(GAS_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  }).catch(err => {
-    console.warn('[CBEO-NODE] Google Sheet background sync note (offline/delayed):', err.message);
-  });
+    body: JSON.stringify(payload),
+    signal: controller.signal
+  }).then(() => clearTimeout(timeoutId))
+    .catch(err => {
+      clearTimeout(timeoutId);
+      console.warn('[CBEO-NODE] Google Sheet background sync note (offline/delayed):', err.message);
+    });
 }
+
+// Background Cloud Sync Engine (Periodically synchronizes from Google Apps Script)
+let isSyncingCloud = false;
+async function syncFromGoogleAppsScript() {
+  if (isSyncingCloud) return;
+  isSyncingCloud = true;
+  let newlySyncedCount = 0;
+  try {
+    const url = `${GAS_URL}?action=getDemandSubmissions&demand_id=DEMAND_SAMAN_SYLLABUS_2026&_t=${Date.now()}`;
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 12000);
+    const resp = await fetch(url, { signal: controller.signal });
+    clearTimeout(timeoutId);
+    if (resp.ok) {
+      const data = await resp.json();
+      if (data && data.success && data.submissions) {
+        const existing = DB.getAllSyllabusSubmissions();
+        Object.keys(data.submissions).forEach(code => {
+          let s = data.submissions[code];
+          if (typeof s === 'string') {
+            try { s = JSON.parse(s); } catch(e) {}
+          }
+          if (s && s.data_json) {
+            try {
+              const dj = typeof s.data_json === 'string' ? JSON.parse(s.data_json) : s.data_json;
+              s = Object.assign({}, s, dj);
+            } catch(e) {}
+          }
+          if (s) {
+            s.is_submitted = true;
+            existing[code] = Object.assign({}, existing[code] || {}, s);
+            DB.saveSyllabusSubmission(code, existing[code]);
+            newlySyncedCount++;
+          }
+        });
+        console.log(`[CBEO-NODE] ✓ Cloud Sync: ${Object.keys(existing).length} syllabus submissions active in SQLite.`);
+      }
+    }
+  } catch (err) {
+    // Cloud timeout or offline note
+  } finally {
+    isSyncingCloud = false;
+  }
+  return newlySyncedCount;
+}
+
+// Auto-sync every 20 seconds, plus initial sync after startup
+setInterval(syncFromGoogleAppsScript, 20000);
+setTimeout(syncFromGoogleAppsScript, 1000);
 
 // -------------------------------------------------------------------------
 // 2. MIME Types & Static File Handler
@@ -500,9 +637,29 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (pathname === '/api/sync_cloud_now') {
+    syncFromGoogleAppsScript().then(synced => {
+      const allSyl = DB.getAllSyllabusSubmissions();
+      sendJSON(res, 200, {
+        success: true,
+        message: 'Google Sheet से लाइव डेटा सफलतापूर्वक सिंक हुआ!',
+        count: Object.keys(allSyl).length,
+        submissions: allSyl
+      });
+    }).catch(err => {
+      sendJSON(res, 200, {
+        success: false,
+        message: 'Cloud sync note: ' + err.message,
+        count: Object.keys(DB.getAllSyllabusSubmissions()).length,
+        submissions: DB.getAllSyllabusSubmissions()
+      });
+    });
+    return;
+  }
+
   if (pathname === '/api/get_saman_syllabus') {
-    const subs = DB.getSetting('__SAMAN_SYLLABUS_SUBMISSIONS__') || {};
-    sendJSON(res, 200, { success: true, submissions: subs });
+    const subs = DB.getAllSyllabusSubmissions();
+    sendJSON(res, 200, { success: true, count: Object.keys(subs).length, submissions: subs });
     return;
   }
 
@@ -510,32 +667,38 @@ const server = http.createServer((req, res) => {
     readBody((data, err) => {
       if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
       if (data.clear) {
+        if (sqliteAvailable && db) {
+          try { db.exec('DELETE FROM saman_syllabus_submissions'); } catch(e) {}
+        }
         DB.setSetting('__SAMAN_SYLLABUS_SUBMISSIONS__', {});
         return sendJSON(res, 200, { success: true, message: 'समान परीक्षा पाठ्यक्रम पूर्णता डेटा रिक्त (Clean) कर दिया गया!' });
       }
-      const subs = DB.getSetting('__SAMAN_SYLLABUS_SUBMISSIONS__') || {};
-      const schoolCode = data.school_code || data.shala_darpan_code;
+      const schoolCode = String(data.school_code || data.shala_darpan_code || '').trim();
+      const payload = data.data || data.submission || data;
+      payload.is_submitted = true;
       if (schoolCode) {
-        const payload = data.data || data.submission || data;
-        payload.is_submitted = true;
-        subs[schoolCode] = payload;
+        DB.saveSyllabusSubmission(schoolCode, payload);
       } else if (data.submissions) {
-        Object.assign(subs, data.submissions);
+        Object.entries(data.submissions).forEach(([sc, p]) => {
+          DB.saveSyllabusSubmission(sc, p);
+        });
       }
-      DB.setSetting('__SAMAN_SYLLABUS_SUBMISSIONS__', subs);
 
-      // Also update master_cbeo_data.json & master_cbeo_data.js
-      try {
-        const masterFile = path.join(ROOT_DIR, 'master_cbeo_data.json');
-        if (fs.existsSync(masterFile)) {
-          const mData = JSON.parse(fs.readFileSync(masterFile, 'utf8'));
-          mData.saman_syllabus_submissions = subs;
-          fs.writeFileSync(masterFile, JSON.stringify(mData, null, 2), 'utf8');
-          fs.writeFileSync(path.join(ROOT_DIR, 'master_cbeo_data.js'), 'const MASTER_CBEO_DATA = ' + JSON.stringify(mData, null, 2) + ';\n', 'utf8');
-        }
-      } catch (me) {}
+      // Asynchronously forward to Google Sheet without blocking local response
+      forwardToGoogleSheet({
+        action: 'saveDemandSubmission',
+        demand_id: 'DEMAND_SAMAN_SYLLABUS_2026',
+        school_code: schoolCode,
+        school_name: payload.school_name || '',
+        peeo_name: payload.peeo_name || '',
+        peeo_code: payload.peeo_code || '',
+        submitted_by: payload.submitted_by || payload.principal_name || 'संस्था प्रधान',
+        submitter_mobile: payload.submitter_mobile || payload.principal_mobile || '',
+        data_json: JSON.stringify(payload)
+      });
 
-      sendJSON(res, 200, { success: true, message: 'समान परीक्षा पाठ्यक्रम पूर्णता डेटा सुरक्षित हो गया!' });
+      const updatedAll = DB.getAllSyllabusSubmissions();
+      sendJSON(res, 200, { success: true, count: Object.keys(updatedAll).length, message: 'समान परीक्षा पाठ्यक्रम पूर्णता डेटा सुरक्षित हो गया!' });
     });
     return;
   }

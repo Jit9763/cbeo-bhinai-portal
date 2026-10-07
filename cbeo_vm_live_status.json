@@ -1,39 +1,33 @@
 {
-  "generated_at": "07-10-2026 08:34 AM",
+  "generated_at": "07-10-2026 11:18 AM",
   "vm_status": "ONLINE_ACTIVE",
   "district": "AJMER (अजमेर)",
   "block": "BHINAI (भिनाय)",
   "active_focus_report": "49_syllabus",
   "saman_syllabus_49": {
     "total_govt_schools": 49,
-    "submitted_count": 8,
-    "pending_count": 41,
-    "completion_percentage": 16.3,
-    "block_average_syllabus_pct": 83,
+    "submitted_count": 24,
+    "pending_count": 25,
+    "completion_percentage": 49.0,
+    "block_average_syllabus_pct": 85,
     "peeo_pending_map": {
       "PEEO BARGAON": 1,
-      "PEEO BARLI": 2,
-      "PEEO BANDANWARA": 2,
-      "PEEO BHINAY": 2,
+      "PEEO BANDANWARA": 1,
       "PEEO BOOBKIYA": 2,
-      "PEEO CHHACHHUNDRA": 2,
-      "PEEO CHAPANERI": 1,
-      "PEEO DEOLIYA KALAN": 1,
+      "PEEO CHHACHHUNDRA": 1,
       "PEEO DEVPURA": 1,
       "PEEO DHANTOL": 1,
       "PEEO EKALSEENGA": 2,
-      "PEEO GURHA KHURD": 2,
-      "PEEO KANAI KALAN": 2,
+      "PEEO GURHA KHURD": 1,
+      "PEEO KANAI KALAN": 1,
       "PEEO KARATI": 2,
-      "PEEO KEROT": 2,
-      "PEEO KUMHARIYA": 1,
-      "PEEO LAMGARA": 2,
+      "PEEO KEROT": 1,
+      "PEEO LAMGARA": 1,
       "PEEO NAGOLA": 2,
-      "PEEO NANDSI": 2,
+      "PEEO NANDSI": 1,
       "PEEO PADANGA": 1,
       "PEEO PADALIYA": 1,
       "PEEO RAMMALIA": 3,
-      "PEEO RATAKOT": 2,
       "PEEO SOBRI": 2
     },
     "pending_schools": [
@@ -45,46 +39,11 @@
         "mobile": "9001450275"
       },
       {
-        "code": "506830",
-        "name": "रा.बा.उ.मा.वि. बड़ली",
-        "peeo": "PEEO BARLI",
-        "principal": "PUKHRAJ KHATI",
-        "mobile": "9667157047"
-      },
-      {
-        "code": "221755",
-        "name": "रा.उ.मा.वि. बड़ली",
-        "peeo": "PEEO BARLI",
-        "principal": "SHAILENDRA KUMAR PANDYA",
-        "mobile": "9950985201"
-      },
-      {
-        "code": "221771",
-        "name": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
-        "peeo": "PEEO BANDANWARA",
-        "principal": "DEVENDRA KUMAR SANKHLA",
-        "mobile": "8949599466"
-      },
-      {
         "code": "221770",
         "name": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
         "peeo": "PEEO BANDANWARA",
         "principal": "JAY SINGH KHATIK",
         "mobile": "9649149083"
-      },
-      {
-        "code": "221780",
-        "name": "रा.उ.मा.वि. भिनाय",
-        "peeo": "PEEO BHINAY",
-        "principal": "AJAY KUMAR DHABAI",
-        "mobile": "9549240545"
-      },
-      {
-        "code": "221778",
-        "name": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
-        "peeo": "PEEO BHINAY",
-        "principal": "sanjeeda parveen",
-        "mobile": "9468855086"
       },
       {
         "code": "221763",
@@ -108,27 +67,6 @@
         "mobile": "9413781124"
       },
       {
-        "code": "488946",
-        "name": "रा.उ.मा.वि. सेदरिया",
-        "peeo": "PEEO CHHACHHUNDRA",
-        "principal": "RITU SHARMA",
-        "mobile": "9829790044"
-      },
-      {
-        "code": "494626",
-        "name": "रा.बा.उ.मा.वि. चापानेरी",
-        "peeo": "PEEO CHAPANERI",
-        "principal": "HARI SHANKAR CHOPDAR",
-        "mobile": "9602676785"
-      },
-      {
-        "code": "221753",
-        "name": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
-        "peeo": "PEEO DEOLIYA KALAN",
-        "principal": "RAKESH KUMAR BIRAWAT",
-        "mobile": "9829835751"
-      },
-      {
         "code": "410704",
         "name": "रा.उ.मा.वि. रूपपुरा",
         "peeo": "PEEO DEVPURA",
@@ -141,6 +79,62 @@
         "peeo": "PEEO DHANTOL",
         "principal": "SURENDRA NAGORA",
         "mobile": "9413695182"
+      },
+      {
+        "code": "221786",
+        "name": "रा.उ.मा.वि. एकलसिंघा",
+        "peeo": "PEEO EKALSEENGA",
+        "principal": "VISHWASHWAR PRASAD SHARMA",
+        "mobile": "7728052397"
+      },
+      {
+        "code": "488947",
+        "name": "रा.उ.मा.वि. हियालिया",
+        "peeo": "PEEO EKALSEENGA",
+        "principal": "SURESH CHANDRA",
+        "mobile": "9636233704"
+      },
+      {
+        "code": "221762",
+        "name": "रा.उ.मा.वि. गुढ़ा खुर्द",
+        "peeo": "PEEO GURHA KHURD",
+        "principal": "deepesh kumar sisodia",
+        "mobile": "9414554344"
+      },
+      {
+        "code": "221765",
+        "name": "रा.उ.मा.वि. कनाई कलां",
+        "peeo": "PEEO KANAI KALAN",
+        "principal": "NARESH KUMAR",
+        "mobile": "9166233899"
+      },
+      {
+        "code": "221773",
+        "name": "रा.उ.मा.वि. करांटी",
+        "peeo": "PEEO KARATI",
+        "principal": "DEEPAK SANWARIYA",
+        "mobile": "9950736300"
+      },
+      {
+        "code": "488791",
+        "name": "रा.बा.उ.मा.वि. खेड़ी",
+        "peeo": "PEEO KARATI",
+        "principal": "सुश्री चंचल कछावा (प्रभारी संस्था प्रधान)",
+        "mobile": "8094606900"
+      },
+      {
+        "code": "221768",
+        "name": "रा.उ.मा.वि. जेतपुरा",
+        "peeo": "PEEO KEROT",
+        "principal": "JUBER AHMED",
+        "mobile": "9414942132"
+      },
+      {
+        "code": "221760",
+        "name": "रा.उ.मा.वि. गनाहेड़ा",
+        "peeo": "PEEO LAMGARA",
+        "principal": "RASHMI MALVIYA",
+        "mobile": "9461981723"
       }
     ]
   },
@@ -152,9 +146,9 @@
   },
   "overdue_escalation": {
     "is_active": true,
-    "defaulter_count": 41,
+    "defaulter_count": 25,
     "urgency": "HIGH",
-    "message": "🚨 41 विद्यालय समय-सीमा पश्चात भी लंबित हैं।"
+    "message": "🚨 25 विद्यालय समय-सीमा पश्चात भी लंबित हैं।"
   },
   "mdm_anomaly_scanner": {
     "enabled": false,

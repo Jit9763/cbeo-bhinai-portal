@@ -447,6 +447,22 @@ function initMasterData() {
       }
     }).catch(() => {});
 
+  // Sync mismatch settings from SQLite API in background
+  fetch('/api/get_saman_mismatch_settings')
+    .then(r => r.json())
+    .then(data => {
+      if (data && data.success && data.settings) {
+        STATE.samanMismatchSettings = data.settings;
+        localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(data.settings));
+        if (STATE.currentTab === 'saman-pariksha') renderSamanParikshaView();
+      }
+    }).catch(() => {});
+
+  // Sync latest syllabus submissions from SQLite API immediately
+  if (typeof syncSyllabusSubmissionsFromCloud === 'function') {
+    syncSyllabusSubmissionsFromCloud(false);
+  }
+
   // Load cached Google Sheet Auth credentials
   try {
     const cachedAuth = localStorage.getItem('cbeo_sheet_auth_cache');
@@ -2650,10 +2666,13 @@ function renderSamanParikshaView() {
     scopeFilter.value = STATE.samanParikshaSchoolTypeFilter;
   }
 
-  // Admin In-Tab Header Controls (विद्यालय प्रकार, नई मांग, 6-स्तरीय प्रपत्र नियंत्रण - Strictly for Jitendra Super Admin)
+  const isJitendra = typeof isJitendraLoggedIn === 'function' && isJitendraLoggedIn();
+  const isAdminUser = isJitendra || (STATE.currentUser && (STATE.currentUser.role === 'admin' || STATE.currentUser.shala_darpan_code === '8140' || STATE.currentUser.admin_id === 'ADMIN01'));
+
+  // Admin In-Tab Header Controls (विद्यालय प्रकार, नई मांग, 6-स्तरीय प्रपत्र नियंत्रण, मिसमैच)
   const adminHeaderControls = document.getElementById('sp-admin-header-controls');
   if (adminHeaderControls) {
-    adminHeaderControls.style.display = (typeof isJitendraLoggedIn === 'function' && isJitendraLoggedIn()) ? 'flex' : 'none';
+    adminHeaderControls.style.display = isAdminUser ? 'flex' : 'none';
   }
 
   if (!STATE.currentUser) {
@@ -2662,17 +2681,42 @@ function renderSamanParikshaView() {
     return;
   }
 
-  const btnMismatchAdmin = document.getElementById('btn-sp-mismatch-admin');
-  const schoolMismatchBanner = document.getElementById('sp-school-mismatch-banner');
-
   if (btnMismatchAdmin) {
-    btnMismatchAdmin.style.display = (typeof isJitendraLoggedIn === 'function' && isJitendraLoggedIn()) ? 'inline-flex' : 'none';
+    btnMismatchAdmin.style.display = isAdminUser ? 'inline-flex' : 'none';
   }
 
   if (schoolMismatchBanner) {
-    if (STATE.currentUser && STATE.currentUser.role !== 'admin') {
+    const cfg = getSamanMismatchConfig();
+    const isAlertActive = cfg && cfg.alert_active !== false;
+
+    if (!isAlertActive) {
+      schoolMismatchBanner.style.display = 'none';
+    } else if (isAdminUser) {
+      // In Admin view, show a summary notice if mismatch alert is active!
+      const details = (cfg && cfg.mismatch_details) || DEFAULT_SAMAN_MISMATCH_SETTINGS.mismatch_details;
+      const customSchools = (cfg && cfg.custom_edit_schools) || [];
+      const totalMismatchCount = Object.keys(details).length;
+      schoolMismatchBanner.style.display = 'flex';
+      schoolMismatchBanner.style.background = '#fef2f2';
+      schoolMismatchBanner.style.border = '1.5px solid #f87171';
+      schoolMismatchBanner.innerHTML = `
+        <div style="display:flex; align-items:center; gap:0.75rem; flex:1">
+          <span class="sp-mismatch-blinking-badge" style="background:#dc2626"><i class="fas fa-bell"></i> एडमिन सूचना</span>
+          <div style="font-size:0.86rem; color:#991b1b; line-height:1.4">
+            <strong>मिसमैच व कस्टम एडिट प्रणाली (सक्रिय / ON):</strong> वर्तमान में कुल <strong>${totalMismatchCount} विद्यालयों</strong> का नामांकन मिसमैच रिकॉर्डेड है और ${customSchools.length} विद्यालयों को कस्टम संशोधन की अनुमति खुली है।
+          </div>
+        </div>
+        <div style="display:flex; gap:0.5rem; align-items:center">
+          <button class="btn btn-sm btn-outline-danger" onclick="toggleMismatchAlertMaster(false)" style="font-weight:700" title="मिसमैच अलर्ट पट्टी व चेतावनी तुरंत बंद करें">
+            <i class="fas fa-power-off"></i> अलर्ट बंद (OFF) करें
+          </button>
+          <button class="btn btn-sm btn-danger" onclick="openSamanCustomEditModal()" style="font-weight:800; background:#dc2626; border-color:#dc2626">
+            <i class="fas fa-sliders-h"></i> मिसमैच सेटिंग्स
+          </button>
+        </div>
+      `;
+    } else if (STATE.currentUser && STATE.currentUser.role !== 'admin') {
       const uCode = String(STATE.currentUser.shala_darpan_code).trim();
-      const cfg = getSamanMismatchConfig();
       const details = (cfg && cfg.mismatch_details) || DEFAULT_SAMAN_MISMATCH_SETTINGS.mismatch_details;
       const customSchools = (cfg && cfg.custom_edit_schools) || [];
 
@@ -2694,6 +2738,8 @@ function renderSamanParikshaView() {
         const diffVal = mInfo ? mInfo.diff : 0;
         const diffText = diffVal ? (diffVal > 0 ? `+${diffVal} छात्र` : `${diffVal} छात्र`) : 'मिसमैच';
         schoolMismatchBanner.style.display = 'flex';
+        schoolMismatchBanner.style.background = '#fef2f2';
+        schoolMismatchBanner.style.border = '1.5px solid #f87171';
         schoolMismatchBanner.innerHTML = `
           <div style="display:flex; align-items:center; gap:0.75rem; flex:1">
             <span class="sp-mismatch-blinking-badge"><i class="fas fa-bell"></i> अति-आवश्यक</span>
@@ -3347,61 +3393,48 @@ function filterSamanParikshaTable() {
    ======================================================== */
 
 function syncSyllabusSubmissionsFromCloud(isManual = false) {
-  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
-    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
-    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
-
   if (isManual) {
-    showToast('Google Sheet से पाठ्यक्रम पूर्णता डेटा सिंक हो रहा है...', 'info');
+    showToast('🚀 Google Sheet से लाइव डेटा सिंक हो रहा है...', 'info');
   }
 
-  const p1 = gasUrl ? fetch(`${gasUrl}?action=getDemandSubmissions&demand_id=DEMAND_SAMAN_SYLLABUS_2026&_t=${Date.now()}`)
+  // 1. Instant local fetch from SQLite & cache (<5ms)
+  const fetchLocalPromise = fetch('/api/get_saman_syllabus?_t=' + Date.now())
     .then(r => r.ok ? r.json() : null)
     .then(data => {
       if (data && data.success && data.submissions) {
         if (!STATE.samanSyllabusSubmissions) STATE.samanSyllabusSubmissions = {};
-        Object.keys(data.submissions).forEach(code => {
-          let sub = data.submissions[code];
-          if (typeof sub === 'string') {
-            try { sub = JSON.parse(sub); } catch(e) {}
-          }
-          if (sub && sub.data_json) {
-            try {
-              const parsed = typeof sub.data_json === 'string' ? JSON.parse(sub.data_json) : sub.data_json;
-              sub = Object.assign({}, sub, parsed);
-            } catch(e) {}
-          }
-          if (sub) {
-            sub.is_submitted = true;
-            STATE.samanSyllabusSubmissions[code] = Object.assign({}, STATE.samanSyllabusSubmissions[code] || {}, sub);
-          }
-        });
+        Object.assign(STATE.samanSyllabusSubmissions, data.submissions);
         localStorage.setItem('cbeo_saman_syllabus_submissions', JSON.stringify(STATE.samanSyllabusSubmissions));
-        return true;
+        renderSamanParikshaView();
+        updateAllPortalMetricsAndProgress();
+        renderDashboardView();
+        if (typeof renderBulkSyllabusTable === 'function') renderBulkSyllabusTable();
       }
-      return false;
-    }).catch(() => false) : Promise.resolve(false);
+    }).catch(() => {});
 
-  const p2 = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-    ? fetch('http://localhost:8089/api/get_saman_syllabus?_t=' + Date.now())
+  // 2. If manual sync requested, trigger server-side cloud sync with Google Sheet
+  if (isManual) {
+    return fetch('/api/sync_cloud_now')
       .then(r => r.ok ? r.json() : null)
       .then(data => {
         if (data && data.success && data.submissions) {
           if (!STATE.samanSyllabusSubmissions) STATE.samanSyllabusSubmissions = {};
           Object.assign(STATE.samanSyllabusSubmissions, data.submissions);
           localStorage.setItem('cbeo_saman_syllabus_submissions', JSON.stringify(STATE.samanSyllabusSubmissions));
+          renderSamanParikshaView();
+          updateAllPortalMetricsAndProgress();
+          renderDashboardView();
+          if (typeof renderBulkSyllabusTable === 'function') renderBulkSyllabusTable();
+          showToast(`✓ Google Sheet से लाइव सिंक पूर्ण! (${data.count || Object.keys(data.submissions).length} विद्यालयों का डेटा प्राप्त)`, 'success');
+        } else {
+          showToast('✓ स्थानीय डेटाबेस से डेटा नवीनीकृत हुआ!', 'info');
         }
-      }).catch(() => {})
-    : Promise.resolve();
+      }).catch(err => {
+        showToast('स्थानीय डेटाबेस से नवीनतम डेटा लोड हुआ (Google Drive विलंबित)', 'info');
+      });
+  }
 
-  return Promise.all([p1, p2]).then(() => {
-    renderSamanParikshaView();
-    updateAllPortalMetricsAndProgress();
-    renderDashboardView();
-    if (isManual) {
-      showToast('✓ Google Sheet से पाठ्यक्रम पूर्णता डेटा सफलतापूर्वक सिंक हुआ!', 'success');
-    }
-  });
+  return fetchLocalPromise;
 }
 window.syncSyllabusSubmissionsFromCloud = syncSyllabusSubmissionsFromCloud;
 
@@ -4171,6 +4204,23 @@ function saveSamanMismatchSettings() {
   showToast('समान परीक्षा मिसमैच व कस्टम एडिट सेटिंग्स सुरक्षित हो गईं!', 'success');
   renderSamanParikshaView();
 }
+
+function toggleMismatchAlertMaster(isActive) {
+  const cfg = getSamanMismatchConfig();
+  cfg.alert_active = !!isActive;
+  STATE.samanMismatchSettings = cfg;
+  localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(cfg));
+  fetch('/api/save_saman_mismatch_settings', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ settings: cfg })
+  }).catch(() => {});
+  const chk = document.getElementById('sp-cfg-alert-active');
+  if (chk) chk.checked = !!isActive;
+  showToast(`मिसमैच चेतावनी अलर्ट ${isActive ? 'सक्रिय (ON)' : 'बंद (OFF)'} कर दिया गया!`, isActive ? 'success' : 'info');
+  renderSamanParikshaView();
+}
+window.toggleMismatchAlertMaster = toggleMismatchAlertMaster;
 
 function checkAndShowSamanMismatchAlert(userObj) {
   if (!userObj || userObj.role === 'admin') return;
