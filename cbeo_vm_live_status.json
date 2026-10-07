@@ -1,15 +1,15 @@
 {
-  "generated_at": "07-10-2026 11:18 AM",
+  "generated_at": "07-10-2026 02:42 PM",
   "vm_status": "ONLINE_ACTIVE",
   "district": "AJMER (अजमेर)",
   "block": "BHINAI (भिनाय)",
   "active_focus_report": "49_syllabus",
   "saman_syllabus_49": {
     "total_govt_schools": 49,
-    "submitted_count": 24,
-    "pending_count": 25,
-    "completion_percentage": 49.0,
-    "block_average_syllabus_pct": 85,
+    "submitted_count": 28,
+    "pending_count": 21,
+    "completion_percentage": 57.1,
+    "block_average_syllabus_pct": 84,
     "peeo_pending_map": {
       "PEEO BARGAON": 1,
       "PEEO BANDANWARA": 1,
@@ -18,22 +18,19 @@
       "PEEO DEVPURA": 1,
       "PEEO DHANTOL": 1,
       "PEEO EKALSEENGA": 2,
-      "PEEO GURHA KHURD": 1,
       "PEEO KANAI KALAN": 1,
       "PEEO KARATI": 2,
       "PEEO KEROT": 1,
-      "PEEO LAMGARA": 1,
       "PEEO NAGOLA": 2,
       "PEEO NANDSI": 1,
       "PEEO PADANGA": 1,
-      "PEEO PADALIYA": 1,
       "PEEO RAMMALIA": 3,
-      "PEEO SOBRI": 2
+      "PEEO SOBRI": 1
     },
     "pending_schools": [
       {
         "code": "221764",
-        "name": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+        "name": "राजकीय उच्च माध्यमिक विद्यालय, बड़गांव (सूरखण्ड)",
         "peeo": "PEEO BARGAON",
         "principal": "CHANDRA PRAKASH LADDHA",
         "mobile": "9001450275"
@@ -47,94 +44,94 @@
       },
       {
         "code": "221763",
-        "name": "रा.उ.मा.वि. बूबकिया",
+        "name": "राजकीय उच्च माध्यमिक विद्यालय, बूबकिया",
         "peeo": "PEEO BOOBKIYA",
         "principal": "RAM CHANDRA GUJAR",
         "mobile": "9252068645"
       },
       {
         "code": "485033",
-        "name": "रा.उ.मा.वि. पीपलिया",
+        "name": "राजकीय उच्च माध्यमिक विद्यालय, पीपलिया",
         "peeo": "PEEO BOOBKIYA",
         "principal": "प्रभारी संस्था प्रधान (रा.उ.मा.वि. पीपलिया)",
         "mobile": "9784793783"
       },
       {
         "code": "221787",
-        "name": "रा.उ.मा.वि. छाछून्दरा",
+        "name": "राजकीय उच्च माध्यमिक विद्यालय, छाछून्दरा",
         "peeo": "PEEO CHHACHHUNDRA",
         "principal": "SITARAM DHOBI",
         "mobile": "9413781124"
       },
       {
         "code": "410704",
-        "name": "रा.उ.मा.वि. रूपपुरा",
+        "name": "राजकीय उच्च माध्यमिक विद्यालय, रूपपुरा",
         "peeo": "PEEO DEVPURA",
         "principal": "KISHAN GOPAL PARIHAR",
         "mobile": "9413225666"
       },
       {
         "code": "221783",
-        "name": "रा.उ.मा.वि. धांतोल",
+        "name": "राजकीय उच्च माध्यमिक विद्यालय, धांतोल",
         "peeo": "PEEO DHANTOL",
         "principal": "SURENDRA NAGORA",
         "mobile": "9413695182"
       },
       {
         "code": "221786",
-        "name": "रा.उ.मा.वि. एकलसिंघा",
+        "name": "राजकीय उच्च माध्यमिक विद्यालय, एकलसिंघा",
         "peeo": "PEEO EKALSEENGA",
         "principal": "VISHWASHWAR PRASAD SHARMA",
         "mobile": "7728052397"
       },
       {
         "code": "488947",
-        "name": "रा.उ.मा.वि. हियालिया",
+        "name": "राजकीय उच्च माध्यमिक विद्यालय, हियालिया",
         "peeo": "PEEO EKALSEENGA",
         "principal": "SURESH CHANDRA",
         "mobile": "9636233704"
       },
       {
-        "code": "221762",
-        "name": "रा.उ.मा.वि. गुढ़ा खुर्द",
-        "peeo": "PEEO GURHA KHURD",
-        "principal": "deepesh kumar sisodia",
-        "mobile": "9414554344"
-      },
-      {
         "code": "221765",
-        "name": "रा.उ.मा.वि. कनाई कलां",
+        "name": "राजकीय उच्च माध्यमिक विद्यालय, कनाई कलां",
         "peeo": "PEEO KANAI KALAN",
         "principal": "NARESH KUMAR",
         "mobile": "9166233899"
       },
       {
         "code": "221773",
-        "name": "रा.उ.मा.वि. करांटी",
+        "name": "राजकीय उच्च माध्यमिक विद्यालय, करांटी",
         "peeo": "PEEO KARATI",
         "principal": "DEEPAK SANWARIYA",
         "mobile": "9950736300"
       },
       {
         "code": "488791",
-        "name": "रा.बा.उ.मा.वि. खेड़ी",
+        "name": "राजकीय बालिका उच्च माध्यमिक विद्यालय, खेड़ी",
         "peeo": "PEEO KARATI",
         "principal": "सुश्री चंचल कछावा (प्रभारी संस्था प्रधान)",
         "mobile": "8094606900"
       },
       {
         "code": "221768",
-        "name": "रा.उ.मा.वि. जेतपुरा",
+        "name": "राजकीय उच्च माध्यमिक विद्यालय, जेतपुरा",
         "peeo": "PEEO KEROT",
         "principal": "JUBER AHMED",
         "mobile": "9414942132"
       },
       {
-        "code": "221760",
-        "name": "रा.उ.मा.वि. गनाहेड़ा",
-        "peeo": "PEEO LAMGARA",
-        "principal": "RASHMI MALVIYA",
-        "mobile": "9461981723"
+        "code": "488781",
+        "name": "राजकीय उच्च माध्यमिक विद्यालय, बडला (नागोला)",
+        "peeo": "PEEO NAGOLA",
+        "principal": "VED PRAKASH",
+        "mobile": "9413682497"
+      },
+      {
+        "code": "221772",
+        "name": "राजकीय उच्च माध्यमिक विद्यालय, नागोला",
+        "peeo": "PEEO NAGOLA",
+        "principal": "VINOD KUMAR RAO",
+        "mobile": "8955306674"
       }
     ]
   },
@@ -146,9 +143,9 @@
   },
   "overdue_escalation": {
     "is_active": true,
-    "defaulter_count": 25,
+    "defaulter_count": 21,
     "urgency": "HIGH",
-    "message": "🚨 25 विद्यालय समय-सीमा पश्चात भी लंबित हैं।"
+    "message": "🚨 21 विद्यालय समय-सीमा पश्चात भी लंबित हैं।"
   },
   "mdm_anomaly_scanner": {
     "enabled": false,

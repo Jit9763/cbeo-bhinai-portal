@@ -5324,7 +5324,15 @@ function openSamanParikshaForm(schoolCode) {
     if (raw) draft = JSON.parse(raw);
   } catch (e) {}
 
-  const activeData = draft ? { ...sub, ...draft } : sub;
+  // Prioritize official saved submission over any stale drafts
+  let activeData = sub;
+  if (draft && !sub.is_submitted) {
+    activeData = { ...sub, ...draft };
+  } else if (sub && sub.is_submitted) {
+    activeData = sub;
+    // synchronize draft with official saved submission
+    localStorage.setItem(`cbeo_form_draft_${schoolCode}`, JSON.stringify(sub));
+  }
 
   const draftStatusText = document.getElementById('gform-draft-text');
   if (draftStatusText) {
@@ -5623,29 +5631,39 @@ function onSchoolMediumChanged() {
 }
 window.onSchoolMediumChanged = onSchoolMediumChanged;
 
-function calculateGFormTotals() {
-  const c9Hindi = parseInt(document.getElementById('gform-c9-hindi')?.value) || 0;
-  const c9English = parseInt(document.getElementById('gform-c9-english')?.value) || 0;
-  let c9 = c9Hindi + c9English;
+function calculateGFormTotals(source = null) {
   const c9TotalEl = document.getElementById('gform-c9-total');
-  if (c9TotalEl) {
-    if (c9 === 0 && parseInt(c9TotalEl.value) > 0 && c9Hindi === 0 && c9English === 0) {
-      c9 = parseInt(c9TotalEl.value) || 0;
-    } else {
-      c9TotalEl.value = c9;
-    }
+  const c9HindiEl = document.getElementById('gform-c9-hindi');
+  const c9EnglishEl = document.getElementById('gform-c9-english');
+  
+  if (source === 'c9_total' && c9TotalEl) {
+    const totVal = parseInt(c9TotalEl.value) || 0;
+    const engVal = parseInt(c9EnglishEl?.value) || 0;
+    if (c9HindiEl) c9HindiEl.value = Math.max(0, totVal - engVal);
   }
 
-  const c10Hindi = parseInt(document.getElementById('gform-c10-hindi')?.value) || 0;
-  const c10English = parseInt(document.getElementById('gform-c10-english')?.value) || 0;
-  let c10 = c10Hindi + c10English;
+  const c9Hindi = parseInt(c9HindiEl?.value) || 0;
+  const c9English = parseInt(c9EnglishEl?.value) || 0;
+  let c9 = c9Hindi + c9English;
+  if (c9TotalEl && source !== 'c9_total') {
+    c9TotalEl.value = c9;
+  }
+
   const c10TotalEl = document.getElementById('gform-c10-total');
-  if (c10TotalEl) {
-    if (c10 === 0 && parseInt(c10TotalEl.value) > 0 && c10Hindi === 0 && c10English === 0) {
-      c10 = parseInt(c10TotalEl.value) || 0;
-    } else {
-      c10TotalEl.value = c10;
-    }
+  const c10HindiEl = document.getElementById('gform-c10-hindi');
+  const c10EnglishEl = document.getElementById('gform-c10-english');
+
+  if (source === 'c10_total' && c10TotalEl) {
+    const totVal = parseInt(c10TotalEl.value) || 0;
+    const engVal = parseInt(c10EnglishEl?.value) || 0;
+    if (c10HindiEl) c10HindiEl.value = Math.max(0, totVal - engVal);
+  }
+
+  const c10Hindi = parseInt(c10HindiEl?.value) || 0;
+  const c10English = parseInt(c10EnglishEl?.value) || 0;
+  let c10 = c10Hindi + c10English;
+  if (c10TotalEl && source !== 'c10_total') {
+    c10TotalEl.value = c10;
   }
 
   const c11Hindi = parseInt(document.getElementById('gform-c11-comp-hindi')?.value) || 0;
@@ -10111,25 +10129,23 @@ function canCurrentUserEditSchoolDetails(school) {
 function isSamanParikshaLockedForCurrentUser(targetSchoolCode = null) {
   if (!STATE.currentUser) return false;
   if (isJitendraLoggedIn()) return false; // Super Admin Jitendra can always edit
+  
+  const isCBEO = STATE.currentUser.shala_darpan_code === '8140' || 
+                 STATE.currentUser.admin_id === 'ADMIN01' || 
+                 STATE.currentUser.role === 'admin';
+  if (isCBEO) return false; // Admin & CBEO can ALWAYS edit any school!
 
   const schCode = targetSchoolCode || STATE.currentUser.shala_darpan_code;
 
   // Custom Edit Exception: If school is granted Custom Edit permission by Admin
   const mismatchSettings = STATE.samanMismatchSettings || (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : (typeof DEFAULT_SAMAN_MISMATCH_SETTINGS !== 'undefined' ? DEFAULT_SAMAN_MISMATCH_SETTINGS : null));
-  const customAllowed = (mismatchSettings && mismatchSettings.custom_edit_schools) || [
-    '221780', '221778', '221770', '221753', '221758', '221761', '221772', '221756'
-  ];
+  const customAllowed = (mismatchSettings && mismatchSettings.custom_edit_schools) || [];
   if (schCode && customAllowed.some(c => String(c).trim() === String(schCode).trim())) {
-    return false; // Specifically Unlocked for this school!
+    return false; // Specifically Unlocked for this school by Admin!
   }
 
   // 1. Check 6-Level Edit Permission Matrix
   if (!canCurrentUserEditModule('saman_pariksha', targetSchoolCode)) return true;
-
-  const isCBEO = STATE.currentUser.shala_darpan_code === '8140' || 
-                 STATE.currentUser.admin_id === 'ADMIN01' || 
-                 (STATE.currentUser.role === 'admin' && !isJitendraLoggedIn());
-  if (isCBEO) return false;
 
   const perms = STATE.staffEditPermissions || {};
   if (perms.master_lock) return true;
@@ -13633,11 +13649,13 @@ function checkAndAutoResolveSamanMismatch(schoolCode, submission) {
       submission.mismatch_fields = [];
       submission.mismatch_remarks = '';
 
-      if (spCfg.custom_edit_schools) {
-        spCfg.custom_edit_schools = spCfg.custom_edit_schools.filter(c => String(c).trim() !== sCode);
-      }
+      // User directive: "ye sab portal se control hona h"
+      // Do NOT automatically revoke custom edit or strip from admin mismatch list.
+      // Custom edit permissions & mismatch list remain controllable exclusively by Admin in the portal!
       if (spCfg.mismatch_details && spCfg.mismatch_details[sCode]) {
-        delete spCfg.mismatch_details[sCode];
+        spCfg.mismatch_details[sCode].resolved = true;
+        spCfg.mismatch_details[sCode].resolved_at = submission.mismatch_resolved_at;
+        spCfg.mismatch_details[sCode].portal_total = Number(submission.grand_total || 0);
       }
 
       STATE.samanMismatchSettings = spCfg;
