@@ -610,6 +610,89 @@
       ]
     }
   },
+  "221760": {
+    "school_code": "221760",
+    "exam_code": "AJM04G221760",
+    "principal_name": "RASHMI MALVIYA",
+    "principal_mobile": "9461981723",
+    "incharge_name": "Alka kumari choudhary",
+    "incharge_mobile": "9460357416",
+    "submitted_by": "RASHMI MALVIYA",
+    "c9": {
+      "zero_enrolment": false,
+      "hindi": 70,
+      "english": 70,
+      "maths": 70,
+      "science": 70,
+      "sst": 70,
+      "sanskrit": 70,
+      "urdu": 0
+    },
+    "c10": {
+      "zero_enrolment": false,
+      "hindi": 100,
+      "english": 100,
+      "maths": 100,
+      "science": 100,
+      "sst": 100,
+      "sanskrit": 100,
+      "urdu": 0
+    },
+    "c11": {
+      "zero_enrolment": false,
+      "comp_hindi": 70,
+      "comp_english": 70,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 70
+        },
+        {
+          "key": "geography",
+          "name": "भूगोल (Geography)",
+          "pct": 70
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 70
+        }
+      ]
+    },
+    "c12": {
+      "zero_enrolment": false,
+      "comp_hindi": 100,
+      "comp_english": 100,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 100
+        },
+        {
+          "key": "geography",
+          "name": "भूगोल (Geography)",
+          "pct": 100
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 100
+        }
+      ]
+    },
+    "average_pct": 85,
+    "updated_at": "2026-10-07T07:21:29.071Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T07:21:29.071Z"
+  },
   "221761": {
     "school_code": "221761",
     "exam_code": "AJM04G221761",
@@ -1850,6 +1933,89 @@
         }
       ]
     }
+  },
+  "221782": {
+    "school_code": "221782",
+    "exam_code": "AJM04G221782",
+    "principal_name": "FAYYAZ MOHAMMED",
+    "principal_mobile": "9829487158",
+    "incharge_name": "SHIVJI GURJAR",
+    "incharge_mobile": "9166797832",
+    "submitted_by": "FAYYAZ MOHAMMED",
+    "c9": {
+      "zero_enrolment": false,
+      "hindi": 90,
+      "english": 77,
+      "maths": 70,
+      "science": 60,
+      "sst": 100,
+      "sanskrit": 100,
+      "urdu": 0
+    },
+    "c10": {
+      "zero_enrolment": false,
+      "hindi": 90,
+      "english": 90,
+      "maths": 100,
+      "science": 70,
+      "sst": 80,
+      "sanskrit": 100,
+      "urdu": 0
+    },
+    "c11": {
+      "zero_enrolment": false,
+      "comp_hindi": 70,
+      "comp_english": 60,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 90
+        },
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 100
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 90
+        }
+      ]
+    },
+    "c12": {
+      "zero_enrolment": false,
+      "comp_hindi": 90,
+      "comp_english": 70,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 100
+        },
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 100
+        },
+        {
+          "key": "hindi_lit",
+          "name": "हिंदी साहित्य (Hindi Literature)",
+          "pct": 90
+        }
+      ]
+    },
+    "average_pct": 85.8,
+    "updated_at": "2026-10-07T07:19:13.913Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T07:19:13.913Z"
   },
   "401778": {
     "school_code": "401778",

@@ -235,8 +235,11 @@
           <button type="button" class="btn btn-sm btn-outline-secondary" onclick="openSaman6LevelControlModal()" style="font-weight:700; font-size:0.8rem; display:inline-flex; align-items:center; gap:0.35rem">
             <i class="fas fa-sliders-h"></i> 6-स्तरीय प्रपत्र नियंत्रण
           </button>
-          <button type="button" id="btn-sp-mismatch-admin" class="btn btn-sm" onclick="openSamanCustomEditModal()" style="font-weight:700; font-size:0.8rem; display:inline-flex; align-items:center; gap:0.35rem; background:#fff1f2; color:#be123c; border:1.5px solid #fca5a5">
-            <i class="fas fa-exclamation-triangle sp-mismatch-blinking-text"></i> मिसमैच कस्टम एडिट व लॉगिन अलर्ट (8 स्कूल)
+          <button type="button" id="btn-sp-mismatch-quick-toggle" class="btn btn-sm" onclick="toggleMismatchAlertMaster()" style="font-weight:700; font-size:0.8rem; display:inline-flex; align-items:center; gap:0.35rem; background:#f1f5f9; color:#64748b; border:1.5px solid #cbd5e1" title="मिसमैच अलर्ट व फ्लैग ऑन/ऑफ करें">
+            <i class="fas fa-bell-slash"></i> मिसमैच अलर्ट: बंद (OFF)
+          </button>
+          <button type="button" id="btn-sp-mismatch-admin" class="btn btn-sm" onclick="openSamanCustomEditModal()" style="font-weight:700; font-size:0.8rem; display:inline-flex; align-items:center; gap:0.35rem; background:#f8fafc; color:#475569; border:1.5px solid #cbd5e1" title="मिसमैच विद्यालय प्रबंधन (स्कूल जोड़ें या हटाएं)">
+            <i class="fas fa-exclamation-triangle"></i> मिसमैच स्कूल प्रबंधन (3 स्कूल)
           </button>
         </div>
       </div>
@@ -3868,14 +3871,19 @@
 
         <!-- Section 1: Global Alert Toggle & Message Customization -->
         <div style="background:#f8fafc; border:1.5px solid #e2e8f0; border-radius:10px; padding:1rem 1.25rem; margin-bottom:1.25rem">
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem">
-            <label style="font-weight:800; color:#0f172a; font-size:0.92rem; display:flex; align-items:center; gap:0.4rem; margin:0">
-              <i class="fas fa-bullhorn text-primary"></i> 1. लॉगिन अलर्ट संदेश अनुकूलन (Login Alert Customization)
-            </label>
-            <div style="display:flex; align-items:center; gap:0.5rem; font-size:0.85rem; font-weight:700">
-              <span>लॉगिन अलर्ट सक्रिय रखें:</span>
-              <label class="login-perm-switch">
-                <input type="checkbox" id="sp-cfg-alert-active" checked>
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:0.75rem">
+            <div>
+              <label style="font-weight:800; color:#0f172a; font-size:0.95rem; display:flex; align-items:center; gap:0.4rem; margin:0">
+                <i class="fas fa-bullhorn text-primary"></i> 1. मिसमैच अलर्ट व फ्लैग मास्टर नियंत्रण (Alert Setting)
+              </label>
+              <div id="sp-mismatch-status-badge" style="font-size:0.8rem; font-weight:700; margin-top:4px; padding:2px 8px; border-radius:4px; display:inline-block; background:#f1f5f9; color:#64748b">
+                🔴 अलर्ट बंद (OFF) - किसी भी विद्यालय को पॉपअप या फ्लैग नहीं दिखेगा
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.6rem; background:#ffffff; padding:6px 12px; border-radius:8px; border:1px solid #cbd5e1">
+              <span style="font-size:0.85rem; font-weight:700; color:#1e293b">मिसमैच अलर्ट सक्रिय रखें:</span>
+              <label class="login-perm-switch" style="margin:0">
+                <input type="checkbox" id="sp-cfg-alert-active" onchange="toggleMismatchAlertMaster(this.checked)">
                 <span class="login-perm-slider"></span>
               </label>
             </div>
@@ -3904,15 +3912,18 @@
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem">
             <div>
               <div style="font-weight:800; color:#0f172a; font-size:0.92rem; display:flex; align-items:center; gap:0.4rem">
-                <i class="fas fa-tasks text-danger"></i> 2. मिसमैच वाले विद्यालय एवं संपादन अनुमति (6 स्कूल)
+                <i class="fas fa-tasks text-danger"></i> 2. मिसमैच वाले विद्यालय एवं संपादन अनुमति सूची
               </div>
               <div style="font-size:0.78rem; color:#64748b; margin-top:2px">
-                प्रत्येक विद्यालय के सामने दिए टॉगल से तुरंत कस्टम एडिट अनुमति ऑन/ऑफ करें
+                प्रत्येक विद्यालय के सामने टॉगल से कस्टम एडिट अनुमति दें, अथवा 'हटाएं' बटन से मिसमैच सूची से बाहर निकालें
               </div>
             </div>
-            <div style="display:flex; gap:0.4rem">
+            <div style="display:flex; gap:0.4rem; flex-wrap:wrap">
+              <button type="button" class="btn btn-sm btn-outline-info" onclick="scanExcelMismatchesNow()" style="font-weight:700; font-size:0.78rem" title="एक्सेल शीट अनुसार वर्तमान मिसमैच स्वतः स्कैन करें">
+                <i class="fas fa-sync-alt"></i> एक्सेल मिसमैच ऑटो-स्कैन
+              </button>
               <button type="button" class="btn btn-sm btn-outline-success" onclick="toggleAllMismatchCustomEdit(true)" style="font-weight:700; font-size:0.78rem">
-                <i class="fas fa-check-double"></i> सभी 6 को अनुमति दें
+                <i class="fas fa-check-double"></i> सभी को अनुमति दें
               </button>
               <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleAllMismatchCustomEdit(false)" style="font-weight:700; font-size:0.78rem">
                 <i class="fas fa-ban"></i> सभी बंद करें
@@ -3940,17 +3951,29 @@
           </div>
         </div>
 
-        <!-- Section 3: Add other school to custom edit -->
-        <div style="background:#fffbeb; border:1px dashed #fde68a; border-radius:8px; padding:0.85rem 1rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.75rem">
-          <div style="display:flex; align-items:center; gap:0.5rem">
-            <i class="fas fa-plus-circle" style="color:#d97706; font-size:1.1rem"></i>
-            <span style="font-size:0.83rem; font-weight:700; color:#92400e">किसी अन्य विद्यालय को भी कस्टम एडिट अनुमति में जोड़ें:</span>
+        <!-- Section 3: Add other school to mismatch & custom edit -->
+        <div style="background:#fffbeb; border:1.5px dashed #fde68a; border-radius:10px; padding:1rem 1.25rem">
+          <div style="font-weight:800; color:#92400e; font-size:0.92rem; display:flex; align-items:center; gap:0.4rem; margin-bottom:0.6rem">
+            <i class="fas fa-plus-circle text-warning"></i> 3. मिसमैच सूची में नया विद्यालय जोड़ें (Add School to Mismatch)
           </div>
-          <div style="display:flex; gap:0.4rem; align-items:center">
-            <input type="text" id="sp-add-custom-school-code" placeholder="शाला दर्पण कोड (उदा. 221755)" style="padding:4px 8px; border-radius:6px; border:1px solid #cbd5e1; font-size:0.82rem; width:180px">
-            <button type="button" class="btn btn-sm btn-primary" onclick="addSchoolToCustomEditList()" style="font-weight:700; font-size:0.8rem">
-              + जोड़ें
+          <div style="display:flex; gap:0.6rem; align-items:center; flex-wrap:wrap">
+            <div style="flex:1; min-width:220px">
+              <select id="sp-add-custom-school-select" class="form-control" onchange="onMismatchSchoolDropdownSelected(this.value)" style="font-size:0.83rem; height:36px">
+                <option value="">-- ड्रॉपडाउन से विद्यालय चुनें --</option>
+              </select>
+            </div>
+            <div style="width:140px">
+              <input type="text" id="sp-add-custom-school-code" class="form-control" placeholder="शा.दा. कोड" style="font-size:0.83rem; height:36px">
+            </div>
+            <div style="width:130px">
+              <input type="number" id="sp-add-custom-school-diff" class="form-control" placeholder="अंतर (उदा. +10)" style="font-size:0.83rem; height:36px">
+            </div>
+            <button type="button" class="btn btn-primary" onclick="addSchoolToCustomEditList()" style="font-weight:700; font-size:0.82rem; height:36px; padding:0 14px; display:inline-flex; align-items:center; gap:0.35rem">
+              <i class="fas fa-plus"></i> + मिसमैच में जोड़ें
             </button>
+          </div>
+          <div style="font-size:0.75rem; color:#b45309; margin-top:6px">
+            <i class="fas fa-info-circle"></i> विद्यालय चुनते ही उसका पोर्टल डेटा व अंतर स्वतः आ जाएगा। जोड़ने पर वह तुरंत मिसमैच सूची में आ जाएगा।
           </div>
         </div>
       </div>

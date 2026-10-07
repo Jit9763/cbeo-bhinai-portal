@@ -250,13 +250,13 @@ function getDemandSubmissionRecord(demandId, schoolCode) {
 }
 
 const DEFAULT_SAMAN_MISMATCH_SETTINGS = {
-  alert_active: true,
-  alert_title: '🚨 अति-आवश्यक: समान परीक्षा मांग - नामांकन मिसमैच एवं माध्यम संशोधन सूचना',
-  alert_message: 'मान्यवर संस्था प्रधान, आपके विद्यालय द्वारा समान परीक्षा 2026-27 के मांग प्रपत्र में भरा गया कुल नामांकन शाला दर्पण के वास्तविक नामांकन से भिन्न (मिसमैच) पाया गया है अथवा MGGS अंग्रेजी/हिंदी माध्यमवार पृथक मांग अद्यतन अपेक्षित है।\n\nकार्यालय CBEO भिनाय (अजमेर) द्वारा आपके विद्यालय के लिए मांग प्रपत्र में संशोधन (Custom Edit) की विशेष सुविधा खोल दी गई है। कृपया तुरंत मांग पत्रक में सुधार कर पुनः सबमिट करें।',
+  alert_active: false, // 🔒 OFF by default as requested (Admin can toggle ON whenever needed)
+  alert_title: '🚨 अति-आवश्यक: समान परीक्षा मांग - नामांकन मिसमैच एवं संशोधन सूचना',
+  alert_message: 'मान्यवर संस्था प्रधान, आपके विद्यालय द्वारा समान परीक्षा 2026-27 के मांग प्रपत्र में भरा गया कुल नामांकन शाला दर्पण के वास्तविक नामांकन से भिन्न (मिसमैच) पाया गया है।\n\nकार्यालय CBEO भिनाय (अजमेर) द्वारा आपके विद्यालय के लिए मांग प्रपत्र में संशोधन (Custom Edit) की विशेष सुविधा खोल दी गई है। कृपया तुरंत मांग पत्रक में सुधार कर पुनः सबमिट करें।',
   custom_edit_schools: [
     '221780',
-    '221761',
-    '221756'
+    '221758',
+    '221761'
   ],
   mismatch_details: {
     '221780': {
@@ -273,33 +273,33 @@ const DEFAULT_SAMAN_MISMATCH_SETTINGS = {
       reason: 'कक्षा 9-10 में पेपर मांग शाला दर्पण नामांकन से 9 ज्यादा (232 बनाम 223) तथा कक्षा 11-12 में 1 ज्यादा (179 बनाम 178) दर्ज है। कृपया शाला दर्पण अनुसार शुद्ध करें।',
       flagged_fields: ['कक्षा 9-10 पेपर मांग', 'कक्षा 11-12 पेपर मांग', 'कुल महायोग']
     },
+    '221758': {
+      school_name: 'GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)',
+      peeo_name: 'CHAPANERI',
+      portal_total: 175,
+      sd_total: 174,
+      diff: 1,
+      portal_c9_10: 116,
+      portal_c11_12: 59,
+      sd_c9_10: 115,
+      sd_c11_12: 59,
+      diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 1 ज्यादा है (मांग: 175, शाला दर्पण: 174)',
+      reason: 'कक्षा 9-10 में मांग 1 ज्यादा (116 बनाम 115) दर्ज है।',
+      flagged_fields: ['कक्षा 9-10 पेपर मांग', 'कुल महायोग']
+    },
     '221761': {
       school_name: 'GOVT. SENIOR SECONDARY SCHOOL NIMEDA (221761)',
       peeo_name: 'NIMEDA',
       portal_total: 87,
       sd_total: 92,
       diff: -5,
-      portal_c9_10: 55,
-      portal_c11_12: 32,
+      portal_c9_10: 50,
+      portal_c11_12: 37,
       sd_c9_10: 55,
       sd_c11_12: 37,
       diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 5 कम है (मांग: 87, शाला दर्पण: 92)',
-      reason: 'कक्षा 11-12 में पेपर मांग शाला दर्पण नामांकन से 5 कम (मांग: 32, शाला दर्पण: 37) दर्ज है।',
-      flagged_fields: ['कक्षा 11-12 पेपर मांग', 'कुल महायोग']
-    },
-    '221756': {
-      school_name: 'GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)',
-      peeo_name: 'NANDSI',
-      portal_total: 98,
-      sd_total: 92,
-      diff: 6,
-      portal_c9_10: 59,
-      portal_c11_12: 39,
-      sd_c9_10: 55,
-      sd_c11_12: 37,
-      diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 6 ज्यादा है (मांग: 98, शाला दर्पण: 92)',
-      reason: 'कक्षा 9-10 में 4 ज्यादा (मांग: 59, शाला दर्पण: 55) तथा कक्षा 11-12 में 2 ज्यादा (मांग: 39, शाला दर्पण: 37) दर्ज है।',
-      flagged_fields: ['कक्षा 9-10 पेपर मांग (59 बनाम 55)', 'कक्षा 11-12 पेपर मांग (39 बनाम 37)', 'कुल महायोग']
+      reason: 'कक्षा 9-10 में पेपर मांग 5 कम (50 बनाम 55) दर्ज है।',
+      flagged_fields: ['कक्षा 9-10 पेपर मांग', 'कुल महायोग']
     }
   }
 };
@@ -4083,11 +4083,23 @@ function openSamanCustomEditModal() {
   const txtTitle = document.getElementById('sp-cfg-alert-title');
   const txtMsg = document.getElementById('sp-cfg-alert-message');
 
-  if (chkActive) chkActive.checked = cfg.alert_active !== false;
+  if (chkActive) chkActive.checked = cfg.alert_active === true;
   if (txtTitle) txtTitle.value = cfg.alert_title || DEFAULT_SAMAN_MISMATCH_SETTINGS.alert_title;
   if (txtMsg) txtMsg.value = cfg.alert_message || DEFAULT_SAMAN_MISMATCH_SETTINGS.alert_message;
 
+  const sel = document.getElementById('sp-add-custom-school-select');
+  if (sel) {
+    sel.innerHTML = '<option value="">-- ड्रॉपडाउन से विद्यालय चुनें --</option>';
+    const sorted = [...(STATE.schools56 || [])].sort((a,b) => (a.school_name_hi || a.school_name || '').localeCompare(b.school_name_hi || b.school_name || ''));
+    sorted.forEach(s => {
+      const code = s.shala_darpan_code || '';
+      const name = s.school_name_hi || s.school_name || '';
+      sel.innerHTML += `<option value="${code}">${name} (${code})</option>`;
+    });
+  }
+
   renderSamanMismatchTable();
+  if (typeof updateMismatchHeaderUI === 'function') updateMismatchHeaderUI();
   showModal('modal-saman-custom-edit');
 }
 
@@ -4138,20 +4150,19 @@ function renderSamanMismatchTable() {
         </span>
       </td>
       <td style="padding:8px 10px; text-align:center">
-        <div style="display:inline-flex; gap:4px">
+        <div style="display:inline-flex; gap:6px; align-items:center">
           <button type="button" class="btn btn-sm btn-outline-primary" onclick="openSamanParikshaForm('${code}')" title="इस विद्यालय का प्रपत्र खोलें">
             <i class="fas fa-edit"></i>
           </button>
-          ${!details[code] ? `
-            <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeSchoolFromCustomEditList('${code}')" title="सूची से हटाएं">
-              <i class="fas fa-trash"></i>
-            </button>
-          ` : ''}
+          <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeSchoolFromCustomEditList('${code}')" title="मिसमैच सूची से हटाएं">
+            <i class="fas fa-trash"></i> हटाएं
+          </button>
         </div>
       </td>
     `;
     tbody.appendChild(tr);
   });
+  if (typeof updateMismatchHeaderUI === 'function') updateMismatchHeaderUI();
 }
 
 function toggleSchoolCustomEdit(schoolCode, isChecked) {
@@ -4175,7 +4186,7 @@ function toggleAllMismatchCustomEdit(enableAll) {
 
   if (enableAll) {
     cfg.custom_edit_schools = Array.from(new Set([...(cfg.custom_edit_schools || []), ...mismatchCodes]));
-    showToast('सभी 6 मिसमैच विद्यालयों को कस्टम एडिट अनुमति प्रदान की गई!', 'success');
+    showToast('सभी मिसमैच विद्यालयों को कस्टम एडिट अनुमति प्रदान की गई!', 'success');
   } else {
     cfg.custom_edit_schools = (cfg.custom_edit_schools || []).filter(c => !mismatchCodes.includes(c));
     showToast('सभी मिसमैच विद्यालयों की कस्टम एडिट अनुमति बंद की गई!', 'info');
@@ -4185,34 +4196,82 @@ function toggleAllMismatchCustomEdit(enableAll) {
 }
 
 function addSchoolToCustomEditList() {
+  const sel = document.getElementById('sp-add-custom-school-select');
   const inp = document.getElementById('sp-add-custom-school-code');
-  const code = inp ? inp.value.trim() : '';
+  const code = (inp && inp.value.trim()) || (sel && sel.value.trim()) || '';
   if (!code) {
-    showToast('कृपया वैध शाला दर्पण कोड दर्ज करें!', 'warning');
+    showToast('कृपया ड्रॉपडाउन से विद्यालय चुनें या शाला दर्पण कोड दर्ज करें!', 'warning');
     return;
   }
 
   const sch = (STATE.schools56 || []).find(s => String(s.shala_darpan_code).trim() === code);
-  if (!sch) {
-    showToast(`कोड '${code}' वाला विद्यालय मास्टर सूची में नहीं मिला, फिर भी अनुमति सूची में जोड़ा गया।`, 'info');
-  }
+  const schoolName = sch ? (sch.school_name_hi || sch.school_name) : `विद्यालय (${code})`;
+  const peeoName = sch ? (sch.peeo_name || '---') : '---';
+
+  const sub = (STATE.samanParikshaSubmissions && STATE.samanParikshaSubmissions[code]) || {};
+  const portalTot = Number(sub.grand_total || 0);
+  const diffInp = document.getElementById('sp-add-custom-school-diff');
+  let diffVal = diffInp ? parseInt(diffInp.value) : 0;
+  if (isNaN(diffVal)) diffVal = 0;
 
   const cfg = getSamanMismatchConfig();
   if (!cfg.custom_edit_schools) cfg.custom_edit_schools = [];
   if (!cfg.custom_edit_schools.includes(code)) {
     cfg.custom_edit_schools.push(code);
   }
+  if (!cfg.mismatch_details) cfg.mismatch_details = {};
+  cfg.mismatch_details[code] = {
+    school_name: `${schoolName} (${code})`,
+    peeo_name: peeoName,
+    portal_total: portalTot || '--',
+    sd_total: (portalTot ? portalTot - diffVal : '--'),
+    diff: diffVal,
+    diff_text: diffVal ? `अंतर: ${diffVal > 0 ? '+' : ''}${diffVal}` : 'कस्टम संपादन आवश्यक',
+    reason: 'कार्यालय CBEO भिनाय द्वारा मिसमैच/संशोधन हेतु सूची में सम्मिलित किया गया।',
+    flagged_fields: ['कुल महायोग', 'मांग विवरण']
+  };
 
   if (inp) inp.value = '';
+  if (diffInp) diffInp.value = '';
+  if (sel) sel.value = '';
+
+  STATE.samanMismatchSettings = cfg;
+  localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(cfg));
+  fetch('/api/save_saman_mismatch_settings', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ settings: cfg })
+  }).catch(() => {});
+
   renderSamanMismatchTable();
-  showToast(`विद्यालय '${code}' कस्टम संपादन सूची में जोड़ दिया गया!`, 'success');
+  if (typeof updateMismatchHeaderUI === 'function') updateMismatchHeaderUI();
+  showToast(`विद्यालय '${schoolName}' (${code}) मिसमैच सूची में जोड़ा गया!`, 'success');
+  if (typeof renderSamanParikshaView === 'function') renderSamanParikshaView();
 }
 
 function removeSchoolFromCustomEditList(schoolCode) {
   const cfg = getSamanMismatchConfig();
-  cfg.custom_edit_schools = (cfg.custom_edit_schools || []).filter(c => String(c).trim() !== String(schoolCode).trim());
+  const sCode = String(schoolCode).trim();
+  cfg.custom_edit_schools = (cfg.custom_edit_schools || []).filter(c => String(c).trim() !== sCode);
+  if (cfg.mismatch_details && cfg.mismatch_details[sCode]) {
+    delete cfg.mismatch_details[sCode];
+  }
+  if (STATE.samanParikshaSubmissions && STATE.samanParikshaSubmissions[sCode]) {
+    STATE.samanParikshaSubmissions[sCode].is_mismatch = false;
+    STATE.samanParikshaSubmissions[sCode].mismatch_resolved_at = new Date().toISOString();
+  }
+  STATE.samanMismatchSettings = cfg;
+  localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(cfg));
+  fetch('/api/save_saman_mismatch_settings', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ settings: cfg })
+  }).catch(() => {});
+
   renderSamanMismatchTable();
-  showToast(`विद्यालय '${schoolCode}' सूची से हटा दिया गया!`, 'info');
+  if (typeof updateMismatchHeaderUI === 'function') updateMismatchHeaderUI();
+  showToast(`विद्यालय '${sCode}' को मिसमैच सूची से पूर्णतः हटा दिया गया!`, 'info');
+  if (typeof renderSamanParikshaView === 'function') renderSamanParikshaView();
 }
 
 function saveSamanMismatchSettings() {
@@ -4256,13 +4315,67 @@ function saveSamanMismatchSettings() {
   }
 
   closeModal('modal-saman-custom-edit');
+  if (typeof updateMismatchHeaderUI === 'function') updateMismatchHeaderUI();
   showToast('समान परीक्षा मिसमैच व कस्टम एडिट सेटिंग्स सुरक्षित हो गईं!', 'success');
   renderSamanParikshaView();
 }
 
+function updateMismatchHeaderUI() {
+  const cfg = getSamanMismatchConfig();
+  const isActive = cfg && cfg.alert_active === true;
+  const count = (cfg.custom_edit_schools || []).length;
+
+  const btnAdmin = document.getElementById('btn-sp-mismatch-admin');
+  if (btnAdmin) {
+    btnAdmin.innerHTML = `<i class="fas fa-exclamation-triangle ${isActive ? 'sp-mismatch-blinking-text' : ''}"></i> मिसमैच स्कूल प्रबंधन (${count} स्कूल)`;
+    if (isActive) {
+      btnAdmin.style.background = '#fff1f2';
+      btnAdmin.style.color = '#be123c';
+      btnAdmin.style.borderColor = '#fca5a5';
+    } else {
+      btnAdmin.style.background = '#f8fafc';
+      btnAdmin.style.color = '#475569';
+      btnAdmin.style.borderColor = '#cbd5e1';
+    }
+  }
+
+  const btnQuickToggle = document.getElementById('btn-sp-mismatch-quick-toggle');
+  if (btnQuickToggle) {
+    if (isActive) {
+      btnQuickToggle.innerHTML = '<i class="fas fa-bell"></i> मिसमैच अलर्ट: चालू (ON)';
+      btnQuickToggle.style.background = '#fee2e2';
+      btnQuickToggle.style.color = '#dc2626';
+      btnQuickToggle.style.borderColor = '#ef4444';
+    } else {
+      btnQuickToggle.innerHTML = '<i class="fas fa-bell-slash"></i> मिसमैच अलर्ट: बंद (OFF)';
+      btnQuickToggle.style.background = '#f1f5f9';
+      btnQuickToggle.style.color = '#64748b';
+      btnQuickToggle.style.borderColor = '#cbd5e1';
+    }
+  }
+
+  const statusBadge = document.getElementById('sp-mismatch-status-badge');
+  if (statusBadge) {
+    if (isActive) {
+      statusBadge.textContent = '🟢 अलर्ट चालू (Active) - विद्यालयों को पॉपअप व अलर्ट दिखेगा';
+      statusBadge.style.background = '#dcfce7';
+      statusBadge.style.color = '#15803d';
+    } else {
+      statusBadge.textContent = '🔴 अलर्ट बंद (OFF) - किसी भी विद्यालय को पॉपअप या फ्लैग नहीं दिखेगा';
+      statusBadge.style.background = '#f1f5f9';
+      statusBadge.style.color = '#64748b';
+    }
+  }
+}
+window.updateMismatchHeaderUI = updateMismatchHeaderUI;
+
 function toggleMismatchAlertMaster(isActive) {
   const cfg = getSamanMismatchConfig();
-  cfg.alert_active = !!isActive;
+  if (isActive === undefined) {
+    cfg.alert_active = !cfg.alert_active;
+  } else {
+    cfg.alert_active = !!isActive;
+  }
   STATE.samanMismatchSettings = cfg;
   localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(cfg));
   fetch('/api/save_saman_mismatch_settings', {
@@ -4270,12 +4383,145 @@ function toggleMismatchAlertMaster(isActive) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ settings: cfg })
   }).catch(() => {});
+
   const chk = document.getElementById('sp-cfg-alert-active');
-  if (chk) chk.checked = !!isActive;
-  showToast(`मिसमैच चेतावनी अलर्ट ${isActive ? 'सक्रिय (ON)' : 'बंद (OFF)'} कर दिया गया!`, isActive ? 'success' : 'info');
+  if (chk) chk.checked = !!cfg.alert_active;
+
+  updateMismatchHeaderUI();
+  showToast(`मिसमैच अलर्ट व फ्लैग: ${cfg.alert_active ? 'चालू (ON)' : 'बंद (OFF)'} कर दिया गया!`, cfg.alert_active ? 'success' : 'info');
   renderSamanParikshaView();
 }
 window.toggleMismatchAlertMaster = toggleMismatchAlertMaster;
+
+const EXCEL_49_ENROLMENT_MAP = {
+  "506830": { name: "रा.बा.उ.मा.वि. बड़ली", c9_10: 86, c11_12: 43, total: 129 },
+  "494626": { name: "रा.बा.उ.मा.वि. चापानेरी", c9_10: 59, c11_12: 28, total: 87 },
+  "488791": { name: "रा.बा.उ.मा.वि. खेड़ी", c9_10: 41, c11_12: 17, total: 58 },
+  "410632": { name: "रा.बा.उ.मा.वि. नांदसी", c9_10: 43, c11_12: 26, total: 69 },
+  "221764": { name: "रा.उ.मा.वि. बड़गांव (सूरखण्ड)", c9_10: 165, c11_12: 96, total: 261 },
+  "488781": { name: "रा.उ.मा.वि. बडला (नागोला)", c9_10: 60, c11_12: 28, total: 88 },
+  "221755": { name: "रा.उ.मा.वि. बड़ली", c9_10: 85, c11_12: 52, total: 137 },
+  "221769": { name: "रा.उ.मा.वि. बांदनवाड़ा", c9_10: 187, c11_12: 132, total: 319 },
+  "221780": { name: "रा.उ.मा.वि. भिनाय", c9_10: 223, c11_12: 178, total: 401 },
+  "221763": { name: "रा.उ.मा.वि. बूबकिया", c9_10: 61, c11_12: 48, total: 109 },
+  "221758": { name: "रा.उ.मा.वि. चापानेरी", c9_10: 115, c11_12: 59, total: 174 },
+  "221787": { name: "रा.उ.मा.वि. छाछून्दरा", c9_10: 104, c11_12: 72, total: 176 },
+  "488941": { name: "रा.उ.मा.वि. देवरिया", c9_10: 69, c11_12: 40, total: 109 },
+  "221765": { name: "रा.उ.मा.वि. धतूरिया", c9_10: 47, c11_12: 37, total: 84 },
+  "221786": { name: "रा.उ.मा.वि. एकलसिंगा", c9_10: 128, c11_12: 116, total: 244 },
+  "221789": { name: "रा.उ.मा.वि. गुढा कलां", c9_10: 79, c11_12: 66, total: 145 },
+  "221792": { name: "रा.उ.मा.वि. जामोला", c9_10: 110, c11_12: 69, total: 179 },
+  "221773": { name: "रा.उ.मा.वि. करांटी", c9_10: 67, c11_12: 39, total: 106 },
+  "221767": { name: "रा.उ.मा.वि. कूबड़ा", c9_10: 46, c11_12: 26, total: 72 },
+  "221772": { name: "रा.उ.मा.वि. नागोला", c9_10: 132, c11_12: 90, total: 222 },
+  "221756": { name: "रा.उ.मा.वि. नांदसी", c9_10: 55, c11_12: 37, total: 92 },
+  "221761": { name: "रा.उ.मा.वि. निमेड़ा", c9_10: 55, c11_12: 37, total: 92 },
+  "221783": { name: "रा.उ.मा.वि. पदमपुरा", c9_10: 85, c11_12: 62, total: 147 },
+  "221774": { name: "रा.उ.मा.वि. राताकोट", c9_10: 89, c11_12: 52, total: 141 },
+  "221771": { name: "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा", c9_10: 51, c11_12: 30, total: 81 },
+  "221784": { name: "रा.उ.मा.वि. सातोलाव", c9_10: 59, c11_12: 45, total: 104 },
+  "221782": { name: "रा.उ.मा.वि. शोकलिया", c9_10: 94, c11_12: 69, total: 163 },
+  "221788": { name: "रा.उ.मा.वि. सिंगावल", c9_10: 89, c11_12: 59, total: 148 },
+  "221760": { name: "रा.उ.मा.वि. सोबड़ी", c9_10: 55, c11_12: 30, total: 85 },
+  "221775": { name: "रा.उ.मा.वि. तंतोती", c9_10: 110, c11_12: 82, total: 192 },
+  "221754": { name: "पीएम श्री रा.उ.मा.वि. देवलिया कलां", c9_10: 284, c11_12: 242, total: 526 },
+  "221778": { name: "महात्मा गांधी रा.वि. भिनाय", c9_10: 44, c11_12: 42, total: 86 },
+  "221770": { name: "महात्मा गांधी रा.वि. बांदनवाड़ा", c9_10: 41, c11_12: 0, total: 41 },
+  "221753": { name: "महात्मा गांधी रा.वि. देवलिया कलां", c9_10: 70, c11_12: 40, total: 110 },
+  "221790": { name: "रा.मा.वि. बड़ला (भिनाय)", c9_10: 41, c11_12: 0, total: 41 },
+  "221768": { name: "रा.मा.वि. बग्गड़", c9_10: 47, c11_12: 0, total: 47 },
+  "221766": { name: "रा.मा.वि. बिरांदिया", c9_10: 58, c11_12: 0, total: 58 },
+  "221785": { name: "रा.मा.वि. चतरपुरा", c9_10: 23, c11_12: 0, total: 23 },
+  "221757": { name: "रा.मा.वि. दौलतपुरा (नांदसी)", c9_10: 28, c11_12: 0, total: 28 },
+  "221779": { name: "रा.मा.वि. धौला की ढाणी", c9_10: 29, c11_12: 0, total: 29 },
+  "221793": { name: "रा.मा.वि. गनगड़ा", c9_10: 24, c11_12: 0, total: 24 },
+  "221791": { name: "रा.मा.वि. गुढ़ा खुर्द", c9_10: 33, c11_12: 0, total: 33 },
+  "221781": { name: "रा.मा.वि. हिंगोनिया", c9_10: 34, c11_12: 0, total: 34 },
+  "221762": { name: "रा.मा.वि. कुम्हारिया", c9_10: 28, c11_12: 0, total: 28 },
+  "221777": { name: "रा.मा.वि. मंडावरिया", c9_10: 28, c11_12: 0, total: 28 },
+  "221776": { name: "रा.मा.वि. पनोतिया", c9_10: 46, c11_12: 0, total: 46 },
+  "488796": { name: "रा.मा.वि. पवाल्या", c9_10: 22, c11_12: 0, total: 22 },
+  "488771": { name: "रा.मा.वि. रूपहेली", c9_10: 25, c11_12: 0, total: 25 },
+  "221759": { name: "रा.मा.वि. सेसपुरा", c9_10: 34, c11_12: 0, total: 34 }
+};
+window.EXCEL_49_ENROLMENT_MAP = EXCEL_49_ENROLMENT_MAP;
+
+function onMismatchSchoolDropdownSelected(code) {
+  const inp = document.getElementById('sp-add-custom-school-code');
+  if (inp) inp.value = code || '';
+  const diffInp = document.getElementById('sp-add-custom-school-diff');
+  if (diffInp && code) {
+    const sub = (STATE.samanParikshaSubmissions && STATE.samanParikshaSubmissions[code]) || {};
+    const portalTot = Number(sub.grand_total || 0);
+    const ex = EXCEL_49_ENROLMENT_MAP[code];
+    if (ex && portalTot > 0) {
+      const d = portalTot - ex.total;
+      diffInp.value = d;
+      diffInp.placeholder = `वर्तमान अंतर: ${d > 0 ? '+' : ''}${d} (पोर्टल: ${portalTot}, SD: ${ex.total})`;
+    } else {
+      diffInp.value = '';
+      diffInp.placeholder = portalTot > 0 ? `पोर्टल मांग: ${portalTot}` : 'अंतर दर्ज करें';
+    }
+  }
+}
+window.onMismatchSchoolDropdownSelected = onMismatchSchoolDropdownSelected;
+
+function scanExcelMismatchesNow() {
+  const subs = STATE.samanParikshaSubmissions || {};
+  const found = [];
+  const cfg = getSamanMismatchConfig();
+  if (!cfg.mismatch_details) cfg.mismatch_details = {};
+  if (!cfg.custom_edit_schools) cfg.custom_edit_schools = [];
+
+  Object.entries(EXCEL_49_ENROLMENT_MAP).forEach(([code, ex]) => {
+    const sub = subs[code];
+    if (!sub) return;
+    const c9_10 = (Number(sub.c9_total) || 0) + (Number(sub.c10_total) || 0);
+    const c11_12 = (Number(sub.c11_total) || 0) + (Number(sub.c12_total) || 0);
+    const portalTot = Number(sub.grand_total) || (c9_10 + c11_12);
+
+    const d9 = c9_10 - ex.c9_10;
+    const d11 = c11_12 - ex.c11_12;
+    const dTot = portalTot - ex.total;
+
+    if (d9 !== 0 || d11 !== 0 || dTot !== 0) {
+      found.push({ code, name: ex.name, dTot, d9, d11, portalTot, sdTot: ex.total });
+      if (!cfg.custom_edit_schools.includes(code)) cfg.custom_edit_schools.push(code);
+      cfg.mismatch_details[code] = {
+        school_name: `${ex.name} (${code})`,
+        portal_total: portalTot,
+        sd_total: ex.total,
+        diff: dTot,
+        portal_c9_10: c9_10,
+        portal_c11_12: c11_12,
+        sd_c9_10: ex.c9_10,
+        sd_c11_12: ex.c11_12,
+        diff_text: `पेपर मांग शाला दर्पण नामांकन से ${Math.abs(dTot)} ${dTot > 0 ? 'ज्यादा' : 'कम'} है`,
+        reason: `कक्षा 9-10 में अंतर: ${d9 > 0 ? '+' : ''}${d9}, कक्षा 11-12 में अंतर: ${d11 > 0 ? '+' : ''}${d11}`,
+        flagged_fields: ['कुल महायोग', 'कक्षा 9-10 मांग', 'कक्षा 11-12 मांग']
+      };
+    }
+  });
+
+  STATE.samanMismatchSettings = cfg;
+  localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(cfg));
+  fetch('/api/save_saman_mismatch_settings', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ settings: cfg })
+  }).catch(() => {});
+
+  renderSamanMismatchTable();
+  if (typeof updateMismatchHeaderUI === 'function') updateMismatchHeaderUI();
+
+  if (found.length === 0) {
+    showToast('✓ शानदार! सभी विद्यालयों का नामांकन एक्सेल डेटा से 100% मैच है!', 'success');
+  } else {
+    const listStr = found.map(f => `${f.name} (${f.dTot > 0 ? '+' : ''}${f.dTot})`).join(', ');
+    showToast(`⚠️ कुल ${found.length} विद्यालयों में अंतर पाया गया: ${listStr}`, 'warning');
+  }
+}
+window.scanExcelMismatchesNow = scanExcelMismatchesNow;
 
 function checkAndShowSamanMismatchAlert(userObj) {
   if (!userObj || userObj.role === 'admin') return;
@@ -12763,13 +13009,17 @@ function isDemandSchoolMismatch(demandId, schoolCode) {
 
   // 1. Saman Pariksha
   if (dId === 'saman_pariksha_2026_27' || dId === 'demand_saman_pariksha_2026' || dId.includes('saman_pariksha')) {
+    const spCfg = STATE.samanMismatchSettings || (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : null);
+    if (spCfg && spCfg.alert_active === false) {
+      return false; // Mismatch alerts & flags are turned OFF by Admin setting!
+    }
+
     const spSub = STATE.samanParikshaSubmissions && STATE.samanParikshaSubmissions[sCode];
     if (spSub) {
       if (spSub.is_mismatch === false && spSub.mismatch_resolved_at) {
         return false; // Mismatch has been satisfied/resolved!
       }
       // Live Comparison Value Satisfaction Check:
-      const spCfg = STATE.samanMismatchSettings || (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : null);
       const mInfo = spCfg?.mismatch_details?.[sCode];
       if (mInfo) {
         const expectedTotal = (mInfo.sd_total !== undefined && mInfo.sd_total !== null && Number(mInfo.sd_total) > 0)
@@ -12782,7 +13032,6 @@ function isDemandSchoolMismatch(demandId, schoolCode) {
         }
       }
     }
-    const spCfg = STATE.samanMismatchSettings || (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : null);
     if (spCfg) {
       if (spCfg.custom_edit_schools && spCfg.custom_edit_schools.some(c => String(c).trim() === sCode)) return true;
       if (spCfg.mismatch_details && spCfg.mismatch_details[sCode]) return true;
