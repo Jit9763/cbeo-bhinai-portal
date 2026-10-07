@@ -6289,6 +6289,14 @@ function openExamPdfPreview(schoolCode, lang = null) {
     }
   }
 
+  const isSchoolMggs = ['221770', '221778', '221753'].includes(String(schoolCode).trim()) || (school.category || '').toUpperCase().includes('MGGS') || (school.school_name || '').includes('महात्मा गांधी') || (school.school_name || '').toUpperCase().includes('MGGS');
+  const effMed = isSchoolMggs ? 'english' : (sub.school_medium || 'hindi');
+  const medDisplay = effMed === 'english'
+    ? (isEn ? 'English Medium (MGGS)' : 'अंग्रेजी माध्यम (MGGS - English Medium)')
+    : (effMed === 'both' 
+        ? (isEn ? 'Bilingual (Hindi + English)' : 'द्विभाषी (हिंदी + अंग्रेजी माध्यम)') 
+        : (isEn ? 'Hindi Medium' : 'हिंदी माध्यम (Hindi Medium)'));
+
   const schoolDisplayName = getStandardSchoolName(school.shala_darpan_code, activeExamPdfLanguage) || (isEn ? (school.school_name_en || school.school_name) : (school.school_name_hi || school.school_name));
   const peeoCleanName = (school.peeo_name || '').replace(/^PEEO\s+/i, '');
   const peeoDisplay = isEn ? peeoCleanName : `पीईईओ ${peeoCleanName}`;
@@ -6337,6 +6345,16 @@ function openExamPdfPreview(schoolCode, lang = null) {
         <td style="padding:2px 5px; border:1px solid #000"><strong>${isEn ? 'Exam In-charge:' : 'परीक्षा प्रभारी:'}</strong></td>
         <td style="padding:2px 5px; border:1px solid #000"><strong>${sub.incharge_name}</strong> (${isEn ? 'Mob:' : 'मो.'} ${sub.incharge_mobile})</td>
       </tr>
+      <tr style="background:#f1f5f9">
+        <td style="padding:2px 5px; border:1px solid #000"><strong>${isEn ? 'School Medium:' : 'शिक्षण माध्यम:'}</strong></td>
+        <td style="padding:2px 5px; border:1px solid #000; font-weight:800; color:${effMed === 'english' ? '#0f766e' : '#000'}">
+          ${effMed === 'english' ? '<span style="background:#ccfbf1; padding:1px 6px; border:1px solid #0d9488; border-radius:3px">🌐 ' + medDisplay + '</span>' : medDisplay}
+        </td>
+        <td style="padding:2px 5px; border:1px solid #000"><strong>${isEn ? 'Form Status:' : 'प्रपत्र स्थिति:'}</strong></td>
+        <td style="padding:2px 5px; border:1px solid #000; font-weight:800; color:#166534">
+          ✓ ${isEn ? 'Final Submitted & Verified' : 'पूर्ण सबमिट एवं अधिकृत'}
+        </td>
+      </tr>
     </table>
 
     <!-- 8-Column Comprehensive Matrix Table (Laser Print-Friendly High-Contrast) -->
@@ -6348,7 +6366,7 @@ function openExamPdfPreview(schoolCode, lang = null) {
           <th style="padding:3px 5px; border:1.5px solid #000; width:210px; text-align:left">${isEn ? 'Compulsory Subjects' : 'अनिवार्य विषय'}</th>
           <th style="padding:3px 3px; border:1.5px solid #000; width:140px">${isEn ? 'Third Language' : 'तृतीय भाषा'}</th>
           <th style="padding:3px 3px; border:1.5px solid #000; width:110px">${isEn ? 'Faculties' : 'संचालित संकाय'}</th>
-          <th style="padding:3px 5px; border:1.5px solid #000; text-align:left">${isEn ? 'Optional Subjects Demand Breakdown' : 'ऐच्छिक विषय मांग विवरण'}</th>
+          <th style="padding:3px 5px; border:1.5px solid #000; text-align:left">${isEn ? 'Medium Breakdown / Optionals' : 'माध्यमवार मांग / ऐच्छिक विवरण'}</th>
           <th style="padding:3px 3px; border:1.5px solid #000; width:75px">${isEn ? 'Enrolment' : 'नामांकन'}</th>
           <th style="padding:3px 3px; border:1.5px solid #000; width:75px; background:#e2e8f0; font-weight:900">${isEn ? 'Demand Count' : 'मांग संख्या'}</th>
         </tr>
@@ -6360,7 +6378,9 @@ function openExamPdfPreview(schoolCode, lang = null) {
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800; background:#f8fafc">${isEn ? 'Class 9th' : 'कक्षा 9वीं'}</td>
           <td style="padding:2.5px 5px; border:1px solid #000; text-align:left">
             ${(sub.c9_total > 0) 
-              ? (isEn ? 'Hindi, English, Science, Social Science, Mathematics (5 Subjects)' : 'हिंदी, अंग्रेजी, विज्ञान, सामाजिक विज्ञान, गणित (5 अनिवार्य विषय)') 
+              ? (effMed === 'english'
+                  ? (isEn ? '<strong style="color:#0f766e">[English Medium (MGGS)]</strong> Hindi, English, Science, Social Science, Mathematics' : '<strong style="color:#0f766e">[अंग्रेजी माध्यम (MGGS)]</strong> हिंदी, अंग्रेजी, विज्ञान, सामाजिक विज्ञान, गणित (5 अनिवार्य विषय)')
+                  : (isEn ? 'Hindi, English, Science, Social Science, Mathematics (5 Subjects)' : 'हिंदी, अंग्रेजी, विज्ञान, सामाजिक विज्ञान, गणित (5 अनिवार्य विषय)'))
               : `<span style="color:#475569; font-style:italic">${isEn ? 'Nil Enrolment in Class 9' : 'कक्षा 9वीं में शून्य नामांकन (NIL)'}</span>`}
           </td>
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:700">
@@ -6369,7 +6389,15 @@ function openExamPdfPreview(schoolCode, lang = null) {
               : `<span style="color:#64748b">-</span>`}
           </td>
           <td style="padding:2.5px 3px; border:1px solid #000">${(sub.c9_total > 0) ? (isEn ? 'General' : 'सामान्य') : '<span style="color:#64748b">-</span>'}</td>
-          <td style="padding:2.5px 5px; border:1px solid #000; color:#64748b; text-align:center">${isEn ? '- (Not Applicable) -' : '- (कक्षा 9 में लागू नहीं) -'}</td>
+          <td style="padding:2.5px 5px; border:1px solid #000; text-align:left">
+            ${(sub.c9_total > 0)
+              ? (effMed === 'english'
+                  ? `<span style="display:inline-block; padding:1px 5px; background:#ccfbf1; border:1px solid #0d9488; border-radius:3px; color:#0f766e; font-size:0.75rem; font-weight:800">${isEn ? 'English Medium:' : 'अंग्रेजी माध्यम मांग:'} ${sub.c9_english || sub.c9_total || 0}</span>`
+                  : (effMed === 'both'
+                      ? `हिंदी: <strong>${sub.c9_hindi || 0}</strong> | अंग्रेजी: <strong>${sub.c9_english || 0}</strong>`
+                      : `<span style="color:#334155; font-size:0.75rem">${isEn ? 'Hindi Medium:' : 'हिंदी माध्यम मांग:'} <strong>${sub.c9_hindi || sub.c9_total || 0}</strong></span>`))
+              : '<span style="color:#64748b">-</span>'}
+          </td>
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800">${sub.c9_total}</td>
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:900; background:#f8fafc">${(sub.c9_total > 0) ? sub.c9_total : '0 (NIL)'}</td>
         </tr>
@@ -6380,7 +6408,9 @@ function openExamPdfPreview(schoolCode, lang = null) {
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800; background:#f8fafc">${isEn ? 'Class 10th' : 'कक्षा 10वीं'}</td>
           <td style="padding:2.5px 5px; border:1px solid #000; text-align:left">
             ${(sub.c10_total > 0) 
-              ? (isEn ? 'Hindi, English, Science, Social Science, Mathematics (5 Subjects)' : 'हिंदी, अंग्रेजी, विज्ञान, सामाजिक विज्ञान, गणित (5 अनिवार्य विषय)') 
+              ? (effMed === 'english'
+                  ? (isEn ? '<strong style="color:#0f766e">[English Medium (MGGS)]</strong> Hindi, English, Science, Social Science, Mathematics' : '<strong style="color:#0f766e">[अंग्रेजी माध्यम (MGGS)]</strong> हिंदी, अंग्रेजी, विज्ञान, सामाजिक विज्ञान, गणित (5 अनिवार्य विषय)')
+                  : (isEn ? 'Hindi, English, Science, Social Science, Mathematics (5 Subjects)' : 'हिंदी, अंग्रेजी, विज्ञान, सामाजिक विज्ञान, गणित (5 अनिवार्य विषय)'))
               : `<span style="color:#475569; font-style:italic">${isEn ? 'Nil Enrolment in Class 10' : 'कक्षा 10वीं में शून्य नामांकन (NIL)'}</span>`}
           </td>
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:700">
@@ -6389,7 +6419,15 @@ function openExamPdfPreview(schoolCode, lang = null) {
               : `<span style="color:#64748b">-</span>`}
           </td>
           <td style="padding:2.5px 3px; border:1px solid #000">${(sub.c10_total > 0) ? (isEn ? 'General' : 'सामान्य') : '<span style="color:#64748b">-</span>'}</td>
-          <td style="padding:2.5px 5px; border:1px solid #000; color:#64748b; text-align:center">${isEn ? '- (Not Applicable) -' : '- (कक्षा 10 में लागू नहीं) -'}</td>
+          <td style="padding:2.5px 5px; border:1px solid #000; text-align:left">
+            ${(sub.c10_total > 0)
+              ? (effMed === 'english'
+                  ? `<span style="display:inline-block; padding:1px 5px; background:#ccfbf1; border:1px solid #0d9488; border-radius:3px; color:#0f766e; font-size:0.75rem; font-weight:800">${isEn ? 'English Medium:' : 'अंग्रेजी माध्यम मांग:'} ${sub.c10_english || sub.c10_total || 0}</span>`
+                  : (effMed === 'both'
+                      ? `हिंदी: <strong>${sub.c10_hindi || 0}</strong> | अंग्रेजी: <strong>${sub.c10_english || 0}</strong>`
+                      : `<span style="color:#334155; font-size:0.75rem">${isEn ? 'Hindi Medium:' : 'हिंदी माध्यम मांग:'} <strong>${sub.c10_hindi || sub.c10_total || 0}</strong></span>`))
+              : '<span style="color:#64748b">-</span>'}
+          </td>
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:800">${sub.c10_total}</td>
           <td style="padding:2.5px 3px; border:1px solid #000; font-weight:900; background:#f8fafc">${(sub.c10_total > 0) ? sub.c10_total : '0 (NIL)'}</td>
         </tr>
@@ -6404,7 +6442,7 @@ function openExamPdfPreview(schoolCode, lang = null) {
               : `<span style="color:#475569; font-style:italic">${isEn ? 'Class 11 Not Operating (NIL)' : 'कक्षा 11वीं संचालित नहीं (NIL)'}</span>`}
           </td>
           <td style="padding:2.5px 3px; border:1px solid #000; color:#64748b">${isEn ? '- (N/A) -' : '- (लागू नहीं) -'}</td>
-          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:700">${(sub.c11_total > 0) ? c11FacNames : '<span style="color:#64748b">-</span>'}</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:700">${(sub.c11_total > 0) ? (c11FacNames + (effMed === 'english' ? ' <span style="font-size:0.70rem; color:#0f766e; font-weight:800">[English Med.]</span>' : '')) : '<span style="color:#64748b">-</span>'}</td>
           <td style="padding:2.5px 5px; border:1px solid #000; text-align:left">
             ${(sub.c11_total > 0) ? c11OptPillsHtml : `<span style="color:#64748b">${isEn ? '- Nil -' : '- कोई ऐच्छिक विषय लागू नहीं -'}</span>`}
           </td>
@@ -6422,7 +6460,7 @@ function openExamPdfPreview(schoolCode, lang = null) {
               : `<span style="color:#475569; font-style:italic">${isEn ? 'Class 12 Not Operating (NIL)' : 'कक्षा 12वीं संचालित नहीं (NIL)'}</span>`}
           </td>
           <td style="padding:2.5px 3px; border:1px solid #000; color:#64748b">${isEn ? '- (N/A) -' : '- (लागू नहीं) -'}</td>
-          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:700">${(sub.c12_total > 0) ? c12FacNames : '<span style="color:#64748b">-</span>'}</td>
+          <td style="padding:2.5px 3px; border:1px solid #000; font-weight:700">${(sub.c12_total > 0) ? (c12FacNames + (effMed === 'english' ? ' <span style="font-size:0.70rem; color:#0f766e; font-weight:800">[English Med.]</span>' : '')) : '<span style="color:#64748b">-</span>'}</td>
           <td style="padding:2.5px 5px; border:1px solid #000; text-align:left">
             ${(sub.c12_total > 0) ? c12OptPillsHtml : `<span style="color:#64748b">${isEn ? '- Nil -' : '- कोई ऐच्छिक विषय लागू नहीं -'}</span>`}
           </td>
@@ -6653,10 +6691,17 @@ async function downloadExamPDFDirect() {
   const schoolCode = STATE.activeExamPreviewCode || 'School';
   const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
   const isEn = (typeof activeExamPdfLanguage !== 'undefined' && activeExamPdfLanguage === 'en');
-  const schoolName = isEn ? (school?.school_name_en || school?.school_name || 'School') : (school?.school_name || 'School');
-  const nameSafe = schoolName.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 30);
-  const langTag = isEn ? 'EN' : 'HI';
-  const filename = `Saman_Pariksha_2026_${schoolCode}_${langTag}_${nameSafe}.pdf`;
+  const baseName = isEn ? (school?.school_name_en || school?.school_name || 'School') : (school?.school_name || school?.school_name_en || 'School');
+  let cleanName = String(baseName)
+    .replace(/[\\/:*?"<>|,.;!()\[\]{}]/g, ' ')
+    .trim()
+    .replace(/\s+/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^_+|_+$/g, '');
+  if (!cleanName || /^_+$/.test(cleanName)) {
+    cleanName = (school?.school_name_en || schoolCode || 'School').replace(/[\\/:*?"<>|,.;!()\[\]{}]/g, ' ').trim().replace(/\s+/g, '_');
+  }
+  const filename = `Saman_Pariksha_2026_${schoolCode}_${cleanName}.pdf`;
 
   showToast('अधिकृत Landscape PDF तैयार किया जा रहा है...', 'info');
 
@@ -6677,7 +6722,7 @@ async function downloadExamPDFDirect() {
   }
 }
 
-async function shareExamPDFWhatsApp() {
+function shareExamPDFWhatsApp() {
   const schoolCode = STATE.activeExamPreviewCode;
   const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
   const sub = STATE.samanParikshaSubmissions[schoolCode];
@@ -6686,43 +6731,17 @@ async function shareExamPDFWhatsApp() {
     return;
   }
 
-  const nameSafe = school.school_name.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 30);
-  const filename = `Saman_Pariksha_2026_${schoolCode}_${nameSafe}.pdf`;
+  const isSchoolMggs = ['221770', '221778', '221753'].includes(String(schoolCode).trim()) || (school.category || '').toUpperCase().includes('MGGS') || (school.school_name || '').includes('महात्मा गांधी') || (school.school_name || '').toUpperCase().includes('MGGS');
+  const effMed = isSchoolMggs ? 'अंग्रेजी माध्यम (MGGS)' : (sub.school_medium === 'english' ? 'अंग्रेजी माध्यम' : (sub.school_medium === 'both' ? 'द्विभाषी (हिंदी+अंग्रेजी)' : 'हिंदी माध्यम'));
 
-  const waSummary = `*🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय*\n*जिला समान परीक्षा योजना (सत्र 2026-27)*\n\n📌 *विद्यालय:* ${school.school_name}\n📌 *शाला दर्पण कोड:* ${school.shala_darpan_code} | *परीक्षा कोड:* ${sub.exam_code}\n📌 *संस्था प्रधान:* ${sub.principal_name} (${sub.principal_mobile})\n📌 *परीक्षा प्रभारी:* ${sub.incharge_name} (${sub.incharge_mobile})\n\n🎯 *कुल मांग प्रश्न-पत्र (Grand Total):* *${sub.grand_total}*\n(9वीं: ${sub.c9_total}, 10वीं: ${sub.c10_total}, 11वीं: ${sub.c11_total}, 12वीं: ${sub.c12_total})\n\n📄 *अधिकृत A4 Landscape PDF प्रपत्र संलग्न है।*\n🌐 *सत्यापन पोर्टल:* https://jit9763.github.io/cbeo-bhinai-portal/`;
+  const c9Breakdown = isSchoolMggs ? ` (अंग्रेजी माध्यम: ${sub.c9_english || sub.c9_total || 0})` : '';
+  const c10Breakdown = isSchoolMggs ? ` (अंग्रेजी माध्यम: ${sub.c10_english || sub.c10_total || 0})` : '';
 
-  showToast('WhatsApp शेयर हेतु अधिकृत PDF तैयार की जा रही है...', 'info');
+  const text = `*🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय*\n*जिला समान परीक्षा योजना (सत्र 2026-27)*\n\n📌 *विद्यालय:* ${school.school_name}\n📌 *शिक्षण माध्यम:* ${effMed}\n📌 *शाला दर्पण/PSP कोड:* ${school.shala_darpan_code}\n📌 *परीक्षा कोड:* ${sub.exam_code}\n📌 *संस्था प्रधान:* ${sub.principal_name} (${sub.principal_mobile})\n📌 *परीक्षा प्रभारी:* ${sub.incharge_name} (${sub.incharge_mobile})\n\n📊 *कक्षावार नामांकन एवं प्रश्न-पत्र मांग (A4 Landscape Form):*\n• कक्षा 9वीं: ${sub.c9_total}${c9Breakdown}\n• कक्षा 10वीं: ${sub.c10_total}${c10Breakdown}\n• कक्षा 11वीं: ${sub.c11_total}\n• कक्षा 12वीं: ${sub.c12_total}\n🎯 *कुल मांग प्रश्न-पत्र (Grand Total):* *${sub.grand_total}*\n\n✅ *सत्यापन स्थिति:* अधिकृत उत्तरदायित्व घोषणा, सील व हस्ताक्षरों सहित सत्यापित\n📅 *प्रविष्टि दिनांक:* ${sub.timestamp || new Date().toLocaleDateString('hi-IN')}\n🌐 *पोर्टल लिंक:* https://jit9763.github.io/cbeo-bhinai-portal/`;
 
-  try {
-    const blob = await exportDocumentToPdfBlob('printable-exam-document-content', filename);
-    const pdfFile = new File([blob], filename, { type: 'application/pdf' });
-
-    if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
-      await navigator.share({
-        files: [pdfFile],
-        title: `समान परीक्षा 2026 मांग - ${school.school_name}`,
-        text: waSummary
-      });
-      showToast('WhatsApp शेयर विंडो सफलतापूर्वक खुल गई!', 'success');
-    } else {
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-
-      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(waSummary + '\n\n*(नोट: PDF फाइल आपके सिस्टम में डाउनलोड हो गई है, कृपया WhatsApp चैट में अटैच करें)*')}`;
-      window.open(waUrl, '_blank');
-      showToast('PDF डाउनलोड हो गई है एवं WhatsApp खुल गया है! कृपया फाइल अटैच करें।', 'info');
-    }
-  } catch (err) {
-    console.warn('WhatsApp share fallback:', err);
-    const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(waSummary)}`;
-    window.open(waUrl, '_blank');
-  }
+  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+  showToast('WhatsApp शेयर लिंक खुल रहा है...', 'success');
 }
 
 /* ========================================================
@@ -13069,12 +13088,18 @@ async function downloadUniversalDemandPdfDirect() {
 
   const demand = STATE.demands.find(d => d.id === demandId) || { title: 'CBEO_Bhinai_Report' };
   const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode) || { school_name: 'School' };
-  const isEn = (typeof activeUniversalDemandPdfLanguage !== 'undefined' && activeUniversalDemandPdfLanguage === 'en');
-  const schoolName = isEn ? (school.school_name_en || school.school_name || 'School') : (school.school_name || 'School');
-  const nameSafe = schoolName.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 30);
-  const demandSafe = demand.title.replace(/[^a-zA-Z0-9_\u0900-\u097F]/g, '_').substring(0, 30);
-  const langTag = isEn ? 'EN' : 'HI';
-  const filename = `${demandSafe}_${schoolCode}_${langTag}_${nameSafe}.pdf`;
+  const baseName = isEn ? (school.school_name_en || school.school_name || 'School') : (school.school_name || school.school_name_en || 'School');
+  let cleanName = String(baseName)
+    .replace(/[\\/:*?"<>|,.;!()\[\]{}]/g, ' ')
+    .trim()
+    .replace(/\s+/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^_+|_+$/g, '');
+  if (!cleanName || /^_+$/.test(cleanName)) {
+    cleanName = (school.school_name_en || schoolCode || 'School').replace(/[\\/:*?"<>|,.;!()\[\]{}]/g, ' ').trim().replace(/\s+/g, '_');
+  }
+  const demandSafe = demand.title.replace(/[\\/:*?"<>|,.;!()\[\]{}]/g, ' ').trim().replace(/\s+/g, '_').substring(0, 30);
+  const filename = `${demandSafe}_${schoolCode}_${cleanName}.pdf`;
 
   showToast('आधिकारिक Landscape PDF तैयार किया जा रहा है...', 'info');
   try {
