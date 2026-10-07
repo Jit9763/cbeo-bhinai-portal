@@ -250,56 +250,140 @@ function getDemandSubmissionRecord(demandId, schoolCode) {
 }
 
 const DEFAULT_SAMAN_MISMATCH_SETTINGS = {
-  alert_active: false, // 🔒 OFF by default as requested (Admin can toggle ON whenever needed)
-  alert_title: '🚨 अति-आवश्यक: समान परीक्षा मांग - नामांकन मिसमैच एवं संशोधन सूचना',
-  alert_message: 'मान्यवर संस्था प्रधान, आपके विद्यालय द्वारा समान परीक्षा 2026-27 के मांग प्रपत्र में भरा गया कुल नामांकन शाला दर्पण के वास्तविक नामांकन से भिन्न (मिसमैच) पाया गया है।\n\nकार्यालय CBEO भिनाय (अजमेर) द्वारा आपके विद्यालय के लिए मांग प्रपत्र में संशोधन (Custom Edit) की विशेष सुविधा खोल दी गई है। कृपया तुरंत मांग पत्रक में सुधार कर पुनः सबमिट करें।',
-  custom_edit_schools: [
-    '221780',
-    '221758',
-    '221761'
+  "alert_active": true,
+  "alert_title": "🚨 अति-आवश्यक: समान परीक्षा मांग - नामांकन मिसमैच एवं संशोधन सूचना",
+  "alert_message": "मान्यवर संस्था प्रधान, आपके विद्यालय द्वारा समान परीक्षा 2026-27 के मांग प्रपत्र में भरा गया कक्षावार नामांकन शाला दर्पण के वास्तविक नामांकन से भिन्न (मिसमैच) पाया गया है।\n\nकार्यालय CBEO भिनाय (अजमेर) द्वारा आपके विद्यालय के लिए मांग प्रपत्र में संशोधन (Custom Edit) की विशेष सुविधा खोल दी गई है। कृपया तुरंत मांग पत्रक में सुधार कर पुनः सबमिट करें।",
+  "custom_edit_schools": [
+    "221756",
+    "221761",
+    "221763",
+    "221772",
+    "221775",
+    "221778",
+    "221780"
   ],
-  mismatch_details: {
-    '221780': {
-      school_name: 'GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)',
-      peeo_name: 'BHINAI',
-      portal_total: 411,
-      sd_total: 401,
-      diff: 10,
-      portal_c9_10: 232,
-      portal_c11_12: 179,
-      sd_c9_10: 223,
-      sd_c11_12: 178,
-      diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 10 ज्यादा है (मांग: 411, शाला दर्पण: 401)',
-      reason: 'कक्षा 9-10 में पेपर मांग शाला दर्पण नामांकन से 9 ज्यादा (232 बनाम 223) तथा कक्षा 11-12 में 1 ज्यादा (179 बनाम 178) दर्ज है। कृपया शाला दर्पण अनुसार शुद्ध करें।',
-      flagged_fields: ['कक्षा 9-10 पेपर मांग', 'कक्षा 11-12 पेपर मांग', 'कुल महायोग']
+  "mismatch_details": {
+    "221756": {
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, नांदसी (221756)",
+      "peeo_name": "NANDSI",
+      "portal_total": 98,
+      "sd_total": 92,
+      "diff": 6,
+      "portal_c9_10": 59,
+      "portal_c11_12": 39,
+      "sd_c9_10": 55,
+      "sd_c11_12": 37,
+      "diff_text": "पेपर मांग शाला दर्पण नामांकन से 6 अधिक है (कक्षा 9 में +4, कक्षा 11 में +2)",
+      "reason": "कक्षा 9 में मांग 28 दर्ज है (SD: 24), कक्षा 11 में 19 दर्ज है (SD: 17)।",
+      "flagged_fields": [
+        "कक्षा 9 मांग",
+        "कक्षा 11 मांग",
+        "कुल महायोग"
+      ]
     },
-    '221758': {
-      school_name: 'GOVT. SENIOR SECONDARY SCHOOL CHAPANERI (221758)',
-      peeo_name: 'CHAPANERI',
-      portal_total: 175,
-      sd_total: 174,
-      diff: 1,
-      portal_c9_10: 116,
-      portal_c11_12: 59,
-      sd_c9_10: 115,
-      sd_c11_12: 59,
-      diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 1 ज्यादा है (मांग: 175, शाला दर्पण: 174)',
-      reason: 'कक्षा 9-10 में मांग 1 ज्यादा (116 बनाम 115) दर्ज है।',
-      flagged_fields: ['कक्षा 9-10 पेपर मांग', 'कुल महायोग']
+    "221761": {
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा (221761)",
+      "peeo_name": "LAMGARA",
+      "portal_total": 94,
+      "sd_total": 87,
+      "diff": 7,
+      "portal_c9_10": 55,
+      "portal_c11_12": 39,
+      "sd_c9_10": 50,
+      "sd_c11_12": 37,
+      "diff_text": "पेपर मांग शाला दर्पण नामांकन से 7 अधिक है (कक्षा 9 में +5, कक्षा 11 में +2)",
+      "reason": "कक्षा 9 में मांग 37 दर्ज है (SD: 32), कक्षा 11 में 18 दर्ज है (SD: 16)।",
+      "flagged_fields": [
+        "कक्षा 9 मांग",
+        "कक्षा 11 मांग",
+        "कुल महायोग"
+      ]
     },
-    '221761': {
-      school_name: 'GOVT. SENIOR SECONDARY SCHOOL NIMEDA (221761)',
-      peeo_name: 'NIMEDA',
-      portal_total: 87,
-      sd_total: 92,
-      diff: -5,
-      portal_c9_10: 50,
-      portal_c11_12: 37,
-      sd_c9_10: 55,
-      sd_c11_12: 37,
-      diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 5 कम है (मांग: 87, शाला दर्पण: 92)',
-      reason: 'कक्षा 9-10 में पेपर मांग 5 कम (50 बनाम 55) दर्ज है।',
-      flagged_fields: ['कक्षा 9-10 पेपर मांग', 'कुल महायोग']
+    "221763": {
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, बूबकिया (221763)",
+      "peeo_name": "BOOBKIYA",
+      "portal_total": 148,
+      "sd_total": 142,
+      "diff": 6,
+      "portal_c9_10": 104,
+      "portal_c11_12": 44,
+      "sd_c9_10": 98,
+      "sd_c11_12": 44,
+      "diff_text": "पेपर मांग शाला दर्पण नामांकन से 6 अधिक है (कक्षा 9 में +6)",
+      "reason": "कक्षा 9 में मांग 49 दर्ज है (SD: 43)।",
+      "flagged_fields": [
+        "कक्षा 9 मांग",
+        "कुल महायोग"
+      ]
+    },
+    "221772": {
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, नागोला (221772)",
+      "peeo_name": "NAGOLA",
+      "portal_total": 223,
+      "sd_total": 222,
+      "diff": 1,
+      "portal_c9_10": 133,
+      "portal_c11_12": 90,
+      "sd_c9_10": 132,
+      "sd_c11_12": 90,
+      "diff_text": "पेपर मांग शाला दर्पण नामांकन से 1 अधिक है (कक्षा 9 में +1)",
+      "reason": "कक्षा 9 में मांग 80 दर्ज है (SD: 79)।",
+      "flagged_fields": [
+        "कक्षा 9 मांग",
+        "कुल महायोग"
+      ]
+    },
+    "221775": {
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, राताकोट (221775)",
+      "peeo_name": "RATAKOT",
+      "portal_total": 122,
+      "sd_total": 121,
+      "diff": 1,
+      "portal_c9_10": 70,
+      "portal_c11_12": 52,
+      "sd_c9_10": 70,
+      "sd_c11_12": 51,
+      "diff_text": "पेपर मांग शाला दर्पण नामांकन से 1 अधिक है (कक्षा 11 में +1)",
+      "reason": "कक्षा 11 में मांग 29 दर्ज है (SD: 28)।",
+      "flagged_fields": [
+        "कक्षा 11 मांग",
+        "कुल महायोग"
+      ]
+    },
+    "221778": {
+      "school_name": "महात्मा गांधी राजकीय विद्यालय, भिनाय (221778)",
+      "peeo_name": "BHINAY",
+      "portal_total": 87,
+      "sd_total": 86,
+      "diff": 1,
+      "portal_c9_10": 44,
+      "portal_c11_12": 43,
+      "sd_c9_10": 44,
+      "sd_c11_12": 42,
+      "diff_text": "पेपर मांग शाला दर्पण नामांकन से 1 अधिक है (कक्षा 12 में +1)",
+      "reason": "कक्षा 12 में मांग 19 दर्ज है (SD: 18)।",
+      "flagged_fields": [
+        "कक्षा 12 मांग",
+        "कुल महायोग"
+      ]
+    },
+    "221780": {
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, भिनाय (221780)",
+      "peeo_name": "BHINAY",
+      "portal_total": 411,
+      "sd_total": 396,
+      "diff": 15,
+      "portal_c9_10": 232,
+      "portal_c11_12": 179,
+      "sd_c9_10": 220,
+      "sd_c11_12": 176,
+      "diff_text": "पेपर मांग शाला दर्पण नामांकन से 15 अधिक है (कक्षा 9 में +12, कक्षा 11 में +3)",
+      "reason": "कक्षा 9 में मांग 144 दर्ज है (SD: 132) तथा कक्षा 11 में 90 दर्ज है (SD: 87)।",
+      "flagged_fields": [
+        "कक्षा 9 मांग",
+        "कक्षा 11 मांग",
+        "कुल महायोग"
+      ]
     }
   }
 };
@@ -547,24 +631,32 @@ function initMasterData() {
     savePeeosToStorage();
   }
 
-  // 2. Staff: load from localStorage if modified, otherwise use master
-  const storedStaff = localStorage.getItem('cbeo_staff_data');
-  if (storedStaff) {
-    try {
-      const parsed = JSON.parse(storedStaff);
-      // Auto-migrate if stored staff lacks bilingual fields or shala_darpan_code
-      if (!parsed || parsed.length === 0 || !parsed[0].name_en || !parsed[0].shala_darpan_code) {
-        STATE.staff = MASTER_CBEO_DATA.staff || [];
-        saveStaffToStorage();
-      } else {
-        STATE.staff = parsed;
-      }
-    } catch (e) {
-      STATE.staff = MASTER_CBEO_DATA.staff || [];
-    }
-  } else {
+  // 2. Staff: load from localStorage if modified, otherwise use master with auto-upgrade versioning
+  const STAFF_VERSION = 'v2_2026_10_07_updated_teacher_record_983';
+  const currentStaffVer = localStorage.getItem('cbeo_staff_version');
+  if (currentStaffVer !== STAFF_VERSION) {
+    localStorage.removeItem('cbeo_staff_data');
+    localStorage.setItem('cbeo_staff_version', STAFF_VERSION);
     STATE.staff = MASTER_CBEO_DATA.staff || [];
     saveStaffToStorage();
+  } else {
+    const storedStaff = localStorage.getItem('cbeo_staff_data');
+    if (storedStaff) {
+      try {
+        const parsed = JSON.parse(storedStaff);
+        if (!parsed || parsed.length === 0 || !parsed[0].name_en || !parsed[0].shala_darpan_code) {
+          STATE.staff = MASTER_CBEO_DATA.staff || [];
+          saveStaffToStorage();
+        } else {
+          STATE.staff = parsed;
+        }
+      } catch (e) {
+        STATE.staff = MASTER_CBEO_DATA.staff || [];
+      }
+    } else {
+      STATE.staff = MASTER_CBEO_DATA.staff || [];
+      saveStaffToStorage();
+    }
   }
 
   // 3. Audit Logs

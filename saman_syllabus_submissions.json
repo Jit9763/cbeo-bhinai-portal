@@ -952,8 +952,8 @@
     "submitted_by": "SOHANLAL SARAN",
     "submitter_mobile": "9929526324",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T04:20:37.196Z",
-    "average_pct": 84,
+    "submitted_at": "2026-10-07T03:25:52.222Z",
+    "average_pct": 73,
     "c9": {
       "zero_enrolment": false,
       "hindi": 75,
@@ -966,12 +966,12 @@
     },
     "c10": {
       "zero_enrolment": false,
-      "hindi": 95,
-      "english": 95,
-      "maths": 95,
-      "science": 95,
-      "sst": 95,
-      "sanskrit": 95,
+      "hindi": 75,
+      "english": 75,
+      "maths": 75,
+      "science": 75,
+      "sst": 75,
+      "sanskrit": 75,
       "urdu": 0
     },
     "c11": {
@@ -990,15 +990,15 @@
     },
     "c12": {
       "zero_enrolment": false,
-      "comp_hindi": 95,
-      "comp_english": 95,
+      "comp_hindi": 72,
+      "comp_english": 72,
       "faculties": [
         "arts"
       ],
       "electives": [
         {
           "name": "अनिवार्य व ऐच्छिक",
-          "pct": 95
+          "pct": 72
         }
       ]
     }
