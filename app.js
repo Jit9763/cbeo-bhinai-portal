@@ -639,16 +639,17 @@ function initMasterData() {
           renderDemandsView();
         }
       }).catch(() => {});
+  }
 
-    // Sync Saman Pariksha Syllabus % submissions
-    try {
-      const storedSylSubs = localStorage.getItem('cbeo_saman_syllabus_submissions');
-      if (storedSylSubs) STATE.samanSyllabusSubmissions = JSON.parse(storedSylSubs);
-    } catch(e) {}
+  // 7B. Sync Saman Pariksha Syllabus % submissions (Runs globally on GitHub Pages & localhost)
+  try {
+    const masterSylSubs = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.saman_syllabus_submissions) || {};
+    const storedSylSubs = JSON.parse(localStorage.getItem('cbeo_saman_syllabus_submissions') || '{}');
+    STATE.samanSyllabusSubmissions = Object.assign({}, masterSylSubs, storedSylSubs);
+  } catch(e) {}
 
-    if (typeof syncSyllabusSubmissionsFromCloud === 'function') {
-      syncSyllabusSubmissionsFromCloud();
-    }
+  if (typeof syncSyllabusSubmissionsFromCloud === 'function') {
+    syncSyllabusSubmissionsFromCloud();
   }
 
   // 8. Admin Tab Access Configuration
@@ -2681,8 +2682,8 @@ function renderSamanParikshaPeeoView() {
         cardStatusClass = 'pending';
         statusBadge = `<span class="sp-status-badge danger" style="background:#dc2626; color:#ffffff; border:1px solid #b91c1c; font-weight:800"><i class="fas fa-exclamation-triangle"></i> ⚠️ प्रविष्टि शेष (अपूर्ण)</span>`;
       } else {
-        cardStatusClass = 'editable-open';
-        statusBadge = `<span class="sp-status-badge warning" style="background:#d97706; color:#ffffff; border:1.5px solid #b45309; font-weight:800; box-shadow:0 2px 6px rgba(217,119,6,0.35)"><i class="fas fa-edit"></i> ✏️ सबमिट (संशोधन खुला - ${avgPct}% औसत)</span>`;
+        cardStatusClass = 'submitted';
+        statusBadge = `<span class="sp-status-badge success" style="background:#16a34a; color:#ffffff; border:1px solid #15803d; font-weight:800; box-shadow:0 2px 6px rgba(22,163,74,0.3)"><i class="fas fa-check-circle"></i> ✓ प्रविष्टि पूर्ण (${avgPct}% औसत)</span>`;
       }
 
       const card = document.createElement('div');
@@ -3083,12 +3084,20 @@ function filterSamanParikshaTable() {
     if (isSyl) {
       // Syllabus Completion Row
       const sylSub = STATE.samanSyllabusSubmissions ? STATE.samanSyllabusSubmissions[s.shala_darpan_code] : null;
-      const isSub = !!(sylSub && sylSub.is_submitted);
-      const avgPct = isSub ? calculateSchoolSyllabusAverage(sylSub) : 0;
+      const isSub = !!(sylSub && (sylSub.is_submitted || sylSub.average_pct || calculateSchoolSyllabusAverage(sylSub) > 0));
+      const avgPct = isSub ? (sylSub.average_pct || calculateSchoolSyllabusAverage(sylSub)) : 0;
       const c9 = sylSub?.c9 || {};
       const c10 = sylSub?.c10 || {};
       const c11 = sylSub?.c11 || {};
       const c12 = sylSub?.c12 || {};
+
+      if (isSub) {
+        tr.style.background = '#f0fdf4';
+        tr.style.borderLeft = '4px solid #16a34a';
+      } else {
+        tr.style.background = '#fef2f2';
+        tr.style.borderLeft = '4px solid #ef4444';
+      }
 
       tr.innerHTML = `
         <td>${idx + 1}</td>
@@ -3271,9 +3280,9 @@ function syncSyllabusSubmissionsFromCloud(isManual = false) {
     : Promise.resolve();
 
   return Promise.all([p1, p2]).then(() => {
-    if (STATE.samanParikshaActiveForm === 'syllabus') {
-      renderSamanParikshaView();
-    }
+    renderSamanParikshaView();
+    updateAllPortalMetricsAndProgress();
+    renderDashboardView();
     if (isManual) {
       showToast('✓ Google Sheet से पाठ्यक्रम पूर्णता डेटा सफलतापूर्वक सिंक हुआ!', 'success');
     }
@@ -3509,12 +3518,14 @@ function saveQuickSyllabusEntry() {
   fetch('/api/save_saman_syllabus', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ school_code: code, submission: payload })
+    body: JSON.stringify({ school_code: code, data: payload, submission: payload })
   }).catch(() => {});
 
   closeModal('modal-syllabus-quick-entry');
   showToast(`✓ ${school?.school_name || code} का पाठ्यक्रम डेटा (${avg}%) Google Sheet एवं पोर्टल में दर्ज हो गया!`, 'success');
   renderSamanParikshaView();
+  updateAllPortalMetricsAndProgress();
+  renderDashboardView();
 }
 window.saveQuickSyllabusEntry = saveQuickSyllabusEntry;
 

@@ -1,15 +1,15 @@
 {
-  "generated_at": "07-10-2026 01:29 AM",
+  "generated_at": "07-10-2026 08:34 AM",
   "vm_status": "ONLINE_ACTIVE",
   "district": "AJMER (अजमेर)",
   "block": "BHINAI (भिनाय)",
   "active_focus_report": "49_syllabus",
   "saman_syllabus_49": {
     "total_govt_schools": 49,
-    "submitted_count": 1,
-    "pending_count": 48,
-    "completion_percentage": 2.0,
-    "block_average_syllabus_pct": 74,
+    "submitted_count": 8,
+    "pending_count": 41,
+    "completion_percentage": 16.3,
+    "block_average_syllabus_pct": 83,
     "peeo_pending_map": {
       "PEEO BARGAON": 1,
       "PEEO BARLI": 2,
@@ -17,24 +17,23 @@
       "PEEO BHINAY": 2,
       "PEEO BOOBKIYA": 2,
       "PEEO CHHACHHUNDRA": 2,
-      "PEEO CHAPANERI": 2,
-      "PEEO DEOLIYA KALAN": 2,
-      "PEEO DEVPURA": 2,
+      "PEEO CHAPANERI": 1,
+      "PEEO DEOLIYA KALAN": 1,
+      "PEEO DEVPURA": 1,
       "PEEO DHANTOL": 1,
       "PEEO EKALSEENGA": 2,
       "PEEO GURHA KHURD": 2,
       "PEEO KANAI KALAN": 2,
-      "PEEO KARATI": 3,
+      "PEEO KARATI": 2,
       "PEEO KEROT": 2,
       "PEEO KUMHARIYA": 1,
-      "PEEO LAMGARA": 3,
+      "PEEO LAMGARA": 2,
       "PEEO NAGOLA": 2,
-      "PEEO NANDSI": 3,
+      "PEEO NANDSI": 2,
       "PEEO PADANGA": 1,
       "PEEO PADALIYA": 1,
       "PEEO RAMMALIA": 3,
       "PEEO RATAKOT": 2,
-      "PEEO SINGAWAL": 1,
       "PEEO SOBRI": 2
     },
     "pending_schools": [
@@ -123,13 +122,6 @@
         "mobile": "9602676785"
       },
       {
-        "code": "221758",
-        "name": "रा.उ.मा.वि. चापानेरी",
-        "peeo": "PEEO CHAPANERI",
-        "principal": "LADURAM SHARMA",
-        "mobile": "9462507510"
-      },
-      {
         "code": "221753",
         "name": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
         "peeo": "PEEO DEOLIYA KALAN",
@@ -137,11 +129,18 @@
         "mobile": "9829835751"
       },
       {
-        "code": "221754",
-        "name": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
-        "peeo": "PEEO DEOLIYA KALAN",
-        "principal": "PURNIMA",
-        "mobile": "9414343109"
+        "code": "410704",
+        "name": "रा.उ.मा.वि. रूपपुरा",
+        "peeo": "PEEO DEVPURA",
+        "principal": "KISHAN GOPAL PARIHAR",
+        "mobile": "9413225666"
+      },
+      {
+        "code": "221783",
+        "name": "रा.उ.मा.वि. धांतोल",
+        "peeo": "PEEO DHANTOL",
+        "principal": "SURENDRA NAGORA",
+        "mobile": "9413695182"
       }
     ]
   },
@@ -153,9 +152,9 @@
   },
   "overdue_escalation": {
     "is_active": true,
-    "defaulter_count": 48,
+    "defaulter_count": 41,
     "urgency": "HIGH",
-    "message": "🚨 48 विद्यालय समय-सीमा पश्चात भी लंबित हैं।"
+    "message": "🚨 41 विद्यालय समय-सीमा पश्चात भी लंबित हैं।"
   },
   "mdm_anomaly_scanner": {
     "enabled": false,

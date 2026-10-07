@@ -516,11 +516,25 @@ const server = http.createServer((req, res) => {
       const subs = DB.getSetting('__SAMAN_SYLLABUS_SUBMISSIONS__') || {};
       const schoolCode = data.school_code || data.shala_darpan_code;
       if (schoolCode) {
-        subs[schoolCode] = data.data || data;
+        const payload = data.data || data.submission || data;
+        payload.is_submitted = true;
+        subs[schoolCode] = payload;
       } else if (data.submissions) {
         Object.assign(subs, data.submissions);
       }
       DB.setSetting('__SAMAN_SYLLABUS_SUBMISSIONS__', subs);
+
+      // Also update master_cbeo_data.json & master_cbeo_data.js
+      try {
+        const masterFile = path.join(ROOT_DIR, 'master_cbeo_data.json');
+        if (fs.existsSync(masterFile)) {
+          const mData = JSON.parse(fs.readFileSync(masterFile, 'utf8'));
+          mData.saman_syllabus_submissions = subs;
+          fs.writeFileSync(masterFile, JSON.stringify(mData, null, 2), 'utf8');
+          fs.writeFileSync(path.join(ROOT_DIR, 'master_cbeo_data.js'), 'const MASTER_CBEO_DATA = ' + JSON.stringify(mData, null, 2) + ';\n', 'utf8');
+        }
+      } catch (me) {}
+
       sendJSON(res, 200, { success: true, message: 'समान परीक्षा पाठ्यक्रम पूर्णता डेटा सुरक्षित हो गया!' });
     });
     return;
