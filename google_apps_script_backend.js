@@ -27,6 +27,18 @@ const OPTIONAL_KEYS = [
   "economics_comm", "agri_sci", "agri_bio", "agri_chem"
 ];
 
+/**
+ * ⚡ केवल 1 बार इस फंक्शन को Apps Script में ऊपर ड्रॉपडाउन से चुनकर 'Run ▶️' दबाएं:
+ * इससे Google Apps Script को GitHub API से बात करने की परमिशन (Authorization) मिल जाएगी!
+ */
+function authorizeExternalRequests() {
+  var res = UrlFetchApp.fetch("https://api.github.com", {
+    headers: { "User-Agent": "CBEO-Bhinai-GAS" },
+    muteHttpExceptions: true
+  });
+  Logger.log("✓ Google Apps Script GitHub API Authorization Successful! Code: " + res.getResponseCode());
+}
+
 function sanitizeTabName(name) {
   if (!name) return "PEEO_GENERAL";
   return String(name).replace(/\s+/g, '_').replace(/[^\w]/g, '_').toUpperCase().substring(0, 100);
