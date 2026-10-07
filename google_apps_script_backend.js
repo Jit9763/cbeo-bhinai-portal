@@ -104,6 +104,39 @@ function doPost(e) {
     }
 
     // -------------------------------------------------------------
+    // ACTION 0.2: SAVE GITHUB TOKEN TO CLOUD VAULT (Never visible in browser/Git)
+    // -------------------------------------------------------------
+    if (data.action === 'saveGitHubToken') {
+      var ghToken = String(data.github_token || data.token || '').trim();
+      if (!ghToken) {
+        return ContentService.createTextOutput(JSON.stringify({
+          success: false,
+          message: "github_token is required."
+        })).setMimeType(ContentService.MimeType.JSON);
+      }
+      PropertiesService.getScriptProperties().setProperty("GITHUB_TOKEN", ghToken);
+      return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        message: "✓ GitHub Token Google Apps Script के गुप्त क्लाउड वॉल्ट में सुरक्षित हो गया!"
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // -------------------------------------------------------------
+    // ACTION 0.3: CLOUD GITHUB SYNC (Direct GitHub Commit from Cloud)
+    // -------------------------------------------------------------
+    if (data.action === 'syncToGitHub') {
+      var filePath = String(data.file_path || 'master_cbeo_data.json').trim();
+      var fileContent = data.content;
+      if (typeof fileContent !== 'string') {
+        fileContent = JSON.stringify(fileContent, null, 2);
+      }
+      var commitMsg = data.message || ("auto(gas): cloud backup " + filePath);
+      var ghRes = syncToGitHubViaApi(filePath, fileContent, commitMsg);
+      return ContentService.createTextOutput(JSON.stringify(ghRes))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // -------------------------------------------------------------
     // ACTION 1: UPDATE PASSWORD (Single Textbox Save)
     // -------------------------------------------------------------
     if (data.action === 'updatePassword') {
@@ -876,4 +909,72 @@ function handleServerlessAiRequest(data) {
     })).setMimeType(ContentService.MimeType.JSON);
   }
 }
+
+// -------------------------------------------------------------
+// HELPER: SECURE CLOUD GITHUB SYNC ENGINE (REST API v3)
+// -------------------------------------------------------------
+function syncToGitHubViaApi(filePath, fileContent, commitMessage) {
+  try {
+    var token = PropertiesService.getScriptProperties().getProperty("GITHUB_TOKEN");
+    if (!token) {
+      return { success: false, message: "GitHub Token Google Apps Script ScriptProperties में सेट नहीं है।" };
+    }
+
+    var owner = "Jit9763";
+    var repo = "cbeo-bhinai-portal";
+    var cleanPath = String(filePath || 'master_cbeo_data.json').replace(/^\/+/, '');
+    var url = "https://api.github.com/repos/" + owner + "/" + repo + "/contents/" + cleanPath;
+
+    // 1. Fetch current file SHA if file already exists on GitHub
+    var sha = null;
+    try {
+      var getRes = UrlFetchApp.fetch(url + "?ref=main", {
+        method: "get",
+        headers: {
+          "Authorization": "Bearer " + token,
+          "User-Agent": "CBEO-Bhinai-GAS",
+          "Accept": "application/vnd.github.v3+json"
+        },
+        muteHttpExceptions: true
+      });
+      if (getRes.getResponseCode() === 200) {
+        var gData = JSON.parse(getRes.getContentText());
+        sha = gData.sha;
+      }
+    } catch(ge) {}
+
+    // 2. Base64 encode the content (UTF-8)
+    var b64Content = Utilities.base64Encode(fileContent, Utilities.Charset.UTF_8);
+
+    // 3. PUT request to GitHub API to commit directly
+    var payload = {
+      message: commitMessage || ("auto(gas): cloud sync " + cleanPath + " [" + Utilities.formatDate(new Date(), "GMT+5:30", "dd-MM-yyyy HH:mm") + "]"),
+      content: b64Content,
+      branch: "main"
+    };
+    if (sha) payload.sha = sha;
+
+    var putRes = UrlFetchApp.fetch(url, {
+      method: "put",
+      headers: {
+        "Authorization": "Bearer " + token,
+        "User-Agent": "CBEO-Bhinai-GAS",
+        "Accept": "application/vnd.github.v3+json",
+        "Content-Type": "application/json"
+      },
+      payload: JSON.stringify(payload),
+      muteHttpExceptions: true
+    });
+
+    var pCode = putRes.getResponseCode();
+    if (pCode === 200 || pCode === 201) {
+      return { success: true, message: "✓ " + cleanPath + " सीधे GitHub पर सफलतापूर्वक अपडेट हो गई!", sha: sha };
+    } else {
+      return { success: false, message: "GitHub API Error (" + pCode + "): " + putRes.getContentText() };
+    }
+  } catch(err) {
+    return { success: false, message: "GAS Exception: " + err.toString() };
+  }
+}
+
 
