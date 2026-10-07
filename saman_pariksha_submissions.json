@@ -79,7 +79,12 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO DEOLIYA KALAN",
-    "timestamp": "Tue Oct 06 2026 08:53:25 GMT+0530 (India Standard Time)"
+    "timestamp": "Tue Oct 06 2026 08:53:25 GMT+0530 (India Standard Time)",
+    "school_medium": "english",
+    "c9_hindi": 0,
+    "c9_english": 36,
+    "c10_hindi": 0,
+    "c10_english": 34
   },
   "221754": {
     "school_code": "221754",
@@ -1473,7 +1478,12 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BANDANWARA",
-    "timestamp": "Tue Oct 06 2026 21:09:55 GMT+0530 (India Standard Time)"
+    "timestamp": "Tue Oct 06 2026 21:09:55 GMT+0530 (India Standard Time)",
+    "school_medium": "english",
+    "c9_hindi": 0,
+    "c9_english": 25,
+    "c10_hindi": 0,
+    "c10_english": 16
   },
   "221771": {
     "school_code": "221771",
@@ -2129,7 +2139,12 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BHINAY",
-    "timestamp": "Tue Oct 06 2026 09:42:31 GMT+0530 (India Standard Time)"
+    "timestamp": "Tue Oct 06 2026 09:42:31 GMT+0530 (India Standard Time)",
+    "school_medium": "english",
+    "c9_hindi": 0,
+    "c9_english": 26,
+    "c10_hindi": 0,
+    "c10_english": 18
   },
   "221780": {
     "school_code": "221780",

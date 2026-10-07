@@ -32615,7 +32615,12 @@ const MASTER_CBEO_DATA = {
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
       "submitted_by": "PEEO DEOLIYA KALAN",
-      "timestamp": "Fri Oct 02 2026 08:11:34 GMT+0530 (India Standard Time)"
+      "timestamp": "Fri Oct 02 2026 08:11:34 GMT+0530 (India Standard Time)",
+      "school_medium": "english",
+      "c9_hindi": 0,
+      "c9_english": 36,
+      "c10_hindi": 0,
+      "c10_english": 34
     },
     "221754": {
       "school_code": "221754",
@@ -34009,7 +34014,12 @@ const MASTER_CBEO_DATA = {
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
       "submitted_by": "Afsar Ahmed",
-      "timestamp": "Fri Oct 02 2026 11:49:39 GMT+0530 (India Standard Time)"
+      "timestamp": "Fri Oct 02 2026 11:49:39 GMT+0530 (India Standard Time)",
+      "school_medium": "english",
+      "c9_hindi": 0,
+      "c9_english": 25,
+      "c10_hindi": 0,
+      "c10_english": 16
     },
     "221771": {
       "school_code": "221771",
@@ -34667,7 +34677,12 @@ const MASTER_CBEO_DATA = {
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
       "submitted_by": "PEEO BHINAY",
-      "timestamp": "Fri Oct 02 2026 08:49:56 GMT+0530 (India Standard Time)"
+      "timestamp": "Fri Oct 02 2026 08:49:56 GMT+0530 (India Standard Time)",
+      "school_medium": "english",
+      "c9_hindi": 0,
+      "c9_english": 26,
+      "c10_hindi": 0,
+      "c10_english": 18
     },
     "221780": {
       "school_code": "221780",
@@ -37966,9 +37981,9 @@ const MASTER_CBEO_DATA = {
         ]
       },
       "average_pct": 86.4,
-      "updated_at": "2026-10-07T04:32:57.903Z",
+      "updated_at": "2026-10-07T11:27:44.235Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T04:32:57.903Z"
+      "submitted_at": "2026-10-07T11:27:44.235Z"
     },
     "221762": {
       "school_code": "221762",
@@ -38808,9 +38823,9 @@ const MASTER_CBEO_DATA = {
         ]
       },
       "average_pct": 81.3,
-      "updated_at": "2026-10-07T03:16:22.776Z",
+      "updated_at": "2026-10-07T13:48:51.249Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T03:16:22.776Z"
+      "submitted_at": "2026-10-07T13:48:51.249Z"
     },
     "221776": {
       "school_code": "221776",
@@ -39649,6 +39664,89 @@ const MASTER_CBEO_DATA = {
       "updated_at": "2026-10-07T04:30:21.157Z",
       "is_submitted": true,
       "submitted_at": "2026-10-07T04:30:21.157Z"
+    },
+    "485033": {
+      "school_code": "485033",
+      "exam_code": "AJM04G485033",
+      "principal_name": "Vinod Kumar Meena",
+      "principal_mobile": "9828393814",
+      "incharge_name": "BALVEER UJJAVAL",
+      "incharge_mobile": "9784793783",
+      "submitted_by": "Vinod Kumar Meena",
+      "c9": {
+        "zero_enrolment": false,
+        "hindi": 85,
+        "english": 60,
+        "maths": 50,
+        "science": 80,
+        "sst": 65,
+        "sanskrit": 70,
+        "urdu": 0
+      },
+      "c10": {
+        "zero_enrolment": false,
+        "hindi": 80,
+        "english": 70,
+        "maths": 60,
+        "science": 80,
+        "sst": 75,
+        "sanskrit": 70,
+        "urdu": 0
+      },
+      "c11": {
+        "zero_enrolment": false,
+        "comp_hindi": 80,
+        "comp_english": 70,
+        "faculties": [
+          "arts"
+        ],
+        "electives": [
+          {
+            "key": "pol_sci",
+            "name": "राजनीति विज्ञान (Political Science)",
+            "pct": 70
+          },
+          {
+            "key": "geography",
+            "name": "भूगोल (Geography)",
+            "pct": 85
+          },
+          {
+            "key": "hindi_lit",
+            "name": "हिंदी साहित्य (Hindi Literature)",
+            "pct": 75
+          }
+        ]
+      },
+      "c12": {
+        "zero_enrolment": false,
+        "comp_hindi": 80,
+        "comp_english": 75,
+        "faculties": [
+          "arts"
+        ],
+        "electives": [
+          {
+            "key": "pol_sci",
+            "name": "राजनीति विज्ञान (Political Science)",
+            "pct": 60
+          },
+          {
+            "key": "geography",
+            "name": "भूगोल (Geography)",
+            "pct": 85
+          },
+          {
+            "key": "hindi_lit",
+            "name": "हिंदी साहित्य (Hindi Literature)",
+            "pct": 70
+          }
+        ]
+      },
+      "average_pct": 72.5,
+      "updated_at": "2026-10-07T11:54:29.486Z",
+      "is_submitted": true,
+      "submitted_at": "2026-10-07T11:54:29.486Z"
     },
     "488791": {
       "school_code": "488791",

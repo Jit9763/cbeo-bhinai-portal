@@ -804,6 +804,26 @@ function initMasterData() {
     STATE.samanParikshaSubmissions = defaultSPSubs;
   }
 
+  // Sanitize MGGS schools data: ensure medium is English and counts are in English cells
+  const sanitizeMggsSubmissions = (subs) => {
+    if (!subs) return;
+    ['221770', '221778', '221753'].forEach(mCode => {
+      if (subs[mCode]) {
+        const ms = subs[mCode];
+        ms.school_medium = 'english';
+        if ((!ms.c9_english || ms.c9_english === 0) && (ms.c9_hindi > 0 || (ms.c9_total || 0) > 0)) {
+          ms.c9_english = ms.c9_hindi || ms.c9_total || 0;
+        }
+        ms.c9_hindi = 0;
+        if ((!ms.c10_english || ms.c10_english === 0) && (ms.c10_hindi > 0 || (ms.c10_total || 0) > 0)) {
+          ms.c10_english = ms.c10_hindi || ms.c10_total || 0;
+        }
+        ms.c10_hindi = 0;
+      }
+    });
+  };
+  sanitizeMggsSubmissions(STATE.samanParikshaSubmissions);
+
   // Live Sync from Google Sheet via doGet(?action=getAll)
   const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
     || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
@@ -828,6 +848,7 @@ function initMasterData() {
               delete STATE.samanParikshaSubmissions[code];
             }
           });
+          sanitizeMggsSubmissions(STATE.samanParikshaSubmissions);
           localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(STATE.samanParikshaSubmissions));
           renderSamanParikshaView();
           updateAllPortalMetricsAndProgress();
@@ -5416,8 +5437,8 @@ function openSamanParikshaForm(schoolCode) {
   document.getElementById('gform-incharge-mobile').value = activeData.incharge_mobile || school.incharge_mobile || '';
 
   // School Medium Setup & Bilingual Detection
-  const isMggs = (schoolCode === '221778' || (school.school_name || '').includes('महात्मा गांधी') || (school.school_name || '').includes('MGGS'));
-  const schoolMedium = activeData.school_medium || (isMggs ? 'both' : 'hindi');
+  const isMggs = (['221770', '221778', '221753'].includes(String(schoolCode).trim()) || (school.category || '').toUpperCase().includes('MGGS') || (school.school_name || '').includes('महात्मा गांधी') || (school.school_name || '').toUpperCase().includes('MGGS'));
+  const schoolMedium = isMggs ? 'english' : (activeData.school_medium || 'hindi');
 
   const medHindi = document.getElementById('gform-med-hindi');
   const medEng = document.getElementById('gform-med-english');
@@ -5431,7 +5452,15 @@ function openSamanParikshaForm(schoolCode) {
 
   let c9Hindi = activeData.c9_hindi;
   let c9English = activeData.c9_english;
-  if (c9Hindi === undefined && c9English === undefined) {
+  if (isMggs) {
+    if ((!c9English || c9English === 0) && (c9Hindi > 0 || (activeData.c9_total || 0) > 0)) {
+      c9English = c9Hindi || activeData.c9_total || 0;
+      c9Hindi = 0;
+    } else if (c9English === undefined) {
+      c9English = activeData.c9_total || 0;
+      c9Hindi = 0;
+    }
+  } else if (c9Hindi === undefined && c9English === undefined) {
     if (schoolMedium === 'english') {
       c9English = activeData.c9_total || 0;
       c9Hindi = 0;
@@ -5449,7 +5478,15 @@ function openSamanParikshaForm(schoolCode) {
 
   let c10Hindi = activeData.c10_hindi;
   let c10English = activeData.c10_english;
-  if (c10Hindi === undefined && c10English === undefined) {
+  if (isMggs) {
+    if ((!c10English || c10English === 0) && (c10Hindi > 0 || (activeData.c10_total || 0) > 0)) {
+      c10English = c10Hindi || activeData.c10_total || 0;
+      c10Hindi = 0;
+    } else if (c10English === undefined) {
+      c10English = activeData.c10_total || 0;
+      c10Hindi = 0;
+    }
+  } else if (c10Hindi === undefined && c10English === undefined) {
     if (schoolMedium === 'english') {
       c10English = activeData.c10_total || 0;
       c10Hindi = 0;
@@ -5893,15 +5930,30 @@ function submitSamanParikshaForm(andPrint = false) {
     return;
   }
 
-  const schoolMedium = document.querySelector('input[name="gform-school-medium"]:checked')?.value || 'hindi';
-  const c9Hindi = parseInt(document.getElementById('gform-c9-hindi')?.value) || 0;
-  const c9English = parseInt(document.getElementById('gform-c9-english')?.value) || 0;
+  const isSchoolMggs = (['221770', '221778', '221753'].includes(String(schoolCode).trim()) || (school.category || '').toUpperCase().includes('MGGS') || (school.school_name || '').includes('महात्मा गांधी') || (school.school_name || '').toUpperCase().includes('MGGS'));
+  let schoolMedium = document.querySelector('input[name="gform-school-medium"]:checked')?.value || (isSchoolMggs ? 'english' : 'hindi');
+  if (isSchoolMggs && schoolMedium === 'hindi') schoolMedium = 'english';
+
+  let c9Hindi = parseInt(document.getElementById('gform-c9-hindi')?.value) || 0;
+  let c9English = parseInt(document.getElementById('gform-c9-english')?.value) || 0;
+  if (isSchoolMggs || schoolMedium === 'english') {
+    if (c9English === 0 && c9Hindi > 0) {
+      c9English = c9Hindi;
+      c9Hindi = 0;
+    }
+  }
   const c9 = parseInt(document.getElementById('gform-c9-total')?.value) || (c9Hindi + c9English);
   const c9Sanskrit = parseInt(document.getElementById('gform-c9-sanskrit')?.value) || 0;
   const c9Urdu = parseInt(document.getElementById('gform-c9-urdu')?.value) || 0;
 
-  const c10Hindi = parseInt(document.getElementById('gform-c10-hindi')?.value) || 0;
-  const c10English = parseInt(document.getElementById('gform-c10-english')?.value) || 0;
+  let c10Hindi = parseInt(document.getElementById('gform-c10-hindi')?.value) || 0;
+  let c10English = parseInt(document.getElementById('gform-c10-english')?.value) || 0;
+  if (isSchoolMggs || schoolMedium === 'english') {
+    if (c10English === 0 && c10Hindi > 0) {
+      c10English = c10Hindi;
+      c10Hindi = 0;
+    }
+  }
   const c10 = parseInt(document.getElementById('gform-c10-total')?.value) || (c10Hindi + c10English);
   const c10Sanskrit = parseInt(document.getElementById('gform-c10-sanskrit')?.value) || 0;
   const c10Urdu = parseInt(document.getElementById('gform-c10-urdu')?.value) || 0;
@@ -8190,7 +8242,9 @@ function exportSamanParikshaMasterCSV() {
     const c11Opt = isSub ? (sub.c11_optional || {}) : {};
     const c12Opt = isSub ? (sub.c12_optional || {}) : {};
 
-    const medLabel = sub.school_medium === 'english' ? 'अंग्रेजी माध्यम' : (sub.school_medium === 'both' ? 'द्विभाषी (हिंदी+अंग्रेजी)' : 'हिंदी माध्यम');
+    const isSchoolMggs = ['221770', '221778', '221753'].includes(String(code).trim()) || (s.category || '').toUpperCase().includes('MGGS') || (s.school_name || '').includes('महात्मा गांधी') || (s.school_name || '').toUpperCase().includes('MGGS');
+    const effMed = isSchoolMggs ? 'english' : (sub.school_medium || 'hindi');
+    const medLabel = effMed === 'english' ? 'अंग्रेजी माध्यम' : (effMed === 'both' ? 'द्विभाषी (हिंदी+अंग्रेजी)' : 'हिंदी माध्यम');
 
     const row = [
       s.s_no,
@@ -8206,15 +8260,15 @@ function exportSamanParikshaMasterCSV() {
       `"${medLabel}"`,
       
       // Class 9
-      isSub ? (sub.c9_hindi !== undefined ? sub.c9_hindi : (sub.school_medium === 'english' ? 0 : (sub.c9_total || 0))) : 0,
-      isSub ? (sub.c9_english !== undefined ? sub.c9_english : (sub.school_medium === 'english' ? (sub.c9_total || 0) : 0)) : 0,
+      isSub ? (isSchoolMggs ? 0 : (sub.c9_hindi !== undefined ? sub.c9_hindi : (effMed === 'english' ? 0 : (sub.c9_total || 0)))) : 0,
+      isSub ? (isSchoolMggs ? (sub.c9_english || sub.c9_total || 0) : (sub.c9_english !== undefined ? sub.c9_english : (effMed === 'english' ? (sub.c9_total || 0) : 0))) : 0,
       isSub ? (sub.c9_total || 0) : 0,
       isSub ? (sub.c9_sanskrit || 0) : 0,
       isSub ? (sub.c9_urdu || 0) : 0,
       
       // Class 10
-      isSub ? (sub.c10_hindi !== undefined ? sub.c10_hindi : (sub.school_medium === 'english' ? 0 : (sub.c10_total || 0))) : 0,
-      isSub ? (sub.c10_english !== undefined ? sub.c10_english : (sub.school_medium === 'english' ? (sub.c10_total || 0) : 0)) : 0,
+      isSub ? (isSchoolMggs ? 0 : (sub.c10_hindi !== undefined ? sub.c10_hindi : (effMed === 'english' ? 0 : (sub.c10_total || 0)))) : 0,
+      isSub ? (isSchoolMggs ? (sub.c10_english || sub.c10_total || 0) : (sub.c10_english !== undefined ? sub.c10_english : (effMed === 'english' ? (sub.c10_total || 0) : 0))) : 0,
       isSub ? (sub.c10_total || 0) : 0,
       isSub ? (sub.c10_sanskrit || 0) : 0,
       isSub ? (sub.c10_urdu || 0) : 0,

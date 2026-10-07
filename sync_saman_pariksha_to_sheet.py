@@ -116,13 +116,14 @@ def sync_submissions():
         c11_opt = sub.get('c11_optional', {})
         c12_opt = sub.get('c12_optional', {})
 
-        med = sub.get('school_medium', 'hindi')
+        is_mggs = str(code).strip() in ['221770', '221778', '221753'] or 'MGGS' in str(s.get('category', '')).upper() or 'गांधी' in str(s.get('school_name', '')) or 'GANDHI' in str(s.get('school_name', '')).upper()
+        med = 'english' if is_mggs else sub.get('school_medium', 'hindi')
         med_label = 'अंग्रेजी माध्यम' if med == 'english' else ('द्विभाषी (हिंदी+अंग्रेजी)' if med == 'both' else 'हिंदी माध्यम')
 
-        c9_h = sub.get('c9_hindi', 0 if med == 'english' else sub.get('c9_total', 0))
-        c9_e = sub.get('c9_english', sub.get('c9_total', 0) if med == 'english' else 0)
-        c10_h = sub.get('c10_hindi', 0 if med == 'english' else sub.get('c10_total', 0))
-        c10_e = sub.get('c10_english', sub.get('c10_total', 0) if med == 'english' else 0)
+        c9_h = 0 if (is_mggs or med == 'english') else (sub.get('c9_hindi') if sub.get('c9_hindi') is not None else sub.get('c9_total', 0))
+        c9_e = (sub.get('c9_english') or sub.get('c9_total', 0)) if (is_mggs or med == 'english') else (sub.get('c9_english') or 0)
+        c10_h = 0 if (is_mggs or med == 'english') else (sub.get('c10_hindi') if sub.get('c10_hindi') is not None else sub.get('c10_total', 0))
+        c10_e = (sub.get('c10_english') or sub.get('c10_total', 0)) if (is_mggs or med == 'english') else (sub.get('c10_english') or 0)
 
         row = [
             s['s_no'],
