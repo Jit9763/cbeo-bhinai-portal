@@ -1577,6 +1577,13 @@ function isTabVisibleForCurrentUser(tabId) {
                  STATE.currentUser.admin_id === 'ADMIN01' || 
                  (STATE.currentUser.role === 'admin' && !isJitendra);
 
+  // CRITICAL: Admin Control Room, Database Hub & School Management are NEVER accessible to School Logins
+  if (STATE.currentUser.role === 'school') {
+    if (tabId === 'admin-control' || tabId === 'database-hub' || tabId === 'school-management') {
+      return false;
+    }
+  }
+
   // CRITICAL: Admin Control Room is NEVER accessible to PEEO or School
   if (tabId === 'admin-control') {
     return isJitendra || isCBEO;
@@ -1644,6 +1651,7 @@ function applyTabVisibility() {
   const tabStaff = document.getElementById('nav-tab-staff');
   const tabSchMgmt = document.getElementById('nav-tab-school-management');
   const tabReports = document.getElementById('nav-tab-reports');
+  const tabDbHub = document.getElementById('nav-tab-database-hub');
   const tabArchive = document.getElementById('nav-tab-archive');
   const tabAdmin = document.getElementById('nav-tab-admin');
   const quickBanner = document.querySelector('.directory-quick-banner');
@@ -1654,6 +1662,7 @@ function applyTabVisibility() {
   if (tabStaff) tabStaff.style.display = isTabVisibleForCurrentUser('staff') ? 'inline-flex' : 'none';
   if (tabSchMgmt) tabSchMgmt.style.display = isTabVisibleForCurrentUser('school-management') ? 'inline-flex' : 'none';
   if (tabReports) tabReports.style.display = isTabVisibleForCurrentUser('demands') ? 'inline-flex' : 'none';
+  if (tabDbHub) tabDbHub.style.display = isTabVisibleForCurrentUser('database-hub') ? 'inline-flex' : 'none';
   if (tabArchive) tabArchive.style.display = isTabVisibleForCurrentUser('archive') ? 'inline-flex' : 'none';
   
   // Admin tab is visible ONLY for Jitendra or CBEO
@@ -2503,8 +2512,10 @@ function renderSamanParikshaView() {
   const scopeFilter = document.getElementById('sp-school-type-filter');
 
   const isSyl = STATE.samanParikshaActiveForm === 'syllabus';
+  const isPvtSchool = STATE.currentUser?.role === 'school' && (STATE.currentUser?.type === 'Private' || String(STATE.currentUser?.shala_darpan_code).startsWith('P'));
+
   if (btnIndent) {
-    if (isSyl) {
+    if (isSyl && !isPvtSchool) {
       btnIndent.classList.remove('active');
       btnIndent.style.background = '#f8fafc';
       btnIndent.style.color = '#0369a1';
@@ -2515,14 +2526,22 @@ function renderSamanParikshaView() {
     }
   }
   if (btnSyl) {
-    if (isSyl) {
-      btnSyl.classList.add('active');
-      btnSyl.style.background = '#0284c7';
-      btnSyl.style.color = '#ffffff';
+    if (isPvtSchool) {
+      btnSyl.style.display = 'none';
+      if (STATE.samanParikshaActiveForm === 'syllabus') {
+        STATE.samanParikshaActiveForm = 'indent';
+      }
     } else {
-      btnSyl.classList.remove('active');
-      btnSyl.style.background = '#f8fafc';
-      btnSyl.style.color = '#0369a1';
+      btnSyl.style.display = 'inline-flex';
+      if (isSyl) {
+        btnSyl.classList.add('active');
+        btnSyl.style.background = '#0284c7';
+        btnSyl.style.color = '#ffffff';
+      } else {
+        btnSyl.classList.remove('active');
+        btnSyl.style.background = '#f8fafc';
+        btnSyl.style.color = '#0369a1';
+      }
     }
   }
   if (badgeActive) {
@@ -2600,10 +2619,11 @@ function renderSamanParikshaView() {
     }
   }
 
+  const isAdmin = (typeof isJitendraLoggedIn === 'function' && isJitendraLoggedIn()) || (STATE.currentUser && STATE.currentUser.role === 'admin');
   const sylQuickBtns = document.getElementById('sp-syl-quick-btns');
   const sylDispatchBar = document.getElementById('sp-syllabus-admin-dispatch-bar');
-  if (sylQuickBtns) sylQuickBtns.style.display = isSyl ? 'inline-flex' : 'none';
-  if (sylDispatchBar) sylDispatchBar.style.display = isSyl ? 'flex' : 'none';
+  if (sylQuickBtns) sylQuickBtns.style.display = (isSyl && isAdmin) ? 'inline-flex' : 'none';
+  if (sylDispatchBar) sylDispatchBar.style.display = (isSyl && isAdmin) ? 'flex' : 'none';
 
   if (STATE.currentUser.role === 'admin') {
     if (peeoContainer) peeoContainer.style.display = 'none';
@@ -3531,6 +3551,11 @@ window.saveQuickSyllabusEntry = saveQuickSyllabusEntry;
 
 // ---------------- BULK SYLLABUS MANAGER FUNCTIONS ----------------
 function openBulkSyllabusManagerModal() {
+  const isAdmin = (typeof isJitendraLoggedIn === 'function' && isJitendraLoggedIn()) || (STATE.currentUser && STATE.currentUser.role === 'admin');
+  if (!isAdmin) {
+    showToast('49 स्कूल बल्क प्रबंधक केवल व्यवस्थापक (Admin) हेतु उपलब्ध है।', 'error');
+    return;
+  }
   const modal = document.getElementById('modal-syllabus-bulk-manager');
   if (!modal) return;
   renderBulkSyllabusTable();
@@ -15246,6 +15271,12 @@ function shareDemandTelegramOnWhatsApp() {
 let CURRENT_BROADCAST_CENTER_DEMAND = null;
 
 function openDemandBroadcastCenter(demandId) {
+  const isAdmin = (typeof isJitendraLoggedIn === 'function' && isJitendraLoggedIn()) || (STATE.currentUser && STATE.currentUser.role === 'admin');
+  if (!isAdmin && STATE.currentUser?.role === 'school') {
+    showToast('आधिकारिक प्रसारण केंद्र केवल व्यवस्थापक (Admin) हेतु उपलब्ध है।', 'error');
+    return;
+  }
+
   const demand = (STATE.demands || []).find(d => d.id === demandId) || {
     id: demandId,
     title: 'समान परीक्षा 2026-27: पाठ्यक्रम पूर्णता प्रतिशत मांग (49 राजकीय विद्यालय)',
