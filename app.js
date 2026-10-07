@@ -3472,6 +3472,10 @@ function filterSamanParikshaTable() {
         tr.style.borderLeft = '4px solid #16a34a';
       }
 
+      const spCfg = STATE.samanMismatchSettings || (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : null);
+      const isCustomEditActive = ((spCfg && spCfg.custom_edit_schools) || []).some(c => String(c).trim() === String(s.shala_darpan_code).trim());
+      const hasActiveMismatchOrCustom = isMismatch || isCustomEditActive || !!(spCfg && spCfg.mismatch_details && spCfg.mismatch_details[s.shala_darpan_code] && !spCfg.mismatch_details[s.shala_darpan_code].resolved);
+
       tr.innerHTML = `
         <td>${s.s_no || (idx + 1)}</td>
         <td>
@@ -3519,6 +3523,9 @@ function filterSamanParikshaTable() {
             <a href="saman_form.html?code=${s.shala_darpan_code}&_v=${Date.now()}" target="_blank" class="btn btn-outline-light btn-sm" title="प्रपत्र भरें / संपादित करें">
               <i class="fas fa-edit"></i>
             </a>
+            <button class="btn btn-sm ${hasActiveMismatchOrCustom ? 'btn-danger' : 'btn-outline-secondary'}" onclick="toggleSamanMismatchAlertDirect('${s.shala_darpan_code}')" title="${hasActiveMismatchOrCustom ? '🚨 मिसमैच अलर्ट / कस्टम एडिट बंद करें (Click to Turn OFF)' : '🔔 मिसमैच अलर्ट / कस्टम एडिट चालू करें (Click to Turn ON)'}" style="${hasActiveMismatchOrCustom ? 'background:#ef4444; color:#fff; border:none; font-weight:bold;' : 'border:1px solid #cbd5e1; color:#64748b;'} padding:2px 7px; font-size:0.75rem" type="button">
+              <i class="fas ${hasActiveMismatchOrCustom ? 'fa-bell-slash' : 'fa-bell'}"></i> ${hasActiveMismatchOrCustom ? '<span style="font-size:0.7rem">अलर्ट बंद</span>' : ''}
+            </button>
             <button class="btn btn-success btn-sm" onclick="openExamPdfPreview('${s.shala_darpan_code}')" title="अधिकृत A4 PDF देखें व प्रिंट करें">
               <i class="fas fa-print"></i>
             </button>
@@ -13610,6 +13617,82 @@ async function clearCurrentMismatchFlag() {
   }
 }
 window.clearCurrentMismatchFlag = clearCurrentMismatchFlag;
+
+function toggleSamanMismatchAlertDirect(schoolCode) {
+  const sCode = String(schoolCode).trim();
+  let spCfg = (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : (STATE.samanMismatchSettings || null));
+  if (!spCfg) {
+    try {
+      spCfg = JSON.parse(localStorage.getItem('cbeo_saman_mismatch_settings') || 'null');
+    } catch(e) {}
+  }
+  if (!spCfg) spCfg = JSON.parse(JSON.stringify(DEFAULT_SAMAN_MISMATCH_SETTINGS));
+
+  const isCustom = (spCfg.custom_edit_schools || []).some(c => String(c).trim() === sCode);
+  const mInfo = spCfg.mismatch_details ? spCfg.mismatch_details[sCode] : null;
+  const isMismatchActive = isDemandSchoolMismatch('saman_pariksha_2026_27', sCode) || (mInfo && !mInfo.resolved);
+
+  const currentlyActive = isCustom || isMismatchActive;
+
+  if (currentlyActive) {
+    // TURN OFF: Clear custom edit and resolve mismatch
+    if (spCfg.custom_edit_schools) {
+      spCfg.custom_edit_schools = spCfg.custom_edit_schools.filter(c => String(c).trim() !== sCode);
+    }
+    if (spCfg.mismatch_details && spCfg.mismatch_details[sCode]) {
+      spCfg.mismatch_details[sCode].resolved = true;
+      spCfg.mismatch_details[sCode].resolved_at = new Date().toISOString();
+    }
+    if (STATE.samanParikshaSubmissions && STATE.samanParikshaSubmissions[sCode]) {
+      const sub = STATE.samanParikshaSubmissions[sCode];
+      sub.is_mismatch = false;
+      sub.custom_unlocked = false;
+      sub.mismatch_resolved_at = new Date().toISOString();
+      localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(STATE.samanParikshaSubmissions));
+    }
+    showToast(`विद्यालय (${sCode}) का मिसमैच अलर्ट एवं कस्टम एडिट सफलतापूर्वक बंद कर दिया गया।`, 'success');
+  } else {
+    // TURN ON: Add to custom edit and mark active
+    if (!spCfg.custom_edit_schools) spCfg.custom_edit_schools = [];
+    if (!spCfg.custom_edit_schools.includes(sCode)) {
+      spCfg.custom_edit_schools.push(sCode);
+    }
+    if (spCfg.mismatch_details && spCfg.mismatch_details[sCode]) {
+      spCfg.mismatch_details[sCode].resolved = false;
+    }
+    if (STATE.samanParikshaSubmissions && STATE.samanParikshaSubmissions[sCode]) {
+      const sub = STATE.samanParikshaSubmissions[sCode];
+      sub.is_mismatch = true;
+      sub.custom_unlocked = true;
+      localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(STATE.samanParikshaSubmissions));
+    }
+    showToast(`विद्यालय (${sCode}) के लिए मिसमैच अलर्ट व कस्टम एडिट अनलॉक चालू कर दिया गया।`, 'info');
+  }
+
+  STATE.samanMismatchSettings = spCfg;
+  localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(spCfg));
+
+  const gasUrl = (typeof BACKEND_URL !== 'undefined' ? BACKEND_URL : (typeof SCRIPT_URL !== 'undefined' ? SCRIPT_URL : ''));
+  if (gasUrl) {
+    try {
+      fetch(gasUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'updatePassword',
+          user_id: '__SAMAN_MISMATCH_SETTINGS__',
+          role: 'System_Config',
+          name: 'Saman Pariksha Mismatch Settings',
+          new_password: JSON.stringify(spCfg)
+        })
+      }).catch(() => {});
+    } catch(e) {}
+  }
+
+  renderSamanParikshaMaster();
+}
+window.toggleSamanMismatchAlertDirect = toggleSamanMismatchAlertDirect;
 
 function checkAndAutoResolveSamanMismatch(schoolCode, submission) {
   const sCode = String(schoolCode).trim();
