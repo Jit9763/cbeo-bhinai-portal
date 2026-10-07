@@ -59,8 +59,13 @@ const CURRENT_PORTAL_VERSION = 'v32_2026_10_07_peeo_lock_and_auto_reset';
   if (savedVersion !== CURRENT_PORTAL_VERSION) {
     console.log('[CBEO-PORTAL] ⚡ Auto Hard Reset Triggered! Old version:', savedVersion, '-> New version:', CURRENT_PORTAL_VERSION);
     
-    // Critical keys to preserve (user login session and unfinished form drafts)
-    const preserveKeys = ['cbeo_user', 'cbeo_logged_user', 'cbeo_remember_me', 'cbeo_saved_username'];
+    // Critical keys to preserve (user login session, drafts, and custom admin configurations)
+    const preserveKeys = [
+      'cbeo_user', 'cbeo_logged_user', 'cbeo_remember_me', 'cbeo_saved_username',
+      'cbeo_tab_visibility_6level', 'cbeo_edit_permissions_6level',
+      'cbeo_tab_visibility_5level', 'cbeo_edit_permissions_5level',
+      'cbeo_saman_active_form', 'cbeo_saman_mismatch_settings', 'cbeo_portal_settings', 'cbeo_vm_settings'
+    ];
     const toRemove = [];
     for (let i = 0; i < localStorage.length; i++) {
       const k = localStorage.key(i);
@@ -386,13 +391,8 @@ function initMasterData() {
     localStorage.removeItem('cbeo_schools56_data');
     localStorage.removeItem('cbeo_saman_pariksha_submissions');
     localStorage.removeItem('cbeo_saman_syllabus_submissions');
-    localStorage.removeItem('cbeo_tab_visibility_6level');
-    localStorage.removeItem('cbeo_tab_visibility_5level');
-    localStorage.removeItem('cbeo_tab_visibility');
-    localStorage.removeItem('cbeo_vm_settings');
-    localStorage.removeItem('cbeo_staff_edit_permissions');
     localStorage.removeItem('cbeo_active_tab');
-    // NOTE: Form drafts (cbeo_form_draft_*) are deliberately preserved so user never loses unfinished data!
+    // NOTE: Form drafts and admin visibility settings are deliberately preserved so user never loses configurations!
     localStorage.setItem('cbeo_data_version', DATA_VERSION);
     try {
       const lu = JSON.parse(localStorage.getItem('cbeo_logged_user') || 'null');
@@ -404,6 +404,48 @@ function initMasterData() {
       }
     } catch(e) {}
   }
+
+  // Load 6-Level Tab Visibility & Edit Permissions (Admin Custom Settings)
+  try {
+    const savedVis = localStorage.getItem('cbeo_tab_visibility_6level') || localStorage.getItem('cbeo_tab_visibility_5level');
+    if (savedVis) {
+      STATE.tabVisibility6Level = JSON.parse(savedVis);
+      STATE.tabVisibility5Level = STATE.tabVisibility6Level;
+    } else {
+      STATE.tabVisibility6Level = JSON.parse(JSON.stringify(DEFAULT_TAB_VISIBILITY_6LEVEL));
+      STATE.tabVisibility5Level = STATE.tabVisibility6Level;
+    }
+  } catch(e) {
+    STATE.tabVisibility6Level = JSON.parse(JSON.stringify(DEFAULT_TAB_VISIBILITY_6LEVEL));
+    STATE.tabVisibility5Level = STATE.tabVisibility6Level;
+  }
+
+  try {
+    const savedPerms = localStorage.getItem('cbeo_edit_permissions_6level');
+    if (savedPerms) {
+      STATE.editPermissions6Level = JSON.parse(savedPerms);
+      STATE.editPermissions5Level = STATE.editPermissions6Level;
+    } else {
+      STATE.editPermissions6Level = JSON.parse(JSON.stringify(DEFAULT_EDIT_PERMISSIONS_6LEVEL));
+      STATE.editPermissions5Level = STATE.editPermissions6Level;
+    }
+  } catch(e) {
+    STATE.editPermissions6Level = JSON.parse(JSON.stringify(DEFAULT_EDIT_PERMISSIONS_6LEVEL));
+    STATE.editPermissions5Level = STATE.editPermissions6Level;
+  }
+
+  // Also sync latest visibility settings from local server in background
+  fetch('/api/get_tab_visibility_6level')
+    .then(r => r.json())
+    .then(data => {
+      if (data && data.success && data.visibility) {
+        STATE.tabVisibility6Level = data.visibility;
+        STATE.tabVisibility5Level = data.visibility;
+        localStorage.setItem('cbeo_tab_visibility_6level', JSON.stringify(data.visibility));
+        applyTabVisibility();
+        if (typeof render6LevelTabVisibilityMatrix === 'function') render6LevelTabVisibilityMatrix();
+      }
+    }).catch(() => {});
 
   // Load cached Google Sheet Auth credentials
   try {
@@ -1621,9 +1663,9 @@ function isTabVisibleForCurrentUser(tabId) {
                  STATE.currentUser.admin_id === 'ADMIN01' || 
                  (STATE.currentUser.role === 'admin' && !isJitendra);
 
-  // CRITICAL: Admin Control Room, Database Hub & School Management are NEVER accessible to School Logins
+  // CRITICAL: School login ONLY sees Saman Pariksha (all other tabs locked)
   if (STATE.currentUser.role === 'school') {
-    if (tabId === 'admin-control' || tabId === 'database-hub' || tabId === 'school-management') {
+    if (tabId !== 'saman-pariksha') {
       return false;
     }
   }
@@ -1665,7 +1707,8 @@ function isTabVisibleForCurrentUser(tabId) {
       // 8 Private Secondary / Sr.Secondary schools
       const isPvtSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code && s.type === 'Private');
       if (isPvtSec) {
-        return !!(tabConf.pvt_sec_srsec || tabConf.sec_srsec || tabConf.all_schools);
+        if (tabConf.pvt_sec_srsec !== undefined) return !!(tabConf.pvt_sec_srsec || tabConf.all_schools);
+        return !!(tabConf.sec_srsec || tabConf.all_schools);
       }
       return !!tabConf.all_schools;
     }
@@ -1674,7 +1717,8 @@ function isTabVisibleForCurrentUser(tabId) {
     const isGovtSecSrSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code && s.type !== 'Private') ||
       (STATE.currentUser.category && (STATE.currentUser.category.includes('Secondary') || STATE.currentUser.category.includes('माध्यमिक')));
     if (isGovtSecSrSec) {
-      return !!(tabConf.govt_sec_srsec || tabConf.sec_srsec || tabConf.all_govt || tabConf.all_schools);
+      if (tabConf.govt_sec_srsec !== undefined) return !!(tabConf.govt_sec_srsec || tabConf.all_govt || tabConf.all_schools);
+      return !!(tabConf.sec_srsec || tabConf.all_govt || tabConf.all_schools);
     }
     // Government Elementary / Primary (Class 1-8)
     return !!(tabConf.all_govt || tabConf.all_schools);
@@ -3823,6 +3867,8 @@ function switchSamanActiveForm(formType) {
     syncSyllabusSubmissionsFromCloud();
     showToast('नवीन पाठ्यक्रम पूर्णता % मांग (49 राजकीय विद्यालय) सक्रिय हो गई!', 'info');
   } else {
+    STATE.samanParikshaSchoolTypeFilter = 'all';
+    if (scopeDropdown) scopeDropdown.value = 'all';
     if (sylQuickBtns) sylQuickBtns.style.display = 'none';
     if (sylDispatchBar) sylDispatchBar.style.display = 'none';
     showToast('मूल प्रश्न-पत्र मांग (57 विद्यालय) सक्रिय हो गई!', 'info');
@@ -10245,7 +10291,8 @@ function isDemandVisibleForCurrentUser(demand) {
     if (isPvt) {
       const isPvtSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code && s.type === 'Private');
       if (isPvtSec) {
-        return !!(aud.pvt_sec_srsec || aud.sec_srsec || aud.all_schools);
+        if (aud.pvt_sec_srsec !== undefined) return !!(aud.pvt_sec_srsec || aud.all_schools);
+        return !!(aud.sec_srsec || aud.all_schools);
       }
       return !!aud.all_schools;
     }
@@ -10254,7 +10301,8 @@ function isDemandVisibleForCurrentUser(demand) {
       (STATE.currentUser.category && (STATE.currentUser.category.includes('Secondary') || STATE.currentUser.category.includes('माध्यमिक')));
 
     if (isGovtSecSrSec) {
-      return !!(aud.govt_sec_srsec || aud.sec_srsec || aud.all_govt || aud.all_schools);
+      if (aud.govt_sec_srsec !== undefined) return !!(aud.govt_sec_srsec || aud.all_govt || aud.all_schools);
+      return !!(aud.sec_srsec || aud.all_govt || aud.all_schools);
     }
 
     // Other Govt schools (Primary / Upper Primary)
@@ -13675,6 +13723,12 @@ function renderAdminControlView() {
   }
 
   renderAdminMatrix();
+}
+
+function isDemandSubmitted(sub) {
+  if (!sub) return false;
+  if (typeof isDynamicDemandSubmitted === 'function') return isDynamicDemandSubmitted(sub);
+  return !!(sub.submitted || sub.timestamp || sub.submitted_at || sub.is_submitted);
 }
 
 function renderCBEOExecutiveDemands() {

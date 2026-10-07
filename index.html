@@ -28,7 +28,12 @@
       if (lastVer !== CLIENT_VERSION) {
         localStorage.setItem('cbeo_client_app_version', CLIENT_VERSION);
         // Automatic hard purge of all stale settings so old configs never persist
-        var preserveKeys = ['cbeo_user', 'cbeo_logged_user', 'cbeo_remember_me', 'cbeo_saved_username'];
+        var preserveKeys = [
+          'cbeo_user', 'cbeo_logged_user', 'cbeo_remember_me', 'cbeo_saved_username',
+          'cbeo_tab_visibility_6level', 'cbeo_edit_permissions_6level',
+          'cbeo_tab_visibility_5level', 'cbeo_edit_permissions_5level',
+          'cbeo_saman_active_form', 'cbeo_portal_settings', 'cbeo_vm_settings'
+        ];
         for (var i = localStorage.length - 1; i >= 0; i--) {
           var k = localStorage.key(i);
           if (k && preserveKeys.indexOf(k) === -1 && k.indexOf('cbeo_form_draft_') !== 0) {
