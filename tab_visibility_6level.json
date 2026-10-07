@@ -17,7 +17,7 @@
   },
   "dashboard": {
     "cbeo": true,
-    "peeo": true,
+    "peeo": false,
     "govt_sec_srsec": false,
     "pvt_sec_srsec": false,
     "all_govt": false,
@@ -25,7 +25,7 @@
   },
   "directory": {
     "cbeo": true,
-    "peeo": true,
+    "peeo": false,
     "govt_sec_srsec": false,
     "pvt_sec_srsec": false,
     "all_govt": false,
@@ -33,7 +33,7 @@
   },
   "staff": {
     "cbeo": true,
-    "peeo": true,
+    "peeo": false,
     "govt_sec_srsec": false,
     "pvt_sec_srsec": false,
     "all_govt": false,
@@ -49,7 +49,7 @@
   },
   "demands": {
     "cbeo": true,
-    "peeo": true,
+    "peeo": false,
     "govt_sec_srsec": false,
     "pvt_sec_srsec": false,
     "all_govt": false,

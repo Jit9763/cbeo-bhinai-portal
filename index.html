@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261005_v23">
+  <link rel="stylesheet" href="styles.css?v=20261007_v32">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script>
@@ -23,10 +23,18 @@
         if (cu && !lu) localStorage.setItem('cbeo_logged_user', cu);
       } catch(e) {}
 
-      var CLIENT_VERSION = 'v29_2026_10_06_instant_auto_bust';
+      var CLIENT_VERSION = 'v32_2026_10_07_peeo_lock_and_auto_reset';
       var lastVer = localStorage.getItem('cbeo_client_app_version');
       if (lastVer !== CLIENT_VERSION) {
         localStorage.setItem('cbeo_client_app_version', CLIENT_VERSION);
+        // Automatic hard purge of all stale settings so old configs never persist
+        var preserveKeys = ['cbeo_user', 'cbeo_logged_user', 'cbeo_remember_me', 'cbeo_saved_username'];
+        for (var i = localStorage.length - 1; i >= 0; i--) {
+          var k = localStorage.key(i);
+          if (k && preserveKeys.indexOf(k) === -1 && k.indexOf('cbeo_form_draft_') !== 0) {
+            try { localStorage.removeItem(k); } catch(e) {}
+          }
+        }
         if ('caches' in window) {
           caches.keys().then(function(keys) {
             keys.forEach(function(k) { caches.delete(k); });
@@ -5807,7 +5815,7 @@
 
   <!-- External & Application Logic -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <script src="master_cbeo_data.js?v=20261007_v30"></script>
-  <script src="app.js?v=20261007_v30"></script>
+  <script src="master_cbeo_data.js?v=20261007_v32"></script>
+  <script src="app.js?v=20261007_v32"></script>
 </body>
 </html>

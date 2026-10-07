@@ -50,9 +50,48 @@ let canvas, ctx;
 let isDrawing = false;
 let hasSignature = false;
 
+// Portal Build Version - Incremented to trigger automatic hard reset
+const CURRENT_PORTAL_VERSION = 'v32_2026_10_07_peeo_lock_and_auto_reset';
+
+// Automatic Hard Reset & Cache Buster (Executes immediately on page load)
+(function checkAndPerformAutoHardReset() {
+  const savedVersion = localStorage.getItem('cbeo_portal_version');
+  if (savedVersion !== CURRENT_PORTAL_VERSION) {
+    console.log('[CBEO-PORTAL] ⚡ Auto Hard Reset Triggered! Old version:', savedVersion, '-> New version:', CURRENT_PORTAL_VERSION);
+    
+    // Critical keys to preserve (user login session and unfinished form drafts)
+    const preserveKeys = ['cbeo_user', 'cbeo_logged_user', 'cbeo_remember_me', 'cbeo_saved_username'];
+    const toRemove = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && !preserveKeys.includes(k) && !k.startsWith('cbeo_form_draft_')) {
+        toRemove.push(k);
+      }
+    }
+    toRemove.forEach(k => {
+      try { localStorage.removeItem(k); } catch(e) {}
+    });
+
+    localStorage.setItem('cbeo_portal_version', CURRENT_PORTAL_VERSION);
+    localStorage.setItem('cbeo_data_version', CURRENT_PORTAL_VERSION);
+
+    // Purge browser caches
+    if ('caches' in window) {
+      caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
+    }
+    // Purge sessionStorage
+    try { sessionStorage.clear(); } catch(e) {}
+  }
+})();
+
 // Force 100% hard refresh and purge all caches
 function forcePortalHardRefresh() {
   localStorage.setItem('cbeo_client_app_version', 'force_refresh_' + Date.now());
+  localStorage.removeItem('cbeo_portal_version');
+  localStorage.removeItem('cbeo_data_version');
+  localStorage.removeItem('cbeo_tab_visibility_6level');
+  localStorage.removeItem('cbeo_tab_visibility_5level');
+  localStorage.removeItem('cbeo_vm_settings');
   if ('caches' in window) {
     caches.keys().then(function(keys) {
       keys.forEach(function(k) { caches.delete(k); });
@@ -339,15 +378,20 @@ function initMasterData() {
     }
   ];
 
-  // Versioned cache check to guarantee fresh master data with 57 schools and all 57 active submissions
-  const DATA_VERSION = 'v22_2026_10_05_bilingual_mismatch';
+  // Versioned cache check to guarantee fresh master data with 57 schools and clean tab settings
+  const DATA_VERSION = CURRENT_PORTAL_VERSION;
   if (localStorage.getItem('cbeo_data_version') !== DATA_VERSION) {
     localStorage.removeItem('cbeo_peeos_data');
     localStorage.removeItem('cbeo_staff_data');
     localStorage.removeItem('cbeo_schools56_data');
     localStorage.removeItem('cbeo_saman_pariksha_submissions');
+    localStorage.removeItem('cbeo_saman_syllabus_submissions');
+    localStorage.removeItem('cbeo_tab_visibility_6level');
     localStorage.removeItem('cbeo_tab_visibility_5level');
+    localStorage.removeItem('cbeo_tab_visibility');
+    localStorage.removeItem('cbeo_vm_settings');
     localStorage.removeItem('cbeo_staff_edit_permissions');
+    localStorage.removeItem('cbeo_active_tab');
     // NOTE: Form drafts (cbeo_form_draft_*) are deliberately preserved so user never loses unfinished data!
     localStorage.setItem('cbeo_data_version', DATA_VERSION);
     try {
@@ -1554,12 +1598,12 @@ function switchTab(viewId, param = null) {
 
 const DEFAULT_TAB_VISIBILITY_6LEVEL = {
   'saman-pariksha': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: false, all_schools: false },
-  'database-hub': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
-  'dashboard': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
-  'directory': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
-  'staff': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'database-hub': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'dashboard': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'directory': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'staff': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
   'school-management': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
-  'demands': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'demands': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
   'archive': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
   'admin-control': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false }
 };
@@ -1580,6 +1624,13 @@ function isTabVisibleForCurrentUser(tabId) {
   // CRITICAL: Admin Control Room, Database Hub & School Management are NEVER accessible to School Logins
   if (STATE.currentUser.role === 'school') {
     if (tabId === 'admin-control' || tabId === 'database-hub' || tabId === 'school-management') {
+      return false;
+    }
+  }
+
+  // CRITICAL: PEEO login ONLY sees Saman Pariksha (all other tabs locked)
+  if (STATE.currentUser.role === 'peeo') {
+    if (tabId !== 'saman-pariksha') {
       return false;
     }
   }
