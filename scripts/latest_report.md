@@ -40,7 +40,7 @@
 | 2 | `221770` | **महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा** | PEEO BANDANWARA | JAY SINGH KHATIK | `9649149083` | <span style='color:red; font-weight:bold;'>🚨 अति-लंबित</span> |
 | 3 | `221763` | **राजकीय उच्च माध्यमिक विद्यालय, बूबकिया** | PEEO BOOBKIYA | RAM CHANDRA GUJAR | `9252068645` | <span style='color:red; font-weight:bold;'>🚨 अति-लंबित</span> |
 | 4 | `485033` | **राजकीय उच्च माध्यमिक विद्यालय, पीपलिया** | PEEO BOOBKIYA | प्रभारी संस्था प्रधान (रा.उ.मा.वि. पीपलिया) | `9784793783` | <span style='color:red; font-weight:bold;'>🚨 अति-लंबित</span> |
-| 5 | `221787` | **राजकीय उच्च माध्यमिक विद्यालय, छाछून्दरा** | PEEO CHHACHHUNDRA | SITARAM DHOBI | `9413781124` | <span style='color:red; font-weight:bold;'>🚨 अति-लंबित</span> |
+| 5 | `221787` | **राजकीय उच्च माध्यमिक विद्यालय, छछून्दरा** | PEEO CHHACHHUNDRA | SITARAM DHOBI | `9413781124` | <span style='color:red; font-weight:bold;'>🚨 अति-लंबित</span> |
 | 6 | `410704` | **राजकीय उच्च माध्यमिक विद्यालय, रूपपुरा** | PEEO DEVPURA | KISHAN GOPAL PARIHAR | `9413225666` | <span style='color:red; font-weight:bold;'>🚨 अति-लंबित</span> |
 | 7 | `221783` | **राजकीय उच्च माध्यमिक विद्यालय, धांतोल** | PEEO DHANTOL | SURENDRA NAGORA | `9413695182` | <span style='color:red; font-weight:bold;'>🚨 अति-लंबित</span> |
 | 8 | `221786` | **राजकीय उच्च माध्यमिक विद्यालय, एकलसिंघा** | PEEO EKALSEENGA | VISHWASHWAR PRASAD SHARMA | `7728052397` | <span style='color:red; font-weight:bold;'>🚨 अति-लंबित</span> |
@@ -56,7 +56,7 @@
 | 18 | `221784` | **राजकीय उच्च माध्यमिक विद्यालय, हीरापुरा** | PEEO RAMMALIA | BHAGCHAND REGAR | `9829219564` | <span style='color:red; font-weight:bold;'>🚨 अति-लंबित</span> |
 | 19 | `410677` | **राजकीय उच्च माध्यमिक विद्यालय, रघुनाथगढ़** | PEEO RAMMALIA | Lalit Kishore Sharma | `8104466893` | <span style='color:red; font-weight:bold;'>🚨 अति-लंबित</span> |
 | 20 | `221785` | **राजकीय उच्च माध्यमिक विद्यालय, राममालिया** | PEEO RAMMALIA | LAL CHAND MUNOTH | `9928328808` | <span style='color:red; font-weight:bold;'>🚨 अति-लंबित</span> |
-| 21 | `488897` | **राजकीय उच्च माध्यमिक विद्यालय, घाणा** | PEEO SOBRI | SUMITRA KUMARI PHULWARI | `9928994663` | <span style='color:red; font-weight:bold;'>🚨 अति-लंबित</span> |
+| 21 | `488897` | **राजकीय उच्च माध्यमिक विद्यालय, घणा** | PEEO SOBRI | SUMITRA KUMARI PHULWARI | `9928994663` | <span style='color:red; font-weight:bold;'>🚨 अति-लंबित</span> |
 
 ## 🏢 3. PEEO क्लस्टर अनुपालन स्थिति (PEEO Cluster Status)
 - **कुल PEEO परिक्षेत्र:** 25 | **ब्लॉक:** भिनाय (अजमेर)

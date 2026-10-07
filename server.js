@@ -237,6 +237,16 @@ const DB = {
       }
       cur[String(schoolCode)] = data;
       fs.writeFileSync(subFile, JSON.stringify(cur, null, 2), 'utf8');
+
+      // Also sync to master_cbeo_data.json and master_cbeo_data.js
+      const masterFile = path.join(ROOT_DIR, 'master_cbeo_data.json');
+      if (fs.existsSync(masterFile)) {
+        const mData = JSON.parse(fs.readFileSync(masterFile, 'utf8'));
+        if (!mData.saman_pariksha_submissions) mData.saman_pariksha_submissions = {};
+        mData.saman_pariksha_submissions[String(schoolCode)] = data;
+        fs.writeFileSync(masterFile, JSON.stringify(mData, null, 2), 'utf8');
+        fs.writeFileSync(path.join(ROOT_DIR, 'master_cbeo_data.js'), 'const MASTER_CBEO_DATA = ' + JSON.stringify(mData, null, 2) + ';\n', 'utf8');
+      }
     } catch(e) {}
   },
 
