@@ -1017,6 +1017,28 @@
       };
     }
 
+    function getSchoolOfficialFormalHindiHeader(school) {
+      if (!school) return '';
+      if (school.school_name_formal) return school.school_name_formal;
+      const code = String(school.shala_darpan_code || school.code || '').trim();
+      let name = (school.school_name_hi || school.school_name || '').trim();
+
+      name = name.replace(/रा\.बा\.उ\.मा\.वि\./g, 'राजकीय बालिका उच्च माध्यमिक विद्यालय, ')
+                 .replace(/रा\.उ\.मा\.वि\./g, 'राजकीय उच्च माध्यमिक विद्यालय, ')
+                 .replace(/रा\.बा\.मा\.वि\./g, 'राजकीय बालिका माध्यमिक विद्यालय, ')
+                 .replace(/रा\.मा\.वि\./g, 'राजकीय माध्यमिक विद्यालय, ')
+                 .replace(/महात्मा गांधी रा\.वि\./g, 'महात्मा गांधी राजकीय विद्यालय, ')
+                 .replace(/पीएम श्री रा\.उ\.मा\.वि\./g, 'पीएम श्री राजकीय उच्च माध्यमिक विद्यालय, ')
+                 .replace(/पीएम श्री रा\.मा\.वि\./g, 'पीएम श्री राजकीय माध्यमिक विद्यालय, ')
+                 .replace(/^कार्यालय\s+/g, '')
+                 .replace(/\s*\(\s*\d+\s*\)\s*$/, '')
+                 .trim();
+      name = name.replace(/,\s*,/g, ',').replace(/विद्यालय,\s*/g, 'विद्यालय, ');
+
+      const codePart = code ? ` | शा.दा. कोड: ${code}` : '';
+      return `कार्यालय ${name}${codePart}`;
+    }
+
     function toggleOverlayPwdVisibility() {
       const pwd = document.getElementById('overlay-login-password');
       const eye = document.getElementById('overlay-pwd-eye');
@@ -1153,6 +1175,19 @@
       let loggedUser = null;
       try {
         loggedUser = JSON.parse(localStorage.getItem('cbeo_logged_user') || localStorage.getItem('cbeo_user') || 'null');
+      } catch(e) {}
+
+      // Immediately display official school header if code param is present
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const codeParam = urlParams.get('code');
+        if (codeParam) {
+          const sch = schoolsList.find(s => String(s.shala_darpan_code) === String(codeParam));
+          if (sch) {
+            const headerTitleEl = document.getElementById('gform-school-header-title');
+            if (headerTitleEl) headerTitleEl.textContent = getSchoolOfficialFormalHindiHeader(sch);
+          }
+        }
       } catch(e) {}
 
       // 🚨 CRITICAL AUTHENTICATION CHECK:
@@ -1519,7 +1554,7 @@
 
       const headerTitleEl = document.getElementById('gform-school-header-title');
       if (headerTitleEl) {
-        headerTitleEl.textContent = `${officialNames.hi || officialNames.en} (${currentSchool.shala_darpan_code})`;
+        headerTitleEl.textContent = getSchoolOfficialFormalHindiHeader(currentSchool);
       }
 
       document.getElementById('f-school-code').value = currentSchool.shala_darpan_code;

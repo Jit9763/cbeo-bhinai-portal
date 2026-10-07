@@ -776,6 +776,89 @@
     "is_submitted": true,
     "submitted_at": "2026-10-07T05:51:21.867Z"
   },
+  "221766": {
+    "school_code": "221766",
+    "exam_code": "AJM04G221766",
+    "principal_name": "LAXMI POPTANI",
+    "principal_mobile": "9549364023",
+    "incharge_name": "HEMLATA SANKHLA",
+    "incharge_mobile": "8233229902",
+    "submitted_by": "LAXMI POPTANI",
+    "c9": {
+      "zero_enrolment": false,
+      "hindi": 71,
+      "english": 72,
+      "maths": 70,
+      "science": 80,
+      "sst": 81,
+      "sanskrit": 82,
+      "urdu": 0
+    },
+    "c10": {
+      "zero_enrolment": false,
+      "hindi": 92,
+      "english": 95,
+      "maths": 90,
+      "science": 98,
+      "sst": 95,
+      "sanskrit": 100,
+      "urdu": 0
+    },
+    "c11": {
+      "zero_enrolment": false,
+      "comp_hindi": 75,
+      "comp_english": 72,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 75
+        },
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 81
+        },
+        {
+          "key": "geography",
+          "name": "भूगोल (Geography)",
+          "pct": 76
+        }
+      ]
+    },
+    "c12": {
+      "zero_enrolment": false,
+      "comp_hindi": 93,
+      "comp_english": 95,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "pol_sci",
+          "name": "राजनीति विज्ञान (Political Science)",
+          "pct": 100
+        },
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 100
+        },
+        {
+          "key": "geography",
+          "name": "भूगोल (Geography)",
+          "pct": 91
+        }
+      ]
+    },
+    "average_pct": 85.6,
+    "updated_at": "2026-10-07T06:33:41.340Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-07T06:33:41.343Z"
+  },
   "221767": {
     "school_code": "221767",
     "school_name": "रा.उ.मा.वि. कैरोट (जेतपुरा)",

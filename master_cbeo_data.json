@@ -74,7 +74,7 @@
       "password": "221769",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, बांदनवाड़ा",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "BANDANWARA",
           "village": "बान्दनवाडा",
@@ -82,12 +82,13 @@
           "shala_darpan_code": "221769",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, बांदनवाड़ा",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA",
           "peeo_name": "PEEO BANDANWARA",
           "peeo_code": "221769",
           "village_hi": "बान्दनवाडा",
-          "village_en": "BANDANWARA"
+          "village_en": "BANDANWARA",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, बांदनवाड़ा | शा.दा. कोड: 221769"
         },
         {
           "school_name": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
@@ -103,10 +104,11 @@
           "peeo_name": "PEEO BANDANWARA",
           "peeo_code": "221769",
           "village_hi": "बान्दनवाडा",
-          "village_en": "BANDANWARA"
+          "village_en": "BANDANWARA",
+          "school_name_formal": "कार्यालय महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा | शा.दा. कोड: 221770"
         },
         {
-          "school_name": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, रेलवे कॉलोनी, बांदनवाड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BANDANWARA",
           "village": "बान्दनवाडा",
@@ -114,12 +116,13 @@
           "shala_darpan_code": "221771",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, रेलवे कॉलोनी, बांदनवाड़ा",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA",
           "peeo_name": "PEEO BANDANWARA",
           "peeo_code": "221769",
           "village_hi": "बान्दनवाडा",
-          "village_en": "BANDANWARA"
+          "village_en": "BANDANWARA",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, रेलवे कॉलोनी, बांदनवाड़ा | शा.दा. कोड: 221771"
         },
         {
           "school_name": "रा.प्रा.वि. रामेश्वरपुरा (बांदनवाड़ा)",
@@ -283,7 +286,7 @@
       "password": "221764",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. बड़गांव",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, बड़गांव (सूरखण्ड)",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "BARGAON",
           "village": "बड़गांव",
@@ -291,11 +294,12 @@
           "shala_darpan_code": "221764",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. बड़गांव",
-          "school_name_en": "सूरखण्ड) (GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, बड़गांव (सूरखण्ड)",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND",
           "peeo_name": "PEEO BARGAON",
           "peeo_code": "221764",
-          "village_hi": "बड़गांव"
+          "village_hi": "बड़गांव",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, बड़गांव (सूरखण्ड) | शा.दा. कोड: 221764"
         },
         {
           "school_name": "रा.उ.प्रा.वि. केरिया खुर्द",
@@ -347,7 +351,7 @@
       "password": "221755",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. बड़ली",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, बड़ली",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "BARLI",
           "village": "बड़ली",
@@ -355,14 +359,15 @@
           "shala_darpan_code": "221755",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. बड़ली",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, बड़ली",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI",
           "peeo_name": "PEEO BARLI",
           "peeo_code": "221755",
-          "village_hi": "बड़ली"
+          "village_hi": "बड़ली",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, बड़ली | शा.दा. कोड: 221755"
         },
         {
-          "school_name": "रा.बा.उ.मा.वि. बड़ली",
+          "school_name": "राजकीय बालिका उच्च माध्यमिक विद्यालय, बड़ली",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BADLI",
           "village": "बड़ली",
@@ -370,11 +375,12 @@
           "shala_darpan_code": "506830",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.बा.उ.मा.वि. बड़ली",
+          "school_name_hi": "राजकीय बालिका उच्च माध्यमिक विद्यालय, बड़ली",
           "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI",
           "peeo_name": "PEEO BARLI",
           "peeo_code": "221755",
-          "village_hi": "बड़ली"
+          "village_hi": "बड़ली",
+          "school_name_formal": "कार्यालय राजकीय बालिका उच्च माध्यमिक विद्यालय, बड़ली | शा.दा. कोड: 506830"
         }
       ],
       "school_count": 2,
@@ -394,7 +400,7 @@
       "password": "221780",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. भिनाय",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, भिनाय",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "BHINAY",
           "village": "भिनाय",
@@ -402,12 +408,13 @@
           "shala_darpan_code": "221780",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. भिनाय",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, भिनाय",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI",
           "peeo_name": "PEEO BHINAY",
           "peeo_code": "221780",
           "village_hi": "भिनाय",
-          "village_en": "BHINAI"
+          "village_en": "BHINAI",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, भिनाय | शा.दा. कोड: 221780"
         },
         {
           "school_name": "रा.प्रा.वि. इंदिरा कॉलोनी भिनाय",
@@ -471,7 +478,8 @@
           "peeo_name": "PEEO BHINAY",
           "peeo_code": "221780",
           "village_hi": "भिनाय",
-          "village_en": "BHINAI"
+          "village_en": "BHINAI",
+          "school_name_formal": "कार्यालय महात्मा गांधी राजकीय विद्यालय, भिनाय | शा.दा. कोड: 221778"
         },
         {
           "school_name": "रा.प्रा.वि. माताजी का खेड़ा (भिनाय)",
@@ -940,7 +948,7 @@
       "password": "221763",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. बूबकिया",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, बूबकिया",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "BOOBKIYA",
           "village": "बूबकिया",
@@ -948,12 +956,13 @@
           "shala_darpan_code": "221763",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. बूबकिया",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, बूबकिया",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA",
           "peeo_name": "PEEO BOOBKIYA",
           "peeo_code": "221763",
           "village_hi": "बूबकिया",
-          "village_en": "BOOBKIYA"
+          "village_en": "BOOBKIYA",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, बूबकिया | शा.दा. कोड: 221763"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL SOLKHURD (410859) (08210702101)",
@@ -972,7 +981,7 @@
           "village_en": "SOLKHURD"
         },
         {
-          "school_name": "रा.उ.मा.वि. पीपलिया",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, पीपलिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BUBKIYA",
           "village": "पीपलिया",
@@ -980,12 +989,13 @@
           "shala_darpan_code": "485033",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.उ.मा.वि. पीपलिया",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, पीपलिया",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PIPLIYA",
           "peeo_name": "PEEO BOOBKIYA",
           "peeo_code": "221763",
           "village_hi": "पीपलिया",
-          "village_en": "PEEPLIYA"
+          "village_en": "PEEPLIYA",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, पीपलिया | शा.दा. कोड: 485033"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL KALBELIYON KI DHANI BOOBKIYA (485023) (08210701802)",
@@ -1081,7 +1091,7 @@
       "password": "221758",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. चापानेरी",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, चापानेरी",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "CHAPANERI",
           "village": "चापानेरी",
@@ -1089,15 +1099,16 @@
           "shala_darpan_code": "221758",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. चापानेरी",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, चापानेरी",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI",
           "peeo_name": "PEEO CHAPANERI",
           "peeo_code": "221758",
           "village_hi": "चापानेरी",
-          "village_en": "CHAPANERI"
+          "village_en": "CHAPANERI",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, चापानेरी | शा.दा. कोड: 221758"
         },
         {
-          "school_name": "रा.बा.उ.मा.वि. चापानेरी",
+          "school_name": "राजकीय बालिका उच्च माध्यमिक विद्यालय, चापानेरी",
           "category": "Govt. Elementary / Sec",
           "panchayat": "CHANPANER",
           "village": "चापानेरी",
@@ -1105,12 +1116,13 @@
           "shala_darpan_code": "494626",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.बा.उ.मा.वि. चापानेरी",
+          "school_name_hi": "राजकीय बालिका उच्च माध्यमिक विद्यालय, चापानेरी",
           "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL CHAPANERI",
           "peeo_name": "PEEO CHAPANERI",
           "peeo_code": "221758",
           "village_hi": "चापानेरी",
-          "village_en": "CHAPANERI"
+          "village_en": "CHAPANERI",
+          "school_name_formal": "कार्यालय राजकीय बालिका उच्च माध्यमिक विद्यालय, चापानेरी | शा.दा. कोड: 494626"
         }
       ],
       "school_count": 2,
@@ -1130,7 +1142,7 @@
       "password": "221787",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. छाछून्दरा",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, छाछून्दरा",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "CHHACHHUNDRA",
           "village": "छछून्दरा",
@@ -1138,12 +1150,13 @@
           "shala_darpan_code": "221787",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, छाछून्दरा",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA",
           "peeo_name": "PEEO CHHACHHUNDRA",
           "peeo_code": "221787",
           "village_hi": "छछून्दरा",
-          "village_en": "CHHACHHUNDRA"
+          "village_en": "CHHACHHUNDRA",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, छाछून्दरा | शा.दा. कोड: 221787"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL MAJRA SAWAIPURA (505598) (08210707802)",
@@ -1226,7 +1239,7 @@
           "village_en": "RATANPURA"
         },
         {
-          "school_name": "रा.उ.मा.वि. सेदरिया",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, सेदरिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "CHACHUNDRA",
           "village": "सेदरिया",
@@ -1234,12 +1247,13 @@
           "shala_darpan_code": "488946",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.उ.मा.वि. सेदरिया",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, सेदरिया",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SEDRIYA",
           "peeo_name": "PEEO CHHACHHUNDRA",
           "peeo_code": "221787",
           "village_hi": "सेदरिया",
-          "village_en": "SEDRIYA"
+          "village_en": "SEDRIYA",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, सेदरिया | शा.दा. कोड: 488946"
         }
       ],
       "school_count": 7,
@@ -1259,7 +1273,7 @@
       "password": "221754",
       "schools": [
         {
-          "school_name": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+          "school_name": "पीएम श्री राजकीय उच्च माध्यमिक विद्यालय, देवलिया कलां",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "DEOLIYA KALAN",
           "village": "देवलिया कलां",
@@ -1267,11 +1281,12 @@
           "shala_darpan_code": "221754",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+          "school_name_hi": "पीएम श्री राजकीय उच्च माध्यमिक विद्यालय, देवलिया कलां",
           "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN",
           "peeo_name": "PEEO DEOLIYA KALAN",
           "peeo_code": "221754",
-          "village_hi": "देवलिया कलां"
+          "village_hi": "देवलिया कलां",
+          "school_name_formal": "कार्यालय पीएम श्री राजकीय उच्च माध्यमिक विद्यालय, देवलिया कलां | शा.दा. कोड: 221754"
         },
         {
           "school_name": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
@@ -1289,7 +1304,8 @@
           "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN",
           "peeo_name": "PEEO DEOLIYA KALAN",
           "peeo_code": "221754",
-          "village_hi": "देवलिया कलां"
+          "village_hi": "देवलिया कलां",
+          "school_name_formal": "कार्यालय महात्मा गांधी राजकीय विद्यालय, देवलिया कलां | शा.दा. कोड: 221753"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL MATAJI KA KHEDA (410612) (08210700201)",
@@ -1338,7 +1354,7 @@
       "password": "488941",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. देवरिया",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, देवरिया",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "DEVPURA",
           "village": "देवपुरा",
@@ -1346,12 +1362,13 @@
           "shala_darpan_code": "488941",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. देवरिया",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, देवरिया",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA",
           "peeo_name": "PEEO DEVPURA",
           "peeo_code": "488941",
           "village_hi": "देवपुरा",
-          "village_en": "DEVPURA"
+          "village_en": "DEVPURA",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, देवरिया | शा.दा. कोड: 488941"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL RAMNAGAR (488937) (08210708703)",
@@ -1434,7 +1451,7 @@
           "village_en": "MOTIPURA"
         },
         {
-          "school_name": "रा.उ.मा.वि. रूपपुरा",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, रूपपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "DEVPURA",
           "village": "रूपपुरा",
@@ -1442,12 +1459,13 @@
           "shala_darpan_code": "410704",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.उ.मा.वि. रूपपुरा",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, रूपपुरा",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL ROOPPURA",
           "peeo_name": "PEEO DEVPURA",
           "peeo_code": "488941",
           "village_hi": "रूपपुरा",
-          "village_en": "ROOPPURA"
+          "village_en": "ROOPPURA",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, रूपपुरा | शा.दा. कोड: 410704"
         }
       ],
       "school_count": 7,
@@ -1467,7 +1485,7 @@
       "password": "221783",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. धांतोल",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, धांतोल",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "DHANTOL",
           "village": "धांतोल",
@@ -1475,12 +1493,13 @@
           "shala_darpan_code": "221783",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. धांतोल",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, धांतोल",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL",
           "peeo_name": "PEEO DHANTOL",
           "peeo_code": "221783",
           "village_hi": "धांतोल",
-          "village_en": "DHANTOL"
+          "village_en": "DHANTOL",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, धांतोल | शा.दा. कोड: 221783"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL SHYALABHATA (488939) (08210706803)",
@@ -1556,7 +1575,7 @@
       "password": "221786",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. एकलसिंघा",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, एकलसिंघा",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "EKALSEENGA",
           "village": "एकलसिंघा",
@@ -1564,14 +1583,15 @@
           "shala_darpan_code": "221786",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, एकलसिंघा",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA",
           "peeo_name": "PEEO EKALSEENGA",
           "peeo_code": "221786",
-          "village_hi": "एकलसिंघा"
+          "village_hi": "एकलसिंघा",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, एकलसिंघा | शा.दा. कोड: 221786"
         },
         {
-          "school_name": "रा.उ.मा.वि. हियालिया",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, हियालिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "EKALSINGA",
           "village": "हियालिया",
@@ -1579,12 +1599,13 @@
           "shala_darpan_code": "488947",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.उ.मा.वि. हियालिया",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, हियालिया",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL HIYALIYA",
           "peeo_name": "PEEO EKALSEENGA",
           "peeo_code": "221786",
           "village_hi": "हियालिया",
-          "village_en": "HIYALIYA"
+          "village_en": "HIYALIYA",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, हियालिया | शा.दा. कोड: 488947"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL DHANI EKALSINGHA (488931) (08210707301)",
@@ -1679,7 +1700,7 @@
       "password": "221762",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, गुढ़ा खुर्द",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "GURHA KHURD",
           "village": "गुढ़ा खुर्द",
@@ -1687,11 +1708,12 @@
           "shala_darpan_code": "221762",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, गुढ़ा खुर्द",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD",
           "peeo_name": "PEEO GURHA KHURD",
           "peeo_code": "221762",
-          "village_hi": "गुढ़ा खुर्द"
+          "village_hi": "गुढ़ा खुर्द",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, गुढ़ा खुर्द | शा.दा. कोड: 221762"
         },
         {
           "school_name": "रा.प्रा.वि. अमरपुरा (गुढ़ा खुर्द)",
@@ -1758,7 +1780,7 @@
           "village_en": "BAGARI"
         },
         {
-          "school_name": "पीएम श्री रा.उ.मा.वि. बागरिया",
+          "school_name": "पीएम श्री राजकीय उच्च माध्यमिक विद्यालय, बागरिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "GUDHA KHURD",
           "village": "बगराई",
@@ -1766,12 +1788,13 @@
           "shala_darpan_code": "485030",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "पीएम श्री रा.उ.मा.वि. बागरिया",
+          "school_name_hi": "पीएम श्री राजकीय उच्च माध्यमिक विद्यालय, बागरिया",
           "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI",
           "peeo_name": "PEEO GURHA KHURD",
           "peeo_code": "221762",
           "village_hi": "बगराई",
-          "village_en": "BAGARI"
+          "village_en": "BAGARI",
+          "school_name_formal": "कार्यालय पीएम श्री राजकीय उच्च माध्यमिक विद्यालय, बागरिया | शा.दा. कोड: 485030"
         },
         {
           "school_name": "रा.प्रा.वि. इंद्रापुरा (गुढ़ा खुर्द)",
@@ -1837,7 +1860,7 @@
       "password": "221765",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. कनाई कलां",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, कनाई कलां",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "KANAI KALAN",
           "village": "कनाई कलां",
@@ -1845,11 +1868,12 @@
           "shala_darpan_code": "221765",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. कनाई कलां",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, कनाई कलां",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA",
           "peeo_name": "PEEO KANAI KALAN",
           "peeo_code": "221765",
-          "village_hi": "कनाई कलां"
+          "village_hi": "कनाई कलां",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, कनाई कलां | शा.दा. कोड: 221765"
         },
         {
           "school_name": "रा.उ.प्रा.वि. कनाई खुर्द",
@@ -1868,7 +1892,7 @@
           "village_en": "KANAI KHURD"
         },
         {
-          "school_name": "रा.उ.मा.वि. नेमेड़ा",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KANAIKALA",
           "village": "NIMEDA (KEROT)",
@@ -1876,10 +1900,11 @@
           "shala_darpan_code": "401778",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.उ.मा.वि. नेमेड़ा",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA",
           "peeo_name": "PEEO KANAI KALAN",
-          "peeo_code": "221765"
+          "peeo_code": "221765",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा | शा.दा. कोड: 401778"
         },
         {
           "school_name": "रा.उ.प्रा.वि. लक्ष्मीपुरा कनाईकलां",
@@ -1943,7 +1968,7 @@
       "password": "221773",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. करांटी",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, करांटी",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "KARATI",
           "village": "करांटी",
@@ -1951,12 +1976,13 @@
           "shala_darpan_code": "221773",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. करांटी",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, करांटी",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI",
           "peeo_name": "PEEO KARATI",
           "peeo_code": "221773",
           "village_hi": "करांटी",
-          "village_en": "KARANTI"
+          "village_en": "KARANTI",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, करांटी | शा.दा. कोड: 221773"
         },
         {
           "school_name": "रा.प्रा.वि. गोरधनपुरा छाछून्दरा",
@@ -2019,7 +2045,7 @@
           "village_en": "DAULATPURA"
         },
         {
-          "school_name": "रा.बा.उ.मा.वि. खेड़ी",
+          "school_name": "राजकीय बालिका उच्च माध्यमिक विद्यालय, खेड़ी",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KARANTHI",
           "village": "खेड़ी",
@@ -2027,14 +2053,15 @@
           "shala_darpan_code": "488791",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.बा.उ.मा.वि. खेड़ी",
+          "school_name_hi": "राजकीय बालिका उच्च माध्यमिक विद्यालय, खेड़ी",
           "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL KHEDI",
           "peeo_name": "PEEO KARATI",
           "peeo_code": "221773",
-          "village_hi": "खेड़ी"
+          "village_hi": "खेड़ी",
+          "school_name_formal": "कार्यालय राजकीय बालिका उच्च माध्यमिक विद्यालय, खेड़ी | शा.दा. कोड: 488791"
         },
         {
-          "school_name": "रा.उ.मा.वि. खेड़ी",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, खेड़ी",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KARANTHI",
           "village": "खेड़ी",
@@ -2042,11 +2069,12 @@
           "shala_darpan_code": "221774",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.उ.मा.वि. खेड़ी",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, खेड़ी",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KHEDI",
           "peeo_name": "PEEO KARATI",
           "peeo_code": "221773",
-          "village_hi": "खेड़ी"
+          "village_hi": "खेड़ी",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, खेड़ी | शा.दा. कोड: 221774"
         },
         {
           "school_name": "रा.उ.प्रा.वि. गोपालपुरा",
@@ -2127,7 +2155,7 @@
       "password": "221767",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. कैरोट",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, कैरोट (जेतपुरा)",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "KEROT",
           "village": "कैरोट",
@@ -2135,12 +2163,13 @@
           "shala_darpan_code": "221767",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. कैरोट",
-          "school_name_en": "जेतपुरा) (GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, कैरोट (जेतपुरा)",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD",
           "peeo_name": "PEEO KEROT",
           "peeo_code": "221767",
           "village_hi": "कैरोट",
-          "village_en": "KAIROT"
+          "village_en": "KAIROT",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, कैरोट (जेतपुरा) | शा.दा. कोड: 221767"
         },
         {
           "school_name": "रा.प्रा.वि. कादोलाई",
@@ -2159,7 +2188,7 @@
           "village_en": "KADOLAI"
         },
         {
-          "school_name": "रा.उ.मा.वि. जेतपुरा",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, जेतपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KEROT",
           "village": "जैतपुरा",
@@ -2167,12 +2196,13 @@
           "shala_darpan_code": "221768",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.उ.मा.वि. जेतपुरा",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, जेतपुरा",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL JETPURA",
           "peeo_name": "PEEO KEROT",
           "peeo_code": "221767",
           "village_hi": "जैतपुरा",
-          "village_en": "JAITPURA"
+          "village_en": "JAITPURA",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, जेतपुरा | शा.दा. कोड: 221768"
         },
         {
           "school_name": "श्री श्याम विद्या निकेतन, कैरोट",
@@ -2208,7 +2238,7 @@
       "password": "221777",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. कुम्हारिया",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, कुम्हारिया",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "KUMHARIYA",
           "village": "कुम्हारिया",
@@ -2216,12 +2246,13 @@
           "shala_darpan_code": "221777",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, कुम्हारिया",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA",
           "peeo_name": "PEEO KUMHARIYA",
           "peeo_code": "221777",
           "village_hi": "कुम्हारिया",
-          "village_en": "KUMHARIYA"
+          "village_en": "KUMHARIYA",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, कुम्हारिया | शा.दा. कोड: 221777"
         },
         {
           "school_name": "रा.उ.प्रा.वि. सूरजपुरा",
@@ -2315,7 +2346,7 @@
       "password": "221759",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. लामगरा",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, लामगरा",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "LAMGARA",
           "village": "लाम्गरा",
@@ -2323,14 +2354,15 @@
           "shala_darpan_code": "221759",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. लामगरा",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, लामगरा",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA",
           "peeo_name": "PEEO LAMGARA",
           "peeo_code": "221759",
-          "village_hi": "लाम्गरा"
+          "village_hi": "लाम्गरा",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, लामगरा | शा.दा. कोड: 221759"
         },
         {
-          "school_name": "रा.उ.मा.वि. गनाहेड़ा",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, गनाहेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "LAMGARA",
           "village": "गनाहेड़ा",
@@ -2338,15 +2370,16 @@
           "shala_darpan_code": "221760",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, गनाहेड़ा",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GANAHERA",
           "peeo_name": "PEEO LAMGARA",
           "peeo_code": "221759",
           "village_hi": "गनाहेड़ा",
-          "village_en": "GANAHEDA"
+          "village_en": "GANAHEDA",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, गनाहेड़ा | शा.दा. कोड: 221760"
         },
         {
-          "school_name": "रा.उ.मा.वि. निमेड़ा",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "LAMGARA",
           "village": "निमेड़ा",
@@ -2354,11 +2387,12 @@
           "shala_darpan_code": "221761",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NIMEDA",
           "peeo_name": "PEEO LAMGARA",
           "peeo_code": "221759",
-          "village_hi": "निमेड़ा"
+          "village_hi": "निमेड़ा",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा | शा.दा. कोड: 221761"
         },
         {
           "school_name": "रा.उ.प्रा.वि. उदयपुर खेड़ा",
@@ -2441,7 +2475,7 @@
       "password": "221772",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. नागोला",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, नागोला",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "NAGOLA",
           "village": "नागोला",
@@ -2449,12 +2483,13 @@
           "shala_darpan_code": "221772",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. नागोला",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, नागोला",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA",
           "peeo_name": "PEEO NAGOLA",
           "peeo_code": "221772",
           "village_hi": "नागोला",
-          "village_en": "NAGOLA"
+          "village_en": "NAGOLA",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, नागोला | शा.दा. कोड: 221772"
         },
         {
           "school_name": "रा.प्रा.वि. धोरामंड खेड़ा",
@@ -2501,7 +2536,7 @@
           "peeo_code": "221772"
         },
         {
-          "school_name": "रा.उ.मा.वि. बडला",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, बडला (नागोला)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "NAGOLA",
           "village": "बडला",
@@ -2509,11 +2544,12 @@
           "shala_darpan_code": "488781",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.उ.मा.वि. बडला",
-          "school_name_en": "नागोला) (GOVT. SENIOR SECONDARY SCHOOL BADLA",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, बडला (नागोला)",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLA",
           "peeo_name": "PEEO NAGOLA",
           "peeo_code": "221772",
-          "village_hi": "बडला"
+          "village_hi": "बडला",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, बडला (नागोला) | शा.दा. कोड: 488781"
         },
         {
           "school_name": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
@@ -2577,7 +2613,7 @@
       "password": "221756",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. नांदसी",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, नांदसी",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "NANDSI",
           "village": "नांदसी",
@@ -2585,11 +2621,12 @@
           "shala_darpan_code": "221756",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. नांदसी",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, नांदसी",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI",
           "peeo_name": "PEEO NANDSI",
           "peeo_code": "221756",
-          "village_hi": "नांदसी"
+          "village_hi": "नांदसी",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, नांदसी | शा.दा. कोड: 221756"
         },
         {
           "school_name": "रा.उ.प्रा.वि. काचरिया",
@@ -2608,7 +2645,7 @@
           "village_en": "KACHRIYA"
         },
         {
-          "school_name": "रा.उ.मा.वि. कुरथल",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, कुरथल",
           "category": "Govt. Elementary / Sec",
           "panchayat": "NANDSI",
           "village": "कूरथल",
@@ -2616,14 +2653,15 @@
           "shala_darpan_code": "221757",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.उ.मा.वि. कुरथल",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, कुरथल",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KURTHAL",
           "peeo_name": "PEEO NANDSI",
           "peeo_code": "221756",
-          "village_hi": "कूरथल"
+          "village_hi": "कूरथल",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, कुरथल | शा.दा. कोड: 221757"
         },
         {
-          "school_name": "रा.बा.उ.मा.वि. नांदसी",
+          "school_name": "राजकीय बालिका उच्च माध्यमिक विद्यालय, नांदसी",
           "category": "Govt. Elementary / Sec",
           "panchayat": "NANDSI",
           "village": "नांदसी",
@@ -2631,11 +2669,12 @@
           "shala_darpan_code": "410632",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.बा.उ.मा.वि. नांदसी",
+          "school_name_hi": "राजकीय बालिका उच्च माध्यमिक विद्यालय, नांदसी",
           "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL NANDSI",
           "peeo_name": "PEEO NANDSI",
           "peeo_code": "221756",
-          "village_hi": "नांदसी"
+          "village_hi": "नांदसी",
+          "school_name_formal": "कार्यालय राजकीय बालिका उच्च माध्यमिक विद्यालय, नांदसी | शा.दा. कोड: 410632"
         },
         {
           "school_name": "अन्नपूर्णा पब्लिक स्कूल, नांदसी",
@@ -2685,7 +2724,7 @@
       "password": "221766",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. पाडलिया",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, पाडलिया",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "PADALIYA",
           "village": "पाडलिया",
@@ -2693,12 +2732,13 @@
           "shala_darpan_code": "221766",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. पाडलिया",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, पाडलिया",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA",
           "peeo_name": "PEEO PADALIYA",
           "peeo_code": "221766",
           "village_hi": "पाडलिया",
-          "village_en": "PADALIYA"
+          "village_en": "PADALIYA",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, पाडलिया | शा.दा. कोड: 221766"
         },
         {
           "school_name": "रा.उ.प्रा.वि. गोरधनपुरा",
@@ -2780,7 +2820,7 @@
       "password": "221788",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. पाडंगा",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, पाडंगा",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "PADANGA",
           "village": "पाडंगा",
@@ -2788,11 +2828,12 @@
           "shala_darpan_code": "221788",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. पाडंगा",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, पाडंगा",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA",
           "peeo_name": "PEEO PADANGA",
           "peeo_code": "221788",
-          "village_hi": "पाडंगा"
+          "village_hi": "पाडंगा",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, पाडंगा | शा.दा. कोड: 221788"
         },
         {
           "school_name": "रा.प्रा.वि. सायमाला पाडंगा",
@@ -2874,7 +2915,7 @@
       "password": "221785",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. राममालिया",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, राममालिया",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "RAMMALIA",
           "village": "राममालिया",
@@ -2882,15 +2923,16 @@
           "shala_darpan_code": "221785",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. राममालिया",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, राममालिया",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA",
           "peeo_name": "PEEO RAMMALIA",
           "peeo_code": "221785",
           "village_hi": "राममालिया",
-          "village_en": "RAMMALIYA"
+          "village_en": "RAMMALIYA",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, राममालिया | शा.दा. कोड: 221785"
         },
         {
-          "school_name": "रा.उ.मा.वि. रघुनाथगढ़",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, रघुनाथगढ़",
           "category": "Govt. Elementary / Sec",
           "panchayat": "RAMMALIYA",
           "village": "रघुनाथगढ़",
@@ -2898,14 +2940,15 @@
           "shala_darpan_code": "410677",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.उ.मा.वि. रघुनाथगढ़",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, रघुनाथगढ़",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAGHUNATHGADH",
           "peeo_name": "PEEO RAMMALIA",
           "peeo_code": "221785",
-          "village_hi": "रघुनाथगढ़"
+          "village_hi": "रघुनाथगढ़",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, रघुनाथगढ़ | शा.दा. कोड: 410677"
         },
         {
-          "school_name": "रा.उ.मा.वि. हीरापुरा",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, हीरापुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "RAMMALIYA",
           "village": "HIRAPURA",
@@ -2913,10 +2956,11 @@
           "shala_darpan_code": "221784",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.उ.मा.वि. हीरापुरा",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, हीरापुरा",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL HEERAPURA",
           "peeo_name": "PEEO RAMMALIA",
-          "peeo_code": "221785"
+          "peeo_code": "221785",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, हीरापुरा | शा.दा. कोड: 221784"
         },
         {
           "school_name": "रा.प्रा.वि. पीलोदा",
@@ -2950,7 +2994,7 @@
       "password": "221775",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. राताकोट",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, राताकोट",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "RATAKOT",
           "village": "राताकोट",
@@ -2958,15 +3002,16 @@
           "shala_darpan_code": "221775",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. राताकोट",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, राताकोट",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT",
           "peeo_name": "PEEO RATAKOT",
           "peeo_code": "221775",
           "village_hi": "राताकोट",
-          "village_en": "RATAKOT"
+          "village_en": "RATAKOT",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, राताकोट | शा.दा. कोड: 221775"
         },
         {
-          "school_name": "रा.उ.मा.वि. झीपिया",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, झीपिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "RATAKOT",
           "village": "झींपिया",
@@ -2974,11 +3019,12 @@
           "shala_darpan_code": "221776",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.उ.मा.वि. झीपिया",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, झीपिया",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL JHIPIYA",
           "peeo_name": "PEEO RATAKOT",
           "peeo_code": "221775",
-          "village_hi": "झींपिया"
+          "village_hi": "झींपिया",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, झीपिया | शा.दा. कोड: 221776"
         }
       ],
       "school_count": 2,
@@ -2998,7 +3044,7 @@
       "password": "221781",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. सिंगावल",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, सिंगावल",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "SINGAWAL",
           "village": "सिंगावल",
@@ -3006,11 +3052,12 @@
           "shala_darpan_code": "221781",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. सिंगावल",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, सिंगावल",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL",
           "peeo_name": "PEEO SINGAWAL",
           "peeo_code": "221781",
-          "village_hi": "सिंगावल"
+          "village_hi": "सिंगावल",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, सिंगावल | शा.दा. कोड: 221781"
         },
         {
           "school_name": "रा.प्रा.वि. माताजी का खेड़ा (सिंगावल)",
@@ -3123,7 +3170,7 @@
       "password": "221782",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. सोबड़ी",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, सोबड़ी",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "SOBRI",
           "village": "सोबड़ी",
@@ -3131,11 +3178,12 @@
           "shala_darpan_code": "221782",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, सोबड़ी",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI",
           "peeo_name": "PEEO SOBRI",
           "peeo_code": "221782",
-          "village_hi": "सोबड़ी"
+          "village_hi": "सोबड़ी",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, सोबड़ी | शा.दा. कोड: 221782"
         },
         {
           "school_name": "रा.उ.प्रा.वि. तेलाड़ा",
@@ -3213,7 +3261,7 @@
           "peeo_code": "221782"
         },
         {
-          "school_name": "रा.उ.मा.वि. घाणा",
+          "school_name": "राजकीय उच्च माध्यमिक विद्यालय, घाणा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SOBDI",
           "village": "घाणा",
@@ -3221,11 +3269,12 @@
           "shala_darpan_code": "488897",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.उ.मा.वि. घाणा",
+          "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, घाणा",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GHANA",
           "peeo_name": "PEEO SOBRI",
           "peeo_code": "221782",
-          "village_hi": "घाणा"
+          "village_hi": "घाणा",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, घाणा | शा.दा. कोड: 488897"
         }
       ],
       "school_count": 7,
@@ -31859,7 +31908,7 @@
   "schools_56": [
     {
       "s_no": 1,
-      "school_name": "रा.उ.मा.वि. बड़गांव",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, बड़गांव (सूरखण्ड)",
       "shala_darpan_code": "221764",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -31872,12 +31921,13 @@
       "principal_mobile": "9001450275",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. बड़गांव",
-      "school_name_en": "सूरखण्ड) (GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, बड़गांव (सूरखण्ड)",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, बड़गांव (सूरखण्ड) | शा.दा. कोड: 221764"
     },
     {
       "s_no": 2,
-      "school_name": "रा.बा.उ.मा.वि. बड़ली",
+      "school_name": "राजकीय बालिका उच्च माध्यमिक विद्यालय, बड़ली",
       "shala_darpan_code": "506830",
       "type": "Government",
       "category": "Govt. Girls Sr. Sec.",
@@ -31890,12 +31940,13 @@
       "principal_mobile": "9667157047",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.बा.उ.मा.वि. बड़ली",
-      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI"
+      "school_name_hi": "राजकीय बालिका उच्च माध्यमिक विद्यालय, बड़ली",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI",
+      "school_name_formal": "कार्यालय राजकीय बालिका उच्च माध्यमिक विद्यालय, बड़ली | शा.दा. कोड: 506830"
     },
     {
       "s_no": 3,
-      "school_name": "रा.उ.मा.वि. बड़ली",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, बड़ली",
       "shala_darpan_code": "221755",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -31908,12 +31959,13 @@
       "principal_mobile": "9950985201",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. बड़ली",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, बड़ली",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, बड़ली | शा.दा. कोड: 221755"
     },
     {
       "s_no": 4,
-      "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, बांदनवाड़ा",
       "shala_darpan_code": "221769",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -31926,12 +31978,13 @@
       "principal_mobile": "9587293842",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, बांदनवाड़ा",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, बांदनवाड़ा | शा.दा. कोड: 221769"
     },
     {
       "s_no": 5,
-      "school_name": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, रेलवे कॉलोनी, बांदनवाड़ा",
       "shala_darpan_code": "221771",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -31944,8 +31997,9 @@
       "principal_mobile": "8949599466",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, रेलवे कॉलोनी, बांदनवाड़ा",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, रेलवे कॉलोनी, बांदनवाड़ा | शा.दा. कोड: 221771"
     },
     {
       "s_no": 6,
@@ -31963,11 +32017,12 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
-      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA"
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA",
+      "school_name_formal": "कार्यालय महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा | शा.दा. कोड: 221770"
     },
     {
       "s_no": 7,
-      "school_name": "रा.उ.मा.वि. भिनाय",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, भिनाय",
       "shala_darpan_code": "221780",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -31980,8 +32035,9 @@
       "principal_mobile": "9549240545",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. भिनाय",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, भिनाय",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, भिनाय | शा.दा. कोड: 221780"
     },
     {
       "s_no": 8,
@@ -31999,11 +32055,12 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
-      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI"
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI",
+      "school_name_formal": "कार्यालय महात्मा गांधी राजकीय विद्यालय, भिनाय | शा.दा. कोड: 221778"
     },
     {
       "s_no": 9,
-      "school_name": "रा.उ.मा.वि. बूबकिया",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, बूबकिया",
       "shala_darpan_code": "221763",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32016,12 +32073,13 @@
       "principal_mobile": "9252068645",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. बूबकिया",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, बूबकिया",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, बूबकिया | शा.दा. कोड: 221763"
     },
     {
       "s_no": 10,
-      "school_name": "रा.उ.मा.वि. पीपलिया",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, पीपलिया",
       "shala_darpan_code": "485033",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32034,12 +32092,13 @@
       "principal_mobile": "9784793783",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. पीपलिया",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PIPLIYA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, पीपलिया",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PIPLIYA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, पीपलिया | शा.दा. कोड: 485033"
     },
     {
       "s_no": 11,
-      "school_name": "रा.उ.मा.वि. छाछून्दरा",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, छाछून्दरा",
       "shala_darpan_code": "221787",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32052,12 +32111,13 @@
       "principal_mobile": "9413781124",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, छाछून्दरा",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, छाछून्दरा | शा.दा. कोड: 221787"
     },
     {
       "s_no": 12,
-      "school_name": "रा.उ.मा.वि. सेदरिया",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, सेदरिया",
       "shala_darpan_code": "488946",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32070,12 +32130,13 @@
       "principal_mobile": "9829790044",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. सेदरिया",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SEDRIYA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, सेदरिया",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SEDRIYA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, सेदरिया | शा.दा. कोड: 488946"
     },
     {
       "s_no": 13,
-      "school_name": "रा.बा.उ.मा.वि. चापानेरी",
+      "school_name": "राजकीय बालिका उच्च माध्यमिक विद्यालय, चापानेरी",
       "shala_darpan_code": "494626",
       "type": "Government",
       "category": "Govt. Girls Sr. Sec.",
@@ -32088,12 +32149,13 @@
       "principal_mobile": "9602676785",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.बा.उ.मा.वि. चापानेरी",
-      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL CHAPANERI"
+      "school_name_hi": "राजकीय बालिका उच्च माध्यमिक विद्यालय, चापानेरी",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL CHAPANERI",
+      "school_name_formal": "कार्यालय राजकीय बालिका उच्च माध्यमिक विद्यालय, चापानेरी | शा.दा. कोड: 494626"
     },
     {
       "s_no": 14,
-      "school_name": "रा.उ.मा.वि. चापानेरी",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, चापानेरी",
       "shala_darpan_code": "221758",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32106,8 +32168,9 @@
       "principal_mobile": "9462507510",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. चापानेरी",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, चापानेरी",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, चापानेरी | शा.दा. कोड: 221758"
     },
     {
       "s_no": 15,
@@ -32125,11 +32188,12 @@
       "incharge_name": "Basanti olaniya",
       "incharge_mobile": "7727945324",
       "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
-      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN"
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN",
+      "school_name_formal": "कार्यालय महात्मा गांधी राजकीय विद्यालय, देवलिया कलां | शा.दा. कोड: 221753"
     },
     {
       "s_no": 16,
-      "school_name": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "school_name": "पीएम श्री राजकीय उच्च माध्यमिक विद्यालय, देवलिया कलां",
       "shala_darpan_code": "221754",
       "type": "Government",
       "category": "PM SHRI Govt. Sr. Sec.",
@@ -32142,12 +32206,13 @@
       "principal_mobile": "9414343109",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
-      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN"
+      "school_name_hi": "पीएम श्री राजकीय उच्च माध्यमिक विद्यालय, देवलिया कलां",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN",
+      "school_name_formal": "कार्यालय पीएम श्री राजकीय उच्च माध्यमिक विद्यालय, देवलिया कलां | शा.दा. कोड: 221754"
     },
     {
       "s_no": 17,
-      "school_name": "रा.उ.मा.वि. देवरिया",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, देवरिया",
       "shala_darpan_code": "488941",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32160,12 +32225,13 @@
       "principal_mobile": "9414550658",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. देवरिया",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, देवरिया",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, देवरिया | शा.दा. कोड: 488941"
     },
     {
       "s_no": 18,
-      "school_name": "रा.उ.मा.वि. रूपपुरा",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, रूपपुरा",
       "shala_darpan_code": "410704",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32178,12 +32244,13 @@
       "principal_mobile": "9413225666",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. रूपपुरा",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL ROOPPURA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, रूपपुरा",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL ROOPPURA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, रूपपुरा | शा.दा. कोड: 410704"
     },
     {
       "s_no": 19,
-      "school_name": "रा.उ.मा.वि. धांतोल",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, धांतोल",
       "shala_darpan_code": "221783",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32196,12 +32263,13 @@
       "principal_mobile": "9413695182",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. धांतोल",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, धांतोल",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, धांतोल | शा.दा. कोड: 221783"
     },
     {
       "s_no": 20,
-      "school_name": "रा.उ.मा.वि. एकलसिंघा",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, एकलसिंघा",
       "shala_darpan_code": "221786",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32214,12 +32282,13 @@
       "principal_mobile": "7728052397",
       "incharge_name": "MANJU CHOUDHARY",
       "incharge_mobile": "8107003655",
-      "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, एकलसिंघा",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, एकलसिंघा | शा.दा. कोड: 221786"
     },
     {
       "s_no": 21,
-      "school_name": "रा.उ.मा.वि. हियालिया",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, हियालिया",
       "shala_darpan_code": "488947",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32232,12 +32301,13 @@
       "principal_mobile": "9636233704",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. हियालिया",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL HIYALIYA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, हियालिया",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL HIYALIYA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, हियालिया | शा.दा. कोड: 488947"
     },
     {
       "s_no": 22,
-      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, गुढ़ा खुर्द",
       "shala_darpan_code": "221762",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32250,12 +32320,13 @@
       "principal_mobile": "9414554344",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, गुढ़ा खुर्द",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, गुढ़ा खुर्द | शा.दा. कोड: 221762"
     },
     {
       "s_no": 23,
-      "school_name": "पीएम श्री रा.उ.मा.वि. बागरिया",
+      "school_name": "पीएम श्री राजकीय उच्च माध्यमिक विद्यालय, बागरिया",
       "shala_darpan_code": "485030",
       "type": "Government",
       "category": "PM SHRI Govt. Sr. Sec.",
@@ -32268,12 +32339,13 @@
       "principal_mobile": "9929527319",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "पीएम श्री रा.उ.मा.वि. बागरिया",
-      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI"
+      "school_name_hi": "पीएम श्री राजकीय उच्च माध्यमिक विद्यालय, बागरिया",
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI",
+      "school_name_formal": "कार्यालय पीएम श्री राजकीय उच्च माध्यमिक विद्यालय, बागरिया | शा.दा. कोड: 485030"
     },
     {
       "s_no": 24,
-      "school_name": "रा.उ.मा.वि. कनाई कलां",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, कनाई कलां",
       "shala_darpan_code": "221765",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32286,12 +32358,13 @@
       "principal_mobile": "9166233899",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. कनाई कलां",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, कनाई कलां",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, कनाई कलां | शा.दा. कोड: 221765"
     },
     {
       "s_no": 25,
-      "school_name": "रा.उ.मा.वि. नेमेड़ा",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा",
       "shala_darpan_code": "401778",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32304,12 +32377,13 @@
       "principal_mobile": "9461249418",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. नेमेड़ा",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा | शा.दा. कोड: 401778"
     },
     {
       "s_no": 26,
-      "school_name": "रा.उ.मा.वि. करांटी",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, करांटी",
       "shala_darpan_code": "221773",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32322,12 +32396,13 @@
       "principal_mobile": "9950736300",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. करांटी",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, करांटी",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, करांटी | शा.दा. कोड: 221773"
     },
     {
       "s_no": 27,
-      "school_name": "रा.उ.मा.वि. खेड़ी",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, खेड़ी",
       "shala_darpan_code": "221774",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32340,12 +32415,13 @@
       "principal_mobile": "8107098772",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. खेड़ी",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KHEDI"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, खेड़ी",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KHEDI",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, खेड़ी | शा.दा. कोड: 221774"
     },
     {
       "s_no": 28,
-      "school_name": "रा.बा.उ.मा.वि. खेड़ी",
+      "school_name": "राजकीय बालिका उच्च माध्यमिक विद्यालय, खेड़ी",
       "shala_darpan_code": "488791",
       "type": "Government",
       "category": "Govt. Girls Sr. Sec.",
@@ -32358,12 +32434,13 @@
       "principal_mobile": "8094606900",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.बा.उ.मा.वि. खेड़ी",
-      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL KHEDI"
+      "school_name_hi": "राजकीय बालिका उच्च माध्यमिक विद्यालय, खेड़ी",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL KHEDI",
+      "school_name_formal": "कार्यालय राजकीय बालिका उच्च माध्यमिक विद्यालय, खेड़ी | शा.दा. कोड: 488791"
     },
     {
       "s_no": 29,
-      "school_name": "रा.उ.मा.वि. जेतपुरा",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, जेतपुरा",
       "shala_darpan_code": "221768",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32376,12 +32453,13 @@
       "principal_mobile": "9414942132",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. जेतपुरा",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL JETPURA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, जेतपुरा",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL JETPURA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, जेतपुरा | शा.दा. कोड: 221768"
     },
     {
       "s_no": 30,
-      "school_name": "रा.उ.मा.वि. कैरोट",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, कैरोट (जेतपुरा)",
       "shala_darpan_code": "221767",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32394,12 +32472,13 @@
       "principal_mobile": "9929526324",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. कैरोट",
-      "school_name_en": "जेतपुरा) (GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, कैरोट (जेतपुरा)",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, कैरोट (जेतपुरा) | शा.दा. कोड: 221767"
     },
     {
       "s_no": 31,
-      "school_name": "रा.उ.मा.वि. कुम्हारिया",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, कुम्हारिया",
       "shala_darpan_code": "221777",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32412,12 +32491,13 @@
       "principal_mobile": "9460690289",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, कुम्हारिया",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, कुम्हारिया | शा.दा. कोड: 221777"
     },
     {
       "s_no": 32,
-      "school_name": "रा.उ.मा.वि. गनाहेड़ा",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, गनाहेड़ा",
       "shala_darpan_code": "221760",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32430,12 +32510,13 @@
       "principal_mobile": "9461981723",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GANAHERA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, गनाहेड़ा",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GANAHERA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, गनाहेड़ा | शा.दा. कोड: 221760"
     },
     {
       "s_no": 33,
-      "school_name": "रा.उ.मा.वि. लामगरा",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, लामगरा",
       "shala_darpan_code": "221759",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32448,12 +32529,13 @@
       "principal_mobile": "9413134849",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. लामगरा",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, लामगरा",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, लामगरा | शा.दा. कोड: 221759"
     },
     {
       "s_no": 34,
-      "school_name": "रा.उ.मा.वि. निमेड़ा",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा",
       "shala_darpan_code": "221761",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32466,12 +32548,13 @@
       "principal_mobile": "9462905104",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NIMEDA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NIMEDA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा | शा.दा. कोड: 221761"
     },
     {
       "s_no": 35,
-      "school_name": "रा.उ.मा.वि. बडला",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, बडला (नागोला)",
       "shala_darpan_code": "488781",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32484,12 +32567,13 @@
       "principal_mobile": "9413682497",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. बडला",
-      "school_name_en": "नागोला) (GOVT. SENIOR SECONDARY SCHOOL BADLA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, बडला (नागोला)",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, बडला (नागोला) | शा.दा. कोड: 488781"
     },
     {
       "s_no": 36,
-      "school_name": "रा.उ.मा.वि. नागोला",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, नागोला",
       "shala_darpan_code": "221772",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32502,12 +32586,13 @@
       "principal_mobile": "8955306674",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. नागोला",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, नागोला",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, नागोला | शा.दा. कोड: 221772"
     },
     {
       "s_no": 37,
-      "school_name": "रा.बा.उ.मा.वि. नांदसी",
+      "school_name": "राजकीय बालिका उच्च माध्यमिक विद्यालय, नांदसी",
       "shala_darpan_code": "410632",
       "type": "Government",
       "category": "Govt. Girls Sr. Sec.",
@@ -32520,12 +32605,13 @@
       "principal_mobile": "7073800244",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.बा.उ.मा.वि. नांदसी",
-      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL NANDSI"
+      "school_name_hi": "राजकीय बालिका उच्च माध्यमिक विद्यालय, नांदसी",
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL NANDSI",
+      "school_name_formal": "कार्यालय राजकीय बालिका उच्च माध्यमिक विद्यालय, नांदसी | शा.दा. कोड: 410632"
     },
     {
       "s_no": 38,
-      "school_name": "रा.उ.मा.वि. कुरथल",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, कुरथल",
       "shala_darpan_code": "221757",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32538,12 +32624,13 @@
       "principal_mobile": "9829157423",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. कुरथल",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KURTHAL"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, कुरथल",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KURTHAL",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, कुरथल | शा.दा. कोड: 221757"
     },
     {
       "s_no": 39,
-      "school_name": "रा.उ.मा.वि. नांदसी",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, नांदसी",
       "shala_darpan_code": "221756",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32556,12 +32643,13 @@
       "principal_mobile": "9001637473",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. नांदसी",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, नांदसी",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, नांदसी | शा.दा. कोड: 221756"
     },
     {
       "s_no": 40,
-      "school_name": "रा.उ.मा.वि. पाडंगा",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, पाडंगा",
       "shala_darpan_code": "221788",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32574,12 +32662,13 @@
       "principal_mobile": "7877090975",
       "incharge_name": "Pankaj sharma",
       "incharge_mobile": "9413135717",
-      "school_name_hi": "रा.उ.मा.वि. पाडंगा",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, पाडंगा",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, पाडंगा | शा.दा. कोड: 221788"
     },
     {
       "s_no": 41,
-      "school_name": "रा.उ.मा.वि. पाडलिया",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, पाडलिया",
       "shala_darpan_code": "221766",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32592,12 +32681,13 @@
       "principal_mobile": "9549364023",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. पाडलिया",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, पाडलिया",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, पाडलिया | शा.दा. कोड: 221766"
     },
     {
       "s_no": 42,
-      "school_name": "रा.उ.मा.वि. हीरापुरा",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, हीरापुरा",
       "shala_darpan_code": "221784",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32610,12 +32700,13 @@
       "principal_mobile": "9829219564",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. हीरापुरा",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL HEERAPURA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, हीरापुरा",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL HEERAPURA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, हीरापुरा | शा.दा. कोड: 221784"
     },
     {
       "s_no": 43,
-      "school_name": "रा.उ.मा.वि. रघुनाथगढ़",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, रघुनाथगढ़",
       "shala_darpan_code": "410677",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32628,12 +32719,13 @@
       "principal_mobile": "8104466893",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. रघुनाथगढ़",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAGHUNATHGADH"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, रघुनाथगढ़",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAGHUNATHGADH",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, रघुनाथगढ़ | शा.दा. कोड: 410677"
     },
     {
       "s_no": 44,
-      "school_name": "रा.उ.मा.वि. राममालिया",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, राममालिया",
       "shala_darpan_code": "221785",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32646,12 +32738,13 @@
       "principal_mobile": "9928328808",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. राममालिया",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, राममालिया",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, राममालिया | शा.दा. कोड: 221785"
     },
     {
       "s_no": 45,
-      "school_name": "रा.उ.मा.वि. झीपिया",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, झीपिया",
       "shala_darpan_code": "221776",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32664,12 +32757,13 @@
       "principal_mobile": "9468751626",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. झीपिया",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL JHIPIYA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, झीपिया",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL JHIPIYA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, झीपिया | शा.दा. कोड: 221776"
     },
     {
       "s_no": 46,
-      "school_name": "रा.उ.मा.वि. राताकोट",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, राताकोट",
       "shala_darpan_code": "221775",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32682,12 +32776,13 @@
       "principal_mobile": "9887753471",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. राताकोट",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, राताकोट",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, राताकोट | शा.दा. कोड: 221775"
     },
     {
       "s_no": 47,
-      "school_name": "रा.उ.मा.वि. सिंगावल",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, सिंगावल",
       "shala_darpan_code": "221781",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32700,12 +32795,13 @@
       "principal_mobile": "8290911983",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. सिंगावल",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, सिंगावल",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, सिंगावल | शा.दा. कोड: 221781"
     },
     {
       "s_no": 48,
-      "school_name": "रा.उ.मा.वि. घाणा",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, घाणा",
       "shala_darpan_code": "488897",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32718,12 +32814,13 @@
       "principal_mobile": "9928994663",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. घाणा",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GHANA"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, घाणा",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GHANA",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, घाणा | शा.दा. कोड: 488897"
     },
     {
       "s_no": 49,
-      "school_name": "रा.उ.मा.वि. सोबड़ी",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, सोबड़ी",
       "shala_darpan_code": "221782",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32736,8 +32833,9 @@
       "principal_mobile": "9829487158",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
-      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI"
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, सोबड़ी",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI",
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, सोबड़ी | शा.दा. कोड: 221782"
     },
     {
       "s_no": 50,
@@ -38331,6 +38429,89 @@
       "updated_at": "2026-10-07T05:51:21.866Z",
       "is_submitted": true,
       "submitted_at": "2026-10-07T05:51:21.867Z"
+    },
+    "221766": {
+      "school_code": "221766",
+      "exam_code": "AJM04G221766",
+      "principal_name": "LAXMI POPTANI",
+      "principal_mobile": "9549364023",
+      "incharge_name": "HEMLATA SANKHLA",
+      "incharge_mobile": "8233229902",
+      "submitted_by": "LAXMI POPTANI",
+      "c9": {
+        "zero_enrolment": false,
+        "hindi": 71,
+        "english": 72,
+        "maths": 70,
+        "science": 80,
+        "sst": 81,
+        "sanskrit": 82,
+        "urdu": 0
+      },
+      "c10": {
+        "zero_enrolment": false,
+        "hindi": 92,
+        "english": 95,
+        "maths": 90,
+        "science": 98,
+        "sst": 95,
+        "sanskrit": 100,
+        "urdu": 0
+      },
+      "c11": {
+        "zero_enrolment": false,
+        "comp_hindi": 75,
+        "comp_english": 72,
+        "faculties": [
+          "arts"
+        ],
+        "electives": [
+          {
+            "key": "pol_sci",
+            "name": "राजनीति विज्ञान (Political Science)",
+            "pct": 75
+          },
+          {
+            "key": "history",
+            "name": "इतिहास (History)",
+            "pct": 81
+          },
+          {
+            "key": "geography",
+            "name": "भूगोल (Geography)",
+            "pct": 76
+          }
+        ]
+      },
+      "c12": {
+        "zero_enrolment": false,
+        "comp_hindi": 93,
+        "comp_english": 95,
+        "faculties": [
+          "arts"
+        ],
+        "electives": [
+          {
+            "key": "pol_sci",
+            "name": "राजनीति विज्ञान (Political Science)",
+            "pct": 100
+          },
+          {
+            "key": "history",
+            "name": "इतिहास (History)",
+            "pct": 100
+          },
+          {
+            "key": "geography",
+            "name": "भूगोल (Geography)",
+            "pct": 91
+          }
+        ]
+      },
+      "average_pct": 85.6,
+      "updated_at": "2026-10-07T06:33:41.340Z",
+      "is_submitted": true,
+      "submitted_at": "2026-10-07T06:33:41.343Z"
     },
     "221767": {
       "school_code": "221767",

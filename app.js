@@ -347,6 +347,30 @@ function getOfficialSchoolNames(school) {
   };
 }
 
+function getSchoolOfficialFormalHindiHeader(school) {
+  if (!school) return '';
+  if (school.school_name_formal) return school.school_name_formal;
+  const code = String(school.shala_darpan_code || school.code || '').trim();
+  let name = (school.school_name_hi || school.school_name || '').trim();
+
+  // Expand standard Hindi government school abbreviations
+  name = name.replace(/रा\.बा\.उ\.मा\.वि\./g, 'राजकीय बालिका उच्च माध्यमिक विद्यालय, ')
+             .replace(/रा\.उ\.मा\.वि\./g, 'राजकीय उच्च माध्यमिक विद्यालय, ')
+             .replace(/रा\.बा\.मा\.वि\./g, 'राजकीय बालिका माध्यमिक विद्यालय, ')
+             .replace(/रा\.मा\.वि\./g, 'राजकीय माध्यमिक विद्यालय, ')
+             .replace(/महात्मा गांधी रा\.वि\./g, 'महात्मा गांधी राजकीय विद्यालय, ')
+             .replace(/पीएम श्री रा\.उ\.मा\.वि\./g, 'पीएम श्री राजकीय उच्च माध्यमिक विद्यालय, ')
+             .replace(/पीएम श्री रा\.मा\.वि\./g, 'पीएम श्री राजकीय माध्यमिक विद्यालय, ')
+             .replace(/^कार्यालय\s+/g, '')
+             .replace(/\s*\(\s*\d+\s*\)\s*$/, '')
+             .trim();
+  name = name.replace(/,\s*,/g, ',').replace(/विद्यालय,\s*/g, 'विद्यालय, ');
+
+  const codePart = code ? ` | शा.दा. कोड: ${code}` : '';
+  return `कार्यालय ${name}${codePart}`;
+}
+window.getSchoolOfficialFormalHindiHeader = getSchoolOfficialFormalHindiHeader;
+
 /* ========================================================
    1. DATA INITIALIZATION & LOCALSTORAGE SYNC
    ======================================================== */
@@ -4798,13 +4822,15 @@ function printSyllabusPdf(schoolCode = null) {
     <div class="report-container">
       <div class="header-box">
         <div style="font-size:12px; font-weight:700; color:#475569; margin-bottom:2px">राजस्थान सरकार | स्कूल शिक्षा विभाग</div>
-        <h2 style="font-size:20px; font-weight:900; color:#1e3a8a; margin:2px 0">${school.school_name_hi || school.school_name}</h2>
-        <div style="font-size:13px; font-weight:700; color:#334155; margin-bottom:4px">
-          शाला दर्पण कोड: <strong>${school.shala_darpan_code}</strong> &bull; परीक्षा कोड: <strong>${examCode}</strong> &bull; श्रेणी: <strong>${school.category || 'Sr.Sec'} (राजकीय)</strong>
+        <h2 style="font-size:18px; font-weight:900; color:#1e3a8a; margin:3px 0; letter-spacing:0.2px">
+          ${getSchoolOfficialFormalHindiHeader(school)}
+        </h2>
+        <div style="font-size:12.5px; font-weight:700; color:#334155; margin-bottom:4px">
+          परीक्षा कोड: <strong>${examCode}</strong> &bull; श्रेणी: <strong>${school.category || 'Sr.Sec'} (राजकीय)</strong> &bull; PEEO: <strong>${school.peeo_name || '---'}</strong>
         </div>
-        <h3 style="font-size:15px; font-weight:800; color:#0284c7; margin:3px 0">जिला समान परीक्षा (सत्र 2026-27) | पाठ्यक्रम पूर्णता प्रतिशत अधिकृत प्रपत्र (कक्षा 9 से 12)</h3>
+        <h3 style="font-size:14.5px; font-weight:800; color:#0284c7; margin:3px 0">जिला समान परीक्षा (सत्र 2026-27) | पाठ्यक्रम पूर्णता प्रतिशत अधिकृत प्रपत्र (कक्षा 9 से 12)</h3>
         <p style="font-size:12px; color:#475569; margin:2px 0">
-          कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय | जिला: <strong>अजमेर (AJMER)</strong> &bull; ब्लॉक: <strong>भिनाय (BHINAI)</strong> &bull; PEEO: <strong>${school.peeo_name || '---'}</strong>
+          कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय | जिला: <strong>अजमेर (AJMER)</strong> &bull; ब्लॉक: <strong>भिनाय (BHINAI)</strong>
         </p>
       </div>
 
@@ -5858,8 +5884,8 @@ function openExamPdfPreview(schoolCode, lang = null) {
       <div style="font-size:0.80rem; font-weight:700; color:#000; letter-spacing:normal">
         ${isEn ? 'GOVERNMENT OF RAJASTHAN | DEPARTMENT OF SCHOOL EDUCATION' : 'राजस्थान सरकार | स्कूल शिक्षा विभाग'}
       </div>
-      <div style="font-size:1.12rem; font-weight:900; color:#000; margin:1px 0">
-        ${isEn ? `OFFICE OF THE PRINCIPAL, ${schoolDisplayName}` : `कार्यालय संस्था प्रधान, ${schoolDisplayName}`}
+      <div style="font-size:1.12rem; font-weight:900; color:#000; margin:2px 0">
+        ${isEn ? `OFFICE OF THE PRINCIPAL, ${schoolDisplayName} | CODE: ${school.shala_darpan_code}` : getSchoolOfficialFormalHindiHeader(school)}
       </div>
       <div style="font-size:0.78rem; font-weight:700; color:#111; margin-bottom:1px">
         ${isEn 
