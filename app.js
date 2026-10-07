@@ -3329,7 +3329,19 @@ function renderSamanParikshaAdminView() {
     }
   }
 
-  // Populate PEEO filter in admin view if empty
+  // Dynamic Animated Progress Bar for Admin Overview
+  const progressPct = totalSchools > 0 ? Math.round((submittedCount / totalSchools) * 100) : 0;
+  const pBar = document.getElementById('sp-admin-progress-bar-fill');
+  if (pBar) pBar.style.width = `${progressPct}%`;
+  const pTxt = document.getElementById('sp-admin-progress-percent');
+  if (pTxt) pTxt.textContent = `${progressPct}%`;
+  const pRatio = document.getElementById('sp-admin-progress-ratio');
+  if (pRatio) pRatio.textContent = `${submittedCount}/${totalSchools} विद्यालय पूर्ण (${pendingCount} शेष)`;
+  const pStat = document.getElementById('sp-admin-progress-status');
+  if (pStat) {
+    pStat.textContent = progressPct === 100 ? '✓ 100% कार्य पूर्ण' : (progressPct >= 50 ? 'तेजी से प्रगति पर' : 'प्रगतिशील');
+    pStat.style.color = progressPct === 100 ? '#16a34a' : (progressPct >= 50 ? '#0284c7' : '#d97706');
+  }
   const peeoSelect = document.getElementById('sp-peeo-filter');
   if (peeoSelect && peeoSelect.options.length <= 1) {
     (STATE.peeos || []).forEach(p => {
@@ -5157,6 +5169,8 @@ function submitSyllabusForm() {
   showToast(`'${data.school_name}' का पाठ्यक्रम पूर्णता विवरण सफलतापूर्वक सबमिट हो गया!`, 'success');
   closeModal('modal-saman-syllabus-form');
   renderSamanParikshaView();
+  updateAllPortalMetricsAndProgress();
+  renderDashboardView();
 }
 
 function printSyllabusPdf(schoolCode = null) {
