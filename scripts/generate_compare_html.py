@@ -12,7 +12,7 @@ comparison_schools = [
         "code": "221764",
         "name": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
         "images": [
-            {"label": "प्रपत्र फोटो 1", "src": "images/syllabus_previews/page_221764_रा.उ.मा.वि._बड़गांव_सूरखण्ड_Syllabus.png"},
+            {"label": "प्रपत्र फोटो 1", "src": "images/syllabus_previews/page_221764_badgaon.png"},
             {"label": "प्रपत्र फोटो 2 (क्लोज-अप)", "src": "images/syllabus_previews/page_221764_part2.jpeg"}
         ],
         "pdf_name": "221764_रा.उ.मा.वि._बड़गांव_सूरखण्ड_Syllabus.pdf"
@@ -21,7 +21,7 @@ comparison_schools = [
         "code": "221765",
         "name": "रा.उ.मा.वि. कनाई कलां",
         "images": [
-            {"label": "प्रपत्र फोटो 1", "src": "images/syllabus_previews/page_221765_रा.उ.मा.वि._कनाई_कलां_Syllabus.png"}
+            {"label": "प्रपत्र फोटो 1", "src": "images/syllabus_previews/page_221765_kanai.png"}
         ],
         "pdf_name": "221765_रा.उ.मा.वि._कनाई_कलां_Syllabus.pdf"
     },
@@ -29,7 +29,7 @@ comparison_schools = [
         "code": "221770",
         "name": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
         "images": [
-            {"label": "प्रपत्र पृष्ठ 1", "src": "images/syllabus_previews/page_221770_MGGS_बांदनवाड़ा_Syllabus.png"}
+            {"label": "प्रपत्र पृष्ठ 1", "src": "images/syllabus_previews/page_221770_bandanwara.png"}
         ],
         "pdf_name": "221770_MGGS_बांदनवाड़ा_Syllabus.pdf"
     },
@@ -37,7 +37,7 @@ comparison_schools = [
         "code": "410632",
         "name": "रा.बा.उ.मा.वि. नांदसी",
         "images": [
-            {"label": "प्रपत्र पृष्ठ 1", "src": "images/syllabus_previews/page_410632_रा.बा.उ.मा.वि._नांदसी_Syllabus.png"}
+            {"label": "प्रपत्र पृष्ठ 1", "src": "images/syllabus_previews/page_410632_nandsi.png"}
         ],
         "pdf_name": "410632_रा.बा.उ.मा.वि._नांदसी_Syllabus.pdf"
     },
@@ -45,7 +45,7 @@ comparison_schools = [
         "code": "488791",
         "name": "रा.बा.उ.मा.वि. खेड़ी",
         "images": [
-            {"label": "प्रपत्र पृष्ठ 1", "src": "images/syllabus_previews/page_488791_रा.बा.उ.मा.वि._खेड़ी_Syllabus.png"}
+            {"label": "प्रपत्र पृष्ठ 1", "src": "images/syllabus_previews/page_488791_khedi.png"}
         ],
         "pdf_name": "488791_रा.बा.उ.मा.वि._खेड़ी_Syllabus.pdf"
     },
@@ -53,7 +53,7 @@ comparison_schools = [
         "code": "488897",
         "name": "रा.उ.मा.वि. घणा",
         "images": [
-            {"label": "प्रपत्र पृष्ठ 1", "src": "images/syllabus_previews/page_488897_रा.उ.मा.वि._घणा_Syllabus.png"}
+            {"label": "प्रपत्र पृष्ठ 1", "src": "images/syllabus_previews/page_488897_ghana.png"}
         ],
         "pdf_name": "488897_रा.उ.मा.वि._घणा_Syllabus.pdf"
     },
@@ -61,7 +61,7 @@ comparison_schools = [
         "code": "488947",
         "name": "रा.उ.मा.वि. हियालिया",
         "images": [
-            {"label": "प्रपत्र पृष्ठ 1 (शून्य नामांकन)", "src": "images/syllabus_previews/page_488947_रा.उ.मा.वि._हियालिया_Syllabus.png"}
+            {"label": "प्रपत्र पृष्ठ 1 (शून्य नामांकन)", "src": "images/syllabus_previews/page_488947_hiyaliya.png"}
         ],
         "pdf_name": "488947_रा.उ.मा.वि._हियालिया_Syllabus.pdf"
     }
