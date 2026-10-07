@@ -10,6 +10,32 @@
  * - Add New School (Govt / Private) & Staff Management with Audit Logs
  */
 
+// -------------------------------------------------------------------------
+// Global Resilient Error Boundary & Universal Backend Engine
+// -------------------------------------------------------------------------
+window.addEventListener('error', function(event) {
+  console.warn('[CBEO-GUARD] Handled runtime error:', event.message, event.filename, event.lineno);
+  // Prevent halt of JavaScript thread
+  return true;
+});
+
+window.addEventListener('unhandledrejection', function(event) {
+  console.warn('[CBEO-GUARD] Handled promise rejection:', event.reason);
+});
+
+function getEffectiveApiBaseUrl() {
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    return 'http://localhost:8089';
+  }
+  const customVmUrl = localStorage.getItem('cbeo_vm_api_url') 
+    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.vm_api_url);
+  if (customVmUrl && customVmUrl.startsWith('http')) {
+    return customVmUrl.replace(/\/+$/, '');
+  }
+  return '';
+}
+window.getEffectiveApiBaseUrl = getEffectiveApiBaseUrl;
+
 // Global State
 let STATE = {
   currentUser: null,
@@ -3844,11 +3870,14 @@ function saveQuickSyllabusEntry() {
     } catch(e) {}
   }
 
-  fetch('/api/save_saman_syllabus', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ school_code: code, data: payload, submission: payload })
-  }).catch(() => {});
+  const apiBaseSyl = getEffectiveApiBaseUrl();
+  if (apiBaseSyl) {
+    fetch(`${apiBaseSyl}/api/save_saman_syllabus`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ school_code: code, data: payload, submission: payload })
+    }).catch(() => {});
+  }
 
   closeModal('modal-syllabus-quick-entry');
   showToast(`✓ ${school?.school_name || code} का पाठ्यक्रम डेटा (${avg}%) Google Sheet एवं पोर्टल में दर्ज हो गया!`, 'success');
@@ -4032,11 +4061,14 @@ function saveBulkSyllabusRow(code) {
     }).catch(() => {});
   }
 
-  fetch('/api/save_saman_syllabus', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ school_code: code, submission: payload })
-  }).catch(() => {});
+  const apiBaseBulkSyl = getEffectiveApiBaseUrl();
+  if (apiBaseBulkSyl) {
+    fetch(`${apiBaseBulkSyl}/api/save_saman_syllabus`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ school_code: code, submission: payload })
+    }).catch(() => {});
+  }
 
   renderBulkSyllabusTable();
   renderSamanParikshaView();
@@ -4197,6 +4229,30 @@ function saveSaman6LevelControls() {
 function onSamanModalRadioFormChange(val) {
   // Radio change helper
 }
+
+async function triggerGitHubDataPush() {
+  const apiBase = getEffectiveApiBaseUrl();
+  if (!apiBase) {
+    showToast('⚠️ GitHub बैकअप इंजन केवल सक्रिय Node.js सर्वर (Localhost/VM) पर उपलब्ध है।', 'info');
+    return;
+  }
+  showToast('⏳ डेटाबेस व सेटिंग्स को GitHub पर सुरक्षित किया जा रहा है...', 'info');
+  try {
+    const res = await fetch(`${apiBase}/api/git_backup_push`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    });
+    const data = await res.json();
+    if (data && data.success) {
+      showToast('✓ ' + data.message, 'success');
+    } else {
+      showToast('⚠️ ' + (data?.error || data?.message || 'बैकअप पूरा नहीं हो सका'), 'warning');
+    }
+  } catch (err) {
+    showToast('⚠️ सर्वर से संपर्क नहीं हो सका: ' + err.message, 'error');
+  }
+}
+window.triggerGitHubDataPush = triggerGitHubDataPush;
 
 /* ========================================================
    SAMAN PARIKSHA CUSTOM EDIT & MISMATCH LOGIN ALERT SYSTEM
@@ -4413,11 +4469,14 @@ function saveSamanMismatchSettings() {
   STATE.samanMismatchSettings = cfg;
   localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(cfg));
 
-  fetch('/api/save_saman_mismatch_settings', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ settings: cfg })
-  }).catch(err => console.warn('Save mismatch settings local err:', err));
+  const apiBaseMis = getEffectiveApiBaseUrl();
+  if (apiBaseMis) {
+    fetch(`${apiBaseMis}/api/save_saman_mismatch_settings`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ settings: cfg })
+    }).catch(err => console.warn('Save mismatch settings local err:', err));
+  }
 
   const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
     || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
@@ -5078,11 +5137,14 @@ function submitSyllabusForm() {
   localStorage.setItem('cbeo_saman_syllabus_submissions', JSON.stringify(STATE.samanSyllabusSubmissions));
   localStorage.removeItem(`cbeo_syl_draft_${data.school_code}`);
 
-  fetch('/api/save_saman_syllabus', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ school_code: data.school_code, data: data })
-  }).catch(() => {});
+  const apiBaseSubSyl = getEffectiveApiBaseUrl();
+  if (apiBaseSubSyl) {
+    fetch(`${apiBaseSubSyl}/api/save_saman_syllabus`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ school_code: data.school_code, data: data })
+    }).catch(() => {});
+  }
 
   recordAuditLog({
     user: STATE.currentUser?.name || pName,
@@ -6148,17 +6210,18 @@ function submitSamanParikshaForm(andPrint = false) {
     } catch(e) {}
   }
 
-  // 2. Sync to local backend file & Google Sheet (Direct to port 8089 if on localhost)
-  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-    fetch('http://localhost:8089/api/save_saman_pariksha', {
+  // 2. Sync to Node.js & SQLite Universal Backend (localhost or VM Tunnel)
+  const apiBase = getEffectiveApiBaseUrl();
+  if (apiBase) {
+    fetch(`${apiBase}/api/save_saman_pariksha`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(submission)
     }).then(res => res.json()).then(data => {
-      if (data && data.synced_to_sheet) {
-        showToast('समान परीक्षा प्रपत्र Google Sheet में तुरंत सिंक हो गया!', 'success');
+      if (data && data.success) {
+        showToast('✓ डेटा SQLite डेटाबेस व सर्वर पर सुरक्षित हो गया!', 'success');
       }
-    }).catch(() => {});
+    }).catch(err => console.warn('Backend API note:', err));
   }
 
   closeModal('modal-saman-pariksha-form');

@@ -893,6 +893,43 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // Safe Server-Side GitHub Backup & Push API
+  if (pathname === '/api/git_backup_push' && req.method === 'POST') {
+    const backupCmd = 'git add master_cbeo_data.json master_cbeo_data.js saman_pariksha_submissions.json saman_syllabus_submissions.json tab_visibility_6level.json edit_permissions_6level.json portal_settings.json cbeo_vm_settings.json';
+    exec(backupCmd, { cwd: ROOT_DIR }, (addErr) => {
+      if (addErr) {
+        return sendJSON(res, 500, { success: false, error: 'Git Add Error: ' + addErr.message });
+      }
+      exec('git diff --cached --quiet', { cwd: ROOT_DIR }, (diffErr, _, stderr) => {
+        // If exit code is 0, no changes staged
+        if (!diffErr) {
+          return sendJSON(res, 200, { 
+            success: true, 
+            message: 'डेटा पहले से ही GitHub पर अद्यतन (Up-to-date) है, कोई नया बदलाव लम्बित नहीं है।' 
+          });
+        }
+        const commitMsg = `"auto(portal): data & settings backup [${new Date().toLocaleString('en-IN')}]"`;
+        exec(`git commit -m ${commitMsg} && git push origin main`, { cwd: ROOT_DIR }, (pushErr, pushOut, pushStderr) => {
+          if (pushErr) {
+            console.warn('[CBEO-NODE] Git push note:', pushStderr || pushErr.message);
+            return sendJSON(res, 500, { 
+              success: false, 
+              error: 'Git Push Note: ' + (pushStderr || pushErr.message),
+              output: pushOut 
+            });
+          }
+          console.log('[CBEO-NODE] ✓ Master data & settings pushed to GitHub successfully.');
+          return sendJSON(res, 200, { 
+            success: true, 
+            message: 'डेटाबेस व सेटिंग्स सफलतापूर्वक GitHub पर सुरक्षित (Pushed) हो गईं!',
+            output: pushOut 
+          });
+        });
+      });
+    });
+    return;
+  }
+
   // -----------------------------------------------------------------------
   // Static File Serving
   // -----------------------------------------------------------------------

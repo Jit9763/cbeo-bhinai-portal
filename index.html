@@ -3842,11 +3842,16 @@
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-saman-6level-controls')">बंद करें</button>
-        <button class="btn btn-primary" onclick="saveSaman6LevelControls()" style="font-weight:700">
-          <i class="fas fa-save"></i> अनुमतियां सुरक्षित करें
+      <div class="modal-footer" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem">
+        <button class="btn btn-dark" onclick="triggerGitHubDataPush()" style="font-weight:700; background:#0f172a; border-color:#334155; color:#f8fafc" title="सर्वर पर मौजूद मास्टर डेटाबेस व सेटिंग्स को सीधे GitHub पर सुरक्षित (Push) करें">
+          <i class="fab fa-github"></i> 🔄 GitHub बैकअप पुश
         </button>
+        <div style="display:flex; gap:0.5rem">
+          <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-saman-6level-controls')">बंद करें</button>
+          <button class="btn btn-primary" onclick="saveSaman6LevelControls()" style="font-weight:700">
+            <i class="fas fa-save"></i> अनुमतियां सुरक्षित करें
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -3981,11 +3986,16 @@
         </div>
       </div>
 
-      <div class="modal-footer" style="display:flex; justify-content:space-between; align-items:center">
+      <div class="modal-footer" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px">
         <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-saman-custom-edit')">बंद करें</button>
-        <button class="btn btn-primary" onclick="saveSamanMismatchSettings()" style="font-weight:700; background:#0284c7; border-color:#0369a1">
-          <i class="fas fa-save"></i> सेटिंग्स व अनुमतियां सुरक्षित करें
-        </button>
+        <div style="display:flex; gap:8px; align-items:center">
+          <button type="button" class="btn btn-outline-dark" onclick="triggerGitHubDataPush()" title="मास्टर डेटा व सेटिंग्स को GitHub पर सुरक्षित करें" style="font-size:0.85rem; font-weight:600; padding:6px 14px">
+            <i class="fab fa-github"></i> GitHub बैकअप सिंक
+          </button>
+          <button class="btn btn-primary" onclick="saveSamanMismatchSettings()" style="font-weight:700; background:#0284c7; border-color:#0369a1">
+            <i class="fas fa-save"></i> सेटिंग्स व अनुमतियां सुरक्षित करें
+          </button>
+        </div>
       </div>
     </div>
   </div>
