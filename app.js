@@ -6722,7 +6722,7 @@ async function downloadExamPDFDirect() {
   }
 }
 
-function shareExamPDFWhatsApp() {
+function shareExamWhatsAppText() {
   const schoolCode = STATE.activeExamPreviewCode;
   const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
   const sub = STATE.samanParikshaSubmissions[schoolCode];
@@ -6743,6 +6743,81 @@ function shareExamPDFWhatsApp() {
   window.open(url, '_blank');
   showToast('WhatsApp शेयर लिंक खुल रहा है...', 'success');
 }
+
+async function shareExamWhatsAppPDF() {
+  const schoolCode = STATE.activeExamPreviewCode;
+  const school = STATE.schools56.find(s => s.shala_darpan_code === schoolCode);
+  const sub = STATE.samanParikshaSubmissions[schoolCode];
+  if (!school || !sub) {
+    showToast('प्रपत्र डेटा उपलब्ध नहीं है!', 'warning');
+    return;
+  }
+
+  const isSchoolMggs = ['221770', '221778', '221753'].includes(String(schoolCode).trim()) || (school.category || '').toUpperCase().includes('MGGS') || (school.school_name || '').includes('महात्मा गांधी') || (school.school_name || '').toUpperCase().includes('MGGS');
+  const effMed = isSchoolMggs ? 'अंग्रेजी माध्यम (MGGS)' : (sub.school_medium === 'english' ? 'अंग्रेजी माध्यम' : (sub.school_medium === 'both' ? 'द्विभाषी (हिंदी+अंग्रेजी)' : 'हिंदी माध्यम'));
+  const isEn = (typeof activeExamPdfLanguage !== 'undefined' && activeExamPdfLanguage === 'en');
+
+  const baseName = isEn ? (school?.school_name_en || school?.school_name || 'School') : (school?.school_name || school?.school_name_en || 'School');
+  let cleanName = String(baseName)
+    .replace(/[\\/:*?"<>|,.;!()\[\]{}]/g, ' ')
+    .trim()
+    .replace(/\s+/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^_+|_+$/g, '');
+  if (!cleanName || /^_+$/.test(cleanName)) {
+    cleanName = (school?.school_name_en || schoolCode || 'School').replace(/[\\/:*?"<>|,.;!()\[\]{}]/g, ' ').trim().replace(/\s+/g, '_');
+  }
+  const filename = `Saman_Pariksha_2026_${schoolCode}_${cleanName}.pdf`;
+
+  const c9Breakdown = isSchoolMggs ? ` (अंग्रेजी: ${sub.c9_english || sub.c9_total || 0})` : '';
+  const c10Breakdown = isSchoolMggs ? ` (अंग्रेजी: ${sub.c10_english || sub.c10_total || 0})` : '';
+
+  const waSummary = `*🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय*\n*जिला समान परीक्षा योजना (सत्र 2026-27)*\n\n📌 *विद्यालय:* ${school.school_name}\n📌 *शिक्षण माध्यम:* ${effMed}\n📌 *शाला दर्पण कोड:* ${school.shala_darpan_code} | *परीक्षा कोड:* ${sub.exam_code}\n📌 *संस्था प्रधान:* ${sub.principal_name} (${sub.principal_mobile})\n📌 *परीक्षा प्रभारी:* ${sub.incharge_name} (${sub.incharge_mobile})\n\n🎯 *कुल मांग प्रश्न-पत्र (Grand Total):* *${sub.grand_total}*\n(9वीं: ${sub.c9_total}${c9Breakdown}, 10वीं: ${sub.c10_total}${c10Breakdown}, 11वीं: ${sub.c11_total}, 12वीं: ${sub.c12_total})\n\n📄 *अधिकृत A4 Landscape PDF प्रपत्र संलग्न है।*\n🌐 *सत्यापन पोर्टल:* https://jit9763.github.io/cbeo-bhinai-portal/`;
+
+  showToast('WhatsApp शेयर हेतु Landscape PDF तैयार की जा रही है...', 'info');
+
+  try {
+    const blob = await exportDocumentToPdfBlob('printable-exam-document-content', filename);
+    const pdfFile = new File([blob], filename, { type: 'application/pdf' });
+
+    // Mobile / native Web Share API with files
+    if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
+      await navigator.share({
+        files: [pdfFile],
+        title: `समान परीक्षा 2026 मांग प्रपत्र - ${school.school_name}`,
+        text: waSummary
+      });
+      showToast('WhatsApp PDF शेयर विंडो खुल गई!', 'success');
+    } else {
+      // Desktop / PC Fallback: Auto download the clean PDF & open WhatsApp Web
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      const noteText = waSummary + '\n\n*(नोट: आधिकारिक PDF फाइल डाउनलोड हो गई है - कृपया इस WhatsApp चैट में अटैच करें)*';
+      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(noteText)}`;
+      window.open(waUrl, '_blank');
+      showToast('PDF डाउनलोड हो गई एवं WhatsApp खुल गया! कृपया फाइल अटैच करें।', 'success');
+    }
+  } catch (err) {
+    console.error('WhatsApp PDF share error:', err);
+    showToast('PDF शेयर में समस्या आई, सामान्य WhatsApp लिंक खोला जा रहा है...', 'warning');
+    shareExamWhatsAppText();
+  }
+}
+
+// Backward compatibility alias
+function shareExamPDFWhatsApp() {
+  shareExamWhatsAppText();
+}
+window.shareExamWhatsAppText = shareExamWhatsAppText;
+window.shareExamWhatsAppPDF = shareExamWhatsAppPDF;
+window.shareExamPDFWhatsApp = shareExamPDFWhatsApp;
 
 /* ========================================================
    PEEO CONSOLIDATED OFFICIAL EXAM REPORT (A4 LANDSCAPE)
@@ -7219,6 +7294,37 @@ async function sharePeeoConsolidatedWhatsApp() {
     window.open(waUrl, '_blank');
   }
 }
+
+function sharePeeoConsolidatedWhatsAppMsg() {
+  const peeoName = STATE.activePeeoConsolidatedName || 'PEEO';
+  const schools = STATE.schools56.filter(s => s.peeo_name.toLowerCase().includes(peeoName.toLowerCase()));
+  if (schools.length === 0) return;
+
+  let grandTotalPapers = 0;
+  let subCount = 0;
+  let breakdown = '';
+
+  schools.forEach((s, i) => {
+    const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
+    const isSub = isSamanParikshaSubmitted(sub);
+    if (isSub) {
+      subCount++;
+      grandTotalPapers += (sub.grand_total || 0);
+      breakdown += `${i + 1}. ${s.school_name}: *${sub.grand_total} पेपर* (9वीं:${sub.c9_total}, 10वीं:${sub.c10_total}, 11वीं:${sub.c11_total}, 12वीं:${sub.c12_total})\n`;
+    } else {
+      breakdown += `${i + 1}. ${s.school_name}: ⚠️ *लम्बित*\n`;
+    }
+  });
+
+  const waSummary = `*🏛️ कार्यालय पंचायत प्रारंभिक शिक्षा अधिकारी (PEEO)*\n*${peeoName} | ब्लॉक-भिनाय (अजमेर)*\n*जिला समान परीक्षा (सत्र 2026-27) - परिक्षेत्र समेकित रिपोर्ट*\n\n📊 *प्रगति स्थिति:* ${subCount}/${schools.length} विद्यालय पूर्ण\n🎯 *परिक्षेत्र कुल मांग प्रश्न-पत्र:* *${grandTotalPapers}*\n\n📋 *विद्यालयवार विवरण:*\n${breakdown}\n🌐 *CBEO भिनाय पोर्टल:* https://jit9763.github.io/cbeo-bhinai-portal/`;
+
+  const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(waSummary)}`;
+  window.open(waUrl, '_blank');
+  showToast('PEEO समेकित विवरण WhatsApp पर खुल रहा है...', 'success');
+}
+
+window.sharePeeoConsolidatedWhatsAppMsg = sharePeeoConsolidatedWhatsAppMsg;
+window.sharePeeoConsolidatedWhatsAppPdf = sharePeeoConsolidatedWhatsApp;
 
 /* ========================================================
    UNIVERSAL PENDING SCHOOLS & PEEOs REPORT PDF SYSTEM
