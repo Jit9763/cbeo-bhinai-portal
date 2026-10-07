@@ -502,6 +502,69 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (pathname === '/api/get_portal_settings') {
+    let settings = DB.getSetting('__PORTAL_SETTINGS__');
+    if (!settings && fs.existsSync(path.join(ROOT_DIR, 'portal_settings.json'))) {
+      try { settings = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'portal_settings.json'), 'utf8')); } catch(e) {}
+    }
+    sendJSON(res, 200, { success: true, settings: settings || {} });
+    return;
+  }
+
+  if (pathname === '/api/save_portal_settings' && req.method === 'POST') {
+    readBody((data, err) => {
+      if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
+      const settings = data.settings || data;
+      DB.setSetting('__PORTAL_SETTINGS__', settings);
+      try { fs.writeFileSync(path.join(ROOT_DIR, 'portal_settings.json'), JSON.stringify(settings, null, 2), 'utf8'); } catch(e) {}
+      if (settings.vm_dispatch_config || settings.vm_settings) {
+        try {
+          const vmPath = path.join(ROOT_DIR, 'cbeo_vm_settings.json');
+          const vmExist = fs.existsSync(vmPath) ? JSON.parse(fs.readFileSync(vmPath, 'utf8')) : {};
+          if (settings.vm_settings) Object.assign(vmExist, settings.vm_settings);
+          if (settings.vm_dispatch_config) {
+            vmExist.dispatch_config = Object.assign(vmExist.dispatch_config || {}, settings.vm_dispatch_config);
+            if (settings.vm_dispatch_config.active_focus_report) vmExist.active_focus_report = settings.vm_dispatch_config.active_focus_report;
+          }
+          fs.writeFileSync(vmPath, JSON.stringify(vmExist, null, 2), 'utf8');
+        } catch(e) {}
+      }
+      forwardToGoogleSheet({
+        action: 'updatePassword',
+        user_id: '__PORTAL_SETTINGS__',
+        new_password: JSON.stringify(settings)
+      });
+      sendJSON(res, 200, { success: true, message: 'पोर्टल सेटिंग्स SQLite व JSON में सफलतापूर्वक सुरक्षित हो गईं!' });
+    });
+    return;
+  }
+
+  if (pathname === '/api/get_vm_settings') {
+    let vmCfg = {};
+    const vmPath = path.join(ROOT_DIR, 'cbeo_vm_settings.json');
+    if (fs.existsSync(vmPath)) {
+      try { vmCfg = JSON.parse(fs.readFileSync(vmPath, 'utf8')); } catch(e) {}
+    }
+    sendJSON(res, 200, { success: true, settings: vmCfg });
+    return;
+  }
+
+  if (pathname === '/api/save_vm_settings' && req.method === 'POST') {
+    readBody((data, err) => {
+      if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
+      const vmCfg = data.settings || data;
+      const vmPath = path.join(ROOT_DIR, 'cbeo_vm_settings.json');
+      try {
+        let existing = fs.existsSync(vmPath) ? JSON.parse(fs.readFileSync(vmPath, 'utf8')) : {};
+        Object.assign(existing, vmCfg);
+        fs.writeFileSync(vmPath, JSON.stringify(existing, null, 2), 'utf8');
+      } catch(e) {}
+      DB.setSetting('__VM_SETTINGS__', vmCfg);
+      sendJSON(res, 200, { success: true, message: 'VM सेटिंग्स सुरक्षित हो गईं!' });
+    });
+    return;
+  }
+
   if (pathname === '/api/send_mismatch_alert' && req.method === 'POST') {
     readBody((data, err) => {
       if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });

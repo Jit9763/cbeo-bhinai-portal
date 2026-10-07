@@ -77,49 +77,55 @@
           "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "BANDANWARA",
-          "village": "BANDANWARA",
+          "village": "बान्दनवाडा",
           "dise_code": "08210700101",
           "shala_darpan_code": "221769",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
-          "school_name_en": "Govt. Sr. Sec. School Bandanwara",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA",
           "peeo_name": "PEEO BANDANWARA",
-          "peeo_code": "221769"
+          "peeo_code": "221769",
+          "village_hi": "बान्दनवाडा",
+          "village_en": "BANDANWARA"
         },
         {
           "school_name": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BANDANWARA",
-          "village": "BADANVADA",
+          "village": "बान्दनवाडा",
           "dise_code": "8210703902",
           "shala_darpan_code": "221770",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
-          "school_name_en": "Mahatma Gandhi Govt. School Bandanwara",
+          "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA",
           "peeo_name": "PEEO BANDANWARA",
-          "peeo_code": "221769"
+          "peeo_code": "221769",
+          "village_hi": "बान्दनवाडा",
+          "village_en": "BANDANWARA"
         },
         {
           "school_name": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BANDANWARA",
-          "village": "BADANVADA",
+          "village": "बान्दनवाडा",
           "dise_code": "8210703904",
           "shala_darpan_code": "221771",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
-          "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA",
           "peeo_name": "PEEO BANDANWARA",
-          "peeo_code": "221769"
+          "peeo_code": "221769",
+          "village_hi": "बान्दनवाडा",
+          "village_en": "BANDANWARA"
         },
         {
           "school_name": "रा.प्रा.वि. रामेश्वरपुरा (बांदनवाड़ा)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BANDANWARA",
-          "village": "BADANVADA",
+          "village": "बान्दनवाडा",
           "dise_code": "8210703907",
           "shala_darpan_code": "468188",
           "type": "Government",
@@ -127,13 +133,15 @@
           "school_name_hi": "रा.प्रा.वि. रामेश्वरपुरा (बांदनवाड़ा)",
           "school_name_en": "Govt. Primary School Rameshwarpura Bandanwara",
           "peeo_name": "PEEO BANDANWARA",
-          "peeo_code": "221769"
+          "peeo_code": "221769",
+          "village_hi": "बान्दनवाडा",
+          "village_en": "BANDANWARA"
         },
         {
           "school_name": "नवीन पब्लिक स्कूल, बांदनवाड़ा",
           "category": "Private (Primary)",
           "panchayat": "BANDANWARA",
-          "village": "BADANVADA",
+          "village": "बान्दनवाडा",
           "dise_code": "",
           "shala_darpan_code": "P34025",
           "type": "Private",
@@ -141,13 +149,15 @@
           "school_name_hi": "नवीन पब्लिक स्कूल, बांदनवाड़ा",
           "school_name_en": "Naveen Public School Bandanwara",
           "peeo_name": "PEEO BANDANWARA",
-          "peeo_code": "221769"
+          "peeo_code": "221769",
+          "village_hi": "बान्दनवाडा",
+          "village_en": "BANDANWARA"
         },
         {
           "school_name": "फ्यूचर जीनियस एकेडमी, बांदनवाड़ा",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "BANDANWARA",
-          "village": "BADANVADA",
+          "village": "बान्दनवाडा",
           "dise_code": "",
           "shala_darpan_code": "P68859",
           "type": "Private",
@@ -155,13 +165,15 @@
           "school_name_hi": "फ्यूचर जीनियस एकेडमी, बांदनवाड़ा",
           "school_name_en": "Future Genius Academy Bandanwara",
           "peeo_name": "PEEO BANDANWARA",
-          "peeo_code": "221769"
+          "peeo_code": "221769",
+          "village_hi": "बान्दनवाडा",
+          "village_en": "BANDANWARA"
         },
         {
           "school_name": "नवीन पब्लिक स्कूल, बांदनवाड़ा",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "BANDANWARA",
-          "village": "BADANVADA",
+          "village": "बान्दनवाडा",
           "dise_code": "",
           "shala_darpan_code": "P34025",
           "type": "Private",
@@ -169,13 +181,15 @@
           "school_name_hi": "नवीन पब्लिक स्कूल, बांदनवाड़ा",
           "school_name_en": "Naveen Public School Bandanwara",
           "peeo_name": "PEEO BANDANWARA",
-          "peeo_code": "221769"
+          "peeo_code": "221769",
+          "village_hi": "बान्दनवाडा",
+          "village_en": "BANDANWARA"
         },
         {
           "school_name": "सिद्धार्थ इंटरनेशनल स्कूल, बांदनवाड़ा",
           "category": "Private (Pr. with Up.Pr. with sec. Only)",
           "panchayat": "BANDANWARA",
-          "village": "BADANVADA",
+          "village": "बान्दनवाडा",
           "dise_code": "",
           "shala_darpan_code": "P19054",
           "type": "Private",
@@ -183,13 +197,15 @@
           "school_name_hi": "सिद्धार्थ इंटरनेशनल स्कूल, बांदनवाड़ा",
           "school_name_en": "Siddharth International School Bandanwara",
           "peeo_name": "PEEO BANDANWARA",
-          "peeo_code": "221769"
+          "peeo_code": "221769",
+          "village_hi": "बान्दनवाडा",
+          "village_en": "BANDANWARA"
         },
         {
           "school_name": "सम्राट इंटरनेशनल स्कूल, बांदनवाड़ा",
           "category": "Private (Pr. with Up.Pr. with sec. Only)",
           "panchayat": "BANDANWARA",
-          "village": "BADANVADA",
+          "village": "बान्दनवाडा",
           "dise_code": "",
           "shala_darpan_code": "P16964",
           "type": "Private",
@@ -197,13 +213,15 @@
           "school_name_hi": "सम्राट इंटरनेशनल स्कूल, बांदनवाड़ा",
           "school_name_en": "Samrat International School Bandanwara",
           "peeo_name": "PEEO BANDANWARA",
-          "peeo_code": "221769"
+          "peeo_code": "221769",
+          "village_hi": "बान्दनवाडा",
+          "village_en": "BANDANWARA"
         },
         {
           "school_name": "सम्राट इंटरनेशनल स्कूल, बांदनवाड़ा",
           "category": "Private (Up. Primary with sec Only)",
           "panchayat": "BANDANWARA",
-          "village": "BADANVADA",
+          "village": "बान्दनवाडा",
           "dise_code": "",
           "shala_darpan_code": "P16964",
           "type": "Private",
@@ -211,13 +229,15 @@
           "school_name_hi": "सम्राट इंटरनेशनल स्कूल, बांदनवाड़ा",
           "school_name_en": "Samrat International School Bandanwara",
           "peeo_name": "PEEO BANDANWARA",
-          "peeo_code": "221769"
+          "peeo_code": "221769",
+          "village_hi": "बान्दनवाडा",
+          "village_en": "BANDANWARA"
         },
         {
           "school_name": "कुचामन शिक्षण संस्थान, बांदनवाड़ा",
           "category": "Private (Pr. with Up.Pr. sec. with Higher Sec)",
           "panchayat": "BANDANWARA",
-          "village": "BADANVADA",
+          "village": "बान्दनवाडा",
           "dise_code": "",
           "shala_darpan_code": "P48759",
           "type": "Private",
@@ -225,13 +245,15 @@
           "school_name_hi": "कुचामन शिक्षण संस्थान, बांदनवाड़ा",
           "school_name_en": "Kuchaman Shikshan Sansthan Bandanwara",
           "peeo_name": "PEEO BANDANWARA",
-          "peeo_code": "221769"
+          "peeo_code": "221769",
+          "village_hi": "बान्दनवाडा",
+          "village_en": "BANDANWARA"
         },
         {
           "school_name": "गुरुकुल केसरी पब्लिक माध्यमिक विद्यालय, बांदनवाड़ा",
           "category": "Private (Pr. with Up.Pr. sec. with Higher Sec)",
           "panchayat": "BANDANWARA",
-          "village": "BADANVADA",
+          "village": "बान्दनवाडा",
           "dise_code": "",
           "shala_darpan_code": "P16099",
           "type": "Private",
@@ -239,7 +261,9 @@
           "school_name_hi": "गुरुकुल केसरी पब्लिक माध्यमिक विद्यालय, बांदनवाड़ा",
           "school_name_en": "Gurukul Kesari Public Secondary School Bandanwara",
           "peeo_name": "PEEO BANDANWARA",
-          "peeo_code": "221769"
+          "peeo_code": "221769",
+          "village_hi": "बान्दनवाडा",
+          "village_en": "BANDANWARA"
         }
       ],
       "school_count": 12,
@@ -259,24 +283,25 @@
       "password": "221764",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+          "school_name": "रा.उ.मा.वि. बड़गांव",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "BARGAON",
-          "village": "BARGAON",
+          "village": "बड़गांव",
           "dise_code": "08210700201",
           "shala_darpan_code": "221764",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
-          "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand",
+          "school_name_hi": "रा.उ.मा.वि. बड़गांव",
+          "school_name_en": "सूरखण्ड) (GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND",
           "peeo_name": "PEEO BARGAON",
-          "peeo_code": "221764"
+          "peeo_code": "221764",
+          "village_hi": "बड़गांव"
         },
         {
           "school_name": "रा.उ.प्रा.वि. केरिया खुर्द",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BADGAON",
-          "village": "KERIYA KHURD",
+          "village": "केरियाखुर्द",
           "dise_code": "8210702501",
           "shala_darpan_code": "468216",
           "type": "Government",
@@ -284,13 +309,15 @@
           "school_name_hi": "रा.उ.प्रा.वि. केरिया खुर्द",
           "school_name_en": "Govt. Upper Primary School Keriya Khurd",
           "peeo_name": "PEEO BARGAON",
-          "peeo_code": "221764"
+          "peeo_code": "221764",
+          "village_hi": "केरियाखुर्द",
+          "village_en": "KERIYAKHURD"
         },
         {
           "school_name": "रा.उ.प्रा.वि. रघुनाथपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BADGAON",
-          "village": "RAGHUNATH PURA",
+          "village": "रघुनाथपुरा",
           "dise_code": "8210702601",
           "shala_darpan_code": "485031",
           "type": "Government",
@@ -298,7 +325,9 @@
           "school_name_hi": "रा.उ.प्रा.वि. रघुनाथपुरा",
           "school_name_en": "Govt. Upper Primary School Raghunathpura",
           "peeo_name": "PEEO BARGAON",
-          "peeo_code": "221764"
+          "peeo_code": "221764",
+          "village_hi": "रघुनाथपुरा",
+          "village_en": "RAGHUNATHPURA"
         }
       ],
       "school_count": 3,
@@ -321,29 +350,31 @@
           "school_name": "रा.उ.मा.वि. बड़ली",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "BARLI",
-          "village": "BARLI",
+          "village": "बड़ली",
           "dise_code": "08210700301",
           "shala_darpan_code": "221755",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. बड़ली",
-          "school_name_en": "Govt. Sr. Sec. School Barli",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI",
           "peeo_name": "PEEO BARLI",
-          "peeo_code": "221755"
+          "peeo_code": "221755",
+          "village_hi": "बड़ली"
         },
         {
           "school_name": "रा.बा.उ.मा.वि. बड़ली",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BADLI",
-          "village": "BADLI",
+          "village": "बड़ली",
           "dise_code": "8210700303",
           "shala_darpan_code": "506830",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "रा.बा.उ.मा.वि. बड़ली",
-          "school_name_en": "Govt. Girls Sr. Sec. School Barli",
+          "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI",
           "peeo_name": "PEEO BARLI",
-          "peeo_code": "221755"
+          "peeo_code": "221755",
+          "village_hi": "बड़ली"
         }
       ],
       "school_count": 2,
@@ -366,21 +397,23 @@
           "school_name": "रा.उ.मा.वि. भिनाय",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "BHINAY",
-          "village": "BHINAY",
+          "village": "भिनाय",
           "dise_code": "08210700401",
           "shala_darpan_code": "221780",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. भिनाय",
-          "school_name_en": "Govt. Sr. Sec. School Bhinai",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "भिनाय",
+          "village_en": "BHINAI"
         },
         {
           "school_name": "रा.प्रा.वि. इंदिरा कॉलोनी भिनाय",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BHINAY",
-          "village": "BHINAY",
+          "village": "भिनाय",
           "dise_code": "8210705531",
           "shala_darpan_code": "519058",
           "type": "Government",
@@ -388,13 +421,15 @@
           "school_name_hi": "रा.प्रा.वि. इंदिरा कॉलोनी भिनाय",
           "school_name_en": "Govt. Primary School Indira Colony Bhinai",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "भिनाय",
+          "village_en": "BHINAI"
         },
         {
           "school_name": "रा.प्रा.वि. आंव (भिनाय)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BHINAY",
-          "village": "BHINAY",
+          "village": "भिनाय",
           "dise_code": "8210705521",
           "shala_darpan_code": "488683",
           "type": "Government",
@@ -402,13 +437,15 @@
           "school_name_hi": "रा.प्रा.वि. आंव (भिनाय)",
           "school_name_en": "Govt. Primary School Aav Bhinai",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "भिनाय",
+          "village_en": "BHINAI"
         },
         {
           "school_name": "रा.प्रा.वि. रेबारियों की ढाणी (भिनाय)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BHINAY",
-          "village": "BHINAY",
+          "village": "भिनाय",
           "dise_code": "8210705511",
           "shala_darpan_code": "493708",
           "type": "Government",
@@ -416,27 +453,31 @@
           "school_name_hi": "रा.प्रा.वि. रेबारियों की ढाणी (भिनाय)",
           "school_name_en": "Govt. Primary School Rebariyon Ki Dhani Bhinai",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "भिनाय",
+          "village_en": "BHINAI"
         },
         {
           "school_name": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BHINAY",
-          "village": "BHINAY",
+          "village": "भिनाय",
           "dise_code": "8210705501",
           "shala_darpan_code": "221778",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
-          "school_name_en": "Mahatma Gandhi Govt. School Bhinai",
+          "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "भिनाय",
+          "village_en": "BHINAI"
         },
         {
           "school_name": "रा.प्रा.वि. माताजी का खेड़ा (भिनाय)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SOBDI",
-          "village": "CHAVANDIYA",
+          "village": "चावण्डिया",
           "dise_code": "8210706102",
           "shala_darpan_code": "488896",
           "type": "Government",
@@ -444,13 +485,15 @@
           "school_name_hi": "रा.प्रा.वि. माताजी का खेड़ा (भिनाय)",
           "school_name_en": "Govt. Primary School Mataji Ka Kheda Bhinai",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "चावण्डिया",
+          "village_en": "CHAWANDIYA"
         },
         {
           "school_name": "श्री प्राज्ञ पब्लिक स्कूल, भिनाय",
           "category": "Private (Primary)",
           "panchayat": "BHINAY",
-          "village": "BHINAY",
+          "village": "भिनाय",
           "dise_code": "",
           "shala_darpan_code": "P60694",
           "type": "Private",
@@ -458,13 +501,15 @@
           "school_name_hi": "श्री प्राज्ञ पब्लिक स्कूल, भिनाय",
           "school_name_en": "Shri Pragya Public School Bhinai",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "भिनाय",
+          "village_en": "BHINAI"
         },
         {
           "school_name": "हर्ष इंटरनेशनल स्कूल, भिनाय",
           "category": "Private (Primary)",
           "panchayat": "KARANTHI",
-          "village": "KHEDI",
+          "village": "खेड़ी",
           "dise_code": "",
           "shala_darpan_code": "P47329",
           "type": "Private",
@@ -472,13 +517,14 @@
           "school_name_hi": "हर्ष इंटरनेशनल स्कूल, भिनाय",
           "school_name_en": "Harsh International School Bhinai",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "खेड़ी"
         },
         {
           "school_name": "न्यू मॉडर्न इंग्लिश मीडियम स्कूल, बड़ली",
           "category": "Private (Primary)",
           "panchayat": "BADLI",
-          "village": "BADLI",
+          "village": "बड़ली",
           "dise_code": "",
           "shala_darpan_code": "P73653",
           "type": "Private",
@@ -486,13 +532,14 @@
           "school_name_hi": "न्यू मॉडर्न इंग्लिश मीडियम स्कूल, बड़ली",
           "school_name_en": "New Modern English Medium School Barli",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "बड़ली"
         },
         {
           "school_name": "गुरुकृपा पब्लिक स्कूल, खेड़ी",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "KARANTHI",
-          "village": "KHEDI",
+          "village": "खेड़ी",
           "dise_code": "",
           "shala_darpan_code": "P56254",
           "type": "Private",
@@ -500,13 +547,14 @@
           "school_name_hi": "गुरुकृपा पब्लिक स्कूल, खेड़ी",
           "school_name_en": "Gurukripa Public School Khedi",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "खेड़ी"
         },
         {
           "school_name": "आदर्श शिव विद्या मंदिर, चापानेरी",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "CHANPANER",
-          "village": "CHAMPANERI",
+          "village": "चापानेरी",
           "dise_code": "",
           "shala_darpan_code": "P35780",
           "type": "Private",
@@ -514,13 +562,15 @@
           "school_name_hi": "आदर्श शिव विद्या मंदिर, चापानेरी",
           "school_name_en": "Adarsh Shiva Vidya Mandir Chapaneri",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "चापानेरी",
+          "village_en": "CHAPANERI"
         },
         {
           "school_name": "गायत्री पब्लिक स्कूल, गुढ़ा खुर्द",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "GUDHA KHURD",
-          "village": "GUDHA KHURD",
+          "village": "गुढ़ा खुर्द",
           "dise_code": "",
           "shala_darpan_code": "P16189",
           "type": "Private",
@@ -528,13 +578,14 @@
           "school_name_hi": "गायत्री पब्लिक स्कूल, गुढ़ा खुर्द",
           "school_name_en": "Gayatri Public School Gudha Khurd",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "गुढ़ा खुर्द"
         },
         {
           "school_name": "न्यू राधा कृष्णन पब्लिक स्कूल, भिनाय",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "BADGAON",
-          "village": "BADGAON",
+          "village": "बड़गांव",
           "dise_code": "",
           "shala_darpan_code": "P46672",
           "type": "Private",
@@ -542,13 +593,14 @@
           "school_name_hi": "न्यू राधा कृष्णन पब्लिक स्कूल, भिनाय",
           "school_name_en": "New Radha Krishnan Public School Bhinai",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "बड़गांव"
         },
         {
           "school_name": "रॉयल कॉन्वेंट स्कूल, भिनाय",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "BADLI",
-          "village": "BADLI",
+          "village": "बड़ली",
           "dise_code": "",
           "shala_darpan_code": "P56394",
           "type": "Private",
@@ -556,13 +608,14 @@
           "school_name_hi": "रॉयल कॉन्वेंट स्कूल, भिनाय",
           "school_name_en": "Royal Convent School Bhinai",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "बड़ली"
         },
         {
           "school_name": "पहल पब्लिक स्कूल, देवलिया कलां",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "DEVLIYA KALA",
-          "village": "DEVLIYA KALAN",
+          "village": "देवलिया कलां",
           "dise_code": "",
           "shala_darpan_code": "P34429",
           "type": "Private",
@@ -570,13 +623,14 @@
           "school_name_hi": "पहल पब्लिक स्कूल, देवलिया कलां",
           "school_name_en": "Pahal Public School Deoliya Kalan",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "देवलिया कलां"
         },
         {
           "school_name": "विजयश्री पब्लिक स्कूल, बड़ली",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "BADLI",
-          "village": "BADLI",
+          "village": "बड़ली",
           "dise_code": "",
           "shala_darpan_code": "P19230",
           "type": "Private",
@@ -584,13 +638,14 @@
           "school_name_hi": "विजयश्री पब्लिक स्कूल, बड़ली",
           "school_name_en": "Vijayshee Public School Barli",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "बड़ली"
         },
         {
           "school_name": "SANTORIUM NEW MODERN  (P16738)",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "CHANPANER",
-          "village": "CHAMPANERI",
+          "village": "चापानेरी",
           "dise_code": "",
           "shala_darpan_code": "P16738",
           "type": "Private",
@@ -598,7 +653,9 @@
           "school_name_en": "SANTORIUM NEW MODERN",
           "school_name_hi": "SANTORIUM NEW MODERN  (P16738)",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "चापानेरी",
+          "village_en": "CHAPANERI"
         },
         {
           "school_name": "RAJ RHISHI PUBLIC SCHOOL KUMHARIYA (P16463)",
@@ -618,7 +675,7 @@
           "school_name": "LAKHDATAR SHRI SHYAM U.P.S. BHINAI (P16966)",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "BHINAY",
-          "village": "BHINAY",
+          "village": "भिनाय",
           "dise_code": "",
           "shala_darpan_code": "P16966",
           "type": "Private",
@@ -626,13 +683,15 @@
           "school_name_en": "LAKHDATAR SHRI SHYAM U.P.S. BHINAI",
           "school_name_hi": "LAKHDATAR SHRI SHYAM U.P.S. BHINAI (P16966)",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "भिनाय",
+          "village_en": "BHINAI"
         },
         {
           "school_name": "Sumer Public UPS (P16418)",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "BHINAY",
-          "village": "BHINAY",
+          "village": "भिनाय",
           "dise_code": "",
           "shala_darpan_code": "P16418",
           "type": "Private",
@@ -640,13 +699,15 @@
           "school_name_en": "Sumer Public UPS",
           "school_name_hi": "Sumer Public UPS (P16418)",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "भिनाय",
+          "village_en": "BHINAI"
         },
         {
           "school_name": "VAID BAL VIDYA NIKATEN (P11513)",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "BADGAON",
-          "village": "BADGAON",
+          "village": "बड़गांव",
           "dise_code": "",
           "shala_darpan_code": "P11513",
           "type": "Private",
@@ -654,13 +715,14 @@
           "school_name_en": "VAID BAL VIDYA NIKATEN",
           "school_name_hi": "VAID BAL VIDYA NIKATEN (P11513)",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "बड़गांव"
         },
         {
           "school_name": "SANSKAR CONVENT SCHOOL (P59958)",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "BHINAY",
-          "village": "BHINAY",
+          "village": "भिनाय",
           "dise_code": "",
           "shala_darpan_code": "P59958",
           "type": "Private",
@@ -668,13 +730,15 @@
           "school_name_en": "SANSKAR CONVENT SCHOOL",
           "school_name_hi": "SANSKAR CONVENT SCHOOL (P59958)",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "भिनाय",
+          "village_en": "BHINAI"
         },
         {
           "school_name": "SARVODAYA BAL NIKETAN,RAMMALIYA (P60314)",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "RAMMALIYA",
-          "village": "RAMMALIYA",
+          "village": "राममालिया",
           "dise_code": "",
           "shala_darpan_code": "P60314",
           "type": "Private",
@@ -682,13 +746,15 @@
           "school_name_en": "SARVODAYA BAL NIKETAN,RAMMALIYA",
           "school_name_hi": "SARVODAYA BAL NIKETAN,RAMMALIYA (P60314)",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "राममालिया",
+          "village_en": "RAMMALIYA"
         },
         {
           "school_name": "Aimway Public School (P61242)",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "DEVLIYA KALA",
-          "village": "DEVLIYA KALAN",
+          "village": "देवलिया कलां",
           "dise_code": "",
           "shala_darpan_code": "P61242",
           "type": "Private",
@@ -696,13 +762,14 @@
           "school_name_en": "Aimway Public School",
           "school_name_hi": "Aimway Public School (P61242)",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "देवलिया कलां"
         },
         {
           "school_name": "DIVYAGYAN PUBLIC SCHOOL  (P61263)",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "BADGAON",
-          "village": "KERIYA KHURD",
+          "village": "केरियाखुर्द",
           "dise_code": "",
           "shala_darpan_code": "P61263",
           "type": "Private",
@@ -710,13 +777,15 @@
           "school_name_en": "DIVYAGYAN PUBLIC SCHOOL",
           "school_name_hi": "DIVYAGYAN PUBLIC SCHOOL  (P61263)",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "केरियाखुर्द",
+          "village_en": "KERIYAKHURD"
         },
         {
           "school_name": "Guru Sohan Public School Devliya Kala (P16737)",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "DEVLIYA KALA",
-          "village": "DEVLIYA KALAN",
+          "village": "देवलिया कलां",
           "dise_code": "",
           "shala_darpan_code": "P16737",
           "type": "Private",
@@ -724,13 +793,14 @@
           "school_name_en": "Guru Sohan Public School Devliya Kala",
           "school_name_hi": "Guru Sohan Public School Devliya Kala (P16737)",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "देवलिया कलां"
         },
         {
           "school_name": "JYOTI PUBLIC SCHOOL BADLI (P27638)",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "BADLI",
-          "village": "BADLI",
+          "village": "बड़ली",
           "dise_code": "",
           "shala_darpan_code": "P27638",
           "type": "Private",
@@ -738,13 +808,14 @@
           "school_name_en": "JYOTI PUBLIC SCHOOL BADLI",
           "school_name_hi": "JYOTI PUBLIC SCHOOL BADLI (P27638)",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "बड़ली"
         },
         {
           "school_name": "ADARSH PUBLIC SCHOOL  (P49351)",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "BADGAON",
-          "village": "RAGHUNATH PURA",
+          "village": "रघुनाथपुरा",
           "dise_code": "",
           "shala_darpan_code": "P49351",
           "type": "Private",
@@ -752,13 +823,15 @@
           "school_name_en": "ADARSH PUBLIC SCHOOL",
           "school_name_hi": "ADARSH PUBLIC SCHOOL  (P49351)",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "रघुनाथपुरा",
+          "village_en": "RAGHUNATHPURA"
         },
         {
           "school_name": "VIDYASTHALI ADARSH PRIMARY SCHOOL (P49643)",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "DEVLIYA KALA",
-          "village": "DEVLIYA KALAN",
+          "village": "देवलिया कलां",
           "dise_code": "",
           "shala_darpan_code": "P49643",
           "type": "Private",
@@ -766,13 +839,14 @@
           "school_name_en": "VIDYASTHALI ADARSH PRIMARY SCHOOL",
           "school_name_hi": "VIDYASTHALI ADARSH PRIMARY SCHOOL (P49643)",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "देवलिया कलां"
         },
         {
           "school_name": "द्रोणाचार्य माध्यमिक विद्यालय, भिनाय",
           "category": "Private (Pr. with Up.Pr. with sec. Only)",
           "panchayat": "BHINAY",
-          "village": "BHINAY",
+          "village": "भिनाय",
           "dise_code": "",
           "shala_darpan_code": "P16968",
           "type": "Private",
@@ -780,13 +854,15 @@
           "school_name_hi": "द्रोणाचार्य माध्यमिक विद्यालय, भिनाय",
           "school_name_en": "Drona Charya Secondary School Bhinai",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "भिनाय",
+          "village_en": "BHINAI"
         },
         {
           "school_name": "सन राइज कॉन्वेंट स्कूल, भिनाय",
           "category": "Private (Pr. with Up.Pr. with sec. Only)",
           "panchayat": "BHINAY",
-          "village": "BHINAY",
+          "village": "भिनाय",
           "dise_code": "",
           "shala_darpan_code": "P19678",
           "type": "Private",
@@ -794,13 +870,15 @@
           "school_name_hi": "सन राइज कॉन्वेंट स्कूल, भिनाय",
           "school_name_en": "Sun Rise Convent School Bhinai",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "भिनाय",
+          "village_en": "BHINAI"
         },
         {
           "school_name": "ANNAPURNA P.S. BHINAY (P25290)",
           "category": "Private (Pr. with Up.Pr. with sec. Only)",
           "panchayat": "BHINAY",
-          "village": "BHINAY",
+          "village": "भिनाय",
           "dise_code": "",
           "shala_darpan_code": "P25290",
           "type": "Private",
@@ -808,13 +886,15 @@
           "school_name_en": "ANNAPURNA P.S. BHINAY",
           "school_name_hi": "ANNAPURNA P.S. BHINAY (P25290)",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "भिनाय",
+          "village_en": "BHINAI"
         },
         {
           "school_name": "सुमेर उच्च माध्यमिक विद्यालय, भिनाय",
           "category": "Private (Pr. with Up.Pr. sec. with Higher Sec)",
           "panchayat": "BHINAY",
-          "village": "BHINAY",
+          "village": "भिनाय",
           "dise_code": "",
           "shala_darpan_code": "P16865",
           "type": "Private",
@@ -822,13 +902,15 @@
           "school_name_hi": "सुमेर उच्च माध्यमिक विद्यालय, भिनाय",
           "school_name_en": "Sumer Senior Secondary School Bhinai",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "भिनाय",
+          "village_en": "BHINAI"
         },
         {
           "school_name": "सुमेर उच्च माध्यमिक विद्यालय, भिनाय",
           "category": "Private (Up. Primary sec with Higher Sec)",
           "panchayat": "BHINAY",
-          "village": "BHINAY",
+          "village": "भिनाय",
           "dise_code": "",
           "shala_darpan_code": "P16865",
           "type": "Private",
@@ -836,7 +918,9 @@
           "school_name_hi": "सुमेर उच्च माध्यमिक विद्यालय, भिनाय",
           "school_name_en": "Sumer Senior Secondary School Bhinai",
           "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780"
+          "peeo_code": "221780",
+          "village_hi": "भिनाय",
+          "village_en": "BHINAI"
         }
       ],
       "school_count": 35,
@@ -859,21 +943,23 @@
           "school_name": "रा.उ.मा.वि. बूबकिया",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "BOOBKIYA",
-          "village": "BOOBKIYA",
+          "village": "बूबकिया",
           "dise_code": "08210700501",
           "shala_darpan_code": "221763",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. बूबकिया",
-          "school_name_en": "Govt. Sr. Sec. School Boobkiya",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA",
           "peeo_name": "PEEO BOOBKIYA",
-          "peeo_code": "221763"
+          "peeo_code": "221763",
+          "village_hi": "बूबकिया",
+          "village_en": "BOOBKIYA"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL SOLKHURD (410859) (08210702101)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BUBKIYA",
-          "village": "SOLKHURD",
+          "village": "सोलखुर्द",
           "dise_code": "8210702101",
           "shala_darpan_code": "410859",
           "type": "Government",
@@ -881,27 +967,31 @@
           "school_name_en": "GOVT. PRIMARY SCHOOL SOLKHURD",
           "school_name_hi": "GOVT. PRIMARY SCHOOL SOLKHURD (410859) (08210702101)",
           "peeo_name": "PEEO BOOBKIYA",
-          "peeo_code": "221763"
+          "peeo_code": "221763",
+          "village_hi": "सोलखुर्द",
+          "village_en": "SOLKHURD"
         },
         {
           "school_name": "रा.उ.मा.वि. पीपलिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BUBKIYA",
-          "village": "PIPLIYA",
+          "village": "पीपलिया",
           "dise_code": "8210702201",
           "shala_darpan_code": "485033",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "रा.उ.मा.वि. पीपलिया",
-          "school_name_en": "Govt. Sr. Sec. School Pipliya",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PIPLIYA",
           "peeo_name": "PEEO BOOBKIYA",
-          "peeo_code": "221763"
+          "peeo_code": "221763",
+          "village_hi": "पीपलिया",
+          "village_en": "PEEPLIYA"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL KALBELIYON KI DHANI BOOBKIYA (485023) (08210701802)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BUBKIYA",
-          "village": "BUVKIYA",
+          "village": "बूबकिया",
           "dise_code": "8210701802",
           "shala_darpan_code": "485023",
           "type": "Government",
@@ -909,13 +999,15 @@
           "school_name_en": "GOVT. PRIMARY SCHOOL KALBELIYON KI DHANI BOOBKIYA",
           "school_name_hi": "GOVT. PRIMARY SCHOOL KALBELIYON KI DHANI BOOBKIYA (485023) (08210701802)",
           "peeo_name": "PEEO BOOBKIYA",
-          "peeo_code": "221763"
+          "peeo_code": "221763",
+          "village_hi": "बूबकिया",
+          "village_en": "BOOBKIYA"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL REN BHINAI AJMER RAJASTHAN (462777) (08210701901)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BUBKIYA",
-          "village": "REN",
+          "village": "रेण",
           "dise_code": "8210701901",
           "shala_darpan_code": "462777",
           "type": "Government",
@@ -923,7 +1015,9 @@
           "school_name_en": "GOVT. PRIMARY SCHOOL REN BHINAI AJMER RAJASTHAN",
           "school_name_hi": "GOVT. PRIMARY SCHOOL REN BHINAI AJMER RAJASTHAN (462777) (08210701901)",
           "peeo_name": "PEEO BOOBKIYA",
-          "peeo_code": "221763"
+          "peeo_code": "221763",
+          "village_hi": "रेण",
+          "village_en": "REN"
         },
         {
           "school_name": "रा.उ.प्रा.वि. जोधपुरा",
@@ -957,7 +1051,7 @@
           "school_name": "GOVT. PRIMARY SCHOOL REN KA JHOPADA (485053) (08210701902)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "BUBKIYA",
-          "village": "REN",
+          "village": "रेण",
           "dise_code": "8210701902",
           "shala_darpan_code": "485053",
           "type": "Government",
@@ -965,7 +1059,9 @@
           "school_name_en": "GOVT. PRIMARY SCHOOL REN KA JHOPADA",
           "school_name_hi": "GOVT. PRIMARY SCHOOL REN KA JHOPADA (485053) (08210701902)",
           "peeo_name": "PEEO BOOBKIYA",
-          "peeo_code": "221763"
+          "peeo_code": "221763",
+          "village_hi": "रेण",
+          "village_en": "REN"
         }
       ],
       "school_count": 8,
@@ -988,29 +1084,33 @@
           "school_name": "रा.उ.मा.वि. चापानेरी",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "CHAPANERI",
-          "village": "CHAPANERI",
+          "village": "चापानेरी",
           "dise_code": "08210700601",
           "shala_darpan_code": "221758",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. चापानेरी",
-          "school_name_en": "Govt. Sr. Sec. School Chapaneri",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI",
           "peeo_name": "PEEO CHAPANERI",
-          "peeo_code": "221758"
+          "peeo_code": "221758",
+          "village_hi": "चापानेरी",
+          "village_en": "CHAPANERI"
         },
         {
           "school_name": "रा.बा.उ.मा.वि. चापानेरी",
           "category": "Govt. Elementary / Sec",
           "panchayat": "CHANPANER",
-          "village": "CHAMPANERI",
+          "village": "चापानेरी",
           "dise_code": "8210700602",
           "shala_darpan_code": "494626",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "रा.बा.उ.मा.वि. चापानेरी",
-          "school_name_en": "Govt. Girls Sr. Sec. School Chapaneri",
+          "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL CHAPANERI",
           "peeo_name": "PEEO CHAPANERI",
-          "peeo_code": "221758"
+          "peeo_code": "221758",
+          "village_hi": "चापानेरी",
+          "village_en": "CHAPANERI"
         }
       ],
       "school_count": 2,
@@ -1033,21 +1133,23 @@
           "school_name": "रा.उ.मा.वि. छाछून्दरा",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "CHHACHHUNDRA",
-          "village": "CHHACHHUNDRA",
+          "village": "छछून्दरा",
           "dise_code": "08210700701",
           "shala_darpan_code": "221787",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
-          "school_name_en": "Govt. Sr. Sec. School Chhachhundra",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA",
           "peeo_name": "PEEO CHHACHHUNDRA",
-          "peeo_code": "221787"
+          "peeo_code": "221787",
+          "village_hi": "छछून्दरा",
+          "village_en": "CHHACHHUNDRA"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL MAJRA SAWAIPURA (505598) (08210707802)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "CHACHUNDRA",
-          "village": "SEDRIYA",
+          "village": "सेदरिया",
           "dise_code": "8210707802",
           "shala_darpan_code": "505598",
           "type": "Government",
@@ -1055,13 +1157,15 @@
           "school_name_en": "GOVT. PRIMARY SCHOOL MAJRA SAWAIPURA",
           "school_name_hi": "GOVT. PRIMARY SCHOOL MAJRA SAWAIPURA (505598) (08210707802)",
           "peeo_name": "PEEO CHHACHHUNDRA",
-          "peeo_code": "221787"
+          "peeo_code": "221787",
+          "village_hi": "सेदरिया",
+          "village_en": "SEDRIYA"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL SHIVNAGAR (488953) (08210707702)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "CHACHUNDRA",
-          "village": "CHACHUNDRA",
+          "village": "छछून्दरा",
           "dise_code": "8210707702",
           "shala_darpan_code": "488953",
           "type": "Government",
@@ -1069,13 +1173,15 @@
           "school_name_en": "GOVT. PRIMARY SCHOOL SHIVNAGAR",
           "school_name_hi": "GOVT. PRIMARY SCHOOL SHIVNAGAR (488953) (08210707702)",
           "peeo_name": "PEEO CHHACHHUNDRA",
-          "peeo_code": "221787"
+          "peeo_code": "221787",
+          "village_hi": "छछून्दरा",
+          "village_en": "CHHACHHUNDRA"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL JORAVARPURA BHINAI AJMER (488980) (08210708001)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "CHACHUNDRA",
-          "village": "JORAVARPURA",
+          "village": "जोरावरपुरा",
           "dise_code": "8210708001",
           "shala_darpan_code": "488980",
           "type": "Government",
@@ -1083,13 +1189,15 @@
           "school_name_en": "GOVT. UPPER PRIMARY SCHOOL JORAVARPURA BHINAI AJMER",
           "school_name_hi": "GOVT. UPPER PRIMARY SCHOOL JORAVARPURA BHINAI AJMER (488980) (08210708001)",
           "peeo_name": "PEEO CHHACHHUNDRA",
-          "peeo_code": "221787"
+          "peeo_code": "221787",
+          "village_hi": "जोरावरपुरा",
+          "village_en": "JORAVARPURA"
         },
         {
           "school_name": "रा.उ.प्रा.वि. जोरावरपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "CHACHUNDRA",
-          "village": "SARGAON",
+          "village": "सरगांव",
           "dise_code": "8210707901",
           "shala_darpan_code": "488945",
           "type": "Government",
@@ -1097,13 +1205,15 @@
           "school_name_hi": "रा.उ.प्रा.वि. जोरावरपुरा",
           "school_name_en": "Govt. Upper Primary School Jorawarpura",
           "peeo_name": "PEEO CHHACHHUNDRA",
-          "peeo_code": "221787"
+          "peeo_code": "221787",
+          "village_hi": "सरगांव",
+          "village_en": "SARGAON"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL RATANPURA (488935) (08210708101)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "CHACHUNDRA",
-          "village": "RATANPURA",
+          "village": "रतनपुरा",
           "dise_code": "8210708101",
           "shala_darpan_code": "488935",
           "type": "Government",
@@ -1111,21 +1221,25 @@
           "school_name_en": "GOVT. PRIMARY SCHOOL RATANPURA",
           "school_name_hi": "GOVT. PRIMARY SCHOOL RATANPURA (488935) (08210708101)",
           "peeo_name": "PEEO CHHACHHUNDRA",
-          "peeo_code": "221787"
+          "peeo_code": "221787",
+          "village_hi": "रतनपुरा",
+          "village_en": "RATANPURA"
         },
         {
           "school_name": "रा.उ.मा.वि. सेदरिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "CHACHUNDRA",
-          "village": "SEDRIYA",
+          "village": "सेदरिया",
           "dise_code": "8210707801",
           "shala_darpan_code": "488946",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "रा.उ.मा.वि. सेदरिया",
-          "school_name_en": "Govt. Sr. Sec. School Sedriya",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SEDRIYA",
           "peeo_name": "PEEO CHHACHHUNDRA",
-          "peeo_code": "221787"
+          "peeo_code": "221787",
+          "village_hi": "सेदरिया",
+          "village_en": "SEDRIYA"
         }
       ],
       "school_count": 7,
@@ -1148,21 +1262,22 @@
           "school_name": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "DEOLIYA KALAN",
-          "village": "DEOLIYA KALAN",
+          "village": "देवलिया कलां",
           "dise_code": "08210700801",
           "shala_darpan_code": "221754",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
-          "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan",
+          "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN",
           "peeo_name": "PEEO DEOLIYA KALAN",
-          "peeo_code": "221754"
+          "peeo_code": "221754",
+          "village_hi": "देवलिया कलां"
         },
         {
           "school_name": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
           "category": "Govt. Elementary / Sec",
           "panchayat": "DEVLIYA KALA",
-          "village": "DEVLIYA KALAN",
+          "village": "देवलिया कलां",
           "dise_code": "8210700103",
           "shala_darpan_code": "221753",
           "type": "Government",
@@ -1171,9 +1286,10 @@
           "mobile": "9829835751",
           "incharge_name": "",
           "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
-          "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan",
+          "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN",
           "peeo_name": "PEEO DEOLIYA KALAN",
-          "peeo_code": "221754"
+          "peeo_code": "221754",
+          "village_hi": "देवलिया कलां"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL MATAJI KA KHEDA (410612) (08210700201)",
@@ -1193,7 +1309,7 @@
           "school_name": "KASTURBA GANDHI BALIKA VIDYALAYA DEOLIYA KALAN (526760) (08210700113)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "DEVLIYA KALA",
-          "village": "DEVLIYA KALAN",
+          "village": "देवलिया कलां",
           "dise_code": "8210700113",
           "shala_darpan_code": "526760",
           "type": "Government",
@@ -1201,7 +1317,8 @@
           "school_name_en": "KASTURBA GANDHI BALIKA VIDYALAYA DEOLIYA KALAN",
           "school_name_hi": "KASTURBA GANDHI BALIKA VIDYALAYA DEOLIYA KALAN (526760) (08210700113)",
           "peeo_name": "PEEO DEOLIYA KALAN",
-          "peeo_code": "221754"
+          "peeo_code": "221754",
+          "village_hi": "देवलिया कलां"
         }
       ],
       "school_count": 4,
@@ -1224,21 +1341,23 @@
           "school_name": "रा.उ.मा.वि. देवरिया",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "DEVPURA",
-          "village": "DEVPURA",
+          "village": "देवपुरा",
           "dise_code": "08210700901",
           "shala_darpan_code": "488941",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. देवरिया",
-          "school_name_en": "Govt. Sr. Sec. School Devriya",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA",
           "peeo_name": "PEEO DEVPURA",
-          "peeo_code": "488941"
+          "peeo_code": "488941",
+          "village_hi": "देवपुरा",
+          "village_en": "DEVPURA"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL RAMNAGAR (488937) (08210708703)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "DEVPURA",
-          "village": "DEVPURA",
+          "village": "देवपुरा",
           "dise_code": "8210708703",
           "shala_darpan_code": "488937",
           "type": "Government",
@@ -1246,13 +1365,15 @@
           "school_name_en": "GOVT. PRIMARY SCHOOL RAMNAGAR",
           "school_name_hi": "GOVT. PRIMARY SCHOOL RAMNAGAR (488937) (08210708703)",
           "peeo_name": "PEEO DEVPURA",
-          "peeo_code": "488941"
+          "peeo_code": "488941",
+          "village_hi": "देवपुरा",
+          "village_en": "DEVPURA"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL RAMPURA (488938) (08210708901)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "DEVPURA",
-          "village": "RAMPURA",
+          "village": "रामपुरा",
           "dise_code": "8210708901",
           "shala_darpan_code": "488938",
           "type": "Government",
@@ -1260,13 +1381,15 @@
           "school_name_en": "GOVT. PRIMARY SCHOOL RAMPURA",
           "school_name_hi": "GOVT. PRIMARY SCHOOL RAMPURA (488938) (08210708901)",
           "peeo_name": "PEEO DEVPURA",
-          "peeo_code": "488941"
+          "peeo_code": "488941",
+          "village_hi": "रामपुरा",
+          "village_en": "RAMPURA"
         },
         {
           "school_name": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "DEVPURA",
-          "village": "AMARGADH",
+          "village": "अमरगढ",
           "dise_code": "8210709101",
           "shala_darpan_code": "488942",
           "type": "Government",
@@ -1274,13 +1397,15 @@
           "school_name_hi": "रा.उ.प्रा.वि. गुर्जरवाड़ा",
           "school_name_en": "Govt. Upper Primary School Gurjarwada",
           "peeo_name": "PEEO DEVPURA",
-          "peeo_code": "488941"
+          "peeo_code": "488941",
+          "village_hi": "अमरगढ",
+          "village_en": "AMARGARH"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL GAJJANADI (468181) (08210708702)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "DEVPURA",
-          "village": "GAJJA NADI",
+          "village": "गज्जनाड़ी",
           "dise_code": "8210708702",
           "shala_darpan_code": "468181",
           "type": "Government",
@@ -1288,13 +1413,15 @@
           "school_name_en": "GOVT. PRIMARY SCHOOL GAJJANADI",
           "school_name_hi": "GOVT. PRIMARY SCHOOL GAJJANADI (468181) (08210708702)",
           "peeo_name": "PEEO DEVPURA",
-          "peeo_code": "488941"
+          "peeo_code": "488941",
+          "village_hi": "गज्जनाड़ी",
+          "village_en": "GAJJANAADI"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL MOTIPURA (410651) (08210709001)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "DEVPURA",
-          "village": "MOTIPURA",
+          "village": "मोतीपुरा",
           "dise_code": "8210709001",
           "shala_darpan_code": "410651",
           "type": "Government",
@@ -1302,21 +1429,25 @@
           "school_name_en": "GOVT. UPPER PRIMARY SCHOOL MOTIPURA",
           "school_name_hi": "GOVT. UPPER PRIMARY SCHOOL MOTIPURA (410651) (08210709001)",
           "peeo_name": "PEEO DEVPURA",
-          "peeo_code": "488941"
+          "peeo_code": "488941",
+          "village_hi": "मोतीपुरा",
+          "village_en": "MOTIPURA"
         },
         {
           "school_name": "रा.उ.मा.वि. रूपपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "DEVPURA",
-          "village": "RUPPURA",
+          "village": "रूपपुरा",
           "dise_code": "8210708801",
           "shala_darpan_code": "410704",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "रा.उ.मा.वि. रूपपुरा",
-          "school_name_en": "Govt. Sr. Sec. School Rooppura",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL ROOPPURA",
           "peeo_name": "PEEO DEVPURA",
-          "peeo_code": "488941"
+          "peeo_code": "488941",
+          "village_hi": "रूपपुरा",
+          "village_en": "ROOPPURA"
         }
       ],
       "school_count": 7,
@@ -1339,15 +1470,17 @@
           "school_name": "रा.उ.मा.वि. धांतोल",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "DHANTOL",
-          "village": "DHANTOL",
+          "village": "धांतोल",
           "dise_code": "08210701001",
           "shala_darpan_code": "221783",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. धांतोल",
-          "school_name_en": "Govt. Sr. Sec. School Dhantol",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL",
           "peeo_name": "PEEO DHANTOL",
-          "peeo_code": "221783"
+          "peeo_code": "221783",
+          "village_hi": "धांतोल",
+          "village_en": "DHANTOL"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL SHYALABHATA (488939) (08210706803)",
@@ -1426,35 +1559,38 @@
           "school_name": "रा.उ.मा.वि. एकलसिंघा",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "EKALSEENGA",
-          "village": "EKALSEENGA",
+          "village": "एकलसिंघा",
           "dise_code": "08210701101",
           "shala_darpan_code": "221786",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
-          "school_name_en": "Govt. Sr. Sec. School Ekalsingha",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA",
           "peeo_name": "PEEO EKALSEENGA",
-          "peeo_code": "221786"
+          "peeo_code": "221786",
+          "village_hi": "एकलसिंघा"
         },
         {
           "school_name": "रा.उ.मा.वि. हियालिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "EKALSINGA",
-          "village": "HIYALIYA",
+          "village": "हियालिया",
           "dise_code": "8210707401",
           "shala_darpan_code": "488947",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "रा.उ.मा.वि. हियालिया",
-          "school_name_en": "Govt. Sr. Sec. School Hiyaliya",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL HIYALIYA",
           "peeo_name": "PEEO EKALSEENGA",
-          "peeo_code": "221786"
+          "peeo_code": "221786",
+          "village_hi": "हियालिया",
+          "village_en": "HIYALIYA"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL DHANI EKALSINGHA (488931) (08210707301)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "EKALSINGA",
-          "village": "DHANI",
+          "village": "ढाणी",
           "dise_code": "8210707301",
           "shala_darpan_code": "488931",
           "type": "Government",
@@ -1462,7 +1598,9 @@
           "school_name_en": "GOVT. PRIMARY SCHOOL DHANI EKALSINGHA",
           "school_name_hi": "GOVT. PRIMARY SCHOOL DHANI EKALSINGHA (488931) (08210707301)",
           "peeo_name": "PEEO EKALSEENGA",
-          "peeo_code": "221786"
+          "peeo_code": "221786",
+          "village_hi": "ढाणी",
+          "village_en": "DHANI"
         },
         {
           "school_name": "GOVT. UPPER PRIMARY SCHOOL JHABARKIYA (468173) (08210706301)",
@@ -1482,7 +1620,7 @@
           "school_name": "रा.उ.प्रा.वि. अमरगढ़",
           "category": "Govt. Elementary / Sec",
           "panchayat": "EKALSINGA",
-          "village": "BANEDIYA",
+          "village": "बनेडिया",
           "dise_code": "8210707501",
           "shala_darpan_code": "488948",
           "type": "Government",
@@ -1490,13 +1628,15 @@
           "school_name_hi": "रा.उ.प्रा.वि. अमरगढ़",
           "school_name_en": "Govt. Upper Primary School Amargarh",
           "peeo_name": "PEEO EKALSEENGA",
-          "peeo_code": "221786"
+          "peeo_code": "221786",
+          "village_hi": "बनेडिया",
+          "village_en": "BANEDIYA"
         },
         {
           "school_name": "GOVT. PRIMARY SCHOOL BALAPURA (493650) (08210707601)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "EKALSINGA",
-          "village": "BALAPURA (EKALSEENGA)",
+          "village": "बालापुरा",
           "dise_code": "8210707601",
           "shala_darpan_code": "493650",
           "type": "Government",
@@ -1504,7 +1644,9 @@
           "school_name_en": "GOVT. PRIMARY SCHOOL BALAPURA",
           "school_name_hi": "GOVT. PRIMARY SCHOOL BALAPURA (493650) (08210707601)",
           "peeo_name": "PEEO EKALSEENGA",
-          "peeo_code": "221786"
+          "peeo_code": "221786",
+          "village_hi": "बालापुरा",
+          "village_en": "BALAPURA"
         },
         {
           "school_name": "टैगोर ग्लोबल स्कूल, एकलसिंघा",
@@ -1540,21 +1682,22 @@
           "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "GURHA KHURD",
-          "village": "GURHA KHURD",
+          "village": "गुढ़ा खुर्द",
           "dise_code": "08210701201",
           "shala_darpan_code": "221762",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
-          "school_name_en": "Govt. Sr. Sec. School Gudha Khurd",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD",
           "peeo_name": "PEEO GURHA KHURD",
-          "peeo_code": "221762"
+          "peeo_code": "221762",
+          "village_hi": "गुढ़ा खुर्द"
         },
         {
           "school_name": "रा.प्रा.वि. अमरपुरा (गुढ़ा खुर्द)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "GUDHA KHURD",
-          "village": "BAGRAI (GURHA KHURD)",
+          "village": "बगराई",
           "dise_code": "8210701603",
           "shala_darpan_code": "506583",
           "type": "Government",
@@ -1562,13 +1705,15 @@
           "school_name_hi": "रा.प्रा.वि. अमरपुरा (गुढ़ा खुर्द)",
           "school_name_en": "Govt. Primary School Amarpura",
           "peeo_name": "PEEO GURHA KHURD",
-          "peeo_code": "221762"
+          "peeo_code": "221762",
+          "village_hi": "बगराई",
+          "village_en": "BAGARI"
         },
         {
           "school_name": "रा.प्रा.वि. पुरानी बागरिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "GUDHA KHURD",
-          "village": "BAGRAI (GURHA KHURD)",
+          "village": "बगराई",
           "dise_code": "8210701604",
           "shala_darpan_code": "510079",
           "type": "Government",
@@ -1576,13 +1721,15 @@
           "school_name_hi": "रा.प्रा.वि. पुरानी बागरिया",
           "school_name_en": "Govt. Primary School Purani Bagrai",
           "peeo_name": "PEEO GURHA KHURD",
-          "peeo_code": "221762"
+          "peeo_code": "221762",
+          "village_hi": "बगराई",
+          "village_en": "BAGARI"
         },
         {
           "school_name": "रा.उ.प्रा.वि. गुढ़ाकलां",
           "category": "Govt. Elementary / Sec",
           "panchayat": "GUDHA KHURD",
-          "village": "GUDHA KALAN",
+          "village": "गुढाकला",
           "dise_code": "8210701401",
           "shala_darpan_code": "485029",
           "type": "Government",
@@ -1590,13 +1737,15 @@
           "school_name_hi": "रा.उ.प्रा.वि. गुढ़ाकलां",
           "school_name_en": "Govt. Upper Primary School Gudhakalan",
           "peeo_name": "PEEO GURHA KHURD",
-          "peeo_code": "221762"
+          "peeo_code": "221762",
+          "village_hi": "गुढाकला",
+          "village_en": "GUDHA KALAN"
         },
         {
           "school_name": "रा.प्रा.वि. देवपुरा (गुढ़ा खुर्द)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "GUDHA KHURD",
-          "village": "BAGRAI (GURHA KHURD)",
+          "village": "बगराई",
           "dise_code": "8210701602",
           "shala_darpan_code": "485018",
           "type": "Government",
@@ -1604,27 +1753,31 @@
           "school_name_hi": "रा.प्रा.वि. देवपुरा (गुढ़ा खुर्द)",
           "school_name_en": "Govt. Primary School Devpura Gudha Khurd",
           "peeo_name": "PEEO GURHA KHURD",
-          "peeo_code": "221762"
+          "peeo_code": "221762",
+          "village_hi": "बगराई",
+          "village_en": "BAGARI"
         },
         {
           "school_name": "पीएम श्री रा.उ.मा.वि. बागरिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "GUDHA KHURD",
-          "village": "BAGRAI (GURHA KHURD)",
+          "village": "बगराई",
           "dise_code": "8210701601",
           "shala_darpan_code": "485030",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "पीएम श्री रा.उ.मा.वि. बागरिया",
-          "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai",
+          "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI",
           "peeo_name": "PEEO GURHA KHURD",
-          "peeo_code": "221762"
+          "peeo_code": "221762",
+          "village_hi": "बगराई",
+          "village_en": "BAGARI"
         },
         {
           "school_name": "रा.प्रा.वि. इंद्रापुरा (गुढ़ा खुर्द)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "GUDHA KHURD",
-          "village": "GUDHA KHURD",
+          "village": "गुढ़ा खुर्द",
           "dise_code": "8210701303",
           "shala_darpan_code": "410554",
           "type": "Government",
@@ -1632,13 +1785,14 @@
           "school_name_hi": "रा.प्रा.वि. इंद्रापुरा (गुढ़ा खुर्द)",
           "school_name_en": "Govt. Primary School Indrapura",
           "peeo_name": "PEEO GURHA KHURD",
-          "peeo_code": "221762"
+          "peeo_code": "221762",
+          "village_hi": "गुढ़ा खुर्द"
         },
         {
           "school_name": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
           "category": "Govt. Elementary / Sec",
           "panchayat": "GUDHA KHURD",
-          "village": "KHEDI",
+          "village": "खेड़ी",
           "dise_code": "8210701701",
           "shala_darpan_code": "402646",
           "type": "Government",
@@ -1646,13 +1800,14 @@
           "school_name_hi": "रा.उ.प्रा.वि. खेड़ी गुढ़ा खुर्द",
           "school_name_en": "Govt. Upper Primary School Khedi Gudha Khurd",
           "peeo_name": "PEEO GURHA KHURD",
-          "peeo_code": "221762"
+          "peeo_code": "221762",
+          "village_hi": "खेड़ी"
         },
         {
           "school_name": "रा.उ.प्रा.वि. पांडोलाई",
           "category": "Govt. Elementary / Sec",
           "panchayat": "GUDHA KHURD",
-          "village": "PANDOLAI",
+          "village": "पाण्डोलाई",
           "dise_code": "8210701501",
           "shala_darpan_code": "402702",
           "type": "Government",
@@ -1660,7 +1815,9 @@
           "school_name_hi": "रा.उ.प्रा.वि. पांडोलाई",
           "school_name_en": "Govt. Upper Primary School Pandolai",
           "peeo_name": "PEEO GURHA KHURD",
-          "peeo_code": "221762"
+          "peeo_code": "221762",
+          "village_hi": "पाण्डोलाई",
+          "village_en": "PANDOLAI"
         }
       ],
       "school_count": 9,
@@ -1683,21 +1840,22 @@
           "school_name": "रा.उ.मा.वि. कनाई कलां",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "KANAI KALAN",
-          "village": "KANAI KALAN",
+          "village": "कनाई कलां",
           "dise_code": "08210701301",
           "shala_darpan_code": "221765",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. कनाई कलां",
-          "school_name_en": "Govt. Sr. Sec. School Kanai Kala",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA",
           "peeo_name": "PEEO KANAI KALAN",
-          "peeo_code": "221765"
+          "peeo_code": "221765",
+          "village_hi": "कनाई कलां"
         },
         {
           "school_name": "रा.उ.प्रा.वि. कनाई खुर्द",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KANAIKALA",
-          "village": "KANAI KHURD",
+          "village": "कनईखुर्द",
           "dise_code": "8210702901",
           "shala_darpan_code": "485028",
           "type": "Government",
@@ -1705,7 +1863,9 @@
           "school_name_hi": "रा.उ.प्रा.वि. कनाई खुर्द",
           "school_name_en": "Govt. Upper Primary School Kanai Khurd",
           "peeo_name": "PEEO KANAI KALAN",
-          "peeo_code": "221765"
+          "peeo_code": "221765",
+          "village_hi": "कनईखुर्द",
+          "village_en": "KANAI KHURD"
         },
         {
           "school_name": "रा.उ.मा.वि. नेमेड़ा",
@@ -1717,7 +1877,7 @@
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "रा.उ.मा.वि. नेमेड़ा",
-          "school_name_en": "Govt. Sr. Sec. School Nemeda",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA",
           "peeo_name": "PEEO KANAI KALAN",
           "peeo_code": "221765"
         },
@@ -1739,7 +1899,7 @@
           "school_name": "रा.प्रा.वि. ढांढो का खेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KANAIKALA",
-          "village": "DHANDHO KA KHERA",
+          "village": "धांधो का खेड़ा",
           "dise_code": "8210702902",
           "shala_darpan_code": "506627",
           "type": "Government",
@@ -1747,13 +1907,14 @@
           "school_name_hi": "रा.प्रा.वि. ढांढो का खेड़ा",
           "school_name_en": "Govt. Primary School Dhandho Ka Kheda",
           "peeo_name": "PEEO KANAI KALAN",
-          "peeo_code": "221765"
+          "peeo_code": "221765",
+          "village_hi": "धांधो का खेड़ा"
         },
         {
           "school_name": "मरुधर बाल विद्या निकेतन, कनाईकलां",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "KANAIKALA",
-          "village": "KANAI KALA",
+          "village": "कनाई कलां",
           "dise_code": "",
           "shala_darpan_code": "P46678",
           "type": "Private",
@@ -1761,7 +1922,8 @@
           "school_name_hi": "मरुधर बाल विद्या निकेतन, कनाईकलां",
           "school_name_en": "Marudhar Bal Vidhya Niketan Kanaikala",
           "peeo_name": "PEEO KANAI KALAN",
-          "peeo_code": "221765"
+          "peeo_code": "221765",
+          "village_hi": "कनाई कलां"
         }
       ],
       "school_count": 6,
@@ -1784,21 +1946,23 @@
           "school_name": "रा.उ.मा.वि. करांटी",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "KARATI",
-          "village": "KARATI",
+          "village": "करांटी",
           "dise_code": "08210701401",
           "shala_darpan_code": "221773",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. करांटी",
-          "school_name_en": "Govt. Sr. Sec. School Karanti",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI",
           "peeo_name": "PEEO KARATI",
-          "peeo_code": "221773"
+          "peeo_code": "221773",
+          "village_hi": "करांटी",
+          "village_en": "KARANTI"
         },
         {
           "school_name": "रा.प्रा.वि. गोरधनपुरा छाछून्दरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KARANTHI",
-          "village": "GORDHANPURA",
+          "village": "गोरधनपुरा",
           "dise_code": "8210708301",
           "shala_darpan_code": "506514",
           "type": "Government",
@@ -1806,7 +1970,9 @@
           "school_name_hi": "रा.प्रा.वि. गोरधनपुरा छाछून्दरा",
           "school_name_en": "Govt. Primary School Gordhanpura",
           "peeo_name": "PEEO KARATI",
-          "peeo_code": "221773"
+          "peeo_code": "221773",
+          "village_hi": "गोरधनपुरा",
+          "village_en": "GORDHANPURA"
         },
         {
           "school_name": "रा.प्रा.वि. खेड़ी (करांती)",
@@ -1840,7 +2006,7 @@
           "school_name": "रा.उ.प्रा.वि. दौलतपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KARANTHI",
-          "village": "DOLATPURA",
+          "village": "दौलतपुरा",
           "dise_code": "8210708201",
           "shala_darpan_code": "488944",
           "type": "Government",
@@ -1848,41 +2014,45 @@
           "school_name_hi": "रा.उ.प्रा.वि. दौलतपुरा",
           "school_name_en": "Govt. Upper Primary School Dolatpura",
           "peeo_name": "PEEO KARATI",
-          "peeo_code": "221773"
+          "peeo_code": "221773",
+          "village_hi": "दौलतपुरा",
+          "village_en": "DAULATPURA"
         },
         {
           "school_name": "रा.बा.उ.मा.वि. खेड़ी",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KARANTHI",
-          "village": "KHEDI",
+          "village": "खेड़ी",
           "dise_code": "8210704903",
           "shala_darpan_code": "488791",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "रा.बा.उ.मा.वि. खेड़ी",
-          "school_name_en": "Govt. Girls Sr. Sec. School Khedi",
+          "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL KHEDI",
           "peeo_name": "PEEO KARATI",
-          "peeo_code": "221773"
+          "peeo_code": "221773",
+          "village_hi": "खेड़ी"
         },
         {
           "school_name": "रा.उ.मा.वि. खेड़ी",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KARANTHI",
-          "village": "KHEDI",
+          "village": "खेड़ी",
           "dise_code": "8210704901",
           "shala_darpan_code": "221774",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "रा.उ.मा.वि. खेड़ी",
-          "school_name_en": "Govt. Sr. Sec. School Khedi",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KHEDI",
           "peeo_name": "PEEO KARATI",
-          "peeo_code": "221773"
+          "peeo_code": "221773",
+          "village_hi": "खेड़ी"
         },
         {
           "school_name": "रा.उ.प्रा.वि. गोपालपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KARANTHI",
-          "village": "GOPALPURA",
+          "village": "गोपालपुरा",
           "dise_code": "8210704701",
           "shala_darpan_code": "488792",
           "type": "Government",
@@ -1890,7 +2060,9 @@
           "school_name_hi": "रा.उ.प्रा.वि. गोपालपुरा",
           "school_name_en": "Govt. Upper Primary School Gopalpura",
           "peeo_name": "PEEO KARATI",
-          "peeo_code": "221773"
+          "peeo_code": "221773",
+          "village_hi": "गोपालपुरा",
+          "village_en": "GOPALPURA"
         },
         {
           "school_name": "रा.उ.प्रा.वि. प्रतापपुरा करांती",
@@ -1910,7 +2082,7 @@
           "school_name": "रा.प्रा.वि. खेड़ी तालाब",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KARANTHI",
-          "village": "KHEDI",
+          "village": "खेड़ी",
           "dise_code": "8210704902",
           "shala_darpan_code": "488787",
           "type": "Government",
@@ -1918,13 +2090,14 @@
           "school_name_hi": "रा.प्रा.वि. खेड़ी तालाब",
           "school_name_en": "Govt. Primary School Khedi Talab",
           "peeo_name": "PEEO KARATI",
-          "peeo_code": "221773"
+          "peeo_code": "221773",
+          "village_hi": "खेड़ी"
         },
         {
           "school_name": "रा.उ.प्रा.वि. गोवलिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KARANTHI",
-          "village": "GOVLIYA",
+          "village": "गोवलिया",
           "dise_code": "8210704801",
           "shala_darpan_code": "468185",
           "type": "Government",
@@ -1932,7 +2105,9 @@
           "school_name_hi": "रा.उ.प्रा.वि. गोवलिया",
           "school_name_en": "Govt. Upper Primary School Govliya",
           "peeo_name": "PEEO KARATI",
-          "peeo_code": "221773"
+          "peeo_code": "221773",
+          "village_hi": "गोवलिया",
+          "village_en": "GOVLIYA"
         }
       ],
       "school_count": 11,
@@ -1952,24 +2127,26 @@
       "password": "221767",
       "schools": [
         {
-          "school_name": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+          "school_name": "रा.उ.मा.वि. कैरोट",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "KEROT",
-          "village": "KEROT",
+          "village": "कैरोट",
           "dise_code": "08210701501",
           "shala_darpan_code": "221767",
           "type": "Government",
           "is_peeo_nodal": true,
-          "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
-          "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)",
+          "school_name_hi": "रा.उ.मा.वि. कैरोट",
+          "school_name_en": "जेतपुरा) (GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD",
           "peeo_name": "PEEO KEROT",
-          "peeo_code": "221767"
+          "peeo_code": "221767",
+          "village_hi": "कैरोट",
+          "village_en": "KAIROT"
         },
         {
           "school_name": "रा.प्रा.वि. कादोलाई",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KEROT",
-          "village": "KADOLAI",
+          "village": "कादोलाई",
           "dise_code": "8210703801",
           "shala_darpan_code": "468213",
           "type": "Government",
@@ -1977,27 +2154,31 @@
           "school_name_hi": "रा.प्रा.वि. कादोलाई",
           "school_name_en": "Govt. Primary School Kadolai",
           "peeo_name": "PEEO KEROT",
-          "peeo_code": "221767"
+          "peeo_code": "221767",
+          "village_hi": "कादोलाई",
+          "village_en": "KADOLAI"
         },
         {
           "school_name": "रा.उ.मा.वि. जेतपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KEROT",
-          "village": "JETPURA",
+          "village": "जैतपुरा",
           "dise_code": "8210703701",
           "shala_darpan_code": "221768",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "रा.उ.मा.वि. जेतपुरा",
-          "school_name_en": "Govt. Sr. Sec. School Jetpura",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL JETPURA",
           "peeo_name": "PEEO KEROT",
-          "peeo_code": "221767"
+          "peeo_code": "221767",
+          "village_hi": "जैतपुरा",
+          "village_en": "JAITPURA"
         },
         {
           "school_name": "श्री श्याम विद्या निकेतन, कैरोट",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "KEROT",
-          "village": "KEROT",
+          "village": "कैरोट",
           "dise_code": "",
           "shala_darpan_code": "P39815",
           "type": "Private",
@@ -2005,7 +2186,9 @@
           "school_name_hi": "श्री श्याम विद्या निकेतन, कैरोट",
           "school_name_en": "Shri Shyam Vidhya Niketan Kerot",
           "peeo_name": "PEEO KEROT",
-          "peeo_code": "221767"
+          "peeo_code": "221767",
+          "village_hi": "कैरोट",
+          "village_en": "KAIROT"
         }
       ],
       "school_count": 4,
@@ -2028,15 +2211,17 @@
           "school_name": "रा.उ.मा.वि. कुम्हारिया",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "KUMHARIYA",
-          "village": "KUMHARIYA",
+          "village": "कुम्हारिया",
           "dise_code": "08210701601",
           "shala_darpan_code": "221777",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
-          "school_name_en": "Govt. Sr. Sec. School Kumhariya",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA",
           "peeo_name": "PEEO KUMHARIYA",
-          "peeo_code": "221777"
+          "peeo_code": "221777",
+          "village_hi": "कुम्हारिया",
+          "village_en": "KUMHARIYA"
         },
         {
           "school_name": "रा.उ.प्रा.वि. सूरजपुरा",
@@ -2070,7 +2255,7 @@
           "school_name": "रा.उ.प्रा.वि. कीटाप",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KUMAHARIYA",
-          "village": "KITAP",
+          "village": "कीटाप",
           "dise_code": "8210705401",
           "shala_darpan_code": "463076",
           "type": "Government",
@@ -2078,7 +2263,9 @@
           "school_name_hi": "रा.उ.प्रा.वि. कीटाप",
           "school_name_en": "Govt. Upper Primary School Keetap",
           "peeo_name": "PEEO KUMHARIYA",
-          "peeo_code": "221777"
+          "peeo_code": "221777",
+          "village_hi": "कीटाप",
+          "village_en": "KITAP"
         },
         {
           "school_name": "रा.प्रा.वि. हाथीपुरा",
@@ -2098,7 +2285,7 @@
           "school_name": "रा.प्रा.वि. बागरिया (कुम्हारिया)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KUMAHARIYA",
-          "village": "BAGRAI (KUMHARIYA)",
+          "village": "बगराई",
           "dise_code": "8210704101",
           "shala_darpan_code": "506695",
           "type": "Government",
@@ -2106,7 +2293,9 @@
           "school_name_hi": "रा.प्रा.वि. बागरिया (कुम्हारिया)",
           "school_name_en": "Govt. Primary School Bagrai Kumhariya",
           "peeo_name": "PEEO KUMHARIYA",
-          "peeo_code": "221777"
+          "peeo_code": "221777",
+          "village_hi": "बगराई",
+          "village_en": "BAGARI"
         }
       ],
       "school_count": 6,
@@ -2129,49 +2318,53 @@
           "school_name": "रा.उ.मा.वि. लामगरा",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "LAMGARA",
-          "village": "LAMGARA",
+          "village": "लाम्गरा",
           "dise_code": "08210701701",
           "shala_darpan_code": "221759",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. लामगरा",
-          "school_name_en": "Govt. Sr. Sec. School Lamgara",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA",
           "peeo_name": "PEEO LAMGARA",
-          "peeo_code": "221759"
+          "peeo_code": "221759",
+          "village_hi": "लाम्गरा"
         },
         {
           "school_name": "रा.उ.मा.वि. गनाहेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "LAMGARA",
-          "village": "GANAHEDA",
+          "village": "गनाहेड़ा",
           "dise_code": "8210700801",
           "shala_darpan_code": "221760",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
-          "school_name_en": "Govt. Sr. Sec. School Ganahera",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GANAHERA",
           "peeo_name": "PEEO LAMGARA",
-          "peeo_code": "221759"
+          "peeo_code": "221759",
+          "village_hi": "गनाहेड़ा",
+          "village_en": "GANAHEDA"
         },
         {
           "school_name": "रा.उ.मा.वि. निमेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "LAMGARA",
-          "village": "NIMEDA",
+          "village": "निमेड़ा",
           "dise_code": "8210701001",
           "shala_darpan_code": "221761",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
-          "school_name_en": "Govt. Sr. Sec. School Nimeda",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NIMEDA",
           "peeo_name": "PEEO LAMGARA",
-          "peeo_code": "221759"
+          "peeo_code": "221759",
+          "village_hi": "निमेड़ा"
         },
         {
           "school_name": "रा.उ.प्रा.वि. उदयपुर खेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "LAMGARA",
-          "village": "UDAIPUR KHEDA",
+          "village": "उदयपुरखेडा",
           "dise_code": "8210701101",
           "shala_darpan_code": "410964",
           "type": "Government",
@@ -2179,13 +2372,15 @@
           "school_name_hi": "रा.उ.प्रा.वि. उदयपुर खेड़ा",
           "school_name_en": "Govt. Upper Primary School Udaipur Kheda",
           "peeo_name": "PEEO LAMGARA",
-          "peeo_code": "221759"
+          "peeo_code": "221759",
+          "village_hi": "उदयपुरखेडा",
+          "village_en": "UDAIPURKHEDA"
         },
         {
           "school_name": "रा.उ.प्रा.वि. बड़ला खेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "LAMGARA",
-          "village": "BADLA KHEDA",
+          "village": "बडला",
           "dise_code": "8210700901",
           "shala_darpan_code": "485024",
           "type": "Government",
@@ -2193,13 +2388,14 @@
           "school_name_hi": "रा.उ.प्रा.वि. बड़ला खेड़ा",
           "school_name_en": "Govt. Upper Primary School Badla Kheda",
           "peeo_name": "PEEO LAMGARA",
-          "peeo_code": "221759"
+          "peeo_code": "221759",
+          "village_hi": "बडला"
         },
         {
           "school_name": "रा.प्रा.वि. भेरू खेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "LAMGARA",
-          "village": "BHERU KHEDA",
+          "village": "भेरुखेड़ा",
           "dise_code": "8210701201",
           "shala_darpan_code": "506579",
           "type": "Government",
@@ -2207,13 +2403,15 @@
           "school_name_hi": "रा.प्रा.वि. भेरू खेड़ा",
           "school_name_en": "Govt. Primary School Bheru Kheda",
           "peeo_name": "PEEO LAMGARA",
-          "peeo_code": "221759"
+          "peeo_code": "221759",
+          "village_hi": "भेरुखेड़ा",
+          "village_en": "BHERUKHEDA"
         },
         {
           "school_name": "गणेशगिरी बाल विद्या पीठ, गनाहेड़ा",
           "category": "Private (Primary)",
           "panchayat": "LAMGARA",
-          "village": "GANAHEDA",
+          "village": "गनाहेड़ा",
           "dise_code": "",
           "shala_darpan_code": "P13193",
           "type": "Private",
@@ -2221,7 +2419,9 @@
           "school_name_hi": "गणेशगिरी बाल विद्या पीठ, गनाहेड़ा",
           "school_name_en": "Ganeshgiri Baal Vidhya Peeth Ganahera",
           "peeo_name": "PEEO LAMGARA",
-          "peeo_code": "221759"
+          "peeo_code": "221759",
+          "village_hi": "गनाहेड़ा",
+          "village_en": "GANAHEDA"
         }
       ],
       "school_count": 7,
@@ -2244,21 +2444,23 @@
           "school_name": "रा.उ.मा.वि. नागोला",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "NAGOLA",
-          "village": "NAGOLA",
+          "village": "नागोला",
           "dise_code": "08210701801",
           "shala_darpan_code": "221772",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. नागोला",
-          "school_name_en": "Govt. Sr. Sec. School Nagola",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA",
           "peeo_name": "PEEO NAGOLA",
-          "peeo_code": "221772"
+          "peeo_code": "221772",
+          "village_hi": "नागोला",
+          "village_en": "NAGOLA"
         },
         {
           "school_name": "रा.प्रा.वि. धोरामंड खेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "NAGOLA",
-          "village": "BADLA URF KALA TALAB",
+          "village": "बडला",
           "dise_code": "8210704403",
           "shala_darpan_code": "488780",
           "type": "Government",
@@ -2266,13 +2468,14 @@
           "school_name_hi": "रा.प्रा.वि. धोरामंड खेड़ा",
           "school_name_en": "Govt. Primary School Dhoramand Kheda",
           "peeo_name": "PEEO NAGOLA",
-          "peeo_code": "221772"
+          "peeo_code": "221772",
+          "village_hi": "बडला"
         },
         {
           "school_name": "रा.प्रा.वि. खरोला का खेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "NAGOLA",
-          "village": "BADLA URF KALA TALAB",
+          "village": "बडला",
           "dise_code": "8210704401",
           "shala_darpan_code": "488788",
           "type": "Government",
@@ -2280,7 +2483,8 @@
           "school_name_hi": "रा.प्रा.वि. खरोला का खेड़ा",
           "school_name_en": "Govt. Primary School Kharola Ka Kheda",
           "peeo_name": "PEEO NAGOLA",
-          "peeo_code": "221772"
+          "peeo_code": "221772",
+          "village_hi": "बडला"
         },
         {
           "school_name": "रा.उ.प्रा.वि. सपनीखेड़ा",
@@ -2297,24 +2501,25 @@
           "peeo_code": "221772"
         },
         {
-          "school_name": "रा.उ.मा.वि. बडला (नागोला)",
+          "school_name": "रा.उ.मा.वि. बडला",
           "category": "Govt. Elementary / Sec",
           "panchayat": "NAGOLA",
-          "village": "BADLA URF KALA TALAB",
+          "village": "बडला",
           "dise_code": "8210704402",
           "shala_darpan_code": "488781",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.उ.मा.वि. बडला (नागोला)",
-          "school_name_en": "Govt. Sr. Sec. School Badla (Nagola)",
+          "school_name_hi": "रा.उ.मा.वि. बडला",
+          "school_name_en": "नागोला) (GOVT. SENIOR SECONDARY SCHOOL BADLA",
           "peeo_name": "PEEO NAGOLA",
-          "peeo_code": "221772"
+          "peeo_code": "221772",
+          "village_hi": "बडला"
         },
         {
           "school_name": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "NAGOLA",
-          "village": "BALAPURA (NAGOLA)",
+          "village": "बालापुरा",
           "dise_code": "8210704301",
           "shala_darpan_code": "506475",
           "type": "Government",
@@ -2322,7 +2527,9 @@
           "school_name_hi": "रा.उ.प्रा.वि. बालापुरा (नागोला)",
           "school_name_en": "Govt. Upper Primary School Balapura Nagola",
           "peeo_name": "PEEO NAGOLA",
-          "peeo_code": "221772"
+          "peeo_code": "221772",
+          "village_hi": "बालापुरा",
+          "village_en": "BALAPURA"
         },
         {
           "school_name": "पूजा पब्लिक स्कूल, नागोला",
@@ -2373,21 +2580,22 @@
           "school_name": "रा.उ.मा.वि. नांदसी",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "NANDSI",
-          "village": "NANDSI",
+          "village": "नांदसी",
           "dise_code": "08210701901",
           "shala_darpan_code": "221756",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. नांदसी",
-          "school_name_en": "Govt. Sr. Sec. School Nandsi",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI",
           "peeo_name": "PEEO NANDSI",
-          "peeo_code": "221756"
+          "peeo_code": "221756",
+          "village_hi": "नांदसी"
         },
         {
           "school_name": "रा.उ.प्रा.वि. काचरिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "NANDSI",
-          "village": "KACHRIYA",
+          "village": "काचरिया",
           "dise_code": "8210702801",
           "shala_darpan_code": "401959",
           "type": "Government",
@@ -2395,41 +2603,45 @@
           "school_name_hi": "रा.उ.प्रा.वि. काचरिया",
           "school_name_en": "Govt. Upper Primary School Kachriya",
           "peeo_name": "PEEO NANDSI",
-          "peeo_code": "221756"
+          "peeo_code": "221756",
+          "village_hi": "काचरिया",
+          "village_en": "KACHRIYA"
         },
         {
           "school_name": "रा.उ.मा.वि. कुरथल",
           "category": "Govt. Elementary / Sec",
           "panchayat": "NANDSI",
-          "village": "KURTHAL",
+          "village": "कूरथल",
           "dise_code": "8210700501",
           "shala_darpan_code": "221757",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "रा.उ.मा.वि. कुरथल",
-          "school_name_en": "Govt. Sr. Sec. School Kurthal",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KURTHAL",
           "peeo_name": "PEEO NANDSI",
-          "peeo_code": "221756"
+          "peeo_code": "221756",
+          "village_hi": "कूरथल"
         },
         {
           "school_name": "रा.बा.उ.मा.वि. नांदसी",
           "category": "Govt. Elementary / Sec",
           "panchayat": "NANDSI",
-          "village": "NANDSI",
+          "village": "नांदसी",
           "dise_code": "8210700402",
           "shala_darpan_code": "410632",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "रा.बा.उ.मा.वि. नांदसी",
-          "school_name_en": "Govt. Girls Sr. Sec. School Nandsi",
+          "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL NANDSI",
           "peeo_name": "PEEO NANDSI",
-          "peeo_code": "221756"
+          "peeo_code": "221756",
+          "village_hi": "नांदसी"
         },
         {
           "school_name": "अन्नपूर्णा पब्लिक स्कूल, नांदसी",
           "category": "Private (Primary)",
           "panchayat": "NANDSI",
-          "village": "NANDSI",
+          "village": "नांदसी",
           "dise_code": "",
           "shala_darpan_code": "P16285",
           "type": "Private",
@@ -2437,13 +2649,14 @@
           "school_name_hi": "अन्नपूर्णा पब्लिक स्कूल, नांदसी",
           "school_name_en": "Annpurna Public School Nandsi",
           "peeo_name": "PEEO NANDSI",
-          "peeo_code": "221756"
+          "peeo_code": "221756",
+          "village_hi": "नांदसी"
         },
         {
           "school_name": "मनसा पूर्णा प्रा.वि. कुरथल",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "NANDSI",
-          "village": "KURTHAL",
+          "village": "कूरथल",
           "dise_code": "",
           "shala_darpan_code": "P18650",
           "type": "Private",
@@ -2451,7 +2664,8 @@
           "school_name_hi": "मनसा पूर्णा प्रा.वि. कुरथल",
           "school_name_en": "Mansa Purna PS Kurthal",
           "peeo_name": "PEEO NANDSI",
-          "peeo_code": "221756"
+          "peeo_code": "221756",
+          "village_hi": "कूरथल"
         }
       ],
       "school_count": 6,
@@ -2474,21 +2688,23 @@
           "school_name": "रा.उ.मा.वि. पाडलिया",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "PADALIYA",
-          "village": "PADALIYA",
+          "village": "पाडलिया",
           "dise_code": "08210702001",
           "shala_darpan_code": "221766",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. पाडलिया",
-          "school_name_en": "Govt. Sr. Sec. School Padliya",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA",
           "peeo_name": "PEEO PADALIYA",
-          "peeo_code": "221766"
+          "peeo_code": "221766",
+          "village_hi": "पाडलिया",
+          "village_en": "PADALIYA"
         },
         {
           "school_name": "रा.उ.प्रा.वि. गोरधनपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "PADLIYA",
-          "village": "PADLIYA",
+          "village": "पाडलिया",
           "dise_code": "8210703202",
           "shala_darpan_code": "410654",
           "type": "Government",
@@ -2496,13 +2712,15 @@
           "school_name_hi": "रा.उ.प्रा.वि. गोरधनपुरा",
           "school_name_en": "Govt. Upper Primary School Gordhanpura",
           "peeo_name": "PEEO PADALIYA",
-          "peeo_code": "221766"
+          "peeo_code": "221766",
+          "village_hi": "पाडलिया",
+          "village_en": "PADALIYA"
         },
         {
           "school_name": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "PADLIYA",
-          "village": "CHAVANDIYA",
+          "village": "चावण्डिया",
           "dise_code": "8210703501",
           "shala_darpan_code": "402141",
           "type": "Government",
@@ -2510,13 +2728,15 @@
           "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (पाडलिया)",
           "school_name_en": "Govt. Upper Primary School Chavandiya Padaliya",
           "peeo_name": "PEEO PADALIYA",
-          "peeo_code": "221766"
+          "peeo_code": "221766",
+          "village_hi": "चावण्डिया",
+          "village_en": "CHAWANDIYA"
         },
         {
           "school_name": "रा.उ.प्रा.वि. बिलिया (पाडलिया)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "PADLIYA",
-          "village": "BILIYA",
+          "village": "बीलिया",
           "dise_code": "8210703301",
           "shala_darpan_code": "468182",
           "type": "Government",
@@ -2524,7 +2744,9 @@
           "school_name_hi": "रा.उ.प्रा.वि. बिलिया (पाडलिया)",
           "school_name_en": "Govt. Upper Primary School Biliya Padaliya",
           "peeo_name": "PEEO PADALIYA",
-          "peeo_code": "221766"
+          "peeo_code": "221766",
+          "village_hi": "बीलिया",
+          "village_en": "BILIYA"
         },
         {
           "school_name": "रा.प्रा.वि. मूण्डिया खेड़ा (पाडलिया)",
@@ -2561,21 +2783,22 @@
           "school_name": "रा.उ.मा.वि. पाडंगा",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "PADANGA",
-          "village": "PADANGA",
+          "village": "पाडंगा",
           "dise_code": "08210702101",
           "shala_darpan_code": "221788",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. पाडंगा",
-          "school_name_en": "Govt. Sr. Sec. School Padanga",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA",
           "peeo_name": "PEEO PADANGA",
-          "peeo_code": "221788"
+          "peeo_code": "221788",
+          "village_hi": "पाडंगा"
         },
         {
           "school_name": "रा.प्रा.वि. सायमाला पाडंगा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "PADANGA",
-          "village": "PADANGA",
+          "village": "पाडंगा",
           "dise_code": "8210708802",
           "shala_darpan_code": "410721",
           "type": "Government",
@@ -2583,13 +2806,14 @@
           "school_name_hi": "रा.प्रा.वि. सायमाला पाडंगा",
           "school_name_en": "Govt. Primary School Saimala Padanga",
           "peeo_name": "PEEO PADANGA",
-          "peeo_code": "221788"
+          "peeo_code": "221788",
+          "village_hi": "पाडंगा"
         },
         {
           "school_name": "रा.प्रा.वि. सवाईपुरा (पाडंगा)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "PADANGA",
-          "village": "SAWAIPURA",
+          "village": "सवाईपुरा",
           "dise_code": "8210708501",
           "shala_darpan_code": "488936",
           "type": "Government",
@@ -2597,13 +2821,15 @@
           "school_name_hi": "रा.प्रा.वि. सवाईपुरा (पाडंगा)",
           "school_name_en": "Govt. Primary School Sawaipura Padanga",
           "peeo_name": "PEEO PADANGA",
-          "peeo_code": "221788"
+          "peeo_code": "221788",
+          "village_hi": "सवाईपुरा",
+          "village_en": "SAWAIPURA"
         },
         {
           "school_name": "रा.उ.प्रा.वि. अर्जुनपुरा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "PADANGA",
-          "village": "ARJUNPURA",
+          "village": "अर्जुनपुरा 92202",
           "dise_code": "8210708601",
           "shala_darpan_code": "488943",
           "type": "Government",
@@ -2611,13 +2837,15 @@
           "school_name_hi": "रा.उ.प्रा.वि. अर्जुनपुरा",
           "school_name_en": "Govt. Upper Primary School Arjunpura",
           "peeo_name": "PEEO PADANGA",
-          "peeo_code": "221788"
+          "peeo_code": "221788",
+          "village_hi": "अर्जुनपुरा 92202",
+          "village_en": "ARJUNPURA"
         },
         {
           "school_name": "हिना बाल विद्या मंदिर, पाडंगा",
           "category": "Private (Primary)",
           "panchayat": "PADANGA",
-          "village": "PADANGA",
+          "village": "पाडंगा",
           "dise_code": "",
           "shala_darpan_code": "P64304",
           "type": "Private",
@@ -2625,7 +2853,8 @@
           "school_name_hi": "हिना बाल विद्या मंदिर, पाडंगा",
           "school_name_en": "Heena Bal Vidhya Mandir Pananga",
           "peeo_name": "PEEO PADANGA",
-          "peeo_code": "221788"
+          "peeo_code": "221788",
+          "village_hi": "पाडंगा"
         }
       ],
       "school_count": 5,
@@ -2648,29 +2877,32 @@
           "school_name": "रा.उ.मा.वि. राममालिया",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "RAMMALIA",
-          "village": "RAMMALIA",
+          "village": "राममालिया",
           "dise_code": "08210702201",
           "shala_darpan_code": "221785",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. राममालिया",
-          "school_name_en": "Govt. Sr. Sec. School Rammaliya",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA",
           "peeo_name": "PEEO RAMMALIA",
-          "peeo_code": "221785"
+          "peeo_code": "221785",
+          "village_hi": "राममालिया",
+          "village_en": "RAMMALIYA"
         },
         {
           "school_name": "रा.उ.मा.वि. रघुनाथगढ़",
           "category": "Govt. Elementary / Sec",
           "panchayat": "RAMMALIYA",
-          "village": "RAGHUNATH GADH",
+          "village": "रघुनाथगढ़",
           "dise_code": "8210707001",
           "shala_darpan_code": "410677",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "रा.उ.मा.वि. रघुनाथगढ़",
-          "school_name_en": "Govt. Sr. Sec. School Raghunathgadh",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAGHUNATHGADH",
           "peeo_name": "PEEO RAMMALIA",
-          "peeo_code": "221785"
+          "peeo_code": "221785",
+          "village_hi": "रघुनाथगढ़"
         },
         {
           "school_name": "रा.उ.मा.वि. हीरापुरा",
@@ -2682,7 +2914,7 @@
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "रा.उ.मा.वि. हीरापुरा",
-          "school_name_en": "Govt. Sr. Sec. School Heerapura",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL HEERAPURA",
           "peeo_name": "PEEO RAMMALIA",
           "peeo_code": "221785"
         },
@@ -2721,29 +2953,32 @@
           "school_name": "रा.उ.मा.वि. राताकोट",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "RATAKOT",
-          "village": "RATAKOT",
+          "village": "राताकोट",
           "dise_code": "08210702301",
           "shala_darpan_code": "221775",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. राताकोट",
-          "school_name_en": "Govt. Sr. Sec. School Ratakot",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT",
           "peeo_name": "PEEO RATAKOT",
-          "peeo_code": "221775"
+          "peeo_code": "221775",
+          "village_hi": "राताकोट",
+          "village_en": "RATAKOT"
         },
         {
           "school_name": "रा.उ.मा.वि. झीपिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "RATAKOT",
-          "village": "JHIPIYA",
+          "village": "झींपिया",
           "dise_code": "8210705201",
           "shala_darpan_code": "221776",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "रा.उ.मा.वि. झीपिया",
-          "school_name_en": "Govt. Sr. Sec. School Jhipiya",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL JHIPIYA",
           "peeo_name": "PEEO RATAKOT",
-          "peeo_code": "221775"
+          "peeo_code": "221775",
+          "village_hi": "झींपिया"
         }
       ],
       "school_count": 2,
@@ -2766,21 +3001,22 @@
           "school_name": "रा.उ.मा.वि. सिंगावल",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "SINGAWAL",
-          "village": "SINGAWAL",
+          "village": "सिंगावल",
           "dise_code": "08210702401",
           "shala_darpan_code": "221781",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. सिंगावल",
-          "school_name_en": "Govt. Sr. Sec. School Singawal",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL",
           "peeo_name": "PEEO SINGAWAL",
-          "peeo_code": "221781"
+          "peeo_code": "221781",
+          "village_hi": "सिंगावल"
         },
         {
           "school_name": "रा.प्रा.वि. माताजी का खेड़ा (सिंगावल)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SINGAWAL",
-          "village": "SINGAWAL",
+          "village": "सिंगावल",
           "dise_code": "8210705603",
           "shala_darpan_code": "410747",
           "type": "Government",
@@ -2788,13 +3024,14 @@
           "school_name_hi": "रा.प्रा.वि. माताजी का खेड़ा (सिंगावल)",
           "school_name_en": "Govt. Primary School Mataji Ka Kheda Singawal",
           "peeo_name": "PEEO SINGAWAL",
-          "peeo_code": "221781"
+          "peeo_code": "221781",
+          "village_hi": "सिंगावल"
         },
         {
           "school_name": "रा.उ.प्रा.वि. खटाणों का खेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SINGAWAL",
-          "village": "KHATANO KA KHEDA",
+          "village": "खटानो का खेडा",
           "dise_code": "8210705703",
           "shala_darpan_code": "410621",
           "type": "Government",
@@ -2802,13 +3039,15 @@
           "school_name_hi": "रा.उ.प्रा.वि. खटाणों का खेड़ा",
           "school_name_en": "Govt. Upper Primary School Khatano Ka Kheda",
           "peeo_name": "PEEO SINGAWAL",
-          "peeo_code": "221781"
+          "peeo_code": "221781",
+          "village_hi": "खटानो का खेडा",
+          "village_en": "KHATANO KA KHEDA"
         },
         {
           "school_name": "रा.प्रा.वि. गुर्जर माली ढाणी मथानिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SINGAWAL",
-          "village": "MATHANIYA",
+          "village": "मथानिया 92205",
           "dise_code": "8210705702",
           "shala_darpan_code": "488682",
           "type": "Government",
@@ -2816,13 +3055,15 @@
           "school_name_hi": "रा.प्रा.वि. गुर्जर माली ढाणी मथानिया",
           "school_name_en": "Govt. Primary School Gurjar Mali Dhani Mathaniya",
           "peeo_name": "PEEO SINGAWAL",
-          "peeo_code": "221781"
+          "peeo_code": "221781",
+          "village_hi": "मथानिया 92205",
+          "village_en": "MATHANIYA"
         },
         {
           "school_name": "रा.प्रा.वि. मथानिया",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SINGAWAL",
-          "village": "MATHANIYA",
+          "village": "मथानिया 92205",
           "dise_code": "8210705701",
           "shala_darpan_code": "506678",
           "type": "Government",
@@ -2830,13 +3071,15 @@
           "school_name_hi": "रा.प्रा.वि. मथानिया",
           "school_name_en": "Govt. Primary School Mathaniya",
           "peeo_name": "PEEO SINGAWAL",
-          "peeo_code": "221781"
+          "peeo_code": "221781",
+          "village_hi": "मथानिया 92205",
+          "village_en": "MATHANIYA"
         },
         {
           "school_name": "रा.प्रा.वि. कुम्हार मोहल्ला सिंगावल",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SINGAWAL",
-          "village": "SINGAWAL",
+          "village": "सिंगावल",
           "dise_code": "8210705605",
           "shala_darpan_code": "506686",
           "type": "Government",
@@ -2844,13 +3087,14 @@
           "school_name_hi": "रा.प्रा.वि. कुम्हार मोहल्ला सिंगावल",
           "school_name_en": "Govt. Primary School Kumhar Mohalla Singawal",
           "peeo_name": "PEEO SINGAWAL",
-          "peeo_code": "221781"
+          "peeo_code": "221781",
+          "village_hi": "सिंगावल"
         },
         {
           "school_name": "गौतम पब्लिक स्कूल, सिंगावल",
           "category": "Private (Primary with Upper Primary)",
           "panchayat": "SINGAWAL",
-          "village": "SINGAWAL",
+          "village": "सिंगावल",
           "dise_code": "",
           "shala_darpan_code": "P46806",
           "type": "Private",
@@ -2858,7 +3102,8 @@
           "school_name_hi": "गौतम पब्लिक स्कूल, सिंगावल",
           "school_name_en": "Gautam Public School Singawal",
           "peeo_name": "PEEO SINGAWAL",
-          "peeo_code": "221781"
+          "peeo_code": "221781",
+          "village_hi": "सिंगावल"
         }
       ],
       "school_count": 7,
@@ -2881,21 +3126,22 @@
           "school_name": "रा.उ.मा.वि. सोबड़ी",
           "category": "Govt. Senior Secondary (PEEO Nodal HQ)",
           "panchayat": "SOBRI",
-          "village": "SOBRI",
+          "village": "सोबड़ी",
           "dise_code": "08210702501",
           "shala_darpan_code": "221782",
           "type": "Government",
           "is_peeo_nodal": true,
           "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
-          "school_name_en": "Govt. Sr. Sec. School Sobri",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI",
           "peeo_name": "PEEO SOBRI",
-          "peeo_code": "221782"
+          "peeo_code": "221782",
+          "village_hi": "सोबड़ी"
         },
         {
           "school_name": "रा.उ.प्रा.वि. तेलाड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SOBDI",
-          "village": "TELADA",
+          "village": "तेलाडा",
           "dise_code": "8210706201",
           "shala_darpan_code": "488877",
           "type": "Government",
@@ -2903,13 +3149,15 @@
           "school_name_hi": "रा.उ.प्रा.वि. तेलाड़ा",
           "school_name_en": "Govt. Upper Primary School Telada",
           "peeo_name": "PEEO SOBRI",
-          "peeo_code": "221782"
+          "peeo_code": "221782",
+          "village_hi": "तेलाडा",
+          "village_en": "TELADA"
         },
         {
           "school_name": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SOBDI",
-          "village": "CHAVANDIYA",
+          "village": "चावण्डिया",
           "dise_code": "8210706101",
           "shala_darpan_code": "488886",
           "type": "Government",
@@ -2917,13 +3165,15 @@
           "school_name_hi": "रा.उ.प्रा.वि. चावंडिया (सोबड़ी)",
           "school_name_en": "Govt. Upper Primary School Chavandiya Sobri",
           "peeo_name": "PEEO SOBRI",
-          "peeo_code": "221782"
+          "peeo_code": "221782",
+          "village_hi": "चावण्डिया",
+          "village_en": "CHAWANDIYA"
         },
         {
           "school_name": "रा.प्रा.वि. गुर्जरों का झोपड़ा घाणा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SOBDI",
-          "village": "GHANA",
+          "village": "घाणा",
           "dise_code": "8210705902",
           "shala_darpan_code": "408415",
           "type": "Government",
@@ -2931,7 +3181,8 @@
           "school_name_hi": "रा.प्रा.वि. गुर्जरों का झोपड़ा घाणा",
           "school_name_en": "Govt. Primary School Gujaro Ka Jhopda Ghana",
           "peeo_name": "PEEO SOBRI",
-          "peeo_code": "221782"
+          "peeo_code": "221782",
+          "village_hi": "घाणा"
         },
         {
           "school_name": "रा.प्रा.वि. कुम्हारिया खेड़ा (सोबड़ी)",
@@ -2965,15 +3216,16 @@
           "school_name": "रा.उ.मा.वि. घाणा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "SOBDI",
-          "village": "GHANA",
+          "village": "घाणा",
           "dise_code": "8210705901",
           "shala_darpan_code": "488897",
           "type": "Government",
           "is_peeo_nodal": false,
           "school_name_hi": "रा.उ.मा.वि. घाणा",
-          "school_name_en": "Govt. Sr. Sec. School Ghana",
+          "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GHANA",
           "peeo_name": "PEEO SOBRI",
-          "peeo_code": "221782"
+          "peeo_code": "221782",
+          "village_hi": "घाणा"
         }
       ],
       "school_count": 7,
@@ -31607,7 +31859,7 @@
   "schools_56": [
     {
       "s_no": 1,
-      "school_name": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
+      "school_name": "रा.उ.मा.वि. बड़गांव",
       "shala_darpan_code": "221764",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -31620,8 +31872,8 @@
       "principal_mobile": "9001450275",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. बड़गांव (सूरखण्ड)",
-      "school_name_en": "Govt. Sr. Sec. School Badgaon - Surkhand"
+      "school_name_hi": "रा.उ.मा.वि. बड़गांव",
+      "school_name_en": "सूरखण्ड) (GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND"
     },
     {
       "s_no": 2,
@@ -31639,7 +31891,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.बा.उ.मा.वि. बड़ली",
-      "school_name_en": "Govt. Girls Sr. Sec. School Barli"
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI"
     },
     {
       "s_no": 3,
@@ -31657,7 +31909,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. बड़ली",
-      "school_name_en": "Govt. Sr. Sec. School Barli"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI"
     },
     {
       "s_no": 4,
@@ -31675,7 +31927,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. बांदनवाड़ा",
-      "school_name_en": "Govt. Sr. Sec. School Bandanwara"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA"
     },
     {
       "s_no": 5,
@@ -31693,7 +31945,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. रेलवे कॉलोनी, बांदनवाड़ा",
-      "school_name_en": "Govt. Sr. Sec. School Railway Colony Bandanwara"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA"
     },
     {
       "s_no": 6,
@@ -31711,7 +31963,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
-      "school_name_en": "Mahatma Gandhi Govt. School Bandanwara"
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA"
     },
     {
       "s_no": 7,
@@ -31729,7 +31981,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. भिनाय",
-      "school_name_en": "Govt. Sr. Sec. School Bhinai"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI"
     },
     {
       "s_no": 8,
@@ -31747,7 +31999,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
-      "school_name_en": "Mahatma Gandhi Govt. School Bhinai"
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI"
     },
     {
       "s_no": 9,
@@ -31765,7 +32017,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. बूबकिया",
-      "school_name_en": "Govt. Sr. Sec. School Boobkiya"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA"
     },
     {
       "s_no": 10,
@@ -31783,7 +32035,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. पीपलिया",
-      "school_name_en": "Govt. Sr. Sec. School Pipliya"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PIPLIYA"
     },
     {
       "s_no": 11,
@@ -31801,7 +32053,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. छाछून्दरा",
-      "school_name_en": "Govt. Sr. Sec. School Chhachhundra"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA"
     },
     {
       "s_no": 12,
@@ -31819,7 +32071,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. सेदरिया",
-      "school_name_en": "Govt. Sr. Sec. School Sedriya"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SEDRIYA"
     },
     {
       "s_no": 13,
@@ -31837,7 +32089,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.बा.उ.मा.वि. चापानेरी",
-      "school_name_en": "Govt. Girls Sr. Sec. School Chapaneri"
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL CHAPANERI"
     },
     {
       "s_no": 14,
@@ -31855,7 +32107,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. चापानेरी",
-      "school_name_en": "Govt. Sr. Sec. School Chapaneri"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI"
     },
     {
       "s_no": 15,
@@ -31873,7 +32125,7 @@
       "incharge_name": "Basanti olaniya",
       "incharge_mobile": "7727945324",
       "school_name_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
-      "school_name_en": "Mahatma Gandhi Govt. School Deoliya Kalan"
+      "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN"
     },
     {
       "s_no": 16,
@@ -31891,7 +32143,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Devliya Kalan"
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN"
     },
     {
       "s_no": 17,
@@ -31909,7 +32161,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. देवरिया",
-      "school_name_en": "Govt. Sr. Sec. School Devriya"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA"
     },
     {
       "s_no": 18,
@@ -31927,7 +32179,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. रूपपुरा",
-      "school_name_en": "Govt. Sr. Sec. School Rooppura"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL ROOPPURA"
     },
     {
       "s_no": 19,
@@ -31945,7 +32197,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. धांतोल",
-      "school_name_en": "Govt. Sr. Sec. School Dhantol"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL"
     },
     {
       "s_no": 20,
@@ -31963,7 +32215,7 @@
       "incharge_name": "MANJU CHOUDHARY",
       "incharge_mobile": "8107003655",
       "school_name_hi": "रा.उ.मा.वि. एकलसिंघा",
-      "school_name_en": "Govt. Sr. Sec. School Ekalsingha"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA"
     },
     {
       "s_no": 21,
@@ -31981,7 +32233,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. हियालिया",
-      "school_name_en": "Govt. Sr. Sec. School Hiyaliya"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL HIYALIYA"
     },
     {
       "s_no": 22,
@@ -31999,7 +32251,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
-      "school_name_en": "Govt. Sr. Sec. School Gudha Khurd"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD"
     },
     {
       "s_no": 23,
@@ -32017,7 +32269,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "पीएम श्री रा.उ.मा.वि. बागरिया",
-      "school_name_en": "PM SHRI Govt. Sr. Sec. School Bagrai"
+      "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI"
     },
     {
       "s_no": 24,
@@ -32035,7 +32287,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. कनाई कलां",
-      "school_name_en": "Govt. Sr. Sec. School Kanai Kala"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA"
     },
     {
       "s_no": 25,
@@ -32053,7 +32305,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. नेमेड़ा",
-      "school_name_en": "Govt. Sr. Sec. School Nemeda"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA"
     },
     {
       "s_no": 26,
@@ -32071,7 +32323,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. करांटी",
-      "school_name_en": "Govt. Sr. Sec. School Karanti"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI"
     },
     {
       "s_no": 27,
@@ -32089,7 +32341,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. खेड़ी",
-      "school_name_en": "Govt. Sr. Sec. School Khedi"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KHEDI"
     },
     {
       "s_no": 28,
@@ -32107,7 +32359,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.बा.उ.मा.वि. खेड़ी",
-      "school_name_en": "Govt. Girls Sr. Sec. School Khedi"
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL KHEDI"
     },
     {
       "s_no": 29,
@@ -32125,11 +32377,11 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. जेतपुरा",
-      "school_name_en": "Govt. Sr. Sec. School Jetpura"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL JETPURA"
     },
     {
       "s_no": 30,
-      "school_name": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
+      "school_name": "रा.उ.मा.वि. कैरोट",
       "shala_darpan_code": "221767",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32142,8 +32394,8 @@
       "principal_mobile": "9929526324",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. कैरोट (जेतपुरा)",
-      "school_name_en": "Govt. Sr. Sec. School Kairot (Jetpura)"
+      "school_name_hi": "रा.उ.मा.वि. कैरोट",
+      "school_name_en": "जेतपुरा) (GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD"
     },
     {
       "s_no": 31,
@@ -32161,7 +32413,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. कुम्हारिया",
-      "school_name_en": "Govt. Sr. Sec. School Kumhariya"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA"
     },
     {
       "s_no": 32,
@@ -32179,7 +32431,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. गनाहेड़ा",
-      "school_name_en": "Govt. Sr. Sec. School Ganahera"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GANAHERA"
     },
     {
       "s_no": 33,
@@ -32197,7 +32449,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. लामगरा",
-      "school_name_en": "Govt. Sr. Sec. School Lamgara"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA"
     },
     {
       "s_no": 34,
@@ -32215,11 +32467,11 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
-      "school_name_en": "Govt. Sr. Sec. School Nimeda"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NIMEDA"
     },
     {
       "s_no": 35,
-      "school_name": "रा.उ.मा.वि. बडला (नागोला)",
+      "school_name": "रा.उ.मा.वि. बडला",
       "shala_darpan_code": "488781",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -32232,8 +32484,8 @@
       "principal_mobile": "9413682497",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. बडला (नागोला)",
-      "school_name_en": "Govt. Sr. Sec. School Badla (Nagola)"
+      "school_name_hi": "रा.उ.मा.वि. बडला",
+      "school_name_en": "नागोला) (GOVT. SENIOR SECONDARY SCHOOL BADLA"
     },
     {
       "s_no": 36,
@@ -32251,7 +32503,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. नागोला",
-      "school_name_en": "Govt. Sr. Sec. School Nagola"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA"
     },
     {
       "s_no": 37,
@@ -32269,7 +32521,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.बा.उ.मा.वि. नांदसी",
-      "school_name_en": "Govt. Girls Sr. Sec. School Nandsi"
+      "school_name_en": "GOVT. GIRLS SENIOR SECONDARY SCHOOL NANDSI"
     },
     {
       "s_no": 38,
@@ -32287,7 +32539,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. कुरथल",
-      "school_name_en": "Govt. Sr. Sec. School Kurthal"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KURTHAL"
     },
     {
       "s_no": 39,
@@ -32305,7 +32557,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. नांदसी",
-      "school_name_en": "Govt. Sr. Sec. School Nandsi"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI"
     },
     {
       "s_no": 40,
@@ -32323,7 +32575,7 @@
       "incharge_name": "Pankaj sharma",
       "incharge_mobile": "9413135717",
       "school_name_hi": "रा.उ.मा.वि. पाडंगा",
-      "school_name_en": "Govt. Sr. Sec. School Padanga"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA"
     },
     {
       "s_no": 41,
@@ -32341,7 +32593,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. पाडलिया",
-      "school_name_en": "Govt. Sr. Sec. School Padliya"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA"
     },
     {
       "s_no": 42,
@@ -32359,7 +32611,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. हीरापुरा",
-      "school_name_en": "Govt. Sr. Sec. School Heerapura"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL HEERAPURA"
     },
     {
       "s_no": 43,
@@ -32377,7 +32629,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. रघुनाथगढ़",
-      "school_name_en": "Govt. Sr. Sec. School Raghunathgadh"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAGHUNATHGADH"
     },
     {
       "s_no": 44,
@@ -32395,7 +32647,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. राममालिया",
-      "school_name_en": "Govt. Sr. Sec. School Rammaliya"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA"
     },
     {
       "s_no": 45,
@@ -32413,7 +32665,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. झीपिया",
-      "school_name_en": "Govt. Sr. Sec. School Jhipiya"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL JHIPIYA"
     },
     {
       "s_no": 46,
@@ -32431,7 +32683,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. राताकोट",
-      "school_name_en": "Govt. Sr. Sec. School Ratakot"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT"
     },
     {
       "s_no": 47,
@@ -32449,7 +32701,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. सिंगावल",
-      "school_name_en": "Govt. Sr. Sec. School Singawal"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL"
     },
     {
       "s_no": 48,
@@ -32467,7 +32719,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. घाणा",
-      "school_name_en": "Govt. Sr. Sec. School Ghana"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GHANA"
     },
     {
       "s_no": 49,
@@ -32485,7 +32737,7 @@
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. सोबड़ी",
-      "school_name_en": "Govt. Sr. Sec. School Sobri"
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI"
     },
     {
       "s_no": 50,
@@ -37996,6 +38248,89 @@
       "updated_at": "2026-10-07T04:32:57.903Z",
       "is_submitted": true,
       "submitted_at": "2026-10-07T04:32:57.903Z"
+    },
+    "221762": {
+      "school_code": "221762",
+      "exam_code": "AJM04G221762",
+      "principal_name": "Deepesh Kumar Sisodia",
+      "principal_mobile": "9414554344",
+      "incharge_name": "RAJANEESH KUMAR JANGID",
+      "incharge_mobile": "9875119865",
+      "submitted_by": "Deepesh Kumar Sisodia",
+      "c9": {
+        "zero_enrolment": false,
+        "hindi": 70,
+        "english": 70,
+        "maths": 80,
+        "science": 80,
+        "sst": 80,
+        "sanskrit": 70,
+        "urdu": 0
+      },
+      "c10": {
+        "zero_enrolment": false,
+        "hindi": 90,
+        "english": 90,
+        "maths": 100,
+        "science": 100,
+        "sst": 90,
+        "sanskrit": 90,
+        "urdu": 0
+      },
+      "c11": {
+        "zero_enrolment": false,
+        "comp_hindi": 70,
+        "comp_english": 70,
+        "faculties": [
+          "arts"
+        ],
+        "electives": [
+          {
+            "key": "history",
+            "name": "इतिहास (History)",
+            "pct": 80
+          },
+          {
+            "key": "geography",
+            "name": "भूगोल (Geography)",
+            "pct": 85
+          },
+          {
+            "key": "hindi_lit",
+            "name": "हिंदी साहित्य (Hindi Literature)",
+            "pct": 75
+          }
+        ]
+      },
+      "c12": {
+        "zero_enrolment": false,
+        "comp_hindi": 95,
+        "comp_english": 95,
+        "faculties": [
+          "arts"
+        ],
+        "electives": [
+          {
+            "key": "history",
+            "name": "इतिहास (History)",
+            "pct": 90
+          },
+          {
+            "key": "geography",
+            "name": "भूगोल (Geography)",
+            "pct": 95
+          },
+          {
+            "key": "hindi_lit",
+            "name": "हिंदी साहित्य (Hindi Literature)",
+            "pct": 90
+          }
+        ]
+      },
+      "average_pct": 84.3,
+      "updated_at": "2026-10-07T05:51:21.866Z",
+      "is_submitted": true,
+      "submitted_at": "2026-10-07T05:51:21.867Z"
     },
     "221767": {
       "school_code": "221767",

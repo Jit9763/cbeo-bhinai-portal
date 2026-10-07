@@ -458,6 +458,31 @@ function initMasterData() {
       }
     }).catch(() => {});
 
+  // Sync portal settings and VM settings from local SQLite API (Permanent persistence)
+  fetch('/api/get_portal_settings')
+    .then(r => r.json())
+    .then(data => {
+      if (data && data.success && data.settings && Object.keys(data.settings).length > 0) {
+        STATE.portalSettings = Object.assign(STATE.portalSettings || {}, data.settings);
+        localStorage.setItem('cbeo_portal_settings', JSON.stringify(STATE.portalSettings));
+        if (data.settings.vm_dispatch_config) {
+          localStorage.setItem('cbeo_vm_dispatch_config', JSON.stringify(data.settings.vm_dispatch_config));
+          if (typeof loadVMDispatchConfig === 'function') loadVMDispatchConfig();
+        }
+      }
+    }).catch(() => {});
+
+  fetch('/api/get_vm_settings')
+    .then(r => r.json())
+    .then(data => {
+      if (data && data.success && data.settings && Object.keys(data.settings).length > 0) {
+        if (typeof CURRENT_VM_SETTINGS !== 'undefined') {
+          Object.assign(CURRENT_VM_SETTINGS, data.settings);
+        }
+        localStorage.setItem('cbeo_vm_settings', JSON.stringify(data.settings));
+      }
+    }).catch(() => {});
+
   // Sync latest syllabus submissions from SQLite API immediately
   if (typeof syncSyllabusSubmissionsFromCloud === 'function') {
     syncSyllabusSubmissionsFromCloud(false);
@@ -2410,13 +2435,18 @@ function syncAuthFromGoogleSheet(callback) {
             const rawSettings = getPayload(data.users['__PORTAL_SETTINGS__']);
             const ps = rawSettings ? JSON.parse(rawSettings) : null;
             if (ps && typeof ps === 'object') {
-              STATE.portalSettings = ps;
-              STATE.samanParikshaArchived = !!ps.saman_pariksha_archived;
-              localStorage.setItem('cbeo_portal_settings', JSON.stringify(ps));
+              const curStored = JSON.parse(localStorage.getItem('cbeo_portal_settings') || 'null');
+              const shouldApply = !curStored || !curStored.updated_at || (ps.updated_at && new Date(ps.updated_at) >= new Date(curStored.updated_at));
+              if (shouldApply) {
+                STATE.portalSettings = Object.assign(STATE.portalSettings || {}, ps);
+                STATE.samanParikshaArchived = !!ps.saman_pariksha_archived;
+                localStorage.setItem('cbeo_portal_settings', JSON.stringify(STATE.portalSettings));
+              }
               
-              if (Array.isArray(ps.archived_demand_ids) && Array.isArray(STATE.demands)) {
+              const activePs = shouldApply ? ps : curStored;
+              if (activePs && Array.isArray(activePs.archived_demand_ids) && Array.isArray(STATE.demands)) {
                 STATE.demands.forEach(d => {
-                  if (ps.archived_demand_ids.includes(d.id)) d.archived = true;
+                  if (activePs.archived_demand_ids.includes(d.id)) d.archived = true;
                 });
               }
               applyTabVisibility();
@@ -2667,12 +2697,13 @@ function renderSamanParikshaView() {
   }
 
   const isJitendra = typeof isJitendraLoggedIn === 'function' && isJitendraLoggedIn();
-  const isAdminUser = isJitendra || (STATE.currentUser && (STATE.currentUser.role === 'admin' || STATE.currentUser.shala_darpan_code === '8140' || STATE.currentUser.admin_id === 'ADMIN01'));
+  const btnMismatchAdmin = document.getElementById('btn-sp-mismatch-admin');
+  const schoolMismatchBanner = document.getElementById('sp-school-mismatch-banner');
 
-  // Admin In-Tab Header Controls (विद्यालय प्रकार, नई मांग, 6-स्तरीय प्रपत्र नियंत्रण, मिसमैच)
+  // Admin In-Tab Header Controls (विद्यालय प्रकार, नई मांग, 6-स्तरीय प्रपत्र नियंत्रण, मिसमैच - STRICTLY JITENDRA LOGIN ONLY)
   const adminHeaderControls = document.getElementById('sp-admin-header-controls');
   if (adminHeaderControls) {
-    adminHeaderControls.style.display = isAdminUser ? 'flex' : 'none';
+    adminHeaderControls.style.display = isJitendra ? 'flex' : 'none';
   }
 
   if (!STATE.currentUser) {
@@ -2682,7 +2713,7 @@ function renderSamanParikshaView() {
   }
 
   if (btnMismatchAdmin) {
-    btnMismatchAdmin.style.display = isAdminUser ? 'inline-flex' : 'none';
+    btnMismatchAdmin.style.display = isJitendra ? 'inline-flex' : 'none';
   }
 
   if (schoolMismatchBanner) {
@@ -2691,8 +2722,8 @@ function renderSamanParikshaView() {
 
     if (!isAlertActive) {
       schoolMismatchBanner.style.display = 'none';
-    } else if (isAdminUser) {
-      // In Admin view, show a summary notice if mismatch alert is active!
+    } else if (isJitendra) {
+      // In Jitendra Admin view only, show a summary notice and master controls if mismatch alert is active!
       const details = (cfg && cfg.mismatch_details) || DEFAULT_SAMAN_MISMATCH_SETTINGS.mismatch_details;
       const customSchools = (cfg && cfg.custom_edit_schools) || [];
       const totalMismatchCount = Object.keys(details).length;
@@ -4766,9 +4797,15 @@ function printSyllabusPdf(schoolCode = null) {
 
     <div class="report-container">
       <div class="header-box">
-        <h2>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)</h2>
-        <h3>जिला समान परीक्षा 2026-27 | पाठ्यक्रम पूर्णता प्रतिशत विवरण प्रपत्र (कक्षा 9 से 12)</h3>
-        <p>जिला: <strong>अजमेर (AJMER)</strong> &bull; ब्लॉक: <strong>भिनाय (BHINAI)</strong> &bull; अधिकृत रिपोर्ट: <strong>49 राजकीय माध्यमिक व उच्च माध्यमिक विद्यालय</strong></p>
+        <div style="font-size:12px; font-weight:700; color:#475569; margin-bottom:2px">राजस्थान सरकार | स्कूल शिक्षा विभाग</div>
+        <h2 style="font-size:20px; font-weight:900; color:#1e3a8a; margin:2px 0">${school.school_name_hi || school.school_name}</h2>
+        <div style="font-size:13px; font-weight:700; color:#334155; margin-bottom:4px">
+          शाला दर्पण कोड: <strong>${school.shala_darpan_code}</strong> &bull; परीक्षा कोड: <strong>${examCode}</strong> &bull; श्रेणी: <strong>${school.category || 'Sr.Sec'} (राजकीय)</strong>
+        </div>
+        <h3 style="font-size:15px; font-weight:800; color:#0284c7; margin:3px 0">जिला समान परीक्षा (सत्र 2026-27) | पाठ्यक्रम पूर्णता प्रतिशत अधिकृत प्रपत्र (कक्षा 9 से 12)</h3>
+        <p style="font-size:12px; color:#475569; margin:2px 0">
+          कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय | जिला: <strong>अजमेर (AJMER)</strong> &bull; ब्लॉक: <strong>भिनाय (BHINAI)</strong> &bull; PEEO: <strong>${school.peeo_name || '---'}</strong>
+        </p>
       </div>
 
       <table class="meta-table">

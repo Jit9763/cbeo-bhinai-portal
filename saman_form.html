@@ -621,8 +621,11 @@
 
     <!-- Header Banner Card -->
     <div class="gform-header-card">
-      <div class="gform-header-title">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)</div>
-      <div class="gform-header-sub">DISTRICT UNIFORM EXAMINATION 2026-27 (QUESTION PAPER INDENT)</div>
+      <div style="font-size:0.85rem; font-weight:700; color:#1e40af; margin-bottom:4px">
+        कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय | जिला: अजमेर (AJMER)
+      </div>
+      <div class="gform-header-title" id="gform-school-header-title">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)</div>
+      <div class="gform-header-sub" id="gform-school-header-sub">जिला समान परीक्षा 2026-27 | प्रश्न-पत्र मांग प्रपत्र</div>
       <div class="gform-header-desc">
         समान परीक्षा सत्र 2026-27 हेतु कक्षा 9 से 12 तक के विद्यार्थियों का विषयवार नामांकन एवं प्रश्न-पत्र मांग प्रपत्र।
         कृपया विद्यालय की आधिकारिक प्रवेश पंजिका / शाला दर्पण पोर्टल से मिलान कर सही संख्या दर्ज करें।
@@ -1665,6 +1668,11 @@
 
       const officialNames = getOfficialSchoolNames(currentSchool);
       const fixedExamCode = (currentSchool.type === 'Private' ? 'AJM04P' : 'AJM04G') + currentSchool.shala_darpan_code;
+
+      const headerTitleEl = document.getElementById('gform-school-header-title');
+      if (headerTitleEl) {
+        headerTitleEl.textContent = `${officialNames.hi || officialNames.en} (${currentSchool.shala_darpan_code})`;
+      }
 
       document.getElementById('f-school-code').value = currentSchool.shala_darpan_code;
       document.getElementById('f-school-name').value = officialNames.en;
