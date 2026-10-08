@@ -39,6 +39,9 @@ function renderElectionView() {
           </div>
         </div>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+          <button type="button" class="btn btn-success btn-sm" id="btn-publish-election-live" onclick="publishElectionDemandLive()" style="font-weight:800; background:#10b981; border-color:#059669; color:#fff; box-shadow:0 2px 6px rgba(16,185,129,0.3)">
+            <i class="fas fa-bullhorn"></i> 🚀 30 विद्यालयों को मांग लाइव जारी करें
+          </button>
           <button type="button" class="btn btn-light btn-sm" onclick="downloadElectionSummaryExcel()" style="font-weight:800; color:#0f172a">
             <i class="fas fa-file-excel text-success"></i> 📥 30 विद्यालय समेकित Excel
           </button>
@@ -243,8 +246,76 @@ function downloadElection116BoothsExcel() {
   if (typeof showToast === 'function') showToast('📊 116 मतदान बूथों का विस्तृत एक्सेल डाउनलोड हो गया!', 'success');
 }
 
+function publishElectionDemandLive() {
+  const schools = window.ELECTION_2026_SCHOOLS || [];
+  const schoolCodes = schools.map(s => s.shala_darpan_code);
+
+  const existingIdx = (STATE.demands || []).findIndex(d => d.id === 'DEMAND_ELECTION_2026');
+  const electionDemand = {
+    id: 'DEMAND_ELECTION_2026',
+    title: 'पंचायती राज आम चुनाव 2026: मतदान केन्द्र भौतिक सत्यापन रिपोर्ट (प्रपत्र-3)',
+    collectionLevel: 'school',
+    schoolScope: 'election_30',
+    targetSchools: schoolCodes,
+    placement: 'tab_existing',
+    parentTab: 'election',
+    targetAudience: {
+      cbeo: true,
+      peeo: true,
+      govt_sec_srsec: true,
+      pvt_sec_srsec: false,
+      sec_srsec: true,
+      all_govt: true,
+      all_schools: false
+    },
+    description: 'राज्य निर्वाचन आयोग राजस्थान के आदेश क्र. 10161 दिनांक 07-10-2026 अनुसार भिनाय ब्लॉक के 30 ग्राम पंचायत मुख्यालय विद्यालयों में स्थापित 116 मतदान केन्द्रों के भौतिक सत्यापन (प्रपत्र-3) एवं अधिकृत BLO प्रगणक सत्यापन की अनिवार्य मांग। (जिला: अजमेर)',
+    dueDate: '2026-10-15',
+    priority: 'अति आवश्यक (Urgent)',
+    published: true,
+    isTestMode: false,
+    createdAt: new Date().toISOString().split('T')[0],
+    columns: [
+      { name: 'विद्यालय आधिकारिक ईमेल', type: 'email', prefillSource: 'none', placeholder: 'school@gmail.com' },
+      { name: 'भवन प्रकार', type: 'text', prefillSource: 'none', placeholder: 'सरकारी' },
+      { name: 'भवन स्थिति', type: 'text', prefillSource: 'none', placeholder: 'अच्छी' },
+      { name: 'क्षेत्रफल वर्ग मी.', type: 'number', prefillSource: 'none', placeholder: '60' },
+      { name: 'पहुंच दूरी', type: 'text', prefillSource: 'none', placeholder: '100 मीटर' },
+      { name: 'मूलभूत व्यवस्थाएं (पेयजल/शौचालय/रैम्प/बिजली)', type: 'text', prefillSource: 'none', placeholder: 'पूर्ण' },
+      { name: 'बूथ-वार P-3 व्यवस्थाएं व BLO प्रगणक विवरण', type: 'text', prefillSource: 'none', placeholder: 'पूर्ण' },
+      { name: 'विशेष टिप्पणी', type: 'text', prefillSource: 'none', placeholder: 'वैकल्पिक' }
+    ]
+  };
+
+  if (existingIdx >= 0) {
+    STATE.demands[existingIdx] = electionDemand;
+  } else {
+    STATE.demands.unshift(electionDemand);
+  }
+
+  saveDemandsToStorage();
+  if (typeof recordAuditLog === 'function') {
+    recordAuditLog({
+      user: STATE.currentUser?.name || 'जितेन्द्र कुमार (Admin)',
+      action: 'चुनाव 2026 मांग लाइव जारी',
+      target: electionDemand.title,
+      details: '30 ग्राम पंचायत विद्यालयों (116 बूथ) को पंचायती राज चुनाव भौतिक सत्यापन मांग लाइव जारी की गई।',
+      note: 'पोर्टल बटन द्वारा लाइव प्रकाशन'
+    });
+  }
+
+  if (typeof showToast === 'function') {
+    showToast('🚀 सफल! पंचायती राज चुनाव 2026 मांग प्रपत्र 30 विद्यालयों को लाइव जारी कर दिया गया है!', 'success');
+  } else {
+    alert('🚀 सफल! पंचायती राज चुनाव 2026 मांग प्रपत्र 30 विद्यालयों को लाइव जारी कर दिया गया है!');
+  }
+
+  renderElectionView();
+  if (typeof renderDemandsView === 'function') renderDemandsView();
+}
+
 if (typeof window !== 'undefined') {
   window.renderElectionView = renderElectionView;
   window.downloadElectionSummaryExcel = downloadElectionSummaryExcel;
   window.downloadElection116BoothsExcel = downloadElection116BoothsExcel;
+  window.publishElectionDemandLive = publishElectionDemandLive;
 }

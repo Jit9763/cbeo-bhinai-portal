@@ -767,6 +767,51 @@ function initMasterData() {
       ]
     });
   }
+
+  // Seed official Election 2026 verification demand for 30 Panchayat schools
+  if (!STATE.demands.some(d => d.id === 'DEMAND_ELECTION_2026')) {
+    STATE.demands.unshift({
+      id: 'DEMAND_ELECTION_2026',
+      title: 'पंचायती राज आम चुनाव 2026: मतदान केन्द्र भौतिक सत्यापन रिपोर्ट (प्रपत्र-3)',
+      collectionLevel: 'school',
+      schoolScope: 'all_govt',
+      targetSchools: [
+        "221764", "221755", "485030", "221769", "221780",
+        "221763", "221758", "221787", "221754", "488941",
+        "221783", "221786", "488897", "221762", "488947",
+        "221765", "221773", "221767", "221774", "221777",
+        "221759", "221772", "221756", "221788", "221766",
+        "221785", "221775", "221781", "221782", "410859"
+      ],
+      placement: 'tab_existing',
+      parentTab: 'election',
+      targetAudience: {
+        cbeo: true,
+        peeo: true,
+        govt_sec_srsec: true,
+        pvt_sec_srsec: false,
+        sec_srsec: true,
+        all_govt: true,
+        all_schools: false
+      },
+      description: 'राज्य निर्वाचन आयोग राजस्थान के आदेश क्र. 10161 दिनांक 07-10-2026 अनुसार भिनाय ब्लॉक के 30 ग्राम पंचायत मुख्यालय विद्यालयों में स्थापित 116 मतदान केन्द्रों के भौतिक सत्यापन (प्रपत्र-3) एवं अधिकृत BLO प्रगणक सत्यापन की अनिवार्य मांग। (जिला: अजमेर)',
+      dueDate: '2026-10-15',
+      priority: 'अति आवश्यक (Urgent)',
+      published: true,
+      isTestMode: false,
+      createdAt: '2026-10-08',
+      columns: [
+        { name: 'विद्यालय आधिकारिक ईमेल', type: 'email', prefillSource: 'none', placeholder: 'school@gmail.com' },
+        { name: 'भवन प्रकार', type: 'text', prefillSource: 'none', placeholder: 'सरकारी' },
+        { name: 'भवन स्थिति', type: 'text', prefillSource: 'none', placeholder: 'अच्छी' },
+        { name: 'क्षेत्रफल वर्ग मी.', type: 'number', prefillSource: 'none', placeholder: '60' },
+        { name: 'पहुंच दूरी', type: 'text', prefillSource: 'none', placeholder: '100 मीटर' },
+        { name: 'मूलभूत व्यवस्थाएं (पेयजल/शौचालय/रैम्प/बिजली)', type: 'text', prefillSource: 'none', placeholder: 'पूर्ण' },
+        { name: 'बूथ-वार P-3 व्यवस्थाएं व BLO प्रगणक विवरण', type: 'text', prefillSource: 'none', placeholder: 'पूर्ण' },
+        { name: 'विशेष टिप्पणी', type: 'text', prefillSource: 'none', placeholder: 'वैकल्पिक' }
+      ]
+    });
+  }
   saveDemandsToStorage();
 
   // 4B. Dynamic Demand Submissions from localStorage
@@ -11089,6 +11134,14 @@ function isDemandVisibleForCurrentUser(demand) {
 
   const aud = demand.targetAudience || { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: false, all_govt: false, all_schools: false };
 
+  // Explicit targetSchools override (e.g. 30 schools for Election 2026)
+  if (demand.targetSchools && Array.isArray(demand.targetSchools)) {
+    if (demand.targetSchools.includes(String(STATE.currentUser.shala_darpan_code))) return true;
+  }
+  if (demand.id === 'DEMAND_ELECTION_2026' || demand.parentTab === 'election') {
+    if (STATE.currentUser.role === 'peeo' || STATE.currentUser.role === 'admin') return true;
+  }
+
   // 1. CBEO Admin
   const isCBEO = STATE.currentUser.shala_darpan_code === '8140' || 
                  STATE.currentUser.admin_id === 'ADMIN01' || 
@@ -11237,13 +11290,31 @@ function createDemandCardElement(demand, isArchive = false) {
   card.className = 'demand-card';
 
   const isSamanDemand = demand.id === 'saman_pariksha_2026_27' || (demand.title && demand.title.includes('समान परीक्षा'));
+  const isElectionDemand = demand.id === 'DEMAND_ELECTION_2026' || demand.parentTab === 'election' || (demand.title && demand.title.includes('चुनाव 2026'));
   let isCurrentSubmitted = false;
   let currentSubmission = null;
   let submittedCount = 0;
   let totalDenominator = STATE.peeos.length;
   let percent = 0;
 
-  if (isSamanDemand) {
+  if (isElectionDemand) {
+    const electionSchools = window.ELECTION_2026_SCHOOLS || [];
+    totalDenominator = electionSchools.length || 30;
+    let elecSubs = {};
+    try { elecSubs = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}'); } catch(e) {}
+    submittedCount = Object.keys(elecSubs).length;
+    percent = totalDenominator > 0 ? Math.round((submittedCount / totalDenominator) * 100) : 0;
+
+    if (STATE.currentUser?.role === 'school') {
+      const myCode = STATE.currentUser?.shala_darpan_code;
+      isCurrentSubmitted = !!elecSubs[myCode];
+      currentSubmission = elecSubs[myCode];
+    } else if (STATE.currentUser?.role === 'peeo') {
+      const peeoSchs = electionSchools.filter(s => s.peeo_name === STATE.currentUser.peeo_name || s.shala_darpan_code === STATE.currentUser.shala_darpan_code);
+      const peeoSubCount = peeoSchs.filter(s => !!elecSubs[s.shala_darpan_code]).length;
+      isCurrentSubmitted = peeoSchs.length > 0 && (peeoSubCount === peeoSchs.length);
+    }
+  } else if (isSamanDemand) {
     totalDenominator = (STATE.schools56 && STATE.schools56.length) || 57;
     let sCount = 0;
     STATE.schools56.forEach(s => {
@@ -11353,7 +11424,22 @@ function createDemandCardElement(demand, isArchive = false) {
     </div>
 
     <div class="demand-actions" style="display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center">
-      ${isSamanDemand ? `
+      ${isElectionDemand ? `
+        <button class="btn btn-primary btn-sm" onclick="switchTab('election')" style="font-weight:700">
+          <i class="fas fa-vote-yea"></i> 🗳️ चुनाव 2026 हब खोलें
+        </button>
+        <button class="btn btn-success btn-sm" onclick="downloadElectionSummaryExcel()" style="font-weight:700">
+          <i class="fas fa-file-excel"></i> 📊 30 विद्यालय Excel
+        </button>
+        <button class="btn btn-warning btn-sm" onclick="downloadElection116BoothsExcel()" style="font-weight:700; color:#0f172a">
+          <i class="fas fa-table"></i> 📊 116 बूथ Excel
+        </button>
+        ${STATE.currentUser?.role === 'school' ? `
+          <a href="election_form.html?code=${STATE.currentUser.shala_darpan_code}" target="_blank" class="btn btn-danger btn-sm" style="font-weight:700; color:#fff">
+            <i class="fas fa-file-signature"></i> 📝 प्रपत्र-3 भरें
+          </a>
+        ` : ''}
+      ` : isSamanDemand ? `
         <button class="btn btn-primary btn-sm" onclick="switchTab('saman-pariksha')" style="font-weight:700">
           <i class="fas fa-file-signature"></i> 📋 समान परीक्षा पोर्टल
         </button>

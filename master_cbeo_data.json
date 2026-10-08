@@ -32522,7 +32522,113 @@
       "village_en": "BHINAI"
     }
   ],
-  "demands": [],
+  "demands": [
+    {
+      "id": "DEMAND_ELECTION_2026",
+      "title": "पंचायती राज आम चुनाव 2026: मतदान केन्द्र भौतिक सत्यापन रिपोर्ट (प्रपत्र-3)",
+      "collectionLevel": "school",
+      "schoolScope": "all_govt",
+      "targetSchools": [
+        "221764",
+        "221755",
+        "485030",
+        "221769",
+        "221780",
+        "221763",
+        "221758",
+        "221787",
+        "221754",
+        "488941",
+        "221783",
+        "221786",
+        "488897",
+        "221762",
+        "488947",
+        "221765",
+        "221773",
+        "221767",
+        "221774",
+        "221777",
+        "221759",
+        "221772",
+        "221756",
+        "221788",
+        "221766",
+        "221785",
+        "221775",
+        "221781",
+        "221782",
+        "410859"
+      ],
+      "placement": "tab_existing",
+      "parentTab": "election",
+      "targetAudience": {
+        "cbeo": true,
+        "peeo": true,
+        "govt_sec_srsec": true,
+        "pvt_sec_srsec": false,
+        "sec_srsec": true,
+        "all_govt": true,
+        "all_schools": false
+      },
+      "description": "राज्य निर्वाचन आयोग राजस्थान के आदेश क्र. 10161 दिनांक 07-10-2026 अनुसार भिनाय ब्लॉक के 30 ग्राम पंचायत मुख्यालय विद्यालयों में स्थापित 116 मतदान केन्द्रों के भौतिक सत्यापन (प्रपत्र-3) एवं अधिकृत BLO प्रगणक सत्यापन की अनिवार्य मांग। (जिला: अजमेर)",
+      "dueDate": "2026-10-15",
+      "priority": "अति आवश्यक (Urgent)",
+      "published": true,
+      "isTestMode": false,
+      "createdAt": "2026-10-08",
+      "columns": [
+        {
+          "name": "विद्यालय आधिकारिक ईमेल",
+          "type": "email",
+          "prefillSource": "none",
+          "placeholder": "school@gmail.com"
+        },
+        {
+          "name": "भवन प्रकार",
+          "type": "text",
+          "prefillSource": "none",
+          "placeholder": "सरकारी"
+        },
+        {
+          "name": "भवन स्थिति",
+          "type": "text",
+          "prefillSource": "none",
+          "placeholder": "अच्छी"
+        },
+        {
+          "name": "क्षेत्रफल वर्ग मी.",
+          "type": "number",
+          "prefillSource": "none",
+          "placeholder": "60"
+        },
+        {
+          "name": "पहुंच दूरी",
+          "type": "text",
+          "prefillSource": "none",
+          "placeholder": "100 मीटर"
+        },
+        {
+          "name": "मूलभूत व्यवस्थाएं (पेयजल/शौचालय/रैम्प/बिजली)",
+          "type": "text",
+          "prefillSource": "none",
+          "placeholder": "पूर्ण"
+        },
+        {
+          "name": "बूथ-वार P-3 व्यवस्थाएं व BLO प्रगणक विवरण",
+          "type": "text",
+          "prefillSource": "none",
+          "placeholder": "पूर्ण"
+        },
+        {
+          "name": "विशेष टिप्पणी",
+          "type": "text",
+          "prefillSource": "none",
+          "placeholder": "वैकल्पिक"
+        }
+      ]
+    }
+  ],
   "admin_config": {
     "peeo_tab_access": {
       "demand": false,
