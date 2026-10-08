@@ -1858,7 +1858,10 @@ function switchTab(viewId, param = null) {
   const targetView = document.getElementById(`view-${viewId}`);
   if (targetView) targetView.classList.add('active');
 
-  if (viewId === 'saman-pariksha') renderSamanParikshaView();
+  if (viewId === 'election') {
+    if (typeof renderElectionView === 'function') renderElectionView();
+  }
+  else if (viewId === 'saman-pariksha') renderSamanParikshaView();
   else if (viewId === 'dynamic-demand') renderDynamicDemandPortalView(param || STATE.activeDemandPortalId);
   else if (viewId === 'explorer') { switchTab('directory'); return; }
   else if (viewId === 'directory') renderDirectoryView();
@@ -1872,6 +1875,7 @@ function switchTab(viewId, param = null) {
 }
 
 const DEFAULT_TAB_VISIBILITY_6LEVEL = {
+  'election': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: false, all_govt: true, all_schools: false },
   'saman-pariksha': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: false, all_schools: false },
   'database-hub': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
   'dashboard': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
@@ -1896,16 +1900,16 @@ function isTabVisibleForCurrentUser(tabId) {
                  STATE.currentUser.admin_id === 'ADMIN01' || 
                  (STATE.currentUser.role === 'admin' && !isJitendra);
 
-  // CRITICAL: School login ONLY sees Saman Pariksha (all other tabs locked)
+  // CRITICAL: School login sees Saman Pariksha and Election (all other tabs locked)
   if (STATE.currentUser.role === 'school') {
-    if (tabId !== 'saman-pariksha') {
+    if (tabId !== 'saman-pariksha' && tabId !== 'election') {
       return false;
     }
   }
 
-  // CRITICAL: PEEO login ONLY sees Saman Pariksha (all other tabs locked)
+  // CRITICAL: PEEO login sees Saman Pariksha and Election (all other tabs locked)
   if (STATE.currentUser.role === 'peeo') {
-    if (tabId !== 'saman-pariksha') {
+    if (tabId !== 'saman-pariksha' && tabId !== 'election') {
       return false;
     }
   }
@@ -15071,6 +15075,41 @@ function quickFillSamanSyllabusPrompt() {
   if (document.getElementById('demand-aud-govt')) document.getElementById('demand-aud-govt').checked = false;
   if (document.getElementById('demand-aud-all')) document.getElementById('demand-aud-all').checked = false;
   showToast('समान परीक्षा पाठ्यक्रम पूर्णता मांग टेम्पलेट लागू हो गया!', 'info');
+}
+
+function quickFillElectionPrompt() {
+  const titleEl = document.getElementById('new-demand-title');
+  if (titleEl) titleEl.value = 'पंचायती राज आम चुनाव 2026: मतदान केन्द्र भौतिक सत्यापन एवं व्यवस्था प्रपत्र (30 ग्राम पंचायत विद्यालय)';
+  const descEl = document.getElementById('new-demand-desc');
+  if (descEl) descEl.value = 'राज्य निर्वाचन आयोग राजस्थान के आदेश क्र. 10161 दिनांक 07-10-2026 अनुसार भिनाय ब्लॉक के 30 ग्राम पंचायत मुख्यालय विद्यालयों में स्थापित 116 मतदान केन्द्रों पर छाया, पेयजल, विद्युत, रैंप, BLO सत्यापन सहित आवश्यक व्यवस्थाओं की अधिकृत मांग।';
+  const placementEl = document.getElementById('new-demand-placement');
+  if (placementEl) {
+    placementEl.value = 'tab_existing';
+    onDemandPlacementChange();
+  }
+  const parentTabEl = document.getElementById('new-demand-parent-tab');
+  if (parentTabEl) parentTabEl.value = 'election';
+  const levelEl = document.getElementById('new-demand-collection-level');
+  if (levelEl) {
+    levelEl.value = 'school';
+    onDemandCollectionLevelChange();
+  }
+  const scopeEl = document.getElementById('new-demand-school-scope');
+  if (scopeEl) {
+    scopeEl.value = 'all_govt';
+    onDemandSchoolScopeChange();
+  }
+  const signerEl = document.getElementById('new-demand-signer-mode');
+  if (signerEl) signerEl.value = 'principal_blo';
+  const emailReqEl = document.getElementById('new-demand-email-required');
+  if (emailReqEl) emailReqEl.value = 'mandatory';
+
+  const colsEl = document.getElementById('new-demand-cols');
+  if (colsEl) {
+    colsEl.value = 'विद्यालय आधिकारिक ईमेल आईडी, छाया व टेन्ट व्यवस्था, पेयजल व्यवस्था, प्रकाश पंखे व रात्रि जनरेटर, मतदान दल विश्राम व शौचालय, भोजन व्यवस्था, रैंप व्यवस्था, प्राथमिक उपचार किट, चारदीवारी सुरक्षा स्थिति, BLO नाम व मोबाइल, विशेष कैफियत';
+    if (typeof generateDemandColumnsFromInput === 'function') generateDemandColumnsFromInput();
+  }
+  showToast('🗳️ पंचायती राज चुनाव 2026 मांग प्रपत्र टेम्पलेट लागू हो गया!', 'info');
 }
 
 function onDemandCollectionLevelChange() {

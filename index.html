@@ -118,6 +118,10 @@
         <i class="fas fa-file-signature"></i> 📋 समान परीक्षा 2026-27 (57 स्कूल)
         <span class="tab-badge badge-danger" id="nav-sp-badge">57</span>
       </button>
+      <button class="nav-tab" id="nav-tab-election" onclick="switchTab('election')">
+        <i class="fas fa-vote-yea"></i> 🗳️ चुनाव 2026 (30 स्कूल)
+        <span class="tab-badge" style="background:#1e40af; color:#fff" id="nav-election-badge">30</span>
+      </button>
       <button class="nav-tab" id="nav-tab-dashboard" onclick="switchTab('dashboard')">
         <i class="fas fa-chart-pie"></i> मुख्य डैशबोर्ड
       </button>
@@ -176,6 +180,10 @@
         डायरेक्टरी खोलें <i class="fas fa-arrow-right"></i>
       </button>
     </div>
+
+    <!-- ELECTION 2026 VERIFICATION VIEW -->
+    <section id="view-election" class="content-view">
+    </section>
 
     <!-- 0. SAMAN PARIKSHA (DISTRICT UNIFORM EXAM) 2026-27 MAIN VIEW -->
     <section id="view-saman-pariksha" class="content-view">
@@ -2833,6 +2841,7 @@
             <span class="badge" style="background:#ffffff; color:#4f46e5; border:1px solid #c7d2fe; font-size:0.72rem; cursor:pointer; padding:3px 8px" onclick="quickFillAIPrompt('शाला खेल मैदान चारदीवारी व खेलकूद संसाधन विकास')">💡 खेलकूद मैदान विकास</span>
             <span class="badge" style="background:#ffffff; color:#4f46e5; border:1px solid #c7d2fe; font-size:0.72rem; cursor:pointer; padding:3px 8px" onclick="quickFillAIPrompt('ग्रीष्मकालीन पेयजल व्यवस्था एवं विद्युत कनेक्शन सत्यापन')">💡 पेयजल व विद्युत</span>
             <span class="badge" style="background:#e0f2fe; color:#0369a1; border:1.5px solid #38bdf8; font-size:0.72rem; cursor:pointer; padding:3px 8px; font-weight:700" onclick="quickFillSamanSyllabusPrompt()">📊 समान परीक्षा पाठ्यक्रम पूर्णता % (49 स्कूल)</span>
+            <span class="badge" style="background:#fef3c7; color:#92400e; border:1.5px solid #f59e0b; font-size:0.72rem; cursor:pointer; padding:3px 8px; font-weight:700" onclick="quickFillElectionPrompt()">🗳️ चुनाव 2026 मतदान केन्द्र सत्यापन (30 स्कूल, BLO हस्ताक्षर)</span>
           </div>
         </div>
 
@@ -2926,6 +2935,28 @@
             (यह सूचना केवल उन्हीं स्तरों के लॉगिन पर दिखाई देगी जिन्हें टिक किया गया है)
           </span>
         </div>
+
+        <!-- Authorized Signer Designation & Structure Mode -->
+        <div class="form-grid" style="margin-bottom:0.85rem; background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:0.6rem 0.85rem">
+          <div class="form-group" style="margin:0">
+            <label style="color:#0f172a"><strong>✍️ अधिकृत हस्ताक्षरकर्ता प्रणाली (Signer System):</strong></label>
+            <select id="new-demand-signer-mode" class="filter-select" style="font-weight:700">
+              <option value="principal_incharge">संस्था प्रधान + परीक्षा/प्रपत्र प्रभारी (मानक)</option>
+              <option value="principal_blo">संस्था प्रधान + बूथ लेवल अधिकारी (BLO चुनाव प्रणाली)</option>
+              <option value="principal_peeo">संस्था प्रधान + संबंधित PEEO सत्यापन</option>
+              <option value="principal_only">केवल संस्था प्रधान हस्ताक्षर</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin:0">
+            <label style="color:#0f172a"><strong>📧 विद्यालय ईमेल आवश्यकता:</strong></label>
+            <select id="new-demand-email-required" class="filter-select" style="font-weight:700">
+              <option value="mandatory">अनिवार्य (Mandatory)</option>
+              <option value="optional">वैकल्पिक (Optional)</option>
+              <option value="none">आवश्यक नहीं (Not Required)</option>
+            </select>
+          </div>
+        </div>
+
         <!-- Columns & Pre-fill Mapping Engine -->
         <div class="form-group" style="margin-bottom:0.85rem">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px">
@@ -5885,8 +5916,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script src="master_cbeo_data.js?v=20261008_v38"></script>
   <script src="js/village_mapping.js?v=20261008_v38"></script>
-  <script src="js/core_sync.js?v=20261008_v38"></script>
-  <script src="js/mismatch_admin.js?v=20261008_v38"></script>
-  <script src="app.js?v=20261008_v38"></script>
+  <script src="js/core_sync.js?v=20261008_v39"></script>
+  <script src="js/mismatch_admin.js?v=20261008_v39"></script>
+  <script src="js/election_data.js?v=20261008_v39"></script>
+  <script src="js/election.js?v=20261008_v39"></script>
+  <script src="app.js?v=20261008_v39"></script>
 </body>
 </html>

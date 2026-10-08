@@ -336,6 +336,59 @@ function doPost(e) {
     }
 
     // -------------------------------------------------------------
+    // ACTION 1E: ELECTION 2026 VERIFICATION SUBMISSION
+    // -------------------------------------------------------------
+    if (data.action === 'election_verification_submit') {
+      var entry = data.entry || {};
+      var eSchCode = String(entry.school_code || data.school_code || '').trim();
+      var eSheet = ss.getSheetByName("Election_2026_Verification");
+      if (!eSheet) {
+        eSheet = ss.insertSheet("Election_2026_Verification");
+        eSheet.appendRow([
+          "क्र.सं.", "शाला_दर्पण_कोड", "विद्यालय_का_नाम", "ग्राम_पंचायत", "PEEO_नाम",
+          "ईमेल_आईडी", "प्रभारी_विवरण", "संस्था_प्रधान", "संस्था_प्रधान_मोबाइल",
+          "BLO_नाम", "BLO_पद", "BLO_मोबाइल", "सामान्य_व्यवस्थाएं_JSON", "बूथ_वार_व्यवस्थाएं_JSON",
+          "कैफियत", "सबमिशन_दिनांक"
+        ]);
+      }
+      var eVals = eSheet.getDataRange().getValues();
+      var eRow = -1;
+      for (var er = 1; er < eVals.length; er++) {
+        if (String(eVals[er][1]).trim() === eSchCode) {
+          eRow = er + 1;
+          break;
+        }
+      }
+      var rowData = [
+        eRow > 0 ? (eRow - 1) : eVals.length,
+        eSchCode,
+        entry.school_name || '',
+        entry.panchayat_name || '',
+        entry.peeo_name || '',
+        entry.school_email || '',
+        entry.incharge_details || '',
+        (entry.principal && entry.principal.name) ? entry.principal.name : '',
+        (entry.principal && entry.principal.mobile) ? entry.principal.mobile : '',
+        (entry.blo && entry.blo.name) ? entry.blo.name : '',
+        (entry.blo && entry.blo.designation) ? entry.blo.designation : '',
+        (entry.blo && entry.blo.mobile) ? entry.blo.mobile : '',
+        JSON.stringify(entry.facilities || {}),
+        JSON.stringify(entry.booth_facilities || {}),
+        entry.remarks || '',
+        entry.submitted_at || Utilities.formatDate(new Date(), "GMT+5:30", "dd-MM-yyyy HH:mm:ss")
+      ];
+      if (eRow > 0) {
+        eSheet.getRange(eRow, 1, 1, rowData.length).setValues([rowData]);
+      } else {
+        eSheet.appendRow(rowData);
+      }
+      return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        message: "पंचायती राज चुनाव 2026 भौतिक सत्यापन डेटा Google Sheet 'Election_2026_Verification' में सुरक्षित हो गया!"
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // -------------------------------------------------------------
     // ACTION 2: SAVE UNIVERSAL DEMAND SUBMISSION (Data_JSON + PEEO Tab)
     // -------------------------------------------------------------
     var schoolCode = String(data.school_code || '').trim();
