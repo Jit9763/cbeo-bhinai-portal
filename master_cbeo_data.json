@@ -38384,6 +38384,67 @@
         ]
       }
     },
+    "221768": {
+      "school_code": "221768",
+      "school_name": "रा.उ.मा.वि. जेतपुरा",
+      "peeo_name": "PEEO KEROT",
+      "peeo_code": "221767",
+      "principal_name": "JUBER AHMED",
+      "principal_mobile": "9414942132",
+      "submitted_by": "JUBER AHMED",
+      "submitter_mobile": "9414942132",
+      "is_submitted": true,
+      "submitted_at": "2026-10-08T13:01:19.444Z",
+      "average_pct": 83,
+      "c9": {
+        "zero_enrolment": false,
+        "hindi": 80,
+        "english": 80,
+        "maths": 80,
+        "science": 80,
+        "sst": 80,
+        "sanskrit": 80,
+        "urdu": 0
+      },
+      "c10": {
+        "zero_enrolment": false,
+        "hindi": 85,
+        "english": 85,
+        "maths": 85,
+        "science": 85,
+        "sst": 85,
+        "sanskrit": 85,
+        "urdu": 0
+      },
+      "c11": {
+        "zero_enrolment": false,
+        "comp_hindi": 80,
+        "comp_english": 80,
+        "faculties": [
+          "arts"
+        ],
+        "electives": [
+          {
+            "name": "अनिवार्य व ऐच्छिक",
+            "pct": 80
+          }
+        ]
+      },
+      "c12": {
+        "zero_enrolment": false,
+        "comp_hindi": 85,
+        "comp_english": 85,
+        "faculties": [
+          "arts"
+        ],
+        "electives": [
+          {
+            "name": "अनिवार्य व ऐच्छिक",
+            "pct": 85
+          }
+        ]
+      }
+    },
     "221769": {
       "school_code": "221769",
       "exam_code": "AJM04G221769",
