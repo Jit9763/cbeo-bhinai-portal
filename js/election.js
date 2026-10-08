@@ -537,9 +537,43 @@ function publishElectionDemandLive() {
   if (typeof renderDemandsView === 'function') renderDemandsView();
 }
 
+function syncElectionSubmissionsFromCloud(callback) {
+  const gasUrl = localStorage.getItem('cbeo_backup_webhook_url') 
+    || 'https://script.google.com/macros/s/AKfycbzmauNuu8DUjgsK-TBdiv45efshvaf6x3Z6bJrhyC2LOmF-yg9ErGq3XWEKZ8Umw8Ao/exec';
+
+  fetch(`${gasUrl}?action=getElectionSubmissions`)
+    .then(r => r.json())
+    .then(res => {
+      if (res && res.success && res.submissions) {
+        let localSubs = {};
+        try { localSubs = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}'); } catch(e) {}
+        const merged = { ...localSubs, ...res.submissions };
+        localStorage.setItem('cbeo_election_submissions', JSON.stringify(merged));
+        
+        // Re-render if election view is active
+        const elView = document.getElementById('view-election');
+        if (elView && elView.classList.contains('active')) {
+          const user = (typeof STATE !== 'undefined' && STATE.currentUser) ? STATE.currentUser : null;
+          const isAdmin = user && (user.shala_darpan_code === 'admin_jitendra' || user.admin_id === 'ADMIN02' || user.username === 'jitendra_admin' || user.shala_darpan_code === '8140' || user.role === 'admin');
+          if (isAdmin) renderElectionAdminView(elView);
+        }
+        // Update demands view progress bar if active
+        if (typeof renderDemandsView === 'function') {
+          const dView = document.getElementById('view-demands');
+          if (dView && dView.classList.contains('active')) renderDemandsView();
+        }
+        if (callback) callback(merged);
+      }
+    })
+    .catch(() => {});
+}
+
+// Auto-sync on page load
 if (typeof window !== 'undefined') {
   window.renderElectionView = renderElectionView;
   window.downloadElectionSummaryExcel = downloadElectionSummaryExcel;
   window.downloadElection116BoothsExcel = downloadElection116BoothsExcel;
   window.publishElectionDemandLive = publishElectionDemandLive;
+  window.syncElectionSubmissionsFromCloud = syncElectionSubmissionsFromCloud;
+  setTimeout(syncElectionSubmissionsFromCloud, 1000);
 }

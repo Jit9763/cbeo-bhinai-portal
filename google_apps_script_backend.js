@@ -686,6 +686,50 @@ function doGet(e) {
       })).setMimeType(ContentService.MimeType.JSON);
     }
 
+    // -------------------------------------------------------------
+    // GET ELECTION 2026 SUBMISSIONS (Cloud Live Sync for Admin)
+    // -------------------------------------------------------------
+    if (action === 'getElectionSubmissions') {
+      var eSheet = ss.getSheetByName("Election_2026_Verification");
+      if (!eSheet) {
+        return ContentService.createTextOutput(JSON.stringify({ success: true, count: 0, submissions: {} }))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
+      var eVals = eSheet.getDataRange().getValues();
+      var subs = {};
+      for (var r = 1; r < eVals.length; r++) {
+        var row = eVals[r];
+        var sc = String(row[1] || '').trim();
+        if (sc) {
+          var fac = {};
+          var bDet = {};
+          try { fac = JSON.parse(row[12] || '{}'); } catch(e) {}
+          try { bDet = JSON.parse(row[13] || '{}'); } catch(e) {}
+          subs[sc] = {
+            school_code: sc,
+            school_name: String(row[2] || ''),
+            panchayat_name: String(row[3] || ''),
+            peeo_name: String(row[4] || ''),
+            school_email: String(row[5] || ''),
+            bldg_type: String(row[6] || ''),
+            bldg_condition: String(row[7] || ''),
+            bldg_area: String(row[8] || ''),
+            bldg_road_dist: String(row[9] || ''),
+            principal: { name: String(row[10] || ''), mobile: String(row[11] || '') },
+            facilities: fac,
+            booth_details: bDet,
+            remarks: String(row[14] || ''),
+            submitted_at: String(row[15] || '')
+          };
+        }
+      }
+      return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        count: Object.keys(subs).length,
+        submissions: subs
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
     // Health check
     return ContentService.createTextOutput(JSON.stringify({
       status: "active",
