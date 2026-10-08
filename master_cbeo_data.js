@@ -39822,6 +39822,67 @@ const MASTER_CBEO_DATA = {
       "is_submitted": true,
       "submitted_at": "2026-10-07T14:50:25.071Z"
     },
+    "221788": {
+      "school_code": "221788",
+      "school_name": "रा.उ.मा.वि. पाडंगा",
+      "peeo_name": "PEEO PADANGA",
+      "peeo_code": "221788",
+      "principal_name": "SMT ASHA RAJ",
+      "principal_mobile": "7877090975",
+      "submitted_by": "SMT ASHA RAJ",
+      "submitter_mobile": "7877090975",
+      "is_submitted": true,
+      "submitted_at": "2026-10-08T15:18:14.863Z",
+      "average_pct": 80,
+      "c9": {
+        "zero_enrolment": false,
+        "hindi": 80,
+        "english": 80,
+        "maths": 80,
+        "science": 80,
+        "sst": 80,
+        "sanskrit": 80,
+        "urdu": 0
+      },
+      "c10": {
+        "zero_enrolment": false,
+        "hindi": 80,
+        "english": 80,
+        "maths": 80,
+        "science": 80,
+        "sst": 80,
+        "sanskrit": 80,
+        "urdu": 0
+      },
+      "c11": {
+        "zero_enrolment": false,
+        "comp_hindi": 80,
+        "comp_english": 80,
+        "faculties": [
+          "arts"
+        ],
+        "electives": [
+          {
+            "name": "अनिवार्य व ऐच्छिक",
+            "pct": 80
+          }
+        ]
+      },
+      "c12": {
+        "zero_enrolment": false,
+        "comp_hindi": 80,
+        "comp_english": 80,
+        "faculties": [
+          "arts"
+        ],
+        "electives": [
+          {
+            "name": "अनिवार्य व ऐच्छिक",
+            "pct": 80
+          }
+        ]
+      }
+    },
     "401778": {
       "school_code": "401778",
       "exam_code": "AJM04G401778",
