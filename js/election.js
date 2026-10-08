@@ -11,6 +11,219 @@ function renderElectionView() {
   const container = document.getElementById('view-election');
   if (!container) return;
 
+  const user = (typeof STATE !== 'undefined' && STATE.currentUser) ? STATE.currentUser : null;
+  const isJitendra = user && (user.shala_darpan_code === 'admin_jitendra' || user.admin_id === 'ADMIN02' || user.username === 'jitendra_admin');
+  const isCBEO = user && (user.shala_darpan_code === '8140' || user.admin_id === 'ADMIN01' || (user.role === 'admin' && !isJitendra));
+  const isAdmin = isJitendra || isCBEO || (user && user.role === 'admin');
+
+  if (isAdmin) {
+    renderElectionAdminView(container);
+  } else if (user && user.role === 'school') {
+    renderElectionSchoolView(container, user);
+  } else if (user && user.role === 'peeo') {
+    renderElectionPeeoView(container, user);
+  } else {
+    renderElectionAdminView(container);
+  }
+}
+
+// 1. Dedicated View for School Login (ONLY Their School)
+function renderElectionSchoolView(container, user) {
+  const schools = window.ELECTION_2026_SCHOOLS || [];
+  const uCode = String(user.shala_darpan_code || user.dise_code || '').trim();
+  const mySchool = schools.find(s => String(s.shala_darpan_code) === uCode);
+
+  let submissions = {};
+  try {
+    submissions = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}');
+  } catch(e) {}
+
+  if (!mySchool) {
+    container.innerHTML = `
+      <div style="background:#fff; border-radius:12px; padding:2.5rem 1.5rem; text-align:center; box-shadow:0 4px 14px rgba(0,0,0,0.06); max-width:650px; margin:2rem auto">
+        <i class="fas fa-info-circle fa-3x" style="color:#0284c7; margin-bottom:1rem"></i>
+        <h3 style="color:#0f172a; margin-bottom:0.5rem">मतदान केंद्र भौतिक सत्यापन (प्रपत्र-3)</h3>
+        <p style="color:#64748b; font-size:0.95rem; line-height:1.5">
+          आपके विद्यालय (कोड: ${uCode || 'अज्ञात'}) में पंचायती राज आम चुनाव 2026 हेतु कोई मतदान केंद्र स्थापित नहीं है।<br>
+          यह प्रपत्र केवल भिनाय ब्लॉक के <strong>30 ग्राम पंचायत मुख्यालय विद्यालयों</strong> (116 बूथ) के लिए लागू है।
+        </p>
+      </div>
+    `;
+    return;
+  }
+
+  const sub = submissions[mySchool.shala_darpan_code];
+  const isSubmitted = !!sub;
+
+  container.innerHTML = `
+    <!-- Top School Personalized Banner -->
+    <div style="background:linear-gradient(135deg, #1e3a8a, #0f172a); color:#fff; border-radius:12px; padding:1.25rem 1.5rem; margin-bottom:1.25rem; box-shadow:0 4px 14px rgba(15,23,42,0.25)">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem">
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:#38bdf8; text-transform:uppercase; letter-spacing:0.5px">
+            🏛️ पंचायती राज आम चुनाव 2026 • प्रपत्र-3 भौतिक सत्यापन
+          </div>
+          <h2 style="font-size:1.4rem; font-weight:900; margin:4px 0">
+            ${mySchool.school_name}
+          </h2>
+          <div style="font-size:0.86rem; opacity:0.9">
+            <strong>ग्राम पंचायत:</strong> ${mySchool.panchayat_name} | <strong>शाला दर्पण कोड:</strong> <code>${mySchool.shala_darpan_code}</code> | <strong>PEEO:</strong> ${mySchool.peeo_name}
+          </div>
+        </div>
+        <div>
+          ${isSubmitted 
+            ? '<span style="background:#15803d; color:#fff; font-size:0.9rem; font-weight:800; padding:6px 14px; border-radius:30px; display:inline-flex; align-items:center; gap:6px"><i class="fas fa-check-circle"></i> ✓ प्रपत्र सफलतापूर्वक सत्यापित</span>' 
+            : '<span style="background:#b91c1c; color:#fff; font-size:0.9rem; font-weight:800; padding:6px 14px; border-radius:30px; display:inline-flex; align-items:center; gap:6px"><i class="fas fa-clock"></i> ⚠️ भौतिक सत्यापन लंबित (बाकी)</span>'}
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Card for This School -->
+    <div style="background:#fff; border:2px solid ${isSubmitted ? '#86efac' : '#93c5fd'}; border-radius:12px; padding:1.5rem; box-shadow:0 4px 14px rgba(0,0,0,0.06); margin-bottom:1.5rem">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; border-bottom:1px solid #e2e8f0; padding-bottom:1rem; margin-bottom:1rem">
+        <div>
+          <h3 style="font-size:1.15rem; font-weight:900; color:#0f172a; margin:0">
+            <i class="fas fa-vote-yea text-primary"></i> इस विद्यालय में स्थापित मतदान केंद्र एवं बूथ (${mySchool.booth_count} बूथ)
+          </h3>
+          <div style="font-size:0.85rem; color:#64748b; margin-top:3px">
+            संस्था प्रधान: <strong>${mySchool.principal_name}</strong> (मो. ${mySchool.principal_mobile})
+          </div>
+        </div>
+        <div style="display:flex; gap:0.65rem; flex-wrap:wrap">
+          <a href="election_form.html?code=${mySchool.shala_darpan_code}" target="_blank" class="btn btn-primary" style="font-weight:800; font-size:0.95rem; padding:0.6rem 1.4rem; display:inline-flex; align-items:center; gap:0.5rem; text-decoration:none">
+            <i class="fas ${isSubmitted ? 'fa-edit' : 'fa-file-signature'}"></i> ${isSubmitted ? 'प्रपत्र संशोधित करें' : '📝 प्रपत्र-3 भौतिक सत्यापन भरें'}
+          </a>
+          <a href="election_form.html?code=${mySchool.shala_darpan_code}&autoclick=pdf" target="_blank" class="btn btn-success" style="font-weight:800; font-size:0.95rem; padding:0.6rem 1.2rem; display:inline-flex; align-items:center; gap:0.5rem; text-decoration:none">
+            <i class="fas fa-file-pdf"></i> 🖨️ A4 PDF मुद्रित करें
+          </a>
+        </div>
+      </div>
+
+      <!-- Booths List Table -->
+      <div style="overflow-x:auto">
+        <table class="table" style="width:100%; border-collapse:collapse; font-size:0.88rem; margin:0">
+          <thead>
+            <tr style="background:#f1f5f9; text-align:left">
+              <th style="padding:8px 12px; border:1px solid #cbd5e1; width:70px">बूथ नं.</th>
+              <th style="padding:8px 12px; border:1px solid #cbd5e1">मतदान कक्ष / कमरा विवरण</th>
+              <th style="padding:8px 12px; border:1px solid #cbd5e1; width:100px; text-align:center">वार्ड संख्या</th>
+              <th style="padding:8px 12px; border:1px solid #cbd5e1; width:120px; text-align:center">प.स. क्षे.सं.</th>
+              <th style="padding:8px 12px; border:1px solid #cbd5e1; width:120px; text-align:center">जि.प. क्षे.सं.</th>
+              <th style="padding:8px 12px; border:1px solid #cbd5e1; width:100px; text-align:center">वि.स.</th>
+              <th style="padding:8px 12px; border:1px solid #cbd5e1; width:130px; text-align:center">सत्यापन स्थिति</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${(mySchool.booths || []).map(b => `
+              <tr>
+                <td style="padding:8px 12px; border:1px solid #cbd5e1; font-weight:800; text-align:center; background:#f8fafc">${b.booth_no}</td>
+                <td style="padding:8px 12px; border:1px solid #cbd5e1; font-weight:600">${b.room_hi}</td>
+                <td style="padding:8px 12px; border:1px solid #cbd5e1; text-align:center">${b.ward || '-'}</td>
+                <td style="padding:8px 12px; border:1px solid #cbd5e1; text-align:center">${b.ps_constituency || '-'}</td>
+                <td style="padding:8px 12px; border:1px solid #cbd5e1; text-align:center">${b.zp_constituency || '-'}</td>
+                <td style="padding:8px 12px; border:1px solid #cbd5e1; text-align:center">${b.ac_constituency || 104}</td>
+                <td style="padding:8px 12px; border:1px solid #cbd5e1; text-align:center">
+                  ${isSubmitted ? '<span style="color:#15803d; font-weight:700">✓ सत्यापित</span>' : '<span style="color:#b91c1c; font-weight:700">लंबित</span>'}
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:1.25rem; background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:0.85rem 1.15rem; font-size:0.85rem; color:#1e40af">
+        <i class="fas fa-info-circle"></i> <strong>निर्देश:</strong> ऊपर <strong>'प्रपत्र-3 भौतिक सत्यापन भरें'</strong> बटन पर क्लिक करके मौके पर हवा, प्रकाश, रैंप, फर्नीचर, पंखे, दरवाजे व BLO का विवरण दर्ज करें। सबमिट करने के बाद <strong>'A4 PDF मुद्रित करें'</strong> बटन से प्रपत्र प्रिंट कर BLO के भौतिक हस्ताक्षर करवाकर फाइल में सुरक्षित रखें।
+      </div>
+    </div>
+  `;
+}
+
+// 2. Dedicated View for PEEO Login (ONLY Their Panchayat Schools)
+function renderElectionPeeoView(container, user) {
+  const schools = window.ELECTION_2026_SCHOOLS || [];
+  const uCode = String(user.shala_darpan_code || '').trim();
+  const peeoName = String(user.peeo_name || '').trim();
+
+  const myPeeoSchools = schools.filter(s => 
+    String(s.shala_darpan_code) === uCode || 
+    (peeoName && s.peeo_name && (s.peeo_name.includes(peeoName) || peeoName.includes(s.peeo_name))) ||
+    (user.schools && user.schools.some(sch => String(sch.shala_darpan_code || sch.dise_code) === String(s.shala_darpan_code)))
+  );
+
+  let submissions = {};
+  try {
+    submissions = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}');
+  } catch(e) {}
+
+  const displaySchools = myPeeoSchools.length > 0 ? myPeeoSchools : schools.filter(s => String(s.shala_darpan_code) === uCode);
+
+  container.innerHTML = `
+    <!-- Top PEEO Banner -->
+    <div style="background:linear-gradient(135deg, #065f46, #0f172a); color:#fff; border-radius:12px; padding:1.25rem 1.5rem; margin-bottom:1.25rem; box-shadow:0 4px 14px rgba(6,95,70,0.25)">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem">
+        <div>
+          <div style="font-size:0.8rem; font-weight:700; color:#6ee7b7; text-transform:uppercase; letter-spacing:0.5px">
+            🏛️ PEEO परिक्षेत्र: ${peeoName || 'भिनाय'} • चुनाव 2026 प्रपत्र-3
+          </div>
+          <h2 style="font-size:1.35rem; font-weight:900; margin:4px 0">
+            मतदान केन्द्र भौतिक सत्यापन हब
+          </h2>
+          <div style="font-size:0.84rem; opacity:0.9">
+            इस PEEO परिक्षेत्र अंतर्गत स्थापित मतदान केंद्र विद्यालय एवं बूथों का भौतिक सत्यापन
+          </div>
+        </div>
+        <div style="display:flex; gap:0.5rem">
+          <span class="badge" style="background:#10b981; color:#fff; font-size:0.85rem; padding:6px 12px; border-radius:20px">
+            ${displaySchools.length} मतदान केंद्र विद्यालय
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PEEO Schools Cards Grid -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(360px, 1fr)); gap:1.25rem">
+      ${displaySchools.map((s, idx) => {
+        const sub = submissions[s.shala_darpan_code];
+        const isSubmitted = !!sub;
+        return `
+          <div style="background:#fff; border:1px solid ${isSubmitted ? '#86efac' : '#e2e8f0'}; border-top:4px solid ${isSubmitted ? '#16a34a' : '#0284c7'}; border-radius:8px; padding:1.1rem; box-shadow:0 2px 6px rgba(0,0,0,0.04); display:flex; flex-direction:column; justify-content:space-between">
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.4rem">
+                <span style="font-size:0.75rem; font-weight:800; color:#0369a1; background:#e0f2fe; padding:2px 6px; border-radius:4px">#${idx + 1} मतदान केंद्र</span>
+                ${isSubmitted 
+                  ? '<span style="background:#dcfce7; color:#15803d; font-size:0.75rem; font-weight:800; padding:2px 8px; border-radius:12px"><i class="fas fa-check-circle"></i> ✓ सत्यापित</span>' 
+                  : '<span style="background:#fee2e2; color:#b91c1c; font-size:0.75rem; font-weight:800; padding:2px 8px; border-radius:12px"><i class="fas fa-clock"></i> लंबित</span>'}
+              </div>
+              <h3 style="font-size:1.05rem; font-weight:900; color:#0f172a; margin-bottom:0.25rem">
+                ${s.school_name}
+              </h3>
+              <div style="font-size:0.82rem; color:#475569; margin-bottom:0.6rem">
+                <strong>ग्राम पंचायत:</strong> ${s.panchayat_name} | <strong>कोड:</strong> <code>${s.shala_darpan_code}</code>
+              </div>
+              <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:0.6rem 0.75rem; font-size:0.78rem; margin-bottom:0.85rem">
+                <div><strong>संस्था प्रधान:</strong> ${s.principal_name} (${s.principal_mobile})</div>
+                <div style="color:#0369a1; font-weight:700; margin-top:2px">
+                  🗳️ कुल मतदान बूथ: <strong>${s.booth_count}</strong>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
+              <a href="election_form.html?code=${s.shala_darpan_code}" target="_blank" class="btn btn-primary btn-sm" style="flex:1; font-weight:800; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:0.35rem">
+                <i class="fas ${isSubmitted ? 'fa-edit' : 'fa-file-signature'}"></i> ${isSubmitted ? 'संशोधन करें' : '📝 प्रपत्र भरें'}
+              </a>
+              <a href="election_form.html?code=${s.shala_darpan_code}&autoclick=pdf" target="_blank" class="btn btn-success btn-sm" style="font-weight:700; display:inline-flex; align-items:center; gap:0.3rem">
+                <i class="fas fa-file-pdf"></i> A4 PDF
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+// 3. Admin View for CBEO / Jitendra (Full Block 30 Schools Hub)
+function renderElectionAdminView(container) {
   const schools = window.ELECTION_2026_SCHOOLS || [];
   const booths = window.ELECTION_2026_BOOTHS || [];
 
