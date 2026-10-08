@@ -40640,5 +40640,9 @@ const MASTER_CBEO_DATA = {
         ]
       }
     }
+  },
+  "portal_settings_bundle": {
+    "__SAMAN_ACTIVE_FORM__": "syllabus",
+    "saman_active_form": "syllabus"
   }
 };
