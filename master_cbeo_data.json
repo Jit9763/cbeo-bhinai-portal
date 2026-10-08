@@ -39832,8 +39832,8 @@
       "submitted_by": "SMT ASHA RAJ",
       "submitter_mobile": "7877090975",
       "is_submitted": true,
-      "submitted_at": "2026-10-08T15:18:14.863Z",
-      "average_pct": 80,
+      "submitted_at": "2026-10-08T15:53:28.597Z",
+      "average_pct": 85,
       "c9": {
         "zero_enrolment": false,
         "hindi": 80,
@@ -39846,12 +39846,12 @@
       },
       "c10": {
         "zero_enrolment": false,
-        "hindi": 80,
-        "english": 80,
-        "maths": 80,
-        "science": 80,
-        "sst": 80,
-        "sanskrit": 80,
+        "hindi": 90,
+        "english": 90,
+        "maths": 90,
+        "science": 90,
+        "sst": 90,
+        "sanskrit": 90,
         "urdu": 0
       },
       "c11": {
@@ -39863,25 +39863,51 @@
         ],
         "electives": [
           {
-            "name": "अनिवार्य व ऐच्छिक",
+            "key": "pol_sci",
+            "name": "राजनीति विज्ञान (Political Science)",
+            "pct": 80
+          },
+          {
+            "key": "history",
+            "name": "इतिहास (History)",
+            "pct": 80
+          },
+          {
+            "key": "hindi_lit",
+            "name": "हिंदी साहित्य (Hindi Literature)",
             "pct": 80
           }
         ]
       },
       "c12": {
         "zero_enrolment": false,
-        "comp_hindi": 80,
-        "comp_english": 80,
+        "comp_hindi": 90,
+        "comp_english": 90,
         "faculties": [
           "arts"
         ],
         "electives": [
           {
-            "name": "अनिवार्य व ऐच्छिक",
-            "pct": 80
+            "key": "pol_sci",
+            "name": "राजनीति विज्ञान (Political Science)",
+            "pct": 90
+          },
+          {
+            "key": "history",
+            "name": "इतिहास (History)",
+            "pct": 90
+          },
+          {
+            "key": "hindi_lit",
+            "name": "हिंदी साहित्य (Hindi Literature)",
+            "pct": 90
           }
         ]
-      }
+      },
+      "exam_code": "AJM04G221788",
+      "incharge_name": "Pankaj sharma",
+      "incharge_mobile": "9413135717",
+      "updated_at": "2026-10-08T15:53:28.597Z"
     },
     "401778": {
       "school_code": "401778",
