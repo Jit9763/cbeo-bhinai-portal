@@ -346,9 +346,9 @@ function doPost(e) {
         eSheet = ss.insertSheet("Election_2026_Verification");
         eSheet.appendRow([
           "क्र.सं.", "शाला_दर्पण_कोड", "विद्यालय_का_नाम", "ग्राम_पंचायत", "PEEO_नाम",
-          "ईमेल_आईडी", "प्रभारी_विवरण", "संस्था_प्रधान", "संस्था_प्रधान_मोबाइल",
-          "BLO_नाम", "BLO_पद", "BLO_मोबाइल", "सामान्य_व्यवस्थाएं_JSON", "बूथ_वार_व्यवस्थाएं_JSON",
-          "कैफियत", "सबमिशन_दिनांक"
+          "ईमेल_आईडी", "भवन_प्रकार", "भवन_स्थिति", "क्षेत्रफल_वर्गमी", "पहुंच_दूरी",
+          "संस्था_प्रधान", "संस्था_प्रधान_मोबाइल", "मतदान_केंद्र_सुविधाएं_JSON", "बूथ_वार_P3_सुविधाएं_व_BLO_विवरण_JSON",
+          "विशेष_टिप्पणी", "सबमिशन_दिनांक"
         ]);
       }
       var eVals = eSheet.getDataRange().getValues();
@@ -366,14 +366,14 @@ function doPost(e) {
         entry.panchayat_name || '',
         entry.peeo_name || '',
         entry.school_email || '',
-        entry.incharge_details || '',
+        entry.bldg_type || '',
+        entry.bldg_condition || '',
+        entry.bldg_area || '',
+        entry.bldg_road_dist || '',
         (entry.principal && entry.principal.name) ? entry.principal.name : '',
         (entry.principal && entry.principal.mobile) ? entry.principal.mobile : '',
-        (entry.blo && entry.blo.name) ? entry.blo.name : '',
-        (entry.blo && entry.blo.designation) ? entry.blo.designation : '',
-        (entry.blo && entry.blo.mobile) ? entry.blo.mobile : '',
         JSON.stringify(entry.facilities || {}),
-        JSON.stringify(entry.booth_facilities || {}),
+        JSON.stringify(entry.booth_details || entry.booth_facilities || {}),
         entry.remarks || '',
         entry.submitted_at || Utilities.formatDate(new Date(), "GMT+5:30", "dd-MM-yyyy HH:mm:ss")
       ];

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>पंचायती राज आम चुनाव 2026 | मतदान केन्द्र भौतिक सत्यापन प्रपत्र (CBEO भिनाय)</title>
+  <title>प्रपत्र-3: मतदान केन्द्र भौतिक सत्यापन रिपोर्ट 2026 | CBEO भिनाय</title>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -67,7 +67,7 @@
     .btn-submit:hover { background: #15803d; }
 
     .form-wrapper {
-      max-width: 900px;
+      max-width: 960px;
       margin: 1.5rem auto;
       padding: 0 1rem;
     }
@@ -91,7 +91,7 @@
 
     .meta-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 0.85rem;
       background: #f8fafc;
       border: 1px solid #e2e8f0;
@@ -101,26 +101,26 @@
     .meta-item label { display: block; font-size: 0.74rem; font-weight: 700; color: #64748b; text-transform: uppercase; }
     .meta-item .val { font-size: 0.92rem; font-weight: 800; color: #0f172a; margin-top: 2px; }
 
-    .form-group { margin-bottom: 1.1rem; }
+    .form-group { margin-bottom: 1rem; }
     .form-group label {
       display: block;
       font-weight: 700;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       color: #1e293b;
       margin-bottom: 0.35rem;
     }
     .form-group label span.req { color: #dc2626; margin-left: 2px; }
     .form-control {
       width: 100%;
-      padding: 0.6rem 0.85rem;
+      padding: 0.55rem 0.8rem;
       border: 1.5px solid #cbd5e1;
       border-radius: 6px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-family: inherit;
     }
     .form-control:focus { outline: none; border-color: #0284c7; box-shadow: 0 0 0 3px rgba(2,132,199,0.15); }
 
-    /* Facility Rows (Yes/No Switcher) */
+    /* Facility Grid & Select Controls */
     .facility-row {
       display: flex;
       justify-content: space-between;
@@ -131,12 +131,8 @@
     }
     .facility-row:nth-child(even) { background: #f8fafc; border-radius: 6px; }
     .facility-desc { font-size: 0.88rem; font-weight: 600; color: #334155; }
-    .facility-desc small { display: block; font-size: 0.75rem; color: #64748b; font-weight: normal; margin-top: 1px; }
-    .yes-no-group {
-      display: flex;
-      gap: 0.5rem;
-      flex-shrink: 0;
-    }
+    .facility-desc small { display: block; font-size: 0.74rem; color: #64748b; font-weight: normal; margin-top: 1px; }
+
     .yn-label {
       cursor: pointer;
       font-size: 0.82rem;
@@ -163,7 +159,7 @@
       color: #b91c1c;
     }
 
-    /* Booth Cards */
+    /* Booth Cards (Detailed Sheet P-3 layout) */
     .booth-card {
       background: #ffffff;
       border: 1.5px solid #cbd5e1;
@@ -179,15 +175,18 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid #e2e8f0;
+      flex-wrap: wrap;
+      gap: 0.4rem;
     }
     .booth-title { font-weight: 800; font-size: 0.95rem; color: #0369a1; }
-    .booth-ward-tag { font-size: 0.8rem; font-weight: 700; color: #475569; background: #e2e8f0; padding: 2px 8px; border-radius: 12px; }
-    .booth-card-body { padding: 0.95rem 1rem; }
+    .booth-badges { display: flex; gap: 0.4rem; font-size: 0.76rem; font-weight: 700; color: #475569; }
+    .booth-badge-pill { background: #e2e8f0; padding: 2px 8px; border-radius: 12px; }
+    .booth-card-body { padding: 1rem; }
 
     /* Signature Section */
     .sig-canvas {
       width: 100%;
-      height: 75px;
+      height: 80px;
       background: #ffffff;
       border: 1px solid #cbd5e1;
       border-radius: 4px;
@@ -207,10 +206,10 @@
     #print-proforma-area {
       display: none;
       background: #ffffff;
-      padding: 15mm;
+      padding: 12mm 10mm;
       width: 100%;
       color: #000;
-      font-size: 11pt;
+      font-size: 10pt;
     }
     @media print {
       body * { visibility: hidden; }
@@ -231,8 +230,8 @@
   <header class="top-app-bar">
     <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> पोर्टल पर वापस जाएं</a>
     <div class="app-title-box">
-      <div class="app-title">🗳️ पंचायती राज आम चुनाव 2026 - मतदान केन्द्र भौतिक सत्यापन</div>
-      <div class="app-sub">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर) | जिला: अजमेर (AJMER)</div>
+      <div class="app-title">🗳️ प्रपत्र-3: मतदान केन्द्र भौतिक सत्यापन रिपोर्ट (CBEO भिनाय)</div>
+      <div class="app-sub">पंचायतीराज संस्थाओं के आम चुनाव 2026 | जिला: अजमेर (AJMER) | ब्लॉक: भिनाय</div>
     </div>
     <div class="top-actions">
       <button type="button" class="btn-action btn-pdf" onclick="generateAndDownloadPdf()"><i class="fas fa-file-pdf"></i> A4 PDF प्रमाण-पत्र</button>
@@ -242,11 +241,11 @@
 
   <div class="form-wrapper">
 
-    <!-- Card 1: School & Location Identification (Pre-filled) -->
+    <!-- Card 1: Master Pre-filled Identification (Sheet P-3 Header) -->
     <div class="form-card">
       <div class="card-header-bar">
-        <h2>1. विद्यालय एवं मतदान केंद्र सामान्य विवरण (Master Pre-filled)</h2>
-        <p>जिला: अजमेर (AJMER) • ब्लॉक: भिनाय (BHINAI) • राज्य निर्वाचन आयोग दिशानिर्देश 2026</p>
+        <h2>1. ग्राम पंचायत एवं मतदान केंद्र सामान्य विवरण</h2>
+        <p>जिला: अजमेर (AJMER) • पंचायत समिति / ब्लॉक: भिनाय (BHINAI)</p>
       </div>
       <div class="card-body">
         <div style="margin-bottom:1rem">
@@ -258,15 +257,15 @@
 
         <div class="meta-grid">
           <div class="meta-item">
-            <label>जिला / ब्लॉक</label>
+            <label>जिला / पंचायत समिति</label>
             <div class="val" style="color:#1d4ed8">अजमेर (AJMER) / भिनाय</div>
           </div>
           <div class="meta-item">
-            <label>ग्राम पंचायत</label>
+            <label>ग्राम पंचायत का नाम</label>
             <div class="val" id="disp-gp-name">--</div>
           </div>
           <div class="meta-item">
-            <label>विद्यालय का नाम</label>
+            <label>मतदान केंद्र / विद्यालय का नाम</label>
             <div class="val" id="disp-school-name">--</div>
           </div>
           <div class="meta-item">
@@ -297,28 +296,54 @@
       </div>
     </div>
 
-    <!-- Card 2: 8 Essential Election Facilities (SEC Order 07-10-2026) -->
+    <!-- Card 2: Polling Center Level Infrastructure (Sheet P-3 Cols 4, 7, 8, 10, 11-16) -->
     <div class="form-card">
       <div class="card-header-bar" style="background:linear-gradient(135deg, #047857, #065f46)">
-        <h2>2. राज्य निर्वाचन आयोग निर्देशानुसार 8 प्रमुख व्यवस्थाएं (भौतिक सत्यापन)</h2>
-        <p>आदेश क्रमांक: प.2(9)रानिआ/सामान्य/2025-26/10161 दिनांक 07-10-2026</p>
+        <h2>2. मतदान केंद्र / भवन स्तरीय भौतिक स्थिति एवं आवश्यक व्यवस्थाएं</h2>
+        <p>प्रपत्र-3 एवं राज्य निर्वाचन आयोग आदेश क्र. 10161 दिनांक 07-10-2026</p>
       </div>
       <div class="card-body">
+        <!-- Physical Parameters from P-3 -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:0.75rem; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:0.85rem; margin-bottom:1rem">
+          <div>
+            <label style="font-size:0.75rem; font-weight:700; color:#475569">भवन की विशिष्टियां:</label>
+            <input type="text" id="bldg-type" class="form-control" value="सरकारी" style="font-weight:700">
+          </div>
+          <div>
+            <label style="font-size:0.75rem; font-weight:700; color:#475569">भवन की भौतिक स्थिति:</label>
+            <select id="bldg-condition" class="form-control" style="font-weight:700">
+              <option value="अच्छी">अच्छी (संतोषप्रद)</option>
+              <option value="सामान्य">सामान्य</option>
+              <option value="मरम्मत योग्य">मरम्मत योग्य</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:0.75rem; font-weight:700; color:#475569">मतदान केंद्र क्षेत्रफल (वर्ग मीटर):</label>
+            <input type="number" id="bldg-area" class="form-control" value="60">
+          </div>
+          <div>
+            <label style="font-size:0.75rem; font-weight:700; color:#475569">मतदान केंद्र तक रोड से दूरी / पहुंच मार्ग:</label>
+            <input type="text" id="bldg-road-dist" class="form-control" value="पक्की रोड / 100 मीटर">
+          </div>
+        </div>
+
+        <!-- 8 Mandatory Facility Items from SEC & Sheet P-3 -->
         <div id="general-facilities-container">
           <!-- Populated by JS -->
         </div>
-        <div class="form-group" style="margin-top:1rem">
+
+        <div class="form-group" style="margin-top:1rem; margin-bottom:0">
           <label>विशेष टिप्पणी / यदि कोई कमी या अतिरिक्त आवश्यकता हो (वैकल्पिक):</label>
-          <textarea id="election-general-remarks" class="form-control" rows="2" placeholder="यदि किसी व्यवस्था में विशेष सहयोग या बजट आवश्यकता हो तो यहाँ लिखें..."></textarea>
+          <textarea id="election-general-remarks" class="form-control" rows="2" placeholder="यदि कोई टिप्पणी हो तो यहाँ लिखें (अन्यथा रिक्त छोड़ें)..."></textarea>
         </div>
       </div>
     </div>
 
-    <!-- Card 3: Booth-Wise Detailed Verification (Repeater with per-booth BLO details & signatures) -->
+    <!-- Card 3: Booth-Wise Detailed Verification (Sheet P-3 Cols 17 to 22 + per-booth BLO details) -->
     <div class="form-card">
       <div class="card-header-bar" style="background:linear-gradient(135deg, #4338ca, #3730a3)">
         <h2>3. मतदान कक्ष / बूथ-वार विस्तृत भौतिक सत्यापन</h2>
-        <p>प्रत्येक मतदान कक्ष की भौतिक स्थिति एवं संबंधित बूथ के BLO / प्रगणक का विवरण व हस्ताक्षर दर्ज करें</p>
+        <p>प्रपत्र-3 के अनुसार प्रत्येक मतदान कक्ष की भौतिक सुविधाएं एवं संबंधित बूथ के BLO / प्रगणक का विवरण</p>
       </div>
       <div class="card-body" id="booth-wise-repeater-container">
         <!-- Rendered dynamically for each booth -->
@@ -333,7 +358,7 @@
       </div>
       <div class="card-body">
         <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:6px; padding:0.75rem 1rem; font-size:0.85rem; color:#1e40af; margin-bottom:1rem">
-          <i class="fas fa-info-circle"></i> <strong>सत्यापन नियम:</strong> ऊपर प्रत्येक बूथ के लिए संबंधित <strong>BLO / प्रगणक</strong> का विवरण व हस्ताक्षर भरे गए हैं। नीचे <strong>संस्था प्रधान</strong> द्वारा अंतिम प्रमाणीकरण व डिजिटल हस्ताक्षर किए जाएंगे।
+          <i class="fas fa-info-circle"></i> <strong>सत्यापन नियम:</strong> ऊपर प्रत्येक बूथ के लिए संबंधित <strong>BLO / प्रगणक</strong> का विवरण (नाम, पद, मो.) भरा गया है, जिनके भौतिक हस्ताक्षर PDF पर होंगे। नीचे <strong>संस्था प्रधान</strong> द्वारा प्रमाणीकरण व डिजिटल हस्ताक्षर किए जाएंगे।
         </div>
 
         <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:8px; padding:1rem; max-width:550px; margin:0 auto">
@@ -353,7 +378,7 @@
             <input type="tel" id="principal-mobile-input" class="form-control" placeholder="94XXXXXXXX">
           </div>
           <div style="text-align:left; margin-bottom:0.25rem; font-size:0.75rem; font-weight:700; color:#475569">
-            संस्था प्रधान डिजिटल हस्ताक्षर / मुहर (ऊंगली या माउस से साइन करें):
+            संस्था प्रधान डिजिटल हस्ताक्षर / मुहर:
           </div>
           <canvas id="canvas-principal-sig" class="sig-canvas" style="height:90px"></canvas>
           <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.35rem">
@@ -375,97 +400,113 @@
 
   </div>
 
-  <!-- Hidden Printable A4 Layout for PDF Generation -->
+  <!-- Hidden Printable A4 Layout for PDF Generation (Exact P-3 Sheet Format) -->
   <div id="print-proforma-area">
-    <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:6px; margin-bottom:10px">
-      <div style="font-size:12pt; font-weight:bold; letter-spacing:0.5px">राजस्थान सरकार | स्कूल शिक्षा विभाग</div>
-      <div style="font-size:16pt; font-weight:900; margin:3px 0">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)</div>
-      <div style="font-size:10pt; color:#222">समग्र शिक्षा अभियान | ब्लॉक: भिनाय | जिला: अजमेर (AJMER) | सत्र 2026-27</div>
-      <div style="display:inline-block; border:1.5px solid #000; padding:3px 15px; margin-top:5px; font-weight:bold; font-size:11pt; background:#f1f5f9">
-        पंचायती राज आम चुनाव 2026 - मतदान केन्द्र भौतिक सत्यापन एवं व्यवस्था प्रमाण-पत्र
+    <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:6px; margin-bottom:8px">
+      <div style="font-size:11pt; font-weight:bold; letter-spacing:0.5px">राजस्थान सरकार | स्कूल शिक्षा विभाग</div>
+      <div style="font-size:15pt; font-weight:900; margin:2px 0">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)</div>
+      <div style="font-size:9.5pt; color:#222">समग्र शिक्षा अभियान | ब्लॉक: भिनाय | <strong>जिला: अजमेर (AJMER)</strong></div>
+      <div style="display:inline-block; border:1.5px solid #000; padding:2px 14px; margin-top:4px; font-weight:bold; font-size:11pt; background:#f1f5f9">
+        प्रपत्र-3: पंचायतीराज संस्थाओं के निर्वाचन हेतु मतदान केन्द्रों का भौतिक सत्यापन रिपोर्ट 2026
       </div>
     </div>
 
-    <!-- School Meta Info (No Voters Column) -->
-    <table style="width:100%; border-collapse:collapse; margin-bottom:10px; font-size:10pt; border:1.5px solid #000">
+    <!-- School Meta Info Table -->
+    <table style="width:100%; border-collapse:collapse; margin-bottom:8px; font-size:9pt; border:1.5px solid #000">
       <tr>
-        <td style="border:1px solid #000; padding:4px 8px; font-weight:bold; width:18%; background:#f8fafc">विद्यालय का नाम:</td>
-        <td style="border:1px solid #000; padding:4px 8px; width:32%" id="pdf-school-name">-</td>
-        <td style="border:1px solid #000; padding:4px 8px; font-weight:bold; width:18%; background:#f8fafc">शाला दर्पण / PSP कोड:</td>
-        <td style="border:1px solid #000; padding:4px 8px; width:32%" id="pdf-school-code">-</td>
+        <td style="border:1px solid #000; padding:3px 6px; font-weight:bold; width:18%; background:#f8fafc">ग्राम पंचायत:</td>
+        <td style="border:1px solid #000; padding:3px 6px; width:32%" id="pdf-gp-name">-</td>
+        <td style="border:1px solid #000; padding:3px 6px; font-weight:bold; width:18%; background:#f8fafc">मतदान केंद्र / विद्यालय:</td>
+        <td style="border:1px solid #000; padding:3px 6px; width:32%; font-weight:bold" id="pdf-school-name">-</td>
       </tr>
       <tr>
-        <td style="border:1px solid #000; padding:4px 8px; font-weight:bold; background:#f8fafc">ग्राम पंचायत:</td>
-        <td style="border:1px solid #000; padding:4px 8px;" id="pdf-gp-name">-</td>
-        <td style="border:1px solid #000; padding:4px 8px; font-weight:bold; background:#f8fafc">PEEO परिक्षेत्र:</td>
-        <td style="border:1px solid #000; padding:4px 8px;" id="pdf-peeo-name">-</td>
+        <td style="border:1px solid #000; padding:3px 6px; font-weight:bold; background:#f8fafc">शाला दर्पण / PSP कोड:</td>
+        <td style="border:1px solid #000; padding:3px 6px;" id="pdf-school-code">-</td>
+        <td style="border:1px solid #000; padding:3px 6px; font-weight:bold; background:#f8fafc">PEEO परिक्षेत्र:</td>
+        <td style="border:1px solid #000; padding:3px 6px;" id="pdf-peeo-name">-</td>
       </tr>
       <tr>
-        <td style="border:1px solid #000; padding:4px 8px; font-weight:bold; background:#f8fafc">संस्था प्रधान:</td>
-        <td style="border:1px solid #000; padding:4px 8px;" id="pdf-principal-name">-</td>
-        <td style="border:1px solid #000; padding:4px 8px; font-weight:bold; background:#f8fafc">विद्यालय ईमेल:</td>
-        <td style="border:1px solid #000; padding:4px 8px;" id="pdf-school-email">-</td>
+        <td style="border:1px solid #000; padding:3px 6px; font-weight:bold; background:#f8fafc">संस्था प्रधान नाम:</td>
+        <td style="border:1px solid #000; padding:3px 6px;" id="pdf-principal-name">-</td>
+        <td style="border:1px solid #000; padding:3px 6px; font-weight:bold; background:#f8fafc">विद्यालय ईमेल:</td>
+        <td style="border:1px solid #000; padding:3px 6px;" id="pdf-school-email">-</td>
       </tr>
       <tr>
-        <td style="border:1px solid #000; padding:4px 8px; font-weight:bold; background:#f8fafc">कुल मतदान बूथ:</td>
-        <td style="border:1px solid #000; padding:4px 8px; font-weight:bold" id="pdf-booths-count" colspan="3">-</td>
+        <td style="border:1px solid #000; padding:3px 6px; font-weight:bold; background:#f8fafc">भवन स्थिति / क्षेत्रफल:</td>
+        <td style="border:1px solid #000; padding:3px 6px;" id="pdf-bldg-meta">-</td>
+        <td style="border:1px solid #000; padding:3px 6px; font-weight:bold; background:#f8fafc">कुल मतदान बूथ संख्या:</td>
+        <td style="border:1px solid #000; padding:3px 6px; font-weight:bold" id="pdf-booths-count">-</td>
       </tr>
     </table>
 
-    <!-- 8 Facilities Table -->
-    <div style="font-weight:bold; font-size:10.5pt; margin-bottom:4px; text-decoration:underline">
-      1. राज्य निर्वाचन आयोग आदेशानुसार आवश्यक 8 प्रमुख व्यवस्थाओं की स्थिति:
+    <!-- 1. Center Level Facilities Table (P-3 Cols 11-16) -->
+    <div style="font-weight:bold; font-size:9.5pt; margin-bottom:3px">
+      1. मतदान केंद्र / भवन स्तरीय मूलभूत भौतिक सुविधाओं का सत्यापन:
     </div>
-    <table style="width:100%; border-collapse:collapse; margin-bottom:12px; font-size:9.5pt; border:1.5px solid #000" id="pdf-fac-table">
+    <table style="width:100%; border-collapse:collapse; margin-bottom:10px; font-size:8.5pt; border:1.5px solid #000" id="pdf-fac-table">
       <thead>
         <tr style="background:#e2e8f0; text-align:center">
-          <th style="border:1px solid #000; padding:4px; width:6%">क्र.</th>
-          <th style="border:1px solid #000; padding:4px; text-align:left">व्यवस्था का विवरण (राज्य निर्वाचन आयोग दिशानिर्देश)</th>
-          <th style="border:1px solid #000; padding:4px; width:14%">उपलब्धता</th>
-          <th style="border:1px solid #000; padding:4px; width:25%">कैफियत / स्थिति</th>
+          <th style="border:1px solid #000; padding:3px; width:5%">क्र.</th>
+          <th style="border:1px solid #000; padding:3px; text-align:left">सुविधा / व्यवस्था (प्रपत्र-3 अनुसार)</th>
+          <th style="border:1px solid #000; padding:3px; width:14%">उपलब्धता स्थिति</th>
+          <th style="border:1px solid #000; padding:3px; width:30%">कैफियत / टिप्पणी</th>
         </tr>
       </thead>
       <tbody id="pdf-fac-tbody"></tbody>
     </table>
 
-    <!-- Booth Wise Table with per-booth BLO details & signs -->
-    <div style="font-weight:bold; font-size:10.5pt; margin-bottom:4px; text-decoration:underline">
-      2. मतदान कक्ष / बूथ-वार विस्तृत भौतिक सत्यापन एवं अधिकृत BLO विवरण:
+    <!-- 2. Booth Wise Detailed Table (P-3 Cols 17-22 + BLO Sign space) -->
+    <div style="font-weight:bold; font-size:9.5pt; margin-bottom:3px">
+      2. मतदान कक्ष / बूथ-वार विस्तृत भौतिक सत्यापन एवं अधिकृत BLO प्रगणक विवरण:
     </div>
-    <table style="width:100%; border-collapse:collapse; margin-bottom:12px; font-size:8.5pt; border:1.5px solid #000" id="pdf-booth-table">
+    <table style="width:100%; border-collapse:collapse; margin-bottom:10px; font-size:8pt; border:1.5px solid #000" id="pdf-booth-table">
       <thead>
         <tr style="background:#e2e8f0; text-align:center">
-          <th style="border:1px solid #000; padding:3px; width:5%">बूथ</th>
-          <th style="border:1px solid #000; padding:3px; text-align:left">मतदान कक्ष / कमरा विवरण</th>
-          <th style="border:1px solid #000; padding:3px; width:10%">वार्ड</th>
-          <th style="border:1px solid #000; padding:3px; width:8%">विद्युत/पंखा</th>
-          <th style="border:1px solid #000; padding:3px; width:8%">फर्नीचर</th>
-          <th style="border:1px solid #000; padding:3px; width:8%">पृथक द्वार</th>
-          <th style="border:1px solid #000; padding:3px; width:8%">चूना लाइन</th>
-          <th style="border:1px solid #000; padding:3px; text-align:left; width:28%">BLO / प्रगणक (नाम, पद, मो.)</th>
-          <th style="border:1px solid #000; padding:3px; width:15%">BLO हस्ताक्षर</th>
+          <th style="border:1px solid #000; padding:3px; width:4%">बूथ</th>
+          <th style="border:1px solid #000; padding:3px; text-align:left; width:22%">मतदान कक्ष / कमरा विवरण</th>
+          <th style="border:1px solid #000; padding:3px; width:12%">निर्वाचन क्षेत्र (वार्ड/PS/ZP)</th>
+          <th style="border:1px solid #000; padding:3px; width:7%">हवा/प्रकाश</th>
+          <th style="border:1px solid #000; padding:3px; width:7%">फर्नीचर</th>
+          <th style="border:1px solid #000; padding:3px; width:7%">पृथक द्वार</th>
+          <th style="border:1px solid #000; padding:3px; width:7%">छत पंखा</th>
+          <th style="border:1px solid #000; padding:3px; width:7%">खिड़की/द्वार</th>
+          <th style="border:1px solid #000; padding:3px; text-align:left; width:17%">BLO/प्रगणक (नाम, पद, मो.)</th>
+          <th style="border:1px solid #000; padding:3px; width:10%">हस्ताक्षर BLO</th>
         </tr>
       </thead>
       <tbody id="pdf-booth-tbody"></tbody>
     </table>
 
-    <!-- Certification & Signatures -->
-    <div style="margin-top:10px; font-size:9pt; line-height:1.4; border-top:1px dashed #666; padding-top:6px">
-      <strong>प्रमाणीकरण:</strong> प्रमाणित किया जाता है कि उपरोक्त सभी मतदान केंद्रों व कक्षों का मौके पर निरीक्षण कर संबंधित BLO/प्रगणकों द्वारा भौतिक सत्यापन कर लिया गया है। राज्य निर्वाचन आयोग के आदेशानुसार मतदान दिवस एवं मतगणना तक समस्त व्यवस्थाएं दुरुस्त रखी जाएंगी।
+    <!-- Remarks & Certification -->
+    <div style="font-size:8pt; margin-bottom:6px">
+      <strong>विशेष टिप्पणी:</strong> <span id="pdf-remarks-disp">समस्त व्यवस्थाएं सुचारू पाई गईं।</span>
     </div>
 
-    <div style="display:flex; justify-content:flex-end; margin-top:20px; padding:0 20px">
-      <div style="text-align:center; width:45%">
-        <div id="pdf-principal-sig-img" style="height:45px; display:flex; align-items:flex-end; justify-content:center"></div>
-        <div style="border-top:1px solid #000; padding-top:4px">
+    <div style="font-size:8.5pt; line-height:1.3; border-top:1px dashed #666; padding-top:4px">
+      <strong>प्रमाणीकरण:</strong> प्रमाणित किया जाता है कि उपरोक्त सभी मतदान केंद्रों व कक्षों का मौके पर निरीक्षण कर संबंधित BLO/प्रगणकों द्वारा भौतिक सत्यापन कर लिया गया है। राज्य निर्वाचन आयोग के निर्देशानुसार मतदान दिवस तक समस्त व्यवस्थाएं दुरुस्त रखी जाएंगी।
+    </div>
+
+    <!-- Signatures -->
+    <div style="display:flex; justify-content:space-between; margin-top:15px; padding:0 15px">
+      <div style="text-align:center; width:40%; font-size:8.5pt">
+        <div style="height:35px"></div>
+        <div style="border-top:1px solid #000; padding-top:3px">
+          <strong>हस्ताक्षर अधिकृत BLO / प्रगणकगण</strong><br>
+          <span style="font-size:7.5pt">(बूथ-वार उपरोक्त तालिका में भौतिक हस्ताक्षरित)</span>
+        </div>
+      </div>
+
+      <div style="text-align:center; width:40%; font-size:8.5pt">
+        <div id="pdf-principal-sig-img" style="height:35px; display:flex; align-items:flex-end; justify-content:center"></div>
+        <div style="border-top:1px solid #000; padding-top:3px">
           <strong id="pdf-principal-name-disp">श्री संस्था प्रधान</strong><br>
-          <span style="font-size:8.5pt">संस्था प्रधान मय सील/मुहर</span><br>
-          <span style="font-size:8pt" id="pdf-principal-mobile-disp">मो. 94XXXXXXXX</span>
+          <span style="font-size:7.5pt">संस्था प्रधान मय सील/मुहर</span><br>
+          <span style="font-size:7.5pt" id="pdf-principal-mobile-disp">मो. 94XXXXXXXX</span>
         </div>
       </div>
     </div>
 
-    <div style="margin-top:15px; font-size:8pt; color:#555; text-align:center">
+    <div style="margin-top:10px; font-size:7.5pt; color:#555; text-align:center">
       आधिकारिक सत्यापन यूआरएल: https://jit9763.github.io/cbeo-bhinai-portal/ | मुद्रण दिनांक: <span id="pdf-print-date"></span>
     </div>
   </div>
@@ -473,21 +514,22 @@
   <script>
     // State & Config
     let ACTIVE_SCHOOL_CODE = '221769'; // Default Bandanwara
-    const FACILITIES_8_CONFIG = [
-      { id: 'shade', title: '1. छाया एवं टेन्ट व्यवस्था', hint: 'क्या बरामदा अथवा आवश्यकतानुसार टेन्ट द्वारा छाया व्यवस्था सुनिश्चित है?' },
-      { id: 'water', title: '2. स्वच्छ व पर्याप्त पेयजल व्यवस्था', hint: 'क्या सभी मतदान केन्द्रों पर स्वच्छ एवं पर्याप्त पेयजल व्यवस्था उपलब्ध है?' },
-      { id: 'light', title: '3. प्रकाश, विद्युत, पंखे एवं रात्रि मतगणना जनरेटर', hint: 'क्या पर्याप्त लाइट व्यवस्था, पंखे तथा रात्रि मतगणना हेतु जनरेटर व्यवस्था सुनिश्चित है?' },
-      { id: 'rest_toilet', title: '4. मतदान दलों के विश्राम एवं शौचालय व्यवस्था', hint: 'क्या मतदान/पुलिस दल हेतु गद्दे, तकिये, चद्दर व स्वच्छ शौचालय उपलब्ध हैं?' },
-      { id: 'food', title: '5. मतदान दलों हेतु भोजन व्यवस्था', hint: 'क्या मतदान दलों हेतु (On Payment) कुक-कम-हेल्पर/अन्य द्वारा भोजन व्यवस्था सुनिश्चित है?' },
-      { id: 'signage', title: '6. साइनेज एवं चूना लाइनिंग व्यवस्था', hint: 'क्या मतदान केंद्र पर साइनेज व 100m/200m दूरी पर चूना लाइनिंग की व्यवस्था पूर्ण है?' },
-      { id: 'ramp', title: '7. दिव्यांग सुगम्यता हेतु रैंप व्यवस्था', hint: 'क्या दिव्यांग मतदाताओं हेतु रैंप (स्थायी / अस्थायी) उपलब्ध है?' },
-      { id: 'first_aid', title: '8. प्राथमिक उपचार (First Aid) किट व दवाइयां', hint: 'क्या प्राथमिक उपचार किट एवं आवश्यक दवाइयों की उपलब्धता सुनिश्चित है?' },
-      { id: 'boundary', title: '9. परिसर चारदीवारी एवं सुरक्षा व्यवस्था', hint: 'क्या विद्यालय परिसर की चारदीवारी व सुरक्षा व्यवस्था पूर्णतः संतोषप्रद है?' }
+
+    // P-3 Center-Level Facilities Configuration (Cols 11 to 16 + SEC essential items)
+    const P3_CENTER_FACILITIES = [
+      { id: 'boundary', title: '1. परिसर चारदीवारी', hint: 'क्या मतदान केंद्र / भवन के चारों ओर पक्की चारदीवारी है? (P-3 Col 11)' },
+      { id: 'water', title: '2. स्वच्छ पेयजल व्यवस्था', hint: 'क्या मतदान केंद्र में स्वच्छ व पर्याप्त पेयजल व्यवस्था उपलब्ध है? (P-3 Col 12)' },
+      { id: 'toilet', title: '3. शौचालय / मूत्रालय', hint: 'क्या मतदान केंद्र में स्वच्छ व क्रियाशील शौचालय/मूत्रालय उपलब्ध है? (P-3 Col 13)' },
+      { id: 'shed', title: '4. शेड / छाया व्यवस्था', hint: 'क्या बरामदे अथवा शेड/टेन्ट द्वारा पर्याप्त छाया व्यवस्था उपलब्ध है? (P-3 Col 14)' },
+      { id: 'ramp', title: '5. रैंप व्यवस्था (दिव्यांग सुगम्यता)', hint: 'क्या दिव्यांग मतदाताओं हेतु रैंप (स्थायी अथवा अस्थायी) उपलब्ध है? (P-3 Col 15)' },
+      { id: 'light_bldg', title: '6. विद्युत कनेक्शन', hint: 'क्या मतदान केंद्र में विद्युत कनेक्शन उपलब्ध एवं सुचारू है? (P-3 Col 16)' },
+      { id: 'generator', title: '7. रात्रि प्रकाश व जनरेटर बैकअप', hint: 'क्या मतगणना समय रात्रि में पर्याप्त प्रकाश व जनरेटर व्यवस्था सुनिश्चित है?' },
+      { id: 'rest_food', title: '8. मतदान दल विश्राम व भोजन व्यवस्था', hint: 'क्या दलों हेतु सोने के गद्दे/चद्दर एवं On Payment भोजन व्यवस्था सुनिश्चित है?' },
+      { id: 'first_aid', title: '9. प्राथमिक उपचार (First Aid Kit)', hint: 'क्या प्राथमिक उपचार किट एवं आवश्यक दवाइयों की उपलब्धता सुनिश्चित है?' }
     ];
 
     const canvasPads = {};
 
-    // Initialize Page
     document.addEventListener('DOMContentLoaded', () => {
       initSchoolSelector();
       initSignatureCanvas('canvas-principal-sig');
@@ -546,21 +588,28 @@
       const emailEl = document.getElementById('school-email-id');
       if (emailEl) emailEl.value = savedData?.school_email || '';
 
-      // Render 8 Facilities
-      renderFacilities(savedData?.facilities);
+      // Set P-3 Building parameters
+      const firstBooth = sch.booths?.[0] || {};
+      document.getElementById('bldg-type').value = savedData?.bldg_type || firstBooth.bldg_type || 'सरकारी';
+      document.getElementById('bldg-condition').value = savedData?.bldg_condition || firstBooth.bldg_condition || 'अच्छी';
+      document.getElementById('bldg-area').value = savedData?.bldg_area || firstBooth.area_sqm || 60;
+      document.getElementById('bldg-road-dist').value = savedData?.bldg_road_dist || firstBooth.road_dist || '100 मीटर';
 
-      // Render Booth-wise (with BLO inputs for each booth)
-      renderBoothWiseRepeater(sch.booths, savedData?.booth_details);
+      // Render Center Facilities
+      renderCenterFacilities(savedData?.facilities);
+
+      // Render Booth-wise (Sheet P-3 cols 17 to 22 + per-booth BLO inputs without digital sign)
+      renderP3BoothRepeater(sch.booths, savedData?.booth_details);
 
       // Remarks
       document.getElementById('election-general-remarks').value = savedData?.remarks || '';
     }
 
-    function renderFacilities(savedFacilities = {}) {
+    function renderCenterFacilities(savedFacilities = {}) {
       const container = document.getElementById('general-facilities-container');
       if (!container) return;
 
-      container.innerHTML = FACILITIES_8_CONFIG.map(f => {
+      container.innerHTML = P3_CENTER_FACILITIES.map(f => {
         const isYes = savedFacilities?.[f.id] !== false; // Default true (Yes)
         return `
           <div class="facility-row">
@@ -597,7 +646,8 @@
       });
     }
 
-    function renderBoothWiseRepeater(booths = [], savedBoothDetails = {}) {
+    // Render Booth-wise Form strictly matching Sheet P-3 (Cols 17 to 22 + BLO fields)
+    function renderP3BoothRepeater(booths = [], savedBoothDetails = {}) {
       const container = document.getElementById('booth-wise-repeater-container');
       if (!container) return;
 
@@ -608,10 +658,13 @@
 
       container.innerHTML = booths.map(b => {
         const bSaved = savedBoothDetails?.[b.booth_no] || {};
-        const bLight = bSaved.light !== false;
-        const bFurn = bSaved.furniture !== false;
-        const bDoor = bSaved.door !== false;
-        const bLining = bSaved.lining !== false;
+        const bAirLight = bSaved.air_light !== undefined ? bSaved.air_light : (b.air_light !== false);
+        const bFurn = bSaved.furniture !== undefined ? bSaved.furniture : (b.furniture !== false);
+        const bDoors = bSaved.doors !== undefined ? bSaved.doors : (b.doors !== false);
+        const bMfLine = bSaved.mf_line !== undefined ? bSaved.mf_line : (b.mf_line !== false);
+        const bFan = bSaved.fan !== undefined ? bSaved.fan : (b.fan !== false);
+        const bWinDoor = bSaved.win_door || b.win_door || 'ठीक स्थिति';
+        const bLining = bSaved.lining !== undefined ? bSaved.lining : true;
 
         const bloName = bSaved.blo_name || '';
         const bloPost = bSaved.blo_post || 'अध्यापक / प्रगणक';
@@ -623,48 +676,73 @@
               <div class="booth-title">
                 <i class="fas fa-vote-yea"></i> बूथ क्रमांक: ${b.booth_no} | ${b.room_hi}
               </div>
-              <div class="booth-ward-tag">
-                वार्ड: <strong>${b.ward || 'समस्त'}</strong>
+              <div class="booth-badges">
+                <span class="booth-badge-pill">वार्ड: <strong>${b.ward || 'समस्त'}</strong></span>
+                <span class="booth-badge-pill" style="background:#e0f2fe; color:#0369a1">प.स. क्षे.सं.: <strong>${b.ps_constituency || '-'}</strong></span>
+                <span class="booth-badge-pill" style="background:#fef3c7; color:#92400e">जि.प. क्षे.सं.: <strong>${b.zp_constituency || '-'}</strong></span>
+                <span class="booth-badge-pill" style="background:#dcfce7; color:#15803d">वि.स.: <strong>${b.ac_constituency || 104}</strong></span>
               </div>
             </div>
             <div class="booth-card-body">
-              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:0.65rem; margin-bottom:0.75rem">
+              <!-- Sheet P-3 Columns 17 to 22 Grid -->
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.65rem; margin-bottom:0.75rem">
                 <div>
-                  <label style="font-size:0.75rem; font-weight:700">विद्युत व पंखे चालू स्थिति:</label>
-                  <select class="form-control" id="b_${b.booth_no}_light" style="font-size:0.82rem; padding:4px 8px">
-                    <option value="yes" ${bLight ? 'selected' : ''}>✓ हाँ (सुचारू)</option>
-                    <option value="no" ${!bLight ? 'selected' : ''}>✗ नहीं (कमी)</option>
+                  <label style="font-size:0.75rem; font-weight:700">1. हवा एवं प्रकाश स्थिति (Col 17):</label>
+                  <select class="form-control" id="b_${b.booth_no}_air_light" style="font-size:0.82rem; padding:4px 8px">
+                    <option value="yes" ${bAirLight ? 'selected' : ''}>✓ हाँ (सुचारू/अच्छी)</option>
+                    <option value="no" ${!bAirLight ? 'selected' : ''}>✗ नहीं (कमी)</option>
                   </select>
                 </div>
                 <div>
-                  <label style="font-size:0.75rem; font-weight:700">फर्नीचर (टेबल/कुर्सी) पर्याप्त:</label>
+                  <label style="font-size:0.75rem; font-weight:700">2. फर्नीचर स्थिति (Col 18):</label>
                   <select class="form-control" id="b_${b.booth_no}_furniture" style="font-size:0.82rem; padding:4px 8px">
-                    <option value="yes" ${bFurn ? 'selected' : ''}>✓ हाँ (उपलब्ध)</option>
+                    <option value="yes" ${bFurn ? 'selected' : ''}>✓ हाँ (पर्याप्त)</option>
                     <option value="no" ${!bFurn ? 'selected' : ''}>✗ नहीं (कमी)</option>
                   </select>
                 </div>
                 <div>
-                  <label style="font-size:0.75rem; font-weight:700">प्रवेश/निकास पृथक दरवाजे:</label>
-                  <select class="form-control" id="b_${b.booth_no}_door" style="font-size:0.82rem; padding:4px 8px">
-                    <option value="yes" ${bDoor ? 'selected' : ''}>✓ हाँ (पृथक व्यवस्था)</option>
-                    <option value="no" ${!bDoor ? 'selected' : ''}>✗ नहीं (एकल द्वार)</option>
+                  <label style="font-size:0.75rem; font-weight:700">3. प्रवेश/निकास पृथक द्वार (Col 19):</label>
+                  <select class="form-control" id="b_${b.booth_no}_doors" style="font-size:0.82rem; padding:4px 8px">
+                    <option value="yes" ${bDoors ? 'selected' : ''}>✓ हाँ (पृथक द्वार)</option>
+                    <option value="no" ${!bDoors ? 'selected' : ''}>✗ नहीं (एकल द्वार)</option>
                   </select>
                 </div>
                 <div>
-                  <label style="font-size:0.75rem; font-weight:700">100m/200m चूना लाइनिंग:</label>
+                  <label style="font-size:0.75rem; font-weight:700">4. महिला/पुरुष पृथक लाइन (Col 20):</label>
+                  <select class="form-control" id="b_${b.booth_no}_mf_line" style="font-size:0.82rem; padding:4px 8px">
+                    <option value="yes" ${bMfLine ? 'selected' : ''}>✓ हाँ (स्थान उपलब्ध)</option>
+                    <option value="no" ${!bMfLine ? 'selected' : ''}>✗ नहीं (स्थान कम)</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="font-size:0.75rem; font-weight:700">5. छत का पंखा चालू स्थिति (Col 21):</label>
+                  <select class="form-control" id="b_${b.booth_no}_fan" style="font-size:0.82rem; padding:4px 8px">
+                    <option value="yes" ${bFan ? 'selected' : ''}>✓ हाँ (पंखा चालू)</option>
+                    <option value="no" ${!bFan ? 'selected' : ''}>✗ नहीं (पंखा खराब/नहीं)</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="font-size:0.75rem; font-weight:700">6. खिड़कियां व दरवाजे (Col 22):</label>
+                  <select class="form-control" id="b_${b.booth_no}_win_door" style="font-size:0.82rem; padding:4px 8px">
+                    <option value="ठीक स्थिति" ${bWinDoor === 'ठीक स्थिति' ? 'selected' : ''}>✓ ठीक स्थिति में</option>
+                    <option value="मरम्मत योग्य" ${bWinDoor === 'मरम्मत योग्य' ? 'selected' : ''}>✗ टूटे/मरम्मत योग्य</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="font-size:0.75rem; font-weight:700">7. चूना लाइनिंग व साइनेज:</label>
                   <select class="form-control" id="b_${b.booth_no}_lining" style="font-size:0.82rem; padding:4px 8px">
-                    <option value="yes" ${bLining ? 'selected' : ''}>✓ हाँ (सुनिश्चित)</option>
-                    <option value="no" ${!bLining ? 'selected' : ''}>✗ नहीं (लंबित)</option>
+                    <option value="yes" ${bLining ? 'selected' : ''}>✓ हाँ (व्यवस्था सुनिश्चित)</option>
+                    <option value="no" ${!bLining ? 'selected' : ''}>✗ नहीं</option>
                   </select>
                 </div>
               </div>
 
-              <!-- Dedicated BLO Section for this Booth -->
+              <!-- Dedicated BLO / Pragnak Details for this Booth (No Canvas, Physical sign on PDF) -->
               <div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:6px; padding:0.65rem 0.85rem">
-                <div style="font-weight:800; font-size:0.82rem; color:#0369a1; margin-bottom:0.45rem">
-                  <i class="fas fa-user-tie"></i> बूथ क्रमांक ${b.booth_no} - अधिकृत BLO / प्रगणक विवरण एवं हस्ताक्षर:
+                <div style="font-weight:800; font-size:0.82rem; color:#0369a1; margin-bottom:0.4rem">
+                  <i class="fas fa-user-tie"></i> बूथ क्रमांक ${b.booth_no} - अधिकृत BLO / प्रगणक का विवरण (हस्ताक्षर PDF पर होंगे):
                 </div>
-                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:0.5rem; margin-bottom:0.4rem">
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.5rem">
                   <div>
                     <label style="font-size:0.72rem; font-weight:700">BLO/प्रगणक का नाम:</label>
                     <input type="text" id="b_${b.booth_no}_blo_name" value="${bloName}" class="form-control" placeholder="श्री BLO का नाम" style="font-size:0.82rem; padding:4px 8px" required>
@@ -678,25 +756,11 @@
                     <input type="tel" id="b_${b.booth_no}_blo_mobile" value="${bloMobile}" class="form-control" placeholder="98XXXXXXXX" maxlength="10" style="font-size:0.82rem; padding:4px 8px">
                   </div>
                 </div>
-                <div>
-                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px">
-                    <label style="font-size:0.72rem; font-weight:700; color:#475569">बूथ ${b.booth_no} BLO डिजिटल हस्ताक्षर (ऊंगली या माउस से साइन करें):</label>
-                    <button type="button" class="btn-clear" onclick="clearCanvas('canvas-blo-${b.booth_no}')"><i class="fas fa-eraser"></i> साफ़ करें</button>
-                  </div>
-                  <canvas id="canvas-blo-${b.booth_no}" class="sig-canvas"></canvas>
-                </div>
               </div>
             </div>
           </div>
         `;
       }).join('');
-
-      // Initialize Canvas for each booth
-      setTimeout(() => {
-        booths.forEach(b => {
-          initSignatureCanvas(`canvas-blo-${b.booth_no}`);
-        });
-      }, 100);
     }
 
     function initSignatureCanvas(id) {
@@ -757,7 +821,7 @@
       }
 
       const facilities = {};
-      FACILITIES_8_CONFIG.forEach(f => {
+      P3_CENTER_FACILITIES.forEach(f => {
         const checked = document.querySelector(`input[name="fac_${f.id}"]:checked`);
         facilities[f.id] = (checked?.value === 'yes');
       });
@@ -768,14 +832,19 @@
           booth_no: b.booth_no,
           room_hi: b.room_hi,
           ward: b.ward,
-          light: document.getElementById(`b_${b.booth_no}_light`)?.value === 'yes',
+          ps_constituency: b.ps_constituency,
+          zp_constituency: b.zp_constituency,
+          ac_constituency: b.ac_constituency,
+          air_light: document.getElementById(`b_${b.booth_no}_air_light`)?.value === 'yes',
           furniture: document.getElementById(`b_${b.booth_no}_furniture`)?.value === 'yes',
-          door: document.getElementById(`b_${b.booth_no}_door`)?.value === 'yes',
+          doors: document.getElementById(`b_${b.booth_no}_doors`)?.value === 'yes',
+          mf_line: document.getElementById(`b_${b.booth_no}_mf_line`)?.value === 'yes',
+          fan: document.getElementById(`b_${b.booth_no}_fan`)?.value === 'yes',
+          win_door: document.getElementById(`b_${b.booth_no}_win_door`)?.value || 'ठीक स्थिति',
           lining: document.getElementById(`b_${b.booth_no}_lining`)?.value === 'yes',
           blo_name: (document.getElementById(`b_${b.booth_no}_blo_name`)?.value || '').trim(),
           blo_post: (document.getElementById(`b_${b.booth_no}_blo_post`)?.value || '').trim(),
-          blo_mobile: (document.getElementById(`b_${b.booth_no}_blo_mobile`)?.value || '').trim(),
-          blo_sig: canvasPads[`canvas-blo-${b.booth_no}`]?.c.toDataURL()
+          blo_mobile: (document.getElementById(`b_${b.booth_no}_blo_mobile`)?.value || '').trim()
         };
       });
 
@@ -794,6 +863,10 @@
         district: 'AJMER (अजमेर)',
         block: 'Bhinai (भिनाय)',
         school_email: email,
+        bldg_type: document.getElementById('bldg-type')?.value || 'सरकारी',
+        bldg_condition: document.getElementById('bldg-condition')?.value || 'अच्छी',
+        bldg_area: document.getElementById('bldg-area')?.value || '60',
+        bldg_road_dist: document.getElementById('bldg-road-dist')?.value || '100 मीटर',
         facilities: facilities,
         booth_details: booth_details,
         remarks: document.getElementById('election-general-remarks')?.value || '',
@@ -806,14 +879,12 @@
       const data = collectFormData();
       if (!data) return;
 
-      // Save locally
       try {
         let allSubs = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}');
         allSubs[ACTIVE_SCHOOL_CODE] = data;
         localStorage.setItem('cbeo_election_submissions', JSON.stringify(allSubs));
       } catch(e) {}
 
-      // Post to Google Apps Script backend if available
       try {
         const gasUrl = localStorage.getItem('cbeo_backup_webhook_url') 
           || 'https://script.google.com/macros/s/AKfycbzmauNuu8DUjgsK-TBdiv45efshvaf6x3Z6bJrhyC2LOmF-yg9ErGq3XWEKZ8Umw8Ao/exec';
@@ -826,7 +897,7 @@
         }
       } catch(e) {}
 
-      alert(`✅ सफल! विद्यालय '${data.school_name}' का पंचायती राज चुनाव भौतिक सत्यापन प्रपत्र सफलतापूर्वक सबमिट एवं सुरक्षित हो गया!`);
+      alert(`✅ सफल! विद्यालय '${data.school_name}' का पंचायती राज चुनाव प्रपत्र-3 भौतिक सत्यापन सफलतापूर्वक सबमिट एवं सुरक्षित हो गया!`);
     }
 
     function generateAndDownloadPdf() {
@@ -842,42 +913,48 @@
       document.getElementById('pdf-peeo-name').textContent = data.peeo_name;
       document.getElementById('pdf-principal-name').textContent = `${data.principal.name} (${data.principal.mobile})`;
       document.getElementById('pdf-school-email').textContent = data.school_email;
+      document.getElementById('pdf-bldg-meta').textContent = `${data.bldg_type} | स्थिति: ${data.bldg_condition} | क्षे.: ${data.bldg_area} वर्ग मी. | पहुंच: ${data.bldg_road_dist}`;
       document.getElementById('pdf-booths-count').textContent = `${sch.booth_count} मतदान कक्ष / बूथ`;
+      document.getElementById('pdf-remarks-disp').textContent = data.remarks || 'समस्त व्यवस्थाएं सुचारू पाई गईं।';
 
-      // 8 Facilities
+      // 1. Center Facilities Table (P-3 Cols 11 to 16 + SEC)
       const facTbody = document.getElementById('pdf-fac-tbody');
-      facTbody.innerHTML = FACILITIES_8_CONFIG.map((f, i) => {
+      facTbody.innerHTML = P3_CENTER_FACILITIES.map((f, i) => {
         const isOk = data.facilities[f.id];
         return `
           <tr>
-            <td style="border:1px solid #000; padding:3px; text-align:center">${i + 1}</td>
-            <td style="border:1px solid #000; padding:3px 6px">${f.title}</td>
-            <td style="border:1px solid #000; padding:3px; text-align:center; font-weight:bold; color:${isOk ? '#000' : '#b91c1c'}">
-              ${isOk ? 'हाँ (पूर्ण)' : 'नहीं (अपूर्ण)'}
+            <td style="border:1px solid #000; padding:2.5px; text-align:center">${i + 1}</td>
+            <td style="border:1px solid #000; padding:2.5px 6px">${f.title}</td>
+            <td style="border:1px solid #000; padding:2.5px; text-align:center; font-weight:bold; color:${isOk ? '#000' : '#b91c1c'}">
+              ${isOk ? 'हाँ (उपलब्ध)' : 'नहीं (कमी)'}
             </td>
-            <td style="border:1px solid #000; padding:3px 6px; font-size:8.5pt">${isOk ? 'मौके पर व्यवस्था दुरुस्त पाई गई' : 'शीघ्र व्यवस्था अपेक्षित'}</td>
+            <td style="border:1px solid #000; padding:2.5px 6px; font-size:8pt">${isOk ? 'मौके पर व्यवस्था दुरुस्त पाई गई' : 'शीघ्र व्यवस्था अपेक्षित'}</td>
           </tr>
         `;
       }).join('');
 
-      // Booth-wise table with BLO details & signatures
+      // 2. Booth-wise table strictly matching Sheet P-3 Cols 17 to 22 + physical signature space
       const boothTbody = document.getElementById('pdf-booth-tbody');
       boothTbody.innerHTML = (sch.booths || []).map(b => {
         const bd = data.booth_details[b.booth_no] || {};
-        const bloInfo = bd.blo_name ? `<strong>${bd.blo_name}</strong><br><span style="font-size:7.5pt">${bd.blo_post || 'BLO'} (${bd.blo_mobile || ''})</span>` : '-';
-        const bloSigHtml = bd.blo_sig ? `<img src="${bd.blo_sig}" style="max-height:28px; max-width:80px">` : `<span style="font-size:7.5pt; color:#666">हस्ताक्षरित</span>`;
+        const constituencyInfo = `वार्ड:${b.ward || '-'}<br>PS:${b.ps_constituency || '-'}|ZP:${b.zp_constituency || '-'}|AC:${b.ac_constituency || 104}`;
+        const bloInfo = bd.blo_name ? `<strong>${bd.blo_name}</strong><br><span style="font-size:7pt">${bd.blo_post || 'BLO'} (${bd.blo_mobile || ''})</span>` : '-';
 
         return `
           <tr>
-            <td style="border:1px solid #000; padding:3px; text-align:center; font-weight:bold">${b.booth_no}</td>
-            <td style="border:1px solid #000; padding:3px 6px">${b.room_hi}</td>
-            <td style="border:1px solid #000; padding:3px; text-align:center">${b.ward || '-'}</td>
-            <td style="border:1px solid #000; padding:3px; text-align:center">${bd.light ? 'हाँ' : 'नहीं'}</td>
-            <td style="border:1px solid #000; padding:3px; text-align:center">${bd.furniture ? 'हाँ' : 'नहीं'}</td>
-            <td style="border:1px solid #000; padding:3px; text-align:center">${bd.door ? 'हाँ' : 'नहीं'}</td>
-            <td style="border:1px solid #000; padding:3px; text-align:center">${bd.lining ? 'हाँ' : 'नहीं'}</td>
-            <td style="border:1px solid #000; padding:3px 6px">${bloInfo}</td>
-            <td style="border:1px solid #000; padding:3px; text-align:center">${bloSigHtml}</td>
+            <td style="border:1px solid #000; padding:2.5px; text-align:center; font-weight:bold">${b.booth_no}</td>
+            <td style="border:1px solid #000; padding:2.5px 5px">${b.room_hi}</td>
+            <td style="border:1px solid #000; padding:2.5px; text-align:center; font-size:7.5pt">${constituencyInfo}</td>
+            <td style="border:1px solid #000; padding:2.5px; text-align:center">${bd.air_light ? 'हाँ' : 'नहीं'}</td>
+            <td style="border:1px solid #000; padding:2.5px; text-align:center">${bd.furniture ? 'हाँ' : 'नहीं'}</td>
+            <td style="border:1px solid #000; padding:2.5px; text-align:center">${bd.doors ? 'हाँ' : 'नहीं'}</td>
+            <td style="border:1px solid #000; padding:2.5px; text-align:center">${bd.fan ? 'हाँ' : 'नहीं'}</td>
+            <td style="border:1px solid #000; padding:2.5px; text-align:center; font-size:7.5pt">${bd.win_door}</td>
+            <td style="border:1px solid #000; padding:2.5px 5px">${bloInfo}</td>
+            <td style="border:1px solid #000; padding:2.5px; text-align:center; font-size:7pt; color:#666">
+              <div style="height:22px"></div>
+              (हस्ताक्षर BLO)
+            </td>
           </tr>
         `;
       }).join('');
@@ -888,17 +965,17 @@
       document.getElementById('pdf-print-date').textContent = new Date().toLocaleString('hi-IN');
 
       const princImg = document.getElementById('pdf-principal-sig-img');
-      if (data.principal.sig && princImg) princImg.innerHTML = `<img src="${data.principal.sig}" style="max-height:40px; max-width:120px">`;
+      if (data.principal.sig && princImg) princImg.innerHTML = `<img src="${data.principal.sig}" style="max-height:35px; max-width:110px">`;
 
       const el = document.getElementById('print-proforma-area');
       el.style.display = 'block';
 
       const opt = {
-        margin: [6, 6, 6, 6],
-        filename: `Election_Verification_Bhinai_${data.school_code}.pdf`,
+        margin: [5, 5, 5, 5],
+        filename: `Election_P3_Verification_Bhinai_${data.school_code}.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
       };
 
       html2pdf().set(opt).from(el).save().then(() => {
