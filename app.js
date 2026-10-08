@@ -1885,8 +1885,10 @@ function performLogin() {
 }
 
 function switchTab(viewId, param = null) {
-  if (STATE.currentUser && typeof isTabVisibleForCurrentUser === 'function' && !isTabVisibleForCurrentUser(viewId)) {
-    return;
+  if (viewId !== 'election') {
+    if (STATE.currentUser && typeof isTabVisibleForCurrentUser === 'function' && !isTabVisibleForCurrentUser(viewId)) {
+      return;
+    }
   }
 
   try {
@@ -1934,6 +1936,7 @@ const DEFAULT_TAB_VISIBILITY_6LEVEL = {
 const DEFAULT_TAB_VISIBILITY_5LEVEL = DEFAULT_TAB_VISIBILITY_6LEVEL;
 
 function isTabVisibleForCurrentUser(tabId) {
+  if (tabId === 'election') return true; // ELECTION TAB IS ALWAYS VISIBLE AND CLICKABLE FOR ALL ROLES!
   if (!STATE.currentUser) return false;
   
   const isJitendra = STATE.currentUser.shala_darpan_code === 'admin_jitendra' || 
@@ -2031,8 +2034,10 @@ function applyTabVisibility() {
   const tabDbHub = document.getElementById('nav-tab-database-hub');
   const tabArchive = document.getElementById('nav-tab-archive');
   const tabAdmin = document.getElementById('nav-tab-admin');
+  const tabElection = document.getElementById('nav-tab-election');
   const quickBanner = document.querySelector('.directory-quick-banner');
 
+  if (tabElection) tabElection.style.display = isTabVisibleForCurrentUser('election') ? 'inline-flex' : 'none';
   if (tabSP) tabSP.style.display = isTabVisibleForCurrentUser('saman-pariksha') ? 'inline-flex' : 'none';
   if (tabDash) tabDash.style.display = isTabVisibleForCurrentUser('dashboard') ? 'inline-flex' : 'none';
   if (tabDir) tabDir.style.display = isTabVisibleForCurrentUser('directory') ? 'inline-flex' : 'none';

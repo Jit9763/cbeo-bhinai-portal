@@ -130,6 +130,15 @@ function renderElectionSchoolsGrid() {
     return true;
   });
 
+  const myCode = (typeof STATE !== 'undefined' && STATE.currentUser?.role === 'school') ? String(STATE.currentUser.shala_darpan_code) : null;
+  if (myCode) {
+    filtered.sort((a, b) => {
+      if (String(a.shala_darpan_code) === myCode) return -1;
+      if (String(b.shala_darpan_code) === myCode) return 1;
+      return 0;
+    });
+  }
+
   if (filtered.length === 0) {
     grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:2.5rem; color:#64748b; font-weight:700">कोई विद्यालय नहीं मिला।</div>';
     return;
@@ -139,13 +148,15 @@ function renderElectionSchoolsGrid() {
     const sub = submissions[s.shala_darpan_code];
     const isSubmitted = !!sub;
     const isSpecial5 = ["485030", "488897", "488947", "221774", "410859"].includes(s.shala_darpan_code);
+    const isMySchool = myCode && String(s.shala_darpan_code) === myCode;
 
     return `
-      <div style="background:#fff; border:1px solid ${isSubmitted ? '#86efac' : '#e2e8f0'}; border-top:4px solid ${isSubmitted ? '#16a34a' : '#0284c7'}; border-radius:8px; padding:1.1rem; box-shadow:0 2px 6px rgba(0,0,0,0.04); display:flex; flex-direction:column; justify-content:space-between">
+      <div style="background:#fff; border:1px solid ${isMySchool ? '#f59e0b' : (isSubmitted ? '#86efac' : '#e2e8f0')}; border-top:4px solid ${isMySchool ? '#f59e0b' : (isSubmitted ? '#16a34a' : '#0284c7')}; border-radius:8px; padding:1.1rem; box-shadow:${isMySchool ? '0 4px 14px rgba(245,158,11,0.25)' : '0 2px 6px rgba(0,0,0,0.04)'}; display:flex; flex-direction:column; justify-content:space-between">
         <div>
-          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.4rem">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.4rem; gap:0.4rem; flex-wrap:wrap">
             <div>
               <span style="font-size:0.75rem; font-weight:800; color:#0369a1; background:#e0f2fe; padding:2px 6px; border-radius:4px">#${idx + 1}</span>
+              ${isMySchool ? '<span style="font-size:0.72rem; font-weight:900; color:#fff; background:#f59e0b; padding:2px 8px; border-radius:4px; margin-left:4px"><i class="fas fa-star"></i> आपका विद्यालय</span>' : ''}
               ${isSpecial5 ? '<span style="font-size:0.7rem; font-weight:800; color:#92400e; background:#fef3c7; padding:2px 6px; border-radius:4px; margin-left:4px">🌟 विशेष गैर-PEEO मुख्यालय</span>' : '<span style="font-size:0.7rem; font-weight:800; color:#1e40af; background:#dbeafe; padding:2px 6px; border-radius:4px; margin-left:4px">🏛️ PEEO मुख्यालय</span>'}
             </div>
             ${isSubmitted 
