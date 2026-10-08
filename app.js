@@ -4590,7 +4590,7 @@ function toggleMismatchAlertMaster(isActive) {
 }
 window.toggleMismatchAlertMaster = toggleMismatchAlertMaster;
 
-const EXCEL_49_ENROLMENT_MAP = {
+var EXCEL_49_ENROLMENT_MAP = window.EXCEL_49_ENROLMENT_MAP || {
   "506830": { name: "रा.बा.उ.मा.वि. बड़ली", c9_10: 86, c11_12: 43, total: 129 },
   "494626": { name: "रा.बा.उ.मा.वि. चापानेरी", c9_10: 59, c11_12: 28, total: 87 },
   "488791": { name: "रा.बा.उ.मा.वि. खेड़ी", c9_10: 41, c11_12: 17, total: 58 },
