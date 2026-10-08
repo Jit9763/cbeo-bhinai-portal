@@ -98,6 +98,11 @@ function saveSaman6LevelControls() {
   localStorage.setItem('cbeo_edit_permissions_6level', JSON.stringify(STATE.editPermissions6Level));
   localStorage.setItem('cbeo_edit_permissions_5level', JSON.stringify(STATE.editPermissions6Level));
 
+  if (typeof saveCloudPortalSetting === 'function') {
+    saveCloudPortalSetting('tab_visibility_6level', STATE.tabVisibility6Level);
+    saveCloudPortalSetting('edit_permissions_6level', STATE.editPermissions6Level);
+  }
+
   fetch('/api/save_tab_visibility_6level', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -367,6 +372,10 @@ function saveSamanMismatchSettings() {
   STATE.samanMismatchSettings = cfg;
   localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(cfg));
 
+  if (typeof saveCloudPortalSetting === 'function') {
+    saveCloudPortalSetting('saman_mismatch_settings', cfg);
+  }
+
   const apiBaseMis = getEffectiveApiBaseUrl();
   if (apiBaseMis) {
     fetch(`${apiBaseMis}/api/save_saman_mismatch_settings`, {
@@ -374,27 +383,6 @@ function saveSamanMismatchSettings() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ settings: cfg })
     }).catch(err => console.warn('Save mismatch settings local err:', err));
-  }
-
-  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
-    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
-    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
-
-  if (gasUrl) {
-    try {
-      fetch(gasUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'updatePassword',
-          user_id: '__SAMAN_MISMATCH_SETTINGS__',
-          role: 'System_Config',
-          name: 'Saman Pariksha Mismatch Custom Edit & Alert Settings',
-          new_password: JSON.stringify(cfg)
-        })
-      }).catch(err => console.warn('Save mismatch sheet sync err:', err));
-    } catch(e) {}
   }
 
   closeModal('modal-saman-custom-edit');
@@ -461,6 +449,11 @@ function toggleMismatchAlertMaster(isActive) {
   }
   STATE.samanMismatchSettings = cfg;
   localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(cfg));
+
+  if (typeof saveCloudPortalSetting === 'function') {
+    saveCloudPortalSetting('saman_mismatch_settings', cfg);
+  }
+
   fetch('/api/save_saman_mismatch_settings', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
