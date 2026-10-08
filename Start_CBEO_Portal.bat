@@ -1,17 +1,51 @@
 @echo off
-title CBEO Bhinai Official Portal & Node-SQLite Server
+setlocal EnableDelayedExpansion
+title CBEO Bhinai Official Portal - Server Engine
+color 0B
+cls
+
 echo ========================================================
-echo   कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)
-echo   आधिकारिक सूचना, डायरेक्टरी, समान परीक्षा एवं VM सर्वर
+echo   CBEO Bhinai Official Portal ^& Node Server
+echo ========================================================
+echo   Portal URL: http://localhost:8089
 echo ========================================================
 echo.
-echo Starting Universal Node.js + SQLite Dynamic Engine...
-if exist "C:\Program Files\nodejs\node.exe" (
-  start "" "C:\Program Files\nodejs\node.exe" server.js
-  timeout /t 2 >nul
-  start "" "http://localhost:8089"
-) else (
-  echo Node.js not found in standard path, opening static portal directly...
-  start "" "index.html"
+
+cd /d "%~dp0"
+
+:: Check if Node.js is available
+where node >nul 2>&1
+if %ERRORLEVEL% NEQ 0 (
+    if not exist "C:\Program Files\nodejs\node.exe" (
+        echo [INFO] Node.js not found, opening static portal in browser...
+        start "" "index.html"
+        pause
+        exit /b 0
+    )
 )
-exit
+
+:: Check if server is already running on port 8089
+netstat -ano | findstr ":8089 " | findstr "LISTENING" >nul
+if %ERRORLEVEL% EQU 0 (
+    echo [OK] CBEO server is already running on port 8089.
+) else (
+    echo [STARTING] Starting CBEO Node.js Server on port 8089...
+    if exist "C:\Program Files\nodejs\node.exe" (
+        start "CBEO Node Server" /min "C:\Program Files\nodejs\node.exe" server.js
+    ) else (
+        start "CBEO Node Server" /min cmd /c "node server.js"
+    )
+    timeout /t 2 /nobreak >nul
+)
+
+echo.
+echo [BROWSER] Opening CBEO Portal in your browser...
+start "" "http://localhost:8089"
+
+echo.
+echo ========================================================
+echo   CBEO Portal is LIVE: http://localhost:8089
+echo   Keep this window open to maintain local server session.
+echo ========================================================
+echo.
+pause

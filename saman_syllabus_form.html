@@ -462,7 +462,7 @@
 
   <!-- Top Sticky Navigation -->
   <div class="top-nav">
-    <a href="index.html#saman-pariksha" class="back-btn">
+    <a href="javascript:void(0)" onclick="goToPortal()" class="back-btn">
       <i class="fas fa-arrow-left"></i> <span>मुख्य पोर्टल पर वापस</span>
     </a>
     <div class="app-title-box">
@@ -2198,6 +2198,38 @@
 
       window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
     }
+
+    function goToPortal() {
+      const code = (currentSchool && currentSchool.shala_darpan_code) || '';
+      if (code) {
+        try {
+          localStorage.setItem('cbeo_active_tab', 'saman-pariksha');
+          const curUser = JSON.parse(localStorage.getItem('cbeo_user') || 'null');
+          if (!curUser && currentSchool) {
+            const uObj = {
+              role: currentSchool.is_peeo_nodal ? 'peeo' : 'school',
+              shala_darpan_code: code,
+              school_name: currentSchool.school_name,
+              principal_name: currentSchool.principal_name || '',
+              principal_incharge: currentSchool.principal_name || '',
+              mobile: currentSchool.principal_mobile || '',
+              peeo_name: currentSchool.peeo_name || '',
+              peeo_code: currentSchool.peeo_code || '',
+              type: currentSchool.type || 'Government',
+              category: currentSchool.category || 'Secondary/Sr.Sec',
+              login_timestamp: Date.now(),
+              last_active_timestamp: Date.now()
+            };
+            localStorage.setItem('cbeo_user', JSON.stringify(uObj));
+            localStorage.setItem('cbeo_logged_user', JSON.stringify(uObj));
+          }
+        } catch(e) {}
+        window.location.href = `index.html?tab=saman-pariksha&code=${code}#saman-pariksha`;
+      } else {
+        window.location.href = 'index.html#saman-pariksha';
+      }
+    }
+    window.goToPortal = goToPortal;
 
     window.addEventListener('DOMContentLoaded', initPage);
   </script>

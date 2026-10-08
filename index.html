@@ -4016,7 +4016,7 @@
   </div>
 
   <!-- 8F3. SAMAN PARIKSHA ENROLMENT MISMATCH CUSTOM BLINKING LOGIN ALERT MODAL -->
-  <div id="modal-saman-mismatch-login-alert" class="modal-overlay" style="z-index:10060">
+  <div id="modal-saman-mismatch-login-alert" class="modal-overlay" style="z-index:10060" onclick="if(event.target===this) closeModal('modal-saman-mismatch-login-alert');">
     <div class="modal-card sp-mismatch-alert-card" style="max-width:540px; border-radius:14px; overflow:hidden">
       <!-- Blinking Header -->
       <div class="modal-header" style="background:linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color:#ffffff; padding:1.15rem 1.25rem">
@@ -5449,7 +5449,7 @@
   </div>
 
   <!-- SECURITY ALERT: DEFAULT PASSWORD WARNING POPUP AFTER LOGIN -->
-  <div id="modal-default-pwd-alert" class="modal-overlay" style="z-index:10050">
+  <div id="modal-default-pwd-alert" class="modal-overlay" style="z-index:10050" onclick="if(event.target===this){ closeModal('modal-default-pwd-alert'); onDefaultPwdAlertDismissed(); }">
     <div class="modal-card" style="max-width:480px; border-top:5px solid #ea580c; border-radius:12px; overflow:hidden">
       <div class="modal-header" style="background:#fffbeb; border-bottom:1px solid #fed7aa; padding:1rem 1.25rem">
         <h3 style="color:#9a3412; font-size:1.1rem; display:flex; align-items:center; gap:8px; margin:0">
@@ -5883,10 +5883,10 @@
 
   <!-- External & Modular Application Architecture -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <script src="master_cbeo_data.js?v=20261008_v36"></script>
-  <script src="js/village_mapping.js?v=20261008_v36"></script>
-  <script src="js/core_sync.js?v=20261008_v36"></script>
-  <script src="js/mismatch_admin.js?v=20261008_v36"></script>
-  <script src="app.js?v=20261008_v36"></script>
+  <script src="master_cbeo_data.js?v=20261008_v37"></script>
+  <script src="js/village_mapping.js?v=20261008_v37"></script>
+  <script src="js/core_sync.js?v=20261008_v37"></script>
+  <script src="js/mismatch_admin.js?v=20261008_v37"></script>
+  <script src="app.js?v=20261008_v37"></script>
 </body>
 </html>

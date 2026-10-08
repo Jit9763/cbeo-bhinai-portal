@@ -1186,8 +1186,38 @@ function setupAutoLogin() {
     STATE.currentUser = null;
   }
 
+  // Auto-restore session when returning from form with show_pdf, code or form query parameter
+  const urlParamsInit = new URLSearchParams(window.location.search);
+  const targetCodeInit = urlParamsInit.get('show_pdf') || urlParamsInit.get('code') || urlParamsInit.get('form');
+  if (!STATE.currentUser && targetCodeInit) {
+    const sch = (STATE.schools56 || []).find(s => s.shala_darpan_code === targetCodeInit) ||
+                (typeof getAllMasterSchools === 'function' ? getAllMasterSchools().find(s => s.shala_darpan_code === targetCodeInit) : null);
+    const peeoObj = (STATE.peeos || []).find(p => p.shala_darpan_code === targetCodeInit || (p.schools || []).some(s => s.shala_darpan_code === targetCodeInit));
+    if (sch) {
+      STATE.currentUser = {
+        role: (peeoObj && peeoObj.shala_darpan_code === targetCodeInit) ? 'peeo' : 'school',
+        shala_darpan_code: targetCodeInit,
+        school_name: sch.school_name,
+        principal_name: sch.principal_name || '',
+        principal_incharge: sch.principal_name || '',
+        mobile: sch.principal_mobile || '',
+        peeo_name: sch.peeo_name || (peeoObj ? peeoObj.peeo_name : ''),
+        peeo_code: sch.peeo_code || (peeoObj ? peeoObj.shala_darpan_code : ''),
+        type: sch.type || 'Government',
+        category: sch.category || 'Secondary/Sr.Sec',
+        login_timestamp: Date.now(),
+        last_active_timestamp: Date.now()
+      };
+      if (peeoObj && peeoObj.shala_darpan_code === targetCodeInit) {
+        STATE.currentUser.schools = peeoObj.schools || [];
+      }
+      localStorage.setItem('cbeo_logged_user', JSON.stringify(STATE.currentUser));
+      localStorage.setItem('cbeo_user', JSON.stringify(STATE.currentUser));
+    }
+  }
+
   // Pre-fill remembered username if saved
-  const rememberedUser = localStorage.getItem('cbeo_saved_username');
+  const rememberedUser = localStorage.getItem('cbeo_saved_username') || targetCodeInit;
   if (rememberedUser) {
     const userInput = document.getElementById('login-username');
     if (userInput) userInput.value = rememberedUser;
@@ -1219,19 +1249,21 @@ function setupAutoLogin() {
     closeModal('modal-login');
 
     // Restore user's last active tab, or switch to default permitted tab
-    const savedTab = localStorage.getItem('cbeo_active_tab');
+    const urlParams = new URLSearchParams(window.location.search);
+    const hashTab = window.location.hash ? window.location.hash.replace('#', '') : null;
+    const urlTab = urlParams.get('tab') || hashTab;
+    const savedTab = urlTab || localStorage.getItem('cbeo_active_tab');
     if (savedTab && isTabVisibleForCurrentUser(savedTab)) {
       switchTab(savedTab);
     } else if (isTabVisibleForCurrentUser('saman-pariksha') && !STATE.samanParikshaArchived) {
       switchTab('saman-pariksha');
     } else {
-      const fallbackTabs = ['demands', 'dashboard', 'directory', 'staff', 'school-management', 'archive'];
-      const target = fallbackTabs.find(t => isTabVisibleForCurrentUser(t)) || 'demands';
+      const fallbackTabs = ['saman-pariksha', 'demands', 'dashboard', 'directory', 'staff', 'school-management', 'archive'];
+      const target = fallbackTabs.find(t => isTabVisibleForCurrentUser(t)) || 'saman-pariksha';
       switchTab(target);
     }
 
     // Handle URL query parameters (e.g. ?show_pdf=221754 or ?form=221754)
-    const urlParams = new URLSearchParams(window.location.search);
     const showPdfCode = urlParams.get('show_pdf');
     const openFormCode = urlParams.get('form');
     if (showPdfCode) {
@@ -1661,15 +1693,17 @@ function performLogin() {
     } else if (isTabVisibleForCurrentUser('saman-pariksha') && !STATE.samanParikshaArchived) {
       switchTab('saman-pariksha');
     } else {
-      const fallbackTabs = ['demands', 'dashboard', 'directory', 'staff', 'school-management', 'archive'];
-      const target = fallbackTabs.find(t => isTabVisibleForCurrentUser(t)) || 'demands';
+      const fallbackTabs = ['saman-pariksha', 'demands', 'dashboard', 'directory', 'staff', 'school-management', 'archive'];
+      const target = fallbackTabs.find(t => isTabVisibleForCurrentUser(t)) || 'saman-pariksha';
       switchTab(target);
     }
-    // Prominent security popup if logged in with default password
+    // Prominent security popup if logged in with default password (shown once per session)
     if (userObj.role !== 'admin' && (p === u || p === userObj.shala_darpan_code)) {
-      setTimeout(() => {
-        showModal('modal-default-pwd-alert');
-      }, 500);
+      if (!sessionStorage.getItem('dismissed_default_pwd_alert')) {
+        setTimeout(() => {
+          showModal('modal-default-pwd-alert');
+        }, 500);
+      }
     } else if (userObj.role !== 'admin') {
       setTimeout(() => {
         checkAndShowAllMismatchAlerts(userObj);
@@ -2004,10 +2038,15 @@ function applyTabVisibility() {
   if (activeView) {
     const curTabId = activeView.id.replace('view-', '');
     if (!isTabVisibleForCurrentUser(curTabId)) {
-      const fallbackTabs = ['demands', 'dashboard', 'directory', 'staff', 'school-management', 'archive'];
-      const target = fallbackTabs.find(t => isTabVisibleForCurrentUser(t)) || 'demands';
+      const fallbackTabs = ['saman-pariksha', 'demands', 'dashboard', 'directory', 'staff', 'school-management', 'archive'];
+      const target = fallbackTabs.find(t => isTabVisibleForCurrentUser(t)) || 'saman-pariksha';
       switchTab(target);
     }
+  } else {
+    // If no view is active at all, activate permitted tab
+    const fallbackTabs = ['saman-pariksha', 'demands', 'dashboard', 'directory', 'staff', 'school-management', 'archive'];
+    const target = fallbackTabs.find(t => isTabVisibleForCurrentUser(t)) || 'saman-pariksha';
+    switchTab(target);
   }
 }
 
@@ -4802,6 +4841,14 @@ function proceedToEditFromMismatchAlert() {
 window.proceedToEditFromMismatchAlert = proceedToEditFromMismatchAlert;
 
 window.onDefaultPwdAlertDismissed = function() {
+  try {
+    sessionStorage.setItem('dismissed_default_pwd_alert', 'true');
+  } catch(e) {}
+  const m = document.getElementById('modal-default-pwd-alert');
+  if (m) {
+    m.classList.remove('active');
+    m.style.display = 'none';
+  }
   if (STATE.currentUser && STATE.currentUser.role !== 'admin') {
     setTimeout(() => {
       checkAndShowAllMismatchAlerts(STATE.currentUser);
