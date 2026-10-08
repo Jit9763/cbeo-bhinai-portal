@@ -248,7 +248,7 @@
         <p>जिला: अजमेर (AJMER) • पंचायत समिति / ब्लॉक: भिनाय (BHINAI)</p>
       </div>
       <div class="card-body">
-        <div style="margin-bottom:1rem">
+        <div id="school-select-wrapper" style="margin-bottom:1rem">
           <label style="font-size:0.82rem; font-weight:700; color:#475569">विद्यालय चयन:</label>
           <select id="select-school-switch" class="form-control" onchange="onSchoolSelectChange(this.value)" style="font-weight:700; color:#0369a1; background:#f0f9ff">
             <!-- Populated via JS -->
@@ -534,11 +534,32 @@
       initSchoolSelector();
       initSignatureCanvas('canvas-principal-sig');
 
+      let loggedUser = null;
+      try {
+        loggedUser = JSON.parse(localStorage.getItem('cbeo_logged_user') || localStorage.getItem('cbeo_user'));
+      } catch(e) {}
+
+      const isSchoolUser = loggedUser && loggedUser.role === 'school';
+      const isPeeoUser = loggedUser && loggedUser.role === 'peeo';
+      const userCode = loggedUser ? String(loggedUser.shala_darpan_code || loggedUser.dise_code || '').trim() : '';
+
       const urlParams = new URLSearchParams(window.location.search);
       const codeParam = urlParams.get('code');
+
       if (codeParam && window.ELECTION_2026_SCHOOLS?.some(s => s.shala_darpan_code === codeParam)) {
         ACTIVE_SCHOOL_CODE = codeParam;
+      } else if (isSchoolUser && window.ELECTION_2026_SCHOOLS?.some(s => s.shala_darpan_code === userCode)) {
+        ACTIVE_SCHOOL_CODE = userCode;
+      } else if (isPeeoUser && window.ELECTION_2026_SCHOOLS?.some(s => s.shala_darpan_code === userCode)) {
+        ACTIVE_SCHOOL_CODE = userCode;
       }
+
+      // If School or PEEO user is logged in, hide school switcher so only their school is visible
+      if ((isSchoolUser || isPeeoUser) && ACTIVE_SCHOOL_CODE) {
+        const wrap = document.getElementById('school-select-wrapper');
+        if (wrap) wrap.style.display = 'none';
+      }
+
       const sel = document.getElementById('select-school-switch');
       if (sel) sel.value = ACTIVE_SCHOOL_CODE;
       
