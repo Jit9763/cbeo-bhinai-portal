@@ -92,7 +92,9 @@ const CURRENT_PORTAL_VERSION = 'v32_2026_10_07_peeo_lock_and_auto_reset';
       'cbeo_user', 'cbeo_logged_user', 'cbeo_remember_me', 'cbeo_saved_username',
       'cbeo_tab_visibility_6level', 'cbeo_edit_permissions_6level',
       'cbeo_tab_visibility_5level', 'cbeo_edit_permissions_5level',
-      'cbeo_saman_active_form', 'cbeo_saman_mismatch_settings', 'cbeo_portal_settings', 'cbeo_vm_settings'
+      'cbeo_saman_active_form', 'cbeo_saman_school_type_filter',
+      'cbeo_saman_mismatch_settings', 'cbeo_portal_settings', 'cbeo_vm_settings',
+      'cbeo_election_submissions', 'cbeo_election_custom_columns', 'cbeo_election_filter'
     ];
     const toRemove = [];
     for (let i = 0; i < localStorage.length; i++) {
@@ -428,6 +430,106 @@ function getSamanMismatchConfig() {
   return STATE.samanMismatchSettings;
 }
 
+function saveCloudPortalSetting(key, val, syncToGithub = false) {
+  try {
+    const sVal = (typeof val === 'string') ? val : JSON.stringify(val);
+    localStorage.setItem(`cbeo_${key}`, sVal);
+  } catch(e) {}
+
+  if (typeof STATE !== 'undefined') {
+    if (key === 'saman_mismatch_settings') STATE.samanMismatchSettings = val;
+    if (key === 'saman_active_form') STATE.samanParikshaActiveForm = val;
+    if (key === 'saman_school_type_filter') STATE.samanParikshaSchoolTypeFilter = val;
+    if (key === 'tab_visibility_6level') {
+      STATE.tabVisibility6Level = val;
+      STATE.tabVisibility5Level = val;
+    }
+    if (key === 'edit_permissions_6level') {
+      STATE.editPermissions6Level = val;
+      STATE.editPermissions5Level = val;
+    }
+  }
+
+  const gasUrl = (typeof localStorage !== 'undefined' && localStorage.getItem('cbeo_google_apps_script_url'))
+    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url)
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
+  if (gasUrl) {
+    try {
+      fetch(gasUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'savePortalSettings',
+          settings: { [key]: val },
+          sync_github: !!syncToGithub,
+          updated_by: (typeof STATE !== 'undefined' && STATE.currentUser?.name) || 'Admin_Jitendra'
+        })
+      }).catch(err => console.warn('Cloud setting save err:', err));
+    } catch(e) {}
+  }
+
+  const apiBase = (typeof getEffectiveApiBaseUrl === 'function') ? getEffectiveApiBaseUrl() : '';
+  if (apiBase) {
+    fetch(`${apiBase}/api/save_portal_settings`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ settings: { [key]: val } })
+    }).catch(() => {});
+  }
+}
+window.saveCloudPortalSetting = saveCloudPortalSetting;
+
+async function syncPortalSettingsFromCloud() {
+  const gasUrl = (typeof localStorage !== 'undefined' && localStorage.getItem('cbeo_google_apps_script_url'))
+    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url)
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
+  if (!gasUrl) return;
+
+  try {
+    const res = await fetch(`${gasUrl}?action=getPortalSettings`);
+    const data = await res.json();
+    if (data && data.success && data.settings) {
+      const s = data.settings;
+      if (s.saman_mismatch_settings) {
+        STATE.samanMismatchSettings = s.saman_mismatch_settings;
+        localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(s.saman_mismatch_settings));
+      }
+      if (s.saman_active_form) {
+        STATE.samanParikshaActiveForm = s.saman_active_form;
+        localStorage.setItem('cbeo_saman_active_form', s.saman_active_form);
+      }
+      if (s.saman_school_type_filter) {
+        STATE.samanParikshaSchoolTypeFilter = s.saman_school_type_filter;
+        localStorage.setItem('cbeo_saman_school_type_filter', s.saman_school_type_filter);
+      }
+      if (s.tab_visibility_6level) {
+        STATE.tabVisibility6Level = s.tab_visibility_6level;
+        STATE.tabVisibility5Level = s.tab_visibility_6level;
+        localStorage.setItem('cbeo_tab_visibility_6level', JSON.stringify(s.tab_visibility_6level));
+      }
+      if (s.edit_permissions_6level) {
+        STATE.editPermissions6Level = s.edit_permissions_6level;
+        STATE.editPermissions5Level = s.edit_permissions_6level;
+        localStorage.setItem('cbeo_edit_permissions_6level', JSON.stringify(s.edit_permissions_6level));
+      }
+      if (s.election_custom_columns) {
+        window.ELECTION_CUSTOM_COLUMNS = s.election_custom_columns;
+        localStorage.setItem('cbeo_election_custom_columns', JSON.stringify(s.election_custom_columns));
+      }
+
+      if (typeof updateMismatchHeaderUI === 'function') updateMismatchHeaderUI();
+      if (STATE.currentTab === 'saman-pariksha' && typeof renderSamanParikshaView === 'function') renderSamanParikshaView();
+      if (STATE.currentTab === 'election' && typeof renderElectionView === 'function') renderElectionView();
+    }
+  } catch(e) {
+    console.warn('Cloud portal settings fetch:', e);
+  }
+}
+window.syncPortalSettingsFromCloud = syncPortalSettingsFromCloud;
+
 function getOfficialSchoolNames(school) {
   if (!school) return { en: '', hi: '' };
   const code = String(school.shala_darpan_code || school.code || '').trim();
@@ -570,7 +672,22 @@ function initMasterData() {
     STATE.editPermissions5Level = STATE.editPermissions6Level;
   }
 
-  // Also sync latest visibility settings from local server in background
+  // Immediate LocalStorage recovery for all admin configurations so settings never reset
+  try {
+    const sMis = localStorage.getItem('cbeo_saman_mismatch_settings');
+    if (sMis) STATE.samanMismatchSettings = JSON.parse(sMis);
+    const sActForm = localStorage.getItem('cbeo_saman_active_form');
+    if (sActForm) STATE.samanParikshaActiveForm = sActForm;
+    const sTypeFilt = localStorage.getItem('cbeo_saman_school_type_filter');
+    if (sTypeFilt) STATE.samanParikshaSchoolTypeFilter = sTypeFilt;
+  } catch(e) {}
+
+  // Sync portal settings directly from Google Apps Script Cloud (Permanent Live Persistence)
+  if (typeof syncPortalSettingsFromCloud === 'function') {
+    syncPortalSettingsFromCloud();
+  }
+
+  // Also sync latest visibility settings from local server in background if running
   fetch('/api/get_tab_visibility_6level')
     .then(r => r.json())
     .then(data => {
@@ -583,7 +700,7 @@ function initMasterData() {
       }
     }).catch(() => {});
 
-  // Sync mismatch settings from SQLite API in background
+  // Sync mismatch settings from SQLite API in background if running
   fetch('/api/get_saman_mismatch_settings')
     .then(r => r.json())
     .then(data => {
@@ -4199,6 +4316,9 @@ window.saveAllBulkSyllabusToCloud = saveAllBulkSyllabusToCloud;
 function switchSamanActiveForm(formType) {
   STATE.samanParikshaActiveForm = formType;
   try { localStorage.setItem('cbeo_saman_active_form', formType); } catch(e) {}
+  if (typeof saveCloudPortalSetting === 'function') {
+    saveCloudPortalSetting('saman_active_form', formType);
+  }
 
   // Sync to backend Node server so it persists in SQLite, JSON, and master bundle
   fetch('/api/save_saman_active_form', {
@@ -4215,6 +4335,8 @@ function switchSamanActiveForm(formType) {
     // When switching to syllabus completion % demand, automatically filter to 49 Govt schools
     // because private schools are excluded as per user instructions
     STATE.samanParikshaSchoolTypeFilter = 'govt_only';
+    try { localStorage.setItem('cbeo_saman_school_type_filter', 'govt_only'); } catch(e) {}
+    if (typeof saveCloudPortalSetting === 'function') saveCloudPortalSetting('saman_school_type_filter', 'govt_only');
     if (scopeDropdown) scopeDropdown.value = 'govt_only';
     if (sylQuickBtns) sylQuickBtns.style.display = 'inline-flex';
     if (sylDispatchBar) sylDispatchBar.style.display = 'flex';
@@ -4222,6 +4344,8 @@ function switchSamanActiveForm(formType) {
     showToast('नवीन पाठ्यक्रम पूर्णता % मांग (49 राजकीय विद्यालय) सक्रिय हो गई!', 'info');
   } else {
     STATE.samanParikshaSchoolTypeFilter = 'all';
+    try { localStorage.setItem('cbeo_saman_school_type_filter', 'all'); } catch(e) {}
+    if (typeof saveCloudPortalSetting === 'function') saveCloudPortalSetting('saman_school_type_filter', 'all');
     if (scopeDropdown) scopeDropdown.value = 'all';
     if (sylQuickBtns) sylQuickBtns.style.display = 'none';
     if (sylDispatchBar) sylDispatchBar.style.display = 'none';
@@ -4233,6 +4357,10 @@ function switchSamanActiveForm(formType) {
 
 function onSamanSchoolTypeFilterChange(val) {
   STATE.samanParikshaSchoolTypeFilter = val;
+  try { localStorage.setItem('cbeo_saman_school_type_filter', val); } catch(e) {}
+  if (typeof saveCloudPortalSetting === 'function') {
+    saveCloudPortalSetting('saman_school_type_filter', val);
+  }
   renderSamanParikshaView();
 }
 
@@ -4318,6 +4446,11 @@ function saveSaman6LevelControls() {
   localStorage.setItem('cbeo_tab_visibility_5level', JSON.stringify(STATE.tabVisibility6Level));
   localStorage.setItem('cbeo_edit_permissions_6level', JSON.stringify(STATE.editPermissions6Level));
   localStorage.setItem('cbeo_edit_permissions_5level', JSON.stringify(STATE.editPermissions6Level));
+
+  if (typeof saveCloudPortalSetting === 'function') {
+    saveCloudPortalSetting('tab_visibility_6level', STATE.tabVisibility6Level);
+    saveCloudPortalSetting('edit_permissions_6level', STATE.editPermissions6Level);
+  }
 
   fetch('/api/save_tab_visibility_6level', {
     method: 'POST',
@@ -4588,6 +4721,10 @@ function saveSamanMismatchSettings() {
   STATE.samanMismatchSettings = cfg;
   localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(cfg));
 
+  if (typeof saveCloudPortalSetting === 'function') {
+    saveCloudPortalSetting('saman_mismatch_settings', cfg);
+  }
+
   const apiBaseMis = getEffectiveApiBaseUrl();
   if (apiBaseMis) {
     fetch(`${apiBaseMis}/api/save_saman_mismatch_settings`, {
@@ -4595,27 +4732,6 @@ function saveSamanMismatchSettings() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ settings: cfg })
     }).catch(err => console.warn('Save mismatch settings local err:', err));
-  }
-
-  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
-    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
-    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
-
-  if (gasUrl) {
-    try {
-      fetch(gasUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'updatePassword',
-          user_id: '__SAMAN_MISMATCH_SETTINGS__',
-          role: 'System_Config',
-          name: 'Saman Pariksha Mismatch Custom Edit & Alert Settings',
-          new_password: JSON.stringify(cfg)
-        })
-      }).catch(err => console.warn('Save mismatch sheet sync err:', err));
-    } catch(e) {}
   }
 
   closeModal('modal-saman-custom-edit');
@@ -4682,6 +4798,11 @@ function toggleMismatchAlertMaster(isActive) {
   }
   STATE.samanMismatchSettings = cfg;
   localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(cfg));
+
+  if (typeof saveCloudPortalSetting === 'function') {
+    saveCloudPortalSetting('saman_mismatch_settings', cfg);
+  }
+
   fetch('/api/save_saman_mismatch_settings', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

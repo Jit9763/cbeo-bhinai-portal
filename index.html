@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="styles.css?v=20261007_v32">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script>
     // Immediate Session Synchronization & Automated Client-Side Cache Purge on New Version
     (function() {
@@ -23,7 +24,7 @@
         if (cu && !lu) localStorage.setItem('cbeo_logged_user', cu);
       } catch(e) {}
 
-      var CLIENT_VERSION = 'v34_2026_10_07_pdf_download_and_dual_whatsapp';
+      var CLIENT_VERSION = 'v35_2026_10_09_election_and_settings_live_sync';
       var lastVer = localStorage.getItem('cbeo_client_app_version');
       if (lastVer !== CLIENT_VERSION) {
         localStorage.setItem('cbeo_client_app_version', CLIENT_VERSION);
@@ -32,7 +33,9 @@
           'cbeo_user', 'cbeo_logged_user', 'cbeo_remember_me', 'cbeo_saved_username',
           'cbeo_tab_visibility_6level', 'cbeo_edit_permissions_6level',
           'cbeo_tab_visibility_5level', 'cbeo_edit_permissions_5level',
-          'cbeo_saman_active_form', 'cbeo_portal_settings', 'cbeo_vm_settings'
+          'cbeo_saman_active_form', 'cbeo_saman_school_type_filter',
+          'cbeo_saman_mismatch_settings', 'cbeo_portal_settings', 'cbeo_vm_settings',
+          'cbeo_election_submissions', 'cbeo_election_custom_columns', 'cbeo_election_filter'
         ];
         for (var i = localStorage.length - 1; i >= 0; i--) {
           var k = localStorage.key(i);

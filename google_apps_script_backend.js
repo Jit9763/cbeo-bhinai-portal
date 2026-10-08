@@ -149,6 +149,80 @@ function doPost(e) {
     }
 
     // -------------------------------------------------------------
+    // ACTION 0.4: SAVE PORTAL SETTINGS (Permanent Cloud Persistence for All Admin Settings)
+    // -------------------------------------------------------------
+    if (data.action === 'savePortalSettings' || data.action === 'saveSettingsBundle') {
+      var sSheet = ss.getSheetByName("System_Settings");
+      if (!sSheet) {
+        sSheet = ss.insertSheet("System_Settings");
+        sSheet.appendRow(["Setting_Key", "Setting_Value_JSON", "Updated_At", "Updated_By"]);
+        var sHead = sSheet.getRange(1, 1, 1, 4);
+        sHead.setBackground("#0f172a").setFontColor("#ffffff").setFontWeight("bold");
+      }
+
+      var incoming = data.settings || {};
+      if (typeof incoming === 'string') {
+        try { incoming = JSON.parse(incoming); } catch(pe) { incoming = {}; }
+      }
+
+      var sData = sSheet.getDataRange().getValues();
+      var keyMap = {};
+      for (var si = 1; si < sData.length; si++) {
+        var k = String(sData[si][0] || '').trim();
+        if (k) keyMap[k] = si + 1;
+      }
+
+      for (var sKey in incoming) {
+        if (!incoming.hasOwnProperty(sKey)) continue;
+        var valJson = typeof incoming[sKey] === 'string' ? incoming[sKey] : JSON.stringify(incoming[sKey]);
+        var nowStr = Utilities.formatDate(new Date(), "GMT+5:30", "dd-MM-yyyy HH:mm:ss");
+        var upBy = data.updated_by || "Admin_Jitendra";
+
+        if (keyMap[sKey]) {
+          sSheet.getRange(keyMap[sKey], 2).setValue(valJson);
+          sSheet.getRange(keyMap[sKey], 3).setValue(nowStr);
+          sSheet.getRange(keyMap[sKey], 4).setValue(upBy);
+        } else {
+          sSheet.appendRow([sKey, valJson, nowStr, upBy]);
+          keyMap[sKey] = sSheet.getLastRow();
+        }
+      }
+
+      var ghResult = null;
+      if (data.sync_github) {
+        ghResult = syncToGitHubViaApi('master_cbeo_data.json', JSON.stringify(incoming, null, 2), "auto(gas): savePortalSettings to GitHub");
+      }
+
+      return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        message: "पोर्टल सेटिंग्स Google Sheet 'System_Settings' में सुरक्षित हो गईं!",
+        github_sync: ghResult
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // -------------------------------------------------------------
+    // ACTION 0.5: GET PORTAL SETTINGS VIA POST
+    // -------------------------------------------------------------
+    if (data.action === 'getPortalSettings' || data.action === 'getSettingsBundle') {
+      var sSheetPost = ss.getSheetByName("System_Settings");
+      var settingsPost = {};
+      if (sSheetPost) {
+        var sDataPost = sSheetPost.getDataRange().getValues();
+        for (var spi = 1; spi < sDataPost.length; spi++) {
+          var kPost = String(sDataPost[spi][0] || '').trim();
+          var rawPost = String(sDataPost[spi][1] || '').trim();
+          if (kPost && rawPost) {
+            try { settingsPost[kPost] = JSON.parse(rawPost); } catch(e) { settingsPost[kPost] = rawPost; }
+          }
+        }
+      }
+      return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        settings: settingsPost
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // -------------------------------------------------------------
     // ACTION 1: UPDATE PASSWORD (Single Textbox Save)
     // -------------------------------------------------------------
     if (data.action === 'updatePassword') {
@@ -552,6 +626,28 @@ function doGet(e) {
     }
 
     var ss = SpreadsheetApp.getActiveSpreadsheet();
+
+    // -------------------------------------------------------------
+    // GET PORTAL SETTINGS (Permanent Cloud Persistence for All Devices)
+    // -------------------------------------------------------------
+    if (action === 'getPortalSettings' || action === 'getSettingsBundle') {
+      var sSheetGet = ss.getSheetByName("System_Settings");
+      var settingsGet = {};
+      if (sSheetGet) {
+        var sDataGet = sSheetGet.getDataRange().getValues();
+        for (var sgi = 1; sgi < sDataGet.length; sgi++) {
+          var kGet = String(sDataGet[sgi][0] || '').trim();
+          var rawGet = String(sDataGet[sgi][1] || '').trim();
+          if (kGet && rawGet) {
+            try { settingsGet[kGet] = JSON.parse(rawGet); } catch(e) { settingsGet[kGet] = rawGet; }
+          }
+        }
+      }
+      return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        settings: settingsGet
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
 
     // -------------------------------------------------------------
     // 1. GET AUTH CREDENTIALS (Live Password Matching)

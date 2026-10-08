@@ -7,6 +7,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script src="js/election_data.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -756,6 +757,24 @@
                     <option value="no" ${!bLining ? 'selected' : ''}>✗ नहीं</option>
                   </select>
                 </div>
+                ${(function() {
+                  try {
+                    const cCols = JSON.parse(localStorage.getItem('cbeo_election_custom_columns') || '[]');
+                    return cCols.map(c => `
+                      <div>
+                        <label style="font-size:0.75rem; font-weight:700">${c.name}:</label>
+                        ${c.type === 'yes_no' ? `
+                          <select class="form-control" id="b_${b.booth_no}_${c.id}" style="font-size:0.82rem; padding:4px 8px">
+                            <option value="yes" ${bSaved[c.id] !== false ? 'selected' : ''}>✓ हाँ</option>
+                            <option value="no" ${bSaved[c.id] === false ? 'selected' : ''}>✗ नहीं</option>
+                          </select>
+                        ` : `
+                          <input type="text" class="form-control" id="b_${b.booth_no}_${c.id}" value="${bSaved[c.id] || ''}" style="font-size:0.82rem; padding:4px 8px" placeholder="${c.name}">
+                        `}
+                      </div>
+                    `).join('');
+                  } catch(e) { return ''; }
+                })()}
               </div>
 
               <!-- Dedicated BLO / Pragnak Details for this Booth (No Canvas, Physical sign on PDF) -->
@@ -867,6 +886,16 @@
           blo_post: (document.getElementById(`b_${b.booth_no}_blo_post`)?.value || '').trim(),
           blo_mobile: (document.getElementById(`b_${b.booth_no}_blo_mobile`)?.value || '').trim()
         };
+
+        try {
+          const cCols = JSON.parse(localStorage.getItem('cbeo_election_custom_columns') || '[]');
+          cCols.forEach(c => {
+            const el = document.getElementById(`b_${b.booth_no}_${c.id}`);
+            if (el) {
+              booth_details[b.booth_no][c.id] = (c.type === 'yes_no') ? (el.value === 'yes') : el.value;
+            }
+          });
+        } catch(e) {}
       });
 
       const principal = {
