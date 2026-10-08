@@ -120,18 +120,6 @@
     }
     .form-control:focus { outline: none; border-color: #0284c7; box-shadow: 0 0 0 3px rgba(2,132,199,0.15); }
 
-    .section-title {
-      font-size: 1rem;
-      font-weight: 800;
-      color: #0f172a;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.85rem;
-      padding-bottom: 0.4rem;
-      border-bottom: 2px solid #e2e8f0;
-    }
-
     /* Facility Rows (Yes/No Switcher) */
     .facility-row {
       display: flex;
@@ -180,9 +168,9 @@
       background: #ffffff;
       border: 1.5px solid #cbd5e1;
       border-radius: 8px;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
       overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
     }
     .booth-card-header {
       background: #f1f5f9;
@@ -193,43 +181,24 @@
       border-bottom: 1px solid #e2e8f0;
     }
     .booth-title { font-weight: 800; font-size: 0.95rem; color: #0369a1; }
-    .booth-voters { font-size: 0.8rem; font-weight: 700; color: #475569; background: #e2e8f0; padding: 2px 8px; border-radius: 12px; }
-    .booth-card-body { padding: 0.85rem 1rem; }
+    .booth-ward-tag { font-size: 0.8rem; font-weight: 700; color: #475569; background: #e2e8f0; padding: 2px 8px; border-radius: 12px; }
+    .booth-card-body { padding: 0.95rem 1rem; }
 
     /* Signature Section */
-    .sig-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.25rem;
-      margin-top: 1rem;
-    }
-    .sig-box {
-      border: 1.5px dashed #94a3b8;
-      border-radius: 8px;
-      padding: 0.85rem;
-      background: #f8fafc;
-      text-align: center;
-    }
     .sig-canvas {
       width: 100%;
-      height: 110px;
+      height: 75px;
       background: #ffffff;
       border: 1px solid #cbd5e1;
       border-radius: 4px;
       touch-action: none;
       cursor: crosshair;
     }
-    .sig-actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 0.4rem;
-    }
     .btn-clear {
       background: none;
       border: none;
       color: #dc2626;
-      font-size: 0.76rem;
+      font-size: 0.74rem;
       font-weight: 700;
       cursor: pointer;
     }
@@ -281,7 +250,7 @@
       </div>
       <div class="card-body">
         <div style="margin-bottom:1rem">
-          <label style="font-size:0.82rem; font-weight:700; color:#475569">विद्यालय चयन (यदि सीधे खुले हों तो बदल सकते हैं):</label>
+          <label style="font-size:0.82rem; font-weight:700; color:#475569">विद्यालय चयन:</label>
           <select id="select-school-switch" class="form-control" onchange="onSchoolSelectChange(this.value)" style="font-weight:700; color:#0369a1; background:#f0f9ff">
             <!-- Populated via JS -->
           </select>
@@ -316,21 +285,13 @@
             <label>कुल मतदान कक्ष / बूथ</label>
             <div class="val" id="disp-booths-count" style="color:#047857">--</div>
           </div>
-          <div class="meta-item">
-            <label>कुल पंजीकृत मतदाता</label>
-            <div class="val" id="disp-voters-count" style="color:#047857">--</div>
-          </div>
         </div>
 
-        <div style="margin-top:1.25rem; display:grid; grid-template-columns:1fr 1fr; gap:1rem">
-          <div class="form-group">
+        <div style="margin-top:1.15rem">
+          <div class="form-group" style="margin-bottom:0">
             <label>विद्यालय की आधिकारिक ईमेल आईडी <span class="req">* (अनिवार्य)</span></label>
             <input type="email" id="school-email-id" class="form-control" placeholder="उदा. gsssbandanwara@gmail.com" required>
             <small style="color:#64748b; font-size:0.75rem">निर्वाचन संबंधी आधिकारिक पत्राचार हेतु वैध ईमेल दर्ज करें।</small>
-          </div>
-          <div class="form-group">
-            <label>विद्यालय चुनाव / प्रपत्र प्रभारी का नाम व मोबाइल</label>
-            <input type="text" id="school-election-incharge" class="form-control" placeholder="उदा. श्री रामस्वरूप जाट (9829000000)">
           </div>
         </div>
       </div>
@@ -340,7 +301,7 @@
     <div class="form-card">
       <div class="card-header-bar" style="background:linear-gradient(135deg, #047857, #065f46)">
         <h2>2. राज्य निर्वाचन आयोग निर्देशानुसार 8 प्रमुख व्यवस्थाएं (भौतिक सत्यापन)</h2>
-        <p>आदेश क्रमांक: प.2(9)रानिआ/सामान्य/2025-26/10161 दिनांक 07-10-2026 (डिफ़ॉल्ट 'हाँ' चयनित है)</p>
+        <p>आदेश क्रमांक: प.2(9)रानिआ/सामान्य/2025-26/10161 दिनांक 07-10-2026</p>
       </div>
       <div class="card-body">
         <div id="general-facilities-container">
@@ -353,81 +314,51 @@
       </div>
     </div>
 
-    <!-- Card 3: Booth-Wise Detailed Verification (Repeater for each booth) -->
+    <!-- Card 3: Booth-Wise Detailed Verification (Repeater with per-booth BLO details & signatures) -->
     <div class="form-card">
       <div class="card-header-bar" style="background:linear-gradient(135deg, #4338ca, #3730a3)">
-        <h2>3. मतदान कक्ष / बूथ-वार विस्तृत भौतिक सत्यापन (116 बूथ मास्टर डेटा)</h2>
-        <p>इस विद्यालय में स्थापित प्रत्येक मतदान कक्ष व बूथ की वास्तविक स्थिति दर्ज करें</p>
+        <h2>3. मतदान कक्ष / बूथ-वार विस्तृत भौतिक सत्यापन</h2>
+        <p>प्रत्येक मतदान कक्ष की भौतिक स्थिति एवं संबंधित बूथ के BLO / प्रगणक का विवरण व हस्ताक्षर दर्ज करें</p>
       </div>
       <div class="card-body" id="booth-wise-repeater-container">
         <!-- Rendered dynamically for each booth -->
       </div>
     </div>
 
-    <!-- Card 4: Certification, Signatures & Digital Submission -->
+    <!-- Card 4: Certification & Principal Signature -->
     <div class="form-card">
       <div class="card-header-bar" style="background:linear-gradient(135deg, #1e293b, #0f172a)">
-        <h2>4. अधिकृत सत्यापन एवं डिजिटल हस्ताक्षर (BLO एवं संस्था प्रधान)</h2>
-        <p>प्रमाणित किया जाता है कि उपरोक्त विवरण का मौके पर भौतिक सत्यापन कर लिया गया है</p>
+        <h2>4. अधिकृत सत्यापन एवं संस्था प्रधान प्रमाणीकरण</h2>
+        <p>प्रमाणित किया जाता है कि संस्था प्रधान एवं संबंधित बूथों के BLO / प्रगणकों द्वारा मौके पर भौतिक सत्यापन कर लिया गया है</p>
       </div>
       <div class="card-body">
         <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:6px; padding:0.75rem 1rem; font-size:0.85rem; color:#1e40af; margin-bottom:1rem">
-          <i class="fas fa-info-circle"></i> <strong>सत्यापन नियम:</strong> इस प्रपत्र पर <strong>बूथ लेवल अधिकारी (BLO)</strong> एवं <strong>संस्था प्रधान</strong> दोनों का नाम, मोबाइल व डिजिटल हस्ताक्षर अनिवार्य हैं।
+          <i class="fas fa-info-circle"></i> <strong>सत्यापन नियम:</strong> ऊपर प्रत्येक बूथ के लिए संबंधित <strong>BLO / प्रगणक</strong> का विवरण व हस्ताक्षर भरे गए हैं। नीचे <strong>संस्था प्रधान</strong> द्वारा अंतिम प्रमाणीकरण व डिजिटल हस्ताक्षर किए जाएंगे।
         </div>
 
-        <div class="sig-grid">
-          <!-- BLO Box -->
-          <div class="sig-box">
-            <div style="font-weight:800; font-size:0.92rem; color:#0f172a; margin-bottom:0.5rem">
-              <i class="fas fa-user-tie text-primary"></i> 1. बूथ लेवल अधिकारी (BLO)
-            </div>
-            <div class="form-group" style="text-align:left">
-              <label>BLO का नाम:</label>
-              <input type="text" id="blo-name" class="form-control" placeholder="श्री BLO का नाम" required>
-            </div>
-            <div class="form-group" style="text-align:left">
-              <label>BLO पद व विद्यालय:</label>
-              <input type="text" id="blo-designation" class="form-control" placeholder="उदा. अध्यापक लेवल-2">
-            </div>
-            <div class="form-group" style="text-align:left">
-              <label>BLO मोबाइल नंबर:</label>
-              <input type="tel" id="blo-mobile" class="form-control" placeholder="98XXXXXXXX" maxlength="10">
-            </div>
-            <div style="text-align:left; margin-bottom:0.25rem; font-size:0.75rem; font-weight:700; color:#475569">
-              BLO डिजिटल हस्ताक्षर (ऊंगली या माउस से साइन करें):
-            </div>
-            <canvas id="canvas-blo-sig" class="sig-canvas"></canvas>
-            <div class="sig-actions">
-              <button type="button" class="btn-clear" onclick="clearCanvas('canvas-blo-sig')"><i class="fas fa-eraser"></i> साफ़ करें</button>
-              <span style="font-size:0.7rem; color:#64748b">डिजिटल हस्ताक्षर मान्य</span>
-            </div>
+        <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:8px; padding:1rem; max-width:550px; margin:0 auto">
+          <div style="font-weight:800; font-size:0.95rem; color:#0f172a; margin-bottom:0.75rem; text-align:center">
+            <i class="fas fa-school text-primary"></i> संस्था प्रधान प्रमाणीकरण (Principal / Head of Institution)
           </div>
-
-          <!-- Principal / HM Box -->
-          <div class="sig-box">
-            <div style="font-weight:800; font-size:0.92rem; color:#0f172a; margin-bottom:0.5rem">
-              <i class="fas fa-school text-success"></i> 2. संस्था प्रधान (Principal / HM)
-            </div>
-            <div class="form-group" style="text-align:left">
-              <label>संस्था प्रधान नाम:</label>
-              <input type="text" id="principal-name-input" class="form-control" placeholder="श्री संस्था प्रधान">
-            </div>
-            <div class="form-group" style="text-align:left">
-              <label>संस्था प्रधान पद:</label>
-              <input type="text" id="principal-post-input" class="form-control" value="प्रधानाचार्य / संस्था प्रधान">
-            </div>
-            <div class="form-group" style="text-align:left">
-              <label>संस्था प्रधान मोबाइल:</label>
-              <input type="tel" id="principal-mobile-input" class="form-control" placeholder="94XXXXXXXX">
-            </div>
-            <div style="text-align:left; margin-bottom:0.25rem; font-size:0.75rem; font-weight:700; color:#475569">
-              संस्था प्रधान डिजिटल हस्ताक्षर / मुहर:
-            </div>
-            <canvas id="canvas-principal-sig" class="sig-canvas"></canvas>
-            <div class="sig-actions">
-              <button type="button" class="btn-clear" onclick="clearCanvas('canvas-principal-sig')"><i class="fas fa-eraser"></i> साफ़ करें</button>
-              <span style="font-size:0.7rem; color:#64748b">डिजिटल हस्ताक्षर मान्य</span>
-            </div>
+          <div class="form-group" style="text-align:left">
+            <label>संस्था प्रधान नाम:</label>
+            <input type="text" id="principal-name-input" class="form-control" placeholder="श्री संस्था प्रधान">
+          </div>
+          <div class="form-group" style="text-align:left">
+            <label>संस्था प्रधान पद:</label>
+            <input type="text" id="principal-post-input" class="form-control" value="प्रधानाचार्य / संस्था प्रधान">
+          </div>
+          <div class="form-group" style="text-align:left">
+            <label>संस्था प्रधान मोबाइल:</label>
+            <input type="tel" id="principal-mobile-input" class="form-control" placeholder="94XXXXXXXX">
+          </div>
+          <div style="text-align:left; margin-bottom:0.25rem; font-size:0.75rem; font-weight:700; color:#475569">
+            संस्था प्रधान डिजिटल हस्ताक्षर / मुहर (ऊंगली या माउस से साइन करें):
+          </div>
+          <canvas id="canvas-principal-sig" class="sig-canvas" style="height:90px"></canvas>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.35rem">
+            <button type="button" class="btn-clear" onclick="clearCanvas('canvas-principal-sig')"><i class="fas fa-eraser"></i> साफ़ करें</button>
+            <span style="font-size:0.7rem; color:#64748b">डिजिटल हस्ताक्षर मान्य</span>
           </div>
         </div>
 
@@ -455,7 +386,7 @@
       </div>
     </div>
 
-    <!-- School Meta Info -->
+    <!-- School Meta Info (No Voters Column) -->
     <table style="width:100%; border-collapse:collapse; margin-bottom:10px; font-size:10pt; border:1.5px solid #000">
       <tr>
         <td style="border:1px solid #000; padding:4px 8px; font-weight:bold; width:18%; background:#f8fafc">विद्यालय का नाम:</td>
@@ -477,9 +408,7 @@
       </tr>
       <tr>
         <td style="border:1px solid #000; padding:4px 8px; font-weight:bold; background:#f8fafc">कुल मतदान बूथ:</td>
-        <td style="border:1px solid #000; padding:4px 8px; font-weight:bold" id="pdf-booths-count">-</td>
-        <td style="border:1px solid #000; padding:4px 8px; font-weight:bold; background:#f8fafc">कुल मतदाता संख्या:</td>
-        <td style="border:1px solid #000; padding:4px 8px; font-weight:bold" id="pdf-voters-count">-</td>
+        <td style="border:1px solid #000; padding:4px 8px; font-weight:bold" id="pdf-booths-count" colspan="3">-</td>
       </tr>
     </table>
 
@@ -492,28 +421,29 @@
         <tr style="background:#e2e8f0; text-align:center">
           <th style="border:1px solid #000; padding:4px; width:6%">क्र.</th>
           <th style="border:1px solid #000; padding:4px; text-align:left">व्यवस्था का विवरण (राज्य निर्वाचन आयोग दिशानिर्देश)</th>
-          <th style="border:1px solid #000; padding:4px; width:12%">उपलब्धता</th>
-          <th style="border:1px solid #000; padding:4px; width:22%">कैफियत / स्थिति</th>
+          <th style="border:1px solid #000; padding:4px; width:14%">उपलब्धता</th>
+          <th style="border:1px solid #000; padding:4px; width:25%">कैफियत / स्थिति</th>
         </tr>
       </thead>
       <tbody id="pdf-fac-tbody"></tbody>
     </table>
 
-    <!-- Booth Wise Table -->
+    <!-- Booth Wise Table with per-booth BLO details & signs -->
     <div style="font-weight:bold; font-size:10.5pt; margin-bottom:4px; text-decoration:underline">
-      2. मतदान कक्ष / बूथ-वार विस्तृत भौतिक सत्यापन विवरण (116 बूथ सूची):
+      2. मतदान कक्ष / बूथ-वार विस्तृत भौतिक सत्यापन एवं अधिकृत BLO विवरण:
     </div>
-    <table style="width:100%; border-collapse:collapse; margin-bottom:12px; font-size:9pt; border:1.5px solid #000" id="pdf-booth-table">
+    <table style="width:100%; border-collapse:collapse; margin-bottom:12px; font-size:8.5pt; border:1.5px solid #000" id="pdf-booth-table">
       <thead>
         <tr style="background:#e2e8f0; text-align:center">
-          <th style="border:1px solid #000; padding:4px; width:6%">बूथ क्र.</th>
-          <th style="border:1px solid #000; padding:4px; text-align:left">मतदान कक्ष / कमरा विवरण</th>
-          <th style="border:1px solid #000; padding:4px; width:12%">वार्ड</th>
-          <th style="border:1px solid #000; padding:4px; width:10%">मतदाता</th>
-          <th style="border:1px solid #000; padding:4px; width:10%">बिजली/पंखा</th>
-          <th style="border:1px solid #000; padding:4px; width:10%">फर्नीचर</th>
-          <th style="border:1px solid #000; padding:4px; width:10%">पृथक द्वार</th>
-          <th style="border:1px solid #000; padding:4px; width:10%">चूना लाइनिंग</th>
+          <th style="border:1px solid #000; padding:3px; width:5%">बूथ</th>
+          <th style="border:1px solid #000; padding:3px; text-align:left">मतदान कक्ष / कमरा विवरण</th>
+          <th style="border:1px solid #000; padding:3px; width:10%">वार्ड</th>
+          <th style="border:1px solid #000; padding:3px; width:8%">विद्युत/पंखा</th>
+          <th style="border:1px solid #000; padding:3px; width:8%">फर्नीचर</th>
+          <th style="border:1px solid #000; padding:3px; width:8%">पृथक द्वार</th>
+          <th style="border:1px solid #000; padding:3px; width:8%">चूना लाइन</th>
+          <th style="border:1px solid #000; padding:3px; text-align:left; width:28%">BLO / प्रगणक (नाम, पद, मो.)</th>
+          <th style="border:1px solid #000; padding:3px; width:15%">BLO हस्ताक्षर</th>
         </tr>
       </thead>
       <tbody id="pdf-booth-tbody"></tbody>
@@ -521,20 +451,11 @@
 
     <!-- Certification & Signatures -->
     <div style="margin-top:10px; font-size:9pt; line-height:1.4; border-top:1px dashed #666; padding-top:6px">
-      <strong>प्रमाणीकरण:</strong> प्रमाणित किया जाता है कि उपरोक्त सभी मतदान केंद्रों व कक्षों का मौके पर निरीक्षण कर भौतिक सत्यापन कर लिया गया है। राज्य निर्वाचन आयोग के आदेशानुसार मतदान दिवस एवं मतगणना तक समस्त व्यवस्थाएं दुरुस्त रखी जाएंगी।
+      <strong>प्रमाणीकरण:</strong> प्रमाणित किया जाता है कि उपरोक्त सभी मतदान केंद्रों व कक्षों का मौके पर निरीक्षण कर संबंधित BLO/प्रगणकों द्वारा भौतिक सत्यापन कर लिया गया है। राज्य निर्वाचन आयोग के आदेशानुसार मतदान दिवस एवं मतगणना तक समस्त व्यवस्थाएं दुरुस्त रखी जाएंगी।
     </div>
 
-    <div style="display:flex; justify-content:space-between; margin-top:25px; padding:0 20px">
-      <div style="text-align:center; width:40%">
-        <div id="pdf-blo-sig-img" style="height:45px; display:flex; align-items:flex-end; justify-content:center"></div>
-        <div style="border-top:1px solid #000; padding-top:4px">
-          <strong id="pdf-blo-name-disp">श्री BLO का नाम</strong><br>
-          <span style="font-size:8.5pt">बूथ लेवल अधिकारी (BLO)</span><br>
-          <span style="font-size:8pt" id="pdf-blo-mobile-disp">मो. 98XXXXXXXX</span>
-        </div>
-      </div>
-
-      <div style="text-align:center; width:40%">
+    <div style="display:flex; justify-content:flex-end; margin-top:20px; padding:0 20px">
+      <div style="text-align:center; width:45%">
         <div id="pdf-principal-sig-img" style="height:45px; display:flex; align-items:flex-end; justify-content:center"></div>
         <div style="border-top:1px solid #000; padding-top:4px">
           <strong id="pdf-principal-name-disp">श्री संस्था प्रधान</strong><br>
@@ -564,13 +485,13 @@
       { id: 'boundary', title: '9. परिसर चारदीवारी एवं सुरक्षा व्यवस्था', hint: 'क्या विद्यालय परिसर की चारदीवारी व सुरक्षा व्यवस्था पूर्णतः संतोषप्रद है?' }
     ];
 
+    const canvasPads = {};
+
     // Initialize Page
     document.addEventListener('DOMContentLoaded', () => {
       initSchoolSelector();
-      initSignatureCanvas('canvas-blo-sig');
       initSignatureCanvas('canvas-principal-sig');
 
-      // Check URL query param
       const urlParams = new URLSearchParams(window.location.search);
       const codeParam = urlParams.get('code');
       if (codeParam && window.ELECTION_2026_SCHOOLS?.some(s => s.shala_darpan_code === codeParam)) {
@@ -602,14 +523,13 @@
       const sch = (window.ELECTION_2026_SCHOOLS || []).find(s => s.shala_darpan_code === code);
       if (!sch) return;
 
-      // Update Meta Display
+      // Update Meta Display (No total voters displayed)
       document.getElementById('disp-gp-name').textContent = sch.panchayat_name;
       document.getElementById('disp-school-name').textContent = sch.school_name;
       document.getElementById('disp-school-code').textContent = sch.shala_darpan_code;
       document.getElementById('disp-peeo-name').textContent = sch.peeo_name;
       document.getElementById('disp-principal-meta').textContent = `${sch.principal_name} (${sch.principal_mobile})`;
       document.getElementById('disp-booths-count').textContent = `${sch.booth_count} मतदान कक्ष / बूथ`;
-      document.getElementById('disp-voters-count').textContent = `${sch.total_voters.toLocaleString('en-IN')} मतदाता`;
 
       // Set Principal Inputs
       document.getElementById('principal-name-input').value = sch.principal_name || 'श्री संस्था प्रधान';
@@ -626,25 +546,11 @@
       const emailEl = document.getElementById('school-email-id');
       if (emailEl) emailEl.value = savedData?.school_email || '';
 
-      const inchargeEl = document.getElementById('school-election-incharge');
-      if (inchargeEl) inchargeEl.value = savedData?.incharge_details || '';
-
-      // Render 8 Facilities (Default Yes)
+      // Render 8 Facilities
       renderFacilities(savedData?.facilities);
 
-      // Render Booth-wise
-      renderBoothWiseRepeater(sch.booths, savedData?.booth_facilities);
-
-      // BLO details
-      if (savedData?.blo) {
-        document.getElementById('blo-name').value = savedData.blo.name || '';
-        document.getElementById('blo-designation').value = savedData.blo.designation || '';
-        document.getElementById('blo-mobile').value = savedData.blo.mobile || '';
-      } else {
-        document.getElementById('blo-name').value = '';
-        document.getElementById('blo-designation').value = 'अध्यापक / BLO';
-        document.getElementById('blo-mobile').value = '';
-      }
+      // Render Booth-wise (with BLO inputs for each booth)
+      renderBoothWiseRepeater(sch.booths, savedData?.booth_details);
 
       // Remarks
       document.getElementById('election-general-remarks').value = savedData?.remarks || '';
@@ -691,7 +597,7 @@
       });
     }
 
-    function renderBoothWiseRepeater(booths = [], savedBoothFac = {}) {
+    function renderBoothWiseRepeater(booths = [], savedBoothDetails = {}) {
       const container = document.getElementById('booth-wise-repeater-container');
       if (!container) return;
 
@@ -701,24 +607,28 @@
       }
 
       container.innerHTML = booths.map(b => {
-        const bSaved = savedBoothFac?.[b.booth_no] || {};
+        const bSaved = savedBoothDetails?.[b.booth_no] || {};
         const bLight = bSaved.light !== false;
         const bFurn = bSaved.furniture !== false;
         const bDoor = bSaved.door !== false;
         const bLining = bSaved.lining !== false;
 
+        const bloName = bSaved.blo_name || '';
+        const bloPost = bSaved.blo_post || 'अध्यापक / प्रगणक';
+        const bloMobile = bSaved.blo_mobile || '';
+
         return `
           <div class="booth-card" data-booth-no="${b.booth_no}">
             <div class="booth-card-header">
               <div class="booth-title">
-                <i class="fas fa-vote-yea"></i> बूथ संख्या: ${b.booth_no} | ${b.room_hi}
+                <i class="fas fa-vote-yea"></i> बूथ क्रमांक: ${b.booth_no} | ${b.room_hi}
               </div>
-              <div class="booth-voters">
-                वार्ड: <strong>${b.ward || 'समस्त'}</strong> • कुल मतदाता: <strong>${b.voters}</strong>
+              <div class="booth-ward-tag">
+                वार्ड: <strong>${b.ward || 'समस्त'}</strong>
               </div>
             </div>
             <div class="booth-card-body">
-              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:0.75rem">
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:0.65rem; margin-bottom:0.75rem">
                 <div>
                   <label style="font-size:0.75rem; font-weight:700">विद्युत व पंखे चालू स्थिति:</label>
                   <select class="form-control" id="b_${b.booth_no}_light" style="font-size:0.82rem; padding:4px 8px">
@@ -748,24 +658,56 @@
                   </select>
                 </div>
               </div>
+
+              <!-- Dedicated BLO Section for this Booth -->
+              <div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:6px; padding:0.65rem 0.85rem">
+                <div style="font-weight:800; font-size:0.82rem; color:#0369a1; margin-bottom:0.45rem">
+                  <i class="fas fa-user-tie"></i> बूथ क्रमांक ${b.booth_no} - अधिकृत BLO / प्रगणक विवरण एवं हस्ताक्षर:
+                </div>
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:0.5rem; margin-bottom:0.4rem">
+                  <div>
+                    <label style="font-size:0.72rem; font-weight:700">BLO/प्रगणक का नाम:</label>
+                    <input type="text" id="b_${b.booth_no}_blo_name" value="${bloName}" class="form-control" placeholder="श्री BLO का नाम" style="font-size:0.82rem; padding:4px 8px" required>
+                  </div>
+                  <div>
+                    <label style="font-size:0.72rem; font-weight:700">पद:</label>
+                    <input type="text" id="b_${b.booth_no}_blo_post" value="${bloPost}" class="form-control" placeholder="उदा. अध्यापक / प्रगणक" style="font-size:0.82rem; padding:4px 8px">
+                  </div>
+                  <div>
+                    <label style="font-size:0.72rem; font-weight:700">मोबाइल नंबर:</label>
+                    <input type="tel" id="b_${b.booth_no}_blo_mobile" value="${bloMobile}" class="form-control" placeholder="98XXXXXXXX" maxlength="10" style="font-size:0.82rem; padding:4px 8px">
+                  </div>
+                </div>
+                <div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px">
+                    <label style="font-size:0.72rem; font-weight:700; color:#475569">बूथ ${b.booth_no} BLO डिजिटल हस्ताक्षर (ऊंगली या माउस से साइन करें):</label>
+                    <button type="button" class="btn-clear" onclick="clearCanvas('canvas-blo-${b.booth_no}')"><i class="fas fa-eraser"></i> साफ़ करें</button>
+                  </div>
+                  <canvas id="canvas-blo-${b.booth_no}" class="sig-canvas"></canvas>
+                </div>
+              </div>
             </div>
           </div>
         `;
       }).join('');
+
+      // Initialize Canvas for each booth
+      setTimeout(() => {
+        booths.forEach(b => {
+          initSignatureCanvas(`canvas-blo-${b.booth_no}`);
+        });
+      }, 100);
     }
 
-    // Canvas Signature Functions
-    const canvasPads = {};
     function initSignatureCanvas(id) {
       const c = document.getElementById(id);
       if (!c) return;
       const ctx = c.getContext('2d');
       canvasPads[id] = { c, ctx, drawing: false };
 
-      // High DPI scaling
       const rect = c.getBoundingClientRect();
-      c.width = rect.width * 2;
-      c.height = rect.height * 2;
+      c.width = (rect.width || 300) * 2;
+      c.height = (rect.height || 80) * 2;
       ctx.scale(2, 2);
       ctx.lineWidth = 2;
       ctx.lineCap = 'round';
@@ -820,26 +762,28 @@
         facilities[f.id] = (checked?.value === 'yes');
       });
 
-      const booth_facilities = {};
+      const booth_details = {};
       (sch?.booths || []).forEach(b => {
-        booth_facilities[b.booth_no] = {
+        booth_details[b.booth_no] = {
+          booth_no: b.booth_no,
+          room_hi: b.room_hi,
+          ward: b.ward,
           light: document.getElementById(`b_${b.booth_no}_light`)?.value === 'yes',
           furniture: document.getElementById(`b_${b.booth_no}_furniture`)?.value === 'yes',
           door: document.getElementById(`b_${b.booth_no}_door`)?.value === 'yes',
-          lining: document.getElementById(`b_${b.booth_no}_lining`)?.value === 'yes'
+          lining: document.getElementById(`b_${b.booth_no}_lining`)?.value === 'yes',
+          blo_name: (document.getElementById(`b_${b.booth_no}_blo_name`)?.value || '').trim(),
+          blo_post: (document.getElementById(`b_${b.booth_no}_blo_post`)?.value || '').trim(),
+          blo_mobile: (document.getElementById(`b_${b.booth_no}_blo_mobile`)?.value || '').trim(),
+          blo_sig: canvasPads[`canvas-blo-${b.booth_no}`]?.c.toDataURL()
         };
       });
-
-      const blo = {
-        name: document.getElementById('blo-name')?.value || 'श्री BLO',
-        designation: document.getElementById('blo-designation')?.value || 'BLO',
-        mobile: document.getElementById('blo-mobile')?.value || ''
-      };
 
       const principal = {
         name: document.getElementById('principal-name-input')?.value || sch.principal_name,
         post: document.getElementById('principal-post-input')?.value || 'संस्था प्रधान',
-        mobile: document.getElementById('principal-mobile-input')?.value || sch.principal_mobile
+        mobile: document.getElementById('principal-mobile-input')?.value || sch.principal_mobile,
+        sig: canvasPads['canvas-principal-sig']?.c.toDataURL()
       };
 
       return {
@@ -850,15 +794,11 @@
         district: 'AJMER (अजमेर)',
         block: 'Bhinai (भिनाय)',
         school_email: email,
-        incharge_details: document.getElementById('school-election-incharge')?.value || '',
         facilities: facilities,
-        booth_facilities: booth_facilities,
+        booth_details: booth_details,
         remarks: document.getElementById('election-general-remarks')?.value || '',
-        blo: blo,
         principal: principal,
-        submitted_at: new Date().toLocaleString('hi-IN'),
-        blo_sig: canvasPads['canvas-blo-sig']?.c.toDataURL(),
-        principal_sig: canvasPads['canvas-principal-sig']?.c.toDataURL()
+        submitted_at: new Date().toLocaleString('hi-IN')
       };
     }
 
@@ -902,8 +842,7 @@
       document.getElementById('pdf-peeo-name').textContent = data.peeo_name;
       document.getElementById('pdf-principal-name').textContent = `${data.principal.name} (${data.principal.mobile})`;
       document.getElementById('pdf-school-email').textContent = data.school_email;
-      document.getElementById('pdf-booths-count').textContent = `${sch.booth_count} बूथ`;
-      document.getElementById('pdf-voters-count').textContent = `${sch.total_voters} मतदाता`;
+      document.getElementById('pdf-booths-count').textContent = `${sch.booth_count} मतदान कक्ष / बूथ`;
 
       // 8 Facilities
       const facTbody = document.getElementById('pdf-fac-tbody');
@@ -921,42 +860,41 @@
         `;
       }).join('');
 
-      // Booth-wise table
+      // Booth-wise table with BLO details & signatures
       const boothTbody = document.getElementById('pdf-booth-tbody');
       boothTbody.innerHTML = (sch.booths || []).map(b => {
-        const bf = data.booth_facilities[b.booth_no] || {};
+        const bd = data.booth_details[b.booth_no] || {};
+        const bloInfo = bd.blo_name ? `<strong>${bd.blo_name}</strong><br><span style="font-size:7.5pt">${bd.blo_post || 'BLO'} (${bd.blo_mobile || ''})</span>` : '-';
+        const bloSigHtml = bd.blo_sig ? `<img src="${bd.blo_sig}" style="max-height:28px; max-width:80px">` : `<span style="font-size:7.5pt; color:#666">हस्ताक्षरित</span>`;
+
         return `
           <tr>
             <td style="border:1px solid #000; padding:3px; text-align:center; font-weight:bold">${b.booth_no}</td>
             <td style="border:1px solid #000; padding:3px 6px">${b.room_hi}</td>
             <td style="border:1px solid #000; padding:3px; text-align:center">${b.ward || '-'}</td>
-            <td style="border:1px solid #000; padding:3px; text-align:center; font-weight:bold">${b.voters}</td>
-            <td style="border:1px solid #000; padding:3px; text-align:center">${bf.light ? 'हाँ' : 'नहीं'}</td>
-            <td style="border:1px solid #000; padding:3px; text-align:center">${bf.furniture ? 'हाँ' : 'नहीं'}</td>
-            <td style="border:1px solid #000; padding:3px; text-align:center">${bf.door ? 'हाँ' : 'नहीं'}</td>
-            <td style="border:1px solid #000; padding:3px; text-align:center">${bf.lining ? 'हाँ' : 'नहीं'}</td>
+            <td style="border:1px solid #000; padding:3px; text-align:center">${bd.light ? 'हाँ' : 'नहीं'}</td>
+            <td style="border:1px solid #000; padding:3px; text-align:center">${bd.furniture ? 'हाँ' : 'नहीं'}</td>
+            <td style="border:1px solid #000; padding:3px; text-align:center">${bd.door ? 'हाँ' : 'नहीं'}</td>
+            <td style="border:1px solid #000; padding:3px; text-align:center">${bd.lining ? 'हाँ' : 'नहीं'}</td>
+            <td style="border:1px solid #000; padding:3px 6px">${bloInfo}</td>
+            <td style="border:1px solid #000; padding:3px; text-align:center">${bloSigHtml}</td>
           </tr>
         `;
       }).join('');
 
-      // Signatures
-      document.getElementById('pdf-blo-name-disp').textContent = data.blo.name;
-      document.getElementById('pdf-blo-mobile-disp').textContent = `मो. ${data.blo.mobile || '---'}`;
+      // Principal Signature
       document.getElementById('pdf-principal-name-disp').textContent = data.principal.name;
       document.getElementById('pdf-principal-mobile-disp').textContent = `मो. ${data.principal.mobile || '---'}`;
       document.getElementById('pdf-print-date').textContent = new Date().toLocaleString('hi-IN');
 
-      const bloImg = document.getElementById('pdf-blo-sig-img');
-      if (data.blo_sig && bloImg) bloImg.innerHTML = `<img src="${data.blo_sig}" style="max-height:40px; max-width:120px">`;
-
       const princImg = document.getElementById('pdf-principal-sig-img');
-      if (data.principal_sig && princImg) princImg.innerHTML = `<img src="${data.principal_sig}" style="max-height:40px; max-width:120px">`;
+      if (data.principal.sig && princImg) princImg.innerHTML = `<img src="${data.principal.sig}" style="max-height:40px; max-width:120px">`;
 
       const el = document.getElementById('print-proforma-area');
       el.style.display = 'block';
 
       const opt = {
-        margin: [8, 8, 8, 8],
+        margin: [6, 6, 6, 6],
         filename: `Election_Verification_Bhinai_${data.school_code}.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2, useCORS: true },

@@ -22,7 +22,6 @@ function renderElectionView() {
   const submittedCount = Object.keys(submissions).length;
   const pendingCount = Math.max(0, schools.length - submittedCount);
   const totalBooths = booths.length;
-  const totalVoters = schools.reduce((acc, s) => acc + (s.total_voters || 0), 0);
 
   container.innerHTML = `
     <!-- Top Banner -->
@@ -50,8 +49,8 @@ function renderElectionView() {
       </div>
     </div>
 
-    <!-- Quick Stats Metric Cards -->
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:1rem; margin-bottom:1.25rem">
+    <!-- Quick Stats Metric Cards (No Total Voters) -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:1.25rem">
       <div style="background:#fff; border:1px solid #e2e8f0; border-left:4px solid #0284c7; border-radius:8px; padding:0.85rem 1.1rem; box-shadow:0 2px 6px rgba(0,0,0,0.03)">
         <div style="font-size:0.75rem; font-weight:700; color:#64748b">कुल लक्षित विद्यालय</div>
         <div style="font-size:1.5rem; font-weight:900; color:#0f172a; margin-top:2px">${schools.length} <span style="font-size:0.78rem; font-weight:normal; color:#475569">(25 PEEO + 5 अन्य)</span></div>
@@ -67,10 +66,6 @@ function renderElectionView() {
       <div style="background:#fff; border:1px solid #e2e8f0; border-left:4px solid #ef4444; border-radius:8px; padding:0.85rem 1.1rem; box-shadow:0 2px 6px rgba(0,0,0,0.03)">
         <div style="font-size:0.75rem; font-weight:700; color:#64748b">सत्यापन शेष (लंबित)</div>
         <div style="font-size:1.5rem; font-weight:900; color:#b91c1c; margin-top:2px">${pendingCount}</div>
-      </div>
-      <div style="background:#fff; border:1px solid #e2e8f0; border-left:4px solid #f59e0b; border-radius:8px; padding:0.85rem 1.1rem; box-shadow:0 2px 6px rgba(0,0,0,0.03)">
-        <div style="font-size:0.75rem; font-weight:700; color:#64748b">कुल पंजीकृत मतदाता</div>
-        <div style="font-size:1.5rem; font-weight:900; color:#b45309; margin-top:2px">${totalVoters.toLocaleString('en-IN')}</div>
       </div>
     </div>
 
@@ -167,10 +162,9 @@ function renderElectionSchoolsGrid() {
             <div><strong>PEEO:</strong> ${s.peeo_name}</div>
             <div><strong>संस्था प्रधान:</strong> ${s.principal_name} (${s.principal_mobile})</div>
             <div style="color:#0369a1; font-weight:700; margin-top:2px">
-              🗳️ मतदान बूथ: <strong>${s.booth_count}</strong> | कुल मतदाता: <strong>${s.total_voters}</strong>
+              🗳️ कुल मतदान बूथ: <strong>${s.booth_count}</strong>
             </div>
             ${sub?.school_email ? `<div style="color:#15803d; margin-top:2px">📧 ईमेल: <strong>${sub.school_email}</strong></div>` : ''}
-            ${sub?.blo?.name ? `<div style="color:#4338ca; margin-top:2px">👤 BLO: <strong>${sub.blo.name}</strong> (${sub.blo.mobile || '---'})</div>` : ''}
           </div>
         </div>
 
@@ -194,17 +188,15 @@ function downloadElectionSummaryExcel() {
     submissions = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}');
   } catch(e) {}
 
-  let csv = 'क्र.सं.,जिला,ब्लॉक,ग्राम पंचायत,विद्यालय का नाम,शाला दर्पण कोड,PEEO परिक्षेत्र,मतदान बूथ संख्या,कुल मतदाता,संस्था प्रधान नाम,मोबाइल,विद्यालय ईमेल आईडी,BLO का नाम,BLO मोबाइल,सत्यापन स्थिति,सबमिशन दिनांक\n';
+  let csv = 'क्र.सं.,जिला,ब्लॉक,ग्राम पंचायत,विद्यालय का नाम,शाला दर्पण कोड,PEEO परिक्षेत्र,मतदान बूथ संख्या,संस्था प्रधान नाम,मोबाइल,विद्यालय ईमेल आईडी,सत्यापन स्थिति,सबमिशन दिनांक\n';
 
   schools.forEach((s, idx) => {
     const sub = submissions[s.shala_darpan_code];
     const status = sub ? 'सत्यापित (Submitted)' : 'लंबित (Pending)';
     const email = sub?.school_email || '';
-    const bloName = sub?.blo?.name || '';
-    const bloMob = sub?.blo?.mobile || '';
     const date = sub?.submitted_at || '';
 
-    csv += `${idx + 1},"अजमेर (AJMER)","भिनाय","${s.panchayat_name}","${s.school_name.replace(/"/g, '""')}","${s.shala_darpan_code}","${s.peeo_name}",${s.booth_count},${s.total_voters},"${s.principal_name}","${s.principal_mobile}","${email}","${bloName}","${bloMob}","${status}","${date}"\n`;
+    csv += `${idx + 1},"अजमेर (AJMER)","भिनाय","${s.panchayat_name}","${s.school_name.replace(/"/g, '""')}","${s.shala_darpan_code}","${s.peeo_name}",${s.booth_count},"${s.principal_name}","${s.principal_mobile}","${email}","${status}","${date}"\n`;
   });
 
   const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
@@ -224,19 +216,21 @@ function downloadElection116BoothsExcel() {
     submissions = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}');
   } catch(e) {}
 
-  let csv = 'क्र.सं.,बूथ संख्या,ग्राम पंचायत,मतदान केंद्र भवन का नाम,मतदान कक्ष विवरण,वार्ड संख्या,कुल मतदाता,शाला दर्पण कोड,विद्युत व पंखे,फर्नीचर स्थिति,पृथक द्वार,चूना लाइनिंग,BLO नाम,सत्यापन स्थिति\n';
+  let csv = 'क्र.सं.,बूथ संख्या,ग्राम पंचायत,मतदान केंद्र भवन का नाम,मतदान कक्ष विवरण,वार्ड संख्या,शाला दर्पण कोड,विद्युत व पंखे,फर्नीचर स्थिति,पृथक द्वार,चूना लाइनिंग,BLO का नाम,BLO पद,BLO मोबाइल,सत्यापन स्थिति\n';
 
   booths.forEach((b, idx) => {
     const sub = submissions[b.school_code];
-    const bf = sub?.booth_facilities?.[b.booth_no] || {};
-    const light = bf.light !== false ? 'हाँ' : 'नहीं';
-    const furn = bf.furniture !== false ? 'हाँ' : 'नहीं';
-    const door = bf.door !== false ? 'हाँ' : 'नहीं';
-    const lining = bf.lining !== false ? 'हाँ' : 'नहीं';
-    const bloName = sub?.blo?.name || '';
+    const bd = sub?.booth_details?.[b.booth_no] || {};
+    const light = bd.light !== false ? 'हाँ' : 'नहीं';
+    const furn = bd.furniture !== false ? 'हाँ' : 'नहीं';
+    const door = bd.door !== false ? 'हाँ' : 'नहीं';
+    const lining = bd.lining !== false ? 'हाँ' : 'नहीं';
+    const bloName = bd.blo_name || '';
+    const bloPost = bd.blo_post || '';
+    const bloMob = bd.blo_mobile || '';
     const status = sub ? 'सत्यापित' : 'लंबित';
 
-    csv += `${idx + 1},${b.booth_no},"${b.panchayat_hi}","${b.building_hi}","${b.room_hi}","${b.ward}",${b.voters},"${b.school_code}","${light}","${furn}","${door}","${lining}","${bloName}","${status}"\n`;
+    csv += `${idx + 1},${b.booth_no},"${b.panchayat_hi}","${b.building_hi}","${b.room_hi}","${b.ward}","${b.school_code}","${light}","${furn}","${door}","${lining}","${bloName}","${bloPost}","${bloMob}","${status}"\n`;
   });
 
   const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
