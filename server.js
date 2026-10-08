@@ -159,8 +159,14 @@ const DB = {
     if (key === '__SAMAN_MISMATCH_SETTINGS__' && fs.existsSync(path.join(ROOT_DIR, 'saman_mismatch_settings.json'))) {
       try { return JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'saman_mismatch_settings.json'), 'utf8')); } catch(e) {}
     }
-    if (key === '__PORTAL_SETTINGS__' && fs.existsSync(path.join(ROOT_DIR, 'cbeo_vm_settings.json'))) {
+    if (key === '__PORTAL_SETTINGS__' && fs.existsSync(path.join(ROOT_DIR, 'portal_settings.json'))) {
+      try { return JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'portal_settings.json'), 'utf8')); } catch(e) {}
+    }
+    if (key === '__VM_SETTINGS__' && fs.existsSync(path.join(ROOT_DIR, 'cbeo_vm_settings.json'))) {
       try { return JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'cbeo_vm_settings.json'), 'utf8')); } catch(e) {}
+    }
+    if (key === '__SAMAN_ACTIVE_FORM__' && fs.existsSync(path.join(ROOT_DIR, 'saman_active_form.json'))) {
+      try { return JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'saman_active_form.json'), 'utf8')).form; } catch(e) {}
     }
     return null;
   },
@@ -187,11 +193,26 @@ const DB = {
       if (key === '__STAFF_EDIT_PERMISSIONS__') fs.writeFileSync(path.join(ROOT_DIR, 'staff_edit_permissions.json'), jsonStr, 'utf8');
       if (key === '__SAMAN_MISMATCH_SETTINGS__') fs.writeFileSync(path.join(ROOT_DIR, 'saman_mismatch_settings.json'), jsonStr, 'utf8');
       if (key === '__PORTAL_SETTINGS__') {
+        fs.writeFileSync(path.join(ROOT_DIR, 'portal_settings.json'), jsonStr, 'utf8');
         const existing = fs.existsSync(path.join(ROOT_DIR, 'cbeo_vm_settings.json')) ? JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'cbeo_vm_settings.json'), 'utf8')) : {};
         Object.assign(existing, val);
         fs.writeFileSync(path.join(ROOT_DIR, 'cbeo_vm_settings.json'), JSON.stringify(existing, null, 2), 'utf8');
       }
+      if (key === '__VM_SETTINGS__') {
+        const existing = fs.existsSync(path.join(ROOT_DIR, 'cbeo_vm_settings.json')) ? JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'cbeo_vm_settings.json'), 'utf8')) : {};
+        Object.assign(existing, val);
+        fs.writeFileSync(path.join(ROOT_DIR, 'cbeo_vm_settings.json'), JSON.stringify(existing, null, 2), 'utf8');
+      }
+      if (key === '__SAMAN_ACTIVE_FORM__') {
+        fs.writeFileSync(path.join(ROOT_DIR, 'saman_active_form.json'), JSON.stringify({ form: val, updated_at: now }, null, 2), 'utf8');
+      }
     } catch(e) {}
+
+    // Synchronize to master_cbeo_data.json & master_cbeo_data.js for static / GitHub Pages resilience
+    syncToMasterCbeoData(key, val);
+
+    // Schedule debounced auto-push to GitHub
+    scheduleAutoGitPush(key);
   },
 
   getAllSubmissions() {
@@ -247,6 +268,7 @@ const DB = {
         fs.writeFileSync(masterFile, JSON.stringify(mData, null, 2), 'utf8');
         fs.writeFileSync(path.join(ROOT_DIR, 'master_cbeo_data.js'), 'const MASTER_CBEO_DATA = ' + JSON.stringify(mData, null, 2) + ';\n', 'utf8');
       }
+      scheduleAutoGitPush('saman_pariksha_submission_' + schoolCode);
     } catch(e) {}
   },
 
@@ -302,9 +324,109 @@ const DB = {
         fs.writeFileSync(masterFile, JSON.stringify(mData, null, 2), 'utf8');
         fs.writeFileSync(path.join(ROOT_DIR, 'master_cbeo_data.js'), 'const MASTER_CBEO_DATA = ' + JSON.stringify(mData, null, 2) + ';\n', 'utf8');
       }
+      scheduleAutoGitPush('saman_syllabus_submission_' + schoolCode);
     } catch(e) {}
   }
 };
+
+// -------------------------------------------------------------------------
+// Master Data Sync & Automatic GitHub Push Engine
+// -------------------------------------------------------------------------
+function syncToMasterCbeoData(key, val) {
+  try {
+    const masterFile = path.join(ROOT_DIR, 'master_cbeo_data.json');
+    if (!fs.existsSync(masterFile)) return;
+    const mData = JSON.parse(fs.readFileSync(masterFile, 'utf8'));
+    if (!mData.portal_settings_bundle) mData.portal_settings_bundle = {};
+    mData.portal_settings_bundle[key] = val;
+    if (key === '__TAB_VISIBILITY_6LEVEL__') mData.portal_settings_bundle.tab_visibility_6level = val;
+    if (key === '__TAB_VISIBILITY_5LEVEL__') mData.portal_settings_bundle.tab_visibility_5level = val;
+    if (key === '__EDIT_PERMISSIONS_6LEVEL__') mData.portal_settings_bundle.edit_permissions_6level = val;
+    if (key === '__SAMAN_MISMATCH_SETTINGS__') mData.portal_settings_bundle.saman_mismatch_settings = val;
+    if (key === '__PORTAL_SETTINGS__') mData.portal_settings_bundle.portal_settings = val;
+    if (key === '__VM_SETTINGS__') mData.portal_settings_bundle.vm_settings = val;
+    if (key === '__SAMAN_ACTIVE_FORM__') mData.portal_settings_bundle.saman_active_form = val;
+
+    fs.writeFileSync(masterFile, JSON.stringify(mData, null, 2), 'utf8');
+    fs.writeFileSync(path.join(ROOT_DIR, 'master_cbeo_data.js'), 'const MASTER_CBEO_DATA = ' + JSON.stringify(mData, null, 2) + ';\n', 'utf8');
+    console.log(`[CBEO-NODE] ✓ Master data updated with '${key}' (master_cbeo_data.js synchronized)`);
+  } catch(e) {
+    console.warn('[CBEO-NODE] Master sync warning:', e.message);
+  }
+}
+
+let gitPushTimer = null;
+let gitPushActive = false;
+
+function performGitBackupPush(callback) {
+  const candidateFiles = [
+    'master_cbeo_data.json',
+    'master_cbeo_data.js',
+    'saman_pariksha_submissions.json',
+    'saman_syllabus_submissions.json',
+    'tab_visibility_6level.json',
+    'edit_permissions_6level.json',
+    'tab_visibility_5level.json',
+    'staff_edit_permissions.json',
+    'saman_mismatch_settings.json',
+    'portal_settings.json',
+    'cbeo_vm_settings.json',
+    'cbeo_demands.json',
+    'cbeo_demand_submissions.json',
+    'saman_active_form.json',
+    'school enrolment.xlsx',
+    'js'
+  ];
+  const existingFiles = candidateFiles.filter(f => fs.existsSync(path.join(ROOT_DIR, f)));
+  if (existingFiles.length === 0) {
+    if (callback) callback(null, { skipped: true });
+    return;
+  }
+  const backupCmd = `git add ${existingFiles.map(f => `"${f}"`).join(' ')}`;
+  exec(backupCmd, { cwd: ROOT_DIR }, (addErr) => {
+    if (addErr) {
+      if (callback) callback(addErr);
+      return;
+    }
+    exec('git diff --cached --quiet', { cwd: ROOT_DIR }, (diffErr) => {
+      if (!diffErr) {
+        if (callback) callback(null, { unchanged: true, message: 'डेटा पहले से GitHub पर अद्यतन है।' });
+        return;
+      }
+      const commitMsg = `"auto(portal): live data & settings auto-sync [${new Date().toLocaleString('en-IN')}]"`;
+      exec(`git commit -m ${commitMsg} && git push origin main`, { cwd: ROOT_DIR }, (pushErr, pushOut, pushStderr) => {
+        if (pushErr) {
+          console.warn('[CBEO-NODE] ⚠️ Git push notice:', pushStderr || pushErr.message);
+          if (callback) callback(pushErr, { stderr: pushStderr });
+          return;
+        }
+        console.log('[CBEO-NODE] 🚀 ✓ Data & settings pushed to GitHub successfully!');
+        if (callback) callback(null, { success: true, output: pushOut });
+      });
+    });
+  });
+}
+
+function scheduleAutoGitPush(reason) {
+  if (gitPushTimer) clearTimeout(gitPushTimer);
+  console.log(`[CBEO-NODE] ⏳ Auto Git Push scheduled in 3s (Reason: ${reason})...`);
+  gitPushTimer = setTimeout(() => {
+    gitPushTimer = null;
+    if (gitPushActive) {
+      scheduleAutoGitPush(reason);
+      return;
+    }
+    gitPushActive = true;
+    performGitBackupPush((err, res) => {
+      gitPushActive = false;
+      if (err) {
+        console.warn(`[CBEO-NODE] ⚠️ Auto Git Push warning:`, err.message || err);
+      } else {
+        console.log(`[CBEO-NODE] ✓ Auto Git Push completed for: ${reason}`);
+      }
+    });
+  }, 3000);
+}
 
 // Asynchronously forward to Google Apps Script Web App without blocking local response
 function forwardToGoogleSheet(payload) {
@@ -893,52 +1015,51 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // Saman Active Form APIs
+  if (pathname === '/api/get_saman_active_form') {
+    let form = DB.getSetting('__SAMAN_ACTIVE_FORM__');
+    if (!form && fs.existsSync(path.join(ROOT_DIR, 'saman_active_form.json'))) {
+      try { form = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'saman_active_form.json'), 'utf8')).form; } catch(e) {}
+    }
+    sendJSON(res, 200, { success: true, form: form || 'syllabus' });
+    return;
+  }
+
+  if (pathname === '/api/save_saman_active_form' && req.method === 'POST') {
+    readBody((data, err) => {
+      if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
+      const form = data.form || data.active_form || 'syllabus';
+      DB.setSetting('__SAMAN_ACTIVE_FORM__', form);
+      sendJSON(res, 200, { success: true, message: `सक्रिय प्रपत्र (${form}) सुरक्षित एवं सिंक हो गया!` });
+    });
+    return;
+  }
+
+  // Unified Settings Bundle API
+  if (pathname === '/api/get_settings_bundle') {
+    const bundle = {
+      tab_visibility_6level: DB.getSetting('__TAB_VISIBILITY_6LEVEL__'),
+      tab_visibility_5level: DB.getSetting('__TAB_VISIBILITY_5LEVEL__'),
+      edit_permissions_6level: DB.getSetting('__EDIT_PERMISSIONS_6LEVEL__'),
+      saman_mismatch_settings: DB.getSetting('__SAMAN_MISMATCH_SETTINGS__'),
+      portal_settings: DB.getSetting('__PORTAL_SETTINGS__'),
+      vm_settings: DB.getSetting('__VM_SETTINGS__'),
+      saman_active_form: DB.getSetting('__SAMAN_ACTIVE_FORM__') || 'syllabus'
+    };
+    sendJSON(res, 200, { success: true, settings: bundle });
+    return;
+  }
+
   // Safe Server-Side GitHub Backup & Push API
   if (pathname === '/api/git_backup_push' && req.method === 'POST') {
-    const candidateFiles = [
-      'master_cbeo_data.json',
-      'master_cbeo_data.js',
-      'saman_pariksha_submissions.json',
-      'saman_syllabus_submissions.json',
-      'tab_visibility_6level.json',
-      'edit_permissions_6level.json',
-      'school enrolment.xlsx',
-      'js'
-    ];
-    const existingFiles = candidateFiles.filter(f => fs.existsSync(path.join(ROOT_DIR, f)));
-    if (existingFiles.length === 0) {
-      return sendJSON(res, 200, { success: true, message: 'कोई डेटा फाइल सुरक्षित करने योग्य नहीं मिली।' });
-    }
-    const backupCmd = `git add ${existingFiles.map(f => `"${f}"`).join(' ')}`;
-    exec(backupCmd, { cwd: ROOT_DIR }, (addErr) => {
-      if (addErr) {
-        return sendJSON(res, 500, { success: false, error: 'Git Add Error: ' + addErr.message });
+    performGitBackupPush((err, result) => {
+      if (err) {
+        return sendJSON(res, 500, { success: false, error: 'Git Push Error: ' + (err.message || err) });
       }
-      exec('git diff --cached --quiet', { cwd: ROOT_DIR }, (diffErr, _, stderr) => {
-        // If exit code is 0, no changes staged
-        if (!diffErr) {
-          return sendJSON(res, 200, { 
-            success: true, 
-            message: 'डेटा पहले से ही GitHub पर अद्यतन (Up-to-date) है, कोई नया बदलाव लम्बित नहीं है।' 
-          });
-        }
-        const commitMsg = `"auto(portal): data & settings backup [${new Date().toLocaleString('en-IN')}]"`;
-        exec(`git commit -m ${commitMsg} && git push origin main`, { cwd: ROOT_DIR }, (pushErr, pushOut, pushStderr) => {
-          if (pushErr) {
-            console.warn('[CBEO-NODE] Git push note:', pushStderr || pushErr.message);
-            return sendJSON(res, 500, { 
-              success: false, 
-              error: 'Git Push Note: ' + (pushStderr || pushErr.message),
-              output: pushOut 
-            });
-          }
-          console.log('[CBEO-NODE] ✓ Master data & settings pushed to GitHub successfully.');
-          return sendJSON(res, 200, { 
-            success: true, 
-            message: 'डेटाबेस व सेटिंग्स सफलतापूर्वक GitHub पर सुरक्षित (Pushed) हो गईं!',
-            output: pushOut 
-          });
-        });
+      return sendJSON(res, 200, {
+        success: true,
+        message: result?.message || 'डेटाबेस व सेटिंग्स सफलतापूर्वक GitHub पर सुरक्षित (Pushed) हो गईं!',
+        output: result?.output
       });
     });
     return;

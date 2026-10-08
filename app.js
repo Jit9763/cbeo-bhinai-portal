@@ -65,8 +65,10 @@ let STATE = {
   currentSignatureData: null,
   portalSettings: {},
   samanParikshaArchived: false,
-  samanParikshaActiveForm: 'syllabus', // 'indent' (Question Paper Indent) or 'syllabus' (Syllabus Completion %)
-  samanParikshaSchoolTypeFilter: 'govt_only', // 'both' (57), 'govt_only' (49), or 'pvt_only' (8)
+  samanParikshaActiveForm: (typeof localStorage !== 'undefined' && localStorage.getItem('cbeo_saman_active_form')) || 
+    (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.portal_settings_bundle && MASTER_CBEO_DATA.portal_settings_bundle.saman_active_form) || 
+    'syllabus',
+  samanParikshaSchoolTypeFilter: (typeof localStorage !== 'undefined' && localStorage.getItem('cbeo_saman_school_type_filter')) || 'govt_only',
   samanSyllabusSubmissions: {}
 };
 window.STATE = STATE;
@@ -1060,41 +1062,34 @@ function initMasterData() {
       loadMismatchJson('saman_mismatch_settings.json?v=' + (window.CLIENT_VERSION || Date.now()));
     });
 
-  // 11. 5-Level Tab Visibility Matrix
-  try {
-    const stored5LevelVis = localStorage.getItem('cbeo_tab_visibility_5level');
-    if (stored5LevelVis) {
-      STATE.tabVisibility5Level = JSON.parse(stored5LevelVis);
-    } else {
-      STATE.tabVisibility5Level = DEFAULT_TAB_VISIBILITY_5LEVEL;
-    }
-  } catch (e) {
-    STATE.tabVisibility5Level = DEFAULT_TAB_VISIBILITY_5LEVEL;
-  }
+  // 11. 5-Level & 6-Level Tab Visibility Matrix (Keep 100% synchronized)
+  STATE.tabVisibility5Level = STATE.tabVisibility6Level;
+  try { localStorage.setItem('cbeo_tab_visibility_5level', JSON.stringify(STATE.tabVisibility6Level)); } catch(e) {}
 
-  fetch('/api/get_tab_visibility_5level')
+  // 12. 5-Level & 6-Level Data Edit Permission Matrix (Keep 100% synchronized)
+  STATE.editPermissions5Level = STATE.editPermissions6Level;
+  try { localStorage.setItem('cbeo_edit_permissions_5level', JSON.stringify(STATE.editPermissions6Level)); } catch(e) {}
+
+  // 13. Sync Active Form (indent vs syllabus)
+  fetch('/api/get_saman_active_form')
     .then(r => r.json())
     .then(data => {
-      if (data && data.success && data.visibility) {
-        STATE.tabVisibility5Level = data.visibility;
-        localStorage.setItem('cbeo_tab_visibility_5level', JSON.stringify(data.visibility));
-        applyTabVisibility();
-        if (typeof render5LevelTabVisibilityMatrix === 'function') render5LevelTabVisibilityMatrix();
+      if (data && data.success && data.form) {
+        STATE.samanParikshaActiveForm = data.form;
+        try { localStorage.setItem('cbeo_saman_active_form', data.form); } catch(e) {}
+        const radIndent = document.getElementById('sp-rad-form-indent');
+        const radSyl = document.getElementById('sp-rad-form-syllabus');
+        if (data.form === 'syllabus') {
+          if (radSyl) radSyl.checked = true;
+        } else {
+          if (radIndent) radIndent.checked = true;
+        }
+        if (STATE.currentTab === 'saman-pariksha' && typeof renderSamanParikshaView === 'function') {
+          renderSamanParikshaView();
+        }
       }
     })
     .catch(() => {});
-
-  // 12. 5-Level Data Edit Permission Matrix (Master Edit vs View-Only Control)
-  try {
-    const stored5LevelEdit = localStorage.getItem('cbeo_edit_permissions_5level');
-    if (stored5LevelEdit) {
-      STATE.editPermissions5Level = JSON.parse(stored5LevelEdit);
-    } else {
-      STATE.editPermissions5Level = DEFAULT_EDIT_PERMISSIONS_5LEVEL;
-    }
-  } catch (e) {
-    STATE.editPermissions5Level = DEFAULT_EDIT_PERMISSIONS_5LEVEL;
-  }
 
   // 13. Master Custom Designations (Added by Jitendra Super Admin)
   try {
@@ -4149,7 +4144,15 @@ window.saveAllBulkSyllabusToCloud = saveAllBulkSyllabusToCloud;
 
 function switchSamanActiveForm(formType) {
   STATE.samanParikshaActiveForm = formType;
-  localStorage.setItem('cbeo_saman_active_form', formType);
+  try { localStorage.setItem('cbeo_saman_active_form', formType); } catch(e) {}
+
+  // Sync to backend Node server so it persists in SQLite, JSON, and master bundle
+  fetch('/api/save_saman_active_form', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ form: formType })
+  }).catch(() => {});
+
   const scopeDropdown = document.getElementById('sp-school-type-filter');
   const sylQuickBtns = document.getElementById('sp-syl-quick-btns');
   const sylDispatchBar = document.getElementById('sp-syllabus-admin-dispatch-bar');
@@ -4254,10 +4257,21 @@ function saveSaman6LevelControls() {
     all_schools: editAll
   };
 
+  STATE.tabVisibility5Level = STATE.tabVisibility6Level;
+  STATE.editPermissions5Level = STATE.editPermissions6Level;
+
   localStorage.setItem('cbeo_tab_visibility_6level', JSON.stringify(STATE.tabVisibility6Level));
+  localStorage.setItem('cbeo_tab_visibility_5level', JSON.stringify(STATE.tabVisibility6Level));
   localStorage.setItem('cbeo_edit_permissions_6level', JSON.stringify(STATE.editPermissions6Level));
+  localStorage.setItem('cbeo_edit_permissions_5level', JSON.stringify(STATE.editPermissions6Level));
 
   fetch('/api/save_tab_visibility_6level', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(STATE.tabVisibility6Level)
+  }).catch(() => {});
+
+  fetch('/api/save_tab_visibility_5level', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(STATE.tabVisibility6Level)
@@ -10601,6 +10615,14 @@ function toggleDemandArchive(demandId) {
 
 function savePortalSettingsToCloud() {
   localStorage.setItem('cbeo_portal_settings', JSON.stringify(STATE.portalSettings || {}));
+
+  // Sync to local / VM Node.js server
+  fetch('/api/save_portal_settings', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ settings: STATE.portalSettings || {} })
+  }).catch(() => {});
+
   const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
     || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
     || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
