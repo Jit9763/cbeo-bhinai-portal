@@ -481,6 +481,83 @@ function saveCloudPortalSetting(key, val, syncToGithub = false) {
 }
 window.saveCloudPortalSetting = saveCloudPortalSetting;
 
+const DEFAULT_TAB_VISIBILITY_6LEVEL = {
+  'election': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: false, all_govt: true, all_schools: false },
+  'saman-pariksha': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: false, all_schools: false },
+  'saman_indent': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: true, all_govt: false, all_schools: false },
+  'saman_syllabus': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'database-hub': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'dashboard': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'directory': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'staff': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'school-management': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'demands': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'archive': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'admin-control': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false }
+};
+const DEFAULT_TAB_VISIBILITY_5LEVEL = DEFAULT_TAB_VISIBILITY_6LEVEL;
+
+const DEFAULT_EDIT_PERMISSIONS_6LEVEL = {
+  'staff': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'school_head': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'saman_pariksha': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: false, all_schools: false },
+  'saman_indent': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: true, all_govt: false, all_schools: false },
+  'saman_syllabus': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'demands': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: true, all_schools: true },
+  'directory': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false }
+};
+const DEFAULT_EDIT_PERMISSIONS_5LEVEL = DEFAULT_EDIT_PERMISSIONS_6LEVEL;
+
+function normalizeTabAndEditPermissions() {
+  if (!STATE.tabVisibility6Level) STATE.tabVisibility6Level = JSON.parse(JSON.stringify(DEFAULT_TAB_VISIBILITY_6LEVEL));
+  if (!STATE.editPermissions6Level) STATE.editPermissions6Level = JSON.parse(JSON.stringify(DEFAULT_EDIT_PERMISSIONS_6LEVEL));
+
+  if (!STATE.tabVisibility6Level['saman_indent']) {
+    STATE.tabVisibility6Level['saman_indent'] = STATE.tabVisibility6Level['saman-pariksha']
+      ? JSON.parse(JSON.stringify(STATE.tabVisibility6Level['saman-pariksha']))
+      : { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: true, all_govt: false, all_schools: false };
+  }
+  if (!STATE.tabVisibility6Level['saman_syllabus']) {
+    STATE.tabVisibility6Level['saman_syllabus'] = { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: false, all_govt: false, all_schools: false };
+  }
+
+  const indV = STATE.tabVisibility6Level['saman_indent'];
+  const sylV = STATE.tabVisibility6Level['saman_syllabus'];
+  STATE.tabVisibility6Level['saman-pariksha'] = {
+    cbeo: indV.cbeo || sylV.cbeo,
+    peeo: indV.peeo || sylV.peeo,
+    govt_sec_srsec: indV.govt_sec_srsec || sylV.govt_sec_srsec,
+    pvt_sec_srsec: indV.pvt_sec_srsec || sylV.pvt_sec_srsec,
+    sec_srsec: (indV.govt_sec_srsec || sylV.govt_sec_srsec) || (indV.pvt_sec_srsec || sylV.pvt_sec_srsec),
+    all_govt: indV.all_govt || sylV.all_govt,
+    all_schools: indV.all_schools || sylV.all_schools
+  };
+
+  if (!STATE.editPermissions6Level['saman_indent']) {
+    STATE.editPermissions6Level['saman_indent'] = STATE.editPermissions6Level['saman_pariksha']
+      ? JSON.parse(JSON.stringify(STATE.editPermissions6Level['saman_pariksha']))
+      : { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: true, all_govt: false, all_schools: false };
+  }
+  if (!STATE.editPermissions6Level['saman_syllabus']) {
+    STATE.editPermissions6Level['saman_syllabus'] = { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: false, all_govt: false, all_schools: false };
+  }
+
+  const indE = STATE.editPermissions6Level['saman_indent'];
+  const sylE = STATE.editPermissions6Level['saman_syllabus'];
+  STATE.editPermissions6Level['saman_pariksha'] = {
+    cbeo: indE.cbeo || sylE.cbeo,
+    peeo: indE.peeo || sylE.peeo,
+    govt_sec_srsec: indE.govt_sec_srsec || sylE.govt_sec_srsec,
+    pvt_sec_srsec: indE.pvt_sec_srsec || sylE.pvt_sec_srsec,
+    sec_srsec: (indE.govt_sec_srsec || sylE.govt_sec_srsec) || (indE.pvt_sec_srsec || sylE.pvt_sec_srsec),
+    all_govt: indE.all_govt || sylE.all_govt,
+    all_schools: indE.all_schools || sylE.all_schools
+  };
+
+  STATE.tabVisibility5Level = STATE.tabVisibility6Level;
+  STATE.editPermissions5Level = STATE.editPermissions6Level;
+}
+
 async function syncPortalSettingsFromCloud() {
   const gasUrl = (typeof localStorage !== 'undefined' && localStorage.getItem('cbeo_google_apps_script_url'))
     || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url)
@@ -489,7 +566,9 @@ async function syncPortalSettingsFromCloud() {
   if (!gasUrl) return;
 
   try {
-    const res = await fetch(`${gasUrl}?action=getPortalSettings`);
+    const res = await fetch(`${gasUrl}?action=getPortalSettings&_t=${Date.now()}`, {
+      cache: 'no-store'
+    });
     const data = await res.json();
     if (data && data.success && data.settings) {
       const s = data.settings;
@@ -520,6 +599,9 @@ async function syncPortalSettingsFromCloud() {
         localStorage.setItem('cbeo_election_custom_columns', JSON.stringify(s.election_custom_columns));
       }
 
+      normalizeTabAndEditPermissions();
+      if (typeof applyTabVisibility === 'function') applyTabVisibility();
+      if (typeof renderDynamicNavTabs === 'function') renderDynamicNavTabs();
       if (typeof updateMismatchHeaderUI === 'function') updateMismatchHeaderUI();
       if (STATE.currentTab === 'saman-pariksha' && typeof renderSamanParikshaView === 'function') renderSamanParikshaView();
       if (STATE.currentTab === 'election' && typeof renderElectionView === 'function') renderElectionView();
@@ -671,6 +753,7 @@ function initMasterData() {
     STATE.editPermissions6Level = JSON.parse(JSON.stringify(DEFAULT_EDIT_PERMISSIONS_6LEVEL));
     STATE.editPermissions5Level = STATE.editPermissions6Level;
   }
+  normalizeTabAndEditPermissions();
 
   // Immediate LocalStorage recovery for all admin configurations so settings never reset
   try {
@@ -1463,6 +1546,15 @@ let sessionTouchThrottle = 0;
   }, { passive: true });
 });
 
+// Auto-synchronize tab permissions & portal settings when browser tab becomes active
+window.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') {
+    if (typeof syncPortalSettingsFromCloud === 'function') {
+      syncPortalSettingsFromCloud();
+    }
+  }
+});
+
 function logoutUser() {
   localStorage.removeItem('cbeo_logged_user');
   localStorage.removeItem('cbeo_user');
@@ -1472,6 +1564,8 @@ function logoutUser() {
     m.classList.remove('mandatory-gate');
   });
   updateUserHeaderBadge();
+  if (typeof applyTabVisibility === 'function') applyTabVisibility();
+  if (typeof renderDynamicNavTabs === 'function') renderDynamicNavTabs();
   showToast('सफलतापूर्वक लॉगआउट किया गया। पुनः उपयोग हेतु लॉगिन करें।', 'info');
   openLoginModal(true);
 }
@@ -1842,7 +1936,11 @@ function performLogin() {
     }
     closeModal('modal-login');
     showToast(toastMsg, 'success');
+    if (typeof applyTabVisibility === 'function') applyTabVisibility();
     renderApp();
+    if (typeof syncPortalSettingsFromCloud === 'function') {
+      syncPortalSettingsFromCloud();
+    }
 
     const savedTab = localStorage.getItem('cbeo_active_tab');
     if (savedTab && isTabVisibleForCurrentUser(savedTab)) {
@@ -2038,19 +2136,45 @@ function switchTab(viewId, param = null) {
   else renderDashboardView();
 }
 
-const DEFAULT_TAB_VISIBILITY_6LEVEL = {
-  'election': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: false, all_govt: true, all_schools: false },
-  'saman-pariksha': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: false, all_schools: false },
-  'database-hub': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
-  'dashboard': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
-  'directory': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
-  'staff': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
-  'school-management': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
-  'demands': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
-  'archive': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
-  'admin-control': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false }
-};
-const DEFAULT_TAB_VISIBILITY_5LEVEL = DEFAULT_TAB_VISIBILITY_6LEVEL;
+function checkKeyVisibilityForCurrentUser(key) {
+  if (!STATE.currentUser) return false;
+  const isJitendra = STATE.currentUser.shala_darpan_code === 'admin_jitendra' || 
+                     STATE.currentUser.admin_id === 'ADMIN02' || 
+                     STATE.currentUser.username === 'jitendra_admin';
+  if (isJitendra) return true;
+
+  const isCBEO = STATE.currentUser.shala_darpan_code === '8140' || 
+                 STATE.currentUser.admin_id === 'ADMIN01' || 
+                 (STATE.currentUser.role === 'admin' && !isJitendra);
+
+  const vis = STATE.tabVisibility6Level || STATE.tabVisibility5Level || DEFAULT_TAB_VISIBILITY_6LEVEL;
+  const tabConf = vis[key] || { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false };
+
+  if (isCBEO) return !!tabConf.cbeo;
+  if (STATE.currentUser.role === 'peeo') return !!tabConf.peeo;
+
+  if (STATE.currentUser.role === 'school') {
+    const isPvt = STATE.currentUser.type === 'Private' || String(STATE.currentUser.shala_darpan_code).startsWith('P');
+    if (isPvt) {
+      const isPvtSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code && s.type === 'Private');
+      if (isPvtSec) {
+        if (tabConf.pvt_sec_srsec !== undefined) return !!(tabConf.pvt_sec_srsec || tabConf.all_schools);
+        return !!(tabConf.sec_srsec || tabConf.all_schools);
+      }
+      return !!tabConf.all_schools;
+    }
+
+    const isGovtSecSrSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code && s.type !== 'Private') ||
+      (STATE.currentUser.category && (STATE.currentUser.category.includes('Secondary') || STATE.currentUser.category.includes('माध्यमिक')));
+    if (isGovtSecSrSec) {
+      if (tabConf.govt_sec_srsec !== undefined) return !!(tabConf.govt_sec_srsec || tabConf.all_govt || tabConf.all_schools);
+      return !!(tabConf.sec_srsec || tabConf.all_govt || tabConf.all_schools);
+    }
+    return !!(tabConf.all_govt || tabConf.all_schools);
+  }
+
+  return false;
+}
 
 function isTabVisibleForCurrentUser(tabId) {
   if (tabId === 'election') return true; // ELECTION TAB IS ALWAYS VISIBLE AND CLICKABLE FOR ALL ROLES!
@@ -2067,14 +2191,14 @@ function isTabVisibleForCurrentUser(tabId) {
 
   // CRITICAL: School login sees Saman Pariksha and Election (all other tabs locked)
   if (STATE.currentUser.role === 'school') {
-    if (tabId !== 'saman-pariksha' && tabId !== 'election') {
+    if (tabId !== 'saman-pariksha' && tabId !== 'saman_indent' && tabId !== 'saman_syllabus' && tabId !== 'election') {
       return false;
     }
   }
 
   // CRITICAL: PEEO login sees Saman Pariksha and Election (all other tabs locked)
   if (STATE.currentUser.role === 'peeo') {
-    if (tabId !== 'saman-pariksha' && tabId !== 'election') {
+    if (tabId !== 'saman-pariksha' && tabId !== 'saman_indent' && tabId !== 'saman_syllabus' && tabId !== 'election') {
       return false;
     }
   }
@@ -2089,44 +2213,14 @@ function isTabVisibleForCurrentUser(tabId) {
     return false;
   }
 
-  const vis = STATE.tabVisibility6Level || STATE.tabVisibility5Level || DEFAULT_TAB_VISIBILITY_6LEVEL;
-  const tabConf = vis[tabId] || { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false };
-
-  // 1. CBEO Admin (ADMIN01 / SD 8140 / Pramila Raslot)
-  if (isCBEO) {
-    return !!tabConf.cbeo;
+  if (tabId === 'saman-pariksha') {
+    const indentVis = checkKeyVisibilityForCurrentUser('saman_indent');
+    const sylVis = checkKeyVisibilityForCurrentUser('saman_syllabus');
+    const legacyVis = checkKeyVisibilityForCurrentUser('saman-pariksha');
+    return indentVis || sylVis || legacyVis;
   }
 
-  // 2. PEEO Incharges (25 PEEOs)
-  if (STATE.currentUser.role === 'peeo') {
-    return !!tabConf.peeo;
-  }
-
-  // 3, 4, 5, 6. School Logins (Strict separation of 49 Govt vs 8 Private)
-  if (STATE.currentUser.role === 'school') {
-    const isPvt = STATE.currentUser.type === 'Private' || String(STATE.currentUser.shala_darpan_code).startsWith('P');
-    if (isPvt) {
-      // 8 Private Secondary / Sr.Secondary schools
-      const isPvtSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code && s.type === 'Private');
-      if (isPvtSec) {
-        if (tabConf.pvt_sec_srsec !== undefined) return !!(tabConf.pvt_sec_srsec || tabConf.all_schools);
-        return !!(tabConf.sec_srsec || tabConf.all_schools);
-      }
-      return !!tabConf.all_schools;
-    }
-
-    // 49 Government Secondary / Sr.Secondary schools
-    const isGovtSecSrSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code && s.type !== 'Private') ||
-      (STATE.currentUser.category && (STATE.currentUser.category.includes('Secondary') || STATE.currentUser.category.includes('माध्यमिक')));
-    if (isGovtSecSrSec) {
-      if (tabConf.govt_sec_srsec !== undefined) return !!(tabConf.govt_sec_srsec || tabConf.all_govt || tabConf.all_schools);
-      return !!(tabConf.sec_srsec || tabConf.all_govt || tabConf.all_schools);
-    }
-    // Government Elementary / Primary (Class 1-8)
-    return !!(tabConf.all_govt || tabConf.all_schools);
-  }
-
-  return false;
+  return checkKeyVisibilityForCurrentUser(tabId);
 }
 
 function applyTabVisibility() {
@@ -2382,20 +2476,11 @@ const save5LevelTabVisibilityMatrix = save6LevelTabVisibilityMatrix;
    Level 5: All Govt Schools (132 Elementary + Sec)
    Level 6: All Schools (including 8 Private - 178)
    ======================================================== */
-const DEFAULT_EDIT_PERMISSIONS_6LEVEL = {
-  'staff': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
-  'school_head': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
-  'saman_pariksha': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: false, all_schools: false },
-  'demands': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: true, all_schools: true },
-  'directory': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false }
-};
-const DEFAULT_EDIT_PERMISSIONS_5LEVEL = DEFAULT_EDIT_PERMISSIONS_6LEVEL;
-
 function canCurrentUserEditModule(moduleKey, targetSchoolCode = null) {
   if (!STATE.currentUser) return false;
   if (isJitendraLoggedIn()) return true; // Jitendra Super Admin is always unrestricted
 
-  if (moduleKey === 'saman_pariksha') {
+  if (moduleKey === 'saman_pariksha' || moduleKey === 'saman_indent' || moduleKey === 'saman_syllabus') {
     const schCode = targetSchoolCode || STATE.currentUser?.shala_darpan_code;
     const cfg = STATE.samanMismatchSettings || (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : (typeof DEFAULT_SAMAN_MISMATCH_SETTINGS !== 'undefined' ? DEFAULT_SAMAN_MISMATCH_SETTINGS : null));
     const customAllowed = (cfg && cfg.custom_edit_schools) || [
@@ -2411,7 +2496,15 @@ function canCurrentUserEditModule(moduleKey, targetSchoolCode = null) {
                  (STATE.currentUser.role === 'admin' && !isJitendraLoggedIn());
 
   const perms = STATE.editPermissions6Level || STATE.editPermissions5Level || DEFAULT_EDIT_PERMISSIONS_6LEVEL;
-  const modPerm = perms[moduleKey] || (String(moduleKey).startsWith('demand_') ? (perms['demands'] || { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: true, all_schools: true }) : { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false });
+  let modPerm = perms[moduleKey];
+  if (!modPerm && (moduleKey === 'saman_indent' || moduleKey === 'saman_syllabus')) {
+    modPerm = perms['saman_pariksha'];
+  }
+  if (!modPerm) {
+    modPerm = String(moduleKey).startsWith('demand_')
+      ? (perms['demands'] || { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: true, all_schools: true })
+      : { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false };
+  }
 
   // 1. CBEO Admin
   if (isCBEO) return !!modPerm.cbeo;
@@ -2425,7 +2518,8 @@ function canCurrentUserEditModule(moduleKey, targetSchoolCode = null) {
     if (isPvt) {
       const isPvtSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code && s.type === 'Private');
       if (isPvtSec) {
-        return !!(modPerm.pvt_sec_srsec || modPerm.sec_srsec || modPerm.all_schools);
+        if (modPerm.pvt_sec_srsec !== undefined) return !!(modPerm.pvt_sec_srsec || modPerm.all_schools);
+        return !!(modPerm.sec_srsec || modPerm.all_schools);
       }
       return !!modPerm.all_schools;
     }
@@ -2433,7 +2527,8 @@ function canCurrentUserEditModule(moduleKey, targetSchoolCode = null) {
     const isGovtSecSrSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code && s.type !== 'Private') ||
       (STATE.currentUser.category && (STATE.currentUser.category.includes('Secondary') || STATE.currentUser.category.includes('माध्यमिक')));
     if (isGovtSecSrSec) {
-      return !!(modPerm.govt_sec_srsec || modPerm.sec_srsec || modPerm.all_govt || modPerm.all_schools);
+      if (modPerm.govt_sec_srsec !== undefined) return !!(modPerm.govt_sec_srsec || modPerm.all_govt || modPerm.all_schools);
+      return !!(modPerm.sec_srsec || modPerm.all_govt || modPerm.all_schools);
     }
     return !!(modPerm.all_govt || modPerm.all_schools);
   }
@@ -3020,26 +3115,40 @@ function renderSamanParikshaView() {
   const badgeActive = document.getElementById('sp-active-form-badge');
   const scopeFilter = document.getElementById('sp-school-type-filter');
 
-  const isSyl = STATE.samanParikshaActiveForm === 'syllabus';
   const isPvtSchool = STATE.currentUser?.role === 'school' && (STATE.currentUser?.type === 'Private' || String(STATE.currentUser?.shala_darpan_code).startsWith('P'));
+  const isIndentVis = typeof isTabVisibleForCurrentUser === 'function' ? isTabVisibleForCurrentUser('saman_indent') : true;
+  const isSylVis = typeof isTabVisibleForCurrentUser === 'function' ? isTabVisibleForCurrentUser('saman_syllabus') : true;
+
+  // Auto-switch active form based on individual permissions
+  if (!isIndentVis && isSylVis && !isPvtSchool) {
+    STATE.samanParikshaActiveForm = 'syllabus';
+  } else if (!isSylVis && isIndentVis) {
+    STATE.samanParikshaActiveForm = 'indent';
+  } else if (isPvtSchool) {
+    STATE.samanParikshaActiveForm = 'indent';
+  }
+
+  const isSyl = STATE.samanParikshaActiveForm === 'syllabus';
 
   if (btnIndent) {
-    if (isSyl && !isPvtSchool) {
-      btnIndent.classList.remove('active');
-      btnIndent.style.background = '#f8fafc';
-      btnIndent.style.color = '#0369a1';
+    if (!isIndentVis && isSylVis && !isPvtSchool) {
+      btnIndent.style.display = 'none';
     } else {
-      btnIndent.classList.add('active');
-      btnIndent.style.background = '#0284c7';
-      btnIndent.style.color = '#ffffff';
+      btnIndent.style.display = 'inline-flex';
+      if (isSyl && !isPvtSchool) {
+        btnIndent.classList.remove('active');
+        btnIndent.style.background = '#f8fafc';
+        btnIndent.style.color = '#0369a1';
+      } else {
+        btnIndent.classList.add('active');
+        btnIndent.style.background = '#0284c7';
+        btnIndent.style.color = '#ffffff';
+      }
     }
   }
   if (btnSyl) {
-    if (isPvtSchool) {
+    if (isPvtSchool || (!isSylVis && isIndentVis)) {
       btnSyl.style.display = 'none';
-      if (STATE.samanParikshaActiveForm === 'syllabus') {
-        STATE.samanParikshaActiveForm = 'indent';
-      }
     } else {
       btnSyl.style.display = 'inline-flex';
       if (isSyl) {
@@ -4365,31 +4474,50 @@ function onSamanSchoolTypeFilterChange(val) {
 }
 
 function openSaman6LevelControlModal() {
-  const tabVis = (STATE.tabVisibility6Level && STATE.tabVisibility6Level['saman-pariksha']) ||
-    (DEFAULT_TAB_VISIBILITY_6LEVEL && DEFAULT_TAB_VISIBILITY_6LEVEL['saman-pariksha']) ||
-    { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: false, all_schools: false };
+  const vis = STATE.tabVisibility6Level || DEFAULT_TAB_VISIBILITY_6LEVEL || {};
+  const perms = STATE.editPermissions6Level || DEFAULT_EDIT_PERMISSIONS_6LEVEL || {};
 
-  const editPerm = (STATE.editPermissions6Level && STATE.editPermissions6Level['saman_pariksha']) ||
-    (DEFAULT_EDIT_PERMISSIONS_6LEVEL && DEFAULT_EDIT_PERMISSIONS_6LEVEL['saman_pariksha']) ||
-    { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: false, all_schools: false };
+  // Indent Visibility & Edit
+  const indentVis = vis['saman_indent'] || vis['saman-pariksha'] || { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: true, all_govt: false, all_schools: false };
+  const indentEdit = perms['saman_indent'] || perms['saman_pariksha'] || { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: true, all_govt: false, all_schools: false };
 
-  // Set View Checkboxes
-  if (document.getElementById('sp-ctl-vis-cbeo')) document.getElementById('sp-ctl-vis-cbeo').checked = !!tabVis.cbeo;
-  if (document.getElementById('sp-ctl-vis-peeo')) document.getElementById('sp-ctl-vis-peeo').checked = !!tabVis.peeo;
-  if (document.getElementById('sp-ctl-vis-govt-sec')) document.getElementById('sp-ctl-vis-govt-sec').checked = !!tabVis.govt_sec_srsec;
-  if (document.getElementById('sp-ctl-vis-pvt-sec')) document.getElementById('sp-ctl-vis-pvt-sec').checked = !!tabVis.pvt_sec_srsec;
-  if (document.getElementById('sp-ctl-vis-all-govt')) document.getElementById('sp-ctl-vis-all-govt').checked = !!tabVis.all_govt;
-  if (document.getElementById('sp-ctl-vis-all-schools')) document.getElementById('sp-ctl-vis-all-schools').checked = !!tabVis.all_schools;
+  // Syllabus Visibility & Edit (Default is open for 49 Govt schools!)
+  const sylVis = vis['saman_syllabus'] || { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: false, all_govt: false, all_schools: false };
+  const sylEdit = perms['saman_syllabus'] || { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: false, all_govt: false, all_schools: false };
 
-  // Set Edit Checkboxes
-  if (document.getElementById('sp-ctl-edit-cbeo')) document.getElementById('sp-ctl-edit-cbeo').checked = !!editPerm.cbeo;
-  if (document.getElementById('sp-ctl-edit-peeo')) document.getElementById('sp-ctl-edit-peeo').checked = !!editPerm.peeo;
-  if (document.getElementById('sp-ctl-edit-govt-sec')) document.getElementById('sp-ctl-edit-govt-sec').checked = !!editPerm.govt_sec_srsec;
-  if (document.getElementById('sp-ctl-edit-pvt-sec')) document.getElementById('sp-ctl-edit-pvt-sec').checked = !!editPerm.pvt_sec_srsec;
-  if (document.getElementById('sp-ctl-edit-all-govt')) document.getElementById('sp-ctl-edit-all-govt').checked = !!editPerm.all_govt;
-  if (document.getElementById('sp-ctl-edit-all-schools')) document.getElementById('sp-ctl-edit-all-schools').checked = !!editPerm.all_schools;
+  // Section A: Indent Visibility Checkboxes
+  if (document.getElementById('sp-ctl-vis-indent-cbeo')) document.getElementById('sp-ctl-vis-indent-cbeo').checked = !!indentVis.cbeo;
+  if (document.getElementById('sp-ctl-vis-indent-peeo')) document.getElementById('sp-ctl-vis-indent-peeo').checked = !!indentVis.peeo;
+  if (document.getElementById('sp-ctl-vis-indent-govt-sec')) document.getElementById('sp-ctl-vis-indent-govt-sec').checked = !!indentVis.govt_sec_srsec;
+  if (document.getElementById('sp-ctl-vis-indent-pvt-sec')) document.getElementById('sp-ctl-vis-indent-pvt-sec').checked = !!indentVis.pvt_sec_srsec;
+  if (document.getElementById('sp-ctl-vis-indent-all-govt')) document.getElementById('sp-ctl-vis-indent-all-govt').checked = !!indentVis.all_govt;
+  if (document.getElementById('sp-ctl-vis-indent-all-schools')) document.getElementById('sp-ctl-vis-indent-all-schools').checked = !!indentVis.all_schools;
 
-  // Set Active Form Radio
+  // Section A: Indent Edit Checkboxes
+  if (document.getElementById('sp-ctl-edit-indent-cbeo')) document.getElementById('sp-ctl-edit-indent-cbeo').checked = !!indentEdit.cbeo;
+  if (document.getElementById('sp-ctl-edit-indent-peeo')) document.getElementById('sp-ctl-edit-indent-peeo').checked = !!indentEdit.peeo;
+  if (document.getElementById('sp-ctl-edit-indent-govt-sec')) document.getElementById('sp-ctl-edit-indent-govt-sec').checked = !!indentEdit.govt_sec_srsec;
+  if (document.getElementById('sp-ctl-edit-indent-pvt-sec')) document.getElementById('sp-ctl-edit-indent-pvt-sec').checked = !!indentEdit.pvt_sec_srsec;
+  if (document.getElementById('sp-ctl-edit-indent-all-govt')) document.getElementById('sp-ctl-edit-indent-all-govt').checked = !!indentEdit.all_govt;
+  if (document.getElementById('sp-ctl-edit-indent-all-schools')) document.getElementById('sp-ctl-edit-indent-all-schools').checked = !!indentEdit.all_schools;
+
+  // Section B: Syllabus Visibility Checkboxes
+  if (document.getElementById('sp-ctl-vis-syl-cbeo')) document.getElementById('sp-ctl-vis-syl-cbeo').checked = !!sylVis.cbeo;
+  if (document.getElementById('sp-ctl-vis-syl-peeo')) document.getElementById('sp-ctl-vis-syl-peeo').checked = !!sylVis.peeo;
+  if (document.getElementById('sp-ctl-vis-syl-govt-sec')) document.getElementById('sp-ctl-vis-syl-govt-sec').checked = !!sylVis.govt_sec_srsec;
+  if (document.getElementById('sp-ctl-vis-syl-pvt-sec')) document.getElementById('sp-ctl-vis-syl-pvt-sec').checked = !!sylVis.pvt_sec_srsec;
+  if (document.getElementById('sp-ctl-vis-syl-all-govt')) document.getElementById('sp-ctl-vis-syl-all-govt').checked = !!sylVis.all_govt;
+  if (document.getElementById('sp-ctl-vis-syl-all-schools')) document.getElementById('sp-ctl-vis-syl-all-schools').checked = !!sylVis.all_schools;
+
+  // Section B: Syllabus Edit Checkboxes
+  if (document.getElementById('sp-ctl-edit-syl-cbeo')) document.getElementById('sp-ctl-edit-syl-cbeo').checked = !!sylEdit.cbeo;
+  if (document.getElementById('sp-ctl-edit-syl-peeo')) document.getElementById('sp-ctl-edit-syl-peeo').checked = !!sylEdit.peeo;
+  if (document.getElementById('sp-ctl-edit-syl-govt-sec')) document.getElementById('sp-ctl-edit-syl-govt-sec').checked = !!sylEdit.govt_sec_srsec;
+  if (document.getElementById('sp-ctl-edit-syl-pvt-sec')) document.getElementById('sp-ctl-edit-syl-pvt-sec').checked = !!sylEdit.pvt_sec_srsec;
+  if (document.getElementById('sp-ctl-edit-syl-all-govt')) document.getElementById('sp-ctl-edit-syl-all-govt').checked = !!sylEdit.all_govt;
+  if (document.getElementById('sp-ctl-edit-syl-all-schools')) document.getElementById('sp-ctl-edit-syl-all-schools').checked = !!sylEdit.all_schools;
+
+  // Section C: Active Form Radio
   const radIndent = document.getElementById('sp-rad-form-indent');
   const radSyl = document.getElementById('sp-rad-form-syllabus');
   if (STATE.samanParikshaActiveForm === 'syllabus') {
@@ -4405,38 +4533,72 @@ function saveSaman6LevelControls() {
   if (!STATE.tabVisibility6Level) STATE.tabVisibility6Level = JSON.parse(JSON.stringify(DEFAULT_TAB_VISIBILITY_6LEVEL));
   if (!STATE.editPermissions6Level) STATE.editPermissions6Level = JSON.parse(JSON.stringify(DEFAULT_EDIT_PERMISSIONS_6LEVEL));
 
-  const visCbeo = !!document.getElementById('sp-ctl-vis-cbeo')?.checked;
-  const visPeeo = !!document.getElementById('sp-ctl-vis-peeo')?.checked;
-  const visGovtSec = !!document.getElementById('sp-ctl-vis-govt-sec')?.checked;
-  const visPvtSec = !!document.getElementById('sp-ctl-vis-pvt-sec')?.checked;
-  const visAllGovt = !!document.getElementById('sp-ctl-vis-all-govt')?.checked;
-  const visAll = !!document.getElementById('sp-ctl-vis-all-schools')?.checked;
-
-  STATE.tabVisibility6Level['saman-pariksha'] = {
-    cbeo: visCbeo,
-    peeo: visPeeo,
-    govt_sec_srsec: visGovtSec,
-    pvt_sec_srsec: visPvtSec,
-    sec_srsec: visGovtSec || visPvtSec,
-    all_govt: visAllGovt,
-    all_schools: visAll
+  // 1. Indent Visibility
+  const indentVis = {
+    cbeo: !!document.getElementById('sp-ctl-vis-indent-cbeo')?.checked,
+    peeo: !!document.getElementById('sp-ctl-vis-indent-peeo')?.checked,
+    govt_sec_srsec: !!document.getElementById('sp-ctl-vis-indent-govt-sec')?.checked,
+    pvt_sec_srsec: !!document.getElementById('sp-ctl-vis-indent-pvt-sec')?.checked,
+    sec_srsec: !!(document.getElementById('sp-ctl-vis-indent-govt-sec')?.checked || document.getElementById('sp-ctl-vis-indent-pvt-sec')?.checked),
+    all_govt: !!document.getElementById('sp-ctl-vis-indent-all-govt')?.checked,
+    all_schools: !!document.getElementById('sp-ctl-vis-indent-all-schools')?.checked
   };
 
-  const editCbeo = !!document.getElementById('sp-ctl-edit-cbeo')?.checked;
-  const editPeeo = !!document.getElementById('sp-ctl-edit-peeo')?.checked;
-  const editGovtSec = !!document.getElementById('sp-ctl-edit-govt-sec')?.checked;
-  const editPvtSec = !!document.getElementById('sp-ctl-edit-pvt-sec')?.checked;
-  const editAllGovt = !!document.getElementById('sp-ctl-edit-all-govt')?.checked;
-  const editAll = !!document.getElementById('sp-ctl-edit-all-schools')?.checked;
+  // 2. Indent Edit Permissions
+  const indentEdit = {
+    cbeo: !!document.getElementById('sp-ctl-edit-indent-cbeo')?.checked,
+    peeo: !!document.getElementById('sp-ctl-edit-indent-peeo')?.checked,
+    govt_sec_srsec: !!document.getElementById('sp-ctl-edit-indent-govt-sec')?.checked,
+    pvt_sec_srsec: !!document.getElementById('sp-ctl-edit-indent-pvt-sec')?.checked,
+    sec_srsec: !!(document.getElementById('sp-ctl-edit-indent-govt-sec')?.checked || document.getElementById('sp-ctl-edit-indent-pvt-sec')?.checked),
+    all_govt: !!document.getElementById('sp-ctl-edit-indent-all-govt')?.checked,
+    all_schools: !!document.getElementById('sp-ctl-edit-indent-all-schools')?.checked
+  };
 
+  // 3. Syllabus Visibility
+  const sylVis = {
+    cbeo: !!document.getElementById('sp-ctl-vis-syl-cbeo')?.checked,
+    peeo: !!document.getElementById('sp-ctl-vis-syl-peeo')?.checked,
+    govt_sec_srsec: !!document.getElementById('sp-ctl-vis-syl-govt-sec')?.checked,
+    pvt_sec_srsec: !!document.getElementById('sp-ctl-vis-syl-pvt-sec')?.checked,
+    sec_srsec: !!(document.getElementById('sp-ctl-vis-syl-govt-sec')?.checked || document.getElementById('sp-ctl-vis-syl-pvt-sec')?.checked),
+    all_govt: !!document.getElementById('sp-ctl-vis-syl-all-govt')?.checked,
+    all_schools: !!document.getElementById('sp-ctl-vis-syl-all-schools')?.checked
+  };
+
+  // 4. Syllabus Edit Permissions
+  const sylEdit = {
+    cbeo: !!document.getElementById('sp-ctl-edit-syl-cbeo')?.checked,
+    peeo: !!document.getElementById('sp-ctl-edit-syl-peeo')?.checked,
+    govt_sec_srsec: !!document.getElementById('sp-ctl-edit-syl-govt-sec')?.checked,
+    pvt_sec_srsec: !!document.getElementById('sp-ctl-edit-syl-pvt-sec')?.checked,
+    sec_srsec: !!(document.getElementById('sp-ctl-edit-syl-govt-sec')?.checked || document.getElementById('sp-ctl-edit-syl-pvt-sec')?.checked),
+    all_govt: !!document.getElementById('sp-ctl-edit-syl-all-govt')?.checked,
+    all_schools: !!document.getElementById('sp-ctl-edit-syl-all-schools')?.checked
+  };
+
+  STATE.tabVisibility6Level['saman_indent'] = indentVis;
+  STATE.tabVisibility6Level['saman_syllabus'] = sylVis;
+  STATE.tabVisibility6Level['saman-pariksha'] = {
+    cbeo: indentVis.cbeo || sylVis.cbeo,
+    peeo: indentVis.peeo || sylVis.peeo,
+    govt_sec_srsec: indentVis.govt_sec_srsec || sylVis.govt_sec_srsec,
+    pvt_sec_srsec: indentVis.pvt_sec_srsec || sylVis.pvt_sec_srsec,
+    sec_srsec: indentVis.sec_srsec || sylVis.sec_srsec,
+    all_govt: indentVis.all_govt || sylVis.all_govt,
+    all_schools: indentVis.all_schools || sylVis.all_schools
+  };
+
+  STATE.editPermissions6Level['saman_indent'] = indentEdit;
+  STATE.editPermissions6Level['saman_syllabus'] = sylEdit;
   STATE.editPermissions6Level['saman_pariksha'] = {
-    cbeo: editCbeo,
-    peeo: editPeeo,
-    govt_sec_srsec: editGovtSec,
-    pvt_sec_srsec: editPvtSec,
-    sec_srsec: editGovtSec || editPvtSec,
-    all_govt: editAllGovt,
-    all_schools: editAll
+    cbeo: indentEdit.cbeo || sylEdit.cbeo,
+    peeo: indentEdit.peeo || sylEdit.peeo,
+    govt_sec_srsec: indentEdit.govt_sec_srsec || sylEdit.govt_sec_srsec,
+    pvt_sec_srsec: indentEdit.pvt_sec_srsec || sylEdit.pvt_sec_srsec,
+    sec_srsec: indentEdit.sec_srsec || sylEdit.sec_srsec,
+    all_govt: indentEdit.all_govt || sylEdit.all_govt,
+    all_schools: indentEdit.all_schools || sylEdit.all_schools
   };
 
   STATE.tabVisibility5Level = STATE.tabVisibility6Level;
@@ -4474,7 +4636,8 @@ function saveSaman6LevelControls() {
   switchSamanActiveForm(isSylSelected ? 'syllabus' : 'indent');
 
   closeModal('modal-saman-6level-controls');
-  showToast('समान परीक्षा 6-स्तरीय प्रपत्र व दृश्यता नियंत्रण सुरक्षित!', 'success');
+  showToast('समान परीक्षा 6-स्तरीय प्रपत्र व दृश्यता नियंत्रण (नामांकन व पाठ्यक्रम अलग-अलग) सुरक्षित!', 'success');
+  if (typeof applyTabVisibility === 'function') applyTabVisibility();
   renderApp();
 }
 
@@ -5227,7 +5390,7 @@ function openSamanSyllabusForm(schoolCode) {
   const certCheck = document.getElementById('syl_certification_check');
   if (certCheck) certCheck.checked = true;
 
-  const canEdit = canCurrentUserEditModule('saman_pariksha');
+  const canEdit = canCurrentUserEditModule('saman_syllabus', schoolCode);
   const modalEl = document.getElementById('modal-saman-syllabus-form');
   const allInputs = modalEl ? modalEl.querySelectorAll('input, select, button.btn-outline-danger') : [];
   allInputs.forEach(inp => {
@@ -5354,8 +5517,9 @@ function saveSyllabusDraft() {
 }
 
 function submitSyllabusForm() {
-  if (!canCurrentUserEditModule('saman_pariksha')) {
-    showToast('आपको इस प्रपत्र में संपादन या सबमिट करने का अधिकार नहीं है!', 'error');
+  const sylSchoolCode = document.getElementById('syl-hidden-school-code')?.value || STATE.currentUser?.shala_darpan_code;
+  if (!canCurrentUserEditModule('saman_syllabus', sylSchoolCode)) {
+    showToast('आपको पाठ्यक्रम पूर्णता प्रपत्र में संपादन या सबमिट करने का अधिकार नहीं है!', 'error');
     return;
   }
 
@@ -10657,8 +10821,8 @@ function isSamanParikshaLockedForCurrentUser(targetSchoolCode = null) {
     return false; // Specifically Unlocked for this school by Admin!
   }
 
-  // 1. Check 6-Level Edit Permission Matrix
-  if (!canCurrentUserEditModule('saman_pariksha', targetSchoolCode)) return true;
+  // 1. Check 6-Level Edit Permission Matrix (Indent Form)
+  if (!canCurrentUserEditModule('saman_indent', targetSchoolCode) && !canCurrentUserEditModule('saman_pariksha', targetSchoolCode)) return true;
 
   const perms = STATE.staffEditPermissions || {};
   if (perms.master_lock) return true;
