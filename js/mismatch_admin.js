@@ -426,6 +426,11 @@ function saveSamanMismatchSettings() {
 
   STATE.samanMismatchSettings = cfg;
   localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(cfg));
+  if (cfg.alert_active === false) {
+    localStorage.setItem('cbeo_mismatch_alert_disabled', 'true');
+  } else {
+    localStorage.removeItem('cbeo_mismatch_alert_disabled');
+  }
 
   if (typeof saveCloudPortalSetting === 'function') {
     saveCloudPortalSetting('saman_mismatch_settings', cfg);
