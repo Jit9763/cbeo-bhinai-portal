@@ -38,6 +38,26 @@ function renderElectionView() {
   const isCBEO = user && (user.shala_darpan_code === '8140' || user.admin_id === 'ADMIN01' || (user.role === 'admin' && !isJitendra));
   const isAdmin = isJitendra || isCBEO || (user && user.role === 'admin');
 
+  // Update tab badge dynamically
+  const badge = document.getElementById('nav-election-badge');
+  if (badge) {
+    if (isAdmin) {
+      badge.textContent = (window.ELECTION_2026_SCHOOLS || []).length || 33;
+    } else if (user && user.role === 'peeo') {
+      const pCode = String(user.shala_darpan_code || user.peeo_code || '').trim();
+      const pName = String(user.peeo_name || user.name || '').toUpperCase();
+      const pSchools = (window.ELECTION_2026_SCHOOLS || []).filter(s => {
+        if (pCode && (String(s.peeo_code) === pCode || String(s.shala_darpan_code) === pCode)) return true;
+        if (pName && String(s.peeo_name || '').toUpperCase().includes(pName.replace('PEEO ', ''))) return true;
+        if (user.schools && user.schools.some(sub => String(sub.shala_darpan_code) === String(s.shala_darpan_code))) return true;
+        return false;
+      });
+      badge.textContent = pSchools.length || 1;
+    } else {
+      badge.textContent = '1';
+    }
+  }
+
   if (isAdmin) {
     renderElectionAdminView(container);
   } else if (user && user.role === 'school') {
