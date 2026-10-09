@@ -497,6 +497,12 @@ function updateMismatchHeaderUI() {
       statusBadge.style.color = '#64748b';
     }
   }
+
+  const noticeBanner = document.querySelector('.portal-notice-banner');
+  if (noticeBanner) {
+    const isVisible = isActive && typeof isTabVisibleForCurrentUser === 'function' && isTabVisibleForCurrentUser('saman-pariksha');
+    noticeBanner.style.display = isVisible ? 'flex' : 'none';
+  }
 }
 window.updateMismatchHeaderUI = updateMismatchHeaderUI;
 
@@ -529,6 +535,7 @@ function toggleMismatchAlertMaster(isActive) {
   if (chk) chk.checked = !!cfg.alert_active;
 
   updateMismatchHeaderUI();
+  if (typeof updateNavigation === 'function') updateNavigation();
   showToast(`मिसमैच अलर्ट व फ्लैग: ${cfg.alert_active ? 'चालू (ON)' : 'बंद (OFF)'} कर दिया गया!`, cfg.alert_active ? 'success' : 'info');
   renderSamanParikshaView();
 }
