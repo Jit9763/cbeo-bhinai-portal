@@ -482,6 +482,55 @@ async function syncFromGoogleAppsScript() {
         console.log(`[CBEO-NODE] ✓ Cloud Sync: ${Object.keys(existing).length} syllabus submissions active in SQLite.`);
       }
     }
+
+    // Also sync admin portal settings from Google Apps Script System_Settings
+    try {
+      const setUrl = `${GAS_URL}?action=getPortalSettings&_t=${Date.now()}`;
+      const setCtrl = new AbortController();
+      const setTimer = setTimeout(() => setCtrl.abort(), 10000);
+      const setResp = await fetch(setUrl, { signal: setCtrl.signal });
+      clearTimeout(setTimer);
+      if (setResp.ok) {
+        const setData = await setResp.json();
+        if (setData && setData.success && setData.settings) {
+          const s = setData.settings;
+          let changed = false;
+          if (s.tab_visibility_6level) {
+            DB.setSetting('__TAB_VISIBILITY_6LEVEL__', s.tab_visibility_6level);
+            DB.setSetting('__TAB_VISIBILITY_5LEVEL__', s.tab_visibility_6level);
+            try {
+              fs.writeFileSync(path.join(ROOT_DIR, 'tab_visibility_6level.json'), JSON.stringify(s.tab_visibility_6level, null, 2), 'utf8');
+              fs.writeFileSync(path.join(ROOT_DIR, 'tab_visibility_5level.json'), JSON.stringify(s.tab_visibility_6level, null, 2), 'utf8');
+            } catch(e) {}
+            changed = true;
+          }
+          if (s.edit_permissions_6level) {
+            DB.setSetting('__EDIT_PERMISSIONS_6LEVEL__', s.edit_permissions_6level);
+            try {
+              fs.writeFileSync(path.join(ROOT_DIR, 'edit_permissions_6level.json'), JSON.stringify(s.edit_permissions_6level, null, 2), 'utf8');
+            } catch(e) {}
+            changed = true;
+          }
+          if (s.saman_mismatch_settings) {
+            DB.setSetting('__SAMAN_MISMATCH_SETTINGS__', s.saman_mismatch_settings);
+            try {
+              fs.writeFileSync(path.join(ROOT_DIR, 'saman_mismatch_settings.json'), JSON.stringify(s.saman_mismatch_settings, null, 2), 'utf8');
+            } catch(e) {}
+            changed = true;
+          }
+          if (s.portal_settings) {
+            DB.setSetting('__PORTAL_SETTINGS__', s.portal_settings);
+            try {
+              fs.writeFileSync(path.join(ROOT_DIR, 'portal_settings.json'), JSON.stringify(s.portal_settings, null, 2), 'utf8');
+            } catch(e) {}
+            changed = true;
+          }
+          if (changed) {
+            console.log(`[CBEO-NODE] ☁️ ✓ Settings synchronized from Cloud (Mobile / GAS sync active)`);
+          }
+        }
+      }
+    } catch(err) {}
   } catch (err) {
     // Cloud timeout or offline note
   } finally {
@@ -590,6 +639,7 @@ const server = http.createServer((req, res) => {
         action: 'savePortalSettings',
         settings: { tab_visibility_6level: vis, tab_visibility_5level: vis }
       });
+      scheduleAutoGitPush('tab_visibility_6level');
       sendJSON(res, 200, { success: true, message: '6-स्तरीय दृश्यता अनुमतियां SQLite व क्लाउड में सुरक्षित हो गईं!' });
     });
     return;
@@ -613,6 +663,7 @@ const server = http.createServer((req, res) => {
         action: 'savePortalSettings',
         settings: { edit_permissions_6level: perms }
       });
+      scheduleAutoGitPush('edit_permissions_6level');
       sendJSON(res, 200, { success: true, message: '6-स्तरीय संपादन अनुमतियां सुरक्षित हो गईं!' });
     });
     return;
@@ -636,6 +687,7 @@ const server = http.createServer((req, res) => {
         action: 'savePortalSettings',
         settings: { saman_mismatch_settings: settings }
       });
+      scheduleAutoGitPush('saman_mismatch_settings');
       sendJSON(res, 200, { success: true, message: 'समान परीक्षा मिसमैच व कस्टम एडिट सेटिंग्स सुरक्षित हो गईं!' });
     });
     return;
@@ -672,6 +724,7 @@ const server = http.createServer((req, res) => {
         action: 'savePortalSettings',
         settings: settings
       });
+      scheduleAutoGitPush('portal_settings');
       sendJSON(res, 200, { success: true, message: 'पोर्टल सेटिंग्स SQLite व JSON में सफलतापूर्वक सुरक्षित हो गईं!' });
     });
     return;
@@ -924,6 +977,7 @@ const server = http.createServer((req, res) => {
         action: 'savePortalSettings',
         settings: { tab_visibility_5level: vis, tab_visibility_6level: vis }
       });
+      scheduleAutoGitPush('tab_visibility_5level');
       sendJSON(res, 200, { success: true, message: 'सेटिंग्स SQLite व क्लाउड में सुरक्षित हो गई!' });
     });
     return;
@@ -947,6 +1001,7 @@ const server = http.createServer((req, res) => {
         action: 'savePortalSettings',
         settings: { staff_edit_permissions: perms }
       });
+      scheduleAutoGitPush('staff_edit_permissions');
       sendJSON(res, 200, { success: true, message: 'कार्मिक संपादन अनुमतियां सुरक्षित हो गई!' });
     });
     return;
