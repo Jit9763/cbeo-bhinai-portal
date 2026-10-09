@@ -8,7 +8,7 @@
 // Ensure DEFAULT_SAMAN_MISMATCH_SETTINGS and defaults are defined safely
 if (typeof DEFAULT_SAMAN_MISMATCH_SETTINGS === 'undefined') {
   window.DEFAULT_SAMAN_MISMATCH_SETTINGS = {
-    alert_active: true,
+    alert_active: false,
     alert_title: '🚨 अति-आवश्यक: समान परीक्षा मांग - नामांकन मिसमैच एवं संशोधन सूचना',
     alert_message: 'मान्यवर संस्था प्रधान, आपके विद्यालय द्वारा समान परीक्षा 2026-27 के मांग प्रपत्र में भरा गया कक्षावार नामांकन शाला दर्पण के वास्तविक नामांकन से भिन्न (मिसमैच) पाया गया है।\n\nकार्यालय CBEO भिनाय (अजमेर) द्वारा आपके विद्यालय के लिए मांग प्रपत्र में संशोधन (Custom Edit) की विशेष सुविधा खोल दी गई है। कृपया तुरंत सुधार कर पुनः सबमिट करें।',
     custom_edit_schools: ['221756', '221761', '221763', '221772', '221775', '221778', '221780'],
