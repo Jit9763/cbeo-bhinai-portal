@@ -58,6 +58,14 @@ function renderElectionView() {
     }
   }
 
+  // Trigger live cloud sync in background every time election tab is rendered
+  if (!window._electionSyncingInFlight) {
+    window._electionSyncingInFlight = true;
+    setTimeout(() => {
+      syncElectionSubmissionsFromCloud(() => { window._electionSyncingInFlight = false; });
+    }, 100);
+  }
+
   if (isAdmin) {
     renderElectionAdminView(container);
   } else if (user && user.role === 'school') {
@@ -329,6 +337,9 @@ function renderElectionPeeoView(container, user) {
         </button>
       </div>
       <div>
+        <button type="button" class="btn btn-sm btn-info text-white me-1" onclick="syncElectionSubmissionsFromCloud(true)" style="font-weight:700" title="Google Sheet से नया सत्यापन डेटा सिंक करें">
+          <i class="fas fa-sync-alt"></i> 🔄 लाइव रीफ्रेश
+        </button>
         <button type="button" class="btn btn-sm btn-success" onclick="downloadPeeoBoothsExcel()" style="font-weight:700">
           <i class="fas fa-file-excel"></i> 📥 इस PEEO के बूथ Excel (.xlsx)
         </button>
