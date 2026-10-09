@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-  <script src="js/election_data.js"></script>
+  <script src="js/election_data.js?v=20261009_v43"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -532,9 +532,6 @@
     const canvasPads = {};
 
     document.addEventListener('DOMContentLoaded', () => {
-      initSchoolSelector();
-      initSignatureCanvas('canvas-principal-sig');
-
       let loggedUser = null;
       try {
         loggedUser = JSON.parse(localStorage.getItem('cbeo_logged_user') || localStorage.getItem('cbeo_user'));
@@ -551,15 +548,22 @@
         ACTIVE_SCHOOL_CODE = codeParam;
       } else if (isSchoolUser && window.ELECTION_2026_SCHOOLS?.some(s => s.shala_darpan_code === userCode)) {
         ACTIVE_SCHOOL_CODE = userCode;
-      } else if (isPeeoUser && window.ELECTION_2026_SCHOOLS?.some(s => s.shala_darpan_code === userCode)) {
-        ACTIVE_SCHOOL_CODE = userCode;
+      } else if (isPeeoUser) {
+        // If PEEO user, check if userCode matches a school, otherwise pick the first school belonging to this PEEO
+        const peeoSchools = (window.ELECTION_2026_SCHOOLS || []).filter(s => {
+          const peeoName = String(loggedUser.peeo_name || '').toUpperCase();
+          if (userCode && (String(s.peeo_code) === userCode || String(s.shala_darpan_code) === userCode)) return true;
+          if (peeoName && String(s.peeo_name || '').toUpperCase().includes(peeoName.replace('PEEO ', ''))) return true;
+          if (loggedUser.schools && loggedUser.schools.some(sub => String(sub.shala_darpan_code) === String(s.shala_darpan_code))) return true;
+          return false;
+        });
+        if (peeoSchools.length > 0) {
+          ACTIVE_SCHOOL_CODE = peeoSchools[0].shala_darpan_code;
+        }
       }
 
-      // If School or PEEO user is logged in, hide school switcher so only their school is visible
-      if ((isSchoolUser || isPeeoUser) && ACTIVE_SCHOOL_CODE) {
-        const wrap = document.getElementById('school-select-wrapper');
-        if (wrap) wrap.style.display = 'none';
-      }
+      initSchoolSelector(loggedUser);
+      initSignatureCanvas('canvas-principal-sig');
 
       const sel = document.getElementById('select-school-switch');
       if (sel) sel.value = ACTIVE_SCHOOL_CODE;
@@ -567,12 +571,41 @@
       loadSchoolForm(ACTIVE_SCHOOL_CODE);
     });
 
-    function initSchoolSelector() {
+    function initSchoolSelector(loggedUser) {
       const sel = document.getElementById('select-school-switch');
       if (!sel || !window.ELECTION_2026_SCHOOLS) return;
-      sel.innerHTML = window.ELECTION_2026_SCHOOLS.map((s, idx) => 
+
+      const isSchoolUser = loggedUser && loggedUser.role === 'school';
+      const isPeeoUser = loggedUser && loggedUser.role === 'peeo';
+      const userCode = loggedUser ? String(loggedUser.shala_darpan_code || loggedUser.dise_code || '').trim() : '';
+      const peeoName = loggedUser ? String(loggedUser.peeo_name || '').toUpperCase() : '';
+
+      let availableSchools = window.ELECTION_2026_SCHOOLS;
+
+      if (isPeeoUser) {
+        const peeoMatched = window.ELECTION_2026_SCHOOLS.filter(s => {
+          if (userCode && (String(s.peeo_code) === userCode || String(s.shala_darpan_code) === userCode)) return true;
+          if (peeoName && String(s.peeo_name || '').toUpperCase().includes(peeoName.replace('PEEO ', ''))) return true;
+          if (loggedUser.schools && loggedUser.schools.some(sub => String(sub.shala_darpan_code) === String(s.shala_darpan_code))) return true;
+          return false;
+        });
+        if (peeoMatched.length > 0) availableSchools = peeoMatched;
+      }
+
+      sel.innerHTML = availableSchools.map((s, idx) => 
         `<option value="${s.shala_darpan_code}">${idx + 1}. [${s.shala_darpan_code}] ${s.school_name} (${s.panchayat_name}) - ${s.booth_count} बूथ</option>`
       ).join('');
+
+      const wrap = document.getElementById('school-select-wrapper');
+      if (wrap) {
+        if (isSchoolUser) {
+          wrap.style.display = 'none';
+        } else if (isPeeoUser) {
+          wrap.style.display = availableSchools.length > 1 ? 'block' : 'none';
+        } else {
+          wrap.style.display = 'block';
+        }
+      }
     }
 
     function onSchoolSelectChange(code) {

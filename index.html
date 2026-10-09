@@ -24,7 +24,7 @@
         if (cu && !lu) localStorage.setItem('cbeo_logged_user', cu);
       } catch(e) {}
 
-      var CLIENT_VERSION = 'v35_2026_10_09_election_and_settings_live_sync';
+      var CLIENT_VERSION = 'v36_2026_10_09_all_33_election_schools_and_peeo_live';
       var lastVer = localStorage.getItem('cbeo_client_app_version');
       if (lastVer !== CLIENT_VERSION) {
         localStorage.setItem('cbeo_client_app_version', CLIENT_VERSION);
@@ -122,8 +122,8 @@
         <span class="tab-badge badge-danger" id="nav-sp-badge">57</span>
       </button>
       <button class="nav-tab" id="nav-tab-election" onclick="switchTab('election')">
-        <i class="fas fa-vote-yea"></i> 🗳️ चुनाव 2026 (30 स्कूल)
-        <span class="tab-badge" style="background:#1e40af; color:#fff" id="nav-election-badge">30</span>
+        <i class="fas fa-vote-yea"></i> 🗳️ चुनाव 2026 (33 स्कूल)
+        <span class="tab-badge" style="background:#1e40af; color:#fff" id="nav-election-badge">33</span>
       </button>
       <button class="nav-tab" id="nav-tab-dashboard" onclick="switchTab('dashboard')">
         <i class="fas fa-chart-pie"></i> मुख्य डैशबोर्ड
@@ -2844,7 +2844,7 @@
             <span class="badge" style="background:#ffffff; color:#4f46e5; border:1px solid #c7d2fe; font-size:0.72rem; cursor:pointer; padding:3px 8px" onclick="quickFillAIPrompt('शाला खेल मैदान चारदीवारी व खेलकूद संसाधन विकास')">💡 खेलकूद मैदान विकास</span>
             <span class="badge" style="background:#ffffff; color:#4f46e5; border:1px solid #c7d2fe; font-size:0.72rem; cursor:pointer; padding:3px 8px" onclick="quickFillAIPrompt('ग्रीष्मकालीन पेयजल व्यवस्था एवं विद्युत कनेक्शन सत्यापन')">💡 पेयजल व विद्युत</span>
             <span class="badge" style="background:#e0f2fe; color:#0369a1; border:1.5px solid #38bdf8; font-size:0.72rem; cursor:pointer; padding:3px 8px; font-weight:700" onclick="quickFillSamanSyllabusPrompt()">📊 समान परीक्षा पाठ्यक्रम पूर्णता % (49 स्कूल)</span>
-            <span class="badge" style="background:#fef3c7; color:#92400e; border:1.5px solid #f59e0b; font-size:0.72rem; cursor:pointer; padding:3px 8px; font-weight:700" onclick="quickFillElectionPrompt()">🗳️ चुनाव 2026 मतदान केन्द्र सत्यापन (30 स्कूल, BLO हस्ताक्षर)</span>
+            <span class="badge" style="background:#fef3c7; color:#92400e; border:1.5px solid #f59e0b; font-size:0.72rem; cursor:pointer; padding:3px 8px; font-weight:700" onclick="quickFillElectionPrompt()">🗳️ चुनाव 2026 मतदान केन्द्र सत्यापन (33 स्कूल, 116 बूथ, BLO हस्ताक्षर)</span>
           </div>
         </div>
 
@@ -5921,8 +5921,8 @@
   <script src="js/village_mapping.js?v=20261008_v38"></script>
   <script src="js/core_sync.js?v=20261008_v39"></script>
   <script src="js/mismatch_admin.js?v=20261008_v39"></script>
-  <script src="js/election_data.js?v=20261008_v41"></script>
-  <script src="js/election.js?v=20261008_v41"></script>
-  <script src="app.js?v=20261008_v41"></script>
+  <script src="js/election_data.js?v=20261009_v43"></script>
+  <script src="js/election.js?v=20261009_v43"></script>
+  <script src="app.js?v=20261009_v43"></script>
 </body>
 </html>
