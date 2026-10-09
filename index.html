@@ -5920,11 +5920,19 @@
         <!-- Customizable Message Editor -->
         <div style="margin-bottom:1rem">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.4rem">
-            <label style="font-weight:700; font-size:0.85rem; color:#1e293b; margin:0">
-              <i class="fas fa-edit text-info"></i> संदेश संपादन (कस्टमाइज़ करें - यहाँ टाइप अथवा बदलाव कर सकते हैं):
-            </label>
+            <div style="display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap">
+              <label style="font-weight:700; font-size:0.85rem; color:#1e293b; margin:0">
+                <i class="fas fa-edit text-info"></i> संदेश प्रारूप:
+              </label>
+              <button type="button" id="broadcast-btn-mode-reminder" class="btn btn-sm" onclick="setBroadcastMessageMode('reminder')" style="font-size:0.75rem; padding:4px 10px; font-weight:800; border-radius:6px; cursor:pointer; background:#dc2626; color:#ffffff; border:1px solid #b91c1c">
+                🚨 1. लम्बित स्मरण पत्र (डिफॉल्टर सूची)
+              </button>
+              <button type="button" id="broadcast-btn-mode-order" class="btn btn-sm" onclick="setBroadcastMessageMode('order')" style="font-size:0.75rem; padding:4px 10px; font-weight:800; border-radius:6px; cursor:pointer; background:#f1f5f9; color:#334155; border:1px solid #cbd5e1">
+                📢 2. आधिकारिक आदेश / निर्देश
+              </button>
+            </div>
             <button type="button" class="btn btn-outline-secondary btn-sm" onclick="resetBroadcastMessageToTemplate()" style="font-size:0.75rem; padding:3px 10px; font-weight:700">
-              <i class="fas fa-undo"></i> 🔄 मूल प्रारूप रीसेट
+              <i class="fas fa-undo"></i> 🔄 रीसेट
             </button>
           </div>
           <textarea id="broadcast-message-editor" class="form-control" rows="12" style="font-family:Consolas, 'Courier New', monospace; font-size:0.88rem; line-height:1.55; border:1.5px solid #94a3b8; border-radius:8px; padding:0.75rem; width:100%; box-sizing:border-box" placeholder="यहाँ संदेश टाइप या एडिट करें..."></textarea>
@@ -5955,8 +5963,8 @@
           रद्द करें / बंद करें
         </button>
         <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
-          <button class="btn btn-warning btn-sm" onclick="sendBroadcastCustomEmail()" style="background:#f59e0b; border-color:#d97706; color:#0f172a; font-weight:800; padding:6px 12px; display:inline-flex; align-items:center; gap:0.35rem">
-            <i class="fas fa-envelope"></i> 📧 सभी 49 स्कूलों को ईमेल भेजें
+          <button class="btn btn-warning btn-sm" id="broadcast-email-btn" onclick="sendBroadcastCustomEmail()" style="background:#f59e0b; border-color:#d97706; color:#0f172a; font-weight:800; padding:6px 12px; display:inline-flex; align-items:center; gap:0.35rem">
+            <i class="fas fa-envelope"></i> 📧 लक्षित स्कूलों को ईमेल भेजें
           </button>
           <button class="btn btn-info btn-sm" onclick="sendBroadcastCustomTelegram()" style="background:#0284c7; border-color:#0369a1; color:#fff; font-weight:800; padding:6px 12px; display:inline-flex; align-items:center; gap:0.35rem">
             <i class="fab fa-telegram-plane"></i> 📱 Telegram पर भेजें
