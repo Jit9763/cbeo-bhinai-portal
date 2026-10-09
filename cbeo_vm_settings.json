@@ -162,6 +162,6 @@
       "all_schools": false
     }
   },
-  "saman_active_form": "indent",
-  "saman_school_type_filter": "all"
+  "saman_active_form": "syllabus",
+  "saman_school_type_filter": "govt_only"
 }

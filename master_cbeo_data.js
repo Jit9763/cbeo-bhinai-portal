@@ -40882,8 +40882,8 @@ const MASTER_CBEO_DATA = {
     }
   },
   "portal_settings_bundle": {
-    "__SAMAN_ACTIVE_FORM__": "indent",
-    "saman_active_form": "indent",
+    "__SAMAN_ACTIVE_FORM__": "syllabus",
+    "saman_active_form": "syllabus",
     "__TAB_VISIBILITY_6LEVEL__": {
       "saman-pariksha": {
         "cbeo": true,
@@ -41361,10 +41361,10 @@ const MASTER_CBEO_DATA = {
       "mismatch_details": {}
     },
     "__PORTAL_SETTINGS__": {
-      "saman_school_type_filter": "all"
+      "saman_school_type_filter": "govt_only"
     },
     "portal_settings": {
-      "saman_school_type_filter": "all"
+      "saman_school_type_filter": "govt_only"
     }
   }
 };
