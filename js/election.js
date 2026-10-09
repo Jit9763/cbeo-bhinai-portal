@@ -166,17 +166,87 @@ function renderElectionSchoolView(container, user) {
   `;
 }
 
-// 2. Dedicated View for PEEO Login (Schools in their jurisdiction)
+let ELECTION_PEEO_VIEW_TAB = 'schools'; // 'schools' | 'booths'
+
+function setElectionPeeoTab(tab) {
+  ELECTION_PEEO_VIEW_TAB = tab;
+  renderElectionView();
+}
+
+function downloadPeeoBoothsExcel() {
+  const user = (typeof STATE !== 'undefined' && STATE.currentUser) ? STATE.currentUser : null;
+  if (!user) return;
+  const schools = window.ELECTION_2026_SCHOOLS || [];
+  const peeoCode = String(user.shala_darpan_code || user.peeo_code || '').trim();
+  const peeoName = String(user.peeo_name || user.name || '').toUpperCase();
+
+  const mySchools = schools.filter(s => {
+    if (peeoCode && (String(s.peeo_code) === peeoCode || String(s.shala_darpan_code) === peeoCode)) return true;
+    if (peeoName && String(s.peeo_name || '').toUpperCase().includes(peeoName.replace('PEEO ', ''))) return true;
+    if (user.schools && user.schools.some(sub => String(sub.shala_darpan_code) === String(s.shala_darpan_code))) return true;
+    return false;
+  });
+
+  const allPeeoBooths = mySchools.flatMap(s => (s.booths || []).map(b => ({ ...b, school_name: s.school_name, peeo_name: s.peeo_name })));
+  let submissions = {};
+  try {
+    submissions = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}');
+  } catch(e) {}
+
+  const headers = [
+    'बूथ सं.', 'ग्राम पंचायत', 'विद्यालय का नाम', 'शाला दर्पण कोड', 'कमरा/कक्ष विवरण (P-3)',
+    'वार्ड', 'विद्युत/पंखा', 'फर्नीचर', 'पृथक द्वार', 'चूना लाइनिंग',
+    'BLO प्रगणक नाम', 'पद', 'मोबाइल', 'सत्यापन स्थिति'
+  ];
+  const rows = [headers];
+  allPeeoBooths.forEach(b => {
+    const sub = submissions[b.school_code];
+    const bd = sub?.booth_details?.[b.booth_no] || {};
+    const isSub = !!sub;
+    rows.push([
+      b.booth_no,
+      b.panchayat_hi,
+      b.school_name || b.building_hi,
+      b.school_code,
+      b.room_hi,
+      b.ward || '-',
+      bd.light !== false ? 'हाँ' : 'नहीं',
+      bd.furniture !== false ? 'हाँ' : 'नहीं',
+      bd.door !== false ? 'हाँ' : 'नहीं',
+      bd.lining !== false ? 'हाँ' : 'नहीं',
+      bd.blo_name || '',
+      bd.blo_post || '',
+      bd.blo_mobile || '',
+      isSub ? 'सत्यापित' : 'लंबित'
+    ]);
+  });
+
+  const filename = `${peeoName.replace(/\s+/g, '_')}_Election_2026_Booths`;
+  if (typeof XLSX !== 'undefined') {
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.aoa_to_sheet(rows);
+    XLSX.utils.book_append_sheet(wb, ws, "Booths");
+    XLSX.writeFile(wb, `${filename}.xlsx`);
+    if (typeof showToast === 'function') showToast(`📥 ${peeoName} के समस्त बूथ Excel (.xlsx) में डाउनलोड हो गए!`, 'success');
+  } else {
+    exportTableDataToHtmlExcel(rows, `${filename}.xls`);
+  }
+}
+
+// 2. Dedicated View for PEEO Login (All Schools and Booths in their jurisdiction)
 function renderElectionPeeoView(container, user) {
   const schools = window.ELECTION_2026_SCHOOLS || [];
   const peeoCode = String(user.shala_darpan_code || user.peeo_code || '').trim();
   const peeoName = String(user.peeo_name || user.name || '').toUpperCase();
 
   const mySchools = schools.filter(s => {
-    if (peeoCode && String(s.peeo_code) === peeoCode) return true;
+    if (peeoCode && (String(s.peeo_code) === peeoCode || String(s.shala_darpan_code) === peeoCode)) return true;
     if (peeoName && String(s.peeo_name || '').toUpperCase().includes(peeoName.replace('PEEO ', ''))) return true;
+    if (user.schools && user.schools.some(sub => String(sub.shala_darpan_code) === String(s.shala_darpan_code))) return true;
     return false;
   });
+
+  const allPeeoBooths = mySchools.flatMap(s => (s.booths || []).map(b => ({ ...b, school_name: s.school_name, peeo_name: s.peeo_name })));
 
   let submissions = {};
   try {
@@ -208,13 +278,16 @@ function renderElectionPeeoView(container, user) {
             🏛️ PEEO परिक्षेत्र चुनाव मॉनिटरिंग • पंचायती राज आम चुनाव 2026
           </div>
           <h2 style="font-size:1.4rem; font-weight:900; margin:4px 0">
-            ${peeoName} (${mySchools.length} विद्यालय)
+            ${peeoName} (${mySchools.length} विद्यालय • ${allPeeoBooths.length} मतदान बूथ)
           </h2>
           <div style="font-size:0.86rem; opacity:0.9">
             कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय | <strong>जिला: अजमेर (AJMER)</strong>
           </div>
         </div>
-        <div style="display:flex; gap:0.6rem">
+        <div style="display:flex; gap:0.6rem; flex-wrap:wrap">
+          <span style="background:#0284c7; color:#fff; font-size:0.85rem; font-weight:800; padding:4px 12px; border-radius:20px">
+            🗳️ कुल बूथ: ${allPeeoBooths.length}
+          </span>
           <span style="background:#15803d; color:#fff; font-size:0.85rem; font-weight:800; padding:4px 12px; border-radius:20px">
             ✓ सत्यापित: ${submittedCount}
           </span>
@@ -225,49 +298,130 @@ function renderElectionPeeoView(container, user) {
       </div>
     </div>
 
-    <!-- PEEO Schools Cards Grid -->
-    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(340px, 1fr)); gap:1rem">
-      ${mySchools.map((s, idx) => {
-        const sub = submissions[s.shala_darpan_code];
-        const isSubmitted = !!sub;
-        return `
-          <div style="background:#fff; border:1px solid ${isSubmitted ? '#86efac' : '#cbd5e1'}; border-top:4px solid ${isSubmitted ? '#16a34a' : '#0284c7'}; border-radius:8px; padding:1.1rem; box-shadow:0 2px 6px rgba(0,0,0,0.04); display:flex; flex-direction:column; justify-content:space-between">
-            <div>
-              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.4rem">
-                <span style="font-size:0.75rem; font-weight:800; color:#0369a1; background:#e0f2fe; padding:2px 6px; border-radius:4px">#${idx + 1}</span>
-                ${isSubmitted 
-                  ? '<span style="background:#dcfce7; color:#15803d; font-size:0.75rem; font-weight:800; padding:2px 8px; border-radius:12px"><i class="fas fa-check-circle"></i> ✓ सत्यापित</span>' 
-                  : '<span style="background:#fee2e2; color:#b91c1c; font-size:0.75rem; font-weight:800; padding:2px 8px; border-radius:12px"><i class="fas fa-clock"></i> लंबित</span>'}
-              </div>
-              <h3 style="font-size:1rem; font-weight:900; color:#0f172a; margin-bottom:0.25rem; line-height:1.3">
-                ${s.school_name}
-              </h3>
-              <div style="font-size:0.82rem; color:#475569; margin-bottom:0.6rem">
-                <strong>ग्राम पंचायत:</strong> ${s.panchayat_name} | <strong>कोड:</strong> <code>${s.shala_darpan_code}</code>
-              </div>
-              <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:0.6rem 0.75rem; font-size:0.78rem; margin-bottom:0.85rem">
-                <div><strong>संस्था प्रधान:</strong> ${s.principal_name} (${s.principal_mobile})</div>
-                <div style="color:#0369a1; font-weight:700; margin-top:2px">
-                  🗳️ कुल मतदान कक्ष / बूथ: <strong>${s.booth_count}</strong>
+    <!-- Sub-tab Navigation Bar for PEEO -->
+    <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:0.75rem 1rem; margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; box-shadow:0 2px 6px rgba(0,0,0,0.03)">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-sm ${ELECTION_PEEO_VIEW_TAB === 'schools' ? 'btn-primary' : 'btn-outline-primary'}" onclick="setElectionPeeoTab('schools')" style="font-weight:700">
+          <i class="fas fa-school"></i> 1. विद्यालयवार प्रपत्र स्थिति (${mySchools.length} विद्यालय)
+        </button>
+        <button type="button" class="btn btn-sm ${ELECTION_PEEO_VIEW_TAB === 'booths' ? 'btn-primary' : 'btn-outline-primary'}" onclick="setElectionPeeoTab('booths')" style="font-weight:700">
+          <i class="fas fa-vote-yea"></i> 2. समस्त मतदान कक्ष / बूथ सूची (${allPeeoBooths.length} बूथ)
+        </button>
+      </div>
+      <div>
+        <button type="button" class="btn btn-sm btn-success" onclick="downloadPeeoBoothsExcel()" style="font-weight:700">
+          <i class="fas fa-file-excel"></i> 📥 इस PEEO के बूथ Excel (.xlsx)
+        </button>
+      </div>
+    </div>
+
+    <!-- PEEO Content Area -->
+    ${ELECTION_PEEO_VIEW_TAB === 'schools' ? `
+      <!-- PEEO Schools Cards Grid -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(340px, 1fr)); gap:1rem">
+        ${mySchools.map((s, idx) => {
+          const sub = submissions[s.shala_darpan_code];
+          const isSubmitted = !!sub;
+          return `
+            <div style="background:#fff; border:1px solid ${isSubmitted ? '#86efac' : '#cbd5e1'}; border-top:4px solid ${isSubmitted ? '#16a34a' : '#0284c7'}; border-radius:8px; padding:1.1rem; box-shadow:0 2px 6px rgba(0,0,0,0.04); display:flex; flex-direction:column; justify-content:space-between">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.4rem">
+                  <span style="font-size:0.75rem; font-weight:800; color:#0369a1; background:#e0f2fe; padding:2px 6px; border-radius:4px">#${idx + 1}</span>
+                  ${isSubmitted 
+                    ? '<span style="background:#dcfce7; color:#15803d; font-size:0.75rem; font-weight:800; padding:2px 8px; border-radius:12px"><i class="fas fa-check-circle"></i> ✓ सत्यापित</span>' 
+                    : '<span style="background:#fee2e2; color:#b91c1c; font-size:0.75rem; font-weight:800; padding:2px 8px; border-radius:12px"><i class="fas fa-clock"></i> लंबित</span>'}
+                </div>
+                <h3 style="font-size:1.05rem; font-weight:900; color:#0f172a; margin-bottom:0.25rem; line-height:1.3">
+                  ${s.school_name}
+                </h3>
+                <div style="font-size:0.82rem; color:#475569; margin-bottom:0.6rem">
+                  <strong>ग्राम पंचायत:</strong> ${s.panchayat_name} | <strong>कोड:</strong> <code>${s.shala_darpan_code}</code>
+                </div>
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:0.6rem 0.75rem; font-size:0.78rem; margin-bottom:0.85rem">
+                  <div><strong>संस्था प्रधान:</strong> ${s.principal_name} (${s.principal_mobile})</div>
+                  <div style="color:#0369a1; font-weight:700; margin-top:3px">
+                    🗳️ कुल मतदान कक्ष / बूथ: <strong>${s.booth_count}</strong>
+                  </div>
+                  <div style="display:flex; flex-wrap:wrap; gap:4px; margin-top:5px">
+                    ${(s.booths || []).map(b => `<span style="background:#e0f2fe; color:#0369a1; font-size:0.72rem; padding:1px 6px; border-radius:10px; font-weight:700">बूथ #${b.booth_no}</span>`).join('')}
+                  </div>
                 </div>
               </div>
+              <div style="display:flex; gap:0.5rem">
+                <a href="election_form.html?code=${s.shala_darpan_code}" target="_blank" class="btn btn-primary btn-sm" style="flex:1; font-weight:800; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:0.35rem">
+                  <i class="fas ${isSubmitted ? 'fa-edit' : 'fa-file-signature'}"></i> ${isSubmitted ? 'संशोधन' : 'प्रपत्र भरें'}
+                </a>
+                <a href="election_form.html?code=${s.shala_darpan_code}&autoclick=pdf" target="_blank" class="btn btn-success btn-sm" style="font-weight:700; display:inline-flex; align-items:center; gap:0.3rem">
+                  <i class="fas fa-file-pdf"></i> PDF
+                </a>
+              </div>
             </div>
-            <div style="display:flex; gap:0.5rem">
-              <a href="election_form.html?code=${s.shala_darpan_code}" target="_blank" class="btn btn-primary btn-sm" style="flex:1; font-weight:800; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:0.35rem">
-                <i class="fas ${isSubmitted ? 'fa-edit' : 'fa-file-signature'}"></i> ${isSubmitted ? 'संशोधन' : 'प्रपत्र भरें'}
-              </a>
-              <a href="election_form.html?code=${s.shala_darpan_code}&autoclick=pdf" target="_blank" class="btn btn-success btn-sm" style="font-weight:700; display:inline-flex; align-items:center; gap:0.3rem">
-                <i class="fas fa-file-pdf"></i> PDF
-              </a>
-            </div>
-          </div>
-        `;
-      }).join('')}
-    </div>
+          `;
+        }).join('')}
+      </div>
+    ` : `
+      <!-- PEEO All Booths Detailed Table -->
+      <div style="background:#fff; border:1px solid #e2e8f0; border-radius:8px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.03)">
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered table-sm mb-0" style="font-size:0.85rem">
+            <thead style="background:#0f172a; color:#fff">
+              <tr>
+                <th style="width:60px; text-align:center">बूथ सं.</th>
+                <th>विद्यालय का नाम</th>
+                <th>मतदान कक्ष / कमरा विवरण (प्रपत्र-3)</th>
+                <th style="width:70px; text-align:center">वार्ड</th>
+                <th style="width:70px; text-align:center">विद्युत/पंखा</th>
+                <th style="width:70px; text-align:center">फर्नीचर</th>
+                <th style="width:70px; text-align:center">पृथक द्वार</th>
+                <th style="width:70px; text-align:center">चूना लाइनिंग</th>
+                <th>अधिकृत BLO प्रगणक (नाम, पद, मो.)</th>
+                <th style="width:80px; text-align:center">स्थिति</th>
+                <th style="width:80px; text-align:center">एक्शन</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${allPeeoBooths.map(b => {
+                const sub = submissions[b.school_code];
+                const bd = sub?.booth_details?.[b.booth_no] || {};
+                const isSub = !!sub;
+                const bloName = bd.blo_name || '';
+                const bloPost = bd.blo_post || '';
+                const bloMob = bd.blo_mobile || '';
+                return `
+                  <tr style="background:${isSub ? '#f0fdf4' : '#fff'}">
+                    <td style="text-align:center; font-weight:800; color:#0284c7; background:#f8fafc">#${b.booth_no}</td>
+                    <td><strong>${b.school_name || b.building_hi}</strong> <br><small style="color:#64748b">कोड: ${b.school_code}</small></td>
+                    <td>${b.room_hi}</td>
+                    <td style="text-align:center; font-weight:700">${b.ward || '-'}</td>
+                    <td style="text-align:center">${bd.light !== false ? '<span class="text-success font-weight-bold">✓ हाँ</span>' : '<span class="text-danger">✗ नहीं</span>'}</td>
+                    <td style="text-align:center">${bd.furniture !== false ? '<span class="text-success font-weight-bold">✓ हाँ</span>' : '<span class="text-danger">✗ नहीं</span>'}</td>
+                    <td style="text-align:center">${bd.door !== false ? '<span class="text-success font-weight-bold">✓ हाँ</span>' : '<span class="text-danger">✗ नहीं</span>'}</td>
+                    <td style="text-align:center">${bd.lining !== false ? '<span class="text-success font-weight-bold">✓ हाँ</span>' : '<span class="text-danger">✗ नहीं</span>'}</td>
+                    <td>
+                      ${bloName ? `<strong>${bloName}</strong> <small>(${bloPost})</small> ${bloMob ? `<br><a href="tel:${bloMob}" style="color:#059669">${bloMob}</a>` : ''}` : '<span style="color:#94a3b8">--</span>'}
+                    </td>
+                    <td style="text-align:center">
+                      ${isSub 
+                        ? '<span style="background:#dcfce7; color:#15803d; font-size:0.72rem; font-weight:800; padding:2px 6px; border-radius:10px">सत्यापित</span>' 
+                        : '<span style="background:#fee2e2; color:#b91c1c; font-size:0.72rem; font-weight:800; padding:2px 6px; border-radius:10px">लंबित</span>'}
+                    </td>
+                    <td style="text-align:center">
+                      <a href="election_form.html?code=${b.school_code}" target="_blank" class="btn btn-sm btn-outline-primary" style="padding:2px 6px; font-size:0.75rem" title="प्रपत्र खोलें">
+                        <i class="fas fa-edit"></i>
+                      </a>
+                    </td>
+                  </tr>
+                `;
+              }).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `}
   `;
 }
 
-// 3. Admin View for CBEO / Jitendra (Full Block 30 Schools Hub)
+// 3. Admin View for CBEO / Jitendra (Full Block 33 Schools Hub)
 function renderElectionAdminView(container) {
   const schools = window.ELECTION_2026_SCHOOLS || [];
   const booths = window.ELECTION_2026_BOOTHS || [];
