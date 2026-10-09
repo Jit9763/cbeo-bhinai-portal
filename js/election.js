@@ -883,7 +883,7 @@ function downloadElectionSummaryExcel() {
     ]);
   });
 
-  const filename = "CBEO_Bhinai_Panchayat_Election_2026_30_Schools_Summary";
+  const filename = "CBEO_Bhinai_Panchayat_Election_2026_33_Schools_Summary";
   if (typeof XLSX !== 'undefined') {
     const wb = XLSX.utils.book_new();
     const ws = XLSX.utils.aoa_to_sheet(rows);
@@ -892,9 +892,9 @@ function downloadElectionSummaryExcel() {
       { wch: 16 }, { wch: 22 }, { wch: 20 }, { wch: 22 },
       { wch: 14 }, { wch: 28 }, { wch: 20 }, { wch: 22 }
     ];
-    XLSX.utils.book_append_sheet(wb, ws, "30_Schools_Summary");
+    XLSX.utils.book_append_sheet(wb, ws, "33_Schools_Summary");
     XLSX.writeFile(wb, `${filename}.xlsx`);
-    if (typeof showToast === 'function') showToast('📥 30 विद्यालयों की समेकित Excel (.xlsx) सफलतापूर्वक डाउनलोड हो गई!', 'success');
+    if (typeof showToast === 'function') showToast('📥 33 विद्यालयों की समेकित Excel (.xlsx) सफलतापूर्वक डाउनलोड हो गई!', 'success');
   } else {
     exportTableDataToHtmlExcel(rows, `${filename}.xls`);
   }
