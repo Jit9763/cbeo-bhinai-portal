@@ -1461,11 +1461,14 @@ function publishElectionDemandLive() {
   if (typeof renderDemandsView === 'function') renderDemandsView();
 }
 
-function syncElectionSubmissionsFromCloud(callback) {
-  const gasUrl = localStorage.getItem('cbeo_backup_webhook_url') 
-    || 'https://script.google.com/macros/s/AKfycbzmauNuu8DUjgsK-TBdiv45efshvaf6x3Z6bJrhyC2LOmF-yg9ErGq3XWEKZ8Umw8Ao/exec';
+function syncElectionSubmissionsFromCloud(showToastOrCb) {
+  const isInteractive = (showToastOrCb === true);
+  const cb = (typeof showToastOrCb === 'function') ? showToastOrCb : null;
 
-  fetch(`${gasUrl}?action=getElectionSubmissions`)
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
+  fetch(`${gasUrl}?action=getElectionSubmissions&t=${Date.now()}`)
     .then(r => r.json())
     .then(res => {
       if (res && res.success && res.submissions) {
@@ -1477,19 +1480,33 @@ function syncElectionSubmissionsFromCloud(callback) {
         // Re-render if election view is active
         const elView = document.getElementById('view-election');
         if (elView && elView.classList.contains('active')) {
-          const user = (typeof STATE !== 'undefined' && STATE.currentUser) ? STATE.currentUser : null;
-          const isAdmin = user && (user.shala_darpan_code === 'admin_jitendra' || user.admin_id === 'ADMIN02' || user.username === 'jitendra_admin' || user.shala_darpan_code === '8140' || user.role === 'admin');
-          if (isAdmin) renderElectionAdminView(elView);
+          renderElectionView();
         }
         // Update demands view progress bar if active
         if (typeof renderDemandsView === 'function') {
           const dView = document.getElementById('view-demands');
           if (dView && dView.classList.contains('active')) renderDemandsView();
         }
-        if (callback) callback(merged);
+
+        const count = Object.keys(res.submissions).length;
+        if (isInteractive && typeof showToast === 'function') {
+          showToast(`🔄 Google Sheet से ${count} विद्यालयों का सत्यापन डेटा लाइव लोड हो गया!`, 'success');
+        }
+        if (cb) cb(merged);
+      } else {
+        if (isInteractive && typeof showToast === 'function') {
+          showToast('Google Sheet से कोई नया सत्यापन डेटा नहीं मिला।', 'info');
+        }
+        if (cb) cb(null);
       }
     })
-    .catch(() => {});
+    .catch(err => {
+      console.warn('Election sync error:', err);
+      if (isInteractive && typeof showToast === 'function') {
+        showToast('क्लाउड सर्वर से सिंक में समस्या, पुनः प्रयास करें।', 'warning');
+      }
+      if (cb) cb(null);
+    });
 }
 
 // Global Exports
