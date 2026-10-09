@@ -445,7 +445,7 @@ function renderElectionAdminView(container) {
         </strong>
         <div class="btn-group" role="group">
           <button type="button" class="btn btn-sm ${ELECTION_ACTIVE_FORM_TAB === 'form_p3' ? 'btn-primary' : 'btn-outline-primary'}" onclick="setElectionActiveFormTab('form_p3')" style="font-weight:700">
-            <i class="fas fa-file-alt"></i> 1. प्रपत्र-3 भौतिक सत्यापन (30 स्कूल)
+            <i class="fas fa-file-alt"></i> 1. प्रपत्र-3 भौतिक सत्यापन (33 स्कूल)
           </button>
           <button type="button" class="btn btn-sm ${ELECTION_ACTIVE_FORM_TAB === 'booth_116' ? 'btn-primary' : 'btn-outline-primary'}" onclick="setElectionActiveFormTab('booth_116')" style="font-weight:700">
             <i class="fas fa-vote-yea"></i> 2. 116 बूथ-वार BLO प्रगणक सत्यापन
@@ -455,9 +455,9 @@ function renderElectionAdminView(container) {
       <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap">
         <span style="font-size:0.82rem; font-weight:700; color:#475569">विद्यालय प्रकार:</span>
         <select id="election-scope-select" class="form-select form-select-sm" onchange="onElectionScopeFilterChange(this.value)" style="width:auto; font-weight:700; border-color:#94a3b8">
-          <option value="all" ${ELECTION_SCOPE_FILTER === 'all' ? 'selected' : ''}>🏛️ सभी 30 ग्राम पंचायत विद्यालय</option>
+          <option value="all" ${ELECTION_SCOPE_FILTER === 'all' ? 'selected' : ''}>🏛️ सभी 33 मतदान केंद्र विद्यालय</option>
           <option value="peeo_only" ${ELECTION_SCOPE_FILTER === 'peeo_only' ? 'selected' : ''}>🏛️ केवल 25 PEEO मुख्यालय विद्यालय</option>
-          <option value="non_peeo" ${ELECTION_SCOPE_FILTER === 'non_peeo' ? 'selected' : ''}>🌟 केवल 5 गैर-PEEO मुख्यालय विद्यालय</option>
+          <option value="non_peeo" ${ELECTION_SCOPE_FILTER === 'non_peeo' ? 'selected' : ''}>🌟 केवल 8 गैर-PEEO / अधीनस्थ विद्यालय</option>
         </select>
         <button type="button" class="btn btn-sm btn-outline-dark" onclick="openElectionColumnManagerModal()" style="font-weight:700" title="नए सत्यापन कॉलम जोड़ें या हटाएं">
           <i class="fas fa-columns text-primary"></i> कॉलम प्रबंधन (${customCols.length} अतिरिक्त)
@@ -492,7 +492,7 @@ function renderElectionAdminView(container) {
             <i class="fas fa-bolt"></i> त्वरित प्रविष्टि दर्ज
           </button>
           <button type="button" class="btn btn-success btn-sm" onclick="downloadElectionSummaryExcel()" style="font-weight:800">
-            <i class="fas fa-file-excel"></i> 📥 30 विद्यालय समेकित Excel (.xlsx)
+            <i class="fas fa-file-excel"></i> 📥 33 विद्यालय समेकित Excel (.xlsx)
           </button>
           <button type="button" class="btn btn-light btn-sm" onclick="downloadElection116BoothsExcel()" style="font-weight:800; color:#0f172a">
             <i class="fas fa-table text-success"></i> 📊 116 बूथ Excel (.xlsx)
@@ -508,7 +508,7 @@ function renderElectionAdminView(container) {
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:1.25rem">
       <div style="background:#fff; border:1px solid #e2e8f0; border-left:4px solid #0284c7; border-radius:8px; padding:0.85rem 1.1rem; box-shadow:0 2px 6px rgba(0,0,0,0.03)">
         <div style="font-size:0.75rem; font-weight:700; color:#64748b">कुल लक्षित विद्यालय</div>
-        <div style="font-size:1.5rem; font-weight:900; color:#0f172a; margin-top:2px">${schools.length} <span style="font-size:0.78rem; font-weight:normal; color:#475569">(25 PEEO + 5 अन्य)</span></div>
+        <div style="font-size:1.5rem; font-weight:900; color:#0f172a; margin-top:2px">${schools.length} <span style="font-size:0.78rem; font-weight:normal; color:#475569">(25 PEEO + 8 अन्य)</span></div>
       </div>
       <div style="background:#fff; border:1px solid #e2e8f0; border-left:4px solid #8b5cf6; border-radius:8px; padding:0.85rem 1.1rem; box-shadow:0 2px 6px rgba(0,0,0,0.03)">
         <div style="font-size:0.75rem; font-weight:700; color:#64748b">कुल मतदान कक्ष / बूथ</div>
