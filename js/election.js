@@ -593,9 +593,9 @@ function getFilteredElectionSchools() {
     if (ELECTION_FILTER_STATUS === 'submitted' && !isSub) return false;
     if (ELECTION_FILTER_STATUS === 'pending' && isSub) return false;
 
-    const isSpecial5 = ["485030", "488897", "488947", "221774", "410859"].includes(s.shala_darpan_code);
-    if (ELECTION_SCOPE_FILTER === 'peeo_only' && isSpecial5) return false;
-    if (ELECTION_SCOPE_FILTER === 'non_peeo' && !isSpecial5) return false;
+    const isSpecial8 = ["485030", "488897", "488947", "221774", "410859", "221770", "221778", "221753"].includes(s.shala_darpan_code);
+    if (ELECTION_SCOPE_FILTER === 'peeo_only' && isSpecial8) return false;
+    if (ELECTION_SCOPE_FILTER === 'non_peeo' && !isSpecial8) return false;
 
     if (ELECTION_SEARCH_QUERY) {
       const q = ELECTION_SEARCH_QUERY;
@@ -640,7 +640,7 @@ function renderElectionSchoolsGrid(container) {
       ${filtered.map((s, idx) => {
         const sub = submissions[s.shala_darpan_code];
         const isSubmitted = !!sub;
-        const isSpecial5 = ["485030", "488897", "488947", "221774", "410859"].includes(s.shala_darpan_code);
+        const isSpecial8 = ["485030", "488897", "488947", "221774", "410859", "221770", "221778", "221753"].includes(s.shala_darpan_code);
 
         return `
           <div style="background:#fff; border:1px solid ${isSubmitted ? '#86efac' : '#e2e8f0'}; border-top:4px solid ${isSubmitted ? '#16a34a' : '#0284c7'}; border-radius:8px; padding:1.1rem; box-shadow:0 2px 6px rgba(0,0,0,0.04); display:flex; flex-direction:column; justify-content:space-between">
@@ -648,7 +648,7 @@ function renderElectionSchoolsGrid(container) {
               <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.4rem; gap:0.4rem; flex-wrap:wrap">
                 <div>
                   <span style="font-size:0.75rem; font-weight:800; color:#0369a1; background:#e0f2fe; padding:2px 6px; border-radius:4px">#${idx + 1}</span>
-                  ${isSpecial5 ? '<span style="font-size:0.7rem; font-weight:800; color:#92400e; background:#fef3c7; padding:2px 6px; border-radius:4px; margin-left:4px">🌟 विशेष गैर-PEEO मुख्यालय</span>' : '<span style="font-size:0.7rem; font-weight:800; color:#1e40af; background:#dbeafe; padding:2px 6px; border-radius:4px; margin-left:4px">🏛️ PEEO मुख्यालय</span>'}
+                  ${isSpecial8 ? '<span style="font-size:0.7rem; font-weight:800; color:#92400e; background:#fef3c7; padding:2px 6px; border-radius:4px; margin-left:4px">🌟 अधीनस्थ / गैर-PEEO मुख्यालय</span>' : '<span style="font-size:0.7rem; font-weight:800; color:#1e40af; background:#dbeafe; padding:2px 6px; border-radius:4px; margin-left:4px">🏛️ PEEO मुख्यालय</span>'}
                 </div>
                 ${isSubmitted 
                   ? '<span style="background:#dcfce7; color:#15803d; font-size:0.75rem; font-weight:800; padding:2px 8px; border-radius:12px"><i class="fas fa-check-circle"></i> ✓ सत्यापित</span>' 
