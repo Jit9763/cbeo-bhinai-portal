@@ -235,7 +235,8 @@
       <div class="app-sub">पंचायतीराज संस्थाओं के आम चुनाव 2026 | जिला: अजमेर (AJMER) | ब्लॉक: भिनाय</div>
     </div>
     <div class="top-actions">
-      <button type="button" class="btn-action btn-pdf" onclick="generateAndDownloadPdf()"><i class="fas fa-file-pdf"></i> A4 PDF प्रमाण-पत्र</button>
+      <button type="button" class="btn-action" style="background:#475569; color:#fff" onclick="printProformaDocument()"><i class="fas fa-print"></i> प्रिंट (A4)</button>
+      <button type="button" class="btn-action btn-pdf" onclick="generateAndDownloadPdf()"><i class="fas fa-file-pdf"></i> A4 PDF डाउनलोड</button>
       <button type="button" class="btn-action btn-submit" onclick="submitElectionForm()"><i class="fas fa-save"></i> डेटा सबमिट एवं लॉक करें</button>
     </div>
   </header>
@@ -388,12 +389,15 @@
           </div>
         </div>
 
-        <div style="margin-top:1.5rem; text-align:center; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap">
-          <button type="button" class="btn-action btn-submit" style="padding:0.75rem 1.75rem; font-size:1rem" onclick="submitElectionForm()">
-            <i class="fas fa-check-double"></i> अंतिम रूप से सुरक्षित एवं सबमिट करें
+        <div style="margin-top:1.5rem; text-align:center; display:flex; justify-content:center; gap:0.75rem; flex-wrap:wrap">
+          <button type="button" class="btn-action" style="background:#475569; color:#fff; padding:0.75rem 1.5rem; font-size:1rem" onclick="printProformaDocument()">
+            <i class="fas fa-print"></i> आधिकारिक A4 प्रिंट
           </button>
           <button type="button" class="btn-action btn-pdf" style="padding:0.75rem 1.75rem; font-size:1rem" onclick="generateAndDownloadPdf()">
-            <i class="fas fa-print"></i> आधिकारिक A4 PDF प्रिंट / डाउनलोड
+            <i class="fas fa-file-pdf"></i> A4 PDF डाउनलोड करें
+          </button>
+          <button type="button" class="btn-action btn-submit" style="padding:0.75rem 1.75rem; font-size:1rem" onclick="submitElectionForm()">
+            <i class="fas fa-check-double"></i> अंतिम रूप से सुरक्षित एवं सबमिट करें
           </button>
         </div>
       </div>
@@ -569,6 +573,35 @@
       if (sel) sel.value = ACTIVE_SCHOOL_CODE;
       
       loadSchoolForm(ACTIVE_SCHOOL_CODE);
+
+      // Cloud Live Sync: Fetch latest verification data from Google Sheet so cross-device PDF is never empty
+      const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+        || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+
+      fetch(`${gasUrl}?action=getElectionSubmissions&t=${Date.now()}`)
+        .then(r => r.json())
+        .then(res => {
+          if (res && res.success && res.submissions) {
+            let localSubs = {};
+            try { localSubs = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}'); } catch(e) {}
+            const merged = { ...localSubs, ...res.submissions };
+            localStorage.setItem('cbeo_election_submissions', JSON.stringify(merged));
+            loadSchoolForm(ACTIVE_SCHOOL_CODE);
+
+            if (urlParams.get('autoclick') === 'pdf' || urlParams.get('autopdf') === '1') {
+              setTimeout(() => { generateAndDownloadPdf(); }, 300);
+            }
+          } else {
+            if (urlParams.get('autoclick') === 'pdf' || urlParams.get('autopdf') === '1') {
+              setTimeout(() => { generateAndDownloadPdf(); }, 500);
+            }
+          }
+        })
+        .catch(() => {
+          if (urlParams.get('autoclick') === 'pdf' || urlParams.get('autopdf') === '1') {
+            setTimeout(() => { generateAndDownloadPdf(); }, 500);
+          }
+        });
     });
 
     function initSchoolSelector(loggedUser) {
@@ -884,14 +917,15 @@
       if (pad) pad.ctx.clearRect(0, 0, pad.c.width, pad.c.height);
     }
 
-    function collectFormData() {
+    function collectFormData(isForPdf = false) {
       const sch = (window.ELECTION_2026_SCHOOLS || []).find(s => s.shala_darpan_code === ACTIVE_SCHOOL_CODE);
-      const email = (document.getElementById('school-email-id')?.value || '').trim();
-      if (!email) {
+      let email = (document.getElementById('school-email-id')?.value || '').trim();
+      if (!email && !isForPdf) {
         alert('⚠️ कृपया विद्यालय की आधिकारिक ईमेल आईडी अवश्य दर्ज करें!');
         document.getElementById('school-email-id').focus();
         return null;
       }
+      if (!email) email = sch?.school_email || '-';
 
       const facilities = {};
       P3_CENTER_FACILITIES.forEach(f => {
@@ -959,7 +993,7 @@
     }
 
     async function submitElectionForm() {
-      const data = collectFormData();
+      const data = collectFormData(false);
       if (!data) return;
 
       const submitBtns = document.querySelectorAll('.btn-submit');
@@ -1003,64 +1037,64 @@
       alert(`✅ सफल! विद्यालय '${data.school_name}' का पंचायती राज चुनाव प्रपत्र-3 भौतिक सत्यापन सफलतापूर्वक Google Sheet एवं CBEO पोर्टल में सबमिट व सुरक्षित हो गया!`);
     }
 
-    function generateAndDownloadPdf() {
-      const data = collectFormData();
-      if (!data) return;
+    function populatePdfTemplate(data) {
+      const sch = (window.ELECTION_2026_SCHOOLS || []).find(s => s.shala_darpan_code === data.school_code);
 
-      const sch = (window.ELECTION_2026_SCHOOLS || []).find(s => s.shala_darpan_code === ACTIVE_SCHOOL_CODE);
-
-      // Populate printable template
-      document.getElementById('pdf-school-name').textContent = data.school_name;
+      document.getElementById('pdf-school-name').textContent = data.school_name || sch?.school_name || '-';
       document.getElementById('pdf-school-code').textContent = data.school_code;
-      document.getElementById('pdf-gp-name').textContent = data.panchayat_name;
-      document.getElementById('pdf-peeo-name').textContent = data.peeo_name;
-      document.getElementById('pdf-principal-name').textContent = `${data.principal.name} (${data.principal.mobile})`;
-      document.getElementById('pdf-school-email').textContent = data.school_email;
+      document.getElementById('pdf-gp-name').textContent = data.panchayat_name || sch?.panchayat_name || '-';
+      document.getElementById('pdf-peeo-name').textContent = data.peeo_name || sch?.peeo_name || '-';
+      document.getElementById('pdf-principal-name').textContent = `${data.principal.name || 'संस्था प्रधान'} (${data.principal.mobile || '-'})`;
+      document.getElementById('pdf-school-email').textContent = data.school_email || '-';
       document.getElementById('pdf-bldg-meta').textContent = `${data.bldg_type} | स्थिति: ${data.bldg_condition} | क्षे.: ${data.bldg_area} वर्ग मी. | पहुंच: ${data.bldg_road_dist}`;
-      document.getElementById('pdf-booths-count').textContent = `${sch.booth_count} मतदान कक्ष / बूथ`;
+      document.getElementById('pdf-booths-count').textContent = `${sch?.booth_count || 1} मतदान कक्ष / बूथ`;
       document.getElementById('pdf-remarks-disp').textContent = data.remarks || 'समस्त व्यवस्थाएं सुचारू पाई गईं।';
 
-      // 1. Center Facilities Table (P-3 Cols 11 to 16 + SEC)
+      // 1. Center Facilities Table
       const facTbody = document.getElementById('pdf-fac-tbody');
-      facTbody.innerHTML = P3_CENTER_FACILITIES.map((f, i) => {
-        const isOk = data.facilities[f.id];
-        return `
-          <tr>
-            <td style="border:1px solid #000; padding:2.5px; text-align:center">${i + 1}</td>
-            <td style="border:1px solid #000; padding:2.5px 6px">${f.title}</td>
-            <td style="border:1px solid #000; padding:2.5px; text-align:center; font-weight:bold; color:${isOk ? '#000' : '#b91c1c'}">
-              ${isOk ? 'हाँ (उपलब्ध)' : 'नहीं (कमी)'}
-            </td>
-            <td style="border:1px solid #000; padding:2.5px 6px; font-size:8pt">${isOk ? 'मौके पर व्यवस्था दुरुस्त पाई गई' : 'शीघ्र व्यवस्था अपेक्षित'}</td>
-          </tr>
-        `;
-      }).join('');
+      if (facTbody) {
+        facTbody.innerHTML = P3_CENTER_FACILITIES.map((f, i) => {
+          const isOk = data.facilities[f.id];
+          return `
+            <tr>
+              <td style="border:1px solid #000; padding:2px 4px; text-align:center">${i + 1}</td>
+              <td style="border:1px solid #000; padding:2px 6px">${f.title}</td>
+              <td style="border:1px solid #000; padding:2px 4px; text-align:center; font-weight:bold; color:${isOk ? '#000' : '#b91c1c'}">
+                ${isOk ? 'हाँ (उपलब्ध)' : 'नहीं (कमी)'}
+              </td>
+              <td style="border:1px solid #000; padding:2px 6px; font-size:8pt">${isOk ? 'मौके पर व्यवस्था दुरुस्त पाई गई' : 'शीघ्र व्यवस्था अपेक्षित'}</td>
+            </tr>
+          `;
+        }).join('');
+      }
 
-      // 2. Booth-wise table strictly matching Sheet P-3 Cols 17 to 22 + physical signature space
+      // 2. Booth-wise table
       const boothTbody = document.getElementById('pdf-booth-tbody');
-      boothTbody.innerHTML = (sch.booths || []).map(b => {
-        const bd = data.booth_details[b.booth_no] || {};
-        const constituencyInfo = `वार्ड:${b.ward || '-'}<br>PS:${b.ps_constituency || '-'}|ZP:${b.zp_constituency || '-'}|AC:${b.ac_constituency || 104}`;
-        const bloInfo = bd.blo_name ? `<strong>${bd.blo_name}</strong><br><span style="font-size:7pt">${bd.blo_post || 'BLO'} (${bd.blo_mobile || ''})</span>` : '-';
+      if (boothTbody) {
+        boothTbody.innerHTML = (sch?.booths || []).map(b => {
+          const bd = data.booth_details[b.booth_no] || {};
+          const constituencyInfo = `वार्ड:${b.ward || '-'}<br>PS:${b.ps_constituency || '-'}|ZP:${b.zp_constituency || '-'}|AC:${b.ac_constituency || 104}`;
+          const bloInfo = bd.blo_name ? `<strong>${bd.blo_name}</strong><br><span style="font-size:7pt">${bd.blo_post || 'BLO'} (${bd.blo_mobile || ''})</span>` : '-';
 
-        return `
-          <tr>
-            <td style="border:1px solid #000; padding:2.5px; text-align:center; font-weight:bold">${b.booth_no}</td>
-            <td style="border:1px solid #000; padding:2.5px 5px">${b.room_hi}</td>
-            <td style="border:1px solid #000; padding:2.5px; text-align:center; font-size:7.5pt">${constituencyInfo}</td>
-            <td style="border:1px solid #000; padding:2.5px; text-align:center">${bd.air_light ? 'हाँ' : 'नहीं'}</td>
-            <td style="border:1px solid #000; padding:2.5px; text-align:center">${bd.furniture ? 'हाँ' : 'नहीं'}</td>
-            <td style="border:1px solid #000; padding:2.5px; text-align:center">${bd.doors ? 'हाँ' : 'नहीं'}</td>
-            <td style="border:1px solid #000; padding:2.5px; text-align:center">${bd.fan ? 'हाँ' : 'नहीं'}</td>
-            <td style="border:1px solid #000; padding:2.5px; text-align:center; font-size:7.5pt">${bd.win_door}</td>
-            <td style="border:1px solid #000; padding:2.5px 5px">${bloInfo}</td>
-            <td style="border:1px solid #000; padding:2.5px; text-align:center; font-size:7pt; color:#666">
-              <div style="height:22px"></div>
-              (हस्ताक्षर BLO)
-            </td>
-          </tr>
-        `;
-      }).join('');
+          return `
+            <tr>
+              <td style="border:1px solid #000; padding:2px; text-align:center; font-weight:bold">${b.booth_no}</td>
+              <td style="border:1px solid #000; padding:2px 5px">${b.room_hi}</td>
+              <td style="border:1px solid #000; padding:2px; text-align:center; font-size:7.5pt">${constituencyInfo}</td>
+              <td style="border:1px solid #000; padding:2px; text-align:center">${bd.air_light ? 'हाँ' : 'नहीं'}</td>
+              <td style="border:1px solid #000; padding:2px; text-align:center">${bd.furniture ? 'हाँ' : 'नहीं'}</td>
+              <td style="border:1px solid #000; padding:2px; text-align:center">${bd.doors ? 'हाँ' : 'नहीं'}</td>
+              <td style="border:1px solid #000; padding:2px; text-align:center">${bd.fan ? 'हाँ' : 'नहीं'}</td>
+              <td style="border:1px solid #000; padding:2px; text-align:center; font-size:7.5pt">${bd.win_door}</td>
+              <td style="border:1px solid #000; padding:2px 5px">${bloInfo}</td>
+              <td style="border:1px solid #000; padding:2px; text-align:center; font-size:7pt; color:#666">
+                <div style="height:22px"></div>
+                (हस्ताक्षर BLO)
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
 
       // Principal Signature
       document.getElementById('pdf-principal-name-disp').textContent = data.principal.name;
@@ -1069,25 +1103,110 @@
 
       const princImg = document.getElementById('pdf-principal-sig-img');
       if (data.principal.sig && princImg) princImg.innerHTML = `<img src="${data.principal.sig}" style="max-height:35px; max-width:110px">`;
+    }
 
-      const el = document.getElementById('print-proforma-area');
-      el.style.display = 'block';
+    async function generateAndDownloadPdf() {
+      const data = collectFormData(true);
+      if (!data) return;
 
-      const opt = {
-        margin: [5, 5, 5, 5],
-        filename: `Election_P3_Verification_Bhinai_${data.school_code}.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
-      };
-
-      html2pdf().set(opt).from(el).save().then(() => {
-        el.style.display = 'none';
-      }).catch(err => {
-        console.error('PDF error:', err);
-        window.print();
-        el.style.display = 'none';
+      const pdfBtns = document.querySelectorAll('.btn-pdf');
+      pdfBtns.forEach(b => {
+        b.disabled = true;
+        b.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PDF तैयार हो रही है...';
       });
+
+      populatePdfTemplate(data);
+
+      const sourceEl = document.getElementById('print-proforma-area');
+      if (!sourceEl) {
+        alert('त्रुटि: प्रपत्र टेम्पलेट नहीं मिला।');
+        return;
+      }
+
+      // Create pristine offscreen capture element directly attached to body
+      const captureBox = document.createElement('div');
+      captureBox.id = 'temp-pdf-capture-box';
+      captureBox.style.cssText = 'position:fixed; left:0; top:0; width:1120px; background:#ffffff; color:#000000; z-index:99999999; padding:8mm 10mm; box-sizing:border-box; font-family:"Noto Sans Devanagari", Roboto, sans-serif;';
+      captureBox.innerHTML = sourceEl.innerHTML;
+      document.body.appendChild(captureBox);
+
+      try {
+        if (document.fonts && document.fonts.ready) {
+          try { await document.fonts.ready; } catch(ef) {}
+        }
+
+        const opt = {
+          margin: [4, 4, 4, 4],
+          filename: `Election_P3_Verification_Bhinai_${data.school_code}.pdf`,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: {
+            scale: 2,
+            useCORS: true,
+            logging: false,
+            scrollY: 0,
+            scrollX: 0,
+            windowWidth: 1200
+          },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
+          pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+        };
+
+        await html2pdf().set(opt).from(captureBox).save();
+      } catch(err) {
+        console.error('html2pdf generation error:', err);
+        alert('⚠️ PDF डाउनलोड में समस्या आई, अब प्रिंट विंडो खोली जा रही है...');
+        printProformaDocument();
+      } finally {
+        if (captureBox && captureBox.parentNode) {
+          captureBox.parentNode.removeChild(captureBox);
+        }
+        pdfBtns.forEach(b => {
+          b.disabled = false;
+          b.innerHTML = '<i class="fas fa-file-pdf"></i> A4 PDF डाउनलोड';
+        });
+      }
+    }
+
+    function printProformaDocument() {
+      const data = collectFormData(true);
+      if (!data) return;
+      populatePdfTemplate(data);
+
+      const sourceEl = document.getElementById('print-proforma-area');
+      if (!sourceEl) return;
+
+      const printWin = window.open('', '_blank', 'width=1100,height=850');
+      if (!printWin) {
+        window.print();
+        return;
+      }
+
+      printWin.document.write(`
+        <!DOCTYPE html>
+        <html lang="hi">
+        <head>
+          <meta charset="UTF-8">
+          <title>Election_P3_Verification_${data.school_code}</title>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Noto+Sans+Devanagari:wght@400;700;900&display=swap">
+          <style>
+            @page { size: A4 landscape; margin: 4mm 5mm; }
+            * { box-sizing: border-box; font-family: 'Roboto', 'Noto Sans Devanagari', sans-serif; }
+            body { margin: 0; padding: 4mm; color: #000; background: #fff; }
+            table { border-collapse: collapse; width: 100%; }
+            th, td { padding: 2.5px 4px; }
+          </style>
+        </head>
+        <body>
+          ${sourceEl.innerHTML}
+          <script>
+            window.onload = function() {
+              setTimeout(function() { window.print(); }, 400);
+            };
+          <\/script>
+        </body>
+        </html>
+      `);
+      printWin.document.close();
     }
   </script>
 </body>
