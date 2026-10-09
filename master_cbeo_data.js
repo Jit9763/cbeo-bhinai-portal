@@ -40882,14 +40882,15 @@ const MASTER_CBEO_DATA = {
     }
   },
   "portal_settings_bundle": {
-    "__SAMAN_ACTIVE_FORM__": "syllabus",
-    "saman_active_form": "syllabus",
+    "__SAMAN_ACTIVE_FORM__": "indent",
+    "saman_active_form": "indent",
     "__TAB_VISIBILITY_6LEVEL__": {
       "saman-pariksha": {
         "cbeo": true,
         "peeo": true,
         "govt_sec_srsec": true,
-        "pvt_sec_srsec": true,
+        "pvt_sec_srsec": false,
+        "sec_srsec": true,
         "all_govt": false,
         "all_schools": false
       },
@@ -40963,6 +40964,24 @@ const MASTER_CBEO_DATA = {
         "govt_sec_srsec": true,
         "pvt_sec_srsec": false,
         "all_govt": true,
+        "all_schools": false
+      },
+      "saman_indent": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_syllabus": {
+        "cbeo": true,
+        "peeo": true,
+        "govt_sec_srsec": true,
+        "pvt_sec_srsec": false,
+        "sec_srsec": true,
+        "all_govt": false,
         "all_schools": false
       }
     },
@@ -40971,7 +40990,8 @@ const MASTER_CBEO_DATA = {
         "cbeo": true,
         "peeo": true,
         "govt_sec_srsec": true,
-        "pvt_sec_srsec": true,
+        "pvt_sec_srsec": false,
+        "sec_srsec": true,
         "all_govt": false,
         "all_schools": false
       },
@@ -41045,6 +41065,24 @@ const MASTER_CBEO_DATA = {
         "govt_sec_srsec": true,
         "pvt_sec_srsec": false,
         "all_govt": true,
+        "all_schools": false
+      },
+      "saman_indent": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_syllabus": {
+        "cbeo": true,
+        "peeo": true,
+        "govt_sec_srsec": true,
+        "pvt_sec_srsec": false,
+        "sec_srsec": true,
+        "all_govt": false,
         "all_schools": false
       }
     },
@@ -41053,7 +41091,8 @@ const MASTER_CBEO_DATA = {
         "cbeo": true,
         "peeo": true,
         "govt_sec_srsec": true,
-        "pvt_sec_srsec": true,
+        "pvt_sec_srsec": false,
+        "sec_srsec": true,
         "all_govt": false,
         "all_schools": false
       },
@@ -41127,6 +41166,24 @@ const MASTER_CBEO_DATA = {
         "govt_sec_srsec": true,
         "pvt_sec_srsec": false,
         "all_govt": true,
+        "all_schools": false
+      },
+      "saman_indent": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_syllabus": {
+        "cbeo": true,
+        "peeo": true,
+        "govt_sec_srsec": true,
+        "pvt_sec_srsec": false,
+        "sec_srsec": true,
+        "all_govt": false,
         "all_schools": false
       }
     },
@@ -41135,7 +41192,8 @@ const MASTER_CBEO_DATA = {
         "cbeo": true,
         "peeo": true,
         "govt_sec_srsec": true,
-        "pvt_sec_srsec": true,
+        "pvt_sec_srsec": false,
+        "sec_srsec": true,
         "all_govt": false,
         "all_schools": false
       },
@@ -41209,6 +41267,24 @@ const MASTER_CBEO_DATA = {
         "govt_sec_srsec": true,
         "pvt_sec_srsec": false,
         "all_govt": true,
+        "all_schools": false
+      },
+      "saman_indent": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_syllabus": {
+        "cbeo": true,
+        "peeo": true,
+        "govt_sec_srsec": true,
+        "pvt_sec_srsec": false,
+        "sec_srsec": true,
+        "all_govt": false,
         "all_schools": false
       }
     },
@@ -41218,6 +41294,25 @@ const MASTER_CBEO_DATA = {
         "peeo": true,
         "govt_sec_srsec": true,
         "pvt_sec_srsec": false,
+        "sec_srsec": true,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_indent": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_syllabus": {
+        "cbeo": true,
+        "peeo": true,
+        "govt_sec_srsec": true,
+        "pvt_sec_srsec": false,
+        "sec_srsec": true,
         "all_govt": false,
         "all_schools": false
       }
@@ -41228,6 +41323,25 @@ const MASTER_CBEO_DATA = {
         "peeo": true,
         "govt_sec_srsec": true,
         "pvt_sec_srsec": false,
+        "sec_srsec": true,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_indent": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_syllabus": {
+        "cbeo": true,
+        "peeo": true,
+        "govt_sec_srsec": true,
+        "pvt_sec_srsec": false,
+        "sec_srsec": true,
         "all_govt": false,
         "all_schools": false
       }
@@ -41245,6 +41359,12 @@ const MASTER_CBEO_DATA = {
       "alert_message": "मान्यवर संस्था प्रधान, आपके विद्यालय द्वारा समान परीक्षा 2026-27 के मांग प्रपत्र में भरा गया कक्षावार नामांकन शाला दर्पण के वास्तविक नामांकन से भिन्न (मिसमैच) पाया गया है।\n\nकार्यालय CBEO भिनाय (अजमेर) द्वारा आपके विद्यालय के लिए मांग प्रपत्र में संशोधन (Custom Edit) की विशेष सुविधा खोल दी गई है। कृपया तुरंत मांग पत्रक में सुधार कर पुनः सबमिट करें।",
       "custom_edit_schools": [],
       "mismatch_details": {}
+    },
+    "__PORTAL_SETTINGS__": {
+      "saman_school_type_filter": "all"
+    },
+    "portal_settings": {
+      "saman_school_type_filter": "all"
     }
   }
 };
