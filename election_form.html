@@ -203,24 +203,54 @@
       cursor: pointer;
     }
 
-    /* Print Preview Modal / Section */
-    #print-proforma-area {
+    /* Official A4 Print & Modal Styles (Matching Saman Pariksha Pattern) */
+    .modal-overlay-election {
       display: none;
-      background: #ffffff;
-      padding: 12mm 10mm;
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      color: #000;
-      font-size: 10pt;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.75);
+      z-index: 10000;
+      justify-content: center;
+      align-items: flex-start;
+      overflow-y: auto;
+      padding: 20px 10px;
+      box-sizing: border-box;
+    }
+    .modal-card-election {
+      background: #ffffff;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 1140px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      overflow: hidden;
+      margin: auto;
+    }
+    #printable-election-sheet-content {
+      background: #ffffff;
+      width: 1060px;
+      min-height: 600px;
+      margin: 0 auto;
+      padding: 8mm 10mm;
+      box-sizing: border-box;
+      color: #000000;
+      font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
     @media print {
-      body * { visibility: hidden; }
-      #print-proforma-area, #print-proforma-area * { visibility: visible; }
-      #print-proforma-area {
-        display: block !important;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
+      body * { visibility: hidden !important; }
+      #printable-election-sheet-content,
+      #printable-election-sheet-content * {
+        visibility: visible !important;
+      }
+      #printable-election-sheet-content {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
       }
     }
   </style>
@@ -405,116 +435,141 @@
 
   </div>
 
-  <!-- Hidden Printable A4 Layout for PDF Generation (Exact P-3 Sheet Format) -->
-  <div id="print-proforma-area">
-    <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:6px; margin-bottom:8px">
-      <div style="font-size:11pt; font-weight:bold; letter-spacing:0.5px">राजस्थान सरकार | स्कूल शिक्षा विभाग</div>
-      <div style="font-size:15pt; font-weight:900; margin:2px 0">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)</div>
-      <div style="font-size:9.5pt; color:#222">समग्र शिक्षा अभियान | ब्लॉक: भिनाय | <strong>जिला: अजमेर (AJMER)</strong></div>
-      <div style="display:inline-block; border:1.5px solid #000; padding:2px 14px; margin-top:4px; font-weight:bold; font-size:11pt; background:#f1f5f9">
+  <!-- Modal: Official A4 Landscape Preview & Print (Exact Saman Pariksha Pattern) -->
+  <div id="modal-election-pdf-preview" class="modal-overlay-election">
+    <div class="modal-card-election">
+      <div style="background:linear-gradient(135deg, #1e3a8a, #0f172a); color:#fff; padding:12px 20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px">
+        <div>
+          <h3 style="font-size:1.1rem; font-weight:900; margin:0">
+            🏛️ प्रपत्र-3 भौतिक सत्यापन रिपोर्ट (आधिकारिक A4 प्रीव्यू)
+          </h3>
+          <div style="font-size:0.8rem; color:#93c5fd">जिला: अजमेर (AJMER) | ब्लॉक: भिनाय</div>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+          <button type="button" onclick="downloadElectionPDFDirect()" style="font-weight:800; background:#f59e0b; border:none; padding:7px 14px; border-radius:6px; color:#0f172a; cursor:pointer">
+            <i class="fas fa-file-download"></i> 📥 सीधे PDF डाउनलोड करें
+          </button>
+          <button type="button" onclick="printOfficialElectionDocument()" style="font-weight:800; background:#0284c7; border:none; padding:7px 14px; border-radius:6px; color:#fff; cursor:pointer">
+            <i class="fas fa-print"></i> 🖨️ A4 साइज प्रिंट करें (Print)
+          </button>
+          <button type="button" onclick="closeElectionPdfModal()" style="background:#dc2626; color:#fff; border:none; padding:7px 12px; border-radius:6px; font-weight:700; cursor:pointer">
+            ✕ बंद करें
+          </button>
+        </div>
+      </div>
+      <div style="padding:15px; background:#94a3b8; overflow-x:auto">
+        <div id="printable-election-sheet-content" style="background:#ffffff; color:#000000; padding:6mm 8mm; box-sizing:border-box; font-family:'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; letter-spacing:normal">
+    <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:3px; margin-bottom:4px">
+      <div style="font-size:9pt; font-weight:bold; letter-spacing:normal">राजस्थान सरकार | स्कूल शिक्षा विभाग</div>
+      <div style="font-size:13pt; font-weight:900; margin:1px 0">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)</div>
+      <div style="font-size:8pt; color:#222">समग्र शिक्षा अभियान | ब्लॉक: भिनाय | <strong>जिला: अजमेर (AJMER)</strong></div>
+      <div style="display:inline-block; border:1.5px solid #000; padding:1px 12px; margin-top:2px; font-weight:bold; font-size:9.5pt; background:#f1f5f9">
         प्रपत्र-3: पंचायतीराज संस्थाओं के निर्वाचन हेतु मतदान केन्द्रों का भौतिक सत्यापन रिपोर्ट 2026
       </div>
     </div>
 
     <!-- School Meta Info Table -->
-    <table style="width:100%; border-collapse:collapse; margin-bottom:8px; font-size:9pt; border:1.5px solid #000">
+    <table style="width:100%; border-collapse:collapse; margin-bottom:4px; font-size:8pt; border:1.5px solid #000">
       <tr>
-        <td style="border:1px solid #000; padding:3px 6px; font-weight:bold; width:18%; background:#f8fafc">ग्राम पंचायत:</td>
-        <td style="border:1px solid #000; padding:3px 6px; width:32%" id="pdf-gp-name">-</td>
-        <td style="border:1px solid #000; padding:3px 6px; font-weight:bold; width:18%; background:#f8fafc">मतदान केंद्र / विद्यालय:</td>
-        <td style="border:1px solid #000; padding:3px 6px; width:32%; font-weight:bold" id="pdf-school-name">-</td>
+        <td style="border:1px solid #000; padding:2px 5px; font-weight:bold; width:18%; background:#f8fafc">ग्राम पंचायत:</td>
+        <td style="border:1px solid #000; padding:2px 5px; width:32%" id="pdf-gp-name">-</td>
+        <td style="border:1px solid #000; padding:2px 5px; font-weight:bold; width:18%; background:#f8fafc">मतदान केंद्र / विद्यालय:</td>
+        <td style="border:1px solid #000; padding:2px 5px; width:32%; font-weight:bold" id="pdf-school-name">-</td>
       </tr>
       <tr>
-        <td style="border:1px solid #000; padding:3px 6px; font-weight:bold; background:#f8fafc">शाला दर्पण / PSP कोड:</td>
-        <td style="border:1px solid #000; padding:3px 6px;" id="pdf-school-code">-</td>
-        <td style="border:1px solid #000; padding:3px 6px; font-weight:bold; background:#f8fafc">PEEO परिक्षेत्र:</td>
-        <td style="border:1px solid #000; padding:3px 6px;" id="pdf-peeo-name">-</td>
+        <td style="border:1px solid #000; padding:2px 5px; font-weight:bold; background:#f8fafc">शाला दर्पण / PSP कोड:</td>
+        <td style="border:1px solid #000; padding:2px 5px;" id="pdf-school-code">-</td>
+        <td style="border:1px solid #000; padding:2px 5px; font-weight:bold; background:#f8fafc">PEEO परिक्षेत्र:</td>
+        <td style="border:1px solid #000; padding:2px 5px;" id="pdf-peeo-name">-</td>
       </tr>
       <tr>
-        <td style="border:1px solid #000; padding:3px 6px; font-weight:bold; background:#f8fafc">संस्था प्रधान नाम:</td>
-        <td style="border:1px solid #000; padding:3px 6px;" id="pdf-principal-name">-</td>
-        <td style="border:1px solid #000; padding:3px 6px; font-weight:bold; background:#f8fafc">विद्यालय ईमेल:</td>
-        <td style="border:1px solid #000; padding:3px 6px;" id="pdf-school-email">-</td>
+        <td style="border:1px solid #000; padding:2px 5px; font-weight:bold; background:#f8fafc">संस्था प्रधान नाम:</td>
+        <td style="border:1px solid #000; padding:2px 5px;" id="pdf-principal-name">-</td>
+        <td style="border:1px solid #000; padding:2px 5px; font-weight:bold; background:#f8fafc">विद्यालय ईमेल:</td>
+        <td style="border:1px solid #000; padding:2px 5px;" id="pdf-school-email">-</td>
       </tr>
       <tr>
-        <td style="border:1px solid #000; padding:3px 6px; font-weight:bold; background:#f8fafc">भवन स्थिति / क्षेत्रफल:</td>
-        <td style="border:1px solid #000; padding:3px 6px;" id="pdf-bldg-meta">-</td>
-        <td style="border:1px solid #000; padding:3px 6px; font-weight:bold; background:#f8fafc">कुल मतदान बूथ संख्या:</td>
-        <td style="border:1px solid #000; padding:3px 6px; font-weight:bold" id="pdf-booths-count">-</td>
+        <td style="border:1px solid #000; padding:2px 5px; font-weight:bold; background:#f8fafc">भवन स्थिति / क्षेत्रफल:</td>
+        <td style="border:1px solid #000; padding:2px 5px;" id="pdf-bldg-meta">-</td>
+        <td style="border:1px solid #000; padding:2px 5px; font-weight:bold; background:#f8fafc">कुल मतदान बूथ संख्या:</td>
+        <td style="border:1px solid #000; padding:2px 5px; font-weight:bold" id="pdf-booths-count">-</td>
       </tr>
     </table>
 
     <!-- 1. Center Level Facilities Table (P-3 Cols 11-16) -->
-    <div style="font-weight:bold; font-size:9.5pt; margin-bottom:3px">
+    <div style="font-weight:bold; font-size:8.5pt; margin-bottom:2px">
       1. मतदान केंद्र / भवन स्तरीय मूलभूत भौतिक सुविधाओं का सत्यापन:
     </div>
-    <table style="width:100%; border-collapse:collapse; margin-bottom:10px; font-size:8.5pt; border:1.5px solid #000" id="pdf-fac-table">
+    <table style="width:100%; border-collapse:collapse; margin-bottom:4px; font-size:7.5pt; border:1.5px solid #000" id="pdf-fac-table">
       <thead>
         <tr style="background:#e2e8f0; text-align:center">
-          <th style="border:1px solid #000; padding:3px; width:5%">क्र.</th>
-          <th style="border:1px solid #000; padding:3px; text-align:left">सुविधा / व्यवस्था (प्रपत्र-3 अनुसार)</th>
-          <th style="border:1px solid #000; padding:3px; width:14%">उपलब्धता स्थिति</th>
-          <th style="border:1px solid #000; padding:3px; width:30%">कैफियत / टिप्पणी</th>
+          <th style="border:1px solid #000; padding:2px 3px; width:5%">क्र.</th>
+          <th style="border:1px solid #000; padding:2px 3px; text-align:left">सुविधा / व्यवस्था (प्रपत्र-3 अनुसार)</th>
+          <th style="border:1px solid #000; padding:2px 3px; width:14%">उपलब्धता स्थिति</th>
+          <th style="border:1px solid #000; padding:2px 3px; width:30%">कैफियत / टिप्पणी</th>
         </tr>
       </thead>
       <tbody id="pdf-fac-tbody"></tbody>
     </table>
 
     <!-- 2. Booth Wise Detailed Table (P-3 Cols 17-22 + BLO Sign space) -->
-    <div style="font-weight:bold; font-size:9.5pt; margin-bottom:3px">
+    <div style="font-weight:bold; font-size:8.5pt; margin-bottom:2px">
       2. मतदान कक्ष / बूथ-वार विस्तृत भौतिक सत्यापन एवं अधिकृत BLO प्रगणक विवरण:
     </div>
-    <table style="width:100%; border-collapse:collapse; margin-bottom:10px; font-size:8pt; border:1.5px solid #000" id="pdf-booth-table">
+    <table style="width:100%; border-collapse:collapse; margin-bottom:4px; font-size:7.2pt; border:1.5px solid #000" id="pdf-booth-table">
       <thead>
         <tr style="background:#e2e8f0; text-align:center">
-          <th style="border:1px solid #000; padding:3px; width:4%">बूथ</th>
-          <th style="border:1px solid #000; padding:3px; text-align:left; width:22%">मतदान कक्ष / कमरा विवरण</th>
-          <th style="border:1px solid #000; padding:3px; width:12%">निर्वाचन क्षेत्र (वार्ड/PS/ZP)</th>
-          <th style="border:1px solid #000; padding:3px; width:7%">हवा/प्रकाश</th>
-          <th style="border:1px solid #000; padding:3px; width:7%">फर्नीचर</th>
-          <th style="border:1px solid #000; padding:3px; width:7%">पृथक द्वार</th>
-          <th style="border:1px solid #000; padding:3px; width:7%">छत पंखा</th>
-          <th style="border:1px solid #000; padding:3px; width:7%">खिड़की/द्वार</th>
-          <th style="border:1px solid #000; padding:3px; text-align:left; width:17%">BLO/प्रगणक (नाम, पद, मो.)</th>
-          <th style="border:1px solid #000; padding:3px; width:10%">हस्ताक्षर BLO</th>
+          <th style="border:1px solid #000; padding:2px; width:4%">बूथ</th>
+          <th style="border:1px solid #000; padding:2px; text-align:left; width:22%">मतदान कक्ष / कमरा विवरण</th>
+          <th style="border:1px solid #000; padding:2px; width:12%">निर्वाचन क्षेत्र (वार्ड/PS/ZP)</th>
+          <th style="border:1px solid #000; padding:2px; width:7%">हवा/प्रकाश</th>
+          <th style="border:1px solid #000; padding:2px; width:7%">फर्नीचर</th>
+          <th style="border:1px solid #000; padding:2px; width:7%">पृथक द्वार</th>
+          <th style="border:1px solid #000; padding:2px; width:7%">छत पंखा</th>
+          <th style="border:1px solid #000; padding:2px; width:7%">खिड़की/द्वार</th>
+          <th style="border:1px solid #000; padding:2px; text-align:left; width:17%">BLO/प्रगणक (नाम, पद, मो.)</th>
+          <th style="border:1px solid #000; padding:2px; width:10%">हस्ताक्षर BLO</th>
         </tr>
       </thead>
       <tbody id="pdf-booth-tbody"></tbody>
     </table>
 
     <!-- Remarks & Certification -->
-    <div style="font-size:8pt; margin-bottom:6px">
+    <div style="font-size:7.5pt; margin-bottom:3px">
       <strong>विशेष टिप्पणी:</strong> <span id="pdf-remarks-disp">समस्त व्यवस्थाएं सुचारू पाई गईं।</span>
     </div>
 
-    <div style="font-size:8.5pt; line-height:1.3; border-top:1px dashed #666; padding-top:4px">
+    <div style="font-size:7.5pt; line-height:1.2; border-top:1px dashed #666; padding-top:2px">
       <strong>प्रमाणीकरण:</strong> प्रमाणित किया जाता है कि उपरोक्त सभी मतदान केंद्रों व कक्षों का मौके पर निरीक्षण कर संबंधित BLO/प्रगणकों द्वारा भौतिक सत्यापन कर लिया गया है। राज्य निर्वाचन आयोग के निर्देशानुसार मतदान दिवस तक समस्त व्यवस्थाएं दुरुस्त रखी जाएंगी।
     </div>
 
     <!-- Signatures -->
-    <div style="display:flex; justify-content:space-between; margin-top:15px; padding:0 15px">
-      <div style="text-align:center; width:40%; font-size:8.5pt">
-        <div style="height:35px"></div>
-        <div style="border-top:1px solid #000; padding-top:3px">
+    <div style="display:flex; justify-content:space-between; margin-top:8px; padding:0 15px">
+      <div style="text-align:center; width:40%; font-size:8pt">
+        <div style="height:28px"></div>
+        <div style="border-top:1px solid #000; padding-top:2px">
           <strong>हस्ताक्षर अधिकृत BLO / प्रगणकगण</strong><br>
-          <span style="font-size:7.5pt">(बूथ-वार उपरोक्त तालिका में भौतिक हस्ताक्षरित)</span>
+          <span style="font-size:7pt">(बूथ-वार उपरोक्त तालिका में भौतिक हस्ताक्षरित)</span>
         </div>
       </div>
 
-      <div style="text-align:center; width:40%; font-size:8.5pt">
-        <div id="pdf-principal-sig-img" style="height:35px; display:flex; align-items:flex-end; justify-content:center"></div>
-        <div style="border-top:1px solid #000; padding-top:3px">
+      <div style="text-align:center; width:40%; font-size:8pt">
+        <div id="pdf-principal-sig-img" style="height:28px; display:flex; align-items:flex-end; justify-content:center"></div>
+        <div style="border-top:1px solid #000; padding-top:2px">
           <strong id="pdf-principal-name-disp">श्री संस्था प्रधान</strong><br>
-          <span style="font-size:7.5pt">संस्था प्रधान मय सील/मुहर</span><br>
-          <span style="font-size:7.5pt" id="pdf-principal-mobile-disp">मो. 94XXXXXXXX</span>
+          <span style="font-size:7pt">संस्था प्रधान मय सील/मुहर</span><br>
+          <span style="font-size:7pt" id="pdf-principal-mobile-disp">मो. 94XXXXXXXX</span>
         </div>
       </div>
     </div>
 
-    <div style="margin-top:10px; font-size:7.5pt; color:#555; text-align:center">
+    <div style="margin-top:4px; font-size:7pt; color:#555; text-align:center">
       आधिकारिक सत्यापन यूआरएल: https://jit9763.github.io/cbeo-bhinai-portal/ | मुद्रण दिनांक: <span id="pdf-print-date"></span>
     </div>
-  </div>
+        </div><!-- /#printable-election-sheet-content -->
+      </div><!-- /modal-body-wrap -->
+    </div><!-- /.modal-card-election -->
+  </div><!-- /#modal-election-pdf-preview -->
 
   <script>
     // State & Config
@@ -1105,108 +1160,210 @@
       if (data.principal.sig && princImg) princImg.innerHTML = `<img src="${data.principal.sig}" style="max-height:35px; max-width:110px">`;
     }
 
-    async function generateAndDownloadPdf() {
+    function openElectionPdfModal() {
       const data = collectFormData(true);
       if (!data) return;
-
-      const pdfBtns = document.querySelectorAll('.btn-pdf');
-      pdfBtns.forEach(b => {
-        b.disabled = true;
-        b.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PDF तैयार हो रही है...';
-      });
-
       populatePdfTemplate(data);
 
-      const sourceEl = document.getElementById('print-proforma-area');
-      if (!sourceEl) {
-        alert('त्रुटि: प्रपत्र टेम्पलेट नहीं मिला।');
-        return;
-      }
-
-      // Create pristine offscreen capture element directly attached to body
-      const captureBox = document.createElement('div');
-      captureBox.id = 'temp-pdf-capture-box';
-      captureBox.style.cssText = 'position:fixed; left:0; top:0; width:1120px; background:#ffffff; color:#000000; z-index:99999999; padding:8mm 10mm; box-sizing:border-box; font-family:"Noto Sans Devanagari", Roboto, sans-serif;';
-      captureBox.innerHTML = sourceEl.innerHTML;
-      document.body.appendChild(captureBox);
-
-      try {
-        if (document.fonts && document.fonts.ready) {
-          try { await document.fonts.ready; } catch(ef) {}
-        }
-
-        const opt = {
-          margin: [4, 4, 4, 4],
-          filename: `Election_P3_Verification_Bhinai_${data.school_code}.pdf`,
-          image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: {
-            scale: 2,
-            useCORS: true,
-            logging: false,
-            scrollY: 0,
-            scrollX: 0,
-            windowWidth: 1200
-          },
-          jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
-          pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-        };
-
-        await html2pdf().set(opt).from(captureBox).save();
-      } catch(err) {
-        console.error('html2pdf generation error:', err);
-        alert('⚠️ PDF डाउनलोड में समस्या आई, अब प्रिंट विंडो खोली जा रही है...');
-        printProformaDocument();
-      } finally {
-        if (captureBox && captureBox.parentNode) {
-          captureBox.parentNode.removeChild(captureBox);
-        }
-        pdfBtns.forEach(b => {
-          b.disabled = false;
-          b.innerHTML = '<i class="fas fa-file-pdf"></i> A4 PDF डाउनलोड';
-        });
-      }
+      const modal = document.getElementById('modal-election-pdf-preview');
+      if (modal) modal.style.display = 'flex';
     }
 
-    function printProformaDocument() {
-      const data = collectFormData(true);
-      if (!data) return;
-      populatePdfTemplate(data);
+    function closeElectionPdfModal() {
+      const modal = document.getElementById('modal-election-pdf-preview');
+      if (modal) modal.style.display = 'none';
+    }
 
-      const sourceEl = document.getElementById('print-proforma-area');
-      if (!sourceEl) return;
+    /* ========================================================
+       CLEAN A4 LANDSCAPE PRINT ENGINE (Exact Saman Pariksha Logic)
+       ======================================================== */
+    function printCleanA4Landscape(containerId, title) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
 
-      const printWin = window.open('', '_blank', 'width=1100,height=850');
-      if (!printWin) {
+      const printWindow = window.open('', '_blank', 'width=1150,height=800');
+      if (!printWindow) {
         window.print();
         return;
       }
 
-      printWin.document.write(`
-        <!DOCTYPE html>
-        <html lang="hi">
-        <head>
-          <meta charset="UTF-8">
-          <title>Election_P3_Verification_${data.school_code}</title>
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Noto+Sans+Devanagari:wght@400;700;900&display=swap">
-          <style>
-            @page { size: A4 landscape; margin: 4mm 5mm; }
-            * { box-sizing: border-box; font-family: 'Roboto', 'Noto Sans Devanagari', sans-serif; }
-            body { margin: 0; padding: 4mm; color: #000; background: #fff; }
-            table { border-collapse: collapse; width: 100%; }
-            th, td { padding: 2.5px 4px; }
-          </style>
-        </head>
-        <body>
-          ${sourceEl.innerHTML}
-          <script>
-            window.onload = function() {
-              setTimeout(function() { window.print(); }, 400);
-            };
-          <\/script>
-        </body>
-        </html>
-      `);
-      printWin.document.close();
+      const contentHtml = container.innerHTML;
+      printWindow.document.open();
+      printWindow.document.write(`<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <title>${title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4 landscape;
+      margin: 3mm 4mm;
+    }
+    * {
+      box-sizing: border-box;
+      font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      color: #000000;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .print-container {
+      width: 100%;
+      padding: 0;
+      margin: 0 auto;
+      page-break-after: avoid;
+      page-break-inside: avoid;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      page-break-inside: avoid;
+    }
+    tr, td, th {
+      page-break-inside: avoid;
+    }
+    td, th {
+      padding: 2.5px 3px !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="print-container">
+    ${contentHtml}
+  </div>
+</body>
+</html>`);
+      printWindow.document.close();
+      printWindow.focus();
+      setTimeout(() => {
+        printWindow.print();
+        printWindow.close();
+      }, 450);
+    }
+
+    function printOfficialElectionDocument() {
+      const data = collectFormData(true);
+      if (!data) return;
+      populatePdfTemplate(data);
+      const title = `प्रपत्र-3 भौतिक सत्यापन रिपोर्ट 2026 - ${data.school_name}`;
+      printCleanA4Landscape('printable-election-sheet-content', title);
+    }
+
+    /* ========================================================
+       TOAST FEEDBACK
+       ======================================================== */
+    function showElectionToast(msg, type = 'info') {
+      let toast = document.getElementById('election-toast-msg');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'election-toast-msg';
+        toast.style.cssText = 'position:fixed; bottom:24px; right:24px; z-index:9999999; padding:12px 20px; border-radius:8px; font-weight:700; font-size:0.92rem; box-shadow:0 8px 24px rgba(0,0,0,0.25); transition:all 0.3s ease; color:#fff;';
+        document.body.appendChild(toast);
+      }
+      toast.style.background = type === 'success' ? '#16a34a' : (type === 'warning' ? '#d97706' : '#2563eb');
+      toast.innerHTML = msg;
+      toast.style.display = 'block';
+      toast.style.opacity = '1';
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => { toast.style.display = 'none'; }, 300);
+      }, 3500);
+    }
+
+    /* ========================================================
+       DIRECT A4 LANDSCAPE PDF DOWNLOAD (Exact Saman Pariksha Logic)
+       ======================================================== */
+    async function downloadElectionPDFDirect() {
+      const data = collectFormData(true);
+      if (!data) return;
+      populatePdfTemplate(data);
+
+      const container = document.getElementById('printable-election-sheet-content');
+      if (!container) return;
+
+      const filename = `Election_P3_Verification_Bhinai_${data.school_code}.pdf`;
+      showElectionToast('📥 अधिकृत Landscape A4 PDF तैयार किया जा रहा है...', 'info');
+
+      const prevWidth = container.style.width;
+      const prevMaxWidth = container.style.maxWidth;
+      const prevBoxSizing = container.style.boxSizing;
+      const prevBackground = container.style.background;
+      const prevPadding = container.style.padding;
+
+      container.style.width = '1080px';
+      container.style.maxWidth = '1080px';
+      container.style.boxSizing = 'border-box';
+      container.style.background = '#ffffff';
+      container.style.padding = '3mm 5mm';
+      container.style.margin = '0 auto';
+
+      if (document.fonts && document.fonts.ready) {
+        try { await document.fonts.ready; } catch(eFont) {}
+      }
+
+      const opt = {
+        margin: 0,
+        filename: filename,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          scrollY: 0,
+          scrollX: 0
+        },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+      };
+
+      try {
+        const pdfBlob = await html2pdf().set(opt).from(container).outputPdf('blob');
+        const url = URL.createObjectURL(pdfBlob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showElectionToast('✅ अधिकृत A4 Landscape PDF सफलतापूर्वक डाउनलोड हो गया!', 'success');
+      } catch (err) {
+        console.warn('PDF blob generation fallback to clean print:', err);
+        showElectionToast('⚠️ PDF डाउनलोड में विलंब, प्रिंट विंडो खोली जा रही है...', 'warning');
+        printOfficialElectionDocument();
+      } finally {
+        container.style.width = prevWidth;
+        container.style.maxWidth = prevMaxWidth;
+        container.style.boxSizing = prevBoxSizing;
+        container.style.background = prevBackground;
+        container.style.padding = prevPadding;
+      }
+    }
+
+    // Saman Pariksha Pattern: Open modal & trigger download
+    async function generateAndDownloadPdf() {
+      openElectionPdfModal();
+      setTimeout(async () => {
+        try {
+          await downloadElectionPDFDirect();
+        } catch(e) {
+          console.warn('PDF direct trigger failed:', e);
+        }
+      }, 300);
+    }
+
+    function printProformaDocument() {
+      printOfficialElectionDocument();
     }
   </script>
 </body>
