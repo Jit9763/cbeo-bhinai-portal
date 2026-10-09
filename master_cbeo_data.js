@@ -37876,8 +37876,8 @@ const MASTER_CBEO_DATA = {
       "submitted_by": "RAJEEV KUMAR MANDOT",
       "submitter_mobile": "9413134849",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T02:36:11.791Z",
-      "average_pct": 78,
+      "submitted_at": "2026-10-09T04:08:33.309Z",
+      "average_pct": 78.2,
       "c9": {
         "zero_enrolment": false,
         "hindi": 75,
@@ -37907,8 +37907,19 @@ const MASTER_CBEO_DATA = {
         ],
         "electives": [
           {
-            "name": "अनिवार्य व ऐच्छिक",
-            "pct": 75
+            "key": "pol_sci",
+            "name": "राजनीति विज्ञान (Political Science)",
+            "pct": 80
+          },
+          {
+            "key": "history",
+            "name": "इतिहास (History)",
+            "pct": 80
+          },
+          {
+            "key": "geography",
+            "name": "भूगोल (Geography)",
+            "pct": 80
           }
         ]
       },
@@ -37921,11 +37932,26 @@ const MASTER_CBEO_DATA = {
         ],
         "electives": [
           {
-            "name": "अनिवार्य व ऐच्छिक",
+            "key": "pol_sci",
+            "name": "राजनीति विज्ञान (Political Science)",
+            "pct": 80
+          },
+          {
+            "key": "history",
+            "name": "इतिहास (History)",
+            "pct": 80
+          },
+          {
+            "key": "geography",
+            "name": "भूगोल (Geography)",
             "pct": 80
           }
         ]
-      }
+      },
+      "exam_code": "AJM04G221759",
+      "incharge_name": "HEMENDRA KUMAR TAILOR",
+      "incharge_mobile": "9928305658",
+      "updated_at": "2026-10-09T04:08:33.309Z"
     },
     "221760": {
       "school_code": "221760",
