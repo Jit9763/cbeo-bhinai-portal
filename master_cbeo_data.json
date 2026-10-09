@@ -39777,10 +39777,10 @@
       "c9": {
         "zero_enrolment": false,
         "hindi": 90,
-        "english": 75,
-        "maths": 83,
-        "science": 60,
-        "sst": 85,
+        "english": 90,
+        "maths": 90,
+        "science": 90,
+        "sst": 90,
         "sanskrit": 90,
         "urdu": 0
       },
@@ -39790,31 +39790,20 @@
         "english": 100,
         "maths": 100,
         "science": 100,
-        "sst": 90,
-        "sanskrit": 95,
+        "sst": 100,
+        "sanskrit": 100,
         "urdu": 0
       },
       "c11": {
         "zero_enrolment": false,
         "comp_hindi": 75,
-        "comp_english": 90,
+        "comp_english": 75,
         "faculties": [
           "arts"
         ],
         "electives": [
           {
-            "key": "history",
-            "name": "इतिहास (History)",
-            "pct": 75
-          },
-          {
-            "key": "geography",
-            "name": "भूगोल (Geography)",
-            "pct": 75
-          },
-          {
-            "key": "hindi_lit",
-            "name": "हिंदी साहित्य (Hindi Literature)",
+            "name": "अनिवार्य व ऐच्छिक",
             "pct": 75
           }
         ]
@@ -39822,32 +39811,25 @@
       "c12": {
         "zero_enrolment": false,
         "comp_hindi": 95,
-        "comp_english": 100,
+        "comp_english": 95,
         "faculties": [
           "arts"
         ],
         "electives": [
           {
-            "key": "history",
-            "name": "इतिहास (History)",
+            "name": "अनिवार्य व ऐच्छिक",
             "pct": 95
-          },
-          {
-            "key": "geography",
-            "name": "भूगोल (Geography)",
-            "pct": 100
-          },
-          {
-            "key": "hindi_lit",
-            "name": "हिंदी साहित्य (Hindi Literature)",
-            "pct": 100
           }
         ]
       },
-      "average_pct": 88.5,
+      "average_pct": 90,
       "updated_at": "2026-10-08T06:48:58.143Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-08T06:48:58.143Z"
+      "submitted_at": "2026-10-09T06:49:57.528Z",
+      "school_name": "रा.उ.मा.वि. धांतोल",
+      "peeo_name": "PEEO DHANTOL",
+      "peeo_code": "221783",
+      "submitter_mobile": "9413695182"
     },
     "221786": {
       "school_code": "221786",
