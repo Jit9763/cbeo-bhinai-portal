@@ -2291,7 +2291,9 @@ function applyTabVisibility() {
 
   const noticeBanner = document.querySelector('.portal-notice-banner');
   if (noticeBanner) {
-    noticeBanner.style.display = isTabVisibleForCurrentUser('saman-pariksha') ? 'flex' : 'none';
+    const spCfg = (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : (STATE.samanMismatchSettings || {}));
+    const isSamanAlertActive = spCfg && spCfg.alert_active === true && localStorage.getItem('cbeo_mismatch_alert_disabled') !== 'true';
+    noticeBanner.style.display = (isTabVisibleForCurrentUser('saman-pariksha') && isSamanAlertActive) ? 'flex' : 'none';
   }
 
   // Cloud VM 24x7 Automation Hub is STRICTLY for Jitendra Super Admin
@@ -4976,6 +4978,12 @@ function updateMismatchHeaderUI() {
       statusBadge.style.color = '#64748b';
     }
   }
+
+  const noticeBanner = document.querySelector('.portal-notice-banner');
+  if (noticeBanner) {
+    const isVisible = isActive && typeof isTabVisibleForCurrentUser === 'function' && isTabVisibleForCurrentUser('saman-pariksha');
+    noticeBanner.style.display = isVisible ? 'flex' : 'none';
+  }
 }
 window.updateMismatchHeaderUI = updateMismatchHeaderUI;
 
@@ -5008,6 +5016,7 @@ function toggleMismatchAlertMaster(isActive) {
   if (chk) chk.checked = !!cfg.alert_active;
 
   updateMismatchHeaderUI();
+  if (typeof updateNavigation === 'function') updateNavigation();
   showToast(`मिसमैच अलर्ट व फ्लैग: ${cfg.alert_active ? 'चालू (ON)' : 'बंद (OFF)'} कर दिया गया!`, cfg.alert_active ? 'success' : 'info');
   renderSamanParikshaView();
 }
