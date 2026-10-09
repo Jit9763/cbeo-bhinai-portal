@@ -1191,7 +1191,7 @@
     }
 
     const DEFAULT_SAMAN_MISMATCH_SETTINGS = {
-      alert_active: true,
+      alert_active: false,
       alert_title: '🚨 अति-आवश्यक: समान परीक्षा मांग - नामांकन मिसमैच एवं माध्यम संशोधन सूचना',
       alert_message: 'समान परीक्षा 2026-27 प्रश्न-पत्र मांग शाला दर्पण पोर्टल पर दर्ज नामांकन के सत्यापन के आधार पर निम्न विद्यालयों के मांग प्रपत्र में अंतर (Mismatch) पाया गया है। कृपया संबंधित संस्था प्रधान शाला दर्पण अनुसार वास्तविक नामांकन से मिलान करते हुए प्रपत्र को तुरंत संशोधित कर पुनः सबमिट करें।',
       custom_edit_schools: [
@@ -1506,6 +1506,9 @@
           .then(r => r.json())
           .then(settings => {
             if (settings && settings.custom_edit_schools && !localStorage.getItem('cbeo_saman_mismatch_settings')) {
+              if (localStorage.getItem('cbeo_mismatch_alert_disabled') === 'true') {
+                settings.alert_active = false;
+              }
               localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(settings));
               applyViewOnlyMode(!checkSamanFormEditPermission());
             }

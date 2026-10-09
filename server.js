@@ -582,10 +582,13 @@ const server = http.createServer((req, res) => {
       const vis = data.visibility || data;
       DB.setSetting('__TAB_VISIBILITY_6LEVEL__', vis);
       DB.setSetting('__TAB_VISIBILITY_5LEVEL__', vis); // backward compat
+      try {
+        fs.writeFileSync(path.join(ROOT_DIR, 'tab_visibility_6level.json'), JSON.stringify(vis, null, 2), 'utf8');
+        fs.writeFileSync(path.join(ROOT_DIR, 'tab_visibility_5level.json'), JSON.stringify(vis, null, 2), 'utf8');
+      } catch(e) {}
       forwardToGoogleSheet({
-        action: 'updatePassword',
-        user_id: '__TAB_VISIBILITY_6LEVEL__',
-        new_password: JSON.stringify(vis)
+        action: 'savePortalSettings',
+        settings: { tab_visibility_6level: vis, tab_visibility_5level: vis }
       });
       sendJSON(res, 200, { success: true, message: '6-स्तरीय दृश्यता अनुमतियां SQLite व क्लाउड में सुरक्षित हो गईं!' });
     });
@@ -603,10 +606,12 @@ const server = http.createServer((req, res) => {
       if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
       const perms = data.permissions || data;
       DB.setSetting('__EDIT_PERMISSIONS_6LEVEL__', perms);
+      try {
+        fs.writeFileSync(path.join(ROOT_DIR, 'edit_permissions_6level.json'), JSON.stringify(perms, null, 2), 'utf8');
+      } catch(e) {}
       forwardToGoogleSheet({
-        action: 'updatePassword',
-        user_id: '__EDIT_PERMISSIONS_6LEVEL__',
-        new_password: JSON.stringify(perms)
+        action: 'savePortalSettings',
+        settings: { edit_permissions_6level: perms }
       });
       sendJSON(res, 200, { success: true, message: '6-स्तरीय संपादन अनुमतियां सुरक्षित हो गईं!' });
     });
@@ -624,10 +629,12 @@ const server = http.createServer((req, res) => {
       if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
       const settings = data.settings || data;
       DB.setSetting('__SAMAN_MISMATCH_SETTINGS__', settings);
+      try {
+        fs.writeFileSync(path.join(ROOT_DIR, 'saman_mismatch_settings.json'), JSON.stringify(settings, null, 2), 'utf8');
+      } catch(e) {}
       forwardToGoogleSheet({
-        action: 'updatePassword',
-        user_id: '__SAMAN_MISMATCH_SETTINGS__',
-        new_password: JSON.stringify(settings)
+        action: 'savePortalSettings',
+        settings: { saman_mismatch_settings: settings }
       });
       sendJSON(res, 200, { success: true, message: 'समान परीक्षा मिसमैच व कस्टम एडिट सेटिंग्स सुरक्षित हो गईं!' });
     });
@@ -662,9 +669,8 @@ const server = http.createServer((req, res) => {
         } catch(e) {}
       }
       forwardToGoogleSheet({
-        action: 'updatePassword',
-        user_id: '__PORTAL_SETTINGS__',
-        new_password: JSON.stringify(settings)
+        action: 'savePortalSettings',
+        settings: settings
       });
       sendJSON(res, 200, { success: true, message: 'पोर्टल सेटिंग्स SQLite व JSON में सफलतापूर्वक सुरक्षित हो गईं!' });
     });
@@ -909,10 +915,14 @@ const server = http.createServer((req, res) => {
       if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
       const vis = data.visibility || data;
       DB.setSetting('__TAB_VISIBILITY_5LEVEL__', vis);
+      DB.setSetting('__TAB_VISIBILITY_6LEVEL__', vis);
+      try {
+        fs.writeFileSync(path.join(ROOT_DIR, 'tab_visibility_5level.json'), JSON.stringify(vis, null, 2), 'utf8');
+        fs.writeFileSync(path.join(ROOT_DIR, 'tab_visibility_6level.json'), JSON.stringify(vis, null, 2), 'utf8');
+      } catch(e) {}
       forwardToGoogleSheet({
-        action: 'updatePassword',
-        user_id: '__TAB_VISIBILITY_5LEVEL__',
-        new_password: JSON.stringify(vis)
+        action: 'savePortalSettings',
+        settings: { tab_visibility_5level: vis, tab_visibility_6level: vis }
       });
       sendJSON(res, 200, { success: true, message: 'सेटिंग्स SQLite व क्लाउड में सुरक्षित हो गई!' });
     });
@@ -930,54 +940,14 @@ const server = http.createServer((req, res) => {
       if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
       const perms = data.permissions || data;
       DB.setSetting('__STAFF_EDIT_PERMISSIONS__', perms);
+      try {
+        fs.writeFileSync(path.join(ROOT_DIR, 'staff_edit_permissions.json'), JSON.stringify(perms, null, 2), 'utf8');
+      } catch(e) {}
       forwardToGoogleSheet({
-        action: 'updatePassword',
-        user_id: '__STAFF_EDIT_PERMISSIONS__',
-        new_password: JSON.stringify(perms)
+        action: 'savePortalSettings',
+        settings: { staff_edit_permissions: perms }
       });
       sendJSON(res, 200, { success: true, message: 'कार्मिक संपादन अनुमतियां सुरक्षित हो गई!' });
-    });
-    return;
-  }
-
-  if (pathname === '/api/get_portal_settings') {
-    const ps = DB.getSetting('__PORTAL_SETTINGS__');
-    sendJSON(res, 200, { success: true, settings: ps });
-    return;
-  }
-
-  if (pathname === '/api/save_portal_settings' && req.method === 'POST') {
-    readBody((data, err) => {
-      if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
-      const ps = data.settings || data;
-      DB.setSetting('__PORTAL_SETTINGS__', ps);
-      forwardToGoogleSheet({
-        action: 'updatePassword',
-        user_id: '__PORTAL_SETTINGS__',
-        new_password: JSON.stringify(ps)
-      });
-      sendJSON(res, 200, { success: true, message: 'पोर्टल सेटिंग्स सुरक्षित हो गई!' });
-    });
-    return;
-  }
-
-  if (pathname === '/api/get_saman_mismatch_settings') {
-    const settings = DB.getSetting('__SAMAN_MISMATCH_SETTINGS__');
-    sendJSON(res, 200, { success: true, settings: settings });
-    return;
-  }
-
-  if (pathname === '/api/save_saman_mismatch_settings' && req.method === 'POST') {
-    readBody((data, err) => {
-      if (err || !data) return sendJSON(res, 400, { success: false, error: 'Invalid JSON' });
-      const settings = data.settings || data;
-      DB.setSetting('__SAMAN_MISMATCH_SETTINGS__', settings);
-      forwardToGoogleSheet({
-        action: 'updatePassword',
-        user_id: '__SAMAN_MISMATCH_SETTINGS__',
-        new_password: JSON.stringify(settings)
-      });
-      sendJSON(res, 200, { success: true, message: 'समान परीक्षा मिसमैच सेटिंग्स सुरक्षित हो गई!' });
     });
     return;
   }

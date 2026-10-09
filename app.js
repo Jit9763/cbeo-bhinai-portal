@@ -79,7 +79,7 @@ let isDrawing = false;
 let hasSignature = false;
 
 // Portal Build Version - Incremented to trigger automatic hard reset
-const CURRENT_PORTAL_VERSION = 'v32_2026_10_07_peeo_lock_and_auto_reset';
+const CURRENT_PORTAL_VERSION = 'v47_2026_10_09_mismatch_alert_persistence_clean_rooms';
 
 // Automatic Hard Reset & Cache Buster (Executes immediately on page load)
 (function checkAndPerformAutoHardReset() {
@@ -93,7 +93,7 @@ const CURRENT_PORTAL_VERSION = 'v32_2026_10_07_peeo_lock_and_auto_reset';
       'cbeo_tab_visibility_6level', 'cbeo_edit_permissions_6level',
       'cbeo_tab_visibility_5level', 'cbeo_edit_permissions_5level',
       'cbeo_saman_active_form', 'cbeo_saman_school_type_filter',
-      'cbeo_saman_mismatch_settings', 'cbeo_portal_settings', 'cbeo_vm_settings',
+      'cbeo_saman_mismatch_settings', 'cbeo_mismatch_alert_disabled', 'cbeo_portal_settings', 'cbeo_vm_settings',
       'cbeo_election_submissions', 'cbeo_election_custom_columns', 'cbeo_election_filter'
     ];
     const toRemove = [];
@@ -280,7 +280,7 @@ function getDemandSubmissionRecord(demandId, schoolCode) {
 }
 
 const DEFAULT_SAMAN_MISMATCH_SETTINGS = {
-  "alert_active": true,
+  "alert_active": false,
   "alert_title": "🚨 अति-आवश्यक: समान परीक्षा मांग - नामांकन मिसमैच एवं संशोधन सूचना",
   "alert_message": "मान्यवर संस्था प्रधान, आपके विद्यालय द्वारा समान परीक्षा 2026-27 के मांग प्रपत्र में भरा गया कक्षावार नामांकन शाला दर्पण के वास्तविक नामांकन से भिन्न (मिसमैच) पाया गया है।\n\nकार्यालय CBEO भिनाय (अजमेर) द्वारा आपके विद्यालय के लिए मांग प्रपत्र में संशोधन (Custom Edit) की विशेष सुविधा खोल दी गई है। कृपया तुरंत मांग पत्रक में सुधार कर पुनः सबमिट करें।",
   "custom_edit_schools": [
@@ -426,6 +426,9 @@ function getSamanMismatchConfig() {
     } catch(e) {
       STATE.samanMismatchSettings = JSON.parse(JSON.stringify(DEFAULT_SAMAN_MISMATCH_SETTINGS));
     }
+  }
+  if (localStorage.getItem('cbeo_mismatch_alert_disabled') === 'true' && STATE.samanMismatchSettings) {
+    STATE.samanMismatchSettings.alert_active = false;
   }
   return STATE.samanMismatchSettings;
 }
@@ -573,6 +576,11 @@ async function syncPortalSettingsFromCloud() {
     if (data && data.success && data.settings) {
       const s = data.settings;
       if (s.saman_mismatch_settings) {
+        if (s.saman_mismatch_settings.alert_active === false) {
+          localStorage.setItem('cbeo_mismatch_alert_disabled', 'true');
+        } else if (localStorage.getItem('cbeo_mismatch_alert_disabled') === 'true') {
+          s.saman_mismatch_settings.alert_active = false;
+        }
         STATE.samanMismatchSettings = s.saman_mismatch_settings;
         localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(s.saman_mismatch_settings));
       }
@@ -1266,6 +1274,19 @@ function initMasterData() {
     })
     .catch(() => {});
 
+  fetch('/api/get_edit_permissions_6level')
+    .then(r => r.json())
+    .then(data => {
+      if (data && data.success && data.permissions) {
+        STATE.editPermissions6Level = data.permissions;
+        STATE.editPermissions5Level = data.permissions;
+        localStorage.setItem('cbeo_edit_permissions_6level', JSON.stringify(data.permissions));
+        localStorage.setItem('cbeo_edit_permissions_5level', JSON.stringify(data.permissions));
+        normalizeTabAndEditPermissions();
+      }
+    })
+    .catch(() => {});
+
   // 10B. Saman Pariksha Enrolment Mismatch & Custom Edit Settings
   try {
     const stoMismatch = localStorage.getItem('cbeo_saman_mismatch_settings');
@@ -1283,6 +1304,9 @@ function initMasterData() {
       .then(data => {
         const settings = data?.settings || (data?.custom_edit_schools ? data : null);
         if (settings && !localStorage.getItem('cbeo_saman_mismatch_settings')) {
+          if (localStorage.getItem('cbeo_mismatch_alert_disabled') === 'true') {
+            settings.alert_active = false;
+          }
           STATE.samanMismatchSettings = settings;
           try { localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(settings)); } catch(e) {}
           if (typeof renderSamanParikshaView === 'function') renderSamanParikshaView();
@@ -1298,6 +1322,9 @@ function initMasterData() {
     })
     .then(data => {
       if (data && data.success && data.settings) {
+        if (localStorage.getItem('cbeo_mismatch_alert_disabled') === 'true') {
+          data.settings.alert_active = false;
+        }
         STATE.samanMismatchSettings = data.settings;
         try { localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(data.settings)); } catch(e) {}
         if (typeof renderSamanParikshaView === 'function') renderSamanParikshaView();
@@ -4961,6 +4988,11 @@ function toggleMismatchAlertMaster(isActive) {
   }
   STATE.samanMismatchSettings = cfg;
   localStorage.setItem('cbeo_saman_mismatch_settings', JSON.stringify(cfg));
+  if (cfg.alert_active === false) {
+    localStorage.setItem('cbeo_mismatch_alert_disabled', 'true');
+  } else {
+    localStorage.removeItem('cbeo_mismatch_alert_disabled');
+  }
 
   if (typeof saveCloudPortalSetting === 'function') {
     saveCloudPortalSetting('saman_mismatch_settings', cfg);

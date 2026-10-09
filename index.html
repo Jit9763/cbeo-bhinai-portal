@@ -24,7 +24,7 @@
         if (cu && !lu) localStorage.setItem('cbeo_logged_user', cu);
       } catch(e) {}
 
-      var CLIENT_VERSION = 'v38_2026_10_09_election_pdf_offscreen_capture_fixed';
+      var CLIENT_VERSION = 'v47_2026_10_09_mismatch_alert_persistence_clean_rooms';
       var lastVer = localStorage.getItem('cbeo_client_app_version');
       if (lastVer !== CLIENT_VERSION) {
         localStorage.setItem('cbeo_client_app_version', CLIENT_VERSION);
@@ -34,7 +34,7 @@
           'cbeo_tab_visibility_6level', 'cbeo_edit_permissions_6level',
           'cbeo_tab_visibility_5level', 'cbeo_edit_permissions_5level',
           'cbeo_saman_active_form', 'cbeo_saman_school_type_filter',
-          'cbeo_saman_mismatch_settings', 'cbeo_portal_settings', 'cbeo_vm_settings',
+          'cbeo_saman_mismatch_settings', 'cbeo_mismatch_alert_disabled', 'cbeo_portal_settings', 'cbeo_vm_settings',
           'cbeo_election_submissions', 'cbeo_election_custom_columns', 'cbeo_election_filter'
         ];
         for (var i = localStorage.length - 1; i >= 0; i--) {
@@ -5980,9 +5980,9 @@
   <script src="master_cbeo_data.js?v=20261008_v38"></script>
   <script src="js/village_mapping.js?v=20261008_v38"></script>
   <script src="js/core_sync.js?v=20261008_v39"></script>
-  <script src="js/mismatch_admin.js?v=20261009_v46"></script>
-  <script src="js/election_data.js?v=20261009_v46"></script>
-  <script src="js/election.js?v=20261009_v46"></script>
-  <script src="app.js?v=20261009_v46"></script>
+  <script src="js/mismatch_admin.js?v=20261009_v47"></script>
+  <script src="js/election_data.js?v=20261009_v47"></script>
+  <script src="js/election.js?v=20261009_v47"></script>
+  <script src="app.js?v=20261009_v47"></script>
 </body>
 </html>
