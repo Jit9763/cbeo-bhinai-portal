@@ -516,6 +516,9 @@ function renderElectionAdminView(container) {
           </p>
         </div>
         <div style="display:flex; gap:0.45rem; flex-wrap:wrap">
+          <button type="button" class="btn btn-info btn-sm text-white" onclick="syncElectionSubmissionsFromCloud(true)" style="font-weight:800" title="Google Sheet से नया सत्यापन डेटा सिंक करें">
+            <i class="fas fa-sync-alt"></i> 🔄 लाइव रीफ्रेश (Google Sheet)
+          </button>
           <button type="button" class="btn btn-warning btn-sm" onclick="openElectionBroadcastModal()" style="font-weight:800; color:#0f172a">
             <i class="fas fa-bullhorn"></i> प्रसारण केंद्र
           </button>
