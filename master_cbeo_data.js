@@ -40883,6 +40883,368 @@ const MASTER_CBEO_DATA = {
   },
   "portal_settings_bundle": {
     "__SAMAN_ACTIVE_FORM__": "syllabus",
-    "saman_active_form": "syllabus"
+    "saman_active_form": "syllabus",
+    "__TAB_VISIBILITY_6LEVEL__": {
+      "saman-pariksha": {
+        "cbeo": true,
+        "peeo": true,
+        "govt_sec_srsec": true,
+        "pvt_sec_srsec": true,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "database-hub": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "dashboard": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "directory": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "staff": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "school-management": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "demands": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "archive": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "admin-control": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "election": {
+        "cbeo": true,
+        "peeo": true,
+        "govt_sec_srsec": true,
+        "pvt_sec_srsec": false,
+        "all_govt": true,
+        "all_schools": false
+      }
+    },
+    "tab_visibility_6level": {
+      "saman-pariksha": {
+        "cbeo": true,
+        "peeo": true,
+        "govt_sec_srsec": true,
+        "pvt_sec_srsec": true,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "database-hub": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "dashboard": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "directory": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "staff": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "school-management": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "demands": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "archive": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "admin-control": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "election": {
+        "cbeo": true,
+        "peeo": true,
+        "govt_sec_srsec": true,
+        "pvt_sec_srsec": false,
+        "all_govt": true,
+        "all_schools": false
+      }
+    },
+    "__TAB_VISIBILITY_5LEVEL__": {
+      "saman-pariksha": {
+        "cbeo": true,
+        "peeo": true,
+        "govt_sec_srsec": true,
+        "pvt_sec_srsec": true,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "database-hub": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "dashboard": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "directory": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "staff": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "school-management": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "demands": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "archive": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "admin-control": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "election": {
+        "cbeo": true,
+        "peeo": true,
+        "govt_sec_srsec": true,
+        "pvt_sec_srsec": false,
+        "all_govt": true,
+        "all_schools": false
+      }
+    },
+    "tab_visibility_5level": {
+      "saman-pariksha": {
+        "cbeo": true,
+        "peeo": true,
+        "govt_sec_srsec": true,
+        "pvt_sec_srsec": true,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "database-hub": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "dashboard": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "directory": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "staff": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "school-management": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "demands": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "archive": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "admin-control": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "election": {
+        "cbeo": true,
+        "peeo": true,
+        "govt_sec_srsec": true,
+        "pvt_sec_srsec": false,
+        "all_govt": true,
+        "all_schools": false
+      }
+    },
+    "__EDIT_PERMISSIONS_6LEVEL__": {
+      "saman_pariksha": {
+        "cbeo": true,
+        "peeo": true,
+        "govt_sec_srsec": true,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      }
+    },
+    "edit_permissions_6level": {
+      "saman_pariksha": {
+        "cbeo": true,
+        "peeo": true,
+        "govt_sec_srsec": true,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      }
+    },
+    "__SAMAN_MISMATCH_SETTINGS__": {
+      "alert_active": false,
+      "alert_title": "🚨 अति-आवश्यक: समान परीक्षा मांग - नामांकन मिसमैच एवं संशोधन सूचना",
+      "alert_message": "मान्यवर संस्था प्रधान, आपके विद्यालय द्वारा समान परीक्षा 2026-27 के मांग प्रपत्र में भरा गया कक्षावार नामांकन शाला दर्पण के वास्तविक नामांकन से भिन्न (मिसमैच) पाया गया है।\n\nकार्यालय CBEO भिनाय (अजमेर) द्वारा आपके विद्यालय के लिए मांग प्रपत्र में संशोधन (Custom Edit) की विशेष सुविधा खोल दी गई है। कृपया तुरंत मांग पत्रक में सुधार कर पुनः सबमिट करें।",
+      "custom_edit_schools": [],
+      "mismatch_details": {}
+    },
+    "saman_mismatch_settings": {
+      "alert_active": false,
+      "alert_title": "🚨 अति-आवश्यक: समान परीक्षा मांग - नामांकन मिसमैच एवं संशोधन सूचना",
+      "alert_message": "मान्यवर संस्था प्रधान, आपके विद्यालय द्वारा समान परीक्षा 2026-27 के मांग प्रपत्र में भरा गया कक्षावार नामांकन शाला दर्पण के वास्तविक नामांकन से भिन्न (मिसमैच) पाया गया है।\n\nकार्यालय CBEO भिनाय (अजमेर) द्वारा आपके विद्यालय के लिए मांग प्रपत्र में संशोधन (Custom Edit) की विशेष सुविधा खोल दी गई है। कृपया तुरंत मांग पत्रक में सुधार कर पुनः सबमिट करें।",
+      "custom_edit_schools": [],
+      "mismatch_details": {}
+    }
   }
 };
