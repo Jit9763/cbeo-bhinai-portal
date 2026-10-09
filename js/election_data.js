@@ -1,7 +1,7 @@
 /**
  * CBEO Bhinai Portal - Election 2026 Verification Master Data (Sheet P-3 Standards)
  * District: AJMER (अजमेर) | Block: Bhinai (भिनाय)
- * 30 Panchayat Schools & 116 Polling Booths (State Election Commission 2026)
+ * 33 Polling Station Schools & 116 Polling Booths (State Election Commission 2026)
  */
 
 const ELECTION_2026_SCHOOLS = [
@@ -11,6 +11,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "सूरखण्ड) (GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND",
     "panchayat_name": "बड़गांव (सुरखण्ड)",
     "peeo_name": "PEEO BARGAON",
+    "peeo_code": "221764",
     "principal_name": "CHANDRA PRAKASH LADDHA",
     "principal_mobile": "9001450275",
     "booth_count": 5,
@@ -39,7 +40,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 15,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. बड़गांव",
+        "peeo_name": "PEEO BARGAON"
       },
       {
         "booth_no": 2,
@@ -65,7 +68,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 15,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. बड़गांव",
+        "peeo_name": "PEEO BARGAON"
       },
       {
         "booth_no": 3,
@@ -91,7 +96,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 15,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. बड़गांव",
+        "peeo_name": "PEEO BARGAON"
       },
       {
         "booth_no": 4,
@@ -117,7 +124,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 15,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. बड़गांव",
+        "peeo_name": "PEEO BARGAON"
       },
       {
         "booth_no": 5,
@@ -143,7 +152,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 15,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. बड़गांव",
+        "peeo_name": "PEEO BARGAON"
       }
     ]
   },
@@ -153,6 +164,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLI",
     "panchayat_name": "बड़ली",
     "peeo_name": "PEEO BARLI",
+    "peeo_code": "221755",
     "principal_name": "SHAILENDRA KUMAR PANDYA",
     "principal_mobile": "9950985201",
     "booth_count": 4,
@@ -181,7 +193,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 9,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. बड़ली",
+        "peeo_name": "PEEO BARLI"
       },
       {
         "booth_no": 7,
@@ -207,7 +221,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 9,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. बड़ली",
+        "peeo_name": "PEEO BARLI"
       },
       {
         "booth_no": 8,
@@ -233,7 +249,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 9,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. बड़ली",
+        "peeo_name": "PEEO BARLI"
       },
       {
         "booth_no": 9,
@@ -259,7 +277,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 9,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. बड़ली",
+        "peeo_name": "PEEO BARLI"
       }
     ]
   },
@@ -269,6 +289,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI",
     "panchayat_name": "बगराई",
     "peeo_name": "PEEO GURHA KHURD",
+    "peeo_code": "221762",
     "principal_name": "श्री भूपेंद्र सिंह चारण (वरिष्ठ अध्यापक / संस्था प्रधान)",
     "principal_mobile": "9929527319",
     "booth_count": 2,
@@ -297,7 +318,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 11,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "पीएम श्री रा.उ.मा.वि. बगराई",
+        "peeo_name": "PEEO GURHA KHURD"
       },
       {
         "booth_no": 11,
@@ -323,24 +346,27 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 11,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "पीएम श्री रा.उ.मा.वि. बगराई",
+        "peeo_name": "PEEO GURHA KHURD"
       }
     ]
   },
   {
-    "shala_darpan_code": "221769",
-    "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
-    "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA",
+    "shala_darpan_code": "221770",
+    "school_name": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+    "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA",
     "panchayat_name": "बांदनवाड़ा",
     "peeo_name": "PEEO BANDANWARA",
-    "principal_name": "BHANWAR LAL JAT",
-    "principal_mobile": "9587293842",
-    "booth_count": 6,
+    "peeo_code": "221769",
+    "principal_name": "JAY SINGH KHATIK",
+    "principal_mobile": "9649149083",
+    "booth_count": 2,
     "booths": [
       {
         "booth_no": 12,
         "panchayat_hi": "बांदनवाड़ा",
-        "school_code": "221769",
+        "school_code": "221770",
         "room_hi": "महात्मा गांधी राजकीय विद्यालय कमरा नं.14 बांदनवाड़ा",
         "ward": "1, 2, 3",
         "bldg_type": "सरकारी",
@@ -361,12 +387,14 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 2,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+        "peeo_name": "PEEO BANDANWARA"
       },
       {
         "booth_no": 13,
         "panchayat_hi": "बांदनवाड़ा",
-        "school_code": "221769",
+        "school_code": "221770",
         "room_hi": "महात्मा गांधी राजकीय विद्यालय कमरा नं.15 बांदनवाड़ा",
         "ward": "4, 5, 6",
         "bldg_type": "सरकारी",
@@ -387,8 +415,23 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 2,
         "zp_constituency": 10,
-        "ac_constituency": 104
-      },
+        "ac_constituency": 104,
+        "building_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+        "peeo_name": "PEEO BANDANWARA"
+      }
+    ]
+  },
+  {
+    "shala_darpan_code": "221769",
+    "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
+    "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA",
+    "panchayat_name": "बांदनवाड़ा",
+    "peeo_name": "PEEO BANDANWARA",
+    "peeo_code": "221769",
+    "principal_name": "BHANWAR LAL JAT",
+    "principal_mobile": "9587293842",
+    "booth_count": 4,
+    "booths": [
       {
         "booth_no": 14,
         "panchayat_hi": "बांदनवाड़ा",
@@ -413,7 +456,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 2,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+        "peeo_name": "PEEO BANDANWARA"
       },
       {
         "booth_no": 15,
@@ -439,7 +484,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 2,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+        "peeo_name": "PEEO BANDANWARA"
       },
       {
         "booth_no": 16,
@@ -465,7 +512,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 2,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+        "peeo_name": "PEEO BANDANWARA"
       },
       {
         "booth_no": 17,
@@ -491,7 +540,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 2,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+        "peeo_name": "PEEO BANDANWARA"
       }
     ]
   },
@@ -501,9 +552,10 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BHINAI",
     "panchayat_name": "भिनाय",
     "peeo_name": "PEEO BHINAY",
+    "peeo_code": "221780",
     "principal_name": "AJAY KUMAR DHABAI",
     "principal_mobile": "9549240545",
-    "booth_count": 8,
+    "booth_count": 4,
     "booths": [
       {
         "booth_no": 18,
@@ -529,7 +581,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 6,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. भिनाय",
+        "peeo_name": "PEEO BHINAY"
       },
       {
         "booth_no": 19,
@@ -555,7 +609,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 6,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. भिनाय",
+        "peeo_name": "PEEO BHINAY"
       },
       {
         "booth_no": 20,
@@ -581,7 +637,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 6,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. भिनाय",
+        "peeo_name": "PEEO BHINAY"
       },
       {
         "booth_no": 21,
@@ -607,12 +665,27 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 6,
         "zp_constituency": 10,
-        "ac_constituency": 104
-      },
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. भिनाय",
+        "peeo_name": "PEEO BHINAY"
+      }
+    ]
+  },
+  {
+    "shala_darpan_code": "221778",
+    "school_name": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+    "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL BHINAI",
+    "panchayat_name": "भिनाय",
+    "peeo_name": "PEEO BHINAY",
+    "peeo_code": "221780",
+    "principal_name": "sanjeeda parveen",
+    "principal_mobile": "9468855086",
+    "booth_count": 4,
+    "booths": [
       {
         "booth_no": 22,
         "panchayat_hi": "भिनाय",
-        "school_code": "221780",
+        "school_code": "221778",
         "room_hi": "महात्मा गांधी राजकीय विद्यालय कमरा नं.4 भिनाय",
         "ward": "13, 14, 15",
         "bldg_type": "सरकारी",
@@ -633,12 +706,14 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 6,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+        "peeo_name": "PEEO BHINAY"
       },
       {
         "booth_no": 23,
         "panchayat_hi": "भिनाय",
-        "school_code": "221780",
+        "school_code": "221778",
         "room_hi": "महात्मा गांधी राजकीय विद्यालय कमरा नं.5 भिनाय",
         "ward": "16, 17",
         "bldg_type": "सरकारी",
@@ -659,12 +734,14 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 6,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+        "peeo_name": "PEEO BHINAY"
       },
       {
         "booth_no": 24,
         "panchayat_hi": "भिनाय",
-        "school_code": "221780",
+        "school_code": "221778",
         "room_hi": "महात्मा गांधी राजकीय विद्यालय कमरा नं.9 भिनाय",
         "ward": "18, 19",
         "bldg_type": "सरकारी",
@@ -685,12 +762,14 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 6,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+        "peeo_name": "PEEO BHINAY"
       },
       {
         "booth_no": 25,
         "panchayat_hi": "भिनाय",
-        "school_code": "221780",
+        "school_code": "221778",
         "room_hi": "महात्मा गांधी राजकीय विद्यालय कमरा नं.10 भिनाय",
         "ward": "20, 21",
         "bldg_type": "सरकारी",
@@ -711,7 +790,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 6,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+        "peeo_name": "PEEO BHINAY"
       }
     ]
   },
@@ -721,6 +802,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA",
     "panchayat_name": "बूबकिया",
     "peeo_name": "PEEO BOOBKIYA",
+    "peeo_code": "221763",
     "principal_name": "RAM CHANDRA GUJAR",
     "principal_mobile": "9252068645",
     "booth_count": 4,
@@ -749,7 +831,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 18,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. बूबकिया",
+        "peeo_name": "PEEO BOOBKIYA"
       },
       {
         "booth_no": 27,
@@ -775,7 +859,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 17,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. बूबकिया",
+        "peeo_name": "PEEO BOOBKIYA"
       },
       {
         "booth_no": 28,
@@ -801,7 +887,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 17,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. बूबकिया",
+        "peeo_name": "PEEO BOOBKIYA"
       },
       {
         "booth_no": 29,
@@ -827,7 +915,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 17,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. बूबकिया",
+        "peeo_name": "PEEO BOOBKIYA"
       }
     ]
   },
@@ -837,6 +927,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI",
     "panchayat_name": "चांपानेरी",
     "peeo_name": "PEEO CHAPANERI",
+    "peeo_code": "221758",
     "principal_name": "LADURAM SHARMA",
     "principal_mobile": "9462507510",
     "booth_count": 4,
@@ -865,7 +956,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 12,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. चापानेरी",
+        "peeo_name": "PEEO CHAPANERI"
       },
       {
         "booth_no": 31,
@@ -891,7 +984,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 12,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. चापानेरी",
+        "peeo_name": "PEEO CHAPANERI"
       },
       {
         "booth_no": 32,
@@ -917,7 +1012,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 12,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. चापानेरी",
+        "peeo_name": "PEEO CHAPANERI"
       },
       {
         "booth_no": 33,
@@ -943,7 +1040,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 12,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. चापानेरी",
+        "peeo_name": "PEEO CHAPANERI"
       }
     ]
   },
@@ -953,6 +1052,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA",
     "panchayat_name": "छछुन्दरा",
     "peeo_name": "PEEO CHHACHHUNDRA",
+    "peeo_code": "221787",
     "principal_name": "SITARAM DHOBI",
     "principal_mobile": "9413781124",
     "booth_count": 4,
@@ -981,7 +1081,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 5,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. छछून्दरा",
+        "peeo_name": "PEEO CHHACHHUNDRA"
       },
       {
         "booth_no": 35,
@@ -1007,7 +1109,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 5,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. छछून्दरा",
+        "peeo_name": "PEEO CHHACHHUNDRA"
       },
       {
         "booth_no": 36,
@@ -1033,7 +1137,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 5,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. छछून्दरा",
+        "peeo_name": "PEEO CHHACHHUNDRA"
       },
       {
         "booth_no": 37,
@@ -1059,7 +1165,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 5,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. छछून्दरा",
+        "peeo_name": "PEEO CHHACHHUNDRA"
       }
     ]
   },
@@ -1069,9 +1177,10 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN",
     "panchayat_name": "देवलियाकलां",
     "peeo_name": "PEEO DEOLIYA KALAN",
+    "peeo_code": "221754",
     "principal_name": "PURNIMA",
     "principal_mobile": "9414343109",
-    "booth_count": 6,
+    "booth_count": 4,
     "booths": [
       {
         "booth_no": 38,
@@ -1097,7 +1206,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 10,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+        "peeo_name": "PEEO DEOLIYA KALAN"
       },
       {
         "booth_no": 39,
@@ -1123,7 +1234,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 10,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+        "peeo_name": "PEEO DEOLIYA KALAN"
       },
       {
         "booth_no": 40,
@@ -1149,7 +1262,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 10,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+        "peeo_name": "PEEO DEOLIYA KALAN"
       },
       {
         "booth_no": 41,
@@ -1175,12 +1290,27 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 10,
         "zp_constituency": 9,
-        "ac_constituency": 104
-      },
+        "ac_constituency": 104,
+        "building_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+        "peeo_name": "PEEO DEOLIYA KALAN"
+      }
+    ]
+  },
+  {
+    "shala_darpan_code": "221753",
+    "school_name": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+    "school_name_en": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN",
+    "panchayat_name": "देवलियाकलां",
+    "peeo_name": "PEEO DEOLIYA KALAN",
+    "peeo_code": "221754",
+    "principal_name": "RAKESH KUMAR BIRAWAT",
+    "principal_mobile": "9829835751",
+    "booth_count": 2,
+    "booths": [
       {
         "booth_no": 42,
         "panchayat_hi": "देवलियाकलां",
-        "school_code": "221754",
+        "school_code": "221753",
         "room_hi": "महात्मा गांधी राजकीय विद्यालय कमरा नं.2 देवलियाकलां",
         "ward": "10, 11, 12",
         "bldg_type": "सरकारी",
@@ -1201,12 +1331,14 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 10,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+        "peeo_name": "PEEO DEOLIYA KALAN"
       },
       {
         "booth_no": 43,
         "panchayat_hi": "देवलियाकलां",
-        "school_code": "221754",
+        "school_code": "221753",
         "room_hi": "महात्मा गांधी राजकीय विद्यालय कमरा नं.3 देवलियाकलां",
         "ward": "13, 14, 15",
         "bldg_type": "सरकारी",
@@ -1227,7 +1359,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 10,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+        "peeo_name": "PEEO DEOLIYA KALAN"
       }
     ]
   },
@@ -1237,6 +1371,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA",
     "panchayat_name": "देवपुरा",
     "peeo_name": "PEEO DEVPURA",
+    "peeo_code": "488941",
     "principal_name": "ANITA SHARMA",
     "principal_mobile": "9414550658",
     "booth_count": 4,
@@ -1265,7 +1400,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 1,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. देवरिया",
+        "peeo_name": "PEEO DEVPURA"
       },
       {
         "booth_no": 45,
@@ -1291,7 +1428,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 1,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. देवरिया",
+        "peeo_name": "PEEO DEVPURA"
       },
       {
         "booth_no": 46,
@@ -1317,7 +1456,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 1,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. देवरिया",
+        "peeo_name": "PEEO DEVPURA"
       },
       {
         "booth_no": 47,
@@ -1343,7 +1484,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 1,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. देवरिया",
+        "peeo_name": "PEEO DEVPURA"
       }
     ]
   },
@@ -1353,6 +1496,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL",
     "panchayat_name": "धांतोल",
     "peeo_name": "PEEO DHANTOL",
+    "peeo_code": "221783",
     "principal_name": "SURENDRA NAGORA",
     "principal_mobile": "9413695182",
     "booth_count": 3,
@@ -1381,7 +1525,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 18,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. धांतोल",
+        "peeo_name": "PEEO DHANTOL"
       },
       {
         "booth_no": 49,
@@ -1407,7 +1553,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 18,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. धांतोल",
+        "peeo_name": "PEEO DHANTOL"
       },
       {
         "booth_no": 50,
@@ -1433,7 +1581,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 18,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. धांतोल",
+        "peeo_name": "PEEO DHANTOL"
       }
     ]
   },
@@ -1443,6 +1593,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA",
     "panchayat_name": "एकलसिंगा",
     "peeo_name": "PEEO EKALSEENGA",
+    "peeo_code": "221786",
     "principal_name": "VISHWASHWAR PRASAD SHARMA",
     "principal_mobile": "7728052397",
     "booth_count": 3,
@@ -1471,7 +1622,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 7,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. एकलसिंघा",
+        "peeo_name": "PEEO EKALSEENGA"
       },
       {
         "booth_no": 52,
@@ -1497,7 +1650,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 7,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. एकलसिंघा",
+        "peeo_name": "PEEO EKALSEENGA"
       },
       {
         "booth_no": 53,
@@ -1523,7 +1678,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 7,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. एकलसिंघा",
+        "peeo_name": "PEEO EKALSEENGA"
       }
     ]
   },
@@ -1533,6 +1690,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GHANA",
     "panchayat_name": "घणा",
     "peeo_name": "PEEO SOBRI",
+    "peeo_code": "221782",
     "principal_name": "SUMITRA KUMARI PHULWARI",
     "principal_mobile": "9928994663",
     "booth_count": 3,
@@ -1561,7 +1719,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 8,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. घणा",
+        "peeo_name": "PEEO SOBRI"
       },
       {
         "booth_no": 55,
@@ -1587,7 +1747,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 8,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. घणा",
+        "peeo_name": "PEEO SOBRI"
       },
       {
         "booth_no": 56,
@@ -1613,7 +1775,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 8,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. घणा",
+        "peeo_name": "PEEO SOBRI"
       }
     ]
   },
@@ -1623,6 +1787,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD",
     "panchayat_name": "गुढ़ाखुर्द",
     "peeo_name": "PEEO GURHA KHURD",
+    "peeo_code": "221762",
     "principal_name": "deepesh kumar sisodia",
     "principal_mobile": "9414554344",
     "booth_count": 4,
@@ -1651,7 +1816,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 11,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+        "peeo_name": "PEEO GURHA KHURD"
       },
       {
         "booth_no": 58,
@@ -1677,7 +1844,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 11,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+        "peeo_name": "PEEO GURHA KHURD"
       },
       {
         "booth_no": 59,
@@ -1703,7 +1872,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 11,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+        "peeo_name": "PEEO GURHA KHURD"
       },
       {
         "booth_no": 60,
@@ -1729,7 +1900,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 11,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+        "peeo_name": "PEEO GURHA KHURD"
       }
     ]
   },
@@ -1739,6 +1912,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL HIYALIYA",
     "panchayat_name": "हियालिया",
     "peeo_name": "PEEO EKALSEENGA",
+    "peeo_code": "221786",
     "principal_name": "SURESH CHANDRA",
     "principal_mobile": "9636233704",
     "booth_count": 2,
@@ -1767,7 +1941,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 7,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. हियालिया",
+        "peeo_name": "PEEO EKALSEENGA"
       },
       {
         "booth_no": 62,
@@ -1793,7 +1969,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 7,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. हियालिया",
+        "peeo_name": "PEEO EKALSEENGA"
       }
     ]
   },
@@ -1803,6 +1981,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA",
     "panchayat_name": "कनईकलां",
     "peeo_name": "PEEO KANAI KALAN",
+    "peeo_code": "221765",
     "principal_name": "NARESH KUMAR",
     "principal_mobile": "9166233899",
     "booth_count": 3,
@@ -1831,7 +2010,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 14,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. कनाई कलां",
+        "peeo_name": "PEEO KANAI KALAN"
       },
       {
         "booth_no": 64,
@@ -1857,7 +2038,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 14,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. कनाई कलां",
+        "peeo_name": "PEEO KANAI KALAN"
       },
       {
         "booth_no": 65,
@@ -1883,7 +2066,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 14,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. कनाई कलां",
+        "peeo_name": "PEEO KANAI KALAN"
       }
     ]
   },
@@ -1893,6 +2078,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KARANTI",
     "panchayat_name": "करांटी",
     "peeo_name": "PEEO KARATI",
+    "peeo_code": "221773",
     "principal_name": "DEEPAK SANWARIYA",
     "principal_mobile": "9950736300",
     "booth_count": 3,
@@ -1921,7 +2107,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 4,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. करांटी",
+        "peeo_name": "PEEO KARATI"
       },
       {
         "booth_no": 67,
@@ -1947,7 +2135,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 4,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. करांटी",
+        "peeo_name": "PEEO KARATI"
       },
       {
         "booth_no": 68,
@@ -1973,7 +2163,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 4,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. करांटी",
+        "peeo_name": "PEEO KARATI"
       }
     ]
   },
@@ -1983,6 +2175,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "जेतपुरा) (GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD",
     "panchayat_name": "कैरोट",
     "peeo_name": "PEEO KEROT",
+    "peeo_code": "221767",
     "principal_name": "SOHANLAL SARAN",
     "principal_mobile": "9929526324",
     "booth_count": 4,
@@ -2011,7 +2204,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 13,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. कैरोट",
+        "peeo_name": "PEEO KEROT"
       },
       {
         "booth_no": 70,
@@ -2037,7 +2232,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 13,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. कैरोट",
+        "peeo_name": "PEEO KEROT"
       },
       {
         "booth_no": 71,
@@ -2063,7 +2260,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 13,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. कैरोट",
+        "peeo_name": "PEEO KEROT"
       },
       {
         "booth_no": 72,
@@ -2089,7 +2288,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 13,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. कैरोट",
+        "peeo_name": "PEEO KEROT"
       }
     ]
   },
@@ -2099,6 +2300,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KHEDI",
     "panchayat_name": "खेड़ी",
     "peeo_name": "PEEO KARATI",
+    "peeo_code": "221773",
     "principal_name": "SUSHAMA PANDEY",
     "principal_mobile": "8107098772",
     "booth_count": 4,
@@ -2127,7 +2329,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 4,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. खेड़ी",
+        "peeo_name": "PEEO KARATI"
       },
       {
         "booth_no": 74,
@@ -2153,7 +2357,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 4,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. खेड़ी",
+        "peeo_name": "PEEO KARATI"
       },
       {
         "booth_no": 75,
@@ -2179,7 +2385,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 4,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. खेड़ी",
+        "peeo_name": "PEEO KARATI"
       },
       {
         "booth_no": 76,
@@ -2205,7 +2413,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 5,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. खेड़ी",
+        "peeo_name": "PEEO KARATI"
       }
     ]
   },
@@ -2215,6 +2425,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA",
     "panchayat_name": "कुम्हारिया",
     "peeo_name": "PEEO KUMHARIYA",
+    "peeo_code": "221777",
     "principal_name": "JYOTI PRAKASH SHARMA",
     "principal_mobile": "9460690289",
     "booth_count": 4,
@@ -2243,7 +2454,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 19,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. कुम्हारिया",
+        "peeo_name": "PEEO KUMHARIYA"
       },
       {
         "booth_no": 78,
@@ -2269,7 +2482,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 19,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. कुम्हारिया",
+        "peeo_name": "PEEO KUMHARIYA"
       },
       {
         "booth_no": 79,
@@ -2295,7 +2510,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 19,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. कुम्हारिया",
+        "peeo_name": "PEEO KUMHARIYA"
       },
       {
         "booth_no": 80,
@@ -2321,7 +2538,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 19,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. कुम्हारिया",
+        "peeo_name": "PEEO KUMHARIYA"
       }
     ]
   },
@@ -2331,6 +2550,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA",
     "panchayat_name": "लामगरा",
     "peeo_name": "PEEO LAMGARA",
+    "peeo_code": "221759",
     "principal_name": "RAJEEV KUMAR MANDOT",
     "principal_mobile": "9413134849",
     "booth_count": 4,
@@ -2359,7 +2579,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 9,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. लामगरा",
+        "peeo_name": "PEEO LAMGARA"
       },
       {
         "booth_no": 82,
@@ -2385,7 +2607,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 9,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. लामगरा",
+        "peeo_name": "PEEO LAMGARA"
       },
       {
         "booth_no": 83,
@@ -2411,7 +2635,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 9,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. लामगरा",
+        "peeo_name": "PEEO LAMGARA"
       },
       {
         "booth_no": 84,
@@ -2437,7 +2663,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 9,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. लामगरा",
+        "peeo_name": "PEEO LAMGARA"
       }
     ]
   },
@@ -2447,6 +2675,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA",
     "panchayat_name": "नागोला",
     "peeo_name": "PEEO NAGOLA",
+    "peeo_code": "221772",
     "principal_name": "VINOD KUMAR RAO",
     "principal_mobile": "8955306674",
     "booth_count": 4,
@@ -2475,7 +2704,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 16,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. नागोला",
+        "peeo_name": "PEEO NAGOLA"
       },
       {
         "booth_no": 86,
@@ -2501,7 +2732,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 16,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. नागोला",
+        "peeo_name": "PEEO NAGOLA"
       },
       {
         "booth_no": 87,
@@ -2527,7 +2760,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 16,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. नागोला",
+        "peeo_name": "PEEO NAGOLA"
       },
       {
         "booth_no": 88,
@@ -2553,7 +2788,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 16,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. नागोला",
+        "peeo_name": "PEEO NAGOLA"
       }
     ]
   },
@@ -2563,6 +2800,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NANDSI",
     "panchayat_name": "नान्दसी",
     "peeo_name": "PEEO NANDSI",
+    "peeo_code": "221756",
     "principal_name": "OM PRAKASH VERMA",
     "principal_mobile": "9001637473",
     "booth_count": 5,
@@ -2591,7 +2829,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 12,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. नांदसी",
+        "peeo_name": "PEEO NANDSI"
       },
       {
         "booth_no": 90,
@@ -2617,7 +2857,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 12,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. नांदसी",
+        "peeo_name": "PEEO NANDSI"
       },
       {
         "booth_no": 91,
@@ -2643,7 +2885,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 13,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. नांदसी",
+        "peeo_name": "PEEO NANDSI"
       },
       {
         "booth_no": 92,
@@ -2669,7 +2913,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 13,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. नांदसी",
+        "peeo_name": "PEEO NANDSI"
       },
       {
         "booth_no": 93,
@@ -2695,7 +2941,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 13,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. नांदसी",
+        "peeo_name": "PEEO NANDSI"
       }
     ]
   },
@@ -2705,6 +2953,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADANGA",
     "panchayat_name": "पंडागा",
     "peeo_name": "PEEO PADANGA",
+    "peeo_code": "221788",
     "principal_name": "SMT ASHA RAJ",
     "principal_mobile": "7877090975",
     "booth_count": 3,
@@ -2733,7 +2982,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 1,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. पाडंगा",
+        "peeo_name": "PEEO PADANGA"
       },
       {
         "booth_no": 95,
@@ -2759,7 +3010,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 1,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. पाडंगा",
+        "peeo_name": "PEEO PADANGA"
       },
       {
         "booth_no": 96,
@@ -2785,7 +3038,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 1,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. पाडंगा",
+        "peeo_name": "PEEO PADANGA"
       }
     ]
   },
@@ -2795,6 +3050,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA",
     "panchayat_name": "पाडलिया",
     "peeo_name": "PEEO PADALIYA",
+    "peeo_code": "221766",
     "principal_name": "LAXMI POPTANI",
     "principal_mobile": "9549364023",
     "booth_count": 3,
@@ -2823,7 +3079,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 14,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. पाडलिया",
+        "peeo_name": "PEEO PADALIYA"
       },
       {
         "booth_no": 98,
@@ -2849,7 +3107,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 14,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. पाडलिया",
+        "peeo_name": "PEEO PADALIYA"
       },
       {
         "booth_no": 99,
@@ -2875,7 +3135,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 14,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. पाडलिया",
+        "peeo_name": "PEEO PADALIYA"
       }
     ]
   },
@@ -2885,6 +3147,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA",
     "panchayat_name": "राममालिया",
     "peeo_name": "PEEO RAMMALIA",
+    "peeo_code": "221785",
     "principal_name": "LAL CHAND MUNOTH",
     "principal_mobile": "9928328808",
     "booth_count": 3,
@@ -2913,7 +3176,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 18,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. राममालिया",
+        "peeo_name": "PEEO RAMMALIA"
       },
       {
         "booth_no": 101,
@@ -2939,7 +3204,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 18,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. राममालिया",
+        "peeo_name": "PEEO RAMMALIA"
       },
       {
         "booth_no": 102,
@@ -2965,7 +3232,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 18,
         "zp_constituency": 11,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. राममालिया",
+        "peeo_name": "PEEO RAMMALIA"
       }
     ]
   },
@@ -2975,6 +3244,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT",
     "panchayat_name": "राताकोट",
     "peeo_name": "PEEO RATAKOT",
+    "peeo_code": "221775",
     "principal_name": "KUNJ BIHARI SHARMA",
     "principal_mobile": "9887753471",
     "booth_count": 4,
@@ -3003,7 +3273,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 3,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. राताकोट",
+        "peeo_name": "PEEO RATAKOT"
       },
       {
         "booth_no": 104,
@@ -3029,7 +3301,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 3,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. राताकोट",
+        "peeo_name": "PEEO RATAKOT"
       },
       {
         "booth_no": 105,
@@ -3055,7 +3329,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 3,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. राताकोट",
+        "peeo_name": "PEEO RATAKOT"
       },
       {
         "booth_no": 106,
@@ -3081,7 +3357,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 3,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. राताकोट",
+        "peeo_name": "PEEO RATAKOT"
       }
     ]
   },
@@ -3091,6 +3369,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL",
     "panchayat_name": "सिंगावल",
     "peeo_name": "PEEO SINGAWAL",
+    "peeo_code": "221781",
     "principal_name": "SEEMA SHARMA",
     "principal_mobile": "8290911983",
     "booth_count": 4,
@@ -3119,7 +3398,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 3,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. सिंगावल",
+        "peeo_name": "PEEO SINGAWAL"
       },
       {
         "booth_no": 108,
@@ -3145,7 +3426,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 3,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. सिंगावल",
+        "peeo_name": "PEEO SINGAWAL"
       },
       {
         "booth_no": 109,
@@ -3171,7 +3454,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 3,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. सिंगावल",
+        "peeo_name": "PEEO SINGAWAL"
       },
       {
         "booth_no": 110,
@@ -3197,7 +3482,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 3,
         "zp_constituency": 9,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. सिंगावल",
+        "peeo_name": "PEEO SINGAWAL"
       }
     ]
   },
@@ -3207,6 +3494,7 @@ const ELECTION_2026_SCHOOLS = [
     "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL SOBRI",
     "panchayat_name": "सोबड़ी",
     "peeo_name": "PEEO SOBRI",
+    "peeo_code": "221782",
     "principal_name": "FAYYAZ MOHAMMED",
     "principal_mobile": "9829487158",
     "booth_count": 3,
@@ -3235,7 +3523,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 8,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. सोबड़ी",
+        "peeo_name": "PEEO SOBRI"
       },
       {
         "booth_no": 112,
@@ -3261,7 +3551,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 8,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. सोबड़ी",
+        "peeo_name": "PEEO SOBRI"
       },
       {
         "booth_no": 113,
@@ -3287,17 +3579,20 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 17,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.उ.मा.वि. सोबड़ी",
+        "peeo_name": "PEEO SOBRI"
       }
     ]
   },
   {
     "shala_darpan_code": "410859",
-    "school_name": "GOVT. PRIMARY SCHOOL SOLKHURD (410859) (08210702101)",
-    "school_name_en": "GOVT. PRIMARY SCHOOL SOLKHURD (410859) (08210702101)",
+    "school_name": "रा.प्रा.वि. सोलखुर्द",
+    "school_name_en": "रा.प्रा.वि. सोलखुर्द",
     "panchayat_name": "सोलखुर्द",
     "peeo_name": "PEEO BOOBKIYA",
-    "principal_name": "संस्था प्रधान",
+    "peeo_code": "221763",
+    "principal_name": "शांति लाल जाट",
     "principal_mobile": "8003697585",
     "booth_count": 3,
     "booths": [
@@ -3325,7 +3620,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 17,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.प्रा.वि. सोलखुर्द",
+        "peeo_name": "PEEO BOOBKIYA"
       },
       {
         "booth_no": 115,
@@ -3351,7 +3648,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 17,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.प्रा.वि. सोलखुर्द",
+        "peeo_name": "PEEO BOOBKIYA"
       },
       {
         "booth_no": 116,
@@ -3377,7 +3676,9 @@ const ELECTION_2026_SCHOOLS = [
         "win_door": "ठीक स्थिति",
         "ps_constituency": 17,
         "zp_constituency": 10,
-        "ac_constituency": 104
+        "ac_constituency": 104,
+        "building_hi": "रा.प्रा.वि. सोलखुर्द",
+        "peeo_name": "PEEO BOOBKIYA"
       }
     ]
   }
@@ -3408,7 +3709,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 15,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. बड़गांव",
+    "peeo_name": "PEEO BARGAON"
   },
   {
     "booth_no": 2,
@@ -3434,7 +3737,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 15,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. बड़गांव",
+    "peeo_name": "PEEO BARGAON"
   },
   {
     "booth_no": 3,
@@ -3460,7 +3765,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 15,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. बड़गांव",
+    "peeo_name": "PEEO BARGAON"
   },
   {
     "booth_no": 4,
@@ -3486,7 +3793,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 15,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. बड़गांव",
+    "peeo_name": "PEEO BARGAON"
   },
   {
     "booth_no": 5,
@@ -3512,7 +3821,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 15,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. बड़गांव",
+    "peeo_name": "PEEO BARGAON"
   },
   {
     "booth_no": 6,
@@ -3538,7 +3849,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 9,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. बड़ली",
+    "peeo_name": "PEEO BARLI"
   },
   {
     "booth_no": 7,
@@ -3564,7 +3877,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 9,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. बड़ली",
+    "peeo_name": "PEEO BARLI"
   },
   {
     "booth_no": 8,
@@ -3590,7 +3905,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 9,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. बड़ली",
+    "peeo_name": "PEEO BARLI"
   },
   {
     "booth_no": 9,
@@ -3616,7 +3933,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 9,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. बड़ली",
+    "peeo_name": "PEEO BARLI"
   },
   {
     "booth_no": 10,
@@ -3642,7 +3961,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 11,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "पीएम श्री रा.उ.मा.वि. बगराई",
+    "peeo_name": "PEEO GURHA KHURD"
   },
   {
     "booth_no": 11,
@@ -3668,12 +3989,14 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 11,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "पीएम श्री रा.उ.मा.वि. बगराई",
+    "peeo_name": "PEEO GURHA KHURD"
   },
   {
     "booth_no": 12,
     "panchayat_hi": "बांदनवाड़ा",
-    "school_code": "221769",
+    "school_code": "221770",
     "room_hi": "महात्मा गांधी राजकीय विद्यालय कमरा नं.14 बांदनवाड़ा",
     "ward": "1, 2, 3",
     "bldg_type": "सरकारी",
@@ -3694,12 +4017,14 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 2,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+    "peeo_name": "PEEO BANDANWARA"
   },
   {
     "booth_no": 13,
     "panchayat_hi": "बांदनवाड़ा",
-    "school_code": "221769",
+    "school_code": "221770",
     "room_hi": "महात्मा गांधी राजकीय विद्यालय कमरा नं.15 बांदनवाड़ा",
     "ward": "4, 5, 6",
     "bldg_type": "सरकारी",
@@ -3720,7 +4045,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 2,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "महात्मा गांधी राजकीय विद्यालय, बांदनवाड़ा",
+    "peeo_name": "PEEO BANDANWARA"
   },
   {
     "booth_no": 14,
@@ -3746,7 +4073,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 2,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+    "peeo_name": "PEEO BANDANWARA"
   },
   {
     "booth_no": 15,
@@ -3772,7 +4101,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 2,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+    "peeo_name": "PEEO BANDANWARA"
   },
   {
     "booth_no": 16,
@@ -3798,7 +4129,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 2,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+    "peeo_name": "PEEO BANDANWARA"
   },
   {
     "booth_no": 17,
@@ -3824,7 +4157,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 2,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. बांदनवाड़ा",
+    "peeo_name": "PEEO BANDANWARA"
   },
   {
     "booth_no": 18,
@@ -3850,7 +4185,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 6,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. भिनाय",
+    "peeo_name": "PEEO BHINAY"
   },
   {
     "booth_no": 19,
@@ -3876,7 +4213,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 6,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. भिनाय",
+    "peeo_name": "PEEO BHINAY"
   },
   {
     "booth_no": 20,
@@ -3902,7 +4241,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 6,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. भिनाय",
+    "peeo_name": "PEEO BHINAY"
   },
   {
     "booth_no": 21,
@@ -3928,12 +4269,14 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 6,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. भिनाय",
+    "peeo_name": "PEEO BHINAY"
   },
   {
     "booth_no": 22,
     "panchayat_hi": "भिनाय",
-    "school_code": "221780",
+    "school_code": "221778",
     "room_hi": "महात्मा गांधी राजकीय विद्यालय कमरा नं.4 भिनाय",
     "ward": "13, 14, 15",
     "bldg_type": "सरकारी",
@@ -3954,12 +4297,14 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 6,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+    "peeo_name": "PEEO BHINAY"
   },
   {
     "booth_no": 23,
     "panchayat_hi": "भिनाय",
-    "school_code": "221780",
+    "school_code": "221778",
     "room_hi": "महात्मा गांधी राजकीय विद्यालय कमरा नं.5 भिनाय",
     "ward": "16, 17",
     "bldg_type": "सरकारी",
@@ -3980,12 +4325,14 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 6,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+    "peeo_name": "PEEO BHINAY"
   },
   {
     "booth_no": 24,
     "panchayat_hi": "भिनाय",
-    "school_code": "221780",
+    "school_code": "221778",
     "room_hi": "महात्मा गांधी राजकीय विद्यालय कमरा नं.9 भिनाय",
     "ward": "18, 19",
     "bldg_type": "सरकारी",
@@ -4006,12 +4353,14 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 6,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+    "peeo_name": "PEEO BHINAY"
   },
   {
     "booth_no": 25,
     "panchayat_hi": "भिनाय",
-    "school_code": "221780",
+    "school_code": "221778",
     "room_hi": "महात्मा गांधी राजकीय विद्यालय कमरा नं.10 भिनाय",
     "ward": "20, 21",
     "bldg_type": "सरकारी",
@@ -4032,7 +4381,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 6,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "महात्मा गांधी राजकीय विद्यालय, भिनाय",
+    "peeo_name": "PEEO BHINAY"
   },
   {
     "booth_no": 26,
@@ -4058,7 +4409,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 18,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. बूबकिया",
+    "peeo_name": "PEEO BOOBKIYA"
   },
   {
     "booth_no": 27,
@@ -4084,7 +4437,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 17,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. बूबकिया",
+    "peeo_name": "PEEO BOOBKIYA"
   },
   {
     "booth_no": 28,
@@ -4110,7 +4465,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 17,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. बूबकिया",
+    "peeo_name": "PEEO BOOBKIYA"
   },
   {
     "booth_no": 29,
@@ -4136,7 +4493,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 17,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. बूबकिया",
+    "peeo_name": "PEEO BOOBKIYA"
   },
   {
     "booth_no": 30,
@@ -4162,7 +4521,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 12,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. चापानेरी",
+    "peeo_name": "PEEO CHAPANERI"
   },
   {
     "booth_no": 31,
@@ -4188,7 +4549,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 12,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. चापानेरी",
+    "peeo_name": "PEEO CHAPANERI"
   },
   {
     "booth_no": 32,
@@ -4214,7 +4577,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 12,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. चापानेरी",
+    "peeo_name": "PEEO CHAPANERI"
   },
   {
     "booth_no": 33,
@@ -4240,7 +4605,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 12,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. चापानेरी",
+    "peeo_name": "PEEO CHAPANERI"
   },
   {
     "booth_no": 34,
@@ -4266,7 +4633,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 5,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. छछून्दरा",
+    "peeo_name": "PEEO CHHACHHUNDRA"
   },
   {
     "booth_no": 35,
@@ -4292,7 +4661,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 5,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. छछून्दरा",
+    "peeo_name": "PEEO CHHACHHUNDRA"
   },
   {
     "booth_no": 36,
@@ -4318,7 +4689,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 5,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. छछून्दरा",
+    "peeo_name": "PEEO CHHACHHUNDRA"
   },
   {
     "booth_no": 37,
@@ -4344,7 +4717,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 5,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. छछून्दरा",
+    "peeo_name": "PEEO CHHACHHUNDRA"
   },
   {
     "booth_no": 38,
@@ -4370,7 +4745,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 10,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+    "peeo_name": "PEEO DEOLIYA KALAN"
   },
   {
     "booth_no": 39,
@@ -4396,7 +4773,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 10,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+    "peeo_name": "PEEO DEOLIYA KALAN"
   },
   {
     "booth_no": 40,
@@ -4422,7 +4801,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 10,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+    "peeo_name": "PEEO DEOLIYA KALAN"
   },
   {
     "booth_no": 41,
@@ -4448,12 +4829,14 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 10,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+    "peeo_name": "PEEO DEOLIYA KALAN"
   },
   {
     "booth_no": 42,
     "panchayat_hi": "देवलियाकलां",
-    "school_code": "221754",
+    "school_code": "221753",
     "room_hi": "महात्मा गांधी राजकीय विद्यालय कमरा नं.2 देवलियाकलां",
     "ward": "10, 11, 12",
     "bldg_type": "सरकारी",
@@ -4474,12 +4857,14 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 10,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+    "peeo_name": "PEEO DEOLIYA KALAN"
   },
   {
     "booth_no": 43,
     "panchayat_hi": "देवलियाकलां",
-    "school_code": "221754",
+    "school_code": "221753",
     "room_hi": "महात्मा गांधी राजकीय विद्यालय कमरा नं.3 देवलियाकलां",
     "ward": "13, 14, 15",
     "bldg_type": "सरकारी",
@@ -4500,7 +4885,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 10,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+    "peeo_name": "PEEO DEOLIYA KALAN"
   },
   {
     "booth_no": 44,
@@ -4526,7 +4913,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 1,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. देवरिया",
+    "peeo_name": "PEEO DEVPURA"
   },
   {
     "booth_no": 45,
@@ -4552,7 +4941,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 1,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. देवरिया",
+    "peeo_name": "PEEO DEVPURA"
   },
   {
     "booth_no": 46,
@@ -4578,7 +4969,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 1,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. देवरिया",
+    "peeo_name": "PEEO DEVPURA"
   },
   {
     "booth_no": 47,
@@ -4604,7 +4997,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 1,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. देवरिया",
+    "peeo_name": "PEEO DEVPURA"
   },
   {
     "booth_no": 48,
@@ -4630,7 +5025,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 18,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. धांतोल",
+    "peeo_name": "PEEO DHANTOL"
   },
   {
     "booth_no": 49,
@@ -4656,7 +5053,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 18,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. धांतोल",
+    "peeo_name": "PEEO DHANTOL"
   },
   {
     "booth_no": 50,
@@ -4682,7 +5081,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 18,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. धांतोल",
+    "peeo_name": "PEEO DHANTOL"
   },
   {
     "booth_no": 51,
@@ -4708,7 +5109,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 7,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. एकलसिंघा",
+    "peeo_name": "PEEO EKALSEENGA"
   },
   {
     "booth_no": 52,
@@ -4734,7 +5137,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 7,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. एकलसिंघा",
+    "peeo_name": "PEEO EKALSEENGA"
   },
   {
     "booth_no": 53,
@@ -4760,7 +5165,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 7,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. एकलसिंघा",
+    "peeo_name": "PEEO EKALSEENGA"
   },
   {
     "booth_no": 54,
@@ -4786,7 +5193,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 8,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. घणा",
+    "peeo_name": "PEEO SOBRI"
   },
   {
     "booth_no": 55,
@@ -4812,7 +5221,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 8,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. घणा",
+    "peeo_name": "PEEO SOBRI"
   },
   {
     "booth_no": 56,
@@ -4838,7 +5249,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 8,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. घणा",
+    "peeo_name": "PEEO SOBRI"
   },
   {
     "booth_no": 57,
@@ -4864,7 +5277,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 11,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+    "peeo_name": "PEEO GURHA KHURD"
   },
   {
     "booth_no": 58,
@@ -4890,7 +5305,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 11,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+    "peeo_name": "PEEO GURHA KHURD"
   },
   {
     "booth_no": 59,
@@ -4916,7 +5333,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 11,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+    "peeo_name": "PEEO GURHA KHURD"
   },
   {
     "booth_no": 60,
@@ -4942,7 +5361,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 11,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. गुढ़ा खुर्द",
+    "peeo_name": "PEEO GURHA KHURD"
   },
   {
     "booth_no": 61,
@@ -4968,7 +5389,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 7,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. हियालिया",
+    "peeo_name": "PEEO EKALSEENGA"
   },
   {
     "booth_no": 62,
@@ -4994,7 +5417,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 7,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. हियालिया",
+    "peeo_name": "PEEO EKALSEENGA"
   },
   {
     "booth_no": 63,
@@ -5020,7 +5445,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 14,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. कनाई कलां",
+    "peeo_name": "PEEO KANAI KALAN"
   },
   {
     "booth_no": 64,
@@ -5046,7 +5473,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 14,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. कनाई कलां",
+    "peeo_name": "PEEO KANAI KALAN"
   },
   {
     "booth_no": 65,
@@ -5072,7 +5501,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 14,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. कनाई कलां",
+    "peeo_name": "PEEO KANAI KALAN"
   },
   {
     "booth_no": 66,
@@ -5098,7 +5529,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 4,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. करांटी",
+    "peeo_name": "PEEO KARATI"
   },
   {
     "booth_no": 67,
@@ -5124,7 +5557,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 4,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. करांटी",
+    "peeo_name": "PEEO KARATI"
   },
   {
     "booth_no": 68,
@@ -5150,7 +5585,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 4,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. करांटी",
+    "peeo_name": "PEEO KARATI"
   },
   {
     "booth_no": 69,
@@ -5176,7 +5613,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 13,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. कैरोट",
+    "peeo_name": "PEEO KEROT"
   },
   {
     "booth_no": 70,
@@ -5202,7 +5641,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 13,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. कैरोट",
+    "peeo_name": "PEEO KEROT"
   },
   {
     "booth_no": 71,
@@ -5228,7 +5669,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 13,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. कैरोट",
+    "peeo_name": "PEEO KEROT"
   },
   {
     "booth_no": 72,
@@ -5254,7 +5697,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 13,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. कैरोट",
+    "peeo_name": "PEEO KEROT"
   },
   {
     "booth_no": 73,
@@ -5280,7 +5725,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 4,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. खेड़ी",
+    "peeo_name": "PEEO KARATI"
   },
   {
     "booth_no": 74,
@@ -5306,7 +5753,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 4,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. खेड़ी",
+    "peeo_name": "PEEO KARATI"
   },
   {
     "booth_no": 75,
@@ -5332,7 +5781,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 4,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. खेड़ी",
+    "peeo_name": "PEEO KARATI"
   },
   {
     "booth_no": 76,
@@ -5358,7 +5809,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 5,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. खेड़ी",
+    "peeo_name": "PEEO KARATI"
   },
   {
     "booth_no": 77,
@@ -5384,7 +5837,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 19,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. कुम्हारिया",
+    "peeo_name": "PEEO KUMHARIYA"
   },
   {
     "booth_no": 78,
@@ -5410,7 +5865,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 19,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. कुम्हारिया",
+    "peeo_name": "PEEO KUMHARIYA"
   },
   {
     "booth_no": 79,
@@ -5436,7 +5893,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 19,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. कुम्हारिया",
+    "peeo_name": "PEEO KUMHARIYA"
   },
   {
     "booth_no": 80,
@@ -5462,7 +5921,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 19,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. कुम्हारिया",
+    "peeo_name": "PEEO KUMHARIYA"
   },
   {
     "booth_no": 81,
@@ -5488,7 +5949,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 9,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. लामगरा",
+    "peeo_name": "PEEO LAMGARA"
   },
   {
     "booth_no": 82,
@@ -5514,7 +5977,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 9,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. लामगरा",
+    "peeo_name": "PEEO LAMGARA"
   },
   {
     "booth_no": 83,
@@ -5540,7 +6005,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 9,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. लामगरा",
+    "peeo_name": "PEEO LAMGARA"
   },
   {
     "booth_no": 84,
@@ -5566,7 +6033,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 9,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. लामगरा",
+    "peeo_name": "PEEO LAMGARA"
   },
   {
     "booth_no": 85,
@@ -5592,7 +6061,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 16,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. नागोला",
+    "peeo_name": "PEEO NAGOLA"
   },
   {
     "booth_no": 86,
@@ -5618,7 +6089,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 16,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. नागोला",
+    "peeo_name": "PEEO NAGOLA"
   },
   {
     "booth_no": 87,
@@ -5644,7 +6117,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 16,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. नागोला",
+    "peeo_name": "PEEO NAGOLA"
   },
   {
     "booth_no": 88,
@@ -5670,7 +6145,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 16,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. नागोला",
+    "peeo_name": "PEEO NAGOLA"
   },
   {
     "booth_no": 89,
@@ -5696,7 +6173,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 12,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. नांदसी",
+    "peeo_name": "PEEO NANDSI"
   },
   {
     "booth_no": 90,
@@ -5722,7 +6201,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 12,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. नांदसी",
+    "peeo_name": "PEEO NANDSI"
   },
   {
     "booth_no": 91,
@@ -5748,7 +6229,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 13,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. नांदसी",
+    "peeo_name": "PEEO NANDSI"
   },
   {
     "booth_no": 92,
@@ -5774,7 +6257,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 13,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. नांदसी",
+    "peeo_name": "PEEO NANDSI"
   },
   {
     "booth_no": 93,
@@ -5800,7 +6285,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 13,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. नांदसी",
+    "peeo_name": "PEEO NANDSI"
   },
   {
     "booth_no": 94,
@@ -5826,7 +6313,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 1,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. पाडंगा",
+    "peeo_name": "PEEO PADANGA"
   },
   {
     "booth_no": 95,
@@ -5852,7 +6341,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 1,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. पाडंगा",
+    "peeo_name": "PEEO PADANGA"
   },
   {
     "booth_no": 96,
@@ -5878,7 +6369,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 1,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. पाडंगा",
+    "peeo_name": "PEEO PADANGA"
   },
   {
     "booth_no": 97,
@@ -5904,7 +6397,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 14,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. पाडलिया",
+    "peeo_name": "PEEO PADALIYA"
   },
   {
     "booth_no": 98,
@@ -5930,7 +6425,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 14,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. पाडलिया",
+    "peeo_name": "PEEO PADALIYA"
   },
   {
     "booth_no": 99,
@@ -5956,7 +6453,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 14,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. पाडलिया",
+    "peeo_name": "PEEO PADALIYA"
   },
   {
     "booth_no": 100,
@@ -5982,7 +6481,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 18,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. राममालिया",
+    "peeo_name": "PEEO RAMMALIA"
   },
   {
     "booth_no": 101,
@@ -6008,7 +6509,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 18,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. राममालिया",
+    "peeo_name": "PEEO RAMMALIA"
   },
   {
     "booth_no": 102,
@@ -6034,7 +6537,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 18,
     "zp_constituency": 11,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. राममालिया",
+    "peeo_name": "PEEO RAMMALIA"
   },
   {
     "booth_no": 103,
@@ -6060,7 +6565,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 3,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. राताकोट",
+    "peeo_name": "PEEO RATAKOT"
   },
   {
     "booth_no": 104,
@@ -6086,7 +6593,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 3,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. राताकोट",
+    "peeo_name": "PEEO RATAKOT"
   },
   {
     "booth_no": 105,
@@ -6112,7 +6621,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 3,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. राताकोट",
+    "peeo_name": "PEEO RATAKOT"
   },
   {
     "booth_no": 106,
@@ -6138,7 +6649,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 3,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. राताकोट",
+    "peeo_name": "PEEO RATAKOT"
   },
   {
     "booth_no": 107,
@@ -6164,7 +6677,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 3,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. सिंगावल",
+    "peeo_name": "PEEO SINGAWAL"
   },
   {
     "booth_no": 108,
@@ -6190,7 +6705,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 3,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. सिंगावल",
+    "peeo_name": "PEEO SINGAWAL"
   },
   {
     "booth_no": 109,
@@ -6216,7 +6733,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 3,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. सिंगावल",
+    "peeo_name": "PEEO SINGAWAL"
   },
   {
     "booth_no": 110,
@@ -6242,7 +6761,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 3,
     "zp_constituency": 9,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. सिंगावल",
+    "peeo_name": "PEEO SINGAWAL"
   },
   {
     "booth_no": 111,
@@ -6268,7 +6789,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 8,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. सोबड़ी",
+    "peeo_name": "PEEO SOBRI"
   },
   {
     "booth_no": 112,
@@ -6294,7 +6817,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 8,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. सोबड़ी",
+    "peeo_name": "PEEO SOBRI"
   },
   {
     "booth_no": 113,
@@ -6320,7 +6845,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 17,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.उ.मा.वि. सोबड़ी",
+    "peeo_name": "PEEO SOBRI"
   },
   {
     "booth_no": 114,
@@ -6346,7 +6873,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 17,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.प्रा.वि. सोलखुर्द",
+    "peeo_name": "PEEO BOOBKIYA"
   },
   {
     "booth_no": 115,
@@ -6372,7 +6901,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 17,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.प्रा.वि. सोलखुर्द",
+    "peeo_name": "PEEO BOOBKIYA"
   },
   {
     "booth_no": 116,
@@ -6398,7 +6929,9 @@ const ELECTION_2026_BOOTHS = [
     "win_door": "ठीक स्थिति",
     "ps_constituency": 17,
     "zp_constituency": 10,
-    "ac_constituency": 104
+    "ac_constituency": 104,
+    "building_hi": "रा.प्रा.वि. सोलखुर्द",
+    "peeo_name": "PEEO BOOBKIYA"
   }
 ];
 
