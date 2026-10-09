@@ -1,1 +1,10 @@
-{"saman_pariksha":{"cbeo":true,"peeo":true,"govt_sec_srsec":true,"pvt_sec_srsec":false,"all_govt":false,"all_schools":false}}
+{
+  "saman_pariksha": {
+    "cbeo": true,
+    "peeo": true,
+    "govt_sec_srsec": true,
+    "pvt_sec_srsec": false,
+    "all_govt": false,
+    "all_schools": false
+  }
+}
