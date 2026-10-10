@@ -255,6 +255,27 @@ def main():
         except Exception as e:
             print(f"[CBEO-VM] Note on Syllabus Submissions sync: {e}")
 
+        # Fetch election verification submissions from GAS
+        try:
+            elec_url = f"{gas_backend_url}?action=getElectionSubmissions&_t={int(datetime.datetime.now().timestamp())}"
+            elec_resp = requests.get(elec_url, timeout=20)
+            if elec_resp.status_code == 200:
+                elec_json = elec_resp.json()
+                if elec_json.get('success') and elec_json.get('submissions'):
+                    raw_elec = elec_json['submissions']
+                    elec_subs_path = os.path.join(root_dir, 'election_submissions.json')
+                    with open(elec_subs_path, 'w', encoding='utf-8') as ef:
+                        json.dump(raw_elec, ef, ensure_ascii=False, indent=2)
+                    master_data['election_submissions'] = raw_elec
+                    with open(data_path, 'w', encoding='utf-8') as mf:
+                        json.dump(master_data, mf, ensure_ascii=False, indent=2)
+                    js_data_path = os.path.join(root_dir, 'master_cbeo_data.js')
+                    with open(js_data_path, 'w', encoding='utf-8') as jf:
+                        jf.write('const MASTER_CBEO_DATA = ' + json.dumps(master_data, ensure_ascii=False, indent=2) + ';\n')
+                    print(f"[CBEO-VM] ✓ Live Election Sync SUCCESS: Fetched {len(raw_elec)} election submissions directly from Sheet!")
+        except Exception as e:
+            print(f"[CBEO-VM] Note on Election Submissions sync: {e}")
+
     dispatch_cfg = vm_settings.get('dispatch_config', {})
     active_focus_report = dispatch_cfg.get('active_focus_report') or vm_settings.get('active_focus_report', '49_syllabus')
     show_mdm = bool(vm_settings.get('mdm_anomaly_scanner', False) and dispatch_cfg.get('report_mdm', False))

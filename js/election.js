@@ -1171,9 +1171,21 @@ function openElectionBroadcastModal() {
     submissions = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}');
   } catch(e) {}
 
-  const pendingSchools = schools.filter(s => !submissions[s.shala_darpan_code]);
+  const pendingSchools = schools.filter(s => {
+    const sub = submissions[s.shala_darpan_code];
+    return !(sub && (sub.submitted || sub.is_submitted || sub.timestamp || sub.submitted_at || sub.school_code));
+  });
+  const submittedCount = schools.length - pendingSchools.length;
 
-  const defaultMsg = `*कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)*\n\n*अति-आवश्यक चुनाव प्रपत्र-3 भौतिक सत्यापन सूचना:*\nमान्यवर संस्था प्रधान, राज्य निर्वाचन आयोग राजस्थान के आदेश क्र. 10161 के अनुसार पंचायती राज आम चुनाव 2026 हेतु आपके विद्यालय में स्थापित मतदान केन्द्रों के भौतिक सत्यापन (प्रपत्र-3) एवं अधिकृत BLO प्रगणक सत्यापन को तत्काल ऑनलाइन सबमिट करें।\n\n👉 *ऑनलाइन पोर्टल लिंक:* https://jit9763.github.io/cbeo-bhinai-portal/index.html?tab=election\n\n- मुख्य ब्लॉक शिक्षा अधिकारी, भिनाय (अजमेर)`;
+  let listSnippet = '';
+  pendingSchools.slice(0, 30).forEach((s, idx) => {
+    listSnippet += `[${idx + 1}] ${s.school_name} (${s.shala_darpan_code})\n     ग्राम पंचायत: ${s.panchayat_name} | बूथ: ${s.booth_count}\n     संस्था प्रधान: ${s.principal_name} (मो. ${s.principal_mobile || 'उपलब्ध नहीं'})\n`;
+  });
+  if (pendingSchools.length > 30) {
+    listSnippet += `... एवं अन्य ${pendingSchools.length - 30} विद्यालय।\n`;
+  }
+
+  const defaultMsg = `*🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)*\n*🚨 पंचायती राज आम चुनाव 2026: मतदान केन्द्र भौतिक सत्यापन (प्रपत्र-3) - अति आवश्यक रिमाइंडर*\n\nमान्यवर संस्था प्रधान / PEEO,\nराज्य निर्वाचन आयोग राजस्थान के आदेश क्र. 10161 के अनुसार भिनाय ब्लॉक के 33 मतदान केंद्र विद्यालयों (116 बूथ) का भौतिक सत्यापन एवं अधिकृत BLO प्रगणक सत्यापन तत्काल ऑनलाइन सबमिट किया जाना अनिवार्य है।\n\n📊 *वर्तमान प्रगति स्थिति:* कुल लक्षित: *${schools.length}* (116 बूथ) | प्रपत्र प्राप्त: *${submittedCount}* | 🚨 *लंबित विद्यालय: ${pendingSchools.length}*\n\n📋 *लंबित विद्यालयों की सूची:*\n${listSnippet}\n👉 *सत्यापन पोर्टल लिंक:* https://jit9763.github.io/cbeo-bhinai-portal/election_form.html\n\n- *मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)*`;
 
   modal.innerHTML = `
     <div style="background:#fff; border-radius:12px; max-width:680px; width:92%; max-height:90vh; overflow-y:auto; box-shadow:0 10px 30px rgba(0,0,0,0.3); border:1px solid #cbd5e1">
@@ -1186,12 +1198,12 @@ function openElectionBroadcastModal() {
 
       <div style="padding:1.25rem">
         <div style="margin-bottom:1rem; font-size:0.86rem; color:#475569">
-          वर्तमान में <strong>${pendingSchools.length}</strong> विद्यालयों का प्रपत्र सत्यापन लंबित है। आप नीचे दिए गए संदेश को कस्टमाइज़ कर सीधे संस्था प्रधानों को WhatsApp/Telegram पर प्रेषित कर सकते हैं:
+          वर्तमान में <strong>${pendingSchools.length}</strong> विद्यालयों का प्रपत्र सत्यापन लंबित है (प्राप्त: <strong>${submittedCount}</strong> / कुल लक्षित: <strong>${schools.length}</strong>)। आप नीचे दिए गए संदेश को कस्टमाइज़ कर सीधे संस्था प्रधानों को WhatsApp/Telegram पर प्रेषित कर सकते हैं:
         </div>
 
         <div style="margin-bottom:1rem">
           <label style="font-size:0.82rem; font-weight:700">संदेश सामग्री (Message Template):</label>
-          <textarea id="el-broadcast-msg-txt" class="form-control" rows="6" style="font-size:0.85rem; line-height:1.5">${defaultMsg}</textarea>
+          <textarea id="el-broadcast-msg-txt" class="form-control" rows="8" style="font-size:0.85rem; line-height:1.5">${defaultMsg}</textarea>
         </div>
 
         <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:0.85rem; margin-bottom:1rem">
@@ -1200,7 +1212,7 @@ function openElectionBroadcastModal() {
             <input type="radio" name="el-bc-target" value="pending" checked> केवल लंबित विद्यालय (${pendingSchools.length})
           </label>
           <label style="font-size:0.84rem; display:inline-flex; align-items:center; gap:0.4rem; cursor:pointer">
-            <input type="radio" name="el-bc-target" value="all"> सभी 30 ग्राम पंचायत विद्यालय
+            <input type="radio" name="el-bc-target" value="all"> सभी 33 मतदान केंद्र विद्यालय
           </label>
         </div>
 
@@ -1225,24 +1237,16 @@ function openElectionBroadcastModal() {
 
 function sendElectionWhatsAppBroadcast() {
   const msg = (document.getElementById('el-broadcast-msg-txt')?.value || '').trim();
-  const radPending = document.querySelector('input[name="el-bc-target"]:checked')?.value === 'pending';
-  const schools = window.ELECTION_2026_SCHOOLS || [];
-  let submissions = {};
-  try {
-    submissions = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}');
-  } catch(e) {}
-
-  const targetList = radPending ? schools.filter(s => !submissions[s.shala_darpan_code]) : schools;
-
-  if (targetList.length === 0) {
-    if (typeof showToast === 'function') showToast('कोई लंबित विद्यालय नहीं है!', 'success');
+  if (!msg) {
+    if (typeof showToast === 'function') showToast('संदेश रिक्त नहीं हो सकता!', 'warning');
     return;
   }
-
-  // Pick first pending principal's number for direct chat or open web
-  const firstMobile = targetList[0].principal_mobile || '9928254317';
-  const url = `https://api.whatsapp.com/send?phone=91${firstMobile}&text=${encodeURIComponent(msg)}`;
-  window.open(url, '_blank');
+  if (typeof openWhatsAppDirectText === 'function') {
+    openWhatsAppDirectText(msg);
+  } else {
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+  if (typeof showToast === 'function') showToast('WhatsApp प्रसारण विंडो खुल गई!', 'success');
 }
 
 function copyElectionBroadcastMsg() {
@@ -1465,6 +1469,43 @@ function syncElectionSubmissionsFromCloud(showToastOrCb) {
   const isInteractive = (showToastOrCb === true);
   const cb = (typeof showToastOrCb === 'function') ? showToastOrCb : null;
 
+  const applyElectionData = (subs) => {
+    if (!subs || typeof subs !== 'object' || Object.keys(subs).length === 0) return;
+    let localSubs = {};
+    try { localSubs = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}'); } catch(e) {}
+    const merged = { ...localSubs, ...subs };
+    Object.keys(merged).forEach(k => {
+      if (merged[k]) {
+        merged[k].submitted = true;
+        merged[k].is_submitted = true;
+      }
+    });
+    localStorage.setItem('cbeo_election_submissions', JSON.stringify(merged));
+    if (typeof STATE !== 'undefined') {
+      STATE.electionSubmissionsP3 = merged;
+      if (!STATE.demandSubmissions) STATE.demandSubmissions = {};
+      STATE.demandSubmissions['DEMAND_ELECTION_2026'] = merged;
+    }
+
+    const elView = document.getElementById('view-election');
+    if (elView && elView.classList.contains('active')) {
+      renderElectionView();
+    }
+    if (typeof renderDemandsView === 'function') renderDemandsView();
+    if (typeof updateVMWidgetStats === 'function') updateVMWidgetStats();
+    if (typeof renderCBEOExecutiveDemands === 'function') renderCBEOExecutiveDemands();
+    if (typeof updateAllPortalMetricsAndProgress === 'function') updateAllPortalMetricsAndProgress();
+  };
+
+  // 1. Instant fallback from MASTER_CBEO_DATA or local static file
+  if (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.election_submissions) {
+    applyElectionData(MASTER_CBEO_DATA.election_submissions);
+  }
+  fetch('election_submissions.json?_t=' + Date.now())
+    .then(r => r.ok ? r.json() : null)
+    .then(data => { if (data) applyElectionData(data); })
+    .catch(() => {});
+
   const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
     || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
 
@@ -1472,10 +1513,7 @@ function syncElectionSubmissionsFromCloud(showToastOrCb) {
     .then(r => r.json())
     .then(res => {
       if (res && res.success && res.submissions) {
-        let localSubs = {};
-        try { localSubs = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}'); } catch(e) {}
-        const merged = { ...localSubs, ...res.submissions };
-        localStorage.setItem('cbeo_election_submissions', JSON.stringify(merged));
+        applyElectionData(res.submissions);
         
         // Re-render if election view is active
         const elView = document.getElementById('view-election');
@@ -1487,6 +1525,9 @@ function syncElectionSubmissionsFromCloud(showToastOrCb) {
           const dView = document.getElementById('view-demands');
           if (dView && dView.classList.contains('active')) renderDemandsView();
         }
+        // Immediately refresh Admin control hub status bar and executive table
+        if (typeof updateVMWidgetStats === 'function') updateVMWidgetStats();
+        if (typeof renderCBEOExecutiveDemands === 'function') renderCBEOExecutiveDemands();
 
         const count = Object.keys(res.submissions).length;
         if (isInteractive && typeof showToast === 'function') {

@@ -1357,6 +1357,24 @@ function initMasterData() {
     syncSyllabusSubmissionsFromCloud();
   }
 
+  // 7C. Sync Panchayat Election 2026 Verification Submissions (Runs globally on GitHub Pages & localhost)
+  try {
+    const masterElecSubs = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.election_submissions) || {};
+    let storedElecSubs = {};
+    try { storedElecSubs = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}'); } catch(e) {}
+    const mergedElec = Object.assign({}, masterElecSubs, storedElecSubs);
+    STATE.electionSubmissionsP3 = mergedElec;
+    if (!STATE.demandSubmissions) STATE.demandSubmissions = {};
+    STATE.demandSubmissions['DEMAND_ELECTION_2026'] = mergedElec;
+    if (Object.keys(mergedElec).length > 0) {
+      localStorage.setItem('cbeo_election_submissions', JSON.stringify(mergedElec));
+    }
+  } catch(e) {}
+
+  if (typeof syncElectionSubmissionsFromCloud === 'function') {
+    syncElectionSubmissionsFromCloud();
+  }
+
   // 8. Admin Tab Access Configuration
   const storedTabConfig = localStorage.getItem('cbeo_tab_config');
   if (storedTabConfig) {
