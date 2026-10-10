@@ -94,7 +94,8 @@ const CURRENT_PORTAL_VERSION = 'v47_2026_10_09_mismatch_alert_persistence_clean_
       'cbeo_tab_visibility_5level', 'cbeo_edit_permissions_5level',
       'cbeo_saman_active_form', 'cbeo_saman_school_type_filter',
       'cbeo_saman_mismatch_settings', 'cbeo_mismatch_alert_disabled', 'cbeo_portal_settings', 'cbeo_vm_settings',
-      'cbeo_election_submissions', 'cbeo_election_custom_columns', 'cbeo_election_filter'
+      'cbeo_election_submissions', 'cbeo_election_custom_columns', 'cbeo_election_filter',
+      'cbeo_saman_pariksha_submissions', 'cbeo_saman_syllabus_submissions', 'cbeo_demand_submissions'
     ];
     const toRemove = [];
     for (let i = 0; i < localStorage.length; i++) {
@@ -213,16 +214,21 @@ function isDynamicDemandSubmitted(demandId, schoolCode) {
 
   // 2. Saman Pariksha Syllabus Completion % (49 Govt schools)
   if (dId === 'demand_saman_syllabus_2026' || dId.includes('syllabus')) {
-    const sylSubs = STATE.samanSyllabusSubmissions || (STATE.demandSubmissions && STATE.demandSubmissions['DEMAND_SAMAN_SYLLABUS_2026']) || {};
+    let localSyl = {};
+    try { localSyl = JSON.parse(localStorage.getItem('cbeo_saman_syllabus_submissions') || '{}'); } catch(e) {}
+    const masterSyl = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.saman_syllabus_submissions) || {};
+    const sylSubs = Object.assign({}, masterSyl, localSyl, STATE.samanSyllabusSubmissions || {}, (STATE.demandSubmissions && STATE.demandSubmissions['DEMAND_SAMAN_SYLLABUS_2026']) || {});
     const sub = sylSubs[sCode];
-    return !!(sub && (sub.class_average_pct !== undefined || sub.overall_average_pct !== undefined || sub.submitted_at || sub.timestamp || sub.school_code || sub.is_submitted));
+    return !!(sub && (sub.average_pct !== undefined || sub.class_average_pct !== undefined || sub.overall_average_pct !== undefined || sub.submitted_at || sub.timestamp || sub.school_code || sub.is_submitted || sub.submitted));
   }
 
   // 3. Election 2026 (Prapatra-3)
   if (dId === 'demand_election_2026' || dId.includes('election')) {
-    const elecSubs = STATE.electionSubmissionsP3 || (STATE.demandSubmissions && STATE.demandSubmissions['DEMAND_ELECTION_2026']) || {};
+    let localElec = {};
+    try { localElec = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}'); } catch(e) {}
+    const elecSubs = Object.assign({}, localElec, STATE.electionSubmissionsP3 || {}, (STATE.demandSubmissions && STATE.demandSubmissions['DEMAND_ELECTION_2026']) || {});
     const sub = elecSubs[sCode];
-    if (sub && (sub.is_submitted || sub.submitted || sub.timestamp)) return true;
+    if (sub && (sub.is_submitted || sub.submitted || sub.timestamp || sub.submitted_at || sub.school_code || (sub.booth_details && Object.keys(sub.booth_details).length > 0))) return true;
   }
 
   // 4. General Dynamic Demands
@@ -244,6 +250,15 @@ function getDemandTargetEntities(demand) {
   if (!demand) return [];
   const dId = String(demand.id || demand).toLowerCase();
   const dObj = (typeof demand === 'object') ? demand : ((STATE.demands || []).find(d => String(d.id).toLowerCase() === dId) || { id: demand });
+
+  // 0. Election 2026 (33 Polling Station Schools)
+  if (dId === 'demand_election_2026' || dId.includes('election')) {
+    if (window.ELECTION_2026_SCHOOLS && window.ELECTION_2026_SCHOOLS.length > 0) return window.ELECTION_2026_SCHOOLS;
+    if (typeof getAllElectionSchools === 'function') {
+      const elecList = getAllElectionSchools();
+      if (elecList && elecList.length > 0) return elecList;
+    }
+  }
 
   // 1. Explicit targetSchools (e.g. 30 schools for Election 2026)
   if (dObj.targetSchools && Array.isArray(dObj.targetSchools) && dObj.targetSchools.length > 0) {
@@ -311,10 +326,15 @@ function getDemandSubmissionsMap(demand) {
     return STATE.samanParikshaSubmissions || {};
   }
   if (dId === 'demand_saman_syllabus_2026' || dId.includes('syllabus') || (demand.title && demand.title.includes('पाठ्यक्रम'))) {
-    return Object.assign({}, (STATE.demandSubmissions && STATE.demandSubmissions['DEMAND_SAMAN_SYLLABUS_2026']) || {}, STATE.samanSyllabusSubmissions || {});
+    let localSyl = {};
+    try { localSyl = JSON.parse(localStorage.getItem('cbeo_saman_syllabus_submissions') || '{}'); } catch(e) {}
+    const masterSyl = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.saman_syllabus_submissions) || {};
+    return Object.assign({}, masterSyl, localSyl, (STATE.demandSubmissions && STATE.demandSubmissions['DEMAND_SAMAN_SYLLABUS_2026']) || {}, STATE.samanSyllabusSubmissions || {});
   }
   if (dId === 'demand_election_2026' || dId.includes('election')) {
-    return Object.assign({}, (STATE.demandSubmissions && STATE.demandSubmissions['DEMAND_ELECTION_2026']) || {}, STATE.electionSubmissionsP3 || {});
+    let localElec = {};
+    try { localElec = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}'); } catch(e) {}
+    return Object.assign({}, localElec, (STATE.demandSubmissions && STATE.demandSubmissions['DEMAND_ELECTION_2026']) || {}, STATE.electionSubmissionsP3 || {});
   }
   const realId = demand.id || demand;
   return (STATE.demandSubmissions && STATE.demandSubmissions[realId]) || {};
@@ -346,6 +366,43 @@ function getDemandSubmissionRecord(demandId, schoolCode) {
         'कक्षा 12 कुल छात्र': sp.c12_total ?? 0,
         'महायोग नामांकित छात्र': sp.grand_total ?? 0
       }
+    };
+  }
+
+  if (dId === 'demand_saman_syllabus_2026' || dId.includes('syllabus')) {
+    let localSyl = {};
+    try { localSyl = JSON.parse(localStorage.getItem('cbeo_saman_syllabus_submissions') || '{}'); } catch(e) {}
+    const masterSyl = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.saman_syllabus_submissions) || {};
+    const sylSubs = Object.assign({}, masterSyl, localSyl, STATE.samanSyllabusSubmissions || {}, (STATE.demandSubmissions && STATE.demandSubmissions['DEMAND_SAMAN_SYLLABUS_2026']) || {});
+    const sp = sylSubs[schoolCode] || {};
+    const hasData = isDynamicDemandSubmitted('demand_saman_syllabus_2026', schoolCode);
+    return {
+      is_submitted: hasData,
+      verified: hasData,
+      submitted_by: sp.principal_name || sp.submitted_by || 'संस्था प्रधान',
+      submitter_mobile: sp.principal_mobile || sp.incharge_mobile || '',
+      submitted_at: sp.submitted_at || sp.timestamp || '',
+      average_pct: sp.average_pct !== undefined ? sp.average_pct : (typeof calculateSchoolSyllabusAverage === 'function' ? calculateSchoolSyllabusAverage(sp) : 0),
+      data: sp
+    };
+  }
+
+  if (dId === 'demand_election_2026' || dId.includes('election')) {
+    let localElec = {};
+    try { localElec = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}'); } catch(e) {}
+    const elecSubs = Object.assign({}, localElec, STATE.electionSubmissionsP3 || {}, (STATE.demandSubmissions && STATE.demandSubmissions['DEMAND_ELECTION_2026']) || {});
+    const ep = elecSubs[schoolCode] || {};
+    const hasData = isDynamicDemandSubmitted('demand_election_2026', schoolCode);
+    return {
+      is_submitted: hasData,
+      verified: hasData,
+      submitted_by: ep.principal_name || ep.submitted_by || 'संस्था प्रधान',
+      submitter_mobile: ep.principal_mobile || ep.incharge_mobile || '',
+      submitted_at: ep.submitted_at || ep.timestamp || '',
+      total_booths: ep.total_booths || (ep.booths ? ep.booths.length : 0),
+      booths: ep.booths || [],
+      booth_details: ep.booth_details || {},
+      data: ep
     };
   }
 
@@ -3213,6 +3270,12 @@ function getSamanFilteredSchools() {
 
 function calculateSchoolSyllabusAverage(sub) {
   if (!sub) return 0;
+  if (sub.average_pct !== undefined && !isNaN(parseFloat(sub.average_pct))) {
+    return Math.round(parseFloat(sub.average_pct) * 10) / 10;
+  }
+  if (sub.overall_average_pct !== undefined && !isNaN(parseFloat(sub.overall_average_pct))) {
+    return Math.round(parseFloat(sub.overall_average_pct) * 10) / 10;
+  }
   let totalPct = 0;
   let count = 0;
   if (sub.c9 && !sub.c9.zero_enrolment) {
@@ -3486,7 +3549,7 @@ function renderSamanParikshaPeeoView() {
     if (isSyl) {
       // ---------------- SYLLABUS COMPLETION VIEW ----------------
       const sylSub = STATE.samanSyllabusSubmissions ? STATE.samanSyllabusSubmissions[school.shala_darpan_code] : null;
-      const isSub = !!(sylSub && sylSub.is_submitted);
+      const isSub = !!(sylSub && (sylSub.is_submitted || sylSub.submitted || sylSub.average_pct !== undefined || sylSub.class_average_pct !== undefined || sylSub.submitted_at || sylSub.timestamp));
       if (isSub) submittedCount++;
 
       const avgPct = isSub ? calculateSchoolSyllabusAverage(sylSub) : 0;
@@ -3744,7 +3807,7 @@ function renderSamanParikshaAdminView() {
 
     if (isSyl) {
       const sylSub = STATE.samanSyllabusSubmissions ? STATE.samanSyllabusSubmissions[s.shala_darpan_code] : null;
-      if (sylSub && sylSub.is_submitted) {
+      if (sylSub && (sylSub.is_submitted || sylSub.submitted || sylSub.average_pct !== undefined || sylSub.class_average_pct !== undefined || sylSub.submitted_at || sylSub.timestamp)) {
         submittedCount++;
         totalPctSum += calculateSchoolSyllabusAverage(sylSub);
       }
@@ -3876,7 +3939,7 @@ function filterSamanParikshaTable() {
     let isSubmitted = false;
     if (isSyl) {
       const sylSub = STATE.samanSyllabusSubmissions ? STATE.samanSyllabusSubmissions[s.shala_darpan_code] : null;
-      isSubmitted = !!(sylSub && sylSub.is_submitted);
+      isSubmitted = !!(sylSub && (sylSub.is_submitted || sylSub.submitted || sylSub.average_pct !== undefined || sylSub.class_average_pct !== undefined || sylSub.submitted_at || sylSub.timestamp));
     } else {
       const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
       isSubmitted = isSamanParikshaSubmitted(sub);
@@ -4075,44 +4138,90 @@ function syncSyllabusSubmissionsFromCloud(isManual = false) {
     showToast('🚀 Google Sheet से लाइव डेटा सिंक हो रहा है...', 'info');
   }
 
-  // 1. Instant local fetch from SQLite & cache (<5ms)
-  const fetchLocalPromise = fetch('/api/get_saman_syllabus?_t=' + Date.now())
+  const applySubmissions = (subs, sourceLabel) => {
+    if (!subs || typeof subs !== 'object' || Object.keys(subs).length === 0) return;
+    if (!STATE.samanSyllabusSubmissions) STATE.samanSyllabusSubmissions = {};
+    if (!STATE.demandSubmissions) STATE.demandSubmissions = {};
+    if (!STATE.demandSubmissions['DEMAND_SAMAN_SYLLABUS_2026']) STATE.demandSubmissions['DEMAND_SAMAN_SYLLABUS_2026'] = {};
+
+    Object.keys(subs).forEach(k => {
+      let sub = subs[k];
+      if (typeof sub === 'string') {
+        try { sub = JSON.parse(sub); } catch(e) {}
+      }
+      if (sub && sub.data_json) {
+        try {
+          const dj = typeof sub.data_json === 'string' ? JSON.parse(sub.data_json) : sub.data_json;
+          sub = Object.assign({}, sub, dj);
+        } catch(e) {}
+      }
+      if (sub) {
+        sub.is_submitted = true;
+        sub.submitted = true;
+        STATE.samanSyllabusSubmissions[k] = Object.assign({}, STATE.samanSyllabusSubmissions[k] || {}, sub);
+        STATE.demandSubmissions['DEMAND_SAMAN_SYLLABUS_2026'][k] = Object.assign({}, STATE.demandSubmissions['DEMAND_SAMAN_SYLLABUS_2026'][k] || {}, sub);
+      }
+    });
+
+    localStorage.setItem('cbeo_saman_syllabus_submissions', JSON.stringify(STATE.samanSyllabusSubmissions));
+    localStorage.setItem('cbeo_demand_submissions', JSON.stringify(STATE.demandSubmissions));
+
+    if (typeof renderSamanParikshaView === 'function') renderSamanParikshaView();
+    if (typeof updateAllPortalMetricsAndProgress === 'function') updateAllPortalMetricsAndProgress();
+    if (typeof renderCBEOExecutiveDemands === 'function') renderCBEOExecutiveDemands();
+    if (typeof renderDashboardView === 'function') renderDashboardView();
+    if (typeof renderDemandsView === 'function') renderDemandsView();
+    if (typeof renderBulkSyllabusTable === 'function') renderBulkSyllabusTable();
+    if (typeof updateVMWidgetStats === 'function') updateVMWidgetStats();
+  };
+
+  // 1. Instant static file fetch (saman_syllabus_submissions.json)
+  fetch('saman_syllabus_submissions.json?_t=' + Date.now())
     .then(r => r.ok ? r.json() : null)
     .then(data => {
-      if (data && data.success && data.submissions) {
-        if (!STATE.samanSyllabusSubmissions) STATE.samanSyllabusSubmissions = {};
-        Object.assign(STATE.samanSyllabusSubmissions, data.submissions);
-        localStorage.setItem('cbeo_saman_syllabus_submissions', JSON.stringify(STATE.samanSyllabusSubmissions));
-        renderSamanParikshaView();
-        updateAllPortalMetricsAndProgress();
-        renderDashboardView();
-        if (typeof renderBulkSyllabusTable === 'function') renderBulkSyllabusTable();
+      if (data && typeof data === 'object') {
+        applySubmissions(data, 'static file');
       }
     }).catch(() => {});
 
-  // 2. If manual sync requested, trigger server-side cloud sync with Google Sheet
-  if (isManual) {
-    return fetch('/api/sync_cloud_now')
-      .then(r => r.ok ? r.json() : null)
-      .then(data => {
-        if (data && data.success && data.submissions) {
-          if (!STATE.samanSyllabusSubmissions) STATE.samanSyllabusSubmissions = {};
-          Object.assign(STATE.samanSyllabusSubmissions, data.submissions);
-          localStorage.setItem('cbeo_saman_syllabus_submissions', JSON.stringify(STATE.samanSyllabusSubmissions));
-          renderSamanParikshaView();
-          updateAllPortalMetricsAndProgress();
-          renderDashboardView();
-          if (typeof renderBulkSyllabusTable === 'function') renderBulkSyllabusTable();
-          showToast(`✓ Google Sheet से लाइव सिंक पूर्ण! (${data.count || Object.keys(data.submissions).length} विद्यालयों का डेटा प्राप्त)`, 'success');
-        } else {
-          showToast('✓ स्थानीय डेटाबेस से डेटा नवीनीकृत हुआ!', 'info');
-        }
-      }).catch(err => {
-        showToast('स्थानीय डेटाबेस से नवीनतम डेटा लोड हुआ (Google Drive विलंबित)', 'info');
-      });
-  }
+  // 2. Direct Cloud Sync with Google Apps Script (Works universally on GitHub Pages & localhost)
+  const gasUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+    || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+    || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
 
-  return fetchLocalPromise;
+  return fetch(`${gasUrl}?action=getDemandSubmissions&demand_id=DEMAND_SAMAN_SYLLABUS_2026&_t=${Date.now()}`)
+    .then(r => r.ok ? r.json() : null)
+    .then(data => {
+      if (data && data.success && data.submissions) {
+        applySubmissions(data.submissions, 'Google Sheet');
+        const count = Object.keys(data.submissions).length;
+        if (isManual) {
+          showToast(`✓ Google Sheet से लाइव सिंक पूर्ण! (${count} विद्यालयों का डेटा प्राप्त)`, 'success');
+        }
+      } else {
+        // Fallback to local API if GAS didn't return
+        fetch('/api/get_saman_syllabus?_t=' + Date.now())
+          .then(r => r.ok ? r.json() : null)
+          .then(localData => {
+            if (localData && localData.success && localData.submissions) {
+              applySubmissions(localData.submissions, 'Local API');
+            }
+          }).catch(() => {});
+      }
+    })
+    .catch(err => {
+      // Fallback to local API
+      fetch('/api/get_saman_syllabus?_t=' + Date.now())
+        .then(r => r.ok ? r.json() : null)
+        .then(localData => {
+          if (localData && localData.success && localData.submissions) {
+            applySubmissions(localData.submissions, 'Local API');
+          }
+        }).catch(() => {});
+      if (isManual) {
+        showToast('स्थानीय डेटाबेस से नवीनतम डेटा लोड हुआ', 'info');
+      }
+    });
 }
 window.syncSyllabusSubmissionsFromCloud = syncSyllabusSubmissionsFromCloud;
 
@@ -9182,17 +9291,33 @@ function exportDemandsConsolidatedExcel(demandId) {
    CROSS-TAB PORTAL SYNCHRONIZATION (DASHBOARD, DEMANDS, EXPLORER)
    ======================================================== */
 function updateAllPortalMetricsAndProgress() {
-  const totalSchools = (STATE.schools56 && STATE.schools56.length) || 57;
+  const isSyl = STATE.samanParikshaActiveForm === 'syllabus';
+  const govtSchools = (STATE.schools56 || []).filter(s => s.type === 'Government');
+  const allSchools = STATE.schools56 || [];
+  
+  const targetSchools = isSyl ? (govtSchools.length > 0 ? govtSchools : allSchools) : allSchools;
+  const totalSchools = targetSchools.length || (isSyl ? 49 : 57);
   let submittedCount = 0;
   let totalPapers = 0;
 
-  STATE.schools56.forEach(s => {
-    const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
-    if (isSamanParikshaSubmitted(sub)) {
-      submittedCount++;
-      totalPapers += (sub.grand_total || 0);
-    }
-  });
+  if (isSyl) {
+    const sylSubs = STATE.samanSyllabusSubmissions || {};
+    targetSchools.forEach(s => {
+      const sub = sylSubs[s.shala_darpan_code];
+      if (sub && (sub.is_submitted || sub.submitted || sub.average_pct !== undefined || sub.class_average_pct !== undefined || sub.submitted_at || sub.timestamp)) {
+        submittedCount++;
+      }
+    });
+  } else {
+    const spSubs = STATE.samanParikshaSubmissions || {};
+    targetSchools.forEach(s => {
+      const sub = spSubs[s.shala_darpan_code];
+      if (isSamanParikshaSubmitted(sub)) {
+        submittedCount++;
+        totalPapers += (sub.grand_total || 0);
+      }
+    });
+  }
 
   const pendingCount = Math.max(0, totalSchools - submittedCount);
   const compliancePercent = totalSchools > 0 ? Math.round((submittedCount / totalSchools) * 100) : 0;
@@ -9218,20 +9343,53 @@ function updateAllPortalMetricsAndProgress() {
     dashCompElem.textContent = `${compliancePercent}%`;
   }
 
-  // 4. Update Demands Tab & Spotlight Card for Saman Pariksha
+  // 4. Update Demands Tab & Spotlight Cards for Saman Pariksha (Indent & Syllabus)
   document.querySelectorAll('.demand-card').forEach(card => {
     const titleEl = card.querySelector('.demand-title');
-    if (titleEl && titleEl.textContent.includes('समान परीक्षा')) {
+    if (!titleEl) return;
+    const cardTitle = titleEl.textContent || '';
+    const isSylCard = cardTitle.includes('पाठ्यक्रम') || card.getAttribute('data-demand-id') === 'DEMAND_SAMAN_SYLLABUS_2026';
+    const isIndentCard = cardTitle.includes('समान परीक्षा') && !isSylCard;
+
+    if (isSylCard) {
+      const sTargets = govtSchools.length > 0 ? govtSchools : allSchools;
+      const sTotal = sTargets.length || 49;
+      let sDone = 0;
+      const sSubs = STATE.samanSyllabusSubmissions || {};
+      sTargets.forEach(s => {
+        const sub = sSubs[s.shala_darpan_code];
+        if (sub && (sub.is_submitted || sub.submitted || sub.average_pct !== undefined || sub.class_average_pct !== undefined || sub.submitted_at || sub.timestamp)) sDone++;
+      });
+      const sPct = sTotal > 0 ? Math.round((sDone / sTotal) * 100) : 0;
       const progressFill = card.querySelector('.progress-bar-fill');
-      if (progressFill) progressFill.style.width = `${compliancePercent}%`;
+      if (progressFill) progressFill.style.width = `${sPct}%`;
       const progressText = card.querySelector('.demand-progress-box span:last-child');
-      if (progressText) progressText.textContent = `${compliancePercent}%`;
+      if (progressText) progressText.textContent = `${sPct}%`;
       const progressCountText = card.querySelector('.demand-progress-box span:first-child');
-      if (progressCountText) progressCountText.textContent = `ब्लॉक प्रगति: ${submittedCount}/${totalSchools} स्कूल`;
+      if (progressCountText) progressCountText.textContent = `ब्लॉक प्रगति: ${sDone}/${sTotal} स्कूल`;
       const statusBadge = card.querySelector('.demand-card-header .status-badge');
       if (statusBadge && (STATE.currentUser?.role === 'admin' || !STATE.currentUser)) {
-        statusBadge.innerHTML = `<i class="fas fa-check-circle"></i> ${submittedCount}/${totalSchools} पूर्ण`;
-        statusBadge.className = 'status-badge ' + (submittedCount > 0 ? 'green' : 'red');
+        statusBadge.innerHTML = `<i class="fas fa-check-circle"></i> ${sDone}/${sTotal} पूर्ण`;
+        statusBadge.className = 'status-badge ' + (sDone === sTotal ? 'green' : (sDone > 0 ? 'blue' : 'red'));
+      }
+    } else if (isIndentCard) {
+      const iTotal = allSchools.length || 57;
+      let iDone = 0;
+      const sps = STATE.samanParikshaSubmissions || {};
+      allSchools.forEach(s => {
+        if (isSamanParikshaSubmitted(sps[s.shala_darpan_code])) iDone++;
+      });
+      const iPct = iTotal > 0 ? Math.round((iDone / iTotal) * 100) : 0;
+      const progressFill = card.querySelector('.progress-bar-fill');
+      if (progressFill) progressFill.style.width = `${iPct}%`;
+      const progressText = card.querySelector('.demand-progress-box span:last-child');
+      if (progressText) progressText.textContent = `${iPct}%`;
+      const progressCountText = card.querySelector('.demand-progress-box span:first-child');
+      if (progressCountText) progressCountText.textContent = `ब्लॉक प्रगति: ${iDone}/${iTotal} स्कूल`;
+      const statusBadge = card.querySelector('.demand-card-header .status-badge');
+      if (statusBadge && (STATE.currentUser?.role === 'admin' || !STATE.currentUser)) {
+        statusBadge.innerHTML = `<i class="fas fa-check-circle"></i> ${iDone}/${iTotal} पूर्ण`;
+        statusBadge.className = 'status-badge ' + (iDone === iTotal ? 'green' : (iDone > 0 ? 'blue' : 'red'));
       }
     }
   });
@@ -11745,18 +11903,49 @@ function renderArchiveView() {
 function createDemandCardElement(demand, isArchive = false) {
   const card = document.createElement('div');
   card.className = 'demand-card';
+  card.setAttribute('data-demand-id', demand.id || '');
 
-  const isSamanDemand = demand.id === 'saman_pariksha_2026_27' || (demand.title && demand.title.includes('समान परीक्षा'));
+  const isSyllabusDemand = demand.id === 'DEMAND_SAMAN_SYLLABUS_2026' || String(demand.id).toLowerCase().includes('syllabus') || (demand.title && demand.title.includes('पाठ्यक्रम'));
+  const isSamanDemand = (demand.id === 'saman_pariksha_2026_27' || demand.id === 'DEMAND_SAMAN_PARIKSHA_2026' || (demand.title && demand.title.includes('समान परीक्षा'))) && !isSyllabusDemand;
   const isElectionDemand = demand.id === 'DEMAND_ELECTION_2026' || demand.parentTab === 'election' || (demand.title && demand.title.includes('चुनाव 2026'));
   let isCurrentSubmitted = false;
   let currentSubmission = null;
   let submittedCount = 0;
   let totalDenominator = STATE.peeos.length;
   let percent = 0;
+  let entityLabel = 'विद्यालय';
 
-  if (isElectionDemand) {
+  if (isSyllabusDemand) {
+    entityLabel = 'स्कूल';
+    const govtSchools = (STATE.schools56 || []).filter(s => s.type === 'Government');
+    totalDenominator = govtSchools.length || 49;
+    const sylSubs = STATE.samanSyllabusSubmissions || {};
+    let sCount = 0;
+    govtSchools.forEach(s => {
+      const sub = sylSubs[s.shala_darpan_code];
+      if (sub && (sub.is_submitted || sub.submitted || sub.average_pct !== undefined || sub.class_average_pct !== undefined || sub.submitted_at || sub.timestamp)) {
+        sCount++;
+      }
+    });
+    submittedCount = sCount;
+    percent = totalDenominator > 0 ? Math.round((submittedCount / totalDenominator) * 100) : 0;
+
+    if (STATE.currentUser?.role === 'school') {
+      const schoolSub = sylSubs[STATE.currentUser.shala_darpan_code];
+      isCurrentSubmitted = !!(schoolSub && (schoolSub.is_submitted || schoolSub.submitted || schoolSub.average_pct !== undefined || schoolSub.class_average_pct !== undefined));
+      currentSubmission = schoolSub;
+    } else if (STATE.currentUser?.role === 'peeo') {
+      const peeoGovt = govtSchools.filter(s => s.peeo_name === STATE.currentUser.peeo_name || s.peeo_code === STATE.currentUser.shala_darpan_code);
+      const peeoSubCount = peeoGovt.filter(s => {
+        const sub = sylSubs[s.shala_darpan_code];
+        return sub && (sub.is_submitted || sub.submitted || sub.average_pct !== undefined || sub.class_average_pct !== undefined);
+      }).length;
+      isCurrentSubmitted = peeoGovt.length > 0 && (peeoSubCount === peeoGovt.length);
+    }
+  } else if (isElectionDemand) {
+    entityLabel = 'बूथ स्कूल';
     const electionSchools = window.ELECTION_2026_SCHOOLS || [];
-    totalDenominator = electionSchools.length || 30;
+    totalDenominator = electionSchools.length || 33;
     let elecSubs = {};
     try { elecSubs = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}'); } catch(e) {}
     submittedCount = Object.keys(elecSubs).length;
@@ -11772,44 +11961,61 @@ function createDemandCardElement(demand, isArchive = false) {
       isCurrentSubmitted = peeoSchs.length > 0 && (peeoSubCount === peeoSchs.length);
     }
   } else if (isSamanDemand) {
+    entityLabel = 'स्कूल';
     totalDenominator = (STATE.schools56 && STATE.schools56.length) || 57;
     let sCount = 0;
     STATE.schools56.forEach(s => {
-      const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
+      const sub = (STATE.samanParikshaSubmissions || {})[s.shala_darpan_code];
       if (isSamanParikshaSubmitted(sub)) sCount++;
     });
     submittedCount = sCount;
     percent = totalDenominator > 0 ? Math.round((submittedCount / totalDenominator) * 100) : 0;
 
     if (STATE.currentUser?.role === 'school') {
-      const schoolSub = STATE.samanParikshaSubmissions[STATE.currentUser.shala_darpan_code];
+      const schoolSub = (STATE.samanParikshaSubmissions || {})[STATE.currentUser.shala_darpan_code];
       isCurrentSubmitted = isSamanParikshaSubmitted(schoolSub);
       currentSubmission = schoolSub;
     } else if (STATE.currentUser?.role === 'peeo') {
       const peeoSchools = STATE.schools56.filter(s => s.peeo_name === STATE.currentUser.peeo_name || s.peeo_code === STATE.currentUser.shala_darpan_code);
       const peeoSubCount = peeoSchools.filter(s => {
-        const sub = STATE.samanParikshaSubmissions[s.shala_darpan_code];
+        const sub = (STATE.samanParikshaSubmissions || {})[s.shala_darpan_code];
         return isSamanParikshaSubmitted(sub);
       }).length;
       isCurrentSubmitted = peeoSchools.length > 0 && (peeoSubCount === peeoSchools.length);
     }
   } else {
-    if (STATE.currentUser?.role === 'peeo') {
-      const subKey = `${demand.id}_${STATE.currentUser.peeo_id}`;
-      if (STATE.submissions[subKey] && STATE.submissions[subKey].verified) {
-        isCurrentSubmitted = true;
-        currentSubmission = STATE.submissions[subKey];
-      }
-    }
-
-    STATE.peeos.forEach(p => {
-      const subKey = `${demand.id}_${p.peeo_id}`;
-      if (STATE.submissions[subKey] && STATE.submissions[subKey].verified) {
-        submittedCount++;
+    const targets = typeof getDemandTargetEntities === 'function' ? getDemandTargetEntities(demand) : (STATE.schools56 || []);
+    const isPeeoLevel = (demand.collectionLevel === 'peeo' || demand.collection_level === 'peeo');
+    entityLabel = isPeeoLevel ? 'PEEO' : 'स्कूल';
+    totalDenominator = targets.length || (isPeeoLevel ? STATE.peeos.length : 57);
+    let sCount = 0;
+    targets.forEach(s => {
+      const code = s.shala_darpan_code || s.peeo_id;
+      if (typeof isDynamicDemandSubmitted === 'function' && isDynamicDemandSubmitted(demand.id, code)) {
+        sCount++;
+      } else {
+        const subKey = `${demand.id}_${s.peeo_id || s.shala_darpan_code}`;
+        if (STATE.submissions[subKey] && STATE.submissions[subKey].verified) sCount++;
       }
     });
-
+    submittedCount = sCount;
     percent = totalDenominator > 0 ? Math.round((submittedCount / totalDenominator) * 100) : 0;
+
+    if (STATE.currentUser?.role === 'school') {
+      const myCode = STATE.currentUser?.shala_darpan_code;
+      isCurrentSubmitted = typeof isDynamicDemandSubmitted === 'function' ? isDynamicDemandSubmitted(demand.id, myCode) : false;
+      currentSubmission = typeof getDemandSubmissionRecord === 'function' ? getDemandSubmissionRecord(demand.id, myCode) : null;
+    } else if (STATE.currentUser?.role === 'peeo') {
+      if (isPeeoLevel) {
+        const subKey = `${demand.id}_${STATE.currentUser.peeo_id}`;
+        isCurrentSubmitted = !!(STATE.submissions[subKey] && STATE.submissions[subKey].verified);
+        currentSubmission = STATE.submissions[subKey];
+      } else {
+        const peeoSchs = targets.filter(s => s.peeo_name === STATE.currentUser.peeo_name || s.peeo_code === STATE.currentUser.shala_darpan_code);
+        const peeoSubCount = peeoSchs.filter(s => isDynamicDemandSubmitted(demand.id, s.shala_darpan_code)).length;
+        isCurrentSubmitted = peeoSchs.length > 0 && (peeoSubCount === peeoSchs.length);
+      }
+    }
   }
 
   const isPeeoUser = STATE.currentUser?.role === 'peeo';
@@ -11824,6 +12030,8 @@ function createDemandCardElement(demand, isArchive = false) {
     let isDemandLocked = false;
     if (isSamanDemand) {
       isDemandLocked = isSamanParikshaLockedForCurrentUser(targetCode);
+    } else if (isSyllabusDemand && typeof canCurrentUserEditModule === 'function') {
+      isDemandLocked = !canCurrentUserEditModule('saman_syllabus', targetCode);
     } else {
       isDemandLocked = isDemandsLockedForCurrentUser();
     }
@@ -11845,8 +12053,8 @@ function createDemandCardElement(demand, isArchive = false) {
       card.classList.add('submitted');
     }
   } else {
-    badgeColorClass = submittedCount > 0 ? 'green' : 'red';
-    badgeText = `<i class="fas fa-tasks"></i> ${submittedCount}/${totalDenominator} ${isSamanDemand ? 'स्कूल' : 'PEEO'} पूर्ण`;
+    badgeColorClass = submittedCount === totalDenominator ? 'green' : (submittedCount > 0 ? 'blue' : 'red');
+    badgeText = `<i class="fas fa-tasks"></i> ${submittedCount}/${totalDenominator} ${entityLabel} पूर्ण`;
   }
 
   card.innerHTML = `
@@ -15195,8 +15403,22 @@ function renderCBEOExecutiveDemands() {
     isSamanPariksha: true
   });
 
+  // 1.2 Election 2026 Panchayat Booth Verification (33 schools, 116 booths)
+  const elecAuditData = typeof getElectionVMAuditData === 'function' ? getElectionVMAuditData() : { totalSchools: 33, submittedSchools: 0, pendingSchools: 33, percentage: 0 };
+  allDemands.push({
+    id: 'DEMAND_ELECTION_2026',
+    title: '🗳️ पंचायत चुनाव 2026: मतदान केंद्र (बूथ) सत्यापन प्रपत्र (33 विद्यालय, 116 बूथ)',
+    dueDate: 'तत्काल / 15 अक्टूबर 2026',
+    targetCount: elecAuditData.totalSchools || 33,
+    receivedCount: elecAuditData.submittedSchools || 0,
+    pendingCount: elecAuditData.pendingSchools || 0,
+    pct: elecAuditData.percentage || 0,
+    isSamanPariksha: false,
+    isElection: true
+  });
+
   // 2. Active Dynamic Demands
-  const activeDemands = (STATE.demands || []).filter(d => !d.archived && d.id !== 'saman_pariksha_2026_27');
+  const activeDemands = (STATE.demands || []).filter(d => !d.archived && d.id !== 'saman_pariksha_2026_27' && d.id !== 'DEMAND_ELECTION_2026' && d.id !== 'demand_election_2026');
   
   // Ensure DEMAND_SAMAN_SYLLABUS_2026 is always visible in executive dashboard
   if (!activeDemands.some(d => d.id === 'DEMAND_SAMAN_SYLLABUS_2026')) {
@@ -15284,6 +15506,14 @@ function generateDemandPendingListPDF(demandId) {
         id: 'DEMAND_SAMAN_SYLLABUS_2026',
         title: 'समान परीक्षा: सत्र 2026-27 पाठ्यक्रम पूर्णता प्रतिशत मांग (49 राजकीय विद्यालय)',
         schoolScope: 'govt_sec'
+      };
+    } else if (demandId === 'DEMAND_ELECTION_2026' || demandId === 'demand_election_2026') {
+      demand = {
+        id: 'DEMAND_ELECTION_2026',
+        title: 'पंचायत आम चुनाव 2026: मतदान केंद्र (बूथ) सत्यापन प्रपत्र (33 विद्यालय, 116 बूथ)',
+        dueDate: 'तत्काल / 15 अक्टूबर 2026',
+        schoolScope: 'election_30',
+        targetSchools: (window.ELECTION_2026_SCHOOLS || []).map(s => s.shala_darpan_code)
       };
     } else {
       demand = { id: demandId, title: 'सूचना मांग प्रपत्र', schoolScope: 'all' };
@@ -15413,6 +15643,14 @@ function openShareDemandPendingModal(demandId) {
         title: 'समान परीक्षा: सत्र 2026-27 पाठ्यक्रम पूर्णता प्रतिशत मांग (49 राजकीय विद्यालय)',
         schoolScope: 'govt_sec'
       };
+    } else if (demandId === 'DEMAND_ELECTION_2026' || demandId === 'demand_election_2026') {
+      demand = {
+        id: 'DEMAND_ELECTION_2026',
+        title: 'पंचायत आम चुनाव 2026: मतदान केंद्र (बूथ) सत्यापन प्रपत्र (33 विद्यालय, 116 बूथ)',
+        dueDate: 'तत्काल / 15 अक्टूबर 2026',
+        schoolScope: 'election_30',
+        targetSchools: (window.ELECTION_2026_SCHOOLS || []).map(s => s.shala_darpan_code)
+      };
     } else {
       demand = { id: demandId, title: 'सूचना मांग प्रपत्र', schoolScope: 'all' };
     }
@@ -15448,6 +15686,10 @@ function openShareDemandPendingModal(demandId) {
   }
 
   const entityType = (demand.collectionLevel === 'peeo' || demand.collection_level === 'peeo') ? 'PEEO' : 'विद्यालय';
+  const isElectionDemand = (demand.id === 'DEMAND_ELECTION_2026' || String(demand.id).toLowerCase().includes('election'));
+  const directLink = isElectionDemand 
+    ? 'https://jit9763.github.io/cbeo-bhinai-portal/election_form.html'
+    : 'https://jit9763.github.io/cbeo-bhinai-portal/';
 
   const msg = 
 `*कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)*
@@ -15463,7 +15705,7 @@ function openShareDemandPendingModal(demandId) {
 
 ${listText}
 समस्त संबंधित संस्था प्रधान / PEEO अविलंब पोर्टल पर प्रविष्टि पूर्ण कर प्रमाणित सबमिट करें।
-👉 *पोर्टल लॉगिन लिंक:* https://jit9763.github.io/cbeo-bhinai-portal/
+👉 *ऑनलाइन सत्यापन लिंक:* ${directLink}
 
 - *मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)*`;
 
@@ -16897,6 +17139,14 @@ function generateDemandBroadcastReminderMessage(demandId) {
         title: 'समान परीक्षा: सत्र 2026-27 पाठ्यक्रम पूर्णता प्रतिशत मांग (49 राजकीय विद्यालय)',
         schoolScope: 'govt_sec'
       };
+    } else if (demandId === 'DEMAND_ELECTION_2026' || String(demandId).toLowerCase().includes('election')) {
+      demand = {
+        id: 'DEMAND_ELECTION_2026',
+        title: 'पंचायत आम चुनाव 2026: मतदान केंद्र (बूथ) सत्यापन प्रपत्र (33 विद्यालय, 116 बूथ)',
+        dueDate: 'तत्काल / 15 अक्टूबर 2026',
+        schoolScope: 'election_30',
+        targetSchools: (window.ELECTION_2026_SCHOOLS || []).map(s => s.shala_darpan_code)
+      };
     } else {
       demand = { id: demandId, title: 'सूचना मांग प्रपत्र', schoolScope: 'all' };
     }
@@ -16929,6 +17179,11 @@ function generateDemandBroadcastReminderMessage(demandId) {
     listText += `[${idx + 1}] ${item.name} (${item.code})\n     प्रभारी: ${item.principal} | मो.: ${item.mobile || 'उपलब्ध नहीं'}\n`;
   });
 
+  const isElectionDemand = (demand.id === 'DEMAND_ELECTION_2026' || String(demand.id).toLowerCase().includes('election'));
+  const directLink = isElectionDemand 
+    ? 'https://jit9763.github.io/cbeo-bhinai-portal/election_form.html'
+    : 'https://jit9763.github.io/cbeo-bhinai-portal/';
+
   const msg = 
 `*कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)*
 *अति-आवश्यक लम्बित अनुपालना स्मरण पत्र*
@@ -16943,7 +17198,7 @@ function generateDemandBroadcastReminderMessage(demandId) {
 
 ${listText}
 समस्त संबंधित संस्था प्रधान / PEEO अविलंब पोर्टल पर प्रविष्टि पूर्ण कर प्रमाणित सबमिट करना सुनिश्चित करें।
-👉 *पोर्टल लॉगिन लिंक:* https://jit9763.github.io/cbeo-bhinai-portal/
+👉 *ऑनलाइन सत्यापन लिंक:* ${directLink}
 
 - *मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)*`;
 
@@ -16957,14 +17212,21 @@ function openDemandBroadcastCenter(demandId, defaultMode = null) {
     return;
   }
 
-  const demand = (STATE.demands || []).find(d => d.id === demandId) || {
+  const isElection = (demandId === 'DEMAND_ELECTION_2026' || String(demandId).toLowerCase().includes('election'));
+  const demand = (STATE.demands || []).find(d => d.id === demandId) || (isElection ? {
+    id: 'DEMAND_ELECTION_2026',
+    title: 'पंचायत आम चुनाव 2026: मतदान केंद्र (बूथ) सत्यापन प्रपत्र (33 विद्यालय, 116 बूथ)',
+    dueDate: 'तत्काल / 15 अक्टूबर 2026',
+    schoolScope: 'election_30',
+    targetSchools: (window.ELECTION_2026_SCHOOLS || []).map(s => s.shala_darpan_code)
+  } : {
     id: demandId,
     title: (demandId === 'DEMAND_SAMAN_SYLLABUS_2026' || String(demandId).includes('SYLLABUS'))
       ? 'समान परीक्षा: सत्र 2026-27 पाठ्यक्रम पूर्णता प्रतिशत मांग (49 राजकीय विद्यालय)'
       : 'समान परीक्षा 2026-27 (57 विद्यालय)',
     dueDate: '15 अक्टूबर 2026',
     schoolScope: (demandId === 'DEMAND_SAMAN_SYLLABUS_2026' || String(demandId).includes('SYLLABUS')) ? 'govt_sec' : 'both_sec'
-  };
+  });
 
   CURRENT_BROADCAST_CENTER_DEMAND = demand;
 
@@ -18307,6 +18569,54 @@ function getSamanParikshaVMAuditData() {
   };
 }
 
+function getElectionVMAuditData() {
+  const schools = (window.ELECTION_2026_SCHOOLS && window.ELECTION_2026_SCHOOLS.length > 0)
+    ? window.ELECTION_2026_SCHOOLS
+    : (typeof getAllElectionSchools === 'function' ? getAllElectionSchools() : []);
+  
+  let localSubs = {};
+  try {
+    localSubs = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}');
+  } catch(e) {}
+  const remoteSubs = Object.assign({}, localSubs, STATE.electionSubmissionsP3 || {}, (STATE.demandSubmissions && STATE.demandSubmissions['DEMAND_ELECTION_2026']) || {});
+
+  const submitted = [];
+  const pending = [];
+  const peeoPendingMap = {};
+  let totalBooths = 0;
+  let submittedBooths = 0;
+
+  schools.forEach(s => {
+    const sCode = String(s.shala_darpan_code || s.code || '').trim();
+    const boothCount = (s.booths && Array.isArray(s.booths)) ? s.booths.length : (s.booth_count || 1);
+    totalBooths += boothCount;
+
+    const isSub = isDynamicDemandSubmitted('demand_election_2026', sCode);
+    if (isSub) {
+      submitted.push(s);
+      submittedBooths += boothCount;
+    } else {
+      pending.push(s);
+      const peeo = s.peeo_name || 'भिनाय';
+      peeoPendingMap[peeo] = (peeoPendingMap[peeo] || 0) + 1;
+    }
+  });
+
+  const total = schools.length || 33;
+  return {
+    totalSchools: total,
+    submittedSchools: submitted.length,
+    pendingSchools: pending.length,
+    percentage: total > 0 ? Math.round((submitted.length / total) * 100) : 0,
+    totalBooths: totalBooths || 116,
+    submittedBooths: submittedBooths,
+    pendingBooths: Math.max(0, (totalBooths || 116) - submittedBooths),
+    submittedList: submitted,
+    pendingList: pending,
+    peeoPendingMap: peeoPendingMap
+  };
+}
+
 function updateVMWidgetStats() {
   const audit = getSamanParikshaVMAuditData();
   const el = document.getElementById('vm-widget-sp-pending');
@@ -18331,9 +18641,38 @@ function updateVMWidgetStats() {
     }
   }
 
+  // Update Election 2026 / Panchayat Booths widget in Admin Hub
+  const elecAudit = getElectionVMAuditData();
+  const elElec = document.getElementById('vm-widget-election-pending');
+  if (elElec) {
+    if (elecAudit.pendingSchools === 0) {
+      elElec.style.color = '#4ade80';
+      elElec.innerHTML = `✓ 0 स्कूल लंबित (${elecAudit.submittedSchools}/${elecAudit.totalSchools} पूर्ण - 100%)`;
+    } else {
+      elElec.style.color = '#f87171';
+      elElec.innerHTML = `${elecAudit.pendingSchools} स्कूल लंबित (${elecAudit.submittedSchools} पूर्ण)`;
+    }
+  }
+
+  const elElecSub = document.getElementById('vm-widget-election-sub');
+  if (elElecSub) {
+    elElecSub.textContent = `कुल 116 बूथ | ${elecAudit.submittedBooths || 0} बूथ सत्यापित (${elecAudit.pendingBooths || 0} शेष)`;
+  }
+
+  const btnElecWa = document.getElementById('btn-election-whatsapp-reminder');
+  if (btnElecWa) {
+    if (elecAudit.pendingSchools === 0) {
+      btnElecWa.innerHTML = `<i class="fab fa-whatsapp"></i> 📢 चुनाव बूथ: 33/33 पूर्ण (0 लंबित)`;
+      btnElecWa.style.opacity = '0.85';
+    } else {
+      btnElecWa.innerHTML = `<i class="fab fa-whatsapp"></i> 📢 चुनाव बूथ: ${elecAudit.pendingSchools} लंबित स्कूलों को रिमाइंडर`;
+      btnElecWa.style.opacity = '1';
+    }
+  }
+
   const footerSp = document.getElementById('vm-footer-sp-stats');
   if (footerSp) {
-    footerSp.innerHTML = `<strong>समान परीक्षा:</strong> ${audit.total} कुल (${audit.pendingCount} लंबित, ${audit.submittedCount} पूर्ण - ${audit.percentage}%)`;
+    footerSp.innerHTML = `<strong>समान परीक्षा:</strong> ${audit.total} कुल (${audit.pendingCount} लंबित, ${audit.submittedCount} पूर्ण - ${audit.percentage}%) &nbsp;|&nbsp; <strong>पंचायत चुनाव बूथ:</strong> ${elecAudit.totalSchools} स्कूल (${elecAudit.pendingSchools} लंबित, ${elecAudit.submittedSchools} पूर्ण, ${elecAudit.totalBooths} बूथ)`;
   }
 
   // Real-time synchronization of 24x7 Automation Hub Banner schedule times
@@ -18493,6 +18832,35 @@ function sendVMPendingWhatsAppReminder() {
   const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
   window.open(url, '_blank');
   showToast('WhatsApp रिमाइंडर विंडो खुल गई!', 'success');
+}
+
+function sendElectionPendingWhatsAppReminder() {
+  const audit = getElectionVMAuditData();
+  if (audit.pendingSchools === 0) {
+    showToast('🎉 सभी 33 मतदान केंद्र विद्यालयों के चुनाव प्रपत्र 100% पूर्ण हैं! कोई स्कूल लंबित नहीं है।', 'success');
+    return;
+  }
+  const sortedPeeos = Object.entries(audit.peeoPendingMap).sort((a, b) => b[1] - a[1]);
+  const peeoHighlights = sortedPeeos.slice(0, 10).map(([p, c]) => `▫️ *${p}:* ${c} स्कूल लंबित`).join('\n');
+
+  let pendingListText = '';
+  audit.pendingList.slice(0, 20).forEach((s, idx) => {
+    const contact = s.principal_mobile ? ` (मो. ${s.principal_mobile})` : '';
+    pendingListText += `${idx + 1}. ${s.school_name} [${s.shala_darpan_code}]${contact}\n`;
+  });
+  if (audit.pendingList.length > 20) {
+    pendingListText += `...तथा अन्य ${audit.pendingList.length - 20} विद्यालय\n`;
+  }
+
+  const msg = `*🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)*\n*🗳️ राज्य चुनाव आयोग 2026 - पंचायत आम चुनाव मतदान केंद्र सत्यापन प्रपत्र (प्रपत्र-3)*\n*🚨 अति आवश्यक एवं सर्वोच्च प्राथमिकता*\n\n📊 *वर्तमान संकलन स्थिति:*\nकुल लक्षित विद्यालय: *${audit.totalSchools}* (कुल मतदान केंद्र: *${audit.totalBooths}*)\nसत्यापित प्रपत्र प्राप्त: *${audit.submittedSchools}*\nकुल लंबित विद्यालय: *${audit.pendingSchools}* (${audit.pendingBooths} बूथ शेष)\n\n📍 *प्रमुख लंबित PEEO परिक्षेत्र:*\n${peeoHighlights}\n\n📋 *लंबित विद्यालयों की सूची:*\n${pendingListText}\n⚠️ *सख्त निर्देश:* राज्य निर्वाचन आयोग के निर्देशानुसार मतदान केंद्रों में आधारभूत सुविधाओं (रैंप, पेयजल, विद्युत, शौचालय) का भौतिक सत्यापन कर डिजिटल हस्ताक्षर सहित प्रपत्र तत्काल ऑनलाइन सबमिट करें।\n\n🔗 *ऑनलाइन सत्यापन लिंक:* https://jit9763.github.io/cbeo-bhinai-portal/election_form.html\n🌐 *मुख्य पोर्टल:* https://jit9763.github.io/cbeo-bhinai-portal/\n*(CBEO भिनाय, अजमेर - प्रशासनिक मॉनिटरिंग)*`;
+
+  if (typeof openWhatsAppDirectText === 'function') {
+    openWhatsAppDirectText(msg);
+  } else {
+    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+  }
+  showToast('WhatsApp चुनाव रिमाइंडर विंडो खुल गई!', 'success');
 }
 
 function downloadVMReportMarkdown() {

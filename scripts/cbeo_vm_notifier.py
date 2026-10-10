@@ -232,8 +232,26 @@ def main():
                         master_data['saman_syllabus_submissions'] = syllabus_subs
                         with open(data_path, 'w', encoding='utf-8') as mf:
                             json.dump(master_data, mf, ensure_ascii=False, indent=2)
-                    except Exception:
-                        pass
+                        js_data_path = os.path.join(root_dir, 'master_cbeo_data.js')
+                        with open(js_data_path, 'w', encoding='utf-8') as jf:
+                            jf.write('const MASTER_CBEO_DATA = ' + json.dumps(master_data, ensure_ascii=False, indent=2) + ';\n')
+                        # Also sync into SQLite
+                        sqlite_path = os.path.join(root_dir, 'cbeo_data.sqlite')
+                        if os.path.exists(sqlite_path):
+                            import sqlite3
+                            sq_conn = sqlite3.connect(sqlite_path)
+                            sq_c = sq_conn.cursor()
+                            sq_now = datetime.datetime.now().isoformat()
+                            for scode, sval in syllabus_subs.items():
+                                sq_c.execute('''
+                                    INSERT INTO saman_syllabus_submissions (school_code, data, updated_at)
+                                    VALUES (?, ?, ?)
+                                    ON CONFLICT(school_code) DO UPDATE SET data=excluded.data, updated_at=excluded.updated_at
+                                ''', (scode, json.dumps(sval, ensure_ascii=False), sq_now))
+                            sq_conn.commit()
+                            sq_conn.close()
+                    except Exception as e:
+                        print("[CBEO-VM] Note saving synced syllabus data:", e)
         except Exception as e:
             print(f"[CBEO-VM] Note on Syllabus Submissions sync: {e}")
 
