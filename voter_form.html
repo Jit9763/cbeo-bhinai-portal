@@ -94,14 +94,14 @@
     }
     .printable-voter-sheet {
       background: #ffffff;
-      border: none;
-      padding: 0;
+      padding: 10mm 14mm;
+      max-width: 297mm;
+      width: 100%;
+      margin: 0 auto;
       color: #000000;
       font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
       box-sizing: border-box;
-      width: 1040px;
-      min-width: 1040px;
-      margin: 0 auto;
     }
 
     :root {
@@ -2567,7 +2567,6 @@
       var peeoDisplay = peeoClean ? ('पीईईओ ' + peeoClean) : 'पीईईओ भिनाय';
 
       return `
-        <div id="printable-voter-document-sheet" style="width:1040px; max-width:1040px; margin:0 auto; background:#ffffff; color:#000000; font-family:'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding:8px 10px; box-sizing:border-box; border:1.5px solid #000000">
           <!-- Top Emblem & Departmental Header (Exact Saman Pariksha Laser Format) -->
           <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:3px; margin-bottom:4px">
             <div style="font-size:0.80rem; font-weight:700; color:#000; letter-spacing:normal">
@@ -2700,8 +2699,7 @@
               <div style="font-size:0.72rem; color:#222; margin-top:1px">ब्लॉक-भिनाय (जिला: अजमेर)</div>
             </div>
           </div>
-        </div>
-      `;
+        `;
     }
 
     /* ========================================================
@@ -2727,10 +2725,8 @@
 
       // Preserve styles
       const prevWidth = container.style.width;
-      const prevMinWidth = container.style.minWidth;
       const prevMaxWidth = container.style.maxWidth;
       const prevPadding = container.style.padding;
-      const prevBorder = container.style.border;
       const prevMargin = container.style.margin;
       const prevBoxSizing = container.style.boxSizing;
       const prevBackground = container.style.background;
@@ -2745,34 +2741,28 @@
       }
 
       const orientation = customOptions.orientation || 'landscape';
-      const targetWidth = '1040px';
-      const scale = customOptions.scale || 2;
-      const quality = customOptions.quality || 0.98;
+      const targetWidth = customOptions.targetWidth || (orientation === 'portrait' ? '800px' : '1080px');
+      const scale = customOptions.scale || (orientation === 'portrait' ? 1.5 : 2);
+      const quality = customOptions.quality || (orientation === 'portrait' ? 0.85 : 0.98);
 
-      // Set pristine font styles & exact width matching canvas window
+      // Set pristine font styles & width (Saman Pariksha verbatim)
       container.style.width = targetWidth;
-      container.style.minWidth = targetWidth;
       container.style.maxWidth = targetWidth;
       container.style.boxSizing = 'border-box';
-      container.style.padding = '0';
-      container.style.border = 'none';
       container.style.background = '#ffffff';
-      container.style.margin = '0 auto';
       container.style.fontFamily = "'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
       container.style.letterSpacing = 'normal';
 
-      await new Promise(function(resolve) { setTimeout(resolve, 80); });
-
       const opt = {
-        margin: [3, 3, 3, 3],
+        margin: customOptions.margin ?? 0,
         filename: filename,
         image: { type: 'jpeg', quality: quality },
         html2canvas: {
           scale: scale,
           useCORS: true,
           logging: false,
-          width: 1040,
-          windowWidth: 1040,
+          windowWidth: window.innerWidth,
+          windowHeight: window.innerHeight,
           scrollX: 0,
           scrollY: 0
         },
@@ -2785,10 +2775,8 @@
         return pdfBlob;
       } finally {
         container.style.width = prevWidth;
-        container.style.minWidth = prevMinWidth;
         container.style.maxWidth = prevMaxWidth;
         container.style.padding = prevPadding;
-        container.style.border = prevBorder;
         container.style.margin = prevMargin;
         container.style.boxSizing = prevBoxSizing;
         container.style.background = prevBackground;
