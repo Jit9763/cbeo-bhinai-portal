@@ -84,15 +84,33 @@
     };
   }
 
+  function checkIsJitendra(loggedUser) {
+    if (!loggedUser) return false;
+    if (typeof isJitendraLoggedIn === 'function' && isJitendraLoggedIn()) return true;
+    var u = String(loggedUser.username || '').toLowerCase();
+    var sc = String(loggedUser.shala_darpan_code || '').toLowerCase();
+    var aid = String(loggedUser.admin_id || '').toUpperCase();
+    var role = String(loggedUser.role || '').toLowerCase();
+    var name = String(loggedUser.name || '').toLowerCase();
+
+    return (
+      sc === 'admin_jitendra' ||
+      u === 'admin_jitendra' ||
+      u === 'jitendra_admin' ||
+      u === 'jitendra' ||
+      aid === 'ADMIN02' ||
+      role === 'super admin' ||
+      name.includes('जितेन्द्र') ||
+      name.includes('jitendra')
+    );
+  }
+
   function checkIsAdmin(loggedUser) {
     if (!loggedUser) return false;
     return (
+      checkIsJitendra(loggedUser) ||
       loggedUser.role === 'admin' ||
-      loggedUser.username === 'admin_jitendra' ||
-      loggedUser.username === 'jitendra_admin' ||
-      loggedUser.username === 'jitendra' ||
-      loggedUser.shala_darpan_code === 'admin_jitendra' ||
-      loggedUser.admin_id === 'ADMIN02' ||
+      loggedUser.admin_id === 'ADMIN01' ||
       loggedUser.username === 'cbeo_admin' ||
       loggedUser.shala_darpan_code === '8140'
     );
@@ -103,19 +121,34 @@
     if (!container) return;
 
     var loggedUser = (typeof STATE !== 'undefined' && STATE.currentUser) ? STATE.currentUser : null;
-    if (!loggedUser) {
-      container.innerHTML = `
-        <div style="padding:3.5rem 1.5rem; text-align:center; max-width:550px; margin:4rem auto; background:#ffffff; border-radius:16px; border:1.5px solid #cbd5e1; box-shadow:0 20px 40px rgba(0,0,0,0.08)">
-          <div style="font-size:3.5rem; margin-bottom:1rem">🔒</div>
-          <h2 style="font-size:1.35rem; font-weight:900; color:#1e3a8a; margin-bottom:0.5rem">विद्यालय प्रमाणीकरण आवश्यक (Login Required)</h2>
-          <p style="color:#64748b; font-size:0.95rem; line-height:1.6; margin-bottom:1.5rem">
-            18+ एवं 17+ विद्यार्थी मतदाता सूची सत्यापन व पंजीकरण मांग देखने अथवा भरने हेतु कृपया अपने विद्यालय के <strong>शाला दर्पण / PSP कोड</strong> से लॉगिन करें।
-          </p>
-          <button class="btn btn-primary" onclick="openLoginModal(true)" style="padding:0.65rem 1.75rem; font-weight:800; font-size:1rem; border-radius:8px">
-            <i class="fas fa-sign-in-alt"></i> विद्यालय लॉगिन करें
-          </button>
-        </div>
-      `;
+    var isJit = checkIsJitendra(loggedUser);
+
+    // STRICT PERMISSION: Live Monitoring Control Room is EXCLUSIVELY for Jitendra Login
+    if (!isJit) {
+      if (loggedUser && loggedUser.role === 'school') {
+        container.innerHTML = `
+          <div style="padding:2.5rem 1.5rem; text-align:center; max-width:600px; margin:3rem auto; background:#ffffff; border-radius:16px; border:1.5px solid #cbd5e1; box-shadow:0 10px 30px rgba(0,0,0,0.06)">
+            <div style="font-size:3rem; margin-bottom:0.75rem">🔒</div>
+            <h3 style="color:#1e3a8a; font-weight:800; margin-bottom:0.5rem">ब्लॉक लाइव मॉनिटरिंग कंट्रोल रूम सुरक्षित है</h3>
+            <p style="color:#64748b; font-size:0.95rem; line-height:1.6; margin-bottom:1.5rem">
+              समस्त 58 विद्यालयों का समेकित मॉनिटरिंग कंट्रोल रूम केवल मुख्य तकनीकी व्यवस्थापक (Jitendra) के लिए अधिकृत है।
+            </p>
+            <a href="voter_form.html?code=${loggedUser.shala_darpan_code}" target="_blank" class="btn btn-warning" style="font-weight:800; padding:0.65rem 1.5rem; border-radius:8px; text-decoration:none">
+              <i class="fas fa-edit"></i> अपने विद्यालय का प्रपत्र खोलें
+            </a>
+          </div>
+        `;
+      } else {
+        container.innerHTML = `
+          <div style="padding:2.5rem 1.5rem; text-align:center; max-width:600px; margin:3rem auto; background:#ffffff; border-radius:16px; border:1.5px solid #cbd5e1; box-shadow:0 10px 30px rgba(0,0,0,0.06)">
+            <div style="font-size:3rem; margin-bottom:0.75rem">🔒</div>
+            <h3 style="color:#1e3a8a; font-weight:800; margin-bottom:0.5rem">व्यवस्थापक प्रमाणीकरण आवश्यक (Admin Only)</h3>
+            <p style="color:#64748b; font-size:0.95rem; line-height:1.6; margin-bottom:1.5rem">
+              यह ब्लॉक स्तरीय मॉनिटरिंग कंट्रोल रूम केवल मुख्य तकनीकी व्यवस्थापक (Jitendra) के लिए अधिकृत है।
+            </p>
+          </div>
+        `;
+      }
       return;
     }
 

@@ -660,11 +660,11 @@ function saveCloudPortalSetting(key, val, syncToGithub = false) {
 window.saveCloudPortalSetting = saveCloudPortalSetting;
 
 const DEFAULT_TAB_VISIBILITY_6LEVEL = {
-  'voter-students': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, sec_srsec: true, all_govt: false, all_schools: false },
+  'voter-students': { cbeo: false, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, sec_srsec: false, all_govt: false, all_schools: false },
   'election': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
-  'saman-pariksha': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, sec_srsec: false, all_govt: false, all_schools: false },
-  'saman_indent': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, sec_srsec: false, all_govt: false, all_schools: false },
-  'saman_syllabus': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, sec_srsec: false, all_govt: false, all_schools: false },
+  'saman-pariksha': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, sec_srsec: true, all_govt: false, all_schools: false },
+  'saman_indent': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, sec_srsec: true, all_govt: false, all_schools: false },
+  'saman_syllabus': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, sec_srsec: true, all_govt: false, all_schools: false },
   'database-hub': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
   'dashboard': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
   'directory': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
@@ -1746,11 +1746,21 @@ function setupAutoLogin() {
     const urlParams = new URLSearchParams(window.location.search);
     const hashTab = window.location.hash ? window.location.hash.replace('#', '') : null;
     const urlTab = urlParams.get('tab') || hashTab;
-    const savedTab = urlTab || localStorage.getItem('cbeo_active_tab');
+    const isJit = typeof isJitendraLoggedIn === 'function' ? isJitendraLoggedIn() : (STATE.currentUser && (
+      STATE.currentUser.shala_darpan_code === 'admin_jitendra' || 
+      STATE.currentUser.admin_id === 'ADMIN02' || 
+      STATE.currentUser.username === 'jitendra_admin'
+    ));
+
     if (urlTab && isTabVisibleForCurrentUser(urlTab)) {
       switchTab(urlTab);
-    } else {
+    } else if (isJit) {
       switchTab('voter-students');
+    } else if (savedTab && savedTab !== 'voter-students' && isTabVisibleForCurrentUser(savedTab)) {
+      switchTab(savedTab);
+    } else {
+      const allowedTab = ['saman-pariksha', 'demands', 'dashboard', 'directory'].find(t => isTabVisibleForCurrentUser(t)) || 'demands';
+      switchTab(allowedTab);
     }
 
     // Handle URL query parameters (e.g. ?show_pdf=221754 or ?form=221754)
@@ -2196,7 +2206,18 @@ function performLogin() {
       syncPortalSettingsFromCloud();
     }
 
-    switchTab('voter-students');
+    const isJit = typeof isJitendraLoggedIn === 'function' ? isJitendraLoggedIn() : (userObj && (
+      userObj.shala_darpan_code === 'admin_jitendra' || 
+      userObj.admin_id === 'ADMIN02' || 
+      userObj.username === 'jitendra_admin'
+    ));
+
+    if (isJit) {
+      switchTab('voter-students');
+    } else {
+      const allowedTab = ['saman-pariksha', 'demands', 'dashboard', 'directory'].find(t => isTabVisibleForCurrentUser(t)) || 'demands';
+      switchTab(allowedTab);
+    }
     // Prominent security popup if logged in with default password (shown once per session)
     if (userObj.role !== 'admin' && (p === u || p === userObj.shala_darpan_code)) {
       if (!sessionStorage.getItem('dismissed_default_pwd_alert')) {
@@ -2444,6 +2465,10 @@ function isTabVisibleForCurrentUser(tabId) {
     return isCBEO;
   }
 
+  if (tabId === 'voter-students') {
+    return isJitendra;
+  }
+
   return checkKeyVisibilityForCurrentUser(tabId);
 }
 
@@ -2489,7 +2514,7 @@ function applyTabVisibility() {
     if (quickBanner) quickBanner.style.display = 'block';
   } else {
     // For other roles (PEEO, School, CBEO), tab visibility is governed by the Admin Control settings!
-    if (tabVoter) tabVoter.style.display = checkKeyVisibilityForCurrentUser('voter-students') ? 'inline-flex' : 'none';
+    if (tabVoter) tabVoter.style.display = isJitendra ? 'inline-flex' : 'none';
     if (tabSP) tabSP.style.display = checkKeyVisibilityForCurrentUser('saman-pariksha') ? 'inline-flex' : 'none';
     if (tabElection) tabElection.style.display = checkKeyVisibilityForCurrentUser('election') ? 'inline-flex' : 'none';
     if (tabDash) tabDash.style.display = checkKeyVisibilityForCurrentUser('dashboard') ? 'inline-flex' : 'none';
@@ -2528,17 +2553,13 @@ function applyTabVisibility() {
   const cbeoExecutiveCard = document.getElementById('cbeo-executive-overview');
   if (cbeoExecutiveCard) cbeoExecutiveCard.style.display = (isJitendra || isCBEO) ? 'block' : 'none';
 
-  // If a non-Jitendra user is on a tab that is not visible to them, redirect to voter-students or their first visible tab
+  // If a non-Jitendra user is on voter-students or any tab that is not visible to them, redirect to their first visible tab
   if (!isJitendra) {
     const activeView = document.querySelector('.content-view.active');
     const curTabId = activeView ? activeView.id.replace('view-', '') : '';
-    if (!isTabVisibleForCurrentUser(curTabId)) {
-      if (checkKeyVisibilityForCurrentUser('voter-students')) {
-        switchTab('voter-students');
-      } else {
-        const firstVisible = ['saman-pariksha', 'demands', 'dashboard', 'directory'].find(t => isTabVisibleForCurrentUser(t));
-        if (firstVisible) switchTab(firstVisible);
-      }
+    if (curTabId === 'voter-students' || !isTabVisibleForCurrentUser(curTabId)) {
+      const firstVisible = ['saman-pariksha', 'demands', 'dashboard', 'directory'].find(t => isTabVisibleForCurrentUser(t)) || 'demands';
+      if (firstVisible) switchTab(firstVisible);
     }
   }
 }

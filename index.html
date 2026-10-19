@@ -124,11 +124,11 @@
   <!-- Sticky Main Navigation -->
   <nav class="main-nav-bar">
     <div class="nav-container">
-      <button class="nav-tab active" id="nav-tab-voter-students" onclick="switchTab('voter-students')">
+      <button class="nav-tab" id="nav-tab-voter-students" style="display:none" onclick="switchTab('voter-students')">
         <i class="fas fa-vote-yea text-warning"></i> 🗳️ 18+ व 17+ विद्यार्थी मतदाता पंजीकरण मांग (58 स्कूल)
         <span class="tab-badge badge-danger" id="nav-voter-badge">58</span>
       </button>
-      <button class="nav-tab" id="nav-tab-saman-pariksha" style="display:none" onclick="switchTab('saman-pariksha')">
+      <button class="nav-tab active" id="nav-tab-saman-pariksha" onclick="switchTab('saman-pariksha')">
         <i class="fas fa-file-signature"></i> 📋 समान परीक्षा 2026-27 (57 स्कूल)
         <span class="tab-badge badge-danger" id="nav-sp-badge">57</span>
       </button>
@@ -196,7 +196,7 @@
     </div>
 
     <!-- 18+ & 17+ VOTER STUDENTS DEMAND MAIN VIEW -->
-    <section id="view-voter-students" class="content-view active">
+    <section id="view-voter-students" class="content-view">
     </section>
 
     <!-- ELECTION 2026 VERIFICATION VIEW -->
@@ -204,7 +204,7 @@
     </section>
 
     <!-- 0. SAMAN PARIKSHA (DISTRICT UNIFORM EXAM) 2026-27 MAIN VIEW -->
-    <section id="view-saman-pariksha" class="content-view">
+    <section id="view-saman-pariksha" class="content-view active">
       <!-- Hero Banner -->
       <div class="sp-hero-banner">
         <div class="sp-hero-title">
