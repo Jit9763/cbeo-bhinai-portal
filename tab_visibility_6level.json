@@ -1,4 +1,13 @@
 {
+  "voter-students": {
+    "cbeo": true,
+    "peeo": true,
+    "govt_sec_srsec": true,
+    "pvt_sec_srsec": true,
+    "sec_srsec": true,
+    "all_govt": true,
+    "all_schools": true
+  },
   "saman-pariksha": {
     "cbeo": true,
     "peeo": true,

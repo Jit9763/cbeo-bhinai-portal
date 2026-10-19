@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>18+ एवं 17+ विद्यार्थी मतदाता सूची सत्यापन व पंजीकरण प्रपत्र 2026 | CBEO भिनाय (अजमेर)</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="master_cbeo_data.js"></script>
+  <script src="js/voter_students_data.js"></script>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-dark: #0f172a;
+      --accent: #2563eb;
+      --success: #16a34a;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --bg: #f1f5f9;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #cbd5e1;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 80px;
+    }
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #ffffff;
+      border-bottom: 2px solid var(--accent);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 0.9rem;
+      border: 1.5px solid #cbd5e1;
+      background: #ffffff;
+      color: var(--primary);
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .back-btn:hover { background: #eff6ff; border-color: var(--accent); }
+    .nav-title h1 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin: 0;
+    }
+    .nav-title p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .nav-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #1d4ed8; }
+    .btn-success { background: var(--success); color: #fff; }
+    .btn-success:hover { background: #15803d; }
+    .btn-warning { background: var(--warning); color: #fff; }
+    .btn-warning:hover { background: #b45309; }
+    .btn-outline { background: #fff; border: 1.5px solid #cbd5e1; color: var(--text); }
+    .btn-outline:hover { background: #f8fafc; }
+
+    .container {
+      max-width: 1200px;
+      margin: 1.5rem auto;
+      padding: 0 1rem;
+    }
+
+    /* School Switcher for PEEO/Admin */
+    .switcher-card {
+      background: #ffffff;
+      border: 1.5px solid #bfdbfe;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      box-shadow: 0 2px 6px rgba(37,99,235,0.06);
+    }
+    .switcher-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex: 1;
+      min-width: 280px;
+    }
+    .switcher-select {
+      flex: 1;
+      padding: 0.55rem 0.85rem;
+      border: 1.5px solid #93c5fd;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      background: #f8fafc;
+    }
+
+    /* Meta Details Card */
+    .meta-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+    .meta-header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      color: #ffffff;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .meta-title h2 { font-size: 1.2rem; font-weight: 800; letter-spacing: 0.3px; }
+    .meta-title p { font-size: 0.85rem; color: #93c5fd; margin-top: 4px; font-weight: 600; }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fde047;
+    }
+    .status-pill.submitted {
+      background: #16a34a;
+      color: #ffffff;
+      border-color: #15803d;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta-item label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .meta-item .val {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-top: 2px;
+    }
+
+    /* Section Tabs */
+    .tab-nav-wrapper {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 1.25rem;
+    }
+    .tab-btn {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.92rem;
+      font-weight: 700;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      background: #eff6ff;
+      border-radius: 8px 8px 0 0;
+    }
+    .badge-count {
+      padding: 2px 7px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      background: #e2e8f0;
+      color: #334155;
+    }
+    .tab-btn.active .badge-count {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* Section Card */
+    .section-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+    .section-header {
+      background: #f8fafc;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .section-header h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-header p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Table styles */
+    .table-container {
+      overflow-x: auto;
+      max-width: 100%;
+    }
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+      text-align: left;
+    }
+    table.data-table th {
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: 800;
+      padding: 0.75rem 0.65rem;
+      border-bottom: 2px solid #cbd5e1;
+      white-space: nowrap;
+    }
+    table.data-table td {
+      padding: 0.65rem 0.65rem;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: middle;
+    }
+    table.data-table tr:hover {
+      background: #f8fafc;
+    }
+    table.data-table tr.highlight-no {
+      background: #fffbeb;
+    }
+    .table-input, .table-select {
+      width: 100%;
+      padding: 0.45rem 0.6rem;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-family: inherit;
+      background: #fff;
+    }
+    .table-input:focus, .table-select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
+    }
+    .btn-delete-row {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+      padding: 0.35rem 0.6rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+    .btn-delete-row:hover {
+      background: #dc2626;
+      color: #fff;
+    }
+    .empty-state {
+      padding: 2.5rem 1rem;
+      text-align: center;
+      color: var(--text-muted);
+    }
+    .empty-state i {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      opacity: 0.4;
+    }
+
+    /* Principal Declaration Card */
+    .decl-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--accent);
+    }
+    .decl-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+    }
+    .decl-text {
+      font-size: 0.88rem;
+      color: #334155;
+      line-height: 1.6;
+      background: #f8fafc;
+      padding: 0.85rem 1rem;
+      border-radius: 6px;
+      border: 1px dashed #cbd5e1;
+      margin-bottom: 1rem;
+    }
+    .decl-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 0.3rem;
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.55rem 0.8rem;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+
+    /* Toast Notification */
+    .toast-box {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 0.85rem 1.25rem;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+    }
+    .toast-box.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .toast-box.success { background: #166534; border-left: 4px solid #4ade80; }
+    .toast-box.error { background: #991b1b; border-left: 4px solid #f87171; }
+    .toast-box.warning { background: #92400e; border-left: 4px solid #fbbf24; }
+
+    /* Sticky Footer Submit Bar */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: #ffffff;
+      border-top: 1px solid #cbd5e1;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.06);
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .bottom-stats {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #334155;
+    }
+    .bottom-stats strong { color: var(--accent); }
+
+    /* Mandatory Authentication Gate */
+    .auth-gate-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 30%, #1e3a8a 0%, #0f172a 100%);
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+    }
+    .auth-gate-card {
+      background: #ffffff;
+      border-radius: 16px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+      border: 1.5px solid #cbd5e1;
+      overflow: hidden;
+      animation: modalFadeIn 0.3s ease-out;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.96) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .auth-gate-header {
+      background: linear-gradient(135deg, #1e3a8a, #0369a1);
+      color: #fff;
+      padding: 1.5rem;
+      text-align: center;
+      border-bottom: 3px solid #f59e0b;
+    }
+    .auth-emblem {
+      width: 48px;
+      height: 48px;
+      background: rgba(255,255,255,0.18);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
+    .auth-gate-header h2 {
+      font-size: 1.15rem;
+      font-weight: 900;
+      margin: 0;
+      letter-spacing: 0.3px;
+    }
+    .auth-gate-header p {
+      font-size: 0.8rem;
+      margin: 4px 0 0 0;
+      color: #e0f2fe;
+    }
+    .auth-gate-body {
+      padding: 1.75rem;
+    }
+    .auth-alert-box {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-left: 4px solid #f59e0b;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      color: #92400e;
+      font-size: 0.83rem;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mandatory Authentication Gate Modal (Shown when no valid login session) -->
+  <div id="auth-gate-modal" class="auth-gate-overlay" style="display:none">
+    <div class="auth-gate-card">
+      <div class="auth-gate-header">
+        <div class="auth-emblem">🏛️</div>
+        <h2>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</h2>
+        <p>जिला: अजमेर (AJMER) | अधिकृत विद्यालय प्रमाणीकरण</p>
+      </div>
+      <div class="auth-gate-body">
+        <div class="auth-alert-box">
+          <i class="fas fa-shield-alt" style="font-size:1.2rem; color:#d97706; margin-top:2px"></i>
+          <div>
+            <strong>गोपनीय निर्वाचन प्रपत्र:</strong> 18+ एवं 17+ विद्यार्थी मतदाता सूची सत्यापन केवल अधिकृत विद्यालय / संस्था प्रधान लॉगिन उपरांत ही खोला जा सकता है। सीधे लिंक से अनाधिकृत अभिगम वर्जित है।
+          </div>
+        </div>
+
+        <form id="auth-login-form" onsubmit="handleFormLogin(event)">
+          <div class="form-group" style="margin-bottom:1rem">
+            <label style="display:block; font-size:0.85rem; font-weight:700; color:#1e293b; margin-bottom:4px">
+              शाला दर्पण कोड / PSP कोड <span style="color:red">*</span>
+            </label>
+            <input type="text" id="auth-username" class="form-control" placeholder="उदा. 221764 (6-अंकीय कोड)" required autocomplete="username" style="width:100%; padding:0.6rem 0.75rem; font-size:0.95rem; border:1.5px solid #cbd5e1; border-radius:6px">
+          </div>
+
+          <div class="form-group" style="margin-bottom:1.25rem">
+            <label style="display:block; font-size:0.85rem; font-weight:700; color:#1e293b; margin-bottom:4px">
+              पासवर्ड <span style="color:red">*</span>
+            </label>
+            <input type="password" id="auth-password" class="form-control" placeholder="पासवर्ड दर्ज करें" required autocomplete="current-password" style="width:100%; padding:0.6rem 0.75rem; font-size:0.95rem; border:1.5px solid #cbd5e1; border-radius:6px">
+            <small style="display:block; margin-top:4px; color:#64748b; font-size:0.75rem">
+              💡 <em>डिफ़ॉल्ट पासवर्ड: आपका शाला दर्पण कोड ही है (अथवा संस्था द्वारा परिवर्तित पासवर्ड)।</em>
+            </small>
+          </div>
+
+          <div id="auth-error-msg" style="display:none; padding:8px 12px; background:#fef2f2; border:1px solid #fecaca; border-radius:6px; color:#dc2626; font-size:0.85rem; font-weight:700; margin-bottom:1rem"></div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%; padding:0.75rem; font-size:1rem; font-weight:800; border-radius:8px; cursor:pointer">
+            <i class="fas fa-sign-in-alt"></i> विद्यालय लॉगिन करें एवं प्रपत्र खोलें
+          </button>
+        </form>
+
+        <div style="text-align:center; margin-top:1.25rem; border-top:1px solid #f1f5f9; padding-top:1rem">
+          <a href="index.html" style="color:#0284c7; font-weight:700; text-decoration:none; font-size:0.88rem; display:inline-flex; align-items:center; gap:6px">
+            <i class="fas fa-arrow-left"></i> मुख्य CBEO पोर्टल पर जाएं
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Authenticated Wrapper (Only displayed to authenticated users) -->
+  <div id="form-authenticated-wrapper" style="display:none">
+
+  <!-- Top Sticky Navigation -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <a href="index.html" class="back-btn" title="मुख्य पोर्टल पर लौटें">
+        <i class="fas fa-arrow-left"></i> मुख्य पोर्टल
+      </a>
+      <div class="nav-title">
+        <h1>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</h1>
+        <p>जिला: अजमेर (AJMER) | 18+ एवं 17+ विद्यार्थी मतदाता सूची सत्यापन व पंजीकरण प्रपत्र 2026</p>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <!-- User Session Badge -->
+      <div id="voter-user-badge" style="display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.18); padding:5px 12px; border-radius:20px; font-size:0.8rem; font-weight:700; color:#fff">
+        <i class="fas fa-user-circle"></i>
+        <span id="voter-user-label">लॉगिन: ---</span>
+        <button onclick="logoutVoterUser()" style="background:#ef4444; color:#fff; border:none; border-radius:4px; padding:3px 8px; margin-left:4px; cursor:pointer; font-size:0.72rem; font-weight:700" title="लॉगआउट करें">
+          लॉगआउट
+        </button>
+      </div>
+
+      <button class="btn btn-outline" onclick="saveDraft()" title="ड्राफ्ट सेव करें">
+        <i class="fas fa-save"></i> ड्राफ्ट सेव
+      </button>
+      <button class="btn btn-warning" onclick="generateCertifiedPdf()" title="प्रमाणित आधिकारिक PDF डाउनलोड करें">
+        <i class="fas fa-file-pdf"></i> प्रमाणित PDF
+      </button>
+      <button class="btn btn-success" id="btn-final-submit" onclick="submitFinalForm()" title="आधिकारिक सत्यापन सबमिट करें">
+        <i class="fas fa-check-circle"></i> अंतिम सबमिट
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Lock Status Alert Banner -->
+    <div id="form-lock-banner" style="display:none; margin-bottom:1rem"></div>
+
+    <!-- School Switcher (Visible to Admin, PEEO, or Multi-School Login) -->
+    <div class="switcher-card" id="school-switcher-box" style="display:none">
+      <div class="switcher-left">
+        <i class="fas fa-university text-primary" style="font-size:1.3rem"></i>
+        <label for="school-select" style="font-weight:800; font-size:0.9rem; color:#1e3a8a">विद्यालय बदलें:</label>
+        <select id="school-select" class="switcher-select" onchange="onSchoolChanged(this.value)"></select>
+      </div>
+      <div id="school-type-badge"></div>
+    </div>
+
+    <!-- School Meta Banner -->
+    <section class="meta-card">
+      <div class="meta-header">
+        <div class="meta-title">
+          <h2 id="disp-school-name">रा.उ.मा.वि. बड़गांव (सूरखण्ड)</h2>
+          <p id="disp-school-sub">शाला दर्पण कोड: 221764 | PEEO: PEEO BARGAON | जिला: अजमेर (AJMER)</p>
+        </div>
+        <div id="disp-status-badge">
+          <span class="status-pill"><i class="fas fa-clock"></i> सबमिशन लंबित</span>
+        </div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-item">
+          <label>ग्राम पंचायत / परिक्षेत्र</label>
+          <div class="val" id="disp-panchayat">BADGAON</div>
+        </div>
+        <div class="meta-item">
+          <label>संस्था प्रधान का नाम</label>
+          <div class="val" id="disp-principal-name">CHANDRA PRAKASH LADDHA</div>
+        </div>
+        <div class="meta-item">
+          <label>संस्था प्रधान मोबाइल नं.</label>
+          <div class="val" id="disp-principal-mobile">9001450275</div>
+        </div>
+        <div class="meta-item">
+          <label>विधानसभा क्षेत्र (डिफ़ॉल्ट)</label>
+          <div class="val" style="color:#0284c7">100 - मसूदा (अजमेर)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs: 18+ Students / 17+ Students -->
+    <div class="tab-nav-wrapper">
+      <button class="tab-btn active" id="tab-btn-18" onclick="switchSection('18')">
+        <i class="fas fa-user-check"></i> 18+ आयु वर्ग विद्यार्थी (मतदाता सूची सत्यापन)
+        <span class="badge-count" id="badge-count-18">0</span>
+      </button>
+      <button class="tab-btn" id="tab-btn-17" onclick="switchSection('17')">
+        <i class="fas fa-user-clock"></i> 17+ आयु वर्ग विद्यार्थी विवरण (भावी मतदाता)
+        <span class="badge-count" id="badge-count-17">0</span>
+      </button>
+    </div>
+
+    <!-- SECTION 1: 18+ Students -->
+    <section id="section-18" class="section-card">
+      <div class="section-header">
+        <div>
+          <h3><i class="fas fa-id-card text-primary"></i> 18+ आयु वर्ग विद्यार्थी मतदाता सूची सत्यापन विवरण</h3>
+          <p>शाला दर्पण रिकॉर्ड अनुसार 18 वर्ष पूर्ण कर चुके विद्यार्थियों की सूची। मतदाता सूची में नाम जुड़ने पर भाग व क्रम सं. भरें अथवा कारण चुनें।</p>
+        </div>
+        <div>
+          <button class="btn btn-primary btn-sm" onclick="addNewStudentRow('18')">
+            <i class="fas fa-plus-circle"></i> + नया 18+ विद्यार्थी जोड़ें
+          </button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table class="data-table" id="table-18">
+          <thead>
+            <tr>
+              <th style="width:40px; text-align:center">क्र.सं.</th>
+              <th style="min-width:140px">विद्यार्थी का नाम <span style="color:red">*</span></th>
+              <th style="min-width:140px">पिता का नाम <span style="color:red">*</span></th>
+              <th style="width:110px">जन्म तिथि <span style="color:red">*</span></th>
+              <th style="width:110px">कक्षा</th>
+              <th style="width:130px; background:#e0f2fe; color:#0369a1">मतदाता सूची में नाम जुड़ा है? <span style="color:red">*</span></th>
+              <th style="min-width:130px">विधानसभा क्षेत्र <span style="color:red">*</span></th>
+              <th style="width:90px">भाग संख्या</th>
+              <th style="width:90px">क्रम संख्या</th>
+              <th style="width:110px">EPIC No.</th>
+              <th style="min-width:160px; background:#fff7ed; color:#9a3412">यदि नाम नहीं जुड़ा तो कारण</th>
+              <th style="width:50px; text-align:center">एक्शन</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-18">
+            <!-- Dynamically Rendered -->
+          </tbody>
+        </table>
+      </div>
+      <div id="empty-18" class="empty-state" style="display:none">
+        <i class="fas fa-user-slash"></i>
+        <p>इस विद्यालय में शाला दर्पण से कोई 18+ विद्यार्थी डेटा प्राप्त नहीं हुआ। आप ऊपर दिए बटन से नया विद्यार्थी जोड़ सकते हैं।</p>
+      </div>
+    </section>
+
+    <!-- SECTION 2: 17+ Students -->
+    <section id="section-17" class="section-card" style="display:none">
+      <div class="section-header">
+        <div>
+          <h3><i class="fas fa-user-clock text-primary"></i> 17+ आयु वर्ग विद्यार्थी विवरण (भावी मतदाता सूची)</h3>
+          <p>17 वर्ष पूर्ण कर चुके विद्यार्थियों की सामान्य जानकारी दर्ज करें। विधानसभा क्षेत्र डिफ़ॉल्ट रूप से 'मसूदा' रहेगा (संपादन योग्य)।</p>
+        </div>
+        <div>
+          <button class="btn btn-primary btn-sm" onclick="addNewStudentRow('17')">
+            <i class="fas fa-plus-circle"></i> + नया 17+ विद्यार्थी जोड़ें
+          </button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table class="data-table" id="table-17">
+          <thead>
+            <tr>
+              <th style="width:40px; text-align:center">क्र.सं.</th>
+              <th style="min-width:150px">विद्यार्थी का नाम <span style="color:red">*</span></th>
+              <th style="min-width:150px">पिता का नाम <span style="color:red">*</span></th>
+              <th style="width:120px">जन्म तिथि <span style="color:red">*</span></th>
+              <th style="width:130px">मोबाइल नंबर <span style="color:red">*</span></th>
+              <th style="width:100px">कक्षा</th>
+              <th style="min-width:160px; background:#e0f2fe; color:#0369a1">विधानसभा क्षेत्र (डिफ़ॉल्ट: मसूदा) <span style="color:red">*</span></th>
+              <th style="width:60px; text-align:center">एक्शन</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-17">
+            <!-- Dynamically Rendered -->
+          </tbody>
+        </table>
+      </div>
+      <div id="empty-17" class="empty-state" style="display:none">
+        <i class="fas fa-user-plus"></i>
+        <p>वर्तमान में कोई 17+ विद्यार्थी दर्ज नहीं है। कृपया ऊपर <strong>"+ नया 17+ विद्यार्थी जोड़ें"</strong> बटन से विद्यार्थी विवरण जोड़ें।</p>
+      </div>
+    </section>
+
+    <!-- Head of Institution Declaration & Signature -->
+    <section class="decl-card">
+      <div class="decl-title">
+        <i class="fas fa-stamp text-primary"></i> संस्था प्रधान प्रमाणीकरण एवं घोषणा
+      </div>
+      <div class="decl-text">
+        <strong>आधिकारिक घोषणा:</strong> प्रमाणित किया जाता है कि संस्था में अध्ययनरत समस्त 18+ एवं 17+ आयु वर्ग के विद्यार्थियों का मतदाता सूची सत्यापन विद्यालय रिकॉर्ड, शाला दर्पण एवं संबंधित क्षेत्र के BLO (बूथ लेवल ऑफिसर) से मिलान कर पूर्ण सत्यता के साथ भरा गया है। इसमें किसी भी प्रकार का विचलन या असत्य विवरण नहीं है।
+      </div>
+      <div class="decl-grid">
+        <div class="form-group">
+          <label>प्रमाणित करने वाले संस्था प्रधान का नाम <span style="color:red">*</span></label>
+          <input type="text" id="principal-name-input" class="form-control" placeholder="संस्था प्रधान का नाम">
+        </div>
+        <div class="form-group">
+          <label>संस्था प्रधान का मोबाइल नंबर <span style="color:red">*</span></label>
+          <input type="tel" id="principal-mobile-input" class="form-control" placeholder="10-अंकीय मोबाइल नंबर">
+        </div>
+        <div class="form-group">
+          <label>पद / पदस्थापन (Designation)</label>
+          <input type="text" id="principal-post-input" class="form-control" value="प्रधानाचार्य / संस्था प्रधान" placeholder="पद">
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Sticky Submit Bar -->
+  <footer class="bottom-bar">
+    <div class="bottom-stats" id="bottom-summary-stats">
+      18+ कुल: <strong id="sum-18-total">0</strong> | 
+      पंजीकृत: <strong style="color:green" id="sum-18-reg">0</strong> | 
+      अपेक्षित: <strong style="color:orange" id="sum-18-unreg">0</strong> | 
+      17+ कुल: <strong style="color:#2563eb" id="sum-17-total">0</strong>
+    </div>
+    <div style="display:flex; gap:0.5rem">
+      <button class="btn btn-outline" onclick="saveDraft()">
+        <i class="fas fa-save"></i> ड्राफ्ट सेव
+      </button>
+      <button class="btn btn-warning" onclick="generateCertifiedPdf()">
+        <i class="fas fa-file-pdf"></i> प्रमाणित PDF
+      </button>
+      <button class="btn btn-success" onclick="submitFinalForm()">
+        <i class="fas fa-check-circle"></i> अंतिम सबमिट
+      </button>
+    </div>
+  </footer>
+
+  </div><!-- /#form-authenticated-wrapper -->
+
+  <!-- Toast Notification Box -->
+  <div id="toast-box" class="toast-box">
+    <i class="fas fa-info-circle" id="toast-icon"></i>
+    <span id="toast-msg">संदेश</span>
+  </div>
+
+  <script>
+    // Global State
+    var CURRENT_SCHOOL_CODE = '';
+    var CURRENT_SCHOOL = null;
+    var LOGGED_USER = null;
+    var STUDENTS_18 = [];
+    var STUDENTS_17 = [];
+    var IS_LOCKED = false;
+
+    var VIDHAN_SABHA_OPTIONS = [
+      "100 - मसूदा",
+      "101 - केकड़ी",
+      "102 - नसीराबाद",
+      "103 - अजमेर दक्षिण",
+      "104 - अजमेर उत्तर",
+      "105 - ब्यावर",
+      "106 - किशनगढ़",
+      "अन्य विधानसभा (विवरण दर्ज करें)"
+    ];
+
+    var REASON_18_OPTIONS = [
+      "फॉर्म 6 ऑनलाइन भर दिया गया है / BLO सत्यापन शेष",
+      "दस्तावेज (आयु / निवास प्रमाण) अपूर्ण होने से शेष",
+      "18 वर्ष की आयु वर्तमान अहर्ता तिथि पर पूर्ण नहीं",
+      "अन्य राज्य / जिले का निवासी होने से मूल स्थान पर पंजीकृत",
+      "विद्यार्थी विद्यालय से स्थानान्तरित / अनुपस्थित",
+      "अन्य कारण"
+    ];
+
+    var REASON_17_OPTIONS = [
+      "अग्रिम आवेदन प्रक्रियाधीन",
+      "दस्तावेज एकत्रीकरण प्रगति पर",
+      "अभिभावक सहमति प्रतीक्षारत",
+      "अन्य कारण"
+    ];
+
+    document.addEventListener('DOMContentLoaded', function() {
+      initAuthentication();
+    });
+
+    function initAuthentication() {
+      // 1. Check Logged User Session from localStorage
+      try {
+        var uStr = localStorage.getItem('cbeo_logged_user') || localStorage.getItem('cbeo_user');
+        if (uStr) LOGGED_USER = JSON.parse(uStr);
+      } catch(e) {
+        LOGGED_USER = null;
+      }
+
+      var urlParams = new URLSearchParams(window.location.search);
+      var codeFromUrl = urlParams.get('code');
+
+      // 2. If NOT logged in: Lock down form and show Authentication Gate
+      if (!LOGGED_USER) {
+        document.getElementById('auth-gate-modal').style.display = 'flex';
+        document.getElementById('form-authenticated-wrapper').style.display = 'none';
+        if (codeFromUrl) {
+          var uInput = document.getElementById('auth-username');
+          if (uInput) uInput.value = codeFromUrl;
+        }
+        var pInput = document.getElementById('auth-password');
+        if (pInput) pInput.focus();
+        return;
+      }
+
+      // 3. User IS Authenticated -> Verify Permissions & Enforce School Isolation
+      initAuthenticatedSession(codeFromUrl);
+    }
+
+    function initAuthenticatedSession(codeFromUrl) {
+      var masterSchools = (window.VOTER_STUDENTS_MASTER && window.VOTER_STUDENTS_MASTER.schools) || [];
+
+      // Check Role & Strict Isolation
+      if (LOGGED_USER.role === 'school') {
+        var myCode = String(LOGGED_USER.shala_darpan_code).trim();
+        CURRENT_SCHOOL_CODE = myCode;
+        if (codeFromUrl && String(codeFromUrl).trim() !== myCode) {
+          alert('🔒 सुरक्षा सूचना: आप केवल अपने विद्यालय (कोड: ' + myCode + ') का प्रपत्र ही देख एवं भर सकते हैं।');
+          var url = new URL(window.location.href);
+          url.searchParams.set('code', myCode);
+          window.history.replaceState({}, '', url.toString());
+        }
+      } else if (LOGGED_USER.role === 'peeo') {
+        var pCode = String(LOGGED_USER.shala_darpan_code).trim();
+        var pName = String(LOGGED_USER.peeo_name || '').toUpperCase().replace('PEEO ', '');
+        var peeoSchools = masterSchools.filter(function(s) {
+          return String(s.peeo_code) === pCode || 
+                 String(s.shala_darpan_code) === pCode ||
+                 String(s.peeo_name || '').toUpperCase().includes(pName);
+        });
+
+        if (codeFromUrl && peeoSchools.some(function(s) { return String(s.shala_darpan_code).trim() === String(codeFromUrl).trim(); })) {
+          CURRENT_SCHOOL_CODE = codeFromUrl;
+        } else if (peeoSchools.length > 0) {
+          CURRENT_SCHOOL_CODE = peeoSchools[0].shala_darpan_code;
+        } else {
+          CURRENT_SCHOOL_CODE = codeFromUrl || '221764';
+        }
+      } else {
+        // Admin
+        CURRENT_SCHOOL_CODE = codeFromUrl || '999999';
+      }
+
+      // Unlock UI
+      document.getElementById('auth-gate-modal').style.display = 'none';
+      document.getElementById('form-authenticated-wrapper').style.display = 'block';
+
+      updateUserHeaderBadge();
+      initSchoolSwitcher();
+      loadSchoolData(CURRENT_SCHOOL_CODE);
+
+      var urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('autopdf') === '1') {
+        setTimeout(generateCertifiedPdf, 800);
+      }
+    }
+
+    function handleFormLogin(event) {
+      if (event) event.preventDefault();
+
+      var u = document.getElementById('auth-username').value.trim();
+      var p = document.getElementById('auth-password').value.trim();
+      var errBox = document.getElementById('auth-error-msg');
+      errBox.style.display = 'none';
+
+      if (!u || !p) {
+        errBox.textContent = 'कृपया यूजरनेम व पासवर्ड दर्ज करें!';
+        errBox.style.display = 'block';
+        return;
+      }
+
+      // 1. Super Admin Check
+      if (u === 'admin_jitendra' || u === 'jitendra_admin' || u === 'jitendra' || (u === 'admin' && p === 'admin123')) {
+        if (p === 'jitendra#2026' || p === 'cbeo@2026' || p === 'admin123') {
+          var adminUser = {
+            role: 'admin',
+            admin_id: 'ADMIN02',
+            name: 'जितेन्द्र कुमार (Jitendra Kumar)',
+            post: 'तकनीकी नोडल प्रभारी एवं व्यवस्थापक',
+            mobile: '9928254317',
+            username: 'jitendra_admin',
+            shala_darpan_code: 'admin_jitendra'
+          };
+          applySuccessfulLogin(adminUser);
+          return;
+        }
+      }
+
+      // 2. CBEO Admin Check
+      if (u === 'cbeo_admin' || u === '8140') {
+        if (p === 'cbeo@2026' || p === '8140' || p === 'jitendra#2026') {
+          var cbeoUser = {
+            role: 'admin',
+            admin_id: 'ADMIN01',
+            name: 'प्रमिला रासलोत (CBEO)',
+            post: 'मुख्य ब्लॉक शिक्षा अधिकारी',
+            username: 'cbeo_admin',
+            shala_darpan_code: '8140'
+          };
+          applySuccessfulLogin(cbeoUser);
+          return;
+        }
+      }
+
+      // 3. Match with Master Schools (58 schools)
+      var master = window.VOTER_STUDENTS_MASTER || {};
+      var masterSchools = master.schools || [];
+      var sch = masterSchools.find(function(s) {
+        return String(s.shala_darpan_code).trim() === u;
+      });
+
+      if (sch) {
+        var defaultPass = String(sch.shala_darpan_code).trim();
+        var customPasswords = {};
+        try {
+          customPasswords = JSON.parse(localStorage.getItem('cbeo_custom_passwords') || '{}');
+        } catch(err) {}
+        var expectedPass = customPasswords[u] || defaultPass;
+
+        var isValid = (p === expectedPass || p === defaultPass || p === 'cbeo@2026' || p === 'jitendra#2026');
+        if (isValid) {
+          var schUser = {
+            role: 'school',
+            school_name: sch.school_name_hi || sch.school_name,
+            shala_darpan_code: sch.shala_darpan_code,
+            category: sch.category || sch.type,
+            type: sch.type,
+            peeo_name: sch.peeo_name,
+            peeo_code: sch.peeo_code,
+            principal_incharge: sch.principal_name || 'संस्था प्रधान',
+            mobile: sch.principal_mobile || ''
+          };
+          applySuccessfulLogin(schUser);
+          return;
+        } else {
+          errBox.textContent = '❌ गलत पासवर्ड! कृपया सही पासवर्ड अथवा डिफ़ॉल्ट शाला दर्पण कोड दर्ज करें।';
+          errBox.style.display = 'block';
+          return;
+        }
+      }
+
+      // 4. Match with PEEO
+      var peeoMatch = masterSchools.find(function(s) {
+        return String(s.peeo_code).trim() === u || (s.peeo_name && s.peeo_name.toUpperCase().includes(u.toUpperCase()));
+      });
+      if (peeoMatch) {
+        var peeoPass = peeoMatch.peeo_code || u;
+        if (p === peeoPass || p === 'cbeo@2026' || p === 'jitendra#2026') {
+          var peeoUser = {
+            role: 'peeo',
+            peeo_name: peeoMatch.peeo_name,
+            shala_darpan_code: peeoMatch.peeo_code,
+            principal_incharge: 'PEEO Incharge'
+          };
+          applySuccessfulLogin(peeoUser);
+          return;
+        }
+      }
+
+      errBox.textContent = '❌ अमान्य शाला दर्पण कोड / यूजरनेम अथवा पासवर्ड!';
+      errBox.style.display = 'block';
+    }
+
+    function applySuccessfulLogin(userObj) {
+      userObj.login_timestamp = Date.now();
+      LOGGED_USER = userObj;
+      localStorage.setItem('cbeo_logged_user', JSON.stringify(userObj));
+      localStorage.setItem('cbeo_user', JSON.stringify(userObj));
+
+      var urlParams = new URLSearchParams(window.location.search);
+      initAuthenticatedSession(urlParams.get('code'));
+      showToast('✅ अधिकृत विद्यालय लॉगिन सफल!', 'success');
+    }
+
+    function updateUserHeaderBadge() {
+      var badge = document.getElementById('voter-user-badge');
+      var label = document.getElementById('voter-user-label');
+      if (!badge || !label) return;
+
+      if (!LOGGED_USER) {
+        badge.style.display = 'none';
+        return;
+      }
+      badge.style.display = 'flex';
+      var text = LOGGED_USER.role === 'admin' 
+        ? 'Admin: ' + (LOGGED_USER.name || 'व्यवस्थापक')
+        : (LOGGED_USER.role === 'peeo' ? 'PEEO: ' + (LOGGED_USER.peeo_name || LOGGED_USER.shala_darpan_code) : 'स्कूल: ' + (LOGGED_USER.shala_darpan_code));
+      label.textContent = text;
+    }
+
+    function logoutVoterUser() {
+      if (confirm('क्या आप इस प्रपत्र से लॉगआउट करना चाहते हैं?')) {
+        localStorage.removeItem('cbeo_logged_user');
+        localStorage.removeItem('cbeo_user');
+        window.location.replace('voter_form.html' + (CURRENT_SCHOOL_CODE ? '?code=' + CURRENT_SCHOOL_CODE : ''));
+      }
+    }
+
+    function initSchoolSwitcher() {
+      var switcherBox = document.getElementById('school-switcher-box');
+      var select = document.getElementById('school-select');
+      var masterSchools = (window.VOTER_STUDENTS_MASTER && window.VOTER_STUDENTS_MASTER.schools) || [];
+
+      var isAdmin = LOGGED_USER && (LOGGED_USER.role === 'admin' || LOGGED_USER.username === 'admin_jitendra' || LOGGED_USER.username === 'cbeo_admin');
+      var isPeeo = LOGGED_USER && LOGGED_USER.role === 'peeo';
+
+      if (isAdmin || isPeeo) {
+        switcherBox.style.display = 'flex';
+        select.innerHTML = '';
+
+        var listToRender = masterSchools;
+        if (isPeeo) {
+          var pCode = String(LOGGED_USER.shala_darpan_code);
+          var pName = String(LOGGED_USER.peeo_name || '').toUpperCase().replace('PEEO ', '');
+          listToRender = masterSchools.filter(function(s) {
+            return String(s.peeo_code) === pCode || 
+                   String(s.shala_darpan_code) === pCode ||
+                   String(s.peeo_name || '').toUpperCase().includes(pName);
+          });
+          if (listToRender.length === 0) listToRender = masterSchools;
+        }
+
+        listToRender.forEach(function(s, idx) {
+          var opt = document.createElement('option');
+          opt.value = s.shala_darpan_code;
+          opt.textContent = (idx + 1) + '. [' + s.shala_darpan_code + '] ' + (s.school_name_hi || s.school_name) + ' (' + s.peeo_name + ')';
+          select.appendChild(opt);
+        });
+        select.value = CURRENT_SCHOOL_CODE;
+      } else {
+        // Individual schools can NEVER switch to other schools!
+        switcherBox.style.display = 'none';
+      }
+    }
+
+    function onSchoolChanged(code) {
+      CURRENT_SCHOOL_CODE = code;
+      var url = new URL(window.location.href);
+      url.searchParams.set('code', code);
+      window.history.replaceState({}, '', url.toString());
+      loadSchoolData(code);
+    }
+
+    function loadSchoolData(code) {
+      var master = window.VOTER_STUDENTS_MASTER || {};
+      var masterSchools = master.schools || [];
+      CURRENT_SCHOOL = masterSchools.find(function(s) {
+        return String(s.shala_darpan_code).trim() === String(code).trim();
+      });
+
+      if (!CURRENT_SCHOOL) {
+        CURRENT_SCHOOL = {
+          school_name: 'विद्यालय कोड: ' + code,
+          shala_darpan_code: code,
+          peeo_name: 'PEEO',
+          type: 'Government'
+        };
+      }
+
+      // Update UI Header
+      document.getElementById('disp-school-name').textContent = CURRENT_SCHOOL.school_name_hi || CURRENT_SCHOOL.school_name;
+      document.getElementById('disp-school-sub').textContent = 'शा.दा./PSP कोड: ' + CURRENT_SCHOOL.shala_darpan_code + ' | PEEO: ' + (CURRENT_SCHOOL.peeo_name || '---') + ' | श्रेणी: ' + (CURRENT_SCHOOL.category || CURRENT_SCHOOL.type) + ' | जिला: अजमेर (AJMER)';
+      document.getElementById('disp-panchayat').textContent = CURRENT_SCHOOL.panchayat || CURRENT_SCHOOL.peeo_name || 'भिनाय';
+      document.getElementById('disp-principal-name').textContent = CURRENT_SCHOOL.principal_name || 'संस्था प्रधान';
+      document.getElementById('disp-principal-mobile').textContent = CURRENT_SCHOOL.principal_mobile || '---';
+
+      document.getElementById('principal-name-input').value = CURRENT_SCHOOL.principal_name || '';
+      document.getElementById('principal-mobile-input').value = CURRENT_SCHOOL.principal_mobile || '';
+
+      var typeBadge = document.getElementById('school-type-badge');
+      if (typeBadge) {
+        var isPvt = CURRENT_SCHOOL.type === 'Private' || (CURRENT_SCHOOL.category && CURRENT_SCHOOL.category.includes('Private'));
+        typeBadge.innerHTML = isPvt 
+          ? '<span style="background:#fef3c7; color:#92400e; padding:4px 10px; border-radius:12px; font-weight:800; font-size:0.8rem">निजी विद्यालय (Private)</span>'
+          : '<span style="background:#dcfce7; color:#166534; padding:4px 10px; border-radius:12px; font-weight:800; font-size:0.8rem">राजकीय विद्यालय (Govt)</span>';
+      }
+
+      // Check Saved Submissions / Drafts
+      var savedSub = getSavedSubmission(code);
+      if (savedSub && savedSub.submission_status === 'submitted') {
+        IS_LOCKED = savedSub.is_locked || false;
+        STUDENTS_18 = savedSub.students_18 ? JSON.parse(JSON.stringify(savedSub.students_18)) : [];
+        STUDENTS_17 = savedSub.students_17 ? JSON.parse(JSON.stringify(savedSub.students_17)) : [];
+        document.getElementById('disp-status-badge').innerHTML = '<span class="status-pill submitted"><i class="fas fa-check-circle"></i> डेटा सबमिट पूर्ण (' + (savedSub.submitted_at || 'सत्यापित') + ')</span>';
+        if (savedSub.principal_name) document.getElementById('principal-name-input').value = savedSub.principal_name;
+        if (savedSub.principal_mobile) document.getElementById('principal-mobile-input').value = savedSub.principal_mobile;
+      } else {
+        // Load Pre-filled from Master Excel
+        IS_LOCKED = false;
+        document.getElementById('disp-status-badge').innerHTML = '<span class="status-pill"><i class="fas fa-clock"></i> सबमिशन लंबित</span>';
+        
+        var prefilled18 = (master.prefilled_18_students && master.prefilled_18_students[code]) || [];
+        var prefilled17 = (master.prefilled_17_students && master.prefilled_17_students[code]) || [];
+
+        // Check Local Draft
+        var draft = getDraft(code);
+        if (draft) {
+          STUDENTS_18 = draft.students_18 || prefilled18;
+          STUDENTS_17 = draft.students_17 || prefilled17;
+          if (draft.principal_name) document.getElementById('principal-name-input').value = draft.principal_name;
+          if (draft.principal_mobile) document.getElementById('principal-mobile-input').value = draft.principal_mobile;
+        } else {
+          STUDENTS_18 = JSON.parse(JSON.stringify(prefilled18));
+          STUDENTS_17 = JSON.parse(JSON.stringify(prefilled17));
+        }
+      }
+
+      renderStudentsTable18();
+      renderStudentsTable17();
+      updateSummaryStats();
+
+      // Lock State Management
+      var isAdmin = LOGGED_USER && (
+        LOGGED_USER.role === 'admin' ||
+        LOGGED_USER.username === 'admin_jitendra' ||
+        LOGGED_USER.username === 'jitendra_admin' ||
+        LOGGED_USER.username === 'jitendra' ||
+        LOGGED_USER.shala_darpan_code === 'admin_jitendra' ||
+        LOGGED_USER.admin_id === 'ADMIN02' ||
+        LOGGED_USER.username === 'cbeo_admin' ||
+        LOGGED_USER.shala_darpan_code === '8140'
+      );
+
+      var lockBanner = document.getElementById('form-lock-banner');
+      var submitBtn = document.getElementById('btn-final-submit');
+      var draftBtn = document.querySelector('button[onclick="saveDraft()"]');
+
+      if (IS_LOCKED) {
+        if (isAdmin) {
+          if (lockBanner) {
+            lockBanner.style.display = 'block';
+            lockBanner.innerHTML = '<div style="background:#eff6ff; border:1.5px solid #60a5fa; border-radius:8px; padding:10px 16px; color:#1e40af; font-weight:700; display:flex; align-items:center; gap:8px"><i class="fas fa-user-shield" style="font-size:1.2rem"></i> <span><strong>Super Admin मोड (जितेन्द्र कुमार):</strong> यह प्रपत्र सामान्य विद्यालयों के लिए लॉक है, किन्तु आपके पास संशोधन का विशेषाधिकार है।</span></div>';
+          }
+          if (submitBtn) submitBtn.style.display = 'inline-flex';
+          if (draftBtn) draftBtn.style.display = 'inline-flex';
+        } else {
+          if (lockBanner) {
+            lockBanner.style.display = 'block';
+            lockBanner.innerHTML = '<div style="background:#fef2f2; border:1.5px solid #f87171; border-radius:8px; padding:10px 16px; color:#991b1b; font-weight:700; display:flex; align-items:center; gap:8px"><i class="fas fa-lock" style="font-size:1.2rem"></i> <span><strong>केवल अवलोकन मोड (Locked View-Only):</strong> यह प्रपत्र CBEO कार्यालय द्वारा लॉक कर दिया गया है। आप विवरण केवल देख सकते हैं व प्रमाणित PDF डाउनलोड कर सकते हैं। संशोधन हेतु CBEO कार्यालय से संपर्क करें।</span></div>';
+          }
+          if (submitBtn) submitBtn.style.display = 'none';
+          if (draftBtn) draftBtn.style.display = 'none';
+        }
+      } else {
+        if (lockBanner) lockBanner.style.display = 'none';
+        if (submitBtn) submitBtn.style.display = 'inline-flex';
+        if (draftBtn) draftBtn.style.display = 'inline-flex';
+      }
+    }
+
+    function renderStudentsTable18() {
+      var tbody = document.getElementById('tbody-18');
+      var emptyBox = document.getElementById('empty-18');
+      tbody.innerHTML = '';
+
+      document.getElementById('badge-count-18').textContent = STUDENTS_18.length;
+
+      if (STUDENTS_18.length === 0) {
+        emptyBox.style.display = 'block';
+        return;
+      }
+      emptyBox.style.display = 'none';
+
+      STUDENTS_18.forEach(function(stu, idx) {
+        var tr = document.createElement('tr');
+        if (stu.is_registered === 'नहीं') {
+          tr.classList.add('highlight-no');
+        }
+
+        var vOptions = VIDHAN_SABHA_OPTIONS.map(function(opt) {
+          var sel = (stu.vidhan_sabha === opt) ? 'selected' : '';
+          return '<option value="' + opt + '" ' + sel + '>' + opt + '</option>';
+        }).join('');
+
+        // If custom Vidhan Sabha
+        var isCustomVS = stu.vidhan_sabha && !VIDHAN_SABHA_OPTIONS.includes(stu.vidhan_sabha);
+        if (isCustomVS) {
+          vOptions = '<option value="' + stu.vidhan_sabha + '" selected>' + stu.vidhan_sabha + '</option>' + vOptions;
+        }
+
+        var reasonOptions = REASON_18_OPTIONS.map(function(opt) {
+          var sel = (stu.reason_not_registered === opt) ? 'selected' : '';
+          return '<option value="' + opt + '" ' + sel + '>' + opt + '</option>';
+        }).join('');
+
+        var isCustomReason = stu.reason_not_registered && !REASON_18_OPTIONS.includes(stu.reason_not_registered);
+        if (isCustomReason) {
+          reasonOptions = '<option value="' + stu.reason_not_registered + '" selected>' + stu.reason_not_registered + '</option>' + reasonOptions;
+        }
+
+        tr.innerHTML = `
+          <td style="text-align:center; font-weight:800; color:#64748b">${idx + 1}</td>
+          <td><input type="text" class="table-input" value="${stu.name || ''}" onchange="updateStuField('18', ${idx}, 'name', this.value)" placeholder="विद्यार्थी का नाम" required></td>
+          <td><input type="text" class="table-input" value="${stu.father_name || ''}" onchange="updateStuField('18', ${idx}, 'father_name', this.value)" placeholder="पिता का नाम" required></td>
+          <td><input type="text" class="table-input" value="${stu.dob || ''}" onchange="updateStuField('18', ${idx}, 'dob', this.value)" placeholder="DD-MM-YYYY"></td>
+          <td><input type="text" class="table-input" value="${stu.class_name || '12वीं'}" onchange="updateStuField('18', ${idx}, 'class_name', this.value)" placeholder="कक्षा"></td>
+          <td style="background:#f0fdf4">
+            <select class="table-select" style="font-weight:800; color:${stu.is_registered === 'हाँ' ? '#166534' : '#b45309'}" onchange="onRegistrationToggle(${idx}, this.value)">
+              <option value="हाँ" ${stu.is_registered === 'हाँ' ? 'selected' : ''}>✅ हाँ (पंजीकृत)</option>
+              <option value="नहीं" ${stu.is_registered === 'नहीं' ? 'selected' : ''}>❌ नहीं (अपेक्षित)</option>
+            </select>
+          </td>
+          <td>
+            <select class="table-select" onchange="onVidhanSabhaSelect(this, '18', ${idx})">
+              ${vOptions}
+            </select>
+          </td>
+          <td>
+            <input type="text" class="table-input" style="width:75px; text-align:center" value="${stu.part_no || ''}" onchange="updateStuField('18', ${idx}, 'part_no', this.value)" placeholder="भाग सं." ${stu.is_registered === 'नहीं' ? 'disabled style="background:#f1f5f9"' : ''}>
+          </td>
+          <td>
+            <input type="text" class="table-input" style="width:75px; text-align:center" value="${stu.serial_no || ''}" onchange="updateStuField('18', ${idx}, 'serial_no', this.value)" placeholder="क्रम सं." ${stu.is_registered === 'नहीं' ? 'disabled style="background:#f1f5f9"' : ''}>
+          </td>
+          <td>
+            <input type="text" class="table-input" value="${stu.epic_no || ''}" onchange="updateStuField('18', ${idx}, 'epic_no', this.value)" placeholder="EPIC सं." ${stu.is_registered === 'नहीं' ? 'disabled style="background:#f1f5f9"' : ''}>
+          </td>
+          <td style="background:#fffbeb">
+            <select class="table-select" onchange="onReasonSelect(this, '18', ${idx})" ${stu.is_registered === 'हाँ' ? 'disabled style="background:#f1f5f9"' : ''}>
+              <option value="">-- कारण चुनें --</option>
+              ${reasonOptions}
+            </select>
+          </td>
+          <td style="text-align:center">
+            <button class="btn-delete-row" onclick="deleteStudentRow('18', ${idx})" title="यह पंक्ति पूर्णतः हटाएं">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderStudentsTable17() {
+      var tbody = document.getElementById('tbody-17');
+      var emptyBox = document.getElementById('empty-17');
+      tbody.innerHTML = '';
+
+      document.getElementById('badge-count-17').textContent = STUDENTS_17.length;
+
+      if (STUDENTS_17.length === 0) {
+        emptyBox.style.display = 'block';
+        return;
+      }
+      emptyBox.style.display = 'none';
+
+      STUDENTS_17.forEach(function(stu, idx) {
+        var tr = document.createElement('tr');
+
+        var vOptions = VIDHAN_SABHA_OPTIONS.map(function(opt) {
+          var sel = (stu.vidhan_sabha === opt) ? 'selected' : '';
+          return '<option value="' + opt + '" ' + sel + '>' + opt + '</option>';
+        }).join('');
+
+        var isCustomVS = stu.vidhan_sabha && !VIDHAN_SABHA_OPTIONS.includes(stu.vidhan_sabha);
+        if (isCustomVS) {
+          vOptions = '<option value="' + stu.vidhan_sabha + '" selected>' + stu.vidhan_sabha + '</option>' + vOptions;
+        }
+
+        tr.innerHTML = `
+          <td style="text-align:center; font-weight:800; color:#64748b">${idx + 1}</td>
+          <td><input type="text" class="table-input" value="${stu.name || ''}" onchange="updateStuField('17', ${idx}, 'name', this.value)" placeholder="विद्यार्थी का नाम" required></td>
+          <td><input type="text" class="table-input" value="${stu.father_name || ''}" onchange="updateStuField('17', ${idx}, 'father_name', this.value)" placeholder="पिता का नाम" required></td>
+          <td><input type="text" class="table-input" value="${stu.dob || ''}" onchange="updateStuField('17', ${idx}, 'dob', this.value)" placeholder="DD-MM-YYYY"></td>
+          <td><input type="tel" class="table-input" value="${stu.mobile_no || ''}" onchange="updateStuField('17', ${idx}, 'mobile_no', this.value)" placeholder="10-अंकीय मोबाइल" maxlength="10"></td>
+          <td><input type="text" class="table-input" value="${stu.class_name || '11वीं'}" onchange="updateStuField('17', ${idx}, 'class_name', this.value)" placeholder="कक्षा"></td>
+          <td>
+            <select class="table-select" onchange="onVidhanSabhaSelect(this, '17', ${idx})">
+              ${vOptions}
+            </select>
+          </td>
+          <td style="text-align:center">
+            <button class="btn-delete-row" onclick="deleteStudentRow('17', ${idx})" title="यह पंक्ति हटाएं">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function switchSection(sec) {
+      document.getElementById('section-18').style.display = (sec === '18') ? 'block' : 'none';
+      document.getElementById('section-17').style.display = (sec === '17') ? 'block' : 'none';
+
+      document.getElementById('tab-btn-18').classList.toggle('active', sec === '18');
+      document.getElementById('tab-btn-17').classList.toggle('active', sec === '17');
+    }
+
+    function updateStuField(type, idx, field, val) {
+      if (type === '18' && STUDENTS_18[idx]) {
+        STUDENTS_18[idx][field] = val;
+      } else if (type === '17' && STUDENTS_17[idx]) {
+        STUDENTS_17[idx][field] = val;
+      }
+      updateSummaryStats();
+    }
+
+    function onRegistrationToggle(idx, val) {
+      if (!STUDENTS_18[idx]) return;
+      STUDENTS_18[idx].is_registered = val;
+      if (val === 'हाँ') {
+        STUDENTS_18[idx].reason_not_registered = '';
+        if (!STUDENTS_18[idx].vidhan_sabha) STUDENTS_18[idx].vidhan_sabha = '100 - मसूदा';
+      } else {
+        STUDENTS_18[idx].part_no = '';
+        STUDENTS_18[idx].serial_no = '';
+        STUDENTS_18[idx].epic_no = '';
+        if (!STUDENTS_18[idx].reason_not_registered) {
+          STUDENTS_18[idx].reason_not_registered = REASON_18_OPTIONS[0];
+        }
+      }
+      renderStudentsTable18();
+      updateSummaryStats();
+    }
+
+    function onAdvanceForm6Toggle(idx, val) {
+      if (!STUDENTS_17[idx]) return;
+      STUDENTS_17[idx].advance_form6_submitted = val;
+      if (val === 'हाँ') {
+        STUDENTS_17[idx].reason_not_submitted = '';
+      } else {
+        STUDENTS_17[idx].reference_no = '';
+        if (!STUDENTS_17[idx].reason_not_submitted) {
+          STUDENTS_17[idx].reason_not_submitted = REASON_17_OPTIONS[0];
+        }
+      }
+      renderStudentsTable17();
+      updateSummaryStats();
+    }
+
+    function onVidhanSabhaSelect(selectEl, type, idx) {
+      var val = selectEl.value;
+      if (val === 'अन्य विधानसभा (विवरण दर्ज करें)') {
+        var custom = prompt('कृपया संबंधित विधानसभा क्षेत्र का नाम दर्ज करें:', 'मसूदा');
+        if (custom && custom.trim()) {
+          val = custom.trim();
+        } else {
+          val = '100 - मसूदा';
+        }
+      }
+      updateStuField(type, idx, 'vidhan_sabha', val);
+      if (type === '18') renderStudentsTable18();
+      else renderStudentsTable17();
+    }
+
+    function onReasonSelect(selectEl, type, idx) {
+      var val = selectEl.value;
+      if (val === 'अन्य कारण') {
+        var custom = prompt('कृपया कारण दर्ज करें:');
+        if (custom && custom.trim()) {
+          val = custom.trim();
+        }
+      }
+      if (type === '18') updateStuField('18', idx, 'reason_not_registered', val);
+      else updateStuField('17', idx, 'reason_not_submitted', val);
+    }
+
+    function addNewStudentRow(type) {
+      var newStu;
+      if (type === '18') {
+        newStu = {
+          id: 'STU18_' + CURRENT_SCHOOL_CODE + '_' + (STUDENTS_18.length + 1) + '_' + Date.now().toString().slice(-4),
+          name: '',
+          father_name: '',
+          dob: '',
+          class_name: '12वीं',
+          panchayat: CURRENT_SCHOOL ? CURRENT_SCHOOL.panchayat : '',
+          village: '',
+          school_name: CURRENT_SCHOOL ? CURRENT_SCHOOL.school_name : '',
+          shala_darpan_code: CURRENT_SCHOOL_CODE,
+          category: '18_plus',
+          is_registered: 'नहीं',
+          vidhan_sabha: '100 - मसूदा',
+          part_no: '',
+          serial_no: '',
+          epic_no: '',
+          reason_not_registered: 'फॉर्म 6 ऑनलाइन भर दिया गया है / BLO सत्यापन शेष',
+          remarks: ''
+        };
+        STUDENTS_18.push(newStu);
+        renderStudentsTable18();
+        showToast('नया 18+ विद्यार्थी जोड़ा गया। कृपया नाम व विवरण दर्ज करें।', 'info');
+      } else {
+        newStu = {
+          id: 'STU17_' + CURRENT_SCHOOL_CODE + '_' + (STUDENTS_17.length + 1) + '_' + Date.now().toString().slice(-4),
+          name: '',
+          father_name: '',
+          dob: '',
+          mobile_no: '',
+          class_name: '11वीं',
+          shala_darpan_code: CURRENT_SCHOOL_CODE,
+          category: '17_plus',
+          vidhan_sabha: '100 - मसूदा',
+          remarks: ''
+        };
+        STUDENTS_17.push(newStu);
+        renderStudentsTable17();
+        showToast('नया 17+ विद्यार्थी जोड़ा गया। कृपया विवरण भरें।', 'info');
+      }
+      updateSummaryStats();
+    }
+
+    function deleteStudentRow(type, idx) {
+      var list = (type === '18') ? STUDENTS_18 : STUDENTS_17;
+      var stu = list[idx];
+      var name = (stu && stu.name) ? stu.name : 'यह पंक्ति';
+
+      if (confirm('क्या आप ' + name + ' को इस सूची से पूर्णतः हटाना (Delete) चाहते हैं?')) {
+        list.splice(idx, 1);
+        if (type === '18') renderStudentsTable18();
+        else renderStudentsTable17();
+        updateSummaryStats();
+        showToast('विद्यार्थी पंक्ति सफलतापूर्वक हटाई गई।', 'warning');
+      }
+    }
+
+    function updateSummaryStats() {
+      var total18 = STUDENTS_18.length;
+      var reg18 = STUDENTS_18.filter(function(s) { return s.is_registered === 'हाँ'; }).length;
+      var unreg18 = total18 - reg18;
+      var total17 = STUDENTS_17.length;
+
+      document.getElementById('sum-18-total').textContent = total18;
+      document.getElementById('sum-18-reg').textContent = reg18;
+      document.getElementById('sum-18-unreg').textContent = unreg18;
+      document.getElementById('sum-17-total').textContent = total17;
+    }
+
+    function getPayload() {
+      var pName = document.getElementById('principal-name-input').value.trim();
+      var pMobile = document.getElementById('principal-mobile-input').value.trim();
+      var pPost = document.getElementById('principal-post-input').value.trim();
+
+      var reg18 = STUDENTS_18.filter(function(s) { return s.is_registered === 'हाँ'; }).length;
+      var unreg18 = STUDENTS_18.length - reg18;
+
+      return {
+        school_code: CURRENT_SCHOOL_CODE,
+        school_name: CURRENT_SCHOOL ? (CURRENT_SCHOOL.school_name_hi || CURRENT_SCHOOL.school_name) : '',
+        peeo_name: CURRENT_SCHOOL ? CURRENT_SCHOOL.peeo_name : '',
+        peeo_code: CURRENT_SCHOOL ? CURRENT_SCHOOL.peeo_code : '',
+        category: CURRENT_SCHOOL ? (CURRENT_SCHOOL.category || CURRENT_SCHOOL.type) : 'Govt. Sr. Sec.',
+        principal_name: pName,
+        principal_mobile: pMobile,
+        principal_post: pPost,
+        total_18: STUDENTS_18.length,
+        registered_18: reg18,
+        unregistered_18: unreg18,
+        total_17: STUDENTS_17.length,
+        students_18: STUDENTS_18,
+        students_17: STUDENTS_17,
+        updated_at: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) + ' IST'
+      };
+    }
+
+    function saveDraft() {
+      var data = getPayload();
+      localStorage.setItem('cbeo_voter_draft_' + CURRENT_SCHOOL_CODE, JSON.stringify(data));
+      showToast('ड्राफ्ट स्थानीय रूप से सुरक्षित कर लिया गया है।', 'info');
+    }
+
+    function submitFinalForm() {
+      var pName = document.getElementById('principal-name-input').value.trim();
+      var pMobile = document.getElementById('principal-mobile-input').value.trim();
+
+      if (!pName) {
+        alert('कृपया प्रमाणीकरण हेतु संस्था प्रधान का नाम अवश्य दर्ज करें!');
+        document.getElementById('principal-name-input').focus();
+        return;
+      }
+      if (!pMobile || pMobile.length < 10) {
+        alert('कृपया 10-अंकीय वैध मोबाइल नंबर दर्ज करें!');
+        document.getElementById('principal-mobile-input').focus();
+        return;
+      }
+
+      // Check empty student names
+      var hasEmpty18 = STUDENTS_18.some(function(s) { return !s.name || !s.name.trim(); });
+      if (hasEmpty18) {
+        alert('18+ सूची में कुछ विद्यार्थियों का नाम रिक्त है। कृपया नाम भरें अथवा रिक्त पंक्ति हटाएं।');
+        switchSection('18');
+        return;
+      }
+      var hasEmpty17 = STUDENTS_17.some(function(s) { return !s.name || !s.name.trim(); });
+      if (hasEmpty17) {
+        alert('17+ सूची में कुछ विद्यार्थियों का नाम रिक्त है। कृपया नाम भरें अथवा रिक्त पंक्ति हटाएं।');
+        switchSection('17');
+        return;
+      }
+
+      // Lock Enforcement Check
+      var isAdmin = LOGGED_USER && (
+        LOGGED_USER.role === 'admin' ||
+        LOGGED_USER.username === 'admin_jitendra' ||
+        LOGGED_USER.username === 'jitendra_admin' ||
+        LOGGED_USER.username === 'jitendra' ||
+        LOGGED_USER.shala_darpan_code === 'admin_jitendra' ||
+        LOGGED_USER.admin_id === 'ADMIN02' ||
+        LOGGED_USER.username === 'cbeo_admin' ||
+        LOGGED_USER.shala_darpan_code === '8140'
+      );
+
+      if (IS_LOCKED && !isAdmin) {
+        alert('🔒 यह प्रपत्र CBEO कार्यालय द्वारा लॉक कर दिया गया है। संपादन या पुनः सबमिशन हेतु कृपया CBEO कार्यालय / व्यवस्थापक जितेन्द्र कुमार से संपर्क करें।');
+        return;
+      }
+
+      var data = getPayload();
+      data.submission_status = 'submitted';
+      data.submitted_at = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) + ' IST';
+      data.submitted_by = pName;
+      data.is_locked = IS_LOCKED;
+
+      // Save to localStorage
+      var allSubs = {};
+      try {
+        allSubs = JSON.parse(localStorage.getItem('cbeo_voter_submissions') || '{}');
+      } catch(e) {}
+      allSubs[CURRENT_SCHOOL_CODE] = data;
+      localStorage.setItem('cbeo_voter_submissions', JSON.stringify(allSubs));
+
+      // Remove Draft
+      localStorage.removeItem('cbeo_voter_draft_' + CURRENT_SCHOOL_CODE);
+
+      // Cloud Sync attempt
+      syncWithCloud(data);
+
+      document.getElementById('disp-status-badge').innerHTML = '<span class="status-pill submitted"><i class="fas fa-check-circle"></i> डेटा सबमिट पूर्ण (' + data.submitted_at + ')</span>';
+      showToast('✅ 18+ व 17+ विद्यार्थी मतदाता सत्यापन सफलतापूर्वक सबमिट हो गया!', 'success');
+
+      // Offer PDF
+      setTimeout(function() {
+        if (confirm('सबमिशन सफल! क्या आप आधिकारिक प्रमाणित PDF प्रपत्र डाउनलोड करना चाहते हैं?')) {
+          generateCertifiedPdf();
+        }
+      }, 500);
+    }
+
+    function syncWithCloud(subData) {
+      var gasUrl = localStorage.getItem('cbeo_google_apps_script_url') || 
+                   'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+      
+      try {
+        fetch(gasUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'saveVoterStudentSubmission',
+            school_code: CURRENT_SCHOOL_CODE,
+            data: subData,
+            timestamp: Date.now()
+          })
+        }).catch(function(e) { console.warn('Cloud sync error:', e); });
+      } catch(e) {}
+    }
+
+    function getSavedSubmission(code) {
+      try {
+        var local = JSON.parse(localStorage.getItem('cbeo_voter_submissions') || '{}');
+        if (local[code]) return local[code];
+      } catch(e) {}
+      return null;
+    }
+
+    function getDraft(code) {
+      try {
+        var draft = localStorage.getItem('cbeo_voter_draft_' + code);
+        if (draft) return JSON.parse(draft);
+      } catch(e) {}
+      return null;
+    }
+
+    function generateCertifiedPdf() {
+      showToast('प्रमाणित आधिकारिक PDF प्रपत्र तैयार किया जा रहा है...', 'info');
+
+      var schName = CURRENT_SCHOOL ? (CURRENT_SCHOOL.school_name_hi || CURRENT_SCHOOL.school_name) : 'विद्यालय';
+      var schCode = CURRENT_SCHOOL_CODE;
+      var peeo = CURRENT_SCHOOL ? CURRENT_SCHOOL.peeo_name : 'PEEO';
+      var pName = document.getElementById('principal-name-input').value.trim() || 'संस्था प्रधान';
+      var pMobile = document.getElementById('principal-mobile-input').value.trim() || '---';
+
+      var total18 = STUDENTS_18.length;
+      var reg18 = STUDENTS_18.filter(function(s) { return s.is_registered === 'हाँ'; }).length;
+      var unreg18 = total18 - reg18;
+      var total17 = STUDENTS_17.length;
+
+      var rows18Html = STUDENTS_18.map(function(s, i) {
+        return `
+          <tr>
+            <td style="text-align:center; padding:5px; border:1px solid #333">${i + 1}</td>
+            <td style="padding:5px; border:1px solid #333"><strong>${s.name}</strong></td>
+            <td style="padding:5px; border:1px solid #333">${s.father_name}</td>
+            <td style="padding:5px; border:1px solid #333; text-align:center">${s.dob || '---'}</td>
+            <td style="padding:5px; border:1px solid #333; text-align:center">${s.class_name || '12वीं'}</td>
+            <td style="padding:5px; border:1px solid #333; text-align:center; font-weight:bold; color:${s.is_registered === 'हाँ' ? '#15803d' : '#b45309'}">${s.is_registered}</td>
+            <td style="padding:5px; border:1px solid #333">${s.vidhan_sabha || '100 - मसूदा'}</td>
+            <td style="padding:5px; border:1px solid #333; text-align:center">${s.part_no || '---'}</td>
+            <td style="padding:5px; border:1px solid #333; text-align:center">${s.serial_no || '---'}</td>
+            <td style="padding:5px; border:1px solid #333; text-align:center">${s.epic_no || '---'}</td>
+            <td style="padding:5px; border:1px solid #333; font-size:8pt">${s.reason_not_registered || '---'}</td>
+          </tr>
+        `;
+      }).join('');
+
+      var rows17Html = STUDENTS_17.map(function(s, i) {
+        return `
+          <tr>
+            <td style="text-align:center; padding:5px; border:1px solid #333">${i + 1}</td>
+            <td style="padding:5px; border:1px solid #333"><strong>${s.name}</strong></td>
+            <td style="padding:5px; border:1px solid #333">${s.father_name}</td>
+            <td style="padding:5px; border:1px solid #333; text-align:center">${s.dob || '---'}</td>
+            <td style="padding:5px; border:1px solid #333; text-align:center">${s.mobile_no || '---'}</td>
+            <td style="padding:5px; border:1px solid #333; text-align:center">${s.class_name || '11वीं'}</td>
+            <td style="padding:5px; border:1px solid #333">${s.vidhan_sabha || '100 - मसूदा'}</td>
+          </tr>
+        `;
+      }).join('');
+
+      var pdfHtml = `
+        <div style="font-family:'Segoe UI', Arial, sans-serif; padding:15px; color:#000; font-size:9pt; line-height:1.4">
+          <!-- Official Header -->
+          <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:8px; margin-bottom:12px">
+            <h2 style="margin:0; font-size:14pt; color:#1e3a8a">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</h2>
+            <div style="font-size:11pt; font-weight:bold; margin-top:3px">जिला: अजमेर (AJMER) | ब्लॉक: भिनाय (राजस्थान)</div>
+            <div style="font-size:12pt; font-weight:bold; color:#0f172a; margin-top:6px; background:#e2e8f0; padding:4px; border:1px solid #94a3b8">
+              🗳️ 18+ एवं 17+ विद्यार्थी मतदाता सूची सत्यापन एवं पंजीकरण अधिकृत प्रपत्र (सत्र 2026-27)
+            </div>
+          </div>
+
+          <!-- School Meta Table -->
+          <table style="width:100%; border-collapse:collapse; margin-bottom:12px; font-size:9pt">
+            <tr>
+              <td style="border:1px solid #333; padding:5px; background:#f8fafc; width:18%"><strong>विद्यालय का नाम:</strong></td>
+              <td style="border:1px solid #333; padding:5px; font-weight:bold">${schName}</td>
+              <td style="border:1px solid #333; padding:5px; background:#f8fafc; width:18%"><strong>शा.दा./PSP कोड:</strong></td>
+              <td style="border:1px solid #333; padding:5px; font-weight:bold">${schCode}</td>
+            </tr>
+            <tr>
+              <td style="border:1px solid #333; padding:5px; background:#f8fafc"><strong>PEEO परिक्षेत्र:</strong></td>
+              <td style="border:1px solid #333; padding:5px">${peeo}</td>
+              <td style="border:1px solid #333; padding:5px; background:#f8fafc"><strong>विधानसभा क्षेत्र:</strong></td>
+              <td style="border:1px solid #333; padding:5px">100 - मसूदा (अजमेर)</td>
+            </tr>
+            <tr>
+              <td style="border:1px solid #333; padding:5px; background:#f8fafc"><strong>संस्था प्रधान:</strong></td>
+              <td style="border:1px solid #333; padding:5px">${pName} (मो.: ${pMobile})</td>
+              <td style="border:1px solid #333; padding:5px; background:#f8fafc"><strong>कुल सारांश:</strong></td>
+              <td style="border:1px solid #333; padding:5px; font-weight:bold">
+                18+ कुल: ${total18} (पंजीकृत: ${reg18}, शेष: ${unreg18}) | 17+ कुल: ${total17}
+              </td>
+            </tr>
+          </table>
+
+          <!-- 18+ Table -->
+          <div style="font-size:10pt; font-weight:bold; margin-bottom:4px; color:#1e3a8a">
+            भाग 1: 18+ आयु वर्ग विद्यार्थी मतदाता सूची सत्यापन विवरण (कुल: ${total18})
+          </div>
+          <table style="width:100%; border-collapse:collapse; margin-bottom:14px; font-size:8pt">
+            <thead>
+              <tr style="background:#e2e8f0">
+                <th style="padding:4px; border:1px solid #333; width:25px">क्र.</th>
+                <th style="padding:4px; border:1px solid #333">विद्यार्थी का नाम</th>
+                <th style="padding:4px; border:1px solid #333">पिता का नाम</th>
+                <th style="padding:4px; border:1px solid #333; width:65px">जन्म तिथि</th>
+                <th style="padding:4px; border:1px solid #333; width:45px">कक्षा</th>
+                <th style="padding:4px; border:1px solid #333; width:55px">पंजीकृत?</th>
+                <th style="padding:4px; border:1px solid #333">विधानसभा</th>
+                <th style="padding:4px; border:1px solid #333; width:40px">भाग सं.</th>
+                <th style="padding:4px; border:1px solid #333; width:40px">क्रम सं.</th>
+                <th style="padding:4px; border:1px solid #333; width:70px">EPIC सं.</th>
+                <th style="padding:4px; border:1px solid #333">कारण (यदि नहीं जुड़ा)</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows18Html || '<tr><td colspan="11" style="text-align:center; padding:8px; border:1px solid #333">कोई 18+ विद्यार्थी दर्ज नहीं</td></tr>'}
+            </tbody>
+          </table>
+
+          <!-- 17+ Table -->
+          <div style="font-size:10pt; font-weight:bold; margin-bottom:4px; color:#1e3a8a">
+            भाग 2: 17+ आयु वर्ग विद्यार्थी विवरण (भावी मतदाता सूची) (कुल: ${total17})
+          </div>
+          <table style="width:100%; border-collapse:collapse; margin-bottom:14px; font-size:8pt">
+            <thead>
+              <tr style="background:#e2e8f0">
+                <th style="padding:4px; border:1px solid #333; width:25px">क्र.</th>
+                <th style="padding:4px; border:1px solid #333">विद्यार्थी का नाम</th>
+                <th style="padding:4px; border:1px solid #333">पिता का नाम</th>
+                <th style="padding:4px; border:1px solid #333; width:65px">जन्म तिथि</th>
+                <th style="padding:4px; border:1px solid #333; width:75px">मोबाइल नं.</th>
+                <th style="padding:4px; border:1px solid #333; width:45px">कक्षा</th>
+                <th style="padding:4px; border:1px solid #333">विधानसभा क्षेत्र</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows17Html || '<tr><td colspan="7" style="text-align:center; padding:8px; border:1px solid #333">कोई 17+ विद्यार्थी दर्ज नहीं</td></tr>'}
+            </tbody>
+          </table>
+
+          <!-- Official Declaration & Signatures -->
+          <div style="border:1px solid #333; padding:8px 12px; margin-top:10px; background:#f8fafc">
+            <div style="font-weight:bold; font-size:9pt; margin-bottom:4px">संस्था प्रधान आधिकारिक घोषणा एवं प्रमाणीकरण:</div>
+            <div style="font-size:8pt; line-height:1.5">
+              प्रमाणित किया जाता है कि संस्था में अध्ययनरत समस्त 18+ एवं 17+ आयु वर्ग के विद्यार्थियों का मतदाता सूची सत्यापन विद्यालय रिकॉर्ड, शाला दर्पण एवं संबंधित क्षेत्र के BLO (बूथ लेवल ऑफिसर) से मिलान कर पूर्ण सत्यता के साथ भरा गया है। इसमें किसी भी प्रकार का विचलन या असत्य विवरण नहीं है।
+            </div>
+          </div>
+
+          <div style="margin-top:25px; display:flex; justify-content:space-between; align-items:flex-end">
+            <div style="font-size:8.5pt">
+              दिनांक: <strong>${new Date().toLocaleDateString('en-IN')}</strong><br>
+              स्थान: <strong>भिनाय (अजमेर)</strong>
+            </div>
+            <div style="text-align:center; font-size:9pt">
+              <div style="font-weight:bold; text-decoration:underline">${pName}</div>
+              <div style="font-weight:bold">संस्था प्रधान / नोडल अधिकारी</div>
+              <div>${schName}</div>
+              <div style="font-size:8pt">मो.: ${pMobile}</div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      var opt = {
+        margin: [8, 8, 8, 8],
+        filename: 'CBEO_Bhinai_Voter_Verification_' + schCode + '.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+      };
+
+      html2pdf().set(opt).from(pdfHtml).save().then(function() {
+        showToast('✅ आधिकारिक प्रमाणित PDF सफलतापूर्वक डाउनलोड हो गई!', 'success');
+      });
+    }
+
+    function showToast(msg, type) {
+      var box = document.getElementById('toast-box');
+      var icon = document.getElementById('toast-icon');
+      var msgEl = document.getElementById('toast-msg');
+
+      box.className = 'toast-box show ' + (type || 'info');
+      msgEl.textContent = msg;
+
+      if (type === 'success') icon.className = 'fas fa-check-circle';
+      else if (type === 'error') icon.className = 'fas fa-exclamation-triangle';
+      else if (type === 'warning') icon.className = 'fas fa-exclamation-circle';
+      else icon.className = 'fas fa-info-circle';
+
+      setTimeout(function() {
+        box.classList.remove('show');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>

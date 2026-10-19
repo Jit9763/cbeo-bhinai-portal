@@ -117,11 +117,15 @@
   <!-- Sticky Main Navigation -->
   <nav class="main-nav-bar">
     <div class="nav-container">
-      <button class="nav-tab" id="nav-tab-saman-pariksha" onclick="switchTab('saman-pariksha')">
+      <button class="nav-tab active" id="nav-tab-voter-students" onclick="switchTab('voter-students')">
+        <i class="fas fa-vote-yea text-warning"></i> 🗳️ 18+ व 17+ विद्यार्थी मतदाता पंजीकरण मांग (58 स्कूल)
+        <span class="tab-badge badge-danger" id="nav-voter-badge">58</span>
+      </button>
+      <button class="nav-tab" id="nav-tab-saman-pariksha" style="display:none" onclick="switchTab('saman-pariksha')">
         <i class="fas fa-file-signature"></i> 📋 समान परीक्षा 2026-27 (57 स्कूल)
         <span class="tab-badge badge-danger" id="nav-sp-badge">57</span>
       </button>
-      <button class="nav-tab" id="nav-tab-election" onclick="switchTab('election')">
+      <button class="nav-tab" id="nav-tab-election" style="display:none" onclick="switchTab('election')">
         <i class="fas fa-vote-yea"></i> 🗳️ चुनाव 2026 (33 स्कूल)
         <span class="tab-badge" style="background:#1e40af; color:#fff" id="nav-election-badge">33</span>
       </button>
@@ -183,6 +187,10 @@
         डायरेक्टरी खोलें <i class="fas fa-arrow-right"></i>
       </button>
     </div>
+
+    <!-- 18+ & 17+ VOTER STUDENTS DEMAND MAIN VIEW -->
+    <section id="view-voter-students" class="content-view active">
+    </section>
 
     <!-- ELECTION 2026 VERIFICATION VIEW -->
     <section id="view-election" class="content-view">
@@ -1563,6 +1571,13 @@
               <div style="font-size:0.72rem; color:#cbd5e1; margin-top:2px">कुल 57 माध्यमिक/उच्च माध्यमिक</div>
             </div>
 
+            <!-- Election 2026 Panchayat Booths Verification Status Card -->
+            <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(56,189,248,0.3); border-radius:8px; padding:0.75rem 1rem">
+              <div style="font-size:0.75rem; color:#38bdf8; font-weight:700; text-transform:uppercase">🗳️ पंचायत चुनाव 2026 (116 बूथ)</div>
+              <div style="font-size:1rem; font-weight:800; color:#facc15; margin-top:2px" id="vm-widget-election-pending">33 स्कूल लंबित (0 पूर्ण)</div>
+              <div style="font-size:0.72rem; color:#cbd5e1; margin-top:2px" id="vm-widget-election-sub">33 मतदान केंद्र विद्यालय • 116 बूथ (P-3)</div>
+            </div>
+
             <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:0.75rem 1rem">
               <div style="font-size:0.75rem; color:#94a3b8; font-weight:700; text-transform:uppercase">☁️ Google Drive बैकअप शीट</div>
               <div style="font-size:0.95rem; font-weight:800; color:#4ade80; margin-top:2px">🟢 मास्टर शीट कनेक्टेड</div>
@@ -1574,14 +1589,17 @@
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; background:rgba(0,0,0,0.25); padding:0.75rem 1rem; border-radius:8px; border:1px solid rgba(255,255,255,0.08)">
             <div style="font-size:0.82rem; color:#e2e8f0; display:flex; align-items:center; gap:0.5rem">
               <i class="fas fa-satellite-dish text-info"></i>
-              <span><strong>त्वरित VM एक्शन:</strong> क्लाउड VM से प्राप्त नवीनतम रिपोर्ट देखें अथवा लंबित स्कूलों को WhatsApp संदेश भेजें:</span>
+              <span><strong>त्वरित एक्शन:</strong> नवीनतम रिपोर्ट देखें अथवा लंबित स्कूलों को WhatsApp संदेश भेजें:</span>
             </div>
             <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
               <button class="btn btn-sm" onclick="openVMReportModal()" style="background:#3b82f6; color:#ffffff; font-weight:700; border:none">
-                <i class="fas fa-file-invoice"></i> 📑 विस्तृत VM लंबित रिपोर्ट देखें
+                <i class="fas fa-file-invoice"></i> 📑 विस्तृत लंबित रिपोर्ट देखें
               </button>
               <button class="btn btn-whatsapp btn-sm" id="btn-vm-whatsapp-reminder" onclick="sendVMPendingWhatsAppReminder()" style="font-weight:700">
-                <i class="fab fa-whatsapp"></i> 📢 सभी 57 स्कूल पूर्ण (0 लंबित)
+                <i class="fab fa-whatsapp"></i> 📢 समान परीक्षा रिमाइंडर
+              </button>
+              <button class="btn btn-whatsapp btn-sm" id="btn-election-whatsapp-reminder" onclick="sendElectionPendingWhatsAppReminder()" style="font-weight:700; background:#059669; border-color:#059669">
+                <i class="fab fa-whatsapp"></i> 📢 चुनाव बूथ: 33 लंबित WhatsApp
               </button>
               <button class="btn btn-sm" onclick="downloadVMReportMarkdown()" style="background:#475569; color:#ffffff; font-weight:700; border:none" title="पूरी रिपोर्ट Markdown फाइल डाउनलोड करें">
                 <i class="fas fa-download"></i> रिपोर्ट .MD
@@ -5209,6 +5227,82 @@
     </div>
   </div>
 
+  <!-- 10B. OFFICIAL PRINTABLE 18+ & 17+ VOTER STUDENTS PDF PREVIEW MODAL -->
+  <div id="modal-voter-pdf-preview" class="modal-overlay">
+    <div class="modal-card" style="max-width:1120px; width:96vw; padding:0; background:#f8fafc; overflow:hidden">
+      <div class="modal-header" style="background:#1e3a8a; color:#ffffff; padding:1rem 1.5rem">
+        <h3 style="color:#ffffff; font-size:1.15rem; display:flex; align-items:center; gap:0.5rem; margin:0">
+          <i class="fas fa-vote-yea text-warning"></i> 18+ व 17+ विद्यार्थी मतदाता सूची सत्यापन व पंजीकरण अधिकृत प्रपत्र
+        </h3>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center">
+          <button class="btn btn-warning btn-sm" onclick="window.downloadCurrentVoterPdfModal()" title="सीधे अधिकृत PDF डाउनलोड करें" style="font-weight:800; color:#0f172a; background:#f59e0b; border:none">
+            <i class="fas fa-download"></i> 📥 PDF डाउनलोड
+          </button>
+          <button class="btn btn-whatsapp btn-sm" onclick="window.shareCurrentVoterPdfWhatsApp()" title="संस्था प्रधान को WhatsApp पर शेयर करें" style="background:#25D366; color:#ffffff; font-weight:800; border:none">
+            <i class="fab fa-whatsapp"></i> 📲 WhatsApp
+          </button>
+          <button class="btn btn-success btn-sm" onclick="window.printCurrentVoterPdfModal()" title="ब्राउज़र प्रिंट / सेव एज PDF" style="font-weight:800; border:none">
+            <i class="fas fa-print"></i> 🖨️ प्रिंट / सेव
+          </button>
+          <span id="voter-modal-lock-container"></span>
+          <a id="voter-modal-edit-link" href="#" target="_blank" class="btn btn-primary btn-sm" style="font-weight:800; text-decoration:none; background:#3b82f6; border:none">
+            <i class="fas fa-edit"></i> ✏️ प्रपत्र खोलें
+          </a>
+          <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-voter-pdf-preview')">&times;</button>
+        </div>
+      </div>
+      <div class="modal-body" style="padding:1.5rem; max-height:calc(90vh - 130px); overflow-y:auto">
+        <div id="printable-voter-document-content" style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:8px; padding:2rem; box-shadow:0 4px 12px rgba(0,0,0,0.06); max-width:980px; margin:0 auto">
+          <!-- Populated dynamically with official government layout, seal, and signatures -->
+        </div>
+      </div>
+      <div class="modal-footer" style="padding:0.85rem 1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; background:#ffffff; border-top:1px solid #e2e8f0">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-voter-pdf-preview')">
+          बंद करें (Close)
+        </button>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center">
+          <button class="btn btn-warning" onclick="window.downloadCurrentVoterPdfModal()" style="font-weight:800; color:#0f172a; background:#f59e0b; border:none; padding:0.5rem 1rem">
+            <i class="fas fa-file-download"></i> 📥 PDF डाउनलोड करें
+          </button>
+          <button class="btn btn-whatsapp" onclick="window.shareCurrentVoterPdfWhatsApp()" style="background:#25D366; color:#ffffff; font-weight:800; border:none; padding:0.5rem 1rem">
+            <i class="fab fa-whatsapp"></i> 📲 WhatsApp शेयर
+          </button>
+          <button class="btn btn-primary" onclick="window.printCurrentVoterPdfModal()" style="font-weight:800; padding:0.5rem 1.25rem; background:#1e3a8a; border:none">
+            <i class="fas fa-print"></i> 🖨️ A4 साइज प्रिंट करें (Print)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10C. VOTER STUDENTS WHATSAPP BROADCAST MODAL -->
+  <div id="modal-voter-broadcast" class="modal-overlay">
+    <div class="modal-card" style="max-width:850px; width:94vw; padding:0; background:#f8fafc; overflow:hidden">
+      <div class="modal-header" style="background:#065f46; color:#ffffff; padding:1rem 1.5rem">
+        <h3 style="color:#ffffff; font-size:1.15rem; display:flex; align-items:center; gap:0.5rem; margin:0">
+          <i class="fab fa-whatsapp text-warning"></i> 18+ व 17+ मतदाता पंजीकरण - लंबित स्कूलों को WhatsApp रिमाइंडर ब्रॉडकास्ट
+        </h3>
+        <button class="modal-close-btn" style="color:#ffffff" onclick="closeModal('modal-voter-broadcast')">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:1.5rem; max-height:calc(85vh - 120px); overflow-y:auto">
+        <div style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:0.85rem 1rem; margin-bottom:1rem; font-size:0.88rem; color:#065f46">
+          <strong><i class="fas fa-info-circle"></i> सूचना:</strong> यहाँ केवल वे विद्यालय प्रदर्शित हैं जिनका 18+ एवं 17+ मतदाता सत्यापन प्रपत्र अभी तक सबमिट नहीं हुआ है। प्रत्येक विद्यालय के संस्था प्रधान के नाम के आगे दिए गए 'WhatsApp भेजें' बटन पर क्लिक करके सीधे आधिकारिक संदेश भेजा जा सकता है।
+        </div>
+        <div id="voter-broadcast-list">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+      <div class="modal-footer" style="padding:0.85rem 1.5rem; display:flex; justify-content:space-between; align-items:center; background:#ffffff; border-top:1px solid #e2e8f0">
+        <button class="btn btn-outline-light" style="color:#475569; border-color:#cbd5e1" onclick="closeModal('modal-voter-broadcast')">
+          बंद करें (Close)
+        </button>
+        <button class="btn btn-success" onclick="window.copyAllVoterPendingContacts()" style="font-weight:700">
+          <i class="fas fa-copy"></i> सभी लंबित संस्था प्रधानों के नंबर कॉपी करें
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- 11. PEEO CONSOLIDATED OFFICIAL EXAM PDF PREVIEW MODAL -->
   <div id="modal-peeo-consolidated-preview" class="modal-overlay">
     <div class="modal-card" style="max-width:1160px; width:96vw; padding:0; background:#f8fafc; overflow:hidden">
@@ -5985,12 +6079,14 @@
 
   <!-- External & Modular Application Architecture -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <script src="master_cbeo_data.js?v=20261008_v38"></script>
+  <script src="master_cbeo_data.js?v=20261012_v50"></script>
   <script src="js/village_mapping.js?v=20261008_v38"></script>
   <script src="js/core_sync.js?v=20261008_v39"></script>
   <script src="js/mismatch_admin.js?v=20261009_v47"></script>
-  <script src="js/election_data.js?v=20261009_v47"></script>
-  <script src="js/election.js?v=20261009_v47"></script>
-  <script src="app.js?v=20261009_v47"></script>
+  <script src="js/election_data.js?v=20261012_v50"></script>
+  <script src="js/election.js?v=20261012_v50"></script>
+  <script src="js/voter_students_data.js?v=20261019_v51"></script>
+  <script src="js/voter_students.js?v=20261019_v51"></script>
+  <script src="app.js?v=20261012_v50"></script>
 </body>
 </html>

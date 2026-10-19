@@ -645,6 +645,7 @@ function saveCloudPortalSetting(key, val, syncToGithub = false) {
 window.saveCloudPortalSetting = saveCloudPortalSetting;
 
 const DEFAULT_TAB_VISIBILITY_6LEVEL = {
+  'voter-students': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: true, all_schools: true },
   'election': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: false, all_govt: true, all_schools: false },
   'saman-pariksha': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: false, all_schools: false },
   'saman_indent': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: true, all_govt: false, all_schools: false },
@@ -661,6 +662,7 @@ const DEFAULT_TAB_VISIBILITY_6LEVEL = {
 const DEFAULT_TAB_VISIBILITY_5LEVEL = DEFAULT_TAB_VISIBILITY_6LEVEL;
 
 const DEFAULT_EDIT_PERMISSIONS_6LEVEL = {
+  'voter_students': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: true, all_schools: true },
   'staff': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
   'school_head': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
   'saman_pariksha': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: false, all_schools: false },
@@ -1698,14 +1700,10 @@ function setupAutoLogin() {
     const hashTab = window.location.hash ? window.location.hash.replace('#', '') : null;
     const urlTab = urlParams.get('tab') || hashTab;
     const savedTab = urlTab || localStorage.getItem('cbeo_active_tab');
-    if (savedTab && isTabVisibleForCurrentUser(savedTab)) {
-      switchTab(savedTab);
-    } else if (isTabVisibleForCurrentUser('saman-pariksha') && !STATE.samanParikshaArchived) {
-      switchTab('saman-pariksha');
+    if (urlTab && isTabVisibleForCurrentUser(urlTab)) {
+      switchTab(urlTab);
     } else {
-      const fallbackTabs = ['saman-pariksha', 'demands', 'dashboard', 'directory', 'staff', 'school-management', 'archive'];
-      const target = fallbackTabs.find(t => isTabVisibleForCurrentUser(t)) || 'saman-pariksha';
-      switchTab(target);
+      switchTab('voter-students');
     }
 
     // Handle URL query parameters (e.g. ?show_pdf=221754 or ?form=221754)
@@ -2147,16 +2145,7 @@ function performLogin() {
       syncPortalSettingsFromCloud();
     }
 
-    const savedTab = localStorage.getItem('cbeo_active_tab');
-    if (savedTab && isTabVisibleForCurrentUser(savedTab)) {
-      switchTab(savedTab);
-    } else if (isTabVisibleForCurrentUser('saman-pariksha') && !STATE.samanParikshaArchived) {
-      switchTab('saman-pariksha');
-    } else {
-      const fallbackTabs = ['saman-pariksha', 'demands', 'dashboard', 'directory', 'staff', 'school-management', 'archive'];
-      const target = fallbackTabs.find(t => isTabVisibleForCurrentUser(t)) || 'saman-pariksha';
-      switchTab(target);
-    }
+    switchTab('voter-students');
     // Prominent security popup if logged in with default password (shown once per session)
     if (userObj.role !== 'admin' && (p === u || p === userObj.shala_darpan_code)) {
       if (!sessionStorage.getItem('dismissed_default_pwd_alert')) {
@@ -2325,7 +2314,10 @@ function switchTab(viewId, param = null) {
   const targetView = document.getElementById(`view-${viewId}`);
   if (targetView) targetView.classList.add('active');
 
-  if (viewId === 'election') {
+  if (viewId === 'voter-students') {
+    if (typeof renderVoterStudentsView === 'function') renderVoterStudentsView();
+  }
+  else if (viewId === 'election') {
     if (typeof renderElectionView === 'function') renderElectionView();
   }
   else if (viewId === 'saman-pariksha') renderSamanParikshaView();
@@ -2382,50 +2374,22 @@ function checkKeyVisibilityForCurrentUser(key) {
 }
 
 function isTabVisibleForCurrentUser(tabId) {
-  if (tabId === 'election') return true; // ELECTION TAB IS ALWAYS VISIBLE AND CLICKABLE FOR ALL ROLES!
+  if (tabId === 'voter-students') return true; // Primary active demand for all roles
   if (!STATE.currentUser) return false;
   
   const isJitendra = STATE.currentUser.shala_darpan_code === 'admin_jitendra' || 
                      STATE.currentUser.admin_id === 'ADMIN02' || 
                      STATE.currentUser.username === 'jitendra_admin';
-  if (isJitendra) return true; // Super Admin always sees everything
-
   const isCBEO = STATE.currentUser.shala_darpan_code === '8140' || 
                  STATE.currentUser.admin_id === 'ADMIN01' || 
                  (STATE.currentUser.role === 'admin' && !isJitendra);
 
-  // CRITICAL: School login sees Saman Pariksha and Election (all other tabs locked)
-  if (STATE.currentUser.role === 'school') {
-    if (tabId !== 'saman-pariksha' && tabId !== 'saman_indent' && tabId !== 'saman_syllabus' && tabId !== 'election') {
-      return false;
-    }
-  }
-
-  // CRITICAL: PEEO login sees Saman Pariksha and Election (all other tabs locked)
-  if (STATE.currentUser.role === 'peeo') {
-    if (tabId !== 'saman-pariksha' && tabId !== 'saman_indent' && tabId !== 'saman_syllabus' && tabId !== 'election') {
-      return false;
-    }
-  }
-
-  // CRITICAL: Admin Control Room is NEVER accessible to PEEO or School
   if (tabId === 'admin-control') {
     return isJitendra || isCBEO;
   }
 
-  // If Saman Pariksha is archived, hide from main nav tab for non-superadmins
-  if (tabId === 'saman-pariksha' && STATE.samanParikshaArchived && !isJitendra) {
-    return false;
-  }
-
-  if (tabId === 'saman-pariksha') {
-    const indentVis = checkKeyVisibilityForCurrentUser('saman_indent');
-    const sylVis = checkKeyVisibilityForCurrentUser('saman_syllabus');
-    const legacyVis = checkKeyVisibilityForCurrentUser('saman-pariksha');
-    return indentVis || sylVis || legacyVis;
-  }
-
-  return checkKeyVisibilityForCurrentUser(tabId);
+  // All other demands/tabs are turned off
+  return false;
 }
 
 function applyTabVisibility() {
@@ -2441,6 +2405,7 @@ function applyTabVisibility() {
     (STATE.currentUser.role === 'admin' && !isJitendra)
   );
 
+  const tabVoter = document.getElementById('nav-tab-voter-students');
   const tabSP = document.getElementById('nav-tab-saman-pariksha');
   const tabDash = document.getElementById('nav-tab-dashboard');
   const tabDir = document.getElementById('nav-tab-directory');
@@ -2453,32 +2418,26 @@ function applyTabVisibility() {
   const tabElection = document.getElementById('nav-tab-election');
   const quickBanner = document.querySelector('.directory-quick-banner');
 
-  if (tabElection) tabElection.style.display = isTabVisibleForCurrentUser('election') ? 'inline-flex' : 'none';
-  if (tabSP) tabSP.style.display = isTabVisibleForCurrentUser('saman-pariksha') ? 'inline-flex' : 'none';
-  if (tabDash) tabDash.style.display = isTabVisibleForCurrentUser('dashboard') ? 'inline-flex' : 'none';
-  if (tabDir) tabDir.style.display = isTabVisibleForCurrentUser('directory') ? 'inline-flex' : 'none';
-  if (tabStaff) tabStaff.style.display = isTabVisibleForCurrentUser('staff') ? 'inline-flex' : 'none';
-  if (tabSchMgmt) tabSchMgmt.style.display = isTabVisibleForCurrentUser('school-management') ? 'inline-flex' : 'none';
-  if (tabReports) tabReports.style.display = isTabVisibleForCurrentUser('demands') ? 'inline-flex' : 'none';
-  if (tabDbHub) tabDbHub.style.display = isTabVisibleForCurrentUser('database-hub') ? 'inline-flex' : 'none';
-  if (tabArchive) tabArchive.style.display = isTabVisibleForCurrentUser('archive') ? 'inline-flex' : 'none';
+  // Primary active demand is 18+/17+ voter registration for ALL roles
+  if (tabVoter) tabVoter.style.display = 'inline-flex';
+  if (tabElection) tabElection.style.display = 'none';
+  if (tabSP) tabSP.style.display = 'none';
+  if (tabDash) tabDash.style.display = 'none';
+  if (tabDir) tabDir.style.display = 'none';
+  if (tabStaff) tabStaff.style.display = 'none';
+  if (tabSchMgmt) tabSchMgmt.style.display = 'none';
+  if (tabReports) tabReports.style.display = 'none';
+  if (tabDbHub) tabDbHub.style.display = 'none';
+  if (tabArchive) tabArchive.style.display = 'none';
   
   // Admin tab is visible ONLY for Jitendra or CBEO
   if (tabAdmin) tabAdmin.style.display = (isJitendra || isCBEO) ? 'inline-flex' : 'none';
-  if (quickBanner) quickBanner.style.display = isTabVisibleForCurrentUser('directory') ? 'flex' : 'none';
-
-  const noticeBanner = document.querySelector('.portal-notice-banner');
-  if (noticeBanner) {
-    const spCfg = (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : (STATE.samanMismatchSettings || {}));
-    const isSamanAlertActive = spCfg && spCfg.alert_active === true && localStorage.getItem('cbeo_mismatch_alert_disabled') !== 'true';
-    noticeBanner.style.display = (isTabVisibleForCurrentUser('saman-pariksha') && isSamanAlertActive) ? 'flex' : 'none';
-  }
+  if (quickBanner) quickBanner.style.display = 'none';
 
   // Cloud VM 24x7 Automation Hub is STRICTLY for Jitendra Super Admin
   const vmHub = document.getElementById('cbeo-github-vm-hub');
   if (vmHub) vmHub.style.display = isJitendra ? 'block' : 'none';
 
-  // Inside Admin Tab: Jitendra sees Cloud VM Controller, 5-Level Control Matrix, Staff Permissions & Archive Manager
   const vmCard = document.getElementById('jitendra-cloud-vm-control-card');
   if (vmCard) vmCard.style.display = isJitendra ? 'block' : 'none';
 
@@ -2500,20 +2459,11 @@ function applyTabVisibility() {
   const cbeoExecutiveCard = document.getElementById('cbeo-executive-overview');
   if (cbeoExecutiveCard) cbeoExecutiveCard.style.display = (isJitendra || isCBEO) ? 'block' : 'none';
 
-  // If currently active view is not permitted for the user, auto-switch to a permitted visible view
+  // Ensure voter-students is always active unless user intentionally clicks admin-control
   const activeView = document.querySelector('.content-view.active');
-  if (activeView) {
-    const curTabId = activeView.id.replace('view-', '');
-    if (!isTabVisibleForCurrentUser(curTabId)) {
-      const fallbackTabs = ['saman-pariksha', 'demands', 'dashboard', 'directory', 'staff', 'school-management', 'archive'];
-      const target = fallbackTabs.find(t => isTabVisibleForCurrentUser(t)) || 'saman-pariksha';
-      switchTab(target);
-    }
-  } else {
-    // If no view is active at all, activate permitted tab
-    const fallbackTabs = ['saman-pariksha', 'demands', 'dashboard', 'directory', 'staff', 'school-management', 'archive'];
-    const target = fallbackTabs.find(t => isTabVisibleForCurrentUser(t)) || 'saman-pariksha';
-    switchTab(target);
+  const curTabId = activeView ? activeView.id.replace('view-', '') : '';
+  if (curTabId !== 'voter-students' && curTabId !== 'admin-control') {
+    switchTab('voter-students');
   }
 }
 
@@ -3167,6 +3117,7 @@ function renderApp() {
   applyTabVisibility();
   renderAdminAppsScriptUrl();
   renderDynamicNavTabs();
+  if (typeof renderVoterStudentsView === 'function') renderVoterStudentsView();
   renderSamanParikshaView();
   renderDashboardView();
   renderDemandsView();
@@ -12112,10 +12063,13 @@ function createDemandCardElement(demand, isArchive = false) {
           <i class="fas fa-vote-yea"></i> 🗳️ चुनाव 2026 हब खोलें
         </button>
         <button class="btn btn-success btn-sm" onclick="downloadElectionSummaryExcel()" style="font-weight:700">
-          <i class="fas fa-file-excel"></i> 📊 30 विद्यालय Excel
+          <i class="fas fa-file-excel"></i> 📊 विद्यालय समेकित Excel
         </button>
         <button class="btn btn-warning btn-sm" onclick="downloadElection116BoothsExcel()" style="font-weight:700; color:#0f172a">
-          <i class="fas fa-table"></i> 📊 116 बूथ Excel
+          <i class="fas fa-table"></i> 📊 116 बूथ संपूर्ण Excel
+        </button>
+        <button class="btn btn-danger btn-sm" onclick="downloadElectionDeficiencyPDF()" style="font-weight:700; background:#dc2626; border-color:#dc2626" title="भौतिक सत्यापन में चिन्हित कमियों की समीक्षा PDF रिपोर्ट डाउनलोड करें">
+          <i class="fas fa-file-pdf"></i> 🚨 कमियां रिपोर्ट PDF
         </button>
         ${STATE.currentUser?.role === 'school' ? `
           <a href="election_form.html?code=${STATE.currentUser.shala_darpan_code}" target="_blank" class="btn btn-danger btn-sm" style="font-weight:700; color:#fff">

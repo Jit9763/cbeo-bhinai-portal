@@ -1,0 +1,76 @@
+{
+  "999999": {
+    "school_code": "999999",
+    "school_name": "रा.उ.मा.वि. मॉडल टेस्ट स्कूल भिनाय",
+    "category": "Govt. Sr. Sec.",
+    "peeo_name": "PEEO BHINAY",
+    "peeo_code": "221780",
+    "principal_name": "जितेन्द्र कुमार (टेस्ट व्यवस्थापक)",
+    "principal_mobile": "9928254317",
+    "submission_status": "submitted",
+    "submitted_at": "19-10-2026 04:15 PM IST",
+    "submitted_by": "जितेन्द्र कुमार (टेस्ट व्यवस्थापक)",
+    "is_locked": false,
+    "total_18": 2,
+    "registered_18": 1,
+    "unregistered_18": 1,
+    "total_17": 1,
+    "advance_form6_17": 1,
+    "students_18": [
+      {
+        "id": "STU18_999999_001",
+        "name": "राहुल शर्मा (टेस्ट विद्यार्थी 18+)",
+        "father_name": "सुरेश कुमार शर्मा",
+        "dob": "15-05-2007",
+        "class_name": "12वीं कला",
+        "panchayat": "भिनाय",
+        "village": "भिनाय",
+        "school_name": "रा.उ.मा.वि. मॉडल टेस्ट स्कूल भिनाय",
+        "shala_darpan_code": "999999",
+        "category": "18_plus",
+        "is_registered": "हाँ",
+        "vidhan_sabha": "100 - मसूदा",
+        "part_no": "112",
+        "serial_no": "450",
+        "epic_no": "ABC1234567",
+        "reason_not_registered": "",
+        "remarks": "सत्यापित मतदाता"
+      },
+      {
+        "id": "STU18_999999_002",
+        "name": "पूजा कुमावत (टेस्ट विद्यार्थी 18+)",
+        "father_name": "रामलाल कुमावत",
+        "dob": "10-09-2007",
+        "class_name": "12वीं विज्ञान",
+        "panchayat": "भिनाय",
+        "village": "भिनाय",
+        "school_name": "रा.उ.मा.वि. मॉडल टेस्ट स्कूल भिनाय",
+        "shala_darpan_code": "999999",
+        "category": "18_plus",
+        "is_registered": "नहीं",
+        "vidhan_sabha": "100 - मसूदा",
+        "part_no": "",
+        "serial_no": "",
+        "epic_no": "",
+        "reason_not_registered": "फॉर्म 6 ऑनलाइन भर दिया गया है, BLO सत्यापन प्रतीक्षारत",
+        "remarks": "प्रक्रियाधीन"
+      }
+    ],
+    "students_17": [
+      {
+        "id": "STU17_999999_001",
+        "name": "दीपक चौधरी (टेस्ट विद्यार्थी 17+)",
+        "father_name": "गोपाल चौधरी",
+        "dob": "12-03-2008",
+        "mobile_no": "9876543210",
+        "class_name": "11वीं कला",
+        "shala_darpan_code": "999999",
+        "category": "17_plus",
+        "vidhan_sabha": "100 - मसूदा",
+        "remarks": "भावी मतदाता"
+      }
+    ],
+    "principal_sig": "",
+    "remarks": "टेस्ट स्कूल का डेटा परीक्षण हेतु सत्यापित"
+  }
+}
