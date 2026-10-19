@@ -433,7 +433,7 @@
   },
   {
     "s_no": 25,
-    "school_name": "रा.उ.मा.वि. नेमेड़ा",
+    "school_name": "रा.उ.मा.वि. निमेड़ा",
     "shala_darpan_code": "401778",
     "type": "Government",
     "category": "Govt. Sr. Sec.",
@@ -442,11 +442,11 @@
     "peeo_code": "221765",
     "default_password": "401778",
     "exam_code": "",
-    "principal_name": "प्रभारी संस्था प्रधान (रा.उ.मा.वि. नेमेड़ा)",
+    "principal_name": "प्रभारी संस्था प्रधान (रा.उ.मा.वि. निमेड़ा)",
     "principal_mobile": "9461249418",
     "incharge_name": "",
     "incharge_mobile": "",
-    "school_name_hi": "रा.उ.मा.वि. नेमेड़ा",
+    "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
     "school_name_en": "Govt. Sr. Sec. School Nemeda"
   },
   {
@@ -1024,5 +1024,23 @@
     "incharge_mobile": "",
     "school_name_hi": "द्रोणाचार्य माध्यमिक विद्यालय, भिनाय",
     "school_name_en": "Drona Charya Secondary School Bhinai"
+  },
+  {
+    "s_no": 58,
+    "school_name": "रा.उ.मा.वि. मॉडल टेस्ट स्कूल भिनाय",
+    "shala_darpan_code": "999999",
+    "type": "Government",
+    "category": "Govt. Sr. Sec.",
+    "peeo_id": "PEEO18",
+    "peeo_name": "PEEO BHINAY",
+    "peeo_code": "221780",
+    "default_password": "999999",
+    "exam_code": "AJM04G999999",
+    "principal_name": "जितेन्द्र कुमार (टेस्ट व्यवस्थापक)",
+    "principal_mobile": "9928254317",
+    "incharge_name": "परीक्षण प्रभारी",
+    "incharge_mobile": "9928254317",
+    "school_name_hi": "रा.उ.मा.वि. मॉडल टेस्ट स्कूल भिनाय",
+    "school_name_en": "Govt. Model Test Sr. Sec. School Bhinai"
   }
 ]

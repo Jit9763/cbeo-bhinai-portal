@@ -1,7 +1,44 @@
 {
-  "status": "cloud_verified_active",
-  "cbeo_office": "CBEO Bhinai (Ajmer)",
-  "district": "AJMER",
-  "block": "BHINAI",
-  "verified_at": "2026-10-08 01:04:30"
+  "generated_at": "19-10-2026 04:19 PM",
+  "vm_status": "ONLINE_ACTIVE",
+  "district": "AJMER (अजमेर)",
+  "block": "BHINAI (भिनाय)",
+  "active_focus_report": "voter_students",
+  "saman_syllabus_49": {
+    "total_govt_schools": 50,
+    "submitted_count": 49,
+    "pending_count": 1,
+    "completion_percentage": 98.0,
+    "block_average_syllabus_pct": 80,
+    "peeo_pending_map": {
+      "PEEO BHINAY": 1
+    },
+    "pending_schools": [
+      {
+        "code": "999999",
+        "name": "रा.उ.मा.वि. मॉडल टेस्ट स्कूल भिनाय",
+        "peeo": "PEEO BHINAY",
+        "principal": "जितेन्द्र कुमार (टेस्ट व्यवस्थापक)",
+        "mobile": "9928254317"
+      }
+    ]
+  },
+  "saman_pariksha_57": {
+    "total_schools": 58,
+    "submitted_count": 57,
+    "pending_count": 1,
+    "completion_percentage": 98.3
+  },
+  "overdue_escalation": {
+    "is_active": true,
+    "defaulter_count": 1,
+    "urgency": "HIGH",
+    "message": "🚨 1 विद्यालय समय-सीमा पश्चात भी लंबित हैं।"
+  },
+  "mdm_anomaly_scanner": {
+    "enabled": false,
+    "status": "DISABLED_BY_ADMIN",
+    "district": "AJMER"
+  },
+  "portal_url": "https://jit9763.github.io/cbeo-bhinai-portal/"
 }

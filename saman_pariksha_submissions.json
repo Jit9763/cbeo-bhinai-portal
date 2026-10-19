@@ -79,12 +79,7 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO DEOLIYA KALAN",
-    "timestamp": "Tue Oct 06 2026 08:53:25 GMT+0530 (India Standard Time)",
-    "school_medium": "english",
-    "c9_hindi": 0,
-    "c9_english": 36,
-    "c10_hindi": 0,
-    "c10_english": 34
+    "timestamp": "Tue Oct 06 2026 08:53:25 GMT+0530 (India Standard Time)"
   },
   "221754": {
     "school_code": "221754",
@@ -426,8 +421,8 @@
     "principal_mobile": "9462507510",
     "incharge_name": "GOVIND RAM JANGID",
     "incharge_mobile": "9982323026",
-    "c9_total": 78,
-    "c9_sanskrit": 78,
+    "c9_total": 77,
+    "c9_sanskrit": 77,
     "c9_urdu": 0,
     "c10_total": 38,
     "c10_sanskrit": 38,
@@ -492,11 +487,11 @@
       "agri_chem": 0
     },
     "c12_total": 34,
-    "grand_total": 175,
+    "grand_total": 174,
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
-    "submitted_by": "LADURAM SHARMA",
-    "timestamp": "Wed Oct 07 2026 08:44:00 GMT+0530 (India Standard Time)"
+    "submitted_by": "PEEO CHAPANERI",
+    "timestamp": "Fri Oct 09 2026 12:08:38 GMT+0530 (India Standard Time)"
   },
   "221759": {
     "school_code": "221759",
@@ -741,8 +736,8 @@
     "grand_total": 87,
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
-    "submitted_by": "PEEO LAMGARA",
-    "timestamp": "Wed Oct 07 2026 14:21:34 GMT+0530 (India Standard Time)"
+    "submitted_by": "SUNITA SHARMA",
+    "timestamp": "Thu Oct 08 2026 19:17:01 GMT+0530 (India Standard Time)"
   },
   "221762": {
     "school_code": "221762",
@@ -1477,13 +1472,8 @@
     "grand_total": 41,
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
-    "submitted_by": "PEEO BANDANWARA",
-    "timestamp": "Tue Oct 06 2026 21:09:55 GMT+0530 (India Standard Time)",
-    "school_medium": "english",
-    "c9_hindi": 0,
-    "c9_english": 25,
-    "c10_hindi": 0,
-    "c10_english": 16
+    "submitted_by": "Afsar Ahmed",
+    "timestamp": "Wed Oct 07 2026 19:23:26 GMT+0530 (India Standard Time)"
   },
   "221771": {
     "school_code": "221771",
@@ -1649,7 +1639,7 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO NAGOLA",
-    "timestamp": "Wed Oct 07 2026 14:25:00 GMT+0530 (India Standard Time)"
+    "timestamp": "Thu Oct 08 2026 11:32:55 GMT+0530 (India Standard Time)"
   },
   "221773": {
     "school_code": "221773",
@@ -1834,13 +1824,13 @@
     "c11_faculties": [
       "arts"
     ],
-    "c11_comp_hindi": 29,
-    "c11_comp_english": 29,
+    "c11_comp_hindi": 28,
+    "c11_comp_english": 28,
     "c11_optional": {
-      "pol_sci": 29,
+      "pol_sci": 28,
       "history": 0,
-      "geography": 29,
-      "hindi_lit": 29,
+      "geography": 28,
+      "hindi_lit": 28,
       "eng_lit": 0,
       "sanskrit_lit": 0,
       "urdu_lit": 0,
@@ -1860,7 +1850,7 @@
       "agri_bio": 0,
       "agri_chem": 0
     },
-    "c11_total": 29,
+    "c11_total": 28,
     "c12_faculties": [
       "arts"
     ],
@@ -1891,11 +1881,11 @@
       "agri_chem": 0
     },
     "c12_total": 23,
-    "grand_total": 122,
+    "grand_total": 121,
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO RATAKOT",
-    "timestamp": "Fri Oct 02 2026 09:23:19 GMT+0530 (India Standard Time)"
+    "timestamp": "Thu Oct 08 2026 11:15:41 GMT+0530 (India Standard Time)"
   },
   "221776": {
     "school_code": "221776",
@@ -2139,12 +2129,7 @@
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BHINAY",
-    "timestamp": "Tue Oct 06 2026 09:42:31 GMT+0530 (India Standard Time)",
-    "school_medium": "english",
-    "c9_hindi": 0,
-    "c9_english": 26,
-    "c10_hindi": 0,
-    "c10_english": 18
+    "timestamp": "Tue Oct 06 2026 09:42:31 GMT+0530 (India Standard Time)"
   },
   "221780": {
     "school_code": "221780",
@@ -2156,9 +2141,9 @@
     "principal_mobile": "9549240545",
     "incharge_name": "Chandrawati Tejwani",
     "incharge_mobile": "9413694262",
-    "c9_total": 144,
-    "c9_sanskrit": 131,
-    "c9_urdu": 13,
+    "c9_total": 132,
+    "c9_sanskrit": 120,
+    "c9_urdu": 12,
     "c10_total": 88,
     "c10_sanskrit": 80,
     "c10_urdu": 8,
@@ -2168,8 +2153,8 @@
       "commerce",
       "agri"
     ],
-    "c11_comp_hindi": 90,
-    "c11_comp_english": 90,
+    "c11_comp_hindi": 87,
+    "c11_comp_english": 87,
     "c11_optional": {
       "pol_sci": 8,
       "history": 35,
@@ -2182,9 +2167,9 @@
       "sociology": 0,
       "home_sci": 0,
       "drawing": 33,
-      "physics": 21,
-      "chemistry": 21,
-      "biology": 14,
+      "physics": 18,
+      "chemistry": 18,
+      "biology": 11,
       "maths": 7,
       "comp_sci": 8,
       "accountancy": 4,
@@ -2194,7 +2179,7 @@
       "agri_bio": 22,
       "agri_chem": 22
     },
-    "c11_total": 90,
+    "c11_total": 87,
     "c12_faculties": [
       "arts",
       "science",
@@ -2228,11 +2213,11 @@
       "agri_chem": 22
     },
     "c12_total": 89,
-    "grand_total": 411,
+    "grand_total": 396,
     "status": "पूर्ण (Submitted)",
     "is_submitted": true,
     "submitted_by": "PEEO BHINAY",
-    "timestamp": "Tue Oct 06 2026 14:01:39 GMT+0530 (India Standard Time)"
+    "timestamp": "Thu Oct 08 2026 12:37:23 GMT+0530 (India Standard Time)"
   },
   "221781": {
     "school_code": "221781",

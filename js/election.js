@@ -216,46 +216,123 @@ function downloadPeeoBoothsExcel() {
   });
 
   const allPeeoBooths = mySchools.flatMap(s => (s.booths || []).map(b => ({ ...b, school_name: s.school_name, peeo_name: s.peeo_name })));
-  let submissions = {};
-  try {
-    submissions = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}');
-  } catch(e) {}
+  const submissions = typeof getMergedElectionSubmissions === 'function' ? getMergedElectionSubmissions() : JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}');
+  const customCols = getElectionCustomColumns();
 
   const headers = [
-    'बूथ सं.', 'ग्राम पंचायत', 'विद्यालय का नाम', 'शाला दर्पण कोड', 'कमरा/कक्ष विवरण (P-3)',
-    'वार्ड', 'विद्युत/पंखा', 'फर्नीचर', 'पृथक द्वार', 'चूना लाइनिंग',
-    'BLO प्रगणक नाम', 'पद', 'मोबाइल', 'सत्यापन स्थिति'
+    'क्र.सं.', 'जिला', 'ब्लॉक', 'ग्राम पंचायत', 'PEEO परिक्षेत्र',
+    'मतदान केंद्र भवन / विद्यालय', 'शाला दर्पण कोड', 'बूथ क्रमांक',
+    'मतदान कक्ष विवरण', 'वार्ड संख्या', 'पं.स. निर्वाचन क्षेत्र सं.', 'जि.प. निर्वाचन क्षेत्र सं.', 'वि.स. निर्वाचन क्षेत्र सं.',
+    'भवन की विशिष्टियां', 'भवन भौतिक स्थिति', 'मतदान केंद्र क्षेत्रफल (वर्ग मी.)', 'रोड से दूरी / पहुंच मार्ग',
+    'परिसर चारदीवारी (Col 11)', 'स्वच्छ पेयजल व्यवस्था (Col 12)', 'शौचालय/मूत्रालय व्यवस्था (Col 13)',
+    'शेड/छाया व्यवस्था (Col 14)', 'रैंप व्यवस्था (Col 15)', 'विद्युत कनेक्शन (Col 16)',
+    'रात्रि प्रकाश व जनरेटर बैकअप', 'मतदान दल विश्राम व भोजन व्यवस्था', 'प्राथमिक उपचार (First Aid Kit)',
+    'हवा एवं प्रकाश व्यवस्था (Col 17)', 'फर्नीचर व्यवस्था (Col 18)', 'प्रवेश/निकास पृथक द्वार (Col 19)',
+    'महिला/पुरुष पृथक लाइन (Col 20)', 'छत का पंखा चालू स्थिति (Col 21)', 'खिड़कियां व दरवाजे स्थिति (Col 22)',
+    'चूना लाइनिंग व साइनेज व्यवस्था',
+    ...customCols.map(c => c.name),
+    'अधिकृत BLO/प्रगणक का नाम', 'BLO पद', 'BLO मोबाइल नंबर',
+    'संस्था प्रधान नाम', 'संस्था प्रधान मोबाइल', 'विद्यालय आधिकारिक ईमेल',
+    'विशेष टिप्पणी / कमियां', 'भौतिक सत्यापन स्थिति', 'सबमिशन दिनांक व समय'
   ];
+
   const rows = [headers];
-  allPeeoBooths.forEach(b => {
+  allPeeoBooths.forEach((b, idx) => {
     const sub = submissions[b.school_code];
     const bd = sub?.booth_details?.[b.booth_no] || {};
     const isSub = !!sub;
+    const facs = sub?.facilities || {};
+
+    const bldgType = sub?.bldg_type || b.bldg_type || 'सरकारी';
+    const bldgCond = sub?.bldg_condition || b.bldg_condition || 'अच्छी';
+    const bldgArea = sub?.bldg_area || b.area_sqm || 60;
+    const bldgRoadDist = sub?.bldg_road_dist || b.road_dist || '100 मीटर';
+
+    const boundary = formatElectionYn(facs.boundary !== undefined ? facs.boundary : b.boundary);
+    const water = formatElectionYn(facs.water !== undefined ? facs.water : b.water);
+    const toilet = formatElectionYn(facs.toilet !== undefined ? facs.toilet : b.toilet);
+    const shed = formatElectionYn(facs.shed !== undefined ? facs.shed : b.shed);
+    const ramp = formatElectionYn(facs.ramp !== undefined ? facs.ramp : b.ramp);
+    const lightBldg = formatElectionYn(facs.light_bldg !== undefined ? facs.light_bldg : b.light_bldg);
+    const generator = formatElectionYn(facs.generator !== undefined ? facs.generator : true);
+    const restFood = formatElectionYn(facs.rest_food !== undefined ? facs.rest_food : true);
+    const firstAid = formatElectionYn(facs.first_aid !== undefined ? facs.first_aid : true);
+
+    const airLight = formatElectionYn(bd.air_light !== undefined ? bd.air_light : b.air_light);
+    const furn = formatElectionYn(bd.furniture !== undefined ? bd.furniture : b.furniture);
+    const doors = formatElectionYn(bd.doors !== undefined ? bd.doors : (bd.door !== undefined ? bd.door : b.doors));
+    const mfLine = formatElectionYn(bd.mf_line !== undefined ? bd.mf_line : b.mf_line);
+    const fan = formatElectionYn(bd.fan !== undefined ? bd.fan : b.fan);
+    const winDoor = bd.win_door || b.win_door || 'ठीक स्थिति';
+    const lining = formatElectionYn(bd.lining !== undefined ? bd.lining : true);
+
+    const customVals = customCols.map(c => bd[c.id] || '');
+
+    const bloName = bd.blo_name || '';
+    const bloPost = bd.blo_post || '';
+    const bloMob = bd.blo_mobile || '';
+
+    const princName = sub?.principal?.name || b.principal_name || '';
+    const princMob = sub?.principal?.mobile || b.principal_mobile || '';
+    const email = sub?.school_email || '';
+    const remarks = sub?.remarks || '';
+    const status = isSub ? 'सत्यापित (Submitted)' : 'लंबित (Pending)';
+    const date = sub?.submitted_at || '';
+
     rows.push([
-      b.booth_no,
+      idx + 1,
+      'अजमेर (AJMER)',
+      'भिनाय',
       b.panchayat_hi,
+      b.peeo_name || peeoName,
       b.school_name || b.building_hi,
       b.school_code,
+      b.booth_no,
       b.room_hi,
       b.ward || '-',
-      bd.light !== false ? 'हाँ' : 'नहीं',
-      bd.furniture !== false ? 'हाँ' : 'नहीं',
-      bd.door !== false ? 'हाँ' : 'नहीं',
-      bd.lining !== false ? 'हाँ' : 'नहीं',
-      bd.blo_name || '',
-      bd.blo_post || '',
-      bd.blo_mobile || '',
-      isSub ? 'सत्यापित' : 'लंबित'
+      b.ps_constituency || '-',
+      b.zp_constituency || '-',
+      b.ac_constituency || 104,
+      bldgType,
+      bldgCond,
+      bldgArea,
+      bldgRoadDist,
+      boundary,
+      water,
+      toilet,
+      shed,
+      ramp,
+      lightBldg,
+      generator,
+      restFood,
+      firstAid,
+      airLight,
+      furn,
+      doors,
+      mfLine,
+      fan,
+      winDoor,
+      lining,
+      ...customVals,
+      bloName,
+      bloPost,
+      bloMob,
+      princName,
+      princMob,
+      email,
+      remarks,
+      status,
+      date
     ]);
   });
 
-  const filename = `${peeoName.replace(/\s+/g, '_')}_Election_2026_Booths`;
+  const filename = `${peeoName.replace(/\s+/g, '_')}_Election_2026_Booths_Detailed`;
   if (typeof XLSX !== 'undefined') {
     const wb = XLSX.utils.book_new();
     const ws = XLSX.utils.aoa_to_sheet(rows);
     XLSX.utils.book_append_sheet(wb, ws, "Booths");
     XLSX.writeFile(wb, `${filename}.xlsx`);
-    if (typeof showToast === 'function') showToast(`📥 ${peeoName} के समस्त बूथ Excel (.xlsx) में डाउनलोड हो गए!`, 'success');
+    if (typeof showToast === 'function') showToast(`📥 ${peeoName} के समस्त बूथ संपूर्ण विवरण सहित Excel (.xlsx) में डाउनलोड हो गए!`, 'success');
   } else {
     exportTableDataToHtmlExcel(rows, `${filename}.xls`);
   }
@@ -462,7 +539,8 @@ function renderElectionAdminView(container) {
     submissions = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}');
   } catch(e) {}
 
-  const submittedCount = Object.keys(submissions).length;
+  const submittedSchools = schools.filter(s => !!submissions[s.shala_darpan_code]);
+  const submittedCount = submittedSchools.length;
   const pendingCount = Math.max(0, schools.length - submittedCount);
   const totalBooths = booths.length;
   const customCols = getElectionCustomColumns();
@@ -526,10 +604,16 @@ function renderElectionAdminView(container) {
             <i class="fas fa-bolt"></i> त्वरित प्रविष्टि दर्ज
           </button>
           <button type="button" class="btn btn-success btn-sm" onclick="downloadElectionSummaryExcel()" style="font-weight:800">
-            <i class="fas fa-file-excel"></i> 📥 33 विद्यालय समेकित Excel (.xlsx)
+            <i class="fas fa-file-excel"></i> 📥 विद्यालय समेकित Excel
           </button>
           <button type="button" class="btn btn-light btn-sm" onclick="downloadElection116BoothsExcel()" style="font-weight:800; color:#0f172a">
-            <i class="fas fa-table text-success"></i> 📊 116 बूथ Excel (.xlsx)
+            <i class="fas fa-table text-success"></i> 📊 116 बूथ संपूर्ण Excel
+          </button>
+          <button type="button" class="btn btn-danger btn-sm" onclick="downloadElectionDeficiencyPDF()" style="font-weight:800; background:#dc2626; border-color:#dc2626" title="भौतिक सत्यापन में चिन्हित समस्त कमियों की आधिकारिक समीक्षा PDF रिपोर्ट डाउनलोड करें">
+            <i class="fas fa-file-pdf"></i> 🚨 कमियां रिपोर्ट (PDF)
+          </button>
+          <button type="button" class="btn btn-warning btn-sm" onclick="downloadElectionDeficiencyExcel()" style="font-weight:800; color:#0f172a" title="चिन्हित कमियों की सूची Excel डाउनलोड करें">
+            <i class="fas fa-exclamation-triangle"></i> ⚠️ कमियां सूची Excel
           </button>
           <button type="button" class="btn btn-outline-light btn-sm" onclick="publishElectionDemandLive()" style="font-weight:700">
             <i class="fas fa-share"></i> लाइव मांग जारी
@@ -880,26 +964,63 @@ function renderElection116BoothsTable(container) {
   `;
 }
 
+// Helper to retrieve all merged submissions from localStorage, MASTER_CBEO_DATA, and runtime STATE
+function getMergedElectionSubmissions() {
+  let localSubs = {};
+  try {
+    localSubs = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}');
+  } catch(e) {}
+  const masterSubs = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.election_submissions) || {};
+  const stateSubs = (typeof STATE !== 'undefined' && (STATE.electionSubmissionsP3 || (STATE.demandSubmissions && STATE.demandSubmissions['DEMAND_ELECTION_2026']))) || {};
+  return Object.assign({}, masterSubs, stateSubs, localSubs);
+}
+
+// Helper to format Yes / No values in Hindi
+function formatElectionYn(val, defaultVal = 'हाँ') {
+  if (val === undefined || val === null || val === '') return defaultVal;
+  if (val === true || val === 'yes' || val === 'हाँ' || val === 'true') return 'हाँ';
+  if (val === false || val === 'no' || val === 'नहीं' || val === 'false') return 'नहीं';
+  return String(val);
+}
+
 // 4. Excel Exporters: Genuine .xlsx with SheetJS and fallback HTML .xls
 function downloadElectionSummaryExcel() {
   const schools = window.ELECTION_2026_SCHOOLS || [];
-  let submissions = {};
-  try {
-    submissions = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}');
-  } catch(e) {}
+  const submissions = getMergedElectionSubmissions();
 
   const headers = [
     'क्र.सं.', 'जिला', 'ब्लॉक', 'ग्राम पंचायत', 'विद्यालय का नाम',
-    'शाला दर्पण कोड', 'PEEO परिक्षेत्र', 'मतदान कक्ष/बूथ संख्या', 'संस्था प्रधान नाम',
-    'मोबाइल', 'विद्यालय आधिकारिक ईमेल', 'सत्यापन स्थिति', 'सबमिशन दिनांक/समय'
+    'शाला दर्पण कोड', 'PEEO परिक्षेत्र', 'मतदान कक्ष/बूथ संख्या',
+    'भवन की विशिष्टियां', 'भवन भौतिक स्थिति', 'मतदान केंद्र क्षेत्रफल (वर्ग मी.)', 'रोड से दूरी / पहुंच मार्ग',
+    'परिसर चारदीवारी (Col 11)', 'स्वच्छ पेयजल व्यवस्था (Col 12)', 'शौचालय/मूत्रालय व्यवस्था (Col 13)',
+    'शेड/छाया व्यवस्था (Col 14)', 'रैंप व्यवस्था (Col 15)', 'विद्युत कनेक्शन (Col 16)',
+    'रात्रि प्रकाश व जनरेटर बैकअप', 'मतदान दल विश्राम व भोजन व्यवस्था', 'प्राथमिक उपचार (First Aid Kit)',
+    'संस्था प्रधान नाम', 'मोबाइल', 'विद्यालय आधिकारिक ईमेल',
+    'विशेष टिप्पणी / कमियां', 'सत्यापन स्थिति', 'सबमिशन दिनांक/समय'
   ];
 
   const rows = [headers];
   schools.forEach((s, idx) => {
     const sub = submissions[s.shala_darpan_code];
+    const facs = sub?.facilities || {};
     const status = sub ? 'सत्यापित (Submitted)' : 'लंबित (Pending)';
     const email = sub?.school_email || '';
     const date = sub?.submitted_at || '';
+    const bldgType = sub?.bldg_type || s.booths?.[0]?.bldg_type || 'सरकारी';
+    const bldgCond = sub?.bldg_condition || s.booths?.[0]?.bldg_condition || 'अच्छी';
+    const bldgArea = sub?.bldg_area || s.booths?.[0]?.area_sqm || 60;
+    const bldgRoadDist = sub?.bldg_road_dist || s.booths?.[0]?.road_dist || '100 मीटर';
+
+    const boundary = formatElectionYn(facs.boundary !== undefined ? facs.boundary : s.booths?.[0]?.boundary);
+    const water = formatElectionYn(facs.water !== undefined ? facs.water : s.booths?.[0]?.water);
+    const toilet = formatElectionYn(facs.toilet !== undefined ? facs.toilet : s.booths?.[0]?.toilet);
+    const shed = formatElectionYn(facs.shed !== undefined ? facs.shed : s.booths?.[0]?.shed);
+    const ramp = formatElectionYn(facs.ramp !== undefined ? facs.ramp : s.booths?.[0]?.ramp);
+    const lightBldg = formatElectionYn(facs.light_bldg !== undefined ? facs.light_bldg : s.booths?.[0]?.light_bldg);
+    const generator = formatElectionYn(facs.generator !== undefined ? facs.generator : true);
+    const restFood = formatElectionYn(facs.rest_food !== undefined ? facs.rest_food : true);
+    const firstAid = formatElectionYn(facs.first_aid !== undefined ? facs.first_aid : true);
+
     rows.push([
       idx + 1,
       'अजमेर (AJMER)',
@@ -909,26 +1030,43 @@ function downloadElectionSummaryExcel() {
       s.shala_darpan_code,
       s.peeo_name || '',
       s.booth_count,
-      s.principal_name,
-      s.principal_mobile,
+      bldgType,
+      bldgCond,
+      bldgArea,
+      bldgRoadDist,
+      boundary,
+      water,
+      toilet,
+      shed,
+      ramp,
+      lightBldg,
+      generator,
+      restFood,
+      firstAid,
+      sub?.principal?.name || s.principal_name,
+      sub?.principal?.mobile || s.principal_mobile,
       email,
+      sub?.remarks || '',
       status,
       date
     ]);
   });
 
-  const filename = "CBEO_Bhinai_Panchayat_Election_2026_33_Schools_Summary";
+  const filename = "CBEO_Bhinai_Panchayat_Election_2026_33_Schools_Complete_Summary";
   if (typeof XLSX !== 'undefined') {
     const wb = XLSX.utils.book_new();
     const ws = XLSX.utils.aoa_to_sheet(rows);
     ws['!cols'] = [
       { wch: 8 }, { wch: 16 }, { wch: 12 }, { wch: 18 }, { wch: 38 },
-      { wch: 16 }, { wch: 22 }, { wch: 20 }, { wch: 22 },
-      { wch: 14 }, { wch: 28 }, { wch: 20 }, { wch: 22 }
+      { wch: 16 }, { wch: 22 }, { wch: 16 },
+      { wch: 16 }, { wch: 16 }, { wch: 16 }, { wch: 20 },
+      { wch: 16 }, { wch: 16 }, { wch: 18 }, { wch: 16 }, { wch: 16 }, { wch: 16 },
+      { wch: 18 }, { wch: 18 }, { wch: 16 },
+      { wch: 22 }, { wch: 14 }, { wch: 28 }, { wch: 35 }, { wch: 20 }, { wch: 22 }
     ];
     XLSX.utils.book_append_sheet(wb, ws, "33_Schools_Summary");
     XLSX.writeFile(wb, `${filename}.xlsx`);
-    if (typeof showToast === 'function') showToast('📥 33 विद्यालयों की समेकित Excel (.xlsx) सफलतापूर्वक डाउनलोड हो गई!', 'success');
+    if (typeof showToast === 'function') showToast('📥 33 विद्यालयों की संपूर्ण भौतिक सत्यापन Excel (.xlsx) डाउनलोड हो गई!', 'success');
   } else {
     exportTableDataToHtmlExcel(rows, `${filename}.xls`);
   }
@@ -936,70 +1074,253 @@ function downloadElectionSummaryExcel() {
 
 function downloadElection116BoothsExcel() {
   const booths = window.ELECTION_2026_BOOTHS || [];
-  let submissions = {};
-  try {
-    submissions = JSON.parse(localStorage.getItem('cbeo_election_submissions') || '{}');
-  } catch(e) {}
-
+  const submissions = getMergedElectionSubmissions();
   const customCols = getElectionCustomColumns();
+
   const headers = [
-    'क्र.सं.', 'बूथ संख्या', 'ग्राम पंचायत', 'मतदान केंद्र भवन का नाम',
-    'मतदान कक्ष विवरण', 'वार्ड संख्या', 'शाला दर्पण कोड',
-    'विद्युत व पंखे', 'फर्नीचर स्थिति', 'पृथक द्वार', 'चूना लाइनिंग',
+    'क्र.सं.', 'जिला', 'ब्लॉक', 'ग्राम पंचायत', 'PEEO परिक्षेत्र',
+    'मतदान केंद्र भवन / विद्यालय', 'शाला दर्पण कोड', 'बूथ क्रमांक',
+    'मतदान कक्ष विवरण', 'वार्ड संख्या', 'पं.स. निर्वाचन क्षेत्र सं.', 'जि.प. निर्वाचन क्षेत्र सं.', 'वि.स. निर्वाचन क्षेत्र सं.',
+    // प्रपत्र-3 भाग-1: केंद्र स्तरीय आधारभूत भौतिक सत्यापन
+    'भवन की विशिष्टियां', 'भवन भौतिक स्थिति', 'मतदान केंद्र क्षेत्रफल (वर्ग मी.)', 'रोड से दूरी / पहुंच मार्ग',
+    'परिसर चारदीवारी (Col 11)', 'स्वच्छ पेयजल व्यवस्था (Col 12)', 'शौचालय/मूत्रालय व्यवस्था (Col 13)',
+    'शेड/छाया व्यवस्था (Col 14)', 'रैंप व्यवस्था (Col 15)', 'विद्युत कनेक्शन (Col 16)',
+    'रात्रि प्रकाश व जनरेटर बैकअप', 'मतदान दल विश्राम व भोजन व्यवस्था', 'प्राथमिक उपचार (First Aid Kit)',
+    // प्रपत्र-3 भाग-2: मतदान कक्ष/बूथ स्तरीय भौतिक सत्यापन
+    'हवा एवं प्रकाश व्यवस्था (Col 17)', 'फर्नीचर व्यवस्था (Col 18)', 'प्रवेश/निकास पृथक द्वार (Col 19)',
+    'महिला/पुरुष पृथक लाइन (Col 20)', 'छत का पंखा चालू स्थिति (Col 21)', 'खिड़कियां व दरवाजे स्थिति (Col 22)',
+    'चूना लाइनिंग व साइनेज व्यवस्था',
     ...customCols.map(c => c.name),
-    'BLO का नाम', 'BLO पद', 'BLO मोबाइल', 'सत्यापन स्थिति'
+    // संबंधित बूथ के अधिकृत BLO विवरण
+    'अधिकृत BLO/प्रगणक का नाम', 'BLO पद', 'BLO मोबाइल नंबर',
+    // संस्था प्रधान एवं प्रपत्र सत्यापन विवरण
+    'संस्था प्रधान नाम', 'संस्था प्रधान मोबाइल', 'विद्यालय आधिकारिक ईमेल',
+    'विशेष टिप्पणी / कमियां', 'भौतिक सत्यापन स्थिति', 'सबमिशन दिनांक व समय'
   ];
 
   const rows = [headers];
   booths.forEach((b, idx) => {
     const sub = submissions[b.school_code];
     const bd = sub?.booth_details?.[b.booth_no] || {};
-    const light = bd.light !== false ? 'हाँ' : 'नहीं';
-    const furn = bd.furniture !== false ? 'हाँ' : 'नहीं';
-    const door = bd.door !== false ? 'हाँ' : 'नहीं';
-    const lining = bd.lining !== false ? 'हाँ' : 'नहीं';
-    const bloName = bd.blo_name || '';
-    const bloPost = bd.blo_post || '';
-    const bloMob = bd.blo_mobile || '';
-    const status = sub ? 'सत्यापित' : 'लंबित';
+    const isSub = !!sub;
+    const facs = sub?.facilities || {};
+
+    // Center Level Infrastructure
+    const bldgType = sub?.bldg_type || b.bldg_type || 'सरकारी';
+    const bldgCond = sub?.bldg_condition || b.bldg_condition || 'अच्छी';
+    const bldgArea = sub?.bldg_area || b.area_sqm || 60;
+    const bldgRoadDist = sub?.bldg_road_dist || b.road_dist || '100 मीटर';
+
+    const boundary = formatElectionYn(facs.boundary !== undefined ? facs.boundary : b.boundary);
+    const water = formatElectionYn(facs.water !== undefined ? facs.water : b.water);
+    const toilet = formatElectionYn(facs.toilet !== undefined ? facs.toilet : b.toilet);
+    const shed = formatElectionYn(facs.shed !== undefined ? facs.shed : b.shed);
+    const ramp = formatElectionYn(facs.ramp !== undefined ? facs.ramp : b.ramp);
+    const lightBldg = formatElectionYn(facs.light_bldg !== undefined ? facs.light_bldg : b.light_bldg);
+    const generator = formatElectionYn(facs.generator !== undefined ? facs.generator : true);
+    const restFood = formatElectionYn(facs.rest_food !== undefined ? facs.rest_food : true);
+    const firstAid = formatElectionYn(facs.first_aid !== undefined ? facs.first_aid : true);
+
+    // Booth Level Verification
+    const airLight = formatElectionYn(bd.air_light !== undefined ? bd.air_light : b.air_light);
+    const furn = formatElectionYn(bd.furniture !== undefined ? bd.furniture : b.furniture);
+    const doors = formatElectionYn(bd.doors !== undefined ? bd.doors : (bd.door !== undefined ? bd.door : b.doors));
+    const mfLine = formatElectionYn(bd.mf_line !== undefined ? bd.mf_line : b.mf_line);
+    const fan = formatElectionYn(bd.fan !== undefined ? bd.fan : b.fan);
+    const winDoor = bd.win_door || b.win_door || 'ठीक स्थिति';
+    const lining = formatElectionYn(bd.lining !== undefined ? bd.lining : true);
 
     const customVals = customCols.map(c => bd[c.id] || '');
 
+    // BLO
+    const bloName = bd.blo_name || '';
+    const bloPost = bd.blo_post || '';
+    const bloMob = bd.blo_mobile || '';
+
+    // Principal & meta
+    const princName = sub?.principal?.name || b.principal_name || '';
+    const princMob = sub?.principal?.mobile || b.principal_mobile || '';
+    const email = sub?.school_email || '';
+    const remarks = sub?.remarks || '';
+    const status = isSub ? 'सत्यापित (Submitted)' : 'लंबित (Pending)';
+    const date = sub?.submitted_at || '';
+
     rows.push([
       idx + 1,
-      b.booth_no,
+      'अजमेर (AJMER)',
+      'भिनाय',
       b.panchayat_hi,
-      b.building_hi,
+      b.peeo_name || '',
+      b.building_hi || b.school_name,
+      b.school_code,
+      b.booth_no,
       b.room_hi,
       b.ward || '',
-      b.school_code,
-      light,
+      b.ps_constituency || '-',
+      b.zp_constituency || '-',
+      b.ac_constituency || 104,
+      bldgType,
+      bldgCond,
+      bldgArea,
+      bldgRoadDist,
+      boundary,
+      water,
+      toilet,
+      shed,
+      ramp,
+      lightBldg,
+      generator,
+      restFood,
+      firstAid,
+      airLight,
       furn,
-      door,
+      doors,
+      mfLine,
+      fan,
+      winDoor,
       lining,
       ...customVals,
       bloName,
       bloPost,
       bloMob,
-      status
+      princName,
+      princMob,
+      email,
+      remarks,
+      status,
+      date
     ]);
   });
 
-  const filename = "CBEO_Bhinai_Panchayat_Election_2026_116_Booths_Detailed";
+  const filename = "CBEO_Bhinai_Panchayat_Election_2026_116_Booths_Complete_Master";
   if (typeof XLSX !== 'undefined') {
     const wb = XLSX.utils.book_new();
     const ws = XLSX.utils.aoa_to_sheet(rows);
     ws['!cols'] = [
-      { wch: 8 }, { wch: 10 }, { wch: 18 }, { wch: 35 }, { wch: 35 },
-      { wch: 10 }, { wch: 14 }, { wch: 14 }, { wch: 14 }, { wch: 14 }, { wch: 14 },
+      { wch: 8 },  { wch: 16 }, { wch: 12 }, { wch: 18 }, { wch: 22 },
+      { wch: 38 }, { wch: 15 }, { wch: 10 }, { wch: 38 }, { wch: 12 },
+      { wch: 14 }, { wch: 14 }, { wch: 14 },
+      { wch: 14 }, { wch: 16 }, { wch: 16 }, { wch: 20 },
+      { wch: 14 }, { wch: 14 }, { wch: 16 }, { wch: 14 }, { wch: 14 }, { wch: 14 },
+      { wch: 18 }, { wch: 18 }, { wch: 16 },
+      { wch: 16 }, { wch: 14 }, { wch: 16 }, { wch: 16 }, { wch: 14 }, { wch: 18 }, { wch: 16 },
       ...customCols.map(() => ({ wch: 18 })),
-      { wch: 22 }, { wch: 18 }, { wch: 16 }, { wch: 14 }
+      { wch: 22 }, { wch: 18 }, { wch: 16 },
+      { wch: 22 }, { wch: 16 }, { wch: 26 }, { wch: 35 }, { wch: 20 }, { wch: 22 }
     ];
-    XLSX.utils.book_append_sheet(wb, ws, "116_Booths_Details");
+    XLSX.utils.book_append_sheet(wb, ws, "116_Booths_Detailed");
     XLSX.writeFile(wb, `${filename}.xlsx`);
-    if (typeof showToast === 'function') showToast('📊 116 मतदान बूथों का विस्तृत Excel (.xlsx) सफलतापूर्वक डाउनलोड हो गया!', 'success');
+    if (typeof showToast === 'function') showToast('📊 116 मतदान बूथों का समस्त प्रश्नों सहित विस्तृत Excel (.xlsx) सफलतापूर्वक डाउनलोड हो गया!', 'success');
   } else {
     exportTableDataToHtmlExcel(rows, `${filename}.xls`);
+  }
+}
+
+// 4.1. Dedicated Deficiency Report Exporter (Excel)
+function downloadElectionDeficiencyExcel() {
+  const booths = window.ELECTION_2026_BOOTHS || [];
+  const submissions = getMergedElectionSubmissions();
+
+  const headers = [
+    'क्र.सं.', 'जिला', 'ब्लॉक', 'ग्राम पंचायत', 'PEEO परिक्षेत्र',
+    'मतदान केंद्र भवन / विद्यालय', 'शाला दर्पण कोड', 'बूथ क्रमांक', 'कक्ष विवरण',
+    'चिन्हित विद्यालय स्तरीय कमियां', 'चिन्हित बूथ स्तरीय कमियां (एकल द्वार/फर्नीचर आदि)',
+    'संस्था प्रधान / BLO टिप्पणी', 'सुधारात्मक कार्रवाई निर्देश',
+    'संस्था प्रधान नाम व मोबाइल', 'BLO नाम व मोबाइल'
+  ];
+
+  const rows = [headers];
+  let sno = 1;
+
+  booths.forEach(b => {
+    const sub = submissions[b.school_code];
+    const bd = sub?.booth_details?.[b.booth_no] || {};
+    const facs = sub?.facilities || {};
+
+    const schoolIssues = [];
+    if (facs.boundary === false) schoolIssues.push('चारदीवारी अपूर्ण/अभाव');
+    if (facs.water === false) schoolIssues.push('पेयजल अभाव');
+    if (facs.toilet === false) schoolIssues.push('शौचालय क्रियाशील नहीं');
+    if (facs.shed === false) schoolIssues.push('शेड/छाया अभाव');
+    if (facs.ramp === false) schoolIssues.push('रैंप अनुपलब्ध');
+    if (facs.light_bldg === false) schoolIssues.push('विद्युत कनेक्शन नहीं');
+    if (facs.generator === false) schoolIssues.push('जनरेटर/रात्रि प्रकाश बैकअप अनुपलब्ध');
+    if (facs.rest_food === false) schoolIssues.push('विश्राम/भोजन व्यवस्था अपूर्ण');
+    if (facs.first_aid === false) schoolIssues.push('प्राथमिक उपचार किट अनुपलब्ध');
+    if (sub?.bldg_condition && sub.bldg_condition.includes('मरम्मत')) schoolIssues.push('भवन मरम्मत योग्य');
+
+    const boothIssues = [];
+    if (bd.air_light === false) boothIssues.push('हवा व प्रकाश की कमी');
+    if (bd.furniture === false) boothIssues.push('फर्नीचर की कमी');
+    const doorsVal = bd.doors !== undefined ? bd.doors : bd.door;
+    if (doorsVal === false) boothIssues.push('प्रवेश व निकास हेतु पृथक द्वार नहीं (एकल द्वार)');
+    if (bd.mf_line === false) boothIssues.push('महिला/पुरुष पृथक लाइन स्थान नहीं');
+    if (bd.fan === false) boothIssues.push('छत का पंखा खराब/नहीं');
+    if (bd.win_door && bd.win_door.includes('मरम्मत')) boothIssues.push('खिड़कियां/दरवाजे मरम्मत योग्य');
+    if (bd.lining === false) boothIssues.push('चूना लाइनिंग व साइनेज नहीं');
+
+    const remarks = (sub?.remarks || '').trim();
+    const hasDef = schoolIssues.length > 0 || boothIssues.length > 0 || (remarks && remarks.toLowerCase() !== 'nil' && remarks.toLowerCase() !== 'no' && remarks !== 'भौतिक सत्यापन पूर्ण');
+
+    if (hasDef) {
+      let action = 'संबंधित VDO व ग्राम पंचायत द्वारा ';
+      if (schoolIssues.some(s => s.includes('जनरेटर')) || (remarks && remarks.includes('जनरेटर'))) action += 'रात्रि प्रकाश हेतु 5 KVA जनरेटर बैकअप सुनिश्चित हो। ';
+      if (schoolIssues.some(s => s.includes('पेयजल')) || (remarks && remarks.includes('पेयजल'))) action += 'पेयजल आपूर्ति सुचारू की जाए। ';
+      if (schoolIssues.some(s => s.includes('शौचालय')) || (remarks && remarks.includes('शौचालय'))) action += 'शौचालय क्रियाशील रखे जाएं। ';
+      if (schoolIssues.some(s => s.includes('चारदीवारी'))) action += 'परिसर में सुरक्षा व्यवस्था सुनिश्चित करें। ';
+      if (boothIssues.some(s => s.includes('फर्नीचर'))) action += 'निकटस्थ विद्यालय से अतिरिक्त फर्नीचर मंगाएं। ';
+      if (schoolIssues.some(s => s.includes('प्राथमिक उपचार'))) action += 'PHC/CHO से फर्स्ट एड किट प्राप्त करें। ';
+      if (!action.trim() || action === 'संबंधित VDO व ग्राम पंचायत द्वारा ') action = 'मौके पर उपलब्ध कक्ष व्यवस्था अनुसार मतदान व्यवस्था सुचारू रखी जाए।';
+
+      rows.push([
+        sno++,
+        'अजमेर (AJMER)',
+        'भिनाय',
+        b.panchayat_hi,
+        b.peeo_name || '',
+        b.building_hi || b.school_name,
+        b.school_code,
+        b.booth_no,
+        b.room_hi,
+        schoolIssues.join('; ') || '✓ ढांचा पूर्ण',
+        boothIssues.join('; ') || '✓ कक्ष संतोषप्रद',
+        remarks || '-',
+        action,
+        `${sub?.principal?.name || b.principal_name || ''} (${sub?.principal?.mobile || b.principal_mobile || ''})`,
+        `${bd.blo_name || ''} (${bd.blo_mobile || ''})`
+      ]);
+    }
+  });
+
+  const filename = "CBEO_Bhinai_Election_2026_Deficiency_List";
+  if (typeof XLSX !== 'undefined') {
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.aoa_to_sheet(rows);
+    ws['!cols'] = [
+      { wch: 8 }, { wch: 16 }, { wch: 12 }, { wch: 18 }, { wch: 22 },
+      { wch: 35 }, { wch: 15 }, { wch: 10 }, { wch: 35 },
+      { wch: 28 }, { wch: 32 }, { wch: 35 }, { wch: 38 }, { wch: 25 }, { wch: 25 }
+    ];
+    XLSX.utils.book_append_sheet(wb, ws, "Deficiency_List");
+    XLSX.writeFile(wb, `${filename}.xlsx`);
+    if (typeof showToast === 'function') showToast('🚨 चुनाव भौतिक सत्यापन कमियों की सूची Excel (.xlsx) में डाउनलोड हो गई!', 'success');
+  } else {
+    exportTableDataToHtmlExcel(rows, `${filename}.xls`);
+  }
+}
+
+// 4.2. Direct Official PDF Report Downloader
+function downloadElectionDeficiencyPDF() {
+  const pdfUrl = 'CBEO_Bhinai_Panchayat_Election_2026_Deficiency_Report.pdf?_t=' + Date.now();
+  const a = document.createElement('a');
+  a.href = pdfUrl;
+  a.download = 'CBEO_Bhinai_Panchayat_Election_2026_Deficiency_Report.pdf';
+  a.target = '_blank';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  if (typeof showToast === 'function') {
+    showToast('📄 आधिकारिक कमियां समीक्षा रिपोर्ट (PDF) डाउनलोड हो रही है!', 'success');
   }
 }
 
@@ -1555,6 +1876,8 @@ if (typeof window !== 'undefined') {
   window.renderElectionView = renderElectionView;
   window.downloadElectionSummaryExcel = downloadElectionSummaryExcel;
   window.downloadElection116BoothsExcel = downloadElection116BoothsExcel;
+  window.downloadElectionDeficiencyExcel = downloadElectionDeficiencyExcel;
+  window.downloadElectionDeficiencyPDF = downloadElectionDeficiencyPDF;
   window.publishElectionDemandLive = publishElectionDemandLive;
   window.syncElectionSubmissionsFromCloud = syncElectionSubmissionsFromCloud;
   window.openElectionColumnManagerModal = openElectionColumnManagerModal;
@@ -1569,4 +1892,8 @@ if (typeof window !== 'undefined') {
   window.onElectionScopeFilterChange = onElectionScopeFilterChange;
   window.setElectionViewMode = setElectionViewMode;
   setTimeout(syncElectionSubmissionsFromCloud, 1000);
+  // Periodic background auto-refresh every 30 seconds to catch live submissions
+  setInterval(function() {
+    syncElectionSubmissionsFromCloud(false);
+  }, 30000);
 }

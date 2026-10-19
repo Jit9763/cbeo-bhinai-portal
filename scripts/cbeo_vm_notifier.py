@@ -373,6 +373,70 @@ def main():
     sp_percent = round((sp_sub_count / total_sp_schools * 100), 1) if total_sp_schools > 0 else 0.0
 
     # -------------------------------------------------------------
+    # 2C. PROCESS 18+ & 17+ VOTER STUDENTS DEMAND DATA
+    # -------------------------------------------------------------
+    voter_subs_path = os.path.join(root_dir, 'voter_students_submissions.json')
+    voter_master_path = os.path.join(root_dir, 'voter_students_master.json')
+    voter_subs = {}
+    if os.path.exists(voter_subs_path):
+        try:
+            with open(voter_subs_path, 'r', encoding='utf-8') as vsf:
+                voter_subs = json.load(vsf)
+        except Exception as e:
+            print("Note reading voter_students_submissions.json:", e)
+
+    voter_master_schools = []
+    if os.path.exists(voter_master_path):
+        try:
+            with open(voter_master_path, 'r', encoding='utf-8') as vmf:
+                vm_data = json.load(vmf)
+                voter_master_schools = vm_data.get('schools', [])
+        except Exception as e:
+            print("Note reading voter_students_master.json:", e)
+    if not voter_master_schools:
+        voter_master_schools = schools_57
+
+    total_voter_schools = len(voter_master_schools)
+    voter_submitted_schools = []
+    voter_pending_schools = []
+    voter_total_18 = 0
+    voter_reg_18 = 0
+    voter_unreg_18 = 0
+    voter_total_17 = 0
+
+    for s in voter_master_schools:
+        code = str(s.get('shala_darpan_code', '')).strip()
+        peeo_name = s.get('peeo_name', 'PEEO अज्ञात')
+        sub = voter_subs.get(code)
+        if sub and sub.get('submission_status') == 'submitted':
+            voter_submitted_schools.append({
+                'code': code,
+                'name': s.get('school_name_hi') or s.get('school_name', ''),
+                'peeo': peeo_name,
+                'principal': sub.get('principal_name') or s.get('principal_name', 'संस्था प्रधान'),
+                'mobile': sub.get('principal_mobile') or s.get('principal_mobile') or ''
+            })
+            stu18 = sub.get('students_18', [])
+            reg = sum(1 for st in stu18 if st.get('is_registered') == 'हाँ')
+            voter_total_18 += len(stu18)
+            voter_reg_18 += reg
+            voter_unreg_18 += (len(stu18) - reg)
+            voter_total_17 += len(sub.get('students_17', []))
+        else:
+            voter_pending_schools.append({
+                'code': code,
+                'name': s.get('school_name_hi') or s.get('school_name', ''),
+                'peeo': peeo_name,
+                'principal': s.get('principal_name', 'संस्था प्रधान'),
+                'mobile': s.get('principal_mobile') or s.get('mobile') or ''
+            })
+
+    voter_sub_count = len(voter_submitted_schools)
+    voter_pend_count = len(voter_pending_schools)
+    voter_percent = round((voter_sub_count / total_voter_schools * 100), 1) if total_voter_schools > 0 else 0.0
+    print(f"18+ Voter Demand: Total={total_voter_schools}, Submitted={voter_sub_count} ({voter_percent}%), Pending={voter_pend_count}, 18+ Total={voter_total_18}")
+
+    # -------------------------------------------------------------
     # 3. COMPILE MASTER REPORT MARKDOWN
     # -------------------------------------------------------------
     report_lines = []
@@ -384,7 +448,24 @@ def main():
     if custom_message:
         report_lines.append(f"> 📢 **विशेष प्रशासनिक निर्देश (जितेन्द्र व्यवस्थापक - अजमेर):**\n> {custom_message}\n")
 
-    if active_focus_report == '49_syllabus':
+    if active_focus_report == 'voter_students':
+        report_lines.append(f"## 🗳️ 1. 18+ एवं 17+ विद्यार्थी मतदाता सूची सत्यापन व पंजीकरण मांग 2026 ({total_voter_schools} विद्यालय)")
+        report_lines.append(f"| कुल लक्षित विद्यालय | प्रपत्र प्राप्त संख्या | कुल लंबित विद्यालय | संकलन प्रगति | 18+ कुल विद्यार्थी | 18+ पंजीकृत (हाँ) | 17+ अग्रिम विद्यार्थी |")
+        report_lines.append(f"| :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
+        report_lines.append(f"| **{total_voter_schools}** | **{voter_sub_count}** | <span style='color:red'>**{voter_pend_count}**</span> | **{voter_percent}%** | **{voter_total_18}** | **{voter_reg_18}** | **{voter_total_17}** |\n")
+
+        report_lines.append(f"## 🚨 2. सख्त समय-सीमा अनुपालन व रेड-अलर्ट सिस्टम (Overdue Escalation Engine)")
+        if voter_pend_count > 0:
+            report_lines.append(f"> ⚠️ **अति-आवश्यक चेतावनी (Final Escalation Warning):** भिनाय ब्लॉक के निम्नलिखित **{voter_pend_count} विद्यालयों** द्वारा 18+ व 17+ विद्यार्थी मतदाता सूची सत्यापन प्रपत्र निर्धारित समय-सीमा में सबमिट नहीं किया गया है। संबंधित संस्था प्रधान एवं PEEOs आज ही प्रविष्टि पूर्ण कराना सुनिश्चित करें।\n")
+            report_lines.append(f"| क्र. | शा.दा. कोड | विद्यालय का नाम | संबंधित PEEO | संस्था प्रधान | मोबाइल नंबर | स्थिति |")
+            report_lines.append(f"| :---: | :---: | :--- | :--- | :--- | :---: | :---: |")
+            for s_idx, ps in enumerate(voter_pending_schools[:25]):
+                report_lines.append(f"| {s_idx + 1} | `{ps['code']}` | **{ps['name']}** | {ps['peeo']} | {ps['principal']} | `{ps['mobile']}` | <span style='color:red; font-weight:bold;'>🚨 अति-लंबित</span> |")
+            report_lines.append("")
+        else:
+            report_lines.append("✓ 18+ एवं 17+ विद्यार्थी मतदाता सत्यापन के सभी विद्यालयों का डेटा शत-प्रतिशत संकलित हो चुका है।\n")
+
+    elif active_focus_report == '49_syllabus':
         # FOCUS: 49 GOVT SCHOOLS SYLLABUS COMPLETION %
         report_lines.append(f"## 🎯 1. समान परीक्षा (सत्र 2026-27): पाठ्यक्रम पूर्णता % प्रगति सारांश (49 राजकीय विद्यालय)")
         report_lines.append(f"| कुल लक्षित राजकीय विद्यालय | प्रपत्र प्राप्त संख्या | कुल लंबित विद्यालय | संकलन प्रगति | ब्लॉक औसत पाठ्यक्रम पूर्णता |")
@@ -685,8 +766,78 @@ def main():
         </div>
         """
 
-    # Section 1 HTML (49 Govt Syllabus)
-    if active_focus_report == '49_syllabus':
+    # Section 1 HTML (18+ Voter Demand / 49 Govt Syllabus / Indent)
+    if active_focus_report == 'voter_students':
+        saman_section_html = f"""
+        <h3 style="margin:0 0 14px 0; color:#0f172a; border-left:4px solid #2563eb; padding-left:10px; font-size:16px;">
+            🗳️ 1. 18+ एवं 17+ विद्यार्थी मतदाता सूची सत्यापन व पंजीकरण मांग 2026 ({total_voter_schools} विद्यालय)
+        </h3>
+        <div style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;">
+            <div style="flex:1; min-width:130px; background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:12px; text-align:center;">
+                <div style="font-size:11px; color:#1d4ed8; font-weight:700; text-transform:uppercase;">कुल विद्यालय</div>
+                <div style="font-size:24px; font-weight:800; color:#1e3a8a; margin-top:4px;">{total_voter_schools}</div>
+            </div>
+            <div style="flex:1; min-width:130px; background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:12px; text-align:center;">
+                <div style="font-size:11px; color:#047857; font-weight:700; text-transform:uppercase;">प्रपत्र प्राप्त</div>
+                <div style="font-size:24px; font-weight:800; color:#065f46; margin-top:4px;">{voter_sub_count} <span style="font-size:14px; font-weight:600">({voter_percent}%)</span></div>
+            </div>
+            <div style="flex:1; min-width:130px; background:#fef2f2; border:1px solid #fecaca; border-radius:8px; padding:12px; text-align:center;">
+                <div style="font-size:11px; color:#b91c1c; font-weight:700; text-transform:uppercase;">लंबित डिफ़ॉल्टर</div>
+                <div style="font-size:24px; font-weight:800; color:#991b1b; margin-top:4px;">{voter_pend_count}</div>
+            </div>
+            <div style="flex:1; min-width:130px; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:12px; text-align:center;">
+                <div style="font-size:11px; color:#15803d; font-weight:700; text-transform:uppercase;">18+ कुल (पंजीकृत)</div>
+                <div style="font-size:24px; font-weight:800; color:#166534; margin-top:4px;">{voter_total_18} <span style="font-size:13px; font-weight:700">({voter_reg_18})</span></div>
+            </div>
+        </div>
+        """
+
+        escalation_section_html = ""
+        if voter_pend_count > 0:
+            esc_rows = ""
+            for idx, ps in enumerate(voter_pending_schools[:15]):
+                mob_cell = f'<a href="tel:{ps["mobile"]}" style="color:#2563eb; text-decoration:none; font-weight:600;">{ps["mobile"]}</a>' if ps["mobile"] else '---'
+                esc_rows += f"""
+                <tr style="border-bottom:1px solid #e2e8f0; background:{'#ffffff' if idx%2==0 else '#f8fafc'};">
+                    <td style="padding:8px 10px; font-size:12px; text-align:center; font-weight:bold;">{idx+1}</td>
+                    <td style="padding:8px 10px; font-size:12px; font-family:monospace; font-weight:bold; color:#1e293b;">{ps['code']}</td>
+                    <td style="padding:8px 10px; font-size:12px; font-weight:600; color:#0f172a;">{ps['name']}</td>
+                    <td style="padding:8px 10px; font-size:12px; color:#475569;">{ps['peeo']}</td>
+                    <td style="padding:8px 10px; font-size:12px; color:#1e293b;">{ps['principal']}</td>
+                    <td style="padding:8px 10px; font-size:12px; text-align:center;">{mob_cell}</td>
+                    <td style="padding:8px 10px; font-size:11px; text-align:center;"><span style="background:#fee2e2; color:#b91c1c; padding:2px 8px; border-radius:4px; font-weight:bold;">लंबित</span></td>
+                </tr>
+                """
+            more_note = f"<div style='margin-top:6px; font-size:11px; color:#b91c1c; text-align:right;'>... तथा अन्य {voter_pend_count-15} विद्यालय और लंबित हैं।</div>" if voter_pend_count > 15 else ""
+
+            escalation_section_html = f"""
+            <div style="margin-top:20px;">
+                <h3 style="margin:0 0 8px 0; color:#b91c1c; border-left:4px solid #ef4444; padding-left:10px; font-size:15px;">
+                    🚨 2. रेड-अलर्ट डिफ़ॉल्टर सूची (18+ एवं 17+ विद्यार्थी मतदाता सत्यापन लंबित)
+                </h3>
+                <div style="font-size:12px; color:#dc2626; margin-bottom:10px; font-weight:600;">
+                    ⚠️ निम्नलिखित {voter_pend_count} विद्यालयों द्वारा मतदाता सूची सत्यापन प्रपत्र अभी तक CBEO पोर्टल पर सबमिट नहीं किया गया है:
+                </div>
+                <div style="overflow-x:auto;">
+                    <table style="width:100%; border-collapse:collapse; border:1px solid #e2e8f0; font-size:12px;">
+                        <thead>
+                            <tr style="background:#f1f5f9; color:#475569; border-bottom:2px solid #cbd5e1; text-align:left;">
+                                <th style="padding:8px 10px; text-align:center;">क्र.</th>
+                                <th style="padding:8px 10px;">कोड</th>
+                                <th style="padding:8px 10px;">विद्यालय का नाम</th>
+                                <th style="padding:8px 10px;">PEEO</th>
+                                <th style="padding:8px 10px;">संस्था प्रधान</th>
+                                <th style="padding:8px 10px; text-align:center;">मोबाइल</th>
+                                <th style="padding:8px 10px; text-align:center;">स्थिति</th>
+                            </tr>
+                        </thead>
+                        <tbody>{esc_rows}</tbody>
+                    </table>
+                </div>
+                {more_note}
+            </div>
+            """
+    elif active_focus_report == '49_syllabus':
         saman_section_html = f"""
         <h3 style="margin:0 0 14px 0; color:#0f172a; border-left:4px solid #2563eb; padding-left:10px; font-size:16px;">
             🎯 1. समान परीक्षा 2026-27: पाठ्यक्रम पूर्णता % प्रगति सारांश (49 राजकीय विद्यालय)
@@ -845,7 +996,13 @@ def main():
     if custom_message:
         plain_lines.extend(["", "📢 विशेष प्रशासनिक निर्देश (जितेन्द्र व्यवस्थापक):", custom_message, "------------------------------------------------"])
 
-    if active_focus_report == '49_syllabus':
+    if active_focus_report == 'voter_students':
+        plain_lines.append(f"1. 18+ व 17+ विद्यार्थी मतदाता सूची सत्यापन मांग 2026: कुल {total_voter_schools} | प्राप्त: {voter_sub_count} ({voter_percent}%) | लंबित: {voter_pend_count} | 18+ कुल: {voter_total_18} (पंजीकृत: {voter_reg_18}) | 17+ अग्रिम: {voter_total_17}")
+        if voter_pend_count > 0:
+            plain_lines.append("\n2. लंबित डिफ़ॉल्टर विद्यालय:")
+            for idx, ps in enumerate(voter_pending_schools[:15]):
+                plain_lines.append(f"  {idx+1}. {ps['name']} ({ps['code']}) - {ps['principal']} ({ps['mobile']})")
+    elif active_focus_report == '49_syllabus':
         plain_lines.append(f"1. समान परीक्षा पाठ्यक्रम पूर्णता (49 राजकीय स्कूल): कुल {total_syl_schools} | प्राप्त: {syl_sub_count} ({syl_percent}%) | लंबित: {syl_pend_count} | औसत: {syl_block_avg}%")
         if syl_pend_count > 0:
             plain_lines.append("\n2. लंबित डिफ़ॉल्टर राजकीय विद्यालय:")
@@ -865,14 +1022,23 @@ def main():
     plain_content = "\n".join(plain_lines)
 
     # Subject line
-    pending_metric = syl_pend_count if active_focus_report == '49_syllabus' else sp_pend_count
+    if active_focus_report == 'voter_students':
+        pending_metric = voter_pend_count
+        focus_title = "18+ मतदाता सत्यापन"
+    elif active_focus_report == '49_syllabus':
+        pending_metric = syl_pend_count
+        focus_title = "पाठ्यक्रम पूर्णता"
+    else:
+        pending_metric = sp_pend_count
+        focus_title = "समान परीक्षा"
+
     if custom_message:
         short_cust = custom_message.replace('\n', ' ').strip()
         if len(short_cust) > 40:
             short_cust = short_cust[:37] + '...'
         email_subject = f"📢 [निर्देश: {short_cust}] | CBEO भिनाय दैनिक अनुपालन रिपोर्ट ({time_str} IST)"
     else:
-        email_subject = f"🏛️ CBEO भिनाय दैनिक अनुपालन रिपोर्ट ({time_str} IST) - समान परीक्षा {pending_metric} लंबित"
+        email_subject = f"🏛️ CBEO भिनाय दैनिक अनुपालन रिपोर्ट ({time_str} IST) - {focus_title} {pending_metric} लंबित"
 
     email_sent_successfully = False
 

@@ -41337,6 +41337,33 @@ const MASTER_CBEO_DATA = {
         "all_govt": false,
         "all_schools": false
       },
+      "election": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_indent": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_syllabus": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
       "database-hub": {
         "cbeo": true,
         "peeo": false,
@@ -41398,32 +41425,6 @@ const MASTER_CBEO_DATA = {
         "peeo": false,
         "govt_sec_srsec": false,
         "pvt_sec_srsec": false,
-        "all_govt": false,
-        "all_schools": false
-      },
-      "election": {
-        "cbeo": true,
-        "peeo": false,
-        "govt_sec_srsec": false,
-        "pvt_sec_srsec": false,
-        "all_govt": false,
-        "all_schools": false
-      },
-      "saman_indent": {
-        "cbeo": true,
-        "peeo": false,
-        "govt_sec_srsec": false,
-        "pvt_sec_srsec": false,
-        "sec_srsec": false,
-        "all_govt": false,
-        "all_schools": false
-      },
-      "saman_syllabus": {
-        "cbeo": true,
-        "peeo": false,
-        "govt_sec_srsec": false,
-        "pvt_sec_srsec": false,
-        "sec_srsec": false,
         "all_govt": false,
         "all_schools": false
       }
@@ -41447,6 +41448,33 @@ const MASTER_CBEO_DATA = {
         "all_govt": false,
         "all_schools": false
       },
+      "election": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_indent": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_syllabus": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
       "database-hub": {
         "cbeo": true,
         "peeo": false,
@@ -41508,43 +41536,53 @@ const MASTER_CBEO_DATA = {
         "peeo": false,
         "govt_sec_srsec": false,
         "pvt_sec_srsec": false,
-        "all_govt": false,
-        "all_schools": false
-      },
-      "election": {
-        "cbeo": true,
-        "peeo": false,
-        "govt_sec_srsec": false,
-        "pvt_sec_srsec": false,
-        "all_govt": false,
-        "all_schools": false
-      },
-      "saman_indent": {
-        "cbeo": true,
-        "peeo": false,
-        "govt_sec_srsec": false,
-        "pvt_sec_srsec": false,
-        "sec_srsec": false,
-        "all_govt": false,
-        "all_schools": false
-      },
-      "saman_syllabus": {
-        "cbeo": true,
-        "peeo": false,
-        "govt_sec_srsec": false,
-        "pvt_sec_srsec": false,
-        "sec_srsec": false,
         "all_govt": false,
         "all_schools": false
       }
     },
     "__TAB_VISIBILITY_5LEVEL__": {
-      "saman-pariksha": {
+      "voter-students": {
         "cbeo": true,
         "peeo": true,
         "govt_sec_srsec": true,
-        "pvt_sec_srsec": false,
+        "pvt_sec_srsec": true,
         "sec_srsec": true,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman-pariksha": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "election": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_indent": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_syllabus": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
         "all_govt": false,
         "all_schools": false
       },
@@ -41609,32 +41647,6 @@ const MASTER_CBEO_DATA = {
         "peeo": false,
         "govt_sec_srsec": false,
         "pvt_sec_srsec": false,
-        "all_govt": false,
-        "all_schools": false
-      },
-      "election": {
-        "cbeo": true,
-        "peeo": true,
-        "govt_sec_srsec": true,
-        "pvt_sec_srsec": false,
-        "all_govt": true,
-        "all_schools": false
-      },
-      "saman_indent": {
-        "cbeo": true,
-        "peeo": false,
-        "govt_sec_srsec": false,
-        "pvt_sec_srsec": false,
-        "sec_srsec": false,
-        "all_govt": false,
-        "all_schools": false
-      },
-      "saman_syllabus": {
-        "cbeo": true,
-        "peeo": true,
-        "govt_sec_srsec": true,
-        "pvt_sec_srsec": false,
-        "sec_srsec": true,
         "all_govt": false,
         "all_schools": false
       }
@@ -41658,6 +41670,33 @@ const MASTER_CBEO_DATA = {
         "all_govt": false,
         "all_schools": false
       },
+      "election": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_indent": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_syllabus": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
       "database-hub": {
         "cbeo": true,
         "peeo": false,
@@ -41719,32 +41758,6 @@ const MASTER_CBEO_DATA = {
         "peeo": false,
         "govt_sec_srsec": false,
         "pvt_sec_srsec": false,
-        "all_govt": false,
-        "all_schools": false
-      },
-      "election": {
-        "cbeo": true,
-        "peeo": false,
-        "govt_sec_srsec": false,
-        "pvt_sec_srsec": false,
-        "all_govt": false,
-        "all_schools": false
-      },
-      "saman_indent": {
-        "cbeo": true,
-        "peeo": false,
-        "govt_sec_srsec": false,
-        "pvt_sec_srsec": false,
-        "sec_srsec": false,
-        "all_govt": false,
-        "all_schools": false
-      },
-      "saman_syllabus": {
-        "cbeo": true,
-        "peeo": false,
-        "govt_sec_srsec": false,
-        "pvt_sec_srsec": false,
-        "sec_srsec": false,
         "all_govt": false,
         "all_schools": false
       }

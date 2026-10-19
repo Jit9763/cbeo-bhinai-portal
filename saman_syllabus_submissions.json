@@ -90,8 +90,7 @@
     "average_pct": 86.5,
     "updated_at": "2026-10-07T04:07:38.013Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T04:07:38.013Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T04:07:38.013Z"
   },
   "221754": {
     "school_code": "221754",
@@ -216,8 +215,7 @@
     "average_pct": 91.5,
     "updated_at": "2026-10-07T05:24:39.127Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T05:24:39.127Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T05:24:39.127Z"
   },
   "221755": {
     "school_code": "221755",
@@ -300,8 +298,7 @@
     "average_pct": 83.4,
     "updated_at": "2026-10-07T03:36:44.249Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T03:36:44.254Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T03:36:44.254Z"
   },
   "221756": {
     "school_code": "221756",
@@ -384,8 +381,7 @@
     "average_pct": 83.6,
     "updated_at": "2026-10-07T05:34:11.515Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T05:34:11.515Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T05:34:11.515Z"
   },
   "221757": {
     "school_code": "221757",
@@ -468,8 +464,7 @@
     "average_pct": 77.2,
     "updated_at": "2026-10-07T02:58:17.842Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T02:58:17.842Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T02:58:17.842Z"
   },
   "221758": {
     "school_code": "221758",
@@ -552,8 +547,7 @@
     "average_pct": 94.3,
     "updated_at": "2026-10-07T02:51:46.257Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T02:51:46.257Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T02:51:46.257Z"
   },
   "221759": {
     "school_code": "221759",
@@ -702,8 +696,7 @@
     "average_pct": 85,
     "updated_at": "2026-10-07T07:21:29.071Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T07:21:29.071Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T07:21:29.071Z"
   },
   "221761": {
     "school_code": "221761",
@@ -786,8 +779,7 @@
     "average_pct": 86.4,
     "updated_at": "2026-10-07T11:27:44.235Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T11:27:44.235Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T11:27:44.235Z"
   },
   "221762": {
     "school_code": "221762",
@@ -870,8 +862,7 @@
     "average_pct": 84.3,
     "updated_at": "2026-10-07T05:51:21.866Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T05:51:21.867Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T05:51:21.867Z"
   },
   "221764": {
     "school_code": "221764",
@@ -1126,8 +1117,7 @@
     "average_pct": 85.6,
     "updated_at": "2026-10-07T06:33:41.340Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T06:33:41.343Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T06:33:41.343Z"
   },
   "221767": {
     "school_code": "221767",
@@ -1189,7 +1179,11 @@
         }
       ]
     },
-    "submitted": true
+    "submitted": true,
+    "exam_code": "AJM04G221767",
+    "incharge_name": "Pankaj Tiwari",
+    "incharge_mobile": "9928649547",
+    "updated_at": "2026-10-11T12:15:11.605Z"
   },
   "221768": {
     "school_code": "221768",
@@ -1398,8 +1392,7 @@
     "average_pct": 87.6,
     "updated_at": "2026-10-07T04:22:01.240Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T04:22:01.241Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T04:22:01.241Z"
   },
   "221770": {
     "school_code": "221770",
@@ -1532,17 +1525,20 @@
     "average_pct": 90.4,
     "updated_at": "2026-10-07T16:14:12.272Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T16:14:12.272Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T16:14:12.272Z"
   },
   "221772": {
     "school_code": "221772",
-    "exam_code": "AJM04G221772",
+    "school_name": "रा.उ.मा.वि. नागोला",
+    "peeo_name": "PEEO NAGOLA",
+    "peeo_code": "221772",
     "principal_name": "VINOD KUMAR RAO",
     "principal_mobile": "8955306674",
-    "incharge_name": "MUKESH KUMAR RAWAT",
-    "incharge_mobile": "9799203204",
     "submitted_by": "VINOD KUMAR RAO",
+    "submitter_mobile": "8955306674",
+    "is_submitted": true,
+    "submitted_at": "2026-10-08T06:04:09.603Z",
+    "average_pct": 73,
     "c9": {
       "zero_enrolment": false,
       "hindi": 75,
@@ -1591,14 +1587,10 @@
         }
       ]
     },
-    "average_pct": 73,
+    "exam_code": "AJM04G221772",
+    "incharge_name": "MUKESH KUMAR RAWAT",
+    "incharge_mobile": "9799203204",
     "updated_at": "2026-10-08T05:54:45.160Z",
-    "is_submitted": true,
-    "submitted_at": "2026-10-08T06:04:09.603Z",
-    "school_name": "रा.उ.मा.वि. नागोला",
-    "peeo_name": "PEEO NAGOLA",
-    "peeo_code": "221772",
-    "submitter_mobile": "8955306674",
     "submitted": true
   },
   "221773": {
@@ -1682,8 +1674,7 @@
     "average_pct": 88.6,
     "updated_at": "2026-10-08T07:57:39.565Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-08T07:57:39.569Z",
-    "submitted": true
+    "submitted_at": "2026-10-08T07:57:39.569Z"
   },
   "221774": {
     "school_code": "221774",
@@ -1766,8 +1757,7 @@
     "average_pct": 85.2,
     "updated_at": "2026-10-07T02:24:14.965Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T02:24:14.965Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T02:24:14.965Z"
   },
   "221775": {
     "school_code": "221775",
@@ -1850,8 +1840,7 @@
     "average_pct": 81.3,
     "updated_at": "2026-10-07T13:48:51.249Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T13:48:51.249Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T13:48:51.249Z"
   },
   "221776": {
     "school_code": "221776",
@@ -1898,8 +1887,7 @@
     "average_pct": 81,
     "updated_at": "2026-10-07T05:33:20.515Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T05:33:20.515Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T05:33:20.515Z"
   },
   "221777": {
     "school_code": "221777",
@@ -1982,8 +1970,7 @@
     "average_pct": 81.7,
     "updated_at": "2026-10-07T04:02:21.979Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T04:02:21.979Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T04:02:21.979Z"
   },
   "221778": {
     "school_code": "221778",
@@ -2108,8 +2095,7 @@
     "average_pct": 85.7,
     "updated_at": "2026-10-07T04:08:27.079Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T04:08:27.079Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T04:08:27.079Z"
   },
   "221780": {
     "school_code": "221780",
@@ -2328,8 +2314,7 @@
     "average_pct": 90.6,
     "updated_at": "2026-10-07T03:25:20.968Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T03:25:20.969Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T03:25:20.969Z"
   },
   "221781": {
     "school_code": "221781",
@@ -2390,8 +2375,7 @@
           "pct": 100
         }
       ]
-    },
-    "submitted": true
+    }
   },
   "221782": {
     "school_code": "221782",
@@ -2474,8 +2458,7 @@
     "average_pct": 85.8,
     "updated_at": "2026-10-07T07:19:13.913Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T07:19:13.913Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T07:19:13.913Z"
   },
   "221783": {
     "school_code": "221783",
@@ -2624,8 +2607,7 @@
     "average_pct": 77.5,
     "updated_at": "2026-10-10T10:56:19.397Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-10T10:56:19.397Z",
-    "submitted": true
+    "submitted_at": "2026-10-10T10:56:19.397Z"
   },
   "221785": {
     "school_code": "221785",
@@ -2708,8 +2690,7 @@
     "average_pct": 84.7,
     "updated_at": "2026-10-09T14:23:08.688Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-09T14:23:08.688Z",
-    "submitted": true
+    "submitted_at": "2026-10-09T14:23:08.688Z"
   },
   "221786": {
     "school_code": "221786",
@@ -2792,8 +2773,7 @@
     "average_pct": 100,
     "updated_at": "2026-10-07T14:50:25.071Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T14:50:25.071Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T14:50:25.071Z"
   },
   "221787": {
     "school_code": "221787",
@@ -2856,21 +2836,16 @@
     "average_pct": 88.3,
     "updated_at": "2026-10-10T07:18:00.877Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-10T07:18:00.877Z",
-    "submitted": true
+    "submitted_at": "2026-10-10T07:18:00.877Z"
   },
   "221788": {
     "school_code": "221788",
-    "school_name": "रा.उ.मा.वि. पाडंगा",
-    "peeo_name": "PEEO PADANGA",
-    "peeo_code": "221788",
+    "exam_code": "AJM04G221788",
     "principal_name": "SMT ASHA RAJ",
     "principal_mobile": "7877090975",
+    "incharge_name": "Pankaj sharma",
+    "incharge_mobile": "9413135717",
     "submitted_by": "SMT ASHA RAJ",
-    "submitter_mobile": "7877090975",
-    "is_submitted": true,
-    "submitted_at": "2026-10-08T15:53:28.597Z",
-    "average_pct": 85,
     "c9": {
       "zero_enrolment": false,
       "hindi": 80,
@@ -2941,10 +2916,14 @@
         }
       ]
     },
-    "exam_code": "AJM04G221788",
-    "incharge_name": "Pankaj sharma",
-    "incharge_mobile": "9413135717",
+    "average_pct": 85,
     "updated_at": "2026-10-08T15:53:28.597Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-08T15:53:28.597Z",
+    "school_name": "रा.उ.मा.वि. पाडंगा",
+    "peeo_name": "PEEO PADANGA",
+    "peeo_code": "221788",
+    "submitter_mobile": "7877090975",
     "submitted": true
   },
   "401778": {
@@ -3033,8 +3012,7 @@
     "average_pct": 71.2,
     "updated_at": "2026-10-07T04:13:10.794Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T04:13:10.794Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T04:13:10.794Z"
   },
   "410632": {
     "school_code": "410632",
@@ -3149,8 +3127,7 @@
     "average_pct": 0,
     "updated_at": "2026-10-10T11:38:03.072Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-10T11:38:03.072Z",
-    "submitted": true
+    "submitted_at": "2026-10-10T11:38:03.072Z"
   },
   "410704": {
     "school_code": "410704",
@@ -3197,8 +3174,7 @@
     "average_pct": 75.8,
     "updated_at": "2026-10-10T07:23:15.593Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-10T07:23:15.593Z",
-    "submitted": true
+    "submitted_at": "2026-10-10T07:23:15.593Z"
   },
   "485030": {
     "school_code": "485030",
@@ -3345,10 +3321,9 @@
       ]
     },
     "average_pct": 72.5,
-    "updated_at": "2026-10-07T11:54:29.486Z",
+    "updated_at": "2026-10-10T16:36:54.772Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T11:54:29.486Z",
-    "submitted": true
+    "submitted_at": "2026-10-10T16:36:54.772Z"
   },
   "488781": {
     "school_code": "488781",
@@ -3651,8 +3626,7 @@
     "average_pct": 82,
     "updated_at": "2026-10-07T11:04:17.792Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T11:04:17.792Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T11:04:17.792Z"
   },
   "488946": {
     "school_code": "488946",
@@ -3735,8 +3709,7 @@
     "average_pct": 88,
     "updated_at": "2026-10-07T03:39:33.537Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T03:39:33.541Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T03:39:33.541Z"
   },
   "488947": {
     "school_code": "488947",
@@ -3869,8 +3842,7 @@
     "average_pct": 91.5,
     "updated_at": "2026-10-07T04:31:27.011Z",
     "is_submitted": true,
-    "submitted_at": "2026-10-07T04:31:27.011Z",
-    "submitted": true
+    "submitted_at": "2026-10-07T04:31:27.011Z"
   },
   "506830": {
     "school_code": "506830",
@@ -3933,5 +3905,68 @@
       ]
     },
     "submitted": true
+  },
+  "221763": {
+    "school_code": "221763",
+    "exam_code": "AJM04G221763",
+    "principal_name": "RAM CHANDRA GUJAR",
+    "principal_mobile": "9252068645",
+    "incharge_name": "Dinesh kumar kumawat",
+    "incharge_mobile": "9829896189",
+    "submitted_by": "RAM CHANDRA GUJAR",
+    "c9": {
+      "zero_enrolment": false,
+      "hindi": 70,
+      "english": 75,
+      "maths": 70,
+      "science": 70,
+      "sst": 75,
+      "sanskrit": 75,
+      "urdu": 0
+    },
+    "c10": {
+      "zero_enrolment": false,
+      "hindi": 75,
+      "english": 75,
+      "maths": 70,
+      "science": 70,
+      "sst": 75,
+      "sanskrit": 75,
+      "urdu": 0
+    },
+    "c11": {
+      "zero_enrolment": false,
+      "comp_hindi": 75,
+      "comp_english": 70,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 75
+        }
+      ]
+    },
+    "c12": {
+      "zero_enrolment": false,
+      "comp_hindi": 75,
+      "comp_english": 75,
+      "faculties": [
+        "arts"
+      ],
+      "electives": [
+        {
+          "key": "history",
+          "name": "इतिहास (History)",
+          "pct": 75
+        }
+      ]
+    },
+    "average_pct": 73.3,
+    "updated_at": "2026-10-12T04:49:43.480Z",
+    "is_submitted": true,
+    "submitted_at": "2026-10-12T04:49:43.481Z"
   }
 }

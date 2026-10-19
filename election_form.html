@@ -1043,6 +1043,9 @@
         booth_details: booth_details,
         remarks: document.getElementById('election-general-remarks')?.value || '',
         principal: principal,
+        submitted: true,
+        is_submitted: true,
+        timestamp: Date.now(),
         submitted_at: new Date().toLocaleString('hi-IN')
       };
     }

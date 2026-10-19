@@ -68,7 +68,7 @@
 | 22 | `221762` | `---` | **GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD** | राजकीय | PEEO GURHA KHURD | deepesh kumar sisodia <br>📞 `9414554344` | --- <br>📞 `---` |
 | 23 | `485030` | `---` | **PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI** | राजकीय | PEEO GURHA KHURD | श्री भूपेंद्र सिंह चारण (वरिष्ठ अध्यापक / संस्था प्रधान) <br>📞 `9929527319` | --- <br>📞 `---` |
 | 24 | `221765` | `---` | **GOVT. SENIOR SECONDARY SCHOOL KANAI KALA** | राजकीय | PEEO KANAI KALAN | NARESH KUMAR <br>📞 `9166233899` | --- <br>📞 `---` |
-| 25 | `401778` | `---` | **GOVT. SENIOR SECONDARY SCHOOL NEMEDA** | राजकीय | PEEO KANAI KALAN | प्रभारी संस्था प्रधान (रा.उ.मा.वि. नेमेड़ा) <br>📞 `9461249418` | --- <br>📞 `---` |
+| 25 | `401778` | `---` | **GOVT. SENIOR SECONDARY SCHOOL NEMEDA** | राजकीय | PEEO KANAI KALAN | प्रभारी संस्था प्रधान (रा.उ.मा.वि. निमेड़ा) <br>📞 `9461249418` | --- <br>📞 `---` |
 | 26 | `221773` | `---` | **GOVT. SENIOR SECONDARY SCHOOL KARANTI** | राजकीय | PEEO KARATI | DEEPAK SANWARIYA <br>📞 `9950736300` | --- <br>📞 `---` |
 | 27 | `221774` | `---` | **GOVT. SENIOR SECONDARY SCHOOL KHEDI** | राजकीय | PEEO KARATI | SUSHAMA PANDEY <br>📞 `8107098772` | --- <br>📞 `---` |
 | 28 | `488791` | `---` | **GOVT. GIRLS SENIOR SECONDARY SCHOOL KHEDI** | राजकीय | PEEO KARATI | सुश्री चंचल कछावा (प्रभारी संस्था प्रधान) <br>📞 `8094606900` | --- <br>📞 `---` |
