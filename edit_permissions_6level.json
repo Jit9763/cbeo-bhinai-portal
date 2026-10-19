@@ -1,10 +1,35 @@
 {
-  "saman_pariksha": {
+  "voter_students": {
     "cbeo": true,
     "peeo": true,
     "govt_sec_srsec": true,
-    "pvt_sec_srsec": false,
+    "pvt_sec_srsec": true,
     "sec_srsec": true,
+    "all_govt": false,
+    "all_schools": false
+  },
+  "staff": {
+    "cbeo": true,
+    "peeo": false,
+    "govt_sec_srsec": false,
+    "pvt_sec_srsec": false,
+    "all_govt": false,
+    "all_schools": false
+  },
+  "school_head": {
+    "cbeo": true,
+    "peeo": false,
+    "govt_sec_srsec": false,
+    "pvt_sec_srsec": false,
+    "all_govt": false,
+    "all_schools": false
+  },
+  "saman_pariksha": {
+    "cbeo": true,
+    "peeo": false,
+    "govt_sec_srsec": false,
+    "pvt_sec_srsec": false,
+    "sec_srsec": false,
     "all_govt": false,
     "all_schools": false
   },
@@ -19,10 +44,34 @@
   },
   "saman_syllabus": {
     "cbeo": true,
-    "peeo": true,
-    "govt_sec_srsec": true,
+    "peeo": false,
+    "govt_sec_srsec": false,
     "pvt_sec_srsec": false,
-    "sec_srsec": true,
+    "sec_srsec": false,
+    "all_govt": false,
+    "all_schools": false
+  },
+  "database_hub": {
+    "cbeo": true,
+    "peeo": false,
+    "govt_sec_srsec": false,
+    "pvt_sec_srsec": false,
+    "all_govt": false,
+    "all_schools": false
+  },
+  "demands": {
+    "cbeo": true,
+    "peeo": false,
+    "govt_sec_srsec": false,
+    "pvt_sec_srsec": false,
+    "all_govt": false,
+    "all_schools": false
+  },
+  "directory": {
+    "cbeo": true,
+    "peeo": false,
+    "govt_sec_srsec": false,
+    "pvt_sec_srsec": false,
     "all_govt": false,
     "all_schools": false
   }

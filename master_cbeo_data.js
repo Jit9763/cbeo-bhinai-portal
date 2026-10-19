@@ -1914,7 +1914,7 @@ const MASTER_CBEO_DATA = {
           "village_en": "KANAI KHURD"
         },
         {
-          "school_name": "रा.उ.मा.वि. नेमेड़ा",
+          "school_name": "रा.उ.मा.वि. निमेड़ा",
           "category": "Govt. Elementary / Sec",
           "panchayat": "KANAIKALA",
           "village": "निमेड़ा",
@@ -1922,11 +1922,11 @@ const MASTER_CBEO_DATA = {
           "shala_darpan_code": "401778",
           "type": "Government",
           "is_peeo_nodal": false,
-          "school_name_hi": "रा.उ.मा.वि. नेमेड़ा",
+          "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
           "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA",
           "peeo_name": "PEEO KANAI KALAN",
           "peeo_code": "221765",
-          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा | शा.दा. कोड: 401778",
+          "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा | शा.दा. कोड: 401778",
           "village_hi": "निमेड़ा",
           "village_en": "NIMEDA"
         },
@@ -17608,8 +17608,8 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1",
       "subject": "",
       "subject_en": "",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा",
-      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा",
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा",
       "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA",
       "shala_darpan_code": "401778",
       "school_code": "401778",
@@ -18021,8 +18021,8 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1",
       "subject": "",
       "subject_en": "",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा",
-      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा",
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा",
       "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA",
       "shala_darpan_code": "401778",
       "school_code": "401778",
@@ -18049,8 +18049,8 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2",
       "subject": "English",
       "subject_en": "English",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा",
-      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा",
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा",
       "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA",
       "shala_darpan_code": "401778",
       "school_code": "401778",
@@ -18077,8 +18077,8 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-2",
       "subject": "Mathematics/ Science",
       "subject_en": "Mathematics/ Science",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा",
-      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा",
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा",
       "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA",
       "shala_darpan_code": "401778",
       "school_code": "401778",
@@ -18105,8 +18105,8 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher",
       "subject": "",
       "subject_en": "",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा",
-      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा",
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा",
       "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA",
       "shala_darpan_code": "401778",
       "school_code": "401778",
@@ -18133,8 +18133,8 @@ const MASTER_CBEO_DATA = {
       "post_en": "Teacher Level-1",
       "subject": "",
       "subject_en": "",
-      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा",
-      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा",
+      "school_name": "राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा",
+      "school_name_hi": "राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा",
       "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA",
       "shala_darpan_code": "401778",
       "school_code": "401778",
@@ -31811,7 +31811,7 @@ const MASTER_CBEO_DATA = {
     },
     {
       "s_no": 25,
-      "school_name": "रा.उ.मा.वि. नेमेड़ा",
+      "school_name": "रा.उ.मा.वि. निमेड़ा",
       "shala_darpan_code": "401778",
       "type": "Government",
       "category": "Govt. Sr. Sec.",
@@ -31820,13 +31820,13 @@ const MASTER_CBEO_DATA = {
       "peeo_code": "221765",
       "default_password": "401778",
       "exam_code": "",
-      "principal_name": "प्रभारी संस्था प्रधान (रा.उ.मा.वि. नेमेड़ा)",
+      "principal_name": "प्रभारी संस्था प्रधान (रा.उ.मा.वि. निमेड़ा)",
       "principal_mobile": "9461249418",
       "incharge_name": "",
       "incharge_mobile": "",
-      "school_name_hi": "रा.उ.मा.वि. नेमेड़ा",
+      "school_name_hi": "रा.उ.मा.वि. निमेड़ा",
       "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA",
-      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, नेमेड़ा | शा.दा. कोड: 401778"
+      "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, निमेड़ा | शा.दा. कोड: 401778"
     },
     {
       "s_no": 26,
@@ -32520,6 +32520,24 @@ const MASTER_CBEO_DATA = {
       "village": "भिनाय",
       "village_hi": "भिनाय",
       "village_en": "BHINAI"
+    },
+    {
+      "s_no": 58,
+      "school_name": "रा.उ.मा.वि. मॉडल टेस्ट स्कूल भिनाय",
+      "shala_darpan_code": "999999",
+      "type": "Government",
+      "category": "Govt. Sr. Sec.",
+      "peeo_id": "PEEO18",
+      "peeo_name": "PEEO BHINAY",
+      "peeo_code": "221780",
+      "default_password": "999999",
+      "exam_code": "AJM04G999999",
+      "principal_name": "जितेन्द्र कुमार (टेस्ट व्यवस्थापक)",
+      "principal_mobile": "9928254317",
+      "incharge_name": "परीक्षण प्रभारी",
+      "incharge_mobile": "9928254317",
+      "school_name_hi": "रा.उ.मा.वि. मॉडल टेस्ट स्कूल भिनाय",
+      "school_name_en": "Govt. Model Test Sr. Sec. School Bhinai"
     }
   ],
   "demands": [
@@ -37407,8 +37425,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 86.5,
       "updated_at": "2026-10-07T04:07:38.013Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T04:07:38.013Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T04:07:38.013Z"
     },
     "221754": {
       "school_code": "221754",
@@ -37533,8 +37550,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 91.5,
       "updated_at": "2026-10-07T05:24:39.127Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T05:24:39.127Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T05:24:39.127Z"
     },
     "221755": {
       "school_code": "221755",
@@ -37617,8 +37633,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 83.4,
       "updated_at": "2026-10-07T03:36:44.249Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T03:36:44.254Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T03:36:44.254Z"
     },
     "221756": {
       "school_code": "221756",
@@ -37701,8 +37716,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 83.6,
       "updated_at": "2026-10-07T05:34:11.515Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T05:34:11.515Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T05:34:11.515Z"
     },
     "221757": {
       "school_code": "221757",
@@ -37785,8 +37799,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 77.2,
       "updated_at": "2026-10-07T02:58:17.842Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T02:58:17.842Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T02:58:17.842Z"
     },
     "221758": {
       "school_code": "221758",
@@ -37869,8 +37882,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 94.3,
       "updated_at": "2026-10-07T02:51:46.257Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T02:51:46.257Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T02:51:46.257Z"
     },
     "221759": {
       "school_code": "221759",
@@ -38019,8 +38031,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 85,
       "updated_at": "2026-10-07T07:21:29.071Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T07:21:29.071Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T07:21:29.071Z"
     },
     "221761": {
       "school_code": "221761",
@@ -38103,8 +38114,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 86.4,
       "updated_at": "2026-10-07T11:27:44.235Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T11:27:44.235Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T11:27:44.235Z"
     },
     "221762": {
       "school_code": "221762",
@@ -38187,8 +38197,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 84.3,
       "updated_at": "2026-10-07T05:51:21.866Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T05:51:21.867Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T05:51:21.867Z"
     },
     "221764": {
       "school_code": "221764",
@@ -38443,8 +38452,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 85.6,
       "updated_at": "2026-10-07T06:33:41.340Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T06:33:41.343Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T06:33:41.343Z"
     },
     "221767": {
       "school_code": "221767",
@@ -38506,7 +38514,11 @@ const MASTER_CBEO_DATA = {
           }
         ]
       },
-      "submitted": true
+      "submitted": true,
+      "exam_code": "AJM04G221767",
+      "incharge_name": "Pankaj Tiwari",
+      "incharge_mobile": "9928649547",
+      "updated_at": "2026-10-11T12:15:11.605Z"
     },
     "221768": {
       "school_code": "221768",
@@ -38715,8 +38727,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 87.6,
       "updated_at": "2026-10-07T04:22:01.240Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T04:22:01.241Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T04:22:01.241Z"
     },
     "221770": {
       "school_code": "221770",
@@ -38849,17 +38860,20 @@ const MASTER_CBEO_DATA = {
       "average_pct": 90.4,
       "updated_at": "2026-10-07T16:14:12.272Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T16:14:12.272Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T16:14:12.272Z"
     },
     "221772": {
       "school_code": "221772",
-      "exam_code": "AJM04G221772",
+      "school_name": "रा.उ.मा.वि. नागोला",
+      "peeo_name": "PEEO NAGOLA",
+      "peeo_code": "221772",
       "principal_name": "VINOD KUMAR RAO",
       "principal_mobile": "8955306674",
-      "incharge_name": "MUKESH KUMAR RAWAT",
-      "incharge_mobile": "9799203204",
       "submitted_by": "VINOD KUMAR RAO",
+      "submitter_mobile": "8955306674",
+      "is_submitted": true,
+      "submitted_at": "2026-10-08T06:04:09.603Z",
+      "average_pct": 73,
       "c9": {
         "zero_enrolment": false,
         "hindi": 75,
@@ -38908,14 +38922,10 @@ const MASTER_CBEO_DATA = {
           }
         ]
       },
-      "average_pct": 73,
+      "exam_code": "AJM04G221772",
+      "incharge_name": "MUKESH KUMAR RAWAT",
+      "incharge_mobile": "9799203204",
       "updated_at": "2026-10-08T05:54:45.160Z",
-      "is_submitted": true,
-      "submitted_at": "2026-10-08T06:04:09.603Z",
-      "school_name": "रा.उ.मा.वि. नागोला",
-      "peeo_name": "PEEO NAGOLA",
-      "peeo_code": "221772",
-      "submitter_mobile": "8955306674",
       "submitted": true
     },
     "221773": {
@@ -38999,8 +39009,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 88.6,
       "updated_at": "2026-10-08T07:57:39.565Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-08T07:57:39.569Z",
-      "submitted": true
+      "submitted_at": "2026-10-08T07:57:39.569Z"
     },
     "221774": {
       "school_code": "221774",
@@ -39083,8 +39092,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 85.2,
       "updated_at": "2026-10-07T02:24:14.965Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T02:24:14.965Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T02:24:14.965Z"
     },
     "221775": {
       "school_code": "221775",
@@ -39167,8 +39175,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 81.3,
       "updated_at": "2026-10-07T13:48:51.249Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T13:48:51.249Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T13:48:51.249Z"
     },
     "221776": {
       "school_code": "221776",
@@ -39215,8 +39222,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 81,
       "updated_at": "2026-10-07T05:33:20.515Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T05:33:20.515Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T05:33:20.515Z"
     },
     "221777": {
       "school_code": "221777",
@@ -39299,8 +39305,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 81.7,
       "updated_at": "2026-10-07T04:02:21.979Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T04:02:21.979Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T04:02:21.979Z"
     },
     "221778": {
       "school_code": "221778",
@@ -39425,8 +39430,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 85.7,
       "updated_at": "2026-10-07T04:08:27.079Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T04:08:27.079Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T04:08:27.079Z"
     },
     "221780": {
       "school_code": "221780",
@@ -39645,8 +39649,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 90.6,
       "updated_at": "2026-10-07T03:25:20.968Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T03:25:20.969Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T03:25:20.969Z"
     },
     "221781": {
       "school_code": "221781",
@@ -39707,8 +39710,7 @@ const MASTER_CBEO_DATA = {
             "pct": 100
           }
         ]
-      },
-      "submitted": true
+      }
     },
     "221782": {
       "school_code": "221782",
@@ -39791,8 +39793,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 85.8,
       "updated_at": "2026-10-07T07:19:13.913Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T07:19:13.913Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T07:19:13.913Z"
     },
     "221783": {
       "school_code": "221783",
@@ -39941,8 +39942,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 77.5,
       "updated_at": "2026-10-10T10:56:19.397Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-10T10:56:19.397Z",
-      "submitted": true
+      "submitted_at": "2026-10-10T10:56:19.397Z"
     },
     "221785": {
       "school_code": "221785",
@@ -40025,8 +40025,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 84.7,
       "updated_at": "2026-10-09T14:23:08.688Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-09T14:23:08.688Z",
-      "submitted": true
+      "submitted_at": "2026-10-09T14:23:08.688Z"
     },
     "221786": {
       "school_code": "221786",
@@ -40109,8 +40108,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 100,
       "updated_at": "2026-10-07T14:50:25.071Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T14:50:25.071Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T14:50:25.071Z"
     },
     "221787": {
       "school_code": "221787",
@@ -40173,21 +40171,16 @@ const MASTER_CBEO_DATA = {
       "average_pct": 88.3,
       "updated_at": "2026-10-10T07:18:00.877Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-10T07:18:00.877Z",
-      "submitted": true
+      "submitted_at": "2026-10-10T07:18:00.877Z"
     },
     "221788": {
       "school_code": "221788",
-      "school_name": "रा.उ.मा.वि. पाडंगा",
-      "peeo_name": "PEEO PADANGA",
-      "peeo_code": "221788",
+      "exam_code": "AJM04G221788",
       "principal_name": "SMT ASHA RAJ",
       "principal_mobile": "7877090975",
+      "incharge_name": "Pankaj sharma",
+      "incharge_mobile": "9413135717",
       "submitted_by": "SMT ASHA RAJ",
-      "submitter_mobile": "7877090975",
-      "is_submitted": true,
-      "submitted_at": "2026-10-08T15:53:28.597Z",
-      "average_pct": 85,
       "c9": {
         "zero_enrolment": false,
         "hindi": 80,
@@ -40258,10 +40251,14 @@ const MASTER_CBEO_DATA = {
           }
         ]
       },
-      "exam_code": "AJM04G221788",
-      "incharge_name": "Pankaj sharma",
-      "incharge_mobile": "9413135717",
+      "average_pct": 85,
       "updated_at": "2026-10-08T15:53:28.597Z",
+      "is_submitted": true,
+      "submitted_at": "2026-10-08T15:53:28.597Z",
+      "school_name": "रा.उ.मा.वि. पाडंगा",
+      "peeo_name": "PEEO PADANGA",
+      "peeo_code": "221788",
+      "submitter_mobile": "7877090975",
       "submitted": true
     },
     "401778": {
@@ -40350,8 +40347,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 71.2,
       "updated_at": "2026-10-07T04:13:10.794Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T04:13:10.794Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T04:13:10.794Z"
     },
     "410632": {
       "school_code": "410632",
@@ -40466,8 +40462,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 0,
       "updated_at": "2026-10-10T11:38:03.072Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-10T11:38:03.072Z",
-      "submitted": true
+      "submitted_at": "2026-10-10T11:38:03.072Z"
     },
     "410704": {
       "school_code": "410704",
@@ -40514,8 +40509,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 75.8,
       "updated_at": "2026-10-10T07:23:15.593Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-10T07:23:15.593Z",
-      "submitted": true
+      "submitted_at": "2026-10-10T07:23:15.593Z"
     },
     "485030": {
       "school_code": "485030",
@@ -40662,10 +40656,9 @@ const MASTER_CBEO_DATA = {
         ]
       },
       "average_pct": 72.5,
-      "updated_at": "2026-10-07T11:54:29.486Z",
+      "updated_at": "2026-10-10T16:36:54.772Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T11:54:29.486Z",
-      "submitted": true
+      "submitted_at": "2026-10-10T16:36:54.772Z"
     },
     "488781": {
       "school_code": "488781",
@@ -40968,8 +40961,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 82,
       "updated_at": "2026-10-07T11:04:17.792Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T11:04:17.792Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T11:04:17.792Z"
     },
     "488946": {
       "school_code": "488946",
@@ -41052,8 +41044,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 88,
       "updated_at": "2026-10-07T03:39:33.537Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T03:39:33.541Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T03:39:33.541Z"
     },
     "488947": {
       "school_code": "488947",
@@ -41186,8 +41177,7 @@ const MASTER_CBEO_DATA = {
       "average_pct": 91.5,
       "updated_at": "2026-10-07T04:31:27.011Z",
       "is_submitted": true,
-      "submitted_at": "2026-10-07T04:31:27.011Z",
-      "submitted": true
+      "submitted_at": "2026-10-07T04:31:27.011Z"
     },
     "506830": {
       "school_code": "506830",
@@ -41250,18 +41240,90 @@ const MASTER_CBEO_DATA = {
         ]
       },
       "submitted": true
+    },
+    "221763": {
+      "school_code": "221763",
+      "exam_code": "AJM04G221763",
+      "principal_name": "RAM CHANDRA GUJAR",
+      "principal_mobile": "9252068645",
+      "incharge_name": "Dinesh kumar kumawat",
+      "incharge_mobile": "9829896189",
+      "submitted_by": "RAM CHANDRA GUJAR",
+      "c9": {
+        "zero_enrolment": false,
+        "hindi": 70,
+        "english": 75,
+        "maths": 70,
+        "science": 70,
+        "sst": 75,
+        "sanskrit": 75,
+        "urdu": 0
+      },
+      "c10": {
+        "zero_enrolment": false,
+        "hindi": 75,
+        "english": 75,
+        "maths": 70,
+        "science": 70,
+        "sst": 75,
+        "sanskrit": 75,
+        "urdu": 0
+      },
+      "c11": {
+        "zero_enrolment": false,
+        "comp_hindi": 75,
+        "comp_english": 70,
+        "faculties": [
+          "arts"
+        ],
+        "electives": [
+          {
+            "key": "history",
+            "name": "इतिहास (History)",
+            "pct": 75
+          }
+        ]
+      },
+      "c12": {
+        "zero_enrolment": false,
+        "comp_hindi": 75,
+        "comp_english": 75,
+        "faculties": [
+          "arts"
+        ],
+        "electives": [
+          {
+            "key": "history",
+            "name": "इतिहास (History)",
+            "pct": 75
+          }
+        ]
+      },
+      "average_pct": 73.3,
+      "updated_at": "2026-10-12T04:49:43.480Z",
+      "is_submitted": true,
+      "submitted_at": "2026-10-12T04:49:43.481Z"
     }
   },
   "portal_settings_bundle": {
     "__SAMAN_ACTIVE_FORM__": "syllabus",
     "saman_active_form": "syllabus",
     "__TAB_VISIBILITY_6LEVEL__": {
-      "saman-pariksha": {
+      "voter-students": {
         "cbeo": true,
         "peeo": true,
         "govt_sec_srsec": true,
-        "pvt_sec_srsec": false,
+        "pvt_sec_srsec": true,
         "sec_srsec": true,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman-pariksha": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
         "all_govt": false,
         "all_schools": false
       },
@@ -41331,10 +41393,10 @@ const MASTER_CBEO_DATA = {
       },
       "election": {
         "cbeo": true,
-        "peeo": true,
-        "govt_sec_srsec": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
         "pvt_sec_srsec": false,
-        "all_govt": true,
+        "all_govt": false,
         "all_schools": false
       },
       "saman_indent": {
@@ -41348,21 +41410,30 @@ const MASTER_CBEO_DATA = {
       },
       "saman_syllabus": {
         "cbeo": true,
-        "peeo": true,
-        "govt_sec_srsec": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
         "pvt_sec_srsec": false,
-        "sec_srsec": true,
+        "sec_srsec": false,
         "all_govt": false,
         "all_schools": false
       }
     },
     "tab_visibility_6level": {
-      "saman-pariksha": {
+      "voter-students": {
         "cbeo": true,
         "peeo": true,
         "govt_sec_srsec": true,
-        "pvt_sec_srsec": false,
+        "pvt_sec_srsec": true,
         "sec_srsec": true,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman-pariksha": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
         "all_govt": false,
         "all_schools": false
       },
@@ -41432,10 +41503,10 @@ const MASTER_CBEO_DATA = {
       },
       "election": {
         "cbeo": true,
-        "peeo": true,
-        "govt_sec_srsec": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
         "pvt_sec_srsec": false,
-        "all_govt": true,
+        "all_govt": false,
         "all_schools": false
       },
       "saman_indent": {
@@ -41449,10 +41520,10 @@ const MASTER_CBEO_DATA = {
       },
       "saman_syllabus": {
         "cbeo": true,
-        "peeo": true,
-        "govt_sec_srsec": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
         "pvt_sec_srsec": false,
-        "sec_srsec": true,
+        "sec_srsec": false,
         "all_govt": false,
         "all_schools": false
       }
@@ -41559,12 +41630,21 @@ const MASTER_CBEO_DATA = {
       }
     },
     "tab_visibility_5level": {
-      "saman-pariksha": {
+      "voter-students": {
         "cbeo": true,
         "peeo": true,
         "govt_sec_srsec": true,
-        "pvt_sec_srsec": false,
+        "pvt_sec_srsec": true,
         "sec_srsec": true,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman-pariksha": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
         "all_govt": false,
         "all_schools": false
       },
@@ -41634,10 +41714,10 @@ const MASTER_CBEO_DATA = {
       },
       "election": {
         "cbeo": true,
-        "peeo": true,
-        "govt_sec_srsec": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
         "pvt_sec_srsec": false,
-        "all_govt": true,
+        "all_govt": false,
         "all_schools": false
       },
       "saman_indent": {
@@ -41651,21 +41731,46 @@ const MASTER_CBEO_DATA = {
       },
       "saman_syllabus": {
         "cbeo": true,
-        "peeo": true,
-        "govt_sec_srsec": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
         "pvt_sec_srsec": false,
-        "sec_srsec": true,
+        "sec_srsec": false,
         "all_govt": false,
         "all_schools": false
       }
     },
     "__EDIT_PERMISSIONS_6LEVEL__": {
-      "saman_pariksha": {
+      "voter_students": {
         "cbeo": true,
         "peeo": true,
         "govt_sec_srsec": true,
-        "pvt_sec_srsec": false,
+        "pvt_sec_srsec": true,
         "sec_srsec": true,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "staff": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "school_head": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_pariksha": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
         "all_govt": false,
         "all_schools": false
       },
@@ -41680,21 +41785,70 @@ const MASTER_CBEO_DATA = {
       },
       "saman_syllabus": {
         "cbeo": true,
-        "peeo": true,
-        "govt_sec_srsec": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
         "pvt_sec_srsec": false,
-        "sec_srsec": true,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "database_hub": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "demands": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "directory": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
         "all_govt": false,
         "all_schools": false
       }
     },
     "edit_permissions_6level": {
-      "saman_pariksha": {
+      "voter_students": {
         "cbeo": true,
         "peeo": true,
         "govt_sec_srsec": true,
-        "pvt_sec_srsec": false,
+        "pvt_sec_srsec": true,
         "sec_srsec": true,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "staff": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "school_head": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_pariksha": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
         "all_govt": false,
         "all_schools": false
       },
@@ -41709,10 +41863,34 @@ const MASTER_CBEO_DATA = {
       },
       "saman_syllabus": {
         "cbeo": true,
-        "peeo": true,
-        "govt_sec_srsec": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
         "pvt_sec_srsec": false,
-        "sec_srsec": true,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "database_hub": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "demands": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "directory": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
         "all_govt": false,
         "all_schools": false
       }
@@ -41736,9 +41914,579 @@ const MASTER_CBEO_DATA = {
     },
     "portal_settings": {
       "saman_school_type_filter": "govt_only"
+    },
+    "edit_permissions_5level": {
+      "voter_students": {
+        "cbeo": true,
+        "peeo": true,
+        "govt_sec_srsec": true,
+        "pvt_sec_srsec": true,
+        "sec_srsec": true,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "staff": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "school_head": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_pariksha": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_indent": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "saman_syllabus": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "database_hub": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "demands": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "directory": {
+        "cbeo": true,
+        "peeo": false,
+        "govt_sec_srsec": false,
+        "pvt_sec_srsec": false,
+        "all_govt": false,
+        "all_schools": false
+      }
     }
   },
   "election_submissions": {
+    "221753": {
+      "school_code": "221753",
+      "school_name": "महात्मा गांधी राजकीय विद्यालय, देवलिया कलां",
+      "panchayat_name": "देवलियाकलां",
+      "peeo_name": "PEEO DEOLIYA KALAN",
+      "school_email": "gssdevliyakala@gmail.com",
+      "bldg_type": "सरकारी",
+      "bldg_condition": "अच्छी",
+      "bldg_area": "2105",
+      "bldg_road_dist": "10 मीटर",
+      "principal": {
+        "name": "RAKESH KUMAR BIRAWAT",
+        "mobile": "9829835751"
+      },
+      "facilities": {
+        "boundary": true,
+        "water": true,
+        "toilet": true,
+        "shed": true,
+        "ramp": true,
+        "light_bldg": true,
+        "generator": true,
+        "rest_food": true,
+        "first_aid": true
+      },
+      "booth_details": {
+        "42": {
+          "booth_no": 42,
+          "room_hi": "महात्मा गांधी राजकीय विद्यालय कमरा नं.2 देवलियाकलां",
+          "ward": "10, 11, 12",
+          "ps_constituency": 10,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "Kishan lal bairwa",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9784970296"
+        },
+        "43": {
+          "booth_no": 43,
+          "room_hi": "महात्मा गांधी राजकीय विद्यालय कमरा नं.3 देवलियाकलां",
+          "ward": "13, 14, 15",
+          "ps_constituency": 10,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "Jitendra yadav",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9929827714"
+        }
+      },
+      "remarks": "",
+      "submitted_at": "Mon Oct 12 2026 08:46:01 GMT+0530 (India Standard Time)"
+    },
+    "221754": {
+      "school_code": "221754",
+      "school_name": "पीएम श्री रा.उ.मा.वि. देवलिया कलां",
+      "panchayat_name": "देवलियाकलां",
+      "peeo_name": "PEEO DEOLIYA KALAN",
+      "school_email": "deoliakalan105@gmail.com",
+      "bldg_type": "सरकारी",
+      "bldg_condition": "अच्छी",
+      "bldg_area": "46",
+      "bldg_road_dist": "50 मीटर",
+      "principal": {
+        "name": "PURNIMA",
+        "mobile": "9414343109"
+      },
+      "facilities": {
+        "boundary": true,
+        "water": true,
+        "toilet": true,
+        "shed": true,
+        "ramp": true,
+        "light_bldg": true,
+        "generator": true,
+        "rest_food": true,
+        "first_aid": true
+      },
+      "booth_details": {
+        "38": {
+          "booth_no": 38,
+          "room_hi": "पीएम श्री राजकीय उच्च माध्यमिक विद्यालय कमरा नं.1 देवलियाकलां",
+          "ward": "1, 2, 3",
+          "ps_constituency": 10,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "रामप्रसाद रेगर",
+          "blo_post": "प्रबोधक",
+          "blo_mobile": "9166986070"
+        },
+        "39": {
+          "booth_no": 39,
+          "room_hi": "पीएम श्री राजकीय उच्च माध्यमिक विद्यालय कमरा नं.2 देवलियाकलां",
+          "ward": "4, 5",
+          "ps_constituency": 10,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "साजन सिंह चौहान",
+          "blo_post": "पंचायत शिक्षक",
+          "blo_mobile": "9079245438"
+        },
+        "40": {
+          "booth_no": 40,
+          "room_hi": "पीएम श्री राजकीय उच्च माध्यमिक विद्यालय कमरा नं.3 देवलियाकलां",
+          "ward": "6, 7",
+          "ps_constituency": 10,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "रणजीत बैरवा",
+          "blo_post": "अध्यापक",
+          "blo_mobile": "8890036667"
+        },
+        "41": {
+          "booth_no": 41,
+          "room_hi": "पीएम श्री राजकीय उच्च माध्यमिक विद्यालय कमरा नं.20 देवलियाकलां",
+          "ward": "8, 9",
+          "ps_constituency": 10,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "ओमप्रकाश व्यास",
+          "blo_post": "अध्यापक",
+          "blo_mobile": "9511515914"
+        }
+      },
+      "remarks": "",
+      "submitted_at": "Sun Oct 11 2026 20:53:17 GMT+0530 (India Standard Time)"
+    },
+    "221755": {
+      "school_code": "221755",
+      "school_name": "रा.उ.मा.वि. बड़ली",
+      "panchayat_name": "बड़ली",
+      "peeo_name": "PEEO BARLI",
+      "school_email": "gsssbarliajm@gmail.com",
+      "bldg_type": "सरकारी",
+      "bldg_condition": "अच्छी",
+      "bldg_area": "46",
+      "bldg_road_dist": "100 मीटर",
+      "principal": {
+        "name": "SHAILENDRA KUMAR PANDYA",
+        "mobile": "9950985201"
+      },
+      "facilities": {
+        "boundary": true,
+        "water": true,
+        "toilet": true,
+        "shed": true,
+        "ramp": true,
+        "light_bldg": true,
+        "generator": true,
+        "rest_food": true,
+        "first_aid": true
+      },
+      "booth_details": {
+        "6": {
+          "booth_no": 6,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.7 बड़ली",
+          "ward": "1, 2",
+          "ps_constituency": 9,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "सहदेव चौधरी",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "8769007668"
+        },
+        "7": {
+          "booth_no": 7,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.12 बड़ली",
+          "ward": "3, 4, 5",
+          "ps_constituency": 9,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "भंवर लाल शर्मा",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9950228331"
+        },
+        "8": {
+          "booth_no": 8,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.13 बड़ली",
+          "ward": "6, 7, 8",
+          "ps_constituency": 9,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्रीमती अहिल्या शर्मा",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9610976477"
+        },
+        "9": {
+          "booth_no": 9,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.14 बड़ली",
+          "ward": "9, 10, 11",
+          "ps_constituency": 9,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "नरेश कुमार शर्मा",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9784195646"
+        }
+      },
+      "remarks": "",
+      "submitted_at": "Mon Oct 12 2026 10:34:29 GMT+0530 (India Standard Time)"
+    },
+    "221756": {
+      "school_code": "221756",
+      "school_name": "रा.उ.मा.वि. नांदसी",
+      "panchayat_name": "नान्दसी",
+      "peeo_name": "PEEO NANDSI",
+      "school_email": "ghssnandsi@gmail.com",
+      "bldg_type": "सरकारी",
+      "bldg_condition": "अच्छी",
+      "bldg_area": "20",
+      "bldg_road_dist": "80 मीटर",
+      "principal": {
+        "name": "OM PRAKASH VERMA",
+        "mobile": "9001637473"
+      },
+      "facilities": {
+        "boundary": false,
+        "water": true,
+        "toilet": true,
+        "shed": true,
+        "ramp": true,
+        "light_bldg": true,
+        "generator": true,
+        "rest_food": true,
+        "first_aid": true
+      },
+      "booth_details": {
+        "89": {
+          "booth_no": 89,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.3 नान्दसी",
+          "ward": "1, 2",
+          "ps_constituency": 12,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": false,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री महावीर प्रसाद प्रजापत",
+          "blo_post": "अध्यापक",
+          "blo_mobile": "9680771065"
+        },
+        "90": {
+          "booth_no": 90,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.5 नान्दसी",
+          "ward": "3, 4",
+          "ps_constituency": 12,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": false,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री बनवारी लाल गोस्वामी",
+          "blo_post": "विद्यालय सहायक",
+          "blo_mobile": "9929447843"
+        },
+        "91": {
+          "booth_no": 91,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.6 नान्दसी",
+          "ward": "5, 6",
+          "ps_constituency": 13,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": false,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री शान्ति लाल जैन",
+          "blo_post": "अध्यापक",
+          "blo_mobile": "9828874347"
+        },
+        "92": {
+          "booth_no": 92,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.7 नान्दसी",
+          "ward": "7, 8, 9",
+          "ps_constituency": 13,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": false,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री पृथ्वीराज मीना",
+          "blo_post": "शारिरिक शिक्षक",
+          "blo_mobile": "8696157366"
+        },
+        "93": {
+          "booth_no": 93,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.8 नान्दसी",
+          "ward": "10, 11",
+          "ps_constituency": 13,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": false,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री भूपेंद्र सिंह राठौड़",
+          "blo_post": "अध्यापक",
+          "blo_mobile": "8875127688"
+        }
+      },
+      "remarks": "कमरों की कमी के कारण टिन लगाकर पृथक पृथक कमरें बनायें गये है। रात्रि प्रकाश, जनरेटर की व्यवस्था पंचायत द्वारा व भोजन व्यवस्था BLO द्वारा की जायेगी। ",
+      "submitted_at": "Mon Oct 12 2026 17:00:52 GMT+0530 (India Standard Time)"
+    },
+    "221758": {
+      "school_code": "221758",
+      "school_name": "रा.उ.मा.वि. चापानेरी",
+      "panchayat_name": "चांपानेरी",
+      "peeo_name": "PEEO CHAPANERI",
+      "school_email": "gssschampaneri@gmail.com",
+      "bldg_type": "सरकारी",
+      "bldg_condition": "अच्छी",
+      "bldg_area": "27",
+      "bldg_road_dist": "50 मीटर",
+      "principal": {
+        "name": "LADURAM SHARMA",
+        "mobile": "9462507510"
+      },
+      "facilities": {
+        "boundary": true,
+        "water": true,
+        "toilet": true,
+        "shed": true,
+        "ramp": true,
+        "light_bldg": true,
+        "generator": true,
+        "rest_food": true,
+        "first_aid": true
+      },
+      "booth_details": {
+        "30": {
+          "booth_no": 30,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.2 चांपानेरी",
+          "ward": "1, 2",
+          "ps_constituency": 12,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री सांवरलाल शर्मा",
+          "blo_post": "प्रगणक",
+          "blo_mobile": "9929322995"
+        },
+        "31": {
+          "booth_no": 31,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.3 चांपानेरी",
+          "ward": "3, 4, 5",
+          "ps_constituency": 12,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री अशोक कुमार माली",
+          "blo_post": "अध्यापक",
+          "blo_mobile": "8955274942"
+        },
+        "32": {
+          "booth_no": 32,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.4 चांपानेरी",
+          "ward": "6, 7, 8",
+          "ps_constituency": 12,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री राम प्रसाद खारोल",
+          "blo_post": "अध्यापक",
+          "blo_mobile": "9783038311"
+        },
+        "33": {
+          "booth_no": 33,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.5 चांपानेरी",
+          "ward": "9, 10, 11",
+          "ps_constituency": 12,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री राकेश कुमार पारीक",
+          "blo_post": "प्रगणक",
+          "blo_mobile": "9001300873"
+        }
+      },
+      "remarks": "",
+      "submitted_at": "Sun Oct 11 2026 19:24:37 GMT+0530 (India Standard Time)"
+    },
     "221759": {
       "school_code": "221759",
       "school_name": "रा.उ.मा.वि. लामगरा",
@@ -42045,6 +42793,126 @@ const MASTER_CBEO_DATA = {
       "remarks": "",
       "submitted_at": "Fri Oct 09 2026 14:22:23 GMT+0530 (India Standard Time)"
     },
+    "221764": {
+      "school_code": "221764",
+      "school_name": "रा.उ.मा.वि. बड़गांव",
+      "panchayat_name": "बड़गांव (सुरखण्ड)",
+      "peeo_name": "PEEO BARGAON",
+      "school_email": "gahssbadgaon2015@gmail.com",
+      "bldg_type": "सरकारी",
+      "bldg_condition": "अच्छी",
+      "bldg_area": "70",
+      "bldg_road_dist": "500 मीटर",
+      "principal": {
+        "name": "CHANDRA PRAKASH LADDHA",
+        "mobile": "9001450275"
+      },
+      "facilities": {
+        "boundary": false,
+        "water": true,
+        "toilet": true,
+        "shed": true,
+        "ramp": true,
+        "light_bldg": true,
+        "generator": true,
+        "rest_food": true,
+        "first_aid": true
+      },
+      "booth_details": {
+        "1": {
+          "booth_no": 1,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.2 बड़गांव",
+          "ward": "1, 2",
+          "ps_constituency": 15,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री हीरा लाल",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9829199893"
+        },
+        "2": {
+          "booth_no": 2,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.10 बड़गांव",
+          "ward": "3, 4",
+          "ps_constituency": 15,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": false,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री धनराज कुमावत",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9649678869"
+        },
+        "3": {
+          "booth_no": 3,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.11 बड़गांव",
+          "ward": "5, 6, 7",
+          "ps_constituency": 15,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री मुकुट मणि द्विवेदी",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9460966310"
+        },
+        "4": {
+          "booth_no": 4,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.12 बड़गांव",
+          "ward": "8, 9, 10",
+          "ps_constituency": 15,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री ग्यारसी लाल बैरवा",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9694969961"
+        },
+        "5": {
+          "booth_no": 5,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.15 बड़गांव",
+          "ward": "11, 12, 13",
+          "ps_constituency": 15,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री प्रेम सिंह",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9636672755"
+        }
+      },
+      "remarks": "मतदान केंद्र के उत्तरी भाग की चारदीवारी नहीं है ।",
+      "submitted_at": "Tue Oct 13 2026 10:28:52 GMT+0530 (India Standard Time)"
+    },
     "221765": {
       "school_code": "221765",
       "school_name": "रा.उ.मा.वि. कनाई कलां",
@@ -42213,6 +43081,108 @@ const MASTER_CBEO_DATA = {
       "remarks": "",
       "submitted_at": "Sat Oct 10 2026 08:46:12 GMT+0530 (India Standard Time)"
     },
+    "221767": {
+      "school_code": "221767",
+      "school_name": "रा.उ.मा.वि. कैरोट",
+      "panchayat_name": "कैरोट",
+      "peeo_name": "PEEO KEROT",
+      "school_email": "principalkairot@gmail.com",
+      "bldg_type": "सरकारी",
+      "bldg_condition": "अच्छी",
+      "bldg_area": "29",
+      "bldg_road_dist": "50 मीटर",
+      "principal": {
+        "name": "SOHANLAL SARAN",
+        "mobile": "9929526324"
+      },
+      "facilities": {
+        "boundary": true,
+        "water": true,
+        "toilet": true,
+        "shed": true,
+        "ramp": true,
+        "light_bldg": true,
+        "generator": true,
+        "rest_food": true,
+        "first_aid": true
+      },
+      "booth_details": {
+        "69": {
+          "booth_no": 69,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.10 कैरोट",
+          "ward": "1, 2",
+          "ps_constituency": 13,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्रीमती सुमित्रा शर्मा",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9079825200"
+        },
+        "70": {
+          "booth_no": 70,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.11 कैरोट",
+          "ward": "3, 4, 5",
+          "ps_constituency": 13,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्रीमती ममता गर्ग",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9928024787"
+        },
+        "71": {
+          "booth_no": 71,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.12 कैरोट",
+          "ward": "6, 7, 8",
+          "ps_constituency": 13,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री गंगाराम रेगर",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9929136369"
+        },
+        "72": {
+          "booth_no": 72,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.14 कैरोट",
+          "ward": "9, 10, 11",
+          "ps_constituency": 13,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री लोकेश जाट",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9829243359"
+        }
+      },
+      "remarks": "",
+      "submitted_at": "Tue Oct 13 2026 12:45:36 GMT+0530 (India Standard Time)"
+    },
     "221769": {
       "school_code": "221769",
       "school_name": "रा.उ.मा.वि. बांदनवाड़ा",
@@ -42313,7 +43283,7 @@ const MASTER_CBEO_DATA = {
         }
       },
       "remarks": "",
-      "submitted_at": "Fri Oct 09 2026 17:53:55 GMT+0530 (India Standard Time)"
+      "submitted_at": "Mon Oct 12 2026 13:32:42 GMT+0530 (India Standard Time)"
     },
     "221770": {
       "school_code": "221770",
@@ -42326,7 +43296,7 @@ const MASTER_CBEO_DATA = {
       "bldg_area": "58",
       "bldg_road_dist": "100 मीटर",
       "principal": {
-        "name": "Afsar Ahmed ",
+        "name": "AFSAR AHMED ",
         "mobile": "9079000589"
       },
       "facilities": {
@@ -42379,7 +43349,397 @@ const MASTER_CBEO_DATA = {
         }
       },
       "remarks": "",
-      "submitted_at": "Fri Oct 09 2026 15:30:07 GMT+0530 (India Standard Time)"
+      "submitted_at": "Sun Oct 11 2026 17:14:39 GMT+0530 (India Standard Time)"
+    },
+    "221772": {
+      "school_code": "221772",
+      "school_name": "रा.उ.मा.वि. नागोला",
+      "panchayat_name": "नागोला",
+      "peeo_name": "PEEO NAGOLA",
+      "school_email": "gsssnagola@gmail.com",
+      "bldg_type": "सरकारी",
+      "bldg_condition": "अच्छी",
+      "bldg_area": "45",
+      "bldg_road_dist": "100 मीटर",
+      "principal": {
+        "name": "VINOD KUMAR RAO",
+        "mobile": "8955306674"
+      },
+      "facilities": {
+        "boundary": true,
+        "water": true,
+        "toilet": true,
+        "shed": true,
+        "ramp": true,
+        "light_bldg": true,
+        "generator": true,
+        "rest_food": true,
+        "first_aid": true
+      },
+      "booth_details": {
+        "85": {
+          "booth_no": 85,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.1 नागोला",
+          "ward": "1, 2, 3",
+          "ps_constituency": 16,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "Shaitan kumawat, badrinarayana jay",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "978408563"
+        },
+        "86": {
+          "booth_no": 86,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.2 नागोला",
+          "ward": "4, 5, 6",
+          "ps_constituency": 16,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "Dilkhush vaishanav",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9602408563"
+        },
+        "87": {
+          "booth_no": 87,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.3 नागोला",
+          "ward": "7, 8, 9",
+          "ps_constituency": 16,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "Bhopal ram rebari",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9784360584"
+        },
+        "88": {
+          "booth_no": 88,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.4 नागोला",
+          "ward": "10, 11, 12, 13",
+          "ps_constituency": 16,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "Koushalya bhambhi, bhagchand tank",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9828803505"
+        }
+      },
+      "remarks": "",
+      "submitted_at": "Tue Oct 13 2026 10:37:12 GMT+0530 (India Standard Time)"
+    },
+    "221773": {
+      "school_code": "221773",
+      "school_name": "रा.उ.मा.वि. करांटी",
+      "panchayat_name": "करांटी",
+      "peeo_name": "PEEO KARATI",
+      "school_email": "karantigsss@gmail.com",
+      "bldg_type": "सरकारी",
+      "bldg_condition": "अच्छी",
+      "bldg_area": "1000",
+      "bldg_road_dist": "50 मीटर ",
+      "principal": {
+        "name": "DEEPAK SANWARIYA",
+        "mobile": "9950736300"
+      },
+      "facilities": {
+        "boundary": true,
+        "water": true,
+        "toilet": true,
+        "shed": true,
+        "ramp": true,
+        "light_bldg": true,
+        "generator": true,
+        "rest_food": true,
+        "first_aid": true
+      },
+      "booth_details": {
+        "66": {
+          "booth_no": 66,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.2 करांटी",
+          "ward": "1, 2, 3",
+          "ps_constituency": 4,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": false,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "मखदूम अहमद",
+          "blo_post": "अध्यापक",
+          "blo_mobile": "9414550711"
+        },
+        "67": {
+          "booth_no": 67,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.4 करांटी",
+          "ward": "4, 5",
+          "ps_constituency": 4,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": false,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "विनोद कुमार सरवाल",
+          "blo_post": "पंचायत सहायक",
+          "blo_mobile": "9829121678"
+        },
+        "68": {
+          "booth_no": 68,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.7 करांटी",
+          "ward": "6, 7",
+          "ps_constituency": 4,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "ओम प्रकाश जोशी",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9829663745"
+        }
+      },
+      "remarks": "",
+      "submitted_at": "Tue Oct 13 2026 11:12:58 GMT+0530 (India Standard Time)"
+    },
+    "221774": {
+      "school_code": "221774",
+      "school_name": "रा.उ.मा.वि. खेड़ी",
+      "panchayat_name": "खेड़ी",
+      "peeo_name": "PEEO KARATI",
+      "school_email": "khedigss@gmail.com",
+      "bldg_type": "सरकारी",
+      "bldg_condition": "अच्छी",
+      "bldg_area": "30",
+      "bldg_road_dist": "200",
+      "principal": {
+        "name": "SUSHAMA PANDEY",
+        "mobile": "8107098772"
+      },
+      "facilities": {
+        "boundary": true,
+        "water": true,
+        "toilet": true,
+        "shed": true,
+        "ramp": true,
+        "light_bldg": true,
+        "generator": false,
+        "rest_food": false,
+        "first_aid": true
+      },
+      "booth_details": {
+        "73": {
+          "booth_no": 73,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं. 8 खेड़ी",
+          "ward": "1, 2, 3",
+          "ps_constituency": 4,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "Vaibhav raj Mehra",
+          "blo_post": "प्रगणक",
+          "blo_mobile": "8209227928"
+        },
+        "74": {
+          "booth_no": 74,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं. 9 खेड़ी",
+          "ward": "4, 5, 6",
+          "ps_constituency": 4,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "Shivraj",
+          "blo_post": "प्रगणक",
+          "blo_mobile": "7737880781"
+        },
+        "75": {
+          "booth_no": 75,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं. 10 खेड़ी",
+          "ward": "7, 8, 9",
+          "ps_constituency": 4,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "Raghuveer Gujar",
+          "blo_post": "/ प्रगणक",
+          "blo_mobile": "8209143708"
+        },
+        "76": {
+          "booth_no": 76,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं. 11 खेड़ी",
+          "ward": "10, 11",
+          "ps_constituency": 5,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "Ram prasad Bambi",
+          "blo_post": "/ प्रगणक",
+          "blo_mobile": "9784344547"
+        }
+      },
+      "remarks": "Generator nahi h ,gadde nahi h ",
+      "submitted_at": "Mon Oct 12 2026 13:27:19 GMT+0530 (India Standard Time)"
+    },
+    "221775": {
+      "school_code": "221775",
+      "school_name": "रा.उ.मा.वि. राताकोट",
+      "panchayat_name": "राताकोट",
+      "peeo_name": "PEEO RATAKOT",
+      "school_email": "gssratakot@gmail.com",
+      "bldg_type": "सरकारी",
+      "bldg_condition": "अच्छी",
+      "bldg_area": "25",
+      "bldg_road_dist": "100 मीटर",
+      "principal": {
+        "name": "KUNJ BIHARI SHARMA",
+        "mobile": "9887753471"
+      },
+      "facilities": {
+        "boundary": true,
+        "water": true,
+        "toilet": true,
+        "shed": true,
+        "ramp": true,
+        "light_bldg": true,
+        "generator": false,
+        "rest_food": true,
+        "first_aid": false
+      },
+      "booth_details": {
+        "103": {
+          "booth_no": 103,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.12 राताकोट",
+          "ward": "1, 2",
+          "ps_constituency": 3,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": false,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री अविनाश वैष्णव",
+          "blo_post": "अध्यापक/प्रगणक",
+          "blo_mobile": "8769453569"
+        },
+        "104": {
+          "booth_no": 104,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.14 राताकोट",
+          "ward": "3, 4",
+          "ps_constituency": 3,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": false,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री अविनाश वैष्णव,श्री हंसराज लालरिया",
+          "blo_post": "अध्यापक / पंचायत शिक्षक",
+          "blo_mobile": "8769453569"
+        },
+        "105": {
+          "booth_no": 105,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.17 राताकोट",
+          "ward": "5, 6",
+          "ps_constituency": 3,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री हंसराज लालरिया",
+          "blo_post": "पंचायत शिक्षक",
+          "blo_mobile": "9950323099"
+        },
+        "106": {
+          "booth_no": 106,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.1 राताकोट",
+          "ward": "7, 8, 9",
+          "ps_constituency": 3,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री भंवर लाल जाट",
+          "blo_post": "पंचायत शिक्षक",
+          "blo_mobile": "9602067373"
+        }
+      },
+      "remarks": "जनरेटर उपलब्ध नहीं है।",
+      "submitted_at": "Mon Oct 12 2026 08:50:41 GMT+0530 (India Standard Time)"
     },
     "221777": {
       "school_code": "221777",
@@ -42481,7 +43841,7 @@ const MASTER_CBEO_DATA = {
         }
       },
       "remarks": "भौतिक सत्यापन पूर्ण",
-      "submitted_at": "Fri Oct 09 2026 15:55:08 GMT+0530 (India Standard Time)"
+      "submitted_at": "Mon Oct 12 2026 16:38:15 GMT+0530 (India Standard Time)"
     },
     "221778": {
       "school_code": "221778",
@@ -42687,6 +44047,108 @@ const MASTER_CBEO_DATA = {
       "remarks": "",
       "submitted_at": "Sat Oct 10 2026 13:53:31 GMT+0530 (India Standard Time)"
     },
+    "221781": {
+      "school_code": "221781",
+      "school_name": "रा.उ.मा.वि. सिंगावल",
+      "panchayat_name": "सिंगावल",
+      "peeo_name": "PEEO SINGAWAL",
+      "school_email": "singawalschool1234@gmail.com",
+      "bldg_type": "सरकारी",
+      "bldg_condition": "अच्छी",
+      "bldg_area": "63",
+      "bldg_road_dist": "30 मीटर",
+      "principal": {
+        "name": "SEEMA SHARMA",
+        "mobile": "8290911983"
+      },
+      "facilities": {
+        "boundary": true,
+        "water": true,
+        "toilet": true,
+        "shed": true,
+        "ramp": true,
+        "light_bldg": true,
+        "generator": false,
+        "rest_food": true,
+        "first_aid": true
+      },
+      "booth_details": {
+        "107": {
+          "booth_no": 107,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.13 सिंगावल",
+          "ward": "1, 2",
+          "ps_constituency": 3,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री मुहम्मद रफीक",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9928168738"
+        },
+        "108": {
+          "booth_no": 108,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.1 सिंगावल",
+          "ward": "3, 4",
+          "ps_constituency": 3,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री धर्मीचंद माली",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9783966103"
+        },
+        "109": {
+          "booth_no": 109,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.2 सिंगावल",
+          "ward": "5, 6",
+          "ps_constituency": 3,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री राजू लाल रेबारी",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "8239249326"
+        },
+        "110": {
+          "booth_no": 110,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.3 सिंगावल",
+          "ward": "7, 8, 9",
+          "ps_constituency": 3,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "श्री रामेश्वर लाल डांगा",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9929599039"
+        }
+      },
+      "remarks": "जनरेटर बैकअप उपलब्ध नहीं है",
+      "submitted_at": "Mon Oct 12 2026 08:20:21 GMT+0530 (India Standard Time)"
+    },
     "221782": {
       "school_code": "221782",
       "school_name": "रा.उ.मा.वि. सोबड़ी",
@@ -42855,6 +44317,90 @@ const MASTER_CBEO_DATA = {
       "remarks": "",
       "submitted_at": "Fri Oct 09 2026 18:50:35 GMT+0530 (India Standard Time)"
     },
+    "221785": {
+      "school_code": "221785",
+      "school_name": "रा.उ.मा.वि. राममालिया",
+      "panchayat_name": "राममालिया",
+      "peeo_name": "PEEO RAMMALIA",
+      "school_email": "ghss.rammaliya@gmail.com",
+      "bldg_type": "सरकारी",
+      "bldg_condition": "अच्छी",
+      "bldg_area": "64",
+      "bldg_road_dist": "50 मीटर",
+      "principal": {
+        "name": "LAL CHAND MUNOTH",
+        "mobile": "9928328808"
+      },
+      "facilities": {
+        "boundary": true,
+        "water": true,
+        "toilet": true,
+        "shed": true,
+        "ramp": true,
+        "light_bldg": true,
+        "generator": true,
+        "rest_food": true,
+        "first_aid": true
+      },
+      "booth_details": {
+        "100": {
+          "booth_no": 100,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.5 राममालिया",
+          "ward": "1, 2, 3",
+          "ps_constituency": 18,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": ""
+        },
+        "101": {
+          "booth_no": 101,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.6 राममालिया",
+          "ward": "4, 5",
+          "ps_constituency": 18,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": ""
+        },
+        "102": {
+          "booth_no": 102,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.13 राममालिया",
+          "ward": "6, 7",
+          "ps_constituency": 18,
+          "zp_constituency": 11,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": ""
+        }
+      },
+      "remarks": "",
+      "submitted_at": "Sun Oct 11 2026 10:40:38 GMT+0530 (India Standard Time)"
+    },
     "221786": {
       "school_code": "221786",
       "school_name": "रा.उ.मा.वि. एकलसिंघा",
@@ -42960,9 +44506,9 @@ const MASTER_CBEO_DATA = {
         "shed": true,
         "ramp": true,
         "light_bldg": true,
-        "generator": false,
+        "generator": true,
         "rest_food": true,
-        "first_aid": false
+        "first_aid": true
       },
       "booth_details": {
         "34": {
@@ -43039,7 +44585,175 @@ const MASTER_CBEO_DATA = {
         }
       },
       "remarks": "",
-      "submitted_at": "Sat Oct 10 2026 11:03:09 GMT+0530 (India Standard Time)"
+      "submitted_at": "Tue Oct 13 2026 09:21:34 GMT+0530 (India Standard Time)"
+    },
+    "221788": {
+      "school_code": "221788",
+      "school_name": "रा.उ.मा.वि. पाडंगा",
+      "panchayat_name": "पंडागा",
+      "peeo_name": "PEEO PADANGA",
+      "school_email": "gssspadanga@gmail.com",
+      "bldg_type": "सरकारी",
+      "bldg_condition": "अच्छी",
+      "bldg_area": "52",
+      "bldg_road_dist": "100 मीटर",
+      "principal": {
+        "name": "SMT ASHA RAJ",
+        "mobile": "7877090975"
+      },
+      "facilities": {
+        "boundary": true,
+        "water": true,
+        "toilet": true,
+        "shed": true,
+        "ramp": true,
+        "light_bldg": true,
+        "generator": true,
+        "rest_food": true,
+        "first_aid": true
+      },
+      "booth_details": {
+        "94": {
+          "booth_no": 94,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं. 10 पंडागा",
+          "ward": "1, 2, 3",
+          "ps_constituency": 1,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "Bhanwar Lal regar",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9001077090"
+        },
+        "95": {
+          "booth_no": 95,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं. 13 पंडागा",
+          "ward": "4, 5",
+          "ps_constituency": 1,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "Ram Dayal Gurjar",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "84327 8124"
+        },
+        "96": {
+          "booth_no": 96,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं. 14 पंडागा",
+          "ward": "6, 7",
+          "ps_constituency": 1,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "Hans Raj Gurjar, kana Ram meena",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9649918501"
+        }
+      },
+      "remarks": "Nil",
+      "submitted_at": "Mon Oct 12 2026 17:38:20 GMT+0530 (India Standard Time)"
+    },
+    "410859": {
+      "school_code": "410859",
+      "school_name": "रा.प्रा.वि. सोलखुर्द",
+      "panchayat_name": "सोलखुर्द",
+      "peeo_name": "PEEO BOOBKIYA",
+      "school_email": "gpssolkhurd123@gmail.com",
+      "bldg_type": "सरकारी",
+      "bldg_condition": "सामान्य",
+      "bldg_area": "175",
+      "bldg_road_dist": "200 मीटर",
+      "principal": {
+        "name": "शांति लाल जाट",
+        "mobile": "8003697585"
+      },
+      "facilities": {
+        "boundary": true,
+        "water": true,
+        "toilet": true,
+        "shed": true,
+        "ramp": true,
+        "light_bldg": true,
+        "generator": true,
+        "rest_food": true,
+        "first_aid": true
+      },
+      "booth_details": {
+        "114": {
+          "booth_no": 114,
+          "room_hi": "राजकीय प्राथमिक विद्यालय कमरा नं.1 सोलखुर्द",
+          "ward": "1, 2, 3",
+          "ps_constituency": 17,
+          "zp_constituency": 10,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "प्रदीप कुमार जाट",
+          "blo_post": "प्रगणक",
+          "blo_mobile": "9509776135"
+        },
+        "115": {
+          "booth_no": 115,
+          "room_hi": "राजकीय प्राथमिक विद्यालय कमरा नं.2 सोलखुर्द",
+          "ward": "4, 5, 6",
+          "ps_constituency": 17,
+          "zp_constituency": 10,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "विनोद कुमार मीणा",
+          "blo_post": "प्रगणक",
+          "blo_mobile": "9828393814"
+        },
+        "116": {
+          "booth_no": 116,
+          "room_hi": "राजकीय प्राथमिक विद्यालय कमरा नं.3 सोलखुर्द",
+          "ward": "7, 8, 9",
+          "ps_constituency": 17,
+          "zp_constituency": 10,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": false,
+          "mf_line": false,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "दिनेश कुमार रेगर",
+          "blo_post": "प्रगणक",
+          "blo_mobile": "8107193130"
+        }
+      },
+      "remarks": "",
+      "submitted_at": "13/10/2026, पू 11:05:03"
     },
     "485030": {
       "school_code": "485030",
@@ -43106,6 +44820,192 @@ const MASTER_CBEO_DATA = {
       },
       "remarks": "",
       "submitted_at": "Fri Oct 09 2026 17:08:35 GMT+0530 (India Standard Time)"
+    },
+    "488897": {
+      "school_code": "488897",
+      "school_name": "रा.उ.मा.वि. घणा",
+      "panchayat_name": "घणा",
+      "peeo_name": "PEEO SOBRI",
+      "school_email": "gsssghana401@gmail.com",
+      "bldg_type": "सरकारी",
+      "bldg_condition": "अच्छी",
+      "bldg_area": "83457",
+      "bldg_road_dist": "100 मीटर",
+      "principal": {
+        "name": "SUMITRA KUMARI PHULWARI",
+        "mobile": "9928994663"
+      },
+      "facilities": {
+        "boundary": true,
+        "water": true,
+        "toilet": true,
+        "shed": true,
+        "ramp": true,
+        "light_bldg": true,
+        "generator": true,
+        "rest_food": true,
+        "first_aid": true
+      },
+      "booth_details": {
+        "54": {
+          "booth_no": 54,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.1 घणा",
+          "ward": "1, 2, 3",
+          "ps_constituency": 8,
+          "zp_constituency": 10,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "Tara Vyas",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "6376217543"
+        },
+        "55": {
+          "booth_no": 55,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.2 घणा",
+          "ward": "4, 5",
+          "ps_constituency": 8,
+          "zp_constituency": 10,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "Mahaveer prasad Jangid",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9929753094"
+        },
+        "56": {
+          "booth_no": 56,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.3 घणा",
+          "ward": "6, 7",
+          "ps_constituency": 8,
+          "zp_constituency": 10,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "Satyanarayan Bairwa",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "8003824561"
+        }
+      },
+      "remarks": "All is well ",
+      "submitted_at": "Mon Oct 12 2026 11:14:54 GMT+0530 (India Standard Time)"
+    },
+    "488941": {
+      "school_code": "488941",
+      "school_name": "रा.उ.मा.वि. देवरिया",
+      "panchayat_name": "देवपुरा",
+      "peeo_name": "PEEO DEVPURA",
+      "school_email": "gsssdevriya@gmail.com",
+      "bldg_type": "सरकारी",
+      "bldg_condition": "अच्छी",
+      "bldg_area": "1250",
+      "bldg_road_dist": "25 मीटर",
+      "principal": {
+        "name": "ANITA SHARMA",
+        "mobile": "9414550658"
+      },
+      "facilities": {
+        "boundary": true,
+        "water": true,
+        "toilet": true,
+        "shed": true,
+        "ramp": true,
+        "light_bldg": true,
+        "generator": true,
+        "rest_food": true,
+        "first_aid": true
+      },
+      "booth_details": {
+        "44": {
+          "booth_no": 44,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.2 देवपुरा(देवरिया)",
+          "ward": "1, 2, 3",
+          "ps_constituency": 1,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "Ramprasad Laxkar",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9602372311"
+        },
+        "45": {
+          "booth_no": 45,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.3 देवपुरा(देवरिया)",
+          "ward": "4, 5, 6",
+          "ps_constituency": 1,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "Vinod Kumar Verma",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9929183463"
+        },
+        "46": {
+          "booth_no": 46,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.5 देवपुरा(देवरिया)",
+          "ward": "7, 8",
+          "ps_constituency": 1,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "HanumanPrasad Jat",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "9928668009"
+        },
+        "47": {
+          "booth_no": 47,
+          "room_hi": "राजकीय उच्च माध्यमिक विद्यालय कमरा नं.7 देवपुरा(देवरिया)",
+          "ward": "9, 10, 11",
+          "ps_constituency": 1,
+          "zp_constituency": 9,
+          "ac_constituency": 104,
+          "air_light": true,
+          "furniture": true,
+          "doors": true,
+          "mf_line": true,
+          "fan": true,
+          "win_door": "ठीक स्थिति",
+          "lining": true,
+          "blo_name": "Rakesh Choudhary",
+          "blo_post": "अध्यापक / प्रगणक",
+          "blo_mobile": "8559910535"
+        }
+      },
+      "remarks": "Nil",
+      "submitted_at": "Mon Oct 12 2026 07:54:11 GMT+0530 (India Standard Time)"
     },
     "488947": {
       "school_code": "488947",
@@ -43175,3 +45075,4 @@ const MASTER_CBEO_DATA = {
     }
   }
 };
+if (typeof module !== "undefined") module.exports = MASTER_CBEO_DATA;

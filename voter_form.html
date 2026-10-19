@@ -883,6 +883,12 @@
       // Check Role & Strict Isolation
       if (LOGGED_USER.role === 'school') {
         var myCode = String(LOGGED_USER.shala_darpan_code).trim();
+        var isAuth58 = masterSchools.some(function(s) { return String(s.shala_darpan_code).trim() === myCode; }) || myCode === '999999';
+        if (!isAuth58) {
+          alert('⚠️ अनधिकृत पहुंच: यह प्रपत्र केवल ब्लॉक भिनाय के 58 माध्यमिक/उच्च माध्यमिक विद्यालयों के लिए खुला है।');
+          window.location.href = 'index.html';
+          return;
+        }
         CURRENT_SCHOOL_CODE = myCode;
         if (codeFromUrl && String(codeFromUrl).trim() !== myCode) {
           alert('🔒 सुरक्षा सूचना: आप केवल अपने विद्यालय (कोड: ' + myCode + ') का प्रपत्र ही देख एवं भर सकते हैं।');

@@ -645,11 +645,11 @@ function saveCloudPortalSetting(key, val, syncToGithub = false) {
 window.saveCloudPortalSetting = saveCloudPortalSetting;
 
 const DEFAULT_TAB_VISIBILITY_6LEVEL = {
-  'voter-students': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: true, all_schools: true },
-  'election': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: false, all_govt: true, all_schools: false },
-  'saman-pariksha': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: false, all_schools: false },
-  'saman_indent': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: true, all_govt: false, all_schools: false },
-  'saman_syllabus': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'voter-students': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, sec_srsec: true, all_govt: false, all_schools: false },
+  'election': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'saman-pariksha': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, sec_srsec: false, all_govt: false, all_schools: false },
+  'saman_indent': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, sec_srsec: false, all_govt: false, all_schools: false },
+  'saman_syllabus': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, sec_srsec: false, all_govt: false, all_schools: false },
   'database-hub': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
   'dashboard': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
   'directory': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
@@ -662,14 +662,15 @@ const DEFAULT_TAB_VISIBILITY_6LEVEL = {
 const DEFAULT_TAB_VISIBILITY_5LEVEL = DEFAULT_TAB_VISIBILITY_6LEVEL;
 
 const DEFAULT_EDIT_PERMISSIONS_6LEVEL = {
-  'voter_students': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: true, all_schools: true },
-  'staff': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
-  'school_head': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
-  'saman_pariksha': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: false, all_schools: false },
-  'saman_indent': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: true, all_govt: false, all_schools: false },
-  'saman_syllabus': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: false, all_govt: false, all_schools: false },
-  'demands': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: true, all_schools: true },
-  'directory': { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false }
+  'voter_students': { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, sec_srsec: true, all_govt: false, all_schools: false },
+  'staff': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'school_head': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'saman_pariksha': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, sec_srsec: false, all_govt: false, all_schools: false },
+  'saman_indent': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, sec_srsec: false, all_govt: false, all_schools: false },
+  'saman_syllabus': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, sec_srsec: false, all_govt: false, all_schools: false },
+  'database_hub': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'demands': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false },
+  'directory': { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false }
 };
 const DEFAULT_EDIT_PERMISSIONS_5LEVEL = DEFAULT_EDIT_PERMISSIONS_6LEVEL;
 
@@ -677,47 +678,24 @@ function normalizeTabAndEditPermissions() {
   if (!STATE.tabVisibility6Level) STATE.tabVisibility6Level = JSON.parse(JSON.stringify(DEFAULT_TAB_VISIBILITY_6LEVEL));
   if (!STATE.editPermissions6Level) STATE.editPermissions6Level = JSON.parse(JSON.stringify(DEFAULT_EDIT_PERMISSIONS_6LEVEL));
 
-  if (!STATE.tabVisibility6Level['saman_indent']) {
-    STATE.tabVisibility6Level['saman_indent'] = STATE.tabVisibility6Level['saman-pariksha']
-      ? JSON.parse(JSON.stringify(STATE.tabVisibility6Level['saman-pariksha']))
-      : { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: true, all_govt: false, all_schools: false };
+  if (!STATE.tabVisibility6Level['voter-students']) {
+    STATE.tabVisibility6Level['voter-students'] = { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, sec_srsec: true, all_govt: false, all_schools: false };
   }
-  if (!STATE.tabVisibility6Level['saman_syllabus']) {
-    STATE.tabVisibility6Level['saman_syllabus'] = { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: false, all_govt: false, all_schools: false };
+  if (!STATE.editPermissions6Level['voter_students']) {
+    STATE.editPermissions6Level['voter_students'] = { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, sec_srsec: true, all_govt: false, all_schools: false };
   }
 
-  const indV = STATE.tabVisibility6Level['saman_indent'];
-  const sylV = STATE.tabVisibility6Level['saman_syllabus'];
-  STATE.tabVisibility6Level['saman-pariksha'] = {
-    cbeo: indV.cbeo || sylV.cbeo,
-    peeo: indV.peeo || sylV.peeo,
-    govt_sec_srsec: indV.govt_sec_srsec || sylV.govt_sec_srsec,
-    pvt_sec_srsec: indV.pvt_sec_srsec || sylV.pvt_sec_srsec,
-    sec_srsec: (indV.govt_sec_srsec || sylV.govt_sec_srsec) || (indV.pvt_sec_srsec || sylV.pvt_sec_srsec),
-    all_govt: indV.all_govt || sylV.all_govt,
-    all_schools: indV.all_schools || sylV.all_schools
-  };
+  // Ensure all other tabs are closed for schools by default
+  const otherTabs = ['saman-pariksha', 'saman_indent', 'saman_syllabus', 'election', 'database-hub', 'dashboard', 'directory', 'staff', 'school-management', 'demands', 'archive'];
+  otherTabs.forEach(t => {
+    STATE.tabVisibility6Level[t] = { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, sec_srsec: false, all_govt: false, all_schools: false };
+  });
 
-  if (!STATE.editPermissions6Level['saman_indent']) {
-    STATE.editPermissions6Level['saman_indent'] = STATE.editPermissions6Level['saman_pariksha']
-      ? JSON.parse(JSON.stringify(STATE.editPermissions6Level['saman_pariksha']))
-      : { cbeo: true, peeo: true, govt_sec_srsec: false, pvt_sec_srsec: true, all_govt: false, all_schools: false };
-  }
-  if (!STATE.editPermissions6Level['saman_syllabus']) {
-    STATE.editPermissions6Level['saman_syllabus'] = { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: false, all_govt: false, all_schools: false };
-  }
-
-  const indE = STATE.editPermissions6Level['saman_indent'];
-  const sylE = STATE.editPermissions6Level['saman_syllabus'];
-  STATE.editPermissions6Level['saman_pariksha'] = {
-    cbeo: indE.cbeo || sylE.cbeo,
-    peeo: indE.peeo || sylE.peeo,
-    govt_sec_srsec: indE.govt_sec_srsec || sylE.govt_sec_srsec,
-    pvt_sec_srsec: indE.pvt_sec_srsec || sylE.pvt_sec_srsec,
-    sec_srsec: (indE.govt_sec_srsec || sylE.govt_sec_srsec) || (indE.pvt_sec_srsec || sylE.pvt_sec_srsec),
-    all_govt: indE.all_govt || sylE.all_govt,
-    all_schools: indE.all_schools || sylE.all_schools
-  };
+  // Ensure all other edit modules are closed for schools by default
+  const otherModules = ['staff', 'school_head', 'saman_pariksha', 'saman_indent', 'saman_syllabus', 'database_hub', 'demands', 'directory'];
+  otherModules.forEach(m => {
+    STATE.editPermissions6Level[m] = { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, sec_srsec: false, all_govt: false, all_schools: false };
+  });
 
   STATE.tabVisibility5Level = STATE.tabVisibility6Level;
   STATE.editPermissions5Level = STATE.editPermissions6Level;
@@ -1100,10 +1078,10 @@ function initMasterData() {
       parentTab: 'saman-pariksha',
       targetAudience: {
         cbeo: true,
-        peeo: true,
-        govt_sec_srsec: true,
-        pvt_sec_srsec: false, // 8 Private schools strictly excluded!
-        sec_srsec: true,
+        peeo: false,
+        govt_sec_srsec: false,
+        pvt_sec_srsec: false,
+        sec_srsec: false,
         all_govt: false,
         all_schools: false
       },
@@ -2473,6 +2451,7 @@ function render6LevelTabVisibilityMatrix() {
   tbody.innerHTML = '';
 
   const coreTabs = [
+    { id: 'voter-students', name: '🗳️ 18+ व 17+ विद्यार्थी मतदाता पंजीकरण मांग (58 स्कूल)', desc: 'सक्रिय मांग: केवल 58 विद्यालय (49 राजकीय + 8 निजी + 1 टेस्ट)' },
     { id: 'saman-pariksha', name: '📋 समान परीक्षा 2026-27 (57 स्कूल)', desc: 'मुख्य परीक्षा प्रपत्र व स्थिति (6-स्तरीय अनुमति)' },
     { id: 'database-hub', name: '🗄️ मास्टर डेटाबेस व सूचना निष्कर्षण', desc: 'केंद्रीकृत डेटाबेस व कस्टम रिपोर्ट निष्कर्षण हब' },
     { id: 'dashboard', name: '📊 मुख्य डैशबोर्ड', desc: 'ब्लॉक सांख्यिकी व प्रगति' },
@@ -2534,7 +2513,7 @@ function render6LevelTabVisibilityMatrix() {
     activeDemands.forEach(d => {
       const tr = document.createElement('tr');
       const dKey = `demand_${d.id}`;
-      const c = vis[dKey] || d.targetAudience || { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: false, all_govt: false, all_schools: false };
+      const c = vis[dKey] || d.targetAudience || { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false };
       const statusBadge = d.isTestMode
         ? '<span class="badge" style="background:#fef3c7; color:#92400e; font-size:0.68rem; font-weight:800; padding:1px 6px">🧪 टेस्ट मोड</span>'
         : (d.published !== false ? '<span class="badge" style="background:#dcfce7; color:#166534; font-size:0.68rem; font-weight:800; padding:1px 6px">🚀 लाइव</span>' : '<span class="badge" style="background:#fee2e2; color:#991b1b; font-size:0.68rem; font-weight:800; padding:1px 6px">अप्रकाशित</span>');
@@ -2576,7 +2555,7 @@ function render6LevelTabVisibilityMatrix() {
 const render5LevelTabVisibilityMatrix = render6LevelTabVisibilityMatrix;
 
 function save6LevelTabVisibilityMatrix() {
-  const coreTabs = ['saman-pariksha', 'database-hub', 'dashboard', 'directory', 'staff', 'school-management', 'demands', 'archive'];
+  const coreTabs = ['voter-students', 'saman-pariksha', 'database-hub', 'dashboard', 'directory', 'staff', 'school-management', 'demands', 'archive'];
   const newVis = {};
   coreTabs.forEach(t => {
     newVis[t] = {
@@ -2712,6 +2691,7 @@ function render6LevelEditPermissionsMatrix() {
   tbody.innerHTML = '';
 
   const modules = [
+    { id: 'voter_students', name: '🗳️ 18+ व 17+ विद्यार्थी मतदाता पंजीकरण (58 स्कूल)', desc: '18+ सत्यापन व 17+ भावी मतदाता प्रविष्टि एवं संपादन अधिकार' },
     { id: 'staff', name: '👥 कार्मिक प्रबंधन (Staff Management)', desc: 'कार्मिक जोड़ना, विवरण संपादन, विद्यालय स्थानान्तरण व हटाना' },
     { id: 'school_head', name: '👑 संस्था प्रधान मार्किंग (Principal Designation)', desc: 'संस्था प्रधान घोषित करना, दूरभाष व विवरण अद्यतन' },
     { id: 'saman_pariksha', name: '📋 समान परीक्षा 2026-27 (Saman Pariksha Data)', desc: 'परीक्षा प्रपत्र डाटा प्रविष्टि, छात्र संख्या व सबमिशन संपादन' },
@@ -2771,7 +2751,7 @@ function render6LevelEditPermissionsMatrix() {
     activeDemands.forEach(d => {
       const tr = document.createElement('tr');
       const dKey = `demand_${d.id}`;
-      const c = perms[dKey] || { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, all_govt: true, all_schools: true };
+      const c = perms[dKey] || { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, all_govt: false, all_schools: false };
       const govtSecChecked = (c.govt_sec_srsec !== undefined ? c.govt_sec_srsec : c.sec_srsec);
       const pvtSecChecked = (c.pvt_sec_srsec !== undefined ? c.pvt_sec_srsec : c.sec_srsec);
 
@@ -2806,7 +2786,7 @@ function render6LevelEditPermissionsMatrix() {
 const render5LevelEditPermissionsMatrix = render6LevelEditPermissionsMatrix;
 
 function save6LevelEditPermissionsMatrix() {
-  const coreModules = ['staff', 'school_head', 'saman_pariksha', 'database_hub', 'demands', 'directory'];
+  const coreModules = ['voter_students', 'staff', 'school_head', 'saman_pariksha', 'database_hub', 'demands', 'directory'];
   const newPerms = {};
   coreModules.forEach(m => {
     newPerms[m] = {
@@ -17427,28 +17407,36 @@ function getAllMasterSchools() {
   return list;
 }
 
-// Check if a school is allowed to log in based on policy + overrides
+// Check if a school is allowed to log in based on policy + overrides (Strict 58 Schools Policy)
 function isSchoolLoginAllowed(code) {
   if (!code) return false;
   const sCode = String(code).trim();
+
+  // Test school is always allowed
+  if (sCode === '999999') return true;
 
   // Explicit override takes precedence
   if (STATE.schoolLoginOverrides && typeof STATE.schoolLoginOverrides[sCode] === 'boolean') {
     return STATE.schoolLoginOverrides[sCode];
   }
 
-  const policy = STATE.schoolLoginPolicy || 'all';
+  // Active Strict Policy: Only 58 Schools (49 Govt Sec/Sr Sec + 8 Pvt Sec/Sr Sec + 1 Test) permitted
+  const masterVoterSchools = (window.VOTER_STUDENTS_MASTER && window.VOTER_STUDENTS_MASTER.schools) || [];
+  if (masterVoterSchools.length > 0) {
+    const isAllowed58 = masterVoterSchools.some(s => String(s.shala_darpan_code).trim() === sCode);
+    if (isAllowed58) return true;
+
+    // PEEO Nodal Schools are allowed
+    const isPeeoNodal = (STATE.peeos || []).some(p => String(p.shala_darpan_code).trim() === sCode);
+    return isPeeoNodal;
+  }
+
+  const policy = STATE.schoolLoginPolicy || 'sec_srsec';
   if (policy === 'all') return true;
   if (policy === 'peeo_nodal') {
     return (STATE.peeos || []).some(p => String(p.shala_darpan_code).trim() === sCode);
   }
-  if (policy === 'sec_srsec') {
-    return (STATE.schools56 || []).some(s => String(s.shala_darpan_code).trim() === sCode);
-  }
-  if (policy === 'custom') {
-    return (STATE.schools56 || []).some(s => String(s.shala_darpan_code).trim() === sCode);
-  }
-  return true;
+  return (STATE.schools56 || []).some(s => String(s.shala_darpan_code).trim() === sCode);
 }
 
 // Helper to synchronize School Management Policy UI (Badge & Buttons) across refreshes
@@ -17458,7 +17446,7 @@ function updateSchoolManagementPolicyUI() {
   if (badge) {
     const labels = {
       'all': 'नीति: सभी 178 विद्यालय लॉगिन खुला (All Allowed)',
-      'sec_srsec': 'नीति: केवल 57 माध्यमिक/उच्च माध्यमिक (Sec & Sr Sec)',
+      'sec_srsec': 'नीति: केवल 58 विद्यालय (49 राजकीय + 8 निजी + 1 टेस्ट स्कूल)',
       'peeo_nodal': 'नीति: केवल 25 PEEO नोडल विद्यालय (PEEO Only)',
       'custom': 'नीति: कस्टम चयन मोड (Custom Overrides Active)'
     };
