@@ -700,18 +700,6 @@ function normalizeTabAndEditPermissions() {
     STATE.editPermissions6Level['voter_students'] = { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, sec_srsec: true, all_govt: false, all_schools: false };
   }
 
-  // Ensure all other tabs are closed for schools by default
-  const otherTabs = ['saman-pariksha', 'saman_indent', 'saman_syllabus', 'election', 'database-hub', 'dashboard', 'directory', 'staff', 'school-management', 'demands', 'archive'];
-  otherTabs.forEach(t => {
-    STATE.tabVisibility6Level[t] = { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, sec_srsec: false, all_govt: false, all_schools: false };
-  });
-
-  // Ensure all other edit modules are closed for schools by default
-  const otherModules = ['staff', 'school_head', 'saman_pariksha', 'saman_indent', 'saman_syllabus', 'database_hub', 'demands', 'directory'];
-  otherModules.forEach(m => {
-    STATE.editPermissions6Level[m] = { cbeo: true, peeo: false, govt_sec_srsec: false, pvt_sec_srsec: false, sec_srsec: false, all_govt: false, all_schools: false };
-  });
-
   STATE.tabVisibility5Level = STATE.tabVisibility6Level;
   STATE.editPermissions5Level = STATE.editPermissions6Level;
 }
@@ -2378,9 +2366,12 @@ function checkKeyVisibilityForCurrentUser(key) {
   if (STATE.currentUser.role === 'peeo') return !!tabConf.peeo;
 
   if (STATE.currentUser.role === 'school') {
+    const allSecSchools = (window.VOTER_STUDENTS_MASTER && window.VOTER_STUDENTS_MASTER.schools) || 
+                          (typeof MASTER_CBEO_DATA !== 'undefined' && (MASTER_CBEO_DATA.schools_56 || MASTER_CBEO_DATA.schools)) || 
+                          STATE.schools56 || [];
     const isPvt = STATE.currentUser.type === 'Private' || String(STATE.currentUser.shala_darpan_code).startsWith('P');
     if (isPvt) {
-      const isPvtSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code && s.type === 'Private');
+      const isPvtSec = allSecSchools.some(s => String(s.shala_darpan_code) === String(STATE.currentUser.shala_darpan_code) && (s.type === 'Private' || String(s.shala_darpan_code).startsWith('P')));
       if (isPvtSec) {
         if (tabConf.pvt_sec_srsec !== undefined) return !!(tabConf.pvt_sec_srsec || tabConf.all_schools);
         return !!(tabConf.sec_srsec || tabConf.all_schools);
@@ -2388,7 +2379,7 @@ function checkKeyVisibilityForCurrentUser(key) {
       return !!tabConf.all_schools;
     }
 
-    const isGovtSecSrSec = (STATE.schools56 || []).some(s => s.shala_darpan_code === STATE.currentUser.shala_darpan_code && s.type !== 'Private') ||
+    const isGovtSecSrSec = allSecSchools.some(s => String(s.shala_darpan_code) === String(STATE.currentUser.shala_darpan_code) && s.type !== 'Private') ||
       (STATE.currentUser.category && (STATE.currentUser.category.includes('Secondary') || STATE.currentUser.category.includes('माध्यमिक')));
     if (isGovtSecSrSec) {
       if (tabConf.govt_sec_srsec !== undefined) return !!(tabConf.govt_sec_srsec || tabConf.all_govt || tabConf.all_schools);
@@ -2401,22 +2392,23 @@ function checkKeyVisibilityForCurrentUser(key) {
 }
 
 function isTabVisibleForCurrentUser(tabId) {
-  if (tabId === 'voter-students') return true; // Primary active demand for all roles
   if (!STATE.currentUser) return false;
   
   const isJitendra = STATE.currentUser.shala_darpan_code === 'admin_jitendra' || 
                      STATE.currentUser.admin_id === 'ADMIN02' || 
                      STATE.currentUser.username === 'jitendra_admin';
+  // Super Admin Jitendra has access to ALL tabs without restriction!
+  if (isJitendra) return true;
+
   const isCBEO = STATE.currentUser.shala_darpan_code === '8140' || 
                  STATE.currentUser.admin_id === 'ADMIN01' || 
                  (STATE.currentUser.role === 'admin' && !isJitendra);
 
   if (tabId === 'admin-control') {
-    return isJitendra || isCBEO;
+    return isCBEO;
   }
 
-  // All other demands/tabs are turned off
-  return false;
+  return checkKeyVisibilityForCurrentUser(tabId);
 }
 
 function applyTabVisibility() {
@@ -2445,21 +2437,35 @@ function applyTabVisibility() {
   const tabElection = document.getElementById('nav-tab-election');
   const quickBanner = document.querySelector('.directory-quick-banner');
 
-  // Primary active demand is 18+/17+ voter registration for ALL roles
-  if (tabVoter) tabVoter.style.display = 'inline-flex';
-  if (tabElection) tabElection.style.display = 'none';
-  if (tabSP) tabSP.style.display = 'none';
-  if (tabDash) tabDash.style.display = 'none';
-  if (tabDir) tabDir.style.display = 'none';
-  if (tabStaff) tabStaff.style.display = 'none';
-  if (tabSchMgmt) tabSchMgmt.style.display = 'none';
-  if (tabReports) tabReports.style.display = 'none';
-  if (tabDbHub) tabDbHub.style.display = 'none';
-  if (tabArchive) tabArchive.style.display = 'none';
-  
-  // Admin tab is visible ONLY for Jitendra or CBEO
-  if (tabAdmin) tabAdmin.style.display = (isJitendra || isCBEO) ? 'inline-flex' : 'none';
-  if (quickBanner) quickBanner.style.display = 'none';
+  if (isJitendra) {
+    // For Jitendra Super Admin: ALL TABS ARE FULLY VISIBLE & OPERATIONAL!
+    if (tabVoter) tabVoter.style.display = 'inline-flex';
+    if (tabSP) tabSP.style.display = 'inline-flex';
+    if (tabElection) tabElection.style.display = 'inline-flex';
+    if (tabDash) tabDash.style.display = 'inline-flex';
+    if (tabDir) tabDir.style.display = 'inline-flex';
+    if (tabStaff) tabStaff.style.display = 'inline-flex';
+    if (tabSchMgmt) tabSchMgmt.style.display = 'inline-flex';
+    if (tabReports) tabReports.style.display = 'inline-flex';
+    if (tabDbHub) tabDbHub.style.display = 'inline-flex';
+    if (tabArchive) tabArchive.style.display = 'inline-flex';
+    if (tabAdmin) tabAdmin.style.display = 'inline-flex';
+    if (quickBanner) quickBanner.style.display = 'block';
+  } else {
+    // For other roles (PEEO, School, CBEO), tab visibility is governed by the Admin Control settings!
+    if (tabVoter) tabVoter.style.display = checkKeyVisibilityForCurrentUser('voter-students') ? 'inline-flex' : 'none';
+    if (tabSP) tabSP.style.display = checkKeyVisibilityForCurrentUser('saman-pariksha') ? 'inline-flex' : 'none';
+    if (tabElection) tabElection.style.display = checkKeyVisibilityForCurrentUser('election') ? 'inline-flex' : 'none';
+    if (tabDash) tabDash.style.display = checkKeyVisibilityForCurrentUser('dashboard') ? 'inline-flex' : 'none';
+    if (tabDir) tabDir.style.display = checkKeyVisibilityForCurrentUser('directory') ? 'inline-flex' : 'none';
+    if (tabStaff) tabStaff.style.display = checkKeyVisibilityForCurrentUser('staff') ? 'inline-flex' : 'none';
+    if (tabSchMgmt) tabSchMgmt.style.display = checkKeyVisibilityForCurrentUser('school-management') ? 'inline-flex' : 'none';
+    if (tabReports) tabReports.style.display = checkKeyVisibilityForCurrentUser('demands') ? 'inline-flex' : 'none';
+    if (tabDbHub) tabDbHub.style.display = checkKeyVisibilityForCurrentUser('database-hub') ? 'inline-flex' : 'none';
+    if (tabArchive) tabArchive.style.display = checkKeyVisibilityForCurrentUser('archive') ? 'inline-flex' : 'none';
+    if (tabAdmin) tabAdmin.style.display = isCBEO ? 'inline-flex' : 'none';
+    if (quickBanner) quickBanner.style.display = 'none';
+  }
 
   // Cloud VM 24x7 Automation Hub is STRICTLY for Jitendra Super Admin
   const vmHub = document.getElementById('cbeo-github-vm-hub');
@@ -2486,11 +2492,18 @@ function applyTabVisibility() {
   const cbeoExecutiveCard = document.getElementById('cbeo-executive-overview');
   if (cbeoExecutiveCard) cbeoExecutiveCard.style.display = (isJitendra || isCBEO) ? 'block' : 'none';
 
-  // Ensure voter-students is always active unless user intentionally clicks admin-control
-  const activeView = document.querySelector('.content-view.active');
-  const curTabId = activeView ? activeView.id.replace('view-', '') : '';
-  if (curTabId !== 'voter-students' && curTabId !== 'admin-control') {
-    switchTab('voter-students');
+  // If a non-Jitendra user is on a tab that is not visible to them, redirect to voter-students or their first visible tab
+  if (!isJitendra) {
+    const activeView = document.querySelector('.content-view.active');
+    const curTabId = activeView ? activeView.id.replace('view-', '') : '';
+    if (!isTabVisibleForCurrentUser(curTabId)) {
+      if (checkKeyVisibilityForCurrentUser('voter-students')) {
+        switchTab('voter-students');
+      } else {
+        const firstVisible = ['saman-pariksha', 'demands', 'dashboard', 'directory'].find(t => isTabVisibleForCurrentUser(t));
+        if (firstVisible) switchTab(firstVisible);
+      }
+    }
   }
 }
 
