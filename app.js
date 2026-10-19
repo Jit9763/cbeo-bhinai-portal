@@ -2038,14 +2038,18 @@ function onQuickSelectUser() {
 
       // 2. Followed by all allowed subordinate schools under this PEEO matching active policy
       const policy = STATE.schoolLoginPolicy || 'sec_srsec';
+      const addedCodes = new Set([String(peeo.shala_darpan_code).trim()]);
+
       if (policy !== 'peeo_nodal') {
         (peeo.schools || []).forEach(s => {
           const sCode = String(s.shala_darpan_code || s.dise_code || s.psp_code || '').trim();
-          if (sCode && sCode !== peeo.shala_darpan_code) {
+          if (sCode && !addedCodes.has(sCode)) {
             if (isSchoolLoginAllowed(sCode)) {
+              addedCodes.add(sCode);
+              const isPvt = (s.type === 'Private' || sCode.startsWith('P'));
               const opt = document.createElement('option');
               opt.value = sCode;
-              opt.textContent = `🏫 [${s.type === 'Private' ? 'निजी' : 'राजकीय'}] ${sCode} - ${s.school_name}`;
+              opt.textContent = `🏫 [${isPvt ? 'निजी' : 'राजकीय'}] ${sCode} - ${s.school_name}`;
               subSelect.appendChild(opt);
             }
           }
@@ -17537,6 +17541,18 @@ function getAllMasterSchools() {
   return list;
 }
 
+// Official 8 Private Secondary / Senior Secondary Schools in Block Bhinai
+const OFFICIAL_8_PVT_SCHOOL_CODES = [
+  'P55700', // टैगोर ग्लोबल स्कूल, एकलसिंघा
+  'P16099', // गुरुकुल केसरी पब्लिक माध्यमिक विद्यालय, बांदनवाड़ा
+  'P48759', // कुचामन शिक्षण संस्थान, बांदनवाड़ा
+  'P16964', // सम्राट इंटरनेशनल स्कूल, बांदनवाड़ा
+  'P19054', // सिद्धार्थ इंटरनेशनल स्कूल, बांदनवाड़ा
+  'P19678', // सन राइज कॉन्वेंट स्कूल, भिनाय
+  'P16865', // सुमेर उच्च माध्यमिक विद्यालय, भिनाय
+  'P16968'  // द्रोणाचार्य माध्यमिक विद्यालय, भिनाय
+];
+
 // Check if a school is allowed to log in based on the 6-Level Permission System
 function isSchoolLoginAllowed(code) {
   if (!code) return false;
@@ -17553,41 +17569,42 @@ function isSchoolLoginAllowed(code) {
   // Check 6-Level Tab Visibility and Permissions
   const vis = STATE.tabVisibility6Level || DEFAULT_TAB_VISIBILITY_6LEVEL;
 
-  // Determine school classification from 58 master secondary schools
-  const masterVoterSchools = (window.VOTER_STUDENTS_MASTER && window.VOTER_STUDENTS_MASTER.schools) || [];
-  const secSchool = masterVoterSchools.find(s => String(s.shala_darpan_code).trim() === sCode) ||
-                    ((typeof MASTER_CBEO_DATA !== 'undefined' && (MASTER_CBEO_DATA.schools_56 || [])) || []).find(s => String(s.shala_darpan_code).trim() === sCode) ||
-                    (STATE.schools56 || []).find(s => String(s.shala_darpan_code).trim() === sCode);
+  // Is this school Private?
+  const isPvt = sCode.startsWith('P') || (STATE.schools56 || []).some(s => s.shala_darpan_code === sCode && s.type === 'Private');
 
-  const isSec = !!secSchool;
-  const isPvt = secSchool ? (secSchool.type === 'Private' || sCode.startsWith('P')) : sCode.startsWith('P');
-
-  // Check against active 6-Level configurations (e.g. voter-students, active demands)
-  // Level 6: All Schools (178 schools) -> Default: FALSE / UNCHECKED
-  const allSchoolsAllowed = Object.values(vis).some(c => c && c.all_schools === true);
-  if (allSchoolsAllowed) return true;
-
-  // Level 5: All Govt Schools (132 schools) -> Default: FALSE / UNCHECKED
-  const allGovtAllowed = Object.values(vis).some(c => c && c.all_govt === true);
-  if (allGovtAllowed && !isPvt) return true;
-
-  // Level 4: Pvt Sec / Sr Sec (8 schools) -> Default: TRUE for voter-students
-  const pvtSecAllowed = Object.values(vis).some(c => c && (c.pvt_sec_srsec === true || (c.sec_srsec === true && c.pvt_sec_srsec !== false)));
-  if (pvtSecAllowed && isPvt && isSec) return true;
-
-  // Level 3: Govt Sec / Sr Sec (49 schools) -> Default: TRUE for voter-students
-  const govtSecAllowed = Object.values(vis).some(c => c && (c.govt_sec_srsec === true || (c.sec_srsec === true && c.govt_sec_srsec !== false)));
-  if (govtSecAllowed && !isPvt && isSec) return true;
-
-  // Level 2: PEEO Nodal Schools (25 schools)
-  const isPeeoNodal = (STATE.peeos || []).some(p => String(p.shala_darpan_code).trim() === sCode);
-  if (isPeeoNodal) {
-    const peeoAllowed = Object.values(vis).some(c => c && (c.peeo === true || c.govt_sec_srsec === true || c.sec_srsec === true));
-    if (peeoAllowed) return true;
+  if (isPvt) {
+    // Is it one of the 8 official private secondary schools?
+    const isOneOf8Pvt = OFFICIAL_8_PVT_SCHOOL_CODES.includes(sCode);
+    if (isOneOf8Pvt) {
+      // Allowed if Level 4 (pvt_sec_srsec) is checked on any tab (default: true for voter-students)
+      const pvtSecAllowed = Object.values(vis).some(c => c && (c.pvt_sec_srsec === true || c.sec_srsec === true));
+      return pvtSecAllowed;
+    }
+    // Any other private school is a primary/middle school -> ONLY allowed if Level 6 (all_schools) is true!
+    const allSchoolsAllowed = Object.values(vis).some(c => c && c.all_schools === true);
+    return allSchoolsAllowed;
   }
 
-  // All other schools (Primary / Upper Primary) are NOT permitted when Level 5 & Level 6 are unchecked!
-  return false;
+  // It is a Government school
+  const isSecGovt = (window.VOTER_STUDENTS_MASTER && (window.VOTER_STUDENTS_MASTER.schools || []).some(s => s.shala_darpan_code === sCode && s.type !== 'Private')) ||
+                    ((typeof MASTER_CBEO_DATA !== 'undefined' && (MASTER_CBEO_DATA.schools_56 || [])) || []).some(s => s.shala_darpan_code === sCode && s.type !== 'Private') ||
+                    (STATE.schools56 || []).some(s => s.shala_darpan_code === sCode && s.type !== 'Private');
+
+  if (isSecGovt) {
+    // 49 Govt Sec/SrSec schools -> Allowed if Level 3 (govt_sec_srsec) is checked
+    const govtSecAllowed = Object.values(vis).some(c => c && (c.govt_sec_srsec === true || c.sec_srsec === true));
+    return govtSecAllowed;
+  }
+
+  // Check if it's a PEEO Nodal School
+  const isPeeoNodal = (STATE.peeos || []).some(p => String(p.shala_darpan_code).trim() === sCode);
+  if (isPeeoNodal) {
+    return true;
+  }
+
+  // It is a Government Primary or Upper Primary school -> ONLY allowed if Level 5 (all_govt) or Level 6 (all_schools) is checked!
+  const allGovtAllowed = Object.values(vis).some(c => c && (c.all_govt === true || c.all_schools === true));
+  return allGovtAllowed;
 }
 
 // Helper to synchronize School Management Policy UI (Badge & Buttons) across refreshes
