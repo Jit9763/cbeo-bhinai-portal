@@ -2506,32 +2506,34 @@
           </table>
 
           <!-- Official Declaration & Signatures -->
-          <div style="border:1px solid #333; padding:8px 12px; margin-top:8px; background:#f8fafc">
-            <div style="font-weight:bold; font-size:10px; margin-bottom:2px">संस्था प्रधान आधिकारिक घोषणा एवं प्रमाणीकरण:</div>
-            <div style="font-size:9.5px; line-height:1.4">
-              प्रमाणित किया जाता है कि संस्था में अध्ययनरत समस्त 18+ एवं 17+ आयु वर्ग के विद्यार्थियों का मतदाता सूची सत्यापन विद्यालय रिकॉर्ड, शाला दर्पण एवं संबंधित क्षेत्र के BLO (बूथ लेवल ऑफिसर) से मिलान कर पूर्ण सत्यता के साथ भरा गया है। इसमें किसी भी प्रकार का विचलन या असत्य विवरण नहीं है।
-            </div>
-          </div>
-
-          <div class="footer-box">
-            <div class="stamp-box">
-              <strong>आधिकारिक संस्थागत डिजिटल मोहर</strong><br>
-              ${data.schName}<br>
-              शा.दा./PSP कोड: ${data.schCode}<br>
-              ब्लॉक-भिनाय (जिला: अजमेर)
-            </div>
-            <div style="font-size:11px; text-align:center">
-              दिनांक: <strong>${new Date().toLocaleDateString('hi-IN')}</strong><br>
-              स्थान: <strong>भिनाय (अजमेर)</strong>
-            </div>
-            <div class="sign-box">
-              <div style="height:48px; display:flex; align-items:flex-end; justify-content:flex-end; margin-bottom:4px">
-                ${data.sigData ? `<img src="${data.sigData}" style="max-height:48px; max-width:160px; object-fit:contain" alt="डिजिटल हस्ताक्षर">` : '<div style="height:35px"></div>'}
+          <div style="page-break-inside:avoid; break-inside:avoid">
+            <div style="border:1px solid #333; padding:6px 10px; margin-top:6px; background:#f8fafc">
+              <div style="font-weight:bold; font-size:10px; margin-bottom:2px">संस्था प्रधान आधिकारिक घोषणा एवं प्रमाणीकरण:</div>
+              <div style="font-size:9px; line-height:1.35">
+                प्रमाणित किया जाता है कि संस्था में अध्ययनरत समस्त 18+ एवं 17+ आयु वर्ग के विद्यार्थियों का मतदाता सूची सत्यापन विद्यालय रिकॉर्ड, शाला दर्पण एवं संबंधित क्षेत्र के BLO (बूथ लेवल ऑफिसर) से मिलान कर पूर्ण सत्यता के साथ भरा गया है। इसमें किसी भी प्रकार का विचलन या असत्य विवरण नहीं है।
               </div>
-              <div style="font-weight:bold; border-top:1.5px dashed #334155; padding-top:4px">${data.pName}</div>
-              <div style="font-weight:bold; font-size:11px">संस्था प्रधान / नोडल अधिकारी</div>
-              <div style="font-size:11px">${data.schName}</div>
-              <div style="font-size:11px">मो.: ${data.pMobile}</div>
+            </div>
+
+            <div class="footer-box" style="page-break-inside:avoid; break-inside:avoid; margin-top:10px">
+              <div class="stamp-box">
+                <strong>आधिकारिक संस्थागत डिजिटल मोहर</strong><br>
+                ${data.schName}<br>
+                शा.दा./PSP कोड: ${data.schCode}<br>
+                ब्लॉक-भिनाय (जिला: अजमेर)
+              </div>
+              <div style="font-size:10.5px; text-align:center">
+                दिनांक: <strong>${new Date().toLocaleDateString('hi-IN')}</strong><br>
+                स्थान: <strong>भिनाय (अजमेर)</strong>
+              </div>
+              <div class="sign-box">
+                <div style="height:44px; display:flex; align-items:flex-end; justify-content:flex-end; margin-bottom:4px">
+                  ${data.sigData ? `<img src="${data.sigData}" style="max-height:44px; max-width:150px; object-fit:contain" alt="डिजिटल हस्ताक्षर">` : '<div style="height:35px"></div>'}
+                </div>
+                <div style="font-weight:bold; border-top:1.5px dashed #334155; padding-top:3px">${data.pName}</div>
+                <div style="font-weight:bold; font-size:10.5px">संस्था प्रधान / नोडल अधिकारी</div>
+                <div style="font-size:10px">${data.schName}</div>
+                <div style="font-size:10px">मो.: ${data.pMobile}</div>
+              </div>
             </div>
           </div>
         </div>
@@ -2540,8 +2542,8 @@
 
     async function shareOnWhatsApp() {
       var data = getCertifiedReportData();
-      var cleanName = (data.schName.replace(/[^a-zA-Z0-9_\u0900-\u097F]/g, '_') || 'School');
-      var filename = cleanName + '_Voter_Verification_' + data.schCode + '.pdf';
+      var peeoClean = (data.peeo || '').replace(/[^a-zA-Z0-9]/g, '');
+      var filename = 'Voter_Verification_' + (data.schCode || 'Bhinai') + (peeoClean ? '_' + peeoClean : '') + '.pdf';
       var title = data.schName + ' - मतदाता सूची सत्यापन प्रपत्र 2026';
 
       var nilText18 = IS_NIL_18 ? ' (18+ शून्य / NIL)' : '';
@@ -2557,30 +2559,132 @@
 
       showToast('📲 व्हाट्सएप शेयर हेतु विद्यालय PDF तैयार की जा रही है...', 'info');
 
+      var tempWrap = null;
       try {
         var reportHtml = buildCertifiedReportHtml(data);
 
-        var tempWrap = document.createElement('div');
-        tempWrap.style.position = 'fixed';
-        tempWrap.style.left = '-9999px';
+        tempWrap = document.createElement('div');
+        tempWrap.id = 'temp-pdf-render-wrap';
+        tempWrap.style.position = 'absolute';
         tempWrap.style.top = '0';
+        tempWrap.style.left = '0';
         tempWrap.style.width = '1080px';
+        tempWrap.style.zIndex = '-9999';
+        tempWrap.style.pointerEvents = 'none';
         tempWrap.style.background = '#ffffff';
-        tempWrap.style.padding = '15px';
-        tempWrap.style.fontFamily = "'Segoe UI', Arial, sans-serif";
-        tempWrap.innerHTML = reportHtml;
+        tempWrap.innerHTML = `
+          <style>
+            #temp-pdf-render-wrap {
+              font-family: 'Segoe UI', Arial, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+              color: #0f172a;
+              background: #ffffff;
+            }
+            #temp-pdf-render-wrap .report-container {
+              width: 1040px;
+              margin: 0 auto;
+              background: #ffffff;
+              padding: 10px 14px;
+            }
+            #temp-pdf-render-wrap .header-box {
+              text-align: center;
+              border-bottom: 2.5px solid #1e3a8a;
+              padding-bottom: 6px;
+              margin-bottom: 8px;
+            }
+            #temp-pdf-render-wrap .header-box h1 {
+              font-size: 20px;
+              font-weight: 900;
+              color: #1e3a8a;
+              margin: 2px 0;
+              letter-spacing: 0.3px;
+            }
+            #temp-pdf-render-wrap .header-box .code-badge {
+              font-size: 11px;
+              font-weight: 700;
+              color: #334155;
+              margin-bottom: 2px;
+            }
+            #temp-pdf-render-wrap .header-box h2 {
+              font-size: 13px;
+              font-weight: 800;
+              color: #0284c7;
+              margin: 2px 0;
+            }
+            #temp-pdf-render-wrap .meta-table, #temp-pdf-render-wrap .data-table {
+              width: 100%;
+              border-collapse: collapse;
+              margin-bottom: 8px;
+              font-size: 10px;
+            }
+            #temp-pdf-render-wrap .meta-table td {
+              padding: 4px 6px;
+              border: 1px solid #cbd5e1;
+            }
+            #temp-pdf-render-wrap .data-table th, #temp-pdf-render-wrap .data-table td {
+              border: 1px solid #334155;
+              padding: 3px 5px;
+            }
+            #temp-pdf-render-wrap .data-table th {
+              background: #f1f5f9;
+              color: #1e293b;
+              font-weight: 800;
+              font-size: 10px;
+            }
+            #temp-pdf-render-wrap .section-title {
+              font-size: 11px;
+              font-weight: 800;
+              color: #1e3a8a;
+              margin: 8px 0 3px 0;
+              background: #e0f2fe;
+              padding: 3px 6px;
+              border-left: 4px solid #0284c7;
+            }
+            #temp-pdf-render-wrap .footer-box {
+              margin-top: 14px;
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-end;
+            }
+            #temp-pdf-render-wrap .stamp-box {
+              border: 1.5px dashed #0284c7;
+              padding: 6px 10px;
+              border-radius: 6px;
+              text-align: center;
+              font-size: 10px;
+              color: #1e40af;
+              width: 260px;
+              font-weight: 600;
+            }
+            #temp-pdf-render-wrap .sign-box {
+              text-align: right;
+              width: 260px;
+              font-size: 11px;
+            }
+          </style>
+          ${reportHtml}
+        `;
         document.body.appendChild(tempWrap);
+
+        if (document.fonts && document.fonts.ready) {
+          try { await document.fonts.ready; } catch(e) {}
+        }
+        await new Promise(function(resolve) { setTimeout(resolve, 200); });
 
         var opt = {
           margin: [6, 6, 6, 6],
           filename: filename,
           image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: { scale: 2, useCORS: true, logging: false },
+          html2canvas: { scale: 2, useCORS: true, logging: false, scrollY: 0, scrollX: 0 },
           jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
         };
 
-        var blob = await html2pdf().set(opt).from(tempWrap).outputPdf('blob');
-        document.body.removeChild(tempWrap);
+        var targetElement = tempWrap.querySelector('.report-container') || tempWrap;
+        var blob = await html2pdf().set(opt).from(targetElement).outputPdf('blob');
+
+        if (tempWrap && tempWrap.parentNode) {
+          tempWrap.parentNode.removeChild(tempWrap);
+          tempWrap = null;
+        }
 
         var pdfFile = new File([blob], filename, { type: 'application/pdf' });
 
@@ -2605,11 +2709,14 @@
         URL.revokeObjectURL(url);
 
         showToast('📄 विद्यालय PDF डाउनलोड हो गई! कृपया इसे व्हाट्सएप में अटैच करें।', 'success');
-        var noteText = textSummary + "\n\n*(नोट: विद्यालय की आधिकारिक PDF फाइल डाउनलोड हो गई है - कृपया इस WhatsApp चैट में अटैच करके भेजें)*";
+        var noteText = textSummary + "\n\n*(नोट: विद्यालय की आधिकारिक PDF फाइल " + filename + " डाउनलोड हो गई है - कृपया इस WhatsApp चैट में अटैच करके भेजें)*";
         var waUrl = "https://api.whatsapp.com/send?text=" + encodeURIComponent(noteText);
         window.open(waUrl, "_blank");
 
       } catch (err) {
+        if (tempWrap && tempWrap.parentNode) {
+          tempWrap.parentNode.removeChild(tempWrap);
+        }
         console.error('Error generating WhatsApp PDF:', err);
         var waUrl = "https://api.whatsapp.com/send?text=" + encodeURIComponent(textSummary);
         window.open(waUrl, "_blank");
@@ -2621,8 +2728,8 @@
 
       var data = getCertifiedReportData();
       var reportHtml = buildCertifiedReportHtml(data);
-      var cleanName = data.schName.replace(/[^a-zA-Z0-9_\u0900-\u097F]/g, '_');
-      var filename = cleanName + '_Voter_Verification_' + data.schCode + '.pdf';
+      var peeoClean = (data.peeo || '').replace(/[^a-zA-Z0-9]/g, '');
+      var filename = 'Voter_Verification_' + (data.schCode || 'Bhinai') + (peeoClean ? '_' + peeoClean : '') + '.pdf';
 
       var printDocumentHtml = `
       <!DOCTYPE html>
