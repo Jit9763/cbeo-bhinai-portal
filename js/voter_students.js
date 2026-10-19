@@ -179,7 +179,7 @@
         : `<span style="background:#fef3c7; color:#92400e; border:1px solid #fde68a; padding:6px 16px; border-radius:20px; font-weight:800; font-size:0.9rem; display:inline-flex; align-items:center; gap:6px"><i class="fas fa-exclamation-triangle"></i> ⚠️ प्रपत्र सबमिशन लंबित (अति-आवश्यक)</span>`;
 
       var html = `
-        <div class="voter-view-wrapper" style="padding:1rem 0; max-width:1100px; margin:0 auto">
+        <div id="school-voter-dashboard" class="voter-view-wrapper" style="padding:1rem 0; max-width:1100px; margin:0 auto">
           <!-- School Dedicated Header Banner -->
           <div style="background:linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color:#ffffff; padding:1.75rem 2rem; border-radius:14px; margin-bottom:1.5rem; box-shadow:0 8px 24px rgba(15,23,42,0.15); border-left:6px solid #f59e0b">
             <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem">
@@ -285,7 +285,7 @@
       });
 
       var html = `
-        <div class="voter-view-wrapper" style="padding:1rem 0; max-width:1100px; margin:0 auto">
+        <div id="school-voter-dashboard" class="voter-view-wrapper" style="padding:1rem 0; max-width:1100px; margin:0 auto">
           <div style="background:linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color:#ffffff; padding:1.75rem 2rem; border-radius:14px; margin-bottom:1.5rem; box-shadow:0 8px 24px rgba(15,23,42,0.15); border-left:6px solid #f59e0b">
             <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.15); padding:4px 12px; border-radius:20px; font-size:0.8rem; font-weight:700; color:#fde047; margin-bottom:10px">
               <span>🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</span>
@@ -299,6 +299,26 @@
               आपके परिक्षेत्र के समस्त माध्यमिक/उच्च माध्यमिक विद्यालयों के 18+ एवं 17+ विद्यार्थी मतदाता प्रपत्र सबमिशन स्थिति (${peeoSubCount}/${peeoSchools.length} पूर्ण)।
             </p>
           </div>
+
+          <!-- PEEO Nodal School Quick Action -->
+          <div style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:14px; padding:1.25rem 1.5rem; margin-bottom:1.5rem; box-shadow:0 4px 16px rgba(0,0,0,0.06); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem">
+            <div>
+              <div style="font-weight:800; font-size:1rem; color:#0f172a">📝 आपके नोडल उच्च माध्यमिक विद्यालय का प्रपत्र:</div>
+              <div style="font-size:0.85rem; color:#64748b; margin-top:2px">शाला दर्पण कोड: <code>${pCode}</code></div>
+            </div>
+            <div style="display:flex; gap:0.75rem; flex-wrap:wrap">
+              <a href="voter_form.html?code=${pCode}" target="_blank" class="btn btn-warning btn-sm" style="font-weight:800; padding:0.6rem 1.25rem; border-radius:8px; text-decoration:none">
+                <i class="fas fa-edit"></i> 📝 नोडल स्कूल प्रपत्र भरें
+              </a>
+              <button class="btn btn-info btn-sm" onclick="window.openVoterPdfPreviewModal('${pCode}')" style="background:#0284c7; color:#fff; font-weight:700; border:none; padding:0.6rem 1.1rem; border-radius:8px">
+                <i class="fas fa-eye"></i> 👁️ अवलोकन
+              </button>
+              <button class="btn btn-success btn-sm" onclick="window.downloadVoterSingleSchoolPdf('${pCode}')" style="background:#16a34a; font-weight:700; border:none; padding:0.6rem 1.1rem; border-radius:8px">
+                <i class="fas fa-file-pdf"></i> 📄 PDF
+              </button>
+            </div>
+          </div>
+
           <div id="voter-schools-content"></div>
         </div>
       `;
@@ -340,7 +360,7 @@
     var html = `
       <div class="voter-view-wrapper" style="padding:1rem 0">
         <!-- Hero Banner with Saman Pariksha Monitoring Layout -->
-        <div class="sp-hero-banner" style="background:linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color:#ffffff; padding:1.5rem 1.75rem; border-radius:12px; margin-bottom:1.5rem; box-shadow:0 6px 20px rgba(15,23,42,0.15); border-left:6px solid #f59e0b">
+        <div id="voter-block-hero" class="sp-hero-banner" style="background:linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color:#ffffff; padding:1.5rem 1.75rem; border-radius:12px; margin-bottom:1.5rem; box-shadow:0 6px 20px rgba(15,23,42,0.15); border-left:6px solid #f59e0b">
           <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem">
             <div>
               <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.15); padding:3px 12px; border-radius:20px; font-size:0.8rem; font-weight:700; color:#fde047; margin-bottom:8px">
@@ -386,7 +406,7 @@
         </div>
 
         <!-- Metric KPI Cards -->
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:1rem; margin-bottom:1.5rem">
+        <div id="voter-hero-kpis" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:1rem; margin-bottom:1.5rem">
           <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:1rem; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.04)">
             <div style="font-size:0.75rem; font-weight:800; color:#64748b; text-transform:uppercase">कुल विद्यालय</div>
             <div style="font-size:1.75rem; font-weight:900; color:#1e3a8a; margin-top:4px">${blockTotalSchools}</div>

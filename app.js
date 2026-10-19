@@ -15552,27 +15552,15 @@ function renderCBEOExecutiveDemands() {
       </td>
       <td style="text-align:center">
         <div style="display:flex; gap:0.4rem; justify-content:center; flex-wrap:wrap">
-          ${d.isVoterStudents ? `
-          <button class="btn btn-primary btn-sm" onclick="switchTab('voter-students')" title="प्रपत्र पोर्टल खोलें" style="font-size:0.75rem; padding:4px 8px; font-weight:700">
-            <i class="fas fa-eye"></i> प्रपत्र खोलें
-          </button>
-          <button class="btn btn-danger btn-sm" onclick="if(typeof downloadConsolidatedVoterPDF==='function') downloadConsolidatedVoterPDF(); else generateDemandPendingListPDF('${d.id}');" title="लम्बित सूची PDF जनरेट करें" style="font-size:0.75rem; padding:4px 8px; font-weight:700">
-            <i class="fas fa-file-pdf"></i> लम्बित PDF
-          </button>
-          <button class="btn btn-whatsapp btn-sm" onclick="if(typeof openVoterBroadcastModal==='function') openVoterBroadcastModal();" title="WhatsApp पर लम्बित सूची शेयर करें" style="font-size:0.75rem; padding:4px 8px; background:#16a34a; color:#fff">
-            <i class="fab fa-whatsapp"></i> WhatsApp प्रसारण
-          </button>
-          ` : `
           <button class="btn btn-danger btn-sm" onclick="generateDemandPendingListPDF('${d.id}')" title="लम्बित सूची PDF जनरेट करें" style="font-size:0.75rem; padding:4px 8px; font-weight:700">
             <i class="fas fa-file-pdf"></i> लम्बित PDF
           </button>
           <button class="btn btn-sm" onclick="openDemandBroadcastCenter('${d.id}')" title="संदेश कस्टमाइज़ करें एवं ईमेल/Telegram/WhatsApp पर भेजें" style="font-size:0.75rem; padding:4px 8px; font-weight:700; background:#0284c7; color:#ffffff; border:none; border-radius:4px">
             <i class="fas fa-bullhorn"></i> प्रसारण
           </button>
-          <button class="btn btn-whatsapp btn-sm" onclick="openShareDemandPendingModal('${d.id}')" title="WhatsApp पर लम्बित सूची शेयर करें" style="font-size:0.75rem; padding:4px 8px">
+          <button class="btn btn-whatsapp btn-sm" onclick="openShareDemandPendingModal('${d.id}')" title="WhatsApp पर लम्बित सूची शेयर करें" style="font-size:0.75rem; padding:4px 8px; background:#16a34a; color:#fff">
             <i class="fab fa-whatsapp"></i> शेयर
           </button>
-          `}
         </div>
       </td>
     `;
@@ -15723,16 +15711,16 @@ function generateDemandPendingListPDF(demandId) {
 }
 
 function openShareDemandPendingModal(demandId) {
-  if (demandId === 'DEMAND_VOTER_STUDENTS_2026' || String(demandId).toLowerCase().includes('voter')) {
-    if (typeof openVoterBroadcastModal === 'function') {
-      openVoterBroadcastModal();
-      return;
-    }
-  }
-
   let demand = (STATE.demands || []).find(d => d.id === demandId);
   if (!demand) {
-    if (demandId === 'saman_pariksha_2026_27' || demandId.includes('saman_pariksha')) {
+    if (demandId === 'DEMAND_VOTER_STUDENTS_2026' || String(demandId).toLowerCase().includes('voter')) {
+      demand = {
+        id: 'DEMAND_VOTER_STUDENTS_2026',
+        title: '18+ एवं 17+ विद्यार्थी मतदाता सूची सत्यापन व पंजीकरण प्रपत्र 2026 (58 विद्यालय)',
+        dueDate: '25 अक्टूबर 2026',
+        schoolScope: 'both_sec'
+      };
+    } else if (demandId === 'saman_pariksha_2026_27' || demandId.includes('saman_pariksha')) {
       demand = {
         id: 'saman_pariksha_2026_27',
         title: 'समान परीक्षा 2026-27 (प्रश्न-पत्र मांग 57 विद्यालय)',
@@ -17042,10 +17030,13 @@ function generateDemandTelegramMessage(demandId) {
     schoolScope: 'govt_sec'
   };
 
+  const isVoter = demand.id === 'DEMAND_VOTER_STUDENTS_2026' || String(demand.id).toLowerCase().includes('voter');
   const isSyllabus = demand.id === 'DEMAND_SAMAN_SYLLABUS_2026' || (demand.title && demand.title.includes('पाठ्यक्रम'));
 
   let audienceText = '';
-  if (isSyllabus || demand.schoolScope === 'govt_sec') {
+  if (isVoter) {
+    audienceText = 'समस्त संबंधित संस्था प्रधान एवं निर्वाचन प्रभारी,\nमाध्यमिक एवं उच्च माध्यमिक विद्यालय (49 राजकीय + 8 निजी + 1 टेस्ट = 58 विद्यालय),\nब्लॉक-भिनाय (जिला: अजमेर)';
+  } else if (isSyllabus || demand.schoolScope === 'govt_sec') {
     audienceText = 'समस्त संबंधित संस्था प्रधान एवं परीक्षा प्रभारी,\nराजकीय माध्यमिक एवं उच्च माध्यमिक विद्यालय (49 विद्यालय), ब्लॉक-भिनाय (जिला: अजमेर)';
   } else if (demand.schoolScope === 'pvt_sec') {
     audienceText = 'समस्त संबंधित संस्था प्रधान एवं परीक्षा प्रभारी,\nनिजी माध्यमिक एवं उच्च माध्यमिक विद्यालय (8 विद्यालय), ब्लॉक-भिनाय (जिला: अजमेर)';
@@ -17058,7 +17049,16 @@ function generateDemandTelegramMessage(demandId) {
   }
 
   let featuresSnippet = '';
-  if (isSyllabus) {
+  if (isVoter) {
+    featuresSnippet = `━━━━━━━━━━━━━━━━━━
+🗳️ <b>प्रपत्र की मुख्य विशेषताएं एवं दिशा-निर्देश:</b>
+1️⃣ <b>18+ विद्यार्थी मतदाता सत्यापन (कक्षा 12):</b> 18 वर्ष पूर्ण कर चुके विद्यार्थियों की भाग सं., क्रम सं. एवं EPIC No. अंकन।
+2️⃣ <b>अपेक्षित नए मतदाता:</b> जिनका नाम नहीं जुड़ा है, उनके लिए कारण (Form 6 भरा गया / आयु संबंधी) का अनिवार्य चयन।
+3️⃣ <b>17+ अग्रिम भावी मतदाता (कक्षा 11 व 12):</b> 01.10.2008 से 01.10.2009 के मध्य जन्मे विद्यार्थियों का अग्रिम विवरण।
+4️⃣ <b>शून्य (NIL) विकल्प:</b> विद्यार्थी न होने पर 1-क्लिक शून्य प्रमाणीकरण सुविधा।
+5️⃣ <b>डिजिटल प्रमाणीकरण व A4 PDF:</b> सबमिट करने के बाद संस्थागत डिजिटल मोहर सहित प्रमाणित A4 PDF तुरंत डाउनलोड करें।
+━━━━━━━━━━━━━━━━━━\n\n`;
+  } else if (isSyllabus) {
     featuresSnippet = `━━━━━━━━━━━━━━━━━━
 ✨ <b>प्रपत्र की मुख्य विशेषताएं एवं सरलता:</b>
 1️⃣ <b>संस्था प्रधान व परीक्षा प्रभारी विवरण:</b> समान परीक्षा मास्टर रिकॉर्ड से नाम व मोबाइल स्वतः प्री-फिल्ड हैं।
@@ -17228,7 +17228,14 @@ let CURRENT_BROADCAST_MODE = 'reminder'; // 'reminder' or 'order'
 function generateDemandBroadcastReminderMessage(demandId) {
   let demand = (STATE.demands || []).find(d => d.id === demandId);
   if (!demand) {
-    if (demandId === 'saman_pariksha_2026_27' || demandId.includes('saman_pariksha')) {
+    if (demandId === 'DEMAND_VOTER_STUDENTS_2026' || String(demandId).toLowerCase().includes('voter')) {
+      demand = {
+        id: 'DEMAND_VOTER_STUDENTS_2026',
+        title: '18+ एवं 17+ विद्यार्थी मतदाता सूची सत्यापन व पंजीकरण प्रपत्र 2026 (58 विद्यालय)',
+        dueDate: '25 अक्टूबर 2026',
+        schoolScope: 'both_sec'
+      };
+    } else if (demandId === 'saman_pariksha_2026_27' || demandId.includes('saman_pariksha')) {
       demand = {
         id: 'saman_pariksha_2026_27',
         title: 'समान परीक्षा 2026-27 (प्रश्न-पत्र मांग 57 विद्यालय)',
@@ -17280,10 +17287,13 @@ function generateDemandBroadcastReminderMessage(demandId) {
     listText += `[${idx + 1}] ${item.name} (${item.code})\n     प्रभारी: ${item.principal} | मो.: ${item.mobile || 'उपलब्ध नहीं'}\n`;
   });
 
+  const isVoterDemand = (demand.id === 'DEMAND_VOTER_STUDENTS_2026' || String(demand.id).toLowerCase().includes('voter'));
   const isElectionDemand = (demand.id === 'DEMAND_ELECTION_2026' || String(demand.id).toLowerCase().includes('election'));
-  const directLink = isElectionDemand 
-    ? 'https://jit9763.github.io/cbeo-bhinai-portal/election_form.html'
-    : 'https://jit9763.github.io/cbeo-bhinai-portal/';
+  const directLink = isVoterDemand
+    ? 'https://jit9763.github.io/cbeo-bhinai-portal/'
+    : isElectionDemand 
+      ? 'https://jit9763.github.io/cbeo-bhinai-portal/election_form.html'
+      : 'https://jit9763.github.io/cbeo-bhinai-portal/';
 
   const msg = 
 `*कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)*
@@ -17313,15 +17323,14 @@ function openDemandBroadcastCenter(demandId, defaultMode = null) {
     return;
   }
 
-  if (demandId === 'DEMAND_VOTER_STUDENTS_2026' || String(demandId).toLowerCase().includes('voter')) {
-    if (typeof openVoterBroadcastModal === 'function') {
-      openVoterBroadcastModal();
-      return;
-    }
-  }
-
+  const isVoter = (demandId === 'DEMAND_VOTER_STUDENTS_2026' || String(demandId).toLowerCase().includes('voter'));
   const isElection = (demandId === 'DEMAND_ELECTION_2026' || String(demandId).toLowerCase().includes('election'));
-  const demand = (STATE.demands || []).find(d => d.id === demandId) || (isElection ? {
+  const demand = (STATE.demands || []).find(d => d.id === demandId) || (isVoter ? {
+    id: 'DEMAND_VOTER_STUDENTS_2026',
+    title: '18+ एवं 17+ विद्यार्थी मतदाता सूची सत्यापन व पंजीकरण प्रपत्र 2026 (58 विद्यालय)',
+    dueDate: '25 अक्टूबर 2026',
+    schoolScope: 'both_sec'
+  } : isElection ? {
     id: 'DEMAND_ELECTION_2026',
     title: 'पंचायत आम चुनाव 2026: मतदान केंद्र (बूथ) सत्यापन प्रपत्र (33 विद्यालय, 116 बूथ)',
     dueDate: 'तत्काल / 15 अक्टूबर 2026',
