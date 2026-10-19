@@ -109,6 +109,8 @@
     .btn-warning:hover { background: #b45309; }
     .btn-outline { background: #fff; border: 1.5px solid #cbd5e1; color: var(--text); }
     .btn-outline:hover { background: #f8fafc; }
+    .btn-whatsapp { background: #25d366; color: #fff; }
+    .btn-whatsapp:hover { background: #1ebc59; color: #fff; }
 
     .container {
       max-width: 1320px;
@@ -841,11 +843,14 @@
         </button>
       </div>
 
-      <button class="btn btn-outline" onclick="saveDraft()" title="ड्राफ्ट सेव करें">
+      <button class="btn btn-outline" onclick="saveDraft()" title="ड्राफ्ट सुरक्षित करें">
         <i class="fas fa-save"></i> ड्राफ्ट सेव
       </button>
-      <button class="btn btn-warning" onclick="generateCertifiedPdf()" title="प्रमाणित आधिकारिक PDF डाउनलोड करें">
-        <i class="fas fa-file-pdf"></i> प्रमाणित PDF
+      <button class="btn btn-warning" onclick="generateCertifiedPdf()" title="प्रमाणित आधिकारिक PDF / प्रिंट खोलें">
+        <i class="fas fa-print"></i> प्रिंट / PDF
+      </button>
+      <button class="btn btn-whatsapp" onclick="shareOnWhatsApp()" title="व्हाट्सएप पर रिपोर्ट शेयर करें">
+        <i class="fab fa-whatsapp"></i> व्हाट्सएप शेयर
       </button>
       <button class="btn btn-success" id="btn-final-submit" onclick="submitFinalForm()" title="आधिकारिक सत्यापन सबमिट करें">
         <i class="fas fa-check-circle"></i> अंतिम सबमिट
@@ -1029,12 +1034,15 @@
       अपेक्षित: <strong style="color:orange" id="sum-18-unreg">0</strong> | 
       17+ कुल: <strong style="color:#2563eb" id="sum-17-total">0</strong>
     </div>
-    <div style="display:flex; gap:0.5rem">
+    <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
       <button class="btn btn-outline" onclick="saveDraft()">
         <i class="fas fa-save"></i> ड्राफ्ट सेव
       </button>
       <button class="btn btn-warning" onclick="generateCertifiedPdf()">
-        <i class="fas fa-file-pdf"></i> प्रमाणित PDF
+        <i class="fas fa-print"></i> प्रिंट / PDF
+      </button>
+      <button class="btn btn-whatsapp" onclick="shareOnWhatsApp()">
+        <i class="fab fa-whatsapp"></i> व्हाट्सएप शेयर
       </button>
       <button class="btn btn-success" onclick="submitFinalForm()">
         <i class="fas fa-check-circle"></i> अंतिम सबमिट
@@ -2186,9 +2194,9 @@
       document.getElementById('disp-status-badge').innerHTML = '<span class="status-pill submitted"><i class="fas fa-check-circle"></i> डेटा सबमिट पूर्ण' + nilLabel + ' (' + data.submitted_at + ')</span>';
       showToast('✅ 18+ व 17+ विद्यार्थी मतदाता सत्यापन सफलतापूर्वक सबमिट हो गया!', 'success');
 
-      // Offer PDF
+      // Offer PDF / Print
       setTimeout(function() {
-        if (confirm('सबमिशन सफल! क्या आप आधिकारिक प्रमाणित PDF प्रपत्र डाउनलोड करना चाहते हैं?')) {
+        if (confirm('सबमिशन सफल! क्या आप आधिकारिक प्रमाणित रिपोर्ट / प्रिंट पूर्वावलोकन खोलना चाहते हैं?')) {
           generateCertifiedPdf();
         }
       }, 500);
@@ -2229,14 +2237,44 @@
       return null;
     }
 
+    function shareOnWhatsApp() {
+      var schName = CURRENT_SCHOOL ? (CURRENT_SCHOOL.school_name_hi || CURRENT_SCHOOL.school_name) : 'विद्यालय';
+      var schCode = CURRENT_SCHOOL_CODE;
+      var peeo = CURRENT_SCHOOL ? (CURRENT_SCHOOL.peeo_name || '---') : '---';
+      var pName = document.getElementById('principal-name-input').value.trim() || (CURRENT_SCHOOL ? CURRENT_SCHOOL.principal_name : 'संस्था प्रधान');
+      var pMobile = document.getElementById('principal-mobile-input').value.trim() || (CURRENT_SCHOOL ? CURRENT_SCHOOL.principal_mobile : '');
+
+      var total18 = STUDENTS_18.length;
+      var reg18 = STUDENTS_18.filter(function(s) { return s.is_registered === 'हाँ'; }).length;
+      var unreg18 = total18 - reg18;
+      var total17 = STUDENTS_17.length;
+
+      var nilText18 = IS_NIL_18 ? ' (18+ शून्य / NIL)' : '';
+      var nilText17 = IS_NIL_17 ? ' (17+ शून्य / NIL)' : '';
+
+      var text = "🗳️ *18+ एवं 17+ विद्यार्थी मतदाता सूची सत्यापन रिपोर्ट 2026*\n" +
+        "🏫 *विद्यालय:* " + schName + "\n" +
+        "🔢 *शा.दा./PSP कोड:* " + schCode + " (PEEO: " + peeo + ")\n" +
+        "📊 *18+ कुल विद्यार्थी:* " + total18 + nilText18 + " (पंजीकृत: " + reg18 + ", अपेक्षित: " + unreg18 + ")\n" +
+        "👥 *17+ भावी मतदाता:* " + total17 + nilText17 + "\n" +
+        "✍️ *संस्था प्रधान:* " + pName + (pMobile ? " (मो.: " + pMobile + ")" : "") + "\n" +
+        "🏛️ *कार्यालय:* CBEO भिनाय | जिला: *अजमेर (AJMER)*\n" +
+        "🌐 *पोर्टल:* https://jit9763.github.io/cbeo-bhinai-portal/voter_form.html?code=" + schCode;
+
+      var url = "https://api.whatsapp.com/send?text=" + encodeURIComponent(text);
+      window.open(url, "_blank");
+    }
+
     function generateCertifiedPdf() {
-      showToast('प्रमाणित आधिकारिक PDF प्रपत्र तैयार किया जा रहा है...', 'info');
+      showToast('प्रमाणित आधिकारिक प्रपत्र / PDF पूर्वावलोकन खोला जा रहा है...', 'info');
 
       var schName = CURRENT_SCHOOL ? (CURRENT_SCHOOL.school_name_hi || CURRENT_SCHOOL.school_name) : 'विद्यालय';
       var schCode = CURRENT_SCHOOL_CODE;
-      var peeo = CURRENT_SCHOOL ? CURRENT_SCHOOL.peeo_name : 'PEEO';
-      var pName = document.getElementById('principal-name-input').value.trim() || 'संस्था प्रधान';
-      var pMobile = document.getElementById('principal-mobile-input').value.trim() || '---';
+      var peeo = CURRENT_SCHOOL ? (CURRENT_SCHOOL.peeo_name || 'PEEO') : 'PEEO';
+      var category = CURRENT_SCHOOL ? (CURRENT_SCHOOL.category || CURRENT_SCHOOL.type || 'राजकीय') : 'राजकीय';
+      var panchayat = CURRENT_SCHOOL ? (CURRENT_SCHOOL.panchayat || CURRENT_SCHOOL.peeo_name || 'भिनाय') : 'भिनाय';
+      var pName = document.getElementById('principal-name-input').value.trim() || (CURRENT_SCHOOL ? CURRENT_SCHOOL.principal_name : 'संस्था प्रधान');
+      var pMobile = document.getElementById('principal-mobile-input').value.trim() || (CURRENT_SCHOOL ? CURRENT_SCHOOL.principal_mobile : '---');
 
       var total18 = STUDENTS_18.length;
       var reg18 = STUDENTS_18.filter(function(s) { return s.is_registered === 'हाँ'; }).length;
@@ -2252,7 +2290,7 @@
               <td style="padding:5px; border:1px solid #333"><strong>${s.name}</strong></td>
               <td style="padding:5px; border:1px solid #333">${s.father_name}</td>
               <td style="padding:5px; border:1px solid #333; text-align:center">${s.dob || '---'}</td>
-              <td style="padding:5px; border:1px solid #333; text-align:center">${s.class_name || '12वीं'}</td>
+              <td style="padding:5px; border:1px solid #333; text-align:center">${s.class_name ? (s.class_name + (String(s.class_name).includes('वीं') ? '' : 'वीं')) : '12वीं'}</td>
               <td style="padding:5px; border:1px solid #333; text-align:center; font-weight:bold; color:${s.is_registered === 'हाँ' ? '#15803d' : '#b45309'}">${s.is_registered}</td>
               <td style="padding:5px; border:1px solid #333">${s.vidhan_sabha || '100 - मसूदा'}</td>
               <td style="padding:5px; border:1px solid #333; text-align:center">${s.part_no || '---'}</td>
@@ -2273,65 +2311,267 @@
               <td style="padding:5px; border:1px solid #333">${s.father_name}</td>
               <td style="padding:5px; border:1px solid #333; text-align:center">${s.dob || '---'}</td>
               <td style="padding:5px; border:1px solid #333; text-align:center">${s.mobile_no || '---'}</td>
-              <td style="padding:5px; border:1px solid #333; text-align:center">${s.class_name || '11वीं'}</td>
+              <td style="padding:5px; border:1px solid #333; text-align:center">${s.class_name ? (s.class_name + (String(s.class_name).includes('वीं') ? '' : 'वीं')) : '11वीं'}</td>
               <td style="padding:5px; border:1px solid #333">${s.vidhan_sabha || '100 - मसूदा'}</td>
             </tr>
           `;
         }).join('');
 
-      var pdfHtml = `
-        <div style="font-family:'Segoe UI', Arial, sans-serif; padding:15px; color:#000; font-size:9pt; line-height:1.4">
-          <!-- Official Header -->
-          <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:8px; margin-bottom:12px">
-            <h2 style="margin:0; font-size:14pt; color:#1e3a8a">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</h2>
-            <div style="font-size:11pt; font-weight:bold; margin-top:3px">जिला: अजमेर (AJMER) | ब्लॉक: भिनाय (राजस्थान)</div>
-            <div style="font-size:12pt; font-weight:bold; color:#0f172a; margin-top:6px; background:#e2e8f0; padding:4px; border:1px solid #94a3b8">
-              🗳️ 18+ एवं 17+ विद्यार्थी मतदाता सूची सत्यापन एवं पंजीकरण अधिकृत प्रपत्र (सत्र 2026-27)
+      var printDocumentHtml = `
+      <!DOCTYPE html>
+      <html lang="hi">
+      <head>
+        <meta charset="UTF-8">
+        <title>${schName}_Voter_Verification_${schCode}</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"><\/script>
+        <style>
+          @page { size: A4 landscape; margin: 8mm 10mm; }
+          * { box-sizing: border-box; }
+          body {
+            font-family: 'Segoe UI', Arial, -apple-system, sans-serif;
+            color: #0f172a;
+            margin: 0;
+            padding: 0;
+            background: #f1f5f9;
+          }
+          .action-toolbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #ffffff;
+            border-bottom: 2px solid #1e3a8a;
+            padding: 10px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
+            gap: 10px;
+          }
+          .toolbar-title {
+            font-weight: 800;
+            color: #1e3a8a;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+          }
+          .toolbar-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+          }
+          .action-btn {
+            padding: 7px 14px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            transition: all 0.2s;
+          }
+          .btn-print { background: #1e3a8a; color: #fff; }
+          .btn-print:hover { background: #1e40af; }
+          .btn-download { background: #d97706; color: #fff; }
+          .btn-download:hover { background: #b45309; }
+          .btn-share { background: #25d366; color: #fff; }
+          .btn-share:hover { background: #1ebc59; }
+          .btn-close { background: #fee2e2; color: #991b1b; }
+          .btn-close:hover { background: #dc2626; color: #fff; }
+
+          .report-container {
+            max-width: 1100px;
+            margin: 18px auto 40px auto;
+            background: #ffffff;
+            border: 2px solid #1e3a8a;
+            border-radius: 8px;
+            padding: 20px 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+          }
+          .header-box {
+            text-align: center;
+            border-bottom: 2.5px solid #1e3a8a;
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+          }
+          .header-box .sub-top {
+            font-size: 12px;
+            font-weight: 700;
+            color: #475569;
+            margin-bottom: 2px;
+          }
+          .header-box h1 {
+            font-size: 21px;
+            font-weight: 900;
+            color: #1e3a8a;
+            margin: 3px 0;
+            letter-spacing: 0.3px;
+          }
+          .header-box .code-badge {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: 3px;
+          }
+          .header-box h2 {
+            font-size: 14.5px;
+            font-weight: 800;
+            color: #0284c7;
+            margin: 3px 0;
+          }
+          .header-box .cbeo-tag {
+            font-size: 12px;
+            color: #475569;
+            margin: 2px 0;
+          }
+          .meta-table, .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+            font-size: 11px;
+          }
+          .meta-table td {
+            padding: 5px 8px;
+            border: 1px solid #cbd5e1;
+          }
+          .data-table th, .data-table td {
+            border: 1px solid #334155;
+            padding: 5px 6px;
+          }
+          .data-table th {
+            background: #f1f5f9;
+            color: #1e293b;
+            font-weight: 800;
+            font-size: 10.5px;
+          }
+          .section-title {
+            font-size: 12px;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin: 10px 0 4px 0;
+            background: #e0f2fe;
+            padding: 4px 8px;
+            border-left: 4px solid #0284c7;
+          }
+          .footer-box {
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+          }
+          .stamp-box {
+            border: 1.5px dashed #0284c7;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 11px;
+            color: #1e40af;
+            width: 270px;
+            font-weight: 600;
+          }
+          .sign-box {
+            text-align: right;
+            width: 280px;
+            font-size: 12px;
+          }
+
+          @media print {
+            .no-print { display: none !important; }
+            body { background: #fff; padding: 0; }
+            .report-container {
+              border: none;
+              box-shadow: none;
+              margin: 0;
+              padding: 0;
+              max-width: 100%;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        <!-- Top Action Toolbar (Never Printed) -->
+        <div class="action-toolbar no-print">
+          <div class="toolbar-title">
+            <i class="fas fa-school" style="color:#0284c7"></i>
+            <span>${schName}</span> | अधिकृत प्रपत्र पूर्वावलोकन
+          </div>
+          <div class="toolbar-actions">
+            <button class="action-btn btn-print" onclick="window.print()">
+              <i class="fas fa-print"></i> प्रिंट / PDF सेव करें
+            </button>
+            <button class="action-btn btn-download" onclick="downloadPdf()">
+              <i class="fas fa-download"></i> PDF डाउनलोड
+            </button>
+            <button class="action-btn btn-share" onclick="shareWhatsApp()">
+              <i class="fab fa-whatsapp"></i> व्हाट्सएप शेयर
+            </button>
+            <button class="action-btn btn-close" onclick="window.close()">
+              <i class="fas fa-times"></i> बंद करें
+            </button>
+          </div>
+        </div>
+
+        <div class="report-container" id="printable-report">
+          <!-- 1. School Name At Top Most Position -->
+          <div class="header-box">
+            <div class="sub-top">राजस्थान सरकार | स्कूल शिक्षा विभाग</div>
+            <h1>${schName}</h1>
+            <div class="code-badge">
+              शा.दा./PSP कोड: <strong>${schCode}</strong> &bull; श्रेणी: <strong>${category}</strong> &bull; PEEO: <strong>${peeo}</strong>
+            </div>
+            <h2>18+ एवं 17+ विद्यार्थी मतदाता सूची सत्यापन व पंजीकरण अधिकृत प्रपत्र (सत्र 2026-27)</h2>
+            <div class="cbeo-tag">
+              कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय | जिला: <strong>अजमेर (AJMER)</strong> &bull; ब्लॉक: <strong>भिनाय (BHINAI)</strong>
             </div>
           </div>
 
           <!-- School Meta Table -->
-          <table style="width:100%; border-collapse:collapse; margin-bottom:12px; font-size:9pt">
+          <table class="meta-table">
             <tr>
-              <td style="border:1px solid #333; padding:5px; background:#f8fafc; width:18%"><strong>विद्यालय का नाम:</strong></td>
-              <td style="border:1px solid #333; padding:5px; font-weight:bold">${schName}</td>
-              <td style="border:1px solid #333; padding:5px; background:#f8fafc; width:18%"><strong>शा.दा./PSP कोड:</strong></td>
-              <td style="border:1px solid #333; padding:5px; font-weight:bold">${schCode}</td>
+              <td style="background:#f8fafc; width:16%"><strong>विद्यालय का नाम:</strong></td>
+              <td style="font-weight:bold; width:34%">${schName}</td>
+              <td style="background:#f8fafc; width:16%"><strong>शा.दा./PSP कोड:</strong></td>
+              <td style="font-weight:bold; width:34%">${schCode}</td>
             </tr>
             <tr>
-              <td style="border:1px solid #333; padding:5px; background:#f8fafc"><strong>PEEO परिक्षेत्र:</strong></td>
-              <td style="border:1px solid #333; padding:5px">${peeo}</td>
-              <td style="border:1px solid #333; padding:5px; background:#f8fafc"><strong>विधानसभा क्षेत्र:</strong></td>
-              <td style="border:1px solid #333; padding:5px">100 - मसूदा (अजमेर)</td>
+              <td style="background:#f8fafc"><strong>PEEO परिक्षेत्र:</strong></td>
+              <td>${peeo}</td>
+              <td style="background:#f8fafc"><strong>विधानसभा क्षेत्र:</strong></td>
+              <td style="font-weight:bold; color:#0284c7">100 - मसूदा (अजमेर)</td>
             </tr>
             <tr>
-              <td style="border:1px solid #333; padding:5px; background:#f8fafc"><strong>संस्था प्रधान:</strong></td>
-              <td style="border:1px solid #333; padding:5px">${pName} (मो.: ${pMobile})</td>
-              <td style="border:1px solid #333; padding:5px; background:#f8fafc"><strong>कुल सारांश:</strong></td>
-              <td style="border:1px solid #333; padding:5px; font-weight:bold">
+              <td style="background:#f8fafc"><strong>संस्था प्रधान:</strong></td>
+              <td>${pName} (मो.: ${pMobile})</td>
+              <td style="background:#f8fafc"><strong>कुल सारांश:</strong></td>
+              <td style="font-weight:bold">
                 18+ कुल: ${total18} (पंजीकृत: ${reg18}, शेष: ${unreg18}) | 17+ कुल: ${total17}
               </td>
             </tr>
           </table>
 
           <!-- 18+ Table -->
-          <div style="font-size:10pt; font-weight:bold; margin-bottom:4px; color:#1e3a8a">
+          <div class="section-title">
             भाग 1: 18+ आयु वर्ग विद्यार्थी मतदाता सूची सत्यापन विवरण (कुल: ${total18})
           </div>
-          <table style="width:100%; border-collapse:collapse; margin-bottom:14px; font-size:8pt">
+          <table class="data-table">
             <thead>
-              <tr style="background:#e2e8f0">
-                <th style="padding:4px; border:1px solid #333; width:25px">क्र.</th>
-                <th style="padding:4px; border:1px solid #333">विद्यार्थी का नाम</th>
-                <th style="padding:4px; border:1px solid #333">पिता का नाम</th>
-                <th style="padding:4px; border:1px solid #333; width:65px">जन्म तिथि</th>
-                <th style="padding:4px; border:1px solid #333; width:45px">कक्षा</th>
-                <th style="padding:4px; border:1px solid #333; width:55px">पंजीकृत?</th>
-                <th style="padding:4px; border:1px solid #333">विधानसभा</th>
-                <th style="padding:4px; border:1px solid #333; width:40px">भाग सं.</th>
-                <th style="padding:4px; border:1px solid #333; width:40px">क्रम सं.</th>
-                <th style="padding:4px; border:1px solid #333; width:70px">EPIC सं.</th>
-                <th style="padding:4px; border:1px solid #333">कारण (यदि नहीं जुड़ा)</th>
+              <tr>
+                <th style="width:30px; text-align:center">क्र.</th>
+                <th>विद्यार्थी का नाम</th>
+                <th>पिता का नाम</th>
+                <th style="width:70px; text-align:center">जन्म तिथि</th>
+                <th style="width:45px; text-align:center">कक्षा</th>
+                <th style="width:60px; text-align:center">पंजीकृत?</th>
+                <th style="width:110px">विधानसभा</th>
+                <th style="width:45px; text-align:center">भाग सं.</th>
+                <th style="width:45px; text-align:center">क्रम सं.</th>
+                <th style="width:80px; text-align:center">EPIC सं.</th>
+                <th>कारण (यदि नहीं जुड़ा)</th>
               </tr>
             </thead>
             <tbody>
@@ -2340,19 +2580,19 @@
           </table>
 
           <!-- 17+ Table -->
-          <div style="font-size:10pt; font-weight:bold; margin-bottom:4px; color:#1e3a8a">
+          <div class="section-title">
             भाग 2: 17+ आयु वर्ग विद्यार्थी विवरण (भावी मतदाता सूची) (कुल: ${total17})
           </div>
-          <table style="width:100%; border-collapse:collapse; margin-bottom:14px; font-size:8pt">
+          <table class="data-table">
             <thead>
-              <tr style="background:#e2e8f0">
-                <th style="padding:4px; border:1px solid #333; width:25px">क्र.</th>
-                <th style="padding:4px; border:1px solid #333">विद्यार्थी का नाम</th>
-                <th style="padding:4px; border:1px solid #333">पिता का नाम</th>
-                <th style="padding:4px; border:1px solid #333; width:65px">जन्म तिथि</th>
-                <th style="padding:4px; border:1px solid #333; width:75px">मोबाइल नं.</th>
-                <th style="padding:4px; border:1px solid #333; width:45px">कक्षा</th>
-                <th style="padding:4px; border:1px solid #333">विधानसभा क्षेत्र</th>
+              <tr>
+                <th style="width:30px; text-align:center">क्र.</th>
+                <th>विद्यार्थी का नाम</th>
+                <th>पिता का नाम</th>
+                <th style="width:75px; text-align:center">जन्म तिथि</th>
+                <th style="width:85px; text-align:center">मोबाइल नं.</th>
+                <th style="width:50px; text-align:center">कक्षा</th>
+                <th>विधानसभा क्षेत्र</th>
               </tr>
             </thead>
             <tbody>
@@ -2361,39 +2601,81 @@
           </table>
 
           <!-- Official Declaration & Signatures -->
-          <div style="border:1px solid #333; padding:8px 12px; margin-top:10px; background:#f8fafc">
-            <div style="font-weight:bold; font-size:9pt; margin-bottom:4px">संस्था प्रधान आधिकारिक घोषणा एवं प्रमाणीकरण:</div>
-            <div style="font-size:8pt; line-height:1.5">
+          <div style="border:1px solid #333; padding:8px 12px; margin-top:8px; background:#f8fafc">
+            <div style="font-weight:bold; font-size:10px; margin-bottom:2px">संस्था प्रधान आधिकारिक घोषणा एवं प्रमाणीकरण:</div>
+            <div style="font-size:9.5px; line-height:1.4">
               प्रमाणित किया जाता है कि संस्था में अध्ययनरत समस्त 18+ एवं 17+ आयु वर्ग के विद्यार्थियों का मतदाता सूची सत्यापन विद्यालय रिकॉर्ड, शाला दर्पण एवं संबंधित क्षेत्र के BLO (बूथ लेवल ऑफिसर) से मिलान कर पूर्ण सत्यता के साथ भरा गया है। इसमें किसी भी प्रकार का विचलन या असत्य विवरण नहीं है।
             </div>
           </div>
 
-          <div style="margin-top:25px; display:flex; justify-content:space-between; align-items:flex-end">
-            <div style="font-size:8.5pt">
-              दिनांक: <strong>${new Date().toLocaleDateString('en-IN')}</strong><br>
+          <div class="footer-box">
+            <div class="stamp-box">
+              <strong>आधिकारिक संस्थागत डिजिटल मोहर</strong><br>
+              ${schName}<br>
+              शा.दा./PSP कोड: ${schCode}<br>
+              ब्लॉक-भिनाय (जिला: अजमेर)
+            </div>
+            <div style="font-size:11px; text-align:center">
+              दिनांक: <strong>${new Date().toLocaleDateString('hi-IN')}</strong><br>
               स्थान: <strong>भिनाय (अजमेर)</strong>
             </div>
-            <div style="text-align:center; font-size:9pt">
+            <div class="sign-box">
+              <p style="margin-bottom:25px; font-weight:bold">प्रमाणित एवं सत्यापित</p>
               <div style="font-weight:bold; text-decoration:underline">${pName}</div>
               <div style="font-weight:bold">संस्था प्रधान / नोडल अधिकारी</div>
-              <div>${schName}</div>
-              <div style="font-size:8pt">मो.: ${pMobile}</div>
+              <div style="font-size:11px">${schName}</div>
+              <div style="font-size:11px">मो.: ${pMobile}</div>
             </div>
           </div>
         </div>
+
+        <script>
+          function downloadPdf() {
+            var el = document.getElementById('printable-report');
+            var opt = {
+              margin: [6, 6, 6, 6],
+              filename: '${schName.replace(/[^a-zA-Z0-9_\u0900-\u097F]/g, '_')}_Voter_Verification_${schCode}.pdf',
+              image: { type: 'jpeg', quality: 0.98 },
+              html2canvas: { scale: 2, useCORS: true },
+              jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+            };
+            html2pdf().set(opt).from(el).save();
+          }
+
+          function shareWhatsApp() {
+            var text = "🗳️ *18+ एवं 17+ विद्यार्थी मतदाता सूची सत्यापन रिपोर्ट 2026*\\n" +
+              "🏫 *विद्यालय:* ${schName}\\n" +
+              "🔢 *शा.दा./PSP कोड:* ${schCode} (PEEO: ${peeo})\\n" +
+              "📊 *18+ कुल विद्यार्थी:* ${total18} (पंजीकृत: ${reg18}, अपेक्षित: ${unreg18})\\n" +
+              "👥 *17+ भावी मतदाता:* ${total17}\\n" +
+              "✍️ *संस्था प्रधान:* ${pName} (मो.: ${pMobile})\\n" +
+              "🏛️ *कार्यालय:* CBEO भिनाय | जिला: *अजमेर (AJMER)*\\n" +
+              "🌐 *पोर्टल:* https://jit9763.github.io/cbeo-bhinai-portal/voter_form.html?code=${schCode}";
+            var url = "https://api.whatsapp.com/send?text=" + encodeURIComponent(text);
+            window.open(url, "_blank");
+          }
+        <\/script>
+      </body>
+      </html>
       `;
 
-      var opt = {
-        margin: [8, 8, 8, 8],
-        filename: 'CBEO_Bhinai_Voter_Verification_' + schCode + '.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
-      };
-
-      html2pdf().set(opt).from(pdfHtml).save().then(function() {
-        showToast('✅ आधिकारिक प्रमाणित PDF सफलतापूर्वक डाउनलोड हो गई!', 'success');
-      });
+      var printWin = window.open('', '_blank');
+      if (printWin) {
+        printWin.document.write(printDocumentHtml);
+        printWin.document.close();
+      } else {
+        // Fallback for popup blocker: Direct html2pdf download
+        var opt = {
+          margin: [8, 8, 8, 8],
+          filename: schName + '_Voter_Verification_' + schCode + '.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+        };
+        html2pdf().set(opt).from(printDocumentHtml).save().then(function() {
+          showToast('✅ आधिकारिक प्रमाणित PDF डाउनलोड हो गई!', 'success');
+        });
+      }
     }
 
     function showToast(msg, type) {
