@@ -736,6 +736,14 @@ async function syncPortalSettingsFromCloud() {
         localStorage.setItem('cbeo_saman_school_type_filter', s.saman_school_type_filter);
       }
       if (s.tab_visibility_6level) {
+        // Enforce Level 5 (all_govt) and Level 6 (all_schools) default to false
+        if (s.tab_visibility_6level.election) {
+          s.tab_visibility_6level.election.all_govt = false;
+          s.tab_visibility_6level.election.all_schools = false;
+        }
+        if (!s.tab_visibility_6level['voter-students']) {
+          s.tab_visibility_6level['voter-students'] = { cbeo: true, peeo: true, govt_sec_srsec: true, pvt_sec_srsec: true, sec_srsec: true, all_govt: false, all_schools: false };
+        }
         STATE.tabVisibility6Level = s.tab_visibility_6level;
         STATE.tabVisibility5Level = s.tab_visibility_6level;
         localStorage.setItem('cbeo_tab_visibility_6level', JSON.stringify(s.tab_visibility_6level));
@@ -17529,36 +17537,57 @@ function getAllMasterSchools() {
   return list;
 }
 
-// Check if a school is allowed to log in based on policy + overrides (Strict 58 Schools Policy)
+// Check if a school is allowed to log in based on the 6-Level Permission System
 function isSchoolLoginAllowed(code) {
   if (!code) return false;
   const sCode = String(code).trim();
 
-  // Test school is always allowed
+  // Test school is always permitted
   if (sCode === '999999') return true;
 
-  // Explicit override takes precedence
+  // Explicit override takes precedence if set
   if (STATE.schoolLoginOverrides && typeof STATE.schoolLoginOverrides[sCode] === 'boolean') {
     return STATE.schoolLoginOverrides[sCode];
   }
 
-  // Active Strict Policy: Only 58 Schools (49 Govt Sec/Sr Sec + 8 Pvt Sec/Sr Sec + 1 Test) permitted
+  // Check 6-Level Tab Visibility and Permissions
+  const vis = STATE.tabVisibility6Level || DEFAULT_TAB_VISIBILITY_6LEVEL;
+
+  // Determine school classification from 58 master secondary schools
   const masterVoterSchools = (window.VOTER_STUDENTS_MASTER && window.VOTER_STUDENTS_MASTER.schools) || [];
-  if (masterVoterSchools.length > 0) {
-    const isAllowed58 = masterVoterSchools.some(s => String(s.shala_darpan_code).trim() === sCode);
-    if (isAllowed58) return true;
+  const secSchool = masterVoterSchools.find(s => String(s.shala_darpan_code).trim() === sCode) ||
+                    ((typeof MASTER_CBEO_DATA !== 'undefined' && (MASTER_CBEO_DATA.schools_56 || [])) || []).find(s => String(s.shala_darpan_code).trim() === sCode) ||
+                    (STATE.schools56 || []).find(s => String(s.shala_darpan_code).trim() === sCode);
 
-    // PEEO Nodal Schools are allowed
-    const isPeeoNodal = (STATE.peeos || []).some(p => String(p.shala_darpan_code).trim() === sCode);
-    return isPeeoNodal;
+  const isSec = !!secSchool;
+  const isPvt = secSchool ? (secSchool.type === 'Private' || sCode.startsWith('P')) : sCode.startsWith('P');
+
+  // Check against active 6-Level configurations (e.g. voter-students, active demands)
+  // Level 6: All Schools (178 schools) -> Default: FALSE / UNCHECKED
+  const allSchoolsAllowed = Object.values(vis).some(c => c && c.all_schools === true);
+  if (allSchoolsAllowed) return true;
+
+  // Level 5: All Govt Schools (132 schools) -> Default: FALSE / UNCHECKED
+  const allGovtAllowed = Object.values(vis).some(c => c && c.all_govt === true);
+  if (allGovtAllowed && !isPvt) return true;
+
+  // Level 4: Pvt Sec / Sr Sec (8 schools) -> Default: TRUE for voter-students
+  const pvtSecAllowed = Object.values(vis).some(c => c && (c.pvt_sec_srsec === true || (c.sec_srsec === true && c.pvt_sec_srsec !== false)));
+  if (pvtSecAllowed && isPvt && isSec) return true;
+
+  // Level 3: Govt Sec / Sr Sec (49 schools) -> Default: TRUE for voter-students
+  const govtSecAllowed = Object.values(vis).some(c => c && (c.govt_sec_srsec === true || (c.sec_srsec === true && c.govt_sec_srsec !== false)));
+  if (govtSecAllowed && !isPvt && isSec) return true;
+
+  // Level 2: PEEO Nodal Schools (25 schools)
+  const isPeeoNodal = (STATE.peeos || []).some(p => String(p.shala_darpan_code).trim() === sCode);
+  if (isPeeoNodal) {
+    const peeoAllowed = Object.values(vis).some(c => c && (c.peeo === true || c.govt_sec_srsec === true || c.sec_srsec === true));
+    if (peeoAllowed) return true;
   }
 
-  const policy = STATE.schoolLoginPolicy || 'sec_srsec';
-  if (policy === 'all') return true;
-  if (policy === 'peeo_nodal') {
-    return (STATE.peeos || []).some(p => String(p.shala_darpan_code).trim() === sCode);
-  }
-  return (STATE.schools56 || []).some(s => String(s.shala_darpan_code).trim() === sCode);
+  // All other schools (Primary / Upper Primary) are NOT permitted when Level 5 & Level 6 are unchecked!
+  return false;
 }
 
 // Helper to synchronize School Management Policy UI (Badge & Buttons) across refreshes
