@@ -1414,6 +1414,12 @@
       loadSchoolData(CURRENT_SCHOOL_CODE);
 
       var urlParams = new URLSearchParams(window.location.search);
+      var secParam = urlParams.get('sec') || urlParams.get('type') || urlParams.get('form');
+      if (secParam === '17' || secParam === '17plus') {
+        switchSection('17');
+      } else {
+        switchSection('18');
+      }
       if (urlParams.get('autopdf') === '1') {
         setTimeout(generateCertifiedPdf, 800);
       }
