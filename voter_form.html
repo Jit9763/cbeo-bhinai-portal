@@ -75,8 +75,10 @@
       padding: 0 0.25rem;
     }
     .modal-body {
-      padding: 1rem 1.25rem;
+      padding: 0.75rem 1rem;
+      overflow-x: auto;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       background: #f8fafc;
       flex: 1;
     }
@@ -92,13 +94,13 @@
     }
     .printable-voter-sheet {
       background: #ffffff;
-      border: 1.5px solid #000000;
-      padding: 6px 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      border: none;
+      padding: 0;
       color: #000000;
       font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       box-sizing: border-box;
       width: 1040px;
+      min-width: 1040px;
       margin: 0 auto;
     }
 
@@ -1189,6 +1191,9 @@
         </div>
       </div>
       <div class="modal-body">
+        <div style="font-size:0.75rem; color:#475569; font-weight:700; margin-bottom:0.4rem; text-align:center; background:#e0f2fe; border:1px solid #bae6fd; border-radius:6px; padding:3px 8px">
+          <i class="fas fa-arrows-alt-h text-primary"></i> 📱 मोबाइल पर संपूर्ण A4 प्रपत्र देखने हेतु बाएं-दाएं स्क्रॉल करें | WhatsApp (PDF) से अधिकृत फाइल शेयर करें
+        </div>
         <div id="printable-voter-document-content" class="printable-voter-sheet">
           <!-- Dynamically populated with official Saman Pariksha layout, seal, and signatures -->
         </div>
@@ -2562,7 +2567,7 @@
       var peeoDisplay = peeoClean ? ('पीईईओ ' + peeoClean) : 'पीईईओ भिनाय';
 
       return `
-        <div id="printable-voter-document-sheet" style="width:1040px; margin:0 auto; background:#ffffff; color:#000000; font-family:'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding:10px 14px; box-sizing:border-box">
+        <div id="printable-voter-document-sheet" style="width:1040px; max-width:1040px; margin:0 auto; background:#ffffff; color:#000000; font-family:'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding:8px 10px; box-sizing:border-box; border:1.5px solid #000000">
           <!-- Top Emblem & Departmental Header (Exact Saman Pariksha Laser Format) -->
           <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:3px; margin-bottom:4px">
             <div style="font-size:0.80rem; font-weight:700; color:#000; letter-spacing:normal">
@@ -2710,10 +2715,22 @@
         throw new Error('html2pdf library is not loaded');
       }
 
+      // Ensure modal is visible during capture so html2canvas never captures a 0-size hidden element
+      var modal = document.getElementById('modal-voter-pdf-preview');
+      if (modal && !modal.classList.contains('active')) {
+        modal.classList.add('active');
+      }
+
+      // Ensure content is loaded
+      var data = getCertifiedReportData();
+      container.innerHTML = buildCertifiedReportHtml(data);
+
       // Preserve styles
       const prevWidth = container.style.width;
+      const prevMinWidth = container.style.minWidth;
       const prevMaxWidth = container.style.maxWidth;
       const prevPadding = container.style.padding;
+      const prevBorder = container.style.border;
       const prevMargin = container.style.margin;
       const prevBoxSizing = container.style.boxSizing;
       const prevBackground = container.style.background;
@@ -2728,27 +2745,34 @@
       }
 
       const orientation = customOptions.orientation || 'landscape';
-      const targetWidth = customOptions.targetWidth || (orientation === 'portrait' ? '800px' : '1040px');
+      const targetWidth = '1040px';
       const scale = customOptions.scale || 2;
       const quality = customOptions.quality || 0.98;
 
-      // Set pristine font styles & width
+      // Set pristine font styles & exact width matching canvas window
       container.style.width = targetWidth;
+      container.style.minWidth = targetWidth;
       container.style.maxWidth = targetWidth;
       container.style.boxSizing = 'border-box';
+      container.style.padding = '0';
+      container.style.border = 'none';
       container.style.background = '#ffffff';
+      container.style.margin = '0 auto';
       container.style.fontFamily = "'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
       container.style.letterSpacing = 'normal';
 
+      await new Promise(function(resolve) { setTimeout(resolve, 80); });
+
       const opt = {
-        margin: customOptions.margin ?? 0,
+        margin: [3, 3, 3, 3],
         filename: filename,
         image: { type: 'jpeg', quality: quality },
         html2canvas: {
           scale: scale,
           useCORS: true,
           logging: false,
-          windowWidth: 1200,
+          width: 1040,
+          windowWidth: 1040,
           scrollX: 0,
           scrollY: 0
         },
@@ -2761,8 +2785,10 @@
         return pdfBlob;
       } finally {
         container.style.width = prevWidth;
+        container.style.minWidth = prevMinWidth;
         container.style.maxWidth = prevMaxWidth;
         container.style.padding = prevPadding;
+        container.style.border = prevBorder;
         container.style.margin = prevMargin;
         container.style.boxSizing = prevBoxSizing;
         container.style.background = prevBackground;
@@ -2992,7 +3018,10 @@
 
     // Direct alias for existing buttons
     function shareOnWhatsApp() {
-      shareVoterWhatsAppPDF();
+      openVoterPdfPreview();
+      setTimeout(function() {
+        shareVoterWhatsAppPDF();
+      }, 350);
     }
 
     function showToast(msg, type) {
