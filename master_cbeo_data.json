@@ -174,22 +174,6 @@
           "village_en": "BANDANWARA"
         },
         {
-          "school_name": "नवीन पब्लिक स्कूल, बांदनवाड़ा",
-          "category": "Private (Primary with Upper Primary)",
-          "panchayat": "BANDANWARA",
-          "village": "बांदनवाड़ा",
-          "dise_code": "",
-          "shala_darpan_code": "P34025",
-          "type": "Private",
-          "is_peeo_nodal": false,
-          "school_name_hi": "नवीन पब्लिक स्कूल, बांदनवाड़ा",
-          "school_name_en": "Naveen Public School Bandanwara",
-          "peeo_name": "PEEO BANDANWARA",
-          "peeo_code": "221769",
-          "village_hi": "बांदनवाड़ा",
-          "village_en": "BANDANWARA"
-        },
-        {
           "school_name": "सिद्धार्थ इंटरनेशनल स्कूल, बांदनवाड़ा",
           "category": "Private (Pr. with Up.Pr. with sec. Only)",
           "panchayat": "BANDANWARA",
@@ -208,22 +192,6 @@
         {
           "school_name": "सम्राट इंटरनेशनल स्कूल, बांदनवाड़ा",
           "category": "Private (Pr. with Up.Pr. with sec. Only)",
-          "panchayat": "BANDANWARA",
-          "village": "बांदनवाड़ा",
-          "dise_code": "",
-          "shala_darpan_code": "P16964",
-          "type": "Private",
-          "is_peeo_nodal": false,
-          "school_name_hi": "सम्राट इंटरनेशनल स्कूल, बांदनवाड़ा",
-          "school_name_en": "Samrat International School Bandanwara",
-          "peeo_name": "PEEO BANDANWARA",
-          "peeo_code": "221769",
-          "village_hi": "बांदनवाड़ा",
-          "village_en": "BANDANWARA"
-        },
-        {
-          "school_name": "सम्राट इंटरनेशनल स्कूल, बांदनवाड़ा",
-          "category": "Private (Up. Primary with sec Only)",
           "panchayat": "BANDANWARA",
           "village": "बांदनवाड़ा",
           "dise_code": "",
@@ -904,22 +872,6 @@
         {
           "school_name": "सुमेर उच्च माध्यमिक विद्यालय, भिनाय",
           "category": "Private (Pr. with Up.Pr. sec. with Higher Sec)",
-          "panchayat": "BHINAY",
-          "village": "भिनाय",
-          "dise_code": "",
-          "shala_darpan_code": "P16865",
-          "type": "Private",
-          "is_peeo_nodal": false,
-          "school_name_hi": "सुमेर उच्च माध्यमिक विद्यालय, भिनाय",
-          "school_name_en": "Sumer Senior Secondary School Bhinai",
-          "peeo_name": "PEEO BHINAY",
-          "peeo_code": "221780",
-          "village_hi": "भिनाय",
-          "village_en": "BHINAI"
-        },
-        {
-          "school_name": "सुमेर उच्च माध्यमिक विद्यालय, भिनाय",
-          "category": "Private (Up. Primary sec with Higher Sec)",
           "panchayat": "BHINAY",
           "village": "भिनाय",
           "dise_code": "",

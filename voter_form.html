@@ -685,6 +685,15 @@
         </div>
       </div>
 
+      <!-- 18+ NIL Option Banner -->
+      <div id="nil-banner-18" style="background:#fffbeb; border:1.5px solid #f59e0b; border-radius:8px; padding:0.75rem 1rem; margin:0.85rem 1.25rem 0.5rem 1.25rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem">
+        <label style="display:flex; align-items:center; gap:0.6rem; cursor:pointer; font-weight:700; color:#92400e; margin:0; user-select:none">
+          <input type="checkbox" id="chk-nil-18" onchange="toggleNilSection('18', this.checked)" style="width:20px; height:20px; accent-color:#d97706; cursor:pointer">
+          <span>⚠️ हमारे विद्यालय में 18+ आयु वर्ग (दिनांक 01.01.2026 को 18 वर्ष पूर्ण) का <strong>कोई भी विद्यार्थी अध्ययनरत नहीं है (शून्य / NIL प्रविष्टि)</strong></span>
+        </label>
+        <span style="font-size:0.75rem; background:#fef3c7; color:#b45309; border:1px solid #fde68a; padding:3px 10px; border-radius:12px; font-weight:800">शून्य प्रविष्टि प्रमाणीकरण</span>
+      </div>
+
       <div class="table-container">
         <table class="data-table" id="table-18">
           <thead>
@@ -710,7 +719,7 @@
       </div>
       <div id="empty-18" class="empty-state" style="display:none">
         <i class="fas fa-user-slash"></i>
-        <p>इस विद्यालय में शाला दर्पण से कोई 18+ विद्यार्थी डेटा प्राप्त नहीं हुआ। आप ऊपर दिए बटन से नया विद्यार्थी जोड़ सकते हैं।</p>
+        <p>इस विद्यालय में शाला दर्पण से कोई 18+ विद्यार्थी डेटा प्राप्त नहीं हुआ। आप ऊपर दिए बटन से नया विद्यार्थी जोड़ सकते हैं अथवा शून्य (NIL) प्रविष्टि चुन सकते हैं।</p>
       </div>
     </section>
 
@@ -726,6 +735,15 @@
             <i class="fas fa-plus-circle"></i> + नया 17+ विद्यार्थी जोड़ें
           </button>
         </div>
+      </div>
+
+      <!-- 17+ NIL Option Banner -->
+      <div id="nil-banner-17" style="background:#eff6ff; border:1.5px solid #3b82f6; border-radius:8px; padding:0.75rem 1rem; margin:0.85rem 1.25rem 0.5rem 1.25rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem">
+        <label style="display:flex; align-items:center; gap:0.6rem; cursor:pointer; font-weight:700; color:#1e40af; margin:0; user-select:none">
+          <input type="checkbox" id="chk-nil-17" onchange="toggleNilSection('17', this.checked)" style="width:20px; height:20px; accent-color:#2563eb; cursor:pointer">
+          <span>ℹ️ हमारे विद्यालय में 17+ आयु वर्ग का <strong>कोई भी अग्रिम विद्यार्थी अध्ययनरत नहीं है (शून्य / NIL प्रविष्टि)</strong></span>
+        </label>
+        <span style="font-size:0.75rem; background:#dbeafe; color:#1d4ed8; border:1px solid #bfdbfe; padding:3px 10px; border-radius:12px; font-weight:800">शून्य प्रविष्टि प्रमाणीकरण</span>
       </div>
 
       <div class="table-container">
@@ -749,7 +767,7 @@
       </div>
       <div id="empty-17" class="empty-state" style="display:none">
         <i class="fas fa-user-plus"></i>
-        <p>वर्तमान में कोई 17+ विद्यार्थी दर्ज नहीं है। कृपया ऊपर <strong>"+ नया 17+ विद्यार्थी जोड़ें"</strong> बटन से विद्यार्थी विवरण जोड़ें।</p>
+        <p>वर्तमान में कोई 17+ विद्यार्थी दर्ज नहीं है। कृपया ऊपर <strong>"+ नया 17+ विद्यार्थी जोड़ें"</strong> बटन से विद्यार्थी विवरण जोड़ें अथवा शून्य (NIL) प्रविष्टि टिक करें।</p>
       </div>
     </section>
 
@@ -816,6 +834,8 @@
     var STUDENTS_18 = [];
     var STUDENTS_17 = [];
     var IS_LOCKED = false;
+    var IS_NIL_18 = false;
+    var IS_NIL_17 = false;
 
     var VIDHAN_SABHA_OPTIONS = [
       "100 - मसूदा",
@@ -1155,9 +1175,12 @@
       var savedSub = getSavedSubmission(code);
       if (savedSub && savedSub.submission_status === 'submitted') {
         IS_LOCKED = savedSub.is_locked || false;
+        IS_NIL_18 = savedSub.is_nil_18 || (savedSub.is_nil && (savedSub.students_18 || []).length === 0) || false;
+        IS_NIL_17 = savedSub.is_nil_17 || (savedSub.is_nil && (savedSub.students_17 || []).length === 0) || false;
         STUDENTS_18 = savedSub.students_18 ? JSON.parse(JSON.stringify(savedSub.students_18)) : [];
         STUDENTS_17 = savedSub.students_17 ? JSON.parse(JSON.stringify(savedSub.students_17)) : [];
-        document.getElementById('disp-status-badge').innerHTML = '<span class="status-pill submitted"><i class="fas fa-check-circle"></i> डेटा सबमिट पूर्ण (' + (savedSub.submitted_at || 'सत्यापित') + ')</span>';
+        var nilBadge = (IS_NIL_18 && IS_NIL_17) ? ' (शून्य / NIL सबमिशन)' : (IS_NIL_18 ? ' (18+ NIL)' : (IS_NIL_17 ? ' (17+ NIL)' : ''));
+        document.getElementById('disp-status-badge').innerHTML = '<span class="status-pill submitted"><i class="fas fa-check-circle"></i> डेटा सबमिट पूर्ण' + nilBadge + ' (' + (savedSub.submitted_at || 'सत्यापित') + ')</span>';
         if (savedSub.principal_name) document.getElementById('principal-name-input').value = savedSub.principal_name;
         if (savedSub.principal_mobile) document.getElementById('principal-mobile-input').value = savedSub.principal_mobile;
       } else {
@@ -1171,15 +1194,34 @@
         // Check Local Draft
         var draft = getDraft(code);
         if (draft) {
+          IS_NIL_18 = draft.is_nil_18 || false;
+          IS_NIL_17 = draft.is_nil_17 || false;
           STUDENTS_18 = draft.students_18 || prefilled18;
           STUDENTS_17 = draft.students_17 || prefilled17;
           if (draft.principal_name) document.getElementById('principal-name-input').value = draft.principal_name;
           if (draft.principal_mobile) document.getElementById('principal-mobile-input').value = draft.principal_mobile;
         } else {
+          IS_NIL_18 = (prefilled18.length === 0);
+          IS_NIL_17 = (prefilled17.length === 0);
           STUDENTS_18 = JSON.parse(JSON.stringify(prefilled18));
           STUDENTS_17 = JSON.parse(JSON.stringify(prefilled17));
         }
       }
+
+      var chkNil18 = document.getElementById('chk-nil-18');
+      if (chkNil18) chkNil18.checked = IS_NIL_18;
+      var chkNil17 = document.getElementById('chk-nil-17');
+      if (chkNil17) chkNil17.checked = IS_NIL_17;
+
+      var tableWrap18 = document.querySelector('#section-18 .table-container');
+      var addBtn18 = document.querySelector('#section-18 button[onclick="addNewStudentRow(\'18\')"]');
+      if (tableWrap18) tableWrap18.style.display = IS_NIL_18 ? 'none' : 'block';
+      if (addBtn18) addBtn18.style.display = IS_NIL_18 ? 'none' : 'inline-flex';
+
+      var tableWrap17 = document.querySelector('#section-17 .table-container');
+      var addBtn17 = document.querySelector('#section-17 button[onclick="addNewStudentRow(\'17\')"]');
+      if (tableWrap17) tableWrap17.style.display = IS_NIL_17 ? 'none' : 'block';
+      if (addBtn17) addBtn17.style.display = IS_NIL_17 ? 'none' : 'inline-flex';
 
       renderStudentsTable18();
       renderStudentsTable17();
@@ -1222,6 +1264,59 @@
         if (submitBtn) submitBtn.style.display = 'inline-flex';
         if (draftBtn) draftBtn.style.display = 'inline-flex';
       }
+    }
+
+    function toggleNilSection(type, isNil) {
+      if (type === '18') {
+        IS_NIL_18 = isNil;
+        var tableWrap = document.querySelector('#section-18 .table-container');
+        var emptyBox = document.getElementById('empty-18');
+        var addBtn = document.querySelector('#section-18 button[onclick="addNewStudentRow(\'18\')"]');
+        if (isNil) {
+          if (STUDENTS_18.length > 0 && !confirm('⚠️ शून्य (NIL) चुनने पर दर्ज 18+ विद्यार्थियों की सूची हट जाएगी। क्या आपके विद्यालय में 18+ का वास्तव में कोई विद्यार्थी नहीं है?')) {
+            document.getElementById('chk-nil-18').checked = false;
+            IS_NIL_18 = false;
+            return;
+          }
+          STUDENTS_18 = [];
+          if (tableWrap) tableWrap.style.display = 'none';
+          if (addBtn) addBtn.style.display = 'none';
+          if (emptyBox) {
+            emptyBox.style.display = 'block';
+            emptyBox.innerHTML = '<i class="fas fa-check-circle" style="color:#16a34a"></i><p style="color:#15803d; font-weight:800; font-size:1rem; margin-top:6px">✓ संस्था प्रधान द्वारा 18+ विद्यार्थी विवरण शून्य (NIL) प्रमाणित किया गया है।</p>';
+          }
+        } else {
+          if (tableWrap) tableWrap.style.display = 'block';
+          if (addBtn) addBtn.style.display = 'inline-flex';
+          if (emptyBox) emptyBox.style.display = 'none';
+          renderStudentsTable18();
+        }
+      } else {
+        IS_NIL_17 = isNil;
+        var tableWrap = document.querySelector('#section-17 .table-container');
+        var emptyBox = document.getElementById('empty-17');
+        var addBtn = document.querySelector('#section-17 button[onclick="addNewStudentRow(\'17\')"]');
+        if (isNil) {
+          if (STUDENTS_17.length > 0 && !confirm('⚠️ शून्य (NIL) चुनने पर दर्ज 17+ विद्यार्थियों की सूची हट जाएगी। क्या आपके विद्यालय में 17+ का वास्तव में कोई अग्रिम विद्यार्थी नहीं है?')) {
+            document.getElementById('chk-nil-17').checked = false;
+            IS_NIL_17 = false;
+            return;
+          }
+          STUDENTS_17 = [];
+          if (tableWrap) tableWrap.style.display = 'none';
+          if (addBtn) addBtn.style.display = 'none';
+          if (emptyBox) {
+            emptyBox.style.display = 'block';
+            emptyBox.innerHTML = '<i class="fas fa-check-circle" style="color:#16a34a"></i><p style="color:#15803d; font-weight:800; font-size:1rem; margin-top:6px">✓ संस्था प्रधान द्वारा 17+ अग्रिम विद्यार्थी विवरण शून्य (NIL) प्रमाणित किया गया है।</p>';
+          }
+        } else {
+          if (tableWrap) tableWrap.style.display = 'block';
+          if (addBtn) addBtn.style.display = 'inline-flex';
+          if (emptyBox) emptyBox.style.display = 'none';
+          renderStudentsTable17();
+        }
+      }
+      updateSummaryStats();
     }
 
     function renderStudentsTable18() {
@@ -1519,6 +1614,9 @@
         principal_name: pName,
         principal_mobile: pMobile,
         principal_post: pPost,
+        is_nil: (IS_NIL_18 && IS_NIL_17),
+        is_nil_18: IS_NIL_18,
+        is_nil_17: IS_NIL_17,
         total_18: STUDENTS_18.length,
         registered_18: reg18,
         unregistered_18: unreg18,
@@ -1547,6 +1645,18 @@
       if (!pMobile || pMobile.length < 10) {
         alert('कृपया 10-अंकीय वैध मोबाइल नंबर दर्ज करें!');
         document.getElementById('principal-mobile-input').focus();
+        return;
+      }
+
+      // Check 0 students without NIL
+      if (STUDENTS_18.length === 0 && !IS_NIL_18) {
+        alert('⚠️ 18+ सूची में कोई विद्यार्थी दर्ज नहीं है। यदि आपके विद्यालय में 18+ का कोई विद्यार्थी नहीं है, तो कृपया \'शून्य / NIL प्रविष्टि\' चेकबॉक्स को टिक करें और फिर सबमिट करें।');
+        switchSection('18');
+        return;
+      }
+      if (STUDENTS_17.length === 0 && !IS_NIL_17) {
+        alert('⚠️ 17+ सूची में कोई विद्यार्थी दर्ज नहीं है। यदि आपके विद्यालय में 17+ का कोई अग्रिम विद्यार्थी नहीं है, तो कृपया \'शून्य / NIL प्रविष्टि\' चेकबॉक्स को टिक करें और फिर सबमिट करें।');
+        switchSection('17');
         return;
       }
 
@@ -1601,7 +1711,8 @@
       // Cloud Sync attempt
       syncWithCloud(data);
 
-      document.getElementById('disp-status-badge').innerHTML = '<span class="status-pill submitted"><i class="fas fa-check-circle"></i> डेटा सबमिट पूर्ण (' + data.submitted_at + ')</span>';
+      var nilLabel = (IS_NIL_18 && IS_NIL_17) ? ' (शून्य / NIL सबमिशन)' : (IS_NIL_18 ? ' (18+ NIL)' : (IS_NIL_17 ? ' (17+ NIL)' : ''));
+      document.getElementById('disp-status-badge').innerHTML = '<span class="status-pill submitted"><i class="fas fa-check-circle"></i> डेटा सबमिट पूर्ण' + nilLabel + ' (' + data.submitted_at + ')</span>';
       showToast('✅ 18+ व 17+ विद्यार्थी मतदाता सत्यापन सफलतापूर्वक सबमिट हो गया!', 'success');
 
       // Offer PDF
@@ -1661,37 +1772,41 @@
       var unreg18 = total18 - reg18;
       var total17 = STUDENTS_17.length;
 
-      var rows18Html = STUDENTS_18.map(function(s, i) {
-        return `
-          <tr>
-            <td style="text-align:center; padding:5px; border:1px solid #333">${i + 1}</td>
-            <td style="padding:5px; border:1px solid #333"><strong>${s.name}</strong></td>
-            <td style="padding:5px; border:1px solid #333">${s.father_name}</td>
-            <td style="padding:5px; border:1px solid #333; text-align:center">${s.dob || '---'}</td>
-            <td style="padding:5px; border:1px solid #333; text-align:center">${s.class_name || '12वीं'}</td>
-            <td style="padding:5px; border:1px solid #333; text-align:center; font-weight:bold; color:${s.is_registered === 'हाँ' ? '#15803d' : '#b45309'}">${s.is_registered}</td>
-            <td style="padding:5px; border:1px solid #333">${s.vidhan_sabha || '100 - मसूदा'}</td>
-            <td style="padding:5px; border:1px solid #333; text-align:center">${s.part_no || '---'}</td>
-            <td style="padding:5px; border:1px solid #333; text-align:center">${s.serial_no || '---'}</td>
-            <td style="padding:5px; border:1px solid #333; text-align:center">${s.epic_no || '---'}</td>
-            <td style="padding:5px; border:1px solid #333; font-size:8pt">${s.reason_not_registered || '---'}</td>
-          </tr>
-        `;
-      }).join('');
+      var rows18Html = (IS_NIL_18 || total18 === 0)
+        ? '<tr><td colspan="11" style="text-align:center; padding:12px; font-weight:bold; color:#b45309; border:1px solid #333; background:#fffbeb">✓ संस्था प्रधान द्वारा प्रमाणित: विद्यालय में 18+ आयु वर्ग (दिनांक 01.01.2026 को 18 वर्ष पूर्ण) का कोई विद्यार्थी अध्ययनरत नहीं है (शून्य / NIL प्रविष्टि)</td></tr>'
+        : STUDENTS_18.map(function(s, i) {
+          return `
+            <tr>
+              <td style="text-align:center; padding:5px; border:1px solid #333">${i + 1}</td>
+              <td style="padding:5px; border:1px solid #333"><strong>${s.name}</strong></td>
+              <td style="padding:5px; border:1px solid #333">${s.father_name}</td>
+              <td style="padding:5px; border:1px solid #333; text-align:center">${s.dob || '---'}</td>
+              <td style="padding:5px; border:1px solid #333; text-align:center">${s.class_name || '12वीं'}</td>
+              <td style="padding:5px; border:1px solid #333; text-align:center; font-weight:bold; color:${s.is_registered === 'हाँ' ? '#15803d' : '#b45309'}">${s.is_registered}</td>
+              <td style="padding:5px; border:1px solid #333">${s.vidhan_sabha || '100 - मसूदा'}</td>
+              <td style="padding:5px; border:1px solid #333; text-align:center">${s.part_no || '---'}</td>
+              <td style="padding:5px; border:1px solid #333; text-align:center">${s.serial_no || '---'}</td>
+              <td style="padding:5px; border:1px solid #333; text-align:center">${s.epic_no || '---'}</td>
+              <td style="padding:5px; border:1px solid #333; font-size:8pt">${s.reason_not_registered || '---'}</td>
+            </tr>
+          `;
+        }).join('');
 
-      var rows17Html = STUDENTS_17.map(function(s, i) {
-        return `
-          <tr>
-            <td style="text-align:center; padding:5px; border:1px solid #333">${i + 1}</td>
-            <td style="padding:5px; border:1px solid #333"><strong>${s.name}</strong></td>
-            <td style="padding:5px; border:1px solid #333">${s.father_name}</td>
-            <td style="padding:5px; border:1px solid #333; text-align:center">${s.dob || '---'}</td>
-            <td style="padding:5px; border:1px solid #333; text-align:center">${s.mobile_no || '---'}</td>
-            <td style="padding:5px; border:1px solid #333; text-align:center">${s.class_name || '11वीं'}</td>
-            <td style="padding:5px; border:1px solid #333">${s.vidhan_sabha || '100 - मसूदा'}</td>
-          </tr>
-        `;
-      }).join('');
+      var rows17Html = (IS_NIL_17 || total17 === 0)
+        ? '<tr><td colspan="7" style="text-align:center; padding:12px; font-weight:bold; color:#1e40af; border:1px solid #333; background:#eff6ff">✓ संस्था प्रधान द्वारा प्रमाणित: विद्यालय में 17+ आयु वर्ग का कोई अग्रिम विद्यार्थी अध्ययनरत नहीं है (शून्य / NIL प्रविष्टि)</td></tr>'
+        : STUDENTS_17.map(function(s, i) {
+          return `
+            <tr>
+              <td style="text-align:center; padding:5px; border:1px solid #333">${i + 1}</td>
+              <td style="padding:5px; border:1px solid #333"><strong>${s.name}</strong></td>
+              <td style="padding:5px; border:1px solid #333">${s.father_name}</td>
+              <td style="padding:5px; border:1px solid #333; text-align:center">${s.dob || '---'}</td>
+              <td style="padding:5px; border:1px solid #333; text-align:center">${s.mobile_no || '---'}</td>
+              <td style="padding:5px; border:1px solid #333; text-align:center">${s.class_name || '11वीं'}</td>
+              <td style="padding:5px; border:1px solid #333">${s.vidhan_sabha || '100 - मसूदा'}</td>
+            </tr>
+          `;
+        }).join('');
 
       var pdfHtml = `
         <div style="font-family:'Segoe UI', Arial, sans-serif; padding:15px; color:#000; font-size:9pt; line-height:1.4">

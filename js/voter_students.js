@@ -46,11 +46,15 @@
     if (sub && sub.submission_status === 'submitted') {
       var stu18 = sub.students_18 || [];
       var reg = stu18.filter(function(s) { return s.is_registered === 'हाँ'; }).length;
+      var isNil = !!(sub.is_nil || (sub.is_nil_18 && sub.is_nil_17) || (stu18.length === 0 && (sub.students_17 || []).length === 0));
       return {
         isSubmitted: true,
         submittedAt: sub.submitted_at || '',
         submittedBy: sub.submitted_by || '',
         isLocked: !!sub.is_locked,
+        isNil: isNil,
+        isNil18: !!(sub.is_nil_18 || stu18.length === 0),
+        isNil17: !!(sub.is_nil_17 || (sub.students_17 || []).length === 0),
         total18: stu18.length,
         reg18: reg,
         unreg18: stu18.length - reg,
@@ -398,7 +402,7 @@
 
       var badgeClass = m.isSubmitted ? 'background:#16a34a; color:#fff;' : 'background:#fef3c7; color:#92400e; border:1px solid #fde68a;';
       var badgeText = m.isSubmitted 
-        ? `<i class="fas fa-check-circle"></i> ✓ सबमिट पूर्ण` 
+        ? (m.isNil ? `<i class="fas fa-check-circle"></i> ✓ पूर्ण (NIL)` : `<i class="fas fa-check-circle"></i> ✓ सबमिट पूर्ण`) 
         : `<i class="fas fa-clock"></i> ⚠️ लंबित`;
 
       var lockBadge = m.isLocked 
@@ -493,7 +497,7 @@
       var m = getSchoolMetrics(s.shala_darpan_code);
       var isTest = s.shala_darpan_code === '999999';
       var statusBadge = m.isSubmitted
-        ? `<span style="background:#16a34a; color:#fff; padding:3px 8px; border-radius:12px; font-weight:800; font-size:0.75rem">✓ सबमिट पूर्ण</span>`
+        ? (m.isNil ? `<span style="background:#16a34a; color:#fff; padding:3px 8px; border-radius:12px; font-weight:800; font-size:0.75rem">✓ पूर्ण (NIL)</span>` : `<span style="background:#16a34a; color:#fff; padding:3px 8px; border-radius:12px; font-weight:800; font-size:0.75rem">✓ सबमिट पूर्ण</span>`)
         : `<span style="background:#fef2f2; color:#b91c1c; border:1px solid #fecaca; padding:3px 8px; border-radius:12px; font-weight:800; font-size:0.75rem">⚠️ लंबित</span>`;
 
       var lockBadge = m.isLocked 

@@ -1006,16 +1006,40 @@ function initMasterData() {
   }
 
   // 1. PEEOs (with schools Govt + Private)
-  const storedPeeos = localStorage.getItem('cbeo_peeos_data');
-  if (storedPeeos) {
-    try {
-      STATE.peeos = JSON.parse(storedPeeos);
-    } catch (e) {
-      STATE.peeos = MASTER_CBEO_DATA.peeos || [];
-    }
-  } else {
+  const PEEO_VERSION = 'v54_2026_10_19_dedup_peeos_schools';
+  const currentPeeoVer = localStorage.getItem('cbeo_peeo_version');
+  if (currentPeeoVer !== PEEO_VERSION) {
+    localStorage.removeItem('cbeo_peeos_data');
+    localStorage.setItem('cbeo_peeo_version', PEEO_VERSION);
     STATE.peeos = MASTER_CBEO_DATA.peeos || [];
     savePeeosToStorage();
+  } else {
+    const storedPeeos = localStorage.getItem('cbeo_peeos_data');
+    if (storedPeeos) {
+      try {
+        STATE.peeos = JSON.parse(storedPeeos);
+      } catch (e) {
+        STATE.peeos = MASTER_CBEO_DATA.peeos || [];
+      }
+    } else {
+      STATE.peeos = MASTER_CBEO_DATA.peeos || [];
+      savePeeosToStorage();
+    }
+  }
+
+  // Ensure absolute uniqueness of schools in each PEEO
+  if (Array.isArray(STATE.peeos)) {
+    STATE.peeos.forEach(p => {
+      if (Array.isArray(p.schools)) {
+        const seen = new Set();
+        p.schools = p.schools.filter(s => {
+          const code = String(s.shala_darpan_code || s.dise_code || s.psp_code || '').trim();
+          if (!code || seen.has(code)) return false;
+          seen.add(code);
+          return true;
+        });
+      }
+    });
   }
 
   // 2. Staff: load from localStorage if modified, otherwise use master with auto-upgrade versioning

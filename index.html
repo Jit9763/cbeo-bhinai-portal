@@ -24,17 +24,18 @@
         if (cu && !lu) localStorage.setItem('cbeo_logged_user', cu);
       } catch(e) {}
 
-      var CLIENT_VERSION = 'v52_2026_10_19_voter_students_live_demand';
+      var CLIENT_VERSION = 'v54_2026_10_19_dedup_login_and_nil_voter_support';
       var lastVer = localStorage.getItem('cbeo_client_app_version');
       if (lastVer !== CLIENT_VERSION) {
         localStorage.setItem('cbeo_client_app_version', CLIENT_VERSION);
-        // Clean out stale 6-level permissions so fresh defaults load immediately
+        // Clean out stale 6-level permissions and cached PEEOs so fresh defaults load immediately
         try {
           localStorage.removeItem('cbeo_tab_visibility_6level');
           localStorage.removeItem('cbeo_edit_permissions_6level');
           localStorage.removeItem('cbeo_tab_visibility_5level');
           localStorage.removeItem('cbeo_edit_permissions_5level');
           localStorage.removeItem('cbeo_demands');
+          localStorage.removeItem('cbeo_peeos_data');
         } catch(e) {}
 
         var preserveKeys = [
