@@ -24,18 +24,24 @@
         if (cu && !lu) localStorage.setItem('cbeo_logged_user', cu);
       } catch(e) {}
 
-      var CLIENT_VERSION = 'v47_2026_10_09_mismatch_alert_persistence_clean_rooms';
+      var CLIENT_VERSION = 'v52_2026_10_19_voter_students_live_demand';
       var lastVer = localStorage.getItem('cbeo_client_app_version');
       if (lastVer !== CLIENT_VERSION) {
         localStorage.setItem('cbeo_client_app_version', CLIENT_VERSION);
-        // Automatic hard purge of all stale settings so old configs never persist
+        // Clean out stale 6-level permissions so fresh defaults load immediately
+        try {
+          localStorage.removeItem('cbeo_tab_visibility_6level');
+          localStorage.removeItem('cbeo_edit_permissions_6level');
+          localStorage.removeItem('cbeo_tab_visibility_5level');
+          localStorage.removeItem('cbeo_edit_permissions_5level');
+          localStorage.removeItem('cbeo_demands');
+        } catch(e) {}
+
         var preserveKeys = [
           'cbeo_user', 'cbeo_logged_user', 'cbeo_remember_me', 'cbeo_saved_username',
-          'cbeo_tab_visibility_6level', 'cbeo_edit_permissions_6level',
-          'cbeo_tab_visibility_5level', 'cbeo_edit_permissions_5level',
           'cbeo_saman_active_form', 'cbeo_saman_school_type_filter',
           'cbeo_saman_mismatch_settings', 'cbeo_mismatch_alert_disabled', 'cbeo_portal_settings', 'cbeo_vm_settings',
-          'cbeo_election_submissions', 'cbeo_election_custom_columns', 'cbeo_election_filter'
+          'cbeo_election_submissions', 'cbeo_election_custom_columns', 'cbeo_election_filter', 'cbeo_voter_submissions'
         ];
         for (var i = localStorage.length - 1; i >= 0; i--) {
           var k = localStorage.key(i);
@@ -1578,6 +1584,13 @@
               <div style="font-size:0.72rem; color:#cbd5e1; margin-top:2px" id="vm-widget-election-sub">33 मतदान केंद्र विद्यालय • 116 बूथ (P-3)</div>
             </div>
 
+            <!-- 18+ and 17+ Voter Registration 58 Schools Status Card -->
+            <div style="background:rgba(255,255,255,0.05); border:1.5px solid rgba(245,158,11,0.5); border-radius:8px; padding:0.75rem 1rem">
+              <div style="font-size:0.75rem; color:#facc15; font-weight:700; text-transform:uppercase">🗳️ 18+ व 17+ मतदाता पंजीकरण (58 स्कूल)</div>
+              <div style="font-size:1rem; font-weight:800; color:#facc15; margin-top:2px" id="vm-widget-voter-pending">58 स्कूल लंबित (0 पूर्ण)</div>
+              <div style="font-size:0.72rem; color:#cbd5e1; margin-top:2px">49 राजकीय + 8 निजी + 1 टेस्ट स्कूल</div>
+            </div>
+
             <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:0.75rem 1rem">
               <div style="font-size:0.75rem; color:#94a3b8; font-weight:700; text-transform:uppercase">☁️ Google Drive बैकअप शीट</div>
               <div style="font-size:0.95rem; font-weight:800; color:#4ade80; margin-top:2px">🟢 मास्टर शीट कनेक्टेड</div>
@@ -1594,6 +1607,9 @@
             <div style="display:flex; gap:0.5rem; flex-wrap:wrap">
               <button class="btn btn-sm" onclick="openVMReportModal()" style="background:#3b82f6; color:#ffffff; font-weight:700; border:none">
                 <i class="fas fa-file-invoice"></i> 📑 विस्तृत लंबित रिपोर्ट देखें
+              </button>
+              <button class="btn btn-whatsapp btn-sm" id="btn-voter-whatsapp-reminder" onclick="if(typeof openVoterBroadcastModal==='function')openVoterBroadcastModal(); else window.openVoterBroadcastModal();" style="font-weight:700; background:#f59e0b; border-color:#d97706; color:#0f172a">
+                <i class="fab fa-whatsapp"></i> 📢 18+ मतदाता: WhatsApp प्रसारण
               </button>
               <button class="btn btn-whatsapp btn-sm" id="btn-vm-whatsapp-reminder" onclick="sendVMPendingWhatsAppReminder()" style="font-weight:700">
                 <i class="fab fa-whatsapp"></i> 📢 समान परीक्षा रिमाइंडर
@@ -6079,14 +6095,14 @@
 
   <!-- External & Modular Application Architecture -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <script src="master_cbeo_data.js?v=20261012_v50"></script>
-  <script src="js/village_mapping.js?v=20261008_v38"></script>
-  <script src="js/core_sync.js?v=20261008_v39"></script>
-  <script src="js/mismatch_admin.js?v=20261009_v47"></script>
-  <script src="js/election_data.js?v=20261012_v50"></script>
-  <script src="js/election.js?v=20261012_v50"></script>
-  <script src="js/voter_students_data.js?v=20261019_v51"></script>
-  <script src="js/voter_students.js?v=20261019_v51"></script>
-  <script src="app.js?v=20261012_v50"></script>
+  <script src="master_cbeo_data.js?v=20261019_v52"></script>
+  <script src="js/village_mapping.js?v=20261019_v52"></script>
+  <script src="js/core_sync.js?v=20261019_v52"></script>
+  <script src="js/mismatch_admin.js?v=20261019_v52"></script>
+  <script src="js/election_data.js?v=20261019_v52"></script>
+  <script src="js/election.js?v=20261019_v52"></script>
+  <script src="js/voter_students_data.js?v=20261019_v52"></script>
+  <script src="js/voter_students.js?v=20261019_v52"></script>
+  <script src="app.js?v=20261019_v52"></script>
 </body>
 </html>

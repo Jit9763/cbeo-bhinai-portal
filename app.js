@@ -231,6 +231,14 @@ function isDynamicDemandSubmitted(demandId, schoolCode) {
     if (sub && (sub.is_submitted || sub.submitted || sub.timestamp || sub.submitted_at || sub.school_code || (sub.booth_details && Object.keys(sub.booth_details).length > 0))) return true;
   }
 
+  // 3.5 Voter Students 18+ and 17+ (58 schools)
+  if (dId === 'demand_voter_students_2026' || dId.includes('voter_student') || dId.includes('voter')) {
+    let localVoter = {};
+    try { localVoter = JSON.parse(localStorage.getItem('cbeo_voter_submissions') || '{}'); } catch(e) {}
+    const sub = localVoter[sCode];
+    if (sub && (sub.is_submitted || sub.submitted || sub.timestamp || sub.submitted_at || sub.school_code || sub.status === 'submitted')) return true;
+  }
+
   // 4. General Dynamic Demands
   const dSubs = (STATE.demandSubmissions && STATE.demandSubmissions[demandId]) || {};
   const sub = dSubs[sCode];
@@ -251,7 +259,14 @@ function getDemandTargetEntities(demand) {
   const dId = String(demand.id || demand).toLowerCase();
   const dObj = (typeof demand === 'object') ? demand : ((STATE.demands || []).find(d => String(d.id).toLowerCase() === dId) || { id: demand });
 
-  // 0. Election 2026 (33 Polling Station Schools)
+  // 0. Voter Students 18+ and 17+ (58 Schools: 49 Govt + 8 Pvt + 1 Test)
+  if (dId === 'demand_voter_students_2026' || dId.includes('voter_student') || dId.includes('voter')) {
+    if (window.VOTER_STUDENTS_MASTER && window.VOTER_STUDENTS_MASTER.schools && window.VOTER_STUDENTS_MASTER.schools.length > 0) {
+      return window.VOTER_STUDENTS_MASTER.schools;
+    }
+  }
+
+  // 0.5 Election 2026 (33 Polling Station Schools)
   if (dId === 'demand_election_2026' || dId.includes('election')) {
     if (window.ELECTION_2026_SCHOOLS && window.ELECTION_2026_SCHOOLS.length > 0) return window.ELECTION_2026_SCHOOLS;
     if (typeof getAllElectionSchools === 'function') {
@@ -1066,6 +1081,40 @@ function initMasterData() {
     d.id !== 'saman_pariksha_2026_27' && 
     d.id !== 'DEMAND_SAMAN_PARIKSHA_2026'
   );
+
+  // Seed official 18+ and 17+ Voter Students Registration demand for 58 schools
+  if (!STATE.demands.some(d => d.id === 'DEMAND_VOTER_STUDENTS_2026')) {
+    STATE.demands.unshift({
+      id: 'DEMAND_VOTER_STUDENTS_2026',
+      title: '🗳️ 18+ व 17+ विद्यार्थी मतदाता पंजीकरण मांग (58 स्कूल)',
+      collectionLevel: 'school',
+      schoolScope: 'both_sec',
+      placement: 'tab_new',
+      parentTab: 'voter-students',
+      targetAudience: {
+        cbeo: true,
+        peeo: true,
+        govt_sec_srsec: true,
+        pvt_sec_srsec: true,
+        sec_srsec: true,
+        all_govt: false,
+        all_schools: false
+      },
+      description: 'ब्लॉक भिनाय के 58 विद्यालयों (49 राजकीय + 8 निजी + 1 टेस्ट स्कूल) के 18+ व 17+ आयु वर्ग के विद्यार्थियों की मतदाता सूची सत्यापन व अग्रिम पंजीकरण की आधिकारिक मांग।',
+      dueDate: '2026-10-25',
+      priority: 'अति आवश्यक (Urgent)',
+      published: true,
+      isTestMode: false,
+      createdAt: '2026-10-19',
+      columns: [
+        { name: '18+ कुल विद्यार्थी', type: 'number', prefillSource: 'none', placeholder: 'संख्या' },
+        { name: 'मतदाता सूची में पंजीकृत (हाँ)', type: 'number', prefillSource: 'none', placeholder: 'संख्या' },
+        { name: 'अपंजीकृत विद्यार्थी (नहीं)', type: 'number', prefillSource: 'none', placeholder: 'संख्या' },
+        { name: '17+ भावी मतदाता अग्रिम संख्या', type: 'number', prefillSource: 'none', placeholder: 'संख्या' },
+        { name: 'विधानसभा क्षेत्र (Default Masuda)', type: 'text', prefillSource: 'none', placeholder: '100 - मसूदा' }
+      ]
+    });
+  }
 
   // Seed official Saman Pariksha Syllabus Completion % demand for 49 Govt schools
   if (!STATE.demands.some(d => d.id === 'DEMAND_SAMAN_SYLLABUS_2026')) {
@@ -12744,6 +12793,8 @@ function renderDynamicNavTabs() {
     d.placement === 'tab_new' && 
     d.id !== 'saman_pariksha_2026_27' && 
     d.id !== 'DEMAND_SAMAN_PARIKSHA_2026' && 
+    d.id !== 'DEMAND_VOTER_STUDENTS_2026' &&
+    !d.id.toLowerCase().includes('voter') &&
     !d.id.toLowerCase().includes('saman_pariksha') &&
     !(d.title && d.title.includes('समान परीक्षा'))
   );
@@ -15325,6 +15376,32 @@ function renderCBEOExecutiveDemands() {
 
   const allDemands = [];
 
+  // 0. 18+ and 17+ Voter Students Registration Demand (58 schools: 49 Govt + 8 Pvt + 1 Test)
+  const voterMasterSchools = (window.VOTER_STUDENTS_MASTER && window.VOTER_STUDENTS_MASTER.schools) || [];
+  let voterSubs = {};
+  try {
+    voterSubs = JSON.parse(localStorage.getItem('cbeo_voter_submissions') || '{}');
+  } catch(e) {}
+  let voterReceived = 0;
+  voterMasterSchools.forEach(s => {
+    const sub = voterSubs[s.shala_darpan_code];
+    if (sub && (sub.is_submitted || sub.status === 'submitted' || sub.submitted_at)) voterReceived++;
+  });
+  const voterTargetCount = voterMasterSchools.length || 58;
+  const voterPending = Math.max(0, voterTargetCount - voterReceived);
+  const voterPct = voterTargetCount > 0 ? Math.round((voterReceived / voterTargetCount) * 100) : 0;
+
+  allDemands.push({
+    id: 'DEMAND_VOTER_STUDENTS_2026',
+    title: '🗳️ 18+ व 17+ विद्यार्थी मतदाता पंजीकरण मांग (58 विद्यालय)',
+    dueDate: '25 अक्टूबर 2026',
+    targetCount: voterTargetCount,
+    receivedCount: voterReceived,
+    pendingCount: voterPending,
+    pct: voterPct,
+    isVoterStudents: true
+  });
+
   // 1. Saman Pariksha Indent (57 schools: 49 Govt + 8 Pvt)
   const spDemand = {
     id: 'saman_pariksha_2026_27',
@@ -15428,6 +15505,17 @@ function renderCBEOExecutiveDemands() {
       </td>
       <td style="text-align:center">
         <div style="display:flex; gap:0.4rem; justify-content:center; flex-wrap:wrap">
+          ${d.isVoterStudents ? `
+          <button class="btn btn-primary btn-sm" onclick="switchTab('voter-students')" title="प्रपत्र पोर्टल खोलें" style="font-size:0.75rem; padding:4px 8px; font-weight:700">
+            <i class="fas fa-eye"></i> प्रपत्र खोलें
+          </button>
+          <button class="btn btn-danger btn-sm" onclick="if(typeof downloadConsolidatedVoterPDF==='function') downloadConsolidatedVoterPDF(); else generateDemandPendingListPDF('${d.id}');" title="लम्बित सूची PDF जनरेट करें" style="font-size:0.75rem; padding:4px 8px; font-weight:700">
+            <i class="fas fa-file-pdf"></i> लम्बित PDF
+          </button>
+          <button class="btn btn-whatsapp btn-sm" onclick="if(typeof openVoterBroadcastModal==='function') openVoterBroadcastModal();" title="WhatsApp पर लम्बित सूची शेयर करें" style="font-size:0.75rem; padding:4px 8px; background:#16a34a; color:#fff">
+            <i class="fab fa-whatsapp"></i> WhatsApp प्रसारण
+          </button>
+          ` : `
           <button class="btn btn-danger btn-sm" onclick="generateDemandPendingListPDF('${d.id}')" title="लम्बित सूची PDF जनरेट करें" style="font-size:0.75rem; padding:4px 8px; font-weight:700">
             <i class="fas fa-file-pdf"></i> लम्बित PDF
           </button>
@@ -15437,6 +15525,7 @@ function renderCBEOExecutiveDemands() {
           <button class="btn btn-whatsapp btn-sm" onclick="openShareDemandPendingModal('${d.id}')" title="WhatsApp पर लम्बित सूची शेयर करें" style="font-size:0.75rem; padding:4px 8px">
             <i class="fab fa-whatsapp"></i> शेयर
           </button>
+          `}
         </div>
       </td>
     `;
@@ -15447,7 +15536,13 @@ function renderCBEOExecutiveDemands() {
 function generateDemandPendingListPDF(demandId) {
   let demand = (STATE.demands || []).find(d => d.id === demandId);
   if (!demand) {
-    if (demandId === 'saman_pariksha_2026_27' || demandId.includes('saman_pariksha')) {
+    if (demandId === 'DEMAND_VOTER_STUDENTS_2026' || String(demandId).toLowerCase().includes('voter')) {
+      demand = {
+        id: 'DEMAND_VOTER_STUDENTS_2026',
+        title: '18+ व 17+ विद्यार्थी मतदाता पंजीकरण मांग (58 विद्यालय)',
+        schoolScope: 'both_sec'
+      };
+    } else if (demandId === 'saman_pariksha_2026_27' || demandId.includes('saman_pariksha')) {
       demand = {
         id: 'saman_pariksha_2026_27',
         title: 'समान परीक्षा 2026-27 (प्रश्न-पत्र मांग - 57 विद्यालय)',
@@ -15581,6 +15676,13 @@ function generateDemandPendingListPDF(demandId) {
 }
 
 function openShareDemandPendingModal(demandId) {
+  if (demandId === 'DEMAND_VOTER_STUDENTS_2026' || String(demandId).toLowerCase().includes('voter')) {
+    if (typeof openVoterBroadcastModal === 'function') {
+      openVoterBroadcastModal();
+      return;
+    }
+  }
+
   let demand = (STATE.demands || []).find(d => d.id === demandId);
   if (!demand) {
     if (demandId === 'saman_pariksha_2026_27' || demandId.includes('saman_pariksha')) {
@@ -17162,6 +17264,13 @@ function openDemandBroadcastCenter(demandId, defaultMode = null) {
   if (!isAdmin && STATE.currentUser?.role === 'school') {
     showToast('आधिकारिक प्रसारण केंद्र केवल व्यवस्थापक (Admin) हेतु उपलब्ध है।', 'error');
     return;
+  }
+
+  if (demandId === 'DEMAND_VOTER_STUDENTS_2026' || String(demandId).toLowerCase().includes('voter')) {
+    if (typeof openVoterBroadcastModal === 'function') {
+      openVoterBroadcastModal();
+      return;
+    }
   }
 
   const isElection = (demandId === 'DEMAND_ELECTION_2026' || String(demandId).toLowerCase().includes('election'));

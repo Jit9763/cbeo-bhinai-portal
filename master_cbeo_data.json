@@ -32542,6 +32542,64 @@
   ],
   "demands": [
     {
+      "id": "DEMAND_VOTER_STUDENTS_2026",
+      "title": "🗳️ 18+ व 17+ विद्यार्थी मतदाता पंजीकरण मांग (58 स्कूल)",
+      "collectionLevel": "school",
+      "collection_level": "school",
+      "schoolScope": "both_sec",
+      "school_scope": "both_sec",
+      "placement": "tab_new",
+      "parentTab": "voter-students",
+      "targetAudience": {
+        "cbeo": true,
+        "peeo": true,
+        "govt_sec_srsec": true,
+        "pvt_sec_srsec": true,
+        "sec_srsec": true,
+        "all_govt": false,
+        "all_schools": false
+      },
+      "description": "ब्लॉक भिनाय के 58 विद्यालयों (49 राजकीय + 8 निजी + 1 टेस्ट स्कूल) के 18+ व 17+ आयु वर्ग के विद्यार्थियों की मतदाता सूची सत्यापन व अग्रिम पंजीकरण की आधिकारिक मांग।",
+      "dueDate": "2026-10-25",
+      "due_date": "2026-10-25",
+      "priority": "अति आवश्यक (Urgent)",
+      "published": true,
+      "isTestMode": false,
+      "createdAt": "2026-10-19",
+      "columns": [
+        {
+          "name": "18+ कुल विद्यार्थी",
+          "type": "number",
+          "prefillSource": "none",
+          "placeholder": "संख्या"
+        },
+        {
+          "name": "मतदाता सूची में पंजीकृत (हाँ)",
+          "type": "number",
+          "prefillSource": "none",
+          "placeholder": "संख्या"
+        },
+        {
+          "name": "अपंजीकृत विद्यार्थी (नहीं)",
+          "type": "number",
+          "prefillSource": "none",
+          "placeholder": "संख्या"
+        },
+        {
+          "name": "17+ भावी मतदाता अग्रिम संख्या",
+          "type": "number",
+          "prefillSource": "none",
+          "placeholder": "संख्या"
+        },
+        {
+          "name": "विधानसभा क्षेत्र (Default Masuda)",
+          "type": "text",
+          "prefillSource": "none",
+          "placeholder": "100 - मसूदा"
+        }
+      ]
+    },
+    {
       "id": "DEMAND_ELECTION_2026",
       "title": "पंचायती राज आम चुनाव 2026: मतदान केन्द्र भौतिक सत्यापन रिपोर्ट (प्रपत्र-3)",
       "collectionLevel": "school",
