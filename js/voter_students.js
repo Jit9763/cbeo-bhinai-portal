@@ -122,59 +122,193 @@
 
     var loggedUser = (typeof STATE !== 'undefined' && STATE.currentUser) ? STATE.currentUser : null;
     var isJit = checkIsJitendra(loggedUser);
-
-    // STRICT PERMISSION: Live Monitoring Control Room is EXCLUSIVELY for Jitendra Login
-    if (!isJit) {
-      if (loggedUser && loggedUser.role === 'school') {
-        container.innerHTML = `
-          <div style="padding:2.5rem 1.5rem; text-align:center; max-width:600px; margin:3rem auto; background:#ffffff; border-radius:16px; border:1.5px solid #cbd5e1; box-shadow:0 10px 30px rgba(0,0,0,0.06)">
-            <div style="font-size:3rem; margin-bottom:0.75rem">🔒</div>
-            <h3 style="color:#1e3a8a; font-weight:800; margin-bottom:0.5rem">ब्लॉक लाइव मॉनिटरिंग कंट्रोल रूम सुरक्षित है</h3>
-            <p style="color:#64748b; font-size:0.95rem; line-height:1.6; margin-bottom:1.5rem">
-              समस्त 58 विद्यालयों का समेकित मॉनिटरिंग कंट्रोल रूम केवल मुख्य तकनीकी व्यवस्थापक (Jitendra) के लिए अधिकृत है।
-            </p>
-            <a href="voter_form.html?code=${loggedUser.shala_darpan_code}" target="_blank" class="btn btn-warning" style="font-weight:800; padding:0.65rem 1.5rem; border-radius:8px; text-decoration:none">
-              <i class="fas fa-edit"></i> अपने विद्यालय का प्रपत्र खोलें
-            </a>
-          </div>
-        `;
-      } else {
-        container.innerHTML = `
-          <div style="padding:2.5rem 1.5rem; text-align:center; max-width:600px; margin:3rem auto; background:#ffffff; border-radius:16px; border:1.5px solid #cbd5e1; box-shadow:0 10px 30px rgba(0,0,0,0.06)">
-            <div style="font-size:3rem; margin-bottom:0.75rem">🔒</div>
-            <h3 style="color:#1e3a8a; font-weight:800; margin-bottom:0.5rem">व्यवस्थापक प्रमाणीकरण आवश्यक (Admin Only)</h3>
-            <p style="color:#64748b; font-size:0.95rem; line-height:1.6; margin-bottom:1.5rem">
-              यह ब्लॉक स्तरीय मॉनिटरिंग कंट्रोल रूम केवल मुख्य तकनीकी व्यवस्थापक (Jitendra) के लिए अधिकृत है।
-            </p>
-          </div>
-        `;
-      }
-      return;
-    }
-
-    var allSchools = getMasterSchools();
-
-    // Check Role
     var isSchool = loggedUser && loggedUser.role === 'school';
     var isPeeo = loggedUser && loggedUser.role === 'peeo';
     var isAdmin = checkIsAdmin(loggedUser);
 
-    // Target Schools for current view
-    var targetSchools = allSchools;
+    var allSchools = getMasterSchools();
+
+    // 1. UN趋THENTICATED VISITOR (NOT LOGGED IN)
+    if (!loggedUser) {
+      container.innerHTML = `
+        <div class="voter-view-wrapper" style="padding:1.5rem 0; max-width:1000px; margin:0 auto">
+          <div style="background:linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color:#ffffff; padding:2rem 2.5rem; border-radius:16px; margin-bottom:2rem; box-shadow:0 10px 30px rgba(15,23,42,0.15); border-left:6px solid #f59e0b">
+            <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.15); padding:4px 14px; border-radius:20px; font-size:0.82rem; font-weight:700; color:#fde047; margin-bottom:12px">
+              <span>🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</span>
+              <span style="opacity:0.6">|</span>
+              <span>जिला: अजमेर (AJMER)</span>
+            </div>
+            <h2 style="font-size:1.6rem; font-weight:800; margin:0 0 10px 0; color:#ffffff">
+              🗳️ 18+ एवं 17+ विद्यार्थी मतदाता सूची सत्यापन व अग्रिम पंजीकरण प्रपत्र 2026
+            </h2>
+            <p style="font-size:1rem; color:#cbd5e1; margin:0 0 1.5rem 0; max-width:850px; line-height:1.6">
+              ब्लॉक भिनाय के समस्त 58 माध्यमिक व उच्च माध्यमिक विद्यालयों (49 राजकीय + 8 निजी + 1 टेस्ट) के विद्यार्थियों का मतदाता सूची सत्यापन, भाग/क्रम संख्या अंकन एवं 17+ अग्रिम भावी मतदाता पंजीकरण प्रपत्र।
+            </p>
+            <div style="display:flex; gap:1rem; flex-wrap:wrap">
+              <button onclick="openLoginModal(false)" class="btn btn-warning" style="font-weight:800; padding:0.75rem 1.75rem; font-size:1rem; border-radius:8px">
+                <i class="fas fa-sign-in-alt"></i> 🔐 विद्यालय लॉगिन करके प्रपत्र भरें
+              </button>
+              <a href="voter_form.html?code=999999" target="_blank" class="btn btn-outline-light" style="font-weight:700; padding:0.75rem 1.5rem; font-size:0.95rem; border-radius:8px; text-decoration:none">
+                <i class="fas fa-flask"></i> टेस्ट स्कूल प्रपत्र देखें (999999)
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    // 2. SCHOOL USER VIEW: Dedicated Single-School Proforma Dashboard (NO 58-school block control room)
     if (isSchool) {
-      targetSchools = allSchools.filter(function(s) {
-        return String(s.shala_darpan_code).trim() === String(loggedUser.shala_darpan_code).trim();
-      });
-    } else if (isPeeo) {
+      var myCode = String(loggedUser.shala_darpan_code).trim();
+      var mySchool = allSchools.find(function(s) {
+        return String(s.shala_darpan_code).trim() === myCode;
+      }) || {
+        shala_darpan_code: myCode,
+        school_name: loggedUser.school_name || 'विद्यालय',
+        school_name_hi: loggedUser.school_name_hi || loggedUser.school_name || 'विद्यालय',
+        peeo_name: loggedUser.peeo_name || '',
+        principal_name: loggedUser.principal_name || '',
+        principal_mobile: loggedUser.principal_mobile || ''
+      };
+
+      var m = getSchoolMetrics(myCode);
+
+      var statusBadge = m.isSubmitted 
+        ? `<span style="background:#16a34a; color:#fff; padding:6px 16px; border-radius:20px; font-weight:800; font-size:0.9rem; display:inline-flex; align-items:center; gap:6px"><i class="fas fa-check-circle"></i> ✓ प्रपत्र सफलतापूर्वक सबमिट पूर्ण</span>`
+        : `<span style="background:#fef3c7; color:#92400e; border:1px solid #fde68a; padding:6px 16px; border-radius:20px; font-weight:800; font-size:0.9rem; display:inline-flex; align-items:center; gap:6px"><i class="fas fa-exclamation-triangle"></i> ⚠️ प्रपत्र सबमिशन लंबित (अति-आवश्यक)</span>`;
+
+      var html = `
+        <div class="voter-view-wrapper" style="padding:1rem 0; max-width:1100px; margin:0 auto">
+          <!-- School Dedicated Header Banner -->
+          <div style="background:linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color:#ffffff; padding:1.75rem 2rem; border-radius:14px; margin-bottom:1.5rem; box-shadow:0 8px 24px rgba(15,23,42,0.15); border-left:6px solid #f59e0b">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem">
+              <div>
+                <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.15); padding:4px 12px; border-radius:20px; font-size:0.8rem; font-weight:700; color:#fde047; margin-bottom:10px">
+                  <span>🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</span>
+                  <span style="opacity:0.6">|</span>
+                  <span>जिला: अजमेर (AJMER)</span>
+                </div>
+                <h2 style="font-size:1.5rem; font-weight:800; margin:0 0 6px 0; color:#ffffff">
+                  🏫 ${mySchool.school_name_hi || mySchool.school_name}
+                </h2>
+                <div style="font-size:0.92rem; color:#cbd5e1; display:flex; gap:1.25rem; flex-wrap:wrap; margin-top:6px">
+                  <span><strong>शाला दर्पण / कोड:</strong> <code style="background:rgba(255,255,255,0.2); color:#fff; padding:2px 8px; border-radius:4px">${mySchool.shala_darpan_code}</code></span>
+                  <span><strong>PEEO क्लस्टर:</strong> ${mySchool.peeo_name || '---'}</span>
+                  ${mySchool.principal_name ? `<span><strong>संस्था प्रधान:</strong> ${mySchool.principal_name}</span>` : ''}
+                </div>
+              </div>
+              <div style="text-align:right">
+                ${statusBadge}
+                ${m.submittedAt ? `<div style="font-size:0.8rem; color:#93c5fd; margin-top:6px">सबमिट दिनांक: ${m.submittedAt}</div>` : ''}
+              </div>
+            </div>
+          </div>
+
+          <!-- School Action Central Card -->
+          <div style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:14px; padding:1.75rem; margin-bottom:1.5rem; box-shadow:0 4px 16px rgba(0,0,0,0.06)">
+            <h3 style="font-size:1.15rem; font-weight:800; color:#0f172a; margin:0 0 1rem 0; display:flex; align-items:center; gap:8px">
+              <span>⚡ त्वरित कार्य व प्रपत्र संचालन</span>
+            </h3>
+            <div style="display:flex; gap:1rem; flex-wrap:wrap">
+              <a href="voter_form.html?code=${myCode}" target="_blank" class="btn btn-warning" style="font-weight:800; font-size:1rem; padding:0.8rem 1.6rem; border-radius:8px; text-decoration:none; box-shadow:0 4px 12px rgba(217,119,6,0.3)">
+                <i class="fas fa-edit"></i> 📝 18+ व 17+ विद्यार्थी मतदाता प्रपत्र भरें / संशोधित करें
+              </a>
+              <button class="btn btn-info" onclick="window.openVoterPdfPreviewModal('${myCode}')" style="background:#0284c7; color:#fff; font-weight:700; font-size:0.95rem; border:none; padding:0.8rem 1.4rem; border-radius:8px">
+                <i class="fas fa-eye"></i> 👁️ प्रपत्र अवलोकन (Preview)
+              </button>
+              <button class="btn btn-success" onclick="window.downloadVoterSingleSchoolPdf('${myCode}')" style="background:#16a34a; font-weight:700; font-size:0.95rem; border:none; padding:0.8rem 1.4rem; border-radius:8px">
+                <i class="fas fa-file-pdf"></i> 📄 अधिकृत प्रमाणित PDF डाउनलोड
+              </button>
+            </div>
+            <p style="font-size:0.85rem; color:#64748b; margin:1rem 0 0 0; line-height:1.5">
+              <i class="fas fa-info-circle text-primary"></i> <strong>निर्देश:</strong> यदि आपके विद्यालय के कक्षा 12 के किसी विद्यार्थी का मतदाता पहचान पत्र (EPIC) बन चुका है अथवा शेष है, या कक्षा 11-12 के 17+ भावी विद्यार्थी हैं, तो उपर्युक्त बटन पर क्लिक करके प्रपत्र तुरंत भरें व प्रमाणित मुहर/हस्ताक्षर सहित PDF डाउनलोड कर सुरक्षित रखें।
+            </p>
+          </div>
+
+          <!-- School 4 Metric Cards -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:1.5rem">
+            <div style="background:#ffffff; border:1px solid #bfdbfe; border-radius:10px; padding:1.15rem; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.04)">
+              <div style="font-size:0.78rem; font-weight:800; color:#1d4ed8; text-transform:uppercase">18+ कुल विद्यार्थी (कक्षा 12)</div>
+              <div style="font-size:2rem; font-weight:900; color:#1e40af; margin-top:4px">${m.total18}</div>
+              <div style="font-size:0.75rem; color:#64748b; margin-top:2px">शाला दर्पण + नव-प्रविष्ट</div>
+            </div>
+
+            <div style="background:#ffffff; border:1px solid #bbf7d0; border-radius:10px; padding:1.15rem; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.04)">
+              <div style="font-size:0.78rem; font-weight:800; color:#15803d; text-transform:uppercase">18+ पंजीकृत (हाँ)</div>
+              <div style="font-size:2rem; font-weight:900; color:#166534; margin-top:4px">${m.reg18}</div>
+              <div style="font-size:0.75rem; color:#15803d; font-weight:700; margin-top:2px">EPIC नंबर अंकित</div>
+            </div>
+
+            <div style="background:#ffffff; border:1px solid #fed7aa; border-radius:10px; padding:1.15rem; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.04)">
+              <div style="font-size:0.78rem; font-weight:800; color:#c2410c; text-transform:uppercase">18+ अपेक्षित (नहीं)</div>
+              <div style="font-size:2rem; font-weight:900; color:#ea580c; margin-top:4px">${m.unreg18}</div>
+              <div style="font-size:0.75rem; color:#c2410c; font-weight:700; margin-top:2px">कारण सहित दर्ज</div>
+            </div>
+
+            <div style="background:#ffffff; border:1px solid #ddd6fe; border-radius:10px; padding:1.15rem; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.04)">
+              <div style="font-size:0.78rem; font-weight:800; color:#6d28d9; text-transform:uppercase">17+ अग्रिम भावी मतदाता</div>
+              <div style="font-size:2rem; font-weight:900; color:#7c3aed; margin-top:4px">${m.total17}</div>
+              <div style="font-size:0.75rem; color:#6d28d9; margin-top:2px">पंजीकरण हेतु प्रविष्ट</div>
+            </div>
+          </div>
+
+          <!-- School Detail Card -->
+          <div style="margin-top:1.5rem">
+            <h4 style="font-size:1.05rem; font-weight:800; color:#1e293b; margin-bottom:0.75rem">
+              📋 आपके विद्यालय का सत्यापित विवरण कार्ड:
+            </h4>
+            <div id="voter-schools-content"></div>
+          </div>
+        </div>
+      `;
+
+      container.innerHTML = html;
+      renderGridView(document.getElementById('voter-schools-content'), [mySchool]);
+      return;
+    }
+
+    // 3. PEEO CLUSTER VIEW: Restricted to PEEO's secondary/sr secondary schools
+    if (isPeeo) {
       var pCode = String(loggedUser.shala_darpan_code).trim();
       var pName = String(loggedUser.peeo_name || '').toUpperCase().replace('PEEO ', '');
-      targetSchools = allSchools.filter(function(s) {
+      var peeoSchools = allSchools.filter(function(s) {
         return String(s.peeo_code) === pCode || 
                String(s.shala_darpan_code) === pCode ||
                String(s.peeo_name || '').toUpperCase().includes(pName);
       });
-      if (targetSchools.length === 0) targetSchools = allSchools;
+      if (peeoSchools.length === 0) peeoSchools = allSchools;
+
+      var peeoSubCount = 0;
+      peeoSchools.forEach(function(s) {
+        if (getSchoolMetrics(s.shala_darpan_code).isSubmitted) peeoSubCount++;
+      });
+
+      var html = `
+        <div class="voter-view-wrapper" style="padding:1rem 0; max-width:1100px; margin:0 auto">
+          <div style="background:linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color:#ffffff; padding:1.75rem 2rem; border-radius:14px; margin-bottom:1.5rem; box-shadow:0 8px 24px rgba(15,23,42,0.15); border-left:6px solid #f59e0b">
+            <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.15); padding:4px 12px; border-radius:20px; font-size:0.8rem; font-weight:700; color:#fde047; margin-bottom:10px">
+              <span>🏛️ कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</span>
+              <span style="opacity:0.6">|</span>
+              <span>जिला: अजमेर (AJMER)</span>
+            </div>
+            <h2 style="font-size:1.5rem; font-weight:800; margin:0 0 6px 0; color:#ffffff">
+              🏢 PEEO क्लस्टर मॉनिटरिंग: ${loggedUser.peeo_name || loggedUser.school_name || 'PEEO'}
+            </h2>
+            <p style="font-size:0.92rem; color:#cbd5e1; margin:0">
+              आपके परिक्षेत्र के समस्त माध्यमिक/उच्च माध्यमिक विद्यालयों के 18+ एवं 17+ विद्यार्थी मतदाता प्रपत्र सबमिशन स्थिति (${peeoSubCount}/${peeoSchools.length} पूर्ण)।
+            </p>
+          </div>
+          <div id="voter-schools-content"></div>
+        </div>
+      `;
+      container.innerHTML = html;
+      renderGridView(document.getElementById('voter-schools-content'), peeoSchools);
+      return;
     }
+
+    // 4. JITENDRA SUPER ADMIN: FULL BLOCK LIVE MONITORING CONTROL ROOM (58 SCHOOLS)
+    var targetSchools = allSchools;
 
     // Calculate Global Block Totals
     var blockTotalSchools = allSchools.length;
