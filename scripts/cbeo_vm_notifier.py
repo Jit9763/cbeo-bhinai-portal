@@ -395,6 +395,8 @@ def main():
             print("Note reading voter_students_master.json:", e)
     if not voter_master_schools:
         voter_master_schools = schools_57
+    else:
+        voter_master_schools = [s for s in voter_master_schools if str(s.get('shala_darpan_code', '')).strip() != '999999']
 
     total_voter_schools = len(voter_master_schools)
     voter_submitted_schools = []

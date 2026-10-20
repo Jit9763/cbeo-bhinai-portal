@@ -2430,6 +2430,14 @@
       data.submitted_by = pName;
       data.is_locked = IS_LOCKED;
 
+      if (CURRENT_SCHOOL_CODE === '999999') {
+        data.is_test = true;
+        data.is_test_data = true;
+        data.test_flag = true;
+        (data.students_18 || []).forEach(function(st) { st.is_test = true; });
+        (data.students_17 || []).forEach(function(st) { st.is_test = true; });
+      }
+
       // Save to localStorage
       var allSubs = {};
       try {

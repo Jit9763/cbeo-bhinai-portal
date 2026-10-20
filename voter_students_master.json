@@ -1050,7 +1050,8 @@
       "incharge_name": "परीक्षण प्रभारी",
       "incharge_mobile": "9928254317",
       "school_name_hi": "रा.उ.मा.वि. मॉडल टेस्ट स्कूल भिनाय",
-      "school_name_en": "Govt. Model Test Sr. Sec. School Bhinai"
+      "school_name_en": "Govt. Model Test Sr. Sec. School Bhinai",
+      "is_test": true
     }
   ],
   "prefilled_18_students": {

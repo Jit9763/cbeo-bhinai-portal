@@ -15,6 +15,28 @@
   var activeModalSchoolCode = null;
   var activeVoterSubDemand = 'both'; // '18', '17', or 'both'
 
+  // Test School (999999) Visibility Toggle - Default is OFF as ordered by user
+  var includeTestSchool = (function() {
+    var saved = localStorage.getItem('cbeo_voter_include_test_school');
+    return saved === 'true'; // Default is false (OFF)
+  })();
+
+  window.toggleVoterTestSchool = function() {
+    includeTestSchool = !includeTestSchool;
+    localStorage.setItem('cbeo_voter_include_test_school', includeTestSchool ? 'true' : 'false');
+    if (!includeTestSchool && currentFilter === 'test') {
+      currentFilter = 'all';
+    }
+    renderVoterStudentsView();
+    if (typeof renderDemandsSummary === 'function') {
+      try { renderDemandsSummary(); } catch(e) {}
+    }
+  };
+
+  window.isVoterTestSchoolIncluded = function() {
+    return includeTestSchool;
+  };
+
   window.switchVoterSubDemand = function(mode) {
     activeVoterSubDemand = mode;
     renderVoterStudentsView();
@@ -25,12 +47,28 @@
     try {
       subs = JSON.parse(localStorage.getItem('cbeo_voter_submissions') || '{}');
     } catch(e) {}
+    // If old mock/dummy submission exists for 999999, clean it up so test school doesn't show false submitted status
+    if (subs['999999']) {
+      if (subs['999999'].submitted_by === 'जितेन्द्र कुमार (टेस्ट व्यवस्थापक)' || !subs['999999'].test_flag) {
+        delete subs['999999'];
+        try { localStorage.setItem('cbeo_voter_submissions', JSON.stringify(subs)); } catch(e) {}
+      } else {
+        subs['999999'].is_test = true;
+        subs['999999'].test_flag = true;
+      }
+    }
     return subs;
   }
 
-  function getMasterSchools() {
+  function getMasterSchools(forceAll) {
     var master = window.VOTER_STUDENTS_MASTER || {};
-    return master.schools || [];
+    var schools = master.schools || [];
+    if (!forceAll && !includeTestSchool) {
+      return schools.filter(function(s) {
+        return s.shala_darpan_code !== '999999' && !s.is_test;
+      });
+    }
+    return schools;
   }
 
   function getPrefilled18Students() {
@@ -163,7 +201,7 @@
               🗳️ 18+ एवं 17+ विद्यार्थी मतदाता सूची सत्यापन व अग्रिम पंजीकरण प्रपत्र 2026
             </h2>
             <p style="font-size:1rem; color:#cbd5e1; margin:0 0 1.5rem 0; max-width:850px; line-height:1.6">
-              ब्लॉक भिनाय के समस्त 58 माध्यमिक व उच्च माध्यमिक विद्यालयों (49 राजकीय + 8 निजी + 1 टेस्ट) के विद्यार्थियों का मतदाता सूची सत्यापन, भाग/क्रम संख्या अंकन एवं 17+ अग्रिम भावी मतदाता पंजीकरण प्रपत्र।
+              ब्लॉक भिनाय के ${includeTestSchool ? 'समस्त 58 माध्यमिक व उच्च माध्यमिक विद्यालयों (49 राजकीय + 8 निजी + 1 टेस्ट)' : 'समस्त 57 माध्यमिक व उच्च माध्यमिक विद्यालयों (49 राजकीय + 8 निजी)'} के विद्यार्थियों का मतदाता सूची सत्यापन, भाग/क्रम संख्या अंकन एवं 17+ अग्रिम भावी मतदाता पंजीकरण प्रपत्र।
             </p>
             <div style="display:flex; gap:1rem; flex-wrap:wrap">
               <button onclick="openLoginModal(false)" class="btn btn-warning" style="font-weight:800; padding:0.75rem 1.75rem; font-size:1rem; border-radius:8px">
@@ -182,7 +220,7 @@
     // 2. SCHOOL USER VIEW: Dedicated Single-School Proforma Dashboard with Separate 18+ & 17+ Cards
     if (isSchool) {
       var myCode = String(loggedUser.shala_darpan_code).trim();
-      var mySchool = allSchools.find(function(s) {
+      var mySchool = getMasterSchools(true).find(function(s) {
         return String(s.shala_darpan_code).trim() === myCode;
       }) || {
         shala_darpan_code: myCode,
@@ -375,7 +413,7 @@
                 🗳️ 18+ एवं 17+ विद्यार्थी मतदाता सूची सत्यापन व अग्रिम पंजीकरण मांग 2026
               </h2>
               <p style="font-size:0.92rem; color:#cbd5e1; margin:0 0 10px 0; max-width:850px">
-                ब्लॉक भिनाय के समस्त 58 माध्यमिक/उच्च माध्यमिक विद्यालयों (49 राजकीय + 8 निजी + 1 टेस्ट स्कूल) के विद्यार्थियों का मतदाता सूची सत्यापन, भाग/क्रम संख्या अंकन एवं 17+ अग्रिम भावी मतदाता सूची का संपूर्ण लाइव मॉनिटरिंग कंट्रोल रूम।
+                ब्लॉक भिनाय के ${includeTestSchool ? 'समस्त 58 माध्यमिक/उच्च माध्यमिक विद्यालयों (49 राजकीय + 8 निजी + 1 टेस्ट स्कूल)' : 'समस्त 57 माध्यमिक/उच्च माध्यमिक विद्यालयों (49 राजकीय + 8 निजी)'} के विद्यार्थियों का मतदाता सूची सत्यापन, भाग/क्रम संख्या अंकन एवं 17+ अग्रिम भावी मतदाता सूची का संपूर्ण लाइव मॉनिटरिंग कंट्रोल रूम।
               </p>
               <!-- Dynamic Animated Progress Bar (Saman Pariksha Style) -->
               <div style="background:rgba(255,255,255,0.12); border-radius:8px; padding:0.6rem 0.85rem; max-width:680px">
@@ -412,7 +450,7 @@
           <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:1rem; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.04)">
             <div style="font-size:0.75rem; font-weight:800; color:#64748b; text-transform:uppercase">कुल विद्यालय</div>
             <div style="font-size:1.75rem; font-weight:900; color:#1e3a8a; margin-top:4px">${blockTotalSchools}</div>
-            <div style="font-size:0.72rem; color:#64748b; margin-top:2px">49 राजकीय + 8 निजी + 1 टेस्ट</div>
+            <div style="font-size:0.72rem; color:#64748b; margin-top:2px">${includeTestSchool ? '49 राजकीय + 8 निजी + 1 टेस्ट' : '49 राजकीय + 8 निजी (टेस्ट बंद)'}</div>
           </div>
 
           <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:10px; padding:1rem; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.04)">
@@ -490,8 +528,9 @@
             <button class="btn btn-sm ${currentFilter === 'pvt' ? 'btn-primary' : 'btn-outline'}" onclick="window.setVoterFilter('pvt')">
               निजी (8 Private)
             </button>
-            <button class="btn btn-sm ${currentFilter === 'test' ? 'btn-primary' : 'btn-outline'}" onclick="window.setVoterFilter('test')" title="परीक्षण विद्यालय">
-              🧪 टेस्ट स्कूल (1)
+            <button class="btn btn-sm" onclick="window.toggleVoterTestSchool()" style="background:${includeTestSchool ? '#f5f3ff' : '#fef2f2'}; color:${includeTestSchool ? '#7c3aed' : '#b91c1c'}; border:1.5px solid ${includeTestSchool ? '#8b5cf6' : '#f87171'}; font-weight:800; padding:0.35rem 0.75rem; border-radius:6px; display:inline-flex; align-items:center; gap:6px; cursor:pointer" title="टेस्ट स्कूल (999999) शामिल करें या पूरी सूची, गणना व एक्सेल से हटाएं">
+              <i class="fas ${includeTestSchool ? 'fa-toggle-on' : 'fa-toggle-off'}" style="font-size:1.15rem; color:${includeTestSchool ? '#7c3aed' : '#dc2626'}"></i>
+              <span>${includeTestSchool ? '🧪 टेस्ट स्कूल: ऑन (58)' : '🧪 टेस्ट स्कूल: ऑफ (57)'}</span>
             </button>
             <button class="btn btn-sm ${currentFilter === 'submitted' ? 'btn-success' : 'btn-outline'}" onclick="window.setVoterFilter('submitted')">
               ✅ सबमिट पूर्ण
@@ -544,6 +583,9 @@
   function getFilteredSchools(schools) {
     return schools.filter(function(s) {
       var m = getSchoolMetrics(s.shala_darpan_code);
+
+      // If test school toggle is OFF, exclude 999999
+      if (!includeTestSchool && (s.shala_darpan_code === '999999' || s.is_test)) return false;
 
       // Status / Type filter
       if (currentFilter === 'govt' && s.type === 'Private') return false;
@@ -1379,17 +1421,18 @@
 
     allSchools.forEach(function(s, idx) {
       var m = getSchoolMetrics(s.shala_darpan_code);
+      var isTestSchool = (s.shala_darpan_code === '999999' || s.is_test);
       summaryRows.push([
         idx + 1,
         s.shala_darpan_code,
         s.school_name_hi || s.school_name,
-        s.type === 'Private' ? 'निजी' : 'राजकीय',
+        isTestSchool ? '🧪 टेस्ट स्कूल (TEST DUMMY DATA)' : (s.type === 'Private' ? 'निजी' : 'राजकीय'),
         s.peeo_name,
         m.total18,
         m.reg18,
         m.unreg18,
         m.total17,
-        m.isSubmitted ? 'सबमिट पूर्ण' : 'लंबित',
+        isTestSchool ? 'परीक्षण डेटा (TEST)' : (m.isSubmitted ? 'सबमिट पूर्ण' : 'लंबित'),
         m.isLocked ? 'लॉक' : 'अनलॉक',
         m.submittedAt || '---',
         s.principal_name || '---',
@@ -1403,18 +1446,18 @@
           s.shala_darpan_code,
           s.school_name_hi || s.school_name,
           s.peeo_name,
-          "18+",
+          isTestSchool ? "18+ [TEST DUMMY]" : "18+",
           stu.name || '',
           stu.father_name || '',
           stu.dob || '',
           stu.mobile_no || '---',
           stu.class_name || '12वीं',
           stu.vidhan_sabha || '100 - मसूदा',
-          stu.is_registered || 'नहीं',
+          isTestSchool ? "टेस्ट डेटा" : (stu.is_registered || 'नहीं'),
           stu.part_no || '',
           stu.serial_no || '',
           stu.epic_no || '',
-          stu.reason_not_registered || ''
+          isTestSchool ? "परीक्षण डेटा - अमान्य" : (stu.reason_not_registered || '')
         ]);
       });
 
@@ -1425,14 +1468,14 @@
           s.shala_darpan_code,
           s.school_name_hi || s.school_name,
           s.peeo_name,
-          "17+",
+          isTestSchool ? "17+ [TEST DUMMY]" : "17+",
           stu.name || '',
           stu.father_name || '',
           stu.dob || '',
           stu.mobile_no || '',
           stu.class_name || '11वीं',
           stu.vidhan_sabha || '100 - मसूदा',
-          "भावी मतदाता (17+)",
+          isTestSchool ? "परीक्षण भावी मतदाता" : "भावी मतदाता (17+)",
           "---",
           "---",
           "---",
@@ -1459,13 +1502,14 @@
     var allSchools = getMasterSchools();
     var rowsHtml = allSchools.map(function(s, idx) {
       var m = getSchoolMetrics(s.shala_darpan_code);
+      var isTestSchool = (s.shala_darpan_code === '999999' || s.is_test);
       return `
         <tr>
           <td style="text-align:center; padding:4px; border:1px solid #333">${idx + 1}</td>
           <td style="padding:4px; border:1px solid #333; text-align:center">${s.shala_darpan_code}</td>
           <td style="padding:4px; border:1px solid #333"><strong>${s.school_name_hi || s.school_name}</strong></td>
           <td style="padding:4px; border:1px solid #333">${s.peeo_name}</td>
-          <td style="padding:4px; border:1px solid #333; text-align:center">${s.type === 'Private' ? 'निजी' : 'राजकीय'}</td>
+          <td style="padding:4px; border:1px solid #333; text-align:center">${isTestSchool ? 'टेस्ट' : (s.type === 'Private' ? 'निजी' : 'राजकीय')}</td>
           <td style="padding:4px; border:1px solid #333; text-align:center; font-weight:bold">${m.total18}</td>
           <td style="padding:4px; border:1px solid #333; text-align:center; color:#16a34a; font-weight:bold">${m.reg18}</td>
           <td style="padding:4px; border:1px solid #333; text-align:center; color:#d97706">${m.unreg18}</td>
@@ -1483,7 +1527,7 @@
           <h2 style="margin:0; font-size:14pt; color:#1e3a8a">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</h2>
           <div style="font-size:11pt; font-weight:bold; margin-top:2px">जिला: अजमेर (AJMER) | ब्लॉक: भिनाय (राजस्थान)</div>
           <div style="font-size:12pt; font-weight:bold; margin-top:4px; background:#e2e8f0; padding:4px">
-            🗳️ 18+ एवं 17+ विद्यार्थी मतदाता सूची सत्यापन व पंजीकरण ब्लॉक समेकित रिपोर्ट 2026 (58 विद्यालय)
+            🗳️ 18+ एवं 17+ विद्यार्थी मतदाता सूची सत्यापन व पंजीकरण ब्लॉक समेकित रिपोर्ट 2026 (${allSchools.length} विद्यालय)
           </div>
         </div>
 

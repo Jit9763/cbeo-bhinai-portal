@@ -15423,8 +15423,13 @@ function renderCBEOExecutiveDemands() {
 
   const allDemands = [];
 
-  // 0. 18+ and 17+ Voter Students Registration Demand (58 schools: 49 Govt + 8 Pvt + 1 Test)
-  const voterMasterSchools = (window.VOTER_STUDENTS_MASTER && window.VOTER_STUDENTS_MASTER.schools) || [];
+  // 0. 18+ and 17+ Voter Students Registration Demand (57 or 58 schools)
+  const includeTestInDemands = localStorage.getItem('cbeo_voter_include_test_school') === 'true';
+  const rawVoterSchools = (window.VOTER_STUDENTS_MASTER && window.VOTER_STUDENTS_MASTER.schools) || [];
+  const voterMasterSchools = rawVoterSchools.filter(s => {
+    if (!includeTestInDemands && (s.shala_darpan_code === '999999' || s.is_test)) return false;
+    return true;
+  });
   let voterSubs = {};
   try {
     voterSubs = JSON.parse(localStorage.getItem('cbeo_voter_submissions') || '{}');
@@ -15434,13 +15439,13 @@ function renderCBEOExecutiveDemands() {
     const sub = voterSubs[s.shala_darpan_code];
     if (sub && (sub.is_submitted || sub.status === 'submitted' || sub.submitted_at)) voterReceived++;
   });
-  const voterTargetCount = voterMasterSchools.length || 58;
+  const voterTargetCount = voterMasterSchools.length || (includeTestInDemands ? 58 : 57);
   const voterPending = Math.max(0, voterTargetCount - voterReceived);
   const voterPct = voterTargetCount > 0 ? Math.round((voterReceived / voterTargetCount) * 100) : 0;
 
   allDemands.push({
     id: 'DEMAND_VOTER_STUDENTS_2026',
-    title: '🗳️ 18+ व 17+ विद्यार्थी मतदाता पंजीकरण मांग (58 विद्यालय)',
+    title: `🗳️ 18+ व 17+ विद्यार्थी मतदाता पंजीकरण मांग (${voterTargetCount} विद्यालय)`,
     dueDate: '25 अक्टूबर 2026',
     targetCount: voterTargetCount,
     receivedCount: voterReceived,
