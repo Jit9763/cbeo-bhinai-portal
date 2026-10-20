@@ -175,9 +175,45 @@
     );
   }
 
+  var isCloudSyncing = false;
+  var lastCloudSyncTime = 0;
+  function syncVoterCloudSubmissions() {
+    var now = Date.now();
+    if (isCloudSyncing || (now - lastCloudSyncTime < 10000)) return; // 10s throttle
+    isCloudSyncing = true;
+    lastCloudSyncTime = now;
+    var gasUrl = localStorage.getItem('cbeo_google_apps_script_url') || 
+                 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+    fetch(`${gasUrl}?action=getDemandSubmissions&demand_id=DEMAND_VOTER_STUDENTS_2026&_t=${now}`)
+      .then(function(r) { return r.json(); })
+      .then(function(res) {
+        isCloudSyncing = false;
+        if (res && res.success && res.submissions && Object.keys(res.submissions).length > 0) {
+          var local = getSubmissions();
+          var updated = false;
+          for (var code in res.submissions) {
+            if (code && res.submissions.hasOwnProperty(code)) {
+              if (!local[code] || res.submissions[code].submitted_at !== local[code].submitted_at) {
+                local[code] = res.submissions[code];
+                updated = true;
+              }
+            }
+          }
+          if (updated) {
+            localStorage.setItem('cbeo_voter_submissions', JSON.stringify(local));
+            renderVoterStudentsView();
+          }
+        }
+      })
+      .catch(function(e) {
+        isCloudSyncing = false;
+      });
+  }
+
   function renderVoterStudentsView() {
     var container = document.getElementById('view-voter-students');
     if (!container) return;
+    syncVoterCloudSubmissions();
 
     var loggedUser = (typeof STATE !== 'undefined' && STATE.currentUser) ? STATE.currentUser : null;
     var isJit = checkIsJitendra(loggedUser);

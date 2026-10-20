@@ -463,6 +463,112 @@ function doPost(e) {
     }
 
     // -------------------------------------------------------------
+    // ACTION 1F: 18+ & 17+ VOTER STUDENTS REGISTRATION (Dedicated Tab + PEEO Tab)
+    // -------------------------------------------------------------
+    if (data.action === 'saveVoterStudentSubmission' || (data.action === 'saveDemandSubmission' && (data.demand_id === 'DEMAND_VOTER_STUDENTS_2026' || data.demand_id === 'demand_voter_students_2026'))) {
+      var vSub = data.data || data;
+      if (typeof vSub === 'string') {
+        try { vSub = JSON.parse(vSub); } catch(pe) { vSub = {}; }
+      }
+      var vSchCode = String(data.school_code || vSub.school_code || '').trim();
+      var vSheet = ss.getSheetByName("Voter_Students_2026");
+      if (!vSheet) {
+        vSheet = ss.insertSheet("Voter_Students_2026");
+        vSheet.appendRow([
+          "क्र.सं.", "शाला_दर्पण_कोड", "विद्यालय_का_नाम", "PEEO_नाम", "श्रेणी",
+          "संस्था_प्रधान", "मोबाइल_नं", "18+_कुल_कक्षा_12", "18+_पंजीकृत_हाँ", "18+_अपेक्षित_नहीं",
+          "17+_अग्रिम_कुल", "सबमिशन_स्थिति", "सबमिशन_दिनांक_समय", "सत्यापित_संस्था_प्रधान",
+          "18+_विद्यार्थी_विवरण_JSON", "17+_विद्यार्थी_विवरण_JSON", "Full_Data_JSON"
+        ]);
+        var vHead = vSheet.getRange(1, 1, 1, 17);
+        vHead.setBackground("#1e3a8a").setFontColor("#ffffff").setFontWeight("bold");
+      }
+
+      var vVals = vSheet.getDataRange().getValues();
+      var vRow = -1;
+      for (var vr = 1; vr < vVals.length; vr++) {
+        if (String(vVals[vr][1]).trim() === vSchCode) {
+          vRow = vr + 1;
+          break;
+        }
+      }
+
+      var stu18 = vSub.students_18 || [];
+      var stu17 = vSub.students_17 || [];
+      var reg18 = (typeof vSub.registered_18 !== 'undefined') ? Number(vSub.registered_18) : (stu18.filter(function(st) { return st.is_registered === 'हाँ'; }).length);
+      var tot18 = (typeof vSub.total_18 !== 'undefined') ? Number(vSub.total_18) : stu18.length;
+      var unreg18 = (typeof vSub.unregistered_18 !== 'undefined') ? Number(vSub.unregistered_18) : (tot18 - reg18);
+      var tot17 = (typeof vSub.total_17 !== 'undefined') ? Number(vSub.total_17) : stu17.length;
+
+      var vRowData = [
+        vRow > 0 ? (vRow - 1) : vVals.length,
+        vSchCode,
+        data.school_name || vSub.school_name || '',
+        data.peeo_name || vSub.peeo_name || '',
+        data.category || vSub.category || '',
+        data.submitted_by || vSub.submitted_by || vSub.principal_name || '',
+        data.principal_mobile || data.submitter_mobile || vSub.principal_mobile || '',
+        tot18,
+        reg18,
+        unreg18,
+        tot17,
+        vSub.submission_status || 'submitted',
+        vSub.submitted_at || Utilities.formatDate(new Date(), "GMT+5:30", "dd-MM-yyyy HH:mm:ss"),
+        vSub.submitted_by || '',
+        JSON.stringify(stu18),
+        JSON.stringify(stu17),
+        typeof data.data_json === 'string' ? data.data_json : JSON.stringify(vSub)
+      ];
+
+      if (vRow > 0) {
+        vSheet.getRange(vRow, 1, 1, vRowData.length).setValues([vRowData]);
+      } else {
+        vSheet.appendRow(vRowData);
+      }
+
+      // Also ensure PEEO tab is updated
+      var vPeeoName = sanitizeTabName(data.peeo_name || vSub.peeo_name || '');
+      var vPeeoSheet = ss.getSheetByName(vPeeoName);
+      if (vPeeoSheet) {
+        var pv = vPeeoSheet.getDataRange().getValues();
+        var foundPRow = -1;
+        for (var pvi = 1; pvi < pv.length; pvi++) {
+          if (String(pv[pvi][1]).trim() === vSchCode) {
+            foundPRow = pvi + 1;
+            break;
+          }
+        }
+        var pJson = typeof data.data_json === 'string' ? data.data_json : JSON.stringify(vSub);
+        if (foundPRow > 0) {
+          vPeeoSheet.getRange(foundPRow, 5).setValue("DEMAND_VOTER_STUDENTS_2026");
+          vPeeoSheet.getRange(foundPRow, 6).setValue("पूर्ण (Submitted)");
+          vPeeoSheet.getRange(foundPRow, 7).setValue(tot18 + tot17);
+          vPeeoSheet.getRange(foundPRow, 8).setValue(data.submitted_by || vSub.submitted_by || '');
+          vPeeoSheet.getRange(foundPRow, 9).setValue(vSub.submitted_at || Utilities.formatDate(new Date(), "GMT+5:30", "dd-MM-yyyy HH:mm:ss"));
+          vPeeoSheet.getRange(foundPRow, 10).setValue(pJson);
+        } else {
+          vPeeoSheet.appendRow([
+            pv.length,
+            vSchCode,
+            data.school_name || vSub.school_name || '',
+            data.category || vSub.category || '',
+            "DEMAND_VOTER_STUDENTS_2026",
+            "पूर्ण (Submitted)",
+            tot18 + tot17,
+            data.submitted_by || vSub.submitted_by || '',
+            vSub.submitted_at || Utilities.formatDate(new Date(), "GMT+5:30", "dd-MM-yyyy HH:mm:ss"),
+            pJson
+          ]);
+        }
+      }
+
+      return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        message: "18+ एवं 17+ विद्यार्थी मतदाता सत्यापन डेटा Google Sheet 'Voter_Students_2026' में सुरक्षित हो गया!"
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // -------------------------------------------------------------
     // ACTION 2: SAVE UNIVERSAL DEMAND SUBMISSION (Data_JSON + PEEO Tab)
     // -------------------------------------------------------------
     var schoolCode = String(data.school_code || '').trim();
@@ -729,6 +835,48 @@ function doGet(e) {
         demand_id: reqDemandId,
         count: Object.keys(results).length,
         submissions: results
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // -------------------------------------------------------------
+    // 2B. GET VOTER STUDENTS SUBMISSIONS (From Dedicated Voter_Students_2026 Sheet)
+    // -------------------------------------------------------------
+    if (action === 'getVoterStudentSubmissions' || (action === 'getDemandSubmissions' && (params.demand_id === 'DEMAND_VOTER_STUDENTS_2026' || params.demand_id === 'demand_voter_students_2026'))) {
+      var vSheetGet = ss.getSheetByName("Voter_Students_2026");
+      var voterSubsMap = {};
+      if (vSheetGet) {
+        var vDataGet = vSheetGet.getDataRange().getValues();
+        for (var vi = 1; vi < vDataGet.length; vi++) {
+          var vRow = vDataGet[vi];
+          var scCode = String(vRow[1] || '').trim();
+          var rawJson = String(vRow[16] || '').trim();
+          if (scCode) {
+            try {
+              voterSubsMap[scCode] = JSON.parse(rawJson);
+            } catch(e) {
+              voterSubsMap[scCode] = {
+                school_code: scCode,
+                school_name: String(vRow[2] || ''),
+                peeo_name: String(vRow[3] || ''),
+                category: String(vRow[4] || ''),
+                submitted_by: String(vRow[5] || ''),
+                principal_mobile: String(vRow[6] || ''),
+                total_18: Number(vRow[7]) || 0,
+                registered_18: Number(vRow[8]) || 0,
+                unregistered_18: Number(vRow[9]) || 0,
+                total_17: Number(vRow[10]) || 0,
+                submission_status: String(vRow[11] || 'submitted'),
+                submitted_at: String(vRow[12] || '')
+              };
+            }
+          }
+        }
+      }
+      return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        demand_id: 'DEMAND_VOTER_STUDENTS_2026',
+        count: Object.keys(voterSubsMap).length,
+        submissions: voterSubsMap
       })).setMimeType(ContentService.MimeType.JSON);
     }
 

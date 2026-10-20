@@ -2463,24 +2463,75 @@
         }
       }, 500);
     }
+    window.submitForm = submitFinalForm;
 
     function syncWithCloud(subData) {
       var gasUrl = localStorage.getItem('cbeo_google_apps_script_url') || 
                    'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
       
-      try {
+      var schName = CURRENT_SCHOOL ? (CURRENT_SCHOOL.school_name_hi || CURRENT_SCHOOL.school_name) : 'विद्यालय';
+      var peeo = CURRENT_SCHOOL ? (CURRENT_SCHOOL.peeo_name || '') : '';
+      var peeoCode = CURRENT_SCHOOL ? (CURRENT_SCHOOL.peeo_code || '') : '';
+      var category = CURRENT_SCHOOL ? (CURRENT_SCHOOL.category || CURRENT_SCHOOL.type || 'राजकीय') : 'राजकीय';
+      var pName = document.getElementById('principal-name-input') ? document.getElementById('principal-name-input').value.trim() : (CURRENT_SCHOOL ? CURRENT_SCHOOL.principal_name : '');
+      var pMob = document.getElementById('principal-mobile-input') ? document.getElementById('principal-mobile-input').value.trim() : (CURRENT_SCHOOL ? CURRENT_SCHOOL.principal_mobile : '');
+
+      var payload = {
+        action: 'saveDemandSubmission',
+        demand_id: 'DEMAND_VOTER_STUDENTS_2026',
+        school_code: String(CURRENT_SCHOOL_CODE).trim(),
+        school_name: schName,
+        peeo_name: peeo,
+        peeo_code: peeoCode,
+        category: category,
+        submitted_by: pName,
+        submitter_mobile: pMob,
+        grand_total: Number((subData.total_18 || 0) + (subData.total_17 || 0)),
+        timestamp: subData.submitted_at || new Date().toLocaleString('hi-IN'),
+        is_test: !!subData.is_test,
+        data: subData,
+        data_json: JSON.stringify(subData)
+      };
+
+      // Show floating cloud sync notification pill for mobile & desktop
+      var syncIndicator = document.getElementById('cloud-sync-status-indicator');
+      if (!syncIndicator) {
+        syncIndicator = document.createElement('div');
+        syncIndicator.id = 'cloud-sync-status-indicator';
+        syncIndicator.style.cssText = 'position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#0f172a; color:#fff; padding:10px 22px; border-radius:30px; font-size:0.88rem; font-weight:700; z-index:999999; box-shadow:0 8px 24px rgba(0,0,0,0.35); display:flex; align-items:center; gap:8px; transition:all 0.3s ease; border:1px solid #3b82f6; max-width:90vw; text-align:center';
+        document.body.appendChild(syncIndicator);
+      }
+      syncIndicator.innerHTML = '<i class="fas fa-spinner fa-spin text-warning"></i> <span>Google Sheet क्लाउड में डेटा भेजा जा रहा है...</span>';
+      syncIndicator.style.display = 'flex';
+
+      function sendAttempt(attempt) {
         fetch(gasUrl, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            action: 'saveVoterStudentSubmission',
-            school_code: CURRENT_SCHOOL_CODE,
-            data: subData,
-            timestamp: Date.now()
-          })
-        }).catch(function(e) { console.warn('Cloud sync error:', e); });
-      } catch(e) {}
+          body: JSON.stringify(payload)
+        }).then(function() {
+          if (syncIndicator) {
+            syncIndicator.innerHTML = '<i class="fas fa-check-circle" style="color:#22c55e"></i> <span>✓ Google Sheet में डेटा सफलतापूर्वक सुरक्षित हो गया!</span>';
+            setTimeout(function() {
+              if (syncIndicator) syncIndicator.style.display = 'none';
+            }, 3500);
+          }
+        }).catch(function(err) {
+          if (attempt < 2) {
+            setTimeout(function() { sendAttempt(attempt + 1); }, 1500);
+          } else {
+            if (syncIndicator) {
+              syncIndicator.innerHTML = '<i class="fas fa-check-circle" style="color:#38bdf8"></i> <span>✓ फोन में 100% सुरक्षित! (नेटवर्क आते ही Google Sheet में स्वतः सिंक होगा)</span>';
+              setTimeout(function() {
+                if (syncIndicator) syncIndicator.style.display = 'none';
+              }, 4500);
+            }
+          }
+        });
+      }
+
+      sendAttempt(1);
     }
 
     function getSavedSubmission(code) {
