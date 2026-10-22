@@ -32324,7 +32324,8 @@
       "school_name_en": "Tagore Global School (Ekalsingha)",
       "village": "एकलसिंघा",
       "village_hi": "एकलसिंघा",
-      "village_en": "EKALSINGHA"
+      "village_en": "EKALSINGHA",
+      "district": "अजमेर (AJMER)"
     },
     {
       "s_no": 51,
@@ -32337,15 +32338,16 @@
       "peeo_code": "221769",
       "default_password": "P16099",
       "exam_code": "",
-      "principal_name": "",
-      "principal_mobile": "",
+      "principal_name": "SANWAR SINGH",
+      "principal_mobile": "9829395917",
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "गुरुकुल केसरी पब्लिक माध्यमिक विद्यालय, बांदनवाड़ा",
       "school_name_en": "Gurukul Kesari Public Secondary School Bandanwara",
       "village": "बांदनवाड़ा",
       "village_hi": "बांदनवाड़ा",
-      "village_en": "BANDANWARA"
+      "village_en": "BANDANWARA",
+      "district": "अजमेर (AJMER)"
     },
     {
       "s_no": 52,
@@ -32358,15 +32360,16 @@
       "peeo_code": "221769",
       "default_password": "P48759",
       "exam_code": "",
-      "principal_name": "",
-      "principal_mobile": "",
+      "principal_name": "RAJENDRA PRASAD VAISHNAV",
+      "principal_mobile": "7877235353",
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "कुचामन शिक्षण संस्थान, बांदनवाड़ा",
       "school_name_en": "Kuchaman Shikshan Sansthan Bandanwara",
       "village": "बांदनवाड़ा",
       "village_hi": "बांदनवाड़ा",
-      "village_en": "BANDANWARA"
+      "village_en": "BANDANWARA",
+      "district": "अजमेर (AJMER)"
     },
     {
       "s_no": 53,
@@ -32379,15 +32382,16 @@
       "peeo_code": "221769",
       "default_password": "P16964",
       "exam_code": "",
-      "principal_name": "",
-      "principal_mobile": "",
+      "principal_name": "Kamlesh Kumar sharma",
+      "principal_mobile": "9950000855",
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "सम्राट इंटरनेशनल स्कूल, बांदनवाड़ा",
       "school_name_en": "Samrat International School Bandanwara",
       "village": "बांदनवाड़ा",
       "village_hi": "बांदनवाड़ा",
-      "village_en": "BANDANWARA"
+      "village_en": "BANDANWARA",
+      "district": "अजमेर (AJMER)"
     },
     {
       "s_no": 54,
@@ -32400,15 +32404,16 @@
       "peeo_code": "221769",
       "default_password": "P19054",
       "exam_code": "",
-      "principal_name": "",
-      "principal_mobile": "",
+      "principal_name": "KAILASH RAWAT",
+      "principal_mobile": "9784505003",
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "सिद्धार्थ इंटरनेशनल स्कूल, बांदनवाड़ा",
       "school_name_en": "Siddharth International School Bandanwara",
       "village": "बांदनवाड़ा",
       "village_hi": "बांदनवाड़ा",
-      "village_en": "BANDANWARA"
+      "village_en": "BANDANWARA",
+      "district": "अजमेर (AJMER)"
     },
     {
       "s_no": 55,
@@ -32421,15 +32426,16 @@
       "peeo_code": "221780",
       "default_password": "P19678",
       "exam_code": "",
-      "principal_name": "",
-      "principal_mobile": "",
+      "principal_name": "SHIVPAL SINGH RATHORE",
+      "principal_mobile": "9413202086",
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "सन राइज कॉन्वेंट स्कूल, भिनाय",
       "school_name_en": "Sun Rise Convent School Bhinai",
       "village": "भिनाय",
       "village_hi": "भिनाय",
-      "village_en": "BHINAI"
+      "village_en": "BHINAI",
+      "district": "अजमेर (AJMER)"
     },
     {
       "s_no": 56,
@@ -32442,15 +32448,16 @@
       "peeo_code": "221780",
       "default_password": "P16865",
       "exam_code": "",
-      "principal_name": "",
-      "principal_mobile": "",
+      "principal_name": "Manisha",
+      "principal_mobile": "8078661911",
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "सुमेर उच्च माध्यमिक विद्यालय, भिनाय",
       "school_name_en": "Sumer Senior Secondary School Bhinai",
       "village": "भिनाय",
       "village_hi": "भिनाय",
-      "village_en": "BHINAI"
+      "village_en": "BHINAI",
+      "district": "अजमेर (AJMER)"
     },
     {
       "s_no": 57,
@@ -32463,15 +32470,16 @@
       "peeo_code": "221780",
       "default_password": "P16968",
       "exam_code": "",
-      "principal_name": "",
-      "principal_mobile": "",
+      "principal_name": "ABDUL MASUD KHAN",
+      "principal_mobile": "9252971704",
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "द्रोणाचार्य माध्यमिक विद्यालय, भिनाय",
       "school_name_en": "Drona Charya Secondary School Bhinai",
       "village": "भिनाय",
       "village_hi": "भिनाय",
-      "village_en": "BHINAI"
+      "village_en": "BHINAI",
+      "district": "अजमेर (AJMER)"
     },
     {
       "s_no": 58,
@@ -32547,7 +32555,7 @@
           "name": "विधानसभा क्षेत्र (Default Masuda)",
           "type": "text",
           "prefillSource": "none",
-          "placeholder": "100 - मसूदा"
+          "placeholder": "104 - मसूदा"
         }
       ]
     },

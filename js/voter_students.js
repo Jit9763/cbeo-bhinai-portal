@@ -47,6 +47,25 @@
     try {
       subs = JSON.parse(localStorage.getItem('cbeo_voter_submissions') || '{}');
     } catch(e) {}
+
+    // Fallback to pre-bundled master submissions so it NEVER shows 0
+    var bundled = window.VOTER_STUDENTS_INITIAL_SUBMISSIONS || (window.VOTER_STUDENTS_MASTER && window.VOTER_STUDENTS_MASTER.submissions) || {};
+    if (Object.keys(subs).length === 0 && Object.keys(bundled).length > 0) {
+      subs = Object.assign({}, bundled);
+      try { localStorage.setItem('cbeo_voter_submissions', JSON.stringify(subs)); } catch(e) {}
+    } else if (Object.keys(bundled).length > 0) {
+      var updated = false;
+      for (var sc in bundled) {
+        if (!subs[sc] || (subs[sc].is_nil && !bundled[sc].is_nil) || (bundled[sc].submitted_at && bundled[sc].submitted_at !== subs[sc].submitted_at)) {
+          subs[sc] = bundled[sc];
+          updated = true;
+        }
+      }
+      if (updated) {
+        try { localStorage.setItem('cbeo_voter_submissions', JSON.stringify(subs)); } catch(e) {}
+      }
+    }
+
     // If old mock/dummy submission exists for 999999, clean it up so test school doesn't show false submitted status
     if (subs['999999']) {
       if (subs['999999'].submitted_by === 'जितेन्द्र कुमार (टेस्ट व्यवस्थापक)' || !subs['999999'].test_flag) {
@@ -463,7 +482,7 @@
               </div>
             </div>
             <div style="display:flex; gap:0.5rem; flex-wrap:wrap; align-items:flex-start">
-              <a href="voter_form.html?code=${(loggedUser && loggedUser.role === 'school') ? loggedUser.shala_darpan_code : '999999'}" target="_blank" class="btn btn-warning" style="font-weight:800; text-decoration:none; padding:0.6rem 1.1rem; box-shadow:0 4px 12px rgba(217,119,6,0.3)">
+              <a href="voter_form.html?code=${(loggedUser && loggedUser.shala_darpan_code && !isAdmin) ? loggedUser.shala_darpan_code : '999999'}" target="_blank" class="btn btn-warning" style="font-weight:800; text-decoration:none; padding:0.6rem 1.1rem; box-shadow:0 4px 12px rgba(217,119,6,0.3)">
                 <i class="fas fa-edit"></i> 📝 प्रपत्र भरें / संशोधित करें
               </a>
               <button class="btn btn-light" onclick="window.downloadVoterConsolidatedExcel()" style="background:#ffffff; color:#1e3a8a; font-weight:800; border:none; padding:0.6rem 1rem">
@@ -738,6 +757,8 @@
       </div>
     `;
 
+    var loggedUser = (typeof STATE !== 'undefined' && STATE.currentUser) ? STATE.currentUser : null;
+    var canEdit = isAdmin || (loggedUser && String(loggedUser.shala_darpan_code).trim() === String(s.shala_darpan_code).trim());
     var formBtnLabel = is18 ? (m.isSubmitted ? '18+ संशोधन' : '18+ प्रपत्र भरें') : (m.isSubmitted ? '17+ संशोधन' : '17+ प्रपत्र भरें');
     var formBtnUrl = `voter_form.html?code=${s.shala_darpan_code}&sec=${is18 ? '18' : '17'}`;
 
@@ -781,9 +802,15 @@
 
         <!-- Action Buttons -->
         <div style="display:flex; gap:0.35rem; flex-wrap:wrap; margin-top:0.5rem">
-          <a href="${formBtnUrl}" target="_blank" class="btn btn-primary btn-sm" style="flex:1.2; font-weight:800; text-decoration:none; justify-content:center; padding:0.4rem 0.5rem">
-            <i class="fas fa-edit"></i> ${formBtnLabel}
-          </a>
+          ${canEdit ? `
+            <a href="${formBtnUrl}" target="_blank" class="btn btn-primary btn-sm" style="flex:1.2; font-weight:800; text-decoration:none; justify-content:center; padding:0.4rem 0.5rem">
+              <i class="fas fa-edit"></i> ${formBtnLabel}
+            </a>
+          ` : `
+            <span style="flex:1.2; font-weight:700; font-size:0.75rem; background:#f1f5f9; color:#64748b; border:1px solid #cbd5e1; border-radius:6px; padding:0.4rem 0.5rem; display:inline-flex; align-items:center; justify-content:center; gap:4px">
+              <i class="fas fa-lock"></i> स्कूल लॉगिन सुरक्षित
+            </span>
+          `}
           <button class="btn btn-info btn-sm" onclick="window.openVoterPdfPreviewModal('${s.shala_darpan_code}', '${is18 ? '18' : '17'}')" title="${is18 ? '18+' : '17+'} अधिकृत प्रपत्र अवलोकन" style="color:#ffffff; background:#0284c7; border:none; padding:0.4rem 0.65rem; font-weight:700">
             <i class="fas fa-eye"></i> अवलोकन
           </button>
@@ -868,9 +895,13 @@
           <td style="text-align:center">${lockBadge}</td>
           <td style="text-align:center">
             <div style="display:flex; gap:0.25rem; justify-content:center; flex-wrap:wrap">
-              <a href="voter_form.html?code=${s.shala_darpan_code}&sec=${targetSec}" target="_blank" class="btn btn-primary btn-sm" style="padding:0.25rem 0.5rem; font-size:0.78rem; text-decoration:none" title="प्रपत्र खोलें">
-                <i class="fas fa-edit"></i>
-              </a>
+              ${(isAdmin || (loggedUser && String(loggedUser.shala_darpan_code).trim() === String(s.shala_darpan_code).trim())) ? `
+                <a href="voter_form.html?code=${s.shala_darpan_code}&sec=${targetSec}" target="_blank" class="btn btn-primary btn-sm" style="padding:0.25rem 0.5rem; font-size:0.78rem; text-decoration:none" title="प्रपत्र खोलें">
+                  <i class="fas fa-edit"></i>
+                </a>
+              ` : `
+                <span title="सुरक्षित लॉगिन आवश्यक" style="color:#94a3b8; font-size:0.75rem; padding:0.25rem 0.4rem"><i class="fas fa-lock"></i></span>
+              `}
               <button class="btn btn-info btn-sm" onclick="window.openVoterPdfPreviewModal('${s.shala_darpan_code}', '${targetSec}')" style="padding:0.25rem 0.5rem; font-size:0.78rem; color:#fff; background:#0284c7; border:none" title="प्रपत्र अवलोकन">
                 <i class="fas fa-eye"></i>
               </button>
@@ -1071,7 +1102,7 @@
           <td style="text-align:center; padding:5px 4px; border:1px solid #94a3b8; font-weight:800; color:${stu.is_registered === 'हाँ' ? '#166534' : '#dc2626'}">${stu.is_registered || 'नहीं'}</td>
           <td style="text-align:center; padding:5px 4px; border:1px solid #94a3b8">${stu.part_no || '---'}</td>
           <td style="text-align:center; padding:5px 4px; border:1px solid #94a3b8">${stu.serial_no || '---'}</td>
-          <td style="padding:5px 6px; border:1px solid #94a3b8; font-size:7.5pt">${stu.vidhan_sabha || '100 - मसूदा'}</td>
+          <td style="padding:5px 6px; border:1px solid #94a3b8; font-size:7.5pt">${stu.vidhan_sabha || '104 - मसूदा'}</td>
           <td style="padding:5px 6px; border:1px solid #94a3b8; font-size:7.5pt; color:#9a3412">${stu.reason_not_registered || '---'}</td>
         </tr>
       `;
@@ -1091,7 +1122,7 @@
           <td style="text-align:center; padding:5px 4px; border:1px solid #94a3b8">${stu.dob || ''}</td>
           <td style="text-align:center; padding:5px 4px; border:1px solid #94a3b8">${stu.mobile_no || '---'}</td>
           <td style="text-align:center; padding:5px 4px; border:1px solid #94a3b8">${stu.class_name || '11वीं'}</td>
-          <td style="padding:5px 6px; border:1px solid #94a3b8; font-size:7.5pt">${stu.vidhan_sabha || '100 - मसूदा'}</td>
+          <td style="padding:5px 6px; border:1px solid #94a3b8; font-size:7.5pt">${stu.vidhan_sabha || '104 - मसूदा'}</td>
         </tr>
       `;
     }).join('');
@@ -1488,7 +1519,7 @@
           stu.dob || '',
           stu.mobile_no || '---',
           stu.class_name || '12वीं',
-          stu.vidhan_sabha || '100 - मसूदा',
+          stu.vidhan_sabha || '104 - मसूदा',
           isTestSchool ? "टेस्ट डेटा" : (stu.is_registered || 'नहीं'),
           stu.part_no || '',
           stu.serial_no || '',
@@ -1510,7 +1541,7 @@
           stu.dob || '',
           stu.mobile_no || '',
           stu.class_name || '11वीं',
-          stu.vidhan_sabha || '100 - मसूदा',
+          stu.vidhan_sabha || '104 - मसूदा',
           isTestSchool ? "परीक्षण भावी मतदाता" : "भावी मतदाता (17+)",
           "---",
           "---",
@@ -1613,5 +1644,18 @@
 
   // Export to Global Scope
   window.renderVoterStudentsView = renderVoterStudentsView;
+  window.syncVoterCloudSubmissions = syncVoterCloudSubmissions;
+
+  // Auto-trigger sync on load in background
+  try {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        syncVoterCloudSubmissions();
+      });
+    } else {
+      setTimeout(syncVoterCloudSubmissions, 500);
+    }
+  } catch(e) {}
 
 })();
+

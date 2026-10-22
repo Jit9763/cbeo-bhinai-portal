@@ -990,7 +990,7 @@
         </div>
         <div class="meta-item">
           <label>विधानसभा क्षेत्र (डिफ़ॉल्ट)</label>
-          <div class="val" style="color:#0284c7">100 - मसूदा (अजमेर)</div>
+          <div class="val" style="color:#0284c7">104 - मसूदा (अजमेर)</div>
         </div>
       </div>
     </section>
@@ -1228,12 +1228,12 @@
     var BACKUP_STUDENTS_17 = null;
 
     var VIDHAN_SABHA_OPTIONS = [
-      "100 - मसूदा",
-      "101 - केकड़ी",
+      "104 - मसूदा",
+      "100 - अजमेर उत्तर",
+      "101 - अजमेर दक्षिण",
       "102 - नसीराबाद",
-      "103 - अजमेर दक्षिण",
-      "104 - अजमेर उत्तर",
-      "105 - ब्यावर",
+      "103 - ब्यावर",
+      "105 - केकड़ी",
       "106 - किशनगढ़",
       "अन्य विधानसभा (विवरण दर्ज करें)"
     ];
@@ -1368,40 +1368,29 @@
       var masterSchools = (window.VOTER_STUDENTS_MASTER && window.VOTER_STUDENTS_MASTER.schools) || [];
 
       // Check Role & Strict Isolation
-      if (LOGGED_USER.role === 'school') {
+      var isAdmin = LOGGED_USER && (
+        LOGGED_USER.role === 'admin' || 
+        LOGGED_USER.username === 'admin_jitendra' || 
+        LOGGED_USER.username === 'jitendra_admin' || 
+        LOGGED_USER.username === 'cbeo_admin' ||
+        LOGGED_USER.admin_id === 'ADMIN01' ||
+        LOGGED_USER.admin_id === 'ADMIN02'
+      );
+
+      if (isAdmin) {
+        // Super Admin can inspect or edit any school
+        CURRENT_SCHOOL_CODE = codeFromUrl || '999999';
+      } else {
+        // STRICT SINGLE SCHOOL ISOLATION:
+        // Any school or PEEO login is STRICTLY locked to their own school!
+        // No user can view, edit, or submit data for any other school!
         var myCode = String(LOGGED_USER.shala_darpan_code).trim();
-        var isAuth58 = masterSchools.some(function(s) { return String(s.shala_darpan_code).trim() === myCode; }) || myCode === '999999';
-        if (!isAuth58) {
-          alert('⚠️ अनधिकृत पहुंच: यह प्रपत्र केवल ब्लॉक भिनाय के 58 माध्यमिक/उच्च माध्यमिक विद्यालयों के लिए खुला है।');
-          window.location.href = 'index.html';
-          return;
-        }
         CURRENT_SCHOOL_CODE = myCode;
         if (codeFromUrl && String(codeFromUrl).trim() !== myCode) {
-          alert('🔒 सुरक्षा सूचना: आप केवल अपने विद्यालय (कोड: ' + myCode + ') का प्रपत्र ही देख एवं भर सकते हैं।');
           var url = new URL(window.location.href);
           url.searchParams.set('code', myCode);
           window.history.replaceState({}, '', url.toString());
         }
-      } else if (LOGGED_USER.role === 'peeo') {
-        var pCode = String(LOGGED_USER.shala_darpan_code).trim();
-        var pName = String(LOGGED_USER.peeo_name || '').toUpperCase().replace('PEEO ', '');
-        var peeoSchools = masterSchools.filter(function(s) {
-          return String(s.peeo_code) === pCode || 
-                 String(s.shala_darpan_code) === pCode ||
-                 String(s.peeo_name || '').toUpperCase().includes(pName);
-        });
-
-        if (codeFromUrl && peeoSchools.some(function(s) { return String(s.shala_darpan_code).trim() === String(codeFromUrl).trim(); })) {
-          CURRENT_SCHOOL_CODE = codeFromUrl;
-        } else if (peeoSchools.length > 0) {
-          CURRENT_SCHOOL_CODE = peeoSchools[0].shala_darpan_code;
-        } else {
-          CURRENT_SCHOOL_CODE = codeFromUrl || '221764';
-        }
-      } else {
-        // Admin
-        CURRENT_SCHOOL_CODE = codeFromUrl || '999999';
       }
 
       // Unlock UI
@@ -1571,26 +1560,20 @@
       var select = document.getElementById('school-select');
       var masterSchools = (window.VOTER_STUDENTS_MASTER && window.VOTER_STUDENTS_MASTER.schools) || [];
 
-      var isAdmin = LOGGED_USER && (LOGGED_USER.role === 'admin' || LOGGED_USER.username === 'admin_jitendra' || LOGGED_USER.username === 'cbeo_admin');
-      var isPeeo = LOGGED_USER && LOGGED_USER.role === 'peeo';
+      var isAdmin = LOGGED_USER && (
+        LOGGED_USER.role === 'admin' || 
+        LOGGED_USER.username === 'admin_jitendra' || 
+        LOGGED_USER.username === 'jitendra_admin' || 
+        LOGGED_USER.username === 'cbeo_admin' ||
+        LOGGED_USER.admin_id === 'ADMIN01' ||
+        LOGGED_USER.admin_id === 'ADMIN02'
+      );
 
-      if (isAdmin || isPeeo) {
+      if (isAdmin) {
         switcherBox.style.display = 'flex';
         select.innerHTML = '';
 
-        var listToRender = masterSchools;
-        if (isPeeo) {
-          var pCode = String(LOGGED_USER.shala_darpan_code);
-          var pName = String(LOGGED_USER.peeo_name || '').toUpperCase().replace('PEEO ', '');
-          listToRender = masterSchools.filter(function(s) {
-            return String(s.peeo_code) === pCode || 
-                   String(s.shala_darpan_code) === pCode ||
-                   String(s.peeo_name || '').toUpperCase().includes(pName);
-          });
-          if (listToRender.length === 0) listToRender = masterSchools;
-        }
-
-        listToRender.forEach(function(s, idx) {
+        masterSchools.forEach(function(s, idx) {
           var opt = document.createElement('option');
           opt.value = s.shala_darpan_code;
           opt.textContent = (idx + 1) + '. [' + s.shala_darpan_code + '] ' + (s.school_name_hi || s.school_name) + ' (' + s.peeo_name + ')';
@@ -1598,12 +1581,26 @@
         });
         select.value = CURRENT_SCHOOL_CODE;
       } else {
-        // Individual schools can NEVER switch to other schools!
+        // Individual schools and PEEOs can NEVER switch to other schools!
         switcherBox.style.display = 'none';
+        select.innerHTML = '';
       }
     }
 
     function onSchoolChanged(code) {
+      var isAdmin = LOGGED_USER && (
+        LOGGED_USER.role === 'admin' || 
+        LOGGED_USER.username === 'admin_jitendra' || 
+        LOGGED_USER.username === 'jitendra_admin' || 
+        LOGGED_USER.username === 'cbeo_admin' ||
+        LOGGED_USER.admin_id === 'ADMIN01' ||
+        LOGGED_USER.admin_id === 'ADMIN02'
+      );
+      if (!isAdmin) {
+        CURRENT_SCHOOL_CODE = String(LOGGED_USER.shala_darpan_code).trim();
+        loadSchoolData(CURRENT_SCHOOL_CODE);
+        return;
+      }
       CURRENT_SCHOOL_CODE = code;
       var url = new URL(window.location.href);
       url.searchParams.set('code', code);
@@ -1699,7 +1696,7 @@
               shala_darpan_code: code,
               category: '18_plus',
               is_registered: 'नहीं',
-              vidhan_sabha: '100 - मसूदा',
+              vidhan_sabha: '104 - मसूदा',
               part_no: '',
               serial_no: '',
               epic_no: '',
@@ -1719,7 +1716,7 @@
               class_name: '11वीं',
               shala_darpan_code: code,
               category: '17_plus',
-              vidhan_sabha: '100 - मसूदा',
+              vidhan_sabha: '104 - मसूदा',
               remarks: ''
             });
           }
@@ -1837,7 +1834,7 @@
                 panchayat: CURRENT_SCHOOL ? (CURRENT_SCHOOL.panchayat || CURRENT_SCHOOL.peeo_name || '') : '', village: '',
                 school_name: CURRENT_SCHOOL ? (CURRENT_SCHOOL.school_name_hi || CURRENT_SCHOOL.school_name || '') : '',
                 shala_darpan_code: CURRENT_SCHOOL_CODE, category: '18_plus',
-                is_registered: 'नहीं', vidhan_sabha: '100 - मसूदा',
+                is_registered: 'नहीं', vidhan_sabha: '104 - मसूदा',
                 part_no: '', serial_no: '', epic_no: '',
                 reason_not_registered: 'फॉर्म 6 ऑनलाइन भर दिया गया है / BLO सत्यापन शेष',
                 remarks: ''
@@ -1879,7 +1876,7 @@
               id: 'STU17_' + CURRENT_SCHOOL_CODE + '_001',
               name: '', father_name: '', dob: '', mobile_no: '', class_name: '11',
               shala_darpan_code: CURRENT_SCHOOL_CODE, category: '17_plus',
-              vidhan_sabha: '100 - मसूदा', remarks: ''
+              vidhan_sabha: '104 - मसूदा', remarks: ''
             }];
           }
           if (cardsWrap) cardsWrap.style.display = 'flex';
@@ -2195,7 +2192,7 @@
       STUDENTS_18[idx].is_registered = val;
       if (val === 'हाँ') {
         STUDENTS_18[idx].reason_not_registered = '';
-        if (!STUDENTS_18[idx].vidhan_sabha) STUDENTS_18[idx].vidhan_sabha = '100 - मसूदा';
+        if (!STUDENTS_18[idx].vidhan_sabha) STUDENTS_18[idx].vidhan_sabha = '104 - मसूदा';
       } else {
         STUDENTS_18[idx].part_no = '';
         STUDENTS_18[idx].serial_no = '';
@@ -2230,7 +2227,7 @@
         if (custom && custom.trim()) {
           val = custom.trim();
         } else {
-          val = '100 - मसूदा';
+          val = '104 - मसूदा';
         }
       }
       updateStuField(type, idx, 'vidhan_sabha', val);
@@ -2265,7 +2262,7 @@
           shala_darpan_code: CURRENT_SCHOOL_CODE,
           category: '18_plus',
           is_registered: 'नहीं',
-          vidhan_sabha: '100 - मसूदा',
+          vidhan_sabha: '104 - मसूदा',
           part_no: '',
           serial_no: '',
           epic_no: '',
@@ -2285,7 +2282,7 @@
           class_name: '11',
           shala_darpan_code: CURRENT_SCHOOL_CODE,
           category: '17_plus',
-          vidhan_sabha: '100 - मसूदा',
+          vidhan_sabha: '104 - मसूदा',
           remarks: ''
         };
         STUDENTS_17.push(newStu);
@@ -2381,16 +2378,26 @@
         return;
       }
 
-      // Check 0 students without NIL
+      // Check 0 students without NIL - Auto-prompt confirmation so form does not get stuck
       if (STUDENTS_18.length === 0 && !IS_NIL_18) {
-        alert('⚠️ 18+ सूची में कोई विद्यार्थी दर्ज नहीं है। यदि आपके विद्यालय में 18+ का कोई विद्यार्थी नहीं है, तो कृपया \'शून्य / NIL प्रविष्टि\' चेकबॉक्स को टिक करें और फिर सबमिट करें।');
-        switchSection('18');
-        return;
+        if (confirm('ℹ️ 18+ सूची में कोई विद्यार्थी दर्ज नहीं है। क्या आपके विद्यालय में 18+ आयु वर्ग का वास्तव में कोई विद्यार्थी नहीं है?\n\n\"OK\" दबाने पर 18+ को शून्य (NIL) प्रमाणित कर सबमिशन आगे बढ़ाया जाएगा।')) {
+          IS_NIL_18 = true;
+          var nilChk18 = document.getElementById('nil-check-18');
+          if (nilChk18) nilChk18.checked = true;
+        } else {
+          switchSection('18');
+          return;
+        }
       }
       if (STUDENTS_17.length === 0 && !IS_NIL_17) {
-        alert('⚠️ 17+ सूची में कोई विद्यार्थी दर्ज नहीं है। यदि आपके विद्यालय में 17+ का कोई अग्रिम विद्यार्थी नहीं है, तो कृपया \'शून्य / NIL प्रविष्टि\' चेकबॉक्स को टिक करें और फिर सबमिट करें।');
-        switchSection('17');
-        return;
+        if (confirm('ℹ️ 17+ सूची में कोई अग्रिम विद्यार्थी दर्ज नहीं है। क्या आपके विद्यालय में 17+ आयु वर्ग का वास्तव में कोई विद्यार्थी नहीं है?\n\n\"OK\" दबाने पर 17+ को शून्य (NIL) प्रमाणित कर सबमिशन आगे बढ़ाया जाएगा।')) {
+          IS_NIL_17 = true;
+          var nilChk17 = document.getElementById('nil-check-17');
+          if (nilChk17) nilChk17.checked = true;
+        } else {
+          switchSection('17');
+          return;
+        }
       }
 
       // Check empty student names
@@ -2422,6 +2429,10 @@
       if (IS_LOCKED && !isAdmin) {
         alert('🔒 यह प्रपत्र CBEO कार्यालय द्वारा लॉक कर दिया गया है। संपादन या पुनः सबमिशन हेतु कृपया CBEO कार्यालय / व्यवस्थापक जितेन्द्र कुमार से संपर्क करें।');
         return;
+      }
+
+      if (!isAdmin && LOGGED_USER && LOGGED_USER.shala_darpan_code) {
+        CURRENT_SCHOOL_CODE = String(LOGGED_USER.shala_darpan_code).trim();
       }
 
       var data = getPayload();
@@ -2469,6 +2480,18 @@
       var gasUrl = localStorage.getItem('cbeo_google_apps_script_url') || 
                    'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
       
+      var isAdmin = LOGGED_USER && (
+        LOGGED_USER.role === 'admin' || 
+        LOGGED_USER.username === 'admin_jitendra' || 
+        LOGGED_USER.username === 'jitendra_admin' || 
+        LOGGED_USER.username === 'cbeo_admin' ||
+        LOGGED_USER.admin_id === 'ADMIN01' ||
+        LOGGED_USER.admin_id === 'ADMIN02'
+      );
+      if (!isAdmin && LOGGED_USER && LOGGED_USER.shala_darpan_code) {
+        CURRENT_SCHOOL_CODE = String(LOGGED_USER.shala_darpan_code).trim();
+      }
+
       var schName = CURRENT_SCHOOL ? (CURRENT_SCHOOL.school_name_hi || CURRENT_SCHOOL.school_name) : 'विद्यालय';
       var peeo = CURRENT_SCHOOL ? (CURRENT_SCHOOL.peeo_name || '') : '';
       var peeoCode = CURRENT_SCHOOL ? (CURRENT_SCHOOL.peeo_code || '') : '';
@@ -2537,7 +2560,17 @@
     function getSavedSubmission(code) {
       try {
         var local = JSON.parse(localStorage.getItem('cbeo_voter_submissions') || '{}');
+        var bundled = window.VOTER_STUDENTS_INITIAL_SUBMISSIONS || (window.VOTER_STUDENTS_MASTER && window.VOTER_STUDENTS_MASTER.submissions) || {};
+        if (bundled && bundled[code]) {
+          var b = bundled[code];
+          if (!local[code] || (local[code].is_nil && !b.is_nil) || (b.submitted_at && b.submitted_at !== local[code].submitted_at)) {
+            local[code] = b;
+            try { localStorage.setItem('cbeo_voter_submissions', JSON.stringify(local)); } catch(err) {}
+            return b;
+          }
+        }
         if (local[code]) return local[code];
+        if (bundled && bundled[code]) return bundled[code];
       } catch(e) {}
       return null;
     }
@@ -2584,7 +2617,7 @@
               <td style="padding:2.5px 2px; border:1px solid #000">${s.dob || '---'}</td>
               <td style="padding:2.5px 2px; border:1px solid #000">${s.class_name ? (s.class_name + (String(s.class_name).includes('वीं') ? '' : 'वीं')) : '12वीं'}</td>
               <td style="padding:2.5px 2px; border:1px solid #000; font-weight:800; color:${isReg ? '#166534' : '#b91c1c'}">${s.is_registered || 'नहीं'}</td>
-              <td style="padding:2.5px 4px; border:1px solid #000">${s.vidhan_sabha || '100 - मसूदा'}</td>
+              <td style="padding:2.5px 4px; border:1px solid #000">${s.vidhan_sabha || '104 - मसूदा'}</td>
               <td style="padding:2.5px 2px; border:1px solid #000">${s.part_no || '---'}</td>
               <td style="padding:2.5px 2px; border:1px solid #000">${s.serial_no || s.sr_no || '---'}</td>
               <td style="padding:2.5px 2px; border:1px solid #000; font-family:monospace">${s.epic_no || '---'}</td>
@@ -2604,7 +2637,7 @@
               <td style="padding:2.5px 2px; border:1px solid #000">${s.dob || '---'}</td>
               <td style="padding:2.5px 2px; border:1px solid #000">${s.mobile_no || '---'}</td>
               <td style="padding:2.5px 2px; border:1px solid #000">${s.class_name ? (s.class_name + (String(s.class_name).includes('वीं') ? '' : 'वीं')) : '11वीं'}</td>
-              <td style="padding:2.5px 4px; border:1px solid #000; text-align:left">${s.vidhan_sabha || '100 - मसूदा'}</td>
+              <td style="padding:2.5px 4px; border:1px solid #000; text-align:left">${s.vidhan_sabha || '104 - मसूदा'}</td>
             </tr>
           `;
         }).join('');
@@ -2660,7 +2693,7 @@
               <td style="padding:2.5px 5px; border:1px solid #000; background:#f8fafc"><strong>संबंधित PEEO:</strong></td>
               <td style="padding:2.5px 5px; border:1px solid #000">${peeoDisplay}</td>
               <td style="padding:2.5px 5px; border:1px solid #000; background:#f8fafc"><strong>विधानसभा क्षेत्र:</strong></td>
-              <td style="padding:2.5px 5px; border:1px solid #000; font-weight:900; font-size:0.85rem; color:#0f766e">100 - मसूदा (अजमेर)</td>
+              <td style="padding:2.5px 5px; border:1px solid #000; font-weight:900; font-size:0.85rem; color:#0f766e">104 - मसूदा (अजमेर)</td>
             </tr>
             <tr style="background:#f8fafc">
               <td style="padding:2.5px 5px; border:1px solid #000"><strong>संस्था प्रधान:</strong></td>

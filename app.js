@@ -1131,7 +1131,7 @@ function initMasterData() {
         { name: 'मतदाता सूची में पंजीकृत (हाँ)', type: 'number', prefillSource: 'none', placeholder: 'संख्या' },
         { name: 'अपंजीकृत विद्यार्थी (नहीं)', type: 'number', prefillSource: 'none', placeholder: 'संख्या' },
         { name: '17+ भावी मतदाता अग्रिम संख्या', type: 'number', prefillSource: 'none', placeholder: 'संख्या' },
-        { name: 'विधानसभा क्षेत्र (Default Masuda)', type: 'text', prefillSource: 'none', placeholder: '100 - मसूदा' }
+        { name: 'विधानसभा क्षेत्र (Default Masuda)', type: 'text', prefillSource: 'none', placeholder: '104 - मसूदा' }
       ]
     });
   }
@@ -15434,6 +15434,10 @@ function renderCBEOExecutiveDemands() {
   try {
     voterSubs = JSON.parse(localStorage.getItem('cbeo_voter_submissions') || '{}');
   } catch(e) {}
+  const bundledVoter = window.VOTER_STUDENTS_INITIAL_SUBMISSIONS || (window.VOTER_STUDENTS_MASTER && window.VOTER_STUDENTS_MASTER.submissions) || {};
+  if (Object.keys(voterSubs).length === 0 && Object.keys(bundledVoter).length > 0) {
+    voterSubs = bundledVoter;
+  }
   let voterReceived = 0;
   voterMasterSchools.forEach(s => {
     const sub = voterSubs[s.shala_darpan_code];
