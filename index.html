@@ -434,8 +434,17 @@
               <button class="btn btn-danger btn-sm" onclick="openPendingReportPdf('saman-pariksha')" style="font-weight:700; background:#dc2626; border-color:#dc2626" title="समान परीक्षा हेतु लम्बित 57 स्कूलों एवं संबंधित PEEOs की आधिकारिक PDF सूची">
                 <i class="fas fa-file-pdf"></i> 📄 लम्बित स्कूल व PEEO सूची (PDF)
               </button>
-              <button class="btn btn-success btn-sm" onclick="exportSamanParikshaMasterCSV()" title="गूगल शीट के समान 72-कॉलम विस्तृत एक्सेल CSV डाउनलोड करें">
-                <i class="fas fa-file-excel"></i> 72-कॉलम एक्सेल (CSV) डाउनलोड
+              <button class="btn btn-success btn-sm" onclick="exportSamanParikshaMasterExcel()" style="font-weight:800; background:#16a34a; border-color:#15803d; box-shadow:0 2px 6px rgba(22,163,74,0.25)" title="CBEO Bhinai 3-शीट मास्टर एक्सेल (.xlsx) डाउनलोड करें">
+                <i class="fas fa-file-excel"></i> 📊 3-शीट मास्टर Excel (.xlsx)
+              </button>
+              <a href="saman_form.html?update=1" target="_blank" class="btn btn-primary btn-sm" style="font-weight:800; background:#2563eb; border-color:#1d4ed8" title="विद्यालयों हेतु सीधा फॉर्म अपडेट लिंक (बिना लॉगिन)">
+                <i class="fas fa-external-link-alt"></i> 📝 सीधा फॉर्म अपडेट लिंक (बिना लॉगिन)
+              </a>
+              <button class="btn btn-outline-primary btn-sm" onclick="copySamanDirectUpdateLink()" style="font-weight:700" title="व्हाट्सएप पर शेयर करने हेतु सीधा अपडेट लिंक कॉपी करें">
+                <i class="fas fa-copy"></i> 📋 लिंक कॉपी
+              </button>
+              <button class="btn btn-warning btn-sm" onclick="filterSamanMismatchSchools()" style="font-weight:800; background:#f59e0b; border-color:#d97706; color:#ffffff" title="नवीन शाला दर्पण नामांकन अनुसार मिसमैच वाले 7 स्कूल देखें">
+                <i class="fas fa-exclamation-triangle"></i> 🚨 7 मिसमैच स्कूल
               </button>
               <a href="https://docs.google.com/spreadsheets/d/1tVP7gbIuUP576E2a1Qk6TadXUSP7a5c7ah8HzKeTk4k/export?format=xlsx" target="_blank" class="btn btn-success btn-sm" style="background:#059669; border-color:#059669" title="गूगल शीट से सीधे फॉर्मेटेड माइक्रोसॉफ्ट एक्सेल (.xlsx) डाउनलोड करें">
                 <i class="fas fa-file-download"></i> लाइव Google Sheet (.xlsx)

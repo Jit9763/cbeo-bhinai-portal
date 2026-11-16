@@ -330,6 +330,13 @@ class CBEORequestHandler(SimpleHTTPRequestHandler):
                 update_dynamic_master_contacts(school_code, req_data)
 
                 try:
+                    from generate_saman_pariksha_excel import generate_excel
+                    generate_excel()
+                    print(f"[API] Auto-generated Master Excel after update from {school_code}")
+                except Exception as ex_excel:
+                    print(f"[API Warning] Excel generation error: {ex_excel}")
+
+                try:
                     sync_submissions()
                     synced_sheet = True
                 except Exception as ex_sync:

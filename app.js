@@ -9091,165 +9091,511 @@ function exportSamanSyllabusMasterCSV() {
   showToast('समान परीक्षा पाठ्यक्रम पूर्णता % (49 स्कूल) एक्सेल (CSV) सफलतापूर्वक डाउनलोड हो गई!', 'success');
 }
 
-function exportSamanParikshaMasterCSV() {
+/* ========================================================
+   SAMAN PARIKSHA MASTER 3-SHEET EXCEL EXPORT ENGINE
+   Matches: CBEO_Bhinai_Saman_Pariksha_All_Schools_All_Subjects_Master.xlsx
+   District: AJMER (अजमेर) | Block: Bhinai (भिनाय)
+   Sheets:
+   1. विद्यालयवार सम्पूर्ण मांग (57 Schools Matrix)
+   2. विषयवार समेकित मांग (Subject-wise Abstract)
+   3. PEEO वार सारांश (25 PEEO Summary)
+   ======================================================== */
+const SAMAN_EXCEL_ALL_22_OPTIONALS = [
+  { key: "pol_sci", label: "राजनीति विज्ञान (Pol Sci)" },
+  { key: "history", label: "इतिहास (History)" },
+  { key: "geography", label: "भूगोल (Geography)" },
+  { key: "hindi_lit", label: "हिंदी साहित्य (Hindi Lit)" },
+  { key: "eng_lit", label: "अंग्रेजी साहित्य (Eng Lit)" },
+  { key: "sanskrit_lit", label: "संस्कृत साहित्य (Sanskrit Lit)" },
+  { key: "urdu_lit", label: "उर्दू साहित्य (Urdu Lit)" },
+  { key: "economics", label: "अर्थशास्त्र कला (Economics Arts)" },
+  { key: "sociology", label: "समाजशास्त्र (Sociology)" },
+  { key: "home_sci", label: "गृह विज्ञान (Home Science)" },
+  { key: "drawing", label: "चित्रकला (Drawing)" },
+  { key: "physics", label: "भौतिक विज्ञान (Physics)" },
+  { key: "chemistry", label: "रसायन विज्ञान (Chemistry)" },
+  { key: "biology", label: "जीव विज्ञान (Biology)" },
+  { key: "maths", label: "गणित (Mathematics)" },
+  { key: "comp_sci", label: "कम्प्यूटर विज्ञान (Computer Science)" },
+  { key: "accountancy", label: "लेखाशास्त्र (Accountancy)" },
+  { key: "business_studies", label: "व्यवसाय अध्ययन (Business Studies)" },
+  { key: "economics_comm", label: "अर्थशास्त्र वाणिज्य (Economics Comm)" },
+  { key: "agri_sci", label: "कृषि विज्ञान (Agri Science)" },
+  { key: "agri_bio", label: "कृषि जीव विज्ञान (Agri Biology)" },
+  { key: "agri_chem", label: "कृषि रसायन (Agri Chemistry)" }
+];
+
+function exportSamanParikshaMasterExcel() {
   if (STATE.samanParikshaActiveForm === 'syllabus') {
-    exportSamanSyllabusMasterCSV();
+    if (typeof exportSamanSyllabusMasterCSV === 'function') {
+      exportSamanSyllabusMasterCSV();
+    }
     return;
   }
-  const header = [
-    "क्र.सं. (S.No)",
-    "विद्यालय का नाम (School Name)",
-    "श्रेणी (Category)",
-    "शाला दर्पण / PSP कोड",
-    "संबंधित PEEO नोडल पंचायत",
-    "स्कूल परीक्षा कोड (Exam Code)",
-    "संस्था प्रधान (Principal Name)",
-    "संस्था प्रधान मोबाइल",
-    "परीक्षा प्रभारी (In-charge Name)",
-    "परीक्षा प्रभारी मोबाइल",
-    "शिक्षण माध्यम (School Medium)",
-    
-    // Class 9
-    "9वीं हिंदी माध्यम (Class 9 Hindi)",
-    "9वीं अंग्रेजी माध्यम (Class 9 English)",
-    "9वीं कुल नामांकन (Class 9 Total)",
-    "9वीं संस्कृत (Sanskrit 3rd Lang)",
-    "9वीं उर्दू (Urdu 3rd Lang)",
-    
-    // Class 10
-    "10वीं हिंदी माध्यम (Class 10 Hindi)",
-    "10वीं अंग्रेजी माध्यम (Class 10 English)",
-    "10वीं कुल नामांकन (Class 10 Total)",
-    "10वीं संस्कृत (Sanskrit 3rd Lang)",
-    "10वीं उर्दू (Urdu 3rd Lang)",
-    
-    // Class 11 Compulsory & Faculties
-    "11वीं संकाय (Faculties)",
-    "11वीं अनिवार्य हिंदी (Comp Hindi)",
-    "11वीं अनिवार्य अंग्रेजी (Comp English)"
+
+  // Real 57 schools (Filter out test school 999999)
+  const allSchools = STATE.schools56 || (typeof MASTER_CBEO_DATA !== 'undefined' ? MASTER_CBEO_DATA.schools_56 : []) || [];
+  const realSchools = allSchools.filter(s => String(s.shala_darpan_code).trim() !== '999999');
+  const subs = STATE.samanParikshaSubmissions || (typeof MASTER_CBEO_DATA !== 'undefined' ? MASTER_CBEO_DATA.saman_pariksha_submissions : {}) || {};
+
+  if (typeof XLSX === 'undefined') {
+    console.warn('XLSX library not detected, falling back to basic export...');
+    exportSamanParikshaFallbackCSV(realSchools, subs);
+    return;
+  }
+
+  const wb = XLSX.utils.book_new();
+
+  // =========================================================================
+  // SHEET 1: विद्यालयवार सम्पूर्ण मांग
+  // =========================================================================
+  const s1_rows = [];
+  // Row 1: Banner Title
+  s1_rows.push(["कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय - जिला: अजमेर (AJMER)"]);
+  // Row 2: Subtitle
+  s1_rows.push(["समान परीक्षा (कक्षा 9वीं से 12वीं) सत्र 2026-27 | समस्त 57 विद्यालयों (49 राजकीय + 8 निजी) की विषयवार मांग पत्रक"]);
+  // Row 3: Blank
+  s1_rows.push([]);
+
+  // Row 4: Column Headers (78 columns)
+  const s1_headers = [
+    "क्र.सं.", "विद्यालय का नाम", "प्रकार", "श्रेणी", "शाला दर्पण / PSP कोड", "संबंधित PEEO",
+    "परीक्षा कोड", "माध्यम", "संस्था प्रधान का नाम", "संस्था प्रधान मोबाइल",
+    "परीक्षा प्रभारी का नाम", "परीक्षा प्रभारी मोबाइल",
+
+    // Class 9 (5 cols)
+    "9वीं हिंदी माध्यम", "9वीं अंग्रेजी माध्यम", "9वीं कुल नामांकन", "9वीं संस्कृत (तृतीय भाषा)", "9वीं उर्दू (तृतीय भाषा)",
+
+    // Class 10 (5 cols)
+    "10वीं हिंदी माध्यम", "10वीं अंग्रेजी माध्यम", "10वीं कुल नामांकन", "10वीं संस्कृत (तृतीय भाषा)", "10वीं उर्दू (तृतीय भाषा)",
+
+    // Class 11 Compulsory & Faculties (3 cols)
+    "11वीं संकाय", "11वीं अनिवार्य हिंदी", "11वीं अनिवार्य अंग्रेजी"
   ];
 
-  // 11th Individual Optionals
-  SAMAN_EXCEL_OPTIONAL_KEYS.forEach(col => {
-    header.push(`11वीं ${col.label}`);
+  // 11th Optionals (22 cols)
+  SAMAN_EXCEL_ALL_22_OPTIONALS.forEach(col => {
+    s1_headers.push(`11वीं ${col.label}`);
   });
-  header.push("11वीं कुल मांग (Class 11 Total)");
+  s1_headers.push("11वीं कुल मांग");
 
-  // Class 12 Compulsory & Faculties
-  header.push(
-    "12वीं संकाय (Faculties)",
-    "12वीं अनिवार्य हिंदी (Comp Hindi)",
-    "12वीं अनिवार्य अंग्रेजी (Comp English)"
-  );
+  // Class 12 Compulsory & Faculties (3 cols)
+  s1_headers.push("12वीं संकाय", "12वीं अनिवार्य हिंदी", "12वीं अनिवार्य अंग्रेजी");
 
-  // 12th Individual Optionals
-  SAMAN_EXCEL_OPTIONAL_KEYS.forEach(col => {
-    header.push(`12वीं ${col.label}`);
+  // 12th Optionals (22 cols)
+  SAMAN_EXCEL_ALL_22_OPTIONALS.forEach(col => {
+    s1_headers.push(`12वीं ${col.label}`);
   });
-  header.push("12वीं कुल मांग (Class 12 Total)");
+  s1_headers.push("12वीं कुल मांग");
 
-  // Totals & Meta
-  header.push(
-    "कुल मांग प्रश्न-पत्र (Grand Total Papers 9-12)",
-    "प्रपत्र स्थिति (Submission Status)",
-    "हस्ताक्षरकर्ता / प्रस्तुतकर्ता (Submitted By)",
-    "अंतिम अपडेट दिनांक (Timestamp)"
+  // Totals & Meta (4 cols)
+  s1_headers.push(
+    "कुल मांग प्रश्न-पत्र (9-12)",
+    "प्रपत्र स्थिति",
+    "सबमिटकर्ता",
+    "सबमिशन दिनांक"
   );
+  s1_rows.push(s1_headers);
 
-  const rows = [header];
+  // Rows 5-61: School rows
+  const colSums = new Array(78).fill(0);
 
-  STATE.schools56.forEach(s => {
-    const code = s.shala_darpan_code;
-    const sub = STATE.samanParikshaSubmissions[code] || {};
+  realSchools.forEach((s, idx) => {
+    const code = String(s.shala_darpan_code).trim();
+    const sub = subs[code] || {};
     const isSub = isSamanParikshaSubmitted(sub);
-    const status = isSub ? "पूर्ण (Submitted)" : "लम्बित (Pending)";
 
-    const c11FacStr = isSub ? (sub.c11_faculties || []).join(', ') : '';
-    const c12FacStr = isSub ? (sub.c12_faculties || []).join(', ') : '';
-    const c11Opt = isSub ? (sub.c11_optional || {}) : {};
-    const c12Opt = isSub ? (sub.c12_optional || {}) : {};
+    const isMggs = ['221770', '221778', '221753'].includes(code) || (s.category || '').toUpperCase().includes('MGGS') || (s.school_name || '').includes('महात्मा गांधी') || (s.school_name || '').toUpperCase().includes('MGGS');
+    const effMed = isMggs ? 'english' : (sub.school_medium || 'hindi');
+    const medLabel = effMed === 'english' ? 'अंग्रेजी' : (effMed === 'both' ? 'द्विभाषी' : 'हिंदी');
 
-    const isSchoolMggs = ['221770', '221778', '221753'].includes(String(code).trim()) || (s.category || '').toUpperCase().includes('MGGS') || (s.school_name || '').includes('महात्मा गांधी') || (s.school_name || '').toUpperCase().includes('MGGS');
-    const effMed = isSchoolMggs ? 'english' : (sub.school_medium || 'hindi');
-    const medLabel = effMed === 'english' ? 'अंग्रेजी माध्यम' : (effMed === 'both' ? 'द्विभाषी (हिंदी+अंग्रेजी)' : 'हिंदी माध्यम');
+    const c9_tot = parseInt(sub.c9_total) || 0;
+    const c9_h = (isMggs || effMed === 'english') ? 0 : (sub.c9_hindi !== undefined ? parseInt(sub.c9_hindi) : c9_tot);
+    const c9_e = (isMggs || effMed === 'english') ? (sub.c9_english !== undefined ? parseInt(sub.c9_english) : c9_tot) : parseInt(sub.c9_english || 0);
+    const c9_sans = parseInt(sub.c9_sanskrit) || 0;
+    const c9_urdu = parseInt(sub.c9_urdu) || 0;
+
+    const c10_tot = parseInt(sub.c10_total) || 0;
+    const c10_h = (isMggs || effMed === 'english') ? 0 : (sub.c10_hindi !== undefined ? parseInt(sub.c10_hindi) : c10_tot);
+    const c10_e = (isMggs || effMed === 'english') ? (sub.c10_english !== undefined ? parseInt(sub.c10_english) : c10_tot) : parseInt(sub.c10_english || 0);
+    const c10_sans = parseInt(sub.c10_sanskrit) || 0;
+    const c10_urdu = parseInt(sub.c10_urdu) || 0;
+
+    const c11_fac = (sub.c11_faculties || []).join(', ');
+    const c11_h = parseInt(sub.c11_comp_hindi) || 0;
+    const c11_e = parseInt(sub.c11_comp_english) || 0;
+    const c11_opt = sub.c11_optional || {};
+    const c11_tot = parseInt(sub.c11_total) || 0;
+
+    const c12_fac = (sub.c12_faculties || []).join(', ');
+    const c12_h = parseInt(sub.c12_comp_hindi) || 0;
+    const c12_e = parseInt(sub.c12_comp_english) || 0;
+    const c12_opt = sub.c12_optional || {};
+    const c12_tot = parseInt(sub.c12_total) || 0;
+
+    const grand_tot = parseInt(sub.grand_total) || (c9_tot + c10_tot + c11_tot + c12_tot);
+    const status_label = isSub ? "पूर्ण (Submitted)" : "लम्बित (Pending)";
+    const submitted_by = sub.submitted_by || sub.principal_name || s.principal_name || '';
+    const ts = sub.timestamp || '';
 
     const row = [
-      s.s_no,
-      `"${(s.school_name || '').replace(/"/g, '""')}"`,
-      `"${(s.category || '').replace(/"/g, '""')}"`,
+      idx + 1,
+      s.school_name || '',
+      s.type === 'Government' ? 'राजकीय' : 'निजी',
+      s.category || '',
       code,
-      `"${(s.peeo_name || '').replace(/"/g, '""')}"`,
-      `"${(sub.exam_code || s.exam_code || '').replace(/"/g, '""')}"`,
-      `"${(sub.principal_name || s.principal_name || '').replace(/"/g, '""')}"`,
-      `"${(sub.principal_mobile || s.principal_mobile || '').replace(/"/g, '""')}"`,
-      `"${(sub.incharge_name || s.incharge_name || '').replace(/"/g, '""')}"`,
-      `"${(sub.incharge_mobile || s.incharge_mobile || '').replace(/"/g, '""')}"`,
-      `"${medLabel}"`,
-      
+      s.peeo_name || '',
+      sub.exam_code || s.exam_code || '',
+      medLabel,
+      sub.principal_name || s.principal_name || '',
+      sub.principal_mobile || s.principal_mobile || '',
+      sub.incharge_name || s.incharge_name || '',
+      sub.incharge_mobile || s.incharge_mobile || '',
+
       // Class 9
-      isSub ? (isSchoolMggs ? 0 : (sub.c9_hindi !== undefined ? sub.c9_hindi : (effMed === 'english' ? 0 : (sub.c9_total || 0)))) : 0,
-      isSub ? (isSchoolMggs ? (sub.c9_english || sub.c9_total || 0) : (sub.c9_english !== undefined ? sub.c9_english : (effMed === 'english' ? (sub.c9_total || 0) : 0))) : 0,
-      isSub ? (sub.c9_total || 0) : 0,
-      isSub ? (sub.c9_sanskrit || 0) : 0,
-      isSub ? (sub.c9_urdu || 0) : 0,
-      
+      c9_h, c9_e, c9_tot, c9_sans, c9_urdu,
+
       // Class 10
-      isSub ? (isSchoolMggs ? 0 : (sub.c10_hindi !== undefined ? sub.c10_hindi : (effMed === 'english' ? 0 : (sub.c10_total || 0)))) : 0,
-      isSub ? (isSchoolMggs ? (sub.c10_english || sub.c10_total || 0) : (sub.c10_english !== undefined ? sub.c10_english : (effMed === 'english' ? (sub.c10_total || 0) : 0))) : 0,
-      isSub ? (sub.c10_total || 0) : 0,
-      isSub ? (sub.c10_sanskrit || 0) : 0,
-      isSub ? (sub.c10_urdu || 0) : 0,
-      
-      // Class 11 Compulsory & Faculties
-      `"${c11FacStr.replace(/"/g, '""')}"`,
-      isSub ? (sub.c11_comp_hindi || 0) : 0,
-      isSub ? (sub.c11_comp_english || 0) : 0
+      c10_h, c10_e, c10_tot, c10_sans, c10_urdu,
+
+      // Class 11 Compulsory
+      c11_fac, c11_h, c11_e
     ];
 
-    // 11th individual optional subjects
-    SAMAN_EXCEL_OPTIONAL_KEYS.forEach(col => {
-      row.push(isSub ? (c11Opt[col.key] || 0) : 0);
+    // Class 11 Optionals
+    SAMAN_EXCEL_ALL_22_OPTIONALS.forEach(col => {
+      row.push(parseInt(c11_opt[col.key]) || 0);
     });
-    row.push(isSub ? (sub.c11_total || 0) : 0);
+    row.push(c11_tot);
 
-    // Class 12 Compulsory & Faculties
-    row.push(
-      `"${c12FacStr.replace(/"/g, '""')}"`,
-      isSub ? (sub.c12_comp_hindi || 0) : 0,
-      isSub ? (sub.c12_comp_english || 0) : 0
-    );
+    // Class 12 Compulsory
+    row.push(c12_fac, c12_h, c12_e);
 
-    // 12th individual optional subjects
-    SAMAN_EXCEL_OPTIONAL_KEYS.forEach(col => {
-      row.push(isSub ? (c12Opt[col.key] || 0) : 0);
+    // Class 12 Optionals
+    SAMAN_EXCEL_ALL_22_OPTIONALS.forEach(col => {
+      row.push(parseInt(c12_opt[col.key]) || 0);
     });
-    row.push(isSub ? (sub.c12_total || 0) : 0);
+    row.push(c12_tot);
 
     // Totals & Meta
-    row.push(
-      isSub ? (sub.grand_total || 0) : 0,
-      `"${status}"`,
-      `"${(isSub ? (sub.submitted_by || '') : '').replace(/"/g, '""')}"`,
-      `"${(isSub ? (sub.timestamp || '') : '').replace(/"/g, '""')}"`
-    );
+    row.push(grand_tot, status_label, submitted_by, ts);
 
-    rows.push(row);
+    // Add row and accumulate sums for numeric columns (indices 12 to 74)
+    s1_rows.push(row);
+    for (let c = 12; c <= 74; c++) {
+      if (typeof row[c] === 'number') {
+        colSums[c] += row[c];
+      }
+    }
   });
 
+  // Row 62: Summary Bottom Row
+  const summaryRow = new Array(78).fill("-");
+  summaryRow[0] = "कुल योग (BLOCK BHINAI TOTAL - 57 SCHOOLS)";
+  for (let c = 1; c < 12; c++) summaryRow[c] = "";
+  for (let c = 12; c <= 74; c++) {
+    if (c === 22 || c === 47) { // faculties text
+      summaryRow[c] = "-";
+    } else {
+      summaryRow[c] = colSums[c];
+    }
+  }
+  s1_rows.push(summaryRow);
+
+  const ws1 = XLSX.utils.aoa_to_sheet(s1_rows);
+  ws1['!merges'] = [
+    { s: { r: 0, c: 0 }, e: { r: 0, c: 77 } },
+    { s: { r: 1, c: 0 }, e: { r: 1, c: 77 } },
+    { s: { r: s1_rows.length - 1, c: 0 }, e: { r: s1_rows.length - 1, c: 11 } }
+  ];
+  XLSX.utils.book_append_sheet(wb, ws1, "विद्यालयवार सम्पूर्ण मांग");
+
+  // =========================================================================
+  // SHEET 2: विषयवार समेकित मांग (Consolidated Subject-wise Abstract)
+  // =========================================================================
+  const s2_rows = [];
+  s2_rows.push(["कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय - जिला: अजमेर"]);
+  s2_rows.push(["समान परीक्षा 2026-27 | कक्षावार एवं विषयवार प्रश्न-पत्र मांग का समेकित सार (Abstract)"]);
+  s2_rows.push([]);
+  s2_rows.push(["क्र.सं.", "कक्षा (Class)", "विषय का नाम (Subject Name)", "माध्यम / श्रेणी (Medium/Type)", "मांग वाले विद्यालयों की संख्या", "कुल प्रश्न-पत्र मांग (Total Papers)"]);
+
+  const s2_items = [];
+
+  // Compute Class 9
+  const tot9_h = realSchools.reduce((acc, s) => {
+    const sub = subs[s.shala_darpan_code] || {};
+    const isMggs = ['221770', '221778', '221753'].includes(s.shala_darpan_code) || (sub.school_medium === 'english');
+    return acc + (isMggs ? 0 : (sub.c9_hindi !== undefined ? parseInt(sub.c9_hindi) : parseInt(sub.c9_total || 0)));
+  }, 0);
+  const tot9_e = realSchools.reduce((acc, s) => {
+    const sub = subs[s.shala_darpan_code] || {};
+    const isMggs = ['221770', '221778', '221753'].includes(s.shala_darpan_code) || (sub.school_medium === 'english');
+    return acc + (isMggs ? (sub.c9_english !== undefined ? parseInt(sub.c9_english) : parseInt(sub.c9_total || 0)) : parseInt(sub.c9_english || 0));
+  }, 0);
+  const tot9_sans = realSchools.reduce((acc, s) => acc + parseInt((subs[s.shala_darpan_code] || {}).c9_sanskrit || 0), 0);
+  const tot9_urdu = realSchools.reduce((acc, s) => acc + parseInt((subs[s.shala_darpan_code] || {}).c9_urdu || 0), 0);
+
+  s2_items.push(["कक्षा 9वीं", "अनिवार्य विषय (हिंदी, अंग्रेजी, गणित, विज्ञान, सामाजिक)", "हिंदी माध्यम", realSchools.filter(s => ((subs[s.shala_darpan_code] || {}).c9_hindi || (subs[s.shala_darpan_code] || {}).c9_total) > 0).length, tot9_h]);
+  s2_items.push(["कक्षा 9वीं", "अनिवार्य विषय (हिंदी, अंग्रेजी, गणित, विज्ञान, सामाजिक)", "अंग्रेजी माध्यम", realSchools.filter(s => ((subs[s.shala_darpan_code] || {}).c9_english || 0) > 0 || ['221770', '221778', '221753'].includes(s.shala_darpan_code)).length, tot9_e]);
+  s2_items.push(["कक्षा 9वीं", "तृतीय भाषा - संस्कृत", "तृतीय भाषा", realSchools.filter(s => parseInt((subs[s.shala_darpan_code] || {}).c9_sanskrit || 0) > 0).length, tot9_sans]);
+  s2_items.push(["कक्षा 9वीं", "तृतीय भाषा - उर्दू", "तृतीय भाषा", realSchools.filter(s => parseInt((subs[s.shala_darpan_code] || {}).c9_urdu || 0) > 0).length, tot9_urdu]);
+
+  // Compute Class 10
+  const tot10_h = realSchools.reduce((acc, s) => {
+    const sub = subs[s.shala_darpan_code] || {};
+    const isMggs = ['221770', '221778', '221753'].includes(s.shala_darpan_code) || (sub.school_medium === 'english');
+    return acc + (isMggs ? 0 : (sub.c10_hindi !== undefined ? parseInt(sub.c10_hindi) : parseInt(sub.c10_total || 0)));
+  }, 0);
+  const tot10_e = realSchools.reduce((acc, s) => {
+    const sub = subs[s.shala_darpan_code] || {};
+    const isMggs = ['221770', '221778', '221753'].includes(s.shala_darpan_code) || (sub.school_medium === 'english');
+    return acc + (isMggs ? (sub.c10_english !== undefined ? parseInt(sub.c10_english) : parseInt(sub.c10_total || 0)) : parseInt(sub.c10_english || 0));
+  }, 0);
+  const tot10_sans = realSchools.reduce((acc, s) => acc + parseInt((subs[s.shala_darpan_code] || {}).c10_sanskrit || 0), 0);
+  const tot10_urdu = realSchools.reduce((acc, s) => acc + parseInt((subs[s.shala_darpan_code] || {}).c10_urdu || 0), 0);
+
+  s2_items.push(["कक्षा 10वीं", "अनिवार्य विषय (हिंदी, अंग्रेजी, गणित, विज्ञान, सामाजिक)", "हिंदी माध्यम", realSchools.filter(s => ((subs[s.shala_darpan_code] || {}).c10_hindi || (subs[s.shala_darpan_code] || {}).c10_total) > 0).length, tot10_h]);
+  s2_items.push(["कक्षा 10वीं", "अनिवार्य विषय (हिंदी, अंग्रेजी, गणित, विज्ञान, सामाजिक)", "अंग्रेजी माध्यम", realSchools.filter(s => ((subs[s.shala_darpan_code] || {}).c10_english || 0) > 0 || ['221770', '221778', '221753'].includes(s.shala_darpan_code)).length, tot10_e]);
+  s2_items.push(["कक्षा 10वीं", "तृतीय भाषा - संस्कृत", "तृतीय भाषा", realSchools.filter(s => parseInt((subs[s.shala_darpan_code] || {}).c10_sanskrit || 0) > 0).length, tot10_sans]);
+  s2_items.push(["कक्षा 10वीं", "तृतीय भाषा - उर्दू", "तृतीय भाषा", realSchools.filter(s => parseInt((subs[s.shala_darpan_code] || {}).c10_urdu || 0) > 0).length, tot10_urdu]);
+
+  // Class 11 Compulsory
+  const tot11_h = realSchools.reduce((acc, s) => acc + parseInt((subs[s.shala_darpan_code] || {}).c11_comp_hindi || 0), 0);
+  const tot11_e = realSchools.reduce((acc, s) => acc + parseInt((subs[s.shala_darpan_code] || {}).c11_comp_english || 0), 0);
+  s2_items.push(["कक्षा 11वीं", "अनिवार्य हिंदी (Compulsory Hindi)", "अनिवार्य", realSchools.filter(s => parseInt((subs[s.shala_darpan_code] || {}).c11_comp_hindi || 0) > 0).length, tot11_h]);
+  s2_items.push(["कक्षा 11वीं", "अनिवार्य अंग्रेजी (Compulsory English)", "अनिवार्य", realSchools.filter(s => parseInt((subs[s.shala_darpan_code] || {}).c11_comp_english || 0) > 0).length, tot11_e]);
+
+  // Class 11 Optionals
+  SAMAN_EXCEL_ALL_22_OPTIONALS.forEach(col => {
+    const tot = realSchools.reduce((acc, s) => acc + parseInt(((subs[s.shala_darpan_code] || {}).c11_optional || {})[col.key] || 0), 0);
+    const cnt = realSchools.filter(s => parseInt(((subs[s.shala_darpan_code] || {}).c11_optional || {})[col.key] || 0) > 0).length;
+    s2_items.push(["कक्षा 11वीं", col.label, "ऐच्छिक विषय (Elective)", cnt, tot]);
+  });
+
+  // Class 12 Compulsory
+  const tot12_h = realSchools.reduce((acc, s) => acc + parseInt((subs[s.shala_darpan_code] || {}).c12_comp_hindi || 0), 0);
+  const tot12_e = realSchools.reduce((acc, s) => acc + parseInt((subs[s.shala_darpan_code] || {}).c12_comp_english || 0), 0);
+  s2_items.push(["कक्षा 12वीं", "अनिवार्य हिंदी (Compulsory Hindi)", "अनिवार्य", realSchools.filter(s => parseInt((subs[s.shala_darpan_code] || {}).c12_comp_hindi || 0) > 0).length, tot12_h]);
+  s2_items.push(["कक्षा 12वीं", "अनिवार्य अंग्रेजी (Compulsory English)", "अनिवार्य", realSchools.filter(s => parseInt((subs[s.shala_darpan_code] || {}).c12_comp_english || 0) > 0).length, tot12_e]);
+
+  // Class 12 Optionals
+  SAMAN_EXCEL_ALL_22_OPTIONALS.forEach(col => {
+    const tot = realSchools.reduce((acc, s) => acc + parseInt(((subs[s.shala_darpan_code] || {}).c12_optional || {})[col.key] || 0), 0);
+    const cnt = realSchools.filter(s => parseInt(((subs[s.shala_darpan_code] || {}).c12_optional || {})[col.key] || 0) > 0).length;
+    s2_items.push(["कक्षा 12वीं", col.label, "ऐच्छिक विषय (Elective)", cnt, tot]);
+  });
+
+  let grandPapersSum = 0;
+  s2_items.forEach((item, idx) => {
+    s2_rows.push([idx + 1, item[0], item[1], item[2], item[3], item[4]]);
+    grandPapersSum += item[4];
+  });
+
+  // Sheet 2 Total Row
+  s2_rows.push(["समस्त विषयों का महायोग (BLOCK BHINAI TOTAL PAPERS)", "", "", "", "-", grandPapersSum]);
+
+  const ws2 = XLSX.utils.aoa_to_sheet(s2_rows);
+  ws2['!merges'] = [
+    { s: { r: 0, c: 0 }, e: { r: 0, c: 5 } },
+    { s: { r: 1, c: 0 }, e: { r: 1, c: 5 } },
+    { s: { r: s2_rows.length - 1, c: 0 }, e: { r: s2_rows.length - 1, c: 3 } }
+  ];
+  XLSX.utils.book_append_sheet(wb, ws2, "विषयवार समेकित मांग");
+
+  // =========================================================================
+  // SHEET 3: PEEO वार सारांश (PEEO-wise Summary)
+  // =========================================================================
+  const s3_rows = [];
+  s3_rows.push(["कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय - जिला: अजमेर"]);
+  s3_rows.push(["समान परीक्षा 2026-27 | 25 PEEO क्षेत्रवार विद्यालय व कक्षावार कुल नामांकन सारांश"]);
+  s3_rows.push([]);
+  s3_rows.push(["क्र.सं.", "PEEO नोडल पंचायत का नाम", "कुल विद्यालय", "9वीं कुल", "10वीं कुल", "11वीं कुल", "12वीं कुल", "महायोग (Grand Total)"]);
+
+  // Group real schools by PEEO
+  const peeoMap = {};
+  realSchools.forEach(s => {
+    const pName = (s.peeo_name || 'OTHER').trim();
+    if (!peeoMap[pName]) {
+      peeoMap[pName] = { schools: [], c9: 0, c10: 0, c11: 0, c12: 0, grand: 0 };
+    }
+    const sub = subs[s.shala_darpan_code] || {};
+    const c9 = parseInt(sub.c9_total) || 0;
+    const c10 = parseInt(sub.c10_total) || 0;
+    const c11 = parseInt(sub.c11_total) || 0;
+    const c12 = parseInt(sub.c12_total) || 0;
+    const g = parseInt(sub.grand_total) || (c9 + c10 + c11 + c12);
+
+    peeoMap[pName].schools.push(s);
+    peeoMap[pName].c9 += c9;
+    peeoMap[pName].c10 += c10;
+    peeoMap[pName].c11 += c11;
+    peeoMap[pName].c12 += c12;
+    peeoMap[pName].grand += g;
+  });
+
+  const sortedPeeos = Object.keys(peeoMap).sort();
+  let totSchCount = 0, sumP9 = 0, sumP10 = 0, sumP11 = 0, sumP12 = 0, sumPGrand = 0;
+
+  sortedPeeos.forEach((pName, idx) => {
+    const d = peeoMap[pName];
+    s3_rows.push([
+      idx + 1,
+      pName,
+      d.schools.length,
+      d.c9,
+      d.c10,
+      d.c11,
+      d.c12,
+      d.grand
+    ]);
+    totSchCount += d.schools.length;
+    sumP9 += d.c9;
+    sumP10 += d.c10;
+    sumP11 += d.c11;
+    sumP12 += d.c12;
+    sumPGrand += d.grand;
+  });
+
+  // Sheet 3 Bottom Row
+  s3_rows.push([
+    "कुल योग (BLOCK TOTAL)",
+    "",
+    totSchCount,
+    sumP9,
+    sumP10,
+    sumP11,
+    sumP12,
+    sumPGrand
+  ]);
+
+  const ws3 = XLSX.utils.aoa_to_sheet(s3_rows);
+  ws3['!merges'] = [
+    { s: { r: 0, c: 0 }, e: { r: 0, c: 7 } },
+    { s: { r: 1, c: 0 }, e: { r: 1, c: 7 } },
+    { s: { r: s3_rows.length - 1, c: 0 }, e: { r: s3_rows.length - 1, c: 1 } }
+  ];
+  XLSX.utils.book_append_sheet(wb, ws3, "PEEO वार सारांश");
+
+  // Output filename matching user's exact specification
+  const outputFilename = "CBEO_Bhinai_Saman_Pariksha_All_Schools_All_Subjects_Master.xlsx";
+  XLSX.writeFile(wb, outputFilename);
+
+  showToast('📊 3-शीट संपूर्ण विषयवार व विद्यालयवार मास्टर एक्सेल (.xlsx) सफलतापूर्वक डाउनलोड हो गई!', 'success');
+}
+
+function exportSamanParikshaFallbackCSV(realSchools, subs) {
+  const header = [
+    "क्र.सं. (S.No)", "विद्यालय का नाम (School Name)", "श्रेणी (Category)", "शाला दर्पण / PSP कोड",
+    "संबंधित PEEO नोडल पंचायत", "स्कूल परीक्षा कोड (Exam Code)", "संस्था प्रधान (Principal Name)",
+    "संस्था प्रधान मोबाइल", "परीक्षा प्रभारी (In-charge Name)", "परीक्षा प्रभारी मोबाइल",
+    "शिक्षण माध्यम (School Medium)", "9वीं कुल", "10वीं कुल", "11वीं कुल", "12वीं कुल", "कुल महायोग"
+  ];
+  const rows = [header];
+  realSchools.forEach((s, idx) => {
+    const sub = subs[s.shala_darpan_code] || {};
+    rows.push([
+      idx + 1,
+      `"${s.school_name}"`,
+      `"${s.category}"`,
+      s.shala_darpan_code,
+      `"${s.peeo_name}"`,
+      `"${sub.exam_code || s.exam_code || ''}"`,
+      `"${sub.principal_name || s.principal_name || ''}"`,
+      `"${sub.principal_mobile || s.principal_mobile || ''}"`,
+      `"${sub.incharge_name || s.incharge_name || ''}"`,
+      `"${sub.incharge_mobile || s.incharge_mobile || ''}"`,
+      `"${sub.school_medium || 'hindi'}"`,
+      sub.c9_total || 0,
+      sub.c10_total || 0,
+      sub.c11_total || 0,
+      sub.c12_total || 0,
+      sub.grand_total || 0
+    ]);
+  });
   const csvContent = "\uFEFF" + rows.map(r => r.join(",")).join("\n");
   const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-  const filename = `CBEO_Bhinai_Saman_Pariksha_57_Schools_Master_${new Date().toISOString().slice(0, 10)}.csv`;
-  
   const link = document.createElement("a");
-  const url = URL.createObjectURL(blob);
-  link.setAttribute("href", url);
-  link.setAttribute("download", filename);
+  link.href = URL.createObjectURL(blob);
+  link.download = "CBEO_Bhinai_Saman_Pariksha_Master.csv";
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
-
-  showToast('Google Sheet के समान 72-कॉलम विस्तृत एक्सेल (CSV) सफलतापूर्वक डाउनलोड हो गई!', 'success');
+  showToast('समान परीक्षा समेकित CSV डाउनलोड हो गई!', 'success');
 }
+
+// Global Aliases for Compatibility
+window.exportSamanParikshaMasterExcel = exportSamanParikshaMasterExcel;
+window.exportSamanParikshaMasterCSV = exportSamanParikshaMasterExcel;
+
+function copySamanDirectUpdateLink() {
+  const url = `${window.location.origin}${window.location.pathname.replace(/index\.html.*/, '')}saman_form.html?update=1`;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(() => {
+      showToast('📋 समान परीक्षा सीधा फॉर्म अपडेट लिंक क्लिपबोर्ड में कॉपी हो गया!');
+    }).catch(() => {
+      prompt('समान परीक्षा सीधा फॉर्म अपडेट लिंक:', url);
+    });
+  } else {
+    prompt('समान परीक्षा सीधा फॉर्म अपडेट लिंक:', url);
+  }
+}
+window.copySamanDirectUpdateLink = copySamanDirectUpdateLink;
+
+function filterSamanMismatchSchools() {
+  const mismatchCodes = ["221756", "221758", "221762", "221763", "221785", "488791", "488946"];
+  const tbody = document.getElementById('sp-admin-tbody');
+  if (!tbody) return;
+
+  const trs = tbody.querySelectorAll('tr');
+  let matchedCount = 0;
+  trs.forEach(tr => {
+    const text = tr.textContent;
+    const isMis = mismatchCodes.some(c => text.includes(c));
+    if (isMis) {
+      tr.style.display = '';
+      matchedCount++;
+    } else {
+      tr.style.display = 'none';
+    }
+  });
+
+  showToast(`🚨 नवीन शाला दर्पण नामांकन अनुसार मिसमैच वाले कुल ${matchedCount} विद्यालय फिल्टर किए गए!`, 'warning');
+}
+window.filterSamanMismatchSchools = filterSamanMismatchSchools;
+
+function sendSamanMismatchWhatsAppNotice(code) {
+  const sCode = String(code).trim();
+  const spCfg = STATE.samanMismatchSettings || (typeof getSamanMismatchConfig === 'function' ? getSamanMismatchConfig() : null);
+  const mInfo = spCfg && spCfg.mismatch_details ? spCfg.mismatch_details[sCode] : null;
+
+  const schools = STATE.schools56 || [];
+  const sch = schools.find(s => String(s.shala_darpan_code).trim() === sCode) || {};
+  const sub = (STATE.samanParikshaSubmissions || {})[sCode] || {};
+
+  const schoolName = sch.school_name || (mInfo ? mInfo.school_name : 'विद्यालय');
+  const peeoName = sch.peeo_name || (mInfo ? mInfo.peeo_name : '---');
+  const mob = sub.principal_mobile || sch.principal_mobile || sub.incharge_mobile || sch.incharge_mobile || '';
+
+  const diffText = mInfo ? mInfo.diff_text : 'नामांकन में अंतर दर्ज है';
+  const directLink = `https://jit9763.github.io/cbeo-bhinai-portal/saman_form.html?code=${sCode}&update=1`;
+
+  const msg = `*कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)*\n` +
+    `*अति-आवश्यक: समान परीक्षा 2026-27 नामांकन मिसमैच सुधार सूचना*\n\n` +
+    `सेवा में,\n` +
+    `संस्था प्रधान / परीक्षा प्रभारी,\n` +
+    `*${schoolName}* (शाला दर्पण कोड: ${sCode})\n` +
+    `संबंधित PEEO: ${peeoName}\n\n` +
+    `महोदय,\n` +
+    `आपके विद्यालय द्वारा समान परीक्षा 2026-27 के मांग प्रपत्र में भरा गया नामांकन नवीन शाला दर्पण रिकॉर्ड से भिन्न (Mismatch) पाया गया है:\n` +
+    `📌 *विवरण:* ${diffText}\n\n` +
+    `कृपया नीचे दिए गए सीधे लिंक पर क्लिक करके (बिना पासवर्ड/लॉगिन के) अपने विद्यालय का सही नामांकन तुरंत अपडेट व सबमिट करें:\n` +
+    `👉 ${directLink}\n\n` +
+    `- मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)`;
+
+  const url = `https://api.whatsapp.com/send?phone=${mob ? '91' + mob.replace(/\D/g, '') : ''}&text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+}
+window.sendSamanMismatchWhatsAppNotice = sendSamanMismatchWhatsAppNotice;
 
 /* ========================================================
    CONSOLIDATED EXCEL EXPORT FOR INFORMATION DEMANDS

@@ -630,11 +630,40 @@
         समान परीक्षा सत्र 2026-27 हेतु कक्षा 9 से 12 तक के विद्यार्थियों का विषयवार नामांकन एवं प्रश्न-पत्र मांग प्रपत्र।
         कृपया विद्यालय की आधिकारिक प्रवेश पंजिका / शाला दर्पण पोर्टल से मिलान कर सही संख्या दर्ज करें।
       </div>
-      <div id="switch-school-container" style="display:none; margin-top:0.75rem; align-items:center; gap:0.5rem; flex-wrap:wrap">
-        <label style="font-weight:700; font-size:0.85rem; color:#1e40af">विद्यालय चुनें (Switch School - केवल एडमिन):</label>
-        <select id="school-select" class="form-input" style="max-width:380px; min-height:38px; padding:4px 8px; font-weight:700" onchange="onSchoolDropdownChange()">
-          <!-- Populated from master data -->
-        </select>
+      <!-- Standalone Direct Update School Selector Bar (49 Govt + 8 Pvt Schools) -->
+      <div id="switch-school-container" style="display:flex; margin-top:1rem; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.75rem; background:#eff6ff; border:2px solid #2563eb; border-radius:10px; padding:0.85rem 1rem; box-shadow:0 2px 6px rgba(37,99,235,0.12)">
+        <div style="display:flex; align-items:center; gap:0.6rem">
+          <span style="background:#1d4ed8; color:#fff; border-radius:6px; padding:6px 10px; font-size:1.1rem"><i class="fas fa-school"></i></span>
+          <div>
+            <div style="font-weight:800; font-size:0.95rem; color:#1e3a8a">विद्यालय चयन करें (49 राजकीय + 8 निजी विद्यालय):</div>
+            <div style="font-size:0.78rem; color:#475569">सीधा अपडेट लिंक — बिना लॉगिन के अपना विद्यालय चुनकर समान परीक्षा डेटा अपडेट व सबमिट करें</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap">
+          <select id="school-select" class="form-input" style="min-width:340px; max-width:100%; min-height:42px; padding:4px 10px; font-weight:700; border:2px solid #2563eb; border-radius:6px; font-size:0.9rem" onchange="onSchoolDropdownChange()">
+            <!-- Populated from master data: 49 Govt + 8 Pvt -->
+          </select>
+          <button type="button" class="btn btn-outline-primary btn-sm" onclick="copyDirectSchoolLink()" title="इस विद्यालय का सीधा लिंक कॉपी करें" style="font-weight:700; display:inline-flex; align-items:center; gap:0.35rem; padding:8px 12px; background:#ffffff">
+            <i class="fas fa-copy text-primary"></i> लिंक कॉपी
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Enrollment Mismatch Alert Banner -->
+      <div id="school-mismatch-banner" style="display:none; background:#fffbeb; border:2px solid #f59e0b; border-radius:10px; padding:1rem 1.25rem; margin-top:1rem; box-shadow:0 3px 10px rgba(245,158,11,0.15)">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.65rem">
+          <div style="display:flex; align-items:center; gap:0.65rem">
+            <i class="fas fa-exclamation-triangle" style="color:#d97706; font-size:1.5rem"></i>
+            <div>
+              <div style="font-weight:800; color:#92400e; font-size:1.02rem">🚨 नवीन शाला दर्पण नामांकन से अंतर (Enrollment Mismatch Detected)</div>
+              <div id="mismatch-banner-subtitle" style="font-size:0.83rem; color:#b45309">नवीन शाला दर्पण रिकॉर्ड के अनुसार प्रपत्र में दर्ज संख्या में अंतर पाया गया है। कृपया जांच कर सुधार करें।</div>
+            </div>
+          </div>
+          <button type="button" id="btn-autofill-sd" class="btn btn-warning btn-sm" onclick="autoFixFromNewEnrollment()" style="font-weight:800; background:#f59e0b; color:#ffffff; border:none; padding:7px 14px; border-radius:6px; cursor:pointer; display:inline-flex; align-items:center; gap:0.4rem; box-shadow:0 2px 6px rgba(245,158,11,0.3)">
+            <i class="fas fa-magic"></i> ⚡ नवीन शाला दर्पण नामांकन अनुसार स्वतः भरें
+          </button>
+        </div>
+        <div id="mismatch-table-container" style="margin-top:0.85rem; overflow-x:auto"></div>
       </div>
     </div>
 
@@ -1190,110 +1219,1312 @@
       }
     }
 
+
     const DEFAULT_SAMAN_MISMATCH_SETTINGS = {
-      alert_active: false,
-      alert_title: '🚨 अति-आवश्यक: समान परीक्षा मांग - नामांकन मिसमैच एवं माध्यम संशोधन सूचना',
-      alert_message: 'समान परीक्षा 2026-27 प्रश्न-पत्र मांग शाला दर्पण पोर्टल पर दर्ज नामांकन के सत्यापन के आधार पर निम्न विद्यालयों के मांग प्रपत्र में अंतर (Mismatch) पाया गया है। कृपया संबंधित संस्था प्रधान शाला दर्पण अनुसार वास्तविक नामांकन से मिलान करते हुए प्रपत्र को तुरंत संशोधित कर पुनः सबमिट करें।',
-      custom_edit_schools: [
-        '221780', '221761', '221756'
+  "alert_active": true,
+  "alert_title": "🚨 अति-आवश्यक: समान परीक्षा मांग - नवीन शाला दर्पण नामांकन सत्यापन एवं मिसमैच संशोधन",
+  "alert_message": "समान परीक्षा सत्र 2026-27 प्रश्न-पत्र मांग का नवीन शाला दर्पण नामांकन से मिलान करने पर कुल 49 राजकीय विद्यालयों में से 42 विद्यालयों का डेटा शत-प्रतिशत सही पाया गया है तथा 7 विद्यालयों के नामांकन में अंतर (Mismatch) दर्ज हुआ है। संबंधित संस्था प्रधान कृपया दिए गए सीधे लिंक से अपना विद्यालय चुनकर बिना लॉगिन के तुरंत डेटा संशोधित कर सबमिट करें।",
+  "custom_edit_schools": [
+    "221756",
+    "221758",
+    "221762",
+    "221763",
+    "221785",
+    "488791",
+    "488946"
+  ],
+  "mismatch_details": {
+    "221756": {
+      "code": "221756",
+      "school_name": "रा.उ.मा.वि. नांदसी",
+      "peeo_name": "PEEO NANDSI",
+      "principal_name": "OM PRAKASH VERMA",
+      "principal_mobile": "9001637473",
+      "incharge_name": "SHANKAR LAL SAINI",
+      "incharge_mobile": "8233686098",
+      "submitted_c9": 24,
+      "submitted_c10": 31,
+      "submitted_c11": 17,
+      "submitted_c12": 20,
+      "submitted_total": 92,
+      "sd_c9": 24,
+      "sd_c10": 31,
+      "sd_c11": 15,
+      "sd_c12": 20,
+      "sd_total": 90,
+      "diff": 2,
+      "diff_text": "मांग प्रपत्र में कुल अंतर: +2 (कक्षा 11 में +2)",
+      "flagged_fields": [
+        "कक्षा 11 (मांग: 17, शाला दर्पण: 15)"
       ],
-      mismatch_details: {
-        '221780': {
-          school_name: 'GOVT. SENIOR SECONDARY SCHOOL BHINAI (221780)',
-          peeo_name: 'BHINAI',
-          portal_total: 435,
-          sd_total: 425,
-          diff: 10,
-          portal_c9_10: 268,
-          portal_c11_12: 167,
-          sd_c9_10: 268,
-          sd_c11_12: 157,
-          diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 10 ज्यादा है (मांग: 435, शाला दर्पण: 425)',
-          reason: 'कक्षा 11-12 में पेपर मांग शाला दर्पण नामांकन से 10 ज्यादा (मांग: 167, शाला दर्पण: 157) दर्ज है।',
-          flagged_fields: ['कक्षा 11-12 पेपर मांग (167 बनाम 157)', 'कुल महायोग']
-        },
-        '221761': {
-          school_name: 'GOVT. SENIOR SECONDARY SCHOOL NIMEDA (221761)',
-          peeo_name: 'NIMEDA',
-          portal_total: 87,
-          sd_total: 92,
-          diff: -5,
-          portal_c9_10: 55,
-          portal_c11_12: 32,
-          sd_c9_10: 55,
-          sd_c11_12: 37,
-          diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 5 कम है (मांग: 87, शाला दर्पण: 92)',
-          reason: 'कक्षा 11-12 में पेपर मांग शाला दर्पण नामांकन से 5 कम (मांग: 32, शाला दर्पण: 37) दर्ज है।',
-          flagged_fields: ['कक्षा 11-12 पेपर मांग', 'कुल महायोग']
-        },
-        '221756': {
-          school_name: 'GOVT. SENIOR SECONDARY SCHOOL NANDSI (221756)',
-          peeo_name: 'NANDSI',
-          portal_total: 139,
-          sd_total: 133,
-          diff: 6,
-          portal_c9_10: 83,
-          portal_c11_12: 56,
-          sd_c9_10: 79,
-          sd_c11_12: 54,
-          diff_text: 'पेपर मांग शाला दर्पण में नामांकन से 6 ज्यादा है (मांग: 139, शाला दर्पण: 133)',
-          reason: 'कक्षा 9-10 में 4 अधिक (83 बनाम 79) एवं 11-12 में 2 अधिक (56 बनाम 54) कुल 6 पेपर अधिक दर्ज हैं।',
-          flagged_fields: ['कक्षा 9-10 पेपर मांग (83 बनाम 79)', 'कक्षा 11-12 पेपर मांग (56 बनाम 54)', 'कुल महायोग']
-        }
-      }
-    };
-
-    // Check edit permission for current user / school
-    function checkSamanFormEditPermission(schoolCode = null) {
-      const code = String(schoolCode || (currentSchool ? currentSchool.shala_darpan_code : '')).trim();
-
-      // Check mismatch custom edit whitelist
-      let cfg = null;
-      try {
-        cfg = JSON.parse(localStorage.getItem('cbeo_saman_mismatch_settings') || 'null');
-      } catch(e) {}
-      if (!cfg) cfg = DEFAULT_SAMAN_MISMATCH_SETTINGS;
-
-      const customAllowed = (cfg && cfg.custom_edit_schools) || [
-        "221780", "221761", "221756"
-      ];
-      if (code && customAllowed.some(c => String(c).trim() === code)) {
-        return true; // Mismatch school has edit specifically unlocked!
-      }
-
-      let user = null;
-      try {
-        user = JSON.parse(localStorage.getItem('cbeo_logged_user') || localStorage.getItem('cbeo_user') || 'null');
-      } catch(e) {}
-
-      let perms = {};
-      try {
-        perms = JSON.parse(localStorage.getItem('cbeo_staff_edit_permissions') || '{}');
-      } catch(e) {}
-
-      if (user && (
-        user.username === 'admin_jitendra' || 
-        user.username === 'jitendra_admin' || 
-        user.username === 'jitendra' || 
-        user.admin_id === 'ADMIN02' || 
-        user.role === 'superadmin' || 
-        user.role === 'Super Admin' || 
-        user.role === 'cbeo' ||
-        (user.name && user.name.includes('जितेन्द्र'))
-      )) {
-        return true;
-      }
-      if (user && user.role === 'peeo') {
-        return perms.peeo_can_edit_saman_pariksha !== false;
-      }
-      if (user && user.role === 'school') {
-        return perms.schools_can_edit_saman_pariksha !== false;
-      }
-      if (perms.schools_can_edit_saman_pariksha === false) {
-        return false;
-      }
-      return true;
+      "expected_total": 90
+    },
+    "221758": {
+      "code": "221758",
+      "school_name": "रा.उ.मा.वि. चापानेरी",
+      "peeo_name": "PEEO CHAPANERI",
+      "principal_name": "LADURAM SHARMA",
+      "principal_mobile": "9462507510",
+      "incharge_name": "GOVIND RAM JANGID",
+      "incharge_mobile": "9982323026",
+      "submitted_c9": 77,
+      "submitted_c10": 38,
+      "submitted_c11": 25,
+      "submitted_c12": 34,
+      "submitted_total": 174,
+      "sd_c9": 74,
+      "sd_c10": 38,
+      "sd_c11": 23,
+      "sd_c12": 34,
+      "sd_total": 169,
+      "diff": 5,
+      "diff_text": "मांग प्रपत्र में कुल अंतर: +5 (कक्षा 9 में +3, कक्षा 11 में +2)",
+      "flagged_fields": [
+        "कक्षा 9 (मांग: 77, शाला दर्पण: 74)",
+        "कक्षा 11 (मांग: 25, शाला दर्पण: 23)"
+      ],
+      "expected_total": 169
+    },
+    "221762": {
+      "code": "221762",
+      "school_name": "रा.उ.मा.वि. गुढ़ा खुर्द",
+      "peeo_name": "PEEO GURHA KHURD",
+      "principal_name": "Deepesh Kumar Sisodia",
+      "principal_mobile": "9414554344",
+      "incharge_name": "RAJANEESH KUMAR JANGID",
+      "incharge_mobile": "9875119865",
+      "submitted_c9": 57,
+      "submitted_c10": 61,
+      "submitted_c11": 46,
+      "submitted_c12": 58,
+      "submitted_total": 222,
+      "sd_c9": 57,
+      "sd_c10": 61,
+      "sd_c11": 43,
+      "sd_c12": 58,
+      "sd_total": 219,
+      "diff": 3,
+      "diff_text": "मांग प्रपत्र में कुल अंतर: +3 (कक्षा 11 में +3)",
+      "flagged_fields": [
+        "कक्षा 11 (मांग: 46, शाला दर्पण: 43)"
+      ],
+      "expected_total": 219
+    },
+    "221763": {
+      "code": "221763",
+      "school_name": "रा.उ.मा.वि. बूबकिया",
+      "peeo_name": "PEEO BOOBKIYA",
+      "principal_name": "RAM CHANDRA GUJAR",
+      "principal_mobile": "9252068645",
+      "incharge_name": "Dinesh kumar kumawat",
+      "incharge_mobile": "9829896189",
+      "submitted_c9": 49,
+      "submitted_c10": 55,
+      "submitted_c11": 26,
+      "submitted_c12": 18,
+      "submitted_total": 148,
+      "sd_c9": 43,
+      "sd_c10": 55,
+      "sd_c11": 26,
+      "sd_c12": 18,
+      "sd_total": 142,
+      "diff": 6,
+      "diff_text": "मांग प्रपत्र में कुल अंतर: +6 (कक्षा 9 में +6)",
+      "flagged_fields": [
+        "कक्षा 9 (मांग: 49, शाला दर्पण: 43)"
+      ],
+      "expected_total": 142
+    },
+    "221785": {
+      "code": "221785",
+      "school_name": "रा.उ.मा.वि. राममालिया",
+      "peeo_name": "PEEO RAMMALIA",
+      "principal_name": "LAL CHAND MUNOTH",
+      "principal_mobile": "9928328808",
+      "incharge_name": "Dilip Singh Rathore",
+      "incharge_mobile": "9667718413",
+      "submitted_c9": 41,
+      "submitted_c10": 32,
+      "submitted_c11": 28,
+      "submitted_c12": 14,
+      "submitted_total": 115,
+      "sd_c9": 36,
+      "sd_c10": 32,
+      "sd_c11": 28,
+      "sd_c12": 14,
+      "sd_total": 110,
+      "diff": 5,
+      "diff_text": "मांग प्रपत्र में कुल अंतर: +5 (कक्षा 9 में +5)",
+      "flagged_fields": [
+        "कक्षा 9 (मांग: 41, शाला दर्पण: 36)"
+      ],
+      "expected_total": 110
+    },
+    "488791": {
+      "code": "488791",
+      "school_name": "रा.बा.उ.मा.वि. खेड़ी",
+      "peeo_name": "PEEO KARATI",
+      "principal_name": "श्री हंस राज गुर्जर (प्रभारी संस्था प्रधान)",
+      "principal_mobile": "8890478933",
+      "incharge_name": "श्रीमती चंचल कच्छावा",
+      "incharge_mobile": "8003070002",
+      "submitted_c9": 27,
+      "submitted_c10": 14,
+      "submitted_c11": 17,
+      "submitted_c12": 0,
+      "submitted_total": 58,
+      "sd_c9": 25,
+      "sd_c10": 14,
+      "sd_c11": 13,
+      "sd_c12": 0,
+      "sd_total": 52,
+      "diff": 6,
+      "diff_text": "मांग प्रपत्र में कुल अंतर: +6 (कक्षा 9 में +2, कक्षा 11 में +4)",
+      "flagged_fields": [
+        "कक्षा 9 (मांग: 27, शाला दर्पण: 25)",
+        "कक्षा 11 (मांग: 17, शाला दर्पण: 13)"
+      ],
+      "expected_total": 52
+    },
+    "488946": {
+      "code": "488946",
+      "school_name": "रा.उ.मा.वि. सेदरिया",
+      "peeo_name": "PEEO CHHACHHUNDRA",
+      "principal_name": "RITU SHARMA",
+      "principal_mobile": "9829790044",
+      "incharge_name": "Mukesh Chandra Gurjar",
+      "incharge_mobile": "9413457331",
+      "submitted_c9": 40,
+      "submitted_c10": 25,
+      "submitted_c11": 19,
+      "submitted_c12": 6,
+      "submitted_total": 90,
+      "sd_c9": 39,
+      "sd_c10": 25,
+      "sd_c11": 19,
+      "sd_c12": 6,
+      "sd_total": 89,
+      "diff": 1,
+      "diff_text": "मांग प्रपत्र में कुल अंतर: +1 (कक्षा 9 में +1)",
+      "flagged_fields": [
+        "कक्षा 9 (मांग: 40, शाला दर्पण: 39)"
+      ],
+      "expected_total": 89
     }
+  }
+};
+    const NEW_SD_ENROLLMENT_49 = {
+  "221753": {
+    "sr": 1,
+    "code": "221753",
+    "school_name": "MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN",
+    "c9_b": 16,
+    "c9_g": 20,
+    "c9_total": 36,
+    "c10_b": 19,
+    "c10_g": 15,
+    "c10_total": 34,
+    "c11_b": 10,
+    "c11_g": 11,
+    "c11_total": 21,
+    "c12_b": 4,
+    "c12_g": 15,
+    "c12_total": 19,
+    "sec_srsec_total": 110,
+    "school_grand_total": 450
+  },
+  "221754": {
+    "sr": 2,
+    "code": "221754",
+    "school_name": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN",
+    "c9_b": 81,
+    "c9_g": 87,
+    "c9_total": 168,
+    "c10_b": 44,
+    "c10_g": 72,
+    "c10_total": 116,
+    "c11_b": 61,
+    "c11_g": 69,
+    "c11_total": 130,
+    "c12_b": 34,
+    "c12_g": 78,
+    "c12_total": 112,
+    "sec_srsec_total": 526,
+    "school_grand_total": 708
+  },
+  "221755": {
+    "sr": 3,
+    "code": "221755",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL BADLI",
+    "c9_b": 50,
+    "c9_g": 0,
+    "c9_total": 50,
+    "c10_b": 35,
+    "c10_g": 0,
+    "c10_total": 35,
+    "c11_b": 19,
+    "c11_g": 3,
+    "c11_total": 22,
+    "c12_b": 23,
+    "c12_g": 7,
+    "c12_total": 30,
+    "sec_srsec_total": 137,
+    "school_grand_total": 315
+  },
+  "221756": {
+    "sr": 4,
+    "code": "221756",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL NANDSI",
+    "c9_b": 21,
+    "c9_g": 3,
+    "c9_total": 24,
+    "c10_b": 20,
+    "c10_g": 11,
+    "c10_total": 31,
+    "c11_b": 14,
+    "c11_g": 1,
+    "c11_total": 15,
+    "c12_b": 10,
+    "c12_g": 10,
+    "c12_total": 20,
+    "sec_srsec_total": 90,
+    "school_grand_total": 164
+  },
+  "221757": {
+    "sr": 5,
+    "code": "221757",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL KURTHAL",
+    "c9_b": 16,
+    "c9_g": 14,
+    "c9_total": 30,
+    "c10_b": 5,
+    "c10_g": 12,
+    "c10_total": 17,
+    "c11_b": 7,
+    "c11_g": 15,
+    "c11_total": 22,
+    "c12_b": 7,
+    "c12_g": 11,
+    "c12_total": 18,
+    "sec_srsec_total": 87,
+    "school_grand_total": 229
+  },
+  "221758": {
+    "sr": 6,
+    "code": "221758",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL CHAPANERI",
+    "c9_b": 65,
+    "c9_g": 9,
+    "c9_total": 74,
+    "c10_b": 21,
+    "c10_g": 17,
+    "c10_total": 38,
+    "c11_b": 15,
+    "c11_g": 8,
+    "c11_total": 23,
+    "c12_b": 15,
+    "c12_g": 19,
+    "c12_total": 34,
+    "sec_srsec_total": 169,
+    "school_grand_total": 360
+  },
+  "221759": {
+    "sr": 7,
+    "code": "221759",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA",
+    "c9_b": 29,
+    "c9_g": 12,
+    "c9_total": 41,
+    "c10_b": 4,
+    "c10_g": 14,
+    "c10_total": 18,
+    "c11_b": 8,
+    "c11_g": 8,
+    "c11_total": 16,
+    "c12_b": 10,
+    "c12_g": 10,
+    "c12_total": 20,
+    "sec_srsec_total": 95,
+    "school_grand_total": 219
+  },
+  "221760": {
+    "sr": 8,
+    "code": "221760",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL GANAHERA",
+    "c9_b": 21,
+    "c9_g": 10,
+    "c9_total": 31,
+    "c10_b": 10,
+    "c10_g": 9,
+    "c10_total": 19,
+    "c11_b": 13,
+    "c11_g": 15,
+    "c11_total": 28,
+    "c12_b": 6,
+    "c12_g": 10,
+    "c12_total": 16,
+    "sec_srsec_total": 94,
+    "school_grand_total": 268
+  },
+  "221761": {
+    "sr": 9,
+    "code": "221761",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL NIMEDA",
+    "c9_b": 9,
+    "c9_g": 23,
+    "c9_total": 32,
+    "c10_b": 6,
+    "c10_g": 12,
+    "c10_total": 18,
+    "c11_b": 8,
+    "c11_g": 8,
+    "c11_total": 16,
+    "c12_b": 11,
+    "c12_g": 10,
+    "c12_total": 21,
+    "sec_srsec_total": 87,
+    "school_grand_total": 240
+  },
+  "221762": {
+    "sr": 10,
+    "code": "221762",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD",
+    "c9_b": 22,
+    "c9_g": 35,
+    "c9_total": 57,
+    "c10_b": 26,
+    "c10_g": 35,
+    "c10_total": 61,
+    "c11_b": 20,
+    "c11_g": 23,
+    "c11_total": 43,
+    "c12_b": 26,
+    "c12_g": 32,
+    "c12_total": 58,
+    "sec_srsec_total": 219,
+    "school_grand_total": 382
+  },
+  "221763": {
+    "sr": 11,
+    "code": "221763",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA",
+    "c9_b": 24,
+    "c9_g": 19,
+    "c9_total": 43,
+    "c10_b": 25,
+    "c10_g": 30,
+    "c10_total": 55,
+    "c11_b": 14,
+    "c11_g": 12,
+    "c11_total": 26,
+    "c12_b": 6,
+    "c12_g": 12,
+    "c12_total": 18,
+    "sec_srsec_total": 142,
+    "school_grand_total": 303
+  },
+  "221764": {
+    "sr": 12,
+    "code": "221764",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND",
+    "c9_b": 48,
+    "c9_g": 48,
+    "c9_total": 96,
+    "c10_b": 35,
+    "c10_g": 34,
+    "c10_total": 69,
+    "c11_b": 30,
+    "c11_g": 26,
+    "c11_total": 56,
+    "c12_b": 19,
+    "c12_g": 21,
+    "c12_total": 40,
+    "sec_srsec_total": 261,
+    "school_grand_total": 435
+  },
+  "221765": {
+    "sr": 13,
+    "code": "221765",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL KANAI KALA",
+    "c9_b": 21,
+    "c9_g": 12,
+    "c9_total": 33,
+    "c10_b": 17,
+    "c10_g": 4,
+    "c10_total": 21,
+    "c11_b": 16,
+    "c11_g": 7,
+    "c11_total": 23,
+    "c12_b": 10,
+    "c12_g": 5,
+    "c12_total": 15,
+    "sec_srsec_total": 92,
+    "school_grand_total": 150
+  },
+  "221766": {
+    "sr": 14,
+    "code": "221766",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL PADLIYA",
+    "c9_b": 26,
+    "c9_g": 37,
+    "c9_total": 63,
+    "c10_b": 18,
+    "c10_g": 23,
+    "c10_total": 41,
+    "c11_b": 16,
+    "c11_g": 16,
+    "c11_total": 32,
+    "c12_b": 9,
+    "c12_g": 14,
+    "c12_total": 23,
+    "sec_srsec_total": 159,
+    "school_grand_total": 417
+  },
+  "221767": {
+    "sr": 15,
+    "code": "221767",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD",
+    "c9_b": 22,
+    "c9_g": 16,
+    "c9_total": 38,
+    "c10_b": 11,
+    "c10_g": 15,
+    "c10_total": 26,
+    "c11_b": 10,
+    "c11_g": 10,
+    "c11_total": 20,
+    "c12_b": 6,
+    "c12_g": 8,
+    "c12_total": 14,
+    "sec_srsec_total": 98,
+    "school_grand_total": 245
+  },
+  "221768": {
+    "sr": 16,
+    "code": "221768",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL JETPURA",
+    "c9_b": 12,
+    "c9_g": 16,
+    "c9_total": 28,
+    "c10_b": 5,
+    "c10_g": 11,
+    "c10_total": 16,
+    "c11_b": 3,
+    "c11_g": 11,
+    "c11_total": 14,
+    "c12_b": 6,
+    "c12_g": 2,
+    "c12_total": 8,
+    "sec_srsec_total": 66,
+    "school_grand_total": 158
+  },
+  "221769": {
+    "sr": 17,
+    "code": "221769",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL BANDANWARA",
+    "c9_b": 52,
+    "c9_g": 63,
+    "c9_total": 115,
+    "c10_b": 39,
+    "c10_g": 33,
+    "c10_total": 72,
+    "c11_b": 22,
+    "c11_g": 40,
+    "c11_total": 62,
+    "c12_b": 40,
+    "c12_g": 30,
+    "c12_total": 70,
+    "sec_srsec_total": 319,
+    "school_grand_total": 571
+  },
+  "221770": {
+    "sr": 18,
+    "code": "221770",
+    "school_name": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA",
+    "c9_b": 10,
+    "c9_g": 15,
+    "c9_total": 25,
+    "c10_b": 0,
+    "c10_g": 16,
+    "c10_total": 16,
+    "c11_b": 0,
+    "c11_g": 0,
+    "c11_total": 0,
+    "c12_b": 0,
+    "c12_g": 0,
+    "c12_total": 0,
+    "sec_srsec_total": 41,
+    "school_grand_total": 298
+  },
+  "221771": {
+    "sr": 19,
+    "code": "221771",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY BANDANWARA",
+    "c9_b": 26,
+    "c9_g": 27,
+    "c9_total": 53,
+    "c10_b": 19,
+    "c10_g": 23,
+    "c10_total": 42,
+    "c11_b": 24,
+    "c11_g": 16,
+    "c11_total": 40,
+    "c12_b": 20,
+    "c12_g": 17,
+    "c12_total": 37,
+    "sec_srsec_total": 172,
+    "school_grand_total": 308
+  },
+  "221772": {
+    "sr": 20,
+    "code": "221772",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL NAGOLA",
+    "c9_b": 38,
+    "c9_g": 41,
+    "c9_total": 79,
+    "c10_b": 22,
+    "c10_g": 31,
+    "c10_total": 53,
+    "c11_b": 26,
+    "c11_g": 26,
+    "c11_total": 52,
+    "c12_b": 22,
+    "c12_g": 16,
+    "c12_total": 38,
+    "sec_srsec_total": 222,
+    "school_grand_total": 432
+  },
+  "221773": {
+    "sr": 21,
+    "code": "221773",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL KARANTI",
+    "c9_b": 30,
+    "c9_g": 32,
+    "c9_total": 62,
+    "c10_b": 10,
+    "c10_g": 23,
+    "c10_total": 33,
+    "c11_b": 9,
+    "c11_g": 17,
+    "c11_total": 26,
+    "c12_b": 12,
+    "c12_g": 11,
+    "c12_total": 23,
+    "sec_srsec_total": 144,
+    "school_grand_total": 320
+  },
+  "221774": {
+    "sr": 22,
+    "code": "221774",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL KHEDI",
+    "c9_b": 26,
+    "c9_g": 4,
+    "c9_total": 30,
+    "c10_b": 12,
+    "c10_g": 2,
+    "c10_total": 14,
+    "c11_b": 7,
+    "c11_g": 7,
+    "c11_total": 14,
+    "c12_b": 4,
+    "c12_g": 4,
+    "c12_total": 8,
+    "sec_srsec_total": 66,
+    "school_grand_total": 163
+  },
+  "221775": {
+    "sr": 23,
+    "code": "221775",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL RATAKOT",
+    "c9_b": 19,
+    "c9_g": 24,
+    "c9_total": 43,
+    "c10_b": 11,
+    "c10_g": 16,
+    "c10_total": 27,
+    "c11_b": 17,
+    "c11_g": 11,
+    "c11_total": 28,
+    "c12_b": 10,
+    "c12_g": 13,
+    "c12_total": 23,
+    "sec_srsec_total": 121,
+    "school_grand_total": 303
+  },
+  "221776": {
+    "sr": 24,
+    "code": "221776",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL JHIPIYA",
+    "c9_b": 1,
+    "c9_g": 4,
+    "c9_total": 5,
+    "c10_b": 0,
+    "c10_g": 0,
+    "c10_total": 0,
+    "c11_b": 0,
+    "c11_g": 0,
+    "c11_total": 0,
+    "c12_b": 0,
+    "c12_g": 0,
+    "c12_total": 0,
+    "sec_srsec_total": 5,
+    "school_grand_total": 76
+  },
+  "221777": {
+    "sr": 25,
+    "code": "221777",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA",
+    "c9_b": 27,
+    "c9_g": 37,
+    "c9_total": 64,
+    "c10_b": 6,
+    "c10_g": 24,
+    "c10_total": 30,
+    "c11_b": 7,
+    "c11_g": 9,
+    "c11_total": 16,
+    "c12_b": 11,
+    "c12_g": 17,
+    "c12_total": 28,
+    "sec_srsec_total": 138,
+    "school_grand_total": 287
+  },
+  "221778": {
+    "sr": 26,
+    "code": "221778",
+    "school_name": "MAHATMA GANDHI GOVT. SCHOOL BHINAI",
+    "c9_b": 8,
+    "c9_g": 18,
+    "c9_total": 26,
+    "c10_b": 2,
+    "c10_g": 16,
+    "c10_total": 18,
+    "c11_b": 9,
+    "c11_g": 15,
+    "c11_total": 24,
+    "c12_b": 8,
+    "c12_g": 10,
+    "c12_total": 18,
+    "sec_srsec_total": 86,
+    "school_grand_total": 340
+  },
+  "221780": {
+    "sr": 27,
+    "code": "221780",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL BHINAI",
+    "c9_b": 73,
+    "c9_g": 59,
+    "c9_total": 132,
+    "c10_b": 43,
+    "c10_g": 45,
+    "c10_total": 88,
+    "c11_b": 46,
+    "c11_g": 41,
+    "c11_total": 87,
+    "c12_b": 39,
+    "c12_g": 50,
+    "c12_total": 89,
+    "sec_srsec_total": 396,
+    "school_grand_total": 513
+  },
+  "221781": {
+    "sr": 28,
+    "code": "221781",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL SINGAWAL",
+    "c9_b": 83,
+    "c9_g": 45,
+    "c9_total": 128,
+    "c10_b": 17,
+    "c10_g": 44,
+    "c10_total": 61,
+    "c11_b": 16,
+    "c11_g": 33,
+    "c11_total": 49,
+    "c12_b": 13,
+    "c12_g": 42,
+    "c12_total": 55,
+    "sec_srsec_total": 293,
+    "school_grand_total": 469
+  },
+  "221782": {
+    "sr": 29,
+    "code": "221782",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL SOBRI",
+    "c9_b": 20,
+    "c9_g": 15,
+    "c9_total": 35,
+    "c10_b": 7,
+    "c10_g": 10,
+    "c10_total": 17,
+    "c11_b": 9,
+    "c11_g": 9,
+    "c11_total": 18,
+    "c12_b": 0,
+    "c12_g": 4,
+    "c12_total": 4,
+    "sec_srsec_total": 74,
+    "school_grand_total": 208
+  },
+  "221783": {
+    "sr": 30,
+    "code": "221783",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL DHANTOL",
+    "c9_b": 21,
+    "c9_g": 33,
+    "c9_total": 54,
+    "c10_b": 16,
+    "c10_g": 14,
+    "c10_total": 30,
+    "c11_b": 14,
+    "c11_g": 9,
+    "c11_total": 23,
+    "c12_b": 10,
+    "c12_g": 6,
+    "c12_total": 16,
+    "sec_srsec_total": 123,
+    "school_grand_total": 333
+  },
+  "221784": {
+    "sr": 31,
+    "code": "221784",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL HEERAPURA",
+    "c9_b": 29,
+    "c9_g": 24,
+    "c9_total": 53,
+    "c10_b": 21,
+    "c10_g": 28,
+    "c10_total": 49,
+    "c11_b": 7,
+    "c11_g": 5,
+    "c11_total": 12,
+    "c12_b": 6,
+    "c12_g": 13,
+    "c12_total": 19,
+    "sec_srsec_total": 133,
+    "school_grand_total": 367
+  },
+  "221785": {
+    "sr": 32,
+    "code": "221785",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA",
+    "c9_b": 19,
+    "c9_g": 17,
+    "c9_total": 36,
+    "c10_b": 13,
+    "c10_g": 19,
+    "c10_total": 32,
+    "c11_b": 9,
+    "c11_g": 19,
+    "c11_total": 28,
+    "c12_b": 9,
+    "c12_g": 5,
+    "c12_total": 14,
+    "sec_srsec_total": 110,
+    "school_grand_total": 269
+  },
+  "221786": {
+    "sr": 33,
+    "code": "221786",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA",
+    "c9_b": 45,
+    "c9_g": 54,
+    "c9_total": 99,
+    "c10_b": 19,
+    "c10_g": 27,
+    "c10_total": 46,
+    "c11_b": 12,
+    "c11_g": 23,
+    "c11_total": 35,
+    "c12_b": 10,
+    "c12_g": 24,
+    "c12_total": 34,
+    "sec_srsec_total": 214,
+    "school_grand_total": 474
+  },
+  "221787": {
+    "sr": 34,
+    "code": "221787",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA",
+    "c9_b": 32,
+    "c9_g": 36,
+    "c9_total": 68,
+    "c10_b": 15,
+    "c10_g": 23,
+    "c10_total": 38,
+    "c11_b": 17,
+    "c11_g": 20,
+    "c11_total": 37,
+    "c12_b": 9,
+    "c12_g": 16,
+    "c12_total": 25,
+    "sec_srsec_total": 168,
+    "school_grand_total": 317
+  },
+  "221788": {
+    "sr": 35,
+    "code": "221788",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL PADANGA",
+    "c9_b": 38,
+    "c9_g": 19,
+    "c9_total": 57,
+    "c10_b": 6,
+    "c10_g": 22,
+    "c10_total": 28,
+    "c11_b": 7,
+    "c11_g": 17,
+    "c11_total": 24,
+    "c12_b": 17,
+    "c12_g": 9,
+    "c12_total": 26,
+    "sec_srsec_total": 135,
+    "school_grand_total": 306
+  },
+  "401778": {
+    "sr": 36,
+    "code": "401778",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL NEMEDA",
+    "c9_b": 17,
+    "c9_g": 22,
+    "c9_total": 39,
+    "c10_b": 12,
+    "c10_g": 17,
+    "c10_total": 29,
+    "c11_b": 2,
+    "c11_g": 11,
+    "c11_total": 13,
+    "c12_b": 2,
+    "c12_g": 6,
+    "c12_total": 8,
+    "sec_srsec_total": 89,
+    "school_grand_total": 274
+  },
+  "410632": {
+    "sr": 37,
+    "code": "410632",
+    "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL NANDSI",
+    "c9_b": 0,
+    "c9_g": 22,
+    "c9_total": 22,
+    "c10_b": 0,
+    "c10_g": 21,
+    "c10_total": 21,
+    "c11_b": 0,
+    "c11_g": 26,
+    "c11_total": 26,
+    "c12_b": 0,
+    "c12_g": 0,
+    "c12_total": 0,
+    "sec_srsec_total": 69,
+    "school_grand_total": 186
+  },
+  "410677": {
+    "sr": 38,
+    "code": "410677",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL RAGHUNATHGADH",
+    "c9_b": 0,
+    "c9_g": 0,
+    "c9_total": 0,
+    "c10_b": 0,
+    "c10_g": 0,
+    "c10_total": 0,
+    "c11_b": 0,
+    "c11_g": 0,
+    "c11_total": 0,
+    "c12_b": 0,
+    "c12_g": 0,
+    "c12_total": 0,
+    "sec_srsec_total": 0,
+    "school_grand_total": 138
+  },
+  "410704": {
+    "sr": 39,
+    "code": "410704",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL ROOPPURA",
+    "c9_b": 13,
+    "c9_g": 13,
+    "c9_total": 26,
+    "c10_b": 6,
+    "c10_g": 5,
+    "c10_total": 11,
+    "c11_b": 0,
+    "c11_g": 0,
+    "c11_total": 0,
+    "c12_b": 0,
+    "c12_g": 0,
+    "c12_total": 0,
+    "sec_srsec_total": 37,
+    "school_grand_total": 143
+  },
+  "485030": {
+    "sr": 40,
+    "code": "485030",
+    "school_name": "PM SHRI GOVT. SENIOR SECONDARY SCHOOL BAGRAI",
+    "c9_b": 23,
+    "c9_g": 21,
+    "c9_total": 44,
+    "c10_b": 16,
+    "c10_g": 21,
+    "c10_total": 37,
+    "c11_b": 8,
+    "c11_g": 12,
+    "c11_total": 20,
+    "c12_b": 0,
+    "c12_g": 0,
+    "c12_total": 0,
+    "sec_srsec_total": 101,
+    "school_grand_total": 300
+  },
+  "485033": {
+    "sr": 41,
+    "code": "485033",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL PIPLIYA",
+    "c9_b": 10,
+    "c9_g": 20,
+    "c9_total": 30,
+    "c10_b": 6,
+    "c10_g": 11,
+    "c10_total": 17,
+    "c11_b": 3,
+    "c11_g": 12,
+    "c11_total": 15,
+    "c12_b": 4,
+    "c12_g": 7,
+    "c12_total": 11,
+    "sec_srsec_total": 73,
+    "school_grand_total": 162
+  },
+  "488781": {
+    "sr": 42,
+    "code": "488781",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL BADLA",
+    "c9_b": 24,
+    "c9_g": 16,
+    "c9_total": 40,
+    "c10_b": 10,
+    "c10_g": 10,
+    "c10_total": 20,
+    "c11_b": 8,
+    "c11_g": 9,
+    "c11_total": 17,
+    "c12_b": 2,
+    "c12_g": 9,
+    "c12_total": 11,
+    "sec_srsec_total": 88,
+    "school_grand_total": 270
+  },
+  "488791": {
+    "sr": 43,
+    "code": "488791",
+    "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL KHEDI",
+    "c9_b": 0,
+    "c9_g": 25,
+    "c9_total": 25,
+    "c10_b": 0,
+    "c10_g": 14,
+    "c10_total": 14,
+    "c11_b": 0,
+    "c11_g": 13,
+    "c11_total": 13,
+    "c12_b": 0,
+    "c12_g": 0,
+    "c12_total": 0,
+    "sec_srsec_total": 52,
+    "school_grand_total": 169
+  },
+  "488897": {
+    "sr": 44,
+    "code": "488897",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL GHANA",
+    "c9_b": 23,
+    "c9_g": 14,
+    "c9_total": 37,
+    "c10_b": 19,
+    "c10_g": 19,
+    "c10_total": 38,
+    "c11_b": 20,
+    "c11_g": 11,
+    "c11_total": 31,
+    "c12_b": 9,
+    "c12_g": 13,
+    "c12_total": 22,
+    "sec_srsec_total": 128,
+    "school_grand_total": 357
+  },
+  "488941": {
+    "sr": 45,
+    "code": "488941",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL DEVRIYA",
+    "c9_b": 13,
+    "c9_g": 25,
+    "c9_total": 38,
+    "c10_b": 5,
+    "c10_g": 13,
+    "c10_total": 18,
+    "c11_b": 4,
+    "c11_g": 8,
+    "c11_total": 12,
+    "c12_b": 10,
+    "c12_g": 1,
+    "c12_total": 11,
+    "sec_srsec_total": 79,
+    "school_grand_total": 287
+  },
+  "488946": {
+    "sr": 46,
+    "code": "488946",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL SEDRIYA",
+    "c9_b": 26,
+    "c9_g": 13,
+    "c9_total": 39,
+    "c10_b": 7,
+    "c10_g": 18,
+    "c10_total": 25,
+    "c11_b": 7,
+    "c11_g": 12,
+    "c11_total": 19,
+    "c12_b": 3,
+    "c12_g": 3,
+    "c12_total": 6,
+    "sec_srsec_total": 89,
+    "school_grand_total": 245
+  },
+  "488947": {
+    "sr": 47,
+    "code": "488947",
+    "school_name": "GOVT. SENIOR SECONDARY SCHOOL HIYALIYA",
+    "c9_b": 0,
+    "c9_g": 0,
+    "c9_total": 0,
+    "c10_b": 0,
+    "c10_g": 0,
+    "c10_total": 0,
+    "c11_b": 0,
+    "c11_g": 0,
+    "c11_total": 0,
+    "c12_b": 0,
+    "c12_g": 0,
+    "c12_total": 0,
+    "sec_srsec_total": 0,
+    "school_grand_total": 174
+  },
+  "494626": {
+    "sr": 48,
+    "code": "494626",
+    "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL CHAPANERI",
+    "c9_b": 0,
+    "c9_g": 39,
+    "c9_total": 39,
+    "c10_b": 0,
+    "c10_g": 20,
+    "c10_total": 20,
+    "c11_b": 0,
+    "c11_g": 14,
+    "c11_total": 14,
+    "c12_b": 0,
+    "c12_g": 14,
+    "c12_total": 14,
+    "sec_srsec_total": 87,
+    "school_grand_total": 250
+  },
+  "506830": {
+    "sr": 49,
+    "code": "506830",
+    "school_name": "GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI",
+    "c9_b": 0,
+    "c9_g": 50,
+    "c9_total": 50,
+    "c10_b": 0,
+    "c10_g": 36,
+    "c10_total": 36,
+    "c11_b": 0,
+    "c11_g": 19,
+    "c11_total": 19,
+    "c12_b": 0,
+    "c12_g": 24,
+    "c12_total": 24,
+    "sec_srsec_total": 129,
+    "school_grand_total": 347
+  }
+};
+
+    // Check edit permission for current user / school (Always true for direct update link)
+    function checkSamanFormEditPermission(schoolCode = null) {
+      return true; // Direct update link: All schools can edit and submit without login!
+    }
+
+    function copyDirectSchoolLink() {
+      const code = document.getElementById('school-select')?.value || (currentSchool && currentSchool.shala_darpan_code) || '';
+      const url = new URL(window.location.href);
+      if (code) url.searchParams.set('code', code);
+      url.searchParams.set('update', '1');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url.toString()).then(() => {
+          showToast('📋 इस विद्यालय का सीधा अपडेट लिंक क्लिपबोर्ड में कॉपी हो गया!');
+        }).catch(() => {
+          prompt('कृपया नीचे दिए गए लिंक को कॉपी करें:', url.toString());
+        });
+      } else {
+        prompt('कृपया नीचे दिए गए लिंक को कॉपी करें:', url.toString());
+      }
+    }
+    window.copyDirectSchoolLink = copyDirectSchoolLink;
+
+    function checkAndRenderSchoolMismatch(code, sub) {
+      const banner = document.getElementById('school-mismatch-banner');
+      const container = document.getElementById('mismatch-table-container');
+      const subtitle = document.getElementById('mismatch-banner-subtitle');
+      if (!banner || !container) return;
+
+      const sdData = NEW_SD_ENROLLMENT_49[code];
+      if (!sdData) {
+        banner.style.display = 'none';
+        return;
+      }
+
+      const subC9 = parseInt(sub.c9_total) || (parseInt(sub.c9_hindi) || 0) + (parseInt(sub.c9_english) || 0);
+      const subC10 = parseInt(sub.c10_total) || (parseInt(sub.c10_hindi) || 0) + (parseInt(sub.c10_english) || 0);
+      const subC11 = parseInt(sub.c11_total) || 0;
+      const subC12 = parseInt(sub.c12_total) || 0;
+      const subTot = subC9 + subC10 + subC11 + subC12;
+
+      const sdC9 = sdData.c9_total || 0;
+      const sdC10 = sdData.c10_total || 0;
+      const sdC11 = sdData.c11_total || 0;
+      const sdC12 = sdData.c12_total || 0;
+      const sdTot = sdData.sec_srsec_total || (sdC9 + sdC10 + sdC11 + sdC12);
+
+      const hasDiff = (subC9 !== sdC9) || (subC10 !== sdC10) || (subC11 !== sdC11) || (subC12 !== sdC12);
+
+      if (!hasDiff) {
+        banner.style.display = 'none';
+        return;
+      }
+
+      banner.style.display = 'block';
+      const diffTot = subTot - sdTot;
+      if (subtitle) {
+        subtitle.innerHTML = `नवीन शाला दर्पण नामांकन से कुल <strong>${Math.abs(diffTot)}</strong> विद्यार्थी ${diffTot > 0 ? 'अधिक' : 'कम'} दर्ज हैं। कृपया सही संख्या भरें अथवा <strong>'स्वतः भरें'</strong> बटन दबाएं।`;
+      }
+
+      function formatDiff(subVal, sdVal) {
+        const d = subVal - sdVal;
+        if (d === 0) return `<span style="color:#16a34a; font-weight:700">✓ सही (${sdVal})</span>`;
+        if (d > 0) return `<span style="color:#dc2626; font-weight:800; background:#fee2e2; padding:2px 6px; border-radius:4px">+${d} अधिक (मांग: ${subVal}, शा.द.: ${sdVal})</span>`;
+        return `<span style="color:#b45309; font-weight:800; background:#fef3c7; padding:2px 6px; border-radius:4px">${d} कम (मांग: ${subVal}, शा.द.: ${sdVal})</span>`;
+      }
+
+      container.innerHTML = `
+        <table style="width:100%; border-collapse:collapse; font-size:0.88rem; background:#ffffff; border-radius:6px; border:1px solid #fcd34d">
+          <thead>
+            <tr style="background:#fef3c7; color:#92400e; border-bottom:1px solid #fcd34d; text-align:left">
+              <th style="padding:6px 10px">कक्षा</th>
+              <th style="padding:6px 10px; text-align:center">नवीन शाला दर्पण नामांकन</th>
+              <th style="padding:6px 10px; text-align:center">प्रपत्र में वर्तमान मांग</th>
+              <th style="padding:6px 10px; text-align:center">स्थिति / अंतर</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #f1f5f9; background:${subC9 !== sdC9 ? '#fff1f2' : '#ffffff'}">
+              <td style="padding:6px 10px; font-weight:700">कक्षा 9वीं</td>
+              <td style="padding:6px 10px; text-align:center; font-weight:800; color:#1e40af">${sdC9}</td>
+              <td style="padding:6px 10px; text-align:center; font-weight:700">${subC9}</td>
+              <td style="padding:6px 10px; text-align:center">${formatDiff(subC9, sdC9)}</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f1f5f9; background:${subC10 !== sdC10 ? '#fff1f2' : '#ffffff'}">
+              <td style="padding:6px 10px; font-weight:700">कक्षा 10वीं</td>
+              <td style="padding:6px 10px; text-align:center; font-weight:800; color:#1e40af">${sdC10}</td>
+              <td style="padding:6px 10px; text-align:center; font-weight:700">${subC10}</td>
+              <td style="padding:6px 10px; text-align:center">${formatDiff(subC10, sdC10)}</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f1f5f9; background:${subC11 !== sdC11 ? '#fff1f2' : '#ffffff'}">
+              <td style="padding:6px 10px; font-weight:700">कक्षा 11वीं</td>
+              <td style="padding:6px 10px; text-align:center; font-weight:800; color:#1e40af">${sdC11}</td>
+              <td style="padding:6px 10px; text-align:center; font-weight:700">${subC11}</td>
+              <td style="padding:6px 10px; text-align:center">${formatDiff(subC11, sdC11)}</td>
+            </tr>
+            <tr style="border-bottom:1px solid #f1f5f9; background:${subC12 !== sdC12 ? '#fff1f2' : '#ffffff'}">
+              <td style="padding:6px 10px; font-weight:700">कक्षा 12वीं</td>
+              <td style="padding:6px 10px; text-align:center; font-weight:800; color:#1e40af">${sdC12}</td>
+              <td style="padding:6px 10px; text-align:center; font-weight:700">${subC12}</td>
+              <td style="padding:6px 10px; text-align:center">${formatDiff(subC12, sdC12)}</td>
+            </tr>
+            <tr style="background:#fef9c3; font-weight:800; border-top:2px solid #f59e0b">
+              <td style="padding:7px 10px">महायोग (9वीं-12वीं)</td>
+              <td style="padding:7px 10px; text-align:center; color:#1e40af; font-size:1rem">${sdTot}</td>
+              <td style="padding:7px 10px; text-align:center; font-size:1rem">${subTot}</td>
+              <td style="padding:7px 10px; text-align:center">${formatDiff(subTot, sdTot)}</td>
+            </tr>
+          </tbody>
+        </table>
+      `;
+    }
+
+    function autoFixFromNewEnrollment() {
+      if (!currentSchool) return;
+      const code = currentSchool.shala_darpan_code;
+      const sdData = NEW_SD_ENROLLMENT_49[code];
+      if (!sdData) {
+        showToast('इस विद्यालय का नया शाला दर्पण नामांकन उपलब्ध नहीं है।');
+        return;
+      }
+
+      const isMggs = (['221770', '221778', '221753'].includes(String(code).trim()) || (currentSchool.category || '').toUpperCase().includes('MGGS') || (currentSchool.school_name || '').includes('महात्मा गांधी') || (currentSchool.school_name || '').toUpperCase().includes('MGGS'));
+      const med = isMggs ? 'english' : (document.querySelector('input[name="f-school-medium"]:checked')?.value || 'hindi');
+
+      // Class 9
+      if (med === 'english' || isMggs) {
+        if (document.getElementById('f-c9-english')) document.getElementById('f-c9-english').value = sdData.c9_total;
+        if (document.getElementById('f-c9-hindi')) document.getElementById('f-c9-hindi').value = 0;
+      } else {
+        if (document.getElementById('f-c9-hindi')) document.getElementById('f-c9-hindi').value = sdData.c9_total;
+        if (document.getElementById('f-c9-english')) document.getElementById('f-c9-english').value = 0;
+      }
+      if (document.getElementById('f-c9-total')) document.getElementById('f-c9-total').value = sdData.c9_total;
+      if (document.getElementById('f-c9-sanskrit') && parseInt(document.getElementById('f-c9-sanskrit').value) > 0) {
+        document.getElementById('f-c9-sanskrit').value = sdData.c9_total;
+      }
+
+      // Class 10
+      if (med === 'english' || isMggs) {
+        if (document.getElementById('f-c10-english')) document.getElementById('f-c10-english').value = sdData.c10_total;
+        if (document.getElementById('f-c10-hindi')) document.getElementById('f-c10-hindi').value = 0;
+      } else {
+        if (document.getElementById('f-c10-hindi')) document.getElementById('f-c10-hindi').value = sdData.c10_total;
+        if (document.getElementById('f-c10-english')) document.getElementById('f-c10-english').value = 0;
+      }
+      if (document.getElementById('f-c10-total')) document.getElementById('f-c10-total').value = sdData.c10_total;
+      if (document.getElementById('f-c10-sanskrit') && parseInt(document.getElementById('f-c10-sanskrit').value) > 0) {
+        document.getElementById('f-c10-sanskrit').value = sdData.c10_total;
+      }
+
+      // Class 11
+      if (document.getElementById('f-c11-total')) document.getElementById('f-c11-total').value = sdData.c11_total;
+      if (document.getElementById('f-c11-comp-hindi')) document.getElementById('f-c11-comp-hindi').value = sdData.c11_total;
+      if (document.getElementById('f-c11-comp-english')) document.getElementById('f-c11-comp-english').value = sdData.c11_total;
+
+      // Class 12
+      if (document.getElementById('f-c12-total')) document.getElementById('f-c12-total').value = sdData.c12_total;
+      if (document.getElementById('f-c12-comp-hindi')) document.getElementById('f-c12-comp-hindi').value = sdData.c12_total;
+      if (document.getElementById('f-c12-comp-english')) document.getElementById('f-c12-comp-english').value = sdData.c12_total;
+
+      calculateTotals();
+
+      // Visual flash on fields
+      ['f-c9-hindi', 'f-c9-english', 'f-c9-total', 'f-c10-hindi', 'f-c10-english', 'f-c10-total', 'f-c11-total', 'f-c12-total'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.style.borderColor = '#16a34a';
+          el.style.background = '#f0fdf4';
+          setTimeout(() => {
+            el.style.borderColor = '';
+            el.style.background = '';
+          }, 2500);
+        }
+      });
+
+      showToast('✓ नवीन शाला दर्पण नामांकन अनुसार संख्या स्वतः भर दी गई है! कृपया ऐच्छिक विषय जांच कर सबमिट करें।');
+    }
+    window.autoFixFromNewEnrollment = autoFixFromNewEnrollment;
 
     function applyViewOnlyMode(isLocked) {
       const banner = document.getElementById('form-locked-banner');
@@ -1425,45 +2656,63 @@
 
       schoolsList = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.schools_56) || (window.MASTER_CBEO_DATA && window.MASTER_CBEO_DATA.schools_56) || [];
 
-      // If school login, restrict to own school
+      const urlParams = new URLSearchParams(window.location.search);
+      const isPublicUpdateMode = urlParams.get('update') === '1' || !localStorage.getItem('cbeo_logged_user') || urlParams.has('code');
+
+      // If school login and NOT in public direct update mode, restrict to own school
       let loggedUser = null;
       try {
         loggedUser = JSON.parse(localStorage.getItem('cbeo_logged_user') || localStorage.getItem('cbeo_user') || 'null');
       } catch(e) {}
-      if (loggedUser && loggedUser.role === 'school') {
-        const myCode = String(loggedUser.school_code || loggedUser.shala_darpan_code || '').trim();
-        const mySch = schoolsList.filter(s => String(s.shala_darpan_code).trim() === myCode);
-        if (mySch.length > 0) schoolsList = mySch;
-      } else if (loggedUser && loggedUser.role === 'peeo' && loggedUser.peeo_name) {
-        const pCode = String(loggedUser.school_code || loggedUser.shala_darpan_code || '').trim();
-        const peeoSchools = schoolsList.filter(s => s.peeo_name === loggedUser.peeo_name || String(s.shala_darpan_code).trim() === pCode);
-        if (peeoSchools.length > 0) schoolsList = peeoSchools;
+      if (!isPublicUpdateMode) {
+        if (loggedUser && loggedUser.role === 'school') {
+          const myCode = String(loggedUser.school_code || loggedUser.shala_darpan_code || '').trim();
+          const mySch = schoolsList.filter(s => String(s.shala_darpan_code).trim() === myCode);
+          if (mySch.length > 0) schoolsList = mySch;
+        } else if (loggedUser && loggedUser.role === 'peeo' && loggedUser.peeo_name) {
+          const pCode = String(loggedUser.school_code || loggedUser.shala_darpan_code || '').trim();
+          const peeoSchools = schoolsList.filter(s => s.peeo_name === loggedUser.peeo_name || String(s.shala_darpan_code).trim() === pCode);
+          if (peeoSchools.length > 0) schoolsList = peeoSchools;
+        }
       }
+
+      // Filter out test school 999999 so only 57 official schools exist
+      schoolsList = schoolsList.filter(s => String(s.shala_darpan_code).trim() !== '999999');
 
       const select = document.getElementById('school-select');
       if (select) {
         select.innerHTML = '';
-        schoolsList.forEach(s => {
+        const govtSchools = schoolsList.filter(s => s.type === 'Government');
+        const pvtSchools = schoolsList.filter(s => s.type !== 'Government');
+
+        const optgGovt = document.createElement('optgroup');
+        optgGovt.label = `🏫 राजकीय उच्च माध्यमिक / माध्यमिक विद्यालय (${govtSchools.length} School)`;
+        govtSchools.forEach(s => {
           const opt = document.createElement('option');
           opt.value = s.shala_darpan_code;
           const names = getOfficialSchoolNames(s);
-          opt.textContent = `${names.en} (${s.type === 'Government' ? 'राजकीय' : 'निजी'})`;
-          select.appendChild(opt);
+          const isMis = DEFAULT_SAMAN_MISMATCH_SETTINGS.custom_edit_schools.includes(String(s.shala_darpan_code));
+          opt.textContent = `${isMis ? '🚨 [मिसमैच] ' : ''}${names.en} [${s.shala_darpan_code}] - ${s.peeo_name || ''}`;
+          optgGovt.appendChild(opt);
         });
+        select.appendChild(optgGovt);
 
-        const isJitendra = loggedUser && (
-          String(loggedUser.username).toLowerCase().includes('jitendra') ||
-          String(loggedUser.shala_darpan_code).toLowerCase().includes('jitendra') ||
-          String(loggedUser.role).toLowerCase().includes('admin')
-        );
+        const optgPvt = document.createElement('optgroup');
+        optgPvt.label = `🏢 निजी (Private) विद्यालय (${pvtSchools.length} School)`;
+        pvtSchools.forEach(s => {
+          const opt = document.createElement('option');
+          opt.value = s.shala_darpan_code;
+          const names = getOfficialSchoolNames(s);
+          opt.textContent = `${names.en} [${s.shala_darpan_code}] - ${s.peeo_name || ''}`;
+          optgPvt.appendChild(opt);
+        });
+        select.appendChild(optgPvt);
+
         const switchBox = document.getElementById('switch-school-container');
         if (switchBox) {
-          switchBox.style.display = isJitendra ? 'flex' : 'none';
+          switchBox.style.display = 'flex'; // ALWAYS visible for direct public update!
         }
-
-        if (loggedUser && loggedUser.role === 'school') {
-          select.disabled = true;
-        }
+        select.disabled = false; // Always enabled for direct selection!
       }
 
       // Check URL query or logged in school code
@@ -1531,6 +2780,12 @@
 
     function onSchoolDropdownChange() {
       const code = document.getElementById('school-select').value;
+      try {
+        const url = new URL(window.location.href);
+        url.searchParams.set('code', code);
+        url.searchParams.set('update', '1');
+        window.history.replaceState({}, '', url.toString());
+      } catch(e) {}
       loadSchool(code);
     }
 
@@ -1690,6 +2945,7 @@
       }
 
       renderSubmittedPreviewTable(sub);
+      checkAndRenderSchoolMismatch(code, sub);
 
       const officialNames = getOfficialSchoolNames(currentSchool);
       const fixedExamCode = (currentSchool.type === 'Private' ? 'AJM04P' : 'AJM04G') + currentSchool.shala_darpan_code;
@@ -2350,6 +3606,7 @@
       }).catch(e => console.warn('Backend sync note:', e));
 
       renderSubmittedPreviewTable(submission);
+      checkAndRenderSchoolMismatch(currentSchool.shala_darpan_code, submission);
       showToast('प्रपत्र एवं संपर्क डायरेक्टरी सफलतापूर्वक अपडेट व सुरक्षित हो गई!');
 
       if (andRedirectToPortal) {
