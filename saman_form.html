@@ -677,9 +677,14 @@
           <i class="fas fa-check-circle" style="color:#10b981; font-size:1.25rem"></i>
           <span>प्रपत्र पूर्व में सबमिट किया जा चुका है (Saved Data Table)</span>
         </div>
-        <span id="f-submitted-status-tag" style="background:#d1fae5; color:#047857; font-weight:800; font-size:0.8rem; padding:3px 10px; border-radius:20px">
-          संशोधन मोड (Edit Allowed)
-        </span>
+        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap">
+          <button type="button" class="btn btn-success btn-sm" onclick="openStandalonePdfPreview(currentSchool ? currentSchool.shala_darpan_code : null)" style="font-weight:700; background:#059669; color:#fff; border:none; padding:4px 10px; border-radius:6px; cursor:pointer; display:inline-flex; align-items:center; gap:4px">
+            <i class="fas fa-file-pdf"></i> अधिकृत A4 PDF देखें व प्रिंट करें
+          </button>
+          <span id="f-submitted-status-tag" style="background:#d1fae5; color:#047857; font-weight:800; font-size:0.8rem; padding:3px 10px; border-radius:20px">
+            संशोधन मोड (Edit Allowed)
+          </span>
+        </div>
       </div>
       <div id="f-submitted-status-desc" style="font-size:0.85rem; color:#047857; margin-bottom:0.75rem">
         इस विद्यालय का डेटा सफलतापूर्वक सुरक्षित है। आप नीचे दिए गए प्रपत्र में कोई भी संख्या बदलकर पुनः सबमिट (Update) कर सकते हैं।
@@ -687,7 +692,23 @@
       <div id="f-submitted-table-container"></div>
     </div>
 
-    <!-- Card 1: School Identity (Permanently Locked / Pre-filled from Master Database) -->
+    <!-- Empty Selection Placeholder (Shown when no school is selected) -->
+    <div id="no-school-selected-placeholder" style="display:none; background:#ffffff; border:2px dashed #2563eb; border-radius:12px; padding:3rem 1.5rem; text-align:center; margin:1.5rem 0; box-shadow:0 4px 14px rgba(37,99,235,0.08)">
+      <div style="font-size:3.5rem; margin-bottom:0.75rem">🏫</div>
+      <h3 style="color:#1e3a8a; font-size:1.4rem; margin-bottom:0.6rem; font-weight:800">कृपया ऊपर से अपना विद्यालय चुनें</h3>
+      <p style="color:#475569; font-size:1rem; max-width:650px; margin:0 auto 1.5rem; line-height:1.6">
+        समान परीक्षा 2026-27 का प्रपत्र भरने अथवा डेटा अपडेट करने के लिए ऊपर दिए गए नीले बॉक्स में <strong>अपने विद्यालय का चयन करें</strong>। चयन करते ही आपके विद्यालय का पूर्व डेटा व नामांकन प्रपत्र में स्वतः प्रदर्शित हो जाएगा।
+      </p>
+      <div style="display:flex; justify-content:center; gap:0.75rem; flex-wrap:wrap">
+        <button type="button" class="btn btn-primary" onclick="const sel = document.getElementById('school-select'); if(sel){ sel.focus(); sel.scrollIntoView({behavior:'smooth'}); }" style="padding:10px 24px; font-size:1rem; font-weight:700">
+          <i class="fas fa-hand-pointer"></i> 👆 ऊपर ड्रॉपडाउन से विद्यालय चुनें
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Form Content Wrapper -->
+    <div id="form-main-content">
+<!-- Card 1: School Identity (Permanently Locked / Pre-filled from Master Database) -->
     <div class="gform-card" style="border-left: 5px solid #1e3a8a;">
       <div class="card-title" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem">
         <span><i class="fas fa-school text-primary" style="color:#2563eb"></i> 1. School Identity & Exam Code (विद्यालय विवरण - अपरिवर्तनीय)</span>
@@ -1053,7 +1074,7 @@
     </div>
 
     <!-- Card 6: Declaration & Signatures -->
-    <div class="gform-card">
+    <div class="gform-card" id="card-signatures-seal">
       <div class="card-title">
         <i class="fas fa-stamp text-secondary" style="color:#0284c7"></i> 6. Verification, Stamp & Signatures (सत्यापन, सील एवं हस्ताक्षर)
       </div>
@@ -1117,15 +1138,17 @@
           <i class="fas fa-save"></i> प्रपत्र सबमिट करें
         </button>
         <button class="btn btn-success" onclick="saveForm(true)">
-          <i class="fas fa-print"></i> सबमिट व PDF देखें
+          <i class="fas fa-file-pdf"></i> सबमिट व A4 PDF देखें
         </button>
       </div>
       <div id="bottom-view-only-group" style="display:none; gap:0.5rem; flex-wrap:wrap">
-        <button class="btn btn-success" onclick="goToPortal(true)">
-          <i class="fas fa-print"></i> A4 अधिकृत PDF देखें व प्रिंट करें
+        <button class="btn btn-success" onclick="openStandalonePdfPreview(currentSchool ? currentSchool.shala_darpan_code : null)">
+          <i class="fas fa-file-pdf"></i> A4 अधिकृत PDF देखें व प्रिंट करें
         </button>
       </div>
     </div>
+
+      </div><!-- End #form-main-content -->
 
   </main>
 
@@ -2685,6 +2708,11 @@
         const govtSchools = schoolsList.filter(s => s.type === 'Government');
         const pvtSchools = schoolsList.filter(s => s.type !== 'Government');
 
+        const defOpt = document.createElement('option');
+        defOpt.value = '';
+        defOpt.textContent = '-- 🏫 कृपया अपना विद्यालय चुनें (Select School) --';
+        select.appendChild(defOpt);
+
         const optgGovt = document.createElement('optgroup');
         optgGovt.label = `🏫 राजकीय उच्च माध्यमिक / माध्यमिक विद्यालय (${govtSchools.length} School)`;
         govtSchools.forEach(s => {
@@ -2716,18 +2744,42 @@
       }
 
       // Check URL query or logged in school code
+      const params = new URLSearchParams(window.location.search);
+      const isDirectUpdateMode = params.get('update') === '1' || params.has('update') || !localStorage.getItem('cbeo_logged_user');
+
       let targetCode = null;
-      if (loggedUser && loggedUser.role === 'school' && loggedUser.school_code && !isJitendra) {
+      if (params.get('code') || params.get('school')) {
+        targetCode = params.get('code') || params.get('school');
+      } else if (!isDirectUpdateMode && loggedUser && loggedUser.role === 'school' && loggedUser.school_code && !isJitendra) {
         targetCode = String(loggedUser.school_code);
-      } else {
-        const params = new URLSearchParams(window.location.search);
-        targetCode = params.get('code') || params.get('school') || (schoolsList[0] && schoolsList[0].shala_darpan_code);
       }
 
-      if (targetCode && select) {
-        select.value = targetCode;
+      // Hide Seal & Signatures for direct update link (Google Form style)
+      const cardSig = document.getElementById('card-signatures-seal');
+      if (cardSig) {
+        cardSig.style.display = isDirectUpdateMode ? 'none' : 'block';
       }
-      loadSchool(targetCode || (select && select.value));
+
+      const ph = document.getElementById('no-school-selected-placeholder');
+      const formMain = document.getElementById('form-main-content');
+      const mBanner = document.getElementById('school-mismatch-banner');
+      const subBanner = document.getElementById('f-submitted-banner');
+      const headerTitle = document.getElementById('gform-school-header-title');
+
+      if (targetCode && schoolsList.some(s => String(s.shala_darpan_code) === String(targetCode))) {
+        if (select) select.value = targetCode;
+        if (ph) ph.style.display = 'none';
+        if (formMain) formMain.style.display = 'block';
+        loadSchool(targetCode);
+      } else {
+        if (select) select.value = '';
+        currentSchool = null;
+        if (ph) ph.style.display = 'block';
+        if (formMain) formMain.style.display = 'none';
+        if (mBanner) mBanner.style.display = 'none';
+        if (subBanner) subBanner.style.display = 'none';
+        if (headerTitle) headerTitle.textContent = 'समान परीक्षा सत्र 2026-27 | ब्लॉक-भिनाय (अजमेर)';
+      }
 
       // Sync cloud permissions from Google Sheet
       const webhookUrl = localStorage.getItem('cbeo_google_apps_script_url') 
@@ -2779,7 +2831,31 @@
     }
 
     function onSchoolDropdownChange() {
-      const code = document.getElementById('school-select').value;
+      const select = document.getElementById('school-select');
+      const code = select ? select.value : '';
+      const ph = document.getElementById('no-school-selected-placeholder');
+      const formMain = document.getElementById('form-main-content');
+      const mBanner = document.getElementById('school-mismatch-banner');
+      const subBanner = document.getElementById('f-submitted-banner');
+      const headerTitle = document.getElementById('gform-school-header-title');
+
+      if (!code) {
+        currentSchool = null;
+        if (ph) ph.style.display = 'block';
+        if (formMain) formMain.style.display = 'none';
+        if (mBanner) mBanner.style.display = 'none';
+        if (subBanner) subBanner.style.display = 'none';
+        if (headerTitle) headerTitle.textContent = 'समान परीक्षा सत्र 2026-27 | ब्लॉक-भिनाय (अजमेर)';
+        try {
+          const url = new URL(window.location.href);
+          url.searchParams.delete('code');
+          window.history.replaceState({}, '', url.toString());
+        } catch(e) {}
+        return;
+      }
+
+      if (ph) ph.style.display = 'none';
+      if (formMain) formMain.style.display = 'block';
       try {
         const url = new URL(window.location.href);
         url.searchParams.set('code', code);
@@ -2907,11 +2983,18 @@
     }
 
     function loadSchool(code) {
+      if (!code) {
+        currentSchool = null;
+        return;
+      }
       if (!schoolsList || schoolsList.length === 0) {
         schoolsList = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.schools_56) || (window.MASTER_CBEO_DATA && window.MASTER_CBEO_DATA.schools_56) || [];
       }
-      currentSchool = schoolsList.find(s => String(s.shala_darpan_code) === String(code)) || schoolsList[0];
-      if (!currentSchool) return;
+      currentSchool = schoolsList.find(s => String(s.shala_darpan_code) === String(code));
+      if (!currentSchool) {
+        currentSchool = null;
+        return;
+      }
 
       // Check stored submission and draft
       const allSubs = JSON.parse(localStorage.getItem('cbeo_saman_pariksha_submissions') || '{}');
@@ -3341,8 +3424,13 @@
       return { resolved: true, wasMismatch: false, error: null };
     }
 
-    function saveForm(andRedirectToPortal = false) {
-      if (!currentSchool) return;
+    function saveForm(andShowPdf = false) {
+      if (!currentSchool) {
+        alert('⚠️ कृपया पहले ऊपर दिए गए ड्रॉपडाउन से अपने विद्यालय का चयन करें!');
+        const sel = document.getElementById('school-select');
+        if (sel) { sel.focus(); sel.scrollIntoView({behavior:'smooth'}); }
+        return;
+      }
 
       if (!checkSamanFormEditPermission()) {
         showToast('🔒 प्रपत्र केवल अवलोकन मोड में है (संशोधन बंद है)');
@@ -3368,6 +3456,29 @@
       if (!inchargeName || !inchargeMobile) {
         showToast('कृपया परीक्षा प्रभारी का नाम व मोबाइल नंबर दर्ज करें!');
         document.getElementById('f-incharge-name').focus();
+        return;
+      }
+
+      // 🔒 MANDATORY VERIFICATION: Ask for Shala Darpan / PSP Code confirmation before saving to Google Sheet
+      const expectedCode = String(currentSchool.shala_darpan_code).trim();
+      const enteredCode = prompt(
+        `🔐 विद्यालय प्रमाणीकरण (Verification Required):\n\n` +
+        `विद्यालय: ${currentSchool.school_name}\n` +
+        `PEEO: ${currentSchool.peeo_name || ''}\n\n` +
+        `⚠️ गलती से किसी अन्य विद्यालय का डेटा अपडेट होने से रोकने हेतु कृपया पुष्टि के लिए इस विद्यालय का 6-अंकों का शाला दर्पण / PSP कोड दर्ज करें:`
+      );
+
+      if (enteredCode === null) {
+        showToast('सबमिशन प्रक्रिया रद्द कर दी गई।', 'info');
+        return;
+      }
+
+      if (enteredCode.trim() !== expectedCode) {
+        alert(
+          `❌ अमान्य शाला दर्पण कोड!\n\n` +
+          `आपके द्वारा दर्ज किया गया कोड "${enteredCode.trim()}" चयनित विद्यालय के आधिकारिक कोड "${expectedCode}" से मेल नहीं खाता है।\n\n` +
+          `डेटा सुरक्षा कारणों से यह सबमिशन अस्वीकार कर दिया गया है। कृपया सही कोड दर्ज करें।`
+        );
         return;
       }
 
@@ -3609,12 +3720,369 @@
       checkAndRenderSchoolMismatch(currentSchool.shala_darpan_code, submission);
       showToast('प्रपत्र एवं संपर्क डायरेक्टरी सफलतापूर्वक अपडेट व सुरक्षित हो गई!');
 
-      if (andRedirectToPortal) {
+      if (andShowPdf) {
         setTimeout(() => {
-          goToPortal(true);
-        }, 500);
+          openStandalonePdfPreview(currentSchool.shala_darpan_code);
+        }, 400);
       }
     }
+
+    
+    /* ========================================================
+       STANDALONE A4 LANDSCAPE PDF VIEWER & GENERATOR (NO LOGIN)
+       ======================================================== */
+    function openStandalonePdfPreview(schoolCode = null) {
+      const code = schoolCode || (currentSchool && currentSchool.shala_darpan_code);
+      if (!code) {
+        alert('⚠️ कृपया पहले ड्रॉपडाउन से विद्यालय चुनें!');
+        return;
+      }
+
+      let school = currentSchool;
+      if (!school || String(school.shala_darpan_code) !== String(code)) {
+        school = (schoolsList || []).find(s => String(s.shala_darpan_code) === String(code));
+      }
+      if (!school) {
+        showToast('विद्यालय का विवरण नहीं मिला!', 'warning');
+        return;
+      }
+
+      const allSubs = JSON.parse(localStorage.getItem('cbeo_saman_pariksha_submissions') || '{}');
+      const defaultSubs = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.saman_pariksha_submissions) || {};
+      let sub = allSubs[code] || defaultSubs[code];
+
+      // If form fields have current unsaved/live values for this school, construct live sub
+      if (currentSchool && String(currentSchool.shala_darpan_code) === String(code)) {
+        const c9H = parseInt(document.getElementById('f-c9-hindi')?.value) || 0;
+        const c9E = parseInt(document.getElementById('f-c9-english')?.value) || 0;
+        const c9Tot = parseInt(document.getElementById('f-c9-total')?.value) || (c9H + c9E);
+        const c10H = parseInt(document.getElementById('f-c10-hindi')?.value) || 0;
+        const c10E = parseInt(document.getElementById('f-c10-english')?.value) || 0;
+        const c10Tot = parseInt(document.getElementById('f-c10-total')?.value) || (c10H + c10E);
+        const c11Tot = parseInt(document.getElementById('f-c11-total')?.value) || 0;
+        const c12Tot = parseInt(document.getElementById('f-c12-total')?.value) || 0;
+        const grand = c9Tot + c10Tot + c11Tot + c12Tot;
+
+        const c11Opt = {};
+        const c12Opt = {};
+        SAMAN_PARIKSHA_OPTIONAL_SUBJECTS.forEach(s => {
+          c11Opt[s.key] = parseInt(document.getElementById(`f-c11-opt-${s.key}`)?.value) || 0;
+          c12Opt[s.key] = parseInt(document.getElementById(`f-c12-opt-${s.key}`)?.value) || 0;
+        });
+
+        sub = {
+          school_code: school.shala_darpan_code,
+          school_name: school.school_name,
+          category: school.category,
+          type: school.type,
+          peeo_name: school.peeo_name,
+          exam_code: document.getElementById('f-exam-code')?.value.trim() || sub?.exam_code || '---',
+          school_medium: document.querySelector('input[name="f-school-medium"]:checked')?.value || sub?.school_medium || 'hindi',
+          principal_name: document.getElementById('f-principal-name')?.value.trim() || school.principal_name || 'संस्था प्रधान',
+          principal_mobile: document.getElementById('f-principal-mobile')?.value.trim() || school.principal_mobile || '---',
+          incharge_name: document.getElementById('f-incharge-name')?.value.trim() || 'परीक्षा प्रभारी',
+          incharge_mobile: document.getElementById('f-incharge-mobile')?.value.trim() || '---',
+          c9_total: c9Tot,
+          c9_hindi: c9H,
+          c9_english: c9E,
+          c9_sanskrit: parseInt(document.getElementById('f-c9-sanskrit')?.value) || 0,
+          c9_urdu: parseInt(document.getElementById('f-c9-urdu')?.value) || 0,
+          c10_total: c10Tot,
+          c10_hindi: c10H,
+          c10_english: c10E,
+          c10_sanskrit: parseInt(document.getElementById('f-c10-sanskrit')?.value) || 0,
+          c10_urdu: parseInt(document.getElementById('f-c10-urdu')?.value) || 0,
+          c11_comp_hindi: parseInt(document.getElementById('f-c11-comp-hindi')?.value) || 0,
+          c11_comp_english: parseInt(document.getElementById('f-c11-comp-english')?.value) || 0,
+          c11_optional: c11Opt,
+          c11_total: c11Tot,
+          c12_comp_hindi: parseInt(document.getElementById('f-c12-comp-hindi')?.value) || 0,
+          c12_comp_english: parseInt(document.getElementById('f-c12-comp-english')?.value) || 0,
+          c12_optional: c12Opt,
+          c12_total: c12Tot,
+          grand_total: grand,
+          signature_data: (standaloneCanvas && standaloneHasSignature) ? standaloneCanvas.toDataURL('image/png') : (sub?.signature_data || null)
+        };
+      }
+
+      if (!sub) {
+        showToast('इस विद्यालय का कोई डेटा दर्ज नहीं है!', 'warning');
+        return;
+      }
+
+      const container = document.getElementById('standalone-pdf-content');
+      if (!container) return;
+
+      const c11OptPills = [];
+      SAMAN_PARIKSHA_OPTIONAL_SUBJECTS.forEach(s => {
+        const count = sub.c11_optional?.[s.key] || 0;
+        if (count > 0) {
+          const label = s.label.split('(')[0].trim();
+          c11OptPills.push(`<span style="display:inline-block; margin:1px 2px; padding:1px 5px; background:#f1f5f9; border:1px solid #cbd5e1; border-radius:3px; font-size:0.72rem; line-height:1.2"><strong>${label}:</strong> ${count}</span>`);
+        }
+      });
+      const c11OptHtml = c11OptPills.length > 0 ? c11OptPills.join(' ') : '<span style="color:#94a3b8">- कोई ऐच्छिक विषय दर्ज नहीं -</span>';
+
+      const c12OptPills = [];
+      SAMAN_PARIKSHA_OPTIONAL_SUBJECTS.forEach(s => {
+        const count = sub.c12_optional?.[s.key] || 0;
+        if (count > 0) {
+          const label = s.label.split('(')[0].trim();
+          c12OptPills.push(`<span style="display:inline-block; margin:1px 2px; padding:1px 5px; background:#f1f5f9; border:1px solid #cbd5e1; border-radius:3px; font-size:0.72rem; line-height:1.2"><strong>${label}:</strong> ${count}</span>`);
+        }
+      });
+      const c12OptHtml = c12OptPills.length > 0 ? c12OptPills.join(' ') : '<span style="color:#94a3b8">- कोई ऐच्छिक विषय दर्ज नहीं -</span>';
+
+      const isMggs = ['221770', '221778', '221753'].includes(String(school.shala_darpan_code).trim()) || (school.category || '').toUpperCase().includes('MGGS') || (school.school_name || '').includes('महात्मा गांधी');
+      const effMed = isMggs ? 'english' : (sub.school_medium || 'hindi');
+      const medDisplay = effMed === 'english' ? 'अंग्रेजी माध्यम (MGGS - English Medium)' : (effMed === 'both' ? 'द्विभाषी (हिंदी + अंग्रेजी माध्यम)' : 'हिंदी माध्यम (Hindi Medium)');
+      const peeoClean = (school.peeo_name || '').replace(/^PEEO\s+/i, '');
+
+      container.innerHTML = `
+        <!-- Top Official Header (Single Page A4 Landscape Format) -->
+        <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:3px; margin-bottom:5px">
+          <div style="font-size:0.82rem; font-weight:700; color:#000;">
+            राजस्थान सरकार | स्कूल शिक्षा विभाग
+          </div>
+          <div style="font-size:1.15rem; font-weight:900; color:#000; margin:2px 0;">
+            कार्यालय संस्था प्रधान, ${school.school_name_hi || school.school_name}
+          </div>
+          <div style="font-size:0.80rem; font-weight:700; color:#111; margin-bottom:2px;">
+            परिक्षेत्र: ${peeoClean}, ब्लॉक-भिनाय, जिला-अजमेर (राज.) | शाला दर्पण / PSP कोड: ${school.shala_darpan_code}
+          </div>
+          <div style="font-size:0.96rem; font-weight:800; color:#000;">
+            जिला समान परीक्षा योजना (सत्र 2026-27)
+          </div>
+          <div style="font-size:0.82rem; font-weight:700; color:#333;">
+            कक्षा 9 से 12 विद्यार्थी नामांकन एवं प्रश्न-पत्र मांग अधिकृत विवरण प्रपत्र
+          </div>
+        </div>
+
+        <!-- School Meta Table -->
+        <table style="width:100%; border-collapse:collapse; margin-bottom:5px; font-size:0.78rem; border:1.5px solid #000;">
+          <tr style="background:#f8fafc">
+            <td style="padding:3px 6px; border:1px solid #000; width:15%"><strong>विद्यालय का नाम:</strong></td>
+            <td style="padding:3px 6px; border:1px solid #000; font-weight:800; width:35%">${school.school_name}</td>
+            <td style="padding:3px 6px; border:1px solid #000; width:18%"><strong>शाला दर्पण / PSP कोड:</strong></td>
+            <td style="padding:3px 6px; border:1px solid #000; font-weight:800; width:32%">${school.shala_darpan_code} <span style="font-size:0.72rem; font-weight:normal">(${school.category} - ${school.type})</span></td>
+          </tr>
+          <tr>
+            <td style="padding:3px 6px; border:1px solid #000; background:#f8fafc"><strong>संबंधित PEEO:</strong></td>
+            <td style="padding:3px 6px; border:1px solid #000">${school.peeo_name || '---'}</td>
+            <td style="padding:3px 6px; border:1px solid #000; background:#f8fafc"><strong>स्कूल परीक्षा कोड:</strong></td>
+            <td style="padding:3px 6px; border:1px solid #000; font-weight:900; font-size:0.95rem">${sub.exam_code}</td>
+          </tr>
+          <tr style="background:#f8fafc">
+            <td style="padding:3px 6px; border:1px solid #000"><strong>संस्था प्रधान:</strong></td>
+            <td style="padding:3px 6px; border:1px solid #000"><strong>${sub.principal_name}</strong> (मो. ${sub.principal_mobile})</td>
+            <td style="padding:3px 6px; border:1px solid #000"><strong>परीक्षा प्रभारी:</strong></td>
+            <td style="padding:3px 6px; border:1px solid #000"><strong>${sub.incharge_name}</strong> (मो. ${sub.incharge_mobile})</td>
+          </tr>
+          <tr style="background:#f1f5f9">
+            <td style="padding:3px 6px; border:1px solid #000"><strong>शिक्षण माध्यम:</strong></td>
+            <td style="padding:3px 6px; border:1px solid #000; font-weight:800;">${medDisplay}</td>
+            <td style="padding:3px 6px; border:1px solid #000"><strong>प्रपत्र स्थिति:</strong></td>
+            <td style="padding:3px 6px; border:1px solid #000; font-weight:800; color:#166534">
+              ✅ सुरक्षित एवं सत्यापित (Verified Proforma)
+            </td>
+          </tr>
+        </table>
+
+        <!-- Class-wise Enrollment & Question Paper Demand Table -->
+        <table style="width:100%; border-collapse:collapse; margin-bottom:5px; font-size:0.75rem; border:1.5px solid #000; text-align:center;">
+          <thead>
+            <tr style="background:#1e3a8a; color:#ffffff;">
+              <th style="padding:4px 3px; border:1px solid #000; width:8%">कक्षा</th>
+              <th style="padding:4px 3px; border:1px solid #000; width:12%">कुल नामांकन</th>
+              <th style="padding:4px 3px; border:1px solid #000; width:22%">अनिवार्य विषय प्रश्न-पत्र मांग</th>
+              <th style="padding:4px 3px; border:1px solid #000; width:46%">तृतीय भाषा / ऐच्छिक विषय विवरण</th>
+              <th style="padding:4px 3px; border:1px solid #000; width:12%">कक्षा कुल मांग</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:3px 2px; border:1px solid #000; font-weight:800; background:#f8fafc">कक्षा 9</td>
+              <td style="padding:3px 2px; border:1px solid #000; font-weight:800">${sub.c9_total}</td>
+              <td style="padding:3px 2px; border:1px solid #000; text-align:left; padding-left:6px">
+                हिंदी: <strong>${sub.c9_hindi || sub.c9_total}</strong>, अंग्रेजी: <strong>${sub.c9_english || (effMed === 'english' ? sub.c9_total : 0)}</strong><br>
+                गणित, विज्ञान, सा.विज्ञान (सभी 6 अनिवार्य विषय): <strong>${sub.c9_total}</strong>
+              </td>
+              <td style="padding:3px 2px; border:1px solid #000; text-align:left; padding-left:6px">
+                संस्कृत: <strong>${sub.c9_sanskrit || 0}</strong> | उर्दू: <strong>${sub.c9_urdu || 0}</strong>
+              </td>
+              <td style="padding:3px 2px; border:1px solid #000; font-weight:900; font-size:0.88rem; background:#f1f5f9">${sub.c9_total}</td>
+            </tr>
+            <tr>
+              <td style="padding:3px 2px; border:1px solid #000; font-weight:800; background:#f8fafc">कक्षा 10</td>
+              <td style="padding:3px 2px; border:1px solid #000; font-weight:800">${sub.c10_total}</td>
+              <td style="padding:3px 2px; border:1px solid #000; text-align:left; padding-left:6px">
+                हिंदी: <strong>${sub.c10_hindi || sub.c10_total}</strong>, अंग्रेजी: <strong>${sub.c10_english || (effMed === 'english' ? sub.c10_total : 0)}</strong><br>
+                गणित, विज्ञान, सा.विज्ञान (सभी 6 अनिवार्य विषय): <strong>${sub.c10_total}</strong>
+              </td>
+              <td style="padding:3px 2px; border:1px solid #000; text-align:left; padding-left:6px">
+                संस्कृत: <strong>${sub.c10_sanskrit || 0}</strong> | उर्दू: <strong>${sub.c10_urdu || 0}</strong>
+              </td>
+              <td style="padding:3px 2px; border:1px solid #000; font-weight:900; font-size:0.88rem; background:#f1f5f9">${sub.c10_total}</td>
+            </tr>
+            <tr>
+              <td style="padding:3px 2px; border:1px solid #000; font-weight:800; background:#f8fafc">कक्षा 11</td>
+              <td style="padding:3px 2px; border:1px solid #000; font-weight:800">${sub.c11_total}</td>
+              <td style="padding:3px 2px; border:1px solid #000; text-align:left; padding-left:6px">
+                अनिवार्य हिंदी: <strong>${sub.c11_comp_hindi}</strong><br>
+                अनिवार्य अंग्रेजी: <strong>${sub.c11_comp_english}</strong>
+              </td>
+              <td style="padding:3px 2px; border:1px solid #000; text-align:left; padding-left:6px">
+                ${c11OptHtml}
+              </td>
+              <td style="padding:3px 2px; border:1px solid #000; font-weight:900; font-size:0.88rem; background:#f1f5f9">${sub.c11_total}</td>
+            </tr>
+            <tr>
+              <td style="padding:3px 2px; border:1px solid #000; font-weight:800; background:#f8fafc">कक्षा 12</td>
+              <td style="padding:3px 2px; border:1px solid #000; font-weight:800">${sub.c12_total}</td>
+              <td style="padding:3px 2px; border:1px solid #000; text-align:left; padding-left:6px">
+                अनिवार्य हिंदी: <strong>${sub.c12_comp_hindi}</strong><br>
+                अनिवार्य अंग्रेजी: <strong>${sub.c12_comp_english}</strong>
+              </td>
+              <td style="padding:3px 2px; border:1px solid #000; text-align:left; padding-left:6px">
+                ${c12OptHtml}
+              </td>
+              <td style="padding:3px 2px; border:1px solid #000; font-weight:900; font-size:0.88rem; background:#f1f5f9">${sub.c12_total}</td>
+            </tr>
+            <tr style="background:#e2e8f0; font-weight:900;">
+              <td colspan="4" style="padding:5px 6px; border:2px solid #000; text-align:right; font-size:0.88rem">
+                🎯 सत्र 2026-27 कुल मांग प्रश्न-पत्र संख्या (कक्षा 9 से 12 महायोग):
+              </td>
+              <td style="padding:5px 6px; border:2px solid #000; font-size:1.1rem; color:#1e3a8a; background:#dbeafe">
+                ${sub.grand_total}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Verification & Responsibility Declaration -->
+        <div style="margin-top:4px; margin-bottom:5px; padding:4px 8px; background:#ffffff; border:1px solid #000; border-left:4px solid #1e3a8a; border-radius:3px; font-size:0.71rem; line-height:1.3; color:#000">
+          <strong>सत्यापन एवं उत्तरदायित्व घोषणा:</strong> प्रमाणित किया जाता है कि उपर्युक्त परीक्षा संबंधी सभी छात्र संख्या, संकाय एवं विषयवार प्रविष्टियों का विद्यालय की प्रवेश पंजिका व शाला दर्पण पोर्टल से शत-प्रतिशत मिलान कर लिया गया है तथा इसमें कोई लिपिकीय अथवा तथ्यात्मक त्रुटि नहीं है। यदि भविष्य में किसी भी प्रकार की त्रुटि, विसंगति अथवा प्रश्न-पत्रों की कमी/अधिकता पाई जाती है, तो इसका संपूर्ण व्यक्तिगत एवं विभागीय उत्तरदायित्व संबंधित संस्था प्रधान एवं परीक्षा प्रभारी का होगा।
+        </div>
+
+        <!-- Official Signatures: Incharge (Left) & Principal (Right) -->
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 30px; margin-top:10px;">
+          <div style="text-align:center; width:36%">
+            <div style="height:30px"></div>
+            <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.85rem; color:#000">
+              हस्ताक्षर परीक्षा प्रभारी
+            </div>
+          </div>
+          <div style="text-align:center; width:44%">
+            ${sub.signature_data ? `
+              <div style="height:30px; display:flex; align-items:center; justify-content:center">
+                <img src="${sub.signature_data}" style="max-height:28px; max-width:140px; object-fit:contain" alt="हस्ताक्षर">
+              </div>
+            ` : `<div style="height:30px"></div>`}
+            <div style="border-top:1.5px solid #000; padding-top:3px; font-weight:800; font-size:0.85rem; color:#000">
+              हस्ताक्षर संस्था प्रधान
+            </div>
+            <div style="font-size:0.76rem; font-weight:700; color:#000; margin-top:1px">प्रधानाचार्य / संस्था प्रधान</div>
+            <div style="font-size:0.73rem; color:#111; margin-top:1px">${school.school_name}</div>
+            <div style="font-size:0.70rem; color:#222; margin-top:1px">ब्लॉक-भिनाय (अजमेर)</div>
+          </div>
+        </div>
+      `;
+
+      const modal = document.getElementById('modal-saman-pdf-standalone');
+      if (modal) modal.style.display = 'block';
+    }
+    window.openStandalonePdfPreview = openStandalonePdfPreview;
+
+    function closeStandalonePdfModal() {
+      const modal = document.getElementById('modal-saman-pdf-standalone');
+      if (modal) modal.style.display = 'none';
+    }
+    window.closeStandalonePdfModal = closeStandalonePdfModal;
+
+    function printStandalonePDF() {
+      const printContent = document.getElementById('standalone-pdf-content');
+      if (!printContent) return;
+      const sName = (currentSchool && currentSchool.school_name) || 'समान_परीक्षा_प्रपत्र';
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="utf-8">
+            <title>${sName} | समान परीक्षा 2026-27 अधिकृत प्रपत्र</title>
+            <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+            <style>
+              @page { size: A4 landscape; margin: 6mm 8mm; }
+              body { font-family: 'Noto Sans Devanagari', sans-serif; margin: 0; padding: 0; color: #000; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+              table { border-collapse: collapse; width: 100%; }
+            </style>
+          </head>
+          <body>
+            ${printContent.innerHTML}
+          </body>
+        </html>
+      `);
+      printWindow.document.close();
+      printWindow.focus();
+      setTimeout(() => {
+        printWindow.print();
+        printWindow.close();
+      }, 500);
+    }
+    window.printStandalonePDF = printStandalonePDF;
+
+    async function downloadStandalonePDF() {
+      const container = document.getElementById('standalone-pdf-content');
+      if (!container) return;
+      if (typeof html2pdf === 'undefined') {
+        printStandalonePDF();
+        return;
+      }
+      const sCode = (currentSchool && currentSchool.shala_darpan_code) || 'School';
+      const sName = (currentSchool && (currentSchool.school_name || currentSchool.school_name_en) || 'School').replace(/[\\/:*?"<>|,.;!()\[\]{}]/g, '_').trim();
+      const filename = `Saman_Pariksha_2026_${sCode}_${sName}.pdf`;
+
+      showToast('अधिकृत Landscape PDF तैयार किया जा रहा है...', 'info');
+
+      const opt = {
+        margin: [4, 6, 4, 6],
+        filename: filename,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, logging: false },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+      };
+
+      try {
+        await html2pdf().set(opt).from(container).save();
+        showToast('A4 Landscape PDF सफलतापूर्वक डाउनलोड हो गया!', 'success');
+      } catch(e) {
+        console.warn('html2pdf fallback to print:', e);
+        printStandalonePDF();
+      }
+    }
+    window.downloadStandalonePDF = downloadStandalonePDF;
+
+    function shareStandaloneWhatsApp() {
+      if (!currentSchool) return;
+      const sCode = currentSchool.shala_darpan_code;
+      const allSubs = JSON.parse(localStorage.getItem('cbeo_saman_pariksha_submissions') || '{}');
+      const sub = allSubs[sCode] || {};
+      const grand = sub.grand_total || document.getElementById('f-sum-grand')?.textContent || '0';
+      const link = `https://jit9763.github.io/cbeo-bhinai-portal/saman_form.html?code=${sCode}&update=1`;
+      
+      const msg = `*कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)*\n\n` +
+        `*जिला समान परीक्षा योजना 2026-27 - अधिकृत प्रपत्र*\n` +
+        `🏫 *विद्यालय:* ${currentSchool.school_name}\n` +
+        `🔢 *कोड:* ${sCode} | *परीक्षा कोड:* ${sub.exam_code || document.getElementById('f-exam-code')?.value || '---'}\n` +
+        `👨‍💼 *संस्था प्रधान:* ${sub.principal_name || currentSchool.principal_name} (${sub.principal_mobile || currentSchool.principal_mobile})\n` +
+        `🎯 *कुल प्रश्न-पत्र मांग (महायोग):* ${grand}\n\n` +
+        `🔗 *अधिकृत प्रपत्र एवं लाइव स्थिति लिंक:*\n${link}`;
+
+      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+      window.open(waUrl, '_blank');
+    }
+    window.shareStandaloneWhatsApp = shareStandaloneWhatsApp;
 
     function goToPortal(showPdf = false) {
       const code = (currentSchool && currentSchool.shala_darpan_code) || '';
@@ -3806,5 +4274,50 @@
       setupStandaloneSignaturePad();
     });
   </script>
+
+  <!-- Standalone A4 Landscape PDF Preview Modal (100% No Login Required) -->
+  <div id="modal-saman-pdf-standalone" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,23,42,0.85); z-index:99999; overflow-y:auto; padding:15px; box-sizing:border-box;">
+    <div style="background:#ffffff; max-width:1150px; margin:20px auto; border-radius:12px; box-shadow:0 12px 35px rgba(0,0,0,0.35); overflow:hidden; font-family:'Noto Sans Devanagari', sans-serif;">
+      
+      <!-- Modal Header Toolbar -->
+      <div style="background:#1e3a8a; color:#ffffff; padding:12px 18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-bottom:2px solid #1d4ed8;">
+        <div style="font-weight:800; font-size:1.1rem; display:flex; align-items:center; gap:8px;">
+          <i class="fas fa-file-pdf" style="color:#f87171; font-size:1.3rem"></i>
+          <span>समान परीक्षा 2026-27 | अधिकृत प्रपत्र (Official A4 Landscape PDF)</span>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+          <button type="button" class="btn btn-warning btn-sm" onclick="downloadStandalonePDF()" style="font-weight:800; background:#f59e0b; color:#0f172a; border:none; padding:7px 15px; border-radius:6px; cursor:pointer; display:inline-flex; align-items:center; gap:5px; box-shadow:0 2px 5px rgba(0,0,0,0.2);">
+            <i class="fas fa-download"></i> 📥 PDF डाउनलोड
+          </button>
+          <button type="button" class="btn btn-success btn-sm" onclick="printStandalonePDF()" style="font-weight:800; background:#10b981; color:#ffffff; border:none; padding:7px 15px; border-radius:6px; cursor:pointer; display:inline-flex; align-items:center; gap:5px; box-shadow:0 2px 5px rgba(0,0,0,0.2);">
+            <i class="fas fa-print"></i> 🖨️ प्रिंट करें
+          </button>
+          <button type="button" class="btn btn-sm" onclick="shareStandaloneWhatsApp()" style="font-weight:800; background:#25D366; color:#ffffff; border:none; padding:7px 15px; border-radius:6px; cursor:pointer; display:inline-flex; align-items:center; gap:5px; box-shadow:0 2px 5px rgba(0,0,0,0.2);">
+            <i class="fab fa-whatsapp"></i> 📲 WhatsApp
+          </button>
+          <button type="button" class="btn btn-outline btn-sm" onclick="closeStandalonePdfModal()" style="font-weight:800; background:rgba(255,255,255,0.18); color:#ffffff; border:1px solid rgba(255,255,255,0.4); padding:7px 14px; border-radius:6px; cursor:pointer;">
+            <i class="fas fa-times"></i> बंद करें
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Printable Container) -->
+      <div style="padding:15px; overflow-x:auto; background:#f1f5f9;">
+        <div id="standalone-pdf-content" style="background:#ffffff; max-width:1050px; margin:0 auto; padding:20px; box-shadow:0 2px 6px rgba(0,0,0,0.1); border-radius:6px;">
+          <!-- Dynamically filled by openStandalonePdfPreview -->
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div style="background:#ffffff; padding:12px 18px; border-top:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; font-size:0.85rem; color:#475569;">
+        <div><strong>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)</strong> | सत्र 2026-27</div>
+        <button type="button" class="btn btn-outline btn-sm" onclick="closeStandalonePdfModal()" style="padding:6px 16px; font-weight:700;">
+          बंद करें (Close)
+        </button>
+      </div>
+
+    </div>
+  </div>
+
 </body>
 </html>

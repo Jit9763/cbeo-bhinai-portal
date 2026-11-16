@@ -1719,7 +1719,17 @@ function setupAutoLogin() {
 
   // Mobile App Style Persistent Session:
   // If user is already logged in, check idle expiration (4 days) and restore their view
+  const urlParamsCheck = new URLSearchParams(window.location.search);
+  const pdfParamCheck = urlParamsCheck.get('show_pdf');
+
   if (!STATE.currentUser) {
+    if (pdfParamCheck) {
+      // 100% No Login Required for PDF viewing
+      setTimeout(() => {
+        openExamPdfPreview(pdfParamCheck);
+      }, 250);
+      return;
+    }
     setTimeout(() => {
       openLoginModal(true); // isMandatory = true
     }, 150);
@@ -1760,10 +1770,7 @@ function setupAutoLogin() {
     const openFormCode = urlParams.get('form');
     if (showPdfCode) {
       setTimeout(() => {
-        if (isTabVisibleForCurrentUser('saman-pariksha')) {
-          switchTab('saman-pariksha');
-          openExamPdfPreview(showPdfCode);
-        }
+        openExamPdfPreview(showPdfCode);
       }, 300);
     } else if (openFormCode) {
       setTimeout(() => {
