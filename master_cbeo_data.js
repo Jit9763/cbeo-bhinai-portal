@@ -32964,7 +32964,7 @@ const MASTER_CBEO_DATA = {
         "pol_sci": 20,
         "history": 20,
         "geography": 0,
-        "hindi_lit": 21,
+        "hindi_lit": 20,
         "eng_lit": 0,
         "sanskrit_lit": 0,
         "urdu_lit": 0,
