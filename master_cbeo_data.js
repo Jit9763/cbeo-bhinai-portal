@@ -1,4 +1,4 @@
-window.MASTER_CBEO_DATA = {
+const MASTER_CBEO_DATA = {
   "cbeo_info": {
     "office_name": "कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय",
     "block": "भिनाय (BHINAI)",
@@ -31255,7 +31255,7 @@ window.MASTER_CBEO_DATA = {
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. बड़गांव",
-      "school_name_en": "सूरखण्ड) (GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADGAON - SURKHAND",
       "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, बड़गांव (सूरखण्ड) | शा.दा. कोड: 221764",
       "village": "बड़गांव",
       "village_hi": "बड़गांव",
@@ -31881,7 +31881,7 @@ window.MASTER_CBEO_DATA = {
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. कैरोट",
-      "school_name_en": "जेतपुरा) (GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD",
       "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, कैरोट (जेतपुरा) | शा.दा. कोड: 221767",
       "village": "कैरोट",
       "village_hi": "कैरोट",
@@ -31991,7 +31991,7 @@ window.MASTER_CBEO_DATA = {
       "incharge_name": "",
       "incharge_mobile": "",
       "school_name_hi": "रा.उ.मा.वि. बडला",
-      "school_name_en": "नागोला) (GOVT. SENIOR SECONDARY SCHOOL BADLA",
+      "school_name_en": "GOVT. SENIOR SECONDARY SCHOOL BADLA",
       "school_name_formal": "कार्यालय राजकीय उच्च माध्यमिक विद्यालय, बडला (नागोला) | शा.दा. कोड: 488781",
       "village": "बडला",
       "village_hi": "बडला",
@@ -32480,24 +32480,6 @@ window.MASTER_CBEO_DATA = {
       "village_hi": "भिनाय",
       "village_en": "BHINAI",
       "district": "अजमेर (AJMER)"
-    },
-    {
-      "s_no": 58,
-      "school_name": "रा.उ.मा.वि. मॉडल टेस्ट स्कूल भिनाय",
-      "shala_darpan_code": "999999",
-      "type": "Government",
-      "category": "Govt. Sr. Sec.",
-      "peeo_id": "PEEO18",
-      "peeo_name": "PEEO BHINAY",
-      "peeo_code": "221780",
-      "default_password": "999999",
-      "exam_code": "AJM04G999999",
-      "principal_name": "जितेन्द्र कुमार (टेस्ट व्यवस्थापक)",
-      "principal_mobile": "9928254317",
-      "incharge_name": "परीक्षण प्रभारी",
-      "incharge_mobile": "9928254317",
-      "school_name_hi": "रा.उ.मा.वि. मॉडल टेस्ट स्कूल भिनाय",
-      "school_name_en": "Govt. Model Test Sr. Sec. School Bhinai"
     }
   ],
   "demands": [
@@ -32758,13 +32740,8 @@ window.MASTER_CBEO_DATA = {
       "grand_total": 110,
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
-      "submitted_by": "PEEO DEOLIYA KALAN",
-      "timestamp": "Fri Oct 02 2026 08:11:34 GMT+0530 (India Standard Time)",
-      "school_medium": "english",
-      "c9_hindi": 0,
-      "c9_english": 36,
-      "c10_hindi": 0,
-      "c10_english": 34
+      "submitted_by": "RAKESH KUMAR BIRAWAT",
+      "timestamp": "Mon Nov 16 2026 20:51:11 GMT+0530 (India Standard Time)"
     },
     "221754": {
       "school_code": "221754",
@@ -32942,8 +32919,8 @@ window.MASTER_CBEO_DATA = {
       "principal_mobile": "9001637473",
       "incharge_name": "SHANKAR LAL SAINI",
       "incharge_mobile": "8233686098",
-      "c9_total": 28,
-      "c9_sanskrit": 28,
+      "c9_total": 24,
+      "c9_sanskrit": 24,
       "c9_urdu": 0,
       "c10_total": 31,
       "c10_sanskrit": 31,
@@ -32951,13 +32928,13 @@ window.MASTER_CBEO_DATA = {
       "c11_faculties": [
         "arts"
       ],
-      "c11_comp_hindi": 19,
-      "c11_comp_english": 19,
+      "c11_comp_hindi": 15,
+      "c11_comp_english": 15,
       "c11_optional": {
-        "pol_sci": 19,
-        "history": 19,
+        "pol_sci": 15,
+        "history": 15,
         "geography": 0,
-        "hindi_lit": 19,
+        "hindi_lit": 15,
         "eng_lit": 0,
         "sanskrit_lit": 0,
         "urdu_lit": 0,
@@ -32977,7 +32954,7 @@ window.MASTER_CBEO_DATA = {
         "agri_bio": 0,
         "agri_chem": 0
       },
-      "c11_total": 19,
+      "c11_total": 15,
       "c12_faculties": [
         "arts"
       ],
@@ -32987,7 +32964,7 @@ window.MASTER_CBEO_DATA = {
         "pol_sci": 20,
         "history": 20,
         "geography": 0,
-        "hindi_lit": 20,
+        "hindi_lit": 21,
         "eng_lit": 0,
         "sanskrit_lit": 0,
         "urdu_lit": 0,
@@ -33008,11 +32985,11 @@ window.MASTER_CBEO_DATA = {
         "agri_chem": 0
       },
       "c12_total": 20,
-      "grand_total": 98,
+      "grand_total": 90,
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
-      "submitted_by": "PEEO NANDSI",
-      "timestamp": "Fri Oct 02 2026 11:48:32 GMT+0530 (India Standard Time)"
+      "submitted_by": "OM PRAKASH VERMA",
+      "timestamp": "Mon Nov 16 2026 15:04:55 GMT+0530 (India Standard Time)"
     },
     "221757": {
       "school_code": "221757",
@@ -33106,8 +33083,8 @@ window.MASTER_CBEO_DATA = {
       "principal_mobile": "9462507510",
       "incharge_name": "GOVIND RAM JANGID",
       "incharge_mobile": "9982323026",
-      "c9_total": 78,
-      "c9_sanskrit": 78,
+      "c9_total": 77,
+      "c9_sanskrit": 77,
       "c9_urdu": 0,
       "c10_total": 38,
       "c10_sanskrit": 38,
@@ -33172,18 +33149,18 @@ window.MASTER_CBEO_DATA = {
         "agri_chem": 0
       },
       "c12_total": 34,
-      "grand_total": 175,
+      "grand_total": 174,
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
       "submitted_by": "PEEO CHAPANERI",
-      "timestamp": "Fri Oct 02 2026 08:54:17 GMT+0530 (India Standard Time)"
+      "timestamp": "Fri Oct 09 2026 12:08:38 GMT+0530 (India Standard Time)"
     },
     "221759": {
       "school_code": "221759",
       "school_name": "GOVT. SENIOR SECONDARY SCHOOL LAMGARA",
       "category": "Govt. Sr. Sec.",
       "peeo_name": "PEEO LAMGARA",
-      "exam_code": "AJM03G221759",
+      "exam_code": "AJM04G221759",
       "principal_name": "RAJEEV KUMAR MANDOT",
       "principal_mobile": "9413134849",
       "incharge_name": "HEMENDRA KUMAR TAILOR",
@@ -33258,7 +33235,7 @@ window.MASTER_CBEO_DATA = {
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
       "submitted_by": "RAJEEV KUMAR MANDOT",
-      "timestamp": "Fri Oct 02 2026 10:30:13 GMT+0530 (India Standard Time)"
+      "timestamp": "Tue Nov 17 2026 11:15:41 GMT+0530 (India Standard Time)"
     },
     "221760": {
       "school_code": "221760",
@@ -33352,8 +33329,8 @@ window.MASTER_CBEO_DATA = {
       "principal_mobile": "9462905104",
       "incharge_name": "Puran Singh",
       "incharge_mobile": "8078654534",
-      "c9_total": 37,
-      "c9_sanskrit": 37,
+      "c9_total": 32,
+      "c9_sanskrit": 32,
       "c9_urdu": 0,
       "c10_total": 18,
       "c10_sanskrit": 18,
@@ -33361,13 +33338,13 @@ window.MASTER_CBEO_DATA = {
       "c11_faculties": [
         "arts"
       ],
-      "c11_comp_hindi": 18,
-      "c11_comp_english": 18,
+      "c11_comp_hindi": 16,
+      "c11_comp_english": 16,
       "c11_optional": {
-        "pol_sci": 18,
-        "history": 18,
+        "pol_sci": 16,
+        "history": 16,
         "geography": 0,
-        "hindi_lit": 18,
+        "hindi_lit": 16,
         "eng_lit": 0,
         "sanskrit_lit": 0,
         "urdu_lit": 0,
@@ -33387,7 +33364,7 @@ window.MASTER_CBEO_DATA = {
         "agri_bio": 0,
         "agri_chem": 0
       },
-      "c11_total": 18,
+      "c11_total": 16,
       "c12_faculties": [
         "arts"
       ],
@@ -33418,11 +33395,11 @@ window.MASTER_CBEO_DATA = {
         "agri_chem": 0
       },
       "c12_total": 21,
-      "grand_total": 94,
+      "grand_total": 87,
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
-      "submitted_by": "PEEO LAMGARA",
-      "timestamp": "Fri Oct 02 2026 10:56:17 GMT+0530 (India Standard Time)"
+      "submitted_by": "SUNITA SHARMA",
+      "timestamp": "Thu Oct 08 2026 19:17:01 GMT+0530 (India Standard Time)"
     },
     "221762": {
       "school_code": "221762",
@@ -33667,8 +33644,8 @@ window.MASTER_CBEO_DATA = {
       "grand_total": 261,
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
-      "submitted_by": "PEEO BARGAON",
-      "timestamp": "Sat Oct 03 2026 11:32:14 GMT+0530 (India Standard Time)"
+      "submitted_by": "CHANDRA PRAKASH LADDHA",
+      "timestamp": "Mon Nov 16 2026 14:29:39 GMT+0530 (India Standard Time)"
     },
     "221765": {
       "school_code": "221765",
@@ -33798,13 +33775,15 @@ window.MASTER_CBEO_DATA = {
         "agri_chem": 0
       },
       "c11_total": 32,
-      "c12_faculties": [],
+      "c12_faculties": [
+        "arts"
+      ],
       "c12_comp_hindi": 23,
       "c12_comp_english": 23,
       "c12_optional": {
-        "pol_sci": 0,
-        "history": 0,
-        "geography": 0,
+        "pol_sci": 23,
+        "history": 23,
+        "geography": 23,
         "hindi_lit": 0,
         "eng_lit": 0,
         "sanskrit_lit": 0,
@@ -33829,8 +33808,8 @@ window.MASTER_CBEO_DATA = {
       "grand_total": 159,
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
-      "submitted_by": "PEEO PADALIYA",
-      "timestamp": "Fri Oct 02 2026 10:54:32 GMT+0530 (India Standard Time)"
+      "submitted_by": "LAXMI POPTANI",
+      "timestamp": "Tue Nov 17 2026 14:56:48 GMT+0530 (India Standard Time)"
     },
     "221767": {
       "school_code": "221767",
@@ -34079,15 +34058,15 @@ window.MASTER_CBEO_DATA = {
       "grand_total": 319,
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
-      "submitted_by": "PEEO BANDANWARA",
-      "timestamp": "Fri Oct 02 2026 10:53:55 GMT+0530 (India Standard Time)"
+      "submitted_by": "BHANWAR LAL JAT",
+      "timestamp": "Mon Nov 16 2026 13:59:00 GMT+0530 (India Standard Time)"
     },
     "221770": {
       "school_code": "221770",
       "school_name": "MAHATMA GANDHI GOVT. SCHOOL BANDANWARA",
       "category": "MGGS",
       "peeo_name": "PEEO BANDANWARA",
-      "exam_code": "221770",
+      "exam_code": "AJM04G221770",
       "principal_name": "Afsar Ahmed",
       "principal_mobile": "9079000589",
       "incharge_name": "Rajesh Kumar Rajput",
@@ -34158,12 +34137,7 @@ window.MASTER_CBEO_DATA = {
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
       "submitted_by": "Afsar Ahmed",
-      "timestamp": "Fri Oct 02 2026 11:49:39 GMT+0530 (India Standard Time)",
-      "school_medium": "english",
-      "c9_hindi": 0,
-      "c9_english": 25,
-      "c10_hindi": 0,
-      "c10_english": 16
+      "timestamp": "Wed Oct 07 2026 19:23:26 GMT+0530 (India Standard Time)"
     },
     "221771": {
       "school_code": "221771",
@@ -34329,9 +34303,7 @@ window.MASTER_CBEO_DATA = {
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
       "submitted_by": "PEEO NAGOLA",
-      "timestamp": "Wed Oct 07 2026 14:25:00 GMT+0530 (India Standard Time)",
-      "c9_hindi": 79,
-      "c9_english": 0
+      "timestamp": "Thu Oct 08 2026 11:32:55 GMT+0530 (India Standard Time)"
     },
     "221773": {
       "school_code": "221773",
@@ -34576,8 +34548,8 @@ window.MASTER_CBEO_DATA = {
       "grand_total": 122,
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
-      "submitted_by": "PEEO RATAKOT",
-      "timestamp": "Fri Oct 02 2026 09:23:19 GMT+0530 (India Standard Time)"
+      "submitted_by": "KUNJ BIHARI SHARMA",
+      "timestamp": "Tue Nov 17 2026 14:07:07 GMT+0530 (India Standard Time)"
     },
     "221776": {
       "school_code": "221776",
@@ -34736,8 +34708,8 @@ window.MASTER_CBEO_DATA = {
       "grand_total": 138,
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
-      "submitted_by": "PEEO KUMHARIYA",
-      "timestamp": "Fri Oct 02 2026 08:41:21 GMT+0530 (India Standard Time)"
+      "submitted_by": "JYOTI PRAKASH SHARMA",
+      "timestamp": "Tue Nov 17 2026 10:23:34 GMT+0530 (India Standard Time)"
     },
     "221778": {
       "school_code": "221778",
@@ -34790,8 +34762,8 @@ window.MASTER_CBEO_DATA = {
         "arts",
         "science"
       ],
-      "c12_comp_hindi": 19,
-      "c12_comp_english": 19,
+      "c12_comp_hindi": 18,
+      "c12_comp_english": 18,
       "c12_optional": {
         "pol_sci": 0,
         "history": 0,
@@ -34816,17 +34788,12 @@ window.MASTER_CBEO_DATA = {
         "agri_bio": 0,
         "agri_chem": 0
       },
-      "c12_total": 19,
-      "grand_total": 87,
+      "c12_total": 18,
+      "grand_total": 86,
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
       "submitted_by": "PEEO BHINAY",
-      "timestamp": "Fri Oct 02 2026 08:49:56 GMT+0530 (India Standard Time)",
-      "school_medium": "english",
-      "c9_hindi": 0,
-      "c9_english": 26,
-      "c10_hindi": 0,
-      "c10_english": 18
+      "timestamp": "Tue Oct 06 2026 09:42:31 GMT+0530 (India Standard Time)"
     },
     "221780": {
       "school_code": "221780",
@@ -34838,9 +34805,9 @@ window.MASTER_CBEO_DATA = {
       "principal_mobile": "9549240545",
       "incharge_name": "Chandrawati Tejwani",
       "incharge_mobile": "9413694262",
-      "c9_total": 144,
-      "c9_sanskrit": 131,
-      "c9_urdu": 13,
+      "c9_total": 132,
+      "c9_sanskrit": 120,
+      "c9_urdu": 12,
       "c10_total": 88,
       "c10_sanskrit": 80,
       "c10_urdu": 8,
@@ -34850,8 +34817,8 @@ window.MASTER_CBEO_DATA = {
         "commerce",
         "agri"
       ],
-      "c11_comp_hindi": 90,
-      "c11_comp_english": 90,
+      "c11_comp_hindi": 87,
+      "c11_comp_english": 87,
       "c11_optional": {
         "pol_sci": 8,
         "history": 35,
@@ -34864,9 +34831,9 @@ window.MASTER_CBEO_DATA = {
         "sociology": 0,
         "home_sci": 0,
         "drawing": 33,
-        "physics": 21,
-        "chemistry": 21,
-        "biology": 14,
+        "physics": 18,
+        "chemistry": 18,
+        "biology": 11,
         "maths": 7,
         "comp_sci": 8,
         "accountancy": 4,
@@ -34876,7 +34843,7 @@ window.MASTER_CBEO_DATA = {
         "agri_bio": 22,
         "agri_chem": 22
       },
-      "c11_total": 90,
+      "c11_total": 87,
       "c12_faculties": [
         "arts",
         "science",
@@ -34910,11 +34877,11 @@ window.MASTER_CBEO_DATA = {
         "agri_chem": 22
       },
       "c12_total": 89,
-      "grand_total": 411,
+      "grand_total": 396,
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
       "submitted_by": "PEEO BHINAY",
-      "timestamp": "Fri Oct 02 2026 11:46:32 GMT+0530 (India Standard Time)"
+      "timestamp": "Thu Oct 08 2026 12:37:23 GMT+0530 (India Standard Time)"
     },
     "221781": {
       "school_code": "221781",
@@ -35159,8 +35126,8 @@ window.MASTER_CBEO_DATA = {
       "grand_total": 123,
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
-      "submitted_by": "PEEO DHANTOL",
-      "timestamp": "Fri Oct 02 2026 09:45:13 GMT+0530 (India Standard Time)"
+      "submitted_by": "SURENDRA NAGORA",
+      "timestamp": "Tue Nov 17 2026 11:44:22 GMT+0530 (India Standard Time)"
     },
     "221784": {
       "school_code": "221784",
@@ -35254,8 +35221,8 @@ window.MASTER_CBEO_DATA = {
       "principal_mobile": "9928328808",
       "incharge_name": "Dilip Singh Rathore",
       "incharge_mobile": "9667718413",
-      "c9_total": 41,
-      "c9_sanskrit": 41,
+      "c9_total": 36,
+      "c9_sanskrit": 36,
       "c9_urdu": 0,
       "c10_total": 32,
       "c10_sanskrit": 32,
@@ -35320,11 +35287,11 @@ window.MASTER_CBEO_DATA = {
         "agri_chem": 0
       },
       "c12_total": 14,
-      "grand_total": 115,
+      "grand_total": 110,
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
-      "submitted_by": "PEEO RAMMALIA",
-      "timestamp": "Fri Oct 02 2026 10:44:34 GMT+0530 (India Standard Time)"
+      "submitted_by": "LAL CHAND MUNOTH",
+      "timestamp": "Tue Nov 17 2026 10:14:21 GMT+0530 (India Standard Time)"
     },
     "221786": {
       "school_code": "221786",
@@ -36137,8 +36104,8 @@ window.MASTER_CBEO_DATA = {
       "grand_total": 88,
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
-      "submitted_by": "PEEO NAGOLA",
-      "timestamp": "Fri Oct 02 2026 09:15:07 GMT+0530 (India Standard Time)"
+      "submitted_by": "VED PRAKASH",
+      "timestamp": "Mon Nov 16 2026 14:45:19 GMT+0530 (India Standard Time)"
     },
     "488791": {
       "school_code": "488791",
@@ -36150,8 +36117,8 @@ window.MASTER_CBEO_DATA = {
       "principal_mobile": "8890478933",
       "incharge_name": "श्रीमती चंचल कच्छावा",
       "incharge_mobile": "8003070002",
-      "c9_total": 27,
-      "c9_sanskrit": 27,
+      "c9_total": 25,
+      "c9_sanskrit": 25,
       "c9_urdu": 0,
       "c10_total": 14,
       "c10_sanskrit": 14,
@@ -36159,19 +36126,19 @@ window.MASTER_CBEO_DATA = {
       "c11_faculties": [
         "arts"
       ],
-      "c11_comp_hindi": 17,
-      "c11_comp_english": 17,
+      "c11_comp_hindi": 13,
+      "c11_comp_english": 13,
       "c11_optional": {
         "pol_sci": 0,
-        "history": 17,
+        "history": 13,
         "geography": 0,
-        "hindi_lit": 17,
+        "hindi_lit": 13,
         "eng_lit": 0,
         "sanskrit_lit": 0,
         "urdu_lit": 0,
         "economics": 0,
         "sociology": 0,
-        "home_sci": 17,
+        "home_sci": 13,
         "drawing": 0,
         "physics": 0,
         "chemistry": 0,
@@ -36185,7 +36152,7 @@ window.MASTER_CBEO_DATA = {
         "agri_bio": 0,
         "agri_chem": 0
       },
-      "c11_total": 17,
+      "c11_total": 13,
       "c12_faculties": [],
       "c12_comp_hindi": 0,
       "c12_comp_english": 0,
@@ -36214,11 +36181,11 @@ window.MASTER_CBEO_DATA = {
         "agri_chem": 0
       },
       "c12_total": 0,
-      "grand_total": 58,
+      "grand_total": 52,
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
-      "submitted_by": "PEEO KARATI",
-      "timestamp": "Fri Oct 02 2026 10:36:07 GMT+0530 (India Standard Time)"
+      "submitted_by": "श्री हंस राज गुर्जर (प्रभारी संस्था प्रधान)",
+      "timestamp": "Mon Nov 16 2026 17:19:32 GMT+0530 (India Standard Time)"
     },
     "488897": {
       "school_code": "488897",
@@ -36713,8 +36680,8 @@ window.MASTER_CBEO_DATA = {
       "school_name": "TAGORE GLOBAL SCHOOL (EKALSINGHA)",
       "category": "Private Secondary",
       "peeo_name": "PEEO EKALSEENGA",
-      "exam_code": "AJM04P055700",
-      "principal_name": "AALOK MISHRA",
+      "exam_code": "AJM04PP55700",
+      "principal_name": "ALOK MISHRA",
       "principal_mobile": "9251300400",
       "incharge_name": "RAVI SHANKAR SHARMA",
       "incharge_mobile": "8504872321",
@@ -36783,8 +36750,8 @@ window.MASTER_CBEO_DATA = {
       "grand_total": 92,
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
-      "submitted_by": "AALOK MISHRA",
-      "timestamp": "01/10/2026, 15:00:00"
+      "submitted_by": "ALOK MISHRA",
+      "timestamp": "Tue Nov 17 2026 09:23:30 GMT+0530 (India Standard Time)"
     },
     "P16099": {
       "school_code": "P16099",
@@ -36961,16 +36928,16 @@ window.MASTER_CBEO_DATA = {
       "school_name": "SAMRAT INTERNATIONAL SCHOOL BANDANWARA",
       "category": "Private Secondary",
       "peeo_name": "PEEO BANDANWARA",
-      "exam_code": "AJM04P016964",
-      "principal_name": "Kamlesh Kumar sharma",
-      "principal_mobile": "9950000855",
-      "incharge_name": "Jitendra prajapat",
-      "incharge_mobile": "9983606823",
-      "c9_total": 60,
-      "c9_sanskrit": 59,
-      "c9_urdu": 1,
-      "c10_total": 52,
-      "c10_sanskrit": 52,
+      "exam_code": "",
+      "principal_name": "",
+      "principal_mobile": "",
+      "incharge_name": "",
+      "incharge_mobile": "",
+      "c9_total": 0,
+      "c9_sanskrit": 0,
+      "c9_urdu": 0,
+      "c10_total": 0,
+      "c10_sanskrit": 0,
       "c10_urdu": 0,
       "c11_faculties": [],
       "c11_comp_hindi": 0,
@@ -37028,11 +36995,11 @@ window.MASTER_CBEO_DATA = {
         "agri_chem": 0
       },
       "c12_total": 0,
-      "grand_total": 112,
+      "grand_total": 0,
       "status": "पूर्ण (Submitted)",
       "is_submitted": true,
-      "submitted_by": "PEEO BANDANWARA",
-      "timestamp": "Fri Oct 02 2026 08:53:05 GMT+0530 (India Standard Time)"
+      "submitted_by": "",
+      "timestamp": "1792427293875"
     },
     "P19054": {
       "school_code": "P19054",
@@ -45485,3 +45452,5 @@ window.MASTER_CBEO_DATA = {
     }
   }
 };
+if (typeof window !== "undefined") window.MASTER_CBEO_DATA = MASTER_CBEO_DATA;
+if (typeof module !== "undefined" && module.exports) module.exports = MASTER_CBEO_DATA;

@@ -1229,11 +1229,24 @@
       const chk = document.getElementById(`f-${cls}-fac-${facKey}`);
       const sec = document.getElementById(`f-${cls}-section-${facKey}`);
       const lbl = document.getElementById(`lbl-${cls}-${facKey}`);
+      const grid = document.getElementById(`f-${cls}-grid-${facKey}`);
       if (!chk || !sec) return;
 
       if (chk.checked) {
         sec.classList.add('active');
         if (lbl) lbl.classList.add('active');
+        if (grid && grid.children.length === 0 && FACULTIES_CONFIG[facKey]) {
+          grid.innerHTML = '';
+          FACULTIES_CONFIG[facKey].subjects.forEach(subj => {
+            const box = document.createElement('div');
+            box.className = 'subject-card';
+            box.innerHTML = `
+              <label title="${subj.label}">${subj.label}</label>
+              <input type="number" min="0" value="0" id="f-${cls}-opt-${subj.key}" oninput="calculateTotals()">
+            `;
+            grid.appendChild(box);
+          });
+        }
       } else {
         sec.classList.remove('active');
         if (lbl) lbl.classList.remove('active');
@@ -2810,6 +2823,9 @@
               localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(allSubs));
               if (currentSchool && data.submissions[currentSchool.shala_darpan_code]) {
                 const liveSub = data.submissions[currentSchool.shala_darpan_code];
+                try {
+                  localStorage.setItem(`cbeo_form_draft_${currentSchool.shala_darpan_code}`, JSON.stringify(liveSub));
+                } catch(e) {}
                 populateFormFieldsWithSubmission(liveSub);
                 renderSubmittedPreviewTable(liveSub);
                 checkAndRenderSchoolMismatch(currentSchool.shala_darpan_code, liveSub);
@@ -3147,7 +3163,33 @@
       const draftKey = `cbeo_form_draft_${code}`;
       const draft = JSON.parse(localStorage.getItem(draftKey) || 'null');
       if (draft) {
-        sub = { ...sub, ...draft };
+        if (!sub.grand_total || sub.grand_total === 0) {
+          sub = { ...sub, ...draft };
+        } else {
+          // If sub is already submitted or has valid data, preserve non-empty stream faculties and optionals
+          const merged = { ...sub, ...draft };
+          if ((!draft.c12_faculties || draft.c12_faculties.length === 0) && sub.c12_faculties && sub.c12_faculties.length > 0) {
+            merged.c12_faculties = sub.c12_faculties;
+          }
+          if ((!draft.c11_faculties || draft.c11_faculties.length === 0) && sub.c11_faculties && sub.c11_faculties.length > 0) {
+            merged.c11_faculties = sub.c11_faculties;
+          }
+          const hasDraft12Opt = draft.c12_optional && Object.values(draft.c12_optional).some(v => v > 0);
+          if (!hasDraft12Opt && sub.c12_optional) {
+            merged.c12_optional = sub.c12_optional;
+          }
+          const hasDraft11Opt = draft.c11_optional && Object.values(draft.c11_optional).some(v => v > 0);
+          if (!hasDraft11Opt && sub.c11_optional) {
+            merged.c11_optional = sub.c11_optional;
+          }
+          if ((!draft.c12_total || draft.c12_total === 0) && sub.c12_total > 0) {
+            merged.c12_total = sub.c12_total;
+          }
+          if ((!draft.c11_total || draft.c11_total === 0) && sub.c11_total > 0) {
+            merged.c11_total = sub.c11_total;
+          }
+          sub = merged;
+        }
         const draftIndicator = document.getElementById('standalone-draft-status');
         if (draftIndicator) {
           draftIndicator.innerHTML = `<i class="fas fa-check-circle"></i> <span>ड्राफ्ट सुरक्षित (${draft.updated_at || 'सुरक्षित'})</span>`;
@@ -3168,6 +3210,9 @@
               const liveSub = data.submission;
               allSubs[code] = liveSub;
               localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(allSubs));
+              try {
+                localStorage.setItem(`cbeo_form_draft_${code}`, JSON.stringify(liveSub));
+              } catch(e) {}
               // Update form fields with live cloud data
               populateFormFieldsWithSubmission(liveSub);
               renderSubmittedPreviewTable(liveSub);
