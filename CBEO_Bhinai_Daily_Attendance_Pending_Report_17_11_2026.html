@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<title>दैनिक शाला दर्पण विद्यार्थी उपस्थिति पेंडिंग रिपोर्ट - CBEO भिनाय (अजमेर)</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 10mm 10mm 10mm 10mm;
+  }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nirmala UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  body {
+    background: #ffffff;
+    color: #1e293b;
+    font-size: 11px;
+    line-height: 1.35;
+    padding: 10px;
+  }
+  .header {
+    text-align: center;
+    border-bottom: 2.5px solid #1e3a8a;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+  }
+  .govt-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #475569;
+    letter-spacing: 0.5px;
+  }
+  .office-title {
+    font-size: 17px;
+    font-weight: 900;
+    color: #1e3a8a;
+    margin: 2px 0;
+  }
+  .district-title {
+    font-size: 12px;
+    font-weight: 800;
+    color: #0f766e;
+    margin-bottom: 4px;
+  }
+  .report-subject {
+    font-size: 13px;
+    font-weight: 800;
+    color: #b91c1c;
+    background: #fef2f2;
+    border: 1px dashed #f87171;
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 4px;
+    margin-top: 3px;
+  }
+  .meta-bar {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #475569;
+    margin-top: 5px;
+    padding: 0 4px;
+  }
+  
+  /* Dashboard Summary Cards */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin: 10px 0;
+  }
+  .stat-card {
+    border-radius: 6px;
+    padding: 8px 6px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+  }
+  .stat-num {
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 1.1;
+  }
+  .stat-lbl {
+    font-size: 9.5px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  .card-total { background: #f8fafc; border-color: #cbd5e1; color: #1e293b; }
+  .card-full { background: #f0fdf4; border-color: #86efac; color: #166534; }
+  .card-partial { background: #fffbeb; border-color: #fde68a; color: #b45309; }
+  .card-zero { background: #fef2f2; border-color: #fca5a5; color: #991b1b; }
+  .card-defaulter { background: #fdf2f8; border-color: #fbcfe8; color: #9d174d; }
+
+  .notice-box {
+    background: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    padding: 6px 10px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #78350f;
+    margin-bottom: 12px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .section-heading {
+    font-size: 12px;
+    font-weight: 800;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin: 12px 0 6px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .sec-red {
+    background: #fef2f2;
+    color: #991b1b;
+    border-left: 5px solid #dc2626;
+    border-top: 1px solid #fecaca;
+    border-right: 1px solid #fecaca;
+    border-bottom: 1px solid #fecaca;
+  }
+  .sec-amber {
+    background: #fffbeb;
+    color: #92400e;
+    border-left: 5px solid #f59e0b;
+    border-top: 1px solid #fef3c7;
+    border-right: 1px solid #fef3c7;
+    border-bottom: 1px solid #fef3c7;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.8px;
+    margin-bottom: 10px;
+    page-break-inside: auto;
+  }
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+  th, td {
+    border: 1px solid #cbd5e1;
+    padding: 4.5px 6px;
+    vertical-align: middle;
+  }
+  th {
+    background: #f1f5f9;
+    color: #0f172a;
+    font-weight: 800;
+    text-align: center;
+  }
+  .th-red {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+  .th-amber {
+    background: #fef3c7;
+    color: #78350f;
+  }
+  .text-center { text-align: center; }
+  .text-right { text-align: right; }
+  .text-left { text-align: left; }
+  .font-bold { font-weight: 800; }
+  .text-danger { color: #dc2626; font-weight: 800; }
+  .text-warning { color: #d97706; font-weight: 800; }
+  .text-success { color: #16a34a; font-weight: 800; }
+  
+  .badge-zero {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-weight: 800;
+    font-size: 9px;
+    display: inline-block;
+  }
+  .badge-part {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-weight: 800;
+    font-size: 9px;
+    display: inline-block;
+  }
+
+  .sign-area {
+    margin-top: 25px;
+    display: flex;
+    justify-content: flex-end;
+    text-align: center;
+    page-break-inside: avoid;
+  }
+  .sign-box {
+    width: 250px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #1e3a8a;
+  }
+  .page-footer {
+    margin-top: 15px;
+    border-top: 1px solid #cbd5e1;
+    padding-top: 5px;
+    font-size: 8.5px;
+    color: #64748b;
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Official Header -->
+  <div class="header">
+    <div class="govt-title">राजस्थान सरकार | शिक्षा विभाग</div>
+    <div class="office-title">कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय</div>
+    <div class="district-title">जिला: अजमेर (AJMER) | ब्लॉक: भिनाय (BHINAI)</div>
+    <div class="report-subject">🚨 दैनिक विद्यार्थी उपस्थिति डिफ़ॉल्टर / पेंडिंग रिपोर्ट</div>
+    <div class="meta-bar">
+      <span><strong>तिथि:</strong> 17 नवम्बर 2026</span>
+      <span><strong>समय:</strong> अपराह्न 04:48 PM</span>
+      <span><strong>स्रोत:</strong> शाला दर्पण पोर्टल (School Daily Attendance)</span>
+    </div>
+  </div>
+
+  <!-- Summary Dashboard Cards -->
+  <div class="stats-grid">
+    <div class="stat-card card-total">
+      <div class="stat-num">137</div>
+      <div class="stat-lbl">कुल विद्यालय (Total)</div>
+    </div>
+    <div class="stat-card card-full">
+      <div class="stat-num">80</div>
+      <div class="stat-lbl">पूर्ण उपस्थित (100%)</div>
+    </div>
+    <div class="stat-card card-partial">
+      <div class="stat-num">46</div>
+      <div class="stat-lbl">आंशिक शेष (Partial)</div>
+    </div>
+    <div class="stat-card card-zero">
+      <div class="stat-num">11</div>
+      <div class="stat-lbl">शून्य प्रविष्टि (Zero)</div>
+    </div>
+    <div class="stat-card card-defaulter">
+      <div class="stat-num">57</div>
+      <div class="stat-lbl">कुल लंबित (Defaulters)</div>
+    </div>
+  </div>
+
+  <div class="notice-box">
+    ⚠️ <strong>कार्यालय निर्देश:</strong> शाला दर्पण पोर्टल दैनिक समीक्षा अनुसार ब्लॉक भिनाय के कुल 137 विद्यालयों में से 80 विद्यालयों द्वारा शत-प्रतिशत सेक्शनों की उपस्थिति दर्ज की गई है। निम्न 57 विद्यालयों (11 पूर्णतः शून्य + 46 आंशिक शेष) के संस्था प्रधानों को निर्देशित किया जाता है कि आज ही तत्काल शेष सेक्शनों की विद्यार्थी उपस्थिति शाला दर्पण ऐप/वेब पोर्टल पर दर्ज करना सुनिश्चित करें।
+  </div>
+
+  <!-- TABLE 1: ZERO ATTENDANCE -->
+  <div class="section-heading sec-red">
+    <span>भाग 1: उपस्थिति बिल्कुल नहीं भरने वाले विद्यालय (शून्य प्रविष्टि - School Entry Marked: NO)</span>
+    <span>कुल विद्यालय: 11</span>
+  </div>
+
+  <table>
+    <thead>
+      <tr class="th-red">
+        <th style="width: 30px;">क्र.</th>
+        <th style="width: 60px;">NIC कोड</th>
+        <th>विद्यालय का नाम (School Name)</th>
+        <th style="width: 85px;">संस्था प्रधान मोबाइल</th>
+        <th style="width: 55px;">कुल छात्र</th>
+        <th style="width: 50px;">कुल सेक्शन</th>
+        <th style="width: 55px;">प्रविष्ट सेक्शन</th>
+        <th style="width: 75px;">स्थिति</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">1</td>
+        <td class="text-center font-bold">488683</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. PRIMARY SCHOOL AAV</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9829592431" style="text-decoration:none; color:#1e3a8a;">9829592431</a></td>
+        <td class="text-center font-bold">20</td>
+        <td class="text-center font-bold">5</td>
+        <td class="text-center text-danger font-bold">0</td>
+        <td class="text-center"><span class="badge-zero">शून्य (Pending)</span></td>
+      </tr>
+      <tr style="background: #fff5f5;">
+        <td class="text-center font-bold">2</td>
+        <td class="text-center font-bold">506579</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. PRIMARY SCHOOL BHERU KHEDA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:8003824561" style="text-decoration:none; color:#1e3a8a;">8003824561</a></td>
+        <td class="text-center font-bold">53</td>
+        <td class="text-center font-bold">5</td>
+        <td class="text-center text-danger font-bold">0</td>
+        <td class="text-center"><span class="badge-zero">शून्य (Pending)</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">3</td>
+        <td class="text-center font-bold">506627</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. PRIMARY SCHOOL DHANDHO KA KHEDA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9166231666" style="text-decoration:none; color:#1e3a8a;">9166231666</a></td>
+        <td class="text-center font-bold">15</td>
+        <td class="text-center font-bold">5</td>
+        <td class="text-center text-danger font-bold">0</td>
+        <td class="text-center"><span class="badge-zero">शून्य (Pending)</span></td>
+      </tr>
+      <tr style="background: #fff5f5;">
+        <td class="text-center font-bold">4</td>
+        <td class="text-center font-bold">506514</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. PRIMARY SCHOOL GORDHANPURANA CHACHUNDRA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9950617758" style="text-decoration:none; color:#1e3a8a;">9950617758</a></td>
+        <td class="text-center font-bold">23</td>
+        <td class="text-center font-bold">5</td>
+        <td class="text-center text-danger font-bold">0</td>
+        <td class="text-center"><span class="badge-zero">शून्य (Pending)</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">5</td>
+        <td class="text-center font-bold">410775</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. PRIMARY SCHOOL KUMHARIYA KHEDA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9950470077" style="text-decoration:none; color:#1e3a8a;">9950470077</a></td>
+        <td class="text-center font-bold">33</td>
+        <td class="text-center font-bold">5</td>
+        <td class="text-center text-danger font-bold">0</td>
+        <td class="text-center"><span class="badge-zero">शून्य (Pending)</span></td>
+      </tr>
+      <tr style="background: #fff5f5;">
+        <td class="text-center font-bold">6</td>
+        <td class="text-center font-bold">493708</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. PRIMARY SCHOOL REBARIYON KI DHANI</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9829329326" style="text-decoration:none; color:#1e3a8a;">9829329326</a></td>
+        <td class="text-center font-bold">22</td>
+        <td class="text-center font-bold">5</td>
+        <td class="text-center text-danger font-bold">0</td>
+        <td class="text-center"><span class="badge-zero">शून्य (Pending)</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">7</td>
+        <td class="text-center font-bold">462777</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. PRIMARY SCHOOL REN  BHINAI  AJMER  RAJASTHAN</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9660514516" style="text-decoration:none; color:#1e3a8a;">9660514516</a></td>
+        <td class="text-center font-bold">37</td>
+        <td class="text-center font-bold">5</td>
+        <td class="text-center text-danger font-bold">0</td>
+        <td class="text-center"><span class="badge-zero">शून्य (Pending)</span></td>
+      </tr>
+      <tr style="background: #fff5f5;">
+        <td class="text-center font-bold">8</td>
+        <td class="text-center font-bold">533412</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. UPPER PRIMARY SANSKRIT SCHOOL EKALSINGA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9413691083" style="text-decoration:none; color:#1e3a8a;">9413691083</a></td>
+        <td class="text-center font-bold">5</td>
+        <td class="text-center font-bold">4</td>
+        <td class="text-center text-danger font-bold">0</td>
+        <td class="text-center"><span class="badge-zero">शून्य (Pending)</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">9</td>
+        <td class="text-center font-bold">226361</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. UPPER PRIMARY SANSKRIT SCHOOL MAJRA GANESHPURA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:6399149919" style="text-decoration:none; color:#1e3a8a;">6399149919</a></td>
+        <td class="text-center font-bold">41</td>
+        <td class="text-center font-bold">7</td>
+        <td class="text-center text-danger font-bold">0</td>
+        <td class="text-center"><span class="badge-zero">शून्य (Pending)</span></td>
+      </tr>
+      <tr style="background: #fff5f5;">
+        <td class="text-center font-bold">10</td>
+        <td class="text-center font-bold">221779</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. VARISHTHA UPADHYAY SANSKRIT SCHOOL BHINAI</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9460614343" style="text-decoration:none; color:#1e3a8a;">9460614343</a></td>
+        <td class="text-center font-bold">63</td>
+        <td class="text-center font-bold">10</td>
+        <td class="text-center text-danger font-bold">0</td>
+        <td class="text-center"><span class="badge-zero">शून्य (Pending)</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">11</td>
+        <td class="text-center font-bold">526760</td>
+        <td class="text-left font-bold" style="color: #0f172a;">KASTURBA GANDHI BALIKA VIDYALAYA DEOLIYA KALAN</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9784012123" style="text-decoration:none; color:#1e3a8a;">9784012123</a></td>
+        <td class="text-center font-bold">105</td>
+        <td class="text-center font-bold">3</td>
+        <td class="text-center text-danger font-bold">0</td>
+        <td class="text-center"><span class="badge-zero">शून्य (Pending)</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- TABLE 2: PARTIAL ATTENDANCE -->
+  <div class="section-heading sec-amber" style="page-break-before: auto; margin-top: 16px;">
+    <span>भाग 2: आंशिक उपस्थिति दर्ज विद्यालय (Pending Sections - कुछ कक्षाएं शेष)</span>
+    <span>कुल विद्यालय: 46</span>
+  </div>
+
+  <table>
+    <thead>
+      <tr class="th-amber">
+        <th style="width: 28px;">क्र.</th>
+        <th style="width: 55px;">NIC कोड</th>
+        <th>विद्यालय का नाम (School Name)</th>
+        <th style="width: 80px;">संस्था प्रधान मोबाइल</th>
+        <th style="width: 45px;">कुल छात्र</th>
+        <th style="width: 45px;">कुल सेक्शन</th>
+        <th style="width: 45px;">प्रविष्ट</th>
+        <th style="width: 45px;">शेष सेक्शन</th>
+        <th style="width: 50px;">App प्रविष्टि</th>
+        <th style="width: 50px;">Web प्रविष्टि</th>
+        <th style="width: 60px;">स्थिति</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">1</td>
+        <td class="text-center font-bold">506830</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. GIRLS SENIOR SECONDARY SCHOOL BADLI</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9667157047" style="text-decoration:none; color:#1e3a8a;">9667157047</a></td>
+        <td class="text-center">347</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">10</td>
+        <td class="text-center text-danger font-bold">2</td>
+        <td class="text-center">167</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 2</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">2</td>
+        <td class="text-center font-bold">488791</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. GIRLS SENIOR SECONDARY SCHOOL KHEDI</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:8094606900" style="text-decoration:none; color:#1e3a8a;">8094606900</a></td>
+        <td class="text-center">169</td>
+        <td class="text-center">11</td>
+        <td class="text-center font-bold" style="color: #15803d;">4</td>
+        <td class="text-center text-danger font-bold">7</td>
+        <td class="text-center">0</td>
+        <td class="text-center">58</td>
+        <td class="text-center"><span class="badge-part">शेष 7</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">3</td>
+        <td class="text-center font-bold">506583</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. PRIMARY SCHOOL AMARPURA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:8905157257" style="text-decoration:none; color:#1e3a8a;">8905157257</a></td>
+        <td class="text-center">29</td>
+        <td class="text-center">5</td>
+        <td class="text-center font-bold" style="color: #15803d;">2</td>
+        <td class="text-center text-danger font-bold">3</td>
+        <td class="text-center">8</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 3</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">4</td>
+        <td class="text-center font-bold">410554</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. PRIMARY SCHOOL INDRAPURA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9828218751" style="text-decoration:none; color:#1e3a8a;">9828218751</a></td>
+        <td class="text-center">25</td>
+        <td class="text-center">5</td>
+        <td class="text-center font-bold" style="color: #15803d;">3</td>
+        <td class="text-center text-danger font-bold">2</td>
+        <td class="text-center">12</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 2</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">5</td>
+        <td class="text-center font-bold">468213</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. PRIMARY SCHOOL KADOLAI</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9784375452" style="text-decoration:none; color:#1e3a8a;">9784375452</a></td>
+        <td class="text-center">39</td>
+        <td class="text-center">5</td>
+        <td class="text-center font-bold" style="color: #15803d;">2</td>
+        <td class="text-center text-danger font-bold">3</td>
+        <td class="text-center">12</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 3</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">6</td>
+        <td class="text-center font-bold">505598</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. PRIMARY SCHOOL MAJRA SAWAIPURA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:7742986862" style="text-decoration:none; color:#1e3a8a;">7742986862</a></td>
+        <td class="text-center">63</td>
+        <td class="text-center">5</td>
+        <td class="text-center font-bold" style="color: #15803d;">3</td>
+        <td class="text-center text-danger font-bold">2</td>
+        <td class="text-center">33</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 2</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">7</td>
+        <td class="text-center font-bold">410678</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. PRIMARY SCHOOL PRATAPPURA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9001755517" style="text-decoration:none; color:#1e3a8a;">9001755517</a></td>
+        <td class="text-center">33</td>
+        <td class="text-center">5</td>
+        <td class="text-center font-bold" style="color: #15803d;">2</td>
+        <td class="text-center text-danger font-bold">3</td>
+        <td class="text-center">6</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 3</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">8</td>
+        <td class="text-center font-bold">488936</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. PRIMARY SCHOOL SAWAIPURA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9887322580" style="text-decoration:none; color:#1e3a8a;">9887322580</a></td>
+        <td class="text-center">55</td>
+        <td class="text-center">5</td>
+        <td class="text-center font-bold" style="color: #15803d;">4</td>
+        <td class="text-center text-danger font-bold">1</td>
+        <td class="text-center">0</td>
+        <td class="text-center">35</td>
+        <td class="text-center"><span class="badge-part">शेष 1</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">9</td>
+        <td class="text-center font-bold">221755</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL BADLI</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9950985201" style="text-decoration:none; color:#1e3a8a;">9950985201</a></td>
+        <td class="text-center">315</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">9</td>
+        <td class="text-center text-danger font-bold">3</td>
+        <td class="text-center">120</td>
+        <td class="text-center">30</td>
+        <td class="text-center"><span class="badge-part">शेष 3</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">10</td>
+        <td class="text-center font-bold">221769</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL BANDANWARA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9587293842" style="text-decoration:none; color:#1e3a8a;">9587293842</a></td>
+        <td class="text-center">571</td>
+        <td class="text-center">18</td>
+        <td class="text-center font-bold" style="color: #15803d;">17</td>
+        <td class="text-center text-danger font-bold">1</td>
+        <td class="text-center">239</td>
+        <td class="text-center">158</td>
+        <td class="text-center"><span class="badge-part">शेष 1</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">11</td>
+        <td class="text-center font-bold">221780</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL BHINAI</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9549240545" style="text-decoration:none; color:#1e3a8a;">9549240545</a></td>
+        <td class="text-center">513</td>
+        <td class="text-center">20</td>
+        <td class="text-center font-bold" style="color: #15803d;">9</td>
+        <td class="text-center text-danger font-bold">11</td>
+        <td class="text-center">162</td>
+        <td class="text-center">31</td>
+        <td class="text-center"><span class="badge-part">शेष 11</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">12</td>
+        <td class="text-center font-bold">221763</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL BOOBKIYA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9252068645" style="text-decoration:none; color:#1e3a8a;">9252068645</a></td>
+        <td class="text-center">303</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">5</td>
+        <td class="text-center text-danger font-bold">7</td>
+        <td class="text-center">106</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 7</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">13</td>
+        <td class="text-center font-bold">221758</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL CHAPANERI</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9462507510" style="text-decoration:none; color:#1e3a8a;">9462507510</a></td>
+        <td class="text-center">360</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">7</td>
+        <td class="text-center text-danger font-bold">5</td>
+        <td class="text-center">66</td>
+        <td class="text-center">18</td>
+        <td class="text-center"><span class="badge-part">शेष 5</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">14</td>
+        <td class="text-center font-bold">221787</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL CHHACHHUNDRA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9413781124" style="text-decoration:none; color:#1e3a8a;">9413781124</a></td>
+        <td class="text-center">317</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">10</td>
+        <td class="text-center text-danger font-bold">2</td>
+        <td class="text-center">122</td>
+        <td class="text-center">85</td>
+        <td class="text-center"><span class="badge-part">शेष 2</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">15</td>
+        <td class="text-center font-bold">488941</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL DEVRIYA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9414550658" style="text-decoration:none; color:#1e3a8a;">9414550658</a></td>
+        <td class="text-center">287</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">7</td>
+        <td class="text-center text-danger font-bold">5</td>
+        <td class="text-center">74</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 5</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">16</td>
+        <td class="text-center font-bold">221783</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL DHANTOL</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9413695182" style="text-decoration:none; color:#1e3a8a;">9413695182</a></td>
+        <td class="text-center">333</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">10</td>
+        <td class="text-center text-danger font-bold">2</td>
+        <td class="text-center">136</td>
+        <td class="text-center">34</td>
+        <td class="text-center"><span class="badge-part">शेष 2</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">17</td>
+        <td class="text-center font-bold">221786</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL EKALSINGHA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:7728052397" style="text-decoration:none; color:#1e3a8a;">7728052397</a></td>
+        <td class="text-center">474</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">11</td>
+        <td class="text-center text-danger font-bold">1</td>
+        <td class="text-center">246</td>
+        <td class="text-center">56</td>
+        <td class="text-center"><span class="badge-part">शेष 1</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">18</td>
+        <td class="text-center font-bold">221760</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL GANAHERA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9461981723" style="text-decoration:none; color:#1e3a8a;">9461981723</a></td>
+        <td class="text-center">268</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">10</td>
+        <td class="text-center text-danger font-bold">2</td>
+        <td class="text-center">70</td>
+        <td class="text-center">64</td>
+        <td class="text-center"><span class="badge-part">शेष 2</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">19</td>
+        <td class="text-center font-bold">488897</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL GHANA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9928994663" style="text-decoration:none; color:#1e3a8a;">9928994663</a></td>
+        <td class="text-center">357</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">4</td>
+        <td class="text-center text-danger font-bold">8</td>
+        <td class="text-center">108</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 8</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">20</td>
+        <td class="text-center font-bold">221762</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL GUDHA KHURD</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9414554344" style="text-decoration:none; color:#1e3a8a;">9414554344</a></td>
+        <td class="text-center">382</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">4</td>
+        <td class="text-center text-danger font-bold">8</td>
+        <td class="text-center">140</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 8</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">21</td>
+        <td class="text-center font-bold">488947</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL HIYALIYA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9636233704" style="text-decoration:none; color:#1e3a8a;">9636233704</a></td>
+        <td class="text-center">174</td>
+        <td class="text-center">8</td>
+        <td class="text-center font-bold" style="color: #15803d;">6</td>
+        <td class="text-center text-danger font-bold">2</td>
+        <td class="text-center">32</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 2</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">22</td>
+        <td class="text-center font-bold">221767</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL KAIROT GURJAR MOHALLA JATPURA ROAD</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9929526324" style="text-decoration:none; color:#1e3a8a;">9929526324</a></td>
+        <td class="text-center">245</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">5</td>
+        <td class="text-center text-danger font-bold">7</td>
+        <td class="text-center">59</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 7</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">23</td>
+        <td class="text-center font-bold">221765</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL KANAI KALA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9166233899" style="text-decoration:none; color:#1e3a8a;">9166233899</a></td>
+        <td class="text-center">150</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">9</td>
+        <td class="text-center text-danger font-bold">3</td>
+        <td class="text-center">58</td>
+        <td class="text-center">29</td>
+        <td class="text-center"><span class="badge-part">शेष 3</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">24</td>
+        <td class="text-center font-bold">221773</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL KARANTI</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9950736300" style="text-decoration:none; color:#1e3a8a;">9950736300</a></td>
+        <td class="text-center">320</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">7</td>
+        <td class="text-center text-danger font-bold">5</td>
+        <td class="text-center">88</td>
+        <td class="text-center">73</td>
+        <td class="text-center"><span class="badge-part">शेष 5</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">25</td>
+        <td class="text-center font-bold">221777</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL KUMHARIYA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9460690289" style="text-decoration:none; color:#1e3a8a;">9460690289</a></td>
+        <td class="text-center">287</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">2</td>
+        <td class="text-center text-danger font-bold">10</td>
+        <td class="text-center">44</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 10</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">26</td>
+        <td class="text-center font-bold">401778</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL NEMEDA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9461249418" style="text-decoration:none; color:#1e3a8a;">9461249418</a></td>
+        <td class="text-center">274</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">7</td>
+        <td class="text-center text-danger font-bold">5</td>
+        <td class="text-center">94</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 5</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">27</td>
+        <td class="text-center font-bold">221761</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL NIMEDA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9462905104" style="text-decoration:none; color:#1e3a8a;">9462905104</a></td>
+        <td class="text-center">240</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">10</td>
+        <td class="text-center text-danger font-bold">2</td>
+        <td class="text-center">116</td>
+        <td class="text-center">31</td>
+        <td class="text-center"><span class="badge-part">शेष 2</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">28</td>
+        <td class="text-center font-bold">221771</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL RAILWAY COLONY  BANDANWARA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:8949599466" style="text-decoration:none; color:#1e3a8a;">8949599466</a></td>
+        <td class="text-center">308</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">11</td>
+        <td class="text-center text-danger font-bold">1</td>
+        <td class="text-center">74</td>
+        <td class="text-center">55</td>
+        <td class="text-center"><span class="badge-part">शेष 1</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">29</td>
+        <td class="text-center font-bold">221785</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL RAMMALIYA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9928328808" style="text-decoration:none; color:#1e3a8a;">9928328808</a></td>
+        <td class="text-center">269</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">11</td>
+        <td class="text-center text-danger font-bold">1</td>
+        <td class="text-center">178</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 1</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">30</td>
+        <td class="text-center font-bold">410704</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL ROOPPURA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9413225666" style="text-decoration:none; color:#1e3a8a;">9413225666</a></td>
+        <td class="text-center">143</td>
+        <td class="text-center">10</td>
+        <td class="text-center font-bold" style="color: #15803d;">6</td>
+        <td class="text-center text-danger font-bold">4</td>
+        <td class="text-center">48</td>
+        <td class="text-center">32</td>
+        <td class="text-center"><span class="badge-part">शेष 4</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">31</td>
+        <td class="text-center font-bold">221781</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL SINGAWAL</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:8290911983" style="text-decoration:none; color:#1e3a8a;">8290911983</a></td>
+        <td class="text-center">469</td>
+        <td class="text-center">13</td>
+        <td class="text-center font-bold" style="color: #15803d;">9</td>
+        <td class="text-center text-danger font-bold">4</td>
+        <td class="text-center">170</td>
+        <td class="text-center">55</td>
+        <td class="text-center"><span class="badge-part">शेष 4</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">32</td>
+        <td class="text-center font-bold">221782</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. SENIOR SECONDARY SCHOOL SOBRI</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9829487158" style="text-decoration:none; color:#1e3a8a;">9829487158</a></td>
+        <td class="text-center">208</td>
+        <td class="text-center">12</td>
+        <td class="text-center font-bold" style="color: #15803d;">11</td>
+        <td class="text-center text-danger font-bold">1</td>
+        <td class="text-center">157</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 1</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">33</td>
+        <td class="text-center font-bold">488942</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. UPPER PRIMARY SCHOOL AMARGARH</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9887845200" style="text-decoration:none; color:#1e3a8a;">9887845200</a></td>
+        <td class="text-center">68</td>
+        <td class="text-center">8</td>
+        <td class="text-center font-bold" style="color: #15803d;">1</td>
+        <td class="text-center text-danger font-bold">7</td>
+        <td class="text-center">17</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 7</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">34</td>
+        <td class="text-center font-bold">506475</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. UPPER PRIMARY SCHOOL BALAPURA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9783835181" style="text-decoration:none; color:#1e3a8a;">9783835181</a></td>
+        <td class="text-center">91</td>
+        <td class="text-center">8</td>
+        <td class="text-center font-bold" style="color: #15803d;">4</td>
+        <td class="text-center text-danger font-bold">4</td>
+        <td class="text-center">24</td>
+        <td class="text-center">4</td>
+        <td class="text-center"><span class="badge-part">शेष 4</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">35</td>
+        <td class="text-center font-bold">485028</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. UPPER PRIMARY SCHOOL KANAI KHURD</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9983360604" style="text-decoration:none; color:#1e3a8a;">9983360604</a></td>
+        <td class="text-center">130</td>
+        <td class="text-center">8</td>
+        <td class="text-center font-bold" style="color: #15803d;">4</td>
+        <td class="text-center text-danger font-bold">4</td>
+        <td class="text-center">40</td>
+        <td class="text-center">11</td>
+        <td class="text-center"><span class="badge-part">शेष 4</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">36</td>
+        <td class="text-center font-bold">463076</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. UPPER PRIMARY SCHOOL KEETAP</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:8949355898" style="text-decoration:none; color:#1e3a8a;">8949355898</a></td>
+        <td class="text-center">97</td>
+        <td class="text-center">8</td>
+        <td class="text-center font-bold" style="color: #15803d;">5</td>
+        <td class="text-center text-danger font-bold">3</td>
+        <td class="text-center">52</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 3</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">37</td>
+        <td class="text-center font-bold">468216</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. UPPER PRIMARY SCHOOL KERIYA KHURD</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:7568008715" style="text-decoration:none; color:#1e3a8a;">7568008715</a></td>
+        <td class="text-center">143</td>
+        <td class="text-center">8</td>
+        <td class="text-center font-bold" style="color: #15803d;">4</td>
+        <td class="text-center text-danger font-bold">4</td>
+        <td class="text-center">63</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 4</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">38</td>
+        <td class="text-center font-bold">410623</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. UPPER PRIMARY SCHOOL LAKSHMIPURA KANAIKALA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:8503046396" style="text-decoration:none; color:#1e3a8a;">8503046396</a></td>
+        <td class="text-center">57</td>
+        <td class="text-center">8</td>
+        <td class="text-center font-bold" style="color: #15803d;">3</td>
+        <td class="text-center text-danger font-bold">5</td>
+        <td class="text-center">14</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 5</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">39</td>
+        <td class="text-center font-bold">488793</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. UPPER PRIMARY SCHOOL PRATAPPURA KARANTI</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9929213631" style="text-decoration:none; color:#1e3a8a;">9929213631</a></td>
+        <td class="text-center">157</td>
+        <td class="text-center">8</td>
+        <td class="text-center font-bold" style="color: #15803d;">6</td>
+        <td class="text-center text-danger font-bold">2</td>
+        <td class="text-center">104</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 2</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">40</td>
+        <td class="text-center font-bold">488790</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. UPPER PRIMARY SCHOOL SAPNIKHEDA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9571393478" style="text-decoration:none; color:#1e3a8a;">9571393478</a></td>
+        <td class="text-center">83</td>
+        <td class="text-center">8</td>
+        <td class="text-center font-bold" style="color: #15803d;">4</td>
+        <td class="text-center text-danger font-bold">4</td>
+        <td class="text-center">33</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 4</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">41</td>
+        <td class="text-center font-bold">488945</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. UPPER PRIMARY SCHOOL SARGAON</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9460067377" style="text-decoration:none; color:#1e3a8a;">9460067377</a></td>
+        <td class="text-center">93</td>
+        <td class="text-center">8</td>
+        <td class="text-center font-bold" style="color: #15803d;">3</td>
+        <td class="text-center text-danger font-bold">5</td>
+        <td class="text-center">32</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 5</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">42</td>
+        <td class="text-center font-bold">410964</td>
+        <td class="text-left font-bold" style="color: #0f172a;">GOVT. UPPER PRIMARY SCHOOL UDAIPUR KHEDA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:8239559748" style="text-decoration:none; color:#1e3a8a;">8239559748</a></td>
+        <td class="text-center">59</td>
+        <td class="text-center">8</td>
+        <td class="text-center font-bold" style="color: #15803d;">7</td>
+        <td class="text-center text-danger font-bold">1</td>
+        <td class="text-center">5</td>
+        <td class="text-center">29</td>
+        <td class="text-center"><span class="badge-part">शेष 1</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">43</td>
+        <td class="text-center font-bold">221770</td>
+        <td class="text-left font-bold" style="color: #0f172a;">MAHATMA GANDHI GOVT. SCHOOL BANDANWARA</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9649149083" style="text-decoration:none; color:#1e3a8a;">9649149083</a></td>
+        <td class="text-center">298</td>
+        <td class="text-center">13</td>
+        <td class="text-center font-bold" style="color: #15803d;">10</td>
+        <td class="text-center text-danger font-bold">3</td>
+        <td class="text-center">208</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 3</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">44</td>
+        <td class="text-center font-bold">221778</td>
+        <td class="text-left font-bold" style="color: #0f172a;">MAHATMA GANDHI GOVT. SCHOOL BHINAI</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9468855086" style="text-decoration:none; color:#1e3a8a;">9468855086</a></td>
+        <td class="text-center">340</td>
+        <td class="text-center">17</td>
+        <td class="text-center font-bold" style="color: #15803d;">3</td>
+        <td class="text-center text-danger font-bold">14</td>
+        <td class="text-center">21</td>
+        <td class="text-center">18</td>
+        <td class="text-center"><span class="badge-part">शेष 14</span></td>
+      </tr>
+      <tr style="background: #fff;">
+        <td class="text-center font-bold">45</td>
+        <td class="text-center font-bold">221753</td>
+        <td class="text-left font-bold" style="color: #0f172a;">MAHATMA GANDHI GOVT. SCHOOL DEOLIYA KALAN</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9829835751" style="text-decoration:none; color:#1e3a8a;">9829835751</a></td>
+        <td class="text-center">450</td>
+        <td class="text-center">15</td>
+        <td class="text-center font-bold" style="color: #15803d;">9</td>
+        <td class="text-center text-danger font-bold">6</td>
+        <td class="text-center">140</td>
+        <td class="text-center">51</td>
+        <td class="text-center"><span class="badge-part">शेष 6</span></td>
+      </tr>
+      <tr style="background: #fffdf5;">
+        <td class="text-center font-bold">46</td>
+        <td class="text-center font-bold">221754</td>
+        <td class="text-left font-bold" style="color: #0f172a;">PM SHRI GOVT. SENIOR SECONDARY SCHOOL DEOLIYA KALAN</td>
+        <td class="text-center font-bold" style="color: #1e3a8a;"><a href="tel:9414343109" style="text-decoration:none; color:#1e3a8a;">9414343109</a></td>
+        <td class="text-center">708</td>
+        <td class="text-center">20</td>
+        <td class="text-center font-bold" style="color: #15803d;">11</td>
+        <td class="text-center text-danger font-bold">9</td>
+        <td class="text-center">114</td>
+        <td class="text-center">0</td>
+        <td class="text-center"><span class="badge-part">शेष 9</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Official Sign-off Block -->
+  <div class="sign-area">
+    <div class="sign-box">
+      <br><br>
+      <div>(हस्ताक्षर एवं मोहर)</div>
+      <div style="font-size: 13px; font-weight: 900; margin-top: 3px;">मुख्य ब्लॉक शिक्षा अधिकारी (CBEO)</div>
+      <div>ब्लॉक-भिनाय, जिला-अजमेर (राजस्थान)</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>कार्यालय मुख्य ब्लॉक शिक्षा अधिकारी (CBEO), भिनाय (अजमेर)</span>
+    <span>दैनिक शाला दर्पण विद्यार्थी उपस्थिति मॉनिटरिंग | 17-11-2026</span>
+    <span>पृष्ठ रिपोर्ट</span>
+  </div>
+
+</body>
+</html>

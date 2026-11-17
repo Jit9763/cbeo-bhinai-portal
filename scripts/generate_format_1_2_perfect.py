@@ -5,10 +5,10 @@ import os
 from copy import copy
 
 # Paths
-ORIG_TEMPLATE = r'C:\Users\jiten\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\LocalState\sessions\BECD56A9B3B44B0563204B742262D9BFAB08FCDD\transfers\2026-46\Format 1 and 2 blank.xlsx'
+ORIG_TEMPLATE = r'saman priksha/Format 1 and 2 blank.xlsx'
 OUTPUT_FILLED = r'saman priksha/Format 1 and 2 filled.xlsx'
 OUTPUT_BLANK = r'saman priksha/Format 1 and 2 blank.xlsx'
-WHATSAPP_COPY = ORIG_TEMPLATE
+WHATSAPP_COPY = r'C:\Users\jiten\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\LocalState\sessions\BECD56A9B3B44B0563204B742262D9BFAB08FCDD\transfers\2026-46\Format 1 and 2 filled.xlsx'
 
 # Optional subjects configuration with exact image names & codes
 OPT_CONFIG = [
