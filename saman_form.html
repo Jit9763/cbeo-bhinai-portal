@@ -2799,6 +2799,23 @@
               } catch(e) {}
             }
           }).catch(() => {});
+
+        // Fetch all live submissions from Google Sheet in background
+        fetch(`${webhookUrl}?action=getAll&_nocache=${Date.now()}`)
+          .then(r => r.json())
+          .then(data => {
+            if (data && data.success && data.submissions) {
+              const allSubs = JSON.parse(localStorage.getItem('cbeo_saman_pariksha_submissions') || '{}');
+              Object.assign(allSubs, data.submissions);
+              localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(allSubs));
+              if (currentSchool && data.submissions[currentSchool.shala_darpan_code]) {
+                const liveSub = data.submissions[currentSchool.shala_darpan_code];
+                populateFormFieldsWithSubmission(liveSub);
+                renderSubmittedPreviewTable(liveSub);
+                checkAndRenderSchoolMismatch(currentSchool.shala_darpan_code, liveSub);
+              }
+            }
+          }).catch(e => console.warn('Cloud sync getAll note:', e));
       }
 
       // Sync mismatch settings from repository static JSON only if not already saved locally
@@ -2982,76 +2999,14 @@
       return `कार्यालय ${name}${codePart}`;
     }
 
-    function loadSchool(code) {
-      if (!code) {
-        currentSchool = null;
-        return;
-      }
-      if (!schoolsList || schoolsList.length === 0) {
-        schoolsList = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.schools_56) || (window.MASTER_CBEO_DATA && window.MASTER_CBEO_DATA.schools_56) || [];
-      }
-      currentSchool = schoolsList.find(s => String(s.shala_darpan_code) === String(code));
-      if (!currentSchool) {
-        currentSchool = null;
-        return;
-      }
+    
+    function populateFormFieldsWithSubmission(sub) {
+      if (!sub || !currentSchool) return;
 
-      // Check stored submission and draft
-      const allSubs = JSON.parse(localStorage.getItem('cbeo_saman_pariksha_submissions') || '{}');
-      const defaultSubs = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.saman_pariksha_submissions) || {};
-      let sub = allSubs[code] || defaultSubs[code] || {};
-      const draftKey = `cbeo_form_draft_${code}`;
-      const draft = JSON.parse(localStorage.getItem(draftKey) || 'null');
-      if (draft) {
-        sub = { ...sub, ...draft };
-        const draftIndicator = document.getElementById('standalone-draft-status');
-        if (draftIndicator) {
-          draftIndicator.innerHTML = `<i class="fas fa-check-circle"></i> <span>ड्राफ्ट सुरक्षित (${draft.updated_at || 'सुरक्षित'})</span>`;
-        }
-      }
-
-      // Live fetch from Google Sheet via doGet if not filled yet
-      const webhookUrl = localStorage.getItem('cbeo_google_apps_script_url') 
-        || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
-        || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
-      
-      if (webhookUrl && code && !sub.grand_total) {
-        fetch(`${webhookUrl}?action=get&school_code=${code}`)
-          .then(res => res.json())
-          .then(data => {
-            if (data && data.success && data.submission) {
-              allSubs[code] = data.submission;
-              localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(allSubs));
-              loadSchoolForm(code);
-            }
-          }).catch(e => {});
-      }
-
-      renderSubmittedPreviewTable(sub);
-      checkAndRenderSchoolMismatch(code, sub);
-
-      const officialNames = getOfficialSchoolNames(currentSchool);
-      const fixedExamCode = (currentSchool.type === 'Private' ? 'AJM04P' : 'AJM04G') + currentSchool.shala_darpan_code;
-
-      const headerTitleEl = document.getElementById('gform-school-header-title');
-      if (headerTitleEl) {
-        headerTitleEl.textContent = getSchoolOfficialFormalHindiHeader(currentSchool);
-      }
-
-      document.getElementById('f-school-code').value = currentSchool.shala_darpan_code;
-      document.getElementById('f-school-name').value = officialNames.en;
-      if (document.getElementById('f-school-name-hi')) {
-        document.getElementById('f-school-name-hi').value = officialNames.hi;
-      }
-      document.getElementById('f-sd-code').value = currentSchool.shala_darpan_code;
-      document.getElementById('f-peeo-name').value = currentSchool.peeo_name || '---';
-      document.getElementById('f-school-cat').value = `${currentSchool.category} (${currentSchool.type === 'Government' ? 'राजकीय' : 'निजी'})`;
-      document.getElementById('f-exam-code').value = fixedExamCode;
-
-      document.getElementById('f-principal-name').value = sub.principal_name || currentSchool.principal_name || '';
-      document.getElementById('f-principal-mobile').value = sub.principal_mobile || currentSchool.principal_mobile || '';
-      document.getElementById('f-incharge-name').value = sub.incharge_name || currentSchool.incharge_name || '';
-      document.getElementById('f-incharge-mobile').value = sub.incharge_mobile || currentSchool.incharge_mobile || '';
+      if (document.getElementById('f-principal-name')) document.getElementById('f-principal-name').value = sub.principal_name || currentSchool.principal_name || '';
+      if (document.getElementById('f-principal-mobile')) document.getElementById('f-principal-mobile').value = sub.principal_mobile || currentSchool.principal_mobile || '';
+      if (document.getElementById('f-incharge-name')) document.getElementById('f-incharge-name').value = sub.incharge_name || currentSchool.incharge_name || '';
+      if (document.getElementById('f-incharge-mobile')) document.getElementById('f-incharge-mobile').value = sub.incharge_mobile || currentSchool.incharge_mobile || '';
 
       // School Medium Setup & MGGS Recognition
       const isMggs = (['221770', '221778', '221753'].includes(String(currentSchool.shala_darpan_code).trim()) || (currentSchool.category || '').toUpperCase().includes('MGGS') || (currentSchool.school_name || '').includes('महात्मा गांधी') || (currentSchool.school_name || '').toUpperCase().includes('MGGS'));
@@ -3119,13 +3074,13 @@
       if (document.getElementById('f-c10-sanskrit')) document.getElementById('f-c10-sanskrit').value = sub.c10_sanskrit ?? 0;
       if (document.getElementById('f-c10-urdu')) document.getElementById('f-c10-urdu').value = sub.c10_urdu ?? 0;
 
-      document.getElementById('f-c11-comp-hindi').value = sub.c11_comp_hindi ?? 0;
-      document.getElementById('f-c11-comp-english').value = sub.c11_comp_english ?? 0;
-      document.getElementById('f-c11-total').value = sub.c11_total ?? 0;
+      if (document.getElementById('f-c11-comp-hindi')) document.getElementById('f-c11-comp-hindi').value = sub.c11_comp_hindi ?? 0;
+      if (document.getElementById('f-c11-comp-english')) document.getElementById('f-c11-comp-english').value = sub.c11_comp_english ?? 0;
+      if (document.getElementById('f-c11-total')) document.getElementById('f-c11-total').value = sub.c11_total ?? 0;
 
-      document.getElementById('f-c12-comp-hindi').value = sub.c12_comp_hindi ?? 0;
-      document.getElementById('f-c12-comp-english').value = sub.c12_comp_english ?? 0;
-      document.getElementById('f-c12-total').value = sub.c12_total ?? 0;
+      if (document.getElementById('f-c12-comp-hindi')) document.getElementById('f-c12-comp-hindi').value = sub.c12_comp_hindi ?? 0;
+      if (document.getElementById('f-c12-comp-english')) document.getElementById('f-c12-comp-english').value = sub.c12_comp_english ?? 0;
+      if (document.getElementById('f-c12-total')) document.getElementById('f-c12-total').value = sub.c12_total ?? 0;
 
       // Render Dynamic Stream Sections and Subjects for Class 11 and Class 12
       ['c11', 'c12'].forEach(cls => {
@@ -3167,7 +3122,83 @@
         });
       });
 
-      // Stamp
+      calculateTotals();
+    }
+    window.populateFormFieldsWithSubmission = populateFormFieldsWithSubmission;
+
+    function loadSchool(code) {
+      if (!code) {
+        currentSchool = null;
+        return;
+      }
+      if (!schoolsList || schoolsList.length === 0) {
+        schoolsList = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.schools_56) || (window.MASTER_CBEO_DATA && window.MASTER_CBEO_DATA.schools_56) || [];
+      }
+      currentSchool = schoolsList.find(s => String(s.shala_darpan_code) === String(code));
+      if (!currentSchool) {
+        currentSchool = null;
+        return;
+      }
+
+      // Check stored submission and draft
+      const allSubs = JSON.parse(localStorage.getItem('cbeo_saman_pariksha_submissions') || '{}');
+      const defaultSubs = (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.saman_pariksha_submissions) || {};
+      let sub = allSubs[code] || defaultSubs[code] || {};
+      const draftKey = `cbeo_form_draft_${code}`;
+      const draft = JSON.parse(localStorage.getItem(draftKey) || 'null');
+      if (draft) {
+        sub = { ...sub, ...draft };
+        const draftIndicator = document.getElementById('standalone-draft-status');
+        if (draftIndicator) {
+          draftIndicator.innerHTML = `<i class="fas fa-check-circle"></i> <span>ड्राफ्ट सुरक्षित (${draft.updated_at || 'सुरक्षित'})</span>`;
+        }
+      }
+
+      // Live fetch from Google Sheet via doGet if not filled yet
+      const webhookUrl = localStorage.getItem('cbeo_google_apps_script_url') 
+        || (typeof MASTER_CBEO_DATA !== 'undefined' && MASTER_CBEO_DATA.admin_config && MASTER_CBEO_DATA.admin_config.google_apps_script_url) 
+        || 'https://script.google.com/macros/s/AKfycbywP9R-b1o66sR1nevpPo0NP5l-m0WOqpHakTrkWSa7Dg5ixwTMLV8Dhnq_k1WSydeb/exec';
+      
+      // Live fetch from Google Sheet via doGet to guarantee fresh data from cloud
+      if (webhookUrl && code) {
+        fetch(`${webhookUrl}?action=get&school_code=${code}&_t=${Date.now()}`)
+          .then(res => res.json())
+          .then(data => {
+            if (data && data.success && data.submission && currentSchool && String(currentSchool.shala_darpan_code) === String(code)) {
+              const liveSub = data.submission;
+              allSubs[code] = liveSub;
+              localStorage.setItem('cbeo_saman_pariksha_submissions', JSON.stringify(allSubs));
+              // Update form fields with live cloud data
+              populateFormFieldsWithSubmission(liveSub);
+              renderSubmittedPreviewTable(liveSub);
+              checkAndRenderSchoolMismatch(code, liveSub);
+            }
+          }).catch(err => console.warn('Cloud sync error:', err));
+      }
+
+      renderSubmittedPreviewTable(sub);
+      checkAndRenderSchoolMismatch(code, sub);
+
+      const officialNames = getOfficialSchoolNames(currentSchool);
+      const fixedExamCode = (currentSchool.type === 'Private' ? 'AJM04P' : 'AJM04G') + currentSchool.shala_darpan_code;
+
+      const headerTitleEl = document.getElementById('gform-school-header-title');
+      if (headerTitleEl) {
+        headerTitleEl.textContent = getSchoolOfficialFormalHindiHeader(currentSchool);
+      }
+
+      document.getElementById('f-school-code').value = currentSchool.shala_darpan_code;
+      document.getElementById('f-school-name').value = officialNames.en;
+      if (document.getElementById('f-school-name-hi')) {
+        document.getElementById('f-school-name-hi').value = officialNames.hi;
+      }
+      document.getElementById('f-sd-code').value = currentSchool.shala_darpan_code;
+      document.getElementById('f-peeo-name').value = currentSchool.peeo_name || '---';
+      document.getElementById('f-school-cat').value = `${currentSchool.category} (${currentSchool.type === 'Government' ? 'राजकीय' : 'निजी'})`;
+      document.getElementById('f-exam-code').value = fixedExamCode;
+
+      populateFormFieldsWithSubmission(sub);
+
       document.getElementById('f-stamp-school').textContent = currentSchool.peeo_name || 'रा.उ.मा.वि. भिनाय';
       document.getElementById('f-stamp-block').textContent = `ग्रा.पं. ${currentSchool.peeo_name.replace('PEEO ', '')}, ब्लॉक-भिनाय (अजमेर)`;
 
