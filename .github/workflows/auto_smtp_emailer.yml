@@ -1,0 +1,23 @@
+name: CBEO Auto PDF Emailer (24x7 Cloud)
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  dispatch-pdfs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
+      - name: Dispatch queued attendance PDFs via Gmail SMTP
+        env:
+          TOKEN_CENSUS_JSON: ${{ secrets.TOKEN_CENSUS_JSON }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+        run: python -m scripts.dispatch_pending_pdfs_smtp
